@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcomHouse - Data-Driven CRO & Marketing for E-commerce</title>
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-black: #1A1C1C;
+            --bg-light: #F5F5F5;
+            --bg-gray: #E8E8E8;
+            --white: #FFFFFF;
+            --accent-green: #00D4AA;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            color: var(--primary-black);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 5%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(26, 28, 28, 0.1);
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            height: 48px;
+        }
+
+        nav .cta-button {
+            background: var(--primary-black);
+            color: var(--white);
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+        }
+
+        nav .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 5% 4rem;
+            background: var(--bg-light);
+        }
+
+        .hero .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content h1 .highlight {
+            display: block;
+            font-weight: 300;
+        }
+
+        .hero-content p {
+            margin-bottom: 2.5rem;
+            color: rgba(26, 28, 28, 0.7);
+            max-width: 540px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--primary-black);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: inline-block;
+            transition: transform 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-black);
+            padding: 1rem 2.5rem;
+            border: 2px solid var(--primary-black);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: inline-block;
+            transition: all 0.2s ease;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-black);
+            color: var(--white);
+        }
+
+        .hero-visual {
+            background: linear-gradient(135deg, var(--bg-gray) 0%, var(--bg-light) 100%);
+            border-radius: 24px;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-visual::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--primary-black);
+            opacity: 0.05;
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+        }
+
+        .hero-visual::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: var(--accent-green);
+            opacity: 0.1;
+            border-radius: 50%;
+            bottom: -50px;
+            left: -50px;
+        }
+
+        .hero-mockup {
+            width: 90%;
+            height: 90%;
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+        }
+
+        .mockup-header {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mockup-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--bg-gray);
+        }
+
+        .mockup-content {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .mockup-card {
+            background: var(--bg-light);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .mockup-bar {
+            height: 8px;
+            background: var(--bg-gray);
+            border-radius: 4px;
+            margin-bottom: 0.75rem;
+        }
+
+        .mockup-bar:last-child {
+            width: 60%;
+        }
+
+        /* Social Proof */
+        .social-proof {
+            padding: 3rem 5%;
+            background: var(--white);
+            border-top: 1px solid rgba(26, 28, 28, 0.1);
+            border-bottom: 1px solid rgba(26, 28, 28, 0.1);
+        }
+
+        .social-proof .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+
+        .social-proof p {
+            color: rgba(26, 28, 28, 0.6);
+            font-size: 1rem;
+        }
+
+        .client-logos {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .client-logo {
+            height: 48px;
+            width: 120px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: rgba(26, 28, 28, 0.3);
+            opacity: 0.7;
+            transition: opacity 0.2s ease;
+        }
+
+        .client-logo:hover {
+            opacity: 1;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 8rem 5%;
+            background: var(--white);
+        }
+
+        .services .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 5rem;
+        }
+
+        .section-header h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header p {
+            color: rgba(26, 28, 28, 0.7);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            padding: 2.5rem;
+            background: var(--bg-light);
+            border-radius: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--primary-black);
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-icon::before {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: var(--accent-green);
+            opacity: 0.2;
+            border-radius: 50%;
+        }
+
+        .service-card h3 {
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: rgba(26, 28, 28, 0.7);
+            font-size: 1rem;
+        }
+
+        /* Process Section */
+        .process {
+            padding: 8rem 5%;
+            background: var(--bg-light);
+        }
+
+        .process .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .process-step {
+            text-align: center;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-black);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+        }
+
+        .process-step h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .process-step p {
+            color: rgba(26, 28, 28, 0.7);
+            font-size: 1rem;
+        }
+
+        /* Case Study Section */
+        .case-study {
+            padding: 8rem 5%;
+            background: var(--primary-black);
+            color: var(--white);
+        }
+
+        .case-study .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .case-study .section-header h2,
+        .case-study .section-header p {
+            color: var(--white);
+        }
+
+        .case-study .section-header p {
+            opacity: 0.7;
+        }
+
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .case-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .case-card:hover {
+            transform: scale(1.02);
+        }
+
+        .case-image {
+            height: 250px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .case-image::before {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: var(--accent-green);
+            opacity: 0.15;
+            border-radius: 50%;
+            top: -50px;
+            right: -50px;
+        }
+
+        .case-image-placeholder {
+            width: 80%;
+            height: 80%;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+        }
+
+        .case-image-icon {
+            font-size: 3rem;
+            opacity: 0.3;
+        }
+
+        .case-content {
+            padding: 2rem;
+        }
+
+        .case-content h3 {
+            margin-bottom: 1rem;
+        }
+
+        .case-content p {
+            opacity: 0.7;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .case-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .stat {
+            flex: 1;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-green);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Testimonial Section */
+        .testimonials {
+            padding: 8rem 5%;
+            background: var(--white);
+        }
+
+        .testimonials .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .testimonial-card {
+            padding: 2.5rem;
+            background: var(--bg-light);
+            border-radius: 16px;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 56px;
+            height: 56px;
+            background: var(--bg-gray);
+            border-radius: 50%;
+        }
+
+        .author-name {
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .author-title {
+            font-size: 0.9rem;
+            color: rgba(26, 28, 28, 0.6);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 5%;
+            background: var(--bg-light);
+        }
+
+        .cta-section .container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            color: rgba(26, 28, 28, 0.7);
+            margin-bottom: 3rem;
+        }
+
+        /* Form */
+        .lead-form {
+            max-width: 600px;
+            margin: 3rem auto 0;
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--bg-gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-black);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            width: 100%;
+            background: var(--primary-black);
+            color: var(--white);
+            padding: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 5% 2rem;
+            background: var(--primary-black);
+            color: var(--white);
+        }
+
+        footer .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            height: 32px;
+            margin-bottom: 1rem;
+        }
+
+        .footer-about {
+            opacity: 0.7;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .footer-column h4 {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.7;
+            transition: opacity 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        .calendar-cta {
+            background: var(--accent-green);
+            color: var(--primary-black);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: transform 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .calendar-cta:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Popup Modal */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            padding: 1rem;
+        }
+
+        .popup-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .popup-content {
+            background: var(--white);
+            border-radius: 24px;
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            padding: 3rem;
+            transform: translateY(30px);
+            transition: transform 0.3s ease;
+        }
+
+        .popup-overlay.active .popup-content {
+            transform: translateY(0);
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: var(--bg-light);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary-black);
+            transition: background 0.2s ease;
+        }
+
+        .popup-close:hover {
+            background: var(--bg-gray);
+        }
+
+        .popup-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .popup-badge {
+            display: inline-block;
+            background: var(--accent-green);
+            color: var(--primary-black);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .popup-header h3 {
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .popup-header p {
+            color: rgba(26, 28, 28, 0.7);
+            font-size: 1rem;
+        }
+
+        .popup-features {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .popup-features li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            font-size: 1rem;
+        }
+
+        .popup-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent-green);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .popup-cta {
+            width: 100%;
+            background: var(--primary-black);
+            color: var(--white);
+            padding: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .popup-cta:hover {
+            transform: translateY(-2px);
+        }
+
+        .popup-footer {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: rgba(26, 28, 28, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            nav {
+                padding: 1rem 4%;
+            }
+
+            nav .logo {
+                height: 40px;
+            }
+
+            .hero {
+                padding: 6rem 4% 3rem;
+                min-height: auto;
+            }
+
+            .hero .container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-cta {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                height: 350px;
+                order: -1;
+            }
+
+            .services,
+            .process,
+            .testimonials,
+            .cta-section,
+            .case-study {
+                padding: 4rem 4%;
+            }
+
+            .section-header {
+                margin-bottom: 3rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .service-card {
+                padding: 1.5rem;
+            }
+
+            .case-grid,
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .step-number {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .social-proof {
+                padding: 2rem 4%;
+            }
+
+            .social-proof .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .client-logos {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 640px) {
+            nav {
+                padding: 0.75rem 4%;
+            }
+
+            nav .logo {
+                height: 36px;
+            }
+
+            nav .cta-button {
+                padding: 0.5rem 1.25rem;
+                font-size: 0.9rem;
+            }
+
+            .hero {
+                padding: 5rem 4% 2rem;
+            }
+
+            h1 {
+                font-size: clamp(1.75rem, 8vw, 2.5rem);
+            }
+
+            h2 {
+                font-size: clamp(1.5rem, 6vw, 2rem);
+            }
+
+            h3 {
+                font-size: clamp(1.1rem, 4vw, 1.5rem);
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                text-align: center;
+                width: 100%;
+                padding: 1rem 1.5rem;
+            }
+
+            .hero-visual {
+                height: 280px;
+            }
+
+            .services,
+            .process,
+            .testimonials,
+            .cta-section,
+            .case-study {
+                padding: 3rem 4%;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                padding: 1.5rem;
+            }
+
+            .service-icon {
+                width: 48px;
+                height: 48px;
+            }
+
+            .service-icon svg {
+                width: 24px;
+                height: 24px;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .case-card {
+                border-radius: 12px;
+            }
+
+            .case-image {
+                height: 200px;
+            }
+
+            .case-content {
+                padding: 1.5rem;
+            }
+
+            .case-stats {
+                gap: 1rem;
+            }
+
+            .stat-number {
+                font-size: 1.5rem;
+            }
+
+            .testimonial-card {
+                padding: 1.5rem;
+            }
+
+            .testimonial-text {
+                font-size: 1rem;
+            }
+
+            .author-avatar {
+                width: 44px;
+                height: 44px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-logo {
+                height: 28px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.75rem;
+            }
+
+            footer {
+                padding: 3rem 4% 1.5rem;
+            }
+
+            .lead-form {
+                padding: 1.5rem;
+                margin-top: 2rem;
+            }
+
+            .calendly-inline-widget {
+                height: 600px !important;
+            }
+
+            .popup-content {
+                padding: 2rem 1.5rem;
+                margin: 1rem;
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+
+            .popup-header h3 {
+                font-size: 1.5rem;
+            }
+
+            .popup-features li {
+                font-size: 0.9rem;
+            }
+
+            .popup-close {
+                width: 32px;
+                height: 32px;
+                top: 1rem;
+                right: 1rem;
+            }
+
+            .client-logos {
+                gap: 1.5rem;
+            }
+
+            .client-logo {
+                height: 40px;
+                width: 100px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            nav .logo {
+                height: 30px;
+            }
+
+            nav .cta-button {
+                padding: 0.4rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero-visual {
+                height: 220px;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <svg class="logo" width="180" height="55" viewBox="0 0 378 116" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M148.092 58.2967C148.092 51.4031 153.183 46.692 159.583 46.692C164.574 46.692 167.363 49.382 168.91 52.1765L164.906 54.1928C163.985 52.3757 162.017 50.9287 159.587 50.9287C155.778 50.9287 152.888 54.0552 152.888 58.2967C152.888 62.5382 155.778 65.6647 159.587 65.6647C162.017 65.6647 163.985 64.2509 164.906 62.4006L168.91 64.3838C167.335 67.1735 164.574 69.9015 159.583 69.9015C153.178 69.9015 148.092 65.1903 148.092 58.2967Z"
+                    fill="#1A1C1C" />
+                <path
+                    d="M129.579 46.7346H144.534V51.2323H134.604V55.8913H143.058V60.389H134.604V65.214H144.7V69.7117H129.584V46.7346H129.579Z"
+                    fill="#1A1C1C" />
+                <path
+                    d="M325.968 46.7346H340.923V51.2323H330.993V55.8913H339.447V60.389H330.993V65.214H341.089V69.7117H325.973V46.7346H325.968Z"
+                    fill="#1A1C1C" />
+                <path
+                    d="M171.401 58.2873V58.2208C171.401 51.6878 176.553 46.3409 183.646 46.3409C190.739 46.3409 195.825 51.6261 195.825 58.1591V58.2256C195.825 64.7586 190.673 70.1055 183.58 70.1055C176.487 70.1055 171.401 64.8203 171.401 58.2873ZM190.535 58.2873V58.2208C190.535 54.283 187.646 50.9999 183.575 50.9999C179.504 50.9999 176.682 54.2166 176.682 58.1544V58.2208C176.682 62.1587 179.571 65.4418 183.642 65.4418C187.712 65.4418 190.535 62.2251 190.535 58.2873Z"
+                    fill="#1A1C1C" />
+                <path
+                    d="M199.763 46.7346H205.39L211.629 59.2456L217.867 46.7346H223.494V69.7117H218.309V54.71L211.629 67.999L204.882 54.8096V69.7117H199.763V46.7346Z"
+                    fill="#1A1C1C" />
+                <path
+                    d="M229.468 46.7346H234.52V55.8249H243.843V46.7346H248.896V69.7117H243.843V60.4886H234.52V69.7117H229.468V46.7346Z"
+                    fill="#1A1C1C" />
+                <path
+                    d="M252.43 58.2873V58.2208C252.43 51.6878 257.583 46.3409 264.671 46.3409C271.759 46.3409 276.85 51.6261 276.85 58.1591V58.2256C276.85 64.7586 271.697 70.1055 264.609 70.1055C257.521 70.1055 252.43 64.8203 252.43 58.2873ZM271.564 58.2873V58.2208C271.564 54.283 268.675 50.9999 264.604 50.9999C260.534 50.9999 257.711 54.2166 257.711 58.1544V58.2208C257.711 62.1587 260.6 65.4418 264.671 65.4418C268.742 65.4418 271.564 62.2251 271.564 58.2873Z"
+                    fill="#1A1C1C" />
+                <path
+                    d="M279.796 59.8624V46.7346H284.849V59.7343C284.849 63.5108 286.685 65.4133 289.807 65.4133C292.928 65.4133 294.764 63.5772 294.764 59.9003V46.7394H299.817V59.7058C299.817 66.6658 295.913 70.077 289.74 70.077C283.568 70.077 279.796 66.6658 279.796 59.8671V59.8624Z"
+                    fill="#1A1C1C" />
+                <path
+                    d="M303.556 66.3622L306.545 62.7849C308.647 64.4929 310.777 65.5746 313.405 65.5746C315.507 65.5746 316.722 64.7538 316.722 63.4064V63.34C316.722 62.059 315.934 61.3711 312.096 60.4174C307.437 59.2693 304.481 57.9219 304.481 53.3958V53.3293C304.481 49.159 307.797 46.4025 312.523 46.4025C315.905 46.4025 318.695 47.451 321.058 49.3251L318.434 53.1348C316.366 51.7257 314.43 50.8717 312.461 50.8717C310.492 50.8717 309.505 51.7257 309.505 52.8739V52.9403C309.505 54.4822 310.492 54.9092 314.463 55.9577C319.122 57.2055 321.751 58.8471 321.751 62.8513V62.9177C321.751 67.4818 318.273 70.0391 313.315 70.0391C309.804 70.0391 306.322 68.8577 303.565 66.3622H303.556Z"
+                    fill="#1A1C1C" />
+                <path
+                    d="M84.4285 37.6296V25H47V25.5266V37.6296V51.6065V64.2361V78.213V82.1461V90.8426H84.4285V78.213H59.6296V64.2361H80.6329V51.6065H59.6296V37.6296H84.4285Z"
+                    fill="#1A1C1C" />
+                <path
+                    d="M103.819 25.0522V51.6065H90.136V64.2361H103.819V90.7951H116.448V64.2361V51.6065V25.0522H103.819Z"
+                    fill="#1A1C1C" />
+            </svg>
+            <a href="#contact" class="cta-button">Book et møde</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>
+                    DATA-DRIVEN CRO
+                    <span class="highlight">FROM GUT FEELINGS TO MORE SALES</span>
+                </h1>
+                <p>Vi hjælper e-commerce brands med at forstå hvorfor deres besøgende ikke konverterer - og omdanner
+                    data til konkrete handlinger der øger salget.</p>
+                <div class="hero-cta">
+                    <a href="#contact" class="btn-primary">Book gratis CRO-audit</a>
+                    <a href="#process" class="btn-secondary">Se hvordan vi arbejder</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <img src="images/hero-dashboard.png" alt="CRO Analytics Dashboard"
+                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 24px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="social-proof">
+        <div class="container">
+            <p>Betroet af førende danske e-commerce brands</p>
+            <div class="client-logos">
+                <div class="client-logo">BRAND</div>
+                <div class="client-logo">COMPANY</div>
+                <div class="client-logo">SHOP</div>
+                <div class="client-logo">STORE</div>
+                <div class="client-logo">RETAIL</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>VI LØSER GABET MELLEM TRAFIK OG KONVERTERING</h2>
+                <p>Fra data og indsigt til handling og resultater. Vi kombinerer analytics, research og testing for at
+                    skabe målbare forbedringer.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 13h2l2-7 4 15 4-15 2 7h2" stroke="white" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <circle cx="12" cy="12" r="10" stroke="white" stroke-width="2" fill="none" />
+                        </svg>
+                    </div>
+                    <h3>CRO & Analytics</h3>
+                    <p>Dybdegående analyse af brugeradfærd, identificer flaskehalse og optimer konverteringsraten gennem
+                        data-drevet testing.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="4" y="2" width="16" height="20" rx="2" stroke="white" stroke-width="2" />
+                            <path d="M8 6h8M8 10h8M8 14h5" stroke="white" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <h3>Paid Ads</h3>
+                    <p>Performance marketing på Facebook, Google og TikTok der driver kvalificeret trafik til optimerede
+                        landing pages.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="5" width="18" height="14" rx="2" stroke="white" stroke-width="2" />
+                            <path d="M3 8l9 6 9-6" stroke="white" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h3>Email Marketing</h3>
+                    <p>Automatiserede flows og kampagner der nurturer leads og øger customer lifetime value gennem
+                        personalisering.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="11" cy="11" r="8" stroke="white" stroke-width="2" />
+                            <path d="M21 21l-4.35-4.35" stroke="white" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <h3>SEO</h3>
+                    <p>Organisk vækst gennem teknisk SEO, content strategi og linkbuilding der driver langsigtede
+                        resultater.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z" stroke="white"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M9 12l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h3>Design & UX</h3>
+                    <p>Brugercentreret design der kombinerer æstetik med konverteringsoptimering og brand identity.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z" stroke="white" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h3>Webflow Development</h3>
+                    <p>Hurtige, skalerbare websites bygget i Webflow med fokus på performance og conversion.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process" id="process">
+        <div class="container">
+            <div class="section-header">
+                <h2>VORES FRAMEWORK</h2>
+                <p>En struktureret tilgang til konverteringsoptimering baseret på data, ikke gætværk.</p>
+            </div>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Problem</h3>
+                    <p>Vi identificerer præcis hvorfor dine besøgende ikke konverterer gennem analytics, heatmaps og
+                        brugertest.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Insight</h3>
+                    <p>Data afslører hvor og hvorfor brugerne dropper ud. Vi finder de største muligheder for
+                        forbedring.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Method</h3>
+                    <p>Vi kombinerer analytics, kvalitativ research, A/B testing og beste practices til at finde
+                        løsninger.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Action</h3>
+                    <p>Konkrete optimeringer implementeres og testes systematisk for at maksimere effekten.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <h3>Outcome</h3>
+                    <p>Højere konverteringsrate, bedre AOV og målbare forretningsresultater du kan tage med i banken.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section class="case-study">
+        <div class="container">
+            <div class="section-header">
+                <h2>RESULTATER DER TALER FOR SIG SELV</h2>
+                <p>Se hvordan vi har hjulpet e-commerce brands med at øge deres konvertering og salg.</p>
+            </div>
+            <div class="case-grid">
+                <div class="case-card">
+                    <div class="case-image">
+                        <img src="images/case-study-fashion.png" alt="Fashion E-commerce Case Study"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="case-content">
+                        <h3>Fashion E-commerce</h3>
+                        <p>Gennem systematisk CRO og UX-forbedringer øgede vi konverteringsraten markant og reducerede
+                            bounce rate.</p>
+                        <div class="case-stats">
+                            <div class="stat">
+                                <div class="stat-number">+127%</div>
+                                <div class="stat-label">Conversion Rate</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">-34%</div>
+                                <div class="stat-label">Bounce Rate</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="case-card">
+                    <div class="case-image">
+                        <img src="images/case-study-home.png" alt="Home & Living Case Study"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="case-content">
+                        <h3>Home & Living Brand</h3>
+                        <p>Optimeret checkout flow og produktsider resulterede i højere AOV og flere gennemførte køb.
+                        </p>
+                        <div class="case-stats">
+                            <div class="stat">
+                                <div class="stat-number">+89%</div>
+                                <div class="stat-label">AOV</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">+156%</div>
+                                <div class="stat-label">Revenue</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="case-card">
+                    <div class="case-image">
+                        <img src="images/case-study-beauty.png" alt="Beauty & Cosmetics Case Study"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="case-content">
+                        <h3>Beauty & Cosmetics</h3>
+                        <p>Data-drevet A/B testing og personalisering øgede både konvertering og kundeloyalitet.</p>
+                        <div class="case-stats">
+                            <div class="stat">
+                                <div class="stat-number">+203%</div>
+                                <div class="stat-label">Sales</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">+67%</div>
+                                <div class="stat-label">Repeat Purchases</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>HVAD VORES KUNDER SIGER</h2>
+                <p>Succeshistorier fra e-commerce brands der har transformeret deres konvertering.</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"EcomHouse har helt ændret måden vi arbejder med CRO på. De kombinerer
+                        dyb data-analyse med konkrete handlinger der faktisk flytter vores bundlinje. Vi har set en
+                        stigning på over 150% i vores konverteringsrate."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div>
+                            <div class="author-name">Marie Jensen</div>
+                            <div class="author-title">CMO, Fashion Brand</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Endelig et bureau der ikke kommer med generiske løsninger. EcomHouse
+                        går i dybden med vores data og finder præcis hvor problemerne ligger. Deres strukturerede
+                        tilgang har givet os målbare resultater hver måned."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div>
+                            <div class="author-name">Anders Larsen</div>
+                            <div class="author-title">Founder, Home & Living</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Vi havde prøvet mange ting selv, men intet gav rigtig effekt. EcomHouse
+                        kom ind og identificerede hurtigt vores største flaskehalse. Deres løsninger var simple men
+                        utrolig effektive. Vi kunne ikke være mere tilfredse."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div>
+                            <div class="author-name">Sofie Nielsen</div>
+                            <div class="author-title">E-commerce Manager, Beauty Co</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <h2>KLAR TIL AT ØGE DINE KONVERTERINGER?</h2>
+            <p>Book et gratis CRO-audit og få indsigt i hvor dine største muligheder ligger. Vi analyserer din
+                hjemmeside og identificerer konkrete forbedringer der kan øge dit salg.</p>
+
+            <!-- Calendly inline widget begin -->
+            <!-- Note: This embed only works when hosted on a web server, not when viewing locally -->
+            <div class="calendly-inline-widget"
+                data-url="https://calendly.com/d/cyb5-nxb-qhw/purplefire-s-business-scale-growth-call"
+                style="min-width:320px;height:700px;"></div>
+            <!-- Calendly inline widget end -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <svg class="footer-logo" width="180" height="55" viewBox="0 0 378 116" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M148.092 58.2967C148.092 51.4031 153.183 46.692 159.583 46.692C164.574 46.692 167.363 49.382 168.91 52.1765L164.906 54.1928C163.985 52.3757 162.017 50.9287 159.587 50.9287C155.778 50.9287 152.888 54.0552 152.888 58.2967C152.888 62.5382 155.778 65.6647 159.587 65.6647C162.017 65.6647 163.985 64.2509 164.906 62.4006L168.91 64.3838C167.335 67.1735 164.574 69.9015 159.583 69.9015C153.178 69.9015 148.092 65.1903 148.092 58.2967Z"
+                            fill="#FFFFFF" />
+                        <path
+                            d="M129.579 46.7346H144.534V51.2323H134.604V55.8913H143.058V60.389H134.604V65.214H144.7V69.7117H129.584V46.7346H129.579Z"
+                            fill="#FFFFFF" />
+                        <path
+                            d="M325.968 46.7346H340.923V51.2323H330.993V55.8913H339.447V60.389H330.993V65.214H341.089V69.7117H325.973V46.7346H325.968Z"
+                            fill="#FFFFFF" />
+                        <path
+                            d="M171.401 58.2873V58.2208C171.401 51.6878 176.553 46.3409 183.646 46.3409C190.739 46.3409 195.825 51.6261 195.825 58.1591V58.2256C195.825 64.7586 190.673 70.1055 183.58 70.1055C176.487 70.1055 171.401 64.8203 171.401 58.2873ZM190.535 58.2873V58.2208C190.535 54.283 187.646 50.9999 183.575 50.9999C179.504 50.9999 176.682 54.2166 176.682 58.1544V58.2208C176.682 62.1587 179.571 65.4418 183.642 65.4418C187.712 65.4418 190.535 62.2251 190.535 58.2873Z"
+                            fill="#FFFFFF" />
+                        <path
+                            d="M199.763 46.7346H205.39L211.629 59.2456L217.867 46.7346H223.494V69.7117H218.309V54.71L211.629 67.999L204.882 54.8096V69.7117H199.763V46.7346Z"
+                            fill="#FFFFFF" />
+                        <path
+                            d="M229.468 46.7346H234.52V55.8249H243.843V46.7346H248.896V69.7117H243.843V60.4886H234.52V69.7117H229.468V46.7346Z"
+                            fill="#FFFFFF" />
+                        <path
+                            d="M252.43 58.2873V58.2208C252.43 51.6878 257.583 46.3409 264.671 46.3409C271.759 46.3409 276.85 51.6261 276.85 58.1591V58.2256C276.85 64.7586 271.697 70.1055 264.609 70.1055C257.521 70.1055 252.43 64.8203 252.43 58.2873ZM271.564 58.2873V58.2208C271.564 54.283 268.675 50.9999 264.604 50.9999C260.534 50.9999 257.711 54.2166 257.711 58.1544V58.2208C257.711 62.1587 260.6 65.4418 264.671 65.4418C268.742 65.4418 271.564 62.2251 271.564 58.2873Z"
+                            fill="#FFFFFF" />
+                        <path
+                            d="M279.796 59.8624V46.7346H284.849V59.7343C284.849 63.5108 286.685 65.4133 289.807 65.4133C292.928 65.4133 294.764 63.5772 294.764 59.9003V46.7394H299.817V59.7058C299.817 66.6658 295.913 70.077 289.74 70.077C283.568 70.077 279.796 66.6658 279.796 59.8671V59.8624Z"
+                            fill="#FFFFFF" />
+                        <path
+                            d="M303.556 66.3622L306.545 62.7849C308.647 64.4929 310.777 65.5746 313.405 65.5746C315.507 65.5746 316.722 64.7538 316.722 63.4064V63.34C316.722 62.059 315.934 61.3711 312.096 60.4174C307.437 59.2693 304.481 57.9219 304.481 53.3958V53.3293C304.481 49.159 307.797 46.4025 312.523 46.4025C315.905 46.4025 318.695 47.451 321.058 49.3251L318.434 53.1348C316.366 51.7257 314.43 50.8717 312.461 50.8717C310.492 50.8717 309.505 51.7257 309.505 52.8739V52.9403C309.505 54.4822 310.492 54.9092 314.463 55.9577C319.122 57.2055 321.751 58.8471 321.751 62.8513V62.9177C321.751 67.4818 318.273 70.0391 313.315 70.0391C309.804 70.0391 306.322 68.8577 303.565 66.3622H303.556Z"
+                            fill="#FFFFFF" />
+                        <path
+                            d="M84.4285 37.6296V25H47V25.5266V37.6296V51.6065V64.2361V78.213V82.1461V90.8426H84.4285V78.213H59.6296V64.2361H80.6329V51.6065H59.6296V37.6296H84.4285Z"
+                            fill="#FFFFFF" />
+                        <path
+                            d="M103.819 25.0522V51.6065H90.136V64.2361H103.819V90.7951H116.448V64.2361V51.6065V25.0522H103.819Z"
+                            fill="#FFFFFF" />
+                    </svg>
+                    <p class="footer-about">Data-driven CRO og marketing for e-commerce brands. Vi transformerer data
+                        til konkrete handlinger der øger salget.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#services">CRO & Analytics</a></li>
+                        <li><a href="#services">Paid Ads</a></li>
+                        <li><a href="#services">Email Marketing</a></li>
+                        <li><a href="#services">SEO</a></li>
+                        <li><a href="#services">Design & UX</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#process">Vores proces</a></li>
+                        <li><a href="#case-studies">Case studies</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Kontakt</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Kontakt</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:hello@ecomhouse.dk">hello@ecomhouse.dk</a></li>
+                        <li><a href="tel:+4512345678">+45 12 34 56 78</a></li>
+                        <li>Copenhagen, Denmark</li>
+                    </ul>
+                    <a href="https://calendly.com/d/cyb5-nxb-qhw/purplefire-s-business-scale-growth-call"
+                        class="calendar-cta" target="_blank">Book møde direkte</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>&copy; 2026 EcomHouse. All rights reserved.</div>
+                <div>
+                    <a href="#" style="margin-right: 1rem; color: white; text-decoration: none;">Privacy Policy</a>
+                    <a href="#" style="color: white; text-decoration: none;">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Popup Modal -->
+    <div class="popup-overlay" id="offerPopup">
+        <div class="popup-content">
+            <button class="popup-close" onclick="closePopup()">&times;</button>
+            <div class="popup-header">
+                <span class="popup-badge">EKSKLUSIVT TILBUD</span>
+                <h3>Få en GRATIS CRO-Audit</h3>
+                <p>Vi analyserer din hjemmeside og finder de 3 største muligheder for at øge dit salg</p>
+            </div>
+            <ul class="popup-features">
+                <li>Dybtgående analyse af din konverteringsrate</li>
+                <li>Identificer præcis hvor du taber kunder</li>
+                <li>Få konkrete anbefalinger til forbedringer</li>
+                <li>Se potentielle revenue-gevinster</li>
+                <li>Ingen forpligtelser - helt gratis</li>
+            </ul>
+            <a href="#contact" class="popup-cta" onclick="closePopup()">Claim din gratis audit</a>
+            <p class="popup-footer">⏰ Begrænset tilbud - kun 5 audits per måned</p>
+        </div>
+    </div>
+
+    <script>
+        // Popup functionality
+        let popupShown = false;
+        let timeoutTriggered = false;
+        let scrollTriggered = false;
+
+        // Show popup after 20 seconds
+        setTimeout(() => {
+            if (!popupShown) {
+                timeoutTriggered = true;
+                showPopup();
+            }
+        }, 20000);
+
+        // Show popup at 30% scroll
+        window.addEventListener('scroll', () => {
+            if (popupShown || scrollTriggered) return;
+
+            const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+
+            if (scrollPercentage >= 30) {
+                scrollTriggered = true;
+                // Only show if timeout hasn't triggered yet
+                if (!timeoutTriggered) {
+                    showPopup();
+                }
+            }
+        });
+
+        function showPopup() {
+            if (popupShown) return;
+
+            const popup = document.getElementById('offerPopup');
+            popup.classList.add('active');
+            popupShown = true;
+
+            // Prevent body scroll when popup is open
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePopup() {
+            const popup = document.getElementById('offerPopup');
+            popup.classList.remove('active');
+
+            // Re-enable body scroll
+            document.body.style.overflow = '';
+        }
+
+        // Close popup when clicking outside
+        document.getElementById('offerPopup').addEventListener('click', (e) => {
+            if (e.target.id === 'offerPopup') {
+                closePopup();
+            }
+        });
+
+        // Close popup with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closePopup();
+            }
+        });
+    </script>
+
+    <!-- Calendly script -->
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+</body>
+
+</html>
