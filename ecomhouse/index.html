@@ -282,22 +282,18 @@
         }
 
         .client-logo {
-            height: 48px;
-            width: 120px;
-            background: var(--bg-light);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.9rem;
-            color: rgba(26, 28, 28, 0.3);
-            opacity: 0.7;
-            transition: opacity 0.2s ease;
+            height: 40px;
+            width: auto;
+            max-width: 120px;
+            object-fit: contain;
+            filter: grayscale(100%);
+            opacity: 0.6;
+            transition: all 0.2s ease;
         }
 
         .client-logo:hover {
             opacity: 1;
+            filter: grayscale(0%);
         }
 
         /* Services Section */
@@ -1244,11 +1240,16 @@
         <div class="container">
             <p>Betroet af førende danske e-commerce brands</p>
             <div class="client-logos">
-                <div class="client-logo">BRAND</div>
-                <div class="client-logo">COMPANY</div>
-                <div class="client-logo">SHOP</div>
-                <div class="client-logo">STORE</div>
-                <div class="client-logo">RETAIL</div>
+                <img class="client-logo" src="https://framerusercontent.com/images/QEuHSqXoecjqYj3Tpa0g2Wpzc8.svg"
+                    alt="Client">
+                <img class="client-logo" src="https://framerusercontent.com/images/7vwT0crx5NC4KN6LZFgtynH3m0.svg"
+                    alt="Client">
+                <img class="client-logo" src="https://framerusercontent.com/images/ys1UC1Iq4ahNWvSJnTBCK4w4.svg"
+                    alt="Client">
+                <img class="client-logo" src="https://framerusercontent.com/images/cwmxzjMi9JrY8GEwjNpTssEXdiU.svg"
+                    alt="Client">
+                <img class="client-logo" src="https://framerusercontent.com/images/Krw2r34bmxSWGmD4LeHZ83zppU0.svg"
+                    alt="Client">
             </div>
         </div>
     </section>
