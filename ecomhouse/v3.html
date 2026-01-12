@@ -771,7 +771,38 @@
                 style="text-align: center; font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 800; margin-bottom: 4rem;">
                 Meet your instructor</h2>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+            <style>
+                .instructor-layout-v3 {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 4rem;
+                    align-items: center;
+                }
+
+                .instructor-photo-v3 {
+                    width: 400px;
+                    height: 500px;
+                    max-width: 100%;
+                }
+
+                @media (max-width: 768px) {
+                    .instructor-layout-v3 {
+                        grid-template-columns: 1fr;
+                        gap: 2rem;
+                    }
+
+                    .instructor-layout-v3>div:last-child {
+                        order: -1;
+                    }
+
+                    .instructor-photo-v3 {
+                        width: 100%;
+                        height: 350px;
+                    }
+                }
+            </style>
+
+            <div class="instructor-layout-v3">
                 <!-- Left Content -->
                 <div>
                     <p
@@ -826,8 +857,8 @@
 
                 <!-- Right Image -->
                 <div style="display: flex; justify-content: center;">
-                    <div
-                        style="width: 400px; height: 500px; background: linear-gradient(135deg, #1A1A1A 0%, #222222 100%); border-radius: 16px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                    <div class="instructor-photo-v3"
+                        style="background: linear-gradient(135deg, #1A1A1A 0%, #222222 100%); border-radius: 16px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
                         <!-- Placeholder for instructor photo - replace src with actual image URL -->
                         <div style="text-align: center; color: rgba(255, 255, 255, 0.3);">
                             <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor"
