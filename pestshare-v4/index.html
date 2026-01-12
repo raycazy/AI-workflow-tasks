@@ -253,6 +253,22 @@
         .section-dark {
             background: linear-gradient(135deg, var(--dark-navy) 0%, var(--secondary-navy) 100%);
             color: var(--white);
+            position: relative;
+        }
+
+        .section-dark::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg,
+                    #f5921e 0%,
+                    #ff6b6b 25%,
+                    #c084fc 50%,
+                    #60a5fa 75%,
+                    #34d399 100%);
         }
 
         .section-light {
@@ -598,8 +614,13 @@
 
         /* CTA */
         .cta-section {
-            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
-            color: var(--white);
+            background: linear-gradient(135deg,
+                    #e8f4fc 0%,
+                    #f0e6f4 25%,
+                    #fce8e6 50%,
+                    #f5921e 75%,
+                    #d84315 100%);
+            color: var(--dark-navy);
             padding: 100px 0;
             text-align: center;
             position: relative;
@@ -609,15 +630,18 @@
         .cta-section::before {
             content: '';
             position: absolute;
-            top: -50%;
-            right: -30%;
-            width: 80%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse at 0% 100%, rgba(200, 230, 255, 0.6) 0%, transparent 50%),
+                radial-gradient(ellipse at 100% 100%, rgba(245, 146, 30, 0.4) 0%, transparent 50%);
+            pointer-events: none;
         }
 
         .cta-section h2 {
-            color: var(--white);
+            color: var(--dark-navy);
             position: relative;
             z-index: 1;
         }
@@ -625,7 +649,7 @@
         .cta-section .cta-intro {
             font-size: 18px;
             margin-bottom: 40px;
-            opacity: 0.95;
+            color: #444;
             position: relative;
             z-index: 1;
         }
@@ -652,13 +676,13 @@
 
         .btn-outline-white {
             background: transparent;
-            color: var(--white);
-            border: 2px solid var(--white);
+            color: var(--dark-navy);
+            border: 2px solid var(--dark-navy);
         }
 
         .btn-outline-white:hover {
-            background: var(--white);
-            color: var(--dark-navy);
+            background: var(--dark-navy);
+            color: var(--white);
         }
 
         /* Footer */
