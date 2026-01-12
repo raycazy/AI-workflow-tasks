@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcomHouse - Data-Driven CRO & Marketing for E-commerce</title>
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-black: #0D0D0D;
+            --bg-dark: #121212;
+            --bg-dark-secondary: #1A1A1A;
+            --bg-dark-tertiary: #222222;
+            --white: #FFFFFF;
+            --text-primary: #FFFFFF;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --text-muted: rgba(255, 255, 255, 0.5);
+            --gradient-dark: linear-gradient(135deg, #0D0D0D 0%, #1A1A1A 100%);
+        }
+
+        body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text-primary);
+            background: var(--bg-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 5%;
+            background: rgba(13, 13, 13, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            height: 40px;
+        }
+
+        nav .cta-button {
+            background: var(--white);
+            color: var(--primary-black);
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+
+        nav .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient-dark);
+            padding: 8rem 5% 4rem;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--primary-black);
+            color: var(--white);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            max-width: 900px;
+            margin: 0 auto 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .hero-video {
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
+            background: var(--white);
+        }
+
+        .hero-video img {
+            width: 100%;
+            display: block;
+        }
+
+        .video-placeholder {
+            background: linear-gradient(135deg, #1a1c1c 0%, #2d2d2d 100%);
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+        }
+
+        .play-button svg {
+            width: 32px;
+            height: 32px;
+            margin-left: 4px;
+        }
+
+        /* Partner Logos */
+        .partners {
+            background: var(--bg-dark-secondary);
+            padding: 3rem 5%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .partners .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .partner-logo {
+            height: 32px;
+            opacity: 0.5;
+            filter: grayscale(100%) invert(1);
+            transition: all 0.2s ease;
+        }
+
+        .partner-logo:hover {
+            opacity: 1;
+            filter: grayscale(0%) invert(1);
+        }
+
+        /* Meet Your Instructor */
+        .instructor {
+            padding: 6rem 5%;
+            background: var(--bg-dark);
+        }
+
+        .instructor .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .section-title p {
+            color: var(--text-secondary);
+            margin-top: 1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .instructor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .instructor-card {
+            background: var(--bg-dark-tertiary);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .instructor-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--bg-gray);
+            margin: 0 auto 1.5rem;
+            overflow: hidden;
+        }
+
+        .instructor-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .instructor-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .instructor-card .role {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* What You Get Section */
+        .features {
+            padding: 6rem 5%;
+            background: var(--bg-dark-secondary);
+        }
+
+        .features .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: var(--bg-dark-tertiary);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--white);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+        }
+
+        .feature-icon svg {
+            width: 28px;
+            height: 28px;
+            color: var(--primary-black);
+        }
+
+        .feature-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Physical Inbox Section */
+        .inbox-section {
+            padding: 6rem 5%;
+            background: var(--bg-dark);
+        }
+
+        .inbox-section .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .inbox-content h2 {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .inbox-content p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .inbox-features {
+            list-style: none;
+        }
+
+        .inbox-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+            font-weight: 500;
+        }
+
+        .inbox-features li svg {
+            width: 20px;
+            height: 20px;
+            color: var(--white);
+        }
+
+        .inbox-visual {
+            display: flex;
+            justify-content: center;
+        }
+
+        .phone-mockup {
+            max-width: 300px;
+            filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.15));
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 6rem 5%;
+            background: var(--primary-black);
+            color: var(--white);
+        }
+
+        .stats-section .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.7;
+        }
+
+        /* The New Standard Section */
+        .new-standard {
+            padding: 6rem 5%;
+            background: var(--bg-dark-secondary);
+        }
+
+        .new-standard .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .standard-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .standard-header h2 {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .two-column-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .column-card {
+            background: var(--bg-dark-tertiary);
+            border-radius: 16px;
+            padding: 2.5rem;
+        }
+
+        .column-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .column-card ul {
+            list-style: none;
+        }
+
+        .column-card li {
+            padding: 0.75rem 0;
+            padding-left: 1.75rem;
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        .column-card li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 5%;
+            background: var(--bg-dark);
+        }
+
+        .cta-section .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .cta-section p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: var(--primary-black);
+            color: var(--white);
+            padding: 1.25rem 3rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 5% 2rem;
+            background: var(--primary-black);
+            color: var(--white);
+        }
+
+        footer .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            height: 36px;
+            margin-bottom: 1rem;
+        }
+
+        .footer-about {
+            opacity: 0.7;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .footer-column h4 {
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .inbox-section .container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .inbox-visual {
+                order: -1;
+            }
+
+            .two-column-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero {
+                padding: 6rem 4% 3rem;
+            }
+
+            nav {
+                padding: 0.75rem 4%;
+            }
+
+            nav .logo {
+                height: 32px;
+            }
+
+            nav .cta-button {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            .partners .container {
+                gap: 2rem;
+            }
+
+            .partner-logo {
+                height: 24px;
+            }
+
+            .instructor,
+            .features,
+            .inbox-section,
+            .stats-section,
+            .new-standard,
+            .cta-section {
+                padding: 4rem 4%;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.75rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <svg class="logo" width="180" height="40" viewBox="0 0 378 116" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M148.092 58.2967C148.092 51.4031 153.183 46.692 159.583 46.692C164.574 46.692 167.363 49.382 168.91 52.1765L164.906 54.1928C163.985 52.3757 162.017 50.9287 159.587 50.9287C155.778 50.9287 152.888 54.0552 152.888 58.2967C152.888 62.5382 155.778 65.6647 159.587 65.6647C162.017 65.6647 163.985 64.2509 164.906 62.4006L168.91 64.3838C167.335 67.1735 164.574 69.9015 159.583 69.9015C153.178 69.9015 148.092 65.1903 148.092 58.2967Z"
+                    fill="#FFFFFF" />
+                <path
+                    d="M129.579 46.7346H144.534V51.2323H134.604V55.8913H143.058V60.389H134.604V65.214H144.7V69.7117H129.584V46.7346H129.579Z"
+                    fill="#FFFFFF" />
+                <path
+                    d="M325.968 46.7346H340.923V51.2323H330.993V55.8913H339.447V60.389H330.993V65.214H341.089V69.7117H325.973V46.7346H325.968Z"
+                    fill="#FFFFFF" />
+                <path
+                    d="M171.401 58.2873V58.2208C171.401 51.6878 176.553 46.3409 183.646 46.3409C190.739 46.3409 195.825 51.6261 195.825 58.1591V58.2256C195.825 64.7586 190.673 70.1055 183.58 70.1055C176.487 70.1055 171.401 64.8203 171.401 58.2873ZM190.535 58.2873V58.2208C190.535 54.283 187.646 50.9999 183.575 50.9999C179.504 50.9999 176.682 54.2166 176.682 58.1544V58.2208C176.682 62.1587 179.571 65.4418 183.642 65.4418C187.712 65.4418 190.535 62.2251 190.535 58.2873Z"
+                    fill="#FFFFFF" />
+                <path
+                    d="M199.763 46.7346H205.39L211.629 59.2456L217.867 46.7346H223.494V69.7117H218.309V54.71L211.629 67.999L204.882 54.8096V69.7117H199.763V46.7346Z"
+                    fill="#FFFFFF" />
+                <path
+                    d="M229.468 46.7346H234.52V55.8249H243.843V46.7346H248.896V69.7117H243.843V60.4886H234.52V69.7117H229.468V46.7346Z"
+                    fill="#FFFFFF" />
+                <path
+                    d="M252.43 58.2873V58.2208C252.43 51.6878 257.583 46.3409 264.671 46.3409C271.759 46.3409 276.85 51.6261 276.85 58.1591V58.2256C276.85 64.7586 271.697 70.1055 264.609 70.1055C257.521 70.1055 252.43 64.8203 252.43 58.2873ZM271.564 58.2873V58.2208C271.564 54.283 268.675 50.9999 264.604 50.9999C260.534 50.9999 257.711 54.2166 257.711 58.1544V58.2208C257.711 62.1587 260.6 65.4418 264.671 65.4418C268.742 65.4418 271.564 62.2251 271.564 58.2873Z"
+                    fill="#FFFFFF" />
+                <path
+                    d="M279.796 59.8624V46.7346H284.849V59.7343C284.849 63.5108 286.685 65.4133 289.807 65.4133C292.928 65.4133 294.764 63.5772 294.764 59.9003V46.7394H299.817V59.7058C299.817 66.6658 295.913 70.077 289.74 70.077C283.568 70.077 279.796 66.6658 279.796 59.8671V59.8624Z"
+                    fill="#FFFFFF" />
+                <path
+                    d="M303.556 66.3622L306.545 62.7849C308.647 64.4929 310.777 65.5746 313.405 65.5746C315.507 65.5746 316.722 64.7538 316.722 63.4064V63.34C316.722 62.059 315.934 61.3711 312.096 60.4174C307.437 59.2693 304.481 57.9219 304.481 53.3958V53.3293C304.481 49.159 307.797 46.4025 312.523 46.4025C315.905 46.4025 318.695 47.451 321.058 49.3251L318.434 53.1348C316.366 51.7257 314.43 50.8717 312.461 50.8717C310.492 50.8717 309.505 51.7257 309.505 52.8739V52.9403C309.505 54.4822 310.492 54.9092 314.463 55.9577C319.122 57.2055 321.751 58.8471 321.751 62.8513V62.9177C321.751 67.4818 318.273 70.0391 313.315 70.0391C309.804 70.0391 306.322 68.8577 303.565 66.3622H303.556Z"
+                    fill="#FFFFFF" />
+                <path
+                    d="M84.4285 37.6296V25H47V25.5266V37.6296V51.6065V64.2361V78.213V82.1461V90.8426H84.4285V78.213H59.6296V64.2361H80.6329V51.6065H59.6296V37.6296H84.4285Z"
+                    fill="#FFFFFF" />
+                <path
+                    d="M103.819 25.0522V51.6065H90.136V64.2361H103.819V90.7951H116.448V64.2361V51.6065V25.0522H103.819Z"
+                    fill="#FFFFFF" />
+            </svg>
+            <a href="#contact" class="cta-button">Book et møde</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <span class="hero-badge">NY TILGANG TIL E-COMMERCE VÆKST</span>
+            <h1>Build-A-Brand er designet til at hjælpe dig med at skabe og styrke din personlige brand</h1>
+            <p>Vi hjælper e-commerce brands med at forstå hvorfor deres besøgende ikke konverterer - og omdanner data
+                til konkrete handlinger der øger salget.</p>
+
+            <div class="hero-video">
+                <div class="video-placeholder">
+                    <div class="play-button">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Obsidian Digital Course Section -->
+    <section class="course-preview" style="padding: 6rem 5%; background: var(--primary-black); color: var(--white);">
+        <div class="container" style="max-width: 1200px; margin: 0 auto;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+                <div>
+                    <p
+                        style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; opacity: 0.7; margin-bottom: 1rem;">
+                        Obsidian Digital</p>
+                    <h2
+                        style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; line-height: 1.2; margin-bottom: 1.5rem;">
+                        OBSIDIAN DIGITAL</h2>
+                    <p style="opacity: 0.8; font-size: 1.1rem; line-height: 1.7; margin-bottom: 2rem;">
+                        Mød ECOMHOUSE og lær hvordan vi hjælper e-commerce brands med at transformere data til salg.
+                        Se vores tilgang til CRO og hvorfor vi tror på evidensbaseret optimering.
+                    </p>
+                    <a href="#contact"
+                        style="display: inline-block; background: var(--white); color: var(--primary-black); padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 700;">
+                        Se mere →
+                    </a>
+                </div>
+                <div style="position: relative;">
+                    <div
+                        style="background: #333; border-radius: 12px; overflow: hidden; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center;">
+                        <div
+                            style="width: 80px; height: 80px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                            <svg viewBox="0 0 24 24" fill="white" style="width: 32px; height: 32px; margin-left: 4px;">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partner Logos -->
+    <section class="partners">
+        <div class="container">
+            <img src="https://framerusercontent.com/images/QEuHSqXoecjqYj3Tpa0g2Wpzc8.svg" alt="Partner"
+                class="partner-logo">
+            <img src="https://framerusercontent.com/images/7vwT0crx5NC4KN6LZFgtynH3m0.svg" alt="Partner"
+                class="partner-logo">
+            <img src="https://framerusercontent.com/images/ys1UC1Iq4ahNWvSJnTBCK4w4.svg" alt="Partner"
+                class="partner-logo">
+            <img src="https://framerusercontent.com/images/cwmxzjMi9JrY8GEwjNpTssEXdiU.svg" alt="Partner"
+                class="partner-logo">
+            <img src="https://framerusercontent.com/images/Krw2r34bmxSWGmD4LeHZ83zppU0.svg" alt="Partner"
+                class="partner-logo">
+        </div>
+    </section>
+
+    <!-- Meet Your Instructor -->
+    <section class="instructor">
+        <div class="container">
+            <div class="section-title">
+                <h2>Meet your instructor</h2>
+                <p>Lær fra eksperter med årelang erfaring inden for e-commerce og digital marketing</p>
+            </div>
+
+            <div class="instructor-grid" style="justify-content: center;">
+                <div class="instructor-card" style="max-width: 400px;">
+                    <div class="instructor-avatar"
+                        style="background: linear-gradient(135deg, #333 0%, #444 100%); display: flex; align-items: center; justify-content: center; width: 150px; height: 150px;">
+                        <span style="color: #fff; font-size: 3rem; font-weight: 700;">M</span>
+                    </div>
+                    <h3>Mikkel</h3>
+                    <p class="role">Founder & CRO Expert</p>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin-top: 1rem;">
+                        Grundlægger af ECOMHOUSE med over 10 års erfaring i e-commerce og konverteringsoptimering.
+                        Har hjulpet hundredvis af danske brands med at transformere data til konkrete handlinger
+                        og øge deres omsætning markant.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What You Get -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Det får du på</h2>
+                <p>Alt hvad du behøver for at accelerere din e-commerce vækst</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                    </div>
+                    <h3>Komplet kursusmateriale</h3>
+                    <p>20+ timer med dybdegående video undervisning og praktiske øvelser</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                    </div>
+                    <h3>Templates & Frameworks</h3>
+                    <p>Færdige skabeloner du kan bruge direkte i din forretning</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                    </div>
+                    <h3>Privat community</h3>
+                    <p>Få adgang til vores eksklusive netværk af e-commerce professionelle</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                        </svg>
+                    </div>
+                    <h3>Live Q&A sessioner</h3>
+                    <p>Månedlige live sessioner hvor du kan stille spørgsmål direkte</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </div>
+                    <h3>Case studies</h3>
+                    <p>Virkelige eksempler fra succesfulde e-commerce brands</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3>Livstidsadgang</h3>
+                    <p>Få adgang til alt indhold for evigt, inklusiv fremtidige opdateringer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Physical Inbox Section -->
+    <section class="inbox-section">
+        <div class="container">
+            <div class="inbox-content">
+                <h2>Fysik indboxy</h2>
+                <p>Modtag eksklusivt fysisk materiale direkte til din dør. Vores premium pakke inkluderer trykte
+                    workbooks, checklister og eksklusive ressourcer.</p>
+
+                <ul class="inbox-features">
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 13l4 4L19 7" />
+                        </svg>
+                        Trykt workbook med alle øvelser
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 13l4 4L19 7" />
+                        </svg>
+                        CRO checkliste i plakatformat
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 13l4 4L19 7" />
+                        </svg>
+                        Eksklusive bonus materialer
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 13l4 4L19 7" />
+                        </svg>
+                        Gratis levering i hele Danmark
+                    </li>
+                </ul>
+            </div>
+            <div class="inbox-visual">
+                <svg width="280" height="500" viewBox="0 0 280 500" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    class="phone-mockup">
+                    <rect width="280" height="500" rx="40" fill="#1A1C1C" />
+                    <rect x="15" y="50" width="250" height="400" rx="5" fill="#F5F5F5" />
+                    <rect x="100" y="20" width="80" height="8" rx="4" fill="#333" />
+                    <circle cx="140" cy="470" r="15" stroke="#333" stroke-width="2" />
+                    <rect x="35" y="80" width="210" height="60" rx="8" fill="#E8E8E8" />
+                    <rect x="35" y="160" width="210" height="40" rx="8" fill="#E8E8E8" />
+                    <rect x="35" y="220" width="210" height="40" rx="8" fill="#E8E8E8" />
+                    <rect x="35" y="280" width="210" height="40" rx="8" fill="#E8E8E8" />
+                    <rect x="35" y="340" width="100" height="35" rx="8" fill="#1A1C1C" />
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">64%</div>
+                    <div class="stat-label">Gennemsnitlig stigning i konverteringsrate</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">E-commerce brands hjulpet</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">12M+</div>
+                    <div class="stat-label">DKK i ekstra omsætning genereret</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The New Standard -->
+    <section class="new-standard">
+        <div class="container">
+            <div class="standard-header">
+                <h2>The New Standard</h2>
+            </div>
+
+            <div class="two-column-grid">
+                <div class="column-card">
+                    <h3>What can you expect?</h3>
+                    <ul>
+                        <li>Dybdegående analyse af din nuværende performance</li>
+                        <li>Identificering af dine største vækstmuligheder</li>
+                        <li>Konkrete anbefalinger du kan implementere med det samme</li>
+                        <li>Personlig feedback på din strategi</li>
+                        <li>Adgang til eksklusive ressourcer og værktøjer</li>
+                    </ul>
+                </div>
+                <div class="column-card">
+                    <h3>What can you expect?</h3>
+                    <ul>
+                        <li>Struktureret tilgang til konverteringsoptimering</li>
+                        <li>Data-drevet beslutningstagning</li>
+                        <li>Løbende optimering og forbedringer</li>
+                        <li>Målbare resultater og ROI</li>
+                        <li>Langsigtet vækst og skalering</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <h2>Book et møde med</h2>
+            <p>Tag første skridt mod at transformere din e-commerce forretning. Book en gratis konsultation i dag.</p>
+
+            <!-- Calendly inline widget begin -->
+            <div class="calendly-inline-widget"
+                data-url="https://calendly.com/d/cyb5-nxb-qhw/purplefire-s-business-scale-growth-call"
+                style="min-width:320px;height:700px;"></div>
+            <!-- Calendly inline widget end -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <svg class="footer-logo" width="180" height="36" viewBox="0 0 378 116" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M148.092 58.2967C148.092 51.4031 153.183 46.692 159.583 46.692C164.574 46.692 167.363 49.382 168.91 52.1765L164.906 54.1928C163.985 52.3757 162.017 50.9287 159.587 50.9287C155.778 50.9287 152.888 54.0552 152.888 58.2967C152.888 62.5382 155.778 65.6647 159.587 65.6647C162.017 65.6647 163.985 64.2509 164.906 62.4006L168.91 64.3838C167.335 67.1735 164.574 69.9015 159.583 69.9015C153.178 69.9015 148.092 65.1903 148.092 58.2967Z"
+                            fill="#FFFFFF" />
+                        <path
+                            d="M129.579 46.7346H144.534V51.2323H134.604V55.8913H143.058V60.389H134.604V65.214H144.7V69.7117H129.584V46.7346H129.579Z"
+                            fill="#FFFFFF" />
+                        <path
+                            d="M325.968 46.7346H340.923V51.2323H330.993V55.8913H339.447V60.389H330.993V65.214H341.089V69.7117H325.973V46.7346H325.968Z"
+                            fill="#FFFFFF" />
+                        <path
+                            d="M171.401 58.2873V58.2208C171.401 51.6878 176.553 46.3409 183.646 46.3409C190.739 46.3409 195.825 51.6261 195.825 58.1591V58.2256C195.825 64.7586 190.673 70.1055 183.58 70.1055C176.487 70.1055 171.401 64.8203 171.401 58.2873ZM190.535 58.2873V58.2208C190.535 54.283 187.646 50.9999 183.575 50.9999C179.504 50.9999 176.682 54.2166 176.682 58.1544V58.2208C176.682 62.1587 179.571 65.4418 183.642 65.4418C187.712 65.4418 190.535 62.2251 190.535 58.2873Z"
+                            fill="#FFFFFF" />
+                        <path
+                            d="M199.763 46.7346H205.39L211.629 59.2456L217.867 46.7346H223.494V69.7117H218.309V54.71L211.629 67.999L204.882 54.8096V69.7117H199.763V46.7346Z"
+                            fill="#FFFFFF" />
+                        <path
+                            d="M229.468 46.7346H234.52V55.8249H243.843V46.7346H248.896V69.7117H243.843V60.4886H234.52V69.7117H229.468V46.7346Z"
+                            fill="#FFFFFF" />
+                        <path
+                            d="M252.43 58.2873V58.2208C252.43 51.6878 257.583 46.3409 264.671 46.3409C271.759 46.3409 276.85 51.6261 276.85 58.1591V58.2256C276.85 64.7586 271.697 70.1055 264.609 70.1055C257.521 70.1055 252.43 64.8203 252.43 58.2873ZM271.564 58.2873V58.2208C271.564 54.283 268.675 50.9999 264.604 50.9999C260.534 50.9999 257.711 54.2166 257.711 58.1544V58.2208C257.711 62.1587 260.6 65.4418 264.671 65.4418C268.742 65.4418 271.564 62.2251 271.564 58.2873Z"
+                            fill="#FFFFFF" />
+                        <path
+                            d="M279.796 59.8624V46.7346H284.849V59.7343C284.849 63.5108 286.685 65.4133 289.807 65.4133C292.928 65.4133 294.764 63.5772 294.764 59.9003V46.7394H299.817V59.7058C299.817 66.6658 295.913 70.077 289.74 70.077C283.568 70.077 279.796 66.6658 279.796 59.8671V59.8624Z"
+                            fill="#FFFFFF" />
+                        <path
+                            d="M303.556 66.3622L306.545 62.7849C308.647 64.4929 310.777 65.5746 313.405 65.5746C315.507 65.5746 316.722 64.7538 316.722 63.4064V63.34C316.722 62.059 315.934 61.3711 312.096 60.4174C307.437 59.2693 304.481 57.9219 304.481 53.3958V53.3293C304.481 49.159 307.797 46.4025 312.523 46.4025C315.905 46.4025 318.695 47.451 321.058 49.3251L318.434 53.1348C316.366 51.7257 314.43 50.8717 312.461 50.8717C310.492 50.8717 309.505 51.7257 309.505 52.8739V52.9403C309.505 54.4822 310.492 54.9092 314.463 55.9577C319.122 57.2055 321.751 58.8471 321.751 62.8513V62.9177C321.751 67.4818 318.273 70.0391 313.315 70.0391C309.804 70.0391 306.322 68.8577 303.565 66.3622H303.556Z"
+                            fill="#FFFFFF" />
+                        <path
+                            d="M84.4285 37.6296V25H47V25.5266V37.6296V51.6065V64.2361V78.213V82.1461V90.8426H84.4285V78.213H59.6296V64.2361H80.6329V51.6065H59.6296V37.6296H84.4285Z"
+                            fill="#FFFFFF" />
+                        <path
+                            d="M103.819 25.0522V51.6065H90.136V64.2361H103.819V90.7951H116.448V64.2361V51.6065V25.0522H103.819Z"
+                            fill="#FFFFFF" />
+                    </svg>
+                    <p class="footer-about">Data-driven CRO og marketing for e-commerce brands. Vi transformerer data
+                        til konkrete handlinger der øger salget.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">CRO & Analytics</a></li>
+                        <li><a href="#">Paid Ads</a></li>
+                        <li><a href="#">Email Marketing</a></li>
+                        <li><a href="#">SEO</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Om os</a></li>
+                        <li><a href="#">Case studies</a></li>
+                        <li><a href="#">Kontakt</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Kontakt</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:hello@ecomhouse.dk">hello@ecomhouse.dk</a></li>
+                        <li><a href="tel:+4512345678">+45 12 34 56 78</a></li>
+                        <li>Copenhagen, Denmark</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>&copy; 2026 EcomHouse. All rights reserved.</div>
+                <div>
+                    <a href="#" style="margin-right: 1rem; color: white; text-decoration: none;">Privacy Policy</a>
+                    <a href="#" style="color: white; text-decoration: none;">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Calendly script -->
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+</body>
+
+</html>
