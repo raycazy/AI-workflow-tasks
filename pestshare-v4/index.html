@@ -66,6 +66,16 @@
             align-items: center;
         }
 
+        .nav-links .nav-text-link {
+            display: none;
+        }
+
+        @media (min-width: 769px) {
+            .nav-links .nav-text-link {
+                display: inline;
+            }
+        }
+
         .nav-links a {
             text-decoration: none;
             color: var(--dark-navy);
@@ -730,10 +740,6 @@
             .testimonials-grid {
                 grid-template-columns: 1fr;
             }
-
-            .nav-links {
-                display: none;
-            }
         }
 
         @media (max-width: 768px) {
@@ -754,8 +760,8 @@
             }
 
             .process-steps {
-                grid-template-columns: 1fr;
-                gap: 24px;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
             }
 
             .proof-divider {
@@ -782,8 +788,8 @@
             <a href="/" class="logo"><img src="https://www.pestshare.com/wp-content/uploads/2024/01/Pest-Share-Logo.png"
                     alt="Pest Share"></a>
             <div class="nav-links">
-                <a href="#how-it-works">How It Works</a>
-                <a href="#about">About</a>
+                <a href="#how-it-works" class="nav-text-link">How It Works</a>
+                <a href="#about" class="nav-text-link">About</a>
                 <a href="#contact" class="nav-cta">Get Started</a>
             </div>
         </div>
