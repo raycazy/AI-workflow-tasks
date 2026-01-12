@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pest Share - Pest Control That Runs in the Background</title>
+    <meta name="description"
+        content="Pest Share automates pest control for property managers so issues are handled without coordination, follow ups, or work orders.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-orange: #f5921e;
+            --secondary-orange: #FF9029;
+            --dark-navy: #233145;
+            --secondary-navy: #253348;
+            --accent-navy: #334264;
+            --white: #ffffff;
+            --light-gray: #f8f9fb;
+            --star-gold: #FFB800;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--dark-navy);
+            background: var(--white);
+        }
+
+        /* Navigation */
+        .nav {
+            background: var(--white);
+            padding: 16px 0;
+            box-shadow: 0 2px 20px rgba(35, 49, 69, 0.06);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 42px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-navy);
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-orange);
+        }
+
+        .nav-cta {
+            background: var(--primary-orange);
+            color: var(--white) !important;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(245, 146, 30, 0.25);
+        }
+
+        .nav-cta:hover {
+            background: var(--secondary-orange);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(245, 146, 30, 0.35);
+            color: var(--white) !important;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--secondary-navy) 50%, var(--accent-navy) 100%);
+            color: var(--white);
+            padding: 80px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(245, 146, 30, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 24px;
+        }
+
+        .hero-subheadline {
+            font-size: 19px;
+            line-height: 1.7;
+            margin-bottom: 36px;
+            opacity: 0.92;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--primary-orange);
+            color: var(--white);
+            box-shadow: 0 4px 20px rgba(245, 146, 30, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-orange);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(245, 146, 30, 0.4);
+        }
+
+        .btn-primary svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .hero-visual {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-visual img {
+            max-width: 380px;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.3));
+        }
+
+        /* Social Proof */
+        .social-proof {
+            background: var(--light-gray);
+            padding: 40px 0;
+        }
+
+        .proof-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .proof-stat {
+            text-align: center;
+        }
+
+        .proof-stat .number {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--primary-orange);
+            line-height: 1;
+        }
+
+        .proof-stat .label {
+            font-size: 14px;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        .proof-divider {
+            width: 1px;
+            height: 50px;
+            background: #ddd;
+        }
+
+        .proof-text {
+            font-size: 16px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-dark {
+            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--secondary-navy) 100%);
+            color: var(--white);
+        }
+
+        .section-light {
+            background: var(--white);
+        }
+
+        .section-gray {
+            background: var(--light-gray);
+        }
+
+        h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .section-dark .section-header p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* What This Is */
+        .what-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .what-image {
+            position: relative;
+        }
+
+        .what-image img {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(35, 49, 69, 0.15);
+        }
+
+        .what-content h2 {
+            text-align: left;
+        }
+
+        .what-content p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .what-content .highlight {
+            font-weight: 600;
+            color: var(--dark-navy);
+            background: linear-gradient(120deg, rgba(245, 146, 30, 0.15) 0%, rgba(245, 146, 30, 0.05) 100%);
+            padding: 20px 24px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-orange);
+            margin-top: 28px;
+        }
+
+        /* What Changes */
+        .changes-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .changes-list {
+            list-style: none;
+        }
+
+        .changes-list li {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .changes-list li:last-child {
+            border-bottom: none;
+        }
+
+        .changes-list .icon-wrap {
+            width: 44px;
+            height: 44px;
+            background: rgba(245, 146, 30, 0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .changes-list .icon-wrap svg {
+            width: 22px;
+            height: 22px;
+            color: var(--primary-orange);
+        }
+
+        .changes-summary {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+        }
+
+        .changes-summary h3 {
+            font-size: 24px;
+            margin-bottom: 24px;
+            color: var(--primary-orange);
+        }
+
+        .changes-summary p {
+            font-size: 28px;
+            font-weight: 600;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .changes-summary p span {
+            display: block;
+            opacity: 0.7;
+        }
+
+        /* How It Works */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            position: relative;
+        }
+
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 15%;
+            right: 15%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-orange), var(--secondary-orange));
+            border-radius: 2px;
+            z-index: 0;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            box-shadow: 0 10px 30px rgba(245, 146, 30, 0.3);
+        }
+
+        .step-icon svg {
+            width: 36px;
+            height: 36px;
+            color: var(--white);
+        }
+
+        .step h4 {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.5;
+            color: var(--dark-navy);
+        }
+
+        /* Why Exists */
+        .why-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .why-content p {
+            font-size: 22px;
+            line-height: 1.8;
+            margin-bottom: 28px;
+        }
+
+        .why-content .emphasis {
+            font-size: 26px;
+            font-style: italic;
+            color: var(--primary-orange);
+            margin-top: 40px;
+            font-weight: 500;
+        }
+
+        /* What This Means */
+        .means-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-bottom: 48px;
+        }
+
+        .means-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px 32px;
+            text-align: center;
+            box-shadow: 0 4px 30px rgba(35, 49, 69, 0.08);
+            border: 1px solid rgba(35, 49, 69, 0.06);
+            transition: all 0.3s;
+        }
+
+        .means-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(35, 49, 69, 0.12);
+        }
+
+        .means-icon {
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, rgba(245, 146, 30, 0.15), rgba(245, 146, 30, 0.05));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+        }
+
+        .means-icon svg {
+            width: 36px;
+            height: 36px;
+            color: var(--primary-orange);
+        }
+
+        .means-card h4 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .means-card p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #666;
+            margin: 0;
+        }
+
+        .means-tagline {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--dark-navy), var(--accent-navy));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 36px;
+            box-shadow: 0 4px 30px rgba(35, 49, 69, 0.08);
+            border: 1px solid rgba(35, 49, 69, 0.06);
+        }
+
+        .testimonial-quote {
+            font-size: 22px;
+            font-weight: 600;
+            line-height: 1.4;
+            color: var(--dark-navy);
+            margin-bottom: 24px;
+            position: relative;
+            padding-left: 24px;
+        }
+
+        .testimonial-quote::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--primary-orange);
+            border-radius: 2px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .author-avatar {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, var(--accent-navy), var(--dark-navy));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .author-info h5 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .author-info p {
+            font-size: 13px;
+            color: #666;
+            margin: 0;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+            color: var(--white);
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .cta-section h2 {
+            color: var(--white);
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section .cta-intro {
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--dark-navy);
+        }
+
+        .btn-white:hover {
+            background: var(--light-gray);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline-white {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-outline-white:hover {
+            background: var(--white);
+            color: var(--dark-navy);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-navy);
+            color: var(--white);
+            padding: 50px 0 30px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .footer-logo img {
+            height: 38px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-copyright {
+            width: 100%;
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            opacity: 0.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+
+            .hero-grid,
+            .what-grid,
+            .changes-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            .hero-visual img {
+                max-width: 280px;
+            }
+
+            .process-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-steps::before {
+                display: none;
+            }
+
+            .means-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 50px 0 40px;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            h2 {
+                font-size: 30px;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .proof-divider {
+                display: none;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+                max-width: 300px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="/" class="logo"><img src="https://www.pestshare.com/wp-content/uploads/2024/01/Pest-Share-Logo.png"
+                    alt="Pest Share"></a>
+            <div class="nav-links">
+                <a href="#how-it-works">How It Works</a>
+                <a href="#about">About</a>
+                <a href="#contact" class="nav-cta">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1>Pest control that runs in the background</h1>
+                    <p class="hero-subheadline">Pest Share automates pest control for property managers so issues are
+                        handled without coordination, follow ups, or work orders.</p>
+                    <a href="#how-it-works" class="btn btn-primary">See how it works <svg
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                        </svg></a>
+                </div>
+                <div class="hero-visual">
+                    <img src="https://www.pestshare.com/wp-content/uploads/2023/09/iphone.png" alt="Pest Share App">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="social-proof">
+        <div class="container">
+            <div class="proof-content">
+                <div class="proof-stat">
+                    <div class="number">48</div>
+                    <div class="label">States</div>
+                </div>
+                <div class="proof-divider"></div>
+                <div class="proof-stat">
+                    <div class="number">300K+</div>
+                    <div class="label">Doors</div>
+                </div>
+                <div class="proof-divider"></div>
+                <div class="proof-stat">
+                    <div class="number">800+</div>
+                    <div class="label">Clients</div>
+                </div>
+                <div class="proof-divider"></div>
+                <p class="proof-text">Trusted by property managers across the country</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="section-light">
+        <div class="container">
+            <div class="what-grid">
+                <div class="what-image">
+                    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80"
+                        alt="Modern property management">
+                </div>
+                <div class="what-content">
+                    <h2>Pest control still needs to be handled. It just does not need your involvement.</h2>
+                    <p>Most property management already runs through systems. Rent, access, billing, and reporting all
+                        live inside platforms.</p>
+                    <p>Pest control usually does not.</p>
+                    <div class="highlight">Pest Share puts pest control where everything else already lives. Inside the
+                        system.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-dark">
+        <div class="container">
+            <div class="section-header">
+                <h2>When pest control runs automatically</h2>
+            </div>
+            <div class="changes-grid">
+                <ul class="changes-list">
+                    <li>
+                        <div class="icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                            </svg></div><span>Residents submit pest issues directly</span>
+                    </li>
+                    <li>
+                        <div class="icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+                            </svg></div><span>Licensed providers respond</span>
+                    </li>
+                    <li>
+                        <div class="icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                            </svg></div><span>Updates and receipts handled in background</span>
+                    </li>
+                    <li>
+                        <div class="icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                            </svg></div><span>You stay informed without being in the middle</span>
+                    </li>
+                </ul>
+                <div class="changes-summary">
+                    <h3>The result</h3>
+                    <p>No coordination<span>No chasing</span><span>No follow ups</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-gray" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>How it works</h2>
+                <p>Four simple steps to automated pest control</p>
+            </div>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+                        </svg></div>
+                    <h4>Connect your property management system</h4>
+                </div>
+                <div class="step">
+                    <div class="step-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+                        </svg></div>
+                    <h4>Residents report pest issues directly</h4>
+                </div>
+                <div class="step">
+                    <div class="step-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                        </svg></div>
+                    <h4>Vetted providers respond automatically</h4>
+                </div>
+                <div class="step">
+                    <div class="step-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
+                        </svg></div>
+                    <h4>Everything tracked and closed automatically</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-dark" id="about">
+        <div class="container">
+            <div class="why-content">
+                <h2 style="margin-bottom:40px;">Why this exists</h2>
+                <p>Pest control has always been necessary.<br>It has never been systemized.</p>
+                <p>Pest Share was built to make pest control behave like infrastructure rather than a workflow.</p>
+                <p class="emphasis">Always there. Only visible when something needs attention.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>What this means</h2>
+            </div>
+            <div class="means-grid">
+                <div class="means-card">
+                    <div class="means-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M14.615 1.595a.75.75 0 0 1 .359.852L12.982 9.75h7.268a.75.75 0 0 1 .548 1.262l-10.5 11.25a.75.75 0 0 1-1.272-.71l1.992-7.302H3.75a.75.75 0 0 1-.548-1.262l10.5-11.25a.75.75 0 0 1 .913-.143Z"
+                                clip-rule="evenodd" />
+                        </svg></div>
+                    <h4>Operational efficiency</h4>
+                    <p>Fewer exceptions and less context switching</p>
+                </div>
+                <div class="means-card">
+                    <div class="means-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                                clip-rule="evenodd" />
+                        </svg></div>
+                    <h4>Resident experience</h4>
+                    <p>Issues are submitted and handled without back and forth</p>
+                </div>
+                <div class="means-card">
+                    <div class="means-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />
+                        </svg></div>
+                    <h4>NOI</h4>
+                    <p>When pest control is structured and predictable it stops behaving like a loose cost</p>
+                </div>
+            </div>
+            <p class="means-tagline">The structure is the point.</p>
+        </div>
+    </section>
+
+    <section class="section-gray">
+        <div class="container">
+            <div class="section-header">
+                <h2>What other property managers say</h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">We do not think about pest control anymore</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">PM</div>
+                        <div class="author-info">
+                            <h5>Property Manager</h5>
+                            <p>Multi-family Portfolio</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">It just runs</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RD</div>
+                        <div class="author-info">
+                            <h5>Regional Director</h5>
+                            <p>Property Management Co.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">Nothing for our team to manage</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">OD</div>
+                        <div class="author-info">
+                            <h5>Operations Director</h5>
+                            <p>Asset Management Firm</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <h2>See how Pest Share works for your portfolio</h2>
+            <p class="cta-intro">Every portfolio is different. The operating model does not have to be.</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-white">See how it works</a>
+                <a href="#" class="btn btn-outline-white">Talk to our team</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo"><img
+                        src="https://www.pestshare.com/wp-content/uploads/2024/01/Pest-Share-Logo.png" alt="Pest Share">
+                </div>
+                <div class="footer-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a
+                        href="#">Contact</a></div>
+            </div>
+            <p class="footer-copyright">© 2026 Pest Share. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
