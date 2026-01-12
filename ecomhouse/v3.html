@@ -878,69 +878,114 @@
     <section style="background: #0D0D0D; padding: 6rem 5%; color: #fff;">
         <div style="max-width: 1200px; margin: 0 auto;">
             <h2 style="text-align: center; font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin-bottom: 4rem;">
-                4 Vilde <span style="color: rgba(255, 255, 255, 0.6);">Bonusser</span>
+                4 Vilde <span style="color: rgba(255, 255, 255, 0.5);">Bonusser</span>
             </h2>
 
             <style>
                 .bonus-grid-v3 {
                     display: grid;
                     grid-template-columns: repeat(2, 1fr);
-                    gap: 2rem;
+                    gap: 1.5rem;
                 }
 
                 .bonus-card-v3 {
-                    background: linear-gradient(180deg, rgba(30, 40, 55, 0.9) 0%, rgba(15, 20, 30, 0.95) 100%);
-                    border-radius: 16px;
-                    overflow: hidden;
-                    position: relative;
-                    min-height: 320px;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: flex-end;
+                    background: linear-gradient(145deg, #1a1a1a 0%, #121212 100%);
+                    border-radius: 20px;
                     padding: 2rem;
-                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    border: 1px solid rgba(255, 255, 255, 0.08);
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;
                 }
 
-                .bonus-badge-v3 {
-                    position: absolute;
-                    top: 1.5rem;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    background: #FFFFFF;
-                    color: #0D0D0D;
-                    padding: 0.5rem 1.5rem;
-                    border-radius: 25px;
+                .bonus-card-v3:hover {
+                    transform: translateY(-4px);
+                    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+                }
+
+                .bonus-header-v3 {
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                    margin-bottom: 1.25rem;
+                }
+
+                .bonus-icon-v3 {
+                    width: 56px;
+                    height: 56px;
+                    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%);
+                    border-radius: 14px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
+                }
+
+                .bonus-icon-v3 svg {
+                    width: 28px;
+                    height: 28px;
+                    stroke: #fff;
+                    stroke-width: 1.5;
+                    fill: none;
+                }
+
+                .bonus-title-wrap-v3 {
+                    flex: 1;
+                }
+
+                .bonus-tag-v3 {
+                    display: inline-block;
+                    background: rgba(255, 255, 255, 0.08);
+                    color: rgba(255, 255, 255, 0.6);
+                    padding: 0.25rem 0.75rem;
+                    border-radius: 20px;
+                    font-size: 0.75rem;
                     font-weight: 600;
-                    font-size: 0.9rem;
+                    margin-bottom: 0.5rem;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
                 }
 
                 .bonus-card-v3 h3 {
-                    font-size: 1.5rem;
+                    font-size: 1.35rem;
                     font-weight: 700;
-                    margin-bottom: 1rem;
                     color: #fff;
+                    margin: 0;
+                    line-height: 1.3;
                 }
 
                 .bonus-card-v3 p {
-                    color: rgba(255, 255, 255, 0.7);
-                    font-size: 0.9rem;
-                    line-height: 1.6;
-                    margin-bottom: 0.75rem;
+                    color: rgba(255, 255, 255, 0.55);
+                    font-size: 0.95rem;
+                    line-height: 1.7;
+                    margin-bottom: 1rem;
                 }
 
                 .bonus-value-v3 {
-                    color: rgba(255, 255, 255, 0.5);
+                    display: inline-block;
+                    background: rgba(255, 255, 255, 0.06);
+                    color: rgba(255, 255, 255, 0.85);
+                    padding: 0.5rem 1rem;
+                    border-radius: 8px;
                     font-size: 0.85rem;
-                    font-style: italic;
+                    font-weight: 500;
                 }
 
                 @media (max-width: 768px) {
                     .bonus-grid-v3 {
                         grid-template-columns: 1fr;
+                        gap: 1rem;
                     }
 
                     .bonus-card-v3 {
-                        min-height: 280px;
+                        padding: 1.5rem;
+                    }
+
+                    .bonus-icon-v3 {
+                        width: 48px;
+                        height: 48px;
+                    }
+
+                    .bonus-card-v3 h3 {
+                        font-size: 1.15rem;
                     }
                 }
             </style>
@@ -948,41 +993,79 @@
             <div class="bonus-grid-v3">
                 <!-- Bonus 1 -->
                 <div class="bonus-card-v3">
-                    <span class="bonus-badge-v3">Bonus 1</span>
-                    <h3>Batch of UGC</h3>
+                    <div class="bonus-header-v3">
+                        <div class="bonus-icon-v3">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                <circle cx="9" cy="7" r="4" />
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                            </svg>
+                        </div>
+                        <div class="bonus-title-wrap-v3">
+                            <span class="bonus-tag-v3">Bonus 1</span>
+                            <h3>Batch of UGC</h3>
+                        </div>
+                    </div>
                     <p>Dyk ned i vores eksklusive workshop og opdag de hemmelige ingredienser bag vores succesfulde
-                        bygge- og opsætningsmetoder. Uanset om det er online eller i København, får du en værdifuld
-                        oplevelse. Få hands-on læring og bliv ekspert på området.</p>
-                    <span class="bonus-value-v3">(Værdi til 3000 DKK).</span>
+                        bygge- og opsætningsmetoder. Få hands-on læring og bliv ekspert.</p>
+                    <span class="bonus-value-v3">Værdi: 3.000 DKK</span>
                 </div>
 
                 <!-- Bonus 2 -->
                 <div class="bonus-card-v3">
-                    <span class="bonus-badge-v3">Bonus 2</span>
-                    <h3>Ugentlige video rapporter</h3>
+                    <div class="bonus-header-v3">
+                        <div class="bonus-icon-v3">
+                            <svg viewBox="0 0 24 24">
+                                <polygon points="23 7 16 12 23 17 23 7" />
+                                <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+                            </svg>
+                        </div>
+                        <div class="bonus-title-wrap-v3">
+                            <span class="bonus-tag-v3">Bonus 2</span>
+                            <h3>Ugentlige video rapporter</h3>
+                        </div>
+                    </div>
                     <p>Skab visuel magi: Få et komplet professionelt video- og fotoshoot med dine produkter og en model.
-                        Boost din webshop, annoncer og sociale medier med værdifuldt content.</p>
-                    <span class="bonus-value-v3">(Værdi til 8000 DKK).</span>
+                        Boost din webshop og sociale medier.</p>
+                    <span class="bonus-value-v3">Værdi: 8.000 DKK</span>
                 </div>
 
                 <!-- Bonus 3 -->
                 <div class="bonus-card-v3">
-                    <span class="bonus-badge-v3">Bonus 3</span>
-                    <h3>Profitudregner</h3>
-                    <p>Du investerer i et resultat – ikke bare et forløb. Følger du vores framework og implementerer
-                        anbefalingerne uden at opnå den aftalte effekt, justerer vi forløbet, indtil målet er nået.
-                        Enten skaber vi resultater sammen – eller også arbejder vi videre uden ekstra omkostninger.</p>
-                    <span class="bonus-value-v3">(Værdi kan ikke fastsættes 😊).</span>
+                    <div class="bonus-header-v3">
+                        <div class="bonus-icon-v3">
+                            <svg viewBox="0 0 24 24">
+                                <line x1="12" y1="1" x2="12" y2="23" />
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                            </svg>
+                        </div>
+                        <div class="bonus-title-wrap-v3">
+                            <span class="bonus-tag-v3">Bonus 3</span>
+                            <h3>Profitudregner</h3>
+                        </div>
+                    </div>
+                    <p>Du investerer i et resultat – ikke bare et forløb. Vi justerer forløbet indtil målet er nået.
+                        Enten skaber vi resultater sammen – eller arbejder vi videre.</p>
+                    <span class="bonus-value-v3">Uvurderlig ✨</span>
                 </div>
 
                 <!-- Bonus 4 -->
                 <div class="bonus-card-v3">
-                    <span class="bonus-badge-v3">Bonus 4</span>
-                    <h3>Betal kun for resultater</h3>
-                    <p>Få livslang adgang til hele forløbet inkl. alle fremtidige opdateringer. Samtidig får du adgang
-                        til ugentlige live Q&A's med sparring, feedback og svar på dine konkrete udfordringer. Du er
-                        altid opdateret – og aldrig alene.</p>
-                    <span class="bonus-value-v3">(Værdi til 8000 DKK).</span>
+                    <div class="bonus-header-v3">
+                        <div class="bonus-icon-v3">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            </svg>
+                        </div>
+                        <div class="bonus-title-wrap-v3">
+                            <span class="bonus-tag-v3">Bonus 4</span>
+                            <h3>Betal kun for resultater</h3>
+                        </div>
+                    </div>
+                    <p>Få livslang adgang til hele forløbet inkl. alle fremtidige opdateringer. Ugentlige live Q&A's med
+                        sparring og feedback. Du er aldrig alene.</p>
+                    <span class="bonus-value-v3">Værdi: 8.000 DKK</span>
                 </div>
             </div>
         </div>
