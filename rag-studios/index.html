@@ -1301,7 +1301,27 @@
       body { cursor: auto; }
       .cursor-dot, .cursor-glow, .cursor-label { display: none !important; }
       .container { padding: 0 1.25rem; }
+
+      /* Hero: allow text wrap, scale down */
+      .hero h1 .line { white-space: normal; }
+      .hero h1 { font-size: clamp(2rem, 8vw, 3rem); }
+      .hero-content { max-width: 100%; }
+      .hero-sub { font-size: 0.9375rem; }
+      .hero-badge { font-size: 0.625rem; padding: 0.375rem 0.75rem; }
+
+      /* Rotating word: sit inline naturally */
+      .rotating-wrapper { height: 1.2em; }
+
+      /* Gauge: scale down */
+      .gauge-wrapper { width: 260px; height: 260px; }
+      .problem-number { font-size: 3rem; }
+      .problem-stat-label { font-size: 0.625rem; max-width: 140px; }
+
+      /* Terminal: smaller text */
+      .terminal-body { padding: 1rem; font-size: 0.6875rem; line-height: 1.9; min-height: 220px; }
+
       .comparison { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
       .process-steps { grid-template-columns: 1fr; gap: 2.5rem; }
       .results-grid { grid-template-columns: 1fr; gap: 1rem; }
       .result-card { padding: 1.5rem; gap: 1rem; }
@@ -1311,11 +1331,23 @@
       .hero-ctas { flex-direction: column; }
       .hero-ctas .btn { width: 100%; justify-content: center; }
       .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
-      .service-card { padding: 2rem; }
+      .service-card { padding: 1.5rem; }
+      .service-meta { gap: 0.75rem; flex-wrap: wrap; }
+
+      /* Section headers */
+      .section-header { margin-bottom: 2.5rem; }
+      .section-header p { font-size: 0.9375rem; }
+
+      /* Calendar */
+      .calendly-inline-widget { min-height: 500px; }
     }
 
     @media (max-width: 480px) {
-      .hero { padding: 7rem 0 4rem; min-height: auto; }
+      .hero { padding: 6rem 0 3rem; min-height: auto; }
+      .hero h1 { font-size: 2rem; }
+      .gauge-wrapper { width: 220px; height: 220px; }
+      .problem-number { font-size: 2.5rem; }
+      .problem-grid { gap: 2rem; }
     }
   </style>
 </head>
