@@ -417,7 +417,7 @@
       animation: pulse 2s ease-in-out infinite;
     }
 
-    .hero h1 { margin-bottom: 1.5rem; }
+    .hero h1 { margin-bottom: 1.5rem; transition: height 0.4s ease; }
     .hero h1 .line { display: block; white-space: nowrap; }
 
     .hero-sub {
@@ -1309,8 +1309,13 @@
       .hero-sub { font-size: 0.9375rem; }
       .hero-badge { font-size: 0.625rem; padding: 0.375rem 0.75rem; }
 
-      /* Rotating word: sit inline naturally */
-      .rotating-wrapper { height: 1.2em; }
+      /* Rotating word: always its own line on mobile = no layout shift */
+      .rotating-wrapper {
+        display: block;
+        width: 100% !important;
+        height: 1.2em;
+        text-align: center;
+      }
 
       /* Gauge: scale down */
       .gauge-wrapper { width: 260px; height: 260px; }
