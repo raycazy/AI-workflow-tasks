@@ -669,6 +669,94 @@
                 font-size: 11px;
             }
         }
+        .main-tabs { display: flex; gap: 4px; border-bottom: 2px solid var(--gray-200); margin-bottom: 24px; }
+        .main-tab { background: none; border: none; padding: 12px 24px; font-size: 16px; font-weight: 600; color: var(--gray-600); cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; font-family: inherit; }
+        .main-tab:hover { color: var(--title); }
+        .main-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .at-kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+        .at-kpi-card { background: white; border: 1px solid var(--gray-200); border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); }
+        .at-kpi-label { color: var(--gray-600); font-size: 12px; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .at-kpi-value { color: var(--title); font-size: 28px; font-weight: 700; }
+        .at-kpi-hint { color: var(--gray-600); font-size: 12px; margin-top: 4px; }
+        .at-kpi-card.cro { border-left: 4px solid #10b981; }
+        .at-kpi-card.non-cro { border-left: 4px solid var(--gray-300); }
+        .at-kpi-card.alert { border-left: 4px solid var(--danger); background: #fef2f2; }
+
+        .at-matrix-wrap { overflow-x: auto; border: 1px solid var(--gray-200); border-radius: 8px; background: white; }
+        table.at-matrix { border-collapse: collapse; min-width: 100%; font-size: 12px; }
+        table.at-matrix th, table.at-matrix td { padding: 6px 8px; text-align: center; border: 1px solid var(--gray-200); }
+        table.at-matrix thead th { background: var(--gray-100); color: var(--title); font-weight: 600; vertical-align: bottom; height: 160px; }
+        table.at-matrix thead th.at-cro-col { background: #d1fae5; color: #047857; }
+        table.at-matrix thead th.at-total-col { background: var(--title); color: white; }
+        table.at-matrix th.at-category-header { writing-mode: vertical-rl; transform: rotate(180deg); text-align: left; padding: 8px 4px; font-size: 11px; min-width: 28px; max-width: 28px; }
+        table.at-matrix th.at-brand-col { text-align: left; padding: 8px 12px; min-width: 180px; writing-mode: horizontal-tb; transform: none; height: auto; max-width: none; }
+        table.at-matrix tbody td.at-brand-name { text-align: left; padding: 8px 12px; background: white; font-weight: 500; min-width: 180px; white-space: nowrap; }
+        table.at-matrix tbody td.at-brand-name.bold { font-weight: 700; color: var(--title); }
+        table.at-matrix tbody td.at-brand-name.highlight-purple { color: #7c3aed; border-left: 3px solid #7c3aed; }
+        table.at-matrix tbody td.at-cro-cell { background: rgba(209, 250, 229, 0.25); }
+        table.at-matrix tbody td.at-total-cell { background: var(--gray-50); font-weight: 700; color: var(--title); }
+        table.at-matrix tfoot td { background: var(--gray-100); font-weight: 700; color: var(--title); border-top: 2px solid var(--accent); }
+        table.at-matrix tfoot td.at-cro-cell { background: #d1fae5; color: #047857; }
+        table.at-matrix tbody td.at-clickable { cursor: pointer; }
+        table.at-matrix tbody td.at-clickable:hover { outline: 2px solid var(--accent); outline-offset: -2px; }
+        .at-cell-val { display: block; font-weight: 600; }
+        .at-cell-val.empty { color: var(--gray-300); font-weight: 400; }
+        .at-heat-0 { background: transparent; }
+        .at-heat-1 { background: #eff6ff; }
+        .at-heat-2 { background: #dbeafe; }
+        .at-heat-3 { background: #bfdbfe; }
+        .at-heat-4 { background: #93c5fd; }
+        .at-heat-5 { background: #3b82f6; color: white; }
+
+        .at-month-chart { display: flex; align-items: flex-end; gap: 8px; padding: 16px; background: white; border: 1px solid var(--gray-200); border-radius: 8px; height: 360px; overflow-x: auto; }
+        .at-capacity-line-wrap { position: relative; flex: 1; display: flex; align-items: flex-end; gap: 8px; height: 100%; padding-top: 24px; }
+        .at-capacity-line { position: absolute; left: 0; right: 0; border-top: 2px dashed var(--danger); z-index: 2; }
+        .at-capacity-line-label { position: absolute; right: 4px; top: -10px; background: var(--danger); color: white; padding: 2px 6px; font-size: 10px; font-weight: 600; border-radius: 3px; }
+        .at-month-col { display: flex; flex-direction: column; align-items: center; min-width: 60px; flex-shrink: 0; }
+        .at-month-bar { width: 44px; background: var(--accent); border-radius: 4px 4px 0 0; position: relative; }
+        .at-month-bar.overworked { background: var(--danger); }
+        .at-month-bar.near-capacity { background: var(--warning); }
+        .at-month-bar-label { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 11px; font-weight: 600; color: var(--title); white-space: nowrap; }
+        .at-month-label { margin-top: 8px; font-size: 11px; color: var(--gray-600); text-align: center; }
+
+        .at-brand-monthly-table { font-size: 12px; border-collapse: collapse; width: 100%; background: white; border: 1px solid var(--gray-200); border-radius: 8px; }
+        .at-brand-monthly-table th, .at-brand-monthly-table td { padding: 6px 10px; border: 1px solid var(--gray-200); text-align: center; }
+        .at-brand-monthly-table th { background: var(--gray-100); color: var(--title); font-weight: 600; }
+        .at-brand-monthly-table td.at-brand-cell { text-align: left; font-weight: 500; min-width: 150px; }
+        .at-brand-monthly-table td.at-brand-cell.bold { font-weight: 700; color: var(--title); }
+        .at-brand-monthly-table td.at-over-40 { background: #fef2f2; color: var(--danger); font-weight: 700; }
+        .at-brand-monthly-table td.at-between-20-40 { background: #fef3c7; }
+        .at-brand-monthly-table tfoot td { background: var(--gray-100); font-weight: 700; color: var(--title); }
+        .at-brand-monthly-table tfoot td.at-over-capacity { background: #fef2f2; color: var(--danger); }
+
+        .at-legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--gray-600); margin: 12px 0; }
+        .at-legend-item { display: flex; align-items: center; gap: 6px; }
+        .at-legend-swatch { width: 14px; height: 14px; border-radius: 3px; border: 1px solid var(--gray-200); }
+
+        details.at-drill { margin-top: 16px; border: 1px solid var(--gray-200); border-radius: 8px; background: var(--gray-50); }
+        details.at-drill > summary { cursor: pointer; padding: 12px 16px; font-weight: 600; color: var(--title); list-style: none; }
+        details.at-drill > summary::before { content: '> '; display: inline-block; margin-right: 6px; }
+        details.at-drill[open] > summary::before { content: 'v '; }
+        details.at-drill > div { padding: 0 16px 16px 16px; }
+        .at-task-row { display: grid; grid-template-columns: 1fr 140px 100px 80px 80px; gap: 12px; padding: 6px 0; border-bottom: 1px solid var(--gray-200); font-size: 12px; }
+        .at-task-row:last-child { border-bottom: none; }
+        .at-task-row.head { font-weight: 700; color: var(--title); border-bottom: 2px solid var(--gray-200); }
+        .at-task-row a { color: var(--accent); text-decoration: none; }
+        .at-task-row a:hover { text-decoration: underline; }
+
+        .at-note-box { background: #fef3c7; border: 1px solid #fcd34d; border-radius: 8px; padding: 12px 16px; margin-bottom: 20px; font-size: 13px; line-height: 1.6; color: #78350f; }
+        .at-note-box strong { color: #78350f; }
+        .at-info-box { background: #f0f9ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 12px 16px; margin-bottom: 20px; font-size: 13px; line-height: 1.6; }
+        .at-info-box strong { color: var(--title); }
+
+        .at-definitions-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+        .at-def-card { background: white; border: 1px solid var(--gray-200); border-radius: 6px; padding: 12px 16px; font-size: 13px; }
+        .at-def-card.cro { border-left: 3px solid #10b981; }
+        .at-def-card h4 { color: var(--title); font-size: 14px; margin-bottom: 4px; }
+        .at-def-card p { color: var(--gray-600); font-size: 12px; }
     </style>
 </head>
 <body>
@@ -679,6 +767,12 @@
             <div class="meta">Last Updated: April 22, 2026 (ClickUp refresh #9) | Drag section headers to reorder <button class="reset-order" onclick="resetSectionOrder()">Reset order</button></div>
         </header>
 
+        <div class="main-tabs" role="tablist">
+            <button class="main-tab active" data-tab="team" role="tab" aria-selected="true">Team Capacity</button>
+            <button class="main-tab" data-tab="account" role="tab" aria-selected="false">Account Time</button>
+        </div>
+
+        <div class="tab-content active" id="tab-team">
         <nav class="sticky-nav" id="stickyNav">
             <ul>
                 <li><a href="#sec-capacity">Capacity</a></li>
@@ -2788,6 +2882,83 @@
 
         </section>
 
+        </div><!-- /#tab-team -->
+
+        <div class="tab-content" id="tab-account">
+            <div class="at-note-box">
+                <strong>Data source:</strong> ClickUp task time estimates, team-level (not per-person, not logged hours). Only tasks with an estimate are counted. Tasks with status "future work" or "blocked" are excluded. Months with less than 10h of tracked work are hidden.
+            </div>
+
+            <section class="section" id="at-sec-overview">
+                <h2 class="section-title">Overview</h2>
+                <div class="at-kpi-grid" id="atKpiGrid"></div>
+            </section>
+
+            <section class="section" id="at-sec-matrix">
+                <h2 class="section-title">Brand x Category Matrix</h2>
+                <div class="at-info-box">
+                    <strong>Reading this:</strong> Rows are brands, columns are work categories. Green columns are CRO (retained work). Gray columns are Non-CRO (ops, support, content, meetings). Darker cells mean more hours. Click any cell to drill down to underlying tasks.
+                </div>
+                <div class="at-legend">
+                    <span class="at-legend-item"><span class="at-legend-swatch" style="background: var(--gray-100);"></span>0h</span>
+                    <span class="at-legend-item"><span class="at-legend-swatch at-heat-1"></span>1-2h</span>
+                    <span class="at-legend-item"><span class="at-legend-swatch at-heat-2"></span>3-5h</span>
+                    <span class="at-legend-item"><span class="at-legend-swatch at-heat-3"></span>6-10h</span>
+                    <span class="at-legend-item"><span class="at-legend-swatch at-heat-4"></span>11-20h</span>
+                    <span class="at-legend-item"><span class="at-legend-swatch at-heat-5"></span>21h+</span>
+                    <span class="at-legend-item"><span class="at-legend-swatch" style="background: #d1fae5;"></span>CRO column</span>
+                </div>
+                <div class="at-matrix-wrap" id="atMatrixWrap"></div>
+                <details class="at-drill" id="atMatrixDrill">
+                    <summary>Task drill-down (click any cell above to populate)</summary>
+                    <div id="atDrillContent">Click any cell with hours to see the underlying tasks.</div>
+                </details>
+            </section>
+
+            <section class="section" id="at-sec-monthly">
+                <h2 class="section-title">Monthly Team Hours vs Capacity</h2>
+                <div class="at-info-box">
+                    <strong>Capacity reference:</strong> Team execution capacity is ~54h/week (Bhaskar 14h + Sanskriti 14h + Aanand 26h). Monthly capacity ~232h. Bars above the red dashed line mean estimated work exceeded capacity. Yellow bars mean within 20% of capacity.
+                </div>
+                <div class="at-month-chart" id="atMonthChart"></div>
+            </section>
+
+            <section class="section" id="at-sec-brand-monthly">
+                <h2 class="section-title">Brand x Month</h2>
+                <div class="at-info-box">
+                    Cells flagged <span style="color: var(--danger); font-weight: 600;">red</span> mean a single brand consumed more than 40h in a month (single-brand over-allocation signal). <span style="color: #b45309; font-weight: 600;">Yellow</span> means 20-40h in a month.
+                </div>
+                <div style="overflow-x: auto;">
+                    <table class="at-brand-monthly-table" id="atBrandMonthlyTable"></table>
+                </div>
+            </section>
+
+            <section class="section" id="at-sec-top-brands">
+                <h2 class="section-title">Top Brands by Estimated Hours</h2>
+                <div id="atTopBrands"></div>
+            </section>
+
+            <section class="section" id="at-sec-definitions">
+                <h2 class="section-title">Category Definitions</h2>
+                <div class="at-definitions-grid">
+                    <div class="at-def-card cro"><h4>Landing pages (CRO)</h4><p>Standalone conversion pages. Webinar LPs, lead magnets, sales pages, paid funnels.</p></div>
+                    <div class="at-def-card cro"><h4>A/B test design and dev (CRO)</h4><p>Variant design and dev. PDP redesigns, cart tests, hero optimizations.</p></div>
+                    <div class="at-def-card cro"><h4>Conversion Tracking setup (CRO)</h4><p>GTM, GA4, pixel, CAPI, tag audits, conversion event setup.</p></div>
+                    <div class="at-def-card"><h4>Meetings</h4><p>Client calls, kickoffs, weekly syncs, strategy calls, workshops. Tracked via task names containing meeting keywords.</p></div>
+                    <div class="at-def-card"><h4>Shopify Product management</h4><p>Product variants, SKU updates, collection pages, nav redesigns, PDP maintenance.</p></div>
+                    <div class="at-def-card"><h4>Discount Management</h4><p>Offers, promos, bundles, upsells, AOV thresholds, free gift rules.</p></div>
+                    <div class="at-def-card"><h4>Answer Customer Support questions</h4><p>Client Q and A, support requests passed to team, recurring questions.</p></div>
+                    <div class="at-def-card"><h4>Continuous store performance monitor</h4><p>CRO audits, quarterly audits, performance health checks.</p></div>
+                    <div class="at-def-card"><h4>Big Development Projects</h4><p>Builds over 20h. New apps, custom builds, large redesigns, theme migrations.</p></div>
+                    <div class="at-def-card"><h4>App Development 3rd party tool</h4><p>Shopify app setup, plugins, widgets, Klaviyo setup, shoppable widgets.</p></div>
+                    <div class="at-def-card"><h4>Manage Shipping and Inventory</h4><p>Shipping rules, inventory management, stock configuration.</p></div>
+                    <div class="at-def-card"><h4>Update Website Content non CRO</h4><p>Banners, homepage content refresh, hero updates, copy swaps.</p></div>
+                    <div class="at-def-card"><h4>CRM Management and Setup</h4><p>Email flows, Klaviyo and HubSpot and GHL setup, campaigns, newsletters.</p></div>
+                    <div class="at-def-card"><h4>CRM troubleshooting</h4><p>Fixing email and flow bugs, tracking breakage, deliverability.</p></div>
+                </div>
+            </section>
+        </div><!-- /#tab-account -->
+
         <footer>
             Dashboard generated by YAMU PM System | Data source: ClickUp | Last synced: 22 Apr 2026 (ClickUp refresh #9) | ~60 unique tasks
         </footer>
@@ -2942,6 +3113,392 @@
 
             window.addEventListener('scroll', updateActive, { passive: true });
             updateActive();
+        })();
+
+        (function() {
+            const tabBtns = document.querySelectorAll('.main-tab');
+            const tabPanels = document.querySelectorAll('.tab-content');
+            let accountLoaded = false;
+            function clear(el) { while (el.firstChild) el.removeChild(el.firstChild); }
+
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    tabBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+                    tabPanels.forEach(p => p.classList.remove('active'));
+                    btn.classList.add('active');
+                    btn.setAttribute('aria-selected', 'true');
+                    const panel = document.getElementById('tab-' + btn.dataset.tab);
+                    if (panel) panel.classList.add('active');
+                    if (btn.dataset.tab === 'account' && !accountLoaded) {
+                        loadAccountTime();
+                        accountLoaded = true;
+                    }
+                    window.scrollTo({ top: 0, behavior: 'instant' });
+                });
+            });
+
+            function fmt(h) { return h === 0 ? '' : h.toFixed(1).replace(/\.0$/, ''); }
+            function heatClass(h) {
+                if (h === 0) return 'at-heat-0';
+                if (h <= 2) return 'at-heat-1';
+                if (h <= 5) return 'at-heat-2';
+                if (h <= 10) return 'at-heat-3';
+                if (h <= 20) return 'at-heat-4';
+                return 'at-heat-5';
+            }
+
+            let AT_DATA = null;
+            function loadAccountTime() {
+                const overview = document.getElementById('atKpiGrid');
+                if (overview) overview.textContent = 'Loading account time data...';
+                fetch('./account-time-data.json')
+                    .then(r => r.json())
+                    .then(d => { AT_DATA = d; renderAT(d); })
+                    .catch(e => {
+                        if (overview) overview.textContent = 'Failed to load account-time-data.json: ' + e.message;
+                    });
+            }
+
+            function renderAT(d) {
+                renderATKPIs(d);
+                renderATMatrix(d);
+                renderATMonthChart(d);
+                renderATBrandMonthly(d);
+                renderATTopBrands(d);
+            }
+
+            function renderATKPIs(d) {
+                const t = d.totals;
+                const croPct = t.total_hours > 0 ? Math.round(t.cro_hours / t.total_hours * 100) : 0;
+                const g = document.getElementById('atKpiGrid');
+                clear(g);
+                function kpi(label, value, hint, cls) {
+                    const card = document.createElement('div');
+                    card.className = 'at-kpi-card' + (cls ? ' ' + cls : '');
+                    const l = document.createElement('div'); l.className = 'at-kpi-label'; l.textContent = label;
+                    const v = document.createElement('div'); v.className = 'at-kpi-value'; v.textContent = value;
+                    const h = document.createElement('div'); h.className = 'at-kpi-hint'; h.textContent = hint;
+                    card.appendChild(l); card.appendChild(v); card.appendChild(h);
+                    return card;
+                }
+                g.appendChild(kpi('Total Estimated Hours', t.total_hours.toFixed(0) + 'h', t.total_tasks + ' tasks across 15 brands (team-level)'));
+                g.appendChild(kpi('CRO Hours', t.cro_hours.toFixed(0) + 'h', croPct + '% of total, retained work', 'cro'));
+                g.appendChild(kpi('Non-CRO Hours', t.non_cro_hours.toFixed(0) + 'h', (100 - croPct) + '% of total, ops/meetings/support/content', 'non-cro'));
+                g.appendChild(kpi('Overworked Months', String(t.overworked_months.length), 'Months over ' + t.monthly_capacity + 'h capacity', t.overworked_months.length > 0 ? 'alert' : ''));
+                const classifierPct = t.total_tasks > 0 ? Math.round(t.categorized_count / t.total_tasks * 100) : 0;
+                g.appendChild(kpi('Classifier Quality', classifierPct + '%', t.categorized_count + ' mapped / ' + t.uncategorized_count + ' unmapped'));
+            }
+
+            function renderATMatrix(d) {
+                const cats = [...d.categories.non_cro, ...d.categories.cro];
+                const brands = d.brands;
+                const brandOrder = Object.keys(brands);
+                const wrap = document.getElementById('atMatrixWrap');
+                clear(wrap);
+
+                const table = document.createElement('table');
+                table.className = 'at-matrix';
+
+                const thead = document.createElement('thead');
+                const trH = document.createElement('tr');
+                const thBrand = document.createElement('th');
+                thBrand.className = 'at-brand-col';
+                thBrand.textContent = 'Brand';
+                trH.appendChild(thBrand);
+                cats.forEach(c => {
+                    const isCro = d.categories.cro.includes(c);
+                    const th = document.createElement('th');
+                    th.className = 'at-category-header' + (isCro ? ' at-cro-col' : '');
+                    th.title = c;
+                    th.textContent = c;
+                    trH.appendChild(th);
+                });
+                const thTotal = document.createElement('th');
+                thTotal.className = 'at-total-col';
+                thTotal.textContent = 'Total (h)';
+                trH.appendChild(thTotal);
+                thead.appendChild(trH);
+                table.appendChild(thead);
+
+                const tbody = document.createElement('tbody');
+                brandOrder.forEach(name => {
+                    const b = brands[name];
+                    const tr = document.createElement('tr');
+                    const tdName = document.createElement('td');
+                    tdName.className = 'at-brand-name' + (b.bold ? ' bold' : '') + (b.highlight === 'purple' ? ' highlight-purple' : '');
+                    tdName.textContent = name;
+                    tr.appendChild(tdName);
+                    cats.forEach(c => {
+                        const cell = b.categories[c];
+                        const h = cell.hours;
+                        const isCro = d.categories.cro.includes(c);
+                        const td = document.createElement('td');
+                        const clsList = [heatClass(h)];
+                        if (isCro) clsList.push('at-cro-cell');
+                        if (h > 0) clsList.push('at-clickable');
+                        td.className = clsList.join(' ');
+                        td.dataset.brand = name;
+                        td.dataset.category = c;
+                        const span = document.createElement('span');
+                        span.className = 'at-cell-val' + (h === 0 ? ' empty' : '');
+                        span.textContent = h === 0 ? '–' : fmt(h);
+                        td.appendChild(span);
+                        if (h > 0) td.addEventListener('click', () => showATDrill(name, c));
+                        tr.appendChild(td);
+                    });
+                    const tdTotal = document.createElement('td');
+                    tdTotal.className = 'at-total-cell';
+                    tdTotal.textContent = fmt(b.total_hours);
+                    tr.appendChild(tdTotal);
+                    tbody.appendChild(tr);
+                });
+                table.appendChild(tbody);
+
+                const tfoot = document.createElement('tfoot');
+                const trF = document.createElement('tr');
+                const tdFootLabel = document.createElement('td');
+                tdFootLabel.className = 'at-brand-name';
+                tdFootLabel.textContent = 'Column Total';
+                trF.appendChild(tdFootLabel);
+                cats.forEach(c => {
+                    const isCro = d.categories.cro.includes(c);
+                    const total = brandOrder.reduce((s, n) => s + brands[n].categories[c].hours, 0);
+                    const td = document.createElement('td');
+                    td.className = isCro ? 'at-cro-cell' : '';
+                    td.textContent = fmt(Math.round(total * 10) / 10);
+                    trF.appendChild(td);
+                });
+                const tdFootTotal = document.createElement('td');
+                tdFootTotal.className = 'at-total-cell';
+                tdFootTotal.textContent = fmt(d.totals.total_hours);
+                trF.appendChild(tdFootTotal);
+                tfoot.appendChild(trF);
+                table.appendChild(tfoot);
+
+                wrap.appendChild(table);
+            }
+
+            function showATDrill(brandName, catName) {
+                const brand = AT_DATA.brands[brandName];
+                const cell = brand.categories[catName];
+                const drill = document.getElementById('atMatrixDrill');
+                drill.open = true;
+                const root = document.getElementById('atDrillContent');
+                clear(root);
+
+                const h3 = document.createElement('h3');
+                h3.style.color = 'var(--title)';
+                h3.style.marginBottom = '8px';
+                h3.textContent = brandName + ' → ' + catName;
+                root.appendChild(h3);
+
+                const meta = document.createElement('p');
+                meta.style.cssText = 'color: var(--gray-600); font-size: 12px; margin-bottom: 12px;';
+                meta.textContent = cell.task_count + ' task' + (cell.task_count === 1 ? '' : 's') + ', ' + fmt(cell.hours) + 'h total';
+                root.appendChild(meta);
+
+                if (cell.tasks.length === 0) {
+                    const p = document.createElement('p');
+                    p.style.cssText = 'color: var(--gray-600); font-style: italic;';
+                    p.textContent = 'No tasks in this cell.';
+                    root.appendChild(p);
+                } else {
+                    const head = document.createElement('div');
+                    head.className = 'at-task-row head';
+                    ['Task', 'Status', 'Month', 'Hours', 'Link'].forEach(label => {
+                        const c = document.createElement('div'); c.textContent = label; head.appendChild(c);
+                    });
+                    root.appendChild(head);
+                    const sorted = cell.tasks.slice().sort((a, b) => b.hours - a.hours);
+                    sorted.forEach(t => {
+                        const row = document.createElement('div');
+                        row.className = 'at-task-row';
+                        const c1 = document.createElement('div'); c1.textContent = t.name; row.appendChild(c1);
+                        const c2 = document.createElement('div'); c2.textContent = t.status; row.appendChild(c2);
+                        const c3 = document.createElement('div'); c3.textContent = t.month; row.appendChild(c3);
+                        const c4 = document.createElement('div'); c4.textContent = fmt(t.hours) + 'h'; row.appendChild(c4);
+                        const c5 = document.createElement('div');
+                        const a = document.createElement('a');
+                        a.href = t.url || '#';
+                        a.target = '_blank';
+                        a.rel = 'noopener';
+                        a.textContent = 'Open';
+                        c5.appendChild(a);
+                        row.appendChild(c5);
+                        root.appendChild(row);
+                    });
+                }
+                drill.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            function renderATMonthChart(d) {
+                const chart = document.getElementById('atMonthChart');
+                clear(chart);
+                const months = Object.keys(d.monthly_totals).sort();
+                if (months.length === 0) {
+                    const p = document.createElement('p');
+                    p.style.cssText = 'color: var(--gray-600); padding: 16px;';
+                    p.textContent = 'No monthly data available.';
+                    chart.appendChild(p);
+                    return;
+                }
+                const maxH = Math.max(d.totals.monthly_capacity * 1.2, ...Object.values(d.monthly_totals));
+                const cap = d.totals.monthly_capacity;
+                const capPct = (1 - cap / maxH) * 100;
+
+                const wrap = document.createElement('div');
+                wrap.className = 'at-capacity-line-wrap';
+                const capLine = document.createElement('div');
+                capLine.className = 'at-capacity-line';
+                capLine.style.top = capPct + '%';
+                const capLabel = document.createElement('span');
+                capLabel.className = 'at-capacity-line-label';
+                capLabel.textContent = 'Capacity ' + cap + 'h';
+                capLine.appendChild(capLabel);
+                wrap.appendChild(capLine);
+
+                months.forEach(m => {
+                    const h = d.monthly_totals[m];
+                    const pct = (h / maxH) * 100;
+                    const col = document.createElement('div');
+                    col.className = 'at-month-col';
+                    const track = document.createElement('div');
+                    track.style.cssText = 'height: 300px; display: flex; flex-direction: column; justify-content: flex-end;';
+                    const bar = document.createElement('div');
+                    let barClass = 'at-month-bar';
+                    if (h > cap) barClass += ' overworked';
+                    else if (h > cap * 0.8) barClass += ' near-capacity';
+                    bar.className = barClass;
+                    bar.style.height = pct + '%';
+                    const lbl = document.createElement('span');
+                    lbl.className = 'at-month-bar-label';
+                    lbl.textContent = fmt(h) + 'h';
+                    bar.appendChild(lbl);
+                    track.appendChild(bar);
+                    col.appendChild(track);
+                    const mlabel = document.createElement('div');
+                    mlabel.className = 'at-month-label';
+                    mlabel.textContent = m;
+                    col.appendChild(mlabel);
+                    wrap.appendChild(col);
+                });
+                chart.appendChild(wrap);
+            }
+
+            function renderATBrandMonthly(d) {
+                const table = document.getElementById('atBrandMonthlyTable');
+                clear(table);
+                const months = Object.keys(d.monthly_totals).sort();
+                const brands = d.brands;
+
+                const thead = document.createElement('thead');
+                const tr = document.createElement('tr');
+                const th0 = document.createElement('th'); th0.style.textAlign = 'left'; th0.textContent = 'Brand';
+                tr.appendChild(th0);
+                months.forEach(m => { const th = document.createElement('th'); th.textContent = m; tr.appendChild(th); });
+                const thTotal = document.createElement('th'); thTotal.textContent = 'Total'; tr.appendChild(thTotal);
+                thead.appendChild(tr);
+                table.appendChild(thead);
+
+                const tbody = document.createElement('tbody');
+                Object.keys(brands).forEach(name => {
+                    const b = brands[name];
+                    const row = document.createElement('tr');
+                    const td0 = document.createElement('td');
+                    td0.className = 'at-brand-cell' + (b.bold ? ' bold' : '');
+                    td0.textContent = name;
+                    row.appendChild(td0);
+                    months.forEach(m => {
+                        const h = b.monthly[m] || 0;
+                        const td = document.createElement('td');
+                        if (h > 40) td.className = 'at-over-40';
+                        else if (h >= 20) td.className = 'at-between-20-40';
+                        td.textContent = h > 0 ? fmt(h) + 'h' : '–';
+                        row.appendChild(td);
+                    });
+                    const tdT = document.createElement('td');
+                    tdT.style.fontWeight = '700';
+                    tdT.textContent = fmt(b.total_hours) + 'h';
+                    row.appendChild(tdT);
+                    tbody.appendChild(row);
+                });
+                table.appendChild(tbody);
+
+                const tfoot = document.createElement('tfoot');
+                const trF = document.createElement('tr');
+                const tdFL = document.createElement('td'); tdFL.style.textAlign = 'left'; tdFL.textContent = 'Team total';
+                trF.appendChild(tdFL);
+                months.forEach(m => {
+                    const total = d.monthly_totals[m];
+                    const td = document.createElement('td');
+                    if (total > d.totals.monthly_capacity) td.className = 'at-over-capacity';
+                    td.textContent = fmt(total) + 'h';
+                    trF.appendChild(td);
+                });
+                const tdFT = document.createElement('td');
+                tdFT.textContent = fmt(d.totals.total_hours) + 'h';
+                trF.appendChild(tdFT);
+                tfoot.appendChild(trF);
+                table.appendChild(tfoot);
+            }
+
+            function renderATTopBrands(d) {
+                const root = document.getElementById('atTopBrands');
+                clear(root);
+                const sorted = Object.values(d.brands).filter(b => b.total_hours > 0).sort((a, b) => b.total_hours - a.total_hours);
+                if (sorted.length === 0) {
+                    const p = document.createElement('p');
+                    p.style.color = 'var(--gray-600)';
+                    p.textContent = 'No brand data.';
+                    root.appendChild(p);
+                    return;
+                }
+                const maxH = sorted[0].total_hours;
+                const wrap = document.createElement('div');
+                wrap.style.cssText = 'background: white; border: 1px solid var(--gray-200); border-radius: 8px; padding: 20px;';
+                sorted.forEach(b => {
+                    const croH = d.categories.cro.reduce((s, c) => s + b.categories[c].hours, 0);
+                    const croPct = b.total_hours > 0 ? Math.round(croH / b.total_hours * 100) : 0;
+                    const row = document.createElement('div');
+                    row.style.marginBottom = '16px';
+                    const top = document.createElement('div');
+                    top.style.cssText = 'display: flex; justify-content: space-between; margin-bottom: 4px;';
+                    const nameEl = document.createElement('span');
+                    nameEl.style.cssText = 'font-weight: 600; color: var(--title);';
+                    nameEl.textContent = b.name;
+                    const statsEl = document.createElement('span');
+                    statsEl.style.cssText = 'color: var(--gray-600); font-size: 13px;';
+                    statsEl.textContent = fmt(b.total_hours) + 'h · ' + b.total_tasks + ' tasks · CRO ' + croPct + '%';
+                    top.appendChild(nameEl); top.appendChild(statsEl);
+                    const bar = document.createElement('div');
+                    bar.style.cssText = 'background: var(--gray-100); border-radius: 4px; height: 16px; overflow: hidden; display: flex;';
+                    const croPart = document.createElement('div');
+                    croPart.style.cssText = 'width: ' + ((croH / maxH) * 100) + '%; background: #10b981; height: 100%;';
+                    const nonCroPart = document.createElement('div');
+                    nonCroPart.style.cssText = 'width: ' + (((b.total_hours - croH) / maxH) * 100) + '%; background: var(--accent); height: 100%;';
+                    bar.appendChild(croPart); bar.appendChild(nonCroPart);
+                    row.appendChild(top); row.appendChild(bar);
+                    wrap.appendChild(row);
+                });
+                const legend = document.createElement('div');
+                legend.className = 'at-legend';
+                legend.style.marginTop = '12px';
+                const mkLegend = (color, label) => {
+                    const item = document.createElement('span');
+                    item.className = 'at-legend-item';
+                    const sw = document.createElement('span');
+                    sw.className = 'at-legend-swatch';
+                    sw.style.background = color;
+                    const text = document.createTextNode(label);
+                    item.appendChild(sw);
+                    item.appendChild(text);
+                    return item;
+                };
+                legend.appendChild(mkLegend('#10b981', ' CRO hours'));
+                legend.appendChild(mkLegend('var(--accent)', ' Non-CRO hours'));
+                wrap.appendChild(legend);
+                root.appendChild(wrap);
+            }
         })();
     </script>
 </body>
