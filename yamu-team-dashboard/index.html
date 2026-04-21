@@ -2885,6 +2885,9 @@
         </div><!-- /#tab-team -->
 
         <div class="tab-content" id="tab-account">
+            <div class="at-note-box" style="background: #fef2f2; border-color: #fca5a5; color: #7f1d1d;">
+                <strong>Why the numbers look small:</strong> Only <span id="atCoverageCallout">1%</span> of ClickUp tasks have a time estimate filled in. This tab shows the tracked portion only, not actual team workload. Expected contracted capacity is ~516h/month team-wide (3 × 40h × 4.3wk); this tab typically shows 100-200h/month. The gap comes from: (1) tasks without estimates, (2) client calls and meetings (~138h/month), (3) Slack and email comms (~86h/month), (4) ad-hoc requests + research + admin that aren't ticketed. Treat this as a category-mix signal, not an accurate time log.
+            </div>
             <div class="at-note-box">
                 <strong>Data source:</strong> ClickUp task time estimates, team-level (not per-person, not logged hours). Only tasks with an estimate are counted. Tasks with status "future work" or "blocked" are excluded. Months with less than 10h of tracked work are hidden.
             </div>
@@ -2894,8 +2897,23 @@
                 <div class="at-kpi-grid" id="atKpiGrid"></div>
             </section>
 
+            <section class="section" id="at-sec-coverage">
+                <h2 class="section-title">Tracking Coverage by Brand</h2>
+                <div class="at-info-box">
+                    <strong>How to use:</strong> This shows what % of eligible tasks have a time estimate filled in ClickUp. Brands below 5% are producing unreliable numbers in the matrix below. To make this dashboard more useful, push the team to add estimates when creating/picking up tasks (or use templates that require estimate on task creation).
+                </div>
+                <div id="atCoverageList"></div>
+            </section>
+
             <section class="section" id="at-sec-matrix">
                 <h2 class="section-title">Brand x Category Matrix</h2>
+
+                <div class="at-info-box" style="background: white; border: 1px solid var(--gray-300);">
+                    <strong>Filter by month:</strong>
+                    <span id="atMonthFilter" style="display: inline-flex; flex-wrap: wrap; gap: 12px; margin-left: 8px;"></span>
+                    <button id="atMonthAll" type="button" style="margin-left: 12px; padding: 4px 10px; font-size: 12px; background: var(--gray-100); border: 1px solid var(--gray-300); border-radius: 4px; cursor: pointer;">All</button>
+                    <button id="atMonthNone" type="button" style="margin-left: 4px; padding: 4px 10px; font-size: 12px; background: var(--gray-100); border: 1px solid var(--gray-300); border-radius: 4px; cursor: pointer;">None</button>
+                </div>
                 <div class="at-info-box">
                     <strong>Reading this:</strong> Rows are brands, columns are work categories. Green columns are CRO (retained work). Gray columns are Non-CRO (ops, support, content, meetings). Darker cells mean more hours. Click any cell to drill down to underlying tasks.
                 </div>
@@ -3148,23 +3166,160 @@
             }
 
             let AT_DATA = null;
+            let AT_SELECTED_MONTHS = null; // null = all; Set<string> when filtered
+
             function loadAccountTime() {
                 const overview = document.getElementById('atKpiGrid');
                 if (overview) overview.textContent = 'Loading account time data...';
                 fetch('./account-time-data.json')
                     .then(r => r.json())
-                    .then(d => { AT_DATA = d; renderAT(d); })
+                    .then(d => {
+                        AT_DATA = d;
+                        AT_SELECTED_MONTHS = new Set(Object.keys(d.monthly_totals));
+                        const cov = document.getElementById('atCoverageCallout');
+                        if (cov && d.totals.estimate_coverage_pct != null) cov.textContent = d.totals.estimate_coverage_pct + '%';
+                        setupATMonthFilter(d);
+                        renderATCoverage(d);
+                        renderAT();
+                    })
                     .catch(e => {
                         if (overview) overview.textContent = 'Failed to load account-time-data.json: ' + e.message;
                     });
             }
 
-            function renderAT(d) {
+            function setupATMonthFilter(d) {
+                const wrap = document.getElementById('atMonthFilter');
+                if (!wrap) return;
+                clear(wrap);
+                const months = Object.keys(d.monthly_totals).sort();
+                months.forEach(m => {
+                    const lbl = document.createElement('label');
+                    lbl.style.cssText = 'display: inline-flex; align-items: center; gap: 4px; cursor: pointer; font-size: 13px;';
+                    const cb = document.createElement('input');
+                    cb.type = 'checkbox';
+                    cb.checked = true;
+                    cb.dataset.month = m;
+                    cb.addEventListener('change', () => {
+                        if (cb.checked) AT_SELECTED_MONTHS.add(m);
+                        else AT_SELECTED_MONTHS.delete(m);
+                        renderAT();
+                    });
+                    const span = document.createElement('span');
+                    span.textContent = m;
+                    lbl.appendChild(cb);
+                    lbl.appendChild(span);
+                    wrap.appendChild(lbl);
+                });
+                const btnAll = document.getElementById('atMonthAll');
+                const btnNone = document.getElementById('atMonthNone');
+                if (btnAll) btnAll.addEventListener('click', () => {
+                    AT_SELECTED_MONTHS = new Set(months);
+                    wrap.querySelectorAll('input[type="checkbox"]').forEach(c => { c.checked = true; });
+                    renderAT();
+                });
+                if (btnNone) btnNone.addEventListener('click', () => {
+                    AT_SELECTED_MONTHS = new Set();
+                    wrap.querySelectorAll('input[type="checkbox"]').forEach(c => { c.checked = false; });
+                    renderAT();
+                });
+            }
+
+            function filterTasks(tasks) {
+                if (!AT_SELECTED_MONTHS || AT_SELECTED_MONTHS.size === 0) return tasks.length === 0 ? tasks : [];
+                return tasks.filter(t => AT_SELECTED_MONTHS.has(t.month));
+            }
+
+            function getFilteredView() {
+                // Reproject the data honoring AT_SELECTED_MONTHS
+                const d = AT_DATA;
+                const months = Object.keys(d.monthly_totals).filter(m => AT_SELECTED_MONTHS && AT_SELECTED_MONTHS.has(m)).sort();
+                const view = {
+                    categories: d.categories,
+                    totals: Object.assign({}, d.totals),
+                    monthly_totals: {},
+                    brands: {}
+                };
+                months.forEach(m => { view.monthly_totals[m] = d.monthly_totals[m]; });
+
+                let totalH = 0, croH = 0, taskCount = 0;
+                Object.entries(d.brands).forEach(([name, b]) => {
+                    const bv = {
+                        name: b.name,
+                        bold: b.bold,
+                        highlight: b.highlight,
+                        total_hours: 0,
+                        total_tasks: 0,
+                        estimated_tasks: b.estimated_tasks,
+                        eligible_tasks: b.eligible_tasks,
+                        estimate_coverage_pct: b.estimate_coverage_pct,
+                        categories: {},
+                        monthly: {}
+                    };
+                    months.forEach(m => { bv.monthly[m] = b.monthly[m] || 0; });
+                    Object.entries(b.categories).forEach(([cat, cell]) => {
+                        const filtered = filterTasks(cell.tasks);
+                        const hrs = Math.round(filtered.reduce((s, t) => s + t.hours, 0) * 10) / 10;
+                        bv.categories[cat] = { hours: hrs, task_count: filtered.length, tasks: filtered };
+                        bv.total_hours += hrs;
+                        bv.total_tasks += filtered.length;
+                        if (d.categories.cro.includes(cat)) croH += hrs;
+                        taskCount += filtered.length;
+                    });
+                    bv.total_hours = Math.round(bv.total_hours * 10) / 10;
+                    totalH += bv.total_hours;
+                    view.brands[name] = bv;
+                });
+                view.totals.total_hours = Math.round(totalH * 10) / 10;
+                view.totals.cro_hours = Math.round(croH * 10) / 10;
+                view.totals.non_cro_hours = Math.round((totalH - croH) * 10) / 10;
+                view.totals.total_tasks = taskCount;
+                return view;
+            }
+
+            function renderAT() {
+                const d = getFilteredView();
                 renderATKPIs(d);
                 renderATMatrix(d);
                 renderATMonthChart(d);
                 renderATBrandMonthly(d);
                 renderATTopBrands(d);
+            }
+
+            function renderATCoverage(d) {
+                const root = document.getElementById('atCoverageList');
+                if (!root) return;
+                clear(root);
+                const sorted = Object.values(d.brands).filter(b => b.eligible_tasks > 0).sort((a, b) => b.eligible_tasks - a.eligible_tasks);
+                const wrap = document.createElement('div');
+                wrap.style.cssText = 'background: white; border: 1px solid var(--gray-200); border-radius: 8px; padding: 20px;';
+                sorted.forEach(b => {
+                    const pct = b.estimate_coverage_pct;
+                    const row = document.createElement('div');
+                    row.style.cssText = 'display: grid; grid-template-columns: 180px 1fr 120px; gap: 12px; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--gray-100); font-size: 13px;';
+                    const nameEl = document.createElement('div');
+                    nameEl.style.cssText = 'font-weight: ' + (b.bold ? '700' : '500') + '; color: var(--title);';
+                    nameEl.textContent = b.name;
+                    const barWrap = document.createElement('div');
+                    barWrap.style.cssText = 'background: var(--gray-100); border-radius: 4px; height: 14px; overflow: hidden;';
+                    const bar = document.createElement('div');
+                    let barColor = 'var(--danger)';
+                    if (pct >= 20) barColor = 'var(--success)';
+                    else if (pct >= 10) barColor = 'var(--warning)';
+                    bar.style.cssText = 'width: ' + Math.max(pct, 1) + '%; height: 100%; background: ' + barColor + ';';
+                    barWrap.appendChild(bar);
+                    const statsEl = document.createElement('div');
+                    statsEl.style.cssText = 'color: var(--gray-600); font-size: 12px; text-align: right;';
+                    statsEl.textContent = b.estimated_tasks + ' / ' + b.eligible_tasks + ' (' + pct + '%)';
+                    row.appendChild(nameEl);
+                    row.appendChild(barWrap);
+                    row.appendChild(statsEl);
+                    wrap.appendChild(row);
+                });
+                const summary = document.createElement('div');
+                summary.style.cssText = 'margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--gray-200); font-size: 13px; color: var(--gray-600);';
+                summary.textContent = 'Overall: ' + d.totals.total_tasks + ' / ' + d.totals.eligible_tasks + ' eligible tasks have estimates (' + d.totals.estimate_coverage_pct + '%). Raw tasks pulled from ClickUp: ' + d.totals.raw_tasks_seen + '.';
+                wrap.appendChild(summary);
+                root.appendChild(wrap);
             }
 
             function renderATKPIs(d) {
@@ -3185,8 +3340,8 @@
                 g.appendChild(kpi('CRO Hours', t.cro_hours.toFixed(0) + 'h', croPct + '% of total, retained work', 'cro'));
                 g.appendChild(kpi('Non-CRO Hours', t.non_cro_hours.toFixed(0) + 'h', (100 - croPct) + '% of total, ops/meetings/support/content', 'non-cro'));
                 g.appendChild(kpi('Overworked Months', String(t.overworked_months.length), 'Months over ' + t.monthly_capacity + 'h capacity', t.overworked_months.length > 0 ? 'alert' : ''));
-                const classifierPct = t.total_tasks > 0 ? Math.round(t.categorized_count / t.total_tasks * 100) : 0;
-                g.appendChild(kpi('Classifier Quality', classifierPct + '%', t.categorized_count + ' mapped / ' + t.uncategorized_count + ' unmapped'));
+                const baseTotals = AT_DATA ? AT_DATA.totals : t;
+                g.appendChild(kpi('Estimate Coverage', baseTotals.estimate_coverage_pct + '%', baseTotals.total_tasks + ' of ' + baseTotals.eligible_tasks + ' eligible tasks have estimates', baseTotals.estimate_coverage_pct < 10 ? 'alert' : ''));
             }
 
             function renderATMatrix(d) {
@@ -3279,8 +3434,9 @@
             }
 
             function showATDrill(brandName, catName) {
-                const brand = AT_DATA.brands[brandName];
-                const cell = brand.categories[catName];
+                const fullCell = AT_DATA.brands[brandName].categories[catName];
+                const filteredTasks = filterTasks(fullCell.tasks);
+                const filteredHours = Math.round(filteredTasks.reduce((s, t) => s + t.hours, 0) * 10) / 10;
                 const drill = document.getElementById('atMatrixDrill');
                 drill.open = true;
                 const root = document.getElementById('atDrillContent');
@@ -3294,9 +3450,10 @@
 
                 const meta = document.createElement('p');
                 meta.style.cssText = 'color: var(--gray-600); font-size: 12px; margin-bottom: 12px;';
-                meta.textContent = cell.task_count + ' task' + (cell.task_count === 1 ? '' : 's') + ', ' + fmt(cell.hours) + 'h total';
+                meta.textContent = filteredTasks.length + ' task' + (filteredTasks.length === 1 ? '' : 's') + ', ' + fmt(filteredHours) + 'h total (filtered by selected months)';
                 root.appendChild(meta);
 
+                const cell = { tasks: filteredTasks };
                 if (cell.tasks.length === 0) {
                     const p = document.createElement('p');
                     p.style.cssText = 'color: var(--gray-600); font-style: italic;';
