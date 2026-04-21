@@ -2903,14 +2903,23 @@
                     <strong>How this is computed:</strong> For each task with an estimate, hours are split evenly across CRO team members assigned. A task assigned to Bhaskar + Aanand (10h) adds 5h to each. "Other YAMU team" covers Sugitha, Omkar, Nayan, Joel, Saily, Abby, Lotanna, etc. — people doing work in these brand spaces who aren't on the core CRO team.
                 </div>
                 <div id="atTeamSplit"></div>
-            </section>
-
-            <section class="section" id="at-sec-coverage">
-                <h2 class="section-title">Tracking Coverage by Brand</h2>
-                <div class="at-info-box">
-                    <strong>How to use:</strong> This shows what % of eligible tasks have a time estimate filled in ClickUp. Brands below 5% are producing unreliable numbers in the matrix below. To make this dashboard more useful, push the team to add estimates when creating/picking up tasks (or use templates that require estimate on task creation).
+                <div class="at-info-box" style="margin-top: 20px; background: #fef3c7; border-color: #fcd34d; color: #78350f;">
+                    <strong>Why these numbers differ from the Team Capacity tab (142h / 108h / 154h):</strong>
+                    <table style="margin: 8px 0; font-size: 12px; width: 100%;">
+                        <thead>
+                            <tr style="border-bottom: 1px solid #fcd34d;"><th style="text-align:left; padding: 4px;">Dimension</th><th style="text-align:left; padding: 4px;">Team Capacity tab</th><th style="text-align:left; padding: 4px;">Account Time tab</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="padding: 4px;">What it counts</td><td style="padding: 4px;">REMAINING hours on OPEN tasks</td><td style="padding: 4px;">TOTAL tracked estimates, any status</td></tr>
+                            <tr><td style="padding: 4px;">Direction</td><td style="padding: 4px;">Forward-looking (what's left to do)</td><td style="padding: 4px;">Backward-looking (what was planned)</td></tr>
+                            <tr><td style="padding: 4px;">Status filter</td><td style="padding: 4px;">Open only (excludes done/closed)</td><td style="padding: 4px;">Includes done/review/in progress</td></tr>
+                            <tr><td style="padding: 4px;">Shared-task share</td><td style="padding: 4px;">Role-based (PM+Dev=40/60, CRO+Dev=45/55)</td><td style="padding: 4px;">Even split (50/50 or 33/33/33)</td></tr>
+                            <tr><td style="padding: 4px;">Completion % applied</td><td style="padding: 4px;">Yes (Client Approval = 20% remaining)</td><td style="padding: 4px;">No (full estimate counted)</td></tr>
+                            <tr><td style="padding: 4px;">Tasks without estimates</td><td style="padding: 4px;">Included (heuristic or shown as "--")</td><td style="padding: 4px;">Excluded</td></tr>
+                        </tbody>
+                    </table>
+                    Both views use the same ClickUp data. They answer different questions: "how overloaded are we going forward" (Team Capacity) vs "where has tracked work been spent" (Account Time).
                 </div>
-                <div id="atCoverageList"></div>
             </section>
 
             <section class="section" id="at-sec-matrix">
@@ -3187,7 +3196,6 @@
                         const cov = document.getElementById('atCoverageCallout');
                         if (cov && d.totals.estimate_coverage_pct != null) cov.textContent = d.totals.estimate_coverage_pct + '%';
                         setupATMonthFilter(d);
-                        renderATCoverage(d);
                         renderATTeamSplit(d);
                         renderAT();
                     })
@@ -3335,43 +3343,6 @@
                 const croPct = Math.round(d.totals.cro_team_task_count / d.totals.total_tasks * 100);
                 note.textContent = 'CRO team (Bhaskar/Sanskriti/Aanand) are on ' + d.totals.cro_team_task_count + ' of ' + d.totals.total_tasks + ' estimated tasks (' + croPct + '%), totaling ' + fmt(d.totals.cro_team_hours) + 'h. Remaining ' + d.totals.non_cro_team_task_count + ' tasks (' + fmt(d.totals.non_cro_team_hours) + 'h) are assigned to other YAMU team members only.';
                 wrap.appendChild(note);
-                root.appendChild(wrap);
-            }
-
-            function renderATCoverage(d) {
-                const root = document.getElementById('atCoverageList');
-                if (!root) return;
-                clear(root);
-                const sorted = Object.values(d.brands).filter(b => b.eligible_tasks > 0).sort((a, b) => b.eligible_tasks - a.eligible_tasks);
-                const wrap = document.createElement('div');
-                wrap.style.cssText = 'background: white; border: 1px solid var(--gray-200); border-radius: 8px; padding: 20px;';
-                sorted.forEach(b => {
-                    const pct = b.estimate_coverage_pct;
-                    const row = document.createElement('div');
-                    row.style.cssText = 'display: grid; grid-template-columns: 180px 1fr 120px; gap: 12px; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--gray-100); font-size: 13px;';
-                    const nameEl = document.createElement('div');
-                    nameEl.style.cssText = 'font-weight: ' + (b.bold ? '700' : '500') + '; color: var(--title);';
-                    nameEl.textContent = b.name;
-                    const barWrap = document.createElement('div');
-                    barWrap.style.cssText = 'background: var(--gray-100); border-radius: 4px; height: 14px; overflow: hidden;';
-                    const bar = document.createElement('div');
-                    let barColor = 'var(--danger)';
-                    if (pct >= 20) barColor = 'var(--success)';
-                    else if (pct >= 10) barColor = 'var(--warning)';
-                    bar.style.cssText = 'width: ' + Math.max(pct, 1) + '%; height: 100%; background: ' + barColor + ';';
-                    barWrap.appendChild(bar);
-                    const statsEl = document.createElement('div');
-                    statsEl.style.cssText = 'color: var(--gray-600); font-size: 12px; text-align: right;';
-                    statsEl.textContent = b.estimated_tasks + ' / ' + b.eligible_tasks + ' (' + pct + '%)';
-                    row.appendChild(nameEl);
-                    row.appendChild(barWrap);
-                    row.appendChild(statsEl);
-                    wrap.appendChild(row);
-                });
-                const summary = document.createElement('div');
-                summary.style.cssText = 'margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--gray-200); font-size: 13px; color: var(--gray-600);';
-                summary.textContent = 'Overall: ' + d.totals.total_tasks + ' / ' + d.totals.eligible_tasks + ' eligible tasks have estimates (' + d.totals.estimate_coverage_pct + '%). Raw tasks pulled from ClickUp: ' + d.totals.raw_tasks_seen + '.';
-                wrap.appendChild(summary);
                 root.appendChild(wrap);
             }
 
