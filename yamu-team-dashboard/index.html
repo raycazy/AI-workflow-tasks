@@ -2897,6 +2897,14 @@
                 <div class="at-kpi-grid" id="atKpiGrid"></div>
             </section>
 
+            <section class="section" id="at-sec-team-split">
+                <h2 class="section-title">Team Member Split</h2>
+                <div class="at-info-box">
+                    <strong>How this is computed:</strong> For each task with an estimate, hours are split evenly across CRO team members assigned. A task assigned to Bhaskar + Aanand (10h) adds 5h to each. "Other YAMU team" covers Sugitha, Omkar, Nayan, Joel, Saily, Abby, Lotanna, etc. — people doing work in these brand spaces who aren't on the core CRO team.
+                </div>
+                <div id="atTeamSplit"></div>
+            </section>
+
             <section class="section" id="at-sec-coverage">
                 <h2 class="section-title">Tracking Coverage by Brand</h2>
                 <div class="at-info-box">
@@ -3180,6 +3188,7 @@
                         if (cov && d.totals.estimate_coverage_pct != null) cov.textContent = d.totals.estimate_coverage_pct + '%';
                         setupATMonthFilter(d);
                         renderATCoverage(d);
+                        renderATTeamSplit(d);
                         renderAT();
                     })
                     .catch(e => {
@@ -3283,6 +3292,50 @@
                 renderATMonthChart(d);
                 renderATBrandMonthly(d);
                 renderATTopBrands(d);
+            }
+
+            function renderATTeamSplit(d) {
+                const root = document.getElementById('atTeamSplit');
+                if (!root) return;
+                clear(root);
+                const perPerson = d.totals.per_person_hours || {};
+                const perTasks = d.totals.per_person_tasks || {};
+                const order = ['Bhaskar', 'Sanskriti', 'Aanand', 'Other team'];
+                const total = Object.values(perPerson).reduce((a, b) => a + b, 0) || 1;
+                const maxH = Math.max(...Object.values(perPerson)) || 1;
+
+                const wrap = document.createElement('div');
+                wrap.style.cssText = 'background: white; border: 1px solid var(--gray-200); border-radius: 8px; padding: 20px;';
+                order.forEach(name => {
+                    const h = perPerson[name] || 0;
+                    const tasks = perTasks[name] || 0;
+                    const pct = Math.round(h / total * 100);
+                    const row = document.createElement('div');
+                    row.style.marginBottom = '14px';
+                    const top = document.createElement('div');
+                    top.style.cssText = 'display: flex; justify-content: space-between; margin-bottom: 4px;';
+                    const nameEl = document.createElement('span');
+                    nameEl.style.cssText = 'font-weight: 600; color: var(--title);';
+                    nameEl.textContent = name;
+                    const statsEl = document.createElement('span');
+                    statsEl.style.cssText = 'color: var(--gray-600); font-size: 13px;';
+                    statsEl.textContent = fmt(h) + 'h · ' + tasks + ' tasks · ' + pct + '% of tracked';
+                    top.appendChild(nameEl); top.appendChild(statsEl);
+                    const bar = document.createElement('div');
+                    bar.style.cssText = 'background: var(--gray-100); border-radius: 4px; height: 16px; overflow: hidden;';
+                    const fill = document.createElement('div');
+                    const color = name === 'Bhaskar' ? 'var(--accent)' : name === 'Sanskriti' ? '#7c3aed' : name === 'Aanand' ? '#10b981' : 'var(--gray-600)';
+                    fill.style.cssText = 'width: ' + ((h / maxH) * 100) + '%; background: ' + color + '; height: 100%;';
+                    bar.appendChild(fill);
+                    row.appendChild(top); row.appendChild(bar);
+                    wrap.appendChild(row);
+                });
+                const note = document.createElement('div');
+                note.style.cssText = 'margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--gray-200); font-size: 13px; color: var(--gray-600); line-height: 1.6;';
+                const croPct = Math.round(d.totals.cro_team_task_count / d.totals.total_tasks * 100);
+                note.textContent = 'CRO team (Bhaskar/Sanskriti/Aanand) are on ' + d.totals.cro_team_task_count + ' of ' + d.totals.total_tasks + ' estimated tasks (' + croPct + '%), totaling ' + fmt(d.totals.cro_team_hours) + 'h. Remaining ' + d.totals.non_cro_team_task_count + ' tasks (' + fmt(d.totals.non_cro_team_hours) + 'h) are assigned to other YAMU team members only.';
+                wrap.appendChild(note);
+                root.appendChild(wrap);
             }
 
             function renderATCoverage(d) {
