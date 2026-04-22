@@ -2890,8 +2890,7 @@
             </div>
 
             <div class="at-info-box" style="background: white; border: 1px solid var(--gray-300);">
-                <strong>View:</strong>
-                <label style="margin-left: 12px; cursor: pointer; font-size: 13px;"><input type="checkbox" id="atCroOnly" checked> CRO team only (Bhaskar, Sanskriti, Aanand)</label>
+                <strong>Scope:</strong> This dashboard covers work assigned to the CRO team (Bhaskar, Sanskriti, Aanand) only. Tasks done purely by other YAMU members (Omkar, Lotanna, Saily, Nayan, Sugitha, etc.) are filtered out at the data pull — they're not CRO scope.
                 <label style="margin-left: 16px; cursor: pointer; font-size: 13px;"><input type="checkbox" id="atIncludeSynthetic" checked> Include synthetic estimates</label>
             </div>
 
@@ -2903,7 +2902,7 @@
             <section class="section" id="at-sec-team-split">
                 <h2 class="section-title">Team Member Split</h2>
                 <div class="at-info-box">
-                    <strong>How this is computed:</strong> For each task with an estimate, hours are split evenly across CRO team members assigned. A task assigned to Bhaskar + Aanand (10h) adds 5h to each. "Other YAMU team" covers Sugitha, Omkar, Nayan, Joel, Saily, Abby, Lotanna, etc. — people doing work in these brand spaces who aren't on the core CRO team.
+                    <strong>How this is computed:</strong> For each task with at least one CRO team assignee, hours split evenly across Bhaskar/Sanskriti/Aanand who are on the task. A task with Bhaskar + Aanand (10h) adds 5h to each. Tasks with no CRO team member (work done purely by Omkar, Lotanna, Saily, Sugitha, etc.) are filtered out at the source.
                 </div>
                 <div id="atTeamSplit"></div>
                 <div class="at-info-box" style="margin-top: 20px; background: #fef3c7; border-color: #fcd34d; color: #78350f;">
@@ -3187,7 +3186,6 @@
 
             let AT_DATA = null;
             let AT_SELECTED_MONTHS = null;
-            let AT_CRO_ONLY = true;
             let AT_INCLUDE_SYNTHETIC = true;
 
             function loadAccountTime() {
@@ -3209,9 +3207,7 @@
             }
 
             function setupATViewToggles() {
-                const croBox = document.getElementById('atCroOnly');
                 const synthBox = document.getElementById('atIncludeSynthetic');
-                if (croBox) croBox.addEventListener('change', () => { AT_CRO_ONLY = croBox.checked; renderAT(); renderATTeamSplit(getFilteredView()); });
                 if (synthBox) synthBox.addEventListener('change', () => { AT_INCLUDE_SYNTHETIC = synthBox.checked; renderAT(); renderATTeamSplit(getFilteredView()); });
             }
 
@@ -3256,7 +3252,6 @@
                 if (!tasks || tasks.length === 0) return [];
                 return tasks.filter(t => {
                     if (AT_SELECTED_MONTHS && !AT_SELECTED_MONTHS.has(t.month)) return false;
-                    if (AT_CRO_ONLY && t.has_cro_team === false) return false;
                     if (!AT_INCLUDE_SYNTHETIC && t.synthetic === true) return false;
                     return true;
                 });
@@ -3274,10 +3269,10 @@
 
                 let realH = 0, synthH = 0, realT = 0, synthT = 0;
                 let totalH = 0, croH = 0, taskCount = 0;
-                const perPersonHours = { Bhaskar: 0, Sanskriti: 0, Aanand: 0, 'Other team': 0 };
-                const perPersonTasks = { Bhaskar: 0, Sanskriti: 0, Aanand: 0, 'Other team': 0 };
-                let croTeamTaskCount = 0, nonCroTeamTaskCount = 0;
-                let croTeamHours = 0, nonCroTeamHours = 0;
+                const perPersonHours = { Bhaskar: 0, Sanskriti: 0, Aanand: 0 };
+                const perPersonTasks = { Bhaskar: 0, Sanskriti: 0, Aanand: 0 };
+                let croTeamTaskCount = 0;
+                let croTeamHours = 0;
                 const monthlyTotalsFiltered = {};
 
                 Object.entries(d.brands).forEach(([name, b]) => {
@@ -3321,11 +3316,6 @@
                                 });
                                 croTeamTaskCount++;
                                 croTeamHours += t.hours;
-                            } else {
-                                perPersonHours['Other team'] += t.hours;
-                                perPersonTasks['Other team']++;
-                                nonCroTeamTaskCount++;
-                                nonCroTeamHours += t.hours;
                             }
                         });
                     });
@@ -3349,8 +3339,8 @@
                 view.totals.per_person_tasks = perPersonTasks;
                 view.totals.cro_team_task_count = croTeamTaskCount;
                 view.totals.cro_team_hours = Math.round(croTeamHours * 10) / 10;
-                view.totals.non_cro_team_task_count = nonCroTeamTaskCount;
-                view.totals.non_cro_team_hours = Math.round(nonCroTeamHours * 10) / 10;
+                view.totals.non_cro_team_task_count = 0;
+                view.totals.non_cro_team_hours = 0;
                 return view;
             }
 
@@ -3369,7 +3359,7 @@
                 clear(root);
                 const perPerson = d.totals.per_person_hours || {};
                 const perTasks = d.totals.per_person_tasks || {};
-                const order = ['Bhaskar', 'Sanskriti', 'Aanand', 'Other team'];
+                const order = ['Bhaskar', 'Sanskriti', 'Aanand'];
                 const total = Object.values(perPerson).reduce((a, b) => a + b, 0) || 1;
                 const maxH = Math.max(...Object.values(perPerson)) || 1;
 
@@ -3401,8 +3391,7 @@
                 });
                 const note = document.createElement('div');
                 note.style.cssText = 'margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--gray-200); font-size: 13px; color: var(--gray-600); line-height: 1.6;';
-                const croPct = Math.round(d.totals.cro_team_task_count / d.totals.total_tasks * 100);
-                note.textContent = 'CRO team (Bhaskar/Sanskriti/Aanand) are on ' + d.totals.cro_team_task_count + ' of ' + d.totals.total_tasks + ' estimated tasks (' + croPct + '%), totaling ' + fmt(d.totals.cro_team_hours) + 'h. Remaining ' + d.totals.non_cro_team_task_count + ' tasks (' + fmt(d.totals.non_cro_team_hours) + 'h) are assigned to other YAMU team members only.';
+                note.textContent = 'Covers ' + d.totals.total_tasks + ' tasks (' + fmt(d.totals.cro_team_hours) + 'h). Tasks assigned purely to non-CRO-team members are excluded at the data pull.';
                 wrap.appendChild(note);
                 root.appendChild(wrap);
             }
