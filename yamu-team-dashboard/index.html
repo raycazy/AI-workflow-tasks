@@ -2885,11 +2885,14 @@
         </div><!-- /#tab-team -->
 
         <div class="tab-content" id="tab-account">
-            <div class="at-note-box" style="background: #fef2f2; border-color: #fca5a5; color: #7f1d1d;">
-                <strong>Why the numbers look small:</strong> Only <span id="atCoverageCallout">1%</span> of ClickUp tasks have a time estimate filled in. This tab shows the tracked portion only, not actual team workload. Expected contracted capacity is ~516h/month team-wide (3 × 40h × 4.3wk); this tab typically shows 100-200h/month. The gap comes from: (1) tasks without estimates, (2) client calls and meetings (~138h/month), (3) Slack and email comms (~86h/month), (4) ad-hoc requests + research + admin that aren't ticketed. Treat this as a category-mix signal, not an accurate time log.
+            <div class="at-note-box" style="background: #f0fdf4; border-color: #86efac; color: #166534;">
+                <strong>Hours source:</strong> Hours come from two sources — (1) <strong>Real</strong>: ClickUp task time_estimate field (~1% of tasks have this). (2) <strong>Synthetic</strong>: inferred from task category using default hours (Calls 1h, Landing pages 8h, A/B test 6h, Big Dev 20h, etc.). Synthesis fills in the gap so the dashboard shows a realistic picture; toggle it off below to see only tracked hours.
             </div>
-            <div class="at-note-box">
-                <strong>Data source:</strong> ClickUp task time estimates, team-level (not per-person, not logged hours). Only tasks with an estimate are counted. Tasks with status "future work" or "blocked" are excluded. Months with less than 10h of tracked work are hidden.
+
+            <div class="at-info-box" style="background: white; border: 1px solid var(--gray-300);">
+                <strong>View:</strong>
+                <label style="margin-left: 12px; cursor: pointer; font-size: 13px;"><input type="checkbox" id="atCroOnly" checked> CRO team only (Bhaskar, Sanskriti, Aanand)</label>
+                <label style="margin-left: 16px; cursor: pointer; font-size: 13px;"><input type="checkbox" id="atIncludeSynthetic" checked> Include synthetic estimates</label>
             </div>
 
             <section class="section" id="at-sec-overview">
@@ -3183,7 +3186,9 @@
             }
 
             let AT_DATA = null;
-            let AT_SELECTED_MONTHS = null; // null = all; Set<string> when filtered
+            let AT_SELECTED_MONTHS = null;
+            let AT_CRO_ONLY = true;
+            let AT_INCLUDE_SYNTHETIC = true;
 
             function loadAccountTime() {
                 const overview = document.getElementById('atKpiGrid');
@@ -3193,15 +3198,21 @@
                     .then(d => {
                         AT_DATA = d;
                         AT_SELECTED_MONTHS = new Set(Object.keys(d.monthly_totals));
-                        const cov = document.getElementById('atCoverageCallout');
-                        if (cov && d.totals.estimate_coverage_pct != null) cov.textContent = d.totals.estimate_coverage_pct + '%';
                         setupATMonthFilter(d);
+                        setupATViewToggles();
                         renderATTeamSplit(d);
                         renderAT();
                     })
                     .catch(e => {
                         if (overview) overview.textContent = 'Failed to load account-time-data.json: ' + e.message;
                     });
+            }
+
+            function setupATViewToggles() {
+                const croBox = document.getElementById('atCroOnly');
+                const synthBox = document.getElementById('atIncludeSynthetic');
+                if (croBox) croBox.addEventListener('change', () => { AT_CRO_ONLY = croBox.checked; renderAT(); renderATTeamSplit(getFilteredView()); });
+                if (synthBox) synthBox.addEventListener('change', () => { AT_INCLUDE_SYNTHETIC = synthBox.checked; renderAT(); renderATTeamSplit(getFilteredView()); });
             }
 
             function setupATMonthFilter(d) {
@@ -3242,12 +3253,16 @@
             }
 
             function filterTasks(tasks) {
-                if (!AT_SELECTED_MONTHS || AT_SELECTED_MONTHS.size === 0) return tasks.length === 0 ? tasks : [];
-                return tasks.filter(t => AT_SELECTED_MONTHS.has(t.month));
+                if (!tasks || tasks.length === 0) return [];
+                return tasks.filter(t => {
+                    if (AT_SELECTED_MONTHS && !AT_SELECTED_MONTHS.has(t.month)) return false;
+                    if (AT_CRO_ONLY && t.has_cro_team === false) return false;
+                    if (!AT_INCLUDE_SYNTHETIC && t.synthetic === true) return false;
+                    return true;
+                });
             }
 
             function getFilteredView() {
-                // Reproject the data honoring AT_SELECTED_MONTHS
                 const d = AT_DATA;
                 const months = Object.keys(d.monthly_totals).filter(m => AT_SELECTED_MONTHS && AT_SELECTED_MONTHS.has(m)).sort();
                 const view = {
@@ -3256,9 +3271,15 @@
                     monthly_totals: {},
                     brands: {}
                 };
-                months.forEach(m => { view.monthly_totals[m] = d.monthly_totals[m]; });
 
+                let realH = 0, synthH = 0, realT = 0, synthT = 0;
                 let totalH = 0, croH = 0, taskCount = 0;
+                const perPersonHours = { Bhaskar: 0, Sanskriti: 0, Aanand: 0, 'Other team': 0 };
+                const perPersonTasks = { Bhaskar: 0, Sanskriti: 0, Aanand: 0, 'Other team': 0 };
+                let croTeamTaskCount = 0, nonCroTeamTaskCount = 0;
+                let croTeamHours = 0, nonCroTeamHours = 0;
+                const monthlyTotalsFiltered = {};
+
                 Object.entries(d.brands).forEach(([name, b]) => {
                     const bv = {
                         name: b.name,
@@ -3272,7 +3293,6 @@
                         categories: {},
                         monthly: {}
                     };
-                    months.forEach(m => { bv.monthly[m] = b.monthly[m] || 0; });
                     Object.entries(b.categories).forEach(([cat, cell]) => {
                         const filtered = filterTasks(cell.tasks);
                         const hrs = Math.round(filtered.reduce((s, t) => s + t.hours, 0) * 10) / 10;
@@ -3281,15 +3301,56 @@
                         bv.total_tasks += filtered.length;
                         if (d.categories.cro.includes(cat)) croH += hrs;
                         taskCount += filtered.length;
+                        filtered.forEach(t => {
+                            if (t.synthetic) { synthH += t.hours; synthT++; }
+                            else { realH += t.hours; realT++; }
+                            bv.monthly[t.month] = (bv.monthly[t.month] || 0) + t.hours;
+                            monthlyTotalsFiltered[t.month] = (monthlyTotalsFiltered[t.month] || 0) + t.hours;
+                            const assignees = (t.assignees || '').split(',').map(s => s.trim().toLowerCase());
+                            const touchedBy = { Bhaskar: false, Sanskriti: false, Aanand: false };
+                            assignees.forEach(a => {
+                                if (a.includes('bhaskar')) touchedBy.Bhaskar = true;
+                                if (a.includes('sanskriti')) touchedBy.Sanskriti = true;
+                                if (a.includes('aanand')) touchedBy.Aanand = true;
+                            });
+                            const croAssigned = Object.values(touchedBy).filter(Boolean).length;
+                            if (croAssigned > 0) {
+                                const share = t.hours / croAssigned;
+                                Object.entries(touchedBy).forEach(([n, hit]) => {
+                                    if (hit) { perPersonHours[n] += share; perPersonTasks[n]++; }
+                                });
+                                croTeamTaskCount++;
+                                croTeamHours += t.hours;
+                            } else {
+                                perPersonHours['Other team'] += t.hours;
+                                perPersonTasks['Other team']++;
+                                nonCroTeamTaskCount++;
+                                nonCroTeamHours += t.hours;
+                            }
+                        });
                     });
                     bv.total_hours = Math.round(bv.total_hours * 10) / 10;
+                    Object.keys(bv.monthly).forEach(m => { bv.monthly[m] = Math.round(bv.monthly[m] * 10) / 10; });
                     totalH += bv.total_hours;
                     view.brands[name] = bv;
+                });
+                Object.keys(monthlyTotalsFiltered).forEach(m => {
+                    view.monthly_totals[m] = Math.round(monthlyTotalsFiltered[m] * 10) / 10;
                 });
                 view.totals.total_hours = Math.round(totalH * 10) / 10;
                 view.totals.cro_hours = Math.round(croH * 10) / 10;
                 view.totals.non_cro_hours = Math.round((totalH - croH) * 10) / 10;
                 view.totals.total_tasks = taskCount;
+                view.totals.real_hours = Math.round(realH * 10) / 10;
+                view.totals.synthetic_hours = Math.round(synthH * 10) / 10;
+                view.totals.real_tasks = realT;
+                view.totals.synthetic_tasks = synthT;
+                view.totals.per_person_hours = Object.fromEntries(Object.entries(perPersonHours).map(([k, v]) => [k, Math.round(v * 10) / 10]));
+                view.totals.per_person_tasks = perPersonTasks;
+                view.totals.cro_team_task_count = croTeamTaskCount;
+                view.totals.cro_team_hours = Math.round(croTeamHours * 10) / 10;
+                view.totals.non_cro_team_task_count = nonCroTeamTaskCount;
+                view.totals.non_cro_team_hours = Math.round(nonCroTeamHours * 10) / 10;
                 return view;
             }
 
@@ -3360,12 +3421,15 @@
                     card.appendChild(l); card.appendChild(v); card.appendChild(h);
                     return card;
                 }
-                g.appendChild(kpi('Total Estimated Hours', t.total_hours.toFixed(0) + 'h', t.total_tasks + ' tasks across 15 brands (team-level)'));
+                const realH = t.real_hours || 0;
+                const synthH = t.synthetic_hours || 0;
+                const realPct = t.total_hours > 0 ? Math.round(realH / t.total_hours * 100) : 0;
+                g.appendChild(kpi('Total Hours', t.total_hours.toFixed(0) + 'h', t.total_tasks + ' tasks · ' + realPct + '% real / ' + (100 - realPct) + '% synthetic'));
                 g.appendChild(kpi('CRO Hours', t.cro_hours.toFixed(0) + 'h', croPct + '% of total, retained work', 'cro'));
-                g.appendChild(kpi('Non-CRO Hours', t.non_cro_hours.toFixed(0) + 'h', (100 - croPct) + '% of total, ops/meetings/support/content', 'non-cro'));
+                g.appendChild(kpi('Non-CRO Hours', t.non_cro_hours.toFixed(0) + 'h', (100 - croPct) + '% of total, ops/support/content', 'non-cro'));
+                g.appendChild(kpi('Real hours (tracked)', realH.toFixed(0) + 'h', t.real_tasks + ' tasks with actual estimates in ClickUp'));
+                g.appendChild(kpi('Synthetic hours (inferred)', synthH.toFixed(0) + 'h', t.synthetic_tasks + ' tasks with inferred defaults'));
                 g.appendChild(kpi('Overworked Months', String(t.overworked_months.length), 'Months over ' + t.monthly_capacity + 'h capacity', t.overworked_months.length > 0 ? 'alert' : ''));
-                const baseTotals = AT_DATA ? AT_DATA.totals : t;
-                g.appendChild(kpi('Estimate Coverage', baseTotals.estimate_coverage_pct + '%', baseTotals.total_tasks + ' of ' + baseTotals.eligible_tasks + ' eligible tasks have estimates', baseTotals.estimate_coverage_pct < 10 ? 'alert' : ''));
             }
 
             function renderATMatrix(d) {
