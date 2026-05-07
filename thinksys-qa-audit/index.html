@@ -432,14 +432,16 @@ html, body { overflow-x: clip; }
   color: var(--cyan);
 }
 .highlight-phrase {
-  display: inline;
+  display: inline-block;
   color: #1a1a1a;
-  font-weight: 700;
-  background-image: linear-gradient(180deg, transparent 0%, transparent 30%, #FFD966 30%, #FFD966 95%, transparent 95%);
-  background-repeat: repeat;
-  padding: 0 2px;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
+  font-weight: 800;
+  background: linear-gradient(180deg, #FFE082 0%, #FFD54F 100%);
+  padding: 4px 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+  box-shadow: 0 2px 0 rgba(245, 175, 25, 0.4), 0 4px 14px rgba(255, 215, 100, 0.18);
+  transform: rotate(-1deg);
+  margin: 0 2px;
 }
 .hero-grid {
   display: grid;
@@ -4316,7 +4318,7 @@ body.book-locked { overflow: hidden; }
           <span class="eyebrow">QA FOR THE VIBE CODING ERA</span>
         </div>
         <h1>The QA layer that sits between your AI code and going live with production.</h1>
-        <p class="lead">We review your stack, study the build, run the QA that catches what your tests missed, and deliver the bug report. <span class="highlight-phrase">All within 72 hours</span>.</p>
+        <p class="lead">We review your stack, study the build, run the QA that catches what your tests missed, and deliver the bug report. <span class="highlight-phrase">All in 72 hrs</span>.</p>
         <!-- Hero email form: on submit, open the HubSpot calendar popup
              with the typed email passed as ?email= URL param -->
         <form class="hero-inline-cta fade-in" id="hero-book-form" data-cta="schedule-call" data-cta-prefill="email" novalidate>
