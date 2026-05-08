@@ -4026,8 +4026,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   border-radius: 20px;
   width: 100%;
   max-width: 1024px;
-  height: 95vh;
-  max-height: 95vh;
+  height: 95dvh;
+  max-height: 95dvh;
   position: relative;
   padding: 24px 18px 18px;
   display: flex;
@@ -4036,10 +4036,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   transform: scale(0.96);
   transition: transform 0.22s ease;
 }
+@supports not (height: 100dvh) {
+  .cal-modal { height: 95vh; max-height: 95vh; }
+}
 .cal-overlay.is-open .cal-modal { transform: scale(1); }
 .cal-close {
   position: absolute;
-  top: 14px;
+  top: max(14px, env(safe-area-inset-top, 0));
   right: 16px;
   width: 36px;
   height: 36px;
@@ -4092,11 +4095,26 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 body.cal-locked { overflow: hidden; }
 @media (max-width: 640px) {
-  .cal-overlay { padding: 0; }
-  .cal-modal { padding: 16px 8px 8px; height: 100vh; max-height: 100vh; border-radius: 0; }
+  .cal-overlay { padding: 0; align-items: stretch; }
+  .cal-modal {
+    padding:
+      calc(env(safe-area-inset-top, 0) + 18px)
+      8px
+      calc(env(safe-area-inset-bottom, 0) + 8px);
+    height: 100dvh;
+    max-height: 100dvh;
+    border-radius: 0;
+  }
+  @supports not (height: 100dvh) {
+    .cal-modal { height: 100vh; max-height: 100vh; }
+  }
+  .cal-close {
+    top: calc(env(safe-area-inset-top, 0) + 10px);
+    right: 12px;
+  }
   .cal-title { font-size: 17px; }
   .cal-sub { display: none; }
-  .cal-header { padding: 0 40px; }
+  .cal-header { padding: 0 50px; margin-bottom: 12px; }
 }
 
 /* ================================================================
