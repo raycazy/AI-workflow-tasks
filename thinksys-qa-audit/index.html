@@ -5973,16 +5973,53 @@ document.querySelectorAll('.faq-q').forEach(btn => {
       current++;
       renderStep();
     } else {
-      // Final submit (stubbed)
       const answers = collectAnswers();
-      console.log('[ThinkSys QA Questionnaire] answers:', answers);
-      // TODO: POST `answers` to HubSpot custom contact properties or
-      // a dedicated form GUID once provided by the client.
+      submitQuestionnaireToHubSpot(answers);
       overlay.querySelectorAll('.qa-step').forEach(s => s.style.display = 'none');
       actions.style.display = 'none';
       success.classList.add('is-shown');
     }
   });
+
+  // POST questionnaire answers to HubSpot Forms API.
+  // Form GUID: 03067dd3-4e0b-4591-927e-0eaba16035c2 (portal 46105753, na2).
+  // Email is included so HubSpot can match this submission to the contact
+  // created by the meeting booking. The hubspotutk tracking cookie (set by
+  // the //js-na2.hs-scripts.com/46105753.js loader) ties it to the same
+  // anonymous visitor session.
+  // NOTE: Field name keys below must match the internal property names
+  // configured on the HubSpot form. If a field doesn't appear in the
+  // contact record after submission, rename the key here to match the
+  // HubSpot internal name (Form Settings → Manage fields → Internal name).
+  function submitQuestionnaireToHubSpot(answers) {
+    const heroEmailInput = document.getElementById('hero-email');
+    const email = heroEmailInput ? heroEmailInput.value.trim() : '';
+    const hutkMatch = document.cookie.match(/(?:^|;\s*)hubspotutk=([^;]+)/);
+    const hutk = hutkMatch ? hutkMatch[1] : null;
+
+    const fields = [];
+    if (email && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      fields.push({ objectTypeId: '0-1', name: 'email', value: email });
+    }
+    Object.keys(answers).forEach(name => {
+      if (answers[name]) fields.push({ objectTypeId: '0-1', name: name, value: answers[name] });
+    });
+
+    const payload = {
+      fields: fields,
+      context: {
+        pageUri: window.location.href,
+        pageName: document.title
+      }
+    };
+    if (hutk) payload.context.hutk = hutk;
+
+    fetch('https://api.hsforms.com/submissions/v3/integration/submit/46105753/03067dd3-4e0b-4591-927e-0eaba16035c2', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(function () { /* swallow — UX already showed success */ });
+  }
 
   // HubSpot Meetings sends this postMessage when a meeting is booked.
   // We listen on the parent window, close the calendar popup, and open
