@@ -21,23 +21,25 @@
    9. FAQs           line ~4485   Accordion
   10. FOOTER         line ~4530
 
-  CTA PATTERN — TWO FLOWS
-   1. data-cta="book-call"     → opens the site-wide "Let's Talk Business"
-                                  form popup (HubSpot form + reCAPTCHA).
-                                  Used by header, offer, why-services,
-                                  reviews, and founder CTAs.
-   2. data-cta="schedule-call" → opens the HubSpot calendar embed
-                                  (https://meetings-na2.hubspot.com/neel-jain).
-                                  Used ONLY by the hero email form.
-                                  The typed email is passed to the iframe
-                                  URL via the ?email= query param so the
-                                  HubSpot scheduler pre-fills it.
+  CTA PATTERN — SINGLE FLOW
+  Every conversion CTA carries data-cta="schedule-call". All open the
+  same HubSpot calendar popup at meetings-na2.hubspot.com/neel-jain.
+  The hero email FORM additionally:
+   1. POSTs the typed email to HubSpot Forms API (fire-and-forget)
+   2. Pre-fills the calendar's email field via ?email= URL param
+  Non-form CTAs open the calendar with no email — user types it
+  inside the HubSpot scheduler.
 
   HERO EMAIL FIELD
   Form id="hero-book-form", input id="hero-email", name="email".
-  On submit, do NOT open the form popup — open the calendar embed and
-  append the typed email as ?email=ENCODED to the meeting URL. See the
-  hero-calendar IIFE near the bottom of <body> for the demo wiring.
+  On submit, two things happen in this order:
+   1. The email is POSTed (fire-and-forget) to HubSpot Forms API
+      portalId 46105753 / formId 2cf3b18a-e475-4e78-a8af-a22cfa5b88f7
+      Endpoint: https://api.hsforms.com/submissions/v3/integration/submit/{portal}/{form}
+   2. The calendar popup opens with the email pre-filled in the
+      HubSpot meeting URL via ?email=ENCODED.
+  HubSpot capture happens BEFORE calendar opens but is non-blocking —
+  if HS is slow/down, the calendar still opens instantly.
 
   STUB POPUP (DEMO ONLY)
   The <div class="book-overlay"> near the bottom of <body> and its
@@ -4298,7 +4300,7 @@ body.book-locked { overflow: hidden; }
       <a href="#how">How It Works</a>
       <a href="#faqs">FAQs</a>
     </nav>
-    <a href="#book" class="btn-primary header-cta" data-cta="book-call">
+    <a href="#book" class="btn-primary header-cta" data-cta="schedule-call">
       Get the QA Audit
       <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
     </a>
@@ -4323,7 +4325,7 @@ body.book-locked { overflow: hidden; }
         <p class="lead">We review your stack, study the build, run the QA that catches what your tests missed, and deliver the bug report. <span class="highlight-phrase">All within 72 hours</span>.</p>
         <!-- Hero email form: on submit, open the HubSpot calendar popup
              with the typed email passed as ?email= URL param -->
-        <form class="hero-inline-cta fade-in" id="hero-book-form" data-cta="schedule-call" data-cta-prefill="email" novalidate>
+        <form class="hero-inline-cta fade-in" id="hero-book-form" data-cta="schedule-call" data-cta-prefill="email">
           <input type="email" class="hero-cta-input" id="hero-email" name="email" placeholder="Business email" aria-label="Business email" required>
           <button type="submit" class="hero-cta-btn">
             Get the QA Audit
@@ -4468,7 +4470,7 @@ body.book-locked { overflow: hidden; }
           <span><strong>No upfront payment.</strong> Pay only if the 72-hour bugs and the end-of-week-two audit land.</span>
         </div>
         <div class="offer-cta-row">
-          <a href="#book" class="btn-primary" data-cta="book-call">
+          <a href="#book" class="btn-primary" data-cta="schedule-call">
             Get the QA Audit
             <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
           </a>
@@ -4544,7 +4546,7 @@ body.book-locked { overflow: hidden; }
       </div>
     </div>
     <div class="reviews-cta fade-in">
-      <a href="#book" class="btn-reviews" data-cta="book-call">
+      <a href="#book" class="btn-reviews" data-cta="schedule-call">
         Have a QA Challenge? Let's Talk
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
       </a>
@@ -4716,7 +4718,7 @@ body.book-locked { overflow: hidden; }
             </div>
           </li>
         </ul>
-        <a href="#book" class="btn-primary why-services-cta" data-cta="book-call">
+        <a href="#book" class="btn-primary why-services-cta" data-cta="schedule-call">
           Get the QA Audit
           <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
         </a>
@@ -4868,7 +4870,7 @@ body.book-locked { overflow: hidden; }
       </div>
     </div>
     <div class="founder-cta fade-in">
-      <a href="#book" class="founder-cta-btn" data-cta="book-call">Book your free strategy call</a>
+      <a href="#book" class="founder-cta-btn" data-cta="schedule-call">Book your free strategy call</a>
       <svg class="founder-cta-arrow" viewBox="0 0 90 70" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M6 14 C 30 8, 60 16, 78 48" />
         <path d="M70 42 L 78 48 L 70 54" />
@@ -5194,7 +5196,7 @@ document.querySelectorAll('.faq-q').forEach(btn => {
 
 // ================================================================
 // Book a Call popup — DEMO ONLY · STRIP ON INTEGRATION
-// Wires every [data-cta="book-call"] element to the demo popup.
+// Wires every [data-cta="schedule-call"] element to the demo popup.
 // The live ThinkSys site shell already does this for the real popup.
 // Delete this IIFE on hand-off (everything from the comment block
 // above through the matching "End of demo popup JS" marker).
@@ -5240,12 +5242,10 @@ document.querySelectorAll('.faq-q').forEach(btn => {
     if (e.key === 'Escape' && overlay.classList.contains('is-open')) close();
   });
 
-  // Every CTA carrying data-cta="book-call" opens the popup.
-  // (Forms are handled separately below so the email value can pre-fill.)
-  document.querySelectorAll('[data-cta="book-call"]').forEach(el => {
-    if (el.tagName === 'FORM') return;
-    el.addEventListener('click', (e) => { e.preventDefault(); open(); });
-  });
+  // NOTE: this form popup is no longer wired to any CTA. All CTAs now
+  // route to the HubSpot calendar popup (see hero-calendar IIFE below).
+  // Form popup HTML/CSS/JS can be stripped entirely on integration —
+  // the live ThinkSys app shell handles its own popup logic anyway.
 
   // Hero email form is intentionally NOT wired here — it opens the
   // calendar popup instead (see hero-calendar IIFE below).
@@ -5361,10 +5361,37 @@ document.querySelectorAll('.faq-q').forEach(btn => {
     if (e.key === 'Escape' && calOverlay.classList.contains('is-open')) closeCal();
   });
 
+  // Every non-form CTA on the page opens the calendar (no email pre-fill,
+  // user provides email inside the HubSpot scheduler).
+  document.querySelectorAll('[data-cta="schedule-call"]').forEach(el => {
+    if (el.tagName === 'FORM') return;
+    el.addEventListener('click', (e) => { e.preventDefault(); openCal(); });
+  });
+
+  // HubSpot form (Hero email capture)
+  // portalId 46105753, formId 2cf3b18a-e475-4e78-a8af-a22cfa5b88f7, region na2
+  function submitToHubSpot(email) {
+    if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return;
+    var payload = {
+      fields: [{ objectTypeId: '0-1', name: 'email', value: email }],
+      context: {
+        pageUri: window.location.href,
+        pageName: document.title
+      }
+    };
+    // Fire-and-forget. Don't block the calendar from opening if HS is slow or down.
+    fetch('https://api.hsforms.com/submissions/v3/integration/submit/46105753/2cf3b18a-e475-4e78-a8af-a22cfa5b88f7', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(function () { /* swallow */ });
+  }
+
   if (heroForm) {
     heroForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const val = heroEmail ? heroEmail.value.trim() : '';
+      submitToHubSpot(val);
       openCal(val);
     });
   }
