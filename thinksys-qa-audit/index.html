@@ -4142,6 +4142,331 @@ body.cal-locked { overflow: hidden; }
 }
 
 /* ================================================================
+   Post-booking Questionnaire Popup
+   Triggers automatically after the HubSpot meeting iframe fires
+   the meetingBookSucceeded postMessage event. 4 steps, 7 questions.
+   ================================================================ */
+.qa-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.62);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 1200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  transition: opacity 0.22s ease;
+}
+.qa-overlay.is-open { display: flex; opacity: 1; }
+.qa-modal {
+  background: linear-gradient(180deg, #061d2e 0%, #082F47 100%);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 1024px;
+  height: 95dvh;
+  max-height: 95dvh;
+  position: relative;
+  padding: 28px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
+  transform: scale(0.96);
+  transition: transform 0.22s ease;
+  overflow: hidden;
+}
+@supports not (height: 100dvh) {
+  .qa-modal { height: 95vh; max-height: 95vh; }
+}
+.qa-overlay.is-open .qa-modal { transform: scale(1); }
+.qa-close {
+  position: absolute;
+  top: max(14px, env(safe-area-inset-top, 0));
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: rgba(0, 0, 0, 0.25);
+  color: rgba(255, 255, 255, 0.65);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: color var(--transition), background var(--transition);
+}
+.qa-close:hover { color: #fff; background: rgba(0, 0, 0, 0.4); }
+.qa-close svg { width: 18px; height: 18px; }
+.qa-header {
+  text-align: center;
+  margin: 0 auto 16px;
+  padding: 0 48px;
+}
+.qa-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1.15;
+  color: #FFFFFF;
+  margin: 0 0 4px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  font-style: italic;
+}
+.qa-sub { font-size: 14px; color: rgba(255, 255, 255, 0.7); margin: 0; }
+
+/* Stepper */
+.qa-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  gap: 0;
+}
+.qa-step-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.55);
+  background: transparent;
+  flex-shrink: 0;
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
+}
+.qa-step-dot.is-active { background: #FFFFFF; color: var(--navy); border-color: #FFFFFF; }
+.qa-step-line {
+  width: 28px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.25);
+  margin: 0 8px;
+  transition: background 0.25s;
+}
+.qa-step-line.is-active { background: #FFFFFF; }
+
+/* Inner panel */
+.qa-body {
+  flex: 1;
+  background: #FFFFFF;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  min-height: 0;
+}
+.qa-form {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+.qa-content {
+  flex: 1;
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+  min-width: 0;
+}
+.qa-step { display: none; gap: 28px; flex-direction: column; }
+.qa-step.is-active { display: flex; animation: qaSlideIn 0.4s ease both; }
+@keyframes qaSlideIn {
+  from { opacity: 0; transform: translateX(8px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.qa-question h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--navy);
+  margin: 0 0 14px;
+}
+.qa-options { display: grid; grid-template-columns: 1fr; gap: 8px; }
+.qa-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  color: #475569;
+}
+.qa-option:hover { background: #F8FAFC; border-color: rgba(43, 170, 225, 0.4); }
+.qa-option input[type="radio"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--cyan);
+  margin: 0;
+  flex-shrink: 0;
+}
+.qa-option input[type="radio"]:checked ~ span { color: var(--navy); font-weight: 600; }
+.qa-option:has(input:checked) { background: rgba(43, 170, 225, 0.06); border-color: var(--cyan); }
+.qa-option span { font-size: 14px; font-weight: 500; line-height: 1.3; }
+
+.qa-textarea {
+  width: 100%;
+  min-height: 160px;
+  padding: 14px 16px;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  background: #F8FAFC;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--navy);
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.qa-textarea:focus { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(43, 170, 225, 0.15); }
+
+.qa-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 1px solid #E5E7EB;
+}
+.qa-back {
+  background: none;
+  border: none;
+  color: #94A3B8;
+  font-family: var(--font-marketing);
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 8px 0;
+  transition: color 0.15s;
+}
+.qa-back:hover { color: var(--navy); }
+.qa-back[disabled] { visibility: hidden; }
+.qa-next {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: var(--magenta);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  font-family: var(--font-marketing);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.15s;
+}
+.qa-next:hover { background: #7d0569; transform: translateY(-1px); }
+.qa-next:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.qa-next svg { width: 14px; height: 14px; transform: rotate(-45deg); }
+
+/* Sidebar */
+.qa-sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  background: #F8FAFC;
+  border-left: 1px solid #E5E7EB;
+  padding: 28px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+}
+.qa-sidebar-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--navy);
+  text-align: center;
+  margin: 0 0 24px;
+}
+.qa-sidebar-logos { display: grid; grid-template-columns: 1fr; gap: 14px; width: 100%; }
+.qa-sidebar-logos > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  padding: 10px 14px;
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+}
+.qa-sidebar-logos img { max-height: 32px; max-width: 100%; width: auto; }
+
+/* Success state */
+.qa-success {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+  flex: 1;
+}
+.qa-success.is-shown { display: flex; }
+.qa-success-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #E6F7EE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.qa-success-icon svg { width: 36px; height: 36px; color: #22C55E; }
+.qa-success h3 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  color: var(--navy);
+  margin: 0 0 10px;
+}
+.qa-success p { font-size: 14px; color: #64748B; max-width: 420px; margin: 0; line-height: 1.55; }
+
+body.qa-locked { overflow: hidden; }
+
+@media (max-width: 900px) {
+  .qa-sidebar { display: none; }
+}
+@media (max-width: 640px) {
+  .qa-overlay { padding: 0; align-items: stretch; }
+  .qa-modal {
+    padding: calc(env(safe-area-inset-top, 0) + 18px) 10px calc(env(safe-area-inset-bottom, 0) + 10px);
+    height: 100dvh;
+    max-height: 100dvh;
+    border-radius: 0;
+  }
+  @supports not (height: 100dvh) {
+    .qa-modal { height: 100vh; max-height: 100vh; }
+  }
+  .qa-close { top: calc(env(safe-area-inset-top, 0) + 10px); right: 12px; }
+  .qa-title { font-size: 17px; }
+  .qa-sub { display: none; }
+  .qa-header { padding: 0 50px; margin-bottom: 12px; }
+  .qa-stepper { margin-bottom: 12px; }
+  .qa-step-dot { width: 26px; height: 26px; font-size: 11px; }
+  .qa-step-line { width: 18px; margin: 0 5px; }
+  .qa-content { padding: 18px 18px 20px; }
+  .qa-question h3 { font-size: 15px; margin-bottom: 10px; }
+  .qa-option { padding: 6px 10px; }
+  .qa-option span { font-size: 13px; }
+  .qa-step { gap: 20px; }
+  .qa-actions { margin-top: 18px; padding-top: 14px; }
+  .qa-next { padding: 10px 18px; font-size: 12px; }
+}
+
+/* ================================================================
    Book a Call Popup — DEMO ONLY · STRIP ON INTEGRATION
    The live ThinkSys app shell already renders this popup and handles
    HubSpot submission + reCAPTCHA. Delete from here to the next
@@ -5075,6 +5400,131 @@ body.book-locked { overflow: hidden; }
   </div>
 </div>
 
+<!-- ============= POST-BOOKING QUESTIONNAIRE POPUP ============= -->
+<div class="qa-overlay" id="qa-overlay" role="dialog" aria-modal="true" aria-labelledby="qa-title" aria-hidden="true">
+  <div class="qa-modal" role="document">
+    <button type="button" class="qa-close" aria-label="Close dialog">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <header class="qa-header">
+      <h2 class="qa-title" id="qa-title">Thanks for reaching out!</h2>
+      <p class="qa-sub">Help us prepare for your call</p>
+    </header>
+    <div class="qa-stepper" aria-hidden="true">
+      <div class="qa-step-dot is-active" data-dot="1">1</div>
+      <div class="qa-step-line" data-line="1"></div>
+      <div class="qa-step-dot" data-dot="2">2</div>
+      <div class="qa-step-line" data-line="2"></div>
+      <div class="qa-step-dot" data-dot="3">3</div>
+      <div class="qa-step-line" data-line="3"></div>
+      <div class="qa-step-dot" data-dot="4">4</div>
+    </div>
+    <div class="qa-body">
+      <form class="qa-form" id="qa-form" novalidate>
+        <div class="qa-content">
+          <!-- Step 1 -->
+          <div class="qa-step is-active" data-step="1">
+            <div class="qa-question">
+              <h3>1. Do you have a dedicated QA team?*</h3>
+              <div class="qa-options">
+                <label class="qa-option"><input type="radio" name="qa_team" value="No team" required><span>No team</span></label>
+                <label class="qa-option"><input type="radio" name="qa_team" value="Part-time/Outsourced"><span>Part-time/Outsourced</span></label>
+                <label class="qa-option"><input type="radio" name="qa_team" value="Dedicated individual"><span>Dedicated individual</span></label>
+                <label class="qa-option"><input type="radio" name="qa_team" value="Full QA Department"><span>Full QA Department</span></label>
+              </div>
+            </div>
+            <div class="qa-question">
+              <h3>2. How do you manage QA processes?*</h3>
+              <div class="qa-options">
+                <label class="qa-option"><input type="radio" name="qa_process" value="Manual tools" required><span>Manual tools</span></label>
+                <label class="qa-option"><input type="radio" name="qa_process" value="Limited automation"><span>Limited automation</span></label>
+                <label class="qa-option"><input type="radio" name="qa_process" value="Partial automation"><span>Partial automation</span></label>
+                <label class="qa-option"><input type="radio" name="qa_process" value="Full automation"><span>Full automation</span></label>
+              </div>
+            </div>
+          </div>
+          <!-- Step 2 -->
+          <div class="qa-step" data-step="2">
+            <div class="qa-question">
+              <h3>3. Do you use test automation?*</h3>
+              <div class="qa-options">
+                <label class="qa-option"><input type="radio" name="qa_automation_use" value="Everything manual"><span>Everything manual</span></label>
+                <label class="qa-option"><input type="radio" name="qa_automation_use" value="Starting out"><span>Starting out</span></label>
+                <label class="qa-option"><input type="radio" name="qa_automation_use" value="Key areas only"><span>Key areas only</span></label>
+                <label class="qa-option"><input type="radio" name="qa_automation_use" value="Fully automated"><span>Fully automated</span></label>
+              </div>
+            </div>
+            <div class="qa-question">
+              <h3>4. How stable is your automation?*</h3>
+              <div class="qa-options">
+                <label class="qa-option"><input type="radio" name="qa_automation_stability" value="No automation"><span>No automation</span></label>
+                <label class="qa-option"><input type="radio" name="qa_automation_stability" value="Inconsistent"><span>Inconsistent</span></label>
+                <label class="qa-option"><input type="radio" name="qa_automation_stability" value="Stable but limited"><span>Stable but limited</span></label>
+                <label class="qa-option"><input type="radio" name="qa_automation_stability" value="Highly reliable"><span>Highly reliable</span></label>
+              </div>
+            </div>
+          </div>
+          <!-- Step 3 -->
+          <div class="qa-step" data-step="3">
+            <div class="qa-question">
+              <h3>5. Release frequency?*</h3>
+              <div class="qa-options">
+                <label class="qa-option"><input type="radio" name="qa_release_freq" value="Quarterly"><span>Quarterly</span></label>
+                <label class="qa-option"><input type="radio" name="qa_release_freq" value="Monthly"><span>Monthly</span></label>
+                <label class="qa-option"><input type="radio" name="qa_release_freq" value="Weekly"><span>Weekly</span></label>
+                <label class="qa-option"><input type="radio" name="qa_release_freq" value="Daily/Continuous"><span>Daily/Continuous</span></label>
+              </div>
+            </div>
+            <div class="qa-question">
+              <h3>6. Time taken for regression?*</h3>
+              <div class="qa-options">
+                <label class="qa-option"><input type="radio" name="qa_regression_time" value="Weeks"><span>Weeks</span></label>
+                <label class="qa-option"><input type="radio" name="qa_regression_time" value="Days"><span>Days</span></label>
+                <label class="qa-option"><input type="radio" name="qa_regression_time" value="One Day"><span>One Day</span></label>
+                <label class="qa-option"><input type="radio" name="qa_regression_time" value="Hours"><span>Hours</span></label>
+              </div>
+            </div>
+          </div>
+          <!-- Step 4 -->
+          <div class="qa-step" data-step="4">
+            <div class="qa-question">
+              <h3>Anything else we should know?*</h3>
+              <textarea class="qa-textarea" name="qa_notes" placeholder="Challenges, timelines, etc..."></textarea>
+            </div>
+          </div>
+          <!-- Success -->
+          <div class="qa-success" id="qa-success" aria-live="polite">
+            <div class="qa-success-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h3>You're all set.</h3>
+            <p>Thanks for the context. Neel will use this to make the strategy call as useful as possible. Look out for the calendar invite in your inbox.</p>
+          </div>
+          <div class="qa-actions" id="qa-actions">
+            <button type="button" class="qa-back" id="qa-back" disabled>← BACK</button>
+            <button type="button" class="qa-next" id="qa-next">
+              <span class="qa-next-label">NEXT</span>
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </button>
+          </div>
+        </div>
+        <aside class="qa-sidebar" aria-label="Trusted by leading product teams">
+          <p class="qa-sidebar-title">Upgrade your QA Today</p>
+          <div class="qa-sidebar-logos">
+            <div><img src="https://cdn.thinksys.com/adp_logo_43adefdba4.webp" alt="ADP" loading="lazy"></div>
+            <div><img src="https://cdn.thinksys.com/ringcentral_logo_8a4732af49.svg" alt="RingCentral" loading="lazy"></div>
+            <div><img src="https://cdn.thinksys.com/match_logo_e2081bbe30.svg" alt="Match" loading="lazy"></div>
+            <div><img src="https://cdn.thinksys.com/dentscrib_logo_acc739929b.svg" alt="DentScribe" loading="lazy"></div>
+            <div><img src="https://cdn.thinksys.com/Loop_Neighborhood_logo_08c0d5fcc4.png" alt="Loop Neighborhood" loading="lazy"></div>
+          </div>
+        </aside>
+      </form>
+    </div>
+  </div>
+</div>
+
 <!--
   ================================================================
   BOOK A CALL POPUP — DEMO ONLY · STRIP ON INTEGRATION
@@ -5426,6 +5876,136 @@ document.querySelectorAll('.faq-q').forEach(btn => {
       openCal(val);
     });
   }
+})();
+
+// ====== Post-booking questionnaire popup ======
+// Triggers when the HubSpot meeting iframe fires the
+// `meetingBookSucceeded` postMessage event. 4 steps, 7 questions.
+// Submit is currently STUBBED — collected answers go to console.log
+// plus a thank-you state. Wire to HubSpot custom contact properties
+// or a dedicated form GUID when those are confirmed.
+(function () {
+  const overlay = document.getElementById('qa-overlay');
+  if (!overlay) return;
+  const closeBtn = overlay.querySelector('.qa-close');
+  const form = document.getElementById('qa-form');
+  const steps = overlay.querySelectorAll('.qa-step');
+  const dots = overlay.querySelectorAll('.qa-step-dot');
+  const lines = overlay.querySelectorAll('.qa-step-line');
+  const backBtn = document.getElementById('qa-back');
+  const nextBtn = document.getElementById('qa-next');
+  const success = document.getElementById('qa-success');
+  const actions = document.getElementById('qa-actions');
+  const calOverlay = document.getElementById('cal-overlay');
+  const calIframe = document.getElementById('cal-iframe');
+  let current = 1;
+  const TOTAL = 4;
+  let lastFocus = null;
+
+  function renderStepper() {
+    dots.forEach(dot => {
+      const n = +dot.dataset.dot;
+      dot.classList.toggle('is-active', n <= current);
+    });
+    lines.forEach(line => {
+      const n = +line.dataset.line;
+      line.classList.toggle('is-active', n < current);
+    });
+  }
+  function renderStep() {
+    steps.forEach(s => s.classList.toggle('is-active', +s.dataset.step === current));
+    backBtn.disabled = current === 1;
+    const label = nextBtn.querySelector('.qa-next-label');
+    if (label) label.textContent = current === TOTAL ? 'SUBMIT' : 'NEXT';
+    renderStepper();
+  }
+  function validateCurrent() {
+    const step = overlay.querySelector('.qa-step[data-step="' + current + '"]');
+    if (!step) return true;
+    // Each radio group must have a checked option
+    const groups = new Set();
+    step.querySelectorAll('input[type="radio"]').forEach(r => groups.add(r.name));
+    for (const name of groups) {
+      if (!form.querySelector('input[name="' + name + '"]:checked')) return false;
+    }
+    // Textarea (step 4) must be non-empty
+    const textareas = step.querySelectorAll('textarea[name]');
+    for (const t of textareas) if (!t.value.trim()) return false;
+    return true;
+  }
+  function collectAnswers() {
+    const data = {};
+    new FormData(form).forEach((v, k) => { data[k] = v; });
+    return data;
+  }
+  function open() {
+    lastFocus = document.activeElement;
+    overlay.classList.add('is-open');
+    document.body.classList.add('qa-locked');
+    overlay.setAttribute('aria-hidden', 'false');
+    current = 1;
+    success.classList.remove('is-shown');
+    actions.style.display = '';
+    overlay.querySelectorAll('.qa-step').forEach(s => s.style.display = '');
+    renderStep();
+  }
+  function close() {
+    overlay.classList.remove('is-open');
+    document.body.classList.remove('qa-locked');
+    overlay.setAttribute('aria-hidden', 'true');
+    if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+  }
+  closeBtn.addEventListener('click', close);
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('is-open')) close();
+  });
+  backBtn.addEventListener('click', () => {
+    if (current > 1) { current--; renderStep(); }
+  });
+  nextBtn.addEventListener('click', () => {
+    if (!validateCurrent()) {
+      const stepEl = overlay.querySelector('.qa-step[data-step="' + current + '"]');
+      stepEl && stepEl.classList.add('is-invalid');
+      return;
+    }
+    if (current < TOTAL) {
+      current++;
+      renderStep();
+    } else {
+      // Final submit (stubbed)
+      const answers = collectAnswers();
+      console.log('[ThinkSys QA Questionnaire] answers:', answers);
+      // TODO: POST `answers` to HubSpot custom contact properties or
+      // a dedicated form GUID once provided by the client.
+      overlay.querySelectorAll('.qa-step').forEach(s => s.style.display = 'none');
+      actions.style.display = 'none';
+      success.classList.add('is-shown');
+    }
+  });
+
+  // HubSpot Meetings sends this postMessage when a meeting is booked.
+  // We listen on the parent window, close the calendar popup, and open
+  // the questionnaire. The event shape varies by HubSpot release, so
+  // we accept multiple known signals defensively.
+  window.addEventListener('message', (e) => {
+    const d = e.data;
+    if (!d) return;
+    const isBookSuccess =
+      d.meetingBookSucceeded === true ||
+      d.eventName === 'meetingBookSucceeded' ||
+      (typeof d === 'string' && d.indexOf('meetingBookSucceeded') !== -1);
+    if (!isBookSuccess) return;
+    // Close calendar (small delay so the user sees HubSpot's own confirm flash)
+    setTimeout(() => {
+      if (calOverlay) {
+        calOverlay.classList.remove('is-open');
+        document.body.classList.remove('cal-locked');
+        if (calIframe) calIframe.src = 'about:blank';
+      }
+      open();
+    }, 700);
+  });
 })();
 </script>
 
