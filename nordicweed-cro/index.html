@@ -1,0 +1,2038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nordic Weed  ·  CRO Opportunity Report</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; overflow: hidden; background: #0a1410; color: #fff; font-family: 'Work Sans', 'Inter', sans-serif; }
+
+        /* ===== SCROLL ===== */
+        .scroll-container { display: flex; height: 100vh; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+        .scroll-container::-webkit-scrollbar { display: none; }
+
+        /* ===== CARD ===== */
+        .card { min-width: 100vw; height: 100vh; scroll-snap-align: start; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 28px 48px 60px; position: relative; }
+
+        /* ===== TITLE SLIDE ===== */
+        .title-slide { background: #000; overflow: hidden; }
+        .title-slide::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at top right, rgba(169,240,15,.08), transparent 60%), linear-gradient(135deg, #122a1e 0%, #0a1410 50%, #000 100%); opacity: .95; }
+        .title-badge { position: relative; z-index: 1; background: #A9F00F; color: #122a1e; font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; padding: 8px 24px; border-radius: 4px; margin-bottom: 40px; }
+        .title-brand { position: relative; z-index: 1; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 4px; color: #A9F00F; text-transform: uppercase; margin-bottom: 16px; font-weight: 600; }
+        .title-text { position: relative; z-index: 1; text-align: center; }
+        .title-text h1 { font-size: 54px; font-weight: 300; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 12px; }
+        .title-text p { font-size: 14px; letter-spacing: 3px; text-transform: uppercase; color: #9ab3a3; }
+        .title-meta { position: relative; z-index: 1; margin-top: 56px; text-align: center; }
+        .title-meta p { font-size: 12px; letter-spacing: 2px; color: #9ab3a3; margin-bottom: 6px; }
+        .title-nav-hint { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 1; display: flex; align-items: center; gap: 12px; color: #9ab3a3; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; animation: pulse 2s ease-in-out infinite; }
+        .title-nav-hint svg { width: 20px; height: 20px; stroke: #9ab3a3; }
+        @keyframes pulse { 0%,100% { opacity: .4; } 50% { opacity: 1; } }
+
+        /* ===== SECTION HEADER ===== */
+        .section-slide { background: #000; }
+        .section-slide::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(169,240,15,.05) 0%, transparent 60%); }
+        .section-number { font-size: 100px; font-weight: 200; color: rgba(169,240,15,.12); margin-bottom: 16px; position: relative; z-index: 1; font-family: 'JetBrains Mono', monospace; }
+        .section-kicker { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: #A9F00F; position: relative; z-index: 1; margin-bottom: 10px; font-weight: 600; }
+        .section-title { font-size: 40px; font-weight: 300; letter-spacing: 4px; text-transform: uppercase; position: relative; z-index: 1; margin-bottom: 14px; }
+        .section-sub { font-size: 13px; color: #9ab3a3; letter-spacing: 1px; position: relative; z-index: 1; max-width: 700px; text-align: center; line-height: 1.7; }
+
+        /* ===== CARD HEADERS ===== */
+        .card-header { text-align: center; margin-bottom: 26px; }
+        .card-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #A9F00F; margin-bottom: 8px; font-weight: 500; }
+        .card-title { font-size: 26px; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; color: #fff; }
+        .card-subtitle { font-size: 12px; color: #9ab3a3; margin-top: 8px; letter-spacing: .5px; max-width: 700px; line-height: 1.7; margin-left: auto; margin-right: auto; }
+
+        /* ===== DATA TABLE ===== */
+        .data-table { width: 100%; max-width: 960px; border-collapse: collapse; }
+        .data-table th { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #9ab3a3; font-weight: 500; padding: 10px 12px; text-align: left; border-bottom: 1px solid rgba(255,255,255,.15); }
+        .data-table td { font-size: 12px; color: #ccc; padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,.06); }
+        .data-table tr:hover td { background: rgba(255,255,255,.02); }
+        .data-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+        .data-table .accent { color: #A9F00F; font-weight: 500; }
+        .data-table .danger { color: #ef4444; font-weight: 500; }
+        .data-table .warn { color: #f59e0b; }
+        .data-table .good { color: #22c55e; font-weight: 500; }
+
+        /* ===== METRICS ===== */
+        .metrics-grid { display: flex; flex-wrap: wrap; gap: 16px; max-width: 980px; justify-content: center; }
+        .metric-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 22px 18px; text-align: center; min-width: 160px; flex: 1; }
+        .metric-value { font-size: 30px; font-weight: 300; color: #fff; margin-bottom: 4px; font-variant-numeric: tabular-nums; }
+        .metric-value.accent { color: #A9F00F; }
+        .metric-value.red { color: #ef4444; }
+        .metric-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #9ab3a3; }
+        .metric-sub { font-size: 10px; color: #6b7c75; margin-top: 6px; line-height: 1.4; }
+
+        /* ===== SOURCE / FEATURE CARDS ===== */
+        .source-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 920px; width: 100%; }
+        .source-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 22px 20px; }
+        .source-card .marker { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #A9F00F; margin-bottom: 12px; font-weight: 600; text-transform: uppercase; }
+        .source-name { font-size: 14px; font-weight: 500; color: #fff; margin-bottom: 10px; }
+        .source-detail { font-size: 11px; color: #9ab3a3; line-height: 1.7; }
+        .source-detail strong { color: #A9F00F; }
+
+        /* ===== ISSUES CARDS ===== */
+        .issues-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 980px; width: 100%; }
+        .issue-card { background: rgba(239,68,68,.06); border: 1px solid rgba(239,68,68,.2); border-radius: 12px; padding: 20px; display: flex; gap: 14px; }
+        .issue-number { font-size: 32px; font-weight: 300; color: #ef4444; line-height: 1; min-width: 38px; font-family: 'JetBrains Mono', monospace; }
+        .issue-content h3 { font-size: 13px; font-weight: 600; letter-spacing: .5px; margin-bottom: 6px; }
+        .issue-content p { font-size: 11px; color: #999; line-height: 1.6; }
+        .issue-stat { display: inline-block; background: rgba(239,68,68,.15); color: #ef4444; font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 4px; margin-top: 6px; }
+
+        /* ===== OPPORTUNITY CARD (custom for this deck) ===== */
+        .opp-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; max-width: 1060px; width: 100%; }
+        .opp-impact { grid-column: 1 / -1; display: flex; align-items: center; gap: 18px; background: rgba(169,240,15,.06); border: 1px solid rgba(169,240,15,.22); border-radius: 12px; padding: 16px 22px; }
+        .opp-impact .label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #9ab3a3; }
+        .opp-impact .value { font-size: 22px; font-weight: 400; color: #A9F00F; line-height: 1.1; }
+        .opp-pill { font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 6px 12px; border-radius: 20px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
+        .opp-pill.effort-low { background: rgba(34,197,94,.15); color: #22c55e; border: 1px solid rgba(34,197,94,.3); }
+        .opp-pill.effort-med { background: rgba(245,158,11,.15); color: #f59e0b; border: 1px solid rgba(245,158,11,.3); }
+        .opp-pill.effort-high { background: rgba(239,68,68,.15); color: #ef4444; border: 1px solid rgba(239,68,68,.3); }
+        .opp-pill.time { background: rgba(255,255,255,.06); color: #ccc; border: 1px solid rgba(255,255,255,.12); }
+        .opp-block { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 22px; }
+        .opp-block-title { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #A9F00F; margin-bottom: 14px; font-weight: 500; }
+        .opp-list { list-style: none; padding: 0; }
+        .opp-list li { font-size: 11px; color: #ccc; line-height: 1.7; padding: 6px 0 6px 18px; position: relative; border-bottom: 1px solid rgba(255,255,255,.04); }
+        .opp-list li:last-child { border-bottom: none; }
+        .opp-list li::before { content: ''; position: absolute; left: 0; top: 13px; width: 6px; height: 6px; background: #A9F00F; border-radius: 50%; opacity: .8; }
+        .opp-list.numbered { counter-reset: step; }
+        .opp-list.numbered li { padding-left: 28px; }
+        .opp-list.numbered li::before { content: counter(step); counter-increment: step; background: transparent; border: 1px solid rgba(169,240,15,.4); color: #A9F00F; width: 18px; height: 18px; border-radius: 50%; top: 6px; font-size: 9px; font-weight: 600; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; }
+        .opp-math { font-size: 11px; color: #9ab3a3; font-style: italic; padding: 12px 0; line-height: 1.7; }
+        .opp-math strong { color: #A9F00F; font-style: normal; font-weight: 500; }
+        .action-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 1px; font-weight: 700; padding: 2px 7px; border-radius: 3px; margin-right: 8px; vertical-align: 1px; }
+        .action-tag.ship { background: rgba(34,197,94,.14); color: #22c55e; border: 1px solid rgba(34,197,94,.3); }
+        .action-tag.test { background: rgba(169,240,15,.14); color: #A9F00F; border: 1px solid rgba(169,240,15,.3); }
+
+        /* ===== SHIP vs TEST SPLIT SLIDE ===== */
+        .split-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; max-width: 1080px; width: 100%; }
+        .split-col { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 24px; }
+        .split-col.ship { border: 1.5px solid rgba(34,197,94,.4); }
+        .split-col.test { border: 1.5px solid rgba(169,240,15,.4); }
+        .split-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+        .split-head .name { font-size: 14px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; }
+        .split-head .name.ship { color: #22c55e; }
+        .split-head .name.test { color: #A9F00F; }
+        .split-head .meta { font-size: 10px; color: #9ab3a3; font-family: 'JetBrains Mono', monospace; }
+        .split-desc { font-size: 11px; color: #9ab3a3; line-height: 1.6; margin-bottom: 14px; }
+        .split-row { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,.05); font-size: 11px; }
+        .split-row:last-child { border-bottom: none; }
+        .split-row .num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #9ab3a3; min-width: 26px; }
+        .split-row .label { flex: 1; color: #ccc; }
+        .split-row .impact { font-size: 10px; color: #fff; font-variant-numeric: tabular-nums; }
+
+        /* ===== INSIGHT BOX ===== */
+        .insight-box { max-width: 980px; width: 100%; background: rgba(169,240,15,.08); border: 1px solid rgba(169,240,15,.25); border-radius: 10px; padding: 16px 22px; margin-top: 18px; font-size: 12px; color: #ccc; line-height: 1.7; }
+        .insight-box strong { color: #A9F00F; }
+
+        /* ===== TAKEAWAY CARDS ===== */
+        .takeaway-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 980px; width: 100%; }
+        .takeaway-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 10px; padding: 20px; }
+        .takeaway-title { font-size: 13px; font-weight: 500; margin-bottom: 4px; color: #A9F00F; }
+        .takeaway-stat { font-size: 11px; color: #9ab3a3; margin-bottom: 8px; }
+        .takeaway-text { font-size: 11px; color: #ccc; line-height: 1.6; }
+
+        /* ===== COMPARE (mobile vs desktop) ===== */
+        .compare-layout { display: flex; gap: 32px; max-width: 820px; width: 100%; align-items: stretch; }
+        .compare-box { flex: 1; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 28px; text-align: center; }
+        .compare-box.highlight { border-color: rgba(169,240,15,.3); background: rgba(169,240,15,.05); }
+        .compare-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #9ab3a3; margin-bottom: 12px; }
+        .compare-rate { font-size: 46px; font-weight: 300; margin-bottom: 4px; }
+        .compare-rate.good { color: #A9F00F; }
+        .compare-rate.bad { color: #ef4444; }
+        .compare-sub { font-size: 11px; color: #9ab3a3; line-height: 1.6; }
+        .compare-vs { display: flex; align-items: center; justify-content: center; font-size: 24px; color: #333; font-weight: 200; padding: 0 8px; }
+
+        /* ===== ROADMAP PHASES ===== */
+        .phase-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; max-width: 1100px; width: 100%; }
+        .phase-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 22px; position: relative; overflow: hidden; }
+        .phase-card.p1 { border: 1.5px solid rgba(239,68,68,.4); }
+        .phase-card.p2 { border: 1.5px solid rgba(245,158,11,.4); }
+        .phase-card.p3 { border: 1.5px solid rgba(34,197,94,.4); }
+        .phase-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #9ab3a3; margin-bottom: 6px; text-transform: uppercase; font-weight: 600; }
+        .phase-name { font-size: 16px; font-weight: 500; margin-bottom: 6px; }
+        .phase-when { font-size: 11px; color: #9ab3a3; margin-bottom: 14px; letter-spacing: .5px; }
+        .phase-impact { background: rgba(169,240,15,.1); border: 1px solid rgba(169,240,15,.25); border-radius: 6px; padding: 8px 12px; margin-bottom: 14px; }
+        .phase-impact .lbl { font-size: 9px; letter-spacing: 2px; color: #9ab3a3; text-transform: uppercase; margin-bottom: 2px; }
+        .phase-impact .val { font-size: 14px; color: #A9F00F; font-weight: 500; }
+        .phase-list { list-style: none; padding: 0; }
+        .phase-list li { font-size: 11px; color: #ccc; padding: 6px 0 6px 16px; position: relative; line-height: 1.5; border-bottom: 1px solid rgba(255,255,255,.04); }
+        .phase-list li:last-child { border-bottom: none; }
+        .phase-list li::before { content: '→'; position: absolute; left: 0; top: 6px; color: #A9F00F; font-weight: 700; }
+
+        /* ===== LANDSCAPE BARS ===== */
+        .landscape-layout { display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; max-width: 1040px; width: 100%; }
+        .bucket-list { display: flex; flex-direction: column; gap: 12px; }
+        .bucket-row { display: flex; align-items: center; gap: 14px; }
+        .bucket-name { font-size: 11px; color: #ccc; letter-spacing: 1px; text-transform: uppercase; width: 160px; font-weight: 500; }
+        .bucket-bar-wrap { flex: 1; height: 38px; background: rgba(255,255,255,.04); border-radius: 6px; overflow: hidden; }
+        .bucket-bar { height: 100%; display: flex; align-items: center; padding: 0 14px; color: #fff; font-size: 12px; font-weight: 500; }
+        .bucket-bar.crit { background: linear-gradient(90deg, #ef4444, #c2410c); }
+        .bucket-bar.high { background: linear-gradient(90deg, #f59e0b, #d97706); }
+        .bucket-bar.low { background: linear-gradient(90deg, #22c55e, #15803d); }
+        .lever-list { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 22px; }
+        .lever-title { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #A9F00F; margin-bottom: 16px; font-weight: 500; }
+        .lever-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.05); }
+        .lever-row:last-child { border-bottom: none; }
+        .lever-num { width: 22px; height: 22px; border-radius: 50%; background: rgba(169,240,15,.15); border: 1px solid rgba(169,240,15,.3); color: #A9F00F; font-size: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'JetBrains Mono', monospace; }
+        .lever-name { flex: 1; font-size: 11px; color: #ccc; }
+        .lever-value { font-size: 11px; color: #A9F00F; font-weight: 500; font-variant-numeric: tabular-nums; }
+
+        /* ===== SCORECARD ===== */
+        .scorecard-total { display: flex; justify-content: space-between; align-items: center; background: #122a1e; border: 1px solid rgba(169,240,15,.25); border-radius: 8px; padding: 14px 22px; margin-top: 16px; max-width: 960px; width: 100%; }
+        .scorecard-total .lbl { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #fff; font-weight: 500; }
+        .scorecard-total .val { font-size: 18px; color: #A9F00F; font-weight: 500; }
+
+        /* ===== THANK YOU ===== */
+        .thankyou-slide { background: #000; }
+        .ty-title { font-size: 46px; font-weight: 300; letter-spacing: 4px; text-transform: uppercase; position: relative; z-index: 1; margin-bottom: 20px; }
+        .ty-sub { font-size: 13px; color: #9ab3a3; letter-spacing: 2px; position: relative; z-index: 1; margin-bottom: 8px; }
+        .ty-powered { font-size: 10px; color: #6b7c75; letter-spacing: 1px; position: relative; z-index: 1; margin-top: 36px; }
+        .ty-cta { display: inline-block; margin-top: 32px; padding: 12px 24px; background: #A9F00F; color: #122a1e; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; border-radius: 4px; text-decoration: none; }
+
+        /* ===== NAV ===== */
+        .nav-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 14px 40px; background: linear-gradient(transparent, rgba(0,0,0,.9) 40%); }
+        .nav-dots { display: flex; gap: 4px; }
+        .nav-dot { width: 6px; height: 6px; border-radius: 50%; background: #333; cursor: pointer; transition: all .3s; }
+        .nav-dot.active { background: #A9F00F; width: 18px; border-radius: 3px; }
+        .nav-counter { font-size: 11px; color: #9ab3a3; letter-spacing: 2px; font-family: 'JetBrains Mono', monospace; }
+        .nav-arrows { display: flex; gap: 10px; }
+        .nav-arrow { width: 34px; height: 34px; border: 1px solid #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all .3s; background: none; color: #fff; }
+        .nav-arrow:hover { border-color: #A9F00F; background: rgba(169,240,15,.1); }
+        .nav-arrow svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+        /* ===== TEST PLAN SLIDES (Nordic Weed branded) ===== */
+        .card.tp-card { flex-direction: row; padding: 0; align-items: stretch; justify-content: flex-start; }
+        .tp-left { width: 38%; background: #122a1e; padding: 36px 40px 50px; display: flex; flex-direction: column; overflow-y: auto; }
+        .tp-left::-webkit-scrollbar { display: none; }
+        .tp-badge { display: inline-flex; align-items: center; gap: 8px; background: #A9F00F; color: #122a1e; font-size: 13px; font-weight: 700; letter-spacing: 1px; padding: 8px 16px; border-radius: 20px; align-self: flex-start; margin-bottom: 28px; font-family: 'Work Sans', sans-serif; }
+        .tp-badge .e-mark { width: 22px; height: 22px; background: #122a1e; color: #A9F00F; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; }
+        .tp-section { margin-bottom: 18px; }
+        .tp-section h3 { font-size: 20px; font-weight: 600; color: #fff; margin-bottom: 6px; letter-spacing: .3px; }
+        .tp-underline { width: 100%; height: 1px; background: #A9F00F; margin-bottom: 12px; }
+        .tp-section p, .tp-section li { font-size: 12.5px; color: #D7E5D8; line-height: 1.65; }
+        .tp-section ul { padding-left: 0; list-style: none; }
+        .tp-section ul li { padding-left: 16px; position: relative; margin-bottom: 5px; }
+        .tp-section ul li::before { content: '•'; position: absolute; left: 0; top: 0; color: #A9F00F; font-weight: 800; }
+        .tp-section ol { padding-left: 0; list-style: none; counter-reset: km; }
+        .tp-section ol li { padding-left: 22px; position: relative; margin-bottom: 4px; counter-increment: km; font-size: 12.5px; color: #D7E5D8; }
+        .tp-section ol li::before { content: counter(km) '.'; position: absolute; left: 0; top: 0; font-weight: 500; color: #D7E5D8; }
+        .tp-section ol li.primary { color: #A9F00F; font-weight: 600; }
+        .tp-section ol li.primary::before { color: #A9F00F; font-weight: 700; }
+        .tp-target-box { border: 1px solid #A9F00F; border-radius: 8px; padding: 20px 22px; margin-top: auto; }
+        .tp-target-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .tp-target-grid .label { font-size: 13px; color: #A9F00F; font-weight: 600; margin-bottom: 6px; letter-spacing: .3px; }
+        .tp-target-grid .value { font-size: 11.5px; color: #fff; line-height: 1.5; }
+
+        .tp-right { width: 62%; background: #FFFFFF; background-image: linear-gradient(rgba(18,42,30,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(18,42,30,.06) 1px, transparent 1px); background-size: 30px 30px; padding: 36px 48px; display: flex; flex-direction: column; overflow-y: auto; color: #122a1e; }
+        .tp-right::-webkit-scrollbar { display: none; }
+        .tp-title { font-size: 30px; font-weight: 700; color: #122a1e; margin-bottom: 14px; letter-spacing: -.3px; font-family: 'Work Sans', sans-serif; }
+        .tp-meta-bar { display: flex; align-items: center; gap: 16px; padding: 10px 18px; border: 1.5px solid #122a1e; border-radius: 8px; margin-bottom: 24px; }
+        .tp-meta-bar .lbl { color: #122a1e; font-weight: 700; font-size: 13px; }
+        .tp-meta-bar .val { color: #122a1e; font-size: 13px; }
+        .tp-pill-ab { margin-left: auto; padding: 6px 18px; border-radius: 6px; font-size: 12px; font-weight: 700; letter-spacing: .5px; background: #A9F00F; color: #122a1e; }
+
+        .tp-mockups { display: flex; gap: 50px; justify-content: center; align-items: flex-end; flex: 1; padding: 8px 0 24px; }
+        .tp-mockup { display: flex; flex-direction: column; align-items: center; }
+        .tp-phone { width: 240px; height: 500px; border-radius: 36px; background: #000; border: 6px solid #122a1e; box-shadow: 0 22px 50px rgba(18,42,30,.22); position: relative; overflow: hidden; }
+        .tp-phone::before { content: ''; position: absolute; top: 6px; left: 50%; transform: translateX(-50%); width: 76px; height: 18px; background: #122a1e; border-radius: 16px; z-index: 50; }
+        .tp-screen { width: 100%; height: 100%; overflow: hidden; position: relative; padding-top: 24px; background: #000; }
+        .tp-screen .shot { position: absolute; top: 24px; left: 0; width: 100%; height: calc(100% - 24px); object-fit: cover; object-position: top center; }
+        .tp-mockup-label { margin-top: 14px; font-size: 13px; font-weight: 700; letter-spacing: 3px; color: #122a1e; font-family: 'Work Sans', sans-serif; }
+        .tp-mockup-label.variant { color: #1F4A2E; }
+
+        .tp-popup-bg { position: absolute; inset: 0; background: rgba(0,0,0,.75); display: flex; align-items: center; justify-content: center; padding: 22px; z-index: 35; backdrop-filter: blur(2px); }
+        .tp-popup { background: #0a0a0a; border-radius: 12px; padding: 20px 18px; text-align: center; border: 1.5px solid #00BF69; box-shadow: 0 0 24px rgba(0,191,105,.25); position: relative; width: 100%; }
+        .tp-popup .close { position: absolute; top: 6px; right: 10px; font-size: 14px; color: #888; }
+        .tp-popup .badge-mini { background: #00BF69; color: #000; font-size: 8px; font-weight: 800; padding: 4px 10px; border-radius: 12px; display: inline-block; margin-bottom: 10px; letter-spacing: 1px; }
+        .tp-popup h3 { font-family: 'Playfair Display', serif; font-size: 16px; color: #fff; font-weight: 600; margin-bottom: 6px; line-height: 1.2; }
+        .tp-popup p { font-size: 9px; color: #B8C5E8; line-height: 1.5; margin-bottom: 12px; }
+        .tp-popup .pop-cta { background: #00BF69; color: #fff; padding: 8px 14px; border-radius: 40px; font-size: 9px; font-weight: 600; }
+        .tp-popup .code { background: rgba(0,191,105,.15); color: #00BF69; padding: 4px 10px; border-radius: 4px; font-size: 9px; font-weight: 700; letter-spacing: 2px; display: inline-block; margin-bottom: 10px; border: 1px dashed #00BF69; }
+
+        .tp-sticky-bar { position: absolute; bottom: 0; left: 0; right: 0; background: #0a0a0a; border-top: 1px solid rgba(0,191,105,.3); padding: 8px 12px; display: flex; gap: 8px; align-items: center; z-index: 30; box-shadow: 0 -8px 16px rgba(0,0,0,.5); }
+        .tp-sticky-bar .price { font-family: 'Playfair Display', serif; font-size: 12px; font-weight: 700; color: #00BF69; }
+        .tp-sticky-bar .price-old { font-size: 8px; color: #888; text-decoration: line-through; margin-left: 4px; }
+        .tp-sticky-bar .btn { flex: 1; background: #00BF69; color: #fff; padding: 8px; border-radius: 40px; font-size: 9px; text-align: center; font-weight: 600; }
+
+        .tp-abovefold { position: absolute; top: 24px; left: 0; right: 0; background: #0a0a0a; padding: 8px 12px; display: flex; gap: 8px; align-items: center; justify-content: space-between; z-index: 30; border-bottom: 1px solid rgba(0,191,105,.2); }
+        .tp-abovefold .name { font-family: 'Playfair Display', serif; font-size: 11px; color: #fff; font-weight: 600; line-height: 1.1; margin-bottom: 2px; }
+        .tp-abovefold .price-row { display: flex; align-items: center; gap: 4px; }
+        .tp-abovefold .price-row .price { font-size: 11px; color: #00BF69; font-weight: 700; }
+        .tp-abovefold .price-row .old { font-size: 8px; color: #888; text-decoration: line-through; }
+        .tp-abovefold .savings { background: #00BF69; color: #000; font-size: 7px; font-weight: 700; padding: 2px 6px; border-radius: 8px; }
+
+        .tp-bundle-overlay { position: absolute; top: 24px; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0,0,0,.92) 0%, #000 30%, #000 100%); padding: 14px 12px 12px; overflow: hidden; z-index: 30; }
+        .tp-bundle-overlay .head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+        .tp-bundle-overlay .head .logo { color: #00BF69; font-size: 9px; font-weight: 800; letter-spacing: 1px; }
+        .tp-bundle-overlay h2 { font-family: 'Playfair Display', serif; color: #fff; font-size: 13px; margin-bottom: 4px; line-height: 1.2; }
+        .tp-bundle-overlay .sub { color: #B8C5E8; font-size: 8px; margin-bottom: 12px; }
+        .tp-bundle-card { background: linear-gradient(135deg, rgba(0,191,105,.08), rgba(0,0,0,.6)); border: 1px solid rgba(0,191,105,.3); border-radius: 8px; padding: 8px 10px; margin-bottom: 6px; display: flex; gap: 8px; align-items: center; }
+        .tp-bundle-card.featured { border-color: #00BF69; background: rgba(0,191,105,.12); }
+        .tp-bundle-card .thumb { width: 32px; height: 32px; background: #1a1a1a; border-radius: 5px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+        .tp-bundle-card .body { flex: 1; }
+        .tp-bundle-card .tag { font-size: 6px; color: #000; background: #00BF69; padding: 1px 5px; border-radius: 6px; display: inline-block; margin-bottom: 2px; font-weight: 700; letter-spacing: .5px; }
+        .tp-bundle-card .name { font-family: 'Playfair Display', serif; font-size: 9px; color: #fff; font-weight: 600; line-height: 1.1; }
+        .tp-bundle-card .meta { font-size: 7px; color: #B8C5E8; }
+        .tp-bundle-card .price { font-size: 10px; color: #00BF69; font-weight: 700; }
+        .tp-bundle-overlay .alt-link { text-align: center; font-size: 8px; color: #B8C5E8; padding-top: 8px; border-top: 1px dashed rgba(0,191,105,.25); }
+        .tp-bundle-overlay .alt-link strong { color: #00BF69; }
+
+        .tp-hero-rotation { position: absolute; top: 88px; left: 12px; right: 12px; height: 130px; border-radius: 10px; background: linear-gradient(135deg, #0a0a0a 0%, #133d28 50%, #00BF69 200%); padding: 12px; display: flex; flex-direction: column; justify-content: center; z-index: 30; overflow: hidden; border: 1px solid rgba(0,191,105,.4); }
+        .tp-hero-rotation .kicker { color: #00BF69; font-size: 7px; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 4px; }
+        .tp-hero-rotation h2 { font-family: 'Playfair Display', serif; color: #fff; font-size: 13px; line-height: 1.1; margin-bottom: 8px; }
+        .tp-hero-rotation .cta { background: #00BF69; color: #fff; padding: 5px 12px; border-radius: 40px; font-size: 8px; font-weight: 600; align-self: flex-start; }
+        .tp-hero-rotation .dots { position: absolute; bottom: 6px; left: 50%; transform: translateX(-50%); display: flex; gap: 3px; }
+        .tp-hero-rotation .dots div { width: 10px; height: 3px; background: rgba(255,255,255,.3); border-radius: 2px; }
+        .tp-hero-rotation .dots div.active { background: #00BF69; }
+
+        .tp-nav-blocks { position: absolute; top: 120px; left: 12px; right: 12px; z-index: 30; }
+        .tp-nav-blocks .row { display: flex; gap: 6px; margin-bottom: 6px; }
+        .tp-nav-blocks .block { background: linear-gradient(135deg, #0a1410, #133d28); border: 1px solid rgba(0,191,105,.3); border-radius: 8px; padding: 8px; flex: 1; min-height: 56px; display: flex; flex-direction: column; justify-content: space-between; }
+        .tp-nav-blocks .block.hero { background: linear-gradient(135deg, #00BF69, #0a3a25); flex: 2; min-height: 68px; }
+        .tp-nav-blocks .block .tag { font-size: 6px; font-weight: 800; color: #00BF69; letter-spacing: .5px; }
+        .tp-nav-blocks .block.hero .tag { color: #000; }
+        .tp-nav-blocks .block .name { font-family: 'Playfair Display', serif; color: #fff; font-size: 9px; font-weight: 600; line-height: 1.1; }
+        .tp-nav-blocks .block.hero .name { color: #000; font-size: 11px; }
+        .tp-nav-blocks .block .count { font-size: 6px; color: #B8C5E8; }
+        .tp-nav-blocks .block.hero .count { color: rgba(0,0,0,.7); }
+
+        .tp-crosssell { position: absolute; left: 12px; right: 12px; top: 270px; background: #0a0a0a; border: 1.5px dashed #00BF69; border-radius: 10px; padding: 10px; z-index: 30; }
+        .tp-crosssell .title { font-size: 9px; color: #00BF69; font-weight: 700; margin-bottom: 8px; letter-spacing: .5px; }
+        .tp-crosssell .items { display: flex; gap: 6px; }
+        .tp-crosssell .item { flex: 1; background: rgba(0,191,105,.06); padding: 6px; border-radius: 6px; text-align: center; border: 1px solid rgba(0,191,105,.15); }
+        .tp-crosssell .item .img { height: 24px; background: #1a1a1a; border-radius: 4px; margin-bottom: 4px; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+        .tp-crosssell .item .nm { font-size: 7px; color: #fff; font-weight: 500; line-height: 1.1; margin-bottom: 2px; }
+        .tp-crosssell .item .add { font-size: 7px; color: #00BF69; font-weight: 700; }
+
+        .tp-annotation { position: absolute; background: #A9F00F; color: #122a1e; font-size: 9px; font-weight: 800; padding: 3px 9px; border-radius: 12px; letter-spacing: .5px; z-index: 60; box-shadow: 0 3px 10px rgba(169,240,15,.5); white-space: nowrap; }
+
+        /* ===== METHODOLOGY SLIDES ===== */
+        .method-flow { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; max-width: 1100px; width: 100%; }
+        .method-step { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 10px; padding: 14px 12px; text-align: center; position: relative; }
+        .method-step .num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #A9F00F; font-weight: 700; margin-bottom: 8px; }
+        .method-step .icon { font-size: 22px; margin-bottom: 8px; }
+        .icon-svg { stroke: #A9F00F; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; margin: 0 auto 8px; display: block; }
+        .method-step .icon-svg { width: 28px; height: 28px; }
+        .protocol-card .icon-svg { width: 30px; height: 30px; }
+        .icon-mini { fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; display: block; }
+
+        /* ===== INTERACTIVE CALCULATOR ===== */
+        .calc-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 22px; max-width: 1100px; width: 100%; }
+        .calc-panel, .calc-output { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 24px; }
+        .calc-panel h4, .calc-output h4 { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #A9F00F; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 18px; font-weight: 700; }
+        .calc-row { margin-bottom: 14px; }
+        .calc-row:last-child { margin-bottom: 0; }
+        .calc-label-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+        .calc-label-row .lbl { font-size: 11px; color: #ccc; font-weight: 500; }
+        .calc-label-row .val { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #A9F00F; font-weight: 700; }
+        .calc-label-row .val .delta { font-size: 9px; color: #9ab3a3; margin-left: 6px; font-weight: 500; }
+        .calc-slider { width: 100%; height: 4px; background: rgba(255,255,255,.08); border-radius: 2px; outline: none; -webkit-appearance: none; appearance: none; cursor: pointer; }
+        .calc-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 18px; height: 18px; background: #A9F00F; border-radius: 50%; cursor: pointer; box-shadow: 0 0 0 4px rgba(169,240,15,.15); transition: box-shadow .15s; }
+        .calc-slider::-webkit-slider-thumb:hover { box-shadow: 0 0 0 8px rgba(169,240,15,.25); }
+        .calc-slider::-moz-range-thumb { width: 18px; height: 18px; background: #A9F00F; border-radius: 50%; cursor: pointer; border: none; box-shadow: 0 0 0 4px rgba(169,240,15,.15); }
+        .calc-input { width: 100%; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 14px; padding: 10px 14px; border-radius: 6px; outline: none; transition: border-color .15s; }
+        .calc-input:focus { border-color: #A9F00F; }
+        .calc-baseline { font-size: 9px; color: #6b7c75; margin-top: 4px; font-family: 'JetBrains Mono', monospace; }
+
+        .calc-projection { background: rgba(169,240,15,.06); border: 1.5px solid rgba(169,240,15,.3); border-radius: 10px; padding: 18px; margin-bottom: 14px; }
+        .calc-projection .lbl { font-size: 10px; color: #9ab3a3; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; font-weight: 600; }
+        .calc-projection .val { font-size: 32px; color: #A9F00F; font-weight: 300; line-height: 1; margin-bottom: 6px; font-family: 'JetBrains Mono', monospace; }
+        .calc-projection .delta { font-size: 12px; color: #ccc; font-weight: 500; }
+        .calc-projection .delta.positive { color: #A9F00F; }
+        .calc-projection .delta.negative { color: #ef4444; }
+        .calc-projection .delta strong { font-weight: 700; }
+        .calc-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 12px 0; border-top: 1px solid rgba(255,255,255,.06); }
+        .calc-meta .meta-cell { text-align: center; }
+        .calc-meta .meta-cell .meta-lbl { font-size: 9px; color: #9ab3a3; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; font-weight: 600; }
+        .calc-meta .meta-cell .meta-val { font-size: 14px; color: #fff; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+        .calc-reset { width: 100%; background: transparent; border: 1px solid rgba(169,240,15,.3); color: #A9F00F; padding: 10px; border-radius: 6px; cursor: pointer; font-family: 'Work Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-top: 12px; transition: all .15s; }
+        .calc-reset:hover { background: rgba(169,240,15,.1); border-color: #A9F00F; }
+        .method-step h4 { font-size: 12px; color: #fff; font-weight: 600; margin-bottom: 4px; line-height: 1.2; }
+        .method-step p { font-size: 9px; color: #9ab3a3; line-height: 1.4; }
+        .method-step::after { content: '→'; position: absolute; right: -10px; top: 50%; transform: translateY(-50%); color: #A9F00F; font-size: 14px; font-weight: 700; z-index: 5; }
+        .method-step:last-child::after { display: none; }
+
+        .brief-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 1040px; width: 100%; }
+        .brief-col { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 22px; }
+        .brief-col.test-setup { border: 1.5px solid rgba(169,240,15,.4); }
+        .brief-col.stat-params { border: 1.5px solid rgba(93,197,182,.4); }
+        .brief-col h3 { font-size: 14px; color: #fff; font-weight: 600; margin-bottom: 14px; letter-spacing: .3px; }
+        .brief-col h3 .tag { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #A9F00F; margin-right: 8px; }
+        .brief-col.stat-params h3 .tag { color: #5DC5B6; }
+        .brief-list { list-style: none; padding: 0; }
+        .brief-list li { padding: 8px 0 8px 20px; position: relative; font-size: 11px; color: #ccc; line-height: 1.5; border-bottom: 1px solid rgba(255,255,255,.04); }
+        .brief-list li:last-child { border-bottom: none; }
+        .brief-list li::before { content: '✓'; position: absolute; left: 0; top: 8px; color: #A9F00F; font-weight: 700; }
+        .brief-list li strong { color: #fff; font-weight: 600; }
+
+        .protocol-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; max-width: 1080px; width: 100%; }
+        .protocol-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 22px 18px; text-align: center; }
+        .protocol-card .icon { font-size: 26px; margin-bottom: 10px; }
+        .protocol-card .lbl { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #A9F00F; font-weight: 700; margin-bottom: 6px; letter-spacing: 1px; text-transform: uppercase; }
+        .protocol-card .val { font-size: 17px; color: #fff; font-weight: 600; margin-bottom: 6px; line-height: 1.2; }
+        .protocol-card .sub { font-size: 10px; color: #9ab3a3; line-height: 1.5; }
+
+        .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 1040px; width: 100%; align-items: stretch; }
+        .pricing-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 24px; }
+        .pricing-card.lead { background: rgba(169,240,15,.06); border: 1.5px solid rgba(169,240,15,.3); }
+        .pricing-card .tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #A9F00F; font-weight: 700; letter-spacing: 1px; margin-bottom: 8px; text-transform: uppercase; }
+        .pricing-card h3 { font-size: 22px; color: #fff; font-weight: 600; margin-bottom: 8px; line-height: 1.2; }
+        .pricing-card .price-line { font-size: 32px; color: #A9F00F; font-weight: 300; margin-bottom: 10px; line-height: 1; }
+        .pricing-card .desc { font-size: 12px; color: #ccc; line-height: 1.6; }
+        .pricing-card ul { list-style: none; padding: 0; margin-top: 12px; }
+        .pricing-card ul li { padding: 6px 0 6px 20px; position: relative; font-size: 11px; color: #ccc; line-height: 1.5; }
+        .pricing-card ul li::before { content: '→'; position: absolute; left: 0; color: #A9F00F; font-weight: 700; }
+
+        .multiplier-stack { display: flex; flex-direction: column; gap: 8px; max-width: 980px; width: 100%; }
+        .mult-row { display: flex; align-items: center; gap: 16px; padding: 14px 20px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 10px; }
+        .mult-pct { font-size: 28px; font-weight: 300; min-width: 80px; text-align: center; font-variant-numeric: tabular-nums; }
+        .mult-pct.p100 { color: #A9F00F; }
+        .mult-pct.p75 { color: #5DC5B6; }
+        .mult-pct.p50 { color: #f59e0b; }
+        .mult-pct.p25 { color: #ef4444; }
+        .mult-row .body { flex: 1; }
+        .mult-row .stages { font-size: 12px; color: #fff; font-weight: 500; margin-bottom: 3px; }
+        .mult-row .why { font-size: 10px; color: #9ab3a3; }
+        .mult-bar { width: 80px; height: 6px; background: rgba(255,255,255,.05); border-radius: 3px; overflow: hidden; }
+        .mult-bar .fill { height: 100%; border-radius: 3px; }
+        .mult-bar .fill.p100 { width: 100%; background: #A9F00F; }
+        .mult-bar .fill.p75 { width: 75%; background: #5DC5B6; }
+        .mult-bar .fill.p50 { width: 50%; background: #f59e0b; }
+        .mult-bar .fill.p25 { width: 25%; background: #ef4444; }
+
+        .worked-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; max-width: 1080px; width: 100%; }
+        .worked-col { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 22px; display: flex; flex-direction: column; }
+        .worked-col.upper { border: 1.5px solid rgba(239,68,68,.4); }
+        .worked-col.direct { border: 1.5px solid rgba(169,240,15,.4); }
+        .worked-col h3 { font-size: 14px; color: #fff; font-weight: 600; margin-bottom: 4px; }
+        .worked-col .lbl { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #9ab3a3; margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase; }
+        .worked-step { display: flex; align-items: center; gap: 10px; padding: 6px 0; font-size: 11px; color: #ccc; border-bottom: 1px dashed rgba(255,255,255,.06); }
+        .worked-step:last-of-type { border-bottom: none; }
+        .worked-step .step-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #A9F00F; min-width: 18px; }
+        .worked-step .step-text { flex: 1; }
+        .worked-step .step-val { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #fff; font-weight: 600; text-align: right; }
+        .worked-fee { margin-top: auto; padding-top: 12px; border-top: 1px solid rgba(255,255,255,.1); display: flex; justify-content: space-between; align-items: baseline; }
+        .worked-fee .lbl-fee { font-size: 11px; color: #9ab3a3; text-transform: uppercase; letter-spacing: 1px; }
+        .worked-fee .val-fee { font-size: 22px; color: #A9F00F; font-weight: 600; }
+    </style>
+</head>
+
+<body>
+<div class="scroll-container" id="scrollContainer">
+
+    <!-- SLIDE 0: TITLE -->
+    <div class="title-slide card" data-index="0">
+        <div class="title-badge">2026</div>
+        <div class="title-brand">nordicweed.dk</div>
+        <div class="title-text">
+            <h1>CRO Opportunity<br>Report</h1>
+            <p>Nordic Weed</p>
+        </div>
+        <div class="title-meta">
+            <p>Apr 14, 2026  to  May 14, 2026  |  30 Day GA4 Analysis</p>
+            <p>Prepared by EcomHouse  ·  GA4 Property 428967101</p>
+        </div>
+        <div class="title-nav-hint">Scroll to explore <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </div>
+
+    <!-- SLIDE 1: HOW THIS WORKS -->
+    <div class="card" data-index="1">
+        <div class="card-header">
+            <div class="card-label">Methodology</div>
+            <div class="card-title">How This Report Works</div>
+            <div class="card-subtitle">Each opportunity is GA4-backed, sized by estimated monthly DKK uplift, and tagged by implementation effort. Math is conservative, not best case.</div>
+        </div>
+        <div class="source-grid">
+            <div class="source-card">
+                <div class="marker">// 01</div>
+                <div class="source-name">GA4 Evidence</div>
+                <div class="source-detail">Every opportunity is grounded in real session, conversion, and revenue data from <strong>GA4 property 428967101</strong>. No guesswork. Only what the data shows.</div>
+            </div>
+            <div class="source-card">
+                <div class="marker">// 02</div>
+                <div class="source-name">DKK Impact Sizing</div>
+                <div class="source-detail">Each opportunity is sized by <strong>estimated monthly DKK uplift</strong>. Math is conservative, using modest improvement assumptions, not best case scenarios.</div>
+            </div>
+            <div class="source-card">
+                <div class="marker">// 03</div>
+                <div class="source-name">Effort Tags</div>
+                <div class="source-detail">Every action is tagged <strong>Low, Medium, or High</strong> effort so the team can prioritize ruthlessly and sequence work across three phases.</div>
+            </div>
+        </div>
+        <div class="insight-box"><strong>90 day revenue impact:</strong> at 50% realization, this roadmap adds DKK 22,500 to 37,500 per month to the current DKK 182K baseline. A 12% to 21% revenue increase within 90 days.</div>
+    </div>
+
+    <!-- SLIDE 2: BASELINE METRICS -->
+    <div class="card" data-index="2">
+        <div class="card-header">
+            <div class="card-label">Baseline</div>
+            <div class="card-title">Where Nordic Weed Stands Today</div>
+            <div class="card-subtitle">Apr 14 to May 14, 2026  ·  GA4 property 428967101</div>
+        </div>
+        <div class="metrics-grid">
+            <div class="metric-card"><div class="metric-value accent">DKK 181,958</div><div class="metric-label">Monthly Revenue</div></div>
+            <div class="metric-card"><div class="metric-value">907</div><div class="metric-label">Orders / month</div></div>
+            <div class="metric-card"><div class="metric-value">DKK 200.62</div><div class="metric-label">Avg Order Value</div></div>
+            <div class="metric-card"><div class="metric-value">6.3%</div><div class="metric-label">Conversion Rate</div></div>
+            <div class="metric-card"><div class="metric-value accent" style="font-size:24px">DKK 45K to 75K</div><div class="metric-label">Total Addressable Uplift</div><div class="metric-sub">+25% to +41%</div></div>
+        </div>
+        <div class="insight-box"><strong>Three compounding levers</strong> drive the entire uplift opportunity: checkout abandonment, mobile PDP conversion, and the bundle UX. Together they account for over 60% of the DKK 45K to 75K monthly opportunity.</div>
+    </div>
+
+    <!-- SLIDE 3: LANDSCAPE -->
+    <div class="card" data-index="3">
+        <div class="card-header">
+            <div class="card-label">Overview</div>
+            <div class="card-title">The Opportunity Landscape</div>
+            <div class="card-subtitle">Twelve opportunities grouped into three priority buckets. Fix checkout and mobile PDP first.</div>
+        </div>
+        <div class="landscape-layout">
+            <div class="bucket-list">
+                <div class="bucket-row">
+                    <div class="bucket-name">Critical / Week 1</div>
+                    <div class="bucket-bar-wrap"><div class="bucket-bar crit" style="width:100%">DKK 26,000 to 45,000 / month</div></div>
+                </div>
+                <div class="bucket-row">
+                    <div class="bucket-name">High Value / Month 1</div>
+                    <div class="bucket-bar-wrap"><div class="bucket-bar high" style="width:82%">DKK 20,000 to 36,000 / month</div></div>
+                </div>
+                <div class="bucket-row">
+                    <div class="bucket-name">Optimize / Sprint 2+</div>
+                    <div class="bucket-bar-wrap"><div class="bucket-bar low" style="width:36%">DKK 8,000 to 16,000 / month</div></div>
+                </div>
+            </div>
+            <div class="lever-list">
+                <div class="lever-title">Top 5 levers</div>
+                <div class="lever-row"><div class="lever-num">1</div><div class="lever-name">Checkout abandonment recovery</div><div class="lever-value">15K to 25K</div></div>
+                <div class="lever-row"><div class="lever-num">2</div><div class="lever-name">Mobile PDP conversion gap</div><div class="lever-value">8K to 15K</div></div>
+                <div class="lever-row"><div class="lever-num">3</div><div class="lever-name">Bundle UX overhaul</div><div class="lever-value">5K to 10K</div></div>
+                <div class="lever-row"><div class="lever-num">4</div><div class="lever-name">Retention program</div><div class="lever-value">5K to 10K</div></div>
+                <div class="lever-row"><div class="lever-num">5</div><div class="lever-name">Promote hidden gems</div><div class="lever-value">5K to 8K</div></div>
+            </div>
+        </div>
+        <div class="insight-box"><strong>Checkout abandonment</strong> and <strong>mobile PDP conversion</strong> combined account for DKK 23,000 to 40,000 per month, over half the total opportunity. Fix these first.</div>
+    </div>
+
+    <!-- SECTION DIVIDER: CRITICAL -->
+    <div class="card section-slide" data-index="4">
+        <div class="section-number">01</div>
+        <div class="section-kicker">Phase 1</div>
+        <div class="section-title">Critical / Fix This Week</div>
+        <div class="section-sub">Three opportunities, DKK 26,000 to 45,000 per month combined. Low to medium effort, all shippable within Week 1 to 2.</div>
+    </div>
+
+    <!-- OPP 1: CHECKOUT ABANDONMENT -->
+    <div class="card" data-index="5" style="justify-content:flex-start;padding-top:50px">
+        <div class="card-header">
+            <div class="card-label">Opportunity 01  ·  Critical</div>
+            <div class="card-title">Checkout Abandonment Recovery</div>
+        </div>
+        <div class="opp-layout">
+            <div class="opp-impact">
+                <div>
+                    <div class="label">Estimated monthly impact</div>
+                    <div class="value">DKK 15,000 to 25,000</div>
+                </div>
+                <div style="margin-left:auto;display:flex;gap:8px">
+                    <span class="opp-pill effort-med">Medium effort</span>
+                    <span class="opp-pill time">Week 1 to 2</span>
+                </div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Evidence</div>
+                <ul class="opp-list">
+                    <li>29.1% ATC to purchase rate (benchmark: 35% to 45%)</li>
+                    <li>66.6% of begin_checkout sessions never purchase</li>
+                    <li>1,696 checkout pageviews from homepage sessions alone</li>
+                    <li>Mobile CVR 6.1% vs Desktop 7.5%. Mobile checkout is worse</li>
+                </ul>
+                <div class="opp-math">~3,112 ATCs / month minus 907 purchases = <strong>2,205 abandoned carts</strong>. Recovering 10% at DKK 200 AOV = 220 orders = DKK 44,000. Conservative 5% recovery = <strong>DKK 22,000 / month</strong>.</div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Actions</div>
+                <ol class="opp-list numbered">
+                    <li><span class="action-tag test">TEST</span>Exit intent popup at checkout (5% discount vs free shipping vs control)</li>
+                    <li><span class="action-tag ship">SHIP</span>Abandoned cart email sequence: 1 hour, 24 hour, 72 hour</li>
+                    <li><span class="action-tag ship">SHIP</span>Audit mobile checkout: form fields, payment options, shipping reveal timing</li>
+                    <li><span class="action-tag ship">SHIP</span>Trust badges at checkout: Trustpilot, secure payment icons, delivery guarantee</li>
+                    <li><span class="action-tag test">TEST</span>Guest checkout vs forced account creation</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- OPP 2: MOBILE PDP GAP -->
+    <div class="card" data-index="6" style="justify-content:flex-start;padding-top:50px">
+        <div class="card-header">
+            <div class="card-label">Opportunity 02  ·  Critical</div>
+            <div class="card-title">Mobile PDP Conversion Gap</div>
+        </div>
+        <div class="opp-layout">
+            <div class="opp-impact">
+                <div>
+                    <div class="label">Estimated monthly impact</div>
+                    <div class="value">DKK 8,000 to 15,000</div>
+                </div>
+                <div style="margin-left:auto;display:flex;gap:8px">
+                    <span class="opp-pill effort-med">Medium effort</span>
+                    <span class="opp-pill time">Week 1 to 3</span>
+                </div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Evidence</div>
+                <ul class="opp-list">
+                    <li>Mobile ATC rate 19.4% vs Desktop 30.0% (55% relative gap)</li>
+                    <li>Mobile AOV DKK 191 vs Desktop DKK 225 (DKK 34 gap)</li>
+                    <li>Mobile = 79% of all sessions (11,210 / month)</li>
+                    <li>Top PDP skagen-smackdown has 48% mobile bounce</li>
+                </ul>
+                <div class="opp-math">Close half the ATC gap (19.4% to 24.7%) on 11,210 mobile sessions. Extra 594 ATCs at 29.1% purchase rate at DKK 191 AOV = DKK 33,000. Conservative 30% of that = <strong>DKK 10,000 / month</strong>.</div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Actions</div>
+                <ol class="opp-list numbered">
+                    <li><span class="action-tag test">TEST</span>Sticky ATC button on mobile, always visible while scrolling</li>
+                    <li><span class="action-tag ship">SHIP</span>Improve product image gallery: swipe UX, zoom, lifestyle shots</li>
+                    <li><span class="action-tag test">TEST</span>Move price and ATC above the fold on mobile</li>
+                    <li><span class="action-tag test">TEST</span>Quantity selector with bulk pricing visible (25g vs 100g savings)</li>
+                    <li><span class="action-tag test">TEST</span>Social proof: recent purchases or live viewer count</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- OPP 3: BROKEN PRODUCTS -->
+    <div class="card" data-index="7" style="justify-content:flex-start;padding-top:50px">
+        <div class="card-header">
+            <div class="card-label">Opportunity 03  ·  Critical</div>
+            <div class="card-title">Fix Broken and Dead Products</div>
+        </div>
+        <div class="opp-layout">
+            <div class="opp-impact">
+                <div>
+                    <div class="label">Estimated monthly impact</div>
+                    <div class="value">DKK 3,000 to 5,000</div>
+                </div>
+                <div style="margin-left:auto;display:flex;gap:8px">
+                    <span class="opp-pill effort-low">Low effort</span>
+                    <span class="opp-pill time">Day 1</span>
+                </div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Evidence</div>
+                <ul class="opp-list">
+                    <li><strong style="color:#ef4444">Deep Chunk</strong>: 188 views, 0 add to carts. Broken page or out of stock</li>
+                    <li><strong style="color:#ef4444">La Piattella</strong>: 114 views, 0 ATC</li>
+                    <li>98 products (57% of catalog) with zero purchases</li>
+                    <li>73 products have views but no purchases</li>
+                </ul>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Actions</div>
+                <ol class="opp-list numbered">
+                    <li><span class="action-tag ship">SHIP</span>Check Deep Chunk and La Piattella today. Likely OOS or broken ATC</li>
+                    <li><span class="action-tag ship">SHIP</span>Audit all 73 viewed but zero purchase products: fix, discount, or hide</li>
+                    <li><span class="action-tag ship">SHIP</span>Remove or sold out badge products that cannot be restocked</li>
+                    <li><span class="action-tag ship">SHIP</span>Redirect traffic from dead products to similar live products</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION DIVIDER: HIGH VALUE -->
+    <div class="card section-slide" data-index="8">
+        <div class="section-number">02</div>
+        <div class="section-kicker">Phase 2</div>
+        <div class="section-title">High Value / This Month</div>
+        <div class="section-sub">Five opportunities, DKK 20,000 to 36,000 per month combined. Mix of low and medium effort, deliverable across Week 2 to 6.</div>
+    </div>
+
+    <!-- OPP 4: BUNDLE UX -->
+    <div class="card" data-index="9" style="justify-content:flex-start;padding-top:50px">
+        <div class="card-header">
+            <div class="card-label">Opportunity 04  ·  High Value</div>
+            <div class="card-title">Bundle UX Overhaul (byobSuite)</div>
+        </div>
+        <div class="opp-layout">
+            <div class="opp-impact">
+                <div>
+                    <div class="label">Estimated monthly impact</div>
+                    <div class="value">DKK 5,000 to 10,000</div>
+                </div>
+                <div style="margin-left:auto;display:flex;gap:8px">
+                    <span class="opp-pill effort-med">Medium effort</span>
+                    <span class="opp-pill time">Week 2 to 4</span>
+                </div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Evidence</div>
+                <ul class="opp-list">
+                    <li>byobSuite category: 1,050 views, 3.3% purchase rate (vs 20% store avg)</li>
+                    <li>Bland selv 100g: DKK 847 per order, but only 2.3% PTV</li>
+                    <li>Bland selv 50g: 479 views, only 11 purchases</li>
+                </ul>
+                <div class="opp-math">Improve byobSuite PTV from 3.3% to 10% (still below store avg). 1,050 views at 6.7% extra PTV at DKK 500 bundle = DKK 35,000. Conservative 20% = <strong>DKK 7,000 / month</strong>.</div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Actions</div>
+                <ol class="opp-list numbered">
+                    <li><span class="action-tag test">TEST</span>Replace configurator with 3 to 5 pre-curated bundles (Staff Picks, Best Sellers, Hash Lovers)</li>
+                    <li><span class="action-tag test">TEST</span>Keep custom option as secondary: "Or build your own"</li>
+                    <li><span class="action-tag ship">SHIP</span>Show per gram savings vs buying individually</li>
+                    <li><span class="action-tag ship">SHIP</span>Add bundle product images (styled flat lay of all items together)</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- OPP 5: PROMOTE HIDDEN GEMS -->
+    <div class="card" data-index="10" style="justify-content:flex-start;padding-top:50px">
+        <div class="card-header">
+            <div class="card-label">Opportunity 05  ·  High Value</div>
+            <div class="card-title">Promote Under-trafficked High Converters</div>
+        </div>
+        <div class="opp-layout">
+            <div class="opp-impact">
+                <div>
+                    <div class="label">Estimated monthly impact</div>
+                    <div class="value">DKK 5,000 to 8,000</div>
+                </div>
+                <div style="margin-left:auto;display:flex;gap:8px">
+                    <span class="opp-pill effort-low">Low effort</span>
+                    <span class="opp-pill time">Week 2 to 3</span>
+                </div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Evidence</div>
+                <ul class="opp-list">
+                    <li>bulk-thca collection: DKK 44.66 per session but only 70 visits</li>
+                    <li>luksus-slasker: DKK 33.40 per session, 66 visits</li>
+                    <li>thca-weed-bundles: DKK 31.72 per session, 48 visits</li>
+                    <li>Pusher Street OG: DKK 36,894 / month = 20.3% of revenue. Under leveraged hero product</li>
+                </ul>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Actions</div>
+                <ol class="opp-list numbered">
+                    <li><span class="action-tag test">TEST</span>Feature bulk-thca and luksus-slasker on homepage hero rotation</li>
+                    <li><span class="action-tag ship">SHIP</span>Add Best Value or Most Popular badges to high converters in collection grids</li>
+                    <li><span class="action-tag ship">SHIP</span>Cross link from top blog posts to these high converters</li>
+                    <li><span class="action-tag ship">SHIP</span>Email campaign featuring these hidden gems to returning customers</li>
+                    <li><span class="action-tag test">TEST</span>Frequently Bought Together on PDP using actual purchase data</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- OPP 6: TEMPORAL -->
+    <div class="card" data-index="11" style="justify-content:flex-start;padding-top:50px">
+        <div class="card-header">
+            <div class="card-label">Opportunity 06  ·  High Value</div>
+            <div class="card-title">Thursday Peak / Saturday Revival</div>
+        </div>
+        <div class="opp-layout">
+            <div class="opp-impact">
+                <div>
+                    <div class="label">Estimated monthly impact</div>
+                    <div class="value">DKK 3,000 to 6,000</div>
+                </div>
+                <div style="margin-left:auto;display:flex;gap:8px">
+                    <span class="opp-pill effort-low">Low effort</span>
+                    <span class="opp-pill time">Week 1, ongoing</span>
+                </div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Evidence</div>
+                <ul class="opp-list">
+                    <li>Thursday: DKK 38,240 at 9.1% CVR. Natural peak day</li>
+                    <li>Saturday: DKK 10,465 at 3.7% CVR. Dead day</li>
+                    <li>9am to 1pm: 28% of all revenue in 17% of hours (8.0% CVR)</li>
+                </ul>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Actions</div>
+                <ol class="opp-list numbered">
+                    <li><span class="action-tag ship">SHIP</span>Thursday: send promotional email and SMS at 8am to ride the 9.1% CVR wave</li>
+                    <li><span class="action-tag ship">SHIP</span>Saturday: launch weekly Saturday Drop. Limited edition or flash sale</li>
+                    <li><span class="action-tag ship">SHIP</span>Morning golden hour: schedule all social and ads for 9am to 11am</li>
+                    <li><span class="action-tag ship">SHIP</span>Replicate April 30: investigate the 15% CVR / DKK 23K day and systematize it</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- OPP 7: HOMEPAGE NAV -->
+    <div class="card" data-index="12" style="justify-content:flex-start;padding-top:50px">
+        <div class="card-header">
+            <div class="card-label">Opportunity 07  ·  High Value</div>
+            <div class="card-title">Homepage Navigation Optimization</div>
+        </div>
+        <div class="opp-layout">
+            <div class="opp-impact">
+                <div>
+                    <div class="label">Estimated monthly impact</div>
+                    <div class="value">DKK 3,000 to 5,000</div>
+                </div>
+                <div style="margin-left:auto;display:flex;gap:8px">
+                    <span class="opp-pill effort-low">Low / Medium</span>
+                    <span class="opp-pill time">Week 2 to 3</span>
+                </div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Evidence</div>
+                <ul class="opp-list">
+                    <li>47.6% of homepage exits go to collections, 38.8% go to products</li>
+                    <li>thca-lovlig-cannabis captures 21.6% of all next page clicks (3,460 views)</li>
+                    <li>cali-weed and hash-lovlig-hash each get ~6% of clicks</li>
+                    <li>Only 0.6% use search. Nav is doing the work</li>
+                </ul>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Actions</div>
+                <ol class="opp-list numbered">
+                    <li><span class="action-tag test">TEST</span>Make THCA Lovlig Cannabis the most prominent homepage CTA (already #1 destination)</li>
+                    <li><span class="action-tag test">TEST</span>Feature top 3 collections as distinct visual blocks on homepage</li>
+                    <li><span class="action-tag test">TEST</span>Quick shop product cards for Pusher Street OG, Beldia, Skagen Smackdown</li>
+                    <li><span class="action-tag test">TEST</span>Reduce homepage scroll depth. Put key CTAs higher</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- OPP 8: AOV UPSELL -->
+    <div class="card" data-index="13" style="justify-content:flex-start;padding-top:50px">
+        <div class="card-header">
+            <div class="card-label">Opportunity 08  ·  High Value</div>
+            <div class="card-title">25g to 100g AOV Upsell Path</div>
+        </div>
+        <div class="opp-layout">
+            <div class="opp-impact">
+                <div>
+                    <div class="label">Estimated monthly impact</div>
+                    <div class="value">DKK 4,000 to 7,000</div>
+                </div>
+                <div style="margin-left:auto;display:flex;gap:8px">
+                    <span class="opp-pill effort-low">Low effort</span>
+                    <span class="opp-pill time">Week 2</span>
+                </div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Evidence</div>
+                <ul class="opp-list">
+                    <li>THCA Beldia Hash 100G: DKK 393 / unit vs Beldia Hash 25%: DKK 231 / unit</li>
+                    <li>THCA Pusher Street 25G: DKK 235 vs Pusher Street OG 50%: DKK 184</li>
+                    <li>Bulk buyers convert higher (bulk-thca: DKK 44.66 per session)</li>
+                    <li>Current AOV DKK 200. Room to push toward DKK 230+</li>
+                </ul>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Actions</div>
+                <ol class="opp-list numbered">
+                    <li><span class="action-tag ship">SHIP</span>"Save X% with the larger size" callout on every PDP with size variants</li>
+                    <li><span class="action-tag ship">SHIP</span>Per gram price comparison table on PDP</li>
+                    <li><span class="action-tag ship">SHIP</span>Post purchase email: "You bought 25g of Beldia. Here is 20% off the 100g"</li>
+                    <li><span class="action-tag test">TEST</span>Cart page upsell: "Upgrade to 100g and save DKK XX"</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION DIVIDER: OPTIMIZE -->
+    <div class="card section-slide" data-index="14">
+        <div class="section-number">03</div>
+        <div class="section-kicker">Phase 3</div>
+        <div class="section-title">Optimize / Next Sprint</div>
+        <div class="section-sub">Four opportunities, DKK 8,000 to 16,000 per month combined, plus tracking quality fixes. Includes the long term retention play.</div>
+    </div>
+
+    <!-- OPP 9: BLOG PIPELINE -->
+    <div class="card" data-index="15" style="justify-content:flex-start;padding-top:50px">
+        <div class="card-header">
+            <div class="card-label">Opportunity 09  ·  Optimize</div>
+            <div class="card-title">Blog to Revenue Pipeline</div>
+        </div>
+        <div class="opp-layout">
+            <div class="opp-impact">
+                <div>
+                    <div class="label">Estimated monthly impact</div>
+                    <div class="value">DKK 2,000 to 4,000</div>
+                </div>
+                <div style="margin-left:auto;display:flex;gap:8px">
+                    <span class="opp-pill effort-low">Low effort</span>
+                    <span class="opp-pill time">Week 3 to 4</span>
+                </div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Evidence</div>
+                <ul class="opp-list">
+                    <li>937 blog sessions per month, 25.5% avg bounce. Strong engagement</li>
+                    <li>Top revenue blog lovlig-hash-danmark: 96 sessions, DKK 872</li>
+                    <li>City posts (Aalborg, Aarhus, Kobenhavn): 174 sessions, DKK 71 total</li>
+                    <li>Only 30 blog to product pageviews from homepage sessions (0.2%)</li>
+                </ul>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Actions</div>
+                <ol class="opp-list numbered">
+                    <li><span class="action-tag ship">SHIP</span>Inline product cards in every blog post, especially city based posts</li>
+                    <li><span class="action-tag ship">SHIP</span>Collection CTAs at bottom of each post: "Shop THCA Lovlig Cannabis"</li>
+                    <li><span class="action-tag ship">SHIP</span>"Hvad koster 1 gram hash" post (58 sessions): add price comparison table with product links</li>
+                    <li><span class="action-tag ship">SHIP</span>Internal linking strategy: blog to collection to PDP</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- OPP 10: RETENTION -->
+    <div class="card" data-index="16" style="justify-content:flex-start;padding-top:50px">
+        <div class="card-header">
+            <div class="card-label">Opportunity 10  ·  Optimize</div>
+            <div class="card-title">Returning Customer Retention Program</div>
+        </div>
+        <div class="opp-layout">
+            <div class="opp-impact">
+                <div>
+                    <div class="label">Estimated monthly impact (long term)</div>
+                    <div class="value">DKK 5,000 to 10,000</div>
+                </div>
+                <div style="margin-left:auto;display:flex;gap:8px">
+                    <span class="opp-pill effort-high">High effort</span>
+                    <span class="opp-pill time">Month 2 to 3</span>
+                </div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Evidence</div>
+                <ul class="opp-list">
+                    <li>Returning customers: 78.3% of revenue (DKK 142,565)</li>
+                    <li>Returning CVR 8.3% vs New 4.6%</li>
+                    <li>Returning AOV DKK 209 vs New DKK 176</li>
+                    <li>High repeat purchase product catalog (consumables)</li>
+                </ul>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Actions</div>
+                <ol class="opp-list numbered">
+                    <li><span class="action-tag ship">SHIP</span>Reorder reminders (email and SMS 2 to 3 weeks after purchase, by product type)</li>
+                    <li><span class="action-tag ship">SHIP</span>Loyalty points program: points per DKK spent, redeemable for discounts</li>
+                    <li><span class="action-tag ship">SHIP</span>VIP tier for top 10% buyers: early access to new strains, exclusive pricing</li>
+                    <li><span class="action-tag test">TEST</span>Subscription option: auto ship every 2 or 4 weeks (test offer % and frequency)</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- OPP 11: ACCESSORIES -->
+    <div class="card" data-index="17" style="justify-content:flex-start;padding-top:50px">
+        <div class="card-header">
+            <div class="card-label">Opportunity 11  ·  Optimize</div>
+            <div class="card-title">Cross-sell Accessories</div>
+        </div>
+        <div class="opp-layout">
+            <div class="opp-impact">
+                <div>
+                    <div class="label">Estimated monthly impact</div>
+                    <div class="value">DKK 1,000 to 2,000</div>
+                </div>
+                <div style="margin-left:auto;display:flex;gap:8px">
+                    <span class="opp-pill effort-low">Low effort</span>
+                    <span class="opp-pill time">Week 3</span>
+                </div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Evidence</div>
+                <ul class="opp-list">
+                    <li>Dynavap G3: 68 views, 7 ATC, 0 purchases</li>
+                    <li>CCELL Cartridge: 46 views, 0 ATC</li>
+                    <li>Puffco Hot Knife: 41 views, 0 ATC</li>
+                    <li>Accessories collection (/collections/tilbehor): 227 next page views from homepage</li>
+                </ul>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Actions</div>
+                <ol class="opp-list numbered">
+                    <li><span class="action-tag test">TEST</span>Accessory recommendations on cart page: "Complete your setup"</li>
+                    <li><span class="action-tag test">TEST</span>Bundle accessories with first time flower or hash purchases at a discount</li>
+                    <li><span class="action-tag ship">SHIP</span>Do not sell accessories standalone. Position as add-ons with "Add for DKK XX" button</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- OPP 12: TRACKING -->
+    <div class="card" data-index="18" style="justify-content:flex-start;padding-top:50px">
+        <div class="card-header">
+            <div class="card-label">Opportunity 12  ·  Optimize</div>
+            <div class="card-title">Fix (not set) Tracking Gap</div>
+        </div>
+        <div class="opp-layout">
+            <div class="opp-impact">
+                <div>
+                    <div class="label">Estimated monthly impact</div>
+                    <div class="value">Data quality. Enables future optimization</div>
+                </div>
+                <div style="margin-left:auto;display:flex;gap:8px">
+                    <span class="opp-pill effort-low">Low effort</span>
+                    <span class="opp-pill time">Week 2</span>
+                </div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Evidence</div>
+                <ul class="opp-list">
+                    <li>449 sessions with (not set) landing page: 97.6% bounce, DKK 0</li>
+                    <li>1,061 sessions with (not set) new / returning status</li>
+                    <li>Possible causes: consent management, bot traffic, JS loading issues</li>
+                </ul>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Actions</div>
+                <ol class="opp-list numbered">
+                    <li><span class="action-tag ship">SHIP</span>Audit GA4 tag firing order: ensure page_location is set before tag fires</li>
+                    <li><span class="action-tag ship">SHIP</span>Check cookie consent banner: may block GA4 before page resolves</li>
+                    <li><span class="action-tag ship">SHIP</span>Filter known bot user agents in GA4 admin</li>
+                    <li><span class="action-tag ship">SHIP</span>Cross reference with Shopify analytics to identify the gap</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- SHIP vs TEST SPLIT -->
+    <div class="card" data-index="19">
+        <div class="card-header">
+            <div class="card-label">Execution Framework</div>
+            <div class="card-title">Ship Now vs A/B Test</div>
+            <div class="card-subtitle">Half of these opportunities are direct implementations that ship without test gating. The other half change high-traffic UX and should run through an A/B test before full rollout.</div>
+        </div>
+        <div class="split-layout">
+            <div class="split-col ship">
+                <div class="split-head">
+                    <div class="name ship">Ship Now</div>
+                    <div class="meta">6 opportunities</div>
+                </div>
+                <div class="split-desc">Additive content, bug fixes, campaign work, tracking, and merchandising. Low risk, no statistically significant downside. Just deploy.</div>
+                <div class="split-row"><div class="num">03</div><div class="label">Fix broken / dead products</div><div class="impact">3K to 5K</div></div>
+                <div class="split-row"><div class="num">06</div><div class="label">Thursday peak + Saturday revival</div><div class="impact">3K to 6K</div></div>
+                <div class="split-row"><div class="num">08</div><div class="label">AOV upsell callouts (PDP + email)</div><div class="impact">4K to 7K</div></div>
+                <div class="split-row"><div class="num">09</div><div class="label">Blog to revenue pipeline</div><div class="impact">2K to 4K</div></div>
+                <div class="split-row"><div class="num">10</div><div class="label">Retention program rollout</div><div class="impact">5K to 10K</div></div>
+                <div class="split-row"><div class="num">12</div><div class="label">Tracking fixes (not set)</div><div class="impact">Data quality</div></div>
+            </div>
+            <div class="split-col test">
+                <div class="split-head">
+                    <div class="name test">A/B Test First</div>
+                    <div class="meta">6 opportunities</div>
+                </div>
+                <div class="split-desc">High traffic UX changes. Validate the lift in a controlled split before 100% rollout. Avoids false confidence and protects baseline revenue.</div>
+                <div class="split-row"><div class="num">01</div><div class="label">Checkout abandonment (popup + flow)</div><div class="impact">15K to 25K</div></div>
+                <div class="split-row"><div class="num">02</div><div class="label">Mobile PDP layout redesign</div><div class="impact">8K to 15K</div></div>
+                <div class="split-row"><div class="num">04</div><div class="label">Bundle UX overhaul (byobSuite)</div><div class="impact">5K to 10K</div></div>
+                <div class="split-row"><div class="num">05</div><div class="label">Hidden gem homepage rotation</div><div class="impact">5K to 8K</div></div>
+                <div class="split-row"><div class="num">07</div><div class="label">Homepage navigation restructure</div><div class="impact">3K to 5K</div></div>
+                <div class="split-row"><div class="num">11</div><div class="label">Cart cross-sell accessories</div><div class="impact">1K to 2K</div></div>
+            </div>
+        </div>
+        <div class="insight-box"><strong>Rule of thumb:</strong> if it adds something (badge, email, link, fix), ship it. If it replaces or relocates existing UX on a high-traffic page (homepage, PDP, cart, checkout), test it. Test winners ship to 100%, losers roll back without revenue loss.</div>
+    </div>
+
+    <!-- SECTION DIVIDER: TEST PLANS -->
+    <div class="card section-slide" data-index="20">
+        <div class="section-number">04</div>
+        <div class="section-kicker">Detailed Test Plans</div>
+        <div class="section-title">A/B Test Snapshots</div>
+        <div class="section-sub">Six high-value tests with hypothesis, learnings, key metrics, targeting, and Control vs Variant mockups using live nordicweed.dk screenshots.</div>
+    </div>
+
+    <!-- TEST PLAN 01: CHECKOUT EXIT-INTENT POPUP -->
+    <div class="card tp-card" data-index="21">
+        <div class="tp-left">
+            <div class="tp-badge"><span class="e-mark">e</span>Test Plan Snapshot</div>
+            <div class="tp-section">
+                <h3>Hypothesis</h3>
+                <div class="tp-underline"></div>
+                <p>By triggering an exit intent popup at checkout offering a 5% discount or free shipping unlock, we will recover a portion of the 66.6% of begin_checkout sessions that currently abandon, lifting checkout completion rate without eroding margin on non hesitant buyers.</p>
+            </div>
+            <div class="tp-section">
+                <h3>What are we hoping to learn?</h3>
+                <div class="tp-underline"></div>
+                <ul>
+                    <li>Which incentive recovers more carts: 5% discount vs free shipping unlock?</li>
+                    <li>Does the popup cannibalize buyers who would have completed anyway?</li>
+                    <li>Mobile vs desktop recovery difference?</li>
+                </ul>
+            </div>
+            <div class="tp-section">
+                <h3>Key Metrics</h3>
+                <div class="tp-underline"></div>
+                <ol>
+                    <li class="primary">Checkout Completion Rate</li>
+                    <li>Revenue per Session</li>
+                    <li>Average Order Value</li>
+                </ol>
+            </div>
+            <div class="tp-target-box">
+                <div class="tp-target-grid">
+                    <div><div class="label">Duration</div><div class="value">3 weeks</div></div>
+                    <div><div class="label">User Targeting</div><div class="value">Checkout exit intent</div></div>
+                    <div><div class="label">Sample Size</div><div class="value">~6,000 sessions</div></div>
+                    <div><div class="label">URL Targeting</div><div class="value">/checkout</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="tp-right">
+            <div class="tp-title">NW-01-CO-Exit-Intent-Popup</div>
+            <div class="tp-meta-bar">
+                <span class="lbl">Test Number:</span><span class="val">NW-01</span>
+                <span class="lbl">Date:</span><span class="val">TBD</span>
+                <span class="tp-pill-ab">A/B Test</span>
+            </div>
+            <div class="tp-mockups">
+                <div class="tp-mockup">
+                    <div class="tp-phone"><div class="tp-screen"><img src="screenshots/04-cart-mobile.png" class="shot"></div></div>
+                    <div class="tp-mockup-label">CONTROL</div>
+                </div>
+                <div class="tp-mockup">
+                    <div class="tp-phone"><div class="tp-screen">
+                        <img src="screenshots/04-cart-mobile.png" class="shot">
+                        <div class="tp-popup-bg">
+                            <div class="tp-popup">
+                                <span class="close">×</span>
+                                <div class="badge-mini">VENT!</div>
+                                <h3>Få 5% rabat på din ordre</h3>
+                                <p>Eller fri fragt under 399,-. Brug koden ved kassen.</p>
+                                <div class="code">FORST5</div>
+                                <br>
+                                <div class="pop-cta">Brug rabatten</div>
+                            </div>
+                        </div>
+                        <span class="tp-annotation" style="top:140px;right:14px">NEW</span>
+                    </div></div>
+                    <div class="tp-mockup-label variant">VARIANT 1</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TEST PLAN 02: MOBILE PDP STICKY ATC -->
+    <div class="card tp-card" data-index="22">
+        <div class="tp-left">
+            <div class="tp-badge"><span class="e-mark">e</span>Test Plan Snapshot</div>
+            <div class="tp-section">
+                <h3>Hypothesis</h3>
+                <div class="tp-underline"></div>
+                <p>By moving the product title and price above the image on mobile PDPs and adding a sticky ATC bar at the bottom of the viewport, we will close part of the 55% relative ATC gap between mobile (19.4%) and desktop (30%), since price and CTA stay visible while users browse.</p>
+            </div>
+            <div class="tp-section">
+                <h3>What are we hoping to learn?</h3>
+                <div class="tp-underline"></div>
+                <ul>
+                    <li>Does a sticky ATC bar lift mobile ATC rate without hurting AOV?</li>
+                    <li>Is the lift concentrated on hero products like Pusher Street OG and Skagen Smackdown?</li>
+                    <li>Does moving price above gallery improve scroll depth?</li>
+                </ul>
+            </div>
+            <div class="tp-section">
+                <h3>Key Metrics</h3>
+                <div class="tp-underline"></div>
+                <ol>
+                    <li class="primary">Mobile ATC Rate</li>
+                    <li>Mobile Conversion Rate</li>
+                    <li>Average Order Value</li>
+                </ol>
+            </div>
+            <div class="tp-target-box">
+                <div class="tp-target-grid">
+                    <div><div class="label">Duration</div><div class="value">3 weeks</div></div>
+                    <div><div class="label">User Targeting</div><div class="value">Mobile only</div></div>
+                    <div><div class="label">Sample Size</div><div class="value">~11,000 sessions</div></div>
+                    <div><div class="label">URL Targeting</div><div class="value">/products/*</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="tp-right">
+            <div class="tp-title">NW-02-PDP-Mobile-Sticky-ATC</div>
+            <div class="tp-meta-bar">
+                <span class="lbl">Test Number:</span><span class="val">NW-02</span>
+                <span class="lbl">Date:</span><span class="val">TBD</span>
+                <span class="tp-pill-ab">A/B Test</span>
+            </div>
+            <div class="tp-mockups">
+                <div class="tp-mockup">
+                    <div class="tp-phone"><div class="tp-screen"><img src="screenshots/02-pdp-mobile.png" class="shot"></div></div>
+                    <div class="tp-mockup-label">CONTROL</div>
+                </div>
+                <div class="tp-mockup">
+                    <div class="tp-phone"><div class="tp-screen">
+                        <img src="screenshots/02-pdp-mobile.png" class="shot">
+                        <div class="tp-abovefold">
+                            <div>
+                                <div class="name">Pusher Street OG - 50% THCA</div>
+                                <div class="price-row">
+                                    <span class="price">810,00 kr</span>
+                                    <span class="old">910,00 kr</span>
+                                    <span class="savings">SPAR 11%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="tp-annotation" style="top:64px;right:14px">ABOVE FOLD</span>
+                        <div class="tp-sticky-bar">
+                            <div><span class="price">810,00 kr</span><span class="price-old">910,00</span></div>
+                            <div class="btn">Føj til kurv</div>
+                        </div>
+                        <span class="tp-annotation" style="bottom:40px;left:14px">STICKY</span>
+                    </div></div>
+                    <div class="tp-mockup-label variant">VARIANT 1</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TEST PLAN 03: BUNDLE UX -->
+    <div class="card tp-card" data-index="23">
+        <div class="tp-left">
+            <div class="tp-badge"><span class="e-mark">e</span>Test Plan Snapshot</div>
+            <div class="tp-section">
+                <h3>Hypothesis</h3>
+                <div class="tp-underline"></div>
+                <p>By replacing the Bland Selv configurator with 3 pre curated bundles (Bestsellers, Hash Favoritter, Indica Aften) and demoting the build your own flow to a secondary link, we will reduce decision fatigue and lift the byobSuite purchase rate from 3.3% toward the 20% store average.</p>
+            </div>
+            <div class="tp-section">
+                <h3>What are we hoping to learn?</h3>
+                <div class="tp-underline"></div>
+                <ul>
+                    <li>Do users prefer curated bundles over building their own?</li>
+                    <li>Does the curated path lift PTV without dropping bundle AOV?</li>
+                    <li>Which curated theme wins: Bestsellers, Hash Favoritter, or Indica Aften?</li>
+                </ul>
+            </div>
+            <div class="tp-section">
+                <h3>Key Metrics</h3>
+                <div class="tp-underline"></div>
+                <ol>
+                    <li class="primary">Bundle Purchase Rate (PTV)</li>
+                    <li>Average Order Value</li>
+                    <li>Revenue per byobSuite session</li>
+                </ol>
+            </div>
+            <div class="tp-target-box">
+                <div class="tp-target-grid">
+                    <div><div class="label">Duration</div><div class="value">4 weeks</div></div>
+                    <div><div class="label">User Targeting</div><div class="value">byobSuite visitors</div></div>
+                    <div><div class="label">Sample Size</div><div class="value">~1,050 sessions</div></div>
+                    <div><div class="label">URL Targeting</div><div class="value">/products/bland-selv-*</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="tp-right">
+            <div class="tp-title">NW-03-BUN-Curated-Bundles</div>
+            <div class="tp-meta-bar">
+                <span class="lbl">Test Number:</span><span class="val">NW-03</span>
+                <span class="lbl">Date:</span><span class="val">TBD</span>
+                <span class="tp-pill-ab">A/B Test</span>
+            </div>
+            <div class="tp-mockups">
+                <div class="tp-mockup">
+                    <div class="tp-phone"><div class="tp-screen"><img src="screenshots/03-bundle-config-mobile.png" class="shot"></div></div>
+                    <div class="tp-mockup-label">CONTROL</div>
+                </div>
+                <div class="tp-mockup">
+                    <div class="tp-phone"><div class="tp-screen">
+                        <img src="screenshots/03-bundle-config-mobile.png" class="shot">
+                        <div class="tp-bundle-overlay">
+                            <div class="head">
+                                <div class="logo">NORDIC WEED</div>
+                            </div>
+                            <h2>Klargjorte Bundles</h2>
+                            <div class="sub">Vores top bundles, klar til levering</div>
+                            <div class="tp-bundle-card featured">
+                                <div class="thumb"><svg width="16" height="16" viewBox="0 0 24 24" stroke="#00BF69" class="icon-mini"><path d="M12 22V12m0 0a8 8 0 0 0-8-8 8 8 0 0 0 8 8zm0 0a8 8 0 0 1 8-8 8 8 0 0 1-8 8z"/></svg></div>
+                                <div class="body">
+                                    <span class="tag">BESTSELLER</span>
+                                    <div class="name">Bestsellers 50g</div>
+                                    <div class="meta">3 strains  ·  Spar 18%</div>
+                                </div>
+                                <div class="price">695 kr</div>
+                            </div>
+                            <div class="tp-bundle-card">
+                                <div class="thumb"><svg width="16" height="16" viewBox="0 0 24 24" stroke="#00BF69" class="icon-mini"><rect x="5" y="5" width="14" height="14" rx="2"/><path d="M5 12h14M12 5v14"/></svg></div>
+                                <div class="body">
+                                    <span class="tag" style="background:#1F4A2E;color:#A9F00F">HASH</span>
+                                    <div class="name">Hash Favoritter 100g</div>
+                                    <div class="meta">4 hash  ·  Spar 22%</div>
+                                </div>
+                                <div class="price">990 kr</div>
+                            </div>
+                            <div class="tp-bundle-card">
+                                <div class="thumb"><svg width="16" height="16" viewBox="0 0 24 24" stroke="#00BF69" class="icon-mini"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg></div>
+                                <div class="body">
+                                    <span class="tag" style="background:#1F4A2E;color:#A9F00F">INDICA</span>
+                                    <div class="name">Indica Aften 50g</div>
+                                    <div class="meta">3 strains  ·  Spar 15%</div>
+                                </div>
+                                <div class="price">595 kr</div>
+                            </div>
+                            <div class="alt-link">Eller <strong>byg din egen bundle</strong></div>
+                        </div>
+                        <span class="tp-annotation" style="top:48px;right:14px">NEW UX</span>
+                    </div></div>
+                    <div class="tp-mockup-label variant">VARIANT 1</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TEST PLAN 04: HOMEPAGE HERO ROTATION -->
+    <div class="card tp-card" data-index="24">
+        <div class="tp-left">
+            <div class="tp-badge"><span class="e-mark">e</span>Test Plan Snapshot</div>
+            <div class="tp-section">
+                <h3>Hypothesis</h3>
+                <div class="tp-underline"></div>
+                <p>By introducing a rotating homepage hero featuring bulk-thca and luksus-slasker (currently DKK 44 and 33 per session but only 70 and 66 visits respectively), we will drive more sessions toward under trafficked high converting collections without diluting the hero product.</p>
+            </div>
+            <div class="tp-section">
+                <h3>What are we hoping to learn?</h3>
+                <div class="tp-underline"></div>
+                <ul>
+                    <li>Does the rotating hero increase clicks on bulk-thca and luksus-slasker?</li>
+                    <li>Does it cannibalize Pusher Street OG views or grow total revenue?</li>
+                    <li>Which rotation interval works best: 5s, 8s, or manual swipe only?</li>
+                </ul>
+            </div>
+            <div class="tp-section">
+                <h3>Key Metrics</h3>
+                <div class="tp-underline"></div>
+                <ol>
+                    <li class="primary">Homepage to Collection Click Rate</li>
+                    <li>Revenue per Session (sitewide)</li>
+                    <li>bulk-thca + luksus-slasker session count</li>
+                </ol>
+            </div>
+            <div class="tp-target-box">
+                <div class="tp-target-grid">
+                    <div><div class="label">Duration</div><div class="value">3 weeks</div></div>
+                    <div><div class="label">User Targeting</div><div class="value">All users (homepage)</div></div>
+                    <div><div class="label">Sample Size</div><div class="value">~5,500 sessions</div></div>
+                    <div><div class="label">URL Targeting</div><div class="value">/ (homepage)</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="tp-right">
+            <div class="tp-title">NW-04-HP-Hero-Rotation</div>
+            <div class="tp-meta-bar">
+                <span class="lbl">Test Number:</span><span class="val">NW-04</span>
+                <span class="lbl">Date:</span><span class="val">TBD</span>
+                <span class="tp-pill-ab">A/B Test</span>
+            </div>
+            <div class="tp-mockups">
+                <div class="tp-mockup">
+                    <div class="tp-phone"><div class="tp-screen"><img src="screenshots/06-home-viewport.png" class="shot"></div></div>
+                    <div class="tp-mockup-label">CONTROL</div>
+                </div>
+                <div class="tp-mockup">
+                    <div class="tp-phone"><div class="tp-screen">
+                        <img src="screenshots/06-home-viewport.png" class="shot">
+                        <div class="tp-hero-rotation">
+                            <div class="kicker">LUKSUS SLASKER</div>
+                            <h2>Premium Selektion<br>DKK 33 / session</h2>
+                            <div class="cta">Shop luksus</div>
+                            <div class="dots"><div></div><div class="active"></div><div></div></div>
+                        </div>
+                        <span class="tp-annotation" style="top:70px;right:14px">ROTATES</span>
+                    </div></div>
+                    <div class="tp-mockup-label variant">VARIANT 1</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TEST PLAN 05: HOMEPAGE NAVIGATION -->
+    <div class="card tp-card" data-index="25">
+        <div class="tp-left">
+            <div class="tp-badge"><span class="e-mark">e</span>Test Plan Snapshot</div>
+            <div class="tp-section">
+                <h3>Hypothesis</h3>
+                <div class="tp-underline"></div>
+                <p>By replacing the text heavy homepage with 3 prominent collection blocks (THCA Lovlig, Hash Lovlig, Cali Weed) and a hero block for the #1 destination (currently 21.6% of all next page clicks), we will reduce time to first click and lift homepage to PDP conversion rate.</p>
+            </div>
+            <div class="tp-section">
+                <h3>What are we hoping to learn?</h3>
+                <div class="tp-underline"></div>
+                <ul>
+                    <li>Do visual collection blocks outperform text nav for product discovery?</li>
+                    <li>Does the hero THCA block cannibalize other collections?</li>
+                    <li>Mobile bounce rate change (currently 79% of traffic)?</li>
+                </ul>
+            </div>
+            <div class="tp-section">
+                <h3>Key Metrics</h3>
+                <div class="tp-underline"></div>
+                <ol>
+                    <li class="primary">Homepage to PDP Click Rate</li>
+                    <li>Time to First Click</li>
+                    <li>Mobile Bounce Rate</li>
+                </ol>
+            </div>
+            <div class="tp-target-box">
+                <div class="tp-target-grid">
+                    <div><div class="label">Duration</div><div class="value">3 weeks</div></div>
+                    <div><div class="label">User Targeting</div><div class="value">All users</div></div>
+                    <div><div class="label">Sample Size</div><div class="value">~5,500 sessions</div></div>
+                    <div><div class="label">URL Targeting</div><div class="value">/ (homepage)</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="tp-right">
+            <div class="tp-title">NW-05-HP-Nav-Restructure</div>
+            <div class="tp-meta-bar">
+                <span class="lbl">Test Number:</span><span class="val">NW-05</span>
+                <span class="lbl">Date:</span><span class="val">TBD</span>
+                <span class="tp-pill-ab">A/B Test</span>
+            </div>
+            <div class="tp-mockups">
+                <div class="tp-mockup">
+                    <div class="tp-phone"><div class="tp-screen"><img src="screenshots/06-home-viewport.png" class="shot"></div></div>
+                    <div class="tp-mockup-label">CONTROL</div>
+                </div>
+                <div class="tp-mockup">
+                    <div class="tp-phone"><div class="tp-screen">
+                        <img src="screenshots/06-home-viewport.png" class="shot">
+                        <div class="tp-nav-blocks">
+                            <div class="row">
+                                <div class="block hero">
+                                    <span class="tag">#1 DESTINATION</span>
+                                    <div class="name">THCA Lovlig<br>Cannabis</div>
+                                    <span class="count">3,460 visits</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="block">
+                                    <span class="tag">HASH</span>
+                                    <div class="name">Lovlig Hash</div>
+                                    <span class="count">6% clicks</span>
+                                </div>
+                                <div class="block">
+                                    <span class="tag">CALI</span>
+                                    <div class="name">Cali Weed</div>
+                                    <span class="count">6% clicks</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="tp-annotation" style="top:104px;right:14px">RESTRUCTURED</span>
+                    </div></div>
+                    <div class="tp-mockup-label variant">VARIANT 1</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TEST PLAN 06: CART CROSS-SELL -->
+    <div class="card tp-card" data-index="26">
+        <div class="tp-left">
+            <div class="tp-badge"><span class="e-mark">e</span>Test Plan Snapshot</div>
+            <div class="tp-section">
+                <h3>Hypothesis</h3>
+                <div class="tp-underline"></div>
+                <p>By adding a "Komplet dit setup" cross sell module on the cart page showing accessory recommendations (Dynavap, Clipper, Smelobox) for users with flower or hash in their cart, we will lift AOV without changing the primary purchase flow or hurting checkout completion.</p>
+            </div>
+            <div class="tp-section">
+                <h3>What are we hoping to learn?</h3>
+                <div class="tp-underline"></div>
+                <ul>
+                    <li>Do accessory recommendations get added in meaningful numbers?</li>
+                    <li>Which add ons convert best: pipes, lighters, or storage?</li>
+                    <li>Does the module slow or speed up cart to checkout completion?</li>
+                </ul>
+            </div>
+            <div class="tp-section">
+                <h3>Key Metrics</h3>
+                <div class="tp-underline"></div>
+                <ol>
+                    <li class="primary">Average Order Value</li>
+                    <li>Items per Order</li>
+                    <li>Cart to Checkout Completion Rate</li>
+                </ol>
+            </div>
+            <div class="tp-target-box">
+                <div class="tp-target-grid">
+                    <div><div class="label">Duration</div><div class="value">3 weeks</div></div>
+                    <div><div class="label">User Targeting</div><div class="value">Flower / hash in cart</div></div>
+                    <div><div class="label">Sample Size</div><div class="value">~3,000 sessions</div></div>
+                    <div><div class="label">URL Targeting</div><div class="value">/cart</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="tp-right">
+            <div class="tp-title">NW-06-CART-Cross-Sell</div>
+            <div class="tp-meta-bar">
+                <span class="lbl">Test Number:</span><span class="val">NW-06</span>
+                <span class="lbl">Date:</span><span class="val">TBD</span>
+                <span class="tp-pill-ab">A/B Test</span>
+            </div>
+            <div class="tp-mockups">
+                <div class="tp-mockup">
+                    <div class="tp-phone"><div class="tp-screen"><img src="screenshots/04-cart-mobile.png" class="shot"></div></div>
+                    <div class="tp-mockup-label">CONTROL</div>
+                </div>
+                <div class="tp-mockup">
+                    <div class="tp-phone"><div class="tp-screen">
+                        <img src="screenshots/04-cart-mobile.png" class="shot">
+                        <div class="tp-crosssell">
+                            <div class="title">+ Komplet dit setup</div>
+                            <div class="items">
+                                <div class="item"><div class="img"><svg width="14" height="14" viewBox="0 0 24 24" stroke="#00BF69" class="icon-mini"><path d="M12 2c2 4 4 6 4 10a4 4 0 0 1-8 0c0-2 1-3 2-4 0 2 1 3 2 3-1-3 0-6 0-9z"/></svg></div><div class="nm">Dynavap G3</div><div class="add">+ 449 kr</div></div>
+                                <div class="item"><div class="img"><svg width="14" height="14" viewBox="0 0 24 24" stroke="#00BF69" class="icon-mini"><rect x="8" y="6" width="8" height="14" rx="2"/><path d="M10 6V4h4v2"/></svg></div><div class="nm">Clipper</div><div class="add">+ 25 kr</div></div>
+                                <div class="item"><div class="img"><svg width="14" height="14" viewBox="0 0 24 24" stroke="#00BF69" class="icon-mini"><path d="M3 7l9-4 9 4v10l-9 4-9-4V7z"/><path d="M3 7l9 4 9-4M12 11v10"/></svg></div><div class="nm">Smelobox</div><div class="add">+ 89 kr</div></div>
+                            </div>
+                        </div>
+                        <span class="tp-annotation" style="top:258px;right:14px">CROSS-SELL</span>
+                    </div></div>
+                    <div class="tp-mockup-label variant">VARIANT 1</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ROADMAP -->
+    <div class="card" data-index="27">
+        <div class="card-header">
+            <div class="card-label">Execution</div>
+            <div class="card-title">90 Day Roadmap</div>
+            <div class="card-subtitle">Three phases. Compounding revenue impact across the quarter.</div>
+        </div>
+        <div class="phase-grid">
+            <div class="phase-card p1">
+                <div class="phase-tag">// Phase 1</div>
+                <div class="phase-name">Quick Wins</div>
+                <div class="phase-when">Week 1 to 2</div>
+                <div class="phase-impact"><div class="lbl">Expected impact</div><div class="val">DKK 8,000 to 12,000 / mo</div></div>
+                <ul class="phase-list">
+                    <li>Fix Deep Chunk + La Piattella product pages</li>
+                    <li>Exit intent popup at checkout</li>
+                    <li>Sticky ATC button on mobile PDP</li>
+                    <li>Thursday AM email campaign</li>
+                    <li>Feature bulk-thca + luksus-slasker on homepage</li>
+                    <li>Trust badges at checkout</li>
+                    <li>Fix GA4 tracking gaps</li>
+                </ul>
+            </div>
+            <div class="phase-card p2">
+                <div class="phase-tag">// Phase 2</div>
+                <div class="phase-name">Core Optimizations</div>
+                <div class="phase-when">Week 3 to 6</div>
+                <div class="phase-impact"><div class="lbl">Expected impact</div><div class="val">DKK 20,000 to 35,000 / mo</div></div>
+                <ul class="phase-list">
+                    <li>Mobile PDP redesign</li>
+                    <li>Bundle UX overhaul</li>
+                    <li>Homepage nav restructure</li>
+                    <li>25g to 100g upsell</li>
+                    <li>Blog product CTAs</li>
+                    <li>Saturday flash sale program</li>
+                    <li>Abandoned cart email sequence</li>
+                    <li>Cart cross-sell module</li>
+                </ul>
+            </div>
+            <div class="phase-card p3">
+                <div class="phase-tag">// Phase 3</div>
+                <div class="phase-name">Growth Systems</div>
+                <div class="phase-when">Week 7 to 12</div>
+                <div class="phase-impact"><div class="lbl">Expected impact</div><div class="val">DKK 15,000 to 25,000 / mo</div></div>
+                <ul class="phase-list">
+                    <li>Loyalty / rewards program</li>
+                    <li>Subscription model</li>
+                    <li>Full catalog audit (73 zero purchase SKUs)</li>
+                    <li>Reorder reminder automation</li>
+                    <li>VIP customer tier</li>
+                    <li>Checkout A/B test variants</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCORECARD -->
+    <div class="card" data-index="28">
+        <div class="card-header">
+            <div class="card-label">Summary</div>
+            <div class="card-title">Opportunity Scorecard</div>
+            <div class="card-subtitle">All 12 opportunities sized, prioritized, and tagged by effort and phase.</div>
+        </div>
+        <table class="data-table" style="max-width:980px">
+            <tr><th style="width:30px">#</th><th>Opportunity</th><th class="num">Monthly DKK</th><th>Effort</th><th>Phase</th></tr>
+            <tr><td class="accent">01</td><td>Checkout abandonment recovery</td><td class="num">15,000 to 25,000</td><td class="warn">Medium</td><td>1 + 2</td></tr>
+            <tr><td class="accent">02</td><td>Mobile PDP conversion gap</td><td class="num">8,000 to 15,000</td><td class="warn">Medium</td><td>1 + 2</td></tr>
+            <tr><td class="accent">03</td><td>Fix broken products</td><td class="num">3,000 to 5,000</td><td class="good">Low</td><td>1</td></tr>
+            <tr><td class="accent">04</td><td>Bundle UX overhaul</td><td class="num">5,000 to 10,000</td><td class="warn">Medium</td><td>2</td></tr>
+            <tr><td class="accent">05</td><td>Promote hidden gems</td><td class="num">5,000 to 8,000</td><td class="good">Low</td><td>1 + 2</td></tr>
+            <tr><td class="accent">06</td><td>Temporal optimization</td><td class="num">3,000 to 6,000</td><td class="good">Low</td><td>1</td></tr>
+            <tr><td class="accent">07</td><td>Homepage nav optimization</td><td class="num">3,000 to 5,000</td><td class="good">Low / Med</td><td>2</td></tr>
+            <tr><td class="accent">08</td><td>AOV upsell path (25g to 100g)</td><td class="num">4,000 to 7,000</td><td class="good">Low</td><td>2</td></tr>
+            <tr><td class="accent">09</td><td>Blog to revenue pipeline</td><td class="num">2,000 to 4,000</td><td class="good">Low</td><td>2</td></tr>
+            <tr><td class="accent">10</td><td>Retention program</td><td class="num">5,000 to 10,000</td><td class="danger">High</td><td>3</td></tr>
+            <tr><td class="accent">11</td><td>Cross-sell accessories</td><td class="num">1,000 to 2,000</td><td class="good">Low</td><td>2</td></tr>
+            <tr><td class="accent">12</td><td>Tracking fixes</td><td class="num" style="color:#9ab3a3">Data quality</td><td class="good">Low</td><td>1</td></tr>
+        </table>
+        <div class="scorecard-total">
+            <div class="lbl">Total addressable uplift</div>
+            <div class="val">DKK 45,000 to 75,000 per month  ·  +25% to +41%</div>
+        </div>
+    </div>
+
+    <!-- THANK YOU -->
+    <div class="card thankyou-slide" data-index="29">
+        <div class="title-slide" style="min-width:auto;height:auto;padding:0;background:transparent">
+            <div class="title-brand" style="margin-bottom:30px">nordicweed.dk</div>
+            <div class="ty-title">Ship Phase 1 This Week</div>
+            <div class="ty-sub">Phase 1 actions are Low effort. Days, not sprints.</div>
+            <div class="ty-sub" style="color:#A9F00F;margin-top:14px">Expected impact within 2 weeks: DKK 8,000 to 12,000 / month</div>
+            <div class="ty-powered">Powered by: GA4 (property 428967101)  ·  Shopify Analytics  ·  EcomHouse CRO Team</div>
+        </div>
+    </div>
+
+</div>
+
+    <!-- SECTION DIVIDER: HOW WE WORK -->
+    <div class="card section-slide" data-index="30">
+        <div class="section-number">05</div>
+        <div class="section-kicker">EcomHouse Method</div>
+        <div class="section-title">How We Work, Test, and Charge</div>
+        <div class="section-sub">A zero-row CRO service: research, copy, design, build, QA, deploy, test, analyze, report. End to end, performance-priced.</div>
+    </div>
+
+    <!-- METHODOLOGY 1: THE 6-STEP CRO METHOD -->
+    <div class="card" data-index="31">
+        <div class="card-header">
+            <div class="card-label">The EcomHouse CRO Method</div>
+            <div class="card-title">Six Steps, End to End</div>
+            <div class="card-subtitle">You approve. We execute. Every step is owned by us, including build, QA, and rollout. The client's only required action is written approval at brief and rollout stages.</div>
+        </div>
+        <div class="method-flow">
+            <div class="method-step">
+                <div class="num">// 01</div>
+                <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                <h4>Research</h4>
+                <p>GA4, Shopify, heatmaps, recordings, reviews, support tickets.</p>
+            </div>
+            <div class="method-step">
+                <div class="num">// 02</div>
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a7 7 0 0 0-4 12.5V17h8v-1.5A7 7 0 0 0 12 3z"/></svg>
+                <h4>Ideate</h4>
+                <p>Hypothesis, variant concepts, copy, Figma prototype.</p>
+            </div>
+            <div class="method-step">
+                <div class="num">// 03</div>
+                <svg class="icon-svg" viewBox="0 0 24 24"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1M9 11h6M9 15h4"/></svg>
+                <h4>Pre-Test Brief</h4>
+                <p>Written brief with metric, confidence, sample size, multiplier.</p>
+            </div>
+            <div class="method-step">
+                <div class="num">// 04</div>
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.5-.5-.5-2.5z"/></svg>
+                <h4>Build & QA</h4>
+                <p>Shopify or test tool variant, tracked, QA'd across devices.</p>
+            </div>
+            <div class="method-step">
+                <div class="num">// 05</div>
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M14 7h7v7"/></svg>
+                <h4>Run & Monitor</h4>
+                <p>Live test with guardrail watch, weekly progress updates.</p>
+            </div>
+            <div class="method-step">
+                <div class="num">// 06</div>
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2a14 14 0 0 1 5 9c0 1-3 5-9 5l-4-4c0-6 5-9 5-9z"/><circle cx="12" cy="9" r="1.8"/><path d="M5 19c-1 0-3 0-3 3 0-1 1-3 3-3z"/></svg>
+                <h4>Analyze & Roll Out</h4>
+                <p>Written verdict, fee invoiced on rollout to 100% of traffic.</p>
+            </div>
+        </div>
+        <div class="insight-box"><strong>Zero-row service:</strong> the client is not expected to do production work. We handle everything from research through analysis. The client approves the pre-test brief and the rollout decision.</div>
+    </div>
+
+    <!-- METHODOLOGY 2: PRE-TEST BRIEF -->
+    <div class="card" data-index="32">
+        <div class="card-header">
+            <div class="card-label">Pre-Test Analysis</div>
+            <div class="card-title">Every Test Launches with a Written Brief</div>
+            <div class="card-subtitle">No test starts without a documented, approved brief. This protects both sides: the client knows the rules, the agency knows the success criteria.</div>
+        </div>
+        <div class="brief-grid">
+            <div class="brief-col test-setup">
+                <h3><span class="tag">// PART 1</span>Test Setup</h3>
+                <ul class="brief-list">
+                    <li><strong>Hypothesis</strong> and the Control vs Variant difference</li>
+                    <li><strong>Audience</strong> and traffic filters (mobile only, returning, country, etc.)</li>
+                    <li><strong>Funnel stage</strong> being tested and the corresponding stage multiplier</li>
+                    <li><strong>URL targeting</strong> (homepage, PDP, cart, checkout)</li>
+                    <li><strong>Frozen baselines</strong> for upper-funnel tests, pulled from the trailing 30 days</li>
+                </ul>
+            </div>
+            <div class="brief-col stat-params">
+                <h3><span class="tag">// PART 2</span>Statistical Parameters</h3>
+                <ul class="brief-list">
+                    <li><strong>Primary metric</strong> RPV when measurable, otherwise the relevant funnel-stage metric</li>
+                    <li><strong>Statistical confidence</strong> 80% by default, higher on request</li>
+                    <li><strong>Minimum visitor / order count</strong> required before conclusion</li>
+                    <li><strong>Worked fee range</strong> (+5%, +10%, +15% scenarios) so you know the maximum fee before saying yes</li>
+                    <li><strong>Data sources</strong> for every input figure, named explicitly</li>
+                </ul>
+            </div>
+        </div>
+        <div class="insight-box"><strong>The test does not launch until the client approves the brief in writing.</strong> Approved conditions govern the test and the fee.</div>
+    </div>
+
+    <!-- METHODOLOGY 3: A/B TESTING PROTOCOL -->
+    <div class="card" data-index="33">
+        <div class="card-header">
+            <div class="card-label">Testing Protocol</div>
+            <div class="card-title">How We Run Tests</div>
+            <div class="card-subtitle">Strict guardrails on tooling, statistical rigor, and conclusion. Tests only conclude when all approved conditions are met.</div>
+        </div>
+        <div class="protocol-grid">
+            <div class="protocol-card">
+                <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+                <div class="lbl">Default Tool</div>
+                <div class="val">IntelliGEMS</div>
+                <div class="sub">Or any other test tool you prefer (Convert, GrowthBook, Shopify-native), subject to written approval.</div>
+            </div>
+            <div class="protocol-card">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 21h18M7 21V13M12 21V7M17 21V11"/></svg>
+                <div class="lbl">Confidence</div>
+                <div class="val">80% minimum</div>
+                <div class="sub">Statistical confidence threshold for declaring a winner. Higher thresholds set per test if you require it.</div>
+            </div>
+            <div class="protocol-card">
+                <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg>
+                <div class="lbl">Conclusion</div>
+                <div class="val">All conditions met</div>
+                <div class="sub">Tests only conclude when minimum visitors, orders, and confidence are reached. No early calls except for technical issues or clear-loser revenue protection.</div>
+            </div>
+            <div class="protocol-card">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M5 12a8 8 0 0 1 14 0M8 15a4 4 0 0 1 8 0"/><circle cx="12" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg>
+                <div class="lbl">Reporting</div>
+                <div class="val">Weekly Loom</div>
+                <div class="sub">Loom or written summary every week, plus a running test log with all hypotheses, results, and rollouts you can access anytime.</div>
+            </div>
+        </div>
+        <div class="insight-box"><strong>You have direct access to the testing software at all times.</strong> Live results, traffic splits, and historical tests visible to your team without going through us.</div>
+    </div>
+
+    <!-- METHODOLOGY 4: PERFORMANCE PRICING -->
+    <div class="card" data-index="34">
+        <div class="card-header">
+            <div class="card-label">Compensation</div>
+            <div class="card-title">We Win When You Win</div>
+            <div class="card-subtitle">Performance-based fee on every winning test rolled out to 100% of traffic. One-time charge per test. No attribution window. No recurring tail.</div>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card lead">
+                <div class="tag">// PERFORMANCE FEE</div>
+                <h3>% of estimated monthly revenue uplift</h3>
+                <div class="price-line">Y%</div>
+                <div class="desc">Charged once per winning test on rollout. Calculated from the test's measured uplift and the client's own data, with the agreed stage multiplier applied. Full methodology in Schedule A.</div>
+                <ul>
+                    <li>One time fee per winning test</li>
+                    <li>No recurring tail, no attribution window</li>
+                    <li>Loser and inconclusive tests are free</li>
+                </ul>
+            </div>
+            <div class="pricing-card">
+                <div class="tag">// OPTIONAL RETAINER</div>
+                <h3>Fixed monthly fee</h3>
+                <div class="price-line">$X / month</div>
+                <div class="desc">Optional. Predictable monthly cost on top of (or instead of) the performance fee. Some clients prefer this for budgeting.</div>
+                <ul>
+                    <li>Billed on the 1st, in advance</li>
+                    <li>Void if not agreed</li>
+                    <li>Stackable with the performance fee</li>
+                </ul>
+            </div>
+        </div>
+        <div class="insight-box"><strong>Billing:</strong> one invoice on the 1st of each month covering the retainer (if any) plus the performance fee for every winning test rolled out the previous month. 8 day payment terms. Third-party costs (test tools, apps) paid by the client.</div>
+    </div>
+
+    <!-- METHODOLOGY 5: STAGE MULTIPLIERS -->
+    <div class="card" data-index="35">
+        <div class="card-header">
+            <div class="card-label">Schedule A  ·  Stage Multipliers</div>
+            <div class="card-title">Tests Further from Purchase Carry More Projection Risk</div>
+            <div class="card-subtitle">The stage multiplier discounts the performance fee for upper-funnel tests where revenue impact is estimated rather than directly measured. Approved in the pre-test brief, before the test runs.</div>
+        </div>
+        <div class="multiplier-stack">
+            <div class="mult-row">
+                <div class="mult-pct p100">100%</div>
+                <div class="body">
+                    <div class="stages">RPV  ·  AOV  ·  Purchase CVR  ·  Checkout CVR  ·  Post-purchase</div>
+                    <div class="why">Revenue measured directly by the testing software. No projection needed.</div>
+                </div>
+                <div class="mult-bar"><div class="fill p100"></div></div>
+            </div>
+            <div class="mult-row">
+                <div class="mult-pct p75">75%</div>
+                <div class="body">
+                    <div class="stages">Cart to checkout  ·  PDP add to cart</div>
+                    <div class="why">One step from purchase. Light projection of downstream behavior.</div>
+                </div>
+                <div class="mult-bar"><div class="fill p75"></div></div>
+            </div>
+            <div class="mult-row">
+                <div class="mult-pct p50">50%</div>
+                <div class="body">
+                    <div class="stages">Collection to PDP  ·  PDP engagement</div>
+                    <div class="why">Two steps from purchase. Multiple downstream conversion rates to project.</div>
+                </div>
+                <div class="mult-bar"><div class="fill p50"></div></div>
+            </div>
+            <div class="mult-row">
+                <div class="mult-pct p25">25%</div>
+                <div class="body">
+                    <div class="stages">Homepage to collection  ·  Navigation  ·  Site search</div>
+                    <div class="why">Three or more steps from purchase. Heaviest projection assumptions.</div>
+                </div>
+                <div class="mult-bar"><div class="fill p25"></div></div>
+            </div>
+        </div>
+        <div class="insight-box"><strong>Only your own data goes into the estimate.</strong> No industry benchmarks, no agency assumptions. Visitors, baseline CVRs, and AOV are pulled from the trailing 30 days of GA4 and Shopify, frozen pre-test, and approved by you.</div>
+    </div>
+
+    <!-- METHODOLOGY 6: WORKED EXAMPLE -->
+    <div class="card" data-index="36">
+        <div class="card-header">
+            <div class="card-label">Worked Example</div>
+            <div class="card-title">Two Tests, Two Fee Calculations</div>
+            <div class="card-subtitle">How the same agency rate produces different fees depending on where the test sits in the funnel. Numbers below use Nordic Weed's actual baseline (15,000 monthly homepage visitors, DKK 200 AOV, 6.3% CVR), 30% performance rate per Section 4.3.</div>
+        </div>
+        <div class="worked-grid">
+            <div class="worked-col direct">
+                <h3>Direct revenue test</h3>
+                <div class="lbl">// 100% multiplier  ·  Checkout CVR test</div>
+                <div class="worked-step"><div class="step-num">1</div><div class="step-text">Monthly sessions</div><div class="step-val">14,400</div></div>
+                <div class="worked-step"><div class="step-num">2</div><div class="step-text">Baseline purchase CVR</div><div class="step-val">6.3%</div></div>
+                <div class="worked-step"><div class="step-num">3</div><div class="step-text">Test uplift (+11% rel.)</div><div class="step-val">+0.7pp → 7.0%</div></div>
+                <div class="worked-step"><div class="step-num">4</div><div class="step-text">Extra purchases / mo</div><div class="step-val">~100</div></div>
+                <div class="worked-step"><div class="step-num">5</div><div class="step-text">× DKK 200 AOV</div><div class="step-val">DKK 20,000</div></div>
+                <div class="worked-step"><div class="step-num">6</div><div class="step-text">× 100% stage multiplier</div><div class="step-val">DKK 20,000</div></div>
+                <div class="worked-step"><div class="step-num">7</div><div class="step-text">× 30% agency rate</div><div class="step-val">→</div></div>
+                <div class="worked-fee">
+                    <div class="lbl-fee">One time fee</div>
+                    <div class="val-fee">DKK 6,000</div>
+                </div>
+            </div>
+            <div class="worked-col upper">
+                <h3>Upper-funnel test</h3>
+                <div class="lbl">// 25% multiplier  ·  Homepage CTR test</div>
+                <div class="worked-step"><div class="step-num">1</div><div class="step-text">Monthly homepage visitors</div><div class="step-val">15,000</div></div>
+                <div class="worked-step"><div class="step-num">2</div><div class="step-text">Baseline HP to collection</div><div class="step-val">48%</div></div>
+                <div class="worked-step"><div class="step-num">3</div><div class="step-text">Test uplift (+10% rel.)</div><div class="step-val">+720 visits</div></div>
+                <div class="worked-step"><div class="step-num">4</div><div class="step-text">× 5% downstream CVR</div><div class="step-val">~36 purchases</div></div>
+                <div class="worked-step"><div class="step-num">5</div><div class="step-text">× DKK 200 AOV</div><div class="step-val">DKK 7,200</div></div>
+                <div class="worked-step"><div class="step-num">6</div><div class="step-text">× 25% stage multiplier</div><div class="step-val">DKK 1,800</div></div>
+                <div class="worked-step"><div class="step-num">7</div><div class="step-text">× 30% agency rate</div><div class="step-val">→</div></div>
+                <div class="worked-fee">
+                    <div class="lbl-fee">One time fee</div>
+                    <div class="val-fee">DKK 540</div>
+                </div>
+            </div>
+        </div>
+        <div class="insight-box"><strong>Same 30% rate, very different fees.</strong> The stage multiplier protects the client from over-paying on tests that depend heavily on downstream projection. You see the full math in the pre-test brief and approve before launch.</div>
+    </div>
+
+    <!-- METHODOLOGY 7: INTERACTIVE CALCULATOR -->
+    <div class="card" data-index="37">
+        <div class="card-header">
+            <div class="card-label">Try It Yourself</div>
+            <div class="card-title">Interactive Revenue Calculator</div>
+            <div class="card-subtitle">Adjust any funnel metric below to see live revenue projections versus Nordic Weed's actual baseline. All defaults pulled from GA4 + Shopify (Apr 14 to May 14, 2026).</div>
+        </div>
+        <div class="calc-grid">
+            <div class="calc-panel">
+                <h4>// Funnel Metrics</h4>
+
+                <div class="calc-row">
+                    <div class="calc-label-row">
+                        <span class="lbl">Monthly sessions</span>
+                        <span class="val" id="sessionsVal">14,400</span>
+                    </div>
+                    <input type="range" id="sessions" class="calc-slider" min="5000" max="50000" step="100" value="14400">
+                    <div class="calc-baseline">baseline 14,400 / mo</div>
+                </div>
+
+                <div class="calc-row">
+                    <div class="calc-label-row">
+                        <span class="lbl">PDP view rate (% of sessions)</span>
+                        <span class="val" id="pdpVal">70%</span>
+                    </div>
+                    <input type="range" id="pdp" class="calc-slider" min="30" max="95" step="1" value="70">
+                    <div class="calc-baseline">baseline 70%</div>
+                </div>
+
+                <div class="calc-row">
+                    <div class="calc-label-row">
+                        <span class="lbl">ATC rate (% of PDP views)</span>
+                        <span class="val" id="atcVal">31%</span>
+                    </div>
+                    <input type="range" id="atc" class="calc-slider" min="5" max="60" step="1" value="31">
+                    <div class="calc-baseline">baseline 31% (mobile 19%, desktop 30%)</div>
+                </div>
+
+                <div class="calc-row">
+                    <div class="calc-label-row">
+                        <span class="lbl">Begin checkout rate (% of ATC)</span>
+                        <span class="val" id="checkoutVal">33%</span>
+                    </div>
+                    <input type="range" id="checkout" class="calc-slider" min="10" max="80" step="1" value="33">
+                    <div class="calc-baseline">baseline 33% (66.6% abandon at this stage)</div>
+                </div>
+
+                <div class="calc-row">
+                    <div class="calc-label-row">
+                        <span class="lbl">Purchase complete rate (% of checkout)</span>
+                        <span class="val" id="purchaseVal">87%</span>
+                    </div>
+                    <input type="range" id="purchase" class="calc-slider" min="50" max="100" step="1" value="87">
+                    <div class="calc-baseline">baseline 87%</div>
+                </div>
+
+                <div class="calc-row">
+                    <div class="calc-label-row">
+                        <span class="lbl">Average order value (DKK)</span>
+                        <span class="val" id="aovVal">200</span>
+                    </div>
+                    <input type="range" id="aov" class="calc-slider" min="100" max="500" step="5" value="200">
+                    <div class="calc-baseline">baseline DKK 200,62</div>
+                </div>
+            </div>
+
+            <div class="calc-output">
+                <h4>// Live Projection</h4>
+
+                <div class="calc-projection">
+                    <div class="lbl">Projected monthly revenue</div>
+                    <div class="val" id="monthRev">DKK 181.958</div>
+                    <div class="delta positive" id="monthDelta"><strong id="monthDeltaVal">+ DKK 0</strong><span id="monthDeltaSuffix"> / month vs baseline</span></div>
+                </div>
+
+                <div class="calc-projection">
+                    <div class="lbl">Projected yearly revenue</div>
+                    <div class="val" id="yearRev">DKK 2,18M</div>
+                    <div class="delta positive" id="yearDelta"><strong id="yearDeltaVal">+ DKK 0</strong><span id="yearDeltaSuffix"> / year vs baseline</span></div>
+                </div>
+
+                <div class="calc-meta">
+                    <div class="meta-cell">
+                        <div class="meta-lbl">Overall CVR</div>
+                        <div class="meta-val" id="cvrOut">6.30%</div>
+                    </div>
+                    <div class="meta-cell">
+                        <div class="meta-lbl">RPV</div>
+                        <div class="meta-val" id="rpvOut">DKK 12,64</div>
+                    </div>
+                    <div class="meta-cell">
+                        <div class="meta-lbl">Orders / mo</div>
+                        <div class="meta-val" id="ordersOut">907</div>
+                    </div>
+                </div>
+
+                <button id="resetBtn" class="calc-reset">Reset to baseline</button>
+            </div>
+        </div>
+    </div>
+
+<!-- NAV -->
+<div class="nav-bar">
+    <div class="nav-dots" id="navDots"></div>
+    <div class="nav-counter" id="navCounter">01 / 38</div>
+    <div class="nav-arrows">
+        <button class="nav-arrow" id="prevBtn" aria-label="Previous"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+        <button class="nav-arrow" id="nextBtn" aria-label="Next"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+    </div>
+</div>
+
+<script>
+(function(){
+    var c=document.getElementById('scrollContainer'),cards=document.querySelectorAll('.card'),dots=document.getElementById('navDots'),ctr=document.getElementById('navCounter'),prev=document.getElementById('prevBtn'),next=document.getElementById('nextBtn'),t=cards.length,cur=0;
+    for(var i=0;i<t;i++){var d=document.createElement('div');d.className='nav-dot'+(i===0?' active':'');d.setAttribute('data-index',i);d.addEventListener('click',function(){go(parseInt(this.getAttribute('data-index')))});dots.appendChild(d)}
+    function upd(i){cur=i;document.querySelectorAll('.nav-dot').forEach(function(d,j){d.className='nav-dot'+(j===i?' active':'')});ctr.textContent=(i+1).toString().padStart(2,'0')+' / '+t.toString().padStart(2,'0')}
+    function go(i){if(i<0||i>=t)return;cards[i].scrollIntoView({behavior:'smooth',inline:'start'});upd(i)}
+    prev.addEventListener('click',function(){go(cur-1)});next.addEventListener('click',function(){go(cur+1)});
+    var st;c.addEventListener('scroll',function(){clearTimeout(st);st=setTimeout(function(){var idx=Math.round(c.scrollLeft/window.innerWidth);if(idx!==cur)upd(idx)},100)});
+    document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='ArrowDown'){e.preventDefault();go(cur+1)}else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();go(cur-1)}});
+})();
+
+// Interactive Revenue Calculator
+(function(){
+    var BASELINE = { sessions: 14400, pdp: 70, atc: 31, checkout: 33, purchase: 87, aov: 200 };
+    var keys = ['sessions','pdp','atc','checkout','purchase','aov'];
+    var inputs = {};
+    keys.forEach(function(k){ inputs[k] = document.getElementById(k); });
+    if (!inputs.sessions) return;
+
+    function calc(v) {
+        var orders = v.sessions * (v.pdp/100) * (v.atc/100) * (v.checkout/100) * (v.purchase/100);
+        var rev = orders * v.aov;
+        var cvr = v.sessions > 0 ? (orders / v.sessions) * 100 : 0;
+        var rpv = v.sessions > 0 ? rev / v.sessions : 0;
+        return { orders: orders, rev: rev, cvr: cvr, rpv: rpv };
+    }
+    function fmtDKK(n) { return 'DKK ' + Math.round(n).toLocaleString('da-DK'); }
+    function fmtDelta(n) {
+        var sign = n >= 0 ? '+ ' : '- ';
+        return sign + 'DKK ' + Math.abs(Math.round(n)).toLocaleString('da-DK');
+    }
+    function fmtMillions(n) {
+        if (Math.abs(n) >= 1000000) return 'DKK ' + (n/1000000).toFixed(2).replace('.',',') + 'M';
+        if (Math.abs(n) >= 1000) return 'DKK ' + Math.round(n/1000).toLocaleString('da-DK') + 'K';
+        return 'DKK ' + Math.round(n).toLocaleString('da-DK');
+    }
+
+    var BASELINE_REV = calc(BASELINE).rev;
+
+    function setText(id, txt) { var el = document.getElementById(id); if (el) el.textContent = txt; }
+
+    function update() {
+        var v = {
+            sessions: +inputs.sessions.value,
+            pdp: +inputs.pdp.value,
+            atc: +inputs.atc.value,
+            checkout: +inputs.checkout.value,
+            purchase: +inputs.purchase.value,
+            aov: +inputs.aov.value
+        };
+        var r = calc(v);
+        var deltaMonth = r.rev - BASELINE_REV;
+        var deltaYear = deltaMonth * 12;
+        var pctDelta = BASELINE_REV > 0 ? ((r.rev / BASELINE_REV - 1) * 100) : 0;
+        var pctSign = pctDelta >= 0 ? '+' : '';
+
+        setText('sessionsVal', v.sessions.toLocaleString('da-DK'));
+        setText('pdpVal', v.pdp + '%');
+        setText('atcVal', v.atc + '%');
+        setText('checkoutVal', v.checkout + '%');
+        setText('purchaseVal', v.purchase + '%');
+        setText('aovVal', v.aov);
+        setText('monthRev', fmtDKK(r.rev));
+        setText('yearRev', fmtMillions(r.rev * 12));
+        setText('cvrOut', r.cvr.toFixed(2).replace('.', ',') + '%');
+        setText('rpvOut', 'DKK ' + r.rpv.toFixed(2).replace('.', ','));
+        setText('ordersOut', Math.round(r.orders).toLocaleString('da-DK'));
+        setText('monthDeltaVal', fmtDelta(deltaMonth));
+        setText('monthDeltaSuffix', ' / month vs baseline  ·  ' + pctSign + pctDelta.toFixed(1).replace('.',',') + '%');
+        setText('yearDeltaVal', fmtDelta(deltaYear));
+        setText('yearDeltaSuffix', ' / year vs baseline');
+
+        var monthEl = document.getElementById('monthDelta');
+        var yearEl = document.getElementById('yearDelta');
+        if (monthEl) monthEl.className = 'delta ' + (deltaMonth >= 0 ? 'positive' : 'negative');
+        if (yearEl) yearEl.className = 'delta ' + (deltaYear >= 0 ? 'positive' : 'negative');
+    }
+
+    keys.forEach(function(k){ inputs[k].addEventListener('input', update); });
+    var resetBtn = document.getElementById('resetBtn');
+    if (resetBtn) resetBtn.addEventListener('click', function(){
+        keys.forEach(function(k){ inputs[k].value = BASELINE[k]; });
+        update();
+    });
+    update();
+})();
+</script>
+</body>
+</html>
