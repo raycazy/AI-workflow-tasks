@@ -351,6 +351,34 @@
         .calc-meta .meta-cell .meta-val { font-size: 14px; color: #fff; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
         .calc-reset { width: 100%; background: transparent; border: 1px solid rgba(169,240,15,.3); color: #A9F00F; padding: 10px; border-radius: 6px; cursor: pointer; font-family: 'Work Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-top: 12px; transition: all .15s; }
         .calc-reset:hover { background: rgba(169,240,15,.1); border-color: #A9F00F; }
+
+        /* ===== SLIDE MENU (TOC drop-up) ===== */
+        .nav-menu-btn { display: flex; align-items: center; gap: 6px; height: 34px; padding: 0 14px; border: 1px solid #333; border-radius: 17px; background: none; color: #fff; cursor: pointer; transition: all .3s; font-family: 'Work Sans', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; }
+        .nav-menu-btn:hover, .nav-menu-btn.open { border-color: #A9F00F; background: rgba(169,240,15,.1); color: #A9F00F; }
+        .nav-menu-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; }
+
+        .nav-menu-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 99; opacity: 0; pointer-events: none; transition: opacity .25s; }
+        .nav-menu-backdrop.open { opacity: 1; pointer-events: auto; }
+
+        .nav-menu { position: fixed; bottom: 70px; left: 50%; transform: translateX(-50%) translateY(20px); width: 720px; max-width: calc(100vw - 60px); max-height: 65vh; background: #0d1f17; border: 1px solid rgba(169,240,15,.3); border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,.5), 0 0 30px rgba(169,240,15,.1); z-index: 110; display: flex; flex-direction: column; overflow: hidden; opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s; }
+        .nav-menu.open { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+        .nav-menu-header { padding: 16px 22px; border-bottom: 1px solid rgba(255,255,255,.08); display: flex; justify-content: space-between; align-items: center; }
+        .nav-menu-header .title { font-family: 'Work Sans', sans-serif; font-size: 14px; font-weight: 600; color: #fff; letter-spacing: .5px; }
+        .nav-menu-header .close { background: none; border: none; color: #9ab3a3; cursor: pointer; padding: 4px 8px; font-size: 18px; font-family: inherit; line-height: 1; }
+        .nav-menu-header .close:hover { color: #A9F00F; }
+        .nav-menu-content { padding: 14px 18px 18px; overflow-y: auto; flex: 1; }
+        .nav-menu-content::-webkit-scrollbar { width: 6px; }
+        .nav-menu-content::-webkit-scrollbar-thumb { background: rgba(169,240,15,.3); border-radius: 3px; }
+        .nav-menu-section { margin-bottom: 14px; }
+        .nav-menu-section:last-child { margin-bottom: 0; }
+        .nav-menu-section-title { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #A9F00F; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; padding: 6px 10px; margin-bottom: 4px; border-bottom: 1px solid rgba(169,240,15,.15); }
+        .nav-menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+        .nav-menu-item { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 6px; cursor: pointer; transition: background .15s; font-family: 'Work Sans', sans-serif; font-size: 12px; color: #ccc; }
+        .nav-menu-item:hover { background: rgba(169,240,15,.08); color: #fff; }
+        .nav-menu-item.active { background: rgba(169,240,15,.15); color: #A9F00F; font-weight: 600; }
+        .nav-menu-item .num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #6b7c75; min-width: 24px; }
+        .nav-menu-item.active .num { color: #A9F00F; }
+        .nav-menu-item .title { flex: 1; line-height: 1.3; }
         .method-step h4 { font-size: 12px; color: #fff; font-weight: 600; margin-bottom: 4px; line-height: 1.2; }
         .method-step p { font-size: 9px; color: #9ab3a3; line-height: 1.4; }
         .method-step::after { content: '→'; position: absolute; right: -10px; top: 50%; transform: translateY(-50%); color: #A9F00F; font-size: 14px; font-weight: 700; z-index: 5; }
@@ -1938,7 +1966,19 @@
     </div>
 
 <!-- NAV -->
+<div class="nav-menu-backdrop" id="navMenuBackdrop"></div>
+<div class="nav-menu" id="navMenu">
+    <div class="nav-menu-header">
+        <span class="title">Jump to slide</span>
+        <button class="close" id="navMenuClose" aria-label="Close menu">×</button>
+    </div>
+    <div class="nav-menu-content" id="navMenuContent"></div>
+</div>
 <div class="nav-bar">
+    <button class="nav-menu-btn" id="navMenuBtn" aria-label="Open slide menu">
+        <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <span>Menu</span>
+    </button>
     <div class="nav-dots" id="navDots"></div>
     <div class="nav-counter" id="navCounter">01 / 38</div>
     <div class="nav-arrows">
@@ -1948,14 +1988,142 @@
 </div>
 
 <script>
+// Slide titles + section structure for navigation menu
+var SLIDE_TITLES = [
+    'Cover',
+    'How This Report Works',
+    'Baseline Metrics',
+    'Opportunity Landscape',
+    '01 / Critical (section)',
+    'Opp 01  ·  Checkout Abandonment Recovery',
+    'Opp 02  ·  Mobile PDP Conversion Gap',
+    'Opp 03  ·  Fix Broken Products',
+    '02 / High Value (section)',
+    'Opp 04  ·  Bundle UX Overhaul',
+    'Opp 05  ·  Promote Hidden Gems',
+    'Opp 06  ·  Thursday Peak / Saturday Revival',
+    'Opp 07  ·  Homepage Nav Optimization',
+    'Opp 08  ·  25g to 100g AOV Upsell',
+    '03 / Optimize (section)',
+    'Opp 09  ·  Blog to Revenue Pipeline',
+    'Opp 10  ·  Returning Customer Retention',
+    'Opp 11  ·  Cross-sell Accessories',
+    'Opp 12  ·  Fix Tracking Gap',
+    'Ship vs A/B Test Split',
+    '04 / Test Plans (section)',
+    'NW-01  Checkout Exit-Intent Popup',
+    'NW-02  Mobile PDP Sticky ATC',
+    'NW-03  Bundle UX Curated',
+    'NW-04  Homepage Hero Rotation',
+    'NW-05  Homepage Nav Restructure',
+    'NW-06  Cart Cross-Sell',
+    '90-Day Roadmap',
+    'Summary Scorecard',
+    'Thank You',
+    '05 / EcomHouse Method (section)',
+    'The 6-Step CRO Method',
+    'Pre-Test Brief',
+    'A/B Testing Protocol',
+    'Performance Pricing',
+    'Stage Multipliers (Schedule A)',
+    'Worked Pricing Example',
+    'Interactive Revenue Calculator'
+];
+var SLIDE_SECTIONS = [
+    { title: 'Intro', start: 0, end: 3 },
+    { title: '01 / Critical', start: 4, end: 7 },
+    { title: '02 / High Value', start: 8, end: 13 },
+    { title: '03 / Optimize', start: 14, end: 18 },
+    { title: 'Ship vs Test', start: 19, end: 19 },
+    { title: '04 / A/B Test Plans', start: 20, end: 26 },
+    { title: 'Roadmap & Close', start: 27, end: 29 },
+    { title: '05 / EcomHouse Method', start: 30, end: 37 }
+];
+
 (function(){
     var c=document.getElementById('scrollContainer'),cards=document.querySelectorAll('.card'),dots=document.getElementById('navDots'),ctr=document.getElementById('navCounter'),prev=document.getElementById('prevBtn'),next=document.getElementById('nextBtn'),t=cards.length,cur=0;
-    for(var i=0;i<t;i++){var d=document.createElement('div');d.className='nav-dot'+(i===0?' active':'');d.setAttribute('data-index',i);d.addEventListener('click',function(){go(parseInt(this.getAttribute('data-index')))});dots.appendChild(d)}
-    function upd(i){cur=i;document.querySelectorAll('.nav-dot').forEach(function(d,j){d.className='nav-dot'+(j===i?' active':'')});ctr.textContent=(i+1).toString().padStart(2,'0')+' / '+t.toString().padStart(2,'0')}
+    var menuBtn=document.getElementById('navMenuBtn'),menu=document.getElementById('navMenu'),menuBackdrop=document.getElementById('navMenuBackdrop'),menuClose=document.getElementById('navMenuClose'),menuContent=document.getElementById('navMenuContent');
+
+    // Build dots with title tooltips
+    for(var i=0;i<t;i++){
+        var d=document.createElement('div');
+        d.className='nav-dot'+(i===0?' active':'');
+        d.setAttribute('data-index',i);
+        d.title = (i+1).toString().padStart(2,'0') + '  ·  ' + (SLIDE_TITLES[i] || 'Slide ' + (i+1));
+        d.addEventListener('click',function(){go(parseInt(this.getAttribute('data-index')))});
+        dots.appendChild(d);
+    }
+
+    // Build sectioned slide menu
+    SLIDE_SECTIONS.forEach(function(sec){
+        var secEl = document.createElement('div');
+        secEl.className = 'nav-menu-section';
+        var hdr = document.createElement('div');
+        hdr.className = 'nav-menu-section-title';
+        hdr.textContent = sec.title;
+        secEl.appendChild(hdr);
+        var grid = document.createElement('div');
+        grid.className = 'nav-menu-grid';
+        for (var j = sec.start; j <= sec.end; j++) {
+            var item = document.createElement('div');
+            item.className = 'nav-menu-item';
+            item.setAttribute('data-index', j);
+            var num = document.createElement('span');
+            num.className = 'num';
+            num.textContent = String(j+1).padStart(2,'0');
+            var titleSpan = document.createElement('span');
+            titleSpan.className = 'title';
+            titleSpan.textContent = SLIDE_TITLES[j] || 'Slide ' + (j+1);
+            item.appendChild(num);
+            item.appendChild(titleSpan);
+            item.addEventListener('click', function(){
+                go(parseInt(this.getAttribute('data-index')));
+                closeMenu();
+            });
+            grid.appendChild(item);
+        }
+        secEl.appendChild(grid);
+        menuContent.appendChild(secEl);
+    });
+
+    function openMenu(){
+        menu.classList.add('open');
+        menuBackdrop.classList.add('open');
+        menuBtn.classList.add('open');
+        // scroll the active item into view
+        var active = menuContent.querySelector('.nav-menu-item.active');
+        if (active) active.scrollIntoView({block: 'nearest'});
+    }
+    function closeMenu(){
+        menu.classList.remove('open');
+        menuBackdrop.classList.remove('open');
+        menuBtn.classList.remove('open');
+    }
+    menuBtn.addEventListener('click', function(){
+        if (menu.classList.contains('open')) closeMenu(); else openMenu();
+    });
+    menuClose.addEventListener('click', closeMenu);
+    menuBackdrop.addEventListener('click', closeMenu);
+
+    function upd(i){
+        cur=i;
+        document.querySelectorAll('.nav-dot').forEach(function(d,j){d.className='nav-dot'+(j===i?' active':'')});
+        document.querySelectorAll('.nav-menu-item').forEach(function(it){
+            if (parseInt(it.getAttribute('data-index'))===i) it.classList.add('active');
+            else it.classList.remove('active');
+        });
+        ctr.textContent=(i+1).toString().padStart(2,'0')+' / '+t.toString().padStart(2,'0');
+    }
     function go(i){if(i<0||i>=t)return;cards[i].scrollIntoView({behavior:'smooth',inline:'start'});upd(i)}
     prev.addEventListener('click',function(){go(cur-1)});next.addEventListener('click',function(){go(cur+1)});
     var st;c.addEventListener('scroll',function(){clearTimeout(st);st=setTimeout(function(){var idx=Math.round(c.scrollLeft/window.innerWidth);if(idx!==cur)upd(idx)},100)});
-    document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='ArrowDown'){e.preventDefault();go(cur+1)}else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();go(cur-1)}});
+    document.addEventListener('keydown',function(e){
+        if(e.key==='Escape' && menu.classList.contains('open')){closeMenu();return;}
+        if(menu.classList.contains('open'))return;
+        if(e.key==='ArrowRight'||e.key==='ArrowDown'){e.preventDefault();go(cur+1)}
+        else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();go(cur-1)}
+    });
+    upd(0);
 })();
 
 // Interactive Revenue Calculator
