@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arterra vs. Greenies &mdash; Why 1,300+ Dog Owners Switched</title>
+  <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+  <style>
+    /* Real Arterra brand fonts */
+    @font-face {
+      font-family: 'ITC Souvenir';
+      src: url('https://cdn.shopify.com/s/files/1/0683/6227/3075/files/ITC_Souvenir-normal-500-100_1.woff2?v=1754565529') format('woff2');
+      font-weight: 400 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'ITC Avant Garde Gothic Pro';
+      src: url('https://cdn.shopify.com/s/files/1/0683/6227/3075/files/ITC_Avant_Garde_Gothic_Pro_Md-normal-400-100_1.woff2?v=1754565530') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'ITC Avant Garde Gothic Pro';
+      src: url('https://cdn.shopify.com/s/files/1/0683/6227/3075/files/ITC_Avant_Garde_Gothic_Pro_Demi-normal-600-100.woff2?v=1754634338') format('woff2');
+      font-weight: 600 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --dark-navy: #113136;
+      --dark-navy-deep: #0F3336;
+      --footer-navy: #111827;
+      --sage: #8ECFCA;
+      --sage-chip: #BCCFCF;
+      --sage-bg: #E8F5F4;
+      --cream: #EDEBE4;
+      --cream-light: #F5F2E9;
+      --border: #DEDAD1;
+      --text-dark: #113136;
+      --text-muted: #6B7280;
+      --num-gray: #C2C2C2;
+      --gold: #C9A84C;
+      --white: #FFFFFF;
+
+      --font-display: 'ITC Souvenir', Georgia, 'Times New Roman', serif;
+      --font-body: 'ITC Avant Garde Gothic Pro', 'Helvetica Neue', Arial, sans-serif;
+
+      --r-xs: 4px;
+      --r-s: 6px;
+      --r-m: 10px;
+      --r-l: 14px;
+      --r-pill: 999px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--cream);
+      color: var(--text-dark);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+
+    /* Announcement bar */
+    .announce {
+      background: var(--dark-navy);
+      color: var(--white);
+      text-align: center;
+      padding: 11px 16px;
+      font-size: 13px;
+      letter-spacing: 0.01em;
+    }
+    .announce strong { color: var(--sage); font-weight: 700; }
+
+    /* Header (sticky) */
+    header {
+      background: var(--cream);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--dark-navy);
+    }
+    .header-logo img { height: 44px; }
+    .btn {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.18s, opacity 0.2s;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-navy { background: var(--dark-navy); color: var(--white); padding: 11px 22px; font-size: 13px; border-radius: var(--r-s); }
+    .btn-navy-lg { background: var(--dark-navy); color: var(--white); padding: 15px 33px; font-size: 15px; border-radius: var(--r-m); }
+    .btn-white { background: var(--white); color: var(--dark-navy); padding: 16px 28px; font-size: 15px; border-radius: var(--r-s); }
+    .btn-white-lg { background: var(--white); color: var(--dark-navy); padding: 18px 30px; font-size: 16px; border-radius: var(--r-m); }
+
+    /* Hero */
+    .hero {
+      background: var(--dark-navy);
+      color: var(--white);
+      padding: 72px 40px;
+    }
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .eyebrow {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 17px;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: 56px;
+      font-weight: 500;
+      line-height: 1.08;
+      color: var(--white);
+      letter-spacing: -0.012em;
+      margin-bottom: 18px;
+      max-width: 480px;
+    }
+    .hero-sub {
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.55;
+      font-weight: 400;
+      color: rgba(255,255,255,0.72);
+      margin-bottom: 28px;
+      max-width: 520px;
+    }
+    .hero-cta-row { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; flex-wrap: wrap; }
+    .hero-fineprint { font-size: 12px; color: rgba(255,255,255,0.4); }
+    .hero-image {
+      position: relative;
+      aspect-ratio: 1 / 0.85;
+      border-radius: 0;
+      overflow: hidden;
+    }
+    .hero-image img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+
+    /* Trust bar (dark variant) */
+    .trustbar {
+      background: var(--dark-navy);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 36px;
+      flex-wrap: wrap;
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 500;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .trustbar-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      line-height: 1.6;
+    }
+    .trustbar-item img {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+    .trustbar-item .stars-inline {
+      color: var(--gold);
+      font-size: 14px;
+      letter-spacing: 1px;
+      line-height: 1;
+    }
+
+    /* Intro */
+    .intro {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 56px 40px 16px;
+      text-align: center;
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    /* Reason section */
+    .reason {
+      padding: 60px 40px;
+      border-bottom: 1px solid var(--border);
+    }
+    .reason-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 64px;
+      align-items: center;
+    }
+    /* Alternate layout: odd reasons get image-left, text-right */
+    .reason.reverse .reason-content { order: 2; }
+    .reason.reverse .reason-image { order: 1; }
+    /* Large numeric eyebrow — matches Figma: ITC Souvenir 500, 90px, light gray */
+    .reason-content .num {
+      font-family: var(--font-display);
+      font-size: 90px;
+      font-weight: 500;
+      line-height: 1;
+      color: var(--num-gray);
+      margin-bottom: 18px;
+      display: block;
+      letter-spacing: -0.002em;
+    }
+    .reason-content h2 {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 500;
+      line-height: 1.2;
+      color: var(--dark-navy);
+      letter-spacing: -0.01em;
+      margin-bottom: 18px;
+    }
+    .reason-content p.body {
+      font-family: var(--font-body);
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--text-muted);
+      margin-bottom: 22px;
+      max-width: 540px;
+    }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; align-items: center; }
+    .chip {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: var(--r-pill);
+      border: 1px solid transparent;
+      letter-spacing: 0.005em;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .chip.pos { background: var(--sage-chip); border-color: var(--sage); color: var(--dark-navy); }
+    .chip.pos::before { content: "\2713"; color: var(--dark-navy); font-weight: 700; }
+    .chip.neg { background: transparent; border-color: var(--border); color: var(--text-muted); text-decoration: line-through; text-decoration-color: rgba(107,114,128,0.5); text-decoration-thickness: 1px; }
+    .chip.neg::before { content: "\2715"; color: var(--text-muted); font-weight: 700; text-decoration: none; }
+
+    /* Review snippet — refined card style */
+    .quote {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-l);
+      padding: 22px 24px;
+      margin-top: 26px;
+      max-width: 480px;
+      box-shadow: 0 4px 7px rgba(17,49,54,0.04);
+    }
+    .quote-stars { color: var(--gold); letter-spacing: 1.5px; font-size: 13px; line-height: 1; margin-bottom: 12px; }
+    .quote-text {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 1.45;
+      color: var(--dark-navy);
+      margin-bottom: 14px;
+    }
+    .quote-attr-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .quote-attr {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--dark-navy);
+      letter-spacing: 0.005em;
+      line-height: 1.3;
+    }
+    .quote-meta {
+      font-family: var(--font-body);
+      font-size: 11.5px;
+      font-weight: 400;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .quote-verified {
+      margin-left: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-family: var(--font-body);
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--sage-chip);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+    .quote-verified::before { content: "\2713"; color: var(--sage-chip); }
+
+    /* Reason image */
+    .reason-image {
+      aspect-ratio: 4 / 3;
+      border-radius: var(--r-l);
+      overflow: hidden;
+      position: relative;
+    }
+    .reason-image img { width: 100%; height: 100%; object-fit: cover; }
+    .reason-image.has-overlay::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 45%;
+      background: linear-gradient(to top, rgba(0,0,0,0.55), transparent);
+      pointer-events: none;
+    }
+    .reason-image .overlay {
+      position: absolute;
+      bottom: 18px;
+      left: 18px;
+      right: 18px;
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 700;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      z-index: 1;
+    }
+    .reason-image.crop-face img { object-position: 30% center; }
+
+    /* Reason 07 — UGC collage with center stats card */
+    .ugc-collage {
+      aspect-ratio: 4 / 3;
+      border-radius: var(--r-l);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 0;
+      background: var(--cream-light);
+      position: relative;
+    }
+    .ugc-collage img { width: 100%; height: 100%; object-fit: cover; }
+    .ugc-tile { position: relative; overflow: hidden; }
+    .ugc-tile .stars-overlay { position: absolute; bottom: 8px; left: 8px; color: var(--gold); font-size: 11px; letter-spacing: 1px; text-shadow: 0 1px 4px rgba(0,0,0,0.4); }
+    .ugc-center {
+      grid-column: 2;
+      grid-row: 1;
+      background: var(--dark-navy);
+      color: var(--white);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      text-align: center;
+      gap: 6px;
+    }
+    .ugc-center .big { font-family: var(--font-display); font-size: 26px; font-weight: 500; color: var(--white); line-height: 1; }
+    .ugc-center .label { font-size: 11px; color: rgba(255,255,255,0.7); letter-spacing: 0.05em; }
+    .ugc-center .small-stars { color: var(--gold); font-size: 13px; letter-spacing: 1px; }
+
+    /* Soft CTA */
+    .soft-cta {
+      background: var(--cream);
+      border-bottom: 1px solid var(--border);
+      padding: 56px 40px;
+      text-align: center;
+    }
+    .soft-cta p.lead {
+      max-width: 540px;
+      margin: 0 auto 22px;
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.55;
+      color: var(--text-muted);
+    }
+    .soft-cta .micro { margin-top: 14px; font-size: 12.5px; color: var(--text-muted); }
+
+    /* Final CTA */
+    .final-cta {
+      background: var(--dark-navy);
+      color: var(--white);
+      padding: 100px 40px;
+      text-align: center;
+    }
+    .final-cta h2 {
+      font-family: var(--font-display);
+      font-size: 42px;
+      font-weight: 500;
+      line-height: 1.15;
+      color: var(--white);
+      max-width: 600px;
+      margin: 0 auto 14px;
+      letter-spacing: -0.012em;
+    }
+    .final-cta .lead {
+      font-family: var(--font-body);
+      font-size: 18px;
+      color: rgba(255,255,255,0.7);
+      max-width: 560px;
+      margin: 0 auto 28px;
+      line-height: 1.55;
+    }
+    .final-cta-trust {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      font-size: 12.5px;
+      color: var(--sage);
+    }
+    .final-cta-trust span { color: var(--sage); }
+
+    /* Footer */
+    footer {
+      background: var(--footer-navy);
+      color: rgba(255,255,255,0.4);
+      padding: 26px 40px;
+      text-align: center;
+      font-size: 12.5px;
+    }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      header { padding: 12px 20px; }
+      .hero { padding: 56px 24px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 36px; }
+      .hero h1 { font-size: 38px; max-width: 22ch; }
+      .trustbar { padding: 18px 20px; gap: 18px; font-size: 12px; }
+      .trustbar-item { gap: 8px; }
+      .trustbar-item img { width: 20px; height: 20px; }
+      .intro { padding: 40px 24px 8px; font-size: 16px; }
+      .reason { padding: 48px 24px; }
+      .reason-inner { grid-template-columns: 1fr; gap: 28px; }
+      .reason-content .num { font-size: 64px; margin-bottom: 8px; }
+      .reason-content h2 { font-size: 26px; }
+      /* On mobile, alternating layout collapses — image always after text */
+      .reason.reverse .reason-content,
+      .reason.reverse .reason-image { order: initial; }
+      .final-cta { padding: 64px 24px; }
+      .final-cta h2 { font-size: 32px; }
+    }
+    @media (max-width: 560px) {
+      .hero h1 { font-size: 32px; }
+      .reason-content h2 { font-size: 22px; }
+      .reason-content .num { font-size: 56px; }
+      .final-cta h2 { font-size: 26px; }
+      .hero-cta-row .btn { width: 100%; text-align: center; }
+      .ugc-collage { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr 1fr; }
+      .ugc-center { grid-column: 1 / -1; grid-row: 2; aspect-ratio: 16/9; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement bar -->
+  <div class="announce">
+    New users <strong>save up to 42%</strong> on their first order &nbsp;·&nbsp; Free shipping
+  </div>
+
+  <!-- Header -->
+  <header>
+    <a class="header-logo" href="https://arterrapet.com">
+      <img src="https://arterrapet.com/cdn/shop/files/lsg-arterra-pet-logo_2be516b1-b2bc-497f-8036-b9a4b6126533.svg?v=1729883336&width=600" alt="Arterra Pet">
+    </a>
+    <a class="btn btn-navy" href="https://arterrapet.com/products/dental-chews">Try Arterra</a>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <p class="eyebrow">Arterra vs. Greenies</p>
+        <h1>Still giving your dog Greenies?</h1>
+        <p class="hero-sub">7 reasons 1,300+ dog owners switched &mdash; and why most say they wish they'd done it sooner.</p>
+        <div class="hero-cta-row">
+          <a class="btn btn-white" href="https://arterrapet.com/products/dental-chews">Try Arterra | Up to 42% Off First Order</a>
+        </div>
+        <p class="hero-fineprint">30-day guarantee &nbsp;·&nbsp; Cancel anytime</p>
+      </div>
+      <div class="hero-image">
+        <img src="images/figma/hero-pug.png" alt="Owner giving Arterra dental chew to her pug">
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust bar (dark navy with icons) -->
+  <div class="trustbar">
+    <div class="trustbar-item">
+      <img src="images/figma/trust-icon-nha.png" alt="">
+      <span>The Only Dog Dental Chew With nHA</span>
+    </div>
+    <div class="trustbar-item">
+      <img src="images/figma/trust-icon-usa.png" alt="">
+      <span>Made in the USA</span>
+    </div>
+    <div class="trustbar-item">
+      <span class="stars-inline">★</span>
+      <span>4.6/5 · 1,300+ Reviews</span>
+    </div>
+    <div class="trustbar-item">
+      <img src="images/figma/trust-icon-nowheat.png" alt="">
+      <span>No Wheat · No Chicken · No Fillers</span>
+    </div>
+    <div class="trustbar-item">
+      <img src="images/figma/trust-icon-vet.png" alt="">
+      <span>Veterinarian Formulated</span>
+    </div>
+  </div>
+
+  <!-- Intro -->
+  <p class="intro">Default doesn't mean best. Here's what's actually in your dog's daily chew &mdash; and what it's doing to their teeth.</p>
+
+  <!-- Reason 01 -->
+  <section class="reason reverse">
+    <div class="reason-inner">
+      <div class="reason-content">
+        <span class="num">01</span>
+        <h2>Greenies scrapes. Arterra rebuilds.</h2>
+        <p class="body">Greenies works through mechanical abrasion &mdash; it scrapes plaque off the surface. Arterra uses nano-hydroxyapatite (nHA), the mineral that makes up 97% of tooth enamel, to remineralise and repair from within.</p>
+        <div class="chip-row">
+          <span class="chip pos">Arterra &mdash; repairs enamel</span>
+          <span class="chip neg">Greenies &mdash; scrapes only</span>
+        </div>
+      </div>
+      <div class="reason-image">
+        <img src="images/figma/reason01.png" alt="Side-by-side: Greenies chew next to a tooth versus Arterra chew with nHA mineral particles repairing tooth enamel">
+      </div>
+    </div>
+  </section>
+
+  <!-- Reason 02 -->
+  <section class="reason">
+    <div class="reason-inner">
+      <div class="reason-content">
+        <span class="num">02</span>
+        <h2>Fresher breath in week one.</h2>
+        <p class="body">Bad breath is bacteria thriving in plaque. Arterra's nHA and prebiotic formula rebalances the oral environment at the source &mdash; not masked with flavor. Over 50% of reviewers mention it in the first two weeks.</p>
+        <div class="quote">
+          <div class="quote-stars">★★★★★</div>
+          <p class="quote-text">&ldquo;Her breath changed in the first week. I couldn't believe it.&rdquo;</p>
+          <div class="quote-attr-row">
+            <div>
+              <div class="quote-attr">Sarah M.</div>
+              <div class="quote-meta">Golden Retriever owner</div>
+            </div>
+            <span class="quote-verified">Verified</span>
+          </div>
+        </div>
+      </div>
+      <div class="reason-image">
+        <img src="images/figma/reason02.png" alt="Owner close to dog's mouth, fresher breath moment">
+      </div>
+    </div>
+  </section>
+
+  <!-- Reason 03 -->
+  <section class="reason reverse">
+    <div class="reason-inner">
+      <div class="reason-content">
+        <span class="num">03</span>
+        <h2>Greenies has wheat and chicken. Your dog might be reacting.</h2>
+        <p class="body">Greenies' top ingredients include wheat protein isolate, wheat starch, and chicken flavoring. For dogs with sensitivities &mdash; that's a daily problem hiding in plain sight. Arterra has neither.</p>
+        <div class="chip-row">
+          <span class="chip pos">Arterra &mdash; wheat-free, chicken-free</span>
+          <span class="chip neg">Greenies &mdash; wheat starch, chicken flavor</span>
+        </div>
+        <div class="quote">
+          <div class="quote-stars">★★★★★</div>
+          <p class="quote-text">&ldquo;Greenies make him sick. He also has a sensitive stomach.&rdquo;</p>
+          <div class="quote-attr-row">
+            <div>
+              <div class="quote-attr">Arterra customer</div>
+              <div class="quote-meta">Arterra customer research, 2026</div>
+            </div>
+            <span class="quote-verified">Verified</span>
+          </div>
+        </div>
+      </div>
+      <div class="reason-image">
+        <img src="images/figma/reason03.png" alt="Editorial flat lay: wheat and chicken on the left versus fresh peppermint, parsley and mineral powder on the right">
+      </div>
+    </div>
+  </section>
+
+  <!-- Reason 04 -->
+  <section class="reason">
+    <div class="reason-inner">
+      <div class="reason-content">
+        <span class="num">04</span>
+        <h2>If you use nHA toothpaste yourself, you already know.</h2>
+        <p class="body">nHA is the active ingredient in premium human toothpastes. Dentists use it to reverse early-stage enamel erosion. Arterra is the first dog dental chew built on the same technology.</p>
+        <div class="quote">
+          <div class="quote-stars">★★★★★</div>
+          <p class="quote-text">&ldquo;I use a toothpaste with hydroxyapatite myself &mdash; when I saw this for dogs I ordered immediately.&rdquo;</p>
+          <div class="quote-attr-row">
+            <div>
+              <div class="quote-attr">Arterra customer</div>
+              <div class="quote-meta">Arterra customer research, 2026</div>
+            </div>
+            <span class="quote-verified">Verified</span>
+          </div>
+        </div>
+      </div>
+      <div class="reason-image">
+        <img src="images/figma/reason04.png" alt="Premium nHA toothpaste next to Arterra dental chew with a molecular accent">
+      </div>
+    </div>
+  </section>
+
+  <!-- Reason 05 -->
+  <section class="reason reverse">
+    <div class="reason-inner">
+      <div class="reason-content">
+        <span class="num">05</span>
+        <h2>Every ingredient earns its place.</h2>
+        <p class="body">nHA repairs enamel. Prebiotics rebalance the oral microbiome. Active botanicals support healthy gums. Nothing is in there to add bulk or cut cost. Greenies is primarily wheat starch &mdash; a cheap filler that hasn't changed in 20 years.</p>
+        <div class="chip-row">
+          <span class="chip pos">Arterra &mdash; nHA + prebiotics + botanicals</span>
+          <span class="chip neg">Greenies &mdash; wheat starch base</span>
+        </div>
+      </div>
+      <div class="reason-image">
+        <img src="images/figma/reason05.png" alt="Editorial flat lay: nano-hydroxyapatite mineral powder, chicory root, peppermint and parsley alongside an Arterra dental chew">
+      </div>
+    </div>
+  </section>
+
+  <!-- Reason 06 -->
+  <section class="reason">
+    <div class="reason-inner">
+      <div class="reason-content">
+        <span class="num">06</span>
+        <h2>Safe for senior dogs who can't go under anesthesia.</h2>
+        <p class="body">Vet cleanings require sedation &mdash; and for older dogs, that risk grows. Daily nHA support slows the progression of plaque and gum disease when a procedure is no longer a safe option.</p>
+        <div class="quote">
+          <div class="quote-stars">★★★★★</div>
+          <p class="quote-text">&ldquo;3 of my 4 dogs are seniors. I hope to avoid dental procedures with this product.&rdquo;</p>
+          <div class="quote-attr-row">
+            <div>
+              <div class="quote-attr">Arterra customer</div>
+              <div class="quote-meta">Arterra customer research, 2026</div>
+            </div>
+            <span class="quote-verified">Verified</span>
+          </div>
+        </div>
+      </div>
+      <div class="reason-image has-overlay crop-face">
+        <img src="images/figma/reason06.png" alt="Older dog with Arterra chew">
+        <p class="overlay">One chew a day. No procedure needed.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reason 07 -->
+  <section class="reason reverse">
+    <div class="reason-inner">
+      <div class="reason-content">
+        <span class="num">07</span>
+        <h2>1,300+ dog owners already switched.</h2>
+        <p class="body">4.6 stars. The most common themes: breath improved in week one, visible plaque reduction within a month, vets asking what changed at the next checkup.</p>
+        <div class="quote">
+          <div class="quote-stars">★★★★★</div>
+          <p class="quote-text">&ldquo;Vet asked what I changed at our last visit. I just smiled.&rdquo;</p>
+          <div class="quote-attr-row">
+            <div>
+              <div class="quote-attr">Sarah M.</div>
+              <div class="quote-meta">Golden Retriever owner</div>
+            </div>
+            <span class="quote-verified">Verified</span>
+          </div>
+        </div>
+        <div class="quote">
+          <div class="quote-stars">★★★★★</div>
+          <p class="quote-text">&ldquo;Switched from Greenies. The difference in breath and teeth in 3 weeks was undeniable.&rdquo;</p>
+          <div class="quote-attr-row">
+            <div>
+              <div class="quote-attr">Brooke W.</div>
+              <div class="quote-meta">Lab mix owner</div>
+            </div>
+            <span class="quote-verified">Verified</span>
+          </div>
+        </div>
+      </div>
+      <div class="ugc-collage">
+        <div class="ugc-tile"><img src="images/figma/ugc1.png" alt=""><span class="stars-overlay">★★★★★</span></div>
+        <div class="ugc-center">
+          <div class="small-stars">★★★★★</div>
+          <div class="big">4.6 / 5</div>
+          <div class="label">1,300+ reviews</div>
+        </div>
+        <div class="ugc-tile"><img src="images/figma/ugc2.png" alt=""><span class="stars-overlay">★★★★★</span></div>
+        <div class="ugc-tile"><img src="images/figma/ugc3.png" alt=""><span class="stars-overlay">★★★★★</span></div>
+        <div class="ugc-tile"><img src="images/figma/ugc4.png" alt=""><span class="stars-overlay">★★★★★</span></div>
+        <div class="ugc-tile"><img src="images/figma/reason02.png" alt=""><span class="stars-overlay">★★★★★</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Soft CTA -->
+  <section class="soft-cta">
+    <p class="lead">Not sure yet? The first order ships with a 30-day money-back guarantee. No difference, no charge.</p>
+    <a class="btn btn-navy-lg" href="https://arterrapet.com/products/dental-chews">Try Arterra &mdash; Up To 42% Off Your First Order</a>
+    <p class="micro">&check; 30-day guarantee &nbsp;·&nbsp; &check; Free shipping &nbsp;·&nbsp; &check; Cancel anytime</p>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta" id="final-cta">
+    <h2>Your dog's teeth deserve better than the default.</h2>
+    <p class="lead">One chew a day. Results in as little as 7 days. Save 30% on your first subscription order.</p>
+    <a class="btn btn-white-lg" href="https://arterrapet.com/products/dental-chews">Subscribe &amp; Save up to 42% | Try Arterra</a>
+    <div class="final-cta-trust">
+      <span>&check; 30-day guarantee</span>
+      <span>&check; Free shipping</span>
+      <span>&check; Cancel anytime</span>
+      <span>&check; Made in the USA</span>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2026 Arterra Pet Science. All rights reserved.
+  </footer>
+
+</body>
+</html>
