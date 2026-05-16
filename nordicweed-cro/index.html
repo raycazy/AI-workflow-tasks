@@ -534,7 +534,7 @@
         <div class="card-header">
             <div class="card-label">Methodology</div>
             <div class="card-title">How This Report Works</div>
-            <div class="card-subtitle">Each opportunity is GA4-backed, sized by estimated monthly DKK uplift, and tagged by implementation effort. Math is conservative, not best case.</div>
+            <div class="card-subtitle">Each opportunity is GA4-backed, sized by estimated monthly DKK uplift, and tagged by implementation effort. Math is conservative, not best case. <strong style="color:#A9F00F">Absolute GA4 numbers are directional, not exact</strong>  ·  tracking gaps (consent, bots, Web Pixels Manager) suppress some events. Drop-off ratios between funnel stages are unaffected and drive every prioritization in this deck.</div>
         </div>
         <div class="source-grid">
             <div class="source-card">
@@ -561,16 +561,17 @@
         <div class="card-header">
             <div class="card-label">Baseline</div>
             <div class="card-title">Where Nordic Weed Stands Today</div>
-            <div class="card-subtitle">Apr 14 to May 14, 2026  ·  GA4 property 428967101</div>
+            <div class="card-subtitle">Apr 14 to May 14, 2026  ·  GA4 property 428967101  ·  Treat absolute numbers as directional anchors, not exact figures</div>
         </div>
         <div class="metrics-grid">
-            <div class="metric-card"><div class="metric-value accent">DKK 181,958</div><div class="metric-label">Monthly Revenue</div></div>
-            <div class="metric-card"><div class="metric-value">907</div><div class="metric-label">Orders / month</div></div>
+            <div class="metric-card"><div class="metric-value accent">DKK 181,958</div><div class="metric-label">Monthly Revenue (GA4)</div></div>
+            <div class="metric-card"><div class="metric-value">907</div><div class="metric-label">Orders / month (GA4)</div></div>
             <div class="metric-card"><div class="metric-value">DKK 200.62</div><div class="metric-label">Avg Order Value</div></div>
             <div class="metric-card"><div class="metric-value">6.3%</div><div class="metric-label">Conversion Rate</div></div>
             <div class="metric-card"><div class="metric-value accent" style="font-size:24px">DKK 45K to 75K</div><div class="metric-label">Total Addressable Uplift</div><div class="metric-sub">+25% to +41%</div></div>
         </div>
-        <div class="insight-box"><strong>Three compounding levers</strong> drive the entire uplift opportunity: checkout abandonment, mobile PDP conversion, and the bundle UX. Together they account for over 60% of the DKK 45K to 75K monthly opportunity.</div>
+        <div class="insight-box" style="border-color:rgba(245,158,11,.35);background:rgba(245,158,11,.06)"><strong style="color:#f59e0b">Data caveat:</strong> these absolute figures come from GA4 and likely understate true volume. Consent banner blocking, bot filters, and Shopify Web Pixels Manager all suppress events. Real sessions and orders are probably 10% to 30% higher. <strong style="color:#A9F00F">Trust the ratios, not the raw counts.</strong> Drop-off rates between funnel stages (next slide) are accurate. Use these numbers to size opportunities directionally, not to forecast revenue to the kroner.</div>
+        <div class="insight-box" style="margin-top:10px"><strong>Three compounding levers</strong> drive the entire uplift opportunity: checkout abandonment, mobile PDP conversion, and the bundle UX. Together they account for over 60% of the DKK 45K to 75K monthly opportunity.</div>
     </div>
 
     <!-- SLIDE 3: LANDSCAPE -->
@@ -622,7 +623,7 @@
         <div class="card-header">
             <div class="card-label">Funnel Decomposition</div>
             <div class="card-title">Where Visitors Drop Off</div>
-            <div class="card-subtitle">5-stage funnel from session entry to purchase. Each row shows the count, the conversion rate from the previous step, and the drop-off magnitude.</div>
+            <div class="card-subtitle">5-stage funnel from session entry to purchase. <strong style="color:#A9F00F">Read this as step-to-step drop-off rates</strong>, not absolute volumes. GA4 likely undercounts sessions and orders by 10% to 30% (consent, bots, Pixels Manager). The drop-off ratios between stages are unaffected by under-counting and are the reliable signal here.</div>
         </div>
         <div class="funnel-stack">
             <div class="funnel-step no-drop">
@@ -651,7 +652,7 @@
                 <div class="drop"><div class="val">- 132</div><div class="lbl">checkout drop</div></div>
             </div>
         </div>
-        <div class="insight-box"><strong>Two largest leaks:</strong> ATC abandonment loses 2,073 sessions (66.6% drop from ATC to begin checkout) and PDP-to-ATC loses 6,968 sessions (69.1% drop). Together they account for ~80% of the funnel loss vs 132 lost at the final checkout step.</div>
+        <div class="insight-box"><strong>Two largest leaks (these % drops are reliable even if absolute counts are off):</strong> ATC to begin checkout loses 66.6% of carts (the biggest single drop in the funnel) and PDP to ATC loses 69.1% of viewers. Together they account for ~80% of the funnel loss vs ~13% lost at the final checkout step. <strong style="color:#A9F00F">Even if true session volume is 30% higher than GA4 reports, the priority order does not change</strong>: fix ATC abandonment first, mobile PDP second.</div>
     </div>
 
     <!-- RESEARCH 2: DEVICE & USER SPLIT -->
