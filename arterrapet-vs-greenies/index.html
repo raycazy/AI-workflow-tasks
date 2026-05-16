@@ -358,6 +358,24 @@
       z-index: 1;
     }
     .reason-image.crop-face img { object-position: 30% center; }
+    .reason-image.crop-right img { object-position: right center; }
+    .reason-image .stats-badge {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(17, 49, 54, 0.92);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 18px 28px;
+      border-radius: var(--r-m);
+      color: var(--white);
+      text-align: center;
+      z-index: 1;
+      min-width: 140px;
+    }
+    .reason-image .stats-badge .badge-stars { color: var(--gold); font-size: 14px; letter-spacing: 1.5px; line-height: 1; margin-bottom: 8px; }
+    .reason-image .stats-badge .badge-big { font-family: var(--font-display); font-size: 28px; font-weight: 500; line-height: 1; margin-bottom: 4px; color: var(--white); }
+    .reason-image .stats-badge .badge-meta { font-size: 11px; color: rgba(255,255,255,0.7); letter-spacing: 0.04em; }
 
     /* Reason 07 — UGC collage with center stats card */
     .ugc-collage {
@@ -715,17 +733,13 @@
           </div>
         </div>
       </div>
-      <div class="ugc-collage">
-        <div class="ugc-tile"><img src="https://arterrapet.com/cdn/shop/files/Hero_Dog.webp" alt=""><span class="stars-overlay">★★★★★</span></div>
-        <div class="ugc-center">
-          <div class="small-stars">★★★★★</div>
-          <div class="big">4.6 / 5</div>
-          <div class="label">1,300+ reviews</div>
+      <div class="reason-image crop-right">
+        <img src="https://arterrapet.com/cdn/shop/files/60119cba1a79bc7b13d82f3b5fd5774fc1dd22ad.webp" alt="French bulldog with Arterra dental chew">
+        <div class="stats-badge">
+          <div class="badge-stars">★★★★★</div>
+          <div class="badge-big">4.6 / 5</div>
+          <div class="badge-meta">1,300+ reviews</div>
         </div>
-        <div class="ugc-tile"><img src="images/figma/ugc2.png" alt=""><span class="stars-overlay">★★★★★</span></div>
-        <div class="ugc-tile"><img src="images/figma/ugc1.png" alt=""><span class="stars-overlay">★★★★★</span></div>
-        <div class="ugc-tile"><img src="https://arterrapet.com/cdn/shop/files/60119cba1a79bc7b13d82f3b5fd5774fc1dd22ad.webp" alt=""><span class="stars-overlay">★★★★★</span></div>
-        <div class="ugc-tile"><img src="images/figma/reason02.png" alt=""><span class="stars-overlay">★★★★★</span></div>
       </div>
     </div>
   </section>
