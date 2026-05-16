@@ -21,6 +21,7 @@
         /* ===== TITLE SLIDE ===== */
         .title-slide { background: #000; overflow: hidden; }
         .title-slide::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at top right, rgba(169,240,15,.08), transparent 60%), linear-gradient(135deg, #122a1e 0%, #0a1410 50%, #000 100%); opacity: .95; }
+        .title-logo { position: relative; z-index: 1; height: 110px; width: auto; margin-bottom: 28px; filter: drop-shadow(0 6px 24px rgba(0,191,105,0.18)); }
         .title-badge { position: relative; z-index: 1; background: #A9F00F; color: #122a1e; font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; padding: 8px 24px; border-radius: 4px; margin-bottom: 40px; }
         .title-brand { position: relative; z-index: 1; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 4px; color: #A9F00F; text-transform: uppercase; margin-bottom: 16px; font-weight: 600; }
         .title-text { position: relative; z-index: 1; text-align: center; }
@@ -379,6 +380,66 @@
         .nav-menu-item .num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #6b7c75; min-width: 24px; }
         .nav-menu-item.active .num { color: #A9F00F; }
         .nav-menu-item .title { flex: 1; line-height: 1.3; }
+
+        /* ===== RESEARCH SLIDES ===== */
+        .funnel-stack { display: flex; flex-direction: column; gap: 6px; max-width: 1000px; width: 100%; }
+        .funnel-step { display: flex; align-items: center; gap: 18px; }
+        .funnel-step .label { width: 150px; text-align: right; font-size: 12px; color: #ccc; font-weight: 500; flex-shrink: 0; }
+        .funnel-step .bar-wrap { flex: 1; height: 44px; background: rgba(255,255,255,.04); border-radius: 6px; position: relative; overflow: hidden; }
+        .funnel-step .bar { height: 100%; background: linear-gradient(90deg, #1F4A2E, #A9F00F); border-radius: 6px; display: flex; align-items: center; padding: 0 14px; }
+        .funnel-step .bar .count { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #fff; font-weight: 700; }
+        .funnel-step .bar .pct { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(255,255,255,.7); margin-left: 8px; }
+        .funnel-step .drop { width: 110px; text-align: left; flex-shrink: 0; }
+        .funnel-step .drop .val { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #ef4444; font-weight: 700; }
+        .funnel-step .drop .lbl { font-size: 9px; color: #9ab3a3; text-transform: uppercase; letter-spacing: 1px; }
+        .funnel-step.no-drop .drop { visibility: hidden; }
+
+        .device-split { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 1000px; width: 100%; }
+        .device-card { background: rgba(255,255,255,.04); border-radius: 12px; padding: 22px; }
+        .device-card.mobile { border: 1.5px solid rgba(239,68,68,.3); }
+        .device-card.desktop { border: 1.5px solid rgba(169,240,15,.3); }
+        .device-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,.06); }
+        .device-head .name { font-size: 16px; font-weight: 600; color: #fff; }
+        .device-head .pct { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 700; }
+        .device-card.mobile .device-head .pct { color: #ef4444; }
+        .device-card.desktop .device-head .pct { color: #A9F00F; }
+        .device-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .device-stat .lbl { font-size: 9px; color: #9ab3a3; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
+        .device-stat .val { font-family: 'JetBrains Mono', monospace; font-size: 16px; color: #fff; font-weight: 600; }
+
+        .nvr-strip { display: flex; gap: 18px; max-width: 1000px; width: 100%; margin-top: 16px; }
+        .nvr-card { flex: 1; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 10px; padding: 14px 18px; }
+        .nvr-card .lbl { font-size: 10px; color: #9ab3a3; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; font-weight: 600; }
+        .nvr-card .row { display: flex; justify-content: space-between; padding: 4px 0; font-size: 12px; }
+        .nvr-card .row .k { color: #9ab3a3; }
+        .nvr-card .row .v { font-family: 'JetBrains Mono', monospace; color: #fff; font-weight: 600; }
+
+        .day-bars { display: flex; flex-direction: column; gap: 6px; max-width: 1000px; width: 100%; }
+        .day-row { display: flex; align-items: center; gap: 14px; }
+        .day-row .label { width: 90px; text-align: right; font-size: 12px; color: #ccc; font-weight: 500; }
+        .day-row .bar-wrap { flex: 1; height: 32px; background: rgba(255,255,255,.04); border-radius: 5px; position: relative; overflow: hidden; }
+        .day-row .bar { height: 100%; border-radius: 5px; display: flex; align-items: center; padding: 0 12px; }
+        .day-row .bar.peak { background: linear-gradient(90deg, #1F4A2E, #A9F00F); }
+        .day-row .bar.normal { background: rgba(169,240,15,.25); }
+        .day-row .bar.low { background: rgba(239,68,68,.3); }
+        .day-row .bar .v { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #fff; font-weight: 700; }
+        .day-row .meta { width: 80px; text-align: left; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #9ab3a3; }
+
+        .product-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; max-width: 1080px; width: 100%; }
+        .product-col { background: rgba(255,255,255,.04); border-radius: 12px; padding: 20px; }
+        .product-col.heroes { border: 1.5px solid rgba(169,240,15,.3); }
+        .product-col.gems { border: 1.5px solid rgba(93,197,182,.3); }
+        .product-col.dead { border: 1.5px solid rgba(239,68,68,.3); }
+        .product-col h3 { font-size: 13px; font-weight: 700; margin-bottom: 4px; letter-spacing: .3px; }
+        .product-col.heroes h3 { color: #A9F00F; }
+        .product-col.gems h3 { color: #5DC5B6; }
+        .product-col.dead h3 { color: #ef4444; }
+        .product-col .summary { font-size: 10px; color: #9ab3a3; margin-bottom: 12px; }
+        .product-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,.05); font-size: 11px; }
+        .product-row:last-child { border-bottom: none; }
+        .product-row .name { color: #ccc; flex: 1; padding-right: 8px; }
+        .product-row .val { font-family: 'JetBrains Mono', monospace; color: #fff; font-weight: 600; font-size: 11px; white-space: nowrap; }
+
         .method-step h4 { font-size: 12px; color: #fff; font-weight: 600; margin-bottom: 4px; line-height: 1.2; }
         .method-step p { font-size: 9px; color: #9ab3a3; line-height: 1.4; }
         .method-step::after { content: '→'; position: absolute; right: -10px; top: 50%; transform: translateY(-50%); color: #A9F00F; font-size: 14px; font-weight: 700; z-index: 5; }
@@ -454,6 +515,7 @@
 
     <!-- SLIDE 0: TITLE -->
     <div class="title-slide card" data-index="0">
+        <img class="title-logo" src="brand-assets/logo.png" alt="Nordic Weed">
         <div class="title-badge">2026</div>
         <div class="title-brand">nordicweed.dk</div>
         <div class="title-text">
@@ -545,8 +607,193 @@
         <div class="insight-box"><strong>Checkout abandonment</strong> and <strong>mobile PDP conversion</strong> combined account for DKK 23,000 to 40,000 per month, over half the total opportunity. Fix these first.</div>
     </div>
 
-    <!-- SECTION DIVIDER: CRITICAL -->
+    <!-- ===== SECTION 00 / RESEARCH & ANALYSIS ===== -->
+
+    <!-- SECTION DIVIDER: RESEARCH -->
     <div class="card section-slide" data-index="4">
+        <div class="section-number">00</div>
+        <div class="section-kicker">Research Foundation</div>
+        <div class="section-title">What the Data Showed</div>
+        <div class="section-sub">Funnel decomposition, device behavior, temporal patterns, and product-level performance pulled from GA4 + Shopify (Apr 14 to May 14, 2026). Every opportunity that follows is anchored in the data on these slides.</div>
+    </div>
+
+    <!-- RESEARCH 1: FUNNEL BREAKDOWN -->
+    <div class="card" data-index="5">
+        <div class="card-header">
+            <div class="card-label">Funnel Decomposition</div>
+            <div class="card-title">Where Visitors Drop Off</div>
+            <div class="card-subtitle">5-stage funnel from session entry to purchase. Each row shows the count, the conversion rate from the previous step, and the drop-off magnitude.</div>
+        </div>
+        <div class="funnel-stack">
+            <div class="funnel-step no-drop">
+                <div class="label">Sessions</div>
+                <div class="bar-wrap"><div class="bar" style="width:100%"><span class="count">14,400</span><span class="pct">100%</span></div></div>
+                <div class="drop"><div class="val" style="color:#9ab3a3">start</div><div class="lbl">entry</div></div>
+            </div>
+            <div class="funnel-step">
+                <div class="label">PDP views</div>
+                <div class="bar-wrap"><div class="bar" style="width:70%"><span class="count">10,080</span><span class="pct">70%</span></div></div>
+                <div class="drop"><div class="val">- 4,320</div><div class="lbl">no PDP visit</div></div>
+            </div>
+            <div class="funnel-step">
+                <div class="label">Add to cart</div>
+                <div class="bar-wrap"><div class="bar" style="width:21.6%"><span class="count">3,112</span><span class="pct">30.9% of PDP</span></div></div>
+                <div class="drop"><div class="val">- 6,968</div><div class="lbl">PDP no ATC</div></div>
+            </div>
+            <div class="funnel-step">
+                <div class="label">Begin checkout</div>
+                <div class="bar-wrap"><div class="bar" style="width:7.2%"><span class="count">1,039</span><span class="pct">33.4% of ATC</span></div></div>
+                <div class="drop"><div class="val">- 2,073</div><div class="lbl">ATC abandon</div></div>
+            </div>
+            <div class="funnel-step">
+                <div class="label">Purchase</div>
+                <div class="bar-wrap"><div class="bar" style="width:6.3%"><span class="count">907</span><span class="pct">87.3% of checkout</span></div></div>
+                <div class="drop"><div class="val">- 132</div><div class="lbl">checkout drop</div></div>
+            </div>
+        </div>
+        <div class="insight-box"><strong>Two largest leaks:</strong> ATC abandonment loses 2,073 sessions (66.6% drop from ATC to begin checkout) and PDP-to-ATC loses 6,968 sessions (69.1% drop). Together they account for ~80% of the funnel loss vs 132 lost at the final checkout step.</div>
+    </div>
+
+    <!-- RESEARCH 2: DEVICE & USER SPLIT -->
+    <div class="card" data-index="6">
+        <div class="card-header">
+            <div class="card-label">Device & User Behavior</div>
+            <div class="card-title">Mobile Carries the Traffic, Desktop Carries the Conversion</div>
+            <div class="card-subtitle">Mobile is 79% of sessions but converts 1.2x worse and adds to cart 1.5x worse than desktop. Returning customers convert 1.8x better than new across both devices.</div>
+        </div>
+        <div class="device-split">
+            <div class="device-card mobile">
+                <div class="device-head">
+                    <span class="name">Mobile</span>
+                    <span class="pct">79% sessions</span>
+                </div>
+                <div class="device-stats">
+                    <div class="device-stat"><div class="lbl">Sessions / mo</div><div class="val">11,376</div></div>
+                    <div class="device-stat"><div class="lbl">ATC rate</div><div class="val">19.4%</div></div>
+                    <div class="device-stat"><div class="lbl">Conversion rate</div><div class="val">6.1%</div></div>
+                    <div class="device-stat"><div class="lbl">Avg order value</div><div class="val">DKK 191</div></div>
+                </div>
+            </div>
+            <div class="device-card desktop">
+                <div class="device-head">
+                    <span class="name">Desktop</span>
+                    <span class="pct">21% sessions</span>
+                </div>
+                <div class="device-stats">
+                    <div class="device-stat"><div class="lbl">Sessions / mo</div><div class="val">3,024</div></div>
+                    <div class="device-stat"><div class="lbl">ATC rate</div><div class="val">30.0%</div></div>
+                    <div class="device-stat"><div class="lbl">Conversion rate</div><div class="val">7.5%</div></div>
+                    <div class="device-stat"><div class="lbl">Avg order value</div><div class="val">DKK 225</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="nvr-strip">
+            <div class="nvr-card">
+                <div class="lbl">Returning customers</div>
+                <div class="row"><span class="k">Share of revenue</span><span class="v">78.3%</span></div>
+                <div class="row"><span class="k">Conversion rate</span><span class="v">8.3%</span></div>
+                <div class="row"><span class="k">AOV</span><span class="v">DKK 209</span></div>
+            </div>
+            <div class="nvr-card">
+                <div class="lbl">New customers</div>
+                <div class="row"><span class="k">Share of revenue</span><span class="v">21.7%</span></div>
+                <div class="row"><span class="k">Conversion rate</span><span class="v">4.6%</span></div>
+                <div class="row"><span class="k">AOV</span><span class="v">DKK 176</span></div>
+            </div>
+        </div>
+        <div class="insight-box"><strong>The mobile gap is the single largest leverage point.</strong> 55% relative ATC gap and DKK 34 lower AOV on the device that carries 79% of sessions. Closing half of it adds DKK 8K to 15K per month. Returning customers are 1.8x better converters, justifying the retention program.</div>
+    </div>
+
+    <!-- RESEARCH 3: TEMPORAL PATTERNS -->
+    <div class="card" data-index="7">
+        <div class="card-header">
+            <div class="card-label">Temporal Patterns</div>
+            <div class="card-title">When Nordic Weed Sells</div>
+            <div class="card-subtitle">Day-of-week revenue and conversion rate. Thursday is a natural peak. Saturday is dead air. The 9am to 1pm window converts at 8% and produces 28% of weekly revenue in 17% of the hours.</div>
+        </div>
+        <div class="day-bars">
+            <div class="day-row">
+                <div class="label">Monday</div>
+                <div class="bar-wrap"><div class="bar normal" style="width:55%"><span class="v">DKK 21,000</span></div></div>
+                <div class="meta">5.5% CVR</div>
+            </div>
+            <div class="day-row">
+                <div class="label">Tuesday</div>
+                <div class="bar-wrap"><div class="bar normal" style="width:62%"><span class="v">DKK 23,800</span></div></div>
+                <div class="meta">6.0% CVR</div>
+            </div>
+            <div class="day-row">
+                <div class="label">Wednesday</div>
+                <div class="bar-wrap"><div class="bar normal" style="width:64%"><span class="v">DKK 24,500</span></div></div>
+                <div class="meta">6.2% CVR</div>
+            </div>
+            <div class="day-row">
+                <div class="label">Thursday</div>
+                <div class="bar-wrap"><div class="bar peak" style="width:100%"><span class="v">DKK 38,240  ·  PEAK</span></div></div>
+                <div class="meta">9.1% CVR</div>
+            </div>
+            <div class="day-row">
+                <div class="label">Friday</div>
+                <div class="bar-wrap"><div class="bar normal" style="width:73%"><span class="v">DKK 27,900</span></div></div>
+                <div class="meta">6.8% CVR</div>
+            </div>
+            <div class="day-row">
+                <div class="label">Saturday</div>
+                <div class="bar-wrap"><div class="bar low" style="width:27%"><span class="v">DKK 10,465  ·  DEAD</span></div></div>
+                <div class="meta">3.7% CVR</div>
+            </div>
+            <div class="day-row">
+                <div class="label">Sunday</div>
+                <div class="bar-wrap"><div class="bar normal" style="width:46%"><span class="v">DKK 17,500</span></div></div>
+                <div class="meta">5.2% CVR</div>
+            </div>
+        </div>
+        <div class="insight-box"><strong>Golden hour 9am to 1pm:</strong> 28% of weekly revenue concentrated in 17% of the trading hours, at 8% CVR. <strong>April 30 outlier:</strong> single day at 15% CVR and DKK 23K, worth investigating to systematize. Send Thursday morning campaigns; launch a Saturday flash drop to revive the dead day.</div>
+    </div>
+
+    <!-- RESEARCH 4: PRODUCT PERFORMANCE -->
+    <div class="card" data-index="8">
+        <div class="card-header">
+            <div class="card-label">Product-Level Performance</div>
+            <div class="card-title">A Hero, Some Hidden Gems, and a Lot of Dead Weight</div>
+            <div class="card-subtitle">20% of revenue concentrated in one SKU. 57% of the catalog has zero purchases in 30 days. The most profitable collections per session are the least visited.</div>
+        </div>
+        <div class="product-grid">
+            <div class="product-col heroes">
+                <h3>Hero products</h3>
+                <div class="summary">Top revenue drivers, well trafficked</div>
+                <div class="product-row"><span class="name">Pusher Street OG</span><span class="val">DKK 36,894 / mo</span></div>
+                <div class="product-row"><span class="name">Skagen Smackdown</span><span class="val">15% of rev</span></div>
+                <div class="product-row"><span class="name">Beldia Hash 25%</span><span class="val">9% of rev</span></div>
+                <div class="product-row"><span class="name">Share of total</span><span class="val">~45%</span></div>
+                <div class="product-row" style="padding-top:10px;border-top:1px dashed rgba(255,255,255,.1)"><span class="name" style="color:#A9F00F">Pusher Street alone</span><span class="val" style="color:#A9F00F">20.3% of rev</span></div>
+            </div>
+            <div class="product-col gems">
+                <h3>Hidden gems</h3>
+                <div class="summary">High DKK per session, low traffic</div>
+                <div class="product-row"><span class="name">bulk-thca</span><span class="val">DKK 44,66 / sess</span></div>
+                <div class="product-row"><span class="name">luksus-slasker</span><span class="val">DKK 33,40 / sess</span></div>
+                <div class="product-row"><span class="name">thca-weed-bundles</span><span class="val">DKK 31,72 / sess</span></div>
+                <div class="product-row"><span class="name">Avg site RPV</span><span class="val">DKK 12,64</span></div>
+                <div class="product-row" style="padding-top:10px;border-top:1px dashed rgba(255,255,255,.1)"><span class="name" style="color:#5DC5B6">Combined visits</span><span class="val" style="color:#5DC5B6">184 / mo  ·  1.3%</span></div>
+            </div>
+            <div class="product-col dead">
+                <h3>Dead inventory</h3>
+                <div class="summary">Views without purchases</div>
+                <div class="product-row"><span class="name">Deep Chunk</span><span class="val">188 views, 0 ATC</span></div>
+                <div class="product-row"><span class="name">La Piattella</span><span class="val">114 views, 0 ATC</span></div>
+                <div class="product-row"><span class="name">Dynavap G3</span><span class="val">68 views, 0 buy</span></div>
+                <div class="product-row"><span class="name">Viewed but 0 purchases</span><span class="val">73 SKUs</span></div>
+                <div class="product-row" style="padding-top:10px;border-top:1px dashed rgba(255,255,255,.1)"><span class="name" style="color:#ef4444">Zero-purchase SKUs</span><span class="val" style="color:#ef4444">98 of 172  ·  57%</span></div>
+            </div>
+        </div>
+        <div class="insight-box"><strong>Three actions fall straight out of this:</strong> protect Pusher Street OG, promote bulk-thca + luksus-slasker (44 and 33 kr per session that almost no one sees), kill or fix the 73 view-no-buy SKUs (Deep Chunk and La Piattella first, today).</div>
+    </div>
+
+    <!-- ===== END SECTION 00 ===== -->
+
+    <!-- SECTION DIVIDER: CRITICAL -->
+    <div class="card section-slide" data-index="9">
         <div class="section-number">01</div>
         <div class="section-kicker">Phase 1</div>
         <div class="section-title">Critical / Fix This Week</div>
@@ -554,7 +801,7 @@
     </div>
 
     <!-- OPP 1: CHECKOUT ABANDONMENT -->
-    <div class="card" data-index="5" style="justify-content:flex-start;padding-top:50px">
+    <div class="card" data-index="10" style="justify-content:flex-start;padding-top:50px">
         <div class="card-header">
             <div class="card-label">Opportunity 01  ·  Critical</div>
             <div class="card-title">Checkout Abandonment Recovery</div>
@@ -594,7 +841,7 @@
     </div>
 
     <!-- OPP 2: MOBILE PDP GAP -->
-    <div class="card" data-index="6" style="justify-content:flex-start;padding-top:50px">
+    <div class="card" data-index="11" style="justify-content:flex-start;padding-top:50px">
         <div class="card-header">
             <div class="card-label">Opportunity 02  ·  Critical</div>
             <div class="card-title">Mobile PDP Conversion Gap</div>
@@ -634,7 +881,7 @@
     </div>
 
     <!-- OPP 3: BROKEN PRODUCTS -->
-    <div class="card" data-index="7" style="justify-content:flex-start;padding-top:50px">
+    <div class="card" data-index="12" style="justify-content:flex-start;padding-top:50px">
         <div class="card-header">
             <div class="card-label">Opportunity 03  ·  Critical</div>
             <div class="card-title">Fix Broken and Dead Products</div>
@@ -672,7 +919,7 @@
     </div>
 
     <!-- SECTION DIVIDER: HIGH VALUE -->
-    <div class="card section-slide" data-index="8">
+    <div class="card section-slide" data-index="13">
         <div class="section-number">02</div>
         <div class="section-kicker">Phase 2</div>
         <div class="section-title">High Value / This Month</div>
@@ -680,7 +927,7 @@
     </div>
 
     <!-- OPP 4: BUNDLE UX -->
-    <div class="card" data-index="9" style="justify-content:flex-start;padding-top:50px">
+    <div class="card" data-index="14" style="justify-content:flex-start;padding-top:50px">
         <div class="card-header">
             <div class="card-label">Opportunity 04  ·  High Value</div>
             <div class="card-title">Bundle UX Overhaul (byobSuite)</div>
@@ -718,7 +965,7 @@
     </div>
 
     <!-- OPP 5: PROMOTE HIDDEN GEMS -->
-    <div class="card" data-index="10" style="justify-content:flex-start;padding-top:50px">
+    <div class="card" data-index="15" style="justify-content:flex-start;padding-top:50px">
         <div class="card-header">
             <div class="card-label">Opportunity 05  ·  High Value</div>
             <div class="card-title">Promote Under-trafficked High Converters</div>
@@ -757,7 +1004,7 @@
     </div>
 
     <!-- OPP 6: TEMPORAL -->
-    <div class="card" data-index="11" style="justify-content:flex-start;padding-top:50px">
+    <div class="card" data-index="16" style="justify-content:flex-start;padding-top:50px">
         <div class="card-header">
             <div class="card-label">Opportunity 06  ·  High Value</div>
             <div class="card-title">Thursday Peak / Saturday Revival</div>
@@ -794,7 +1041,7 @@
     </div>
 
     <!-- OPP 7: HOMEPAGE NAV -->
-    <div class="card" data-index="12" style="justify-content:flex-start;padding-top:50px">
+    <div class="card" data-index="17" style="justify-content:flex-start;padding-top:50px">
         <div class="card-header">
             <div class="card-label">Opportunity 07  ·  High Value</div>
             <div class="card-title">Homepage Navigation Optimization</div>
@@ -832,7 +1079,7 @@
     </div>
 
     <!-- OPP 8: AOV UPSELL -->
-    <div class="card" data-index="13" style="justify-content:flex-start;padding-top:50px">
+    <div class="card" data-index="18" style="justify-content:flex-start;padding-top:50px">
         <div class="card-header">
             <div class="card-label">Opportunity 08  ·  High Value</div>
             <div class="card-title">25g to 100g AOV Upsell Path</div>
@@ -870,7 +1117,7 @@
     </div>
 
     <!-- SECTION DIVIDER: OPTIMIZE -->
-    <div class="card section-slide" data-index="14">
+    <div class="card section-slide" data-index="19">
         <div class="section-number">03</div>
         <div class="section-kicker">Phase 3</div>
         <div class="section-title">Optimize / Next Sprint</div>
@@ -878,7 +1125,7 @@
     </div>
 
     <!-- OPP 9: BLOG PIPELINE -->
-    <div class="card" data-index="15" style="justify-content:flex-start;padding-top:50px">
+    <div class="card" data-index="20" style="justify-content:flex-start;padding-top:50px">
         <div class="card-header">
             <div class="card-label">Opportunity 09  ·  Optimize</div>
             <div class="card-title">Blog to Revenue Pipeline</div>
@@ -916,7 +1163,7 @@
     </div>
 
     <!-- OPP 10: RETENTION -->
-    <div class="card" data-index="16" style="justify-content:flex-start;padding-top:50px">
+    <div class="card" data-index="21" style="justify-content:flex-start;padding-top:50px">
         <div class="card-header">
             <div class="card-label">Opportunity 10  ·  Optimize</div>
             <div class="card-title">Returning Customer Retention Program</div>
@@ -954,7 +1201,7 @@
     </div>
 
     <!-- OPP 11: ACCESSORIES -->
-    <div class="card" data-index="17" style="justify-content:flex-start;padding-top:50px">
+    <div class="card" data-index="22" style="justify-content:flex-start;padding-top:50px">
         <div class="card-header">
             <div class="card-label">Opportunity 11  ·  Optimize</div>
             <div class="card-title">Cross-sell Accessories</div>
@@ -991,7 +1238,7 @@
     </div>
 
     <!-- OPP 12: TRACKING -->
-    <div class="card" data-index="18" style="justify-content:flex-start;padding-top:50px">
+    <div class="card" data-index="23" style="justify-content:flex-start;padding-top:50px">
         <div class="card-header">
             <div class="card-label">Opportunity 12  ·  Optimize</div>
             <div class="card-title">Fix (not set) Tracking Gap</div>
@@ -1028,7 +1275,7 @@
     </div>
 
     <!-- SHIP vs TEST SPLIT -->
-    <div class="card" data-index="19">
+    <div class="card" data-index="24">
         <div class="card-header">
             <div class="card-label">Execution Framework</div>
             <div class="card-title">Ship Now vs A/B Test</div>
@@ -1066,7 +1313,7 @@
     </div>
 
     <!-- SECTION DIVIDER: TEST PLANS -->
-    <div class="card section-slide" data-index="20">
+    <div class="card section-slide" data-index="25">
         <div class="section-number">04</div>
         <div class="section-kicker">Detailed Test Plans</div>
         <div class="section-title">A/B Test Snapshots</div>
@@ -1074,7 +1321,7 @@
     </div>
 
     <!-- TEST PLAN 01: CHECKOUT EXIT-INTENT POPUP -->
-    <div class="card tp-card" data-index="21">
+    <div class="card tp-card" data-index="26">
         <div class="tp-left">
             <div class="tp-badge"><span class="e-mark">e</span>Test Plan Snapshot</div>
             <div class="tp-section">
@@ -1144,7 +1391,7 @@
     </div>
 
     <!-- TEST PLAN 02: MOBILE PDP STICKY ATC -->
-    <div class="card tp-card" data-index="22">
+    <div class="card tp-card" data-index="27">
         <div class="tp-left">
             <div class="tp-badge"><span class="e-mark">e</span>Test Plan Snapshot</div>
             <div class="tp-section">
@@ -1218,7 +1465,7 @@
     </div>
 
     <!-- TEST PLAN 03: BUNDLE UX -->
-    <div class="card tp-card" data-index="23">
+    <div class="card tp-card" data-index="28">
         <div class="tp-left">
             <div class="tp-badge"><span class="e-mark">e</span>Test Plan Snapshot</div>
             <div class="tp-section">
@@ -1312,7 +1559,7 @@
     </div>
 
     <!-- TEST PLAN 04: HOMEPAGE HERO ROTATION -->
-    <div class="card tp-card" data-index="24">
+    <div class="card tp-card" data-index="29">
         <div class="tp-left">
             <div class="tp-badge"><span class="e-mark">e</span>Test Plan Snapshot</div>
             <div class="tp-section">
@@ -1377,7 +1624,7 @@
     </div>
 
     <!-- TEST PLAN 05: HOMEPAGE NAVIGATION -->
-    <div class="card tp-card" data-index="25">
+    <div class="card tp-card" data-index="30">
         <div class="tp-left">
             <div class="tp-badge"><span class="e-mark">e</span>Test Plan Snapshot</div>
             <div class="tp-section">
@@ -1457,7 +1704,7 @@
     </div>
 
     <!-- TEST PLAN 06: CART CROSS-SELL -->
-    <div class="card tp-card" data-index="26">
+    <div class="card tp-card" data-index="31">
         <div class="tp-left">
             <div class="tp-badge"><span class="e-mark">e</span>Test Plan Snapshot</div>
             <div class="tp-section">
@@ -1524,7 +1771,7 @@
     </div>
 
     <!-- ROADMAP -->
-    <div class="card" data-index="27">
+    <div class="card" data-index="32">
         <div class="card-header">
             <div class="card-label">Execution</div>
             <div class="card-title">90 Day Roadmap</div>
@@ -1580,7 +1827,7 @@
     </div>
 
     <!-- SCORECARD -->
-    <div class="card" data-index="28">
+    <div class="card" data-index="33">
         <div class="card-header">
             <div class="card-label">Summary</div>
             <div class="card-title">Opportunity Scorecard</div>
@@ -1608,7 +1855,7 @@
     </div>
 
     <!-- THANK YOU -->
-    <div class="card thankyou-slide" data-index="29">
+    <div class="card thankyou-slide" data-index="34">
         <div class="title-slide" style="min-width:auto;height:auto;padding:0;background:transparent">
             <div class="title-brand" style="margin-bottom:30px">nordicweed.dk</div>
             <div class="ty-title">Ship Phase 1 This Week</div>
@@ -1621,7 +1868,7 @@
 </div>
 
     <!-- SECTION DIVIDER: HOW WE WORK -->
-    <div class="card section-slide" data-index="30">
+    <div class="card section-slide" data-index="35">
         <div class="section-number">05</div>
         <div class="section-kicker">EcomHouse Method</div>
         <div class="section-title">How We Work, Test, and Charge</div>
@@ -1629,7 +1876,7 @@
     </div>
 
     <!-- METHODOLOGY 1: THE 6-STEP CRO METHOD -->
-    <div class="card" data-index="31">
+    <div class="card" data-index="36">
         <div class="card-header">
             <div class="card-label">The EcomHouse CRO Method</div>
             <div class="card-title">Six Steps, End to End</div>
@@ -1677,7 +1924,7 @@
     </div>
 
     <!-- METHODOLOGY 2: PRE-TEST BRIEF -->
-    <div class="card" data-index="32">
+    <div class="card" data-index="37">
         <div class="card-header">
             <div class="card-label">Pre-Test Analysis</div>
             <div class="card-title">Every Test Launches with a Written Brief</div>
@@ -1709,7 +1956,7 @@
     </div>
 
     <!-- METHODOLOGY 3: A/B TESTING PROTOCOL -->
-    <div class="card" data-index="33">
+    <div class="card" data-index="38">
         <div class="card-header">
             <div class="card-label">Testing Protocol</div>
             <div class="card-title">How We Run Tests</div>
@@ -1745,7 +1992,7 @@
     </div>
 
     <!-- METHODOLOGY 4: PERFORMANCE PRICING -->
-    <div class="card" data-index="34">
+    <div class="card" data-index="39">
         <div class="card-header">
             <div class="card-label">Compensation</div>
             <div class="card-title">We Win When You Win</div>
@@ -1779,7 +2026,7 @@
     </div>
 
     <!-- METHODOLOGY 5: STAGE MULTIPLIERS -->
-    <div class="card" data-index="35">
+    <div class="card" data-index="40">
         <div class="card-header">
             <div class="card-label">Schedule A  ·  Stage Multipliers</div>
             <div class="card-title">Tests Further from Purchase Carry More Projection Risk</div>
@@ -1823,7 +2070,7 @@
     </div>
 
     <!-- METHODOLOGY 6: WORKED EXAMPLE -->
-    <div class="card" data-index="36">
+    <div class="card" data-index="41">
         <div class="card-header">
             <div class="card-label">Worked Example</div>
             <div class="card-title">Two Tests, Two Fee Calculations</div>
@@ -1865,7 +2112,7 @@
     </div>
 
     <!-- METHODOLOGY 7: INTERACTIVE CALCULATOR -->
-    <div class="card" data-index="37">
+    <div class="card" data-index="42">
         <div class="card-header">
             <div class="card-label">Try It Yourself</div>
             <div class="card-title">Interactive Revenue Calculator</div>
@@ -1913,7 +2160,7 @@
 
                 <div class="calc-row">
                     <div class="calc-label-row">
-                        <span class="lbl">Purchase rate (% of checkout)</span>
+                        <span class="lbl">Purchase complete rate (% of checkout)</span>
                         <span class="val" id="purchaseVal">87%</span>
                     </div>
                     <input type="range" id="purchase" class="calc-slider" min="50" max="100" step="1" value="87">
@@ -1947,7 +2194,7 @@
 
                 <div class="calc-meta">
                     <div class="meta-cell">
-                        <div class="meta-lbl">Conversion Rate</div>
+                        <div class="meta-lbl">Overall CVR</div>
                         <div class="meta-val" id="cvrOut">6.30%</div>
                     </div>
                     <div class="meta-cell">
@@ -1980,7 +2227,7 @@
         <span>Menu</span>
     </button>
     <div class="nav-dots" id="navDots"></div>
-    <div class="nav-counter" id="navCounter">01 / 38</div>
+    <div class="nav-counter" id="navCounter">01 / 43</div>
     <div class="nav-arrows">
         <button class="nav-arrow" id="prevBtn" aria-label="Previous"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
         <button class="nav-arrow" id="nextBtn" aria-label="Next"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
@@ -1994,6 +2241,11 @@ var SLIDE_TITLES = [
     'How This Report Works',
     'Baseline Metrics',
     'Opportunity Landscape',
+    '00 / Research & Analysis (section)',
+    'Funnel Decomposition',
+    'Device & User Behavior',
+    'Temporal Patterns',
+    'Product-Level Performance',
     '01 / Critical (section)',
     'Opp 01  ·  Checkout Abandonment Recovery',
     'Opp 02  ·  Mobile PDP Conversion Gap',
@@ -2031,13 +2283,14 @@ var SLIDE_TITLES = [
 ];
 var SLIDE_SECTIONS = [
     { title: 'Intro', start: 0, end: 3 },
-    { title: '01 / Critical', start: 4, end: 7 },
-    { title: '02 / High Value', start: 8, end: 13 },
-    { title: '03 / Optimize', start: 14, end: 18 },
-    { title: 'Ship vs Test', start: 19, end: 19 },
-    { title: '04 / A/B Test Plans', start: 20, end: 26 },
-    { title: 'Roadmap & Close', start: 27, end: 29 },
-    { title: '05 / EcomHouse Method', start: 30, end: 37 }
+    { title: '00 / Research & Analysis', start: 4, end: 8 },
+    { title: '01 / Critical', start: 9, end: 12 },
+    { title: '02 / High Value', start: 13, end: 18 },
+    { title: '03 / Optimize', start: 19, end: 23 },
+    { title: 'Ship vs Test', start: 24, end: 24 },
+    { title: '04 / A/B Test Plans', start: 25, end: 31 },
+    { title: 'Roadmap & Close', start: 32, end: 34 },
+    { title: '05 / EcomHouse Method', start: 35, end: 42 }
 ];
 
 (function(){
