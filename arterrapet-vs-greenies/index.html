@@ -82,12 +82,16 @@
       background: var(--cream);
       border-bottom: 1px solid var(--border);
       padding: 14px 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
       position: sticky;
       top: 0;
       z-index: 100;
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
     .header-logo {
       display: flex;
@@ -511,10 +515,12 @@
 
   <!-- Header -->
   <header>
-    <a class="header-logo" href="https://arterrapet.com">
-      <img src="https://arterrapet.com/cdn/shop/files/lsg-arterra-pet-logo_2be516b1-b2bc-497f-8036-b9a4b6126533.svg?v=1729883336&width=600" alt="Arterra Pet">
-    </a>
-    <a class="btn btn-navy" href="https://arterrapet.com/products/dental-chews">Try Arterra</a>
+    <div class="header-inner">
+      <a class="header-logo" href="https://arterrapet.com">
+        <img src="https://arterrapet.com/cdn/shop/files/lsg-arterra-pet-logo_2be516b1-b2bc-497f-8036-b9a4b6126533.svg?v=1729883336&width=600" alt="Arterra Pet">
+      </a>
+      <a class="btn btn-navy" href="https://arterrapet.com/products/dental-chews">Try Arterra</a>
+    </div>
   </header>
 
   <!-- Hero -->
