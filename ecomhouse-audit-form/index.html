@@ -1,0 +1,809 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>CRO audit intake form. EcomHouse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #000000;
+    --text: #ffffff;
+    --offwhite: #efeeee;
+    --yellow: #f7d007;
+    --muted: #999999;
+    --faint: #6b7c75;
+    --card-bg: rgba(255, 255, 255, 0.04);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --insight-bg: rgba(247, 208, 7, 0.08);
+    --insight-border: rgba(247, 208, 7, 0.25);
+    --field-bg: rgba(255, 255, 255, 0.025);
+    --field-border: rgba(255, 255, 255, 0.10);
+    --field-focus: rgba(247, 208, 7, 0.55);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { background: var(--bg); margin: 0; padding: 0; }
+
+  body {
+    font-family: "Inter", system-ui, sans-serif;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+    background:
+      radial-gradient(ellipse 1200px 700px at 80% -10%, rgba(247, 208, 7, 0.18), rgba(247, 208, 7, 0.04) 40%, transparent 70%),
+      #000000;
+    min-height: 100vh;
+    padding: 60px 24px 120px;
+  }
+
+  /* Chrome (fixed) */
+  .chrome {
+    position: fixed;
+    pointer-events: none;
+    z-index: 90;
+    font-family: "Inter", system-ui, sans-serif;
+  }
+  .chrome.top-left { top: 22px; left: 26px; }
+  .chrome.top-right { top: 24px; right: 26px; display: flex; align-items: center; gap: 14px; pointer-events: auto; }
+  .chrome.bot-left { bottom: 22px; left: 26px; font-size: 11px; font-weight: 500; letter-spacing: 1.5px; color: var(--offwhite); }
+  .chrome.bot-right { bottom: 22px; right: 26px; font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 500; color: var(--offwhite); font-variant-numeric: tabular-nums; }
+
+  .wordmark {
+    font-family: "Inter", sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    line-height: 1;
+    display: inline-flex;
+  }
+  .wordmark .ecom { color: var(--yellow); }
+  .wordmark .house { color: var(--offwhite); }
+
+  .year { font-size: 13px; font-weight: 500; color: var(--offwhite); }
+
+  /* Lang toggle */
+  .lang-toggle {
+    display: inline-flex;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    padding: 3px;
+    gap: 0;
+  }
+  .lang-toggle button {
+    appearance: none;
+    background: transparent;
+    border: 0;
+    color: var(--muted);
+    font-family: "Inter", sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .lang-toggle button.active {
+    background: var(--yellow);
+    color: #111111;
+  }
+
+  /* Layout */
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding-top: 60px;
+  }
+
+  /* Cover */
+  .cover {
+    margin-bottom: 56px;
+  }
+  .kicker {
+    font-family: "Inter", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 18px;
+  }
+  h1.cover-title {
+    font-family: "Inter", sans-serif;
+    font-size: 56px;
+    font-weight: 900;
+    letter-spacing: -0.025em;
+    line-height: 1.02;
+    margin: 0 0 20px;
+    color: var(--text);
+  }
+  h1.cover-title .yellow { color: var(--yellow); }
+  .cover-sub {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.65;
+    max-width: 620px;
+    margin: 0 0 24px;
+  }
+  .cover-meta {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+
+  /* Section */
+  section.sec {
+    margin-bottom: 56px;
+  }
+  .sec-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .sec-num {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--yellow);
+    letter-spacing: 1px;
+  }
+  .sec-title {
+    font-family: "Inter", sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin: 0;
+    line-height: 1.15;
+  }
+  .sec-desc {
+    font-size: 12px;
+    color: var(--muted);
+    margin: 10px 0 0;
+    max-width: 620px;
+    line-height: 1.65;
+  }
+
+  /* Field */
+  .field {
+    margin-bottom: 22px;
+  }
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  @media (max-width: 640px) {
+    .field-row { grid-template-columns: 1fr; }
+  }
+  label.lbl {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+    letter-spacing: 0.1px;
+  }
+  .req { color: var(--yellow); margin-left: 4px; }
+  .helper {
+    font-size: 11px;
+    color: var(--muted);
+    margin: 0 0 10px;
+    line-height: 1.55;
+  }
+
+  input[type="text"],
+  input[type="url"],
+  input[type="number"],
+  input[type="email"],
+  input[type="tel"],
+  select,
+  textarea {
+    width: 100%;
+    background: var(--field-bg);
+    border: 1px solid var(--field-border);
+    border-radius: 6px;
+    padding: 12px 14px;
+    color: var(--text);
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  input::placeholder, textarea::placeholder { color: rgba(255, 255, 255, 0.28); }
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--field-focus);
+    background: rgba(255, 255, 255, 0.05);
+  }
+  textarea { resize: vertical; min-height: 92px; }
+
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23f7d007' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+  }
+  select option { background: #111111; color: var(--text); }
+
+  /* Multiselect chips */
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 9px 14px;
+    background: var(--field-bg);
+    border: 1px solid var(--field-border);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    user-select: none;
+  }
+  .chip:hover { border-color: rgba(247, 208, 7, 0.35); }
+  .chip input { display: none; }
+  .chip.checked, .chip:has(input:checked) {
+    background: rgba(247, 208, 7, 0.12);
+    border-color: rgba(247, 208, 7, 0.55);
+    color: var(--yellow);
+  }
+
+  /* Insight box */
+  .insight {
+    background: var(--insight-bg);
+    border: 1px solid var(--insight-border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--text);
+    margin-bottom: 28px;
+  }
+  .insight strong { color: var(--yellow); font-weight: 600; }
+  .insight a { color: var(--yellow); text-decoration: underline; text-underline-offset: 2px; }
+
+  /* Submit */
+  .actions {
+    margin-top: 48px;
+    padding-top: 36px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .submit-note {
+    font-size: 11px;
+    color: var(--muted);
+    max-width: 380px;
+    line-height: 1.6;
+  }
+  button.primary {
+    appearance: none;
+    background: var(--yellow);
+    color: #111111;
+    border: 0;
+    border-radius: 6px;
+    padding: 14px 28px;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  button.primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(247, 208, 7, 0.3);
+  }
+
+  /* Footer hint */
+  .footer-hint {
+    text-align: center;
+    margin-top: 60px;
+    font-size: 11px;
+    color: var(--faint);
+    letter-spacing: 0.5px;
+  }
+
+  /* i18n visibility */
+  .i18n-inline > [data-lang],
+  .i18n-block > [data-lang] { display: none; }
+  body[data-lang="da"] .i18n-inline > [data-lang="da"] { display: inline; }
+  body[data-lang="en"] .i18n-inline > [data-lang="en"] { display: inline; }
+  body[data-lang="da"] .i18n-block > [data-lang="da"] { display: block; }
+  body[data-lang="en"] .i18n-block > [data-lang="en"] { display: block; }
+
+  /* Mobile chrome */
+  @media (max-width: 720px) {
+    body { padding: 80px 18px 100px; }
+    h1.cover-title { font-size: 40px; }
+    .sec-title { font-size: 22px; }
+    .chrome.bot-left { font-size: 10px; letter-spacing: 1px; }
+  }
+</style>
+</head>
+<body data-lang="da">
+
+<!-- Chrome -->
+<div class="chrome top-left">
+  <span class="wordmark"><span class="ecom">ECOM</span><span class="house">HOUSE</span></span>
+</div>
+<div class="chrome top-right">
+  <span class="year">2026</span>
+  <span class="lang-toggle" role="tablist" aria-label="Language">
+    <button type="button" data-set-lang="da" class="active">DA</button>
+    <button type="button" data-set-lang="en">EN</button>
+  </span>
+</div>
+<div class="chrome bot-left">ECOMHOUSE ©ALL RIGHTS RESERVED</div>
+<div class="chrome bot-right">FORM / 01</div>
+
+<form class="wrap" autocomplete="off" novalidate>
+
+  <!-- Cover -->
+  <header class="cover">
+    <div class="kicker i18n-inline">
+      <span data-lang="da">Audit intake</span>
+      <span data-lang="en">Audit intake</span>
+    </div>
+    <h1 class="cover-title i18n-inline">
+      <span data-lang="da"><span class="yellow">CRO audit</span> intake</span>
+      <span data-lang="en"><span class="yellow">CRO audit</span> intake</span>
+    </h1>
+    <p class="cover-sub i18n-inline">
+      <span data-lang="da">For at kunne levere en dybdegående audit, har vi brug for kontekst om dit brand, dine kunder og dine data. Gå så meget i dybden som du kan. Jo bedre input, jo bedre audit.</span>
+      <span data-lang="en">To deliver a deep audit, we need context about your brand, customers, and data. Go as deep as you can. Better input means a better audit.</span>
+    </p>
+    <div class="cover-meta">
+      <span class="pill i18n-inline"><span data-lang="da">Shopify</span><span data-lang="en">Shopify</span></span>
+      <span class="pill i18n-inline"><span data-lang="da">CRO audit</span><span data-lang="en">CRO audit</span></span>
+      <span class="pill i18n-inline"><span data-lang="da">~5 min</span><span data-lang="en">~5 min</span></span>
+    </div>
+  </header>
+
+  <!-- SECTION 1 -->
+  <section class="sec">
+    <div class="sec-header">
+      <span class="sec-num">// 01</span>
+      <h2 class="sec-title i18n-inline">
+        <span data-lang="da">Virksomhed</span>
+        <span data-lang="en">Company</span>
+      </h2>
+    </div>
+
+    <div class="field">
+      <label class="lbl i18n-inline" for="company">
+        <span data-lang="da">Virksomhedsnavn</span>
+        <span data-lang="en">Company name</span>
+        <span class="req">*</span>
+      </label>
+      <p class="helper i18n-inline">
+        <span data-lang="da">Som det står i dine officielle dokumenter.</span>
+        <span data-lang="en">As it appears in your official documents.</span>
+      </p>
+      <input id="company" name="company" type="text" required />
+    </div>
+
+    <div class="field">
+      <label class="lbl i18n-inline" for="dba">
+        <span data-lang="da">Handelsnavn (DBA)</span>
+        <span data-lang="en">Trade name (DBA)</span>
+      </label>
+      <p class="helper i18n-inline">
+        <span data-lang="da">Kun hvis du driver forretning under et andet navn.</span>
+        <span data-lang="en">Only if you trade under a different name.</span>
+      </p>
+      <input id="dba" name="dba" type="text" />
+    </div>
+
+    <div class="field">
+      <label class="lbl i18n-inline" for="website">
+        <span data-lang="da">Hjemmeside URL</span>
+        <span data-lang="en">Website URL</span>
+        <span class="req">*</span>
+      </label>
+      <input id="website" name="website" type="url" placeholder="https://" required />
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label class="lbl i18n-inline" for="markets">
+          <span data-lang="da">Primære markeder</span>
+          <span data-lang="en">Primary markets</span>
+          <span class="req">*</span>
+        </label>
+        <p class="helper i18n-inline">
+          <span data-lang="da">Hvor sælger I aktivt? Fx Danmark, Sverige, DACH, US.</span>
+          <span data-lang="en">Where do you actively sell? e.g. DK, SE, DACH, US.</span>
+        </p>
+        <input id="markets" name="markets" type="text" required />
+      </div>
+      <div class="field">
+        <label class="lbl i18n-inline" for="languages">
+          <span data-lang="da">Sprog på siden</span>
+          <span data-lang="en">Site languages</span>
+        </label>
+        <p class="helper i18n-inline">
+          <span data-lang="da">Fx DA, EN, DE.</span>
+          <span data-lang="en">e.g. DA, EN, DE.</span>
+        </p>
+        <input id="languages" name="languages" type="text" />
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2 -->
+  <section class="sec">
+    <div class="sec-header">
+      <span class="sec-num">// 02</span>
+      <h2 class="sec-title i18n-inline">
+        <span data-lang="da">Brand og forretning</span>
+        <span data-lang="en">Brand and business</span>
+      </h2>
+    </div>
+
+    <div class="field">
+      <label class="lbl i18n-inline" for="competitors">
+        <span data-lang="da">Top 3 konkurrenter</span>
+        <span data-lang="en">Top 3 competitors</span>
+        <span class="req">*</span>
+      </label>
+      <p class="helper i18n-inline">
+        <span data-lang="da">URL er bedre end navn. En pr. linje.</span>
+        <span data-lang="en">URLs preferred. One per line.</span>
+      </p>
+      <textarea id="competitors" name="competitors" rows="3" required></textarea>
+    </div>
+
+    <div class="field">
+      <label class="lbl i18n-inline" for="whyyou">
+        <span data-lang="da">Hvorfor vælger kunderne dig over konkurrenterne?</span>
+        <span data-lang="en">Why do customers pick you over competitors?</span>
+        <span class="req">*</span>
+      </label>
+      <textarea id="whyyou" name="whyyou" rows="3" required></textarea>
+    </div>
+
+    <div class="field">
+      <label class="lbl i18n-inline" for="usps">
+        <span data-lang="da">Dine USPs</span>
+        <span data-lang="en">Your USPs</span>
+        <span class="req">*</span>
+      </label>
+      <p class="helper i18n-inline">
+        <span data-lang="da">Hvad gør jer unikke? Min. 3 punkter.</span>
+        <span data-lang="en">What makes you unique? At least 3 points.</span>
+      </p>
+      <textarea id="usps" name="usps" rows="3" required></textarea>
+    </div>
+
+    <div class="field">
+      <label class="lbl i18n-inline" for="personas">
+        <span data-lang="da">Personaer</span>
+        <span data-lang="en">Personas</span>
+        <span class="req">*</span>
+      </label>
+      <p class="helper i18n-inline">
+        <span data-lang="da">1 til 3 personaer. Alder, bopæl, interesser, har de børn, hvad trigger købet?</span>
+        <span data-lang="en">1 to 3 personas. Age, location, interests, kids, what triggers the purchase?</span>
+      </p>
+      <textarea id="personas" name="personas" rows="5" required></textarea>
+    </div>
+
+    <div class="field">
+      <label class="lbl i18n-inline" for="goal">
+        <span data-lang="da">Primært audit-mål</span>
+        <span data-lang="en">Primary audit goal</span>
+        <span class="req">*</span>
+      </label>
+      <select id="goal" name="goal" required>
+        <option value="" disabled selected hidden></option>
+        <option value="cr-lift" data-da="Højere konverteringsrate" data-en="Higher conversion rate">Higher conversion rate</option>
+        <option value="aov-lift" data-da="Højere AOV" data-en="Higher AOV">Higher AOV</option>
+        <option value="repeat" data-da="Flere genkøb / LTV" data-en="More repeat purchases / LTV">More repeat purchases / LTV</option>
+        <option value="funnel-step" data-da="Forbedre et specifikt trin i funnel" data-en="Fix a specific funnel step">Fix a specific funnel step</option>
+        <option value="diagnostic" data-da="Diagnose: hvor lækker funnel?" data-en="Diagnostic: where is the funnel leaking?">Diagnostic: where is the funnel leaking?</option>
+        <option value="other" data-da="Andet (uddyb nedenfor)" data-en="Other (explain below)">Other (explain below)</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label class="lbl i18n-inline" for="recent-changes">
+        <span data-lang="da">Ændringer de seneste 90 dage</span>
+        <span data-lang="en">Changes in the last 90 days</span>
+      </label>
+      <p class="helper i18n-inline">
+        <span data-lang="da">Replatform, nyt tema, redesign, prisændringer, nye produktlanceringer.</span>
+        <span data-lang="en">Replatform, new theme, redesign, price changes, new product launches.</span>
+      </p>
+      <textarea id="recent-changes" name="recent-changes" rows="2"></textarea>
+    </div>
+  </section>
+
+  <!-- SECTION 3 - Customer data -->
+  <section class="sec">
+    <div class="sec-header">
+      <span class="sec-num">// 03</span>
+      <h2 class="sec-title i18n-inline">
+        <span data-lang="da">Kundedata</span>
+        <span data-lang="en">Customer data</span>
+      </h2>
+    </div>
+    <p class="sec-desc i18n-inline" style="margin-top:-18px;margin-bottom:28px">
+      <span data-lang="da">Vi gætter ikke. Vi mining'er det, kunderne allerede har fortalt jer.</span>
+      <span data-lang="en">We do not guess. We mine what your customers have already told you.</span>
+    </p>
+
+    <div class="field">
+      <label class="lbl i18n-inline" for="postpurchase">
+        <span data-lang="da">Post-purchase survey / attribution survey</span>
+        <span data-lang="en">Post-purchase / attribution survey</span>
+      </label>
+      <p class="helper i18n-inline">
+        <span data-lang="da">Spørger I "hvor hørte du om os" eller "hvorfor købte du" efter ordre?</span>
+        <span data-lang="en">Do you ask "where did you hear about us" or "why did you buy" post-order?</span>
+      </p>
+      <select id="postpurchase" name="postpurchase">
+        <option value="" disabled selected hidden></option>
+        <option value="fairing">Fairing</option>
+        <option value="knocommerce">KnoCommerce</option>
+        <option value="shopify-native" data-da="Shopify native" data-en="Shopify native">Shopify native</option>
+        <option value="custom" data-da="Egen løsning" data-en="Custom solution">Custom solution</option>
+        <option value="none" data-da="Nej, ikke endnu" data-en="No, not yet">No, not yet</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label class="lbl i18n-inline" for="cs-themes">
+        <span data-lang="da">Top 3 til 5 tilbagevendende kundeservice-temaer</span>
+        <span data-lang="en">Top 3 to 5 recurring customer service themes</span>
+      </label>
+      <p class="helper i18n-inline">
+        <span data-lang="da">Hvilke spørgsmål kommer igen og igen? Fx "passer størrelsen?", "kan jeg returnere?", "hvornår sendes ordren?".</span>
+        <span data-lang="en">What questions come up over and over? e.g. "does it fit", "can I return", "when does it ship".</span>
+      </p>
+      <textarea id="cs-themes" name="cs-themes" rows="3"></textarea>
+    </div>
+
+    <div class="field">
+      <label class="lbl i18n-inline" for="refund-reasons">
+        <span data-lang="da">Top 3 årsager til returnering / refund</span>
+        <span data-lang="en">Top 3 reasons for returns / refunds</span>
+      </label>
+      <textarea id="refund-reasons" name="refund-reasons" rows="2"></textarea>
+    </div>
+
+    <div class="field">
+      <label class="lbl i18n-inline" for="past-tests">
+        <span data-lang="da">Tidligere A/B-tests (hvis nogen)</span>
+        <span data-lang="en">Past A/B tests (if any)</span>
+      </label>
+      <p class="helper i18n-inline">
+        <span data-lang="da">Hvad testede I, hvad vandt, hvad tabte?</span>
+        <span data-lang="en">What did you test, what won, what lost?</span>
+      </p>
+      <textarea id="past-tests" name="past-tests" rows="3"></textarea>
+    </div>
+  </section>
+
+  <!-- SECTION 4 - Access -->
+  <section class="sec">
+    <div class="sec-header">
+      <span class="sec-num">// 04</span>
+      <h2 class="sec-title i18n-inline">
+        <span data-lang="da">Adgang</span>
+        <span data-lang="en">Access</span>
+      </h2>
+    </div>
+
+    <div class="insight i18n-block">
+      <div data-lang="da">
+        <strong>Sådan giver du os adgang.</strong> Del din 4-cifrede Shopify collaborator-kode nedenfor. Vi sender adgangsanmodningen, og du accepterer den fra dit Shopify admin. Til GA4, Clarity og Hotjar: send view-adgang til <a href="mailto:info@ecomhouse.dk">info@ecomhouse.dk</a>.
+      </div>
+      <div data-lang="en">
+        <strong>How to give us access.</strong> Share your 4-digit Shopify collaborator code below. We send the access request, and you accept it from your Shopify admin. For GA4, Clarity, and Hotjar: send view access to <a href="mailto:info@ecomhouse.dk">info@ecomhouse.dk</a>.
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="lbl i18n-inline" for="collab-code">
+        <span data-lang="da">Shopify collaborator-kode (4 cifre)</span>
+        <span data-lang="en">Shopify collaborator code (4 digits)</span>
+        <span class="req">*</span>
+      </label>
+      <p class="helper i18n-inline">
+        <span data-lang="da">Find koden i Shopify admin under Indstillinger → Brugere og tilladelser → Sikkerhed. Aktivér "Kræv en kode" hvis den ikke er sat.</span>
+        <span data-lang="en">Find the code in Shopify admin under Settings → Users and permissions → Security. Enable "Require a code" if it isn't set.</span>
+      </p>
+      <input id="collab-code" name="collab-code" type="text" inputmode="numeric" maxlength="4" pattern="[0-9]{4}" placeholder="0000" required />
+    </div>
+
+    <div class="field">
+      <label class="lbl i18n-inline" for="ga4-access">
+        <span data-lang="da">Har du givet adgang til Google Analytics 4?</span>
+        <span data-lang="en">Have you granted access to Google Analytics 4?</span>
+        <span class="req">*</span>
+      </label>
+      <p class="helper i18n-inline">
+        <span data-lang="da">Send Viewer-adgang til info@ecomhouse.dk.</span>
+        <span data-lang="en">Send Viewer access to info@ecomhouse.dk.</span>
+      </p>
+      <select id="ga4-access" name="ga4-access" required>
+        <option value="" disabled selected hidden></option>
+        <option value="yes" data-da="Ja, givet" data-en="Yes, granted">Yes, granted</option>
+        <option value="no" data-da="Nej, ikke endnu" data-en="No, not yet">No, not yet</option>
+        <option value="no-tool" data-da="Vi har ikke GA4" data-en="We don't have GA4">We don't have GA4</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label class="lbl i18n-inline" for="clarity-access">
+        <span data-lang="da">Har du givet adgang til Microsoft Clarity?</span>
+        <span data-lang="en">Have you granted access to Microsoft Clarity?</span>
+        <span class="req">*</span>
+      </label>
+      <p class="helper i18n-inline">
+        <span data-lang="da">Tilføj info@ecomhouse.dk som teammedlem i Clarity.</span>
+        <span data-lang="en">Add info@ecomhouse.dk as a team member in Clarity.</span>
+      </p>
+      <select id="clarity-access" name="clarity-access" required>
+        <option value="" disabled selected hidden></option>
+        <option value="yes" data-da="Ja, givet" data-en="Yes, granted">Yes, granted</option>
+        <option value="no" data-da="Nej, ikke endnu" data-en="No, not yet">No, not yet</option>
+        <option value="no-tool" data-da="Vi har ikke Clarity" data-en="We don't have Clarity">We don't have Clarity</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label class="lbl i18n-inline" for="hotjar-access">
+        <span data-lang="da">Har du givet adgang til Hotjar?</span>
+        <span data-lang="en">Have you granted access to Hotjar?</span>
+        <span class="req">*</span>
+      </label>
+      <p class="helper i18n-inline">
+        <span data-lang="da">Inviter info@ecomhouse.dk som teammedlem.</span>
+        <span data-lang="en">Invite info@ecomhouse.dk as a team member.</span>
+      </p>
+      <select id="hotjar-access" name="hotjar-access" required>
+        <option value="" disabled selected hidden></option>
+        <option value="yes" data-da="Ja, givet" data-en="Yes, granted">Yes, granted</option>
+        <option value="no" data-da="Nej, ikke endnu" data-en="No, not yet">No, not yet</option>
+        <option value="no-tool" data-da="Vi har ikke Hotjar" data-en="We don't have Hotjar">We don't have Hotjar</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- Submit -->
+  <div class="actions">
+    <p class="submit-note i18n-inline">
+      <span data-lang="da">Når du sender, opretter vi en intake-task og vender tilbage inden for 24 timer.</span>
+      <span data-lang="en">On submit, we create an intake task and respond within 24 hours.</span>
+    </p>
+    <button type="submit" class="primary">
+      <span class="i18n-inline">
+        <span data-lang="da">Send audit-intake</span>
+        <span data-lang="en">Submit intake</span>
+      </span>
+    </button>
+  </div>
+
+  <p class="footer-hint i18n-inline">
+    <span data-lang="da">Powered by EcomHouse</span>
+    <span data-lang="en">Powered by EcomHouse</span>
+  </p>
+</form>
+
+<!-- Thank-you state -->
+<div class="wrap thanks" id="thanks" hidden>
+  <div class="thanks-inner">
+    <div class="thanks-check" aria-hidden="true">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="30" stroke="#f7d007" stroke-width="2" fill="rgba(247,208,7,0.08)"/>
+        <path d="M20 33L28 41L44 24" stroke="#f7d007" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="kicker i18n-inline">
+      <span data-lang="da">Audit intake modtaget</span>
+      <span data-lang="en">Audit intake received</span>
+    </div>
+    <h1 class="cover-title i18n-inline" style="font-size:48px">
+      <span data-lang="da"><span class="yellow">Tak.</span> Vi ses snart.</span>
+      <span data-lang="en"><span class="yellow">Thank you.</span> Talk soon.</span>
+    </h1>
+    <div class="thanks-body i18n-block">
+      <div data-lang="da">
+        <p>Vi gennemgår dine svar nu og vender tilbage med audit-resultaterne hurtigst muligt.</p>
+        <p class="thanks-callout"><strong>Næste skridt fra din side:</strong> Du modtager vores Shopify collaborator-anmodning inden for <strong style="color:#f7d007;font-weight:600">2 til 3 timer</strong>. Accepter den fra dit Shopify admin under <em>Indstillinger → Brugere og tilladelser</em>.</p>
+        <p>Hvis vi mangler noget andet, skriver vi til dig fra <strong style="color:#f7d007;font-weight:600">info@ecomhouse.dk</strong>.</p>
+      </div>
+      <div data-lang="en">
+        <p>We are reviewing your answers now and will get back to you with the audit findings shortly.</p>
+        <p class="thanks-callout"><strong>Next step on your side:</strong> You will receive our Shopify collaborator request within <strong style="color:#f7d007;font-weight:600">2 to 3 hours</strong>. Please accept it from your Shopify admin under <em>Settings → Users and permissions</em>.</p>
+        <p>If we need anything else, we will reach out from <strong style="color:#f7d007;font-weight:600">info@ecomhouse.dk</strong>.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .thanks { padding-top: 100px; }
+  .thanks-inner { max-width: 640px; }
+  .thanks-check { margin-bottom: 28px; }
+  .thanks-body { color: var(--muted); font-size: 15px; line-height: 1.65; margin-top: 22px; }
+  .thanks-body p { margin: 0 0 14px; }
+  .thanks-body strong { color: var(--text); font-weight: 600; }
+  .thanks-body em { font-style: normal; color: var(--offwhite); }
+  .thanks-callout {
+    background: var(--insight-bg);
+    border: 1px solid var(--insight-border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 18px 0 18px !important;
+    color: var(--text);
+  }
+</style>
+
+<script>
+  // Language toggle
+  const setLang = (lang) => {
+    document.body.setAttribute("data-lang", lang);
+    document.documentElement.setAttribute("lang", lang);
+    document.querySelectorAll("[data-set-lang]").forEach(b => {
+      b.classList.toggle("active", b.getAttribute("data-set-lang") === lang);
+    });
+    document.querySelectorAll("select option[data-da]").forEach(opt => {
+      const txt = opt.getAttribute(lang === "da" ? "data-da" : "data-en");
+      if (txt) opt.textContent = txt;
+    });
+  };
+  document.querySelectorAll("[data-set-lang]").forEach(b => {
+    b.addEventListener("click", () => setLang(b.getAttribute("data-set-lang")));
+  });
+
+  // Form submit → show thank-you
+  const form = document.querySelector("form.wrap");
+  const thanks = document.getElementById("thanks");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+    form.hidden = true;
+    thanks.hidden = false;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+</script>
+</body>
+</html>
