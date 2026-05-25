@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Cart Drawer · SportGym</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700;800&family=Work+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --wine: #8b1d2c;
+    --wine-2: #6b1422;
+    --rose: #8b2c3e;
+    --ink: #121212;
+    --ink-2: #404040;
+    --ink-3: #6b6b6b;
+    --line: #e6e6e6;
+    --bg: #ffffff;
+    --soft: #f7f5f3;
+    --gold: #d4a23a;
+    --green: #00b67a;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: #1a1a1a; color: var(--ink); font-family: 'Assistant', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  img { display: block; max-width: 100%; }
+  h1, h2, h3 { font-family: 'Work Sans', sans-serif; letter-spacing: -0.015em; margin: 0; }
+
+  /* Backdrop simulating site behind */
+  .stage {
+    position: relative;
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(139, 29, 44, 0.18), transparent 60%),
+      radial-gradient(circle at 80% 60%, rgba(139, 44, 62, 0.12), transparent 60%),
+      #1a1a1a;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    backdrop-filter: blur(2px);
+    pointer-events: none;
+  }
+  /* Stage hint label (small caption only) */
+  .stage-label {
+    position: fixed;
+    top: 18px;
+    left: 22px;
+    color: #fff;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: .35;
+  }
+
+  /* DRAWER */
+  .drawer {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 440px;
+    background: #fff;
+    min-height: 100vh;
+    box-shadow: -10px 0 30px rgba(0,0,0,.25);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Drawer header */
+  .d-head {
+    padding: 18px 20px 14px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .d-head h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .d-head h2 .count {
+    color: var(--ink-3);
+    font-weight: 500;
+    margin-left: 6px;
+  }
+  .close {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--soft);
+    border: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--ink);
+  }
+
+  /* Shipping threshold */
+  .ship-bar {
+    padding: 12px 20px 16px;
+    background: linear-gradient(180deg, #fff8f1, #fff);
+    border-bottom: 1px solid var(--line);
+  }
+  .ship-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .ship-line svg { color: var(--wine); flex: 0 0 18px; }
+  .ship-line strong { color: var(--wine); font-weight: 800; }
+  .ship-line .done {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--green);
+    font-weight: 700;
+  }
+  .ship-progress {
+    height: 6px;
+    background: #ece6df;
+    border-radius: 999px;
+    overflow: hidden;
+    position: relative;
+  }
+  .ship-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--wine), #c33f55);
+    border-radius: 999px;
+    transition: width .35s ease;
+  }
+
+  /* Items */
+  .items {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    padding: 6px 0;
+  }
+  .item {
+    display: grid;
+    grid-template-columns: 76px 1fr;
+    gap: 14px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--line);
+  }
+  .item .img {
+    width: 76px; height: 76px;
+    background: var(--soft);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .item .img img { width: 100%; height: 100%; object-fit: contain; }
+  .item .info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+  .item .brand {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-3);
+    font-weight: 700;
+  }
+  .item .name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 2px 0 4px;
+    line-height: 1.3;
+  }
+  .item .meta {
+    font-size: 12px;
+    color: var(--ink-3);
+  }
+  .item .actions {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .item .qty {
+    display: inline-flex;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .item .qty button {
+    width: 28px; height: 32px;
+    background: #fff;
+    border: 0;
+    cursor: pointer;
+    color: var(--ink);
+    font-size: 14px;
+  }
+  .item .qty input {
+    width: 32px;
+    border: 0;
+    text-align: center;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .item .price-stack { text-align: right; }
+  .item .price {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1;
+  }
+  .item .price .old {
+    color: var(--ink-3);
+    text-decoration: line-through;
+    font-weight: 500;
+    font-size: 12px;
+    margin-right: 4px;
+  }
+  .item .mo {
+    font-size: 11px;
+    color: var(--ink-3);
+    margin-top: 3px;
+  }
+  .item .remove {
+    background: transparent;
+    border: 0;
+    color: var(--ink-3);
+    font-size: 11px;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 4px 0;
+  }
+  .item .remove:hover { color: var(--wine); }
+
+  /* Upsell strip */
+  .upsell {
+    padding: 18px 20px 8px;
+    background: var(--soft);
+  }
+  .upsell-h {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .upsell-h .h {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--ink);
+  }
+  .upsell-h .h .icon { color: var(--wine); margin-right: 6px; vertical-align: -3px; }
+  .upsell-scroll {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 12px;
+    margin: 0 -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .upsell-scroll::-webkit-scrollbar { display: none; }
+  .up-card {
+    flex: 0 0 168px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+  }
+  .up-card .ui {
+    aspect-ratio: 1/1;
+    background: var(--soft);
+    overflow: hidden;
+  }
+  .up-card .ui img { width: 100%; height: 100%; object-fit: contain; padding: 8px; }
+  .up-card .um {
+    padding: 10px 12px 12px;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    gap: 4px;
+  }
+  .up-card .un {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.25;
+  }
+  .up-card .up {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--ink);
+  }
+  .up-card .add {
+    margin-top: auto;
+    background: #fff;
+    border: 1.5px solid var(--ink);
+    color: var(--ink);
+    border-radius: 6px;
+    padding: 7px 8px;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    width: 100%;
+  }
+  .up-card .add:hover { background: var(--ink); color: #fff; }
+
+  /* Notes */
+  .note-toggle {
+    padding: 12px 20px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--ink-2);
+    cursor: pointer;
+    background: #fff;
+  }
+  .note-toggle .chev { color: var(--ink-3); }
+
+  /* Subtotal + CTA */
+  .totals {
+    padding: 18px 20px 12px;
+    background: #fff;
+    border-top: 1px solid var(--line);
+  }
+  .total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 6px;
+  }
+  .total-row .lbl {
+    font-size: 13px;
+    color: var(--ink-3);
+  }
+  .total-row .val {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--ink);
+  }
+  .grand {
+    margin: 10px 0 6px;
+  }
+  .grand .lbl {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .grand .val {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: var(--wine);
+  }
+  .mo-line {
+    font-size: 12.5px;
+    color: var(--ink-3);
+    margin-bottom: 14px;
+  }
+  .mo-line strong { color: var(--ink); font-weight: 700; }
+  .mo-line .vb {
+    font-weight: 800;
+    color: var(--ink);
+    font-family: 'Work Sans', sans-serif;
+    border: 1px solid var(--ink);
+    border-radius: 3px;
+    padding: 1px 5px;
+    margin-left: 4px;
+    font-size: 11px;
+  }
+  .btn {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px;
+    border-radius: 6px;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    border: 1.5px solid transparent;
+    cursor: pointer;
+  }
+  .btn-primary { background: var(--wine); color: #fff; border-color: var(--wine); }
+  .btn-primary:hover { background: var(--wine-2); }
+  .btn-secondary {
+    background: #111; color: #fff; border-color: #111;
+    margin-top: 8px;
+    font-size: 14px;
+    padding: 13px 16px;
+  }
+  .btn-secondary svg { width: 16px; height: 16px; }
+
+  /* Trust + payments */
+  .trust-icons {
+    padding: 14px 20px 10px;
+    background: #fff;
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  .ti {
+    text-align: center;
+    font-size: 10.5px;
+    color: var(--ink-2);
+    line-height: 1.25;
+  }
+  .ti svg { color: var(--wine); width: 22px; height: 22px; margin: 0 auto 4px; display: block; }
+  .ti .l { display: block; font-weight: 700; color: var(--ink); }
+
+  .pay-row {
+    padding: 8px 20px 18px;
+    background: #fff;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .pay {
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--ink-2);
+    background: #fff;
+    letter-spacing: 0.06em;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .pay.viabill { color: var(--wine); border-color: var(--wine); }
+  .pay.mp { color: #5a78ff; border-color: #5a78ff; }
+  .pay.ap { color: #000; }
+  .pay.gp { color: #4285f4; border-color: #4285f4; }
+
+  /* Mobile: drawer fills screen */
+  @media (max-width: 480px) {
+    .drawer { max-width: 100%; min-height: 100dvh; }
+    .stage-label { display: none; }
+    .upsell-scroll { padding-left: 16px; padding-right: 16px; margin: 0 -16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stage">
+  <div class="backdrop"></div>
+  <span class="stage-label">Cart drawer</span>
+
+  <aside class="drawer" role="dialog" aria-label="Indkøbskurv">
+
+    <!-- Header -->
+    <div class="d-head">
+      <h2>Din kurv <span class="count">(1 vare)</span></h2>
+      <button class="close" aria-label="Luk">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+
+    <!-- Shipping threshold -->
+    <div class="ship-bar">
+      <div class="ship-line">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h13l3 3v6H3z"/><circle cx="8" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+        <span class="done">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>
+          GRATIS fragt aktiveret
+        </span>
+      </div>
+      <div class="ship-progress"><div class="ship-fill" style="width:100%"></div></div>
+    </div>
+
+    <!-- Items -->
+    <div class="items">
+      <div class="item">
+        <div class="img">
+          <img src="https://sportgym.dk/cdn/shop/files/VF20313-TR600i-A.jpg?v=1775807999&width=400" alt="" />
+        </div>
+        <div class="info">
+          <span class="brand">VirtuFit</span>
+          <div class="name">TR600i Løbebånd</div>
+          <div class="meta">3,0 HP · Foldbart · SKU VF20313</div>
+          <div class="actions">
+            <div class="qty">
+              <button>−</button>
+              <input value="1" />
+              <button>+</button>
+            </div>
+            <div class="price-stack">
+              <div class="price"><span class="old">17.900 kr</span>13.900 kr</div>
+              <div class="mo">Fra 1.158 kr/md</div>
+            </div>
+          </div>
+          <button class="remove">Fjern</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Upsell -->
+    <div class="upsell">
+      <div class="upsell-h">
+        <div class="h">
+          <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M2 12h20"/></svg>
+          Komplet dit setup
+        </div>
+        <span style="font-size:11px;color:var(--ink-3);font-weight:600;text-transform:uppercase;letter-spacing:.1em">Anbefalet</span>
+      </div>
+      <div class="upsell-scroll">
+        <div class="up-card">
+          <div class="ui"><img src="https://sportgym.dk/cdn/shop/files/VF20313-2.png?v=1775808207&width=300" alt="" /></div>
+          <div class="um">
+            <div class="un">Gulvmåtte til løbebånd</div>
+            <div class="up">399 kr</div>
+            <button class="add">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14"/></svg>
+              Tilføj
+            </button>
+          </div>
+        </div>
+        <div class="up-card">
+          <div class="ui"><img src="https://sportgym.dk/cdn/shop/files/VF20313-TR600i-D.jpg?v=1775808207&width=300" alt="" /></div>
+          <div class="um">
+            <div class="un">Silikonolie til løbebånd</div>
+            <div class="up">149 kr</div>
+            <button class="add">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14"/></svg>
+              Tilføj
+            </button>
+          </div>
+        </div>
+        <div class="up-card">
+          <div class="ui"><img src="https://sportgym.dk/cdn/shop/files/VF20313-TR600i-H.jpg?v=1775808207&width=300" alt="" /></div>
+          <div class="um">
+            <div class="un">Pulsbælte (Bluetooth)</div>
+            <div class="up">499 kr</div>
+            <button class="add">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14"/></svg>
+              Tilføj
+            </button>
+          </div>
+        </div>
+        <div class="up-card">
+          <div class="ui"><img src="https://sportgym.dk/cdn/shop/files/VF20313-TR600i-B.jpg?v=1775808000&width=300" alt="" /></div>
+          <div class="um">
+            <div class="un">Levering med opstilling</div>
+            <div class="up">995 kr</div>
+            <button class="add">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14"/></svg>
+              Tilføj
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Note toggle -->
+    <button class="note-toggle">
+      <span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px"><path d="M4 4h16v12H8l-4 4z"/></svg>
+        Tilføj besked til ordren
+      </span>
+      <span class="chev">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+      </span>
+    </button>
+
+    <!-- Totals -->
+    <div class="totals">
+      <div class="total-row"><span class="lbl">Subtotal</span><span class="val">13.900 kr</span></div>
+      <div class="total-row"><span class="lbl">Fragt</span><span class="val" style="color:var(--green)">GRATIS</span></div>
+      <div class="total-row grand"><span class="lbl">Total inkl. moms</span><span class="val">13.900 kr</span></div>
+      <div class="mo-line">Eller <strong>1.158 kr / md</strong> i 12 mdr · rentefri med <span class="vb">ViaBill</span></div>
+      <button class="btn btn-primary">
+        Gå til checkout
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </button>
+      <button class="btn btn-secondary">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 12.04c-.03-2.83 2.32-4.2 2.42-4.27-1.32-1.93-3.38-2.19-4.11-2.22-1.75-.18-3.41 1.03-4.3 1.03-.9 0-2.26-1-3.71-.97-1.91.03-3.67 1.11-4.65 2.81-1.99 3.45-.51 8.54 1.43 11.35.94 1.37 2.06 2.91 3.53 2.86 1.42-.06 1.96-.91 3.68-.91 1.71 0 2.2.91 3.71.89 1.54-.03 2.51-1.4 3.45-2.78 1.09-1.6 1.54-3.17 1.57-3.25-.03-.02-3-1.15-3.02-4.54z"/></svg>
+        Hurtig checkout med Apple Pay
+      </button>
+    </div>
+
+    <!-- Trust icons -->
+    <div class="trust-icons">
+      <div class="ti">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3.3-7M3 4v6h6"/></svg>
+        <span class="l">365 dages</span>retur
+      </div>
+      <div class="ti">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 5 3.4 9.4 8 10 4.6-.6 8-5 8-10V6l-8-4z"/></svg>
+        <span class="l">2 års</span>garanti
+      </div>
+      <div class="ti">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M7 6V4a5 5 0 0 1 10 0v2"/></svg>
+        <span class="l">Sikker</span>betaling
+      </div>
+      <div class="ti">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+        <span class="l">Dansk</span>support
+      </div>
+    </div>
+
+    <!-- Payments -->
+    <div class="pay-row">
+      <span class="pay viabill">ViaBill</span>
+      <span class="pay">VISA</span>
+      <span class="pay">MASTERCARD</span>
+      <span class="pay mp">MobilePay</span>
+      <span class="pay ap">Apple Pay</span>
+      <span class="pay gp">G Pay</span>
+    </div>
+
+  </aside>
+</div>
+
+</body>
+</html>

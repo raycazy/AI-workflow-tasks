@@ -1,0 +1,993 @@
+<!doctype html>
+<html lang="da">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VirtuFit TR600i Løbebånd · SportGym</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700;800&family=Work+Sans:wght@500;600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --wine: #8b1d2c;
+      --wine-2: #6b1422;
+      --rose: #8b2c3e;
+      --ink: #121212;
+      --ink-2: #404040;
+      --ink-3: #6b6b6b;
+      --line: #e6e6e6;
+      --bg: #ffffff;
+      --soft: #f7f5f3;
+      --gold: #d4a23a;
+      --green: #00b67a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Assistant', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    h1,
+    h2,
+    h3,
+    .display {
+      font-family: 'Work Sans', sans-serif;
+      letter-spacing: -0.015em;
+    }
+
+    .announce {
+      background: var(--rose);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 500;
+      text-align: center;
+      padding: 9px 16px;
+    }
+
+    .announce .dot {
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      background: #fff;
+      border-radius: 50%;
+      opacity: .5;
+      margin: 0 12px;
+      vertical-align: middle;
+    }
+
+    header.site {
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .header-row {
+      display: grid;
+      grid-template-columns: 40px 1fr auto;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+    }
+
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: 0;
+      color: var(--ink);
+      cursor: pointer;
+      border-radius: 8px;
+    }
+
+    .logo {
+      height: 26px;
+      justify-self: center;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 2px;
+    }
+
+    /* Breadcrumb */
+    .crumbs {
+      padding: 10px 16px;
+      font-size: 12px;
+      color: var(--ink-3);
+      border-bottom: 1px solid var(--line);
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .crumbs a:hover {
+      color: var(--wine);
+    }
+
+    .crumbs .sep {
+      margin: 0 6px;
+      opacity: .6;
+    }
+
+    .crumbs .cur {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* PDP layout */
+    .pdp {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      padding-bottom: 120px;
+      /* room for sticky mobile bar */
+    }
+
+    @media(max-width: 768px) {
+      .pdp {
+        display: block;
+      }
+    }
+
+    /* GALLERY (mobile = swipeable, desktop = grid) */
+    .gallery {
+      background: var(--soft);
+      position: relative;
+    }
+
+    .gallery-main {
+      position: relative;
+      aspect-ratio: 1/1;
+      overflow: hidden;
+    }
+
+    .gallery-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .gallery-pager {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(18, 18, 18, .7);
+      color: #fff;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .03em;
+    }
+
+    .gallery-floats {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      right: 12px;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      z-index: 2;
+    }
+
+    .float-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fff;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
+    }
+
+    .float-chip.save {
+      background: var(--wine);
+      color: #fff;
+    }
+
+    .float-chip.video {
+      background: rgba(18, 18, 18, .85);
+      color: #fff;
+    }
+
+    /* Spec callouts overlaid on image */
+    .spec-callouts {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .callout {
+      position: absolute;
+      pointer-events: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, .96);
+      backdrop-filter: blur(4px);
+      border-radius: 999px;
+      padding: 6px 12px 6px 6px;
+      font-size: 12px;
+      font-weight: 600;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, .12);
+      color: var(--ink);
+    }
+
+    .callout .num {
+      width: 22px;
+      height: 22px;
+      background: var(--wine);
+      color: #fff;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+    }
+
+    .callout.c1 {
+      top: 14%;
+      left: 8%;
+    }
+
+    .callout.c2 {
+      top: 22%;
+      right: 8%;
+    }
+
+    .callout.c3 {
+      bottom: 30%;
+      left: 6%;
+    }
+
+    .callout.c4 {
+      bottom: 14%;
+      right: 10%;
+    }
+
+    .thumbs {
+      display: flex;
+      gap: 8px;
+      padding: 12px 16px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      background: #fff;
+    }
+
+    .thumbs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .thumb {
+      flex: 0 0 64px;
+      aspect-ratio: 1/1;
+      border-radius: 6px;
+      border: 1.5px solid var(--line);
+      overflow: hidden;
+      background: var(--soft);
+      cursor: pointer;
+    }
+
+    .thumb.active {
+      border-color: var(--wine);
+    }
+
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .thumb.video {
+      position: relative;
+      background: #111;
+    }
+
+    .thumb.video::after {
+      content: "";
+      position: absolute;
+      inset: 50% 0 0 50%;
+      transform: translate(-50%, -50%);
+      width: 0;
+      height: 0;
+      border-left: 10px solid #fff;
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+    }
+
+    /* BUY BOX */
+    .buy {
+      padding: 20px 16px 28px;
+      background: #fff;
+    }
+
+    .brand-line {
+      font-family: 'Work Sans', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--ink-3);
+      margin-bottom: 8px;
+    }
+
+    .brand-line .new {
+      color: var(--wine);
+      margin-left: 8px;
+      background: #fdecea;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .ptitle {
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--ink);
+      margin: 0 0 10px;
+    }
+
+    .rating-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+
+    .stars {
+      color: var(--gold);
+      letter-spacing: 1px;
+    }
+
+    .rating-row .count {
+      color: var(--ink-2);
+      font-weight: 600;
+    }
+
+    .rating-row .verified {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .price-block {
+      background: var(--soft);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 16px;
+    }
+
+    .price-line {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+
+    .price-current {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--wine);
+      letter-spacing: -.02em;
+    }
+
+    .price-old {
+      color: var(--ink-3);
+      text-decoration: line-through;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .price-save {
+      background: var(--wine);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .tax {
+      font-size: 12px;
+      color: var(--ink-3);
+      margin-bottom: 10px;
+    }
+
+    .finance {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 13px;
+    }
+
+    .finance .logo {
+      height: 16px;
+      font-weight: 800;
+      color: #1c1c1c;
+      font-family: 'Work Sans', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      border: 1px solid #1c1c1c;
+      border-radius: 3px;
+      padding: 2px 6px;
+    }
+
+    .finance strong {
+      color: var(--ink);
+    }
+
+    /* Spec chips */
+    .spec-chips {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin: 16px 0;
+    }
+
+    .schip {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .schip svg {
+      color: var(--wine);
+      flex: 0 0 20px;
+    }
+
+    .schip .lbl {
+      font-size: 11px;
+      color: var(--ink-3);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+
+    .schip .val {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 700;
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    /* Qty + CTAs */
+    .stock-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--ink);
+      margin: 16px 0 12px;
+      font-weight: 600;
+    }
+
+    .stock-line .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    .stock-line .delivery {
+      color: var(--ink-3);
+      font-weight: 500;
+    }
+
+    .qty-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .qty {
+      display: inline-flex;
+      border: 1.5px solid var(--ink);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .qty button {
+      width: 44px;
+      height: 50px;
+      background: #fff;
+      border: 0;
+      font-size: 18px;
+      cursor: pointer;
+      color: var(--ink);
+    }
+
+    .qty input {
+      width: 44px;
+      border: 0;
+      text-align: center;
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 16px 22px;
+      border-radius: 6px;
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      border: 1.5px solid transparent;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .btn-primary {
+      background: var(--wine);
+      color: #fff;
+      border-color: var(--wine);
+    }
+
+    .btn-primary:hover {
+      background: var(--wine-2);
+    }
+
+    .btn-secondary {
+      background: #111;
+      color: #fff;
+      border-color: #111;
+      margin-top: 10px;
+      font-size: 14px;
+      padding: 14px 20px;
+    }
+
+    .btn-secondary svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Trust grid */
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin: 18px 0;
+    }
+
+    .tbox {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      font-size: 12px;
+    }
+
+    .tbox svg {
+      color: var(--wine);
+      flex: 0 0 22px;
+    }
+
+    .tbox .lbl {
+      font-weight: 700;
+      color: var(--ink);
+      font-size: 13px;
+      display: block;
+    }
+
+    .tbox .sub {
+      color: var(--ink-3);
+      font-size: 11px;
+    }
+
+    /* Pickup line */
+    .pickup {
+      background: #f1f7f3;
+      border-left: 3px solid var(--green);
+      padding: 10px 12px;
+      border-radius: 0 6px 6px 0;
+      font-size: 13px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .pickup svg {
+      color: var(--green);
+      flex: 0 0 18px;
+      margin-top: 2px;
+    }
+
+    .pickup .strong {
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    /* Sticky mobile bar */
+    .sticky-bar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #fff;
+      border-top: 1px solid var(--line);
+      padding: 12px 16px env(safe-area-inset-bottom, 12px);
+      z-index: 100;
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 12px;
+      align-items: center;
+      box-shadow: 0 -6px 18px rgba(0, 0, 0, .06);
+    }
+
+    .sticky-bar .sp-price {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sticky-bar .sp-current {
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--wine);
+      line-height: 1;
+    }
+
+    .sticky-bar .sp-mo {
+      font-size: 11px;
+      color: var(--ink-3);
+      margin-top: 3px;
+    }
+
+    .sticky-bar .btn {
+      padding: 14px 16px;
+      font-size: 14px;
+    }
+
+    /* DESKTOP */
+    @media (min-width: 880px) {
+      .crumbs {
+        padding: 14px 32px;
+      }
+
+      .pdp {
+        grid-template-columns: 1.1fr 1fr;
+        gap: 40px;
+        padding: 24px 32px 80px;
+        max-width: 1320px;
+        margin: 0 auto;
+        align-items: start;
+      }
+
+      .gallery {
+        background: transparent;
+        position: sticky;
+        top: 88px;
+      }
+
+      .gallery-main {
+        border-radius: 14px;
+        background: var(--soft);
+      }
+
+      .buy {
+        padding: 0;
+      }
+
+      .sticky-bar {
+        display: none;
+      }
+
+      .ptitle {
+        font-size: 34px;
+      }
+
+      .price-current {
+        font-size: 36px;
+      }
+
+      .spec-chips {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .trust-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="announce">
+    <span>✓ Gratis fragt over 499 kr</span>
+    <span class="dot"></span>
+    <span>365 dages returret</span>
+    <span class="dot"></span>
+    <span>Klar til afhentning i Aarhus</span>
+    <span class="dot"></span>
+    <span>Delbetaling med ViaBill</span>
+  </div>
+
+  <header class="site">
+    <div class="header-row">
+      <button class="icon-btn" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 6h18M3 12h18M3 18h18" />
+        </svg>
+      </button>
+      <a href="/" class="logo-link">
+        <img class="logo" src="https://sportgym.dk/cdn/shop/files/sport-gym-logo.png?v=1770214353&width=600"
+          alt="SportGym" />
+      </a>
+      <div class="header-actions">
+        <button class="icon-btn" aria-label="Søg">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="7" />
+            <path d="m21 21-4.3-4.3" />
+          </svg>
+        </button>
+        <button class="icon-btn" aria-label="Kurv">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 6h15l-1.5 9h-13z" />
+            <circle cx="9" cy="20" r="1.5" />
+            <circle cx="18" cy="20" r="1.5" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="crumbs">
+    <a href="/">Forside</a><span class="sep">/</span>
+    <a href="/collections/kondition">Kondition</a><span class="sep">/</span>
+    <a href="/collections/lobebaend">Løbebånd</a><span class="sep">/</span>
+    <span class="cur">VirtuFit TR600i</span>
+  </nav>
+
+  <main class="pdp">
+
+    <!-- GALLERY -->
+    <section class="gallery">
+      <div class="gallery-main">
+        <div class="gallery-floats">
+          <span class="float-chip save">SPAR 4.000 kr · -22 %</span>
+          <span class="float-chip video">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+            Video
+          </span>
+        </div>
+        <img src="https://sportgym.dk/cdn/shop/files/VF20313-TR600i-A.jpg?v=1775807999&width=1500"
+          alt="VirtuFit TR600i Løbebånd" />
+        <div class="spec-callouts">
+          <div class="callout c1"><span class="num">1</span>3,0 HP motor</div>
+          <div class="callout c2"><span class="num">2</span>7" display</div>
+          <div class="callout c3"><span class="num">3</span>Foldbart design</div>
+          <div class="callout c4"><span class="num">4</span>150 kg brugervægt</div>
+        </div>
+        <div class="gallery-pager">1 / 7</div>
+      </div>
+      <div class="thumbs">
+        <div class="thumb active"><img
+            src="https://sportgym.dk/cdn/shop/files/VF20313-TR600i-A.jpg?v=1775807999&width=300" alt="" /></div>
+        <div class="thumb"><img src="https://sportgym.dk/cdn/shop/files/VF20313-TR600i-B.jpg?v=1775808000&width=300"
+            alt="" /></div>
+        <div class="thumb"><img src="https://sportgym.dk/cdn/shop/files/VF20313.png?v=1775808207&width=300" alt="" />
+        </div>
+        <div class="thumb"><img src="https://sportgym.dk/cdn/shop/files/VF20313-2.png?v=1775808207&width=300" alt="" />
+        </div>
+        <div class="thumb"><img src="https://sportgym.dk/cdn/shop/files/VF20313-TR600i-H.jpg?v=1775808207&width=300"
+            alt="" /></div>
+        <div class="thumb"><img src="https://sportgym.dk/cdn/shop/files/VF20313-TR600i-D.jpg?v=1775808207&width=300"
+            alt="" /></div>
+        <div class="thumb video"></div>
+      </div>
+    </section>
+
+    <!-- BUY BOX -->
+    <section class="buy">
+
+      <div class="brand-line">
+        VirtuFit <span class="new">Bestseller</span>
+      </div>
+
+      <h1 class="ptitle">VirtuFit TR600i Løbebånd</h1>
+
+      <div class="rating-row">
+        <span class="stars">★★★★★</span>
+        <span class="count">4,8 / 5 · 142 anmeldelser</span>
+        <span class="verified">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2 4 6v6c0 5 3.4 9.4 8 10 4.6-.6 8-5 8-10V6l-8-4z" />
+          </svg>
+          Verified
+        </span>
+      </div>
+
+      <div class="price-block">
+        <div class="price-line">
+          <span class="price-current">13.900 kr</span>
+          <span class="price-old">17.900 kr</span>
+          <span class="price-save">SPAR 4.000 kr</span>
+        </div>
+        <div class="tax">Inkl. moms · Spar 22 % i Maj-tilbud</div>
+        <div class="finance">
+          <span class="logo">ViaBill</span>
+          <span>Fra <strong>1.158 kr / md</strong> i 12 mdr · rentefri</span>
+        </div>
+      </div>
+
+      <!-- Spec chips: justify the price visually -->
+      <div class="spec-chips">
+        <div class="schip">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z" />
+          </svg>
+          <div>
+            <div class="lbl">Motor</div>
+            <div class="val">3,0 HP</div>
+          </div>
+        </div>
+        <div class="schip">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12h3l3-8 4 16 3-8h5" />
+          </svg>
+          <div>
+            <div class="lbl">Topfart</div>
+            <div class="val">18 km/t</div>
+          </div>
+        </div>
+        <div class="schip">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="8" r="4" />
+            <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" />
+          </svg>
+          <div>
+            <div class="lbl">Brugervægt</div>
+            <div class="val">150 kg</div>
+          </div>
+        </div>
+        <div class="schip">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16v8H4z M8 12v8 M16 12v8" />
+          </svg>
+          <div>
+            <div class="lbl">Design</div>
+            <div class="val">Foldbart</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stock-line">
+        <span class="dot"></span>
+        <span>På lager</span>
+        <span class="delivery">· Levering 1-3 hverdage</span>
+      </div>
+
+      <div class="qty-row">
+        <div class="qty">
+          <button>−</button>
+          <input value="1" />
+          <button>+</button>
+        </div>
+        <button class="btn btn-primary" style="flex:1">
+          Læg i kurv
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M6 6h15l-1.5 9h-13z" />
+          </svg>
+        </button>
+      </div>
+      <button class="btn btn-secondary">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M17.05 12.04c-.03-2.83 2.32-4.2 2.42-4.27-1.32-1.93-3.38-2.19-4.11-2.22-1.75-.18-3.41 1.03-4.3 1.03-.9 0-2.26-1-3.71-.97-1.91.03-3.67 1.11-4.65 2.81-1.99 3.45-.51 8.54 1.43 11.35.94 1.37 2.06 2.91 3.53 2.86 1.42-.06 1.96-.91 3.68-.91 1.71 0 2.2.91 3.71.89 1.54-.03 2.51-1.4 3.45-2.78 1.09-1.6 1.54-3.17 1.57-3.25-.03-.02-3-1.15-3.02-4.54z" />
+        </svg>
+        Køb nu med Apple Pay
+      </button>
+
+      <!-- Trust signals -->
+      <div class="trust-grid">
+        <div class="tbox">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2 4 6v6c0 5 3.4 9.4 8 10 4.6-.6 8-5 8-10V6l-8-4z" />
+          </svg>
+          <div><span class="lbl">2 års garanti</span><span class="sub">Producentgaranti</span></div>
+        </div>
+        <div class="tbox">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12a9 9 0 1 0 3.3-7M3 4v6h6" />
+          </svg>
+          <div><span class="lbl">365 dages retur</span><span class="sub">Lang fortrydelse</span></div>
+        </div>
+        <div class="tbox">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 7h13l3 3v6H3z" />
+            <circle cx="8" cy="18" r="2" />
+            <circle cx="17" cy="18" r="2" />
+          </svg>
+          <div><span class="lbl">Gratis fragt</span><span class="sub">Over 499 kr</span></div>
+        </div>
+        <div class="tbox">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 21V10l9-6 9 6v11M9 21v-7h6v7" />
+          </svg>
+          <div><span class="lbl">Showroom</span><span class="sub">Sindalsvej 38, Aarhus</span></div>
+        </div>
+      </div>
+
+      <!-- Pickup line -->
+      <div class="pickup">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 11l3 3 8-8" />
+          <path d="M21 12v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h11" />
+        </svg>
+        <div>
+          <span class="strong">Klar til afhentning i dag</span><br />
+          Sindalsvej 38, Risskov · normalt inden for 1 time
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Sticky mobile add-to-cart -->
+  <div class="sticky-bar">
+    <div class="sp-price">
+      <span class="sp-current">13.900 kr</span>
+      <span class="sp-mo">Eller 1.158 kr/md med ViaBill</span>
+    </div>
+    <button class="btn btn-primary">
+      Læg i kurv
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M6 6h15l-1.5 9h-13z" />
+      </svg>
+    </button>
+  </div>
+
+</body>
+
+</html>

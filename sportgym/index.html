@@ -1,0 +1,2255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>sportgym.dk · CRO Opportunity Report · EcomHouse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; overflow: hidden; background: #000; color: #EFEEEE; font-family: 'Inter', sans-serif; }
+
+/* ===== ECOMHOUSE CHROME ===== */
+.eh-brand { position: fixed; top: 22px; left: 32px; z-index: 90; pointer-events: none; display: flex; align-items: center; height: 22px; }
+.eh-brand svg { height: 18px; width: auto; display: block; }
+.eh-year { position: fixed; top: 24px; right: 32px; z-index: 90; font-size: 13px; font-weight: 500; color: #EFEEEE; letter-spacing: 1px; pointer-events: none; }
+.eh-copyright { position: fixed; bottom: 22px; left: 32px; z-index: 90; font-size: 11px; font-weight: 500; letter-spacing: 1.5px; color: #EFEEEE; pointer-events: none; }
+.eh-pagenum { position: fixed; bottom: 22px; right: 32px; z-index: 90; font-size: 11px; font-weight: 500; letter-spacing: 1px; color: #EFEEEE; pointer-events: none; font-variant-numeric: tabular-nums; }
+
+.eh-yellow { color: #F7D007; }
+
+/* ===== SCROLL CONTAINER ===== */
+.scroll-container { display: flex; height: 100vh; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.scroll-container::-webkit-scrollbar { display: none; }
+
+/* ===== CARD ===== */
+.card { min-width: 100vw; height: 100vh; scroll-snap-align: start; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 28px 48px 60px; position: relative; }
+
+/* ===== TITLE SLIDE ===== */
+.title-slide { background: #000; overflow: hidden; justify-content: flex-start !important; align-items: flex-start !important; padding: 120px 80px !important; }
+.title-slide::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 1100px 700px at 70% 25%, rgba(247,208,7,.28), rgba(247,208,7,.08) 35%, transparent 70%), linear-gradient(180deg, #000 0%, #000 100%); opacity: 1; }
+.title-slide::after { content: ''; position: absolute; inset: 0; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='0.7'/></svg>"); opacity: 0.35; mix-blend-mode: overlay; pointer-events: none; }
+.cover-mark { position: relative; z-index: 2; height: 64px; margin-bottom: 36px; display: flex; align-items: center; }
+.cover-mark img { height: 100%; width: auto; display: block; filter: brightness(0) invert(1) drop-shadow(0 6px 18px rgba(0,0,0,.45)); }
+.title-text { position: relative; z-index: 2; text-align: left; max-width: 1100px; }
+.title-text h1 { font-family: 'Inter', sans-serif; font-size: 92px; font-weight: 900; letter-spacing: -0.035em; text-transform: none; margin-bottom: 16px; line-height: 1.0; }
+.title-text h1 .yellow { color: #F7D007; }
+.title-pills { position: relative; z-index: 2; display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; }
+.title-pill { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 1px; padding: 10px 18px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.15); border-radius: 8px; color: #EFEEEE; text-transform: uppercase; }
+.title-meta { position: relative; z-index: 2; margin-top: 40px; text-align: left; }
+.title-meta p { font-size: 13px; letter-spacing: 0.5px; color: #999; margin-bottom: 6px; font-weight: 400; }
+
+/* ===== SECTION DIVIDER ===== */
+.section-slide { background: #000; }
+.section-slide::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(247,208,7,.05) 0%, transparent 60%); }
+.section-number { font-family: 'JetBrains Mono', monospace; font-size: 100px; font-weight: 200; color: rgba(247,208,7,.12); margin-bottom: 16px; position: relative; z-index: 1; }
+.section-kicker { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: #F7D007; position: relative; z-index: 1; margin-bottom: 14px; font-weight: 700; }
+.section-title { font-family: 'Inter', sans-serif; font-weight: 800; letter-spacing: -0.025em; text-transform: none; font-size: 64px; line-height: 1.0; color: #fff; position: relative; z-index: 1; margin-bottom: 16px; text-align: center; max-width: 980px; }
+.section-sub { font-size: 14px; color: #999; letter-spacing: 0.5px; position: relative; z-index: 1; max-width: 720px; text-align: center; line-height: 1.7; }
+
+/* ===== CARD HEADERS ===== */
+.card-header { text-align: center; margin-bottom: 26px; max-width: 980px; }
+.card-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #F7D007; margin-bottom: 10px; font-weight: 700; }
+.card-title { font-family: 'Inter', sans-serif; font-weight: 800; letter-spacing: -0.02em; text-transform: none; font-size: 42px; line-height: 1.05; color: #fff; }
+.card-subtitle { font-size: 13px; color: #999; margin-top: 10px; letter-spacing: 0.2px; max-width: 720px; line-height: 1.7; margin-left: auto; margin-right: auto; }
+.card-subtitle strong { color: #F7D007; font-weight: 600; }
+
+/* ===== DATA TABLE ===== */
+.data-table { width: 100%; max-width: 1000px; border-collapse: collapse; }
+.data-table th { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #999; font-weight: 600; padding: 10px 12px; text-align: left; border-bottom: 1px solid rgba(255,255,255,.15); }
+.data-table td { font-size: 12px; color: #ccc; padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,.06); }
+.data-table tr:hover td { background: rgba(255,255,255,.02); }
+.data-table .num { text-align: right; font-variant-numeric: tabular-nums; font-family: 'JetBrains Mono', monospace; }
+.data-table .accent { color: #F7D007; font-weight: 600; }
+.data-table .danger { color: #ef4444; font-weight: 500; }
+.data-table .warn { color: #f59e0b; }
+.data-table .good { color: #22c55e; font-weight: 500; }
+.data-table .muted { color: #6b7c75; }
+.data-table .you-row td { background: rgba(247,208,7,.04); }
+
+/* ===== METRICS ===== */
+.metrics-grid { display: flex; flex-wrap: wrap; gap: 16px; max-width: 1040px; justify-content: center; }
+.metric-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 22px 18px; text-align: center; min-width: 170px; flex: 1; }
+.metric-value { font-family: 'JetBrains Mono', monospace; font-size: 28px; font-weight: 500; color: #fff; margin-bottom: 4px; font-variant-numeric: tabular-nums; }
+.metric-value.accent { color: #F7D007; }
+.metric-value.red { color: #ef4444; }
+.metric-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #999; font-weight: 600; }
+.metric-sub { font-size: 10px; color: #6b7c75; margin-top: 6px; line-height: 1.4; }
+
+/* ===== SOURCE / FEATURE CARDS ===== */
+.source-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 1000px; width: 100%; }
+.source-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 22px 20px; }
+.source-card .marker { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #F7D007; margin-bottom: 12px; font-weight: 700; text-transform: uppercase; }
+.source-name { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 10px; }
+.source-detail { font-size: 11px; color: #999; line-height: 1.7; }
+.source-detail strong { color: #F7D007; font-weight: 600; }
+
+/* ===== OPPORTUNITY CARDS ===== */
+.opp-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; max-width: 1100px; width: 100%; }
+.opp-impact { grid-column: 1 / -1; display: flex; align-items: center; gap: 18px; background: rgba(247,208,7,.06); border: 1px solid rgba(247,208,7,.22); border-radius: 12px; padding: 16px 22px; }
+.opp-impact .label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #999; font-weight: 600; }
+.opp-impact .value { font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 600; color: #F7D007; line-height: 1.1; }
+.opp-pill { font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 6px 12px; border-radius: 20px; letter-spacing: 1px; text-transform: uppercase; font-weight: 700; }
+.opp-pill.effort-low { background: rgba(34,197,94,.15); color: #22c55e; border: 1px solid rgba(34,197,94,.3); }
+.opp-pill.effort-med { background: rgba(245,158,11,.15); color: #f59e0b; border: 1px solid rgba(245,158,11,.3); }
+.opp-pill.effort-high { background: rgba(239,68,68,.15); color: #ef4444; border: 1px solid rgba(239,68,68,.3); }
+.opp-pill.time { background: rgba(255,255,255,.06); color: #ccc; border: 1px solid rgba(255,255,255,.12); }
+.opp-block { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 22px; }
+.opp-block-title { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #F7D007; margin-bottom: 14px; font-weight: 700; }
+.opp-list { list-style: none; padding: 0; }
+.opp-list li { font-size: 11.5px; color: #ccc; line-height: 1.6; padding: 7px 0 7px 18px; position: relative; border-bottom: 1px solid rgba(255,255,255,.04); }
+.opp-list li:last-child { border-bottom: none; }
+.opp-list li::before { content: ''; position: absolute; left: 0; top: 14px; width: 6px; height: 6px; background: #F7D007; border-radius: 50%; opacity: .8; }
+.opp-list.numbered { counter-reset: step; }
+.opp-list.numbered li { padding-left: 28px; }
+.opp-list.numbered li::before { content: counter(step); counter-increment: step; background: transparent; border: 1px solid rgba(247,208,7,.4); color: #F7D007; width: 18px; height: 18px; border-radius: 50%; top: 6px; font-size: 9px; font-weight: 700; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; }
+.opp-math { font-size: 11px; color: #999; font-style: italic; padding: 12px 0 4px; line-height: 1.7; }
+.opp-math strong { color: #F7D007; font-style: normal; font-weight: 600; }
+.action-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 1px; font-weight: 700; padding: 2px 7px; border-radius: 3px; margin-right: 8px; vertical-align: 1px; }
+.action-tag.ship { background: rgba(34,197,94,.14); color: #22c55e; border: 1px solid rgba(34,197,94,.3); }
+.action-tag.test { background: rgba(247,208,7,.14); color: #F7D007; border: 1px solid rgba(247,208,7,.3); }
+
+/* ===== INSIGHT BOX ===== */
+.insight-box { max-width: 1000px; width: 100%; background: rgba(247,208,7,.08); border: 1px solid rgba(247,208,7,.25); border-radius: 10px; padding: 16px 22px; margin-top: 18px; font-size: 12px; color: #ccc; line-height: 1.7; }
+.insight-box strong { color: #F7D007; font-weight: 600; }
+
+/* ===== LANDSCAPE BARS ===== */
+.landscape-layout { display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; max-width: 1060px; width: 100%; }
+.bucket-list { display: flex; flex-direction: column; gap: 12px; }
+.bucket-row { display: flex; align-items: center; gap: 14px; }
+.bucket-name { font-size: 11px; color: #ccc; letter-spacing: 1px; text-transform: uppercase; width: 170px; font-weight: 600; }
+.bucket-bar-wrap { flex: 1; height: 38px; background: rgba(255,255,255,.04); border-radius: 6px; overflow: hidden; }
+.bucket-bar { height: 100%; display: flex; align-items: center; padding: 0 14px; color: #fff; font-size: 12px; font-weight: 600; }
+.bucket-bar.crit { background: linear-gradient(90deg, #ef4444, #c2410c); }
+.bucket-bar.high { background: linear-gradient(90deg, #f59e0b, #d97706); }
+.bucket-bar.low { background: linear-gradient(90deg, #22c55e, #15803d); }
+.lever-list { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 22px; }
+.lever-title { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #F7D007; margin-bottom: 16px; font-weight: 700; }
+.lever-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.05); }
+.lever-row:last-child { border-bottom: none; }
+.lever-num { width: 22px; height: 22px; border-radius: 50%; background: rgba(247,208,7,.15); border: 1px solid rgba(247,208,7,.3); color: #F7D007; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'JetBrains Mono', monospace; }
+.lever-name { flex: 1; font-size: 11px; color: #ccc; }
+.lever-value { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #F7D007; font-weight: 600; }
+
+/* ===== FUNNEL STACK ===== */
+.funnel-stack { display: flex; flex-direction: column; gap: 6px; max-width: 1040px; width: 100%; }
+.funnel-step { display: flex; align-items: center; gap: 18px; }
+.funnel-step .label { width: 170px; text-align: right; font-size: 12px; color: #ccc; font-weight: 500; flex-shrink: 0; }
+.funnel-step .bar-wrap { flex: 1; height: 44px; background: rgba(255,255,255,.04); border-radius: 6px; position: relative; overflow: hidden; }
+.funnel-step .bar { height: 100%; background: linear-gradient(90deg, #6b4f00, #F7D007); border-radius: 6px; display: flex; align-items: center; padding: 0 14px; }
+.funnel-step .bar .count { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #111; font-weight: 700; }
+.funnel-step .bar .pct { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(17,17,17,.75); margin-left: 8px; font-weight: 600; }
+.funnel-step .drop { width: 130px; text-align: left; flex-shrink: 0; }
+.funnel-step .drop .val { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #ef4444; font-weight: 700; }
+.funnel-step .drop .lbl { font-size: 9px; color: #999; text-transform: uppercase; letter-spacing: 1px; }
+.funnel-step.no-drop .drop { visibility: hidden; }
+
+/* ===== DEVICE SPLIT ===== */
+.device-split { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 1000px; width: 100%; }
+.device-card { background: rgba(255,255,255,.04); border-radius: 12px; padding: 22px; }
+.device-card.mobile { border: 1.5px solid rgba(239,68,68,.3); }
+.device-card.desktop { border: 1.5px solid rgba(247,208,7,.3); }
+.device-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,.06); }
+.device-head .name { font-size: 16px; font-weight: 700; color: #fff; }
+.device-head .pct { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 700; }
+.device-card.mobile .device-head .pct { color: #ef4444; }
+.device-card.desktop .device-head .pct { color: #F7D007; }
+.device-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.device-stat .lbl { font-size: 9px; color: #999; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; font-weight: 600; }
+.device-stat .val { font-family: 'JetBrains Mono', monospace; font-size: 16px; color: #fff; font-weight: 600; }
+
+/* ===== ROADMAP PHASES ===== */
+.phase-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; max-width: 1140px; width: 100%; }
+.phase-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 22px; }
+.phase-card.p1 { border: 1.5px solid rgba(239,68,68,.4); }
+.phase-card.p2 { border: 1.5px solid rgba(245,158,11,.4); }
+.phase-card.p3 { border: 1.5px solid rgba(34,197,94,.4); }
+.phase-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #999; margin-bottom: 6px; text-transform: uppercase; font-weight: 700; }
+.phase-name { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: #fff; }
+.phase-when { font-size: 11px; color: #999; margin-bottom: 14px; letter-spacing: .5px; }
+.phase-impact { background: rgba(247,208,7,.1); border: 1px solid rgba(247,208,7,.25); border-radius: 6px; padding: 10px 12px; margin-bottom: 14px; }
+.phase-impact .lbl { font-size: 9px; letter-spacing: 2px; color: #999; text-transform: uppercase; margin-bottom: 2px; font-weight: 600; }
+.phase-impact .val { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #F7D007; font-weight: 700; }
+.phase-list { list-style: none; padding: 0; }
+.phase-list li { font-size: 11px; color: #ccc; padding: 6px 0 6px 16px; position: relative; line-height: 1.5; border-bottom: 1px solid rgba(255,255,255,.04); }
+.phase-list li:last-child { border-bottom: none; }
+.phase-list li::before { content: '→'; position: absolute; left: 0; top: 6px; color: #F7D007; font-weight: 700; }
+
+/* ===== SCORECARD ===== */
+.scorecard-total { display: flex; justify-content: space-between; align-items: center; background: #111; border: 1px solid rgba(247,208,7,.25); border-radius: 8px; padding: 14px 22px; margin-top: 16px; max-width: 1000px; width: 100%; }
+.scorecard-total .lbl { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #fff; font-weight: 700; }
+.scorecard-total .val { font-family: 'JetBrains Mono', monospace; font-size: 18px; color: #F7D007; font-weight: 700; }
+
+/* ===== COMPARE (HP vs PDP CR) ===== */
+.compare-layout { display: flex; gap: 32px; max-width: 840px; width: 100%; align-items: stretch; }
+.compare-box { flex: 1; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 28px; text-align: center; }
+.compare-box.highlight { border: 1.5px solid rgba(247,208,7,.3); background: rgba(247,208,7,.05); }
+.compare-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #999; margin-bottom: 12px; font-weight: 700; }
+.compare-rate { font-family: 'JetBrains Mono', monospace; font-size: 46px; font-weight: 600; margin-bottom: 4px; }
+.compare-rate.good { color: #F7D007; }
+.compare-rate.bad { color: #ef4444; }
+.compare-sub { font-size: 11px; color: #999; line-height: 1.6; }
+.compare-vs { display: flex; align-items: center; justify-content: center; font-size: 24px; color: #333; font-weight: 200; padding: 0 8px; }
+
+/* ===== VOICE ===== */
+.voice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 1000px; width: 100%; }
+.voice-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 24px; }
+.voice-stars { color: #F7D007; font-size: 24px; letter-spacing: 2px; }
+.voice-big { font-family: 'JetBrains Mono', monospace; font-size: 56px; color: #fff; font-weight: 600; line-height: 1; }
+.voice-big .sub { font-size: 18px; color: #999; font-weight: 400; }
+.voice-list { list-style: none; padding: 0; margin-top: 4px; }
+.voice-list li { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.05); font-size: 12px; color: #ccc; }
+.voice-list li:last-child { border-bottom: none; }
+.voice-list li .n { font-family: 'JetBrains Mono', monospace; color: #fff; font-weight: 600; }
+.voice-card p { font-size: 12px; color: #ccc; line-height: 1.7; margin-top: 12px; }
+.voice-card p strong { color: #F7D007; font-weight: 600; }
+.voice-card-title { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #F7D007; font-weight: 700; margin-bottom: 10px; }
+
+/* ===== AUDIT SNAPSHOT (3 page preview row) ===== */
+.snap-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 1080px; width: 100%; }
+.snap-tile { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; overflow: hidden; }
+.snap-tile .frame { height: 260px; background: #050505; display: flex; align-items: flex-start; justify-content: center; overflow: hidden; }
+.snap-tile .frame img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+.snap-tile .meta { padding: 12px 16px; }
+.snap-tile .meta .name { font-size: 13px; font-weight: 700; color: #fff; }
+.snap-tile .meta .url { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #F7D007; margin-top: 2px; }
+
+/* ===== THANK YOU ===== */
+.thankyou-slide { background: #000; }
+.thankyou-slide::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 1000px 600px at 30% 50%, rgba(247,208,7,.18), transparent 65%); }
+.ty-content { position: relative; z-index: 1; max-width: 980px; padding: 0 40px; }
+.ty-kicker { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #F7D007; font-weight: 700; margin-bottom: 16px; }
+.ty-title { font-family: 'Inter', sans-serif; font-weight: 800; letter-spacing: -0.02em; text-transform: none; font-size: 56px; line-height: 1.05; color: #fff; margin-bottom: 18px; }
+.ty-sub { font-size: 14px; color: #999; letter-spacing: 0.2px; line-height: 1.7; margin-bottom: 14px; max-width: 720px; }
+.ty-accent { color: #F7D007; font-weight: 600; }
+.ty-powered { font-size: 10px; color: #6b7c75; letter-spacing: 1px; margin-top: 36px; }
+.ty-cta { display: inline-block; margin-top: 28px; padding: 14px 26px; background: #F7D007; color: #111; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; border-radius: 4px; text-decoration: none; }
+
+/* ===== METHODOLOGY ===== */
+.method-flow { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; max-width: 1140px; width: 100%; }
+.method-step { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 10px; padding: 14px 12px; text-align: center; position: relative; }
+.method-step .num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #F7D007; font-weight: 700; margin-bottom: 8px; }
+.method-step h4 { font-size: 12px; color: #fff; font-weight: 700; margin-bottom: 4px; line-height: 1.2; }
+.method-step p { font-size: 10px; color: #999; line-height: 1.5; }
+.method-step::after { content: '→'; position: absolute; right: -10px; top: 50%; transform: translateY(-50%); color: #F7D007; font-size: 14px; font-weight: 700; z-index: 5; }
+.method-step:last-child::after { display: none; }
+.icon-svg { stroke: #F7D007; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; margin: 0 auto 8px; display: block; width: 28px; height: 28px; }
+
+.brief-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 1060px; width: 100%; }
+.brief-col { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 24px; }
+.brief-col.test-setup { border: 1.5px solid rgba(247,208,7,.4); }
+.brief-col.stat-params { border: 1.5px solid rgba(106,169,255,.4); }
+.brief-col h3 { font-size: 15px; color: #fff; font-weight: 700; margin-bottom: 14px; letter-spacing: .2px; }
+.brief-col h3 .tag { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #F7D007; margin-right: 8px; font-weight: 700; }
+.brief-col.stat-params h3 .tag { color: #6aa9ff; }
+.brief-list { list-style: none; padding: 0; }
+.brief-list li { padding: 9px 0 9px 22px; position: relative; font-size: 11.5px; color: #ccc; line-height: 1.55; border-bottom: 1px solid rgba(255,255,255,.04); }
+.brief-list li:last-child { border-bottom: none; }
+.brief-list li::before { content: '✓'; position: absolute; left: 0; top: 8px; color: #F7D007; font-weight: 700; }
+.brief-list li strong { color: #fff; font-weight: 700; }
+
+.protocol-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; max-width: 1100px; width: 100%; }
+.protocol-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 22px 18px; text-align: center; }
+.protocol-card .lbl { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #F7D007; font-weight: 700; margin-bottom: 8px; letter-spacing: 1.5px; text-transform: uppercase; }
+.protocol-card .val { font-size: 17px; color: #fff; font-weight: 700; margin-bottom: 8px; line-height: 1.2; }
+.protocol-card .sub { font-size: 10.5px; color: #999; line-height: 1.55; }
+
+.pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 1060px; width: 100%; align-items: stretch; }
+.pricing-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 26px; }
+.pricing-card.lead { background: rgba(247,208,7,.06); border: 1.5px solid rgba(247,208,7,.3); }
+.pricing-card .tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #F7D007; font-weight: 700; letter-spacing: 1px; margin-bottom: 8px; text-transform: uppercase; }
+.pricing-card h3 { font-size: 22px; color: #fff; font-weight: 700; margin-bottom: 8px; line-height: 1.2; }
+.pricing-card .price-line { font-family: 'JetBrains Mono', monospace; font-size: 32px; color: #F7D007; font-weight: 600; margin-bottom: 10px; line-height: 1; }
+.pricing-card .desc { font-size: 12px; color: #ccc; line-height: 1.65; }
+.pricing-card ul { list-style: none; padding: 0; margin-top: 12px; }
+.pricing-card ul li { padding: 6px 0 6px 20px; position: relative; font-size: 11.5px; color: #ccc; line-height: 1.55; }
+.pricing-card ul li::before { content: '→'; position: absolute; left: 0; color: #F7D007; font-weight: 700; }
+
+.multiplier-stack { display: flex; flex-direction: column; gap: 8px; max-width: 1000px; width: 100%; }
+.mult-row { display: flex; align-items: center; gap: 16px; padding: 14px 20px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 10px; }
+.mult-pct { font-family: 'JetBrains Mono', monospace; font-size: 28px; font-weight: 600; min-width: 80px; text-align: center; font-variant-numeric: tabular-nums; }
+.mult-pct.p100 { color: #F7D007; }
+.mult-pct.p75 { color: #6aa9ff; }
+.mult-pct.p50 { color: #f59e0b; }
+.mult-pct.p25 { color: #ef4444; }
+.mult-row .body { flex: 1; }
+.mult-row .stages { font-size: 12px; color: #fff; font-weight: 600; margin-bottom: 3px; }
+.mult-row .why { font-size: 10.5px; color: #999; }
+.mult-bar { width: 80px; height: 6px; background: rgba(255,255,255,.05); border-radius: 3px; overflow: hidden; }
+.mult-bar .fill { height: 100%; border-radius: 3px; }
+.mult-bar .fill.p100 { width: 100%; background: #F7D007; }
+.mult-bar .fill.p75 { width: 75%; background: #6aa9ff; }
+.mult-bar .fill.p50 { width: 50%; background: #f59e0b; }
+.mult-bar .fill.p25 { width: 25%; background: #ef4444; }
+
+.worked-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; max-width: 1100px; width: 100%; }
+.worked-col { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 22px; display: flex; flex-direction: column; }
+.worked-col.upper { border: 1.5px solid rgba(239,68,68,.4); }
+.worked-col.direct { border: 1.5px solid rgba(247,208,7,.4); }
+.worked-col h3 { font-size: 15px; color: #fff; font-weight: 700; margin-bottom: 4px; }
+.worked-col .lbl { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #999; margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase; font-weight: 700; }
+.worked-step { display: flex; align-items: center; gap: 10px; padding: 7px 0; font-size: 11px; color: #ccc; border-bottom: 1px dashed rgba(255,255,255,.06); }
+.worked-step:last-of-type { border-bottom: none; }
+.worked-step .step-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #F7D007; min-width: 18px; font-weight: 700; }
+.worked-step .step-text { flex: 1; }
+.worked-step .step-val { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #fff; font-weight: 700; text-align: right; }
+.worked-fee { margin-top: auto; padding-top: 12px; border-top: 1px solid rgba(255,255,255,.1); display: flex; justify-content: space-between; align-items: baseline; }
+.worked-fee .lbl-fee { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+.worked-fee .val-fee { font-family: 'JetBrains Mono', monospace; font-size: 22px; color: #F7D007; font-weight: 700; }
+
+/* ===== CALCULATOR ===== */
+.calc-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 22px; max-width: 1100px; width: 100%; }
+.calc-panel, .calc-output { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 24px; }
+.calc-panel h4, .calc-output h4 { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #F7D007; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 18px; font-weight: 700; }
+.calc-row { margin-bottom: 14px; }
+.calc-row:last-child { margin-bottom: 0; }
+.calc-label-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+.calc-label-row .lbl { font-size: 11px; color: #ccc; font-weight: 500; }
+.calc-label-row .val { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #F7D007; font-weight: 700; }
+.calc-slider { width: 100%; height: 4px; background: rgba(255,255,255,.08); border-radius: 2px; outline: none; -webkit-appearance: none; appearance: none; cursor: pointer; }
+.calc-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 18px; height: 18px; background: #F7D007; border-radius: 50%; cursor: pointer; box-shadow: 0 0 0 4px rgba(247,208,7,.15); }
+.calc-slider::-moz-range-thumb { width: 18px; height: 18px; background: #F7D007; border-radius: 50%; cursor: pointer; border: none; box-shadow: 0 0 0 4px rgba(247,208,7,.15); }
+.calc-baseline { font-size: 9px; color: #6b7c75; margin-top: 4px; font-family: 'JetBrains Mono', monospace; }
+.calc-projection { background: rgba(247,208,7,.06); border: 1.5px solid rgba(247,208,7,.3); border-radius: 10px; padding: 18px; margin-bottom: 14px; }
+.calc-projection .lbl { font-size: 10px; color: #999; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; font-weight: 700; }
+.calc-projection .val { font-family: 'JetBrains Mono', monospace; font-size: 32px; color: #F7D007; font-weight: 600; line-height: 1; margin-bottom: 6px; }
+.calc-projection .delta { font-size: 12px; color: #ccc; font-weight: 500; }
+.calc-projection .delta.positive { color: #F7D007; }
+.calc-projection .delta.negative { color: #ef4444; }
+.calc-projection .delta strong { font-weight: 700; }
+.calc-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 12px 0; border-top: 1px solid rgba(255,255,255,.06); }
+.calc-meta .meta-cell { text-align: center; }
+.calc-meta .meta-cell .meta-lbl { font-size: 9px; color: #999; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; font-weight: 700; }
+.calc-meta .meta-cell .meta-val { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #fff; font-weight: 700; }
+.calc-reset { width: 100%; background: transparent; border: 1px solid rgba(247,208,7,.3); color: #F7D007; padding: 10px; border-radius: 6px; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-top: 12px; }
+.calc-reset:hover { background: rgba(247,208,7,.1); border-color: #F7D007; }
+
+/* ===== A/B TEST PLAN SLIDES ===== */
+.abtest-card { flex-direction: row !important; padding: 0 !important; align-items: stretch !important; justify-content: flex-start !important; }
+.abt-left { width: 38%; background: #0c0c0c; padding: 70px 36px 50px; display: flex; flex-direction: column; gap: 14px; overflow-y: auto; }
+.abt-left::-webkit-scrollbar { display: none; }
+.abt-badge { display: inline-flex; align-items: center; gap: 8px; background: #F7D007; color: #111; font-size: 12px; font-weight: 700; letter-spacing: 1px; padding: 7px 14px; border-radius: 20px; align-self: flex-start; font-family: 'Inter', sans-serif; }
+.abt-badge .e-mark { width: 20px; height: 20px; background: #111; color: #F7D007; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; }
+.abt-section { padding-top: 4px; }
+.abt-section h3 { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 6px; letter-spacing: 0.1px; }
+.abt-section .uline { width: 100%; height: 1px; background: rgba(247,208,7,0.6); margin-bottom: 10px; }
+.abt-section p, .abt-section li { font-size: 11.5px; color: #EFEEEE; line-height: 1.6; }
+.abt-section ul { padding-left: 0; list-style: none; }
+.abt-section ul li { padding-left: 14px; position: relative; margin-bottom: 4px; }
+.abt-section ul li::before { content: '•'; position: absolute; left: 0; top: 0; color: #F7D007; font-weight: 800; }
+.abt-section ol { padding-left: 0; list-style: none; counter-reset: km; }
+.abt-section ol li { padding-left: 22px; position: relative; margin-bottom: 4px; counter-increment: km; font-size: 11.5px; color: #EFEEEE; }
+.abt-section ol li::before { content: counter(km) '.'; position: absolute; left: 0; top: 0; font-weight: 600; color: #EFEEEE; }
+.abt-section ol li.primary { color: #F7D007; font-weight: 700; }
+.abt-section ol li.primary::before { color: #F7D007; font-weight: 700; }
+.abt-target-box { border: 1px solid rgba(247,208,7,0.6); border-radius: 8px; padding: 14px 16px; margin-top: 8px; }
+.abt-target-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; }
+.abt-target-grid .label { font-size: 11px; color: #F7D007; font-weight: 700; margin-bottom: 3px; letter-spacing: 0.2px; }
+.abt-target-grid .value { font-size: 11px; color: #fff; line-height: 1.4; }
+
+.abt-right { width: 62%; background: #f4f4f1; background-image: linear-gradient(rgba(0,0,0,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,.04) 1px, transparent 1px); background-size: 26px 26px; padding: 68px 44px 36px; display: flex; flex-direction: column; overflow-y: auto; color: #111; }
+.abt-right::-webkit-scrollbar { display: none; }
+.abt-title { font-family: 'Inter', sans-serif; font-size: 26px; font-weight: 800; letter-spacing: -0.02em; color: #111; margin-bottom: 12px; }
+.abt-meta-bar { display: flex; align-items: center; gap: 14px; padding: 8px 14px; border: 1.5px solid #111; border-radius: 8px; margin-bottom: 18px; background: #fff; }
+.abt-meta-bar .lbl { color: #111; font-weight: 700; font-size: 12px; }
+.abt-meta-bar .val { color: #111; font-size: 12px; font-family: 'JetBrains Mono', monospace; }
+.abt-pill-ab { margin-left: auto; padding: 5px 14px; border-radius: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; background: #F7D007; color: #111; }
+
+.abt-mockups { display: flex; gap: 24px; justify-content: space-between; flex: 1; padding: 4px 0 16px; }
+.abt-mockup { flex: 1; display: flex; flex-direction: column; }
+.abt-mockup-label { font-size: 11px; font-weight: 800; letter-spacing: 2px; color: #111; font-family: 'Inter', sans-serif; margin-bottom: 8px; text-transform: uppercase; }
+.abt-mockup-label.control { color: #111; }
+.abt-mockup-label.variant { color: #F7D007; background: #111; padding: 4px 10px; border-radius: 4px; align-self: flex-start; }
+.abt-frame-wrap { background: #fff; border: 1.5px solid #111; border-radius: 12px; overflow: hidden; position: relative; box-shadow: 0 18px 38px rgba(0,0,0,0.18); flex: 1; }
+.abt-frame-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+.abt-frame-wrap iframe { border: 0; background: #fff; display: block; transform-origin: 0 0; pointer-events: none; }
+.abt-frame-wrap.desktop { aspect-ratio: 1.55 / 1; }
+.abt-frame-wrap.desktop iframe { width: 1320px; height: 850px; transform: scale(0.36); }
+.abt-frame-wrap.mobile { aspect-ratio: 1 / 1.6; max-width: 240px; align-self: center; }
+.abt-frame-wrap.mobile iframe { width: 440px; height: 700px; transform: scale(0.50); }
+.abt-mockup.mobile .abt-frame-wrap { aspect-ratio: 1 / 1.6; max-width: 240px; align-self: center; }
+.abt-caption { font-size: 10px; color: #555; margin-top: 8px; line-height: 1.4; font-family: 'Inter', sans-serif; }
+
+/* ===== TRACK RECORD (real test cards) ===== */
+.track-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; max-width: 1140px; width: 100%; }
+.track-card { background: rgba(255,255,255,.04); border: 1.5px solid rgba(247,208,7,.45); border-radius: 12px; padding: 22px 22px 18px; display: flex; flex-direction: column; }
+.track-card .brand { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #999; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; margin-bottom: 6px; }
+.track-card .test { font-size: 18px; font-weight: 700; color: #fff; line-height: 1.2; letter-spacing: -0.2px; margin-bottom: 14px; min-height: 44px; }
+.track-card .primary-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #F7D007; letter-spacing: 1.8px; text-transform: uppercase; font-weight: 700; margin-bottom: 4px; }
+.track-card .primary-value { font-family: 'JetBrains Mono', monospace; font-size: 46px; font-weight: 700; color: #F7D007; line-height: 1; letter-spacing: -0.5px; margin-bottom: 6px; }
+.track-card .ci { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #999; margin-bottom: 6px; }
+.track-card .monthly { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #fff; font-weight: 700; margin-bottom: 12px; }
+.track-card .divider { height: 1px; background: rgba(255,255,255,0.08); margin-bottom: 10px; }
+.track-card .secondary { display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; }
+.track-card .secondary .row { display: grid; grid-template-columns: 1fr 1.4fr auto; gap: 6px; font-size: 10px; align-items: baseline; }
+.track-card .secondary .lbl { color: #999; font-weight: 700; letter-spacing: 0.3px; }
+.track-card .secondary .val { color: #ccc; font-family: 'JetBrains Mono', monospace; }
+.track-card .secondary .delta { color: #F7D007; font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+.track-card .note { font-size: 10px; color: #999; line-height: 1.55; font-style: italic; margin-top: auto; }
+.track-footer { max-width: 1140px; width: 100%; margin-top: 14px; font-size: 10px; color: #6b7c75; text-align: center; font-style: italic; }
+
+/* ===== CASE STUDY SLIDE ===== */
+.case-card { flex-direction: row !important; padding: 0 !important; align-items: stretch !important; justify-content: flex-start !important; }
+.case-left { width: 44%; background: #0c0c0c; padding: 64px 36px 50px; display: flex; flex-direction: column; gap: 14px; overflow-y: auto; }
+.case-left::-webkit-scrollbar { display: none; }
+.case-badge { display: inline-flex; align-items: center; gap: 8px; background: #F7D007; color: #111; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; padding: 6px 12px; border-radius: 18px; align-self: flex-start; font-family: 'Inter', sans-serif; text-transform: uppercase; }
+.case-brand { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #999; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; }
+.case-title { font-family: 'Inter', sans-serif; font-size: 26px; font-weight: 800; color: #fff; line-height: 1.1; letter-spacing: -0.5px; margin-top: -4px; }
+.case-primary { background: rgba(247,208,7,0.06); border: 1.5px solid rgba(247,208,7,0.35); border-radius: 12px; padding: 16px 18px; margin-top: 4px; }
+.case-primary .lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #F7D007; letter-spacing: 1.8px; text-transform: uppercase; font-weight: 700; margin-bottom: 4px; }
+.case-primary .val { font-family: 'JetBrains Mono', monospace; font-size: 48px; font-weight: 700; color: #F7D007; line-height: 1; letter-spacing: -0.5px; margin-bottom: 6px; }
+.case-primary .ci { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #999; }
+.case-primary .impact { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #fff; font-weight: 700; margin-top: 4px; }
+.case-table { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 14px 16px; }
+.case-table .head { display: grid; grid-template-columns: 1.6fr 1fr 1fr 0.7fr; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #999; letter-spacing: 1.2px; text-transform: uppercase; font-weight: 700; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 6px; }
+.case-table .head .col-ctrl, .case-table .head .col-var, .case-table .head .col-delta { text-align: right; }
+.case-table .head .col-var { color: #F7D007; }
+.case-table .row { display: grid; grid-template-columns: 1.6fr 1fr 1fr 0.7fr; gap: 8px; font-size: 11px; padding: 4px 0; align-items: baseline; }
+.case-table .row .metric { color: #fff; font-weight: 600; }
+.case-table .row .ctrl { color: #999; font-family: 'JetBrains Mono', monospace; text-align: right; }
+.case-table .row .var { color: #fff; font-weight: 700; font-family: 'JetBrains Mono', monospace; text-align: right; }
+.case-table .row .delta { color: #F7D007; font-weight: 700; font-family: 'JetBrains Mono', monospace; text-align: right; }
+.case-note { font-size: 11px; color: #ccc; line-height: 1.6; font-style: italic; }
+
+.case-right { width: 56%; background: #f4f4f1; background-image: linear-gradient(rgba(0,0,0,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,.04) 1px, transparent 1px); background-size: 26px 26px; padding: 64px 44px 36px; display: flex; flex-direction: column; overflow-y: auto; color: #111; }
+.case-right::-webkit-scrollbar { display: none; }
+.case-right .title-bar { font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 800; letter-spacing: -0.3px; color: #111; margin-bottom: 14px; }
+.case-right .meta-bar { display: flex; align-items: center; gap: 14px; padding: 8px 14px; border: 1.5px solid #111; border-radius: 8px; margin-bottom: 22px; background: #fff; flex-wrap: wrap; }
+.case-right .meta-bar .lbl { color: #111; font-weight: 700; font-size: 11px; }
+.case-right .meta-bar .val { color: #111; font-size: 11px; font-family: 'JetBrains Mono', monospace; }
+.case-right .meta-bar .pill-ab { margin-left: auto; padding: 5px 12px; border-radius: 6px; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; background: #F7D007; color: #111; text-transform: uppercase; }
+.case-mockups { display: flex; gap: 24px; justify-content: center; flex: 1; padding: 4px 0 12px; }
+.case-mockup { flex: 1; max-width: 240px; display: flex; flex-direction: column; }
+.case-mockup-label { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 800; letter-spacing: 2px; color: #111; margin-bottom: 8px; text-transform: uppercase; text-align: center; }
+.case-mockup-label.variant { color: #F7D007; background: #111; padding: 4px 10px; border-radius: 4px; align-self: center; }
+.case-frame { background: #fff; border: 1.5px solid #111; border-radius: 12px; overflow: hidden; position: relative; box-shadow: 0 18px 36px rgba(0,0,0,0.18); aspect-ratio: 1 / 1.85; }
+.case-frame img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+
+/* ===== ECOMHOUSE CREDENTIALS (legacy, retained for compatibility) ===== */
+.cred-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 1080px; width: 100%; }
+.cred-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 22px; display: flex; flex-direction: column; }
+.cred-card .meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.cred-card .meta .industry { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #999; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; }
+.cred-card .meta .badge-conf { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #22c55e; background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.3); padding: 3px 8px; border-radius: 10px; font-weight: 700; letter-spacing: 0.5px; }
+.cred-card .pattern { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 8px; line-height: 1.25; }
+.cred-card .uplift { display: flex; align-items: baseline; gap: 8px; margin-bottom: 10px; }
+.cred-card .uplift .num { font-family: 'JetBrains Mono', monospace; font-size: 36px; font-weight: 700; color: #F7D007; line-height: 1; }
+.cred-card .uplift .sub { font-size: 11px; color: #999; font-weight: 600; letter-spacing: 0.3px; text-transform: uppercase; }
+.cred-card .note { font-size: 11px; color: #ccc; line-height: 1.65; }
+.cred-card .note strong { color: #F7D007; font-weight: 600; }
+.cred-footer { max-width: 1080px; width: 100%; margin-top: 14px; font-size: 10px; color: #6b7c75; text-align: center; font-family: 'Inter', sans-serif; }
+
+/* ===== NAV ===== */
+.nav-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: center; align-items: center; gap: 20px; padding: 14px 40px; background: linear-gradient(transparent, rgba(0,0,0,.9) 40%); }
+.nav-dots { display: flex; gap: 4px; }
+.nav-dot { width: 6px; height: 6px; border-radius: 50%; background: #333; cursor: pointer; transition: all .3s; }
+.nav-dot.active { background: #F7D007; width: 18px; border-radius: 3px; }
+.nav-counter { font-size: 11px; color: #999; letter-spacing: 2px; font-family: 'JetBrains Mono', monospace; }
+.nav-arrows { display: flex; gap: 10px; }
+.nav-arrow { width: 34px; height: 34px; border: 1px solid #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; background: none; color: #fff; transition: all .3s; }
+.nav-arrow:hover { border-color: #F7D007; background: rgba(247,208,7,.1); }
+.nav-arrow svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+.nav-menu-btn { display: flex; align-items: center; gap: 6px; height: 34px; padding: 0 14px; border: 1px solid #333; border-radius: 17px; background: none; color: #fff; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; transition: all .3s; }
+.nav-menu-btn:hover, .nav-menu-btn.open { border-color: #F7D007; background: rgba(247,208,7,.1); color: #F7D007; }
+.nav-menu-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; }
+.nav-menu-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 99; opacity: 0; pointer-events: none; transition: opacity .25s; }
+.nav-menu-backdrop.open { opacity: 1; pointer-events: auto; }
+.nav-menu { position: fixed; bottom: 70px; left: 50%; transform: translateX(-50%) translateY(20px); width: 760px; max-width: calc(100vw - 60px); max-height: 65vh; background: #1a1a1a; border: 1px solid rgba(247,208,7,.3); border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,.5), 0 0 30px rgba(247,208,7,.1); z-index: 110; display: flex; flex-direction: column; overflow: hidden; opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s; }
+.nav-menu.open { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+.nav-menu-header { padding: 16px 22px; border-bottom: 1px solid rgba(255,255,255,.08); display: flex; justify-content: space-between; align-items: center; }
+.nav-menu-header .title { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; color: #fff; letter-spacing: .5px; }
+.nav-menu-header .close { background: none; border: none; color: #999; cursor: pointer; padding: 4px 8px; font-size: 18px; font-family: inherit; }
+.nav-menu-header .close:hover { color: #F7D007; }
+.nav-menu-content { padding: 14px 18px 18px; overflow-y: auto; flex: 1; }
+.nav-menu-content::-webkit-scrollbar { width: 6px; }
+.nav-menu-content::-webkit-scrollbar-thumb { background: rgba(247,208,7,.3); border-radius: 3px; }
+.nav-menu-section { margin-bottom: 14px; }
+.nav-menu-section:last-child { margin-bottom: 0; }
+.nav-menu-section-title { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #F7D007; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; padding: 6px 10px; margin-bottom: 4px; border-bottom: 1px solid rgba(247,208,7,.15); }
+.nav-menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.nav-menu-item { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 6px; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 12px; color: #ccc; }
+.nav-menu-item:hover { background: rgba(247,208,7,.08); color: #fff; }
+.nav-menu-item.active { background: rgba(247,208,7,.15); color: #F7D007; font-weight: 700; }
+.nav-menu-item .num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #6b7c75; min-width: 24px; }
+.nav-menu-item.active .num { color: #F7D007; }
+.nav-menu-item .title { flex: 1; line-height: 1.3; }
+</style>
+</head>
+<body>
+
+<!-- EcomHouse fixed chrome -->
+<div class="eh-brand" aria-label="EcomHouse">
+    <svg viewBox="0 0 163 18" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+        <path d="M-0.000187397 17.088V0.288012H12.6958V3.40801H3.86381V13.968H13.0078V17.088H-0.000187397ZM3.57581 10.08V7.05601H11.6638V10.08H3.57581ZM24.1414 17.376C22.8454 17.376 21.6374 17.168 20.5174 16.752C19.4134 16.32 18.4534 15.712 17.6374 14.928C16.8214 14.144 16.1814 13.224 15.7174 12.168C15.2694 11.112 15.0454 9.95201 15.0454 8.68801C15.0454 7.42401 15.2694 6.26401 15.7174 5.20801C16.1814 4.15201 16.8214 3.23201 17.6374 2.44801C18.4694 1.66401 19.4374 1.06401 20.5414 0.648011C21.6454 0.216012 22.8534 1.23978e-05 24.1654 1.23978e-05C25.6214 1.23978e-05 26.9334 0.256012 28.1014 0.768013C29.2854 1.26401 30.2774 2.00001 31.0774 2.97601L28.5814 5.28001C28.0054 4.62401 27.3654 4.13601 26.6614 3.81601C25.9574 3.48001 25.1894 3.31201 24.3574 3.31201C23.5734 3.31201 22.8534 3.44001 22.1974 3.69601C21.5414 3.95201 20.9734 4.32001 20.4934 4.80001C20.0134 5.28001 19.6374 5.84801 19.3654 6.50401C19.1094 7.16001 18.9814 7.88801 18.9814 8.68801C18.9814 9.48801 19.1094 10.216 19.3654 10.872C19.6374 11.528 20.0134 12.096 20.4934 12.576C20.9734 13.056 21.5414 13.424 22.1974 13.68C22.8534 13.936 23.5734 14.064 24.3574 14.064C25.1894 14.064 25.9574 13.904 26.6614 13.584C27.3654 13.248 28.0054 12.744 28.5814 12.072L31.0774 14.376C30.2774 15.352 29.2854 16.096 28.1014 16.608C26.9334 17.12 25.6134 17.376 24.1414 17.376ZM40.8786 17.376C39.5506 17.376 38.3186 17.16 37.1826 16.728C36.0626 16.296 35.0866 15.688 34.2546 14.904C33.4386 14.12 32.7986 13.2 32.3346 12.144C31.8866 11.088 31.6626 9.93601 31.6626 8.68801C31.6626 7.44001 31.8866 6.28801 32.3346 5.23201C32.7986 4.17601 33.4466 3.25601 34.2786 2.47201C35.1106 1.68801 36.0866 1.08001 37.2066 0.648011C38.3266 0.216012 39.5426 1.23978e-05 40.8546 1.23978e-05C42.1826 1.23978e-05 43.3986 0.216012 44.5026 0.648011C45.6226 1.08001 46.5906 1.68801 47.4066 2.47201C48.2386 3.25601 48.8866 4.17601 49.3506 5.23201C49.8146 6.27201 50.0466 7.42401 50.0466 8.68801C50.0466 9.93601 49.8146 11.096 49.3506 12.168C48.8866 13.224 48.2386 14.144 47.4066 14.928C46.5906 15.696 45.6226 16.296 44.5026 16.728C43.3986 17.16 42.1906 17.376 40.8786 17.376ZM40.8546 14.064C41.6066 14.064 42.2946 13.936 42.9186 13.68C43.5586 13.424 44.1186 13.056 44.5986 12.576C45.0786 12.096 45.4466 11.528 45.7026 10.872C45.9746 10.216 46.1106 9.48801 46.1106 8.68801C46.1106 7.88801 45.9746 7.16001 45.7026 6.50401C45.4466 5.84801 45.0786 5.28001 44.5986 4.80001C44.1346 4.32001 43.5826 3.95201 42.9426 3.69601C42.3026 3.44001 41.6066 3.31201 40.8546 3.31201C40.1026 3.31201 39.4066 3.44001 38.7666 3.69601C38.1426 3.95201 37.5906 4.32001 37.1106 4.80001C36.6306 5.28001 36.2546 5.84801 35.9826 6.50401C35.7266 7.16001 35.5986 7.88801 35.5986 8.68801C35.5986 9.47201 35.7266 10.2 35.9826 10.872C36.2546 11.528 36.6226 12.096 37.0866 12.576C37.5666 13.056 38.1266 13.424 38.7666 13.68C39.4066 13.936 40.1026 14.064 40.8546 14.064ZM52.9686 17.088V0.288012H56.1846L63.3366 12.144H61.6326L68.6646 0.288012H71.8566L71.9046 17.088H68.2566L68.2326 5.88001H68.9046L63.2886 15.312H61.5366L55.8006 5.88001H56.6166V17.088H52.9686Z" fill="#F7D007"/>
+        <path d="M87.4104 17.088V0.288012H91.2984V17.088H87.4104ZM75.8904 17.088V0.288012H79.7784V17.088H75.8904ZM79.4904 10.2V6.91201H87.6984V10.2H79.4904ZM103.433 17.376C102.105 17.376 100.873 17.16 99.7373 16.728C98.6173 16.296 97.6413 15.688 96.8092 14.904C95.9933 14.12 95.3533 13.2 94.8893 12.144C94.4413 11.088 94.2173 9.93601 94.2173 8.68801C94.2173 7.44001 94.4413 6.28801 94.8893 5.23201C95.3533 4.17601 96.0013 3.25601 96.8333 2.47201C97.6653 1.68801 98.6413 1.08001 99.7613 0.648011C100.881 0.216012 102.097 1.23978e-05 103.409 1.23978e-05C104.737 1.23978e-05 105.953 0.216012 107.057 0.648011C108.177 1.08001 109.145 1.68801 109.961 2.47201C110.793 3.25601 111.441 4.17601 111.905 5.23201C112.369 6.27201 112.601 7.42401 112.601 8.68801C112.601 9.93601 112.369 11.096 111.905 12.168C111.441 13.224 110.793 14.144 109.961 14.928C109.145 15.696 108.177 16.296 107.057 16.728C105.953 17.16 104.745 17.376 103.433 17.376ZM103.409 14.064C104.161 14.064 104.849 13.936 105.473 13.68C106.113 13.424 106.673 13.056 107.153 12.576C107.633 12.096 108.001 11.528 108.257 10.872C108.529 10.216 108.665 9.48801 108.665 8.68801C108.665 7.88801 108.529 7.16001 108.257 6.50401C108.001 5.84801 107.633 5.28001 107.153 4.80001C106.689 4.32001 106.137 3.95201 105.497 3.69601C104.857 3.44001 104.161 3.31201 103.409 3.31201C102.657 3.31201 101.961 3.44001 101.321 3.69601C100.697 3.95201 100.145 4.32001 99.6653 4.80001C99.1853 5.28001 98.8093 5.84801 98.5373 6.50401C98.2813 7.16001 98.1533 7.88801 98.1533 8.68801C98.1533 9.47201 98.2813 10.2 98.5373 10.872C98.8093 11.528 99.1773 12.096 99.6413 12.576C100.121 13.056 100.681 13.424 101.321 13.68C101.961 13.936 102.657 14.064 103.409 14.064ZM122.987 17.376C120.603 17.376 118.739 16.712 117.395 15.384C116.051 14.056 115.379 12.16 115.379 9.69601V0.288012H119.267V9.55201C119.267 11.152 119.595 12.304 120.251 13.008C120.907 13.712 121.827 14.064 123.011 14.064C124.195 14.064 125.115 13.712 125.771 13.008C126.427 12.304 126.755 11.152 126.755 9.55201V0.288012H130.595V9.69601C130.595 12.16 129.923 14.056 128.579 15.384C127.235 16.712 125.371 17.376 122.987 17.376ZM139.957 17.376C138.613 17.376 137.325 17.2 136.093 16.848C134.861 16.48 133.869 16.008 133.117 15.432L134.437 12.504C135.157 13.016 136.005 13.44 136.981 13.776C137.973 14.096 138.973 14.256 139.981 14.256C140.749 14.256 141.365 14.184 141.829 14.04C142.309 13.88 142.661 13.664 142.885 13.392C143.109 13.12 143.221 12.808 143.221 12.456C143.221 12.008 143.045 11.656 142.693 11.4C142.341 11.128 141.877 10.912 141.301 10.752C140.725 10.576 140.085 10.416 139.381 10.272C138.693 10.112 137.997 9.92001 137.293 9.69601C136.605 9.47201 135.973 9.18401 135.397 8.83201C134.821 8.48001 134.349 8.01601 133.981 7.44001C133.629 6.86401 133.453 6.12801 133.453 5.23201C133.453 4.27201 133.709 3.40001 134.221 2.61601C134.749 1.81601 135.533 1.18401 136.573 0.720012C137.629 0.240012 138.949 1.23978e-05 140.533 1.23978e-05C141.589 1.23978e-05 142.629 0.128012 143.653 0.384012C144.677 0.624012 145.581 0.992012 146.365 1.48801L145.165 4.44001C144.381 3.99201 143.597 3.66401 142.813 3.45601C142.029 3.23201 141.261 3.12001 140.509 3.12001C139.757 3.12001 139.141 3.20801 138.661 3.38401C138.181 3.56001 137.837 3.79201 137.629 4.08001C137.421 4.35201 137.317 4.67201 137.317 5.04001C137.317 5.47201 137.493 5.82401 137.845 6.09601C138.197 6.35201 138.661 6.56001 139.237 6.72001C139.813 6.88001 140.445 7.04001 141.133 7.20001C141.837 7.36001 142.533 7.54401 143.221 7.75201C143.925 7.96001 144.565 8.24001 145.141 8.59201C145.717 8.94401 146.181 9.40801 146.533 9.98401C146.901 10.56 147.085 11.288 147.085 12.168C147.085 13.112 146.821 13.976 146.293 14.76C145.765 15.544 144.973 16.176 143.917 16.656C142.877 17.136 141.557 17.376 139.957 17.376ZM149.742 17.088V0.288012H162.438V3.40801H153.606V13.968H162.75V17.088H149.742ZM153.318 10.08V7.05601H161.406V10.08H153.318Z" fill="#EFEEEE"/>
+    </svg>
+</div>
+<div class="eh-year">2026</div>
+<div class="eh-copyright">ECOMHOUSE ©ALL RIGHTS RESERVED</div>
+<div class="eh-pagenum" id="ehPageNum">00</div>
+
+<div class="scroll-container" id="scrollContainer">
+
+    <!-- SLIDE 00: COVER -->
+    <div class="title-slide card" data-index="0">
+        <div class="cover-mark"><img src="assets/sportgym-logo.png" alt="sportgym.dk"/></div>
+        <div class="title-text">
+            <h1><span class="yellow">sportgym.dk</span><br>5 changes that pay for themselves.</h1>
+            <div class="title-pills">
+                <span class="title-pill">CRO Audit</span>
+                <span class="title-pill">A/B Test Roadmap</span>
+                <span class="title-pill">Performance-priced</span>
+            </div>
+        </div>
+        <div class="title-meta">
+            <p>Last 30 days (Shopify). 9.510 sessions, 252 orders, 1.002.672 kr gross sales, 1,77 % site CR.</p>
+            <p>Prepared by EcomHouse for sportgym.dk. May 2026.</p>
+        </div>
+    </div>
+
+    <!-- SLIDE 01: HOW THIS REPORT WORKS -->
+    <div class="card" data-index="1">
+        <div class="card-header">
+            <div class="card-label">Methodology</div>
+            <div class="card-title">How this report works</div>
+            <div class="card-subtitle">Every opportunity is Shopify-backed, sized in DKK per month, and tagged by implementation effort. <strong>Re-baselined on Shopify last 30 days</strong> after GA4 was found to underreport sessions by ~85 % and orders by ~90 % (Web Pixels Manager + iOS 17). Funnel ratios from GA4 are unaffected and remain directional.</div>
+        </div>
+        <div class="source-grid">
+            <div class="source-card">
+                <div class="marker">// 01</div>
+                <div class="source-name">Shopify analytics</div>
+                <div class="source-detail">Re-baselined on <strong>Shopify last 30 days</strong> (Apr 21 to May 21, 2026). GA4 was found to underreport by ~85 %. Funnel ratios from GA4 are still directional; only the absolute counts shift.</div>
+            </div>
+            <div class="source-card">
+                <div class="marker">// 02</div>
+                <div class="source-name">DKK impact sizing</div>
+                <div class="source-detail">Each opportunity is sized by <strong>estimated monthly DKK uplift</strong>. Math is conservative, using the Shopify baseline (9.510 sessions, 1,77 % CR, 3.813 kr AOV) and modest improvement assumptions.</div>
+            </div>
+            <div class="source-card">
+                <div class="marker">// 03</div>
+                <div class="source-name">Effort tags</div>
+                <div class="source-detail">Every action carries a <strong>Low, Medium, or High</strong> effort tag so the work can be sequenced across three phases without forcing a replatform.</div>
+            </div>
+        </div>
+        <div class="insight-box"><strong>90 day revenue impact:</strong> at 50 % realization, this roadmap adds 127.000 to 235.000 kr per month on top of the current ~1.000.000 kr / month baseline. A 13 % to 23 % revenue increase within one quarter.</div>
+    </div>
+
+    <!-- SLIDE 02: BASELINE METRICS -->
+    <div class="card" data-index="2">
+        <div class="card-header">
+            <div class="card-label">Baseline</div>
+            <div class="card-title">Where sportgym.dk stands today</div>
+            <div class="card-subtitle">Shopify analytics · Last 30 days (Apr 21 to May 21, 2026). Re-baselined from Shopify after GA4 was found to underreport sessions by ~85 % and orders by ~90 %.</div>
+        </div>
+        <div class="metrics-grid">
+            <div class="metric-card"><div class="metric-value accent">1.002.672 kr</div><div class="metric-label">Gross sales · 30 days</div></div>
+            <div class="metric-card"><div class="metric-value">252</div><div class="metric-label">Orders · 30 days</div></div>
+            <div class="metric-card"><div class="metric-value">3.813 kr</div><div class="metric-label">Avg order value</div></div>
+            <div class="metric-card"><div class="metric-value">1,77 %</div><div class="metric-label">Site conversion rate</div></div>
+            <div class="metric-card"><div class="metric-value red">96 %</div><div class="metric-label">Sessions to ATC drop</div></div>
+            <div class="metric-card"><div class="metric-value accent" style="font-size:22px">253K to 469K kr</div><div class="metric-label">Monthly uplift opportunity</div><div class="metric-sub">+25 % to +47 %</div></div>
+        </div>
+        <div class="insight-box" style="border-color:rgba(239,68,68,.35);background:rgba(239,68,68,.06)"><strong style="color:#ef4444">Tracking gap (now corrected):</strong> GA4 was reporting only ~14 % of real sessions and ~10 % of real orders. The audit was re-baselined on Shopify analytics last 30 days. <strong>Funnel ratios are unchanged</strong> (Sessions → ATC, ATC → checkout, etc.). Only the absolute volumes scaled up.</div>
+        <div class="insight-box" style="margin-top:10px"><strong>One bottleneck dominates:</strong> 9.151 sessions hit the site and never added to cart in the last 30 days (96 % drop). The PDP is where revenue leaks. Three of the top five opportunities target that exact step.</div>
+    </div>
+
+    <!-- SLIDE 03: OPPORTUNITY LANDSCAPE -->
+    <div class="card" data-index="3">
+        <div class="card-header">
+            <div class="card-label">Overview</div>
+            <div class="card-title">The opportunity landscape</div>
+            <div class="card-subtitle">Nine opportunities grouped into three priority buckets. Fix the PDP buy box, social proof, and financing first.</div>
+        </div>
+        <div class="landscape-layout">
+            <div class="bucket-list">
+                <div class="bucket-row">
+                    <div class="bucket-name">Critical · Week 1 to 2</div>
+                    <div class="bucket-bar-wrap"><div class="bucket-bar crit" style="width:80%">100.000 to 180.000 kr / month</div></div>
+                </div>
+                <div class="bucket-row">
+                    <div class="bucket-name">High value · Week 3 to 6</div>
+                    <div class="bucket-bar-wrap"><div class="bucket-bar high" style="width:100%">123.000 to 232.000 kr / month</div></div>
+                </div>
+                <div class="bucket-row">
+                    <div class="bucket-name">Optimize · Week 7 to 12</div>
+                    <div class="bucket-bar-wrap"><div class="bucket-bar low" style="width:25%">30.000 to 57.000 kr / month</div></div>
+                </div>
+            </div>
+            <div class="lever-list">
+                <div class="lever-title">Top 5 levers</div>
+                <div class="lever-row"><div class="lever-num">1</div><div class="lever-name">PDP buy box rebuild  ·  SG-02</div><div class="lever-value">65K to 120K</div></div>
+                <div class="lever-row"><div class="lever-num">2</div><div class="lever-name">Hero rebuild · category led  ·  SG-01</div><div class="lever-value">28K to 55K</div></div>
+                <div class="lever-row"><div class="lever-num">3</div><div class="lever-name">Accessories cross sell  ·  SG-03</div><div class="lever-value">18K to 35K</div></div>
+                <div class="lever-row"><div class="lever-num">4</div><div class="lever-name">Klarna or ViaBill on PDP</div><div class="lever-value">55K to 100K</div></div>
+                <div class="lever-row"><div class="lever-num">5</div><div class="lever-name">Trustpilot 4,5 social proof</div><div class="lever-value">45K to 80K</div></div>
+            </div>
+        </div>
+        <div class="insight-box"><strong>PDP-level wins</strong> (buy box, financing, social proof) account for 165K to 300K kr per month, two thirds of the total opportunity. Every paid ad euro lands on a PDP today, so these fixes compound with the Facebook ad spend.</div>
+    </div>
+
+    <!-- ====== SECTION 00 / RESEARCH ====== -->
+
+    <!-- SLIDE 04: SECTION DIVIDER -->
+    <div class="card section-slide" data-index="4">
+        <div class="section-number">00</div>
+        <div class="section-kicker">Research foundation</div>
+        <div class="section-title">What the data showed</div>
+        <div class="section-sub">Funnel decomposition, device behavior, traffic acquisition, and landing page performance pulled from Shopify (last 30 days) and GA4 (where ratios still hold). Every opportunity in the next sections is anchored in the data on these slides.</div>
+    </div>
+
+    <!-- SLIDE 05: FUNNEL DECOMPOSITION -->
+    <div class="card" data-index="5">
+        <div class="card-header">
+            <div class="card-label">Funnel decomposition</div>
+            <div class="card-title">Where visitors drop off</div>
+            <div class="card-subtitle">Shopify funnel · last 30 days. The 96 % collapse from session to add-to-cart is the single largest leak. <strong>Ratios match what GA4 reported</strong>; only the absolute counts changed.</div>
+        </div>
+        <div class="funnel-stack">
+            <div class="funnel-step no-drop">
+                <div class="label">1. Sessions</div>
+                <div class="bar-wrap"><div class="bar" style="width:100%"><span class="count">9.510</span><span class="pct">100 %</span></div></div>
+                <div class="drop"><div class="val">·</div><div class="lbl">entry</div></div>
+            </div>
+            <div class="funnel-step">
+                <div class="label">2. Added to cart</div>
+                <div class="bar-wrap"><div class="bar" style="width:3.77%"><span class="count">359</span><span class="pct">3,77 % of sessions</span></div></div>
+                <div class="drop"><div class="val">- 9.151</div><div class="lbl">no ATC</div></div>
+            </div>
+            <div class="funnel-step">
+                <div class="label">3. Reached checkout</div>
+                <div class="bar-wrap"><div class="bar" style="width:2.58%"><span class="count">246</span><span class="pct">68,5 % of ATC</span></div></div>
+                <div class="drop"><div class="val">- 113</div><div class="lbl">ATC abandon</div></div>
+            </div>
+            <div class="funnel-step">
+                <div class="label">4. Completed checkout</div>
+                <div class="bar-wrap"><div class="bar" style="width:1.77%"><span class="count">169</span><span class="pct">68,7 % of checkout</span></div></div>
+                <div class="drop"><div class="val">- 77</div><div class="lbl">checkout drop</div></div>
+            </div>
+            <div class="funnel-step">
+                <div class="label">5. All orders</div>
+                <div class="bar-wrap"><div class="bar" style="width:2.65%"><span class="count">252</span><span class="pct">incl. Shop Pay etc.</span></div></div>
+                <div class="drop"><div class="val">+ 83</div><div class="lbl">other channels</div></div>
+            </div>
+        </div>
+        <div class="insight-box"><strong>The single biggest leak is session to add to cart.</strong> 9.151 sessions (96 % of all visitors) never added a product to cart. Mobile drops ~97 %, desktop ~91 %. Same product page, very different mobile experience. Fix the PDP first, everything downstream is plumbing.</div>
+    </div>
+
+    <!-- SLIDE 06: DEVICE BEHAVIOR -->
+    <div class="card" data-index="6">
+        <div class="card-header">
+            <div class="card-label">Device behavior</div>
+            <div class="card-title">Mobile carries the traffic, desktop carries the conversion</div>
+            <div class="card-subtitle">83 % of sessions are mobile but mobile converts 76 % worse than desktop. Mobile AOV is 46 % lower. The PDP rebuild has to be designed mobile-first.</div>
+        </div>
+        <div class="device-split">
+            <div class="device-card mobile">
+                <div class="device-head">
+                    <span class="name">Mobile</span>
+                    <span class="pct">83 % sessions</span>
+                </div>
+                <div class="device-stats">
+                    <div class="device-stat"><div class="lbl">Sessions · 90d</div><div class="val">3.259</div></div>
+                    <div class="device-stat"><div class="lbl">Purchases</div><div class="val">55</div></div>
+                    <div class="device-stat"><div class="lbl">Conversion rate</div><div class="val">1,69 %</div></div>
+                    <div class="device-stat"><div class="lbl">Avg order value</div><div class="val">4.149 kr</div></div>
+                </div>
+            </div>
+            <div class="device-card desktop">
+                <div class="device-head">
+                    <span class="name">Desktop</span>
+                    <span class="pct">15 % sessions</span>
+                </div>
+                <div class="device-stats">
+                    <div class="device-stat"><div class="lbl">Sessions · 90d</div><div class="val">606</div></div>
+                    <div class="device-stat"><div class="lbl">Purchases</div><div class="val">18</div></div>
+                    <div class="device-stat"><div class="lbl">Conversion rate</div><div class="val">2,97 %</div></div>
+                    <div class="device-stat"><div class="lbl">Avg order value</div><div class="val">7.661 kr</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="compare-layout" style="max-width:1000px;margin-top:18px">
+            <div class="compare-box highlight">
+                <div class="compare-label">Mobile view to ATC</div>
+                <div class="compare-rate bad">3,8 %</div>
+                <div class="compare-sub">96,2 % of mobile PDP viewers never added to cart. Sticky ATC, financing line, and spec chips are designed for this device.</div>
+            </div>
+            <div class="compare-vs">vs</div>
+            <div class="compare-box highlight">
+                <div class="compare-label">Desktop view to ATC</div>
+                <div class="compare-rate good">13,9 %</div>
+                <div class="compare-sub">86,1 % drop on desktop. Still high, but the experience is 3,7x stronger than mobile. The gap is the opportunity.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 07: TRAFFIC ACQUISITION -->
+    <div class="card" data-index="7" style="justify-content:flex-start;padding-top:60px">
+        <div class="card-header">
+            <div class="card-label">Traffic acquisition</div>
+            <div class="card-title">Paid Facebook spends 46 % of sessions on zero tracked revenue</div>
+            <div class="card-subtitle">Source / medium breakdown across 90 days. The Facebook gap is almost certainly a tracking issue, not a creative one.</div>
+        </div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th style="width:28%">Source / medium</th>
+                    <th class="num">Sessions</th>
+                    <th class="num">Purchases</th>
+                    <th class="num">Revenue (kr)</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>facebook / paid</td><td class="num">1.797 (46 %)</td><td class="num danger">0</td><td class="num danger">0</td><td>Tracking gap or attribution loss</td></tr>
+                <tr><td>google / cpc</td><td class="num">1.023</td><td class="num">25</td><td class="num accent">82.687</td><td>Healthy. 2,44 % CR</td></tr>
+                <tr><td>(direct) / (none)</td><td class="num">379</td><td class="num">21</td><td class="num accent">126.715</td><td>Likely absorbing FB last click</td></tr>
+                <tr><td>pricerunner / cpc</td><td class="num">124</td><td class="num">10</td><td class="num accent">90.200</td><td>Premium intent. 9.020 kr AOV</td></tr>
+                <tr><td>partnerads / affiliate</td><td class="num">228</td><td class="num">4</td><td class="num">8.175</td><td>Low ticket affiliate</td></tr>
+                <tr><td>google / organic</td><td class="num">81</td><td class="num">3</td><td class="num">16.367</td><td>Thin presence. Opportunity</td></tr>
+            </tbody>
+        </table>
+        <div class="insight-box" style="border-color:rgba(239,68,68,.35);background:rgba(239,68,68,.06)"><strong style="color:#ef4444">Tracking flag:</strong> 1.797 paid Facebook sessions with zero tracked revenue is a Conversions API or Pixel attribution issue, not a "Facebook does not sell" issue. iOS 17 plus Shopify Web Pixels Manager regularly drop the source. Direct's 126.715 kr (the highest revenue channel) is the most likely landing zone for those lost conversions. <strong>Verify the Meta Pixel and CAPI before cutting Facebook spend.</strong></div>
+    </div>
+
+    <!-- SLIDE 08: LANDING PAGE PERFORMANCE -->
+    <div class="card" data-index="8" style="justify-content:flex-start;padding-top:60px">
+        <div class="card-header">
+            <div class="card-label">Landing pages</div>
+            <div class="card-title">Paid traffic lands on the page that breaks the funnel</div>
+            <div class="card-subtitle">Top landing pages over the last 90 days. Three of the top four are PDPs converting at 0,18 to 0,31 %. The homepage converts at 2,26 %.</div>
+        </div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th style="width:48%">Landing page</th>
+                    <th class="num">Sessions</th>
+                    <th class="num">Bounce</th>
+                    <th class="num">Purchases</th>
+                    <th class="num">CR</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>/products/the-virtufit-oval-isbad-500-liter-wood-look</td><td class="num">569</td><td class="num warn">68 %</td><td class="num">1</td><td class="num danger">0,18 %</td></tr>
+                <tr><td>/products/berg-sports-grand-champion-inground-520-grey</td><td class="num">337</td><td class="num warn">61 %</td><td class="num">1</td><td class="num danger">0,30 %</td></tr>
+                <tr><td>/products/virtufit-mini-bordtennisbord-tt160</td><td class="num">324</td><td class="num danger">80 %</td><td class="num">1</td><td class="num danger">0,31 %</td></tr>
+                <tr class="you-row"><td>/ (Homepage)</td><td class="num">265</td><td class="num good">31 %</td><td class="num">6</td><td class="num good">2,26 %</td></tr>
+                <tr><td>/products/flowfitness-ds100i-smart-home-gym</td><td class="num">142</td><td class="num warn">67 %</td><td class="num">0</td><td class="num danger">0,00 %</td></tr>
+            </tbody>
+        </table>
+        <div class="insight-box"><strong>Every PDP fix in this audit compounds with the Facebook ad spend.</strong> If paid social keeps landing on PDPs, the buy box rebuild and the financing line are direct ad efficiency multipliers, not just on-site CRO.</div>
+    </div>
+
+    <!-- ====== SECTION 01 / CRITICAL ====== -->
+
+    <!-- SLIDE 09: SECTION DIVIDER -->
+    <div class="card section-slide" data-index="9">
+        <div class="section-number">01</div>
+        <div class="section-kicker">Phase 1</div>
+        <div class="section-title">Critical · fix this month</div>
+        <div class="section-sub">Three opportunities, 23.000 to 42.000 kr per month combined. Low to medium effort, all shippable inside the first 30 days. PDP-focused because the PDP is the leak.</div>
+    </div>
+
+    <!-- SLIDE 10: OPP 01 - PDP BUY BOX -->
+    <div class="card" data-index="10" style="justify-content:flex-start;padding-top:50px">
+        <div class="card-header">
+            <div class="card-label">Opportunity 01 · Critical</div>
+            <div class="card-title">PDP buy box rebuild</div>
+        </div>
+        <div class="opp-layout">
+            <div class="opp-impact">
+                <div>
+                    <div class="label">Estimated monthly impact</div>
+                    <div class="value">65.000 to 120.000 kr</div>
+                </div>
+                <div style="margin-left:auto;display:flex;gap:8px">
+                    <span class="opp-pill effort-med">Medium effort</span>
+                    <span class="opp-pill time">Week 3 to 6</span>
+                </div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Evidence</div>
+                <ul class="opp-list">
+                    <li>Session to ATC drops 96 % over 30 days (9.151 missed ATCs)</li>
+                    <li>Mobile drop ~97 % vs desktop ~91 % on the same PDP</li>
+                    <li>Above the fold: SKU, name, price, qty, CTA, two collapsed accordions. Built for a 200 kr product</li>
+                    <li>"Relaterede produkter" cross sell shows competing treadmills, not accessories</li>
+                </ul>
+                <div class="opp-math">Recovering 1 percentage point of mobile session-to-ATC (3,0 % to 4,0 %) on ~7.890 mobile sessions per month at the current 47 % ATC to purchase rate at 3.813 kr AOV adds about <strong>140.000 kr per month</strong>. The lower bound assumes 50 % realization.</div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Actions</div>
+                <ol class="opp-list numbered">
+                    <li><span class="action-tag ship">SHIP</span>Spec chip row under the title: "3,0 HP · 18 km/t · 150 kg · Foldbart"</li>
+                    <li><span class="action-tag ship">SHIP</span>Save badge above price: "SPAR 4.000 kr · -22 %"</li>
+                    <li><span class="action-tag ship">SHIP</span>Trust badge row under CTA: 2 års garanti, Gratis fragt 499 kr, 365 dages retur, Showroom i Aarhus</li>
+                    <li><span class="action-tag test">TEST</span>Sticky add to cart on mobile, visible after gallery scroll</li>
+                    <li><span class="action-tag test">TEST</span>Demo video as second gallery item (20 to 60 seconds, fold mechanism + display in use)</li>
+                    <li><span class="action-tag ship">SHIP</span>Replace cross sell with "Komplet dit setup" (mat, lubricant, heart rate strap, upsell model)</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 11: OPP 02 - FINANCING -->
+    <div class="card" data-index="11" style="justify-content:flex-start;padding-top:50px">
+        <div class="card-header">
+            <div class="card-label">Opportunity 04 · Critical</div>
+            <div class="card-title">Klarna or ViaBill financing on PDP</div>
+        </div>
+        <div class="opp-layout">
+            <div class="opp-impact">
+                <div>
+                    <div class="label">Estimated monthly impact</div>
+                    <div class="value">55.000 to 100.000 kr</div>
+                </div>
+                <div style="margin-left:auto;display:flex;gap:8px">
+                    <span class="opp-pill effort-low">Low effort</span>
+                    <span class="opp-pill time">Week 1 to 2</span>
+                </div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Evidence</div>
+                <ul class="opp-list">
+                    <li>TR600i PDP shows 13.900 kr with no monthly equivalent. No Klarna, no ViaBill, no AnyDay, no Sparxpres</li>
+                    <li>fitshop.dk shows both Klarna and ViaBill at PDP level and checkout</li>
+                    <li>Average order value 3.813 kr. Top trampolines sit at 12.000 to 30.000 kr. Buyers finance major purchases</li>
+                    <li>Pay later is a default expectation in Denmark above 2.000 kr</li>
+                </ul>
+                <div class="opp-math">"Fra 1.158 kr / md med ViaBill" reframes the high price as a 12-month commitment. A 10 % relative lift on site CR (1,77 % to 1,95 %) on 9.510 monthly sessions at 3.813 kr AOV adds <strong>~65.000 kr per month</strong>. Conservative half = 55K.</div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Actions</div>
+                <ol class="opp-list numbered">
+                    <li><span class="action-tag ship">SHIP</span>Install ViaBill or Klarna pay later via Shopify app (native Danish widget)</li>
+                    <li><span class="action-tag ship">SHIP</span>Display monthly equivalent directly under price on every PDP above 1.500 kr</li>
+                    <li><span class="action-tag ship">SHIP</span>Add a small block under the CTA: "Op til 12 måneder rentefri delbetaling"</li>
+                    <li><span class="action-tag ship">SHIP</span>Rotate "Delbetaling tilgængelig" into the top USP strip beside "Gratis fragt over 499 kr"</li>
+                    <li><span class="action-tag ship">SHIP</span>Add financing logo to footer payment icon row and cart / checkout</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 12: OPP 03 - SOCIAL PROOF -->
+    <div class="card" data-index="12" style="justify-content:flex-start;padding-top:50px">
+        <div class="card-header">
+            <div class="card-label">Opportunity 05 · Critical</div>
+            <div class="card-title">Promote the 4,5 Trustpilot stars you already have</div>
+        </div>
+        <div class="opp-layout">
+            <div class="opp-impact">
+                <div>
+                    <div class="label">Estimated monthly impact</div>
+                    <div class="value">45.000 to 80.000 kr</div>
+                </div>
+                <div style="margin-left:auto;display:flex;gap:8px">
+                    <span class="opp-pill effort-low">Low effort</span>
+                    <span class="opp-pill time">Week 1 to 3</span>
+                </div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Evidence</div>
+                <ul class="opp-list">
+                    <li>SportGym ApS on Trustpilot: 4,5 / 5 across 15 anmeldelser ("Fremragende")</li>
+                    <li>Homepage shows no rating widget. Collection cards: zero stars. PDP: no review section</li>
+                    <li>fitshop.dk surfaces 4,84 / 41.278 reviews. Træningspartner shows 807 reviews</li>
+                    <li>9.151 missed ATCs in 30 days. PDP has no social proof at the exact moment of decision</li>
+                </ul>
+                <div class="opp-math">Social proof at the PDP is the standard +5 % to +10 % CR lift in premium retail. On 252 monthly orders at 3.813 kr AOV, a 6 % lift compounds to <strong>~58.000 kr per month</strong>. Conservative range 45-80K.</div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Actions</div>
+                <ol class="opp-list numbered">
+                    <li><span class="action-tag ship">SHIP</span>Embed Trustpilot Trustbox under the homepage hero. "Fremragende 4,5" is your most powerful headline</li>
+                    <li><span class="action-tag ship">SHIP</span>Install Judge.me, Stamped, or Trustpilot Product Reviews. Stars on every collection card</li>
+                    <li><span class="action-tag ship">SHIP</span>Add reviews block to every PDP: star average, count, verified buyer badge, 3 to 5 quotes</li>
+                    <li><span class="action-tag ship">SHIP</span>Klaviyo post purchase flow: review request day 14, follow up day 30</li>
+                    <li><span class="action-tag ship">SHIP</span>Print one customer quote on the order confirmation page and the unboxing card</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== SECTION 02 / HIGH VALUE ====== -->
+
+    <!-- SLIDE 13: SECTION DIVIDER -->
+    <div class="card section-slide" data-index="13">
+        <div class="section-number">02</div>
+        <div class="section-kicker">Phase 2</div>
+        <div class="section-title">High value · this quarter</div>
+        <div class="section-sub">Three opportunities, 18.000 to 34.000 kr per month combined. Mostly homepage and collection-level. Deliverable Week 3 to 8.</div>
+    </div>
+
+    <!-- SLIDE 14: OPP 04 - HERO REBUILD -->
+    <div class="card" data-index="14" style="justify-content:flex-start;padding-top:50px">
+        <div class="card-header">
+            <div class="card-label">Opportunity 02 · High value</div>
+            <div class="card-title">Rebuild the hero around categories, not one Saturday</div>
+        </div>
+        <div class="opp-layout">
+            <div class="opp-impact">
+                <div>
+                    <div class="label">Estimated monthly impact</div>
+                    <div class="value">28.000 to 55.000 kr</div>
+                </div>
+                <div style="margin-left:auto;display:flex;gap:8px">
+                    <span class="opp-pill effort-med">Medium effort</span>
+                    <span class="opp-pill time">Week 1 to 2</span>
+                </div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Evidence</div>
+                <ul class="opp-list">
+                    <li>Desktop hero left half: dense "KOM TIL EN SJOV DAG" event graphic. Right half: event details (31. maj, 10:00 to 15:00)</li>
+                    <li>Mobile first viewport is the entire event banner. CTA "Læg i indkøbskurv" never appears</li>
+                    <li>Brand promise "Alt til et aktivt liv, samlet ét sted" never appears above the fold</li>
+                    <li>Homepage as a landing page converts at 2,26 %. Top three PDP landing pages convert 0,18 to 0,31 %</li>
+                </ul>
+                <div class="opp-math">If the rebuilt hero lifts homepage-to-PDP CTR by 10 % and downstream CR by 5 %, that's roughly <strong>~35.000 kr per month</strong> at the new baseline. Compounds with paid social campaigns redirected to the homepage instead of PDPs.</div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Actions</div>
+                <ol class="opp-list numbered">
+                    <li><span class="action-tag ship">SHIP</span>Compress the event into a thin announcement strip under the existing fragt bar</li>
+                    <li><span class="action-tag ship">SHIP</span>Category led hero: lifestyle visual, brand promise, six category tiles (Løbebånd, Romaskine, Smart Home Gym, Trampoliner, BERG, Tilbud)</li>
+                    <li><span class="action-tag ship">SHIP</span>Surface 4 trust USPs as a strip directly under the hero (fragt, retur, lager, showroom)</li>
+                    <li><span class="action-tag test">TEST</span>Secondary CTA "Find det rigtige løbebånd" leading to a guided buying flow</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 15: OPP 05 - COLLECTION FILTERS -->
+    <div class="card" data-index="15" style="justify-content:flex-start;padding-top:50px">
+        <div class="card-header">
+            <div class="card-label">Opportunity 06 · High value</div>
+            <div class="card-title">Structured filters and spec chips on collection pages</div>
+        </div>
+        <div class="opp-layout">
+            <div class="opp-impact">
+                <div>
+                    <div class="label">Estimated monthly impact</div>
+                    <div class="value">18.000 to 35.000 kr</div>
+                </div>
+                <div style="margin-left:auto;display:flex;gap:8px">
+                    <span class="opp-pill effort-high">High effort</span>
+                    <span class="opp-pill time">Week 5 to 8</span>
+                </div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Evidence</div>
+                <ul class="opp-list">
+                    <li>/collections/lobebaend lists 13 treadmills from 3.495 to 39.900 kr. Filters: stock and price only</li>
+                    <li>No brand, motor power, max user weight, max speed, foldable, smart, or incline filter</li>
+                    <li>Product cards show no specs, no ratings, no quick view, no compare</li>
+                    <li>Collection / Isbad got 80 sessions, Trampoliner til nedgravning 81 sessions. Real category intent</li>
+                </ul>
+                <div class="opp-math">Filter UX improves collection to PDP rate by 10 % to 20 % in premium ecom. ~1.300 monthly collection sessions × 15 % lift × 3,77 % ATC × 47 % to purchase × 3.813 AOV adds <strong>~25.000 kr per month</strong>.</div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Actions</div>
+                <ol class="opp-list numbered">
+                    <li><span class="action-tag ship">SHIP</span>Install Searchanise, Boost AI Search, or Smart Product Filter</li>
+                    <li><span class="action-tag ship">SHIP</span>Løbebånd filters: Brand, Motor (HP), Max brugervægt (kg), Maks hastighed, Hældning, Foldbart, Smart / App</li>
+                    <li><span class="action-tag ship">SHIP</span>Trampoliner filters: Størrelse, Form, Sikkerhedsnet, Aldersgruppe, Mærke</li>
+                    <li><span class="action-tag ship">SHIP</span>3 to 5 spec chips on each card: "3 HP · 18 km/t · 150 kg · Foldbart"</li>
+                    <li><span class="action-tag test">TEST</span>"Find dit løbebånd" quiz at top of category (4 questions, returns shortlist)</li>
+                    <li><span class="action-tag ship">SHIP</span>Sort by rating once review widget is live</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 16: OPP 06 - ACCESSORIES CROSS SELL -->
+    <div class="card" data-index="16" style="justify-content:flex-start;padding-top:50px">
+        <div class="card-header">
+            <div class="card-label">Opportunity 03 · High value</div>
+            <div class="card-title">Replace competing cross sells with accessories</div>
+        </div>
+        <div class="opp-layout">
+            <div class="opp-impact">
+                <div>
+                    <div class="label">Estimated monthly impact</div>
+                    <div class="value">18.000 to 35.000 kr</div>
+                </div>
+                <div style="margin-left:auto;display:flex;gap:8px">
+                    <span class="opp-pill effort-low">Low effort</span>
+                    <span class="opp-pill time">Week 4 to 6</span>
+                </div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Evidence</div>
+                <ul class="opp-list">
+                    <li>Current "Relaterede produkter" on TR600i PDP shows 4 other treadmills at 12.900, 4.995, 3.495, 7.495 kr</li>
+                    <li>The cross sell competes with the current product. Sends the buyer sideways, not upward</li>
+                    <li>Fitness Engros and Træningspartner ship accessory bundles. Best practice in fitness</li>
+                    <li>3.813 kr AOV. Floor mat (500 kr) and heart rate strap (600 kr) are obvious +10 % AOV adds</li>
+                </ul>
+                <div class="opp-math">10 % AOV lift on 252 monthly orders at 3.813 kr = ~96.000 kr / month upside cap. Conservative 25 % capture = <strong>~24.000 kr per month</strong> incremental.</div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Actions</div>
+                <ol class="opp-list numbered">
+                    <li><span class="action-tag ship">SHIP</span>Rename "Relaterede produkter" to "Komplet dit setup"</li>
+                    <li><span class="action-tag ship">SHIP</span>For treadmills: floor mat, gulvmåtte, lubricant, heart rate strap, water bottle</li>
+                    <li><span class="action-tag ship">SHIP</span>End the row with one upsell model for upgrade context</li>
+                    <li><span class="action-tag test">TEST</span>Cart drawer cross sell: "Tilføj for kun 250 kr mere og få gratis fragt"</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== SECTION 03 / OPTIMIZE ====== -->
+
+    <!-- SLIDE 17: SECTION DIVIDER -->
+    <div class="card section-slide" data-index="17">
+        <div class="section-number">03</div>
+        <div class="section-kicker">Phase 3</div>
+        <div class="section-title">Optimize · compound the wins</div>
+        <div class="section-sub">Three opportunities, 4.000 to 8.000 kr per month combined, plus a tracking quality fix that unblocks Meta ad efficiency. Mostly compounding, mostly long lever.</div>
+    </div>
+
+    <!-- SLIDE 18: OPP 07 - POST PURCHASE REVIEW FLOW -->
+    <div class="card" data-index="18" style="justify-content:flex-start;padding-top:50px">
+        <div class="card-header">
+            <div class="card-label">Opportunity 07 · Optimize</div>
+            <div class="card-title">Post purchase review flow (close the volume gap)</div>
+        </div>
+        <div class="opp-layout">
+            <div class="opp-impact">
+                <div>
+                    <div class="label">Estimated monthly impact</div>
+                    <div class="value">12.000 to 22.000 kr</div>
+                </div>
+                <div style="margin-left:auto;display:flex;gap:8px">
+                    <span class="opp-pill effort-low">Low effort</span>
+                    <span class="opp-pill time">Ongoing</span>
+                </div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Evidence</div>
+                <ul class="opp-list">
+                    <li>sportgym.dk: 15 Trustpilot reviews at 4,5 stars</li>
+                    <li>træningspartner.dk: 807 reviews at 4,5 stars. Same score, 53x review volume</li>
+                    <li>berg.com: 4.000+ reviews. apuls.dk: 3.000+ reviews</li>
+                    <li>No automated review request flow in place. The asset is not growing</li>
+                </ul>
+                <div class="opp-math">Each new review compounds the social proof asset. A working flow at 252 orders / month at a 20 % response rate adds ~150 reviews / month. After 2 quarters the volume gap to apuls and Træningspartner halves and Opportunity 05 (social proof on PDP) compounds at a different scale.</div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Actions</div>
+                <ol class="opp-list numbered">
+                    <li><span class="action-tag ship">SHIP</span>Klaviyo flow: review request 14 days after delivery, follow up at 30 days</li>
+                    <li><span class="action-tag ship">SHIP</span>Photo upload incentive: small thank you (next order discount or accessory)</li>
+                    <li><span class="action-tag ship">SHIP</span>Print one customer quote on order confirmation and unboxing card</li>
+                    <li><span class="action-tag test">TEST</span>SMS follow up at 21 days for opted-in customers</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 19: OPP 08 - BUYING GUIDES + QUIZ -->
+    <div class="card" data-index="19" style="justify-content:flex-start;padding-top:50px">
+        <div class="card-header">
+            <div class="card-label">Opportunity 08 · Optimize</div>
+            <div class="card-title">Buying guides plus "Find dit løbebånd" quiz</div>
+        </div>
+        <div class="opp-layout">
+            <div class="opp-impact">
+                <div>
+                    <div class="label">Estimated monthly impact</div>
+                    <div class="value">12.000 to 22.000 kr</div>
+                </div>
+                <div style="margin-left:auto;display:flex;gap:8px">
+                    <span class="opp-pill effort-high">High effort</span>
+                    <span class="opp-pill time">Week 8 to 12</span>
+                </div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Evidence</div>
+                <ul class="opp-list">
+                    <li>Organic search delivers 81 sessions at 16.367 kr revenue (4,1 % CR). Thin presence, high intent</li>
+                    <li>Fitness Engros runs an extensive blog plus athlete content. Træningspartner blogs but does not quiz</li>
+                    <li>13 treadmills from 3.495 to 39.900 kr with no guided buying tool</li>
+                    <li>No quiz flow today. Buyers compare 4 PDPs manually then leave</li>
+                </ul>
+                <div class="opp-math">Buying guides drive organic compounding. Quiz delivers a 1,5x to 2x category to PDP conversion in premium retail. Both are long-lever. Conservative steady state at 3 quarters: <strong>~17.000 kr per month</strong> at the new baseline.</div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Actions</div>
+                <ol class="opp-list numbered">
+                    <li><span class="action-tag ship">SHIP</span>3 to 5 long form guides per major category (Løbebånd guide, Trampolin guide, Isbad guide, Smart Home Gym guide, Romaskine guide)</li>
+                    <li><span class="action-tag test">TEST</span>"Find dit løbebånd" quiz at top of /collections/lobebaend. 4 questions returning a shortlist of 2 to 3 SKUs</li>
+                    <li><span class="action-tag ship">SHIP</span>Link guides into the category page header and the PDP description block</li>
+                    <li><span class="action-tag ship">SHIP</span>Cross link from blog posts to specific PDPs</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 20: OPP 09 - META PIXEL / CAPI FIX -->
+    <div class="card" data-index="20" style="justify-content:flex-start;padding-top:50px">
+        <div class="card-header">
+            <div class="card-label">Opportunity 09 · Optimize · Tracking</div>
+            <div class="card-title">Verify Meta Pixel and Conversions API before cutting FB spend</div>
+        </div>
+        <div class="opp-layout">
+            <div class="opp-impact">
+                <div>
+                    <div class="label">Estimated monthly impact</div>
+                    <div class="value">Data quality unlock</div>
+                </div>
+                <div style="margin-left:auto;display:flex;gap:8px">
+                    <span class="opp-pill effort-low">Low effort</span>
+                    <span class="opp-pill time">Week 1</span>
+                </div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Evidence</div>
+                <ul class="opp-list">
+                    <li>facebook / paid: 1.797 sessions, 0 tracked purchases, 0 kr revenue (46 % of all sessions)</li>
+                    <li>(direct) / (none): 379 sessions, 21 purchases, 126.715 kr revenue (highest in the deck)</li>
+                    <li>Direct is almost certainly absorbing the Facebook last click loss</li>
+                    <li>iOS 17 plus Shopify Web Pixels Manager regularly drop the source on the new event API</li>
+                </ul>
+                <div class="opp-math">This is not a CR opportunity. It is an ad efficiency unlock. With proper attribution Meta's Advantage Plus campaigns can scale efficiently. Without it, every spend decision is blind. <strong>Fix this before any FB budget changes.</strong></div>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">Actions</div>
+                <ol class="opp-list numbered">
+                    <li><span class="action-tag ship">SHIP</span>Audit Meta Pixel via Events Manager and Facebook Pixel Helper</li>
+                    <li><span class="action-tag ship">SHIP</span>Enable Shopify Conversions API integration in admin (server side fallback)</li>
+                    <li><span class="action-tag ship">SHIP</span>Run a 50 kr test purchase and confirm Purchase event fires once, not twice</li>
+                    <li><span class="action-tag ship">SHIP</span>Validate the event match quality score climbs above 7</li>
+                    <li><span class="action-tag ship">SHIP</span>Re-baseline attribution after 14 days of corrected data</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== SECTION 04 / COMPETITOR + VOICE ====== -->
+
+    <!-- SLIDE 21: COMPETITOR BENCHMARK -->
+    <div class="card" data-index="21" style="justify-content:flex-start;padding-top:50px">
+        <div class="card-header">
+            <div class="card-label">Competitor benchmark</div>
+            <div class="card-title">How three Danish competitors handle the same gaps</div>
+            <div class="card-subtitle">Fitshop is the European scale player. Fitness Engros is the local content and service brand. Træningspartner is the Trustpilot volume leader. Each solves at least three of the five blockers above.</div>
+        </div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th style="width:26%">Feature</th>
+                    <th>sportgym.dk</th>
+                    <th>fitshop.dk</th>
+                    <th>fitnessengros.dk</th>
+                    <th>træningspartner.dk</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="you-row"><td>Hero sells the category</td><td class="danger">No · event banner</td><td class="good">Yes · store + categories</td><td class="good">Yes · Reformer + categories</td><td class="warn">Partial</td></tr>
+                <tr class="you-row"><td>Trustpilot widget on home</td><td class="danger">Not visible</td><td class="warn">Google 4,84 / 41k</td><td class="warn">Static stars, no count</td><td class="good">807 reviews visible</td></tr>
+                <tr class="you-row"><td>Reviews on PDP</td><td class="danger">None</td><td class="warn">Limited</td><td class="danger">None</td><td class="good">Stars + count</td></tr>
+                <tr class="you-row"><td>Financing on PDP</td><td class="danger">None</td><td class="good">Klarna + ViaBill</td><td class="danger">Not visible</td><td class="good">Yes</td></tr>
+                <tr class="you-row"><td>Structured filters</td><td class="danger">Stock + price only</td><td class="warn">Some brand filters</td><td class="warn">Category subnav</td><td class="good">Multi facet</td></tr>
+                <tr class="you-row"><td>Buying guides + content</td><td class="danger">None</td><td class="warn">Category copy</td><td class="good">Blog + athletes</td><td class="warn">Blog</td></tr>
+                <tr class="you-row"><td>Phone / live support</td><td class="warn">Phone in footer</td><td class="good">Hotline + 69 stores</td><td class="warn">Email only</td><td class="warn">Phone in footer</td></tr>
+                <tr class="you-row"><td>Cross sell = accessories</td><td class="danger">Competing models</td><td class="warn">Mixed</td><td class="good">Accessory bundles</td><td class="warn">Mixed</td></tr>
+                <tr class="you-row"><td>Showroom / pickup</td><td class="good">Aarhus + PDP pickup</td><td class="good">69 European stores</td><td class="good">Taastrup showroom</td><td class="warn">Limited</td></tr>
+            </tbody>
+        </table>
+        <div class="insight-box" style="margin-top:14px"><strong>Source:</strong> live site review on 11. maj 2026. Filtering depth and review counts checked against each competitor's homepage and category page. sportgym.dk loses on 6 of 9 rows, primarily on conversion levers (reviews, financing, filters, accessories cross sell).</div>
+    </div>
+
+    <!-- SLIDE 22: CUSTOMER VOICE -->
+    <div class="card" data-index="22">
+        <div class="card-header">
+            <div class="card-label">Customer voice</div>
+            <div class="card-title">"Fremragende". 4,5 stars. And nobody is asking for more.</div>
+            <div class="card-subtitle">The Trustpilot profile for SportGym ApS shows a strong score on a thin sample. The fix is not to manufacture reviews. The fix is to show what you have and to ask after every purchase.</div>
+        </div>
+        <div class="voice-grid">
+            <div class="voice-card">
+                <div class="voice-stars">★★★★★</div>
+                <div class="voice-big" style="margin-top:14px">4,5<span class="sub"> / 5</span></div>
+                <p class="metric-label" style="margin-top:6px">SportGym ApS on Trustpilot · "Fremragende"</p>
+                <p style="margin-top:20px">A 4,5 score is rare territory for fitness ecom. The cost of leaving it invisible compounds with every paid click. Every visitor who leaves to check Trustpilot on their own is a visitor you stopped trusting before they trusted you.</p>
+            </div>
+            <div class="voice-card">
+                <div class="voice-card-title">Volume gap vs Danish peers</div>
+                <ul class="voice-list">
+                    <li><span>sportgym.dk</span><span class="n">15 reviews · 4,5 ★</span></li>
+                    <li><span>træningspartner.dk</span><span class="n">807 reviews · 4,5 ★</span></li>
+                    <li><span>apuls.dk</span><span class="n">3k reviews · 4,2 ★</span></li>
+                    <li><span>berg.com</span><span class="n">4k reviews · 4,5 ★</span></li>
+                    <li><span>luksusleg.dk</span><span class="n">15 reviews · 4,5 ★</span></li>
+                </ul>
+                <p style="margin-top:18px">Same score as Træningspartner. <strong>1 / 53rd</strong> of their review volume. A post purchase email flow at scale closes that gap within two quarters.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 23: 90 DAY ROADMAP -->
+    <div class="card" data-index="23">
+        <div class="card-header">
+            <div class="card-label">Execution</div>
+            <div class="card-title">90 day roadmap</div>
+            <div class="card-subtitle">Three phases. None of these require a replatform. All can run on the existing Shopify theme with native apps.</div>
+        </div>
+        <div class="phase-grid">
+            <div class="phase-card p1">
+                <div class="phase-tag">// Phase 1</div>
+                <div class="phase-name">Quick wins</div>
+                <div class="phase-when">Week 1 to 2</div>
+                <div class="phase-impact"><div class="lbl">Expected impact</div><div class="val">100K to 180K kr / mo</div></div>
+                <ul class="phase-list">
+                    <li>Embed Trustpilot Trustbox under hero</li>
+                    <li>Install ViaBill or Klarna on PDP</li>
+                    <li>Reviews app: stars on cards + PDP</li>
+                    <li>Verify Meta Pixel + CAPI</li>
+                    <li>Trust USP strip under hero</li>
+                    <li>Compress event into thin strip</li>
+                </ul>
+            </div>
+            <div class="phase-card p2">
+                <div class="phase-tag">// Phase 2</div>
+                <div class="phase-name">Core optimizations</div>
+                <div class="phase-when">Week 3 to 6</div>
+                <div class="phase-impact"><div class="lbl">Expected impact</div><div class="val">123K to 232K kr / mo</div></div>
+                <ul class="phase-list">
+                    <li>PDP buy box rebuild (chips, badges, financing, trust, sticky ATC, video)</li>
+                    <li>Hero rebuild: category grid + brand promise</li>
+                    <li>Accessories cross sell ("Komplet dit setup")</li>
+                    <li>Klaviyo post purchase review flow</li>
+                </ul>
+            </div>
+            <div class="phase-card p3">
+                <div class="phase-tag">// Phase 3</div>
+                <div class="phase-name">Growth systems</div>
+                <div class="phase-when">Week 7 to 12</div>
+                <div class="phase-impact"><div class="lbl">Expected impact</div><div class="val">30K to 57K kr / mo</div></div>
+                <ul class="phase-list">
+                    <li>Collection filters + spec chips</li>
+                    <li>"Find dit løbebånd" quiz</li>
+                    <li>Buying guides per category</li>
+                    <li>PDP comparison table + FAQ block</li>
+                    <li>Re-baseline attribution post Meta fix</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 24: SCORECARD -->
+    <div class="card" data-index="24">
+        <div class="card-header">
+            <div class="card-label">Summary</div>
+            <div class="card-title">Opportunity scorecard</div>
+            <div class="card-subtitle">All 9 opportunities sized, prioritized, and tagged by effort and phase.</div>
+        </div>
+        <table class="data-table" style="max-width:1000px">
+            <thead>
+                <tr><th style="width:30px">#</th><th>Opportunity</th><th class="num">Monthly DKK</th><th>Effort</th><th>Phase</th></tr>
+            </thead>
+            <tbody>
+                <tr><td class="accent">01</td><td>PDP buy box rebuild  ·  <strong style="color:#F7D007">SG-02</strong></td><td class="num">65.000 to 120.000</td><td class="warn">Medium</td><td>2</td></tr>
+                <tr><td class="accent">02</td><td>Hero rebuild · category led  ·  <strong style="color:#F7D007">SG-01</strong></td><td class="num">28.000 to 55.000</td><td class="warn">Medium</td><td>2</td></tr>
+                <tr><td class="accent">03</td><td>Accessories cross sell  ·  <strong style="color:#F7D007">SG-03</strong></td><td class="num">18.000 to 35.000</td><td class="good">Low</td><td>2</td></tr>
+                <tr><td class="accent">04</td><td>Klarna or ViaBill financing</td><td class="num">55.000 to 100.000</td><td class="good">Low</td><td>1</td></tr>
+                <tr><td class="accent">05</td><td>Trustpilot 4,5 social proof</td><td class="num">45.000 to 80.000</td><td class="good">Low</td><td>1</td></tr>
+                <tr><td class="accent">06</td><td>Collection filters + chips</td><td class="num">18.000 to 35.000</td><td class="danger">High</td><td>3</td></tr>
+                <tr><td class="accent">07</td><td>Post purchase review flow</td><td class="num">12.000 to 22.000</td><td class="good">Low</td><td>2</td></tr>
+                <tr><td class="accent">08</td><td>Buying guides + quiz</td><td class="num">12.000 to 22.000</td><td class="danger">High</td><td>3</td></tr>
+                <tr><td class="accent">09</td><td>Meta Pixel + CAPI fix</td><td class="num muted">Data quality unlock</td><td class="good">Low</td><td>1</td></tr>
+            </tbody>
+        </table>
+        <div class="scorecard-total">
+            <div class="lbl">Total addressable uplift</div>
+            <div class="val">253.000 to 469.000 kr per month · +25 % to +47 %</div>
+        </div>
+    </div>
+
+    <!-- ====== SECTION 04 / SELECTED TEST PLANS ====== -->
+
+    <!-- SLIDE 25: SECTION DIVIDER -->
+    <div class="card section-slide" data-index="25">
+        <div class="section-number">04</div>
+        <div class="section-kicker">Selected test plans</div>
+        <div class="section-title">Three tests, three mockups.</div>
+        <div class="section-sub">Three of the highest-impact opportunities, mocked at the design level so you see exactly what would ship. Hypothesis, observation, learnings, and KPIs included on each slide.</div>
+    </div>
+
+    <!-- SLIDE 26: TP-01 HERO REDESIGN -->
+    <div class="card abtest-card" data-index="26">
+        <div class="abt-left">
+            <div class="abt-badge"><span class="e-mark">E</span>SG-01 · Hero</div>
+            <div class="abt-section">
+                <h3>Observation</h3>
+                <div class="uline"></div>
+                <ul>
+                    <li>Homepage hero is occupied by a one day family event banner (31. maj). New visitors get no signal this is a fitness equipment store</li>
+                    <li>Homepage as a landing page converts at <strong>2,26 % (6 / 265 sessions)</strong>. Paid PDP landing pages convert at <strong>0,18 to 0,31 %</strong></li>
+                    <li>Brand promise and category navigation never appear above the fold on mobile</li>
+                </ul>
+            </div>
+            <div class="abt-section">
+                <h3>Hypothesis</h3>
+                <div class="uline"></div>
+                <p>By replacing the single-event hero with a category-led layout (lifestyle visual, brand promise, six category tiles, four trust USPs), more visitors will pick a category and start a guided journey. We expect a measurable lift in homepage to PDP CTR and a downstream improvement in site CR for paid social and direct sessions.</p>
+            </div>
+            <div class="abt-section">
+                <h3>What we expect to learn</h3>
+                <div class="uline"></div>
+                <ul>
+                    <li>Does a category grid increase homepage to PDP CTR vs an event hero?</li>
+                    <li>Which category tiles get the most clicks? Reveals real demand mix</li>
+                    <li>Does the trust USP strip lift session depth and pages per session?</li>
+                </ul>
+            </div>
+            <div class="abt-section">
+                <h3>Key metrics</h3>
+                <div class="uline"></div>
+                <ol>
+                    <li class="primary">Homepage to PDP click rate</li>
+                    <li>Bounce rate on homepage</li>
+                    <li>Session conversion rate</li>
+                </ol>
+            </div>
+            <div class="abt-target-box">
+                <div class="abt-target-grid">
+                    <div><div class="label">Duration</div><div class="value">4 weeks</div></div>
+                    <div><div class="label">User targeting</div><div class="value">All visitors</div></div>
+                    <div><div class="label">Stage multiplier</div><div class="value">25 % (upper funnel)</div></div>
+                    <div><div class="label">URL targeting</div><div class="value">/ (homepage)</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="abt-right">
+            <div class="abt-title">SG-01 · Hero redesign · category led</div>
+            <div class="abt-meta-bar">
+                <span class="lbl">Test ID:</span><span class="val">SG-01</span>
+                <span class="lbl">Phase:</span><span class="val">2 · Week 1 to 2</span>
+                <span class="abt-pill-ab">A/B test</span>
+            </div>
+            <div class="abt-mockups">
+                <div class="abt-mockup">
+                    <div class="abt-mockup-label control">Control · live homepage</div>
+                    <div class="abt-frame-wrap desktop"><img src="screenshots/01-home-desktop-fold.png" alt="Current homepage"/></div>
+                    <div class="abt-caption">Event banner takes the entire fold. No category surfaced.</div>
+                </div>
+                <div class="abt-mockup">
+                    <div class="abt-mockup-label variant">Variant · category led</div>
+                    <div class="abt-frame-wrap desktop"><iframe src="designs/hero-redesign.html" loading="lazy"></iframe></div>
+                    <div class="abt-caption">Lifestyle visual, brand promise, six category tiles, trust USP strip.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 27: TP-02 PDP FIRST FOLD -->
+    <div class="card abtest-card" data-index="27">
+        <div class="abt-left">
+            <div class="abt-badge"><span class="e-mark">E</span>SG-02 · PDP</div>
+            <div class="abt-section">
+                <h3>Observation</h3>
+                <div class="uline"></div>
+                <ul>
+                    <li><strong>95 % of PDP viewers never add to cart</strong> over 90 days. 2.535 missed ATCs. Mobile drops at 96,2 %, desktop at 86,1 %</li>
+                    <li>TR600i PDP at 13.900 kr shows no financing, no save badge, no spec chips, no trust badges, no demo video</li>
+                    <li>Cross sell module surfaces 4 competing treadmills, not accessories</li>
+                </ul>
+            </div>
+            <div class="abt-section">
+                <h3>Hypothesis</h3>
+                <div class="uline"></div>
+                <p>By rebuilding the PDP fold with spec chips, a save badge, a financing line, four trust badges, and a sticky add to cart on mobile, we will lift the PDP to add-to-cart rate without changing the price or product range. Premium retail buyers need confidence at the moment of decision.</p>
+            </div>
+            <div class="abt-section">
+                <h3>What we expect to learn</h3>
+                <div class="uline"></div>
+                <ul>
+                    <li>Does the spec chip row remove uncertainty earlier in the page?</li>
+                    <li>How much of the lift comes from financing vs trust badges vs sticky CTA?</li>
+                    <li>Does the new "Komplet dit setup" cross sell drive measurable accessory attach?</li>
+                </ul>
+            </div>
+            <div class="abt-section">
+                <h3>Key metrics</h3>
+                <div class="uline"></div>
+                <ol>
+                    <li class="primary">PDP to add-to-cart rate</li>
+                    <li>Revenue per visitor (RPV)</li>
+                    <li>Average order value</li>
+                </ol>
+            </div>
+            <div class="abt-target-box">
+                <div class="abt-target-grid">
+                    <div><div class="label">Duration</div><div class="value">4 to 6 weeks</div></div>
+                    <div><div class="label">User targeting</div><div class="value">PDP visitors</div></div>
+                    <div><div class="label">Stage multiplier</div><div class="value">75 % (PDP ATC)</div></div>
+                    <div><div class="label">URL targeting</div><div class="value">/products/*</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="abt-right">
+            <div class="abt-title">SG-02 · PDP buy box rebuild</div>
+            <div class="abt-meta-bar">
+                <span class="lbl">Test ID:</span><span class="val">SG-02</span>
+                <span class="lbl">Phase:</span><span class="val">2 · Week 3 to 6</span>
+                <span class="abt-pill-ab">A/B test</span>
+            </div>
+            <div class="abt-mockups">
+                <div class="abt-mockup">
+                    <div class="abt-mockup-label control">Control · live PDP</div>
+                    <div class="abt-frame-wrap desktop"><img src="screenshots/06-pdp-desktop-fold.png" alt="Current PDP fold"/></div>
+                    <div class="abt-caption">SKU, name, price, qty, CTA, two collapsed accordions. Empty right column.</div>
+                </div>
+                <div class="abt-mockup">
+                    <div class="abt-mockup-label variant">Variant · buy box rebuild</div>
+                    <div class="abt-frame-wrap desktop"><iframe src="designs/pdp-first-fold.html" loading="lazy"></iframe></div>
+                    <div class="abt-caption">Save badge, spec chips, financing line, trust row, sticky mobile CTA.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 28: TP-03 CART DRAWER -->
+    <div class="card abtest-card" data-index="28">
+        <div class="abt-left">
+            <div class="abt-badge"><span class="e-mark">E</span>SG-03 · Cart</div>
+            <div class="abt-section">
+                <h3>Observation</h3>
+                <div class="uline"></div>
+                <ul>
+                    <li>ATC to begin-checkout rate is 65 % (45 carts abandoned per quarter at the ATC step)</li>
+                    <li>Current cart shows the product, qty, total. No cross sell, no shipping progress, no financing reminder</li>
+                    <li>5.015 kr AOV. Floor mat (500 kr), lubricant (200 kr), heart rate strap (600 kr) are obvious accessory adds</li>
+                </ul>
+            </div>
+            <div class="abt-section">
+                <h3>Hypothesis</h3>
+                <div class="uline"></div>
+                <p>By upgrading the cart drawer with a "Komplet dit setup" accessory module, free-shipping progress bar, financing reminder, and trust row, we will lift AOV and the cart-to-checkout completion rate without slowing the primary purchase flow.</p>
+            </div>
+            <div class="abt-section">
+                <h3>What we expect to learn</h3>
+                <div class="uline"></div>
+                <ul>
+                    <li>Do accessory recommendations get added in meaningful numbers?</li>
+                    <li>Which accessories attach best: floor mat, lubricant, or heart rate strap?</li>
+                    <li>Does the financing reminder reduce the ATC abandon rate at the cart step?</li>
+                </ul>
+            </div>
+            <div class="abt-section">
+                <h3>Key metrics</h3>
+                <div class="uline"></div>
+                <ol>
+                    <li class="primary">Average order value</li>
+                    <li>Items per order</li>
+                    <li>Cart to checkout completion rate</li>
+                </ol>
+            </div>
+            <div class="abt-target-box">
+                <div class="abt-target-grid">
+                    <div><div class="label">Duration</div><div class="value">3 weeks</div></div>
+                    <div><div class="label">User targeting</div><div class="value">All ATC events</div></div>
+                    <div><div class="label">Stage multiplier</div><div class="value">100 % (RPV / AOV)</div></div>
+                    <div><div class="label">URL targeting</div><div class="value">Cart drawer (global)</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="abt-right">
+            <div class="abt-title">SG-03 · Cart drawer cross sell + trust</div>
+            <div class="abt-meta-bar">
+                <span class="lbl">Test ID:</span><span class="val">SG-03</span>
+                <span class="lbl">Phase:</span><span class="val">2 · Week 4 to 6</span>
+                <span class="abt-pill-ab">A/B test</span>
+            </div>
+            <div class="abt-mockups">
+                <div class="abt-mockup">
+                    <div class="abt-mockup-label control">Control · current cart</div>
+                    <div class="abt-frame-wrap mobile" style="background:#f9f9f7;display:flex;align-items:center;justify-content:center">
+                        <div style="text-align:center;color:#555;padding:20px;font-size:11px;line-height:1.6;font-family:'Inter',sans-serif">
+                            <div style="font-weight:700;color:#111;margin-bottom:6px">Cart drawer (current)</div>
+                            <div>Product · qty · subtotal · checkout</div>
+                            <div style="margin-top:14px;color:#888;font-size:10px">No cross sell. No shipping progress. No trust row.</div>
+                        </div>
+                    </div>
+                    <div class="abt-caption">Default Shopify cart drawer. No accessory attach.</div>
+                </div>
+                <div class="abt-mockup">
+                    <div class="abt-mockup-label variant">Variant · upgraded drawer</div>
+                    <div class="abt-frame-wrap mobile"><iframe src="designs/cart-drawer.html" loading="lazy"></iframe></div>
+                    <div class="abt-caption">"Komplet dit setup" cross sell, shipping progress, financing reminder, trust row.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 29: AUDIT CLOSE -->
+    <div class="card thankyou-slide" data-index="29" style="justify-content:flex-start;align-items:flex-start;padding:140px 80px">
+        <div class="ty-content">
+            <div class="ty-kicker">Audit close</div>
+            <div class="ty-title">Ship Phase 1 this month.</div>
+            <div class="ty-sub">Three Phase 1 wins (financing, social proof, Meta fix) are all Low effort and shippable inside two weeks. None require a replatform.</div>
+            <div class="ty-sub ty-accent">Expected impact within 30 days: 100.000 to 180.000 kr / month. Compounds into Phase 2 (PDP rebuild) at Week 3.</div>
+            <div class="ty-powered">Powered by Shopify analytics (last 30 days) · live site capture 11. maj 2026 · Trustpilot · three Danish competitors · EcomHouse CRO team</div>
+        </div>
+    </div>
+
+    <!-- SLIDE 30: TRACK RECORD OVERVIEW -->
+    <div class="card" data-index="30">
+        <div class="card-header">
+            <div class="card-label">Track record</div>
+            <div class="card-title">Three winning EcomHouse tests</div>
+            <div class="card-subtitle">Real results from EcomHouse client engagements. Each test rolled out to 100 % of traffic after meeting the pre-approved confidence threshold. <strong>IntelliGEMS</strong> test tool.</div>
+        </div>
+        <div class="track-grid">
+            <div class="track-card">
+                <div class="brand">Comforth · DK</div>
+                <div class="test">Product tags on collection cards</div>
+                <div class="primary-label">Profit / visitor</div>
+                <div class="primary-value">+11,42%</div>
+                <div class="ci">-11 % to +39 % CI</div>
+                <div class="monthly">+106.550 kr / mo</div>
+                <div class="divider"></div>
+                <div class="secondary">
+                    <div class="row"><span class="lbl">CR</span><span class="val">2,09% → 2,37%</span><span class="delta">+13,07%</span></div>
+                    <div class="row"><span class="lbl">RPV</span><span class="val">26,88 → 29,87 kr</span><span class="delta">+11,13%</span></div>
+                    <div class="row"><span class="lbl">Orders / mo</span><span class="val">+169</span><span class="delta"></span></div>
+                </div>
+                <div class="note">Added trust and benefit tags to product cards. Lift compounded across all three commercial metrics.</div>
+            </div>
+            <div class="track-card">
+                <div class="brand">PH Import · DK</div>
+                <div class="test">PDP volume discount tiers</div>
+                <div class="primary-label">Conversion rate</div>
+                <div class="primary-value">+11,08%</div>
+                <div class="ci">-3 % to +27 % CI</div>
+                <div class="monthly">+134.917 kr / mo (RPV)</div>
+                <div class="divider"></div>
+                <div class="secondary">
+                    <div class="row"><span class="lbl">RPV</span><span class="val">20,36 → 23,84 kr</span><span class="delta">+17,10%</span></div>
+                    <div class="row"><span class="lbl">AOV</span><span class="val">293,47 → 309,37 kr</span><span class="delta">+5,42%</span></div>
+                    <div class="row"><span class="lbl">Orders / mo</span><span class="val">+298</span><span class="delta"></span></div>
+                </div>
+                <div class="note">Surfaced volume discount tiers on the PDP. CR was primary, RPV and AOV lifted simultaneously.</div>
+            </div>
+            <div class="track-card">
+                <div class="brand">PH Import · DK</div>
+                <div class="test">Homepage hero optimization</div>
+                <div class="primary-label">Revenue / visitor</div>
+                <div class="primary-value">+20,87%</div>
+                <div class="ci">-12 % to +67 % CI</div>
+                <div class="monthly">+272.913 kr / mo</div>
+                <div class="divider"></div>
+                <div class="secondary">
+                    <div class="row"><span class="lbl">CR</span><span class="val">16,3% → 17,6%</span><span class="delta">+7,72%</span></div>
+                    <div class="row"><span class="lbl">AOV</span><span class="val">401,87 → 450,94 kr</span><span class="delta">+12,21%</span></div>
+                    <div class="row"><span class="lbl">PDP view rate</span><span class="val">56,6% → 61,8%</span><span class="delta">+9,21%</span></div>
+                </div>
+                <div class="note">Reworked homepage hero with lighter background. Lifted the full funnel: more PDP views, higher AOV, more revenue.</div>
+            </div>
+        </div>
+        <div class="track-footer">Source: IntelliGEMS test reports. Confidence intervals reflect the range of likely true effect. References available on request.</div>
+    </div>
+
+    <!-- SLIDE 31: CASE STUDY 01 · COMFORTH -->
+    <div class="card case-card" data-index="31">
+        <div class="case-left">
+            <div class="case-badge">Case study · 01</div>
+            <div class="case-brand">Comforth · DK</div>
+            <div class="case-title">Product tags on collection cards</div>
+            <div class="case-primary">
+                <div class="lbl">Profit per visitor (primary)</div>
+                <div class="val">+11,42%</div>
+                <div class="ci">-11 % to +39 % CI</div>
+                <div class="impact">+106.550 kr / month projected</div>
+            </div>
+            <div class="case-table">
+                <div class="head">
+                    <span>Metric</span><span class="col-ctrl">Control</span><span class="col-var">Variant</span><span class="col-delta">Δ</span>
+                </div>
+                <div class="row"><span class="metric">Conversion rate</span><span class="ctrl">2,09 %</span><span class="var">2,37 %</span><span class="delta">+13,07%</span></div>
+                <div class="row"><span class="metric">Revenue / visitor</span><span class="ctrl">26,88 kr</span><span class="var">29,87 kr</span><span class="delta">+11,13%</span></div>
+                <div class="row"><span class="metric">Profit / visitor</span><span class="ctrl">15,07 kr</span><span class="var">16,80 kr</span><span class="delta">+11,42%</span></div>
+                <div class="row"><span class="metric">Est. orders / mo</span><span class="ctrl">·</span><span class="var">+169</span><span class="delta"></span></div>
+            </div>
+            <div class="case-note">Added benefit and trust tags directly to product cards on collection pages. Variant lifted all three commercial metrics with no degradation on any guardrail. IntelliGEMS, 100 % rollout.</div>
+        </div>
+        <div class="case-right">
+            <div class="title-bar">Comforth · Collection card tags</div>
+            <div class="meta-bar">
+                <span class="lbl">Tool:</span><span class="val">IntelliGEMS</span>
+                <span class="lbl">Primary:</span><span class="val">Profit / visitor</span>
+                <span class="pill-ab">Rolled out</span>
+            </div>
+            <div class="case-mockups">
+                <div class="case-mockup">
+                    <div class="case-mockup-label">Control</div>
+                    <div class="case-frame"><img src="assets/test-comforth-control.png" alt="Comforth control"/></div>
+                </div>
+                <div class="case-mockup">
+                    <div class="case-mockup-label variant">Variant</div>
+                    <div class="case-frame"><img src="assets/test-comforth-variant.png" alt="Comforth variant"/></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 32: CASE STUDY 02 · PH IMPORT VOLUME DISCOUNT -->
+    <div class="card case-card" data-index="32">
+        <div class="case-left">
+            <div class="case-badge">Case study · 02</div>
+            <div class="case-brand">PH Import · DK</div>
+            <div class="case-title">PDP volume discount tiers</div>
+            <div class="case-primary">
+                <div class="lbl">Conversion rate (primary)</div>
+                <div class="val">+11,08%</div>
+                <div class="ci">-3 % to +27 % CI</div>
+                <div class="impact">+298 orders / month · +134.917 kr / mo</div>
+            </div>
+            <div class="case-table">
+                <div class="head">
+                    <span>Metric</span><span class="col-ctrl">Control</span><span class="col-var">Variant</span><span class="col-delta">Δ</span>
+                </div>
+                <div class="row"><span class="metric">Conversion rate</span><span class="ctrl">6,94 %</span><span class="var">7,71 %</span><span class="delta">+11,08%</span></div>
+                <div class="row"><span class="metric">Revenue / visitor</span><span class="ctrl">20,36 kr</span><span class="var">23,84 kr</span><span class="delta">+17,10%</span></div>
+                <div class="row"><span class="metric">Profit / visitor</span><span class="ctrl">10,49 kr</span><span class="var">12,25 kr</span><span class="delta">+16,68%</span></div>
+                <div class="row"><span class="metric">Avg order value</span><span class="ctrl">293,47 kr</span><span class="var">309,37 kr</span><span class="delta">+5,42%</span></div>
+            </div>
+            <div class="case-note">Surfaced volume discount tiers directly on the PDP. Variant lifted purchase rate, AOV, and downstream profit simultaneously. IntelliGEMS, 100 % rollout.</div>
+        </div>
+        <div class="case-right">
+            <div class="title-bar">PH Import · PDP volume discount</div>
+            <div class="meta-bar">
+                <span class="lbl">Tool:</span><span class="val">IntelliGEMS</span>
+                <span class="lbl">Primary:</span><span class="val">Conversion rate</span>
+                <span class="pill-ab">Rolled out</span>
+            </div>
+            <div class="case-mockups">
+                <div class="case-mockup">
+                    <div class="case-mockup-label">Control</div>
+                    <div class="case-frame"><img src="assets/test-ph-volume-control.jpg" alt="PH Import volume control"/></div>
+                </div>
+                <div class="case-mockup">
+                    <div class="case-mockup-label variant">Variant</div>
+                    <div class="case-frame"><img src="assets/test-ph-volume-variant.jpg" alt="PH Import volume variant"/></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 33: CASE STUDY 03 · PH IMPORT HOMEPAGE HERO -->
+    <div class="card case-card" data-index="33">
+        <div class="case-left">
+            <div class="case-badge">Case study · 03</div>
+            <div class="case-brand">PH Import · DK</div>
+            <div class="case-title">Homepage hero optimization</div>
+            <div class="case-primary">
+                <div class="lbl">Revenue per visitor (primary)</div>
+                <div class="val">+20,87%</div>
+                <div class="ci">-12 % to +67 % CI</div>
+                <div class="impact">+251 orders / month · +272.913 kr / mo</div>
+            </div>
+            <div class="case-table">
+                <div class="head">
+                    <span>Metric</span><span class="col-ctrl">Control</span><span class="col-var">Variant</span><span class="col-delta">Δ</span>
+                </div>
+                <div class="row"><span class="metric">Revenue / visitor</span><span class="ctrl">65,50 kr</span><span class="var">79,17 kr</span><span class="delta">+20,87%</span></div>
+                <div class="row"><span class="metric">Profit / visitor</span><span class="ctrl">34,78 kr</span><span class="var">42,35 kr</span><span class="delta">+21,78%</span></div>
+                <div class="row"><span class="metric">Avg order value</span><span class="ctrl">401,87 kr</span><span class="var">450,94 kr</span><span class="delta">+12,21%</span></div>
+                <div class="row"><span class="metric">PDP view rate</span><span class="ctrl">56,6 %</span><span class="var">61,8 %</span><span class="delta">+9,21%</span></div>
+            </div>
+            <div class="case-note">Reworked homepage hero with a lighter background and a sharper category-led layout. Lift compounded through PDP views, AOV, and revenue. IntelliGEMS, 100 % rollout.</div>
+        </div>
+        <div class="case-right">
+            <div class="title-bar">PH Import · Homepage hero</div>
+            <div class="meta-bar">
+                <span class="lbl">Tool:</span><span class="val">IntelliGEMS</span>
+                <span class="lbl">Primary:</span><span class="val">Revenue / visitor</span>
+                <span class="pill-ab">Rolled out</span>
+            </div>
+            <div class="case-mockups">
+                <div class="case-mockup">
+                    <div class="case-mockup-label">Control</div>
+                    <div class="case-frame"><img src="assets/test-ph-hero-control.jpg" alt="PH Import hero control"/></div>
+                </div>
+                <div class="case-mockup">
+                    <div class="case-mockup-label variant">Variant</div>
+                    <div class="case-frame"><img src="assets/test-ph-hero-variant.jpg" alt="PH Import hero variant"/></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== SECTION 05 / ECOMHOUSE METHOD (OFFER) ====== -->
+
+    <!-- SLIDE 34: SECTION DIVIDER -->
+    <div class="card section-slide" data-index="34">
+        <div class="section-number">05</div>
+        <div class="section-kicker">EcomHouse method</div>
+        <div class="section-title">How we work, test, and charge.</div>
+        <div class="section-sub">A zero-row CRO service: research, copy, design, build, QA, deploy, test, analyze, report. End to end, performance-priced. You approve, we execute.</div>
+    </div>
+
+    <!-- SLIDE 35: 6-STEP METHOD -->
+    <div class="card" data-index="35">
+        <div class="card-header">
+            <div class="card-label">The EcomHouse CRO method</div>
+            <div class="card-title">Six steps, end to end</div>
+            <div class="card-subtitle">You approve. We execute. Every step is owned by us, including build, QA, and rollout. The client's only required action is written approval at brief and rollout stages.</div>
+        </div>
+        <div class="method-flow">
+            <div class="method-step">
+                <div class="num">// 01</div>
+                <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                <h4>Research</h4>
+                <p>GA4, Shopify, heatmaps, recordings, reviews, support.</p>
+            </div>
+            <div class="method-step">
+                <div class="num">// 02</div>
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a7 7 0 0 0-4 12.5V17h8v-1.5A7 7 0 0 0 12 3z"/></svg>
+                <h4>Ideate</h4>
+                <p>Hypothesis, variant concepts, copy, Figma prototype.</p>
+            </div>
+            <div class="method-step">
+                <div class="num">// 03</div>
+                <svg class="icon-svg" viewBox="0 0 24 24"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1M9 11h6M9 15h4"/></svg>
+                <h4>Pre-test brief</h4>
+                <p>Written brief with metric, confidence, sample size, multiplier.</p>
+            </div>
+            <div class="method-step">
+                <div class="num">// 04</div>
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.5-.5-.5-2.5z"/></svg>
+                <h4>Build + QA</h4>
+                <p>Shopify or test tool variant, tracked, QA'd across devices.</p>
+            </div>
+            <div class="method-step">
+                <div class="num">// 05</div>
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M14 7h7v7"/></svg>
+                <h4>Run + monitor</h4>
+                <p>Live test with guardrail watch, weekly progress updates.</p>
+            </div>
+            <div class="method-step">
+                <div class="num">// 06</div>
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2a14 14 0 0 1 5 9c0 1-3 5-9 5l-4-4c0-6 5-9 5-9z"/><circle cx="12" cy="9" r="1.8"/></svg>
+                <h4>Analyze + roll out</h4>
+                <p>Written verdict, fee invoiced on rollout to 100 % of traffic.</p>
+            </div>
+        </div>
+        <div class="insight-box"><strong>Zero-row service:</strong> the client is not expected to do production work. We handle everything from research through analysis. The client approves the pre-test brief and the rollout decision in writing.</div>
+    </div>
+
+    <!-- SLIDE 36: PRE-TEST BRIEF -->
+    <div class="card" data-index="36">
+        <div class="card-header">
+            <div class="card-label">Pre-test analysis</div>
+            <div class="card-title">Every test launches with a written brief</div>
+            <div class="card-subtitle">No test starts without a documented, approved brief. This protects both sides: the client knows the rules, the agency knows the success criteria.</div>
+        </div>
+        <div class="brief-grid">
+            <div class="brief-col test-setup">
+                <h3><span class="tag">// PART 1</span>Test setup</h3>
+                <ul class="brief-list">
+                    <li><strong>Hypothesis</strong> and the Control vs Variant difference</li>
+                    <li><strong>Audience</strong> and traffic filters (mobile only, returning, country, etc.)</li>
+                    <li><strong>Funnel stage</strong> being tested and the corresponding stage multiplier</li>
+                    <li><strong>URL targeting</strong> (homepage, PDP, cart, checkout)</li>
+                    <li><strong>Frozen baselines</strong> for upper-funnel tests, pulled from the trailing 30 days</li>
+                </ul>
+            </div>
+            <div class="brief-col stat-params">
+                <h3><span class="tag">// PART 2</span>Statistical parameters</h3>
+                <ul class="brief-list">
+                    <li><strong>Primary metric</strong> RPV when measurable, otherwise the relevant funnel-stage metric</li>
+                    <li><strong>Statistical confidence</strong> 80 % by default, higher on request</li>
+                    <li><strong>Minimum visitor and order count</strong> required before conclusion</li>
+                    <li><strong>Worked fee range</strong> (+5 %, +10 %, +15 % scenarios) so you know the maximum fee before saying yes</li>
+                    <li><strong>Data sources</strong> for every input figure, named explicitly</li>
+                </ul>
+            </div>
+        </div>
+        <div class="insight-box"><strong>The test does not launch until the client approves the brief in writing.</strong> Approved conditions govern the test and the fee.</div>
+    </div>
+
+    <!-- SLIDE 37: PROTOCOL -->
+    <div class="card" data-index="37">
+        <div class="card-header">
+            <div class="card-label">Testing protocol</div>
+            <div class="card-title">How we run tests</div>
+            <div class="card-subtitle">Strict guardrails on tooling, statistical rigor, and conclusion. Tests only conclude when all approved conditions are met.</div>
+        </div>
+        <div class="protocol-grid">
+            <div class="protocol-card">
+                <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+                <div class="lbl">Default tool</div>
+                <div class="val">IntelliGEMS</div>
+                <div class="sub">Or any other test tool you prefer (Convert, GrowthBook, Shopify-native), subject to written approval.</div>
+            </div>
+            <div class="protocol-card">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 21h18M7 21V13M12 21V7M17 21V11"/></svg>
+                <div class="lbl">Confidence</div>
+                <div class="val">80 % minimum</div>
+                <div class="sub">Statistical confidence threshold for declaring a winner. Higher thresholds set per test if you require it.</div>
+            </div>
+            <div class="protocol-card">
+                <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg>
+                <div class="lbl">Conclusion</div>
+                <div class="val">All conditions met</div>
+                <div class="sub">Tests only conclude when minimum visitors, orders, and confidence are reached. No early calls except for technical issues or clear-loser revenue protection.</div>
+            </div>
+            <div class="protocol-card">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M5 12a8 8 0 0 1 14 0M8 15a4 4 0 0 1 8 0"/><circle cx="12" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg>
+                <div class="lbl">Reporting</div>
+                <div class="val">Weekly Loom</div>
+                <div class="sub">Loom or written summary every week, plus a running test log with all hypotheses, results, and rollouts you can access anytime.</div>
+            </div>
+        </div>
+        <div class="insight-box"><strong>You have direct access to the testing software at all times.</strong> Live results, traffic splits, and historical tests visible to your team without going through us.</div>
+    </div>
+
+    <!-- SLIDE 38: PRICING -->
+    <div class="card" data-index="38">
+        <div class="card-header">
+            <div class="card-label">Compensation</div>
+            <div class="card-title">We win when you win</div>
+            <div class="card-subtitle">Performance-based fee on every winning test rolled out to 100 % of traffic. One-time charge per test. No attribution window. No recurring tail.</div>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card lead">
+                <div class="tag">// PERFORMANCE FEE</div>
+                <h3>% of estimated monthly revenue uplift</h3>
+                <div class="price-line">Y %</div>
+                <div class="desc">Charged once per winning test on rollout. Calculated from the test's measured uplift and the client's own data, with the agreed stage multiplier applied. Full methodology in Schedule A.</div>
+                <ul>
+                    <li>One time fee per winning test</li>
+                    <li>No recurring tail, no attribution window</li>
+                    <li>Loser and inconclusive tests are free</li>
+                </ul>
+            </div>
+            <div class="pricing-card">
+                <div class="tag">// OPTIONAL RETAINER</div>
+                <h3>Fixed monthly fee</h3>
+                <div class="price-line">X kr / month</div>
+                <div class="desc">Optional. Predictable monthly cost on top of (or instead of) the performance fee. Some clients prefer this for budgeting.</div>
+                <ul>
+                    <li>Billed on the 1st, in advance</li>
+                    <li>Void if not agreed</li>
+                    <li>Stackable with the performance fee</li>
+                </ul>
+            </div>
+        </div>
+        <div class="insight-box"><strong>Billing:</strong> one invoice on the 1st of each month covering the retainer (if any) plus the performance fee for every winning test rolled out the previous month. 8 day payment terms. Third-party costs (test tools, apps) paid by the client.</div>
+    </div>
+
+    <!-- SLIDE 39: STAGE MULTIPLIERS -->
+    <div class="card" data-index="39">
+        <div class="card-header">
+            <div class="card-label">Schedule A · Stage multipliers</div>
+            <div class="card-title">Tests further from purchase carry more projection risk</div>
+            <div class="card-subtitle">The stage multiplier discounts the performance fee for upper-funnel tests where revenue impact is estimated rather than directly measured. Approved in the pre-test brief, before the test runs.</div>
+        </div>
+        <div class="multiplier-stack">
+            <div class="mult-row">
+                <div class="mult-pct p100">100 %</div>
+                <div class="body">
+                    <div class="stages">RPV · AOV · Purchase CVR · Checkout CVR · Post-purchase</div>
+                    <div class="why">Revenue measured directly by the testing software. No projection needed.</div>
+                </div>
+                <div class="mult-bar"><div class="fill p100"></div></div>
+            </div>
+            <div class="mult-row">
+                <div class="mult-pct p75">75 %</div>
+                <div class="body">
+                    <div class="stages">Cart to checkout · PDP add to cart</div>
+                    <div class="why">One step from purchase. Light projection of downstream behavior.</div>
+                </div>
+                <div class="mult-bar"><div class="fill p75"></div></div>
+            </div>
+            <div class="mult-row">
+                <div class="mult-pct p50">50 %</div>
+                <div class="body">
+                    <div class="stages">Collection to PDP · PDP engagement</div>
+                    <div class="why">Two steps from purchase. Multiple downstream conversion rates to project.</div>
+                </div>
+                <div class="mult-bar"><div class="fill p50"></div></div>
+            </div>
+            <div class="mult-row">
+                <div class="mult-pct p25">25 %</div>
+                <div class="body">
+                    <div class="stages">Homepage to collection · Navigation · Site search</div>
+                    <div class="why">Three or more steps from purchase. Heaviest projection assumptions.</div>
+                </div>
+                <div class="mult-bar"><div class="fill p25"></div></div>
+            </div>
+        </div>
+        <div class="insight-box"><strong>Only your own data goes into the estimate.</strong> No industry benchmarks, no agency assumptions. Visitors, baseline CVRs, and AOV are pulled from the trailing 30 days of GA4 and Shopify, frozen pre-test, and approved by you.</div>
+    </div>
+
+    <!-- SLIDE 40: WORKED EXAMPLE -->
+    <div class="card" data-index="40">
+        <div class="card-header">
+            <div class="card-label">Worked example</div>
+            <div class="card-title">Two tests, two fee calculations</div>
+            <div class="card-subtitle">How the same agency rate produces different fees depending on where the test sits in the funnel. Numbers below use sportgym.dk's Shopify baseline (9.510 monthly sessions, 3.813 kr AOV, 1,77 % CR), 30 % performance rate per Section 4.3.</div>
+        </div>
+        <div class="worked-grid">
+            <div class="worked-col direct">
+                <h3>Direct revenue test</h3>
+                <div class="lbl">// 100 % multiplier · PDP buy box test</div>
+                <div class="worked-step"><div class="step-num">1</div><div class="step-text">Monthly sessions</div><div class="step-val">9.510</div></div>
+                <div class="worked-step"><div class="step-num">2</div><div class="step-text">Baseline purchase CVR</div><div class="step-val">1,77 %</div></div>
+                <div class="worked-step"><div class="step-num">3</div><div class="step-text">Test uplift (+15 % rel.)</div><div class="step-val">+0,27pp → 2,04 %</div></div>
+                <div class="worked-step"><div class="step-num">4</div><div class="step-text">Extra purchases / mo</div><div class="step-val">~26</div></div>
+                <div class="worked-step"><div class="step-num">5</div><div class="step-text">× 3.813 kr AOV</div><div class="step-val">99.138 kr</div></div>
+                <div class="worked-step"><div class="step-num">6</div><div class="step-text">× 100 % stage multiplier</div><div class="step-val">99.138 kr</div></div>
+                <div class="worked-step"><div class="step-num">7</div><div class="step-text">× 30 % agency rate</div><div class="step-val">→</div></div>
+                <div class="worked-fee">
+                    <div class="lbl-fee">One time fee</div>
+                    <div class="val-fee">29.741 kr</div>
+                </div>
+            </div>
+            <div class="worked-col upper">
+                <h3>Upper-funnel test</h3>
+                <div class="lbl">// 25 % multiplier · Homepage hero test</div>
+                <div class="worked-step"><div class="step-num">1</div><div class="step-text">Monthly homepage sessions</div><div class="step-val">~2.380</div></div>
+                <div class="worked-step"><div class="step-num">2</div><div class="step-text">Baseline HP to PDP rate</div><div class="step-val">62 %</div></div>
+                <div class="worked-step"><div class="step-num">3</div><div class="step-text">Test uplift (+12 % rel.)</div><div class="step-val">+176 visits</div></div>
+                <div class="worked-step"><div class="step-num">4</div><div class="step-text">× 4,7 % downstream CVR</div><div class="step-val">~8 purchases</div></div>
+                <div class="worked-step"><div class="step-num">5</div><div class="step-text">× 3.813 kr AOV</div><div class="step-val">30.504 kr</div></div>
+                <div class="worked-step"><div class="step-num">6</div><div class="step-text">× 25 % stage multiplier</div><div class="step-val">7.626 kr</div></div>
+                <div class="worked-step"><div class="step-num">7</div><div class="step-text">× 30 % agency rate</div><div class="step-val">→</div></div>
+                <div class="worked-fee">
+                    <div class="lbl-fee">One time fee</div>
+                    <div class="val-fee">2.288 kr</div>
+                </div>
+            </div>
+        </div>
+        <div class="insight-box"><strong>Same 30 % rate, very different fees.</strong> The stage multiplier protects the client from over-paying on tests that depend heavily on downstream projection. You see the full math in the pre-test brief and approve before launch.</div>
+    </div>
+
+    <!-- SLIDE 41: INTERACTIVE CALCULATOR -->
+    <div class="card" data-index="41">
+        <div class="card-header">
+            <div class="card-label">Try it yourself</div>
+            <div class="card-title">Interactive revenue calculator</div>
+            <div class="card-subtitle">Adjust any funnel metric below to see live revenue projections versus sportgym.dk's actual baseline. Defaults pulled from Shopify analytics, last 30 days.</div>
+        </div>
+        <div class="calc-grid">
+            <div class="calc-panel">
+                <h4>// Funnel metrics</h4>
+                <div class="calc-row">
+                    <div class="calc-label-row"><span class="lbl">Monthly sessions</span><span class="val" id="sessionsVal">9.510</span></div>
+                    <input type="range" id="sessions" class="calc-slider" min="3000" max="25000" step="100" value="9510">
+                    <div class="calc-baseline">baseline 9.510 / mo (Shopify last 30 days)</div>
+                </div>
+                <div class="calc-row">
+                    <div class="calc-label-row"><span class="lbl">PDP view rate (% of sessions)</span><span class="val" id="pdpVal">85 %</span></div>
+                    <input type="range" id="pdp" class="calc-slider" min="40" max="100" step="1" value="85">
+                    <div class="calc-baseline">baseline 85 % (GA4 ratio, applied to Shopify volume)</div>
+                </div>
+                <div class="calc-row">
+                    <div class="calc-label-row"><span class="lbl">ATC rate (% of PDP views)</span><span class="val" id="atcVal">4 %</span></div>
+                    <input type="range" id="atc" class="calc-slider" min="2" max="40" step="1" value="4">
+                    <div class="calc-baseline">baseline 4,4 % (Shopify sessions to ATC 3,77 %)</div>
+                </div>
+                <div class="calc-row">
+                    <div class="calc-label-row"><span class="lbl">Begin checkout rate (% of ATC)</span><span class="val" id="checkoutVal">68 %</span></div>
+                    <input type="range" id="checkout" class="calc-slider" min="20" max="95" step="1" value="68">
+                    <div class="calc-baseline">baseline 68,5 % (Shopify ATC to checkout)</div>
+                </div>
+                <div class="calc-row">
+                    <div class="calc-label-row"><span class="lbl">Purchase complete rate (% of checkout)</span><span class="val" id="purchaseVal">69 %</span></div>
+                    <input type="range" id="purchase" class="calc-slider" min="40" max="100" step="1" value="69">
+                    <div class="calc-baseline">baseline 68,7 % (Shopify checkout to complete)</div>
+                </div>
+                <div class="calc-row">
+                    <div class="calc-label-row"><span class="lbl">Average order value (kr)</span><span class="val" id="aovVal">3.813</span></div>
+                    <input type="range" id="aov" class="calc-slider" min="1000" max="12000" step="50" value="3813">
+                    <div class="calc-baseline">baseline 3.813 kr (Shopify last 30 days)</div>
+                </div>
+            </div>
+            <div class="calc-output">
+                <h4>// Live projection</h4>
+                <div class="calc-projection">
+                    <div class="lbl">Projected monthly revenue</div>
+                    <div class="val" id="monthRev">122.041 kr</div>
+                    <div class="delta positive" id="monthDelta"><strong id="monthDeltaVal">+ 0 kr</strong><span id="monthDeltaSuffix"> / month vs baseline</span></div>
+                </div>
+                <div class="calc-projection">
+                    <div class="lbl">Projected yearly revenue</div>
+                    <div class="val" id="yearRev">1,46M kr</div>
+                    <div class="delta positive" id="yearDelta"><strong id="yearDeltaVal">+ 0 kr</strong><span id="yearDeltaSuffix"> / year vs baseline</span></div>
+                </div>
+                <div class="calc-meta">
+                    <div class="meta-cell"><div class="meta-lbl">Overall CVR</div><div class="meta-val" id="cvrOut">1,87 %</div></div>
+                    <div class="meta-cell"><div class="meta-lbl">RPV</div><div class="meta-val" id="rpvOut">93,52 kr</div></div>
+                    <div class="meta-cell"><div class="meta-lbl">Orders / mo</div><div class="meta-val" id="ordersOut">24</div></div>
+                </div>
+                <button id="resetBtn" class="calc-reset">Reset to baseline</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 42: FINAL CLOSE -->
+    <div class="card thankyou-slide" data-index="42" style="justify-content:flex-start;align-items:flex-start;padding:140px 80px">
+        <div class="ty-content">
+            <div class="ty-kicker">Next step</div>
+            <div class="ty-title">Approve Phase 1 brief. We ship in 14 days.</div>
+            <div class="ty-sub">Three Phase 1 tests have a worked pre-brief ready: ViaBill on PDP, Trustpilot Trustbox under hero, Meta Pixel + CAPI fix. Approve in writing, work begins next business day.</div>
+            <div class="ty-sub ty-accent">Performance-priced. No fee on losing or inconclusive tests. First invoice issues only after the first winning rollout.</div>
+            <div class="ty-sub" style="margin-top:24px">Bhaskar Roy · bhaskar@ecomhouse.dk · ecomhouse.design</div>
+            <a class="ty-cta" href="mailto:bhaskar@ecomhouse.dk?subject=sportgym.dk · Phase 1 approval">Approve Phase 1</a>
+            <div class="ty-powered">Powered by GA4 (property 522590616) · Shopify · IntelliGEMS · Klaviyo · EcomHouse CRO team</div>
+        </div>
+    </div>
+
+</div><!-- /scroll-container -->
+
+<!-- NAV -->
+<div class="nav-menu-backdrop" id="navMenuBackdrop"></div>
+<div class="nav-menu" id="navMenu">
+    <div class="nav-menu-header">
+        <span class="title">Jump to slide</span>
+        <button class="close" id="navMenuClose" aria-label="Close menu">×</button>
+    </div>
+    <div class="nav-menu-content" id="navMenuContent"></div>
+</div>
+<div class="nav-bar">
+    <button class="nav-menu-btn" id="navMenuBtn" aria-label="Open slide menu">
+        <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <span>Menu</span>
+    </button>
+    <div class="nav-dots" id="navDots"></div>
+    <div class="nav-counter" id="navCounter">01 / 43</div>
+    <div class="nav-arrows">
+        <button class="nav-arrow" id="prevBtn" aria-label="Previous"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+        <button class="nav-arrow" id="nextBtn" aria-label="Next"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+    </div>
+</div>
+
+<script>
+var SLIDE_TITLES = [
+    'Cover',
+    'How this report works',
+    'Baseline metrics',
+    'Opportunity landscape',
+    '00 / Research foundation (section)',
+    'Funnel decomposition',
+    'Device behavior',
+    'Traffic acquisition',
+    'Landing page performance',
+    '01 / Critical (section)',
+    'Opp 01  ·  PDP buy box rebuild',
+    'Opp 02  ·  Klarna / ViaBill financing',
+    'Opp 03  ·  Trustpilot social proof',
+    '02 / High value (section)',
+    'Opp 04  ·  Hero rebuild',
+    'Opp 05  ·  Collection filters',
+    'Opp 06  ·  Accessories cross sell',
+    '03 / Optimize (section)',
+    'Opp 07  ·  Post purchase review flow',
+    'Opp 08  ·  Buying guides + quiz',
+    'Opp 09  ·  Meta Pixel + CAPI fix',
+    'Competitor benchmark',
+    'Customer voice',
+    '90 day roadmap',
+    'Opportunity scorecard',
+    '04 / Selected test plans (section)',
+    'SG-01  ·  Hero redesign',
+    'SG-02  ·  PDP buy box rebuild',
+    'SG-03  ·  Cart drawer cross sell',
+    'Audit close',
+    'EcomHouse track record',
+    'Case study 01  ·  Comforth',
+    'Case study 02  ·  PH Import volume discount',
+    'Case study 03  ·  PH Import homepage hero',
+    '05 / EcomHouse method (section)',
+    'The 6-step CRO method',
+    'Pre-test brief',
+    'A/B testing protocol',
+    'Performance pricing',
+    'Stage multipliers (Schedule A)',
+    'Worked pricing example',
+    'Interactive revenue calculator',
+    'Next step  ·  Approve Phase 1'
+];
+var SLIDE_SECTIONS = [
+    { title: 'Intro', start: 0, end: 3 },
+    { title: '00 / Research foundation', start: 4, end: 8 },
+    { title: '01 / Critical', start: 9, end: 12 },
+    { title: '02 / High value', start: 13, end: 16 },
+    { title: '03 / Optimize', start: 17, end: 20 },
+    { title: 'Benchmark + voice', start: 21, end: 22 },
+    { title: 'Roadmap + scorecard', start: 23, end: 24 },
+    { title: '04 / Selected test plans', start: 25, end: 28 },
+    { title: 'Close + track record', start: 29, end: 30 },
+    { title: 'Case studies', start: 31, end: 33 },
+    { title: '05 / EcomHouse method', start: 34, end: 42 }
+];
+
+(function(){
+    var c=document.getElementById('scrollContainer'),cards=document.querySelectorAll('.card'),dots=document.getElementById('navDots'),ctr=document.getElementById('navCounter'),prev=document.getElementById('prevBtn'),next=document.getElementById('nextBtn'),t=cards.length,cur=0;
+    var menuBtn=document.getElementById('navMenuBtn'),menu=document.getElementById('navMenu'),menuBackdrop=document.getElementById('navMenuBackdrop'),menuClose=document.getElementById('navMenuClose'),menuContent=document.getElementById('navMenuContent');
+
+    for(var i=0;i<t;i++){
+        var d=document.createElement('div');
+        d.className='nav-dot'+(i===0?' active':'');
+        d.setAttribute('data-index',i);
+        d.title = (i+1).toString().padStart(2,'0') + '  ·  ' + (SLIDE_TITLES[i] || 'Slide ' + (i+1));
+        d.addEventListener('click',function(){go(parseInt(this.getAttribute('data-index')))});
+        dots.appendChild(d);
+    }
+
+    SLIDE_SECTIONS.forEach(function(sec){
+        var secEl = document.createElement('div');
+        secEl.className = 'nav-menu-section';
+        var hdr = document.createElement('div');
+        hdr.className = 'nav-menu-section-title';
+        hdr.textContent = sec.title;
+        secEl.appendChild(hdr);
+        var grid = document.createElement('div');
+        grid.className = 'nav-menu-grid';
+        for (var j = sec.start; j <= sec.end; j++) {
+            var item = document.createElement('div');
+            item.className = 'nav-menu-item';
+            item.setAttribute('data-index', j);
+            var num = document.createElement('span');
+            num.className = 'num';
+            num.textContent = String(j+1).padStart(2,'0');
+            var titleSpan = document.createElement('span');
+            titleSpan.className = 'title';
+            titleSpan.textContent = SLIDE_TITLES[j] || 'Slide ' + (j+1);
+            item.appendChild(num);
+            item.appendChild(titleSpan);
+            item.addEventListener('click', function(){
+                go(parseInt(this.getAttribute('data-index')));
+                closeMenu();
+            });
+            grid.appendChild(item);
+        }
+        secEl.appendChild(grid);
+        menuContent.appendChild(secEl);
+    });
+
+    function openMenu(){
+        menu.classList.add('open');
+        menuBackdrop.classList.add('open');
+        menuBtn.classList.add('open');
+        var active = menuContent.querySelector('.nav-menu-item.active');
+        if (active) active.scrollIntoView({block: 'nearest'});
+    }
+    function closeMenu(){
+        menu.classList.remove('open');
+        menuBackdrop.classList.remove('open');
+        menuBtn.classList.remove('open');
+    }
+    menuBtn.addEventListener('click', function(){
+        if (menu.classList.contains('open')) closeMenu(); else openMenu();
+    });
+    menuClose.addEventListener('click', closeMenu);
+    menuBackdrop.addEventListener('click', closeMenu);
+
+    function upd(i){
+        cur=i;
+        document.querySelectorAll('.nav-dot').forEach(function(d,j){d.className='nav-dot'+(j===i?' active':'')});
+        document.querySelectorAll('.nav-menu-item').forEach(function(it){
+            if (parseInt(it.getAttribute('data-index'))===i) it.classList.add('active');
+            else it.classList.remove('active');
+        });
+        ctr.textContent=(i+1).toString().padStart(2,'0')+' / '+t.toString().padStart(2,'0');
+        var ehPage = document.getElementById('ehPageNum');
+        if (ehPage) ehPage.textContent = i.toString().padStart(2, '0');
+    }
+    function go(i){if(i<0||i>=t)return;cards[i].scrollIntoView({behavior:'smooth',inline:'start'});upd(i)}
+    prev.addEventListener('click',function(){go(cur-1)});next.addEventListener('click',function(){go(cur+1)});
+    var st;c.addEventListener('scroll',function(){clearTimeout(st);st=setTimeout(function(){var idx=Math.round(c.scrollLeft/window.innerWidth);if(idx!==cur)upd(idx)},100)});
+    document.addEventListener('keydown',function(e){
+        if(e.key==='Escape' && menu.classList.contains('open')){closeMenu();return;}
+        if(menu.classList.contains('open'))return;
+        if(e.key==='ArrowRight'||e.key==='ArrowDown'){e.preventDefault();go(cur+1)}
+        else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();go(cur-1)}
+    });
+    upd(0);
+})();
+
+// Calculator
+(function(){
+    var BASELINE = { sessions: 9510, pdp: 85, atc: 4, checkout: 68, purchase: 69, aov: 3813 };
+    var keys = ['sessions','pdp','atc','checkout','purchase','aov'];
+    var inputs = {};
+    keys.forEach(function(k){ inputs[k] = document.getElementById(k); });
+    if (!inputs.sessions) return;
+
+    function calc(v) {
+        var orders = v.sessions * (v.pdp/100) * (v.atc/100) * (v.checkout/100) * (v.purchase/100);
+        var rev = orders * v.aov;
+        var cvr = v.sessions > 0 ? (orders / v.sessions) * 100 : 0;
+        var rpv = v.sessions > 0 ? rev / v.sessions : 0;
+        return { orders: orders, rev: rev, cvr: cvr, rpv: rpv };
+    }
+    function fmtKR(n) { return Math.round(n).toLocaleString('da-DK') + ' kr'; }
+    function fmtDelta(n) {
+        var sign = n >= 0 ? '+ ' : '- ';
+        return sign + Math.abs(Math.round(n)).toLocaleString('da-DK') + ' kr';
+    }
+    function fmtMillions(n) {
+        if (Math.abs(n) >= 1000000) return (n/1000000).toFixed(2).replace('.',',') + 'M kr';
+        if (Math.abs(n) >= 1000) return Math.round(n/1000).toLocaleString('da-DK') + 'K kr';
+        return Math.round(n).toLocaleString('da-DK') + ' kr';
+    }
+
+    var BASELINE_REV = calc(BASELINE).rev;
+
+    function setText(id, txt) { var el = document.getElementById(id); if (el) el.textContent = txt; }
+
+    function update() {
+        var v = {
+            sessions: +inputs.sessions.value,
+            pdp: +inputs.pdp.value,
+            atc: +inputs.atc.value,
+            checkout: +inputs.checkout.value,
+            purchase: +inputs.purchase.value,
+            aov: +inputs.aov.value
+        };
+        var r = calc(v);
+        var deltaMonth = r.rev - BASELINE_REV;
+        var deltaYear = deltaMonth * 12;
+        var pctDelta = BASELINE_REV > 0 ? ((r.rev / BASELINE_REV - 1) * 100) : 0;
+        var pctSign = pctDelta >= 0 ? '+' : '';
+
+        setText('sessionsVal', v.sessions.toLocaleString('da-DK'));
+        setText('pdpVal', v.pdp + ' %');
+        setText('atcVal', v.atc + ' %');
+        setText('checkoutVal', v.checkout + ' %');
+        setText('purchaseVal', v.purchase + ' %');
+        setText('aovVal', v.aov.toLocaleString('da-DK'));
+        setText('monthRev', fmtKR(r.rev));
+        setText('yearRev', fmtMillions(r.rev * 12));
+        setText('cvrOut', r.cvr.toFixed(2).replace('.', ',') + ' %');
+        setText('rpvOut', r.rpv.toFixed(2).replace('.', ',') + ' kr');
+        setText('ordersOut', Math.round(r.orders).toLocaleString('da-DK'));
+        setText('monthDeltaVal', fmtDelta(deltaMonth));
+        setText('monthDeltaSuffix', ' / month vs baseline  ·  ' + pctSign + pctDelta.toFixed(1).replace('.',',') + ' %');
+        setText('yearDeltaVal', fmtDelta(deltaYear));
+        setText('yearDeltaSuffix', ' / year vs baseline');
+
+        var monthEl = document.getElementById('monthDelta');
+        var yearEl = document.getElementById('yearDelta');
+        if (monthEl) monthEl.className = 'delta ' + (deltaMonth >= 0 ? 'positive' : 'negative');
+        if (yearEl) yearEl.className = 'delta ' + (deltaYear >= 0 ? 'positive' : 'negative');
+    }
+
+    keys.forEach(function(k){ inputs[k].addEventListener('input', update); });
+    var resetBtn = document.getElementById('resetBtn');
+    if (resetBtn) resetBtn.addEventListener('click', function(){
+        keys.forEach(function(k){ inputs[k].value = BASELINE[k]; });
+        update();
+    });
+    update();
+})();
+</script>
+</body>
+</html>
