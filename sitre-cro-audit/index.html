@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>sitre store. CRO Audit and Growth Roadmap</title>
+</head>
+<body>
+<style>
+/* Dark theme styling for this audit. View with any markdown renderer that respects HTML+CSS. */
+body, .markdown-body { background: #0e1411 !important; color: #e8e5dc !important; font-family: -apple-system, "Inter", system-ui, sans-serif; line-height: 1.65; max-width: 920px; margin: auto; padding: 48px 28px; }
+h1, h2, h3, h4 { color: #f3efe4 !important; letter-spacing: -0.01em; }
+h1 { font-size: 2.4rem; border-bottom: 1px solid #2a3a32; padding-bottom: 16px; margin-top: 8px; }
+h2 { font-size: 1.7rem; margin-top: 48px; padding-top: 8px; color: #d9b88a !important; }
+h3 { font-size: 1.25rem; color: #b8d5c4 !important; margin-top: 32px; }
+h4 { font-size: 1.05rem; color: #f5d9a3 !important; }
+hr { border: 0; height: 1px; background: #233028; margin: 40px 0; }
+a { color: #d9b88a !important; text-decoration: underline; text-underline-offset: 3px; }
+strong { color: #f9efd9 !important; }
+code { background: #1c2620 !important; color: #e8c98c !important; padding: 2px 6px; border-radius: 4px; font-size: 0.92em; }
+blockquote { border-left: 3px solid #d9b88a; padding: 4px 18px; color: #c9c4b3 !important; background: #15201b !important; margin: 18px 0; border-radius: 0 6px 6px 0; }
+table { border-collapse: collapse; width: 100%; margin: 18px 0; font-size: 0.94em; background: #131a16 !important; }
+th, td { border: 1px solid #2a3a32 !important; padding: 9px 12px; text-align: left; vertical-align: top; }
+th { background: #1d2a23 !important; color: #f3efe4 !important; font-weight: 600; }
+tr:nth-child(even) td { background: #16201b !important; }
+ul, ol { padding-left: 24px; }
+li { margin: 6px 0; }
+.callout-red { background: #2a1414; border-left: 4px solid #d9534f; padding: 14px 18px; margin: 18px 0; border-radius: 0 6px 6px 0; color: #f3d8d3 !important; }
+.callout-green { background: #14241c; border-left: 4px solid #6abf91; padding: 14px 18px; margin: 18px 0; border-radius: 0 6px 6px 0; color: #d9eee3 !important; }
+.callout-amber { background: #2a230e; border-left: 4px solid #e6b865; padding: 14px 18px; margin: 18px 0; border-radius: 0 6px 6px 0; color: #f4e6c8 !important; }
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin: 22px 0; }
+.kpi-tile { background: #16201b; border: 1px solid #2a3a32; padding: 16px; border-radius: 8px; }
+.kpi-tile .label { font-size: 0.78rem; color: #9aa89e; text-transform: uppercase; letter-spacing: 0.06em; }
+.kpi-tile .value { font-size: 1.6rem; font-weight: 700; color: #f3efe4; margin: 6px 0; }
+.kpi-tile .delta-up { color: #6abf91; font-size: 0.85rem; }
+.kpi-tile .delta-down { color: #d9534f; font-size: 0.85rem; }
+.tag { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 0.78rem; margin-right: 6px; }
+.tag-p1 { background: #4a1a1a; color: #f3d8d3; }
+.tag-p2 { background: #4a3614; color: #f4e6c8; }
+.tag-p3 { background: #1f3a28; color: #d9eee3; }
+</style>
+
+<h1>sitre store. CRO Audit and Growth Roadmap</h1>
+<p><strong>Prepared by Bhaskar Roy</strong> | <strong>2026-05-13</strong> | <strong>Period under review: Apr 13 to May 13, 2026 vs prior 30 days</strong>
+<strong>Site:</strong> <a href="https://sitrestore.com/">sitrestore.com</a> | <strong>Market:</strong> Denmark and Nordics | <strong>Currency:</strong> DKK</p>
+<blockquote>
+<p><strong>One sentence read.</strong> sitre is a healthy paid social DTC (3.28% CR, +17% revenue, +29% orders) sitting on a quiet broken funnel: a 404'd top landing page, a free shipping threshold that exists only in Danish, customer reviews that should be in the hero but are buried, and zero retention infrastructure on a category where the same buyer should reorder every 60 to 90 days.</p>
+</blockquote>
+<hr />
+<h2>1. The Executive Read</h2>
+<div class="kpi-grid">
+<div class="kpi-tile"><div class="label">Total sales</div><div class="value">109,114 DKK</div><div class="delta-up">+17%</div></div>
+<div class="kpi-tile"><div class="label">Orders</div><div class="value">245</div><div class="delta-up">+29%</div></div>
+<div class="kpi-tile"><div class="label">AOV</div><div class="value">340.94 DKK</div><div class="delta-up">+11%</div></div>
+<div class="kpi-tile"><div class="label">Sessions</div><div class="value">6,538</div><div class="delta-up">+21%</div></div>
+<div class="kpi-tile"><div class="label">CR (completed)</div><div class="value">3.28%</div><div class="delta-up">+68%</div></div>
+<div class="kpi-tile"><div class="label">Returning rate</div><div class="value">7.75%</div><div class="delta-down">-84%</div></div>
+<div class="kpi-tile"><div class="label">Sessions to ATC drop</div><div class="value">91.6%</div><div class="delta-down">leak</div></div>
+<div class="kpi-tile"><div class="label">Mobile share</div><div class="value">90.4%</div><div class="delta-up">stable</div></div>
+</div>
+
+<p><strong>What's working.</strong> Revenue, orders, AOV, and CR are all up on a 21% session increase. The Perfect Duo Bundle is converting at roughly 14.6% from PDP sessions (63 orders on 431 sessions), 4.7x more efficient per session than the solo gel at 3.1%. The press footprint (Grazia, Refinery29, Wonderland, Dazed, ELLE, Glamour) is a real asset most Nordic competitors do not have. Free shipping to EU, UK, and Norway with no stated minimum on EN pages is genuinely generous and unmatched by Peech (free at DKK 600+) or Sinful (DKK 599).</p>
+<p><strong>What's leaking.</strong></p>
+<div class="callout-red"><strong>1. <code>/products/oil-booster</code> returns a 404 today.</strong> The Shopify dashboard reports 1,014 sessions to this URL in the last 30 days (+11%). The live product lives at <code>/products/pleasure-boost-oil</code>. At the live PDP's 3.4% CR and 440 DKK price, this redirect alone is worth roughly <strong>11,900 DKK / month</strong> in recovered orders. Smallest dev change in this audit, largest single ROI.</div>
+
+<div class="callout-red"><strong>2. Danish trust signals and offer mechanics live only on /da.</strong> The DA homepage shows "gratis levering ved køb over 299 DKK". The DA Forever Smooth PDP shows "tildelt a-kolben af Forbrugerrådet Tænk", which is the highest chemical safety rating from the Danish Consumer Council. Neither appears on the default English root. Paid Meta traffic in Denmark lands on the EN root and sees the weaker offer.</div>
+
+<div class="callout-red"><strong>3. Forever Smooth (290 DKK) is exactly 9 DKK below the Danish 299 DKK free shipping threshold.</strong> No progress bar in the cart. The single highest leverage AOV nudge in the entire site sits there unused. A "9 kr to free shipping" bar with a one tap "Add Full Moon Bar 50 g" upsell is a 30-minute build.</div>
+
+<div class="callout-red"><strong>4. The cart page on mobile shows "Continue Shopping" ABOVE the product line, and no checkout button above the fold.</strong> First paint experience after ATC is a back button suggestion, not a forward step. Cookie banner overlays the button area on the same scroll. This is a checkout rate killer.</div>
+
+<div class="callout-amber"><strong>5. Two production defects on the second highest traffic PDP.</strong> The English Pleasure Boost Oil page (1,014 sessions, 440 DKK) shows the word "besteller" (typo) and "C B D" rendered with forced letter spacing in the hero copy. Trust hit on a premium product where the buyer is already deciding on a regulated ingredient.</div>
+
+<p><strong>Strategic gap.</strong> sitre is the only brand in the verified competitor set with <strong>no subscribe and save</strong>, <strong>no quiz</strong>, <strong>no named clinician</strong>, and <strong>no published review count per SKU</strong>. Peech.dk anchors on 4.9 Trustpilot from 280+ reviews. Foria publishes 1,211 to 2,222 reviews per hero SKU. Kindra cites "6,000+ OB/GYNs". sitre has the editorial press to compete in the category but is missing the three social proof mechanics that close the click to cart gap on a 90% mobile paid funnel.</p>
+<hr />
+<h2>2. The Funnel: Where Conversion Leaks (Last 30 Days)</h2>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Sessions / Users</th>
+<th>Step CR</th>
+<th>Drop from previous</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sessions</td>
+<td>6,538</td>
+<td>100%</td>
+<td>n/a</td>
+<td>Volume growing (+21%)</td>
+</tr>
+<tr>
+<td>Added to cart</td>
+<td>551</td>
+<td>8.42% of sessions</td>
+<td><strong>-91.58%</strong></td>
+<td>The single biggest leak</td>
+</tr>
+<tr>
+<td>Reached checkout</td>
+<td>311</td>
+<td>4.75% of sessions</td>
+<td>-43.6%</td>
+<td>Cart page friction</td>
+</tr>
+<tr>
+<td>Completed purchase</td>
+<td>215</td>
+<td>3.28% of sessions</td>
+<td>-30.9%</td>
+<td>Checkout slightly worse than mobile median</td>
+</tr>
+</tbody>
+</table>
+<p><strong>What the drops are telling us.</strong></p>
+<ul>
+<li>
+<p>The <strong>91.6% sessions to ATC drop</strong> is mostly a PDP problem. 90% of traffic is paid Meta clicks landing on a cold PDP. The current PDP gives them: a hero image, a benefit bullet list, and an ATC button. No review count next to the title, no Forbrugerrådet Tænk trust mark on the EN PDP, no clinician quote, no sticky mobile ATC. Customers M H, Charlotte, and Thomas are writing the headline copy for sitre inside the reviews module further down the page, and that voice never reaches the hero.</p>
+</li>
+<li>
+<p>The <strong>43.6% ATC to checkout drop</strong> is mostly a cart page problem. There is no checkout button above the fold on mobile, no free shipping progress bar, no cross sell. The empty cart state pushes a 10% newsletter signup instead of returning shoppers to product.</p>
+</li>
+<li>
+<p>The <strong>30.9% checkout to completion drop</strong> is moderately above the ~25% Shopify mobile median. MobilePay is the dominant Danish wallet (85%+ adoption) and its icon is invisible until the user is already in checkout. Showing it pre checkout would reduce hesitation.</p>
+</li>
+</ul>
+<p><strong>Conversion math (constant downstream rates):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Lever</th>
+<th>Lift assumed</th>
+<th>Monthly orders impact</th>
+<th>Monthly revenue (DKK)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Redirect <code>/products/oil-booster</code> 404 to <code>/products/pleasure-boost-oil</code></td>
+<td>recover 1,014 sessions @ 3.4%</td>
+<td>+35 orders</td>
+<td><strong>+11,900</strong></td>
+</tr>
+<tr>
+<td>Free ship progress bar on PDP and cart with "9 kr away" trigger</td>
+<td>+1.5 pp ATC</td>
+<td>+9 orders</td>
+<td>+3,069</td>
+</tr>
+<tr>
+<td>Customer quote in hero ("liquid gold, game changer") on Forever Smooth</td>
+<td>+1.0 pp ATC</td>
+<td>+6 orders</td>
+<td>+2,046</td>
+</tr>
+<tr>
+<td>Sticky mobile ATC across PDPs</td>
+<td>+0.5 pp ATC</td>
+<td>+3 orders</td>
+<td>+1,023</td>
+</tr>
+<tr>
+<td>Subscribe and Save 15% on Pleasure Boost Oil and Full Moon Bar</td>
+<td>+0.3 pp ATC + LTV</td>
+<td>+2 orders / month +retention</td>
+<td>+680 + LTV</td>
+</tr>
+<tr>
+<td>MobilePay icon shown pre checkout (PDP + cart)</td>
+<td>+1 pp checkout CR</td>
+<td>+2 orders</td>
+<td>+700</td>
+</tr>
+<tr>
+<td><strong>Top six combined</strong></td>
+<td></td>
+<td><strong>+57 orders</strong></td>
+<td><strong>+19,400 DKK</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>If sitre executes the top six fixes in the next 30 days, conservative math points to roughly <strong>18% incremental monthly revenue</strong> with zero increase in paid spend.</p>
+</blockquote>
+<hr />
+<h2>3. Channel and Channel Risk</h2>
+<table>
+<thead>
+<tr>
+<th>Channel</th>
+<th>Sessions</th>
+<th>Sales (DKK)</th>
+<th>Sales share</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Facebook (paid + social)</td>
+<td>5,300</td>
+<td>63,100</td>
+<td><strong>58%</strong></td>
+</tr>
+<tr>
+<td>Instagram (paid + social)</td>
+<td>2,100</td>
+<td>14,600</td>
+<td>13%</td>
+</tr>
+<tr>
+<td>Direct / None</td>
+<td>1,300</td>
+<td>25,600</td>
+<td>23%</td>
+</tr>
+<tr>
+<td>Search (Google + Bing + Ecosia)</td>
+<td>~1,600</td>
+<td>~2,800</td>
+<td>2.5%</td>
+</tr>
+<tr>
+<td>shopsitre (likely email + direct link)</td>
+<td>n/a</td>
+<td>4,300</td>
+<td>4%</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>71% of revenue is Meta driven.</strong> sitre is one ad platform change away from a revenue cliff. Search is at 2.5% of revenue and email is at 4%. Both are leverable today: Search via an SEO push on Danish language menopause and "tørhed" (dryness) intent, email via a Klaviyo powered welcome and replenishment series tied to the Care Club newsletter that already exists.</p>
+</blockquote>
+<hr />
+<h2>4. Customer Voice: The Hero Copy Is Already Written, In Danish, By Real Buyers</h2>
+<p>Source: Judge.me reviews on PDPs, 2026-05-13. Quotes preserved verbatim in original Danish with English translation in parentheses.</p>
+<h3>Theme A: Pain solved (dryness, vulvar irritation, post menopause comfort)</h3>
+<blockquote>
+<p><strong>M H, on Forever Smooth.</strong> "Bedste glidecreme jeg nogensinde har prøvet. Har for nyligt fundet ud af at min ubehag ved [sex] opstår pga irritation ved indgangen ... vandbaseret forværrer åbenbart dette, så fik anbefalet silikonebaseret. Denne gør det forrygende godt, simpelthen en game changer. Ville ønske jeg havde prøvet den noget før, den har simpelthen reddet mig og mine seksuelle hverdag. 10/10 Liquid gold."</p>
+<p>(Best lube I have ever tried. Recently discovered my discomfort during [sex] is from irritation at the entrance ... water based makes this worse, so was recommended silicone based. This one works incredibly well, simply a game changer. I wish I had tried it sooner. It has saved my sex life. 10/10 Liquid gold.)</p>
+</blockquote>
+<p>This review is the hero of the entire PDP and it is sitting below the fold. The phrase "liquid gold" is brand grade copy. "Game changer" is a CTA waiting to happen. The water based vs silicone based comparison is an FAQ that addresses an objection at the exact moment of the buy decision.</p>
+<h3>Theme B: Post cancer intimacy recovery</h3>
+<blockquote>
+<p><strong>Anonymous, on Pleasure Boost Oil.</strong> "Har prøvet olien på min samlever hun fik en dejlig orgasme for første gang i længere tid efter et kræftforløb."</p>
+<p>(Tried the oil on my partner; she had a lovely orgasm for the first time in a long time after a cancer treatment journey.)</p>
+</blockquote>
+<p>The product is being used after chemotherapy induced dryness. This is a real, underserved persona. None of the verified Nordic competitors (Peech, Sinful, Smile Makers, Bijoux Indiscrets) own this voice. None of sitre's pages address it.</p>
+<h3>Theme C: Packaging discretion and design</h3>
+<blockquote>
+<p><strong>Mette.</strong> "Bedste jeg har prøvet. Kommer ikke til at bruge andet. Og så er det bare en pæn indpakning."</p>
+<p>(Best I've tried. Won't use anything else. And the packaging is just pretty.)</p>
+</blockquote>
+<p>Discretion in shipping and bottle design matters in this category. sitre's bottles are objectively design led; the page never makes that promise explicit.</p>
+<h3>Theme D: Partner reaction (male voice)</h3>
+<blockquote>
+<p><strong>Thomas, on Forever Smooth.</strong> "Virkelig en lækker sex gel med dejlig og langvarig og smørende effekt både ved handjobs, samleje og et lækkert og et sexet og ophidsende footjob."</p>
+<p><strong>Jesper A.</strong> "Er dejligt behageligt at bruge og har en god virkning."</p>
+</blockquote>
+<p>Two male reviewers, on a product currently positioned female first. Sitre's hero says "for modern intimacy" but never explicitly invites the partner. Maude, Dame, and Foria all run partner positive hero rotations.</p>
+<h3>Theme E: Repurchase and brand love</h3>
+<blockquote>
+<p><strong>Cecilie, on Full Moon Bar.</strong> "Jeg elsker jeres sæbe!" (I love your soap!)
+<strong>Julie.</strong> "Jeg bruger sæben over hele kroppen. Duften gør mig i så godt humør." (I use the soap all over my body. The scent puts me in such a good mood.)
+<strong>Lasse B.</strong> "Vi har ad flere omgange afprøvet Sitres produkter og WOW de er helt fantastiske." (We have repeatedly tried Sitre's products and WOW they are fantastic.)</p>
+</blockquote>
+<p>Whole body cross use (soap not just for intimate area), scent-as-mood positioning, and explicit brand loyalty. Each line is a homepage section header in waiting.</p>
+<p><strong>What the PDPs are NOT yet exploiting.</strong> Vulvar irritation. Menopause and "tørhed". Post cancer recovery. Partner shared experience. Gift-buying for partner. Discretion ("pæn indpakning"). At least 5 of the 25 Forever Smooth reviews use the word "tørhed" or describe irritation; the PDP mentions dryness in a generic bullet but never quotes a customer.</p>
+<hr />
+<h2>5. The Competitive Landscape</h2>
+<p>Eight brands verified by direct fetch on 2026-05-13. Six candidates dropped after verification (knus.dk, maude.co, aoicare.com, vush.com, knix.com, funfactory.com EN; details in appendix).</p>
+<table>
+<thead>
+<tr>
+<th>Competitor</th>
+<th>Hero</th>
+<th>Lube (lowest)</th>
+<th>Reviews shown</th>
+<th>Subscribe</th>
+<th>First-order</th>
+<th>Quiz</th>
+<th>Press</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>sitre</strong></td>
+<td>serious about pleasure</td>
+<td>290 DKK gel / 440 DKK oil</td>
+<td>Stars only, no count</td>
+<td><strong>No</strong></td>
+<td><strong>10%</strong></td>
+<td><strong>No</strong></td>
+<td>Grazia, Refinery29, Wonderland, Dazed, ELLE, Glamour</td>
+</tr>
+<tr>
+<td>Peech (DK)</td>
+<td>Sexlegetoej med fokus paa Kvalitet, Sundhed</td>
+<td>Sub-only on home</td>
+<td>Trustpilot 4.9 / 280+</td>
+<td>Yes</td>
+<td>None stated</td>
+<td>No</td>
+<td>None named</td>
+</tr>
+<tr>
+<td>Sinful (DK)</td>
+<td>Sexlegetoej Lagersalg, Spar op til 70%</td>
+<td>In 7,000-SKU shelf</td>
+<td>None on home</td>
+<td>None</td>
+<td>10% next purchase</td>
+<td>No</td>
+<td>e-Maerket</td>
+</tr>
+<tr>
+<td>Smile Makers (EU)</td>
+<td>Unbox your fantasy</td>
+<td>In range</td>
+<td>"Extensive" stars</td>
+<td>None visible</td>
+<td><strong>15%</strong></td>
+<td><strong>Vibe Finder</strong></td>
+<td>Vogue, Glamour, ELLE, Allure</td>
+</tr>
+<tr>
+<td>Maude (US, ships EU)</td>
+<td>Modern Intimate Wellness Essentials</td>
+<td>$10 Shine Aloe</td>
+<td>4.7 to 5.0</td>
+<td><strong>Yes + Ritual Builder 20%</strong></td>
+<td>Email + 15/15 referral</td>
+<td>None named</td>
+<td>GQ, InStyle, Vogue</td>
+</tr>
+<tr>
+<td>Dame (US)</td>
+<td>By Women, For Women</td>
+<td>$19 Aloe Lube</td>
+<td><strong>10,000+ 5-star total</strong></td>
+<td>Yes</td>
+<td>Email</td>
+<td><strong>Find Your Vibe</strong></td>
+<td>WSJ, Fast Company, Marie Claire</td>
+</tr>
+<tr>
+<td>Foria (US, ships EU)</td>
+<td>Self-Love Starts Here. 25% off sitewide</td>
+<td>$20</td>
+<td><strong>2,222 / 1,211 / 1,659 per hero SKU</strong></td>
+<td>Implied</td>
+<td><strong>25% sitewide live</strong></td>
+<td>No</td>
+<td>NY Magazine, Oprah</td>
+</tr>
+<tr>
+<td>Bijoux Indiscrets (EU)</td>
+<td>100% SAVAGE. 0% ANIMAL</td>
+<td>EUR 23</td>
+<td>5-star, no volume</td>
+<td>None visible</td>
+<td>10% via email</td>
+<td>No</td>
+<td>None on home</td>
+</tr>
+<tr>
+<td>The Honey Pot (US)</td>
+<td>Plant-Derived Feminine Care</td>
+<td>Agave lube in range</td>
+<td>Not numeric on home</td>
+<td><strong>15% sub &amp; save</strong></td>
+<td><strong>15% + give $10 get $10</strong></td>
+<td>No</td>
+<td>Byrdie, Women's Health</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Reading the matrix.</strong></p>
+<ol>
+<li>sitre is the <strong>only brand with no subscribe and save, no quiz, and no published review count per SKU</strong>.</li>
+<li>The 10% first order offer is <strong>below the peer mean</strong> (15% at Smile Makers, Honey Pot, Bloomi; 25% live at Foria).</li>
+<li>Press footprint is competitive with Smile Makers but sitre quotes <strong>no clinician name</strong> while Dame, Kindra, and YES anchor on real clinicians.</li>
+<li><strong>Peech.dk owns Danish Trustpilot</strong> (4.9 / 280+). sitre's off site review reputation was unverifiable today (Trustpilot returned 403 to our fetcher). Worth confirming with the client.</li>
+</ol>
+<h3>Market Tailwind</h3>
+<ul>
+<li><strong>Denmark femtech:</strong> projected USD 1.75B by 2030, <strong>18.3% CAGR</strong> 2025 to 2030 (Grand View Research). Category demand expands faster than competitive supply.</li>
+<li><strong>Europe sexual wellness:</strong> USD 3.77B in 2025 to USD 6.80B by 2034, 6.75% CAGR (Market Data Forecast).</li>
+<li><strong>Dominant 2025 to 2026 angles</strong> (verified in editorial sources): self pleasure as core wellness, "vagiceuticals" / science-backed intimate care, <strong>menopause positive intimacy backed by clinical evidence</strong>, intimate longevity, pelvic floor and pH-balanced preventative care.</li>
+</ul>
+<h3>Where sitre Can Win</h3>
+<ul>
+<li><strong>Danish language menopause is unowned.</strong> Kindra and YES prove the demand exists in English. No Danish brand currently anchors menopause positive intimacy in Danish copy.</li>
+<li><strong>The Danish clean-beauty crossover voice is open.</strong> Honey Pot, Bloomi, and Foria own this in US. Bijoux owns it design led in Spain. There is room for a Nordic, dermatologist-tested, Forbrugerrådet-rated voice in Danish.</li>
+<li><strong>Clinical credibility is sitre's biggest accessible upgrade.</strong> Recruiting one named Danish gynecologist would close the trust gap to Dame, Kindra, and YES without changing positioning.</li>
+</ul>
+<hr />
+<h2>6. Why Buy vs Why Not (Customer Decision Matrix)</h2>
+<table>
+<thead>
+<tr>
+<th>Reasons TO Buy (visible on the site today)</th>
+<th>Reasons NOT to Buy (objections the site does not yet resolve)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Skincare-grade ingredient story (vitamin E, hydrogenated olive oil, dimethicone)</td>
+<td>"Will this work with my IUD / toys?" Not addressed on PDP.</td>
+</tr>
+<tr>
+<td>Made in Denmark, dermatologically tested, vegan</td>
+<td>"Is silicone better than water based?" The strongest review answers this. Below the fold.</td>
+</tr>
+<tr>
+<td>Press in ELLE, Grazia, Refinery29, Dazed, Wonderland, Glamour</td>
+<td>"What does the bottle look like in real life?" Only product-render images. No in-context or in-hand shots.</td>
+</tr>
+<tr>
+<td>Free shipping to EU, UK, NO</td>
+<td>"How fast will it arrive?" 2 to 7 business days mentioned on shipping policy page only.</td>
+</tr>
+<tr>
+<td>Founder narrative (Julie + Cecilie, real product gap)</td>
+<td>"Will the packaging be discreet?" Not promised anywhere.</td>
+</tr>
+<tr>
+<td>4.6 to 5.0 product star ratings</td>
+<td>"Is anyone clinically endorsing this?" Vague "leading experts in Denmark", no named clinician.</td>
+</tr>
+<tr>
+<td>Care Club 10% off first order</td>
+<td>"What if I don't like it?" No satisfaction guarantee or trial size highlighted.</td>
+</tr>
+<tr>
+<td>Perfect Duo Bundle "save 15-19%" math shown</td>
+<td>"Is this for me if I'm in menopause / recovering from cancer / new mother?" None of these personas are addressed by name.</td>
+</tr>
+<tr>
+<td></td>
+<td>"Can I subscribe and save?" No. Consumable product, no replenishment offer.</td>
+</tr>
+<tr>
+<td></td>
+<td>"How does this compare to Sinful / Peech / Lelo?" No comparison content.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>7. Page-by-Page Heuristic Audit</h2>
+<h3>7.1 Homepage (sitrestore.com)</h3>
+<p><strong>Snapshot.</strong> Hero "serious about pleasure" with a soft-focus image of a woman in a green sweater on cream pillows. CTA "shop now". Below: most loved 6-product grid, press logo strip (Grazia, Refinery29, Wonderland, Dazed, Glamour), "what makes sitre different", "have you ever tried a massage candle?", "honest chats about intimacy" (links out to feelsitre.com), "why we founded sitre", Instagram embed, footer with Care Club 10% off.</p>
+<p><strong>What works.</strong> Visual identity, press logos, the editorial sister-site link, the founder-led "why we founded sitre" section, lowercase brand voice consistency.</p>
+<p><strong>What hurts.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Issue</th>
+<th>Why it matters</th>
+<th>Recommendation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hero CTA is "shop now" with no context</td>
+<td>Cold paid social traffic almost never lands here, but for SEO / direct visitors, "shop now" gives no destination preview</td>
+<td>A/B "shop the bundles" with a hover preview of the 3 top bundle thumbnails</td>
+</tr>
+<tr>
+<td>Star ratings on product cards but no review counts</td>
+<td>Volume builds trust faster than score does. 4.6 stars on 1,000 reviews &gt;&gt; 4.6 on 25</td>
+<td>Surface "(25 reviews)" on every card; backfill historic reviews into Judge.me where possible</td>
+</tr>
+<tr>
+<td>No Trustpilot widget anywhere</td>
+<td>Trustpilot is the dominant Danish DTC trust system. Peech anchors there</td>
+<td>If sitre has a Trustpilot profile, embed the widget. If not, set one up and run a post purchase email to drive reviews</td>
+</tr>
+<tr>
+<td>No language toggle visible in the global nav</td>
+<td>Default site is English; audience is 95%+ Danish</td>
+<td>Add a clearly visible DK/EN toggle near the cart icon, and consider IP-based default redirect to /da for DK visitors</td>
+</tr>
+<tr>
+<td>Cookie banner blocks hero on mobile and persists into the cart</td>
+<td>Visible in mobile screenshots; covers the actual checkout area in the cart</td>
+<td>Move OneTrust banner to a small bottom bar after first scroll, not a hero overlay</td>
+</tr>
+<tr>
+<td>No bundle hierarchy callout</td>
+<td>Perfect Duo Bundle is sitre's highest-converting page but receives a tile equal to a single SKU</td>
+<td>Dedicated "build your ritual" homepage section with the Maude Ritual Builder pattern</td>
+</tr>
+</tbody>
+</table>
+<h3>7.2 Forever Smooth | Silicone Sex Gel | 130 ml (3,992 sessions, 290 DKK)</h3>
+<p>This is the brand's #1 paid Meta landing page. It carries the highest single revenue weight in the audit and the heaviest leak.</p>
+<table>
+<thead>
+<tr>
+<th>Above the fold</th>
+<th>Status</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hero product image</td>
+<td>Present, 3 images, no video, no in-use shot, no scale shot</td>
+<td>OK, missing video</td>
+</tr>
+<tr>
+<td>H1 / product title</td>
+<td>Present (lowercase "forever smooth")</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Star rating + count</td>
+<td><strong>Stars only, count buried</strong></td>
+<td><strong>Fix</strong></td>
+</tr>
+<tr>
+<td>Price</td>
+<td>290 DKK, no compare-at</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Variant selector</td>
+<td><strong>None</strong> (no travel-size cross-buy)</td>
+<td><strong>Fix</strong></td>
+</tr>
+<tr>
+<td>Subscribe and Save</td>
+<td><strong>None</strong></td>
+<td><strong>Fix</strong></td>
+</tr>
+<tr>
+<td>ATC button</td>
+<td>"add to cart"</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Free ship progress bar</td>
+<td><strong>None</strong> (cart shows nothing about the 299 DKK threshold)</td>
+<td><strong>Fix</strong></td>
+</tr>
+<tr>
+<td>Trust badge row</td>
+<td><strong>None on EN page</strong> (Forbrugerrådet Tænk A-kolbe is only on DA)</td>
+<td><strong>Fix</strong></td>
+</tr>
+<tr>
+<td>Sticky mobile ATC</td>
+<td><strong>Not detected in DOM</strong></td>
+<td><strong>Fix</strong></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Below the fold</th>
+<th>Status</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Benefits bullets</td>
+<td>5 bullets, generic</td>
+<td>OK but uncool</td>
+</tr>
+<tr>
+<td>Customer quote pull</td>
+<td>None</td>
+<td><strong>Fix</strong> (use M H "liquid gold" quote)</td>
+</tr>
+<tr>
+<td>FAQ accordion</td>
+<td><strong>None</strong></td>
+<td><strong>Fix</strong> (IUD, toys, condom, water vs silicone)</td>
+</tr>
+<tr>
+<td>Cross sell</td>
+<td>"try together with pleasure boost oil" present</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Press quote</td>
+<td>None</td>
+<td><strong>Fix</strong> (Grazia or Refinery29 quote)</td>
+</tr>
+<tr>
+<td>Ingredients accordion</td>
+<td>Present (dimethicone, hydrogenated olive, vitamin E)</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Judge.me reviews module</td>
+<td>Present, 25 reviews, 4.6 average</td>
+<td>OK, count buried</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Single highest-impact fix on this page:</strong> pin a customer quote inside the hero, switch the bullet list to a "no irritation. no reapply. no shame." 3-bullet block, and put the Forbrugerrådet Tænk A-kolbe badge next to the price.</p>
+<h3>7.3 Pleasure Boost | Intimacy Oil | 100 ml (1,014 sessions, 440 DKK)</h3>
+<table>
+<thead>
+<tr>
+<th>Issue</th>
+<th>Severity</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/products/oil-booster</code> 404</td>
+<td><strong>P0</strong></td>
+<td>Old slug 404s. New slug is <code>/products/pleasure-boost-oil</code>. Add 301 redirect immediately.</td>
+</tr>
+<tr>
+<td>"besteller" typo in hero copy</td>
+<td><strong>P0</strong></td>
+<td>Verbatim from live page. 1-character fix.</td>
+</tr>
+<tr>
+<td>"C B D" rendered with forced spacing</td>
+<td><strong>P1</strong></td>
+<td>Visible in screenshots. Likely a CSS letter-spacing rule on a class meant for a different word.</td>
+</tr>
+<tr>
+<td>CBD health claim "absorbed into the bloodstream, enhancing pleasure ... 5 to 25 minutes"</td>
+<td><strong>P1</strong></td>
+<td>Regulatory caution: EU and Danish cosmetic-claim rules. Recommend legal review and a substantiation footnote</td>
+</tr>
+<tr>
+<td>No clinical reference for the "used by danish experts and osteopaths for women with intimate pain" claim</td>
+<td><strong>P1</strong></td>
+<td>Strongest trust line on the site. Adding one named expert with photo / quote would convert this from claim to proof</td>
+</tr>
+<tr>
+<td>Reviews module: 24 reviews, 4.6 average, <strong>post cancer recovery quote buried</strong></td>
+<td><strong>P1</strong></td>
+<td>Anonymous review describing post-chemo intimacy recovery is one of the most powerful pieces of social proof in the whole brand. Pull it into hero (with consent), or anonymize and feature as a testimonial card.</td>
+</tr>
+</tbody>
+</table>
+<h3>7.4 Perfect Duo Bundle (431 sessions, 588 DKK from 730 DKK)</h3>
+<p>This is sitre's best PDP. ~14.6% CR. Push more traffic to it and protect what is working.</p>
+<table>
+<thead>
+<tr>
+<th>What works</th>
+<th>Keep</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Compare-at price + "Save 15%"</td>
+<td>Keep</td>
+</tr>
+<tr>
+<td>Two-product bundle visual</td>
+<td>Keep</td>
+</tr>
+<tr>
+<td>"no glycerin or parabens, made in denmark, 100% vegan, FSC-certified, safe for toys"</td>
+<td>Keep</td>
+</tr>
+<tr>
+<td>5.0 stars on 5 reviews</td>
+<td>Keep, build volume</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>What hurts</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Free ship line is "shipping to EU, UK and NO" with no threshold callout</td>
+<td>Same as Forever Smooth: surface "free shipping in DK on this bundle"</td>
+</tr>
+<tr>
+<td>Bundle math not made explicit ("you save 142 kr vs buying separately")</td>
+<td>Add inline math card next to price</td>
+</tr>
+<tr>
+<td>No "send as a gift" option</td>
+<td>43% of buyers in many DTC intimate brands are gifting. Add gift wrap, gift note, optional "ship to recipient"</td>
+</tr>
+<tr>
+<td>No FAQ on how to use both products together</td>
+<td>Currently described in body copy. Promote to a 3-step "how to layer" visual</td>
+</tr>
+<tr>
+<td>Cross sell is the Pillow Haze candle (480 DKK)</td>
+<td>Fine, but add a low-price tile (Full Moon Bar 50 g) to lift attach rate at lower friction</td>
+</tr>
+</tbody>
+</table>
+<h3>7.5 Cart Page (mobile, /cart)</h3>
+<p>Reading the cart screenshot directly:</p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Status</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First button on screen</td>
+<td>"Continue Shopping"</td>
+<td><strong>Reverse order</strong></td>
+</tr>
+<tr>
+<td>Checkout CTA above fold</td>
+<td><strong>No</strong></td>
+<td><strong>P0 fix</strong></td>
+</tr>
+<tr>
+<td>Free shipping progress bar</td>
+<td><strong>No</strong></td>
+<td><strong>P0 fix</strong></td>
+</tr>
+<tr>
+<td>Trust badges (secure checkout, 2-year warranty)</td>
+<td><strong>No</strong></td>
+<td><strong>Fix</strong></td>
+</tr>
+<tr>
+<td>Express payment buttons (MobilePay, Apple Pay, Shop Pay)</td>
+<td><strong>Not rendered on cart page</strong></td>
+<td><strong>Fix</strong></td>
+</tr>
+<tr>
+<td>Discount code field</td>
+<td><strong>Not visible</strong></td>
+<td><strong>Fix</strong></td>
+</tr>
+<tr>
+<td>Cross sell / upsell ("Add Full Moon Bar 50 g for 75 DKK")</td>
+<td><strong>No</strong></td>
+<td><strong>Fix</strong></td>
+</tr>
+<tr>
+<td>Quantity selector</td>
+<td>Present</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Discreet packaging promise</td>
+<td><strong>No</strong></td>
+<td><strong>Fix</strong></td>
+</tr>
+<tr>
+<td>Cookie banner</td>
+<td><strong>Still overlapping content</strong></td>
+<td><strong>Fix</strong></td>
+</tr>
+<tr>
+<td>Empty-cart state</td>
+<td>Pushes 10% newsletter signup</td>
+<td><strong>Replace with bestsellers or last-viewed</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>The single fastest cart fix.</strong> Replace "Continue Shopping" with a primary "Go to Checkout" button at the top of the cart on mobile. Move "Continue Shopping" to a tertiary link. Add a free ship progress bar above the line item. Estimated +2 to +3 points on cart-to-checkout conversion based on Shopify cart best-practice benchmarks.</p>
+</blockquote>
+<hr />
+<h2>8. Top 10 Critical Findings (Ranked by Revenue Leverage)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Finding</th>
+<th>Severity</th>
+<th>Est. Monthly Impact (DKK)</th>
+<th>Effort</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>/products/oil-booster</code> 404 redirect</td>
+<td><span class="tag tag-p1">P0</span></td>
+<td>+11,900</td>
+<td>5 min</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Free ship progress bar (cart + PDP) at 299 DKK</td>
+<td><span class="tag tag-p1">P0</span></td>
+<td>+3,069</td>
+<td>2 hours</td>
+</tr>
+<tr>
+<td>3</td>
+<td>"besteller" + "C B D" defects on Pleasure Boost EN PDP</td>
+<td><span class="tag tag-p1">P0</span></td>
+<td>trust + brand</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Cart page CTA order (checkout above continue shopping)</td>
+<td><span class="tag tag-p1">P0</span></td>
+<td>+2,000 to +3,500</td>
+<td>2 hours</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Customer quote ("liquid gold") in PDP hero</td>
+<td><span class="tag tag-p2">P1</span></td>
+<td>+2,046</td>
+<td>2 hours</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Sticky mobile ATC across PDPs</td>
+<td><span class="tag tag-p2">P1</span></td>
+<td>+1,023</td>
+<td>4 hours</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Surface Forbrugerrådet Tænk A-kolbe badge on EN PDP</td>
+<td><span class="tag tag-p2">P1</span></td>
+<td>+1,500 to +2,500</td>
+<td>1 hour</td>
+</tr>
+<tr>
+<td>8</td>
+<td>MobilePay icon pre checkout (PDP + cart)</td>
+<td><span class="tag tag-p2">P1</span></td>
+<td>+700 to +1,200</td>
+<td>1 hour</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Subscribe and Save 15% on consumables</td>
+<td><span class="tag tag-p2">P1</span></td>
+<td>+680 + LTV</td>
+<td>1 day (Recharge / Seal install)</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Lift first order offer to 15% (test vs 10%)</td>
+<td><span class="tag tag-p3">P2</span></td>
+<td>TBD by test</td>
+<td>30 min</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Conservative cumulative monthly upside on P0 + P1 fixes:</strong> roughly <strong>22,000 to 27,000 DKK</strong> at current traffic. At constant cost structure, that is the equivalent of +20% MoM revenue with zero paid spend increase.</p>
+<hr />
+<h2>9. Messaging and Offer Opportunities</h2>
+<h3>9.1 Offer Recommendations</h3>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Rationale</th>
+<th>Implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A. 15% off first order</strong> (Klaviyo, single use, 30-day expiry, min 350 DKK)</td>
+<td>Peer mean is 15% (Smile Makers, Honey Pot, Bloomi). 25% live at Foria. Lift the entry-point lever and protect AOV with a minimum threshold.</td>
+<td>Klaviyo welcome flow, swap 10% for 15% in popup, test for 14 days against control</td>
+</tr>
+<tr>
+<td><strong>B. Subscribe and Save 15%</strong> on Pleasure Boost Oil, Full Moon Bar, Body Melt</td>
+<td>Consumable product category. Subscribe is Honey Pot's 15%, Bloomi's 20%. sitre has nothing.</td>
+<td>Recharge or Seal Subscriptions install, default to 60-day cadence</td>
+</tr>
+<tr>
+<td><strong>C. Bundle builder</strong> at 588 DKK / 695 DKK / 880 DKK tiers</td>
+<td>Perfect Duo is converting at 14.6%. Maude Ritual Builder confirms the pattern works.</td>
+<td>Native Shopify or BundleApp install, 3 fixed bundle tiers + a "build your own" flow</td>
+</tr>
+<tr>
+<td><strong>D. Referral program</strong> at DKK 50 give / DKK 50 get</td>
+<td>Zero-CAC channel. Sitre has zero referral mechanic. Maude (15/15) and Honey Pot (10/10) prove the pattern in this exact category.</td>
+<td>Friendbuy or ReferralCandy, post purchase prompt</td>
+</tr>
+<tr>
+<td><strong>E. Free express upgrade over 500 DKK</strong></td>
+<td>AOV is 341 DKK. The +150 DKK reach is bundle-shaped. Push it.</td>
+<td>Shopify shipping rule + cart page badge</td>
+</tr>
+</tbody>
+</table>
+<h3>9.2 Messaging Recommendations</h3>
+<table>
+<thead>
+<tr>
+<th>Where</th>
+<th>Current copy</th>
+<th>Proposed</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hero (EN)</td>
+<td>"serious about pleasure / discover skincare-powered lubricants and intimacy rituals designed for modern intimacy"</td>
+<td>"skincare for sex. designed in Denmark, dermatologically tested, recommended by [Dr. Name]"</td>
+<td>Borrows Kindra and YES's clinical anchor without leaving sitre's lane</td>
+</tr>
+<tr>
+<td>Hero (DA)</td>
+<td>"skabt til at løfte dine intime øjeblikke"</td>
+<td>"intim hudpleje. dansk dermatologisk testet. anbefalet af [Dr. Navn]"</td>
+<td>Same anchor in Danish, surfaces the Forbrugerrådet trust mark</td>
+</tr>
+<tr>
+<td>PDP hero (Forever Smooth)</td>
+<td>Benefit-bullet list</td>
+<td>"M H, Aalborg: liquid gold. en game changer for min sex-hverdag."</td>
+<td>Customer voice pinned. Single highest leverage edit on the highest traffic page</td>
+</tr>
+<tr>
+<td>PDP hero (Pleasure Boost)</td>
+<td>"experience our new and improved besteller"</td>
+<td>"den olie danske eksperter anbefaler ved tørhed og smerte"</td>
+<td>Fixes typo, surfaces the strongest trust line, addresses two named pain points</td>
+</tr>
+<tr>
+<td>New /pages/menopause</td>
+<td>n/a</td>
+<td>"intimitet handler ikke om en alder. for perimenopause, menopause og bagefter."</td>
+<td>Owns a category nobody else owns in Danish</td>
+</tr>
+<tr>
+<td>New /pages/efter-kraeft (post cancer)</td>
+<td>n/a</td>
+<td>"blødt, langsomt, og helt på din tid. for kroppe i restitution."</td>
+<td>Address the anonymous review's persona directly</td>
+</tr>
+<tr>
+<td>Hero rotation (couples)</td>
+<td>Female-first only</td>
+<td>A/B with "for to" (for two) variant rotation</td>
+<td>Thomas's and Jesper's reviews already prove partner use</td>
+</tr>
+</tbody>
+</table>
+<h3>9.3 Five Strategic Positioning Angles (Pick One to Own)</h3>
+<p>A. <strong>"Skincare for sex, formulated in Denmark by [named clinician]."</strong> Borrows Kindra and YES's clinical anchor.
+B. <strong>"For every chapter, from first date to menopause."</strong> Owns the menopause gap in Danish.
+C. <strong>"Pleasure as preventative wellness."</strong> Borrows the Femmetech "intimate longevity" framing.
+D. <strong>"Made for two, designed for one."</strong> Partner-positive hero rotation.
+E. <strong>"Dansk, dermatologisk testet, vegansk."</strong> Three-word claim stack on PDP, leveraging local trust elements.</p>
+<blockquote>
+<p>Recommendation: lead with A (clinical anchor) in 2026 Q2, layer B (menopause) as a Q3 campaign. The two stack because a named gynecologist is also the credibility source for the menopause landing page.</p>
+</blockquote>
+<hr />
+<h2>10. 90-Day Roadmap</h2>
+<h3>Weeks 1 to 2 (Quick wins, P0)</h3>
+<div class="callout-green">
+1. 301 redirect <code>/products/oil-booster</code> to <code>/products/pleasure-boost-oil</code> (also verify the ad-set URLs in Meta Ads Manager are correct).<br>
+2. Fix "besteller" typo and "C B D" letter-spacing on Pleasure Boost EN PDP.<br>
+3. Add free shipping progress bar in cart, using the 299 DKK threshold already enabled on DA pages. Make it visible on EN as well.<br>
+4. Re-order cart page: primary "Go to Checkout" button at the top on mobile; "Continue Shopping" as a tertiary link.<br>
+5. Show Forbrugerrådet Tænk A-kolbe badge on EN PDPs, not just DA.<br>
+6. Move OneTrust cookie banner to a smaller bottom bar after first scroll.
+</div>
+
+<h3>Weeks 3 to 6 (P1 builds)</h3>
+<div class="callout-amber">
+7. Pin customer quote ("liquid gold ... game changer") in Forever Smooth hero. Repeat the pattern with the post cancer review on Pleasure Boost (with consent).<br>
+8. Add sticky mobile ATC across all PDPs.<br>
+9. Add MobilePay icon to PDP and cart, alongside Klarna, Apple Pay, Shop Pay icons.<br>
+10. Install Recharge or Seal Subscriptions. Launch Subscribe and Save 15% on Pleasure Boost Oil, Full Moon Bar, Body Melt.<br>
+11. A/B test 15% first order offer vs 10% control (Klaviyo). Two-week test, 14k impressions minimum.<br>
+12. Add FAQ accordion to PDPs covering: IUD compatibility, toy compatibility, water vs silicone, scent, ingredients allergies.<br>
+13. Surface review count next to product cards on homepage and PDP.
+</div>
+
+<h3>Weeks 7 to 12 (Strategic bets)</h3>
+<div class="callout-amber">
+14. Recruit one named Danish gynecologist or sex therapist. Photo, one-line quote, link to LinkedIn / clinic. Surface on home and PDP hero rows.<br>
+15. Launch /pages/menopause in Danish with the Pleasure Boost Oil as hero SKU and the named clinician quote.<br>
+16. Build a 3-question Shopify or Octane AI quiz on the homepage ("What kind of intimacy are you looking to support?") that lands the user on a recommended PDP.<br>
+17. Build a bundle-builder (Maude Ritual Builder pattern) on PDP. 3 fixed tiers + custom flow.<br>
+18. Stand up a Klaviyo replenishment flow: 60-day reorder email for buyers of Pleasure Boost Oil and Full Moon Bar.<br>
+19. Stand up a referral program (Friendbuy or ReferralCandy) at DKK 50 give / DKK 50 get, with post purchase prompt.<br>
+20. Push for Trustpilot integration: post purchase Klaviyo email driving reviews, embed widget on homepage.
+</div>
+
+<h3>Retention Layer (continuous, starts Week 4)</h3>
+<div class="callout-green">
+21. Klaviyo welcome flow with 5 emails: founder story, ingredient story, Forbrugerrådet trust mark, product education (water vs silicone), 15% first order code (single use).<br>
+22. Klaviyo abandoned cart flow: 3 emails, hours 1 / 24 / 48, with the "9 kr to free shipping" hook in email 1.<br>
+23. Klaviyo browse abandonment flow on Forever Smooth and Pleasure Boost PDPs.<br>
+24. Post-purchase flow: shipping confirmation > product education email at day 7 ("here is how to layer the duo") > replenishment email at day 60.<br>
+25. SMS opt-in on cart for the Danish list (Klaviyo SMS or Postscript). Single-purpose flow: reorder reminder at day 60.
+</div>
+
+<hr />
+<h2>11. Tracking and Tech Recommendations</h2>
+<p>Detected on 2026-05-13: <strong>Shopify Palo Alto v4.2.1 theme</strong>, <strong>GA4 G-EMT70SN309</strong>, <strong>Meta Pixel 810180394658406</strong>, <strong>Judge.me reviews</strong>, <strong>OneTrust cookie banner</strong>, <strong>Shopify Web Pixels Manager active</strong>. No standalone GTM container detected in raw HTML (verify in DevTools). No Klaviyo form detected on homepage.</p>
+<table>
+<thead>
+<tr>
+<th>Recommendation</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verify Meta Ads CAPI is firing for Purchase, AddToCart, InitiateCheckout via Meta Events Manager Test Events</td>
+<td>P0</td>
+</tr>
+<tr>
+<td>Verify GA4 Enhanced Ecommerce events (view_item, add_to_cart, begin_checkout, purchase) are firing with item-level data</td>
+<td>P0</td>
+</tr>
+<tr>
+<td>Install a GTM container alongside the Shopify Web Pixels Manager so non-Shopify tags (TikTok, Pinterest, server side CAPI) can be managed without theme edits</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>Confirm Klaviyo is the ESP and signals are flowing: viewed_product, started_checkout, placed_order. If not Klaviyo, document current ESP</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>Add server side Meta CAPI (Shopify native or Stape/Elevar) for iOS 14.5 attribution recovery</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>Microsoft Clarity install for free behavioral analytics (sitre is data-light beyond Shopify default)</td>
+<td>P2</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>12. Appendix</h2>
+<h3>12.1 Methodology</h3>
+<ul>
+<li>Shopify Analytics dashboard PDF (Apr 13 to May 13, 2026 vs prior 30 days) supplied by client and parsed for KPIs, funnel, channel mix, geo, device, product sell-through, and landing pages.</li>
+<li>Direct site inspection via Playwright (mobile 390x844 and desktop 1440x900) on 2026-05-13. Mobile and desktop full-page screenshots captured for: homepage, Forever Smooth PDP, Pleasure Boost Oil PDP, Perfect Duo Bundle PDP, /collections/all, /cart, and the oil-booster 404.</li>
+<li>WebFetch verification of every competitor URL and every market-statistic source before inclusion (per anti-hallucination rule).</li>
+<li>Customer voice mined from Judge.me reviews on PDPs, preserved verbatim in Danish.</li>
+</ul>
+<h3>12.2 Limitations</h3>
+<ul>
+<li>Trustpilot returned 403 to both .com and dk.trustpilot.com on 2026-05-13. sitre's off site Trustpilot reputation is not verified in this audit. Worth client-side screenshot if available.</li>
+<li>GA4 service-account access not granted to property G-EMT70SN309. Funnel figures in this audit are computed from the Shopify dashboard the client supplied, not GA4 directly.</li>
+<li>Some PDP elements (subscribe widget, sticky ATC, FAQ accordion) were checked via DOM inspection but a Palo Alto theme can render JS-only widgets that a raw-HTML scan would miss. Recommendations on "missing" elements may be partially client-rendered; flag for client confirmation.</li>
+</ul>
+<h3>12.3 Files Generated</h3>
+<ul>
+<li>Research brief: <code>outputs/sitrestore/research/site-audit-findings.md</code></li>
+<li>Competitor and market analysis: <code>outputs/sitrestore/research/competitor-market-analysis.md</code></li>
+<li>Funnel and product CR breakdown: <code>outputs/sitrestore/research/funnel-analysis.md</code></li>
+<li>Screenshots: <code>outputs/sitrestore/screenshots/</code></li>
+<li>This audit: <code>outputs/sitrestore/audit/sitre-cro-audit-2026-05-13.md</code></li>
+</ul>
+<h3>12.4 Sources</h3>
+<ul>
+<li>sitrestore.com homepage and /pages/about, 3 PDPs, cart, /policies/shipping-policy, 2026-05-13</li>
+<li>Competitor sources verified at fetch time on 2026-05-13: peech.dk, sinful.dk, smilemakerscollection.com, getmaude.com, dame.com, foriawellness.com, bijouxindiscrets.com, thehoneypot.co, mylola.com, lelo.com, thebloomi.com, ourkindra.com, onnalifestyle.com, yesyesyes.org, amorelie.de, beate-uhse.com</li>
+<li>Market data: Grand View Research (Denmark femtech), Market Data Forecast (Europe femtech, Europe sexual wellness), Research and Markets (global sexual wellness), Tracxn (Sweden femtech), Smile Makers blog (2025 trends), Forbes (vagiceuticals), Femmetech (intimate longevity), Psychology Today (menopause and self pleasure), Kinsey Institute (clinical menopause study)</li>
+</ul>
+<hr />
+<div class="callout-green"><strong>Next step.</strong> Approve the P0 list (items 1 to 6 above). Dev work is small. We can stand it up this week. Then run the 15% first order test alongside item 7 (hero customer quote) to compound the impact within the next sprint.</div>
+</body>
+</html>

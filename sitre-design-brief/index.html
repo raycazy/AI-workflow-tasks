@@ -1,0 +1,859 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>sitre design brief</title></head><body><style>
+body, .markdown-body { background: #ffffff !important; color: #1a2520 !important; font-family: -apple-system, "Inter", system-ui, sans-serif; line-height: 1.65; max-width: 1100px; margin: auto; padding: 48px 28px; }
+h1, h2, h3, h4 { color: #1a2520 !important; letter-spacing: -0.01em; }
+h1 { font-size: 2.4rem; border-bottom: 1px solid #d9d2c0; padding-bottom: 16px; }
+h2 { font-size: 1.7rem; margin-top: 52px; padding-top: 8px; color: #2d3d33 !important; border-bottom: 1px solid #e8dec9; padding-bottom: 8px; }
+h3 { font-size: 1.3rem; color: #2d3d33 !important; margin-top: 36px; }
+h4 { font-size: 1.05rem; color: #6b4f1d !important; }
+hr { border: 0; height: 1px; background: #e8dec9; margin: 40px 0; }
+a { color: #6b4f1d !important; }
+strong { color: #1a2520 !important; }
+em { color: #4a5048 !important; }
+code { background: #f0eadd !important; color: #6b4f1d !important; padding: 2px 6px; border-radius: 4px; font-size: 0.92em; }
+pre { background: #faf7ee; border: 1px solid #e8dec9; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 0.86em; }
+blockquote { border-left: 3px solid #c9a35c; padding: 4px 18px; color: #4a5048 !important; background: #faf7ee !important; margin: 18px 0; border-radius: 0 6px 6px 0; }
+table { border-collapse: collapse; width: 100%; margin: 18px 0; font-size: 0.92em; background: #ffffff !important; }
+th, td { border: 1px solid #e8dec9 !important; padding: 9px 12px; text-align: left; vertical-align: top; }
+th { background: #f0eadd !important; color: #1a2520 !important; font-weight: 600; }
+tr:nth-child(even) td { background: #faf7ee !important; }
+img { max-width: 100%; border-radius: 6px; border: 1px solid #e8dec9; }
+.callout-red { background: #fdecea; border-left: 4px solid #d9534f; padding: 14px 18px; margin: 18px 0; border-radius: 0 6px 6px 0; color: #5b1f1d !important; }
+.callout-green { background: #ecf5ef; border-left: 4px solid #6abf91; padding: 14px 18px; margin: 18px 0; border-radius: 0 6px 6px 0; color: #1c3d2c !important; }
+.callout-amber { background: #fcf3df; border-left: 4px solid #e6b865; padding: 14px 18px; margin: 18px 0; border-radius: 0 6px 6px 0; color: #5a4416 !important; }
+.tag { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 0.78rem; margin-right: 6px; font-weight: 600; }
+.tag-p1 { background: #fdecea; color: #b1352f; border: 1px solid #f0c4c0; }
+.tag-p2 { background: #fcf3df; color: #8a6618; border: 1px solid #e6cf94; }
+.tag-p3 { background: #ecf5ef; color: #2d6b4a; border: 1px solid #b6dcc4; }
+.tag-mobile { background: #f0f5e2; color: #4a6118; border: 1px solid #d4dfaa; }
+.tag-all { background: #f1e8f5; color: #5a3a72; border: 1px solid #d4c0e0; }
+.swatch { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: middle; margin-right: 6px; border: 1px solid #d9d2c0; }
+</style>
+
+<h1>sitre store. Design Brief for CRO Improvements</h1>
+<p><strong>Site:</strong> sitrestore.com</p>
+<hr />
+<h2>1. Brand Foundations (what to keep)</h2>
+<p>sitre has a coherent visual identity. Do not redesign the brand. The brief modifies the buy flow and trust architecture inside the existing system.</p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>What to keep</th>
+<th>Where you see it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Logo</strong></td>
+<td>"sitre" wordmark in serif, lowercase</td>
+<td>Header on every page</td>
+</tr>
+<tr>
+<td><strong>Type pairing</strong></td>
+<td>Serif display (logo + H1) + sans body</td>
+<td>Maintain across new components</td>
+</tr>
+<tr>
+<td><strong>Brand palette</strong></td>
+<td><span class="swatch" style="background:#2d3d33"></span>Deep green <code>#2d3d33</code>. <span class="swatch" style="background:#f0eadd"></span>Cream <code>#f0eadd</code>. <span class="swatch" style="background:#f5d3c8"></span>Soft pink <code>#f5d3c8</code>. <span class="swatch" style="background:#1a2520"></span>Ink <code>#1a2520</code>.</td>
+<td>Hero, buttons, cards</td>
+</tr>
+<tr>
+<td><strong>Photography mood</strong></td>
+<td>Soft, intimate, editorial. Skin tones, cream pillows, green moss undertones.</td>
+<td>Hero, lifestyle modules</td>
+</tr>
+<tr>
+<td><strong>Voice</strong></td>
+<td>Lowercase, quiet confidence, skincare coded. Vocabulary: "intimacy", "ritual", "tørhed", "connection".</td>
+<td>All copy on new components</td>
+</tr>
+<tr>
+<td><strong>Iconography</strong></td>
+<td>Outlined SVG only. NO emoji. NO multi color.</td>
+<td>Trust badges, accordions, payment row</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Two additions to the brand system</strong> that the brief introduces:</p>
+<ul>
+<li>A <strong>trust beige</strong> <span class="swatch" style="background:#c9a35c"></span><code>#c9a35c</code> for the Forbrugerrådet Tænk A-kolbe badge, clinical anchor labels, AND review stars. Warmer than current green, signals "verified", solves the star contrast bug described in Section 3.0.</li>
+<li>An <strong>alert green</strong> <span class="swatch" style="background:#6abf91"></span><code>#6abf91</code> for free shipping progress bars and check icons (current cream is too quiet to register in glanceable UI).</li>
+</ul>
+<hr />
+<h2>2. Design Principles</h2>
+<ol>
+<li><strong>Mobile first, always.</strong> 90.4% of traffic is mobile. Every component is designed at 375 px and scales up.</li>
+<li><strong>One screen, one decision.</strong> PDP buy box and cart must show the next action above the fold on iPhone SE (375 × 667).</li>
+<li><strong>Quote the customer, not the brand.</strong> Lead with verbatim Danish reviews from the brand's existing Judge.me corpus. 114 reviews were harvested across the live PDPs on sitrestore.com (Forever Smooth, Pleasure Boost, Perfect Duo Bundle, Full Moon Bar, Shower Care). Quotes used in this brief are preserved verbatim, including Danish original spelling.</li>
+<li><strong>Earn the trust, then ask for the click.</strong> Trust elements (Forbrugerrådet Tænk, review count, Danish made, FSC) precede the ATC button.</li>
+<li><strong>Respect the brand's quiet voice.</strong> Borrow conversion mechanics from Maude, Foria, Honey Pot. Do not borrow their visual tone.</li>
+<li><strong>No clinical aesthetic.</strong> Corpus surfaces a "pharmacy contrast" insight (Nina Simone, shower care, 2022): customers love that sitre does not look like a pharmacy shelf. Keep skincare coded warmth.</li>
+</ol>
+<hr />
+<h2>3. Component Specs</h2>
+<h3>3.0. ★ Star Icon Contrast (P0 Fix, Apply Everywhere)</h3>
+<p><span class="tag tag-p1">P0</span> <span class="tag tag-all">Every PDP, every product card, every review module</span> <span class="tag tag-mobile">Mobile + Desktop</span></p>
+<p><strong>Bug.</strong> The current star icons render in a near cream color on a cream background. On the Perfect Duo Bundle PDP and on product cards across the site, the 5-star row is effectively invisible. Customers do not see that sitre's bundles average 4.6 to 5.0 stars; they see the price and then a blank space.</p>
+<p><strong>Why it matters.</strong> The audit identified "no review count visible" as a top-five conversion gap. Below 3:1 contrast ratio, stars fail WCAG 1.4.11 (non text contrast). For paid social traffic landing cold on a PDP, the star row is the first proof of social validation; it has to be readable in a glance.</p>
+<p><strong>Fix.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Token</th>
+<th>Current</th>
+<th>New</th>
+<th>Contrast on cream <code>#f0eadd</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Star (filled)</td>
+<td>approx <code>#e5dcc6</code> cream</td>
+<td><span class="swatch" style="background:#c9a35c"></span><code>#c9a35c</code> trust beige</td>
+<td>3.4:1 (passes WCAG AA non text)</td>
+</tr>
+<tr>
+<td>Star (empty / outline)</td>
+<td>approx <code>#e5dcc6</code></td>
+<td><span class="swatch" style="background:#a08866"></span><code>#a08866</code> darker beige</td>
+<td>4.8:1</td>
+</tr>
+<tr>
+<td>Review count text</td>
+<td>small gray</td>
+<td><span class="swatch" style="background:#1a2520"></span><code>#1a2520</code> ink, weight 500</td>
+<td>12.6:1</td>
+</tr>
+<tr>
+<td>Star size</td>
+<td>11 px</td>
+<td>14 to 16 px</td>
+<td>n/a</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Before and After.</strong></p>
+<p><img alt="Star contrast fix, before and after" src="mockups/mockup-m-star.png" /></p>
+<p>The "before" panel reproduces what shows on the live site today (M H., perfect-duo-bundle PDP, 2026-05-14): five faint stars on cream. The "after" panel applies trust beige <code>#c9a35c</code> for the filled stars, larger glyphs, and a readable review count next to them.</p>
+<p><strong>Where to apply.</strong>
+- PDP buy box review row (Component 03)
+- Product cards on home, collection pages
+- Judge.me reviews module headers
+- Cart line items (when a review badge appears)
+- Sticky mobile ATC bar (Component 04)
+- Email templates (Klaviyo flows for welcome, browse abandon, cart abandon, post purchase, replenishment, win back). Apply the same star treatment whenever stars render inside email.</p>
+<p><strong>Live reference.</strong> Maude's PDP shows what a high contrast star row looks like inside a quiet brand voice: <a href="https://getmaude.com/products/shine-silicone-lube">getmaude.com/products/shine-silicone-lube</a>.</p>
+<hr />
+<h3>3.1. Component 01. Forbrugerrådet Tænk A-kolbe Trust Badge</h3>
+<p><span class="tag tag-p1">P0</span> <span class="tag tag-all">All EN PDPs + Home</span> <span class="tag tag-mobile">Mobile + Desktop</span></p>
+<p><strong>Purpose.</strong> Surface the highest chemical safety rating from the Danish Consumer Council on the English default site. Currently visible only on /da PDPs. 95% of paid Meta traffic lands on the English root and never sees this signal.</p>
+<p><strong>Mockup.</strong></p>
+<p><img alt="A-kolbe trust badge mockup" src="mockups/mockup-m01.png" /></p>
+<p><strong>Live references.</strong>
+- Honey Pot uses a near identical clinical badge pattern next to the price: <a href="https://thehoneypot.co">thehoneypot.co</a>
+- YES anchors heavily on clinical badges: <a href="https://yesyesyes.org">yesyesyes.org</a>
+- Forbrugerrådet Tænk official A-kolbe mark: <a href="https://taenk.dk/test-og-forbrugerliv/a-kolber-paa-produkter-til-dig-og-din-familie">taenk.dk/test-og-forbrugerliv/a-kolber-paa-produkter-til-dig-og-din-familie</a></p>
+<p><strong>Specs.</strong></p>
+<ul>
+<li><strong>Size.</strong> Inline 320 × 36 px (mobile), 280 × 36 px (desktop). Pill chip variant 220 × 28 px.</li>
+<li><strong>Background.</strong> <span class="swatch" style="background:#f0eadd"></span><code>#f0eadd</code> cream OR <span class="swatch" style="background:#2d3d33"></span><code>#2d3d33</code> reversed on dark sections.</li>
+<li><strong>Border.</strong> 1 px solid <span class="swatch" style="background:#c9a35c"></span><code>#c9a35c</code> trust beige, 6 px radius.</li>
+<li><strong>Icon.</strong> 22 × 22 px circle in <span class="swatch" style="background:#6abf91"></span><code>#6abf91</code> alert green, white "A" centered (placeholder until Forbrugerrådet press kit mark is provided).</li>
+<li><strong>Type.</strong> Sans 11 px / 14 px line height, ink. "Top kemivurdering" weight 600. "Forbrugerrådet Tænk" weight 400 in <code>#6b7268</code> gray.</li>
+<li><strong>Link.</strong> "Læs mere ↗" right aligned in trust beige, 10 px, underlined.</li>
+<li><strong>Tap modal.</strong> 320 px tall sheet, 30 to 40 words Danish copy explaining the rating, source link to taenk.dk.</li>
+<li><strong>Tap target.</strong> Min 44 × 44 px touch area on mobile.</li>
+</ul>
+<p><strong>Acceptance criteria.</strong>
+- Renders on every PDP regardless of locale.
+- Tooltip is accessible (ARIA label, keyboard focusable).
+- Source link opens in new tab with <code>rel="noopener"</code>.
+- Verify usage rights with Forbrugerrådet Tænk before launch.</p>
+<hr />
+<h3>3.2. Component 02. Customer Quote Card (Hero Pull Quote)</h3>
+<p><span class="tag tag-p1">P0</span> <span class="tag tag-all">PDP buy box, home hero, menopause LP</span> <span class="tag tag-mobile">Mobile + Desktop</span></p>
+<p><strong>Purpose.</strong> Pin the strongest verbatim Danish review inside the hero, above the ATC. The corpus has 114 reviews; the M H. "liquid gold game changer" quote currently sits below the fold.</p>
+<p><strong>Mockup. Light variant (cream background) + Dark variant (deep green for menopause LP).</strong></p>
+<p><img alt="Customer quote card, light + dark variants" src="mockups/mockup-m02.png" /></p>
+<p><strong>Live references.</strong>
+- Foria runs editorial pull quotes inside PDP hero: <a href="https://www.foriawellness.com/products/awaken-arousal-oil-cbd">foriawellness.com/products/awaken-arousal-oil-cbd</a>
+- Dame uses quiet quote cards directly above benefit bullets: <a href="https://www.dame.com/products/aloe-lube">dame.com/products/aloe-lube</a>
+- Maude's quiet editorial review placement is the closest match to sitre's voice: <a href="https://getmaude.com/products/shine-silicone-lube">getmaude.com/products/shine-silicone-lube</a></p>
+<p><strong>Specs.</strong></p>
+<ul>
+<li><strong>Background.</strong> Variant A and B and C: <span class="swatch" style="background:#f0eadd"></span><code>#f0eadd</code> cream. Variant D: <span class="swatch" style="background:#2d3d33"></span><code>#2d3d33</code> deep green.</li>
+<li><strong>Padding.</strong> 20 px all sides on mobile, 28 px on desktop.</li>
+<li><strong>Border.</strong> None. 8 px radius.</li>
+<li><strong>Quote type.</strong> Serif (same family as the logo). 22 px / 30 px line height on mobile, 26 px / 34 px on desktop. Italic. Weight 400.</li>
+<li><strong>Attribution type.</strong> Sans 13 px / 18 px line height. Weight 500 for name, 400 for location and verified flag.</li>
+<li><strong>Star icons.</strong> Apply Section 3.0. 14 × 14 px filled in trust beige <code>#c9a35c</code>, 2 px gap. NEVER cream on cream.</li>
+<li><strong>Quote marks.</strong> Use real Danish curly quotes „ ".</li>
+<li><strong>Position.</strong> PDP: between product title row and ATC button. Above benefit bullets.</li>
+<li><strong>Source review.</strong> M H. on Forever Smooth, 2025-05-25, verified, 5★. A.C. on silicone gel, 2025-01-23 (English speaker, menopause variant).</li>
+</ul>
+<p><strong>Acceptance criteria.</strong>
+- Quote must be 100% verbatim from the corpus (no editorial polish).
+- Attribution must include verified buyer flag from Judge.me.
+- Star count and total reviews must update dynamically from Judge.me feed.</p>
+<hr />
+<h3>3.3. Component 03. PDP Buy Box (Complete Stack)</h3>
+<p><span class="tag tag-p1">P0</span> <span class="tag tag-all">All PDPs</span> <span class="tag tag-mobile">Mobile first, scales up</span></p>
+<p><strong>Purpose.</strong> Consolidate every above-the-fold buy-box element into a single decision friendly stack. Resolves audit findings 1, 3, 4, 5, 8.</p>
+<p><strong>Mockup. Full PDP buy box, mobile 375 px width.</strong></p>
+<p><img alt="PDP buy box full mockup" src="mockups/mockup-m03.png" /></p>
+<p><strong>Live references.</strong>
+- Above fold buy box hierarchy: <a href="https://getmaude.com/products/shine-silicone-lube">getmaude.com/products/shine-silicone-lube</a>
+- Review count and density above price: <a href="https://www.foriawellness.com/products/awaken-arousal-oil-cbd">foriawellness.com/products/awaken-arousal-oil-cbd</a>
+- Subscribe toggle inline with price: <a href="https://www.dame.com/products/aloe-lube">dame.com/products/aloe-lube</a>
+- Trust strip layout: <a href="https://thebloomi.com">thebloomi.com</a></p>
+<p><strong>Sitre current state (before).</strong></p>
+<p><img alt="sitre Forever Smooth PDP, current mobile" src="screenshots/pdp-forever-smooth-mobile-fullpage.png" /></p>
+<p><strong>Specs (mobile, viewport 375 px).</strong></p>
+<ul>
+<li><strong>Image carousel.</strong> 375 × 375 px square. 8 px gap between dots. Swipe enabled. Tap to expand to fullscreen lightbox.</li>
+<li><strong>Image count.</strong> Minimum 5 per SKU. Current Forever Smooth has 3. Add: in context lifestyle, in hand scale shot, packaging close up.</li>
+<li><strong>Title H1.</strong> Serif lowercase, 26 px / 32 px line height, ink, weight 400.</li>
+<li><strong>Subtitle.</strong> Sans 13 px / 18 px, <code>#6b7268</code> gray, weight 400.</li>
+<li><strong>Review row.</strong> 5 × 14 px stars in trust beige <code>#c9a35c</code> (apply Section 3.0 contrast fix). 8 px gap, then "4.6" weight 600 in ink + "(25 anmeldelser)" weight 400 underlined. Tappable, jumps to #reviews anchor.</li>
+<li><strong>Price.</strong> Sans 22 px, weight 600, ink. Sale variants: strikethrough comparison + sale price + "Spar X%" pill.</li>
+<li><strong>A-kolbe badge</strong> (Component 01). 320 × 36 px between price and quote card.</li>
+<li><strong>Quote card</strong> (Component 02). Pinned between A-kolbe and subscribe toggle.</li>
+<li><strong>Subscribe toggle</strong> (Component 09). Cream box with 2 stacked radio options.</li>
+<li><strong>Primary CTA.</strong> 56 px tall, full width minus 32 px page padding. Background <code>#2d3d33</code>, type cream, weight 600, 14 px caps. Active state: scale 0.98, shadow inset. Label uses the selected price (e.g. "Tilføj til kurv. 247 DKK" when subscribe is active).</li>
+<li><strong>Spacing.</strong> 16 px vertical rhythm between blocks. 32 px above CTA. 24 px above payment row.</li>
+<li><strong>Payment row</strong> (Component 08). Below CTA, 32 px tall.</li>
+<li><strong>Trust strip.</strong> 3 lines, 13 px sans, ink, alert green check circles 14 × 14 px.</li>
+</ul>
+<p><strong>Acceptance criteria.</strong>
+- Fits within 1 viewport height on iPhone SE (667 px), iPhone 12+ (844 px), and Pixel 7 (915 px) so the CTA is visible without scrolling.
+- All Danish copy uses lowercase brand voice.
+- Subscribe radio defaults to one time on first variant, inherits user's last choice on revisit.
+- Image gallery preloads first 2 images, lazy loads remaining.</p>
+<hr />
+<h3>3.4. Component 04. Sticky Mobile ATC Bar</h3>
+<p><span class="tag tag-p2">P1</span> <span class="tag tag-all">All PDPs</span> <span class="tag tag-mobile">Mobile only</span></p>
+<p><strong>Purpose.</strong> Keep ATC reachable for users who scroll deep into reviews, ingredients, or FAQ. Standard mobile pattern for 90% mobile traffic; absent today.</p>
+<p><strong>Mockup.</strong></p>
+<p><img alt="Sticky mobile ATC bar mockup" src="mockups/mockup-m04.png" /></p>
+<p><strong>Live references.</strong>
+- Maude PDP: <a href="https://getmaude.com/products/shine-silicone-lube">getmaude.com/products/shine-silicone-lube</a>
+- Foria PDP: <a href="https://www.foriawellness.com/products/awaken-arousal-oil-cbd">foriawellness.com/products/awaken-arousal-oil-cbd</a>
+- Honey Pot mobile sticky bar: <a href="https://thehoneypot.co">thehoneypot.co</a></p>
+<p><strong>Specs.</strong></p>
+<ul>
+<li><strong>Trigger.</strong> IntersectionObserver on the primary ATC button. Show when primary ATC scrolls out of view. Hide when reviews module enters view.</li>
+<li><strong>Height.</strong> 64 px tall, full width.</li>
+<li><strong>Background.</strong> Cream <code>#f0eadd</code> with subtle top shadow <code>0 -4px 12px rgba(0,0,0,0.06)</code>.</li>
+<li><strong>Padding.</strong> 10 px vertical, 16 px horizontal.</li>
+<li><strong>Product thumb.</strong> 44 × 44 px image, 6 px radius, left aligned.</li>
+<li><strong>Title.</strong> Truncated 1 line, 13 px serif, ink.</li>
+<li><strong>Star row.</strong> Below title, 11 px sans, trust beige stars 11 × 11 px (apply Section 3.0).</li>
+<li><strong>Price.</strong> 13 px weight 600, ink.</li>
+<li><strong>CTA.</strong> 96 × 44 px, deep green background, cream type, 13 px caps, right aligned.</li>
+<li><strong>Animation.</strong> Slide up from bottom on first appearance over 220 ms ease out.</li>
+</ul>
+<p><strong>Acceptance criteria.</strong>
+- Does not overlap iOS bottom safe area (<code>env(safe-area-inset-bottom)</code>).
+- Does not appear when cart drawer or modal is open.
+- Tap on title scrolls to top of PDP. Tap on CTA fires ATC.</p>
+<hr />
+<h3>3.5. Component 05. Free Shipping Progress Bar</h3>
+<p><span class="tag tag-p1">P0</span> <span class="tag tag-all">Cart page + PDP buy box footer</span> <span class="tag tag-mobile">Mobile + Desktop</span></p>
+<p><strong>Purpose.</strong> Forever Smooth at 290 DKK sits exactly 9 DKK below the 299 DKK free shipping threshold. Currently no progress bar exists; the threshold is invisible.</p>
+<p><strong>Mockup. 2 states: under threshold + at threshold.</strong></p>
+<p><img alt="Free shipping progress bar mockup, 2 states" src="mockups/mockup-m05.png" /></p>
+<p><strong>Live references.</strong>
+- Smile Makers: <a href="https://smilemakerscollection.com">smilemakerscollection.com</a> (cart shipping bar)
+- Bloomi: <a href="https://thebloomi.com">thebloomi.com</a>
+- Honey Pot: <a href="https://thehoneypot.co">thehoneypot.co</a></p>
+<p><strong>Specs.</strong></p>
+<ul>
+<li><strong>Container.</strong> Full width minus 32 px page padding. Height 56 px. Cream background <code>#f0eadd</code>. 6 px radius.</li>
+<li><strong>Label type.</strong> Sans 13 px / 18 px, ink, weight 500.</li>
+<li><strong>Bar.</strong> 6 px tall, ink at 12% opacity background. Fill <span class="swatch" style="background:#6abf91"></span><code>#6abf91</code> alert green. 999 px radius.</li>
+<li><strong>Animation.</strong> Bar fill transitions over 320 ms ease out when cart total changes.</li>
+<li><strong>State logic.</strong> If subtotal between 250 and 298 DKK, render with one tap upsell card directly below (Component 07). If subtotal under 250, render label only with no nudge.</li>
+<li><strong>Where rendered.</strong> (1) Cart page top, above line items. (2) PDP cart drawer if cart not empty. (3) Optional: persistent micro version on PDP between price and ATC if cart has items.</li>
+</ul>
+<p><strong>Acceptance criteria.</strong>
+- Updates in real time as quantities change.
+- Localized: Danish on /da, English on root, threshold pulled from Shopify shipping rules.
+- Accessible: ARIA progressbar with <code>aria-valuenow</code> and <code>aria-valuemax</code>.</p>
+<hr />
+<h3>3.6. Component 06. Cart Page (Full Redesign)</h3>
+<p><span class="tag tag-p1">P0</span> <span class="tag tag-all">/cart</span> <span class="tag tag-mobile">Mobile first</span></p>
+<p><strong>Purpose.</strong> Currently the mobile cart shows "Continue Shopping" above the product line and no checkout button above the fold. First paint after ATC is a back button suggestion. This is a checkout rate killer.</p>
+<p><strong>Mockup. Above-the-fold mobile cart, 1 item, 290 DKK (9 kr from free shipping).</strong></p>
+<p><img alt="Cart page mockup, mobile" src="mockups/mockup-m06.png" /></p>
+<p><strong>Live references.</strong>
+- Maude cart: <a href="https://getmaude.com/cart">getmaude.com/cart</a> (add an item first)
+- Honey Pot cart pattern: <a href="https://thehoneypot.co">thehoneypot.co</a>
+- Dame cart with subscribe inclusion: <a href="https://www.dame.com">dame.com</a></p>
+<p><strong>Sitre current state (before).</strong></p>
+<p><img alt="sitre cart, current mobile" src="screenshots/cart-mobile.png" /></p>
+<p><strong>Specs.</strong></p>
+<ul>
+<li><strong>H1 "Cart (1 item)".</strong> Move to top, 26 px serif lowercase, ink. Item count in small sans gray.</li>
+<li><strong>Remove "Continue Shopping" primary button.</strong> Replace with a small text link below the checkout CTA, 13 px gray, underlined on hover only.</li>
+<li><strong>Line item.</strong> 72 × 72 px image left, 16 px gap, title + variant + price stacked right. Qty selector below. Remove link in muted gray.</li>
+<li><strong>Cross sell tile</strong> (Component 07). Docked between line items and totals. Always present if cart has 1 to 2 items and subtotal is under 350 DKK.</li>
+<li><strong>Subtotal row.</strong> Right aligned, 13 px sans, weight 500. Total row: 16 px sans, weight 700, top border.</li>
+<li><strong>Primary CTA.</strong> 56 px tall, full width. Copy: "Gå til kassen. {total} DKK".</li>
+<li><strong>Payment row</strong> (Component 08). 32 px tall, centered icons.</li>
+<li><strong>Trust strip.</strong> 3 lines, 13 px sans, ink, alert green checks.</li>
+<li><strong>Cookie banner.</strong> Move OneTrust to a small bottom dock 56 px tall AFTER first scroll. Never overlap the checkout area.</li>
+</ul>
+<p><strong>Empty cart state.</strong> Replace current "Sign up for 10% off" CTA with: "Din kurv er tom. Mest købte denne uge:" then a 2-column grid of the top 4 SKUs.</p>
+<p><strong>Acceptance criteria.</strong>
+- Checkout CTA visible within first viewport on iPhone SE (375 × 667).
+- All Danish copy verified by a Danish copywriter before launch.
+- Express checkout wallets appear on Shopify's checkout step; static icon row appears here pre commit.</p>
+<hr />
+<h3>3.7. Component 07. Cart Cross Sell Tile</h3>
+<p><span class="tag tag-p3">P2</span> <span class="tag tag-all">Cart page only</span> <span class="tag tag-mobile">Mobile + Desktop</span></p>
+<p><strong>Purpose.</strong> Lift AOV by adding a low friction tile at the moment of commitment. Full Moon Bar 50 g at 75 DKK is the cheapest catalog item; ideal "round up to free shipping" upsell.</p>
+<p><strong>Live references.</strong>
+- Honey Pot cart upsell: <a href="https://thehoneypot.co">thehoneypot.co</a>
+- Dame "frequently added" cart tile: <a href="https://www.dame.com">dame.com</a></p>
+<p><strong>Specs.</strong></p>
+<ul>
+<li><strong>Container.</strong> Full width minus 32 px padding. 88 px tall. Cream <code>#f0eadd</code> with 1 px dashed border in trust beige (signals "optional add").</li>
+<li><strong>Eyebrow label.</strong> Sans 11 px caps, trust beige <code>#c9a35c</code>, weight 600. Copy dynamic: "Tilføj for 9 kr ekstra, få gratis levering" if shipping gap exists, else "Andre købte også".</li>
+<li><strong>Product image.</strong> 56 × 56 px, 6 px radius.</li>
+<li><strong>Title.</strong> 13 px serif, weight 400, ink.</li>
+<li><strong>Subtitle.</strong> 11 px sans, gray, weight 400.</li>
+<li><strong>Price.</strong> 14 px sans, weight 600, ink.</li>
+<li><strong>Add button.</strong> 72 × 36 px, deep green background, cream type, 12 px caps, weight 600. Click adds variant and animates qty +1 on the line item above.</li>
+</ul>
+<p><strong>Logic.</strong>
+- Always pick the lowest price SKU not already in cart.
+- Skip rendering if cart contains a bundle.
+- Cap at 1 tile per cart view.</p>
+<p><strong>Acceptance criteria.</strong>
+- Add does not navigate away from the cart.
+- Removing line item also clears the cross sell suggestion until a refresh.</p>
+<hr />
+<h3>3.8. Component 08. Pre Checkout Payment Icon Row</h3>
+<p><span class="tag tag-p2">P1</span> <span class="tag tag-all">PDP buy box + Cart page</span> <span class="tag tag-mobile">Mobile + Desktop</span></p>
+<p><strong>Purpose.</strong> Show MobilePay, Klarna, Apple Pay, and Shop Pay icons before checkout. MobilePay has 85%+ Danish wallet adoption; absence of pre checkout visual signal costs conversion.</p>
+<p><strong>Live references.</strong>
+- MobilePay official press kit: <a href="https://www.mobilepay.dk/erhverv/presse-og-medier">mobilepay.dk/erhverv/presse-og-medier</a>
+- Klarna brand assets: <a href="https://www.klarna.com/no/forretningsledere/">klarna.com/no/forretningsledere</a>
+- Bloomi payment row pattern: <a href="https://thebloomi.com">thebloomi.com</a>
+- Smile Makers: <a href="https://smilemakerscollection.com">smilemakerscollection.com</a></p>
+<p><strong>Specs.</strong></p>
+<ul>
+<li><strong>Container.</strong> 32 px tall, full width, centered horizontally.</li>
+<li><strong>Icons.</strong> Each 24 px tall, inline SVG (no raster), 12 px gap on mobile, 16 px on desktop.</li>
+<li><strong>Order (DK first).</strong> MobilePay, Klarna, Anyday, Apple Pay, Shop Pay, Google Pay. Hide any wallet sitre does not actually accept.</li>
+<li><strong>Tone.</strong> Monochrome (single color, dark gray <code>#6b7268</code>). NOT brand colors.</li>
+<li><strong>Optional.</strong> Add "Betal trygt med" eyebrow label 11 px caps gray above the row on cart page.</li>
+</ul>
+<p><strong>Acceptance criteria.</strong>
+- Renders identically across browsers.
+- No JS dependency; pure HTML + inline SVG.
+- Hidden in markets where wallets are not supported (geo aware via Shopify locale).</p>
+<hr />
+<h3>3.9. Component 09. Subscribe &amp; Save Toggle (PDP)</h3>
+<p><span class="tag tag-p2">P1</span> <span class="tag tag-all">PDPs for consumables only</span> <span class="tag tag-mobile">Mobile + Desktop</span></p>
+<p><strong>Purpose.</strong> Sitre has no subscribe mechanic. Honey Pot runs 15% Subscribe &amp; Save, Bloomi 20%. For a consumable category (lube, oil, soap), absence of subscription is a margin and LTV leak.</p>
+<p><strong>Live references.</strong>
+- Dame subscribe toggle on PDP: <a href="https://www.dame.com/products/aloe-lube">dame.com/products/aloe-lube</a>
+- Honey Pot subscribe &amp; save: <a href="https://thehoneypot.co">thehoneypot.co</a>
+- Bloomi 20% subscribe: <a href="https://thebloomi.com">thebloomi.com</a></p>
+<p><strong>Specs.</strong></p>
+<ul>
+<li><strong>Container.</strong> Full width, cream background, 8 px radius, 1 px border <code>#e8dec9</code>. 4 px internal padding.</li>
+<li><strong>Each option.</strong> 56 px tall row with radio circle (20 px) left, label + price stacked right.</li>
+<li><strong>Active state.</strong> Selected row has 2 px deep green border and white background. Inactive rows have transparent border.</li>
+<li><strong>Radio.</strong> Custom SVG, not browser default. Empty 20 px circle, filled state has an 8 px deep green dot.</li>
+<li><strong>Price type.</strong> 14 px sans weight 600, 12 px sans weight 400 for cadence + cancellation line in <code>#6b7268</code> gray.</li>
+<li><strong>Default.</strong> Køb en gang on first visit. Remember user's last selection in localStorage.</li>
+<li><strong>Tooltip.</strong> Info icon next to "Abonner og spar 15%" opens a sheet explaining cadence, cancellation policy, first shipment discount stacking.</li>
+</ul>
+<p><strong>Eligible SKUs.</strong> Pleasure Boost Oil 100 ml. Forever Smooth 130 ml. Forever Smooth 50 ml. Full Moon Bar. Optional: Body Melt.</p>
+<p><strong>Not eligible.</strong> Bundles, candles, accessories.</p>
+<p><strong>Acceptance criteria.</strong>
+- Recharge or Seal Subscriptions app installed.
+- Cancellation link visible in account portal within 1 click.
+- "Skip next shipment" available without canceling.</p>
+<hr />
+<h3>3.10. Component 10. Bundle Module ("Bedst sammen")</h3>
+<p><span class="tag tag-p2">P1</span> <span class="tag tag-all">Forever Smooth + Pleasure Boost solo PDPs</span> <span class="tag tag-mobile">Mobile + Desktop</span></p>
+<p><strong>Purpose.</strong> Perfect Duo Bundle PDP converts at ~14.6%, 4.7x the solo PDP. Cross sell the bundle inline with explicit savings math.</p>
+<p><strong>Mockup.</strong></p>
+<p><img alt="Bundle module &quot;Bedst sammen&quot; mockup" src="mockups/mockup-m10.png" /></p>
+<p><strong>Live references.</strong>
+- Maude Ritual Builder pattern: <a href="https://getmaude.com">getmaude.com</a>
+- Foria "frequently bought together": <a href="https://www.foriawellness.com">foriawellness.com</a>
+- Dame bundles: <a href="https://www.dame.com">dame.com</a></p>
+<p><strong>Specs.</strong></p>
+<ul>
+<li><strong>Container.</strong> Full width, cream background, 12 px radius, 22 px padding. Eyebrow "Sammen er bedre" in 11 px caps trust beige.</li>
+<li><strong>Headline.</strong> 22 px serif lowercase. Includes dynamic savings: "Bedst sammen. Spar {n} kr." pulled from compare-at math.</li>
+<li><strong>Product rows.</strong> 56 × 56 px image, name, individual price. "+" and "=" symbols between rows in 18 px serif gray.</li>
+<li><strong>Price row.</strong> Sum strikethrough, sale weight 700, save pill in soft pink <code>#f5d3c8</code> with ink type.</li>
+<li><strong>CTA.</strong> Full width, deep green, 56 px tall, "Tilføj duo til kurv. {price} kr".</li>
+<li><strong>Logic.</strong> Tap fires single ATC for the Perfect Duo Bundle parent SKU (not 2 separate adds).</li>
+</ul>
+<p><strong>Acceptance criteria.</strong>
+- Hides on the Perfect Duo Bundle PDP (no self cross sell).
+- Updates both Forever Smooth and Pleasure Boost PDPs via the same Liquid section.
+- AOV attribution tracked via <code>attribution_source = "duo_module"</code> in cart attributes.</p>
+<hr />
+<h3>3.11. Component 11. PDP FAQ Accordion</h3>
+<p><span class="tag tag-p2">P1</span> <span class="tag tag-all">All PDPs</span> <span class="tag tag-mobile">Mobile + Desktop</span></p>
+<p><strong>Purpose.</strong> Resolve the recurring objections the corpus surfaces. Silicone vs water based, condom and toy compatibility, IUD safety, scent, dryness fit.</p>
+<p><strong>Mockup. Opened state showing customer quote attribution.</strong></p>
+<p><img alt="FAQ accordion mockup" src="mockups/mockup-m11.png" /></p>
+<p><strong>Live references.</strong>
+- Maude FAQ on PDP: <a href="https://www.getmaude.com/products/shine-silicone-lube">getmaude.com/products/shine-silicone-lube</a>
+- Foria full FAQ structure: <a href="https://www.foriawellness.com/products/awaken-arousal-oil-cbd">foriawellness.com/products/awaken-arousal-oil-cbd</a>
+- YES FAQ pattern with clinician backing: <a href="https://yesyesyes.org">yesyesyes.org</a>
+- Honey Pot Q&amp;A blocks: <a href="https://thehoneypot.co">thehoneypot.co</a></p>
+<p><strong>Specs.</strong></p>
+<ul>
+<li><strong>Section header.</strong> 22 px serif lowercase, top of section, ink.</li>
+<li><strong>Row.</strong> 64 px tall, 18 px vertical padding, 1 px bottom border <code>#d9d2c0</code>.</li>
+<li><strong>Question.</strong> 14 px serif, weight 400, ink.</li>
+<li><strong>+/− icon.</strong> 14 × 14 px, deep green, right aligned, 220 ms rotate on toggle.</li>
+<li><strong>Answer reveal.</strong> Slide down animation, 13 px sans body, gray <code>#3a3f3a</code>, line height 1.65.</li>
+<li><strong>Source attribution.</strong> Where an answer is sourced from a real review, append a small italic "fra en kundeanmeldelse" link in trust beige.</li>
+</ul>
+<p><strong>Full FAQ content per SKU (drafts, to be reviewed by Danish copywriter).</strong></p>
+<p><strong>Forever Smooth (Silicone Gel 130 ml)</strong></p>
+<ol>
+<li>
+<p><strong>Hvad er forskellen på silikone og vandbaseret glidecreme?</strong>
+ Silikonebaseret holder længe, påvirker ikke slimhinder, og kan med fordel bruges af kvinder med tørhed eller irritation ved indgangen. Vandbaseret kan udtørre huden og forværre irritation. Forever Smooth er silikonebaseret og udviklet til slimhinder med tendens til tørhed.
+ <em>Citat fra M H., 5★: "Vandbaseret forværrer åbenbart dette, så fik anbefalet silikonebaseret. Game changer."</em></p>
+</li>
+<li>
+<p><strong>Er Forever Smooth sikker med IUD og kobberspiral?</strong>
+ Ja. Silikone har ingen kendte interaktioner med kobber eller plast i intrauterin spiral. Hvis du har spørgsmål, anbefaler vi at tale med din gynækolog.</p>
+</li>
+<li>
+<p><strong>Kan den bruges med kondom og legetøj?</strong>
+ Sikker med latex og polyisopren kondomer. Vi anbefaler IKKE brug på rent silikone-legetøj, da silikone kan binde sig til silikone. På ABS, glas og metal legetøj er den helt sikker.</p>
+</li>
+<li>
+<p><strong>Pletter den på sengetøj?</strong>
+ Silikone vasker af ved 40 grader. Vi anbefaler vask kort efter brug for bedst resultat. Lette pletter forsvinder typisk efter første vask.</p>
+</li>
+<li>
+<p><strong>Hvordan fjerner jeg den fra huden?</strong>
+ Lunkent vand og en mild sæbe (vi anbefaler Full Moon Bar). Du behøver ikke skrubbe; silikone glider af ved vand og sæbe.</p>
+</li>
+<li>
+<p><strong>Er den vegansk?</strong>
+ Ja. 100% vegansk, ingen animalske ingredienser, ikke testet på dyr.</p>
+</li>
+<li>
+<p><strong>Har Forever Smooth modtaget Forbrugerrådet Tænks A-kolbe?</strong>
+ Ja. Den højeste kemivurdering fra Forbrugerrådet Tænk. Ingen problematiske stoffer ifølge dansk forbrugerlovgivning.</p>
+</li>
+</ol>
+<p><strong>Pleasure Boost (Intimacy Oil 100 ml with 2% CBD)</strong></p>
+<ol>
+<li>
+<p><strong>Hvad gør CBD i Pleasure Boost?</strong>
+ 2% CBD optages i blodbanen via slimhinderne og kan øge følsomhed og afslappe musklerne i området. Effekten indtræder typisk efter 5 til 25 minutter. Bemærk: Pleasure Boost er ikke et lægemiddel og erstatter ikke medicinsk rådgivning.</p>
+</li>
+<li>
+<p><strong>Kan den bruges med kondom?</strong>
+ Nej, ikke med latex kondomer. Olien kan svække latex. Hvis du bruger kondom, anbefaler vi Forever Smooth silikone gel i stedet.</p>
+</li>
+<li>
+<p><strong>Er det lovligt at have CBD i intim olie i Danmark?</strong>
+ Ja. Pleasure Boost overholder dansk og EU regulering for kosmetisk anvendelse af CBD. Indholdet er under den tilladte THC tærskel.</p>
+</li>
+<li>
+<p><strong>Kan jeg bruge den som massage olie?</strong>
+ Ja. Mange kunder bruger den som krops og massage olie. Den absorberes langsomt og efterlader huden blød.</p>
+</li>
+<li>
+<p><strong>Hvad gør jeg, hvis jeg ikke kan mærke en effekt?</strong>
+ Effekten varierer. Vi anbefaler at give den 25 minutter første gang. Brug rigeligt, masser ind, og lad den arbejde uden afbrydelse.</p>
+</li>
+</ol>
+<p><strong>Perfect Duo Bundle</strong></p>
+<ol>
+<li>
+<p><strong>Hvordan bruger jeg de to produkter sammen?</strong>
+ Start med Pleasure Boost olie. Masser ind under forspil, vent 5 til 15 minutter. Læg derefter Forever Smooth silikone gel over for langvarig glide og komfort. Olien aktiverer, gelen vedligeholder.</p>
+</li>
+<li>
+<p><strong>Hvor meget sparer jeg ved at købe bundle?</strong>
+ Du sparer 142 kr (19%) sammenlignet med at købe produkterne enkeltvis.</p>
+</li>
+<li>
+<p><strong>Kan jeg bytte til andre produkter i bundle?</strong>
+ Bundlen er sammensat for at virke sammen. Hvis du foretrækker andre kombinationer, anbefaler vi vores Date of Touch eller Explore bundles.</p>
+</li>
+</ol>
+<p><strong>Full Moon Bar</strong></p>
+<ol>
+<li>
+<p><strong>Kan sæben bruges over hele kroppen?</strong>
+ Ja. Mange kunder bruger den dagligt som kropssæbe.
+ <em>Citat fra Julie, 5★: "Jeg bruger sæben over hele kroppen. Duften gør mig i så godt humør."</em></p>
+</li>
+<li>
+<p><strong>Hvad dufter sæben af?</strong>
+ Subtil duft af ylang ylang og rosenroller. Ingen syntetisk parfume.</p>
+</li>
+<li>
+<p><strong>Er den pH-balanceret til intim brug?</strong>
+ Ja. pH 5.5, samme som hudens naturlige pH. Sikker til daglig intim hygiejne.</p>
+</li>
+</ol>
+<p><strong>Acceptance criteria.</strong>
+- Schema.org <code>FAQPage</code> markup for SEO. Each Q&amp;A as Question + Answer entity.
+- Defaults to all closed on mobile, first one open on desktop.
+- Tap counts logged to GA4 as <code>pdp_faq_open</code> with question label.</p>
+<hr />
+<h3>3.12. Component 12. Care Club Email Popup (Refresh)</h3>
+<p><span class="tag tag-p2">P1</span> <span class="tag tag-all">Site wide popup</span> <span class="tag tag-mobile">Mobile + Desktop</span></p>
+<p><strong>Purpose.</strong> Raise first order offer from 10% to 15% with 350 DKK minimum threshold to protect AOV.</p>
+<p><strong>Mockup.</strong></p>
+<p><img alt="Care Club popup mockup, mobile bottom sheet" src="mockups/mockup-m12.png" /></p>
+<p><strong>Live references.</strong>
+- Smile Makers 15% email popup: <a href="https://smilemakerscollection.com">smilemakerscollection.com</a>
+- Honey Pot 15% popup: <a href="https://thehoneypot.co">thehoneypot.co</a>
+- Foria sitewide promo popup: <a href="https://www.foriawellness.com">foriawellness.com</a></p>
+<p><strong>Specs.</strong></p>
+<ul>
+<li><strong>Trigger.</strong> 30 second delay on first visit OR exit intent on second page. Suppress for 14 days if dismissed.</li>
+<li><strong>Mobile.</strong> Bottom sheet, 75% viewport height, 24 px radius top corners.</li>
+<li><strong>Desktop.</strong> Centered modal, 480 × 540 px, 12 px radius.</li>
+<li><strong>Background.</strong> Cream <code>#f0eadd</code> with a soft pink <code>#f5d3c8</code> accent bar at the top of the bottom sheet.</li>
+<li><strong>Headline.</strong> 26 px serif lowercase, ink.</li>
+<li><strong>Body.</strong> 14 px sans, line height 1.6, ink. Includes "min. 350 kr" clearly.</li>
+<li><strong>Email input.</strong> 56 px tall, 1 px ink border, 6 px radius. Focus state: 2 px deep green border.</li>
+<li><strong>Submit CTA.</strong> 56 px tall, deep green, cream type, weight 600, 13 px caps. Copy: "Tilmeld og få 15%".</li>
+<li><strong>Fine print.</strong> 11 px sans, gray, weight 400. "Engangskode. Min. 350 kr. Gyldig i 30 dage."</li>
+</ul>
+<p><strong>Variant for A/B test.</strong> Run 3 cells: A) 10% control, B) 15% no min, C) 15% with 350 DKK min.</p>
+<p><strong>Acceptance criteria.</strong>
+- Klaviyo form ID maps to "care_club_15off" segment.
+- Code is single use, 30 day expiry, 350 DKK minimum, no stacking with bundle discount.
+- Mobile bottom sheet does not block native scroll.</p>
+<hr />
+<h3>3.13. Component 13. Menopause / Tørhed Landing Page</h3>
+<p><span class="tag tag-p2">P1 strategic</span> <span class="tag tag-all">New page: /pages/intim-toerhed-og-overgangsalder</span> <span class="tag tag-mobile">Mobile + Desktop</span></p>
+<p><strong>Purpose.</strong> Own a category gap. Kindra and YES anchor menopause positive intimacy in English; no Danish brand owns it in Danish. Sitre has 10 corpus reviews directly referencing tørhed and irritation.</p>
+<p><strong>Live references.</strong>
+- Kindra (menopause led, closest analog to tone): <a href="https://ourkindra.com">ourkindra.com</a>
+- YES (NHS endorsed, clinical credibility framing): <a href="https://yesyesyes.org">yesyesyes.org</a>
+- Foria menopause / dryness page: <a href="https://www.foriawellness.com/blogs/learn/menopause">foriawellness.com/blogs/learn/menopause</a></p>
+<p><strong>Page structure (top to bottom).</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Section</th>
+<th>Anchor copy (Danish)</th>
+<th>Component reuse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Eyebrow strip</td>
+<td>"For kvinder over 40. Og deres partner."</td>
+<td>New</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Hero</td>
+<td>H1 "Intim tørhed handler ikke om alder. Det handler om den rigtige formulering." Hero image: editorial portrait. CTA: "Find min løsning".</td>
+<td>C02 quote card pinned right</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Pharmacy contrast section</td>
+<td>H2 "Ikke en glidecreme. En lettelse." Nina-Simone pharmacy quote in full.</td>
+<td>C02 quote card dark variant</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Trust strip</td>
+<td>A-kolbe + dermatologisk testet + vegansk + parfume fri</td>
+<td>C01 + custom row</td>
+</tr>
+<tr>
+<td>5</td>
+<td>3 benefit blocks</td>
+<td>(a) Stopper irritation ved indgangen. (b) Holder længe uden klistret rest. (c) Du kan bruge den dagligt.</td>
+<td>C02 quote card mini</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Product block</td>
+<td>Forever Smooth gel + Pleasure Boost oil cards. Tertiary CTA to Perfect Duo Bundle.</td>
+<td>C10 compact variant</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Clinician anchor (placeholder)</td>
+<td><code>[Dr. Navn], gynækolog, København.</code></td>
+<td>New (cv card)</td>
+</tr>
+<tr>
+<td>8</td>
+<td>FAQ</td>
+<td>5 menopause specific questions in Danish</td>
+<td>C11 FAQ accordion</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Editorial cross link</td>
+<td>"Læs mere på feelsitre.com"</td>
+<td>Reused homepage block</td>
+</tr>
+<tr>
+<td>10</td>
+<td>CTA band</td>
+<td>Background deep green. "Du fortjener at have det godt. Hver dag."</td>
+<td>New, full bleed</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Footer</td>
+<td>Inherits global</td>
+<td>Reused</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Visual direction.</strong> Editorial portrait photography. 45 to 55 year old Danish woman, soft natural light, cream linen, warm green plants. NOT clinical photography. Bridge image: hands holding a sitre bottle next to a coffee cup on a wooden table.</p>
+<p><strong>Required assets.</strong> 1 hero portrait (1600 × 1100 px desktop, 800 × 900 px mobile). 1 lifestyle bridge image. 3 benefit block icons (24 px outlined SVG). 1 clinician headshot placeholder (560 × 560 px).</p>
+<p><strong>Acceptance criteria.</strong>
+- Page weight under 200 KB total assets.
+- LCP under 2.5 s on 4G.
+- Schema markup: WebPage + FAQPage + linked Product items.
+- Internal links: header eyebrow row "guide: intim tørhed" links here; footer column "for hvem" lists this page.</p>
+<hr />
+<h3>3.14. Component 14. A+ Content. Ingredients Deep Dive</h3>
+<p><span class="tag tag-p2">P1</span> <span class="tag tag-all">All PDPs (below buy box)</span> <span class="tag tag-mobile">Mobile + Desktop</span></p>
+<p><strong>Purpose.</strong> The current PDP shows ingredients as an accordion list (INCI names only). Customers in the corpus repeatedly mention "huden" (skin) and "slimhinder" (mucous membranes) as concerns. An A+ Content block frames each ingredient with what it does, why it's there, and one verbatim review where appropriate. Builds trust without being clinical.</p>
+<p><strong>Mockup.</strong></p>
+<p><img alt="A+ Ingredients deep dive mockup" src="mockups/mockup-m14.png" /></p>
+<p><strong>Live references.</strong>
+- Maude ingredients section with role + benefit: <a href="https://www.getmaude.com/products/shine-silicone-lube">getmaude.com/products/shine-silicone-lube</a>
+- Honey Pot "what's in it / what's NOT in it": <a href="https://thehoneypot.co">thehoneypot.co</a>
+- Foria full ingredient breakdown with rationale: <a href="https://www.foriawellness.com/products/awaken-arousal-oil-cbd">foriawellness.com/products/awaken-arousal-oil-cbd</a>
+- Beautycounter "the never list" pattern: <a href="https://www.beautycounter.com">beautycounter.com</a>
+- Dame ingredients block: <a href="https://www.dame.com/products/aloe-lube">dame.com/products/aloe-lube</a></p>
+<p><strong>Anatomy.</strong> Each ingredient is one row.</p>
+<p>For each ingredient: icon (single letter or outlined SVG) + role label (caps eyebrow) + INCI name + 1-sentence "why it's there" written in plain Danish.</p>
+<p>Final row is intentional: "What you do NOT find". Lists parabens, glycerin, parfume, farvestoffer, all crossed out.</p>
+<p><strong>Specs.</strong></p>
+<ul>
+<li><strong>Container.</strong> Full width, cream background, 28 px padding, no border.</li>
+<li><strong>Section header.</strong> 22 px serif lowercase ("Ingredienser, ren og enkel"), weight 400, ink.</li>
+<li><strong>Row.</strong> Flex row, 14 px vertical padding, 1 px bottom border <code>#e8dec9</code> (last row no border).</li>
+<li><strong>Icon.</strong> 36 × 36 px white circle, ink letter or SVG centered.</li>
+<li><strong>Role label.</strong> Sans 11 px caps, trust beige, weight 600, letter spacing 0.06em.</li>
+<li><strong>Ingredient name.</strong> Serif 15 px, ink.</li>
+<li><strong>Why text.</strong> Sans 13 px, gray <code>#6b7268</code>, line height 1.5.</li>
+<li><strong>"NOT in it" row.</strong> Same layout, icon is "∅" symbol. Body text uses crossed out spans for each excluded ingredient.</li>
+</ul>
+<p><strong>Content per SKU.</strong></p>
+<p><strong>Forever Smooth.</strong>
+| Role | INCI | Why |
+|---|---|---|
+| Bærer | Dimethicone | Medicinsk silikone. Langvarig glide. Pletter ikke. |
+| Plejende | Hydrogenated Olive Oil Unsaponifiables | Naturlig olivenolie. Beroliger slimhinder. Vegansk. |
+| Plejende | Hydrogenated Ethylhexyl Olivate | Olivenolie afledt. Blødgør. |
+| Antioxidant | Tocopheryl Acetate (Vitamin E) | Holder slimhinden blød. Samme vitamin som i din ansigtsserum. |
+| Ikke i den | Glycerin, parabener, parfume, farvestoffer | Forbrugerrådet Tænk A-kolbe godkendt. |</p>
+<p><strong>Pleasure Boost.</strong>
+| Role | INCI | Why |
+|---|---|---|
+| Bærer | Caprylic/Capric Triglyceride | Let kokosolie afledt. Glider på huden. |
+| Aktiv ingrediens | Cannabidiol (CBD) 2% | Optages via slimhinden. Øger følsomhed inden for 5 til 25 minutter. |
+| Plejende | Squalane | Plante baseret. Beroliger irriteret hud. |
+| Duft | Naturlig æterisk olie | Subtil duft, ikke syntetisk parfume. |
+| Ikke i den | Parabener, mineralolier, syntetisk parfume, THC over EU grænse | |</p>
+<p><strong>Full Moon Bar.</strong>
+| Role | INCI | Why |
+|---|---|---|
+| Sæbe base | Sodium Olivate | Olivenolie sæbe. pH 5.5. |
+| Plejende | Shea Butter | Naturligt fugtighedsbevarende. |
+| Duft | Ylang Ylang Essential Oil | Subtil blomster duft. |
+| Ikke i den | Sulfat, parabener, syntetisk parfume | |</p>
+<p><strong>Acceptance criteria.</strong>
+- Schema.org markup: extends the Product entity with <code>additionalProperty</code> for each ingredient (helpful for SEO and AI search).
+- Mobile: all rows stack vertically. Desktop: optional 2-column layout for shorter ingredient lists.
+- Tone is informative, not clinical. Plain Danish, not chemistry textbook.</p>
+<hr />
+<h3>3.15. Component 15. A+ Content. How to Use</h3>
+<p><span class="tag tag-p2">P1</span> <span class="tag tag-all">All PDPs (below ingredients)</span> <span class="tag tag-mobile">Mobile + Desktop</span></p>
+<p><strong>Purpose.</strong> First time buyers (especially silicone first timers) need to know "how much, where, in what order". The corpus shows 2 reviewers explicitly identifying as first time silicone users ("det er første gang med en silicone gel"). A simple step block removes the "am I doing this right" hesitation.</p>
+<p><strong>Mockup.</strong></p>
+<p><img alt="A+ How to Use mockup" src="mockups/mockup-m15.png" /></p>
+<p><strong>Live references.</strong>
+- Maude PDP "how to use" steps: <a href="https://www.getmaude.com/products/shine-silicone-lube">getmaude.com/products/shine-silicone-lube</a>
+- Foria step block with photography: <a href="https://www.foriawellness.com/products/awaken-arousal-oil-cbd">foriawellness.com/products/awaken-arousal-oil-cbd</a>
+- Honey Pot "how to use" pattern: <a href="https://thehoneypot.co">thehoneypot.co</a>
+- Bloomi step diagram: <a href="https://thebloomi.com">thebloomi.com</a></p>
+<p><strong>Specs.</strong></p>
+<ul>
+<li><strong>Container.</strong> Full width, white background, 28 px padding, no border.</li>
+<li><strong>Section header.</strong> 22 px serif lowercase ("Sådan bruger du Forever Smooth"), weight 400, ink.</li>
+<li><strong>Step row.</strong> Flex row, 14 px vertical padding, no border.</li>
+<li><strong>Number badge.</strong> 36 × 36 px deep green circle, cream number centered in 18 px serif.</li>
+<li><strong>Step title.</strong> Serif 15 px, ink.</li>
+<li><strong>Step body.</strong> Sans 13 px, gray, line height 1.5.</li>
+</ul>
+<p><strong>Content per SKU.</strong></p>
+<p><strong>Forever Smooth.</strong>
+1. Pump 2 til 3 dråber på dine fingerspidser eller direkte på huden.
+2. Massér ind. Glides nemt. Optages ikke i huden.
+3. Genpåfør kun ved behov. Modsat vandbaseret holder den længe.
+4. Vask af bagefter med lunkent vand og en mild sæbe (vi anbefaler Full Moon Bar).</p>
+<p><strong>Pleasure Boost.</strong>
+1. Pump 5 til 10 dråber i håndfladen.
+2. Massér ind på de ønskede områder. Lad den arbejde 5 til 25 minutter.
+3. Brug alene eller læg Forever Smooth oven på for langvarig glide.
+4. Husk: ikke kombinerbar med latex kondomer.</p>
+<p><strong>Perfect Duo Bundle.</strong>
+1. Start med Pleasure Boost olie. Massér ind under forspil.
+2. Vent 5 til 15 minutter, så CBD aktiverer.
+3. Læg Forever Smooth gel over for langvarig glide.
+4. Vask af bagefter, eller lad det blive på huden hvis du foretrækker det.</p>
+<p><strong>Optional enhancement.</strong> Add a small illustration (line drawing, 80 × 80 px per step) showing each step visually. Outsource to an illustrator who can match the brand's quiet aesthetic. NOT photography, NOT emoji.</p>
+<p><strong>Acceptance criteria.</strong>
+- Numbered steps render as ordered list semantically (for SEO and accessibility).
+- Step count is 3 to 5 per SKU. More than 5 becomes daunting.
+- Voice is permissive, not directive ("vi anbefaler" vs "du skal").</p>
+<hr />
+<h2>4. Reference URL Master Table</h2>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Brand</th>
+<th>URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PDP buy box hierarchy</td>
+<td>Maude</td>
+<td><a href="https://getmaude.com/products/shine-silicone-lube">getmaude.com/products/shine-silicone-lube</a></td>
+</tr>
+<tr>
+<td>Review volume in hero</td>
+<td>Foria</td>
+<td><a href="https://www.foriawellness.com/products/awaken-arousal-oil-cbd">foriawellness.com/products/awaken-arousal-oil-cbd</a></td>
+</tr>
+<tr>
+<td>Subscribe toggle on PDP</td>
+<td>Dame</td>
+<td><a href="https://www.dame.com/products/aloe-lube">dame.com/products/aloe-lube</a></td>
+</tr>
+<tr>
+<td>Menopause LP voice</td>
+<td>Kindra</td>
+<td><a href="https://ourkindra.com">ourkindra.com</a></td>
+</tr>
+<tr>
+<td>Clinical credibility</td>
+<td>YES</td>
+<td><a href="https://yesyesyes.org">yesyesyes.org</a></td>
+</tr>
+<tr>
+<td>Subscribe &amp; Save mechanic</td>
+<td>Honey Pot</td>
+<td><a href="https://thehoneypot.co">thehoneypot.co</a></td>
+</tr>
+<tr>
+<td>Quiz / personalization</td>
+<td>Smile Makers</td>
+<td><a href="https://smilemakerscollection.com">smilemakerscollection.com</a></td>
+</tr>
+<tr>
+<td>Ritual Builder / bundle</td>
+<td>Maude home</td>
+<td><a href="https://getmaude.com">getmaude.com</a></td>
+</tr>
+<tr>
+<td>Ingredients breakdown</td>
+<td>Maude / Foria / Honey Pot</td>
+<td>(see Component 14)</td>
+</tr>
+<tr>
+<td>How to use steps</td>
+<td>Maude / Foria / Bloomi</td>
+<td>(see Component 15)</td>
+</tr>
+<tr>
+<td>Danish Trustpilot anchor</td>
+<td>Peech</td>
+<td><a href="https://peech.dk">peech.dk</a></td>
+</tr>
+<tr>
+<td>Danish wallet (MobilePay)</td>
+<td>Sinful</td>
+<td><a href="https://sinful.dk">sinful.dk</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. Approval Gates</h2>
+<table>
+<thead>
+<tr>
+<th>Gate</th>
+<th>Owner</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Brand voice check</td>
+<td>sitre founders or brand lead</td>
+<td>Sign off on lowercase voice + Danish copy across components</td>
+</tr>
+<tr>
+<td>Photography commission</td>
+<td>sitre + photographer</td>
+<td>Shot list for PDP in context + menopause LP</td>
+</tr>
+<tr>
+<td>Component review</td>
+<td>Bhaskar Roy (CRO) + designer</td>
+<td>Figma walk through; one round of revision</td>
+</tr>
+<tr>
+<td>Dev handoff</td>
+<td>Designer + developer</td>
+<td>Component level Figma annotations, spacing rules, edge cases</td>
+</tr>
+<tr>
+<td>Pre launch QA</td>
+<td>Bhaskar Roy</td>
+<td>Audit each component against the spec table</td>
+</tr>
+<tr>
+<td>Post launch review</td>
+<td>Bhaskar Roy + sitre team</td>
+<td>14 day post launch metrics review</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>6. Open Questions for Client</h2>
+<ol>
+<li><strong>Clinician recruitment.</strong> Who do we approach for the named Danish gynecologist quote on C13 (menopause LP)?</li>
+<li><strong>Photography assets.</strong> Do you have an existing image repository (lifestyle shots, founder portraits, behind the scenes) we can pull from? If yes, please share access. If no, we can give you the visual direction we want (for the menopause LP: 45 to 55 year old Danish woman, soft natural light, cream linen, warm green plants) and you can source or commission accordingly.</li>
+<li><strong>Trustpilot status.</strong> Is sitre on Trustpilot today? If yes, embed widget. If no, set one up.</li>
+<li><strong>MobilePay + Anyday account.</strong> Confirm sitre accepts both before adding the icons.</li>
+<li><strong>Recharge vs Seal vs Native Shopify Subscriptions.</strong> Confirm preference.</li>
+<li><strong>Forbrugerrådet Tænk usage permission.</strong> Confirm we can use the official SVG mark commercially.</li>
+<li><strong>CBD claim review on Pleasure Boost.</strong> Current copy says "C B D is absorbed into the bloodstream, enhancing pleasure with deeper, more intense sensations." Recommend legal review before launch.</li>
+<li><strong>Danish copy review.</strong> Can someone on your side who reads Danish natively run a voice and clarity pass on the FAQ drafts in Section 3.11 and the customer quote attributions? Separately, the IUD, latex, and CBD claims in the Pleasure Boost FAQ should be sanity checked by someone with clinical knowledge before launch.</li>
+</ol>
+<hr /></body></html>
