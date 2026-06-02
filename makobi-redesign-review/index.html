@@ -240,6 +240,21 @@
   }
   .shot-wrap .shot { object-fit: cover; object-position: top center; width: 100%; max-height: 440px; }
 
+  /* Context callout (used in pre-launch checklist slide) */
+  .context-callout {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    margin-bottom: 18px;
+    padding: 16px;
+    background: var(--bg-2); border: 1px solid var(--line); border-radius: 12px;
+  }
+  .ctx-tile {
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .ctx-k { font-family: var(--mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-3); }
+  .ctx-v { font-family: var(--display); font-size: 48px; line-height: 1; font-weight: 800; letter-spacing: -.03em; color: var(--red); }
+  .ctx-d { font-size: 13px; line-height: 1.5; color: var(--ink-2); }
+  @media (max-width: 768px) { .context-callout { grid-template-columns: 1fr; } .ctx-v { font-size: 36px; } }
+
   /* Priority list */
   .priority-list { display: grid; gap: 10px; }
   .priority-item {
@@ -631,12 +646,11 @@
       </div>
     </section>
 
-    <!-- 2. TL;DR -->
     <section class="slide" data-slide="2">
       <div class="pad">
         <div class="top-row">
           <div class="brand"><div class="brand-mark"></div> MAKOBI / CRO REVIEW</div>
-          <div class="eyebrow">02 / TL;DR</div>
+          <div class="eyebrow">2 / TL;DR</div>
         </div>
         <h2 class="sub-display" style="margin-bottom: 24px;">Three things matter<br>before anything else.</h2>
 
@@ -663,330 +677,76 @@
       </div>
     </section>
 
-    <!-- 3. BOT TRAFFIC -->
     <section class="slide" data-slide="3">
       <div class="pad">
         <div class="top-row">
           <div class="brand"><div class="brand-mark"></div> MAKOBI / CRO REVIEW</div>
-          <div class="eyebrow">03 / Traffic reality</div>
+          <div class="eyebrow">3 / Pre-launch fixes</div>
+        </div>
+        <h2 class="sub-display" style="margin-bottom: 22px;">Don't ship without these.</h2>
+        <div class="context-callout">
+          <div class="ctx-tile">
+            <div class="ctx-k">Big &amp; Tall views (90d)</div>
+            <div class="ctx-v">102K</div>
+            <div class="ctx-d">#2 most-shopped collection. Currently buried in nav. Promote it.</div>
+          </div>
+          <div class="ctx-tile">
+            <div class="ctx-k">Site searches per active searcher</div>
+            <div class="ctx-v">19x</div>
+            <div class="ctx-d">124K /search views from 6,689 users. Make search prominent + merchandise top queries.</div>
+          </div>
         </div>
 
-        <div class="grid cols-2" style="align-items: flex-start; gap: 36px;">
-          <div>
-            <div class="badge" style="margin-bottom: 16px;">● Data hygiene</div>
-            <h2 class="sub-display" style="margin-bottom: 18px;">The US is your store.<br>Everything else<br>is <span class="accent">noise</span>.</h2>
-            <p class="lede">3.7M sessions in 90 days. 3,368 purchases. Bot/spam volume from non-target geos pushes your bounce rate to 92% and makes every average meaningless. Filter Vietnam, Brazil, Mexico, India, and "(direct)/(none)" out of your GA4 reports before measuring the redesign's lift.</p>
+        <div class="priority-list">
+          <div class="priority-item" style="border-color: rgba(227,33,30,.4); background: linear-gradient(90deg, rgba(227,33,30,.06), transparent 70%);">
+            <div class="n">01</div>
+            <div class="t">Populate placeholder product copy (launch blocker)<span>Every PDP currently reads "Details will be added soon", "Features will be added soon", "Where-to-wear information will be added soon". Cannot launch with placeholder content. Write and populate Product Details, Style Features, and Where to Style for every SKU.</span></div>
+            <div class="tag">Content</div>
           </div>
-
-          <div>
-            <div class="eyebrow" style="margin-bottom: 14px;">Sessions vs. Revenue by Country (90d)</div>
-            <div class="geo-bar">
-              <div class="geo-row us">
-                <div class="name">United States</div>
-                <div class="bar"><i style="width: 74%;"></i></div>
-                <div class="num">693K</div>
-                <div class="rev">$590,264</div>
-              </div>
-              <div class="geo-row bot">
-                <div class="name">Vietnam</div>
-                <div class="bar"><i style="width: 100%;"></i></div>
-                <div class="num">937K</div>
-                <div class="rev">$0</div>
-              </div>
-              <div class="geo-row bot">
-                <div class="name">Brazil</div>
-                <div class="bar"><i style="width: 69%;"></i></div>
-                <div class="num">646K</div>
-                <div class="rev">$0</div>
-              </div>
-              <div class="geo-row bot">
-                <div class="name">Mexico</div>
-                <div class="bar"><i style="width: 46%;"></i></div>
-                <div class="num">432K</div>
-                <div class="rev">$251</div>
-              </div>
-              <div class="geo-row bot">
-                <div class="name">Jamaica</div>
-                <div class="bar"><i style="width: 18%;"></i></div>
-                <div class="num">171K</div>
-                <div class="rev">$195</div>
-              </div>
-              <div class="geo-row bot">
-                <div class="name">Dominican Rep.</div>
-                <div class="bar"><i style="width: 18%;"></i></div>
-                <div class="num">168K</div>
-                <div class="rev">$0</div>
-              </div>
-              <div class="geo-row bot">
-                <div class="name">India</div>
-                <div class="bar"><i style="width: 15%;"></i></div>
-                <div class="num">137K</div>
-                <div class="rev">$0</div>
-              </div>
-              <div class="geo-row bot">
-                <div class="name">China</div>
-                <div class="bar"><i style="width: 10%;"></i></div>
-                <div class="num">92K</div>
-                <div class="rev">$0</div>
-              </div>
-            </div>
-            <p class="small" style="margin-top: 16px;">98.2% of your revenue comes from one country. Treat the others as zero until proven otherwise.</p>
+          <div class="priority-item" style="border-color: rgba(227,33,30,.4); background: linear-gradient(90deg, rgba(227,33,30,.06), transparent 70%);">
+            <div class="n">02</div>
+            <div class="t">Fix ATC upsell popup bug (launch blocker)<span>After Add-to-Cart, the upsell popup blocks the cart drawer when the user declines. Drawer either doesn't open or opens after a 5 to 6 second delay. Add an explicit "No thanks" CTA inside the popup, and open the cart drawer instantly on close. This is a confirmed cause of the 28% ATC to Checkout drop.</span></div>
+            <div class="tag">Bug</div>
+          </div>
+          <div class="priority-item">
+            <div class="n">03</div>
+            <div class="t">Cart UX additions<span>Free-ship progress bar already shipped (good). Remaining: express checkout buttons (Apple Pay / G Pay / Shop Pay) above standard CTA, in-cart cross-sells, trust strip near checkout, and test lowering the $500 free-ship threshold.</span></div>
+            <div class="tag">Cart</div>
+          </div>
+          <div class="priority-item">
+            <div class="n">04</div>
+            <div class="t">Add Meta Pixel + GTM<span>Facebook paid social is your #2 channel at $93K/90d. Launching without the Pixel means launching blind.</span></div>
+            <div class="tag">Tracking</div>
+          </div>
+          <div class="priority-item">
+            <div class="n">05</div>
+            <div class="t">Restore Afterpay on PDP (regression)<span>The old site had "Afterpay available for orders up to $4,000" right under the price. The new theme removed it. Bring it back, or upgrade to Shop Pay Installments. 4-pay financing at $98 to $140 AOV is non-optional.</span></div>
+            <div class="tag">PDP</div>
+          </div>
+          <div class="priority-item">
+            <div class="n">06</div>
+            <div class="t">Sticky mobile ATC bar<span>Mobile is 90% of real revenue and runs the full PDP scroll. Don't let users lose the buy button.</span></div>
+            <div class="tag">PDP</div>
+          </div>
+          <div class="priority-item">
+            <div class="n">07</div>
+            <div class="t">Sticky filter + sort on mobile collection<span>40+ products, 50+ color options, and the filter button is hidden on mobile. Surface it with applied-filter chips.</span></div>
+            <div class="tag">PLP</div>
+          </div>
+          <div class="priority-item">
+            <div class="n">08</div>
+            <div class="t">Notify-me on sold-out variants<span>Most current PDP sizes are sold out. Capture intent through email so customers come back when restocked.</span></div>
+            <div class="tag">Inventory</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 4. FUNNEL -->
     <section class="slide" data-slide="4">
       <div class="pad">
         <div class="top-row">
           <div class="brand"><div class="brand-mark"></div> MAKOBI / CRO REVIEW</div>
-          <div class="eyebrow">04 / The funnel</div>
-        </div>
-
-        <h2 class="sub-display" style="margin-bottom: 18px;">Strip out the bots.<br>The real leak is <span class="accent">Cart to Checkout</span>.</h2>
-        <p class="lede" style="margin-bottom: 24px;">All-traffic funnel makes the PDP look broken because bots view products but never add to cart. Mobile-only (the cleanest proxy for real humans) tells a different story: PDP is fine; the cart is where adders abandon.</p>
-
-        <div class="grid cols-2" style="align-items: flex-start;">
-          <div>
-            <div class="eyebrow" style="margin-bottom: 14px; color: var(--ink-3);">All traffic (bot inflated, not real)</div>
-            <div class="funnel">
-              <div class="funnel-row">
-                <div class="name">Session Start</div>
-                <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 100%; opacity:.45;"></div></div>
-                <div class="v">1,787,071</div>
-              </div>
-              <div class="funnel-row">
-                <div class="name">View Product</div>
-                <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 39.2%; opacity:.45;"></div></div>
-                <div class="v">700,850 <small>39.2%</small></div>
-              </div>
-              <div class="funnel-row">
-                <div class="name">Add to Cart</div>
-                <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 1.5%; opacity:.45;"></div></div>
-                <div class="v" style="color: var(--ink-3);">8,092 <small>1.15%</small></div>
-              </div>
-              <div class="funnel-row">
-                <div class="name">Begin Checkout</div>
-                <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 0.6%; opacity:.45;"></div></div>
-                <div class="v" style="color: var(--ink-3);">2,248 <small>27.8%</small></div>
-              </div>
-              <div class="funnel-row">
-                <div class="name">Purchase</div>
-                <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 0.3%; opacity:.45;"></div></div>
-                <div class="v" style="color: var(--ink-3);">1,135 <small>50.5%</small></div>
-              </div>
-            </div>
-            <p class="small" style="margin-top: 14px; color: var(--ink-3);">Use this only as a directional read. Bots distort every ratio above purchase.</p>
-          </div>
-
-          <div>
-            <div class="eyebrow" style="margin-bottom: 14px;">Mobile-only (real humans)</div>
-            <div class="funnel">
-              <div class="funnel-row">
-                <div class="name">Session Start</div>
-                <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 100%;"></div></div>
-                <div class="v">108,486</div>
-              </div>
-              <div class="funnel-row">
-                <div class="name">View Product</div>
-                <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 50.6%;"></div></div>
-                <div class="v">54,856 <small style="color: var(--green);">50.6%</small></div>
-              </div>
-              <div class="funnel-row">
-                <div class="name">Add to Cart</div>
-                <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 6.9%;"></div></div>
-                <div class="v">7,515 <small style="color: var(--green);">13.7%</small></div>
-              </div>
-              <div class="funnel-row">
-                <div class="name">Begin Checkout</div>
-                <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 1.9%;"></div></div>
-                <div class="v" style="color: var(--red);">2,104 <small>28.0%</small></div>
-              </div>
-              <div class="funnel-row">
-                <div class="name">Purchase</div>
-                <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 0.95%;"></div></div>
-                <div class="v" style="color: var(--green);">1,059 <small>50.3%</small></div>
-              </div>
-            </div>
-            <p class="small" style="margin-top: 14px;">VP to ATC at <strong style="color: var(--green);">13.7%</strong> beats the streetwear average (5 to 12%). ATC to Checkout at <strong style="color: var(--red);">28%</strong> sits below the 30 to 50% benchmark. That's the gap.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5. MOBILE IS THE STORE -->
-    <section class="slide" data-slide="5">
-      <div class="pad">
-        <div class="top-row">
-          <div class="brand"><div class="brand-mark"></div> MAKOBI / CRO REVIEW</div>
-          <div class="eyebrow">05 / Mobile</div>
-        </div>
-
-        <div class="grid cols-2" style="align-items: center; gap: 36px;">
-          <div>
-            <div class="badge green" style="margin-bottom: 18px;">● Where the money is</div>
-            <h2 class="pullquote">Mobile is<br><span class="red">90%</span> of real<br>revenue.</h2>
-            <p class="lede" style="margin-top: 20px;">Desktop sessions look enormous in the dashboard, but it's bots. The real shopper holds a phone, runs through Facebook or Google organic, and spends ~140 seconds. Design the redesign for that person.</p>
-          </div>
-
-          <div class="device-split">
-            <div class="device-card loss">
-              <h4>Desktop</h4>
-              <div class="small" style="margin-bottom: 12px;">$48K revenue</div>
-              <div class="row"><span>Sessions</span><strong>3.34M</strong></div>
-              <div class="row"><span>Bounce</span><strong>96.4%</strong></div>
-              <div class="row"><span>Avg session</span><strong>19s</strong></div>
-              <div class="row"><span>Purchases</span><strong>250</strong></div>
-              <div class="row"><span>% of revenue</span><strong style="color: var(--red);">8.0%</strong></div>
-            </div>
-            <div class="device-card win">
-              <h4>Mobile</h4>
-              <div class="small" style="margin-bottom: 12px;">$542,792 revenue</div>
-              <div class="row"><span>Sessions</span><strong>340K</strong></div>
-              <div class="row"><span>Bounce</span><strong>48.1%</strong></div>
-              <div class="row"><span>Avg session</span><strong>140s</strong></div>
-              <div class="row"><span>Purchases</span><strong>3,056</strong></div>
-              <div class="row"><span>% of revenue</span><strong style="color: var(--green);">90.3%</strong></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 6. CHANNEL TABLE -->
-    <section class="slide" data-slide="6">
-      <div class="pad">
-        <div class="top-row">
-          <div class="brand"><div class="brand-mark"></div> MAKOBI / CRO REVIEW</div>
-          <div class="eyebrow">06 / Channels</div>
-        </div>
-
-        <h2 class="sub-display" style="margin-bottom: 20px;">Two channels do most<br>of the heavy lifting.</h2>
-
-        <table class="flat">
-          <thead>
-            <tr>
-              <th>Source</th>
-              <th class="num">Sessions</th>
-              <th class="num">Orders</th>
-              <th class="num">Revenue</th>
-              <th class="num">CR</th>
-              <th>Verdict</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="row-good">
-              <td>Google organic</td>
-              <td class="num">54,394</td>
-              <td class="num">876</td>
-              <td class="num">$152,945</td>
-              <td class="num">1.61%</td>
-              <td>Best channel. Protect SEO.</td>
-            </tr>
-            <tr>
-              <td>Facebook paid social</td>
-              <td class="num">120,054</td>
-              <td class="num">614</td>
-              <td class="num">$93,152</td>
-              <td class="num">0.51%</td>
-              <td>Solid. Add Meta Pixel + CAPI.</td>
-            </tr>
-            <tr>
-              <td>Google CPC</td>
-              <td class="num">28,222</td>
-              <td class="num">361</td>
-              <td class="num">$64,103</td>
-              <td class="num">1.28%</td>
-              <td>Healthy. Layer enhanced conv.</td>
-            </tr>
-            <tr>
-              <td>Omnisend email</td>
-              <td class="num">18,605</td>
-              <td class="num">241</td>
-              <td class="num">$45,628</td>
-              <td class="num">1.30%</td>
-              <td>Client-owned. Watch only.</td>
-            </tr>
-            <tr>
-              <td>Instagram social</td>
-              <td class="num">8,245</td>
-              <td class="num">45</td>
-              <td class="num">$7,526</td>
-              <td class="num">0.55%</td>
-              <td>Watch.</td>
-            </tr>
-            <tr>
-              <td>Omnisend SMS</td>
-              <td class="num">5,551</td>
-              <td class="num">44</td>
-              <td class="num">$10,693</td>
-              <td class="num">0.79%</td>
-              <td>Client-owned. Watch only.</td>
-            </tr>
-            <tr>
-              <td>rtbcom retargeting</td>
-              <td class="num">25,640</td>
-              <td class="num">14</td>
-              <td class="num">$4,438</td>
-              <td class="num">0.05%</td>
-              <td>Audit ROAS. Keep if profitable, cut if not.</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <p class="small" style="margin-top: 16px;">Returning users are <strong style="color: var(--ink);">2.3% of users but 72% of revenue</strong>. The brand has strong loyalty; the redesign needs to convert more first-time visitors into that group.</p>
-      </div>
-    </section>
-
-    <!-- 7. HOMEPAGE COMPARE -->
-    <section class="slide" data-slide="7">
-      <div class="pad">
-        <div class="top-row">
-          <div class="brand"><div class="brand-mark"></div> MAKOBI / CRO REVIEW</div>
-          <div class="eyebrow">07 / Homepage</div>
-        </div>
-        <h2 class="h-section" style="margin-bottom: 16px;">Homepage: better hierarchy, two modals on first paint.</h2>
-
-        <div class="compare">
-          <div class="compare-panel">
-            <header><strong>Current site</strong><span class="badge ghost">Live</span></header>
-            <div class="compare-body">
-              <ul>
-                <li class="bad">Slideshow hero with no clear next action</li>
-                <li class="bad">Stacked top banners (50% off + 20% off newsletter)</li>
-                <li class="bad">No visible reviews block within first screen</li>
-                <li class="bad">Big & Tall buried in mega menu despite being 2nd most-trafficked category (102K views)</li>
-                <li class="bad">Search bar is small (124K searches/90d ignored by design)</li>
-              </ul>
-            </div>
-          </div>
-          <div class="compare-panel">
-            <header><strong>New design</strong><span class="badge green">Preview</span></header>
-            <div class="shot-wrap">
-              <img class="shot" src="screenshots/new-home-mobile.png" alt="New homepage mobile" loading="lazy">
-            </div>
-            <div class="compare-body" style="padding-top: 6px;">
-              <ul>
-                <li class="good">Cleaner brand mark + category grid</li>
-                <li class="good">Reviews block visible above the fold</li>
-                <li class="good">"Shop The Feed" social proof grid</li>
-                <li class="good">Free-shipping progress bar in cart (kept)</li>
-                <li class="bad">Cookie banner + 10% signup popup stack on load</li>
-                <li class="bad">Big & Tall is one tile among six, not surfaced</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 8. PDP COMPARE -->
-    <section class="slide" data-slide="8">
-      <div class="pad">
-        <div class="top-row">
-          <div class="brand"><div class="brand-mark"></div> MAKOBI / CRO REVIEW</div>
-          <div class="eyebrow">08 / PDP (the leak)</div>
+          <div class="eyebrow">4 / PDP (the leak)</div>
         </div>
         <h2 class="h-section" style="margin-bottom: 16px;">PDP: financing, sticky ATC, and size guide are the missing pieces.</h2>
 
@@ -1037,12 +797,52 @@
       </div>
     </section>
 
-    <!-- 9. COLLECTION -->
-    <section class="slide" data-slide="9">
+    <section class="slide" data-slide="5">
       <div class="pad">
         <div class="top-row">
           <div class="brand"><div class="brand-mark"></div> MAKOBI / CRO REVIEW</div>
-          <div class="eyebrow">09 / Collection</div>
+          <div class="eyebrow">5 / Homepage</div>
+        </div>
+        <h2 class="h-section" style="margin-bottom: 16px;">Homepage: better hierarchy, two modals on first paint.</h2>
+
+        <div class="compare">
+          <div class="compare-panel">
+            <header><strong>Current site</strong><span class="badge ghost">Live</span></header>
+            <div class="compare-body">
+              <ul>
+                <li class="bad">Slideshow hero with no clear next action</li>
+                <li class="bad">Stacked top banners (50% off + 20% off newsletter)</li>
+                <li class="bad">No visible reviews block within first screen</li>
+                <li class="bad">Big & Tall buried in mega menu despite being 2nd most-trafficked category (102K views)</li>
+                <li class="bad">Search bar is small (124K searches/90d ignored by design)</li>
+              </ul>
+            </div>
+          </div>
+          <div class="compare-panel">
+            <header><strong>New design</strong><span class="badge green">Preview</span></header>
+            <div class="shot-wrap">
+              <img class="shot" src="screenshots/new-home-mobile.png" alt="New homepage mobile" loading="lazy">
+            </div>
+            <div class="compare-body" style="padding-top: 6px;">
+              <ul>
+                <li class="good">Cleaner brand mark + category grid</li>
+                <li class="good">Reviews block visible above the fold</li>
+                <li class="good">"Shop The Feed" social proof grid</li>
+                <li class="good">Free-shipping progress bar in cart (kept)</li>
+                <li class="bad">Cookie banner + 10% signup popup stack on load</li>
+                <li class="bad">Big & Tall is one tile among six, not surfaced</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-slide="6">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> MAKOBI / CRO REVIEW</div>
+          <div class="eyebrow">6 / Collection</div>
         </div>
         <h2 class="h-section" style="margin-bottom: 16px;">Collection page: filters exist, but they're invisible on mobile.</h2>
 
@@ -1084,138 +884,11 @@
       </div>
     </section>
 
-    <!-- 10. PRIORITY -->
-    <section class="slide" data-slide="10">
+    <section class="slide" data-slide="7">
       <div class="pad">
         <div class="top-row">
           <div class="brand"><div class="brand-mark"></div> MAKOBI / CRO REVIEW</div>
-          <div class="eyebrow">10 / Pre-launch fixes</div>
-        </div>
-        <h2 class="sub-display" style="margin-bottom: 22px;">Don't ship without these.</h2>
-
-        <div class="priority-list">
-          <div class="priority-item" style="border-color: rgba(227,33,30,.4); background: linear-gradient(90deg, rgba(227,33,30,.06), transparent 70%);">
-            <div class="n">01</div>
-            <div class="t">Populate placeholder product copy (launch blocker)<span>Every PDP currently reads "Details will be added soon", "Features will be added soon", "Where-to-wear information will be added soon". Cannot launch with placeholder content. Write and populate Product Details, Style Features, and Where to Style for every SKU.</span></div>
-            <div class="tag">Content</div>
-          </div>
-          <div class="priority-item" style="border-color: rgba(227,33,30,.4); background: linear-gradient(90deg, rgba(227,33,30,.06), transparent 70%);">
-            <div class="n">02</div>
-            <div class="t">Fix ATC upsell popup bug (launch blocker)<span>After Add-to-Cart, the upsell popup blocks the cart drawer when the user declines. Drawer either doesn't open or opens after a 5 to 6 second delay. Add an explicit "No thanks" CTA inside the popup, and open the cart drawer instantly on close. This is a confirmed cause of the 28% ATC to Checkout drop.</span></div>
-            <div class="tag">Bug</div>
-          </div>
-          <div class="priority-item">
-            <div class="n">03</div>
-            <div class="t">Cart UX additions<span>Free-ship progress bar already shipped (good). Remaining: express checkout buttons (Apple Pay / G Pay / Shop Pay) above standard CTA, in-cart cross-sells, trust strip near checkout, and test lowering the $500 free-ship threshold.</span></div>
-            <div class="tag">Cart</div>
-          </div>
-          <div class="priority-item">
-            <div class="n">04</div>
-            <div class="t">Add Meta Pixel + GTM<span>Facebook paid social is your #2 channel at $93K/90d. Launching without the Pixel means launching blind.</span></div>
-            <div class="tag">Tracking</div>
-          </div>
-          <div class="priority-item">
-            <div class="n">05</div>
-            <div class="t">Restore Afterpay on PDP (regression)<span>The old site had "Afterpay available for orders up to $4,000" right under the price. The new theme removed it. Bring it back, or upgrade to Shop Pay Installments. 4-pay financing at $98 to $140 AOV is non-optional.</span></div>
-            <div class="tag">PDP</div>
-          </div>
-          <div class="priority-item">
-            <div class="n">06</div>
-            <div class="t">Sticky mobile ATC bar<span>Mobile is 90% of real revenue and runs the full PDP scroll. Don't let users lose the buy button.</span></div>
-            <div class="tag">PDP</div>
-          </div>
-          <div class="priority-item">
-            <div class="n">07</div>
-            <div class="t">Sticky filter + sort on mobile collection<span>40+ products, 50+ color options, and the filter button is hidden on mobile. Surface it with applied-filter chips.</span></div>
-            <div class="tag">PLP</div>
-          </div>
-          <div class="priority-item">
-            <div class="n">08</div>
-            <div class="t">Notify-me on sold-out variants<span>Most current PDP sizes are sold out. Capture intent through email so customers come back when restocked.</span></div>
-            <div class="tag">Inventory</div>
-          </div>
-          <div class="priority-item">
-            <div class="n">09</div>
-            <div class="t">Filter bot/spam traffic in GA4<span>You can't measure the redesign's lift if 85% of sessions are noise. Bot inflation is what made the PDP look like the leak when the cart is the real problem.</span></div>
-            <div class="tag">Tracking</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 11. BIG & TALL + SEARCH -->
-    <section class="slide" data-slide="11">
-      <div class="pad">
-        <div class="top-row">
-          <div class="brand"><div class="brand-mark"></div> MAKOBI / CRO REVIEW</div>
-          <div class="eyebrow">11 / Underused assets</div>
-        </div>
-
-        <h2 class="sub-display" style="margin-bottom: 24px;">Two things hiding in plain sight.</h2>
-
-        <div class="grid cols-2">
-          <div class="stat-card red" style="padding: 30px;">
-            <div class="eyebrow" style="color: var(--red-2);">#2 most-trafficked collection</div>
-            <div class="num-display" style="font-size: 120px; margin: 8px 0;">102K</div>
-            <h3 style="font-size: 24px; letter-spacing: -.01em; color: var(--ink);">Big & Tall views in 90 days.</h3>
-            <p style="color: var(--ink-2); font-size: 14px; line-height: 1.55; margin: 6px 0 0;">Treated as one tile among six in the redesign. Promote it: dedicated nav slot, hero rotation, "Built for every size, S to 8XB" trust line.</p>
-          </div>
-          <div class="stat-card red" style="padding: 30px;">
-            <div class="eyebrow" style="color: var(--red-2);">Site search intent</div>
-            <div class="num-display" style="font-size: 120px; margin: 8px 0;">19x</div>
-            <h3 style="font-size: 24px; letter-spacing: -.01em; color: var(--ink);">Searches per active searcher.</h3>
-            <p style="color: var(--ink-2); font-size: 14px; line-height: 1.55; margin: 6px 0 0;">124K /search pageviews from 6,689 users. Make the search icon prominent on the new mobile header. Merchandise the top 20 queries. Build collections for any zero-result query.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 13. RETURNING USERS -->
-    <section class="slide" data-slide="12">
-      <div class="pad">
-        <div class="top-row">
-          <div class="brand"><div class="brand-mark"></div> MAKOBI / CRO REVIEW</div>
-          <div class="eyebrow">12 / Loyalty</div>
-        </div>
-
-        <div class="grid cols-2" style="gap: 48px; align-items: center;">
-          <div>
-            <div class="badge green" style="margin-bottom: 18px;">● Brand loyalty signal</div>
-            <h2 class="pullquote">2.3% of users.<br><span class="red">72%</span> of<br>revenue.</h2>
-            <p class="lede" style="margin-top: 20px;">Returning customers (107K of them) drive $435K of your $601K. The brand has strong repeat behavior built in. The redesign's job is to convert more first-time visitors into that returning cohort: cleaner first impression, faster path to ATC, fewer cart-abandon moments.</p>
-          </div>
-          <div class="grid" style="gap: 14px;">
-            <div class="stat-card green">
-              <div class="k">Returning user revenue</div>
-              <div class="v">$435,107</div>
-              <div class="d">2,409 purchases from 107K users (72% of total)</div>
-            </div>
-            <div class="stat-card">
-              <div class="k">New user revenue</div>
-              <div class="v">$165,753</div>
-              <div class="d">959 purchases from 3.37M users (28% of total)</div>
-            </div>
-            <div class="stat-card">
-              <div class="k">Returning user CR</div>
-              <div class="v">0.84%</div>
-              <div class="d">29x the new-user session CR (0.029%)</div>
-            </div>
-            <div class="stat-card">
-              <div class="k">Channels to audit</div>
-              <div class="v">0.05% <span style="font-size: 20px; color: var(--ink-3);">CR</span></div>
-              <div class="d">rtbcom retargeting at $4,438 revenue. Verify ROAS, then keep or cut.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 14. CLOSING -->
-    <section class="slide" data-slide="13">
-      <div class="pad">
-        <div class="top-row">
-          <div class="brand"><div class="brand-mark"></div> MAKOBI / CRO REVIEW</div>
-          <div class="eyebrow">13 / A/B test roadmap</div>
+          <div class="eyebrow">7 / A/B test roadmap</div>
         </div>
 
         <h2 class="sub-display" style="margin-bottom: 14px;">10 tests to run<br>after launch.</h2>
@@ -1339,6 +1012,316 @@
       </div>
     </section>
 
+    <section class="slide" data-slide="8">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> MAKOBI / CRO REVIEW</div>
+          <div class="eyebrow">8 / Traffic reality</div>
+        </div>
+
+        <div class="grid cols-2" style="align-items: flex-start; gap: 36px;">
+          <div>
+            <div class="badge" style="margin-bottom: 16px;">● Data hygiene</div>
+            <h2 class="sub-display" style="margin-bottom: 18px;">The US is your store.<br>Everything else<br>is <span class="accent">noise</span>.</h2>
+            <p class="lede">3.7M sessions in 90 days. 3,368 purchases. Bot/spam volume from non-target geos pushes your bounce rate to 92% and makes every average meaningless. Filter Vietnam, Brazil, Mexico, India, and "(direct)/(none)" out of your GA4 reports before measuring the redesign's lift.</p>
+          </div>
+
+          <div>
+            <div class="eyebrow" style="margin-bottom: 14px;">Sessions vs. Revenue by Country (90d)</div>
+            <div class="geo-bar">
+              <div class="geo-row us">
+                <div class="name">United States</div>
+                <div class="bar"><i style="width: 74%;"></i></div>
+                <div class="num">693K</div>
+                <div class="rev">$590,264</div>
+              </div>
+              <div class="geo-row bot">
+                <div class="name">Vietnam</div>
+                <div class="bar"><i style="width: 100%;"></i></div>
+                <div class="num">937K</div>
+                <div class="rev">$0</div>
+              </div>
+              <div class="geo-row bot">
+                <div class="name">Brazil</div>
+                <div class="bar"><i style="width: 69%;"></i></div>
+                <div class="num">646K</div>
+                <div class="rev">$0</div>
+              </div>
+              <div class="geo-row bot">
+                <div class="name">Mexico</div>
+                <div class="bar"><i style="width: 46%;"></i></div>
+                <div class="num">432K</div>
+                <div class="rev">$251</div>
+              </div>
+              <div class="geo-row bot">
+                <div class="name">Jamaica</div>
+                <div class="bar"><i style="width: 18%;"></i></div>
+                <div class="num">171K</div>
+                <div class="rev">$195</div>
+              </div>
+              <div class="geo-row bot">
+                <div class="name">Dominican Rep.</div>
+                <div class="bar"><i style="width: 18%;"></i></div>
+                <div class="num">168K</div>
+                <div class="rev">$0</div>
+              </div>
+              <div class="geo-row bot">
+                <div class="name">India</div>
+                <div class="bar"><i style="width: 15%;"></i></div>
+                <div class="num">137K</div>
+                <div class="rev">$0</div>
+              </div>
+              <div class="geo-row bot">
+                <div class="name">China</div>
+                <div class="bar"><i style="width: 10%;"></i></div>
+                <div class="num">92K</div>
+                <div class="rev">$0</div>
+              </div>
+            </div>
+            <p class="small" style="margin-top: 16px;">98.2% of your revenue comes from one country. Treat the others as zero until proven otherwise.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-slide="9">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> MAKOBI / CRO REVIEW</div>
+          <div class="eyebrow">9 / The funnel</div>
+        </div>
+
+        <h2 class="sub-display" style="margin-bottom: 18px;">Strip out the bots.<br>The real leak is <span class="accent">Cart to Checkout</span>.</h2>
+        <p class="lede" style="margin-bottom: 24px;">All-traffic funnel makes the PDP look broken because bots view products but never add to cart. Mobile-only (the cleanest proxy for real humans) tells a different story: PDP is fine; the cart is where adders abandon.</p>
+
+        <div class="grid cols-2" style="align-items: flex-start;">
+          <div>
+            <div class="eyebrow" style="margin-bottom: 14px; color: var(--ink-3);">All traffic (bot inflated, not real)</div>
+            <div class="funnel">
+              <div class="funnel-row">
+                <div class="name">Session Start</div>
+                <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 100%; opacity:.45;"></div></div>
+                <div class="v">1,787,071</div>
+              </div>
+              <div class="funnel-row">
+                <div class="name">View Product</div>
+                <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 39.2%; opacity:.45;"></div></div>
+                <div class="v">700,850 <small>39.2%</small></div>
+              </div>
+              <div class="funnel-row">
+                <div class="name">Add to Cart</div>
+                <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 1.5%; opacity:.45;"></div></div>
+                <div class="v" style="color: var(--ink-3);">8,092 <small>1.15%</small></div>
+              </div>
+              <div class="funnel-row">
+                <div class="name">Begin Checkout</div>
+                <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 0.6%; opacity:.45;"></div></div>
+                <div class="v" style="color: var(--ink-3);">2,248 <small>27.8%</small></div>
+              </div>
+              <div class="funnel-row">
+                <div class="name">Purchase</div>
+                <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 0.3%; opacity:.45;"></div></div>
+                <div class="v" style="color: var(--ink-3);">1,135 <small>50.5%</small></div>
+              </div>
+            </div>
+            <p class="small" style="margin-top: 14px; color: var(--ink-3);">Use this only as a directional read. Bots distort every ratio above purchase.</p>
+          </div>
+
+          <div>
+            <div class="eyebrow" style="margin-bottom: 14px;">Mobile-only (real humans)</div>
+            <div class="funnel">
+              <div class="funnel-row">
+                <div class="name">Session Start</div>
+                <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 100%;"></div></div>
+                <div class="v">108,486</div>
+              </div>
+              <div class="funnel-row">
+                <div class="name">View Product</div>
+                <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 50.6%;"></div></div>
+                <div class="v">54,856 <small style="color: var(--green);">50.6%</small></div>
+              </div>
+              <div class="funnel-row">
+                <div class="name">Add to Cart</div>
+                <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 6.9%;"></div></div>
+                <div class="v">7,515 <small style="color: var(--green);">13.7%</small></div>
+              </div>
+              <div class="funnel-row">
+                <div class="name">Begin Checkout</div>
+                <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 1.9%;"></div></div>
+                <div class="v" style="color: var(--red);">2,104 <small>28.0%</small></div>
+              </div>
+              <div class="funnel-row">
+                <div class="name">Purchase</div>
+                <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 0.95%;"></div></div>
+                <div class="v" style="color: var(--green);">1,059 <small>50.3%</small></div>
+              </div>
+            </div>
+            <p class="small" style="margin-top: 14px;">VP to ATC at <strong style="color: var(--green);">13.7%</strong> beats the streetwear average (5 to 12%). ATC to Checkout at <strong style="color: var(--red);">28%</strong> sits below the 30 to 50% benchmark. That's the gap.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-slide="10">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> MAKOBI / CRO REVIEW</div>
+          <div class="eyebrow">10 / Mobile</div>
+        </div>
+
+        <div class="grid cols-2" style="align-items: center; gap: 36px;">
+          <div>
+            <div class="badge green" style="margin-bottom: 18px;">● Where the money is</div>
+            <h2 class="pullquote">Mobile is<br><span class="red">90%</span> of real<br>revenue.</h2>
+            <p class="lede" style="margin-top: 20px;">Desktop sessions look enormous in the dashboard, but it's bots. The real shopper holds a phone, runs through Facebook or Google organic, and spends ~140 seconds. Design the redesign for that person.</p>
+          </div>
+
+          <div class="device-split">
+            <div class="device-card loss">
+              <h4>Desktop</h4>
+              <div class="small" style="margin-bottom: 12px;">$48K revenue</div>
+              <div class="row"><span>Sessions</span><strong>3.34M</strong></div>
+              <div class="row"><span>Bounce</span><strong>96.4%</strong></div>
+              <div class="row"><span>Avg session</span><strong>19s</strong></div>
+              <div class="row"><span>Purchases</span><strong>250</strong></div>
+              <div class="row"><span>% of revenue</span><strong style="color: var(--red);">8.0%</strong></div>
+            </div>
+            <div class="device-card win">
+              <h4>Mobile</h4>
+              <div class="small" style="margin-bottom: 12px;">$542,792 revenue</div>
+              <div class="row"><span>Sessions</span><strong>340K</strong></div>
+              <div class="row"><span>Bounce</span><strong>48.1%</strong></div>
+              <div class="row"><span>Avg session</span><strong>140s</strong></div>
+              <div class="row"><span>Purchases</span><strong>3,056</strong></div>
+              <div class="row"><span>% of revenue</span><strong style="color: var(--green);">90.3%</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-slide="11">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> MAKOBI / CRO REVIEW</div>
+          <div class="eyebrow">11 / Channels</div>
+        </div>
+
+        <h2 class="sub-display" style="margin-bottom: 20px;">Two channels do most<br>of the heavy lifting.</h2>
+
+        <table class="flat">
+          <thead>
+            <tr>
+              <th>Source</th>
+              <th class="num">Sessions</th>
+              <th class="num">Orders</th>
+              <th class="num">Revenue</th>
+              <th class="num">CR</th>
+              <th>Verdict</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="row-good">
+              <td>Google organic</td>
+              <td class="num">54,394</td>
+              <td class="num">876</td>
+              <td class="num">$152,945</td>
+              <td class="num">1.61%</td>
+              <td>Best channel. Protect SEO.</td>
+            </tr>
+            <tr>
+              <td>Facebook paid social</td>
+              <td class="num">120,054</td>
+              <td class="num">614</td>
+              <td class="num">$93,152</td>
+              <td class="num">0.51%</td>
+              <td>Solid. Add Meta Pixel + CAPI.</td>
+            </tr>
+            <tr>
+              <td>Google CPC</td>
+              <td class="num">28,222</td>
+              <td class="num">361</td>
+              <td class="num">$64,103</td>
+              <td class="num">1.28%</td>
+              <td>Healthy. Layer enhanced conv.</td>
+            </tr>
+            <tr>
+              <td>Omnisend email</td>
+              <td class="num">18,605</td>
+              <td class="num">241</td>
+              <td class="num">$45,628</td>
+              <td class="num">1.30%</td>
+              <td>Client-owned. Watch only.</td>
+            </tr>
+            <tr>
+              <td>Instagram social</td>
+              <td class="num">8,245</td>
+              <td class="num">45</td>
+              <td class="num">$7,526</td>
+              <td class="num">0.55%</td>
+              <td>Watch.</td>
+            </tr>
+            <tr>
+              <td>Omnisend SMS</td>
+              <td class="num">5,551</td>
+              <td class="num">44</td>
+              <td class="num">$10,693</td>
+              <td class="num">0.79%</td>
+              <td>Client-owned. Watch only.</td>
+            </tr>
+            <tr>
+              <td>rtbcom retargeting</td>
+              <td class="num">25,640</td>
+              <td class="num">14</td>
+              <td class="num">$4,438</td>
+              <td class="num">0.05%</td>
+              <td>Audit ROAS. Keep if profitable, cut if not.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="small" style="margin-top: 16px;">Returning users are <strong style="color: var(--ink);">2.3% of users but 72% of revenue</strong>. The brand has strong loyalty; the redesign needs to convert more first-time visitors into that group.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-slide="12">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> MAKOBI / CRO REVIEW</div>
+          <div class="eyebrow">12 / Loyalty</div>
+        </div>
+
+        <div class="grid cols-2" style="gap: 48px; align-items: center;">
+          <div>
+            <div class="badge green" style="margin-bottom: 18px;">● Brand loyalty signal</div>
+            <h2 class="pullquote">2.3% of users.<br><span class="red">72%</span> of<br>revenue.</h2>
+            <p class="lede" style="margin-top: 20px;">Returning customers (107K of them) drive $435K of your $601K. The brand has strong repeat behavior built in. The redesign's job is to convert more first-time visitors into that returning cohort: cleaner first impression, faster path to ATC, fewer cart-abandon moments.</p>
+          </div>
+          <div class="grid" style="gap: 14px;">
+            <div class="stat-card green">
+              <div class="k">Returning user revenue</div>
+              <div class="v">$435,107</div>
+              <div class="d">2,409 purchases from 107K users (72% of total)</div>
+            </div>
+            <div class="stat-card">
+              <div class="k">New user revenue</div>
+              <div class="v">$165,753</div>
+              <div class="d">959 purchases from 3.37M users (28% of total)</div>
+            </div>
+            <div class="stat-card">
+              <div class="k">Returning user CR</div>
+              <div class="v">0.84%</div>
+              <div class="d">29x the new-user session CR (0.029%)</div>
+            </div>
+            <div class="stat-card">
+              <div class="k">Channels to audit</div>
+              <div class="v">0.05% <span style="font-size: 20px; color: var(--ink-3);">CR</span></div>
+              <div class="d">rtbcom retargeting at $4,438 revenue. Verify ROAS, then keep or cut.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </div>
 
@@ -1350,7 +1333,7 @@
   </button>
   <div class="sep"></div>
   <button id="prev" aria-label="Previous slide">← Prev</button>
-  <div class="count">SLIDE <strong id="cur">1</strong> / <strong id="total">13</strong></div>
+  <div class="count">SLIDE <strong id="cur">1</strong> / <strong id="total">12</strong></div>
   <button id="next" aria-label="Next slide">Next →</button>
   <div class="sep"></div>
   <button class="theme-toggle" id="theme" aria-label="Toggle theme">
@@ -1529,17 +1512,16 @@
   const slideMeta = [
     { n: 1, label: 'Cover', sub: 'Recommendations before launch', chip: 'Intro' },
     { n: 2, label: 'TL;DR', sub: 'Three things matter first', chip: 'Summary' },
-    { n: 3, label: 'Traffic reality', sub: 'US vs. bot countries', chip: 'Data' },
-    { n: 4, label: 'The funnel', sub: 'All-traffic vs. mobile-only', chip: 'Funnel' },
-    { n: 5, label: 'Mobile is the store', sub: '90% of real revenue', chip: 'Device' },
-    { n: 6, label: 'Channels', sub: 'Where revenue actually comes from', chip: 'Channels' },
-    { n: 7, label: 'Homepage', sub: 'Current vs. new', chip: 'Page' },
-    { n: 8, label: 'PDP', sub: 'Launch blockers + gaps', chip: 'Page' },
-    { n: 9, label: 'Collection', sub: 'Filter visibility + cards', chip: 'Page' },
-    { n: 10, label: 'Pre-launch fixes', sub: 'Priority list', chip: 'Roadmap' },
-    { n: 11, label: 'Underused assets', sub: 'Big & Tall + Search', chip: 'Opportunity' },
+    { n: 3, label: 'Pre-launch fixes', sub: 'The checklist + key insights', chip: 'Checklist' },
+    { n: 4, label: 'PDP', sub: 'Launch blockers + gaps', chip: 'Page' },
+    { n: 5, label: 'Homepage', sub: 'Current vs. new', chip: 'Page' },
+    { n: 6, label: 'Collection', sub: 'Filter visibility + cards', chip: 'Page' },
+    { n: 7, label: 'A/B test roadmap', sub: '10 tests to run after launch', chip: 'Tests' },
+    { n: 8, label: 'Traffic reality', sub: 'US vs. bot countries', chip: 'Data' },
+    { n: 9, label: 'The funnel', sub: 'All-traffic vs. mobile-only', chip: 'Data' },
+    { n: 10, label: 'Mobile is the store', sub: '90% of real revenue', chip: 'Data' },
+    { n: 11, label: 'Channels', sub: 'Where revenue actually comes from', chip: 'Data' },
     { n: 12, label: 'Loyalty signal', sub: '2.3% of users, 72% of revenue', chip: 'Insight' },
-    { n: 13, label: 'A/B test roadmap', sub: '10 tests to run after launch', chip: 'Tests' },
   ];
   const $indexBtn = document.getElementById('index-btn');
   const $indexOverlay = document.getElementById('index-overlay');
