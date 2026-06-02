@@ -1,0 +1,1825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Makobi Concept: Home + PDP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Light theme: warm off-white with editorial dark moments */
+  --black: #0a0a0a;
+  --bg: #f7f4ee;
+  --bg-2: #ffffff;
+  --bg-3: #ece8df;
+  --bg-card: #ffffff;
+  --line: rgba(10,10,10,0.10);
+  --line-strong: rgba(10,10,10,0.20);
+  --ink: #0a0a0a;
+  --ink-2: #4a4a4a;
+  --ink-3: #8a8580;
+  --red: #e3211e;
+  --red-2: #ff3a37;
+  --green: #1ea866;
+  /* Dark accents for selective sections */
+  --d-bg: #0a0a0a;
+  --d-bg-2: #141414;
+  --d-line: rgba(255,255,255,0.10);
+  --d-ink: #ffffff;
+  --d-ink-2: #c4c0b8;
+  --display: 'Inter Tight', 'Helvetica Neue', sans-serif;
+  --body: 'Inter', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+*,*::before,*::after { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); -webkit-font-smoothing: antialiased; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+
+/* Concept switcher */
+.concept-switch {
+  position: fixed; top: 14px; left: 50%; transform: translateX(-50%);
+  z-index: 100; display: flex; gap: 4px;
+  padding: 4px;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid var(--line-strong);
+  backdrop-filter: blur(20px);
+  border-radius: 999px;
+  font-family: var(--mono);
+  box-shadow: 0 8px 24px rgba(10,10,10,.08);
+}
+.concept-switch button {
+  border: 0; background: transparent; color: var(--ink-2);
+  padding: 8px 18px; border-radius: 999px;
+  font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+  transition: all .2s ease;
+}
+.concept-switch button.active { background: var(--black); color: #fff; }
+.concept-switch button:hover:not(.active) { color: var(--ink); background: rgba(0,0,0,.05); }
+.concept-switch .label { padding: 8px 12px; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-3); border-right: 1px solid var(--line); }
+
+/* ============== SHARED ============== */
+.promo-bar {
+  background: var(--red); color: #fff;
+  font-family: var(--mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+  padding: 11px 24px;
+  text-align: center;
+}
+.promo-bar strong { font-weight: 700; }
+.promo-bar .dot { margin: 0 12px; opacity: .6; }
+
+.header {
+  background: rgba(247,244,238,0.92);
+  border-bottom: 1px solid var(--line);
+  position: sticky; top: 0; z-index: 50;
+  backdrop-filter: blur(20px);
+}
+.header-inner {
+  display: grid; grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 16px 32px;
+  gap: 24px;
+}
+.nav-list {
+  display: flex; gap: 26px;
+  font-family: var(--body); font-size: 13px; font-weight: 500; color: var(--ink-2);
+}
+.nav-list a { padding: 4px 0; border-bottom: 2px solid transparent; transition: color .15s, border-color .15s; }
+.nav-list a:hover, .nav-list a.active { color: var(--ink); border-color: var(--ink); }
+.nav-list a.tall { color: var(--red); font-weight: 600; }
+.nav-list a.tall:hover, .nav-list a.tall.active { border-color: var(--red); }
+.nav-list a.tall::before { content: "●"; margin-right: 6px; font-size: 7px; color: var(--red); vertical-align: middle; }
+
+.logo-mark {
+  display: inline-block; width: 44px; height: 44px;
+  background: var(--ink);
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M3 21V3l9 14L21 3v18'/></svg>") center / 100% no-repeat;
+          mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M3 21V3l9 14L21 3v18'/></svg>") center / 100% no-repeat;
+}
+.on-dark .logo-mark { background: #fff; }
+.header-tools { display: flex; gap: 14px; align-items: center; justify-content: flex-end; }
+.icon-btn {
+  width: 38px; height: 38px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: transparent; color: var(--ink);
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: border-color .15s ease, background .15s ease;
+  position: relative;
+}
+.icon-btn:hover { border-color: var(--ink); background: rgba(0,0,0,.04); }
+.icon-btn svg { width: 17px; height: 17px; }
+.icon-btn .count {
+  position: absolute; top: -4px; right: -4px;
+  background: var(--red); color: #fff;
+  font-family: var(--mono); font-size: 9px; font-weight: 700;
+  padding: 2px 6px; border-radius: 999px;
+}
+
+/* Search prominent */
+.search-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(0,0,0,.04); border: 1px solid var(--line);
+  padding: 9px 14px; border-radius: 999px;
+  font-family: var(--body); font-size: 13px; color: var(--ink-2); letter-spacing: 0;
+  min-width: 230px;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.search-pill:hover { border-color: var(--ink); background: rgba(0,0,0,.06); }
+.search-pill svg { width: 15px; height: 15px; color: var(--ink-2); }
+.search-pill .ph { color: var(--ink-3); }
+.search-pill kbd {
+  background: #fff; border: 1px solid var(--line); border-radius: 4px;
+  padding: 2px 6px; font-family: var(--mono); font-size: 9px; color: var(--ink-3); margin-left: auto;
+}
+
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; justify-content: center;
+  font-family: var(--body); font-size: 13px; letter-spacing: .04em; font-weight: 600;
+  padding: 15px 22px; border-radius: 999px; border: 1px solid transparent; transition: all .15s ease;
+  cursor: pointer;
+}
+.btn-primary { background: var(--ink); color: #fff; }
+.btn-primary:hover { background: var(--red); color: #fff; transform: translateY(-1px); }
+.btn-ghost { background: transparent; border-color: var(--ink); color: var(--ink); }
+.btn-ghost:hover { background: var(--ink); color: #fff; }
+.btn-red { background: var(--red); color: #fff; }
+.btn-red:hover { background: var(--red-2); }
+.btn-full { width: 100%; }
+.btn svg { width: 14px; height: 14px; }
+
+.eyebrow {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--red);
+}
+.eyebrow.muted { color: var(--ink-3); }
+.section { padding: 88px 32px; max-width: 1440px; margin: 0 auto; }
+.section.tight { padding: 56px 32px; }
+.section-head { display: flex; justify-content: space-between; align-items: end; margin-bottom: 32px; gap: 20px; flex-wrap: wrap; }
+.section-title {
+  font-family: var(--display);
+  font-size: clamp(34px, 4.6vw, 64px);
+  line-height: 1.0;
+  letter-spacing: -.025em;
+  font-weight: 800;
+}
+.section-link { font-family: var(--body); font-size: 13px; font-weight: 600; color: var(--ink); border-bottom: 1px solid var(--ink); padding-bottom: 3px; transition: color .15s, border-color .15s; }
+.section-link:hover { color: var(--red); border-color: var(--red); }
+
+/* Page wrapper */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ============== HOMEPAGE ============== */
+
+/* Hero (light editorial) */
+.hero {
+  position: relative;
+  display: grid; grid-template-columns: 0.95fr 1.05fr;
+  overflow: hidden;
+  background: var(--bg);
+  padding: 32px 32px 0;
+  max-width: 1440px; margin: 0 auto;
+  gap: 32px;
+  align-items: stretch;
+}
+.hero-content {
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 24px 8px 56px;
+  position: relative;
+}
+.hero-eyebrow {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .25em; text-transform: uppercase; color: var(--red);
+}
+.hero-title {
+  font-family: var(--display);
+  font-size: clamp(48px, 6.4vw, 96px);
+  line-height: 1.0;
+  letter-spacing: -.035em;
+  font-weight: 800;
+  margin: 18px 0 24px;
+}
+.hero-title .strike { color: var(--ink-3); text-decoration: line-through; text-decoration-thickness: 2px; font-weight: 500; }
+.hero-title .red { color: var(--red); }
+.hero-sub {
+  font-size: clamp(15px, 1.2vw, 17px);
+  line-height: 1.6; color: var(--ink-2);
+  max-width: 48ch;
+}
+.hero-meta { margin-top: 32px; display: flex; flex-direction: column; gap: 22px; }
+.hero-price {
+  display: flex; align-items: baseline; gap: 12px;
+  font-family: var(--display); font-size: 38px; font-weight: 800; letter-spacing: -.025em; line-height: 1;
+}
+.hero-price .strike { color: var(--ink-3); font-size: 22px; text-decoration: line-through; font-weight: 500; }
+.hero-price .save { background: var(--red); color: #fff; padding: 4px 8px; font-family: var(--mono); font-size: 11px; letter-spacing: .12em; border-radius: 4px; font-weight: 700; }
+.hero-ctas { display: flex; gap: 10px; flex-wrap: wrap; }
+.hero-foot {
+  display: flex; justify-content: space-between; align-items: center; gap: 14px;
+  margin-top: 36px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3);
+}
+.hero-foot strong { color: var(--ink); font-weight: 600; }
+.hero-art {
+  position: relative;
+  background: var(--bg-3);
+  overflow: hidden;
+  border-radius: 18px;
+  aspect-ratio: 4 / 5;
+  max-height: 720px;
+}
+.hero-art img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center 22%;
+}
+.hero-mark {
+  position: absolute; left: 18px; top: 18px; z-index: 3;
+  font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: #fff;
+  background: rgba(0,0,0,0.78); backdrop-filter: blur(10px);
+  padding: 7px 12px; border-radius: 999px;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.hero-mark::before { content: ""; width: 8px; height: 8px; border-radius: 999px; background: var(--red); animation: pulse 1.6s ease infinite; }
+@keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(227,33,30,.6); } 50% { box-shadow: 0 0 0 8px rgba(227,33,30,0); } }
+
+/* Marquee */
+.marquee {
+  background: var(--ink); color: var(--bg); padding: 14px 0; overflow: hidden;
+  white-space: nowrap;
+  font-family: var(--display); font-size: 17px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  margin-top: 56px;
+}
+.marquee-track { display: inline-block; animation: scroll-x 38s linear infinite; padding-left: 100%; }
+.marquee-track span { padding: 0 28px; }
+.marquee-track .dot { opacity: .5; color: var(--red-2); }
+@keyframes scroll-x { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+
+/* Category tiles (kept from new theme) */
+.cat-tiles {
+  max-width: 1440px; margin: 0 auto; padding: 80px 32px 24px;
+}
+.cat-tiles-grid {
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px;
+}
+.cat-tile {
+  position: relative; overflow: hidden;
+  aspect-ratio: 3 / 4;
+  background: var(--bg-3);
+  border-radius: 12px;
+  display: block; transition: transform .25s ease;
+}
+.cat-tile:hover { transform: translateY(-3px); }
+.cat-tile img { width: 100%; height: 100%; object-fit: cover; transition: transform .35s ease; }
+.cat-tile:hover img { transform: scale(1.04); }
+.cat-tile::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 35%, rgba(0,0,0,.78) 100%);
+}
+.cat-tile .lbl {
+  position: absolute; left: 14px; bottom: 14px; right: 14px; z-index: 2;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.cat-tile .lbl .n {
+  font-family: var(--display); font-size: 22px; font-weight: 700; letter-spacing: -.015em;
+  color: #fff;
+}
+.cat-tile .lbl .c {
+  font-family: var(--mono); font-size: 10px; letter-spacing: .15em; text-transform: uppercase;
+  color: rgba(255,255,255,.75);
+}
+.cat-tile.bigtall { grid-column: span 2; aspect-ratio: 3 / 2; }
+.cat-tile.bigtall .lbl .n {
+  font-size: 32px; letter-spacing: -.02em;
+}
+.cat-tile.bigtall::before {
+  content: "Sizes S to 8XB"; position: absolute; right: 14px; top: 14px; z-index: 3;
+  background: var(--red); color: #fff;
+  font-family: var(--mono); font-size: 9px; letter-spacing: .15em; text-transform: uppercase;
+  padding: 5px 9px; border-radius: 999px; font-weight: 700;
+}
+
+/* Featured grid */
+.feat-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+}
+.product-card {
+  background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+  position: relative;
+  display: flex; flex-direction: column;
+}
+.product-card:hover { transform: translateY(-3px); border-color: var(--line-strong); box-shadow: 0 14px 32px rgba(10,10,10,.08); }
+.product-card .img-wrap {
+  aspect-ratio: 3 / 4;
+  background: var(--bg-3);
+  overflow: hidden;
+  position: relative;
+}
+.product-card .img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+.product-card:hover .img-wrap img { transform: scale(1.04); }
+.product-card .meta {
+  padding: 16px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.product-card .title {
+  font-size: 14px; font-weight: 500; color: var(--ink);
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  min-height: 38px; line-height: 1.35;
+}
+.product-card .price-row {
+  display: flex; align-items: baseline; gap: 8px;
+  font-size: 14px;
+}
+.product-card .price { color: var(--ink); font-weight: 700; }
+.product-card .strike { color: var(--ink-3); text-decoration: line-through; font-size: 12px; font-weight: 500; }
+.product-card .rating {
+  display: flex; align-items: center; gap: 6px;
+  font-family: var(--mono); font-size: 10px; letter-spacing: .08em; color: var(--ink-3);
+}
+.product-card .rating .stars { color: var(--red); letter-spacing: 1px; }
+.product-card .swatches { display: flex; gap: 6px; margin-top: 6px; }
+.product-card .sw { width: 14px; height: 14px; border-radius: 999px; border: 1px solid var(--line-strong); box-shadow: inset 0 0 0 1px rgba(255,255,255,.4); }
+.product-card .sw.more {
+  border-style: dashed; background: transparent; display: inline-flex; align-items: center; justify-content: center;
+  font-size: 9px; color: var(--ink-3); font-family: var(--mono); box-shadow: none;
+}
+
+.product-card .badge-tag {
+  position: absolute; top: 12px; left: 12px; z-index: 2;
+  background: var(--red); color: #fff;
+  font-family: var(--mono); font-size: 9px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  padding: 5px 8px; border-radius: 4px;
+}
+.product-card .badge-tag.sold-out { background: rgba(10,10,10,.7); color: #fff; }
+.product-card .badge-tag.new { background: var(--ink); color: #fff; }
+.product-card .quick-add {
+  position: absolute; right: 12px; top: 12px; z-index: 2;
+  width: 36px; height: 36px;
+  border-radius: 999px; background: rgba(255,255,255,.92); border: 1px solid var(--line);
+  color: var(--ink); display: inline-flex; align-items: center; justify-content: center;
+  opacity: 0; transform: translateY(-4px); transition: all .2s ease;
+  backdrop-filter: blur(8px);
+}
+.product-card:hover .quick-add { opacity: 1; transform: translateY(0); }
+.product-card .quick-add:hover { background: var(--red); border-color: var(--red); color: #fff; }
+.product-card .quick-add svg { width: 16px; height: 16px; }
+
+/* Big & Tall feature (kept dark for editorial contrast) */
+.bt-feature {
+  position: relative; overflow: hidden;
+  border-radius: 20px; margin: 0 32px;
+  background: linear-gradient(135deg, #1a0807 0%, #0a0a0a 60%);
+  border: 1px solid rgba(227,33,30,.3);
+  max-width: 1440px;
+  display: grid; grid-template-columns: 0.95fr 1.05fr;
+  min-height: 520px;
+  color: var(--d-ink);
+}
+@media (min-width: 1480px) { .bt-feature { margin: 0 auto; } }
+.bt-content {
+  padding: 56px;
+  display: flex; flex-direction: column; justify-content: center; gap: 22px;
+  position: relative;
+}
+.bt-content .stamp {
+  position: absolute; top: 22px; right: 22px;
+  font-family: var(--mono); font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--red-2);
+  border: 1px dashed var(--red);
+  padding: 6px 10px; border-radius: 4px;
+}
+.bt-feature .eyebrow { color: var(--red-2); }
+.bt-title {
+  font-family: var(--display); font-size: clamp(42px, 5.4vw, 80px);
+  line-height: 1.0; letter-spacing: -.03em; font-weight: 800; color: #fff;
+}
+.bt-title .red { color: var(--red); }
+.bt-sub { font-size: 16px; line-height: 1.6; color: var(--d-ink-2); max-width: 40ch; }
+.bt-stats {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 8px;
+}
+.bt-stat { padding: 14px 0; border-top: 1px solid rgba(255,255,255,.1); }
+.bt-stat .v { font-family: var(--display); font-size: 30px; line-height: 1; color: #fff; font-weight: 800; letter-spacing: -.02em; }
+.bt-stat .v.red { color: var(--red-2); }
+.bt-stat .k { font-family: var(--mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; color: var(--d-ink-2); margin-top: 6px; }
+.bt-feature .btn-ghost { border-color: rgba(255,255,255,.3); color: #fff; }
+.bt-feature .btn-ghost:hover { background: #fff; color: var(--black); border-color: #fff; }
+.bt-art {
+  position: relative; overflow: hidden;
+}
+.bt-art img { width: 100%; height: 100%; object-fit: cover; }
+.bt-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.6) 0%, transparent 40%); }
+.size-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.size-chip {
+  font-family: var(--mono); font-size: 10px; letter-spacing: .08em; font-weight: 500;
+  padding: 6px 10px; border: 1px solid rgba(255,255,255,.18); border-radius: 999px; color: var(--d-ink-2);
+}
+.size-chip.hot { border-color: var(--red); color: #fff; background: rgba(227,33,30,.2); }
+
+/* Editorial split */
+.editorial {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+}
+.editorial-card {
+  position: relative; overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background: var(--bg-3);
+  border-radius: 18px;
+  display: block;
+}
+.editorial-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+.editorial-card:hover img { transform: scale(1.04); }
+.editorial-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(0,0,0,.85) 100%); }
+.editorial-card .meta {
+  position: absolute; left: 28px; bottom: 24px; right: 28px; z-index: 2;
+  display: flex; justify-content: space-between; align-items: end; gap: 14px;
+}
+.editorial-card h3 {
+  font-family: var(--display); font-size: clamp(28px, 3.2vw, 44px); line-height: 1.0; letter-spacing: -.03em; font-weight: 800; margin: 0; color: #fff;
+}
+.editorial-card .pill {
+  background: rgba(255,255,255,.94); color: var(--ink); font-family: var(--body); font-weight: 600; font-size: 12px; letter-spacing: .04em; padding: 8px 14px; border-radius: 999px;
+}
+
+/* Reviews wall */
+.reviews-bar {
+  background: var(--bg-2);
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+}
+.reviews-inner {
+  max-width: 1440px; margin: 0 auto; padding: 64px 32px;
+  display: grid; grid-template-columns: 280px 1fr; gap: 48px; align-items: center;
+}
+.reviews-head {}
+.reviews-head .big {
+  font-family: var(--display); font-size: 76px; line-height: 1; letter-spacing: -.035em; color: var(--ink); font-weight: 800;
+}
+.reviews-head .stars { color: var(--red); letter-spacing: 3px; font-size: 22px; }
+.reviews-head .label { font-family: var(--mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-3); margin-top: 10px; }
+.reviews-rail {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+}
+.review-card {
+  background: var(--bg); border: 1px solid var(--line); border-radius: 14px; padding: 22px;
+}
+.review-card .qrate { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.review-card .qrate .stars { color: var(--red); letter-spacing: 2px; font-size: 13px; }
+.review-card .qrate .ver { font-family: var(--mono); font-size: 9px; letter-spacing: .15em; text-transform: uppercase; color: var(--green); }
+.review-card p { font-size: 14px; line-height: 1.6; color: var(--ink); margin: 0 0 14px; }
+.review-card .who { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: .08em; }
+
+/* Shop the feed */
+.feed-grid {
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px;
+}
+.feed-tile {
+  aspect-ratio: 1 / 1; position: relative; overflow: hidden; border-radius: 10px; background: var(--bg-3);
+  display: block;
+}
+.feed-tile img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s ease; }
+.feed-tile:hover img { transform: scale(1.06); }
+.feed-tile .tag {
+  position: absolute; bottom: 8px; left: 8px;
+  background: rgba(255,255,255,.94); backdrop-filter: blur(8px);
+  color: var(--ink);
+  font-family: var(--mono); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600;
+  padding: 4px 8px; border-radius: 4px;
+}
+
+/* Email signup band */
+.signup {
+  background:
+    radial-gradient(140% 100% at 50% 0%, rgba(227,33,30,.07), transparent 60%),
+    var(--bg);
+  border-top: 1px solid var(--line);
+  padding: 80px 32px;
+  text-align: center;
+}
+.signup h2 {
+  font-family: var(--display); font-size: clamp(36px, 5vw, 72px); line-height: 1.0; letter-spacing: -.03em; font-weight: 800; margin: 0 0 18px;
+}
+.signup h2 .red { color: var(--red); }
+.signup p { color: var(--ink-2); font-size: 16px; line-height: 1.6; max-width: 50ch; margin: 0 auto 28px; }
+.signup-form {
+  display: inline-flex; max-width: 460px; width: 100%; gap: 0;
+  border: 1px solid var(--line); border-radius: 999px; padding: 6px;
+  background: var(--bg-2);
+  box-shadow: 0 4px 16px rgba(10,10,10,.04);
+}
+.signup-form input {
+  flex: 1; background: transparent; border: 0; color: var(--ink);
+  font-family: var(--body); font-size: 14px; padding: 10px 18px; outline: none;
+}
+.signup-form input::placeholder { color: var(--ink-3); }
+.signup-form button {
+  border: 0; background: var(--ink); color: #fff;
+  font-family: var(--body); font-size: 13px; font-weight: 600; letter-spacing: .04em;
+  padding: 10px 22px; border-radius: 999px;
+}
+
+/* Footer (dark contrast moment) */
+.footer {
+  background: var(--d-bg); color: var(--d-ink); border-top: 1px solid var(--line);
+  padding: 64px 32px 28px;
+}
+.footer-inner { max-width: 1440px; margin: 0 auto; }
+.footer-grid {
+  display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px;
+  padding-bottom: 48px; border-bottom: 1px solid var(--d-line);
+}
+.footer h4 { font-family: var(--mono); font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--d-ink-2); margin: 0 0 18px; font-weight: 500; }
+.footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; font-size: 13px; color: var(--d-ink-2); }
+.footer ul a:hover { color: #fff; }
+.footer .brand-block .mark { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+.footer .brand-block .mark .logo-mark { width: 36px; height: 36px; background: #fff; }
+.footer .brand-block h3 { font-family: var(--display); font-size: 22px; letter-spacing: .14em; text-transform: uppercase; margin: 0; color: #fff; }
+.footer .brand-block p { color: var(--d-ink-2); font-size: 13px; line-height: 1.6; }
+.footer-meta {
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px;
+  padding-top: 24px;
+  font-family: var(--mono); font-size: 10px; letter-spacing: .15em; color: var(--d-ink-2); text-transform: uppercase;
+}
+.pay-strip { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.pay-chip {
+  background: var(--d-bg-2); border: 1px solid var(--d-line); border-radius: 4px;
+  padding: 5px 10px; font-family: var(--mono); font-size: 9px; color: #fff; letter-spacing: .12em;
+}
+
+/* ============== PDP ============== */
+.pdp-breadcrumb {
+  max-width: 1440px; margin: 0 auto; padding: 18px 32px 0;
+  font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-3);
+  display: flex; gap: 8px; align-items: center;
+}
+.pdp-breadcrumb a:hover { color: var(--ink); }
+.pdp-breadcrumb span.sep { opacity: .5; }
+.pdp-breadcrumb .cur { color: var(--ink); }
+
+.pdp-shell {
+  max-width: 1440px; margin: 0 auto; padding: 32px 32px 0;
+  display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 48px;
+  align-items: flex-start;
+}
+.pdp-gallery { position: sticky; top: 110px; }
+.pdp-gallery-main {
+  width: 100%; aspect-ratio: 4 / 5; background: var(--bg-3); border-radius: 18px; overflow: hidden;
+  border: 1px solid var(--line);
+  position: relative;
+}
+.pdp-gallery-main img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.pdp-gallery-main .photog {
+  position: absolute; bottom: 14px; right: 14px;
+  background: rgba(255,255,255,.94); backdrop-filter: blur(8px);
+  border: 1px solid var(--line);
+  padding: 6px 10px; border-radius: 999px;
+  font-family: var(--mono); font-size: 10px; letter-spacing: .12em; color: var(--ink);
+  display: flex; align-items: center; gap: 8px;
+}
+.pdp-gallery-main .photog svg { width: 12px; height: 12px; }
+.pdp-thumbs {
+  display: flex; gap: 8px; margin-top: 14px;
+  overflow-x: auto;
+}
+.pdp-thumb {
+  flex: 0 0 84px; aspect-ratio: 4 / 5; background: var(--bg-3); border-radius: 10px; overflow: hidden;
+  border: 2px solid transparent; cursor: pointer; transition: border-color .2s ease;
+}
+.pdp-thumb.active { border-color: var(--ink); }
+.pdp-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Buy box */
+.buy-box {
+  display: flex; flex-direction: column; gap: 22px;
+  padding-bottom: 60px;
+}
+.bb-eyebrow {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+  display: flex; gap: 14px; align-items: center; color: var(--ink-3);
+}
+.bb-eyebrow .red { color: var(--red-2); }
+.bb-eyebrow .sep { width: 4px; height: 4px; border-radius: 999px; background: var(--ink-3); }
+.bb-title {
+  font-family: var(--display); font-size: clamp(30px, 3.2vw, 44px); line-height: 1.05; letter-spacing: -.025em; font-weight: 700; margin: 0;
+}
+.bb-rating { display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 12px; color: var(--ink-2); }
+.bb-rating .stars { color: var(--red); letter-spacing: 2px; font-size: 14px; }
+.bb-rating a:hover { color: var(--ink); }
+.bb-price-row {
+  display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+  padding: 18px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+}
+.bb-price { font-family: var(--display); font-size: 44px; font-weight: 800; letter-spacing: -.025em; line-height: 1; }
+.bb-strike { font-family: var(--display); font-size: 22px; font-weight: 500; color: var(--ink-3); text-decoration: line-through; }
+.bb-save { background: var(--red); color: #fff; font-family: var(--mono); font-size: 11px; letter-spacing: .15em; padding: 6px 10px; border-radius: 4px; font-weight: 700; }
+
+/* Financing (Afterpay, restored from old site) */
+.financing {
+  background: #b2fce4; border: 1px solid #5fd5a8; border-radius: 12px; padding: 14px 18px;
+  display: flex; align-items: center; gap: 12px; color: #003e29;
+}
+.financing .logo {
+  background: #b2fce4; color: #003e29; font-family: var(--body); font-weight: 800; font-size: 14px; letter-spacing: -.01em;
+  padding: 0; border-radius: 0;
+  display: flex; align-items: center; gap: 6px;
+}
+.financing .logo .mark {
+  width: 22px; height: 22px; border-radius: 4px;
+  background: #003e29;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: #b2fce4;
+  font-weight: 900;
+  font-size: 14px;
+  font-family: 'Inter Tight', sans-serif;
+}
+.financing .text { font-size: 14px; color: #003e29; flex: 1; }
+.financing .text strong { font-weight: 700; }
+.financing .text small { display: block; color: #267152; font-size: 11px; margin-top: 2px; }
+.financing .learn { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: #003e29; border-bottom: 1px solid #003e29; padding-bottom: 2px; font-weight: 700; }
+
+/* Color swatches PDP */
+.bb-section { display: flex; flex-direction: column; gap: 12px; }
+.bb-section .head { display: flex; justify-content: space-between; align-items: center; }
+.bb-section .head .label { font-family: var(--mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-3); }
+.bb-section .head .label strong { color: var(--ink); font-weight: 500; }
+.bb-section .head .link { font-family: var(--mono); font-size: 11px; letter-spacing: .15em; text-transform: uppercase; color: var(--ink); border-bottom: 1px solid var(--red); padding-bottom: 2px; display: inline-flex; align-items: center; gap: 6px; }
+.bb-section .head .link svg { width: 12px; height: 12px; }
+.color-swatches { display: flex; gap: 10px; flex-wrap: wrap; }
+.color-swatch {
+  width: 56px; height: 72px; border-radius: 10px; overflow: hidden;
+  border: 2px solid transparent; cursor: pointer; position: relative;
+  background: var(--bg-3);
+}
+.color-swatch.active { border-color: var(--ink); }
+.color-swatch:hover:not(.active) { border-color: var(--line-strong); }
+.color-swatch img { width: 100%; height: 100%; object-fit: cover; }
+.color-swatch .name {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: rgba(0,0,0,.78); color: #fff;
+  font-family: var(--mono); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; text-align: center;
+  padding: 3px 0;
+}
+
+/* Size grid */
+.size-grid {
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px;
+}
+.size-cell {
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px;
+  padding: 12px 4px; text-align: center;
+  font-family: var(--mono); font-size: 11px; font-weight: 500;
+  color: var(--ink);
+  cursor: pointer; transition: all .15s ease;
+  position: relative;
+}
+.size-cell:hover:not(.soldout):not(.active) { border-color: var(--ink); }
+.size-cell.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+.size-cell.low { border-color: var(--red); }
+.size-cell.low::after {
+  content: attr(data-low);
+  position: absolute; top: -8px; right: -4px;
+  background: var(--red); color: #fff;
+  font-family: var(--mono); font-size: 8px; letter-spacing: .05em;
+  padding: 2px 5px; border-radius: 999px; font-weight: 700;
+  text-transform: uppercase;
+  transform: scale(.85);
+}
+.size-cell.soldout { color: var(--ink-3); cursor: not-allowed; background: var(--bg-3); }
+.size-cell.soldout::before {
+  content: ""; position: absolute; inset: 50% 12% 50% 12%;
+  border-top: 1px solid var(--ink-3); transform: rotate(-12deg);
+}
+
+.urgency-line {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(227,33,30,.08); border: 1px solid rgba(227,33,30,.25);
+  padding: 10px 14px; border-radius: 10px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--red);
+  font-weight: 500;
+}
+.urgency-line .pulse {
+  width: 8px; height: 8px; border-radius: 999px; background: var(--red);
+  animation: pulse 1.6s ease infinite;
+}
+@keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(227,33,30,.7); } 50% { box-shadow: 0 0 0 8px rgba(227,33,30,0); } }
+
+/* Notify me */
+.notify-me {
+  display: flex; gap: 10px;
+  padding: 16px;
+  background: var(--bg-2); border: 1px dashed var(--line-strong); border-radius: 12px;
+}
+.notify-me input {
+  flex: 1; background: transparent; border: 0;
+  font-family: var(--body); color: var(--ink); font-size: 14px;
+  padding: 8px; outline: none;
+}
+.notify-me input::placeholder { color: var(--ink-3); }
+.notify-me button {
+  border: 0; background: var(--ink); color: #fff;
+  font-family: var(--body); font-size: 13px; font-weight: 600; letter-spacing: .04em;
+  padding: 10px 16px; border-radius: 8px;
+}
+
+/* CTA stack */
+.cta-stack { display: flex; flex-direction: column; gap: 10px; }
+.btn-atc {
+  background: var(--ink); color: #fff;
+  font-family: var(--body); font-size: 14px; letter-spacing: .04em; font-weight: 600;
+  padding: 20px 24px; border: 0; border-radius: 12px;
+  display: flex; justify-content: space-between; align-items: center;
+  transition: all .15s ease;
+  cursor: pointer;
+}
+.btn-atc:hover { background: var(--red); color: #fff; }
+.btn-atc .price { font-family: var(--display); font-size: 20px; font-weight: 800; letter-spacing: -.02em; }
+.btn-shoppay {
+  background: #5a31f4; color: #fff;
+  font-family: var(--body); font-weight: 700; font-size: 14px;
+  padding: 17px 24px; border: 0; border-radius: 12px;
+  cursor: pointer;
+}
+
+/* Trust strip */
+.trust-strip {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+}
+.trust-cell {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  text-align: center; padding: 6px;
+}
+.trust-cell svg { width: 22px; height: 22px; color: var(--ink); }
+.trust-cell .t { font-family: var(--mono); font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: var(--ink); }
+.trust-cell .s { font-size: 11px; color: var(--ink-3); }
+
+/* Accordion */
+.accordion { border-top: 1px solid var(--line); }
+.acc-item { border-bottom: 1px solid var(--line); }
+.acc-head {
+  width: 100%; background: transparent; border: 0; color: var(--ink);
+  text-align: left;
+  font-family: var(--mono); font-size: 12px; letter-spacing: .2em; text-transform: uppercase; font-weight: 500;
+  padding: 18px 0;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.acc-head .plus { color: var(--red); font-family: var(--display); font-size: 22px; line-height: 1; }
+.acc-body {
+  font-size: 14px; line-height: 1.65; color: var(--ink-2);
+  padding: 0 0 22px;
+}
+.acc-body ul { padding-left: 18px; margin: 6px 0 0; }
+.acc-body li { margin-bottom: 4px; }
+.acc-item.collapsed .acc-body { display: none; }
+.acc-head .plus::before { content: "+"; display: inline-block; transition: transform .2s ease; }
+.acc-item:not(.collapsed) .acc-head .plus::before { transform: rotate(45deg); }
+
+/* Model fit */
+.model-fit {
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: 12px;
+  padding: 16px;
+  display: grid; grid-template-columns: 56px 1fr; gap: 14px; align-items: center;
+}
+.model-fit .img { width: 56px; height: 56px; border-radius: 999px; overflow: hidden; background: var(--bg-3); }
+.model-fit .img img { width: 100%; height: 100%; object-fit: cover; }
+.model-fit .t { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-3); }
+.model-fit .v { font-size: 14px; color: var(--ink); margin-top: 4px; }
+
+/* Sticky mobile ATC */
+.sticky-atc {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+  background: rgba(0,0,0,.96); backdrop-filter: blur(20px);
+  border-top: 1px solid var(--line);
+  padding: 12px 16px;
+  display: none;
+  align-items: center; gap: 12px;
+}
+.sticky-atc .pic { width: 48px; height: 48px; border-radius: 8px; overflow: hidden; background: #1a1a1a; flex-shrink: 0; }
+.sticky-atc .pic img { width: 100%; height: 100%; object-fit: cover; }
+.sticky-atc .info { flex: 1; min-width: 0; }
+.sticky-atc .name { font-size: 12px; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sticky-atc .meta { font-family: var(--mono); font-size: 10px; color: var(--ink-3); letter-spacing: .08em; }
+.sticky-atc .btn-mini {
+  background: #fff; color: #000;
+  font-family: var(--mono); font-size: 11px; letter-spacing: .15em; text-transform: uppercase; font-weight: 700;
+  padding: 12px 18px; border: 0; border-radius: 999px;
+}
+
+/* Complete the look */
+.complete-look {
+  background: var(--bg-2);
+  border-top: 1px solid var(--line);
+}
+.complete-look .inner {
+  max-width: 1440px; margin: 0 auto; padding: 64px 32px;
+}
+.cl-grid {
+  display: grid; grid-template-columns: 1.2fr 1fr; gap: 36px; align-items: center;
+}
+.cl-art {
+  aspect-ratio: 4 / 5; border-radius: 18px; overflow: hidden; background: var(--bg-3); position: relative;
+}
+.cl-art img { width: 100%; height: 100%; object-fit: cover; }
+.cl-art .pin {
+  position: absolute; width: 28px; height: 28px; border-radius: 999px;
+  background: rgba(0,0,0,.85); border: 2px solid #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 12px; color: #fff;
+  cursor: pointer; transition: transform .15s ease;
+}
+.cl-art .pin:hover { transform: scale(1.15); }
+.cl-bundle .total {
+  display: flex; align-items: baseline; gap: 10px; margin-bottom: 18px;
+  font-family: var(--display); font-size: 36px; line-height: 1;
+}
+.cl-bundle .total .save { background: var(--red); color: #fff; font-family: var(--mono); font-size: 12px; letter-spacing: .15em; padding: 5px 10px; border-radius: 4px; font-weight: 700; }
+.cl-row {
+  display: grid; grid-template-columns: 64px 1fr 80px 28px; gap: 14px; align-items: center;
+  padding: 14px 0; border-bottom: 1px solid var(--line);
+}
+.cl-row:last-of-type { border-bottom: 0; }
+.cl-pic { width: 64px; height: 64px; border-radius: 10px; overflow: hidden; background: var(--bg-3); }
+.cl-pic img { width: 100%; height: 100%; object-fit: cover; }
+.cl-info .name { font-size: 13px; color: var(--ink); margin-bottom: 4px; line-height: 1.3; }
+.cl-info .opts { font-family: var(--mono); font-size: 10px; color: var(--ink-3); letter-spacing: .1em; text-transform: uppercase; }
+.cl-price { text-align: right; font-family: var(--mono); font-size: 13px; color: var(--ink); }
+.cl-check {
+  width: 22px; height: 22px; border-radius: 6px;
+  border: 1px solid var(--line-strong); background: transparent;
+  display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer;
+}
+.cl-check.on { background: var(--red); border-color: var(--red); }
+.cl-check.on::after { content: "✓"; color: #fff; font-size: 13px; }
+
+/* Reviews block (PDP) */
+.reviews-block { max-width: 1440px; margin: 0 auto; padding: 80px 32px; }
+.rb-head {
+  display: grid; grid-template-columns: 1fr 2fr; gap: 36px; margin-bottom: 32px; align-items: end;
+}
+.rb-summary .big { font-family: var(--display); font-size: 76px; line-height: 1; font-weight: 800; letter-spacing: -.035em; }
+.rb-summary .stars { color: var(--red); letter-spacing: 4px; font-size: 22px; }
+.rb-summary .label { font-family: var(--mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-3); margin-top: 8px; }
+.rb-bars { display: grid; gap: 6px; }
+.rb-bar { display: grid; grid-template-columns: 70px 1fr 50px; gap: 12px; align-items: center; font-family: var(--mono); font-size: 11px; color: var(--ink-2); }
+.rb-bar .fill { height: 6px; background: var(--line); border-radius: 999px; overflow: hidden; }
+.rb-bar .fill > i { display: block; height: 100%; background: var(--red); }
+
+.rb-photos { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+.rb-photos .ph { width: 96px; height: 96px; border-radius: 10px; overflow: hidden; background: var(--bg-3); cursor: pointer; }
+.rb-photos .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .2s ease; }
+.rb-photos .ph:hover img { transform: scale(1.08); }
+
+.rb-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+.rb-card {
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: 14px; padding: 22px;
+}
+.rb-card .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.rb-card .stars { color: var(--red); letter-spacing: 2px; font-size: 14px; }
+.rb-card .ver { font-family: var(--mono); font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: var(--green); }
+.rb-card h4 { font-size: 14px; margin: 0 0 6px; font-weight: 700; }
+.rb-card p { font-size: 14px; line-height: 1.55; color: var(--ink-2); margin: 0 0 12px; }
+.rb-card .who { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11px; color: var(--ink-3); }
+.rb-card .who strong { color: var(--ink); font-weight: 500; }
+
+/* Annotations layer */
+.annotate-toggle {
+  position: fixed; right: 16px; top: 70px; z-index: 90;
+  background: rgba(227,33,30,.95); color: #fff;
+  font-family: var(--mono); font-size: 10px; letter-spacing: .15em; text-transform: uppercase; font-weight: 700;
+  padding: 9px 14px; border: 0; border-radius: 999px; cursor: pointer;
+  display: flex; align-items: center; gap: 6px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.3);
+}
+.annotate-toggle .dot { width: 8px; height: 8px; border-radius: 999px; background: #fff; }
+.annotate-toggle.off { background: rgba(40,40,40,.92); color: var(--ink-2); }
+.annotate-toggle.off .dot { background: var(--ink-3); }
+
+.note {
+  position: absolute; z-index: 40;
+  background: rgba(227,33,30,.96); color: #fff;
+  font-family: var(--mono); font-size: 11px; letter-spacing: .08em;
+  padding: 8px 12px; border-radius: 6px;
+  max-width: 260px; line-height: 1.4;
+  box-shadow: 0 8px 24px rgba(0,0,0,.4);
+  border-left: 3px solid #fff;
+  pointer-events: none;
+}
+.note::before {
+  content: ""; position: absolute;
+  left: -10px; top: 14px;
+  border: 6px solid transparent;
+  border-right-color: rgba(227,33,30,.96);
+}
+.note.left::before { left: auto; right: -10px; border-right-color: transparent; border-left-color: rgba(227,33,30,.96); }
+body.no-annotations .note { display: none; }
+.note strong { font-weight: 700; }
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .hero { grid-template-columns: 1fr; gap: 24px; padding: 24px 24px 0; }
+  .hero-art { max-height: none; }
+  .hero-content { padding: 16px 4px 32px; }
+  .cat-tiles-grid { grid-template-columns: repeat(3, 1fr); }
+  .cat-tile.bigtall { grid-column: span 3; aspect-ratio: 16 / 7; }
+  .pdp-shell { grid-template-columns: 1fr; gap: 24px; }
+  .pdp-gallery { position: static; }
+  .feat-grid { grid-template-columns: repeat(2, 1fr); }
+  .reviews-inner { grid-template-columns: 1fr; gap: 24px; }
+  .reviews-rail { grid-template-columns: 1fr; }
+  .editorial { grid-template-columns: 1fr; }
+  .feed-grid { grid-template-columns: repeat(3, 1fr); }
+  .bt-feature { grid-template-columns: 1fr; }
+  .bt-art { aspect-ratio: 4 / 3; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .cl-grid { grid-template-columns: 1fr; }
+  .rb-list { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  .header-inner { grid-template-columns: 1fr 1fr; padding: 12px 16px; }
+  .nav-list { display: none; }
+  .search-pill { display: none; }
+  .section { padding: 56px 16px; }
+  .bt-feature { margin: 0 16px; }
+  .bt-content { padding: 36px 24px; }
+  .feed-grid { grid-template-columns: repeat(2, 1fr); }
+  .cat-tiles { padding: 56px 16px 16px; }
+  .cat-tiles-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .cat-tile.bigtall { grid-column: span 2; aspect-ratio: 16 / 9; }
+  .cat-tile.bigtall .lbl .n { font-size: 26px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer { padding: 48px 16px 24px; }
+  .pdp-shell { padding: 24px 16px 80px; }
+  .pdp-breadcrumb { padding: 14px 16px 0; }
+  .size-grid { grid-template-columns: repeat(4, 1fr); }
+  .trust-strip { grid-template-columns: 1fr; gap: 14px; padding: 14px 0; }
+  .trust-cell { flex-direction: row; justify-content: flex-start; text-align: left; gap: 14px; padding: 8px 12px; background: var(--bg-2); border-radius: 8px; }
+  .complete-look .inner { padding: 48px 16px; }
+  .reviews-block { padding: 56px 16px; }
+  .sticky-atc { display: flex; }
+  .pdp-shell .buy-box { padding-bottom: 100px; }
+  .concept-switch { top: 8px; }
+  .concept-switch button { padding: 6px 12px; font-size: 10px; }
+  .concept-switch .label { display: none; }
+  .annotate-toggle { top: 56px; right: 8px; }
+  .hero-content { padding: 36px 22px; }
+  .hero-foot { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .marquee { font-size: 18px; }
+  .editorial-card .meta { left: 18px; right: 18px; bottom: 18px; }
+  .reviews-head .big { font-size: 64px; }
+  .signup { padding: 56px 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="concept-switch">
+  <span class="label">Concept ▸</span>
+  <button class="active" data-view="home">Home</button>
+  <button data-view="pdp">PDP</button>
+</div>
+
+<button class="annotate-toggle" id="annotateToggle" aria-label="Toggle annotations">
+  <span class="dot"></span> CRO Notes
+</button>
+
+<!-- =========================================================
+     HOMEPAGE
+========================================================= -->
+<div class="page active" id="page-home">
+
+  <div class="promo-bar">
+    <strong>FREE SHIPPING</strong> ON ORDERS $500+ <span class="dot">•</span> <strong>50% OFF FROST ORIGINALS</strong>, ENDS SUNDAY <span class="dot">•</span> AFTERPAY 4-PAY AVAILABLE
+  </div>
+
+  <div class="header" style="position: relative;">
+    <div class="header-inner">
+      <div class="nav-list">
+        <a href="#" class="active">New</a>
+        <a href="#">Shop</a>
+        <a href="#" class="tall">Big &amp; Tall</a>
+        <a href="#">Sale</a>
+        <a href="#">Lookbook</a>
+      </div>
+      <a href="#" aria-label="Makobi home"><span class="logo-mark"></span></a>
+      <div class="header-tools">
+        <div class="search-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <span class="ph">Search jeans, sets, sizes...</span>
+          <kbd>⌘K</kbd>
+        </div>
+        <button class="icon-btn" aria-label="Account">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+        </button>
+        <button class="icon-btn" aria-label="Bag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="count">2</span>
+        </button>
+      </div>
+    </div>
+    <div class="note" style="left: 32px; bottom: -18px;"><strong>Big &amp; Tall</strong> elevated to primary nav (102K views/90d).</div>
+    <div class="note left" style="right: 32px; bottom: -18px;"><strong>Prominent search</strong> (124K /search views, 19x/user).</div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div>
+        <div class="hero-eyebrow">FALL '26 / DROP 01</div>
+        <h1 class="hero-title">
+          The set,<br>fully <span class="red">stacked.</span>
+        </h1>
+        <p class="hero-sub">M1054 Sartoni Denim Set in Dirt Wash. Chenille embroidery, plastisol design, 98% cotton 2% spandex. Sizes S to 5XL. Ships Friday.</p>
+        <div class="hero-meta">
+          <div class="hero-price">
+            $98.99
+            <span class="strike">$140.00</span>
+            <span class="save">SAVE 29%</span>
+          </div>
+          <div class="hero-ctas">
+            <button class="btn btn-primary">Shop The Set <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
+            <button class="btn btn-ghost">View Lookbook</button>
+          </div>
+        </div>
+      </div>
+      <div class="hero-foot">
+        <span><strong>4.8★</strong> &nbsp;2,184 reviews</span>
+        <span>SHIP FROM <strong>LA, CA</strong></span>
+        <span>4 PAYMENTS WITH <strong>AFTERPAY</strong></span>
+      </div>
+    </div>
+    <div class="hero-art">
+      <img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1054_DIRT_MODEL1_d6cf2180-46c1-42de-a000-24cefe0df6e8.jpg?v=1737663884" alt="">
+      <div class="hero-mark">Live drop. Limited run.</div>
+    </div>
+    <div class="note left" style="right: 56px; top: 72px;">Single-product editorial hero. Drives PDP intent rather than category guessing.</div>
+  </section>
+
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>FREE SHIPPING $500+</span><span class="dot">▲</span>
+      <span>30-DAY RETURNS</span><span class="dot">▲</span>
+      <span>SHIP TO U.S.</span><span class="dot">▲</span>
+      <span>4-PAY WITH AFTERPAY</span><span class="dot">▲</span>
+      <span>S TO 8XB BIG &amp; TALL</span><span class="dot">▲</span>
+      <span>FREE SHIPPING $500+</span><span class="dot">▲</span>
+      <span>30-DAY RETURNS</span><span class="dot">▲</span>
+      <span>SHIP TO U.S.</span><span class="dot">▲</span>
+      <span>4-PAY WITH AFTERPAY</span><span class="dot">▲</span>
+      <span>S TO 8XB BIG &amp; TALL</span>
+    </div>
+  </div>
+
+  <!-- CATEGORY TILES (kept from new theme) -->
+  <section class="cat-tiles">
+    <div class="section-head" style="margin-bottom: 22px;">
+      <div>
+        <div class="eyebrow">Shop by category</div>
+        <h2 class="section-title">Pick<br>your fit.</h2>
+      </div>
+      <a class="section-link" href="#">All categories →</a>
+    </div>
+    <div class="cat-tiles-grid">
+      <a href="#" class="cat-tile bigtall">
+        <img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1054_DIRT_MODEL1_d6cf2180-46c1-42de-a000-24cefe0df6e8.jpg?v=1737663884" alt="">
+        <div class="lbl"><div class="n">Big &amp; Tall</div><div class="c">240+ pieces</div></div>
+      </a>
+      <a href="#" class="cat-tile">
+        <img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1959_BLK-W_1MODEL.jpg?v=1778263439" alt="">
+        <div class="lbl"><div class="n">Stacked Denim</div><div class="c">38 pieces</div></div>
+      </a>
+      <a href="#" class="cat-tile">
+        <img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M398_LT-BLUE_MODEL1.jpg?v=1778263407" alt="">
+        <div class="lbl"><div class="n">Set-Ups</div><div class="c">24 pieces</div></div>
+      </a>
+      <a href="#" class="cat-tile">
+        <img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M369_RED_1MODEL.jpg?v=1780083827" alt="">
+        <div class="lbl"><div class="n">Tees &amp; Tops</div><div class="c">62 pieces</div></div>
+      </a>
+      <a href="#" class="cat-tile">
+        <img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/F1026_RED.jpg?v=1670566907" alt="">
+        <div class="lbl"><div class="n">Outerwear</div><div class="c">18 pieces</div></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- NEW ARRIVALS -->
+  <section class="section">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Just dropped</div>
+        <h2 class="section-title">New<br>Arrivals.</h2>
+      </div>
+      <a class="section-link" href="#">View all 42 →</a>
+    </div>
+    <div class="feat-grid">
+      <article class="product-card">
+        <span class="badge-tag new">New</span>
+        <button class="quick-add" aria-label="Quick add"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="img-wrap"><img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1054_BLK_MODEL1_d838e97a-61cb-4c9f-85d3-e8adaf387eaf.jpg?v=1737663885" alt=""></div>
+        <div class="meta">
+          <div class="title">M1054 Sartoni Denim Set</div>
+          <div class="rating"><span class="stars">★★★★★</span> 312</div>
+          <div class="price-row">
+            <span class="price">$98.99</span>
+            <span class="strike">$140.00</span>
+          </div>
+          <div class="swatches">
+            <span class="sw" style="background: #131313;"></span>
+            <span class="sw" style="background: #3a2419;"></span>
+            <span class="sw" style="background: #5a443a;"></span>
+            <span class="sw more">+3</span>
+          </div>
+        </div>
+      </article>
+      <article class="product-card">
+        <span class="badge-tag">-30%</span>
+        <button class="quick-add" aria-label="Quick add"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="img-wrap"><img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1959_DIRT_1MODEL.jpg?v=1778263439" alt=""></div>
+        <div class="meta">
+          <div class="title">M1959 Tesoro Stacked Jeans - Dirt</div>
+          <div class="rating"><span class="stars">★★★★★</span> 218</div>
+          <div class="price-row">
+            <span class="price">$79.99</span>
+            <span class="strike">$115.00</span>
+          </div>
+          <div class="swatches">
+            <span class="sw" style="background: #6f5d4b;"></span>
+            <span class="sw" style="background: #1a1a1a;"></span>
+            <span class="sw" style="background: #4a6f96;"></span>
+          </div>
+        </div>
+      </article>
+      <article class="product-card">
+        <span class="badge-tag new">New</span>
+        <button class="quick-add" aria-label="Quick add"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="img-wrap"><img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M369_RED_1MODEL.jpg?v=1780083827" alt=""></div>
+        <div class="meta">
+          <div class="title">M369 Good Luck Money Tee - Red</div>
+          <div class="rating"><span class="stars">★★★★★</span> 89</div>
+          <div class="price-row">
+            <span class="price">$49.99</span>
+            <span class="strike">$70.00</span>
+          </div>
+          <div class="swatches">
+            <span class="sw" style="background: var(--red);"></span>
+            <span class="sw" style="background: #f5f1e8;"></span>
+            <span class="sw" style="background: #6a5a3a;"></span>
+          </div>
+        </div>
+      </article>
+      <article class="product-card">
+        <span class="badge-tag">Low stock</span>
+        <button class="quick-add" aria-label="Quick add"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="img-wrap"><img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M398_LT-BLUE_MODEL1.jpg?v=1778263407" alt=""></div>
+        <div class="meta">
+          <div class="title">M398 Leone Short Set - Light Blue</div>
+          <div class="rating"><span class="stars">★★★★★</span> 167</div>
+          <div class="price-row">
+            <span class="price">$84.99</span>
+            <span class="strike">$120.00</span>
+          </div>
+          <div class="swatches">
+            <span class="sw" style="background: #9bb6cf;"></span>
+            <span class="sw" style="background: #1d2a3f;"></span>
+            <span class="sw" style="background: #4a5a3a;"></span>
+            <span class="sw" style="background: #1a1a1a;"></span>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="note" style="left: 32px; bottom: 50px;"><strong>Product cards now carry:</strong> swatches, reviews, quick-add, low-stock urgency.</div>
+  </section>
+
+  <!-- BIG & TALL FEATURE -->
+  <section style="padding: 40px 0 80px;">
+    <div class="bt-feature">
+      <div class="bt-content">
+        <div class="stamp">Sizes S → 8XB</div>
+        <div class="eyebrow">For the second-most-shopped category</div>
+        <h2 class="bt-title">Built for<br>every <span class="red">size.</span></h2>
+        <p class="bt-sub">From a slim 30/30 to an 8XB. Same designs, same fit philosophy, same drop calendar. 102,000 of you found this collection last quarter. We made it easier to find.</p>
+        <div class="size-chips">
+          <span class="size-chip">S</span>
+          <span class="size-chip">M</span>
+          <span class="size-chip">L</span>
+          <span class="size-chip">XL</span>
+          <span class="size-chip hot">2XL</span>
+          <span class="size-chip hot">3XL</span>
+          <span class="size-chip">4XL</span>
+          <span class="size-chip">5XL</span>
+          <span class="size-chip">6XL</span>
+          <span class="size-chip">7XL</span>
+          <span class="size-chip">8XB</span>
+        </div>
+        <div class="bt-stats">
+          <div class="bt-stat"><div class="v red">8XB</div><div class="k">Max size</div></div>
+          <div class="bt-stat"><div class="v">102K</div><div class="k">Shoppers/90d</div></div>
+          <div class="bt-stat"><div class="v">4.8★</div><div class="k">Avg rating</div></div>
+        </div>
+        <div class="hero-ctas" style="margin-top: 12px;">
+          <button class="btn btn-red">Shop Big &amp; Tall <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
+          <button class="btn btn-ghost">Fit Guide</button>
+        </div>
+      </div>
+      <div class="bt-art">
+        <img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1054_DIRT_MODEL1_d6cf2180-46c1-42de-a000-24cefe0df6e8.jpg?v=1737663884" alt="">
+      </div>
+    </div>
+    <div class="note" style="left: 56px; bottom: 100px;"><strong>Big &amp; Tall promoted.</strong> #2 traffic driver finally surfaced. Fit guide replaces the buried link.</div>
+  </section>
+
+  <!-- EDITORIAL -->
+  <section class="section">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow muted">Shop by category</div>
+        <h2 class="section-title">Built for<br>the daily grind.</h2>
+      </div>
+    </div>
+    <div class="editorial">
+      <a href="#" class="editorial-card">
+        <img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1959_BLK-W_1MODEL.jpg?v=1778263439" alt="">
+        <div class="meta">
+          <h3>Stacked<br>Denim.</h3>
+          <span class="pill">Shop 38 →</span>
+        </div>
+      </a>
+      <a href="#" class="editorial-card">
+        <img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/F304_BLK_MODEL1.jpg?v=1729885225" alt="">
+        <div class="meta">
+          <h3>The<br>Set-Ups.</h3>
+          <span class="pill">Shop 24 →</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- REVIEWS BAR -->
+  <section class="reviews-bar">
+    <div class="reviews-inner">
+      <div class="reviews-head">
+        <div class="big">4.8</div>
+        <div class="stars">★★★★★</div>
+        <div class="label">From 12,847 verified reviews</div>
+      </div>
+      <div class="reviews-rail">
+        <div class="review-card">
+          <div class="qrate"><span class="stars">★★★★★</span><span class="ver">Verified</span></div>
+          <p>"Fit is exactly what the size chart says. I'm 6'2 wearing the 34/34 stacked. Drape on the boot is perfect."</p>
+          <div class="who"><strong>Marcus D.</strong><span>M1959 Tesoro</span></div>
+        </div>
+        <div class="review-card">
+          <div class="qrate"><span class="stars">★★★★★</span><span class="ver">Verified</span></div>
+          <p>"Finally a streetwear brand that goes past 4XL and doesn't look like a tent. Sartoni set in 5XL is a 10."</p>
+          <div class="who"><strong>Devon K.</strong><span>M1054 Set</span></div>
+        </div>
+        <div class="review-card">
+          <div class="qrate"><span class="stars">★★★★☆</span><span class="ver">Verified</span></div>
+          <p>"Tee is heavyweight, embroidered detail is clean. Held up after 8 washes. Will reorder."</p>
+          <div class="who"><strong>Jay R.</strong><span>M369 Money Tee</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOP THE FEED -->
+  <section class="section">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">@makobiusa</div>
+        <h2 class="section-title">Shop the<br>feed.</h2>
+      </div>
+      <a class="section-link" href="#">Follow →</a>
+    </div>
+    <div class="feed-grid">
+      <a href="#" class="feed-tile"><img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M398_M-BLUE_MODEL1.jpg?v=1778263407" alt=""><span class="tag">M398 Set</span></a>
+      <a href="#" class="feed-tile"><img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M417_BLK_1MODEL.jpg?v=1778263425" alt=""><span class="tag">M417 Tee</span></a>
+      <a href="#" class="feed-tile"><img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M398_BLK_MODEL1.jpg?v=1778263407" alt=""><span class="tag">M398 Set</span></a>
+      <a href="#" class="feed-tile"><img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M382_BURG_1MODEL.jpg?v=1779482266" alt=""><span class="tag">M382 Tee</span></a>
+      <a href="#" class="feed-tile"><img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M398_OLV_MODEL1.jpg?v=1778263407" alt=""><span class="tag">M398 Set</span></a>
+      <a href="#" class="feed-tile"><img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1633_OLV_1copy.jpg?v=1686334379" alt=""><span class="tag">M1633 Sweat</span></a>
+    </div>
+  </section>
+
+  <!-- SIGNUP -->
+  <section class="signup">
+    <h2>20% off<br>the <span class="red">first drop</span>.</h2>
+    <p>Drop alerts, restocks, and Big &amp; Tall exclusives. No spam, no daily blasts. Just the things you'd actually buy.</p>
+    <form class="signup-form" onsubmit="event.preventDefault();">
+      <input type="email" placeholder="your@email.com" required>
+      <button type="submit">Send me 20% →</button>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="brand-block">
+          <div class="mark">
+            <span class="logo-mark"></span>
+            <h3>Makobi</h3>
+          </div>
+          <p>Curated lifestyle streetwear for the daily grind. Designed in Los Angeles, made for everywhere.</p>
+        </div>
+        <div>
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="#">New Arrivals</a></li>
+            <li><a href="#">Stacked Denim</a></li>
+            <li><a href="#">Set-Ups</a></li>
+            <li><a href="#">Big &amp; Tall</a></li>
+            <li><a href="#">Sale</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Help</h4>
+          <ul>
+            <li><a href="#">Size Guide</a></li>
+            <li><a href="#">Shipping</a></li>
+            <li><a href="#">Returns</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Track Order</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">Our Story</a></li>
+            <li><a href="#">Lookbook</a></li>
+            <li><a href="#">Stockists</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-meta">
+        <span>© 2026 Makobi Jeans USA</span>
+        <div class="pay-strip">
+          <span class="pay-chip">SHOP PAY</span>
+          <span class="pay-chip">VISA</span>
+          <span class="pay-chip">MASTER</span>
+          <span class="pay-chip">AMEX</span>
+          <span class="pay-chip">APPLE PAY</span>
+          <span class="pay-chip">G PAY</span>
+          <span class="pay-chip">PAYPAL</span>
+          <span class="pay-chip">KLARNA</span>
+        </div>
+        <span>Privacy · Terms · CCPA</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- =========================================================
+     PDP
+========================================================= -->
+<div class="page" id="page-pdp">
+
+  <div class="promo-bar">
+    <strong>FREE SHIPPING</strong> ON ORDERS $500+ <span class="dot">•</span> <strong>30-DAY RETURNS</strong> <span class="dot">•</span> AFTERPAY 4-PAY AVAILABLE
+  </div>
+
+  <div class="header">
+    <div class="header-inner">
+      <div class="nav-list">
+        <a href="#">New</a>
+        <a href="#" class="active">Shop</a>
+        <a href="#" class="tall">Big &amp; Tall</a>
+        <a href="#">Sale</a>
+        <a href="#">Lookbook</a>
+      </div>
+      <a href="#"><span class="logo-mark"></span></a>
+      <div class="header-tools">
+        <div class="search-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <span class="ph">Search jeans, sets, sizes...</span>
+          <kbd>⌘K</kbd>
+        </div>
+        <button class="icon-btn" aria-label="Account">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+        </button>
+        <button class="icon-btn" aria-label="Bag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="count">2</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="pdp-breadcrumb">
+    <a href="#">Shop</a><span class="sep">/</span>
+    <a href="#">Stacked Denim</a><span class="sep">/</span>
+    <span class="cur">M1999 Love Kills Jeans</span>
+  </div>
+
+  <div class="pdp-shell">
+    <!-- GALLERY -->
+    <div class="pdp-gallery">
+      <div class="pdp-gallery-main">
+        <img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/products/M1999_5.jpg?v=1755906047" alt="M1999 Love Kills Jeans">
+        <div class="photog">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12s3-7 10-7 10 7 10 7"/><circle cx="12" cy="12" r="3"/></svg>
+          Tap to zoom · 6 photos
+        </div>
+      </div>
+      <div class="pdp-thumbs">
+        <div class="pdp-thumb active"><img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/products/M1999_5.jpg?v=1755906047" alt=""></div>
+        <div class="pdp-thumb"><img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1959_DIRT_1MODEL.jpg?v=1778263439" alt=""></div>
+        <div class="pdp-thumb"><img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1959_BLK-W_1MODEL.jpg?v=1778263439" alt=""></div>
+        <div class="pdp-thumb"><img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1054_DIRT_MODEL1_d6cf2180-46c1-42de-a000-24cefe0df6e8.jpg?v=1737663884" alt=""></div>
+      </div>
+    </div>
+
+    <!-- BUY BOX -->
+    <div class="buy-box">
+      <div class="bb-eyebrow">
+        <span class="red">● In stock</span>
+        <span class="sep"></span>
+        <span>SKU M1999-DRT</span>
+        <span class="sep"></span>
+        <span>Ships within 24h</span>
+      </div>
+      <h1 class="bb-title">M1999 Love Kills Jeans</h1>
+      <div class="bb-rating">
+        <span class="stars">★★★★★</span>
+        <strong>4.8</strong> <span>(312 reviews)</span>
+        <span class="sep" style="background: var(--ink-3);"></span>
+        <a href="#reviews">Read reviews ↓</a>
+      </div>
+
+      <div class="bb-price-row">
+        <span class="bb-price">$98.99</span>
+        <span class="bb-strike">$140.00</span>
+        <span class="bb-save">SAVE 29%</span>
+      </div>
+
+      <div class="financing">
+        <div class="logo"><span class="mark">A</span> Afterpay</div>
+        <div class="text">
+          <strong>4 payments of $24.75</strong>
+          <small>0% interest. Available for orders up to $4,000.</small>
+        </div>
+        <a href="#" class="learn">Learn →</a>
+      </div>
+      <div class="note left" style="right: -16px; margin-top: -16px;"><strong>Afterpay restored</strong> from the old site (regression in new theme). Optional upgrade: Shop Pay Installments.</div>
+
+      <!-- Color -->
+      <div class="bb-section">
+        <div class="head">
+          <div class="label">Color · <strong>Dirt Wash</strong></div>
+        </div>
+        <div class="color-swatches">
+          <div class="color-swatch active">
+            <img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/products/M1999_5.jpg?v=1755906047" alt="">
+            <span class="name">Dirt</span>
+          </div>
+          <div class="color-swatch">
+            <img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1959_BLK-W_1MODEL.jpg?v=1778263439" alt="">
+            <span class="name">Black</span>
+          </div>
+          <div class="color-swatch">
+            <img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1959_LT-BLU_1MODEL.jpg?v=1778263439" alt="">
+            <span class="name">Light</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Size -->
+      <div class="bb-section">
+        <div class="head">
+          <div class="label">Size · <strong>Choose your waist/length</strong></div>
+          <a href="#" class="link">Size Guide
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 14H3"/><path d="M21 8H3"/><path d="M21 20H3"/></svg>
+          </a>
+        </div>
+        <div class="note" style="margin-bottom: -4px; position: relative;"><strong>Size Guide</strong> elevated next to the selector, not buried in description.</div>
+        <div class="size-grid">
+          <div class="size-cell soldout">30/32</div>
+          <div class="size-cell soldout">32/32</div>
+          <div class="size-cell">34/32</div>
+          <div class="size-cell">36/32</div>
+          <div class="size-cell soldout">38/32</div>
+          <div class="size-cell active">40/32</div>
+          <div class="size-cell low" data-low="Only 2">42/32</div>
+          <div class="size-cell">44/32</div>
+          <div class="size-cell soldout">46/34</div>
+          <div class="size-cell">48/34</div>
+          <div class="size-cell low" data-low="Only 1">50/34</div>
+          <div class="size-cell">54/34</div>
+        </div>
+        <div class="urgency-line"><span class="pulse"></span>Only 2 left in your size · 14 people viewing</div>
+      </div>
+
+      <!-- Sold out variant fallback -->
+      <div class="notify-me" style="display: none;" id="notifyMe">
+        <input type="email" placeholder="email@example.com">
+        <button>Notify me</button>
+      </div>
+
+      <!-- Model fit -->
+      <div class="model-fit">
+        <div class="img"><img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1959_BLK-W_1MODEL.jpg?v=1778263439" alt=""></div>
+        <div>
+          <div class="t">Fit reference</div>
+          <div class="v">Model is 6'1", chest 42", waist 34". Wearing size <strong>34/32</strong>.</div>
+        </div>
+      </div>
+      <div class="note left" style="margin-top: -16px; position: relative;"><strong>Model fit context</strong> close to the size selector.</div>
+
+      <!-- ATC stack -->
+      <div class="cta-stack">
+        <button class="btn-atc">
+          <span>Add To Cart</span>
+          <span class="price">$98.99</span>
+        </button>
+        <button class="btn-shoppay">Buy now with Shop Pay</button>
+      </div>
+
+      <!-- Trust -->
+      <div class="trust-strip">
+        <div class="trust-cell">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 16V7a2 2 0 0 1 2-2h11l5 5v6a2 2 0 0 1-2 2h-1"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+          <div class="t">Free shipping $500+</div>
+          <div class="s">2-5 day delivery</div>
+        </div>
+        <div class="trust-cell">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 4v5h5"/></svg>
+          <div class="t">30-day returns</div>
+          <div class="s">Free on first try</div>
+        </div>
+        <div class="trust-cell">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <div class="t">Secure checkout</div>
+          <div class="s">SSL · Apple/G Pay</div>
+        </div>
+      </div>
+
+      <!-- Accordion -->
+      <div class="accordion">
+        <div class="acc-item">
+          <button class="acc-head">Product Details <span class="plus"></span></button>
+          <div class="acc-body">
+            <ul>
+              <li>98% cotton, 2% spandex</li>
+              <li>Chenille embroidery with plastisol design</li>
+              <li>Stacked fit · ripped &amp; repair</li>
+              <li>Designed in Los Angeles · Imported</li>
+              <li>Style: M1999 · 2026 Fall-Winter</li>
+            </ul>
+          </div>
+        </div>
+        <div class="acc-item collapsed">
+          <button class="acc-head">Fit &amp; Sizing <span class="plus"></span></button>
+          <div class="acc-body">
+            Runs true to size. Sizes 30/32 through 54/34 available. We recommend ordering your usual waist + length. Stacked length gives a 2 to 3-inch bunch over your shoe.
+          </div>
+        </div>
+        <div class="acc-item collapsed">
+          <button class="acc-head">Shipping &amp; Returns <span class="plus"></span></button>
+          <div class="acc-body">
+            Free shipping on orders $500+ within the U.S. (2-5 business days). 30-day return window from delivery date. Sale items can be returned for store credit.
+          </div>
+        </div>
+        <div class="acc-item collapsed">
+          <button class="acc-head">Care Instructions <span class="plus"></span></button>
+          <div class="acc-body">
+            Wash cold inside out. Hang dry to preserve embroidery and color. Do not bleach. Iron on reverse if needed.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPLETE THE LOOK -->
+  <section class="complete-look">
+    <div class="inner">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Worn together</div>
+          <h2 class="section-title">Complete<br>the look.</h2>
+        </div>
+        <span class="section-link">Bundle &amp; save 12% →</span>
+      </div>
+
+      <div class="cl-grid">
+        <div class="cl-art">
+          <img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1054_DIRT_MODEL1_d6cf2180-46c1-42de-a000-24cefe0df6e8.jpg?v=1737663884" alt="">
+          <div class="pin" style="top: 32%; left: 50%;">1</div>
+          <div class="pin" style="top: 64%; left: 48%;">2</div>
+          <div class="pin" style="top: 50%; left: 28%;">3</div>
+        </div>
+        <div class="cl-bundle">
+          <div class="total">
+            <span>$229.97</span>
+            <span class="strike" style="font-family: var(--display); color: var(--ink-3); font-size: 22px; text-decoration: line-through;">$285.00</span>
+            <span class="save">BUNDLE -12%</span>
+          </div>
+          <div class="cl-row">
+            <div class="cl-pic"><img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/products/M1999_5.jpg?v=1755906047" alt=""></div>
+            <div class="cl-info">
+              <div class="name">M1999 Love Kills Jeans</div>
+              <div class="opts">Dirt · 40/32</div>
+            </div>
+            <div class="cl-price">$98.99</div>
+            <button class="cl-check on" aria-label="Selected"></button>
+          </div>
+          <div class="cl-row">
+            <div class="cl-pic"><img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M417_BLK_1MODEL.jpg?v=1778263425" alt=""></div>
+            <div class="cl-info">
+              <div class="name">M417 Tesoro T-Shirt</div>
+              <div class="opts">Black · L</div>
+            </div>
+            <div class="cl-price">$49.99</div>
+            <button class="cl-check on" aria-label="Selected"></button>
+          </div>
+          <div class="cl-row">
+            <div class="cl-pic"><img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/F5738_PUR.jpg?v=1646702339" alt=""></div>
+            <div class="cl-info">
+              <div class="name">F5738 Love Kills Hoodie</div>
+              <div class="opts">Purple · M</div>
+            </div>
+            <div class="cl-price">$80.99</div>
+            <button class="cl-check on" aria-label="Selected"></button>
+          </div>
+          <button class="btn-atc" style="margin-top: 18px;">
+            <span>Add Bundle To Cart</span>
+            <span class="price">Save $55.03</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS BLOCK -->
+  <section class="reviews-block" id="reviews">
+    <div class="rb-head">
+      <div class="rb-summary">
+        <div class="big">4.8</div>
+        <div class="stars">★★★★★</div>
+        <div class="label">From 312 verified reviews · 96% recommend</div>
+      </div>
+      <div class="rb-bars">
+        <div class="rb-bar"><span>5 ★</span><span class="fill"><i style="width: 82%;"></i></span><span>256</span></div>
+        <div class="rb-bar"><span>4 ★</span><span class="fill"><i style="width: 12%;"></i></span><span>37</span></div>
+        <div class="rb-bar"><span>3 ★</span><span class="fill"><i style="width: 4%;"></i></span><span>13</span></div>
+        <div class="rb-bar"><span>2 ★</span><span class="fill"><i style="width: 1.5%;"></i></span><span>4</span></div>
+        <div class="rb-bar"><span>1 ★</span><span class="fill"><i style="width: 0.8%;"></i></span><span>2</span></div>
+      </div>
+    </div>
+
+    <div class="eyebrow" style="margin-bottom: 12px; color: var(--ink-3);">Photo reviews (28)</div>
+    <div class="rb-photos">
+      <div class="ph"><img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1054_DIRT_MODEL1_d6cf2180-46c1-42de-a000-24cefe0df6e8.jpg?v=1737663884" alt=""></div>
+      <div class="ph"><img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1959_DIRT_1MODEL.jpg?v=1778263439" alt=""></div>
+      <div class="ph"><img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M398_M-BLUE_MODEL1.jpg?v=1778263407" alt=""></div>
+      <div class="ph"><img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1054_BLK_MODEL1_d838e97a-61cb-4c9f-85d3-e8adaf387eaf.jpg?v=1737663885" alt=""></div>
+      <div class="ph"><img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M398_BLK_MODEL1.jpg?v=1778263407" alt=""></div>
+      <div class="ph"><img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M398_OLV_MODEL1.jpg?v=1778263407" alt=""></div>
+      <div class="ph"><img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M417_KHA_1MODEL.jpg?v=1778263426" alt=""></div>
+    </div>
+
+    <div class="rb-list">
+      <div class="rb-card">
+        <div class="top"><span class="stars">★★★★★</span><span class="ver">Verified buyer</span></div>
+        <h4>The stack is exactly right.</h4>
+        <p>Ordered the 40/32 in Dirt. The wash is more dirty-blue than the photo suggests but I'm into it. Stack bunches twice on my Nikes. Embroidery looks expensive.</p>
+        <div class="who"><strong>Andre L.</strong><span>40/32 · Dirt · 2 weeks ago</span></div>
+      </div>
+      <div class="rb-card">
+        <div class="top"><span class="stars">★★★★★</span><span class="ver">Verified buyer</span></div>
+        <h4>Finally a 5XL that fits like a 5XL.</h4>
+        <p>Most brands lie about plus sizing. Makobi doesn't. The 50/34 fits my 50 waist with room. Stack on the leg actually stacks. Will reorder in Black.</p>
+        <div class="who"><strong>Devon K.</strong><span>50/34 · Dirt · 3 weeks ago</span></div>
+      </div>
+      <div class="rb-card">
+        <div class="top"><span class="stars">★★★★☆</span><span class="ver">Verified buyer</span></div>
+        <h4>Great fit, slightly long for 5'9.</h4>
+        <p>Quality is there. I'm 5'9 so the 32/32 still has too much stack for me. If you're under 5'10, size down one length.</p>
+        <div class="who"><strong>Jay R.</strong><span>32/32 · Dirt · 1 month ago</span></div>
+      </div>
+      <div class="rb-card">
+        <div class="top"><span class="stars">★★★★★</span><span class="ver">Verified buyer</span></div>
+        <h4>Held up after 6 washes.</h4>
+        <p>Embroidery is still tight, repair seams haven't pulled. 4-pay with Shop Pay made this easy. Already ordered the matching tee.</p>
+        <div class="who"><strong>Marcus D.</strong><span>34/32 · Dirt · 1 month ago</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STICKY MOBILE ATC -->
+  <div class="sticky-atc">
+    <div class="pic"><img src="https://cdn.shopify.com/s/files/1/0002/6666/6012/products/M1999_5.jpg?v=1755906047" alt=""></div>
+    <div class="info">
+      <div class="name">M1999 Love Kills Jeans</div>
+      <div class="meta">40/32 · Dirt · <strong style="color: #fff;">$98.99</strong></div>
+    </div>
+    <button class="btn-mini">Add</button>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="brand-block">
+          <div class="mark"><span class="logo-mark"></span><h3>Makobi</h3></div>
+          <p>Curated lifestyle streetwear for the daily grind. Designed in Los Angeles, made for everywhere.</p>
+        </div>
+        <div><h4>Shop</h4><ul><li><a href="#">New</a></li><li><a href="#">Stacked Denim</a></li><li><a href="#">Set-Ups</a></li><li><a href="#">Big &amp; Tall</a></li><li><a href="#">Sale</a></li></ul></div>
+        <div><h4>Help</h4><ul><li><a href="#">Size Guide</a></li><li><a href="#">Shipping</a></li><li><a href="#">Returns</a></li><li><a href="#">Contact</a></li><li><a href="#">Track Order</a></li></ul></div>
+        <div><h4>Company</h4><ul><li><a href="#">Our Story</a></li><li><a href="#">Lookbook</a></li><li><a href="#">Stockists</a></li><li><a href="#">Press</a></li><li><a href="#">Careers</a></li></ul></div>
+      </div>
+      <div class="footer-meta">
+        <span>© 2026 Makobi Jeans USA</span>
+        <div class="pay-strip">
+          <span class="pay-chip">SHOP PAY</span><span class="pay-chip">VISA</span><span class="pay-chip">MASTER</span><span class="pay-chip">AMEX</span><span class="pay-chip">APPLE PAY</span><span class="pay-chip">G PAY</span><span class="pay-chip">PAYPAL</span><span class="pay-chip">KLARNA</span>
+        </div>
+        <span>Privacy · Terms · CCPA</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  // Tab switch
+  const buttons = document.querySelectorAll('.concept-switch button');
+  const pages = document.querySelectorAll('.page');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const target = btn.dataset.view;
+      pages.forEach(p => p.classList.toggle('active', p.id === 'page-' + target));
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      try { history.replaceState(null, '', '#' + target); } catch(e){}
+    });
+  });
+
+  // Hash route
+  const hash = (location.hash || '').replace('#','');
+  if (hash === 'pdp' || hash === 'home') {
+    const btn = document.querySelector(`.concept-switch [data-view="${hash}"]`);
+    if (btn) btn.click();
+  }
+
+  // Annotations toggle
+  const at = document.getElementById('annotateToggle');
+  const KEY = 'makobi-annot-on';
+  let on = true;
+  try { on = localStorage.getItem(KEY) !== '0'; } catch(e){}
+  applyAnnot();
+  function applyAnnot(){
+    document.body.classList.toggle('no-annotations', !on);
+    at.classList.toggle('off', !on);
+    at.firstElementChild.nextSibling.textContent = on ? ' CRO Notes' : ' Show Notes';
+  }
+  at.addEventListener('click', () => {
+    on = !on;
+    try { localStorage.setItem(KEY, on ? '1' : '0'); } catch(e){}
+    applyAnnot();
+  });
+
+  // Accordion
+  document.querySelectorAll('.acc-head').forEach(h => {
+    h.addEventListener('click', () => h.closest('.acc-item').classList.toggle('collapsed'));
+  });
+
+  // Size cells
+  document.querySelectorAll('.size-cell').forEach(c => {
+    c.addEventListener('click', () => {
+      if (c.classList.contains('soldout')) {
+        const nm = document.getElementById('notifyMe');
+        if (nm) {
+          nm.style.display = 'flex';
+          nm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        return;
+      }
+      document.querySelectorAll('.size-cell.active').forEach(a => a.classList.remove('active'));
+      c.classList.add('active');
+    });
+  });
+
+  // Color swatches
+  document.querySelectorAll('.color-swatch').forEach(s => {
+    s.addEventListener('click', () => {
+      document.querySelectorAll('.color-swatch.active').forEach(a => a.classList.remove('active'));
+      s.classList.add('active');
+    });
+  });
+
+  // Bundle checks
+  document.querySelectorAll('.cl-check').forEach(c => {
+    c.addEventListener('click', () => c.classList.toggle('on'));
+  });
+})();
+</script>
+</body>
+</html>
