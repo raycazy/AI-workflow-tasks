@@ -1143,43 +1143,12 @@
       </div>
     </section>
 
-    <!-- 11. TRACKING -->
+    <!-- 11. BIG & TALL + SEARCH -->
     <section class="slide" data-slide="11">
       <div class="pad">
         <div class="top-row">
           <div class="brand"><div class="brand-mark"></div> MAKOBI / CRO REVIEW</div>
-          <div class="eyebrow">11 / Tracking gaps</div>
-        </div>
-        <h2 class="sub-display" style="margin-bottom: 18px;">Tag scan: <span class="accent">3 of 10</span> in place.</h2>
-        <p class="lede" style="margin-bottom: 24px;">Cross-verify in Tag Assistant since Shopify's Web Pixels Manager can hide tags from raw-HTML scans. But at minimum, confirm these before the new theme goes live.</p>
-
-        <table class="flat">
-          <thead>
-            <tr>
-              <th>Tag</th>
-              <th>Status (raw HTML)</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>Google Tag Manager</td><td><span class="badge" style="background: rgba(227,33,30,.12); color: var(--red-2);">Missing</span></td><td>Add GTM container. Migrate all other tags into it.</td></tr>
-            <tr><td>GA4</td><td><span class="badge green">Found</span></td><td>Move into GTM. Set up enhanced measurement.</td></tr>
-            <tr><td>Google Ads</td><td><span class="badge green">Found</span></td><td>Verify enhanced conversions + offline import.</td></tr>
-            <tr><td>Meta Pixel</td><td><span class="badge" style="background: rgba(227,33,30,.12); color: var(--red-2);">Missing</span></td><td><strong style="color: var(--ink);">Critical.</strong> Add via GTM + set up CAPI for iOS attribution.</td></tr>
-            <tr><td>Microsoft Clarity</td><td><span class="badge" style="background: rgba(227,33,30,.12); color: var(--red-2);">Missing</span></td><td>Add Clarity (free). Heatmaps will explain VP to ATC.</td></tr>
-            <tr><td>TikTok Pixel</td><td><span class="badge ghost">Missing</span></td><td>Add if TikTok ads are in roadmap.</td></tr>
-            <tr><td>Pinterest Tag</td><td><span class="badge ghost">Missing</span></td><td>Add if relevant.</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- 12. BIG & TALL + SEARCH -->
-    <section class="slide" data-slide="12">
-      <div class="pad">
-        <div class="top-row">
-          <div class="brand"><div class="brand-mark"></div> MAKOBI / CRO REVIEW</div>
-          <div class="eyebrow">12 / Underused assets</div>
+          <div class="eyebrow">11 / Underused assets</div>
         </div>
 
         <h2 class="sub-display" style="margin-bottom: 24px;">Two things hiding in plain sight.</h2>
@@ -1202,11 +1171,11 @@
     </section>
 
     <!-- 13. RETURNING USERS -->
-    <section class="slide" data-slide="13">
+    <section class="slide" data-slide="12">
       <div class="pad">
         <div class="top-row">
           <div class="brand"><div class="brand-mark"></div> MAKOBI / CRO REVIEW</div>
-          <div class="eyebrow">13 / Lifecycle</div>
+          <div class="eyebrow">12 / Loyalty</div>
         </div>
 
         <div class="grid cols-2" style="gap: 48px; align-items: center;">
@@ -1242,11 +1211,11 @@
     </section>
 
     <!-- 14. CLOSING -->
-    <section class="slide" data-slide="14">
+    <section class="slide" data-slide="13">
       <div class="pad">
         <div class="top-row">
           <div class="brand"><div class="brand-mark"></div> MAKOBI / CRO REVIEW</div>
-          <div class="eyebrow">14 / A/B test roadmap</div>
+          <div class="eyebrow">13 / A/B test roadmap</div>
         </div>
 
         <h2 class="sub-display" style="margin-bottom: 14px;">10 tests to run<br>after launch.</h2>
@@ -1381,7 +1350,7 @@
   </button>
   <div class="sep"></div>
   <button id="prev" aria-label="Previous slide">← Prev</button>
-  <div class="count">SLIDE <strong id="cur">1</strong> / <strong id="total">14</strong></div>
+  <div class="count">SLIDE <strong id="cur">1</strong> / <strong id="total">13</strong></div>
   <button id="next" aria-label="Next slide">Next →</button>
   <div class="sep"></div>
   <button class="theme-toggle" id="theme" aria-label="Toggle theme">
@@ -1558,20 +1527,19 @@
 
   // Slide index
   const slideMeta = [
-    { n: 1, label: 'Cover', sub: 'Looks good. Ship it right.', chip: 'Intro' },
+    { n: 1, label: 'Cover', sub: 'Recommendations before launch', chip: 'Intro' },
     { n: 2, label: 'TL;DR', sub: 'Three things matter first', chip: 'Summary' },
     { n: 3, label: 'Traffic reality', sub: 'US vs. bot countries', chip: 'Data' },
     { n: 4, label: 'The funnel', sub: 'All-traffic vs. mobile-only', chip: 'Funnel' },
     { n: 5, label: 'Mobile is the store', sub: '90% of real revenue', chip: 'Device' },
     { n: 6, label: 'Channels', sub: 'Where revenue actually comes from', chip: 'Channels' },
     { n: 7, label: 'Homepage', sub: 'Current vs. new', chip: 'Page' },
-    { n: 8, label: 'PDP', sub: 'Afterpay regression + verify gaps', chip: 'Page' },
+    { n: 8, label: 'PDP', sub: 'Launch blockers + gaps', chip: 'Page' },
     { n: 9, label: 'Collection', sub: 'Filter visibility + cards', chip: 'Page' },
     { n: 10, label: 'Pre-launch fixes', sub: 'Priority list', chip: 'Roadmap' },
-    { n: 11, label: 'Tracking gaps', sub: 'Pixel stack: 3 of 10', chip: 'Tracking' },
-    { n: 12, label: 'Underused assets', sub: 'Big & Tall + Search', chip: 'Opportunity' },
-    { n: 13, label: 'Loyalty signal', sub: '2.3% of users, 72% of revenue', chip: 'Insight' },
-    { n: 14, label: 'A/B test roadmap', sub: '10 tests to run after launch', chip: 'Tests' },
+    { n: 11, label: 'Underused assets', sub: 'Big & Tall + Search', chip: 'Opportunity' },
+    { n: 12, label: 'Loyalty signal', sub: '2.3% of users, 72% of revenue', chip: 'Insight' },
+    { n: 13, label: 'A/B test roadmap', sub: '10 tests to run after launch', chip: 'Tests' },
   ];
   const $indexBtn = document.getElementById('index-btn');
   const $indexOverlay = document.getElementById('index-overlay');
