@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<!--
+  EcomHouse network / referral deck (bilingual: English + Dansk, with in-deck language switch)
+  Brand system: pure black + yellow #F7D007, Inter, sentence case, monochrome.
+  Source of truth: brand-guides/ecomhouse/brand-guide.md
+  Placeholders: every {{TOKEN}} (rendered with the .ph dashed-yellow style) is listed in PLACEHOLDERS.md.
+  Navigate: arrow keys, on-screen arrows, dots, or the menu button.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcomHouse · How we work and the results we get</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; overflow: hidden; background: #000000; color: #EFEEEE; font-family: 'Inter', sans-serif; }
+
+        /* ===== ECOMHOUSE CHROME (fixed overlays on every slide) ===== */
+        .eh-brand { position: fixed; top: 22px; left: 24px; z-index: 90; pointer-events: none; display: flex; align-items: center; height: 22px; }
+        .eh-brand svg { height: 18px; width: auto; display: block; }
+        .eh-year { position: fixed; top: 24px; right: 24px; z-index: 90; font-size: 13px; font-weight: 500; color: #EFEEEE; pointer-events: none; }
+        .eh-copyright { position: fixed; bottom: 22px; left: 24px; z-index: 90; font-size: 11px; font-weight: 500; letter-spacing: 1.5px; color: #EFEEEE; pointer-events: none; }
+        .eh-pagenum { position: fixed; bottom: 22px; right: 24px; z-index: 90; font-size: 11px; font-weight: 500; letter-spacing: 1px; color: #EFEEEE; pointer-events: none; font-variant-numeric: tabular-nums; }
+
+        /* ===== SCROLL / CARD ===== */
+        .scroll-container { display: flex; height: 100vh; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+        .scroll-container::-webkit-scrollbar { display: none; }
+        .card { min-width: 100vw; width: 100vw; height: 100vh; scroll-snap-align: start; scroll-snap-stop: always; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 28px 48px 64px; position: relative; }
+
+        /* ===== TITLE / COVER SLIDE ===== */
+        .title-slide { background: #000; overflow: hidden; justify-content: flex-start !important; align-items: flex-start !important; padding: 120px 80px !important; }
+        .title-slide::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 1100px 700px at 84% 16%, rgba(247,208,7,.22), rgba(247,208,7,.07) 38%, transparent 72%), linear-gradient(180deg, #000 0%, #000 100%); }
+        .title-slide::after { content: ''; position: absolute; inset: 0; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='0.7'/></svg>"); opacity: 0.35; mix-blend-mode: overlay; pointer-events: none; }
+        .title-text { position: relative; z-index: 2; text-align: left; max-width: 1100px; }
+        .title-text h1 { font-size: 92px; font-weight: 900; letter-spacing: -0.035em; margin-bottom: 16px; line-height: 1.0; color: #fff; }
+        .title-text h1 .yellow { color: #F7D007; }
+        .title-text .sub { font-size: 17px; line-height: 1.6; color: #999999; font-weight: 400; margin-top: 22px; max-width: 680px; }
+        .title-pills { position: relative; z-index: 2; display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; }
+        .title-pill { font-size: 12px; font-weight: 600; letter-spacing: 1px; padding: 10px 18px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.15); border-radius: 8px; color: #EFEEEE; text-transform: uppercase; }
+        .title-meta { position: relative; z-index: 2; margin-top: 38px; }
+        .title-meta p { font-size: 13px; letter-spacing: 0.5px; color: #999999; font-weight: 400; }
+
+        /* ===== SECTION DIVIDER ===== */
+        .section-slide { background: #000; }
+        .section-slide::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(247,208,7,.05) 0%, transparent 60%); }
+        .section-number { font-size: 100px; font-weight: 200; color: rgba(247,208,7,.12); margin-bottom: 8px; position: relative; z-index: 1; font-family: 'Inter', sans-serif; letter-spacing: -0.04em; line-height: 1; }
+        .section-kicker { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: #F7D007; position: relative; z-index: 1; margin-bottom: 12px; font-weight: 700; }
+        .section-title { font-size: 64px; font-weight: 800; letter-spacing: -0.025em; position: relative; z-index: 1; margin-bottom: 16px; color: #fff; line-height: 1.0; text-align: center; }
+        .section-sub { font-size: 14px; color: #999999; position: relative; z-index: 1; max-width: 640px; text-align: center; line-height: 1.7; }
+
+        /* ===== CONTENT CARD HEADER ===== */
+        .card-header { text-align: center; margin-bottom: 30px; max-width: 820px; }
+        .card-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #F7D007; margin-bottom: 12px; font-weight: 700; }
+        .card-title { font-size: 44px; font-weight: 800; letter-spacing: -0.02em; color: #fff; line-height: 1.05; }
+        .card-subtitle { font-size: 14px; color: #999999; margin-top: 14px; line-height: 1.7; max-width: 700px; margin-left: auto; margin-right: auto; }
+
+        /* ===== CARD GRIDS ===== */
+        .source-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 980px; width: 100%; }
+        .grid-2 { grid-template-columns: repeat(2, 1fr); max-width: 880px; }
+        .source-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 24px 22px; }
+        .source-card .marker { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #F7D007; margin-bottom: 14px; font-weight: 700; text-transform: uppercase; }
+        .source-name { font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 10px; letter-spacing: -0.01em; }
+        .source-detail { font-size: 13px; color: #999999; line-height: 1.7; }
+        .source-detail strong { color: #F7D007; font-weight: 600; }
+
+        /* ===== FRAMEWORK (5-step row) ===== */
+        .framework-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; max-width: 1120px; width: 100%; }
+        .framework-grid .source-card { padding: 20px 16px; }
+        .framework-grid .source-name { font-size: 15px; }
+        .framework-grid .source-detail { font-size: 12px; }
+
+        /* ===== TOOLS PILLS ROW ===== */
+        .tools-row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 18px; }
+        .tool-pill { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 1px; padding: 8px 14px; border-radius: 20px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.12); color: #ccc; text-transform: uppercase; }
+
+        /* ===== COMPOUND FLOW ===== */
+        .compound-flow { display: flex; align-items: stretch; gap: 16px; max-width: 1020px; width: 100%; }
+        .compound-box { flex: 1; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 26px 22px; text-align: center; display: flex; flex-direction: column; justify-content: center; }
+        .compound-box.result { border: 1px solid rgba(247,208,7,.35); background: rgba(247,208,7,.06); flex: 1.2; }
+        .compound-box .clabel { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #F7D007; margin-bottom: 12px; font-weight: 700; }
+        .compound-box.result .clabel { color: #F7D007; }
+        .compound-box p { font-size: 13px; color: #ccc; line-height: 1.6; }
+        .compound-op { display: flex; align-items: center; justify-content: center; font-size: 30px; color: #555; font-weight: 200; min-width: 24px; }
+
+        /* ===== BIG STAT BLOCKS ===== */
+        .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 1000px; width: 100%; }
+        .stat-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 14px; padding: 38px 26px; text-align: center; }
+        .stat-value { font-size: 64px; font-weight: 800; color: #F7D007; line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; margin-bottom: 14px; }
+        .stat-metric { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: #fff; font-weight: 600; margin-bottom: 8px; }
+        .stat-context { font-size: 12px; color: #999999; line-height: 1.5; }
+
+        /* ===== CASE SPOTLIGHT ===== */
+        .case-impact { display: flex; align-items: center; gap: 16px; background: rgba(247,208,7,.06); border: 1px solid rgba(247,208,7,.22); border-radius: 12px; padding: 18px 24px; max-width: 1000px; width: 100%; margin-bottom: 18px; }
+        .case-impact .label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #999999; }
+        .case-impact .value { font-size: 24px; font-weight: 700; color: #F7D007; line-height: 1.1; }
+        .case-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 1000px; width: 100%; }
+        .case-block { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 24px; }
+        .case-block-title { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #F7D007; margin-bottom: 14px; font-weight: 700; }
+        .case-list { list-style: none; padding: 0; }
+        .case-list li { font-size: 13px; color: #ccc; line-height: 1.7; padding: 7px 0 7px 18px; position: relative; border-bottom: 1px solid rgba(255,255,255,.05); }
+        .case-list li:last-child { border-bottom: none; }
+        .case-list li::before { content: ''; position: absolute; left: 0; top: 14px; width: 6px; height: 6px; background: #F7D007; border-radius: 50%; opacity: .85; }
+
+        /* ===== CASE STUDY SLIDES ===== */
+        .cs-wrap { display: grid; grid-template-columns: 0.82fr 1fr; gap: 30px; max-width: 1180px; width: 100%; align-items: center; }
+        .cs-block { margin-bottom: 15px; }
+        .cs-block .lbl { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #F7D007; font-weight: 700; margin-bottom: 5px; }
+        .cs-block p { font-size: 13px; color: #ccc; line-height: 1.6; }
+        .cs-results { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+        .cs-chip { background: rgba(247,208,7,.08); border: 1px solid rgba(247,208,7,.25); border-radius: 8px; padding: 9px 13px; min-width: 78px; }
+        .cs-chip .v { font-size: 19px; font-weight: 800; color: #F7D007; line-height: 1; font-variant-numeric: tabular-nums; }
+        .cs-chip .k { font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: #999999; margin-top: 4px; }
+        .cs-shots { display: flex; gap: 16px; justify-content: center; }
+        .cs-shot { width: 50%; max-width: 224px; }
+        .cs-shot .cap { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #999999; margin-bottom: 8px; text-align: center; }
+        .cs-shot.win .cap { color: #F7D007; }
+        .cs-frame { height: 446px; border: 1px solid rgba(255,255,255,.12); border-radius: 12px; overflow: hidden; background: #0d0d0d; }
+        .cs-shot.win .cs-frame { border-color: rgba(247,208,7,.5); }
+        .cs-frame img { width: 100%; height: 100%; object-fit: cover; object-position: bottom center; display: block; }
+        @media (max-width: 900px) { .cs-wrap { grid-template-columns: 1fr; } .cs-frame { height: 300px; } }
+
+        /* ===== SELECTED WINS TABLE ===== */
+        .wins-table { width: 100%; max-width: 1040px; }
+        .wins-row { display: grid; grid-template-columns: 140px 1fr 132px 120px; gap: 14px; align-items: center; padding: 11px 18px; border-bottom: 1px solid rgba(255,255,255,.07); }
+        .wins-row.head { border-bottom: 1px solid rgba(255,255,255,.18); }
+        .wins-row.head span { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #6b7c75; font-weight: 600; }
+        .wins-row .brand { font-size: 13px; font-weight: 600; color: #fff; }
+        .wins-row .test { font-size: 13px; color: #999999; }
+        .wins-row .lift { font-size: 14px; font-weight: 700; color: #F7D007; text-align: right; font-variant-numeric: tabular-nums; }
+        .wins-row .mo { font-size: 13px; color: #ccc; text-align: right; font-variant-numeric: tabular-nums; }
+
+        /* ===== TESTIMONIALS ===== */
+        .quote-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 1040px; width: 100%; }
+        .quote-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 26px 22px; display: flex; flex-direction: column; }
+        .quote-mark { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 44px; line-height: 0.6; color: rgba(247,208,7,.5); height: 26px; }
+        .quote-text { font-size: 14px; color: #e6e6e6; line-height: 1.7; margin: 10px 0 20px; flex: 1; }
+        .quote-name { font-size: 13px; font-weight: 600; color: #fff; }
+        .quote-role { font-size: 12px; color: #999999; margin-top: 2px; }
+        .logo-strip { margin-top: 26px; max-width: 1040px; width: 100%; text-align: center; }
+        .logo-strip .strip-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #6b7c75; margin-bottom: 14px; }
+        .logo-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+        .logo-tile { height: 52px; min-width: 130px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 10px; padding: 0 18px; font-size: 12px; color: #6b7c75; }
+
+        /* ===== INSIGHT BOX ===== */
+        .insight-box { max-width: 980px; width: 100%; background: rgba(247,208,7,.08); border: 1px solid rgba(247,208,7,.25); border-radius: 10px; padding: 16px 22px; margin-top: 20px; font-size: 13px; color: #ccc; line-height: 1.7; }
+        .insight-box strong { color: #F7D007; font-weight: 600; }
+
+        /* ===== THANK YOU ===== */
+        .thankyou-slide { background: #000; overflow: hidden; justify-content: flex-start !important; align-items: flex-start !important; padding: 120px 80px !important; }
+        .thankyou-slide::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 1000px 640px at 30% 30%, rgba(247,208,7,.20), rgba(247,208,7,.05) 40%, transparent 72%); }
+        .ty-inner { position: relative; z-index: 2; max-width: 900px; }
+        .ty-title { font-size: 56px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.05; color: #fff; margin-bottom: 18px; }
+        .ty-sub { font-size: 16px; color: #999999; line-height: 1.7; max-width: 620px; margin-bottom: 10px; }
+        .ty-accent { font-size: 16px; color: #F7D007; line-height: 1.6; margin-top: 8px; font-weight: 500; }
+        .ty-cta-row { display: flex; gap: 14px; margin-top: 32px; flex-wrap: wrap; }
+        .eh-btn { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; border-radius: 6px; padding: 14px 24px; text-decoration: none; display: inline-block; transition: all .2s; cursor: pointer; }
+        .eh-btn.primary { background: #F7D007; color: #111111; border: 1px solid #F7D007; }
+        .eh-btn.primary:hover { background: #ffe23d; }
+        .eh-btn.secondary { background: transparent; color: #F7D007; border: 1px solid rgba(247,208,7,.4); }
+        .eh-btn.secondary:hover { background: rgba(247,208,7,.1); }
+        .ty-contact { margin-top: 30px; font-size: 13px; color: #999999; letter-spacing: 0.5px; }
+        .ty-powered { font-size: 11px; color: #6b7c75; letter-spacing: 1px; margin-top: 14px; }
+
+        /* ===== PLACEHOLDER STYLE (fill before sharing) ===== */
+        .ph { color: #F7D007; background: rgba(247,208,7,.10); border: 1px dashed rgba(247,208,7,.6); border-radius: 4px; padding: 0 6px; font-style: normal; white-space: nowrap; }
+        .stat-value .ph { font-size: 22px; font-weight: 700; letter-spacing: 0; white-space: normal; display: inline-block; line-height: 1.3; max-width: 100%; word-break: break-word; padding: 4px 8px; }
+        .card-title .ph, .case-impact .value .ph { white-space: normal; word-break: break-word; }
+
+        /* ===== NAV CONTROLS ===== */
+        .nav-controls { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); z-index: 95; display: flex; align-items: center; gap: 16px; }
+        .nav-menu-btn { display: flex; align-items: center; gap: 6px; height: 34px; padding: 0 14px; border: 1px solid #333; border-radius: 17px; background: rgba(0,0,0,.5); color: #fff; cursor: pointer; transition: all .3s; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; }
+        .nav-menu-btn:hover, .nav-menu-btn.open { border-color: #F7D007; background: rgba(247,208,7,.1); color: #F7D007; }
+        .nav-menu-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; }
+        .nav-dots { display: flex; gap: 4px; }
+        .nav-dot { width: 6px; height: 6px; border-radius: 50%; background: #333; cursor: pointer; transition: all .3s; }
+        .nav-dot.active { background: #F7D007; width: 18px; border-radius: 3px; }
+        .nav-arrows { display: flex; gap: 10px; }
+        .nav-arrow { width: 34px; height: 34px; border: 1px solid #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all .3s; background: rgba(0,0,0,.5); color: #fff; }
+        .nav-arrow:hover { border-color: #F7D007; background: rgba(247,208,7,.1); }
+        .nav-arrow svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+        .nav-menu-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 99; opacity: 0; pointer-events: none; transition: opacity .25s; }
+        .nav-menu-backdrop.open { opacity: 1; pointer-events: auto; }
+        .nav-menu { position: fixed; bottom: 70px; left: 50%; transform: translateX(-50%) translateY(20px); width: 640px; max-width: calc(100vw - 60px); max-height: 65vh; background: #1a1a1a; border: 1px solid rgba(247,208,7,.3); border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,.5); z-index: 110; display: flex; flex-direction: column; overflow: hidden; opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s; }
+        .nav-menu.open { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+        .nav-menu-header { padding: 16px 22px; border-bottom: 1px solid rgba(255,255,255,.08); display: flex; justify-content: space-between; align-items: center; }
+        .nav-menu-header .title { font-size: 14px; font-weight: 600; color: #fff; }
+        .nav-menu-header .close { background: none; border: none; color: #999999; cursor: pointer; padding: 4px 8px; font-size: 18px; line-height: 1; }
+        .nav-menu-header .close:hover { color: #F7D007; }
+        .nav-menu-content { padding: 14px 18px 18px; overflow-y: auto; flex: 1; }
+        .nav-menu-section { margin-bottom: 14px; }
+        .nav-menu-section-title { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #F7D007; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; padding: 6px 10px; margin-bottom: 4px; border-bottom: 1px solid rgba(247,208,7,.15); }
+        .nav-menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+        .nav-menu-item { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 6px; cursor: pointer; transition: background .15s; font-size: 12px; color: #ccc; }
+        .nav-menu-item:hover { background: rgba(247,208,7,.08); color: #fff; }
+        .nav-menu-item.active { background: rgba(247,208,7,.15); color: #F7D007; font-weight: 600; }
+        .nav-menu-item .num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #6b7c75; min-width: 24px; }
+        .nav-menu-item.active .num { color: #F7D007; }
+        .nav-menu-item .title { flex: 1; line-height: 1.3; }
+
+        .title-nav-hint { position: absolute; bottom: 40px; right: 80px; z-index: 2; display: flex; align-items: center; gap: 10px; color: #999999; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; animation: pulse 2s ease-in-out infinite; }
+        .title-nav-hint svg { width: 18px; height: 18px; stroke: #999999; fill: none; stroke-width: 2; }
+        @keyframes pulse { 0%,100% { opacity: .4; } 50% { opacity: 1; } }
+
+        @media (max-width: 900px) {
+            .title-text h1 { font-size: 56px; }
+            .section-title { font-size: 42px; }
+            .card-title { font-size: 30px; }
+            .framework-grid { grid-template-columns: repeat(2, 1fr); }
+            .source-grid, .stat-grid, .quote-grid, .case-cols { grid-template-columns: 1fr; }
+            .compound-flow { flex-direction: column; }
+            .stat-value { font-size: 48px; }
+        }
+
+        /* ===== PHONE (<=600px) ===== */
+        @media (max-width: 600px) {
+            /* Chrome: shrink and declutter so it never sits on top of content */
+            .eh-brand { top: 18px; left: 18px; }
+            .eh-brand svg { height: 15px; }
+            .eh-year { top: 19px; right: 18px; font-size: 11px; }
+            .eh-copyright { display: none; }              /* free the bottom band for the nav bar */
+            .eh-pagenum { bottom: 15px; right: 18px; font-size: 10px; }
+
+            /* Cards: clear the top wordmark and the bottom nav bar; top-align and allow vertical scroll for tall slides */
+            .card { padding: 58px 18px 80px; justify-content: flex-start; overflow-y: auto; }
+            .card-header { margin-bottom: 22px; max-width: 100%; }
+
+            /* Type down a notch */
+            .card-title { font-size: 26px; }
+            .card-subtitle { font-size: 13px; }
+            .section-title { font-size: 36px; }
+            .section-number { font-size: 72px; }
+            .stat-value { font-size: 44px; }
+
+            /* Single column for any remaining multi-column grids */
+            .framework-grid, .quote-grid, .grid-2 { grid-template-columns: 1fr; }
+
+            /* Cover and thank-you: smaller padding, vertical centre, no scroll hint */
+            .title-slide, .thankyou-slide { padding: 56px 22px 92px !important; justify-content: center !important; }
+            .title-text h1 { font-size: 44px; }
+            .title-text .sub { font-size: 15px; }
+            .title-pill { font-size: 11px; padding: 8px 14px; }
+            .title-nav-hint { display: none; }
+            .ty-title { font-size: 36px; }
+            .ty-cta-row .eh-btn { padding: 13px 20px; }
+
+            /* Nav bar: drop the dot strip so it stops overlapping the page number */
+            .nav-dots { display: none; }
+            .nav-controls { gap: 12px; bottom: 15px; }
+
+            /* Case slides: keep the two phone shots side by side but a touch shorter */
+            .cs-frame { height: 340px; }
+            .cs-results { gap: 8px; }
+            .cs-chip { min-width: 70px; padding: 8px 11px; }
+            .cs-chip .v { font-size: 17px; }
+
+            /* Selected wins table: collapse the fixed 4-column grid into a 2x2 block per row */
+            .wins-table { max-width: 100%; }
+            .wins-row.head { display: none; }
+            .wins-row { grid-template-columns: 1fr auto; gap: 2px 12px; padding: 12px 10px; }
+            .wins-row > *:nth-child(1) { grid-column: 1; grid-row: 1; }
+            .wins-row > *:nth-child(2) { grid-column: 1; grid-row: 2; }
+            .wins-row > *:nth-child(3) { grid-column: 2; grid-row: 1; }
+            .wins-row > *:nth-child(4) { grid-column: 2; grid-row: 2; }
+            .wins-row .test { font-size: 12px; }
+            .wins-row .mo { font-size: 12px; }
+        }
+        /* ===== I18N (language switch) ===== */
+        .l-da { display: none; }
+        .lang-da .l-da { display: inline; }
+        .lang-da .l-en { display: none; }
+        .lang-toggle { display: flex; border: 1px solid #333; border-radius: 17px; overflow: hidden; height: 34px; }
+        .lang-btn { background: rgba(0,0,0,.5); color: #999; border: none; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 1px; padding: 0 13px; transition: all .2s; }
+        .lang-btn.active { background: #F7D007; color: #111111; }
+        .lang-btn:not(.active):hover { color: #fff; }
+
+    </style>
+    <script>(function(){try{var s=localStorage.getItem("eh_deck_lang");var l=s||(((navigator.language||"en").toLowerCase().slice(0,2)==="da")?"da":"en");document.documentElement.className="lang-"+l;}catch(e){document.documentElement.className="lang-en";}})();</script>
+</head>
+
+<body>
+
+<!-- EcomHouse fixed chrome -->
+<div class="eh-brand" aria-label="EcomHouse">
+    <svg viewBox="0 0 163 18" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+        <path d="M-0.000187397 17.088V0.288012H12.6958V3.40801H3.86381V13.968H13.0078V17.088H-0.000187397ZM3.57581 10.08V7.05601H11.6638V10.08H3.57581ZM24.1414 17.376C22.8454 17.376 21.6374 17.168 20.5174 16.752C19.4134 16.32 18.4534 15.712 17.6374 14.928C16.8214 14.144 16.1814 13.224 15.7174 12.168C15.2694 11.112 15.0454 9.95201 15.0454 8.68801C15.0454 7.42401 15.2694 6.26401 15.7174 5.20801C16.1814 4.15201 16.8214 3.23201 17.6374 2.44801C18.4694 1.66401 19.4374 1.06401 20.5414 0.648011C21.6454 0.216012 22.8534 1.23978e-05 24.1654 1.23978e-05C25.6214 1.23978e-05 26.9334 0.256012 28.1014 0.768013C29.2854 1.26401 30.2774 2.00001 31.0774 2.97601L28.5814 5.28001C28.0054 4.62401 27.3654 4.13601 26.6614 3.81601C25.9574 3.48001 25.1894 3.31201 24.3574 3.31201C23.5734 3.31201 22.8534 3.44001 22.1974 3.69601C21.5414 3.95201 20.9734 4.32001 20.4934 4.80001C20.0134 5.28001 19.6374 5.84801 19.3654 6.50401C19.1094 7.16001 18.9814 7.88801 18.9814 8.68801C18.9814 9.48801 19.1094 10.216 19.3654 10.872C19.6374 11.528 20.0134 12.096 20.4934 12.576C20.9734 13.056 21.5414 13.424 22.1974 13.68C22.8534 13.936 23.5734 14.064 24.3574 14.064C25.1894 14.064 25.9574 13.904 26.6614 13.584C27.3654 13.248 28.0054 12.744 28.5814 12.072L31.0774 14.376C30.2774 15.352 29.2854 16.096 28.1014 16.608C26.9334 17.12 25.6134 17.376 24.1414 17.376ZM40.8786 17.376C39.5506 17.376 38.3186 17.16 37.1826 16.728C36.0626 16.296 35.0866 15.688 34.2546 14.904C33.4386 14.12 32.7986 13.2 32.3346 12.144C31.8866 11.088 31.6626 9.93601 31.6626 8.68801C31.6626 7.44001 31.8866 6.28801 32.3346 5.23201C32.7986 4.17601 33.4466 3.25601 34.2786 2.47201C35.1106 1.68801 36.0866 1.08001 37.2066 0.648011C38.3266 0.216012 39.5426 1.23978e-05 40.8546 1.23978e-05C42.1826 1.23978e-05 43.3986 0.216012 44.5026 0.648011C45.6226 1.08001 46.5906 1.68801 47.4066 2.47201C48.2386 3.25601 48.8866 4.17601 49.3506 5.23201C49.8146 6.27201 50.0466 7.42401 50.0466 8.68801C50.0466 9.93601 49.8146 11.096 49.3506 12.168C48.8866 13.224 48.2386 14.144 47.4066 14.928C46.5906 15.696 45.6226 16.296 44.5026 16.728C43.3986 17.16 42.1906 17.376 40.8786 17.376ZM40.8546 14.064C41.6066 14.064 42.2946 13.936 42.9186 13.68C43.5586 13.424 44.1186 13.056 44.5986 12.576C45.0786 12.096 45.4466 11.528 45.7026 10.872C45.9746 10.216 46.1106 9.48801 46.1106 8.68801C46.1106 7.88801 45.9746 7.16001 45.7026 6.50401C45.4466 5.84801 45.0786 5.28001 44.5986 4.80001C44.1346 4.32001 43.5826 3.95201 42.9426 3.69601C42.3026 3.44001 41.6066 3.31201 40.8546 3.31201C40.1026 3.31201 39.4066 3.44001 38.7666 3.69601C38.1426 3.95201 37.5906 4.32001 37.1106 4.80001C36.6306 5.28001 36.2546 5.84801 35.9826 6.50401C35.7266 7.16001 35.5986 7.88801 35.5986 8.68801C35.5986 9.47201 35.7266 10.2 35.9826 10.872C36.2546 11.528 36.6226 12.096 37.0866 12.576C37.5666 13.056 38.1266 13.424 38.7666 13.68C39.4066 13.936 40.1026 14.064 40.8546 14.064ZM52.9686 17.088V0.288012H56.1846L63.3366 12.144H61.6326L68.6646 0.288012H71.8566L71.9046 17.088H68.2566L68.2326 5.88001H68.9046L63.2886 15.312H61.5366L55.8006 5.88001H56.6166V17.088H52.9686Z" fill="#F7D007"/>
+        <path d="M87.4104 17.088V0.288012H91.2984V17.088H87.4104ZM75.8904 17.088V0.288012H79.7784V17.088H75.8904ZM79.4904 10.2V6.91201H87.6984V10.2H79.4904ZM103.433 17.376C102.105 17.376 100.873 17.16 99.7373 16.728C98.6173 16.296 97.6413 15.688 96.8092 14.904C95.9933 14.12 95.3533 13.2 94.8893 12.144C94.4413 11.088 94.2173 9.93601 94.2173 8.68801C94.2173 7.44001 94.4413 6.28801 94.8893 5.23201C95.3533 4.17601 96.0013 3.25601 96.8333 2.47201C97.6653 1.68801 98.6413 1.08001 99.7613 0.648011C100.881 0.216012 102.097 1.23978e-05 103.409 1.23978e-05C104.737 1.23978e-05 105.953 0.216012 107.057 0.648011C108.177 1.08001 109.145 1.68801 109.961 2.47201C110.793 3.25601 111.441 4.17601 111.905 5.23201C112.369 6.27201 112.601 7.42401 112.601 8.68801C112.601 9.93601 112.369 11.096 111.905 12.168C111.441 13.224 110.793 14.144 109.961 14.928C109.145 15.696 108.177 16.296 107.057 16.728C105.953 17.16 104.745 17.376 103.433 17.376ZM103.409 14.064C104.161 14.064 104.849 13.936 105.473 13.68C106.113 13.424 106.673 13.056 107.153 12.576C107.633 12.096 108.001 11.528 108.257 10.872C108.529 10.216 108.665 9.48801 108.665 8.68801C108.665 7.88801 108.529 7.16001 108.257 6.50401C108.001 5.84801 107.633 5.28001 107.153 4.80001C106.689 4.32001 106.137 3.95201 105.497 3.69601C104.857 3.44001 104.161 3.31201 103.409 3.31201C102.657 3.31201 101.961 3.44001 101.321 3.69601C100.697 3.95201 100.145 4.32001 99.6653 4.80001C99.1853 5.28001 98.8093 5.84801 98.5373 6.50401C98.2813 7.16001 98.1533 7.88801 98.1533 8.68801C98.1533 9.47201 98.2813 10.2 98.5373 10.872C98.8093 11.528 99.1773 12.096 99.6413 12.576C100.121 13.056 100.681 13.424 101.321 13.68C101.961 13.936 102.657 14.064 103.409 14.064ZM122.987 17.376C120.603 17.376 118.739 16.712 117.395 15.384C116.051 14.056 115.379 12.16 115.379 9.69601V0.288012H119.267V9.55201C119.267 11.152 119.595 12.304 120.251 13.008C120.907 13.712 121.827 14.064 123.011 14.064C124.195 14.064 125.115 13.712 125.771 13.008C126.427 12.304 126.755 11.152 126.755 9.55201V0.288012H130.595V9.69601C130.595 12.16 129.923 14.056 128.579 15.384C127.235 16.712 125.371 17.376 122.987 17.376ZM139.957 17.376C138.613 17.376 137.325 17.2 136.093 16.848C134.861 16.48 133.869 16.008 133.117 15.432L134.437 12.504C135.157 13.016 136.005 13.44 136.981 13.776C137.973 14.096 138.973 14.256 139.981 14.256C140.749 14.256 141.365 14.184 141.829 14.04C142.309 13.88 142.661 13.664 142.885 13.392C143.109 13.12 143.221 12.808 143.221 12.456C143.221 12.008 143.045 11.656 142.693 11.4C142.341 11.128 141.877 10.912 141.301 10.752C140.725 10.576 140.085 10.416 139.381 10.272C138.693 10.112 137.997 9.92001 137.293 9.69601C136.605 9.47201 135.973 9.18401 135.397 8.83201C134.821 8.48001 134.349 8.01601 133.981 7.44001C133.629 6.86401 133.453 6.12801 133.453 5.23201C133.453 4.27201 133.709 3.40001 134.221 2.61601C134.749 1.81601 135.533 1.18401 136.573 0.720012C137.629 0.240012 138.949 1.23978e-05 140.533 1.23978e-05C141.589 1.23978e-05 142.629 0.128012 143.653 0.384012C144.677 0.624012 145.581 0.992012 146.365 1.48801L145.165 4.44001C144.381 3.99201 143.597 3.66401 142.813 3.45601C142.029 3.23201 141.261 3.12001 140.509 3.12001C139.757 3.12001 139.141 3.20801 138.661 3.38401C138.181 3.56001 137.837 3.79201 137.629 4.08001C137.421 4.35201 137.317 4.67201 137.317 5.04001C137.317 5.47201 137.493 5.82401 137.845 6.09601C138.197 6.35201 138.661 6.56001 139.237 6.72001C139.813 6.88001 140.445 7.04001 141.133 7.20001C141.837 7.36001 142.533 7.54401 143.221 7.75201C143.925 7.96001 144.565 8.24001 145.141 8.59201C145.717 8.94401 146.181 9.40801 146.533 9.98401C146.901 10.56 147.085 11.288 147.085 12.168C147.085 13.112 146.821 13.976 146.293 14.76C145.765 15.544 144.973 16.176 143.917 16.656C142.877 17.136 141.557 17.376 139.957 17.376ZM149.742 17.088V0.288012H162.438V3.40801H153.606V13.968H162.75V17.088H149.742ZM153.318 10.08V7.05601H161.406V10.08H153.318Z" fill="#EFEEEE"/>
+    </svg>
+</div>
+<div class="eh-year">2026</div>
+<div class="eh-copyright">ECOMHOUSE ©ALL RIGHTS RESERVED</div>
+<div class="eh-pagenum" id="ehPageNum">01</div>
+
+<main class="scroll-container" id="scrollContainer" role="main" aria-label="EcomHouse deck slides">
+
+    <!-- 00 COVER -->
+    <div class="title-slide card" data-index="0">
+        <div class="title-text">
+            <h1><span class="l-en">From gut feelings<br>to <span class="yellow">more sales.</span></span><span class="l-da">Fra gut feelings<br>til <span class="yellow">mere salg.</span></span></h1>
+            <p class="sub"><span class="l-en">We help ecommerce brands understand why visitors do not convert, and turn data into actions that grow sales.</span><span class="l-da">Vi hjælper ecommerce brands med at forstå hvorfor besøgende ikke konverterer, og omsætter data til handlinger der øger salget.</span></p>
+        </div>
+        <div class="title-pills">
+            <span class="title-pill">CRO &amp; Analytics</span>
+            <span class="title-pill">A/B Testing</span>
+            <span class="title-pill"><span class="l-en">Data, not guesswork</span><span class="l-da">Data, ikke gætværk</span></span>
+        </div>
+        <div class="title-meta">
+            <p><span class="l-en">Copenhagen, Denmark&nbsp;&nbsp;·&nbsp;&nbsp;ecomhouse.dk&nbsp;&nbsp;·&nbsp;&nbsp;2026</span><span class="l-da">København, Danmark&nbsp;&nbsp;·&nbsp;&nbsp;ecomhouse.dk&nbsp;&nbsp;·&nbsp;&nbsp;2026</span></p>
+        </div>
+        <div class="title-nav-hint">Scroll <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </div>
+
+    <!-- 01 THE GAP -->
+    <div class="card" data-index="1">
+        <div class="card-header">
+            <div class="card-label"><span class="l-en">The problem</span><span class="l-da">Problemet</span></div>
+            <div class="card-title"><span class="l-en">Most of your traffic never converts.</span><span class="l-da">Det meste af din trafik konverterer aldrig.</span></div>
+            <div class="card-subtitle"><span class="l-en">You pay for every visitor. The majority leave without buying. The gap between traffic and conversion is where revenue quietly leaks.</span><span class="l-da">Du betaler for hver besøgende. De fleste forlader siden uden at købe. Gabet mellem trafik og konvertering er der hvor omsætningen stille siver væk.</span></div>
+        </div>
+        <div class="source-grid">
+            <div class="source-card">
+                <div class="marker">// 01</div>
+                <div class="source-name"><span class="l-en">A leaking funnel</span><span class="l-da">En utæt funnel</span></div>
+                <div class="source-detail"><span class="l-en">Visitors arrive, browse, and drop off before checkout. Every lost step is paid traffic that never turns into <strong>revenue</strong>.</span><span class="l-da">Besøgende lander, kigger rundt og falder fra inden checkout. Hvert tabt trin er betalt trafik der aldrig bliver til <strong>omsætning</strong>.</span></div>
+            </div>
+            <div class="source-card">
+                <div class="marker">// 02</div>
+                <div class="source-name"><span class="l-en">Optimization by guesswork</span><span class="l-da">Optimering på gætværk</span></div>
+                <div class="source-detail"><span class="l-en">Changes get shipped on opinion and gut feeling. Without <strong>evidence</strong>, half the effort moves nothing.</span><span class="l-da">Ændringer bliver lanceret på holdninger og mavefornemmelse. Uden <strong>data</strong> flytter halvdelen af indsatsen ingenting.</span></div>
+            </div>
+            <div class="source-card">
+                <div class="marker">// 03</div>
+                <div class="source-name"><span class="l-en">Every visit is paid for</span><span class="l-da">Hvert besøg koster penge</span></div>
+                <div class="source-detail"><span class="l-en">Whether from ads, SEO, or email, traffic is never free. When it does not convert, that spend is <strong>wasted</strong>.</span><span class="l-da">Uanset om trafikken kommer fra annoncer, SEO eller email, er den aldrig gratis. Når den ikke konverterer, er den investering <strong>spildt</strong>.</span></div>
+            </div>
+        </div>
+        <div class="insight-box"><span class="l-en">The fix is rarely more traffic. It is converting more of the traffic you already pay for, then scaling what works.</span><span class="l-da">Løsningen er sjældent mere trafik. Det er at konvertere mere af den trafik du allerede betaler for, og så skalere det der virker.</span></div>
+    </div>
+
+    <!-- 02 WHAT WE DO -->
+    <div class="card" data-index="2">
+        <div class="card-header">
+            <div class="card-label"><span class="l-en">Why CRO</span><span class="l-da">Derfor CRO</span></div>
+            <div class="card-title"><span class="l-en">More revenue from the traffic you already have.</span><span class="l-da">Mere omsætning fra den trafik du allerede har.</span></div>
+            <div class="card-subtitle"><span class="l-en">Conversion optimization turns more of your existing visitors into buyers. No extra ad budget required.</span><span class="l-da">Konverteringsoptimering gør flere af dine nuværende besøgende til købere. Uden ekstra annoncebudget.</span></div>
+        </div>
+        <div class="source-grid grid-2">
+            <div class="source-card">
+                <div class="marker">// 01</div>
+                <div class="source-name"><span class="l-en">Find the why</span><span class="l-da">Find årsagen</span></div>
+                <div class="source-detail"><span class="l-en">Analytics, behavioral research, and customer surveys reveal exactly where and why visitors <strong>drop off</strong>.</span><span class="l-da">Analytics, adfærdsresearch og kundeundersøgelser viser præcist hvor og hvorfor besøgende <strong>falder fra</strong>.</span></div>
+            </div>
+            <div class="source-card">
+                <div class="marker">// 02</div>
+                <div class="source-name"><span class="l-en">Fix what matters</span><span class="l-da">Ret det der betyder noget</span></div>
+                <div class="source-detail"><span class="l-en">We turn those insights into A/B tested changes that lift conversion, then keep what <strong>wins</strong>.</span><span class="l-da">Vi omsætter indsigterne til A/B testede ændringer der løfter konverteringen, og beholder det der <strong>vinder</strong>.</span></div>
+            </div>
+        </div>
+        <div class="insight-box"><span class="l-en">No new traffic required. We unlock revenue that is already walking through your door.</span><span class="l-da">Ingen ny trafik nødvendig. Vi frigør omsætning der allerede går ind ad døren.</span></div>
+    </div>
+
+    <!-- 03 SECTION: HOW WE WORK -->
+    <div class="card section-slide" data-index="3">
+        <div class="section-number">01</div>
+        <div class="section-kicker"><span class="l-en">Methodology</span><span class="l-da">Metode</span></div>
+        <div class="section-title"><span class="l-en">How we work.</span><span class="l-da">Sådan arbejder vi.</span></div>
+        <div class="section-sub"><span class="l-en">A structured approach based on data, not guesswork. The same loop runs on every engagement.</span><span class="l-da">En struktureret tilgang baseret på data, ikke gætværk. Det samme loop kører på hvert samarbejde.</span></div>
+    </div>
+
+    <!-- 04 THE FRAMEWORK -->
+    <div class="card" data-index="4">
+        <div class="card-header">
+            <div class="card-label">Framework</div>
+            <div class="card-title"><span class="l-en">Problem to outcome, every time.</span><span class="l-da">Fra problem til resultat, hver gang.</span></div>
+            <div class="card-subtitle"><span class="l-en">Five steps from question to result. No step skipped, no decision left to opinion.</span><span class="l-da">Fem trin fra spørgsmål til resultat. Intet trin springes over, ingen beslutning overlades til mening.</span></div>
+        </div>
+        <div class="framework-grid">
+            <div class="source-card">
+                <div class="marker">// 01</div>
+                <div class="source-name">Problem</div>
+                <div class="source-detail"><span class="l-en">We define exactly where visitors fail to convert, in numbers.</span><span class="l-da">Vi definerer præcist hvor besøgende ikke konverterer, i tal.</span></div>
+            </div>
+            <div class="source-card">
+                <div class="marker">// 02</div>
+                <div class="source-name"><span class="l-en">Insight</span><span class="l-da">Indsigt</span></div>
+                <div class="source-detail"><span class="l-en">Data reveals where and why users drop. We find the biggest opportunities.</span><span class="l-da">Data afslører hvor og hvorfor brugerne falder fra. Vi finder de største muligheder.</span></div>
+            </div>
+            <div class="source-card">
+                <div class="marker">// 03</div>
+                <div class="source-name"><span class="l-en">Method</span><span class="l-da">Metode</span></div>
+                <div class="source-detail"><span class="l-en">We combine analytics, qualitative research, A/B testing, and best practice.</span><span class="l-da">Vi kombinerer analytics, kvalitativ research, A/B test og best practice.</span></div>
+            </div>
+            <div class="source-card">
+                <div class="marker">// 04</div>
+                <div class="source-name"><span class="l-en">Action</span><span class="l-da">Handling</span></div>
+                <div class="source-detail"><span class="l-en">Concrete optimizations get built and tested, not just recommended.</span><span class="l-da">Konkrete optimeringer bliver bygget og testet, ikke bare anbefalet.</span></div>
+            </div>
+            <div class="source-card">
+                <div class="marker">// 05</div>
+                <div class="source-name"><span class="l-en">Outcome</span><span class="l-da">Resultat</span></div>
+                <div class="source-detail"><span class="l-en">Higher conversion rate, better AOV, and measurable revenue you can bank.</span><span class="l-da">Højere konverteringsrate, bedre AOV og målbar omsætning du kan tage i banken.</span></div>
+            </div>
+        </div>
+        <div class="insight-box"><span class="l-en">Evidence in, optimizations out. Every change is measured, so you always know what moved the number.</span><span class="l-da">Data ind, optimeringer ud. Hver ændring bliver målt, så du altid ved hvad der flyttede tallet.</span></div>
+    </div>
+
+    <!-- 05 RESEARCH & ANALYTICS -->
+    <div class="card" data-index="5">
+        <div class="card-header">
+            <div class="card-label">Research &amp; Analytics</div>
+            <div class="card-title"><span class="l-en">Find out why visitors do not convert.</span><span class="l-da">Find ud af hvorfor besøgende ikke konverterer.</span></div>
+            <div class="card-subtitle"><span class="l-en">We turn raw behavior into a clear map of where revenue leaks and how to recover it.</span><span class="l-da">Vi omsætter rå adfærd til et klart kort over hvor omsætningen siver, og hvordan den hentes tilbage.</span></div>
+        </div>
+        <div class="source-grid">
+            <div class="source-card">
+                <div class="marker">// 01</div>
+                <div class="source-name">Analytics audit</div>
+                <div class="source-detail"><span class="l-en">GA4 and funnel analysis pinpoint exactly where sessions, carts, and orders are lost.</span><span class="l-da">GA4 og funnelanalyse peger præcist på hvor sessioner, kurve og ordrer tabes.</span></div>
+            </div>
+            <div class="source-card">
+                <div class="marker">// 02</div>
+                <div class="source-name"><span class="l-en">Behavioral research</span><span class="l-da">Adfærdsresearch</span></div>
+                <div class="source-detail"><span class="l-en">Microsoft Clarity heatmaps and session recordings show what users actually do, not what we assume.</span><span class="l-da">Microsoft Clarity heatmaps og session recordings viser hvad brugerne faktisk gør, ikke hvad vi antager.</span></div>
+            </div>
+            <div class="source-card">
+                <div class="marker">// 03</div>
+                <div class="source-name">Voice of customer</div>
+                <div class="source-detail"><span class="l-en">Surveys and review mining surface the objections and friction in your customers own words.</span><span class="l-da">Undersøgelser og review mining afdækker indvendinger og friktion i jeres kunders egne ord.</span></div>
+            </div>
+        </div>
+        <div class="tools-row">
+            <span class="tool-pill">GA4</span>
+            <span class="tool-pill">Clarity</span>
+            <span class="tool-pill">Hotjar</span>
+            <span class="tool-pill">A/B Testing</span>
+        </div>
+        <div class="insight-box"><span class="l-en">Every insight becomes an A/B test or a UX fix. We ship the change, measure the lift, and keep what wins.</span><span class="l-da">Hver indsigt bliver til en A/B test eller en konkret UX forbedring. Vi lancerer ændringen, måler effekten og beholder det der vinder.</span></div>
+    </div>
+
+    <!-- 06 TESTING & UX -->
+    <div class="card" data-index="6">
+        <div class="card-header">
+            <div class="card-label">Testing &amp; UX</div>
+            <div class="card-title"><span class="l-en">Turn insight into tested wins.</span><span class="l-da">Gør indsigt til testede gevinster.</span></div>
+            <div class="card-subtitle"><span class="l-en">We design, build, and run the experiments that move your conversion rate, then ship the winners.</span><span class="l-da">Vi designer, bygger og kører de eksperimenter der flytter din konverteringsrate, og lancerer vinderne.</span></div>
+        </div>
+        <div class="source-grid">
+            <div class="source-card">
+                <div class="marker">// 01</div>
+                <div class="source-name"><span class="l-en">Hypotheses and prioritization</span><span class="l-da">Hypoteser og prioritering</span></div>
+                <div class="source-detail"><span class="l-en">Every test starts from evidence and is ranked by expected impact, so we work the <strong>biggest wins</strong> first.</span><span class="l-da">Hver test starter fra data og prioriteres efter forventet effekt, så vi tager de <strong>største gevinster</strong> først.</span></div>
+            </div>
+            <div class="source-card">
+                <div class="marker">// 02</div>
+                <div class="source-name"><span class="l-en">A/B and multivariate testing</span><span class="l-da">A/B og multivariate test</span></div>
+                <div class="source-detail"><span class="l-en">We run statistically sound experiments and read them honestly, so a win is a <strong>real win</strong>.</span><span class="l-da">Vi kører statistisk solide eksperimenter og læser dem ærligt, så en gevinst er en <strong>reel gevinst</strong>.</span></div>
+            </div>
+            <div class="source-card">
+                <div class="marker">// 03</div>
+                <div class="source-name"><span class="l-en">UX and design</span><span class="l-da">UX og design</span></div>
+                <div class="source-detail"><span class="l-en">Page layout, copy, and flow are rebuilt around how your customers actually decide to buy.</span><span class="l-da">Sidelayout, tekst og flow bygges om efter hvordan dine kunder faktisk beslutter sig for at købe.</span></div>
+            </div>
+        </div>
+        <div class="tools-row">
+            <span class="tool-pill">A/B Test</span>
+            <span class="tool-pill">MVT</span>
+            <span class="tool-pill">UX</span>
+            <span class="tool-pill">Stats</span>
+        </div>
+        <div class="insight-box"><span class="l-en">We measure every change, so you only keep what provably lifts revenue, never opinions.</span><span class="l-da">Vi måler hver ændring, så du kun beholder det der beviseligt løfter omsætningen, aldrig holdninger.</span></div>
+    </div>
+
+    <!-- 07 WHY CRO COMPOUNDS -->
+    <div class="card" data-index="7">
+        <div class="card-header">
+            <div class="card-label"><span class="l-en">Leverage</span><span class="l-da">Løftestang</span></div>
+            <div class="card-title"><span class="l-en">Why a small lift goes a long way.</span><span class="l-da">Derfor rækker et lille løft langt.</span></div>
+            <div class="card-subtitle"><span class="l-en">A small lift in conversion rate multiplies across all of your traffic, month after month.</span><span class="l-da">Et lille løft i konverteringsraten forstærkes på tværs af al din trafik, måned efter måned.</span></div>
+        </div>
+        <div class="source-grid">
+            <div class="source-card">
+                <div class="marker">// 01</div>
+                <div class="source-name"><span class="l-en">It multiplies your whole budget</span><span class="l-da">Det forstærker hele dit budget</span></div>
+                <div class="source-detail"><span class="l-en">A higher conversion rate makes every existing visit, and every marketing krone, worth <strong>more</strong>.</span><span class="l-da">En højere konverteringsrate gør hvert eksisterende besøg, og hver markedsføringskrone, <strong>mere værd</strong>.</span></div>
+            </div>
+            <div class="source-card">
+                <div class="marker">// 02</div>
+                <div class="source-name"><span class="l-en">The gains keep paying</span><span class="l-da">Gevinsterne bliver ved</span></div>
+                <div class="source-detail"><span class="l-en">Unlike ad spend, a winning change keeps converting long after the work is done.</span><span class="l-da">Modsat annoncebudget bliver en vindende ændring ved med at konvertere længe efter arbejdet er gjort.</span></div>
+            </div>
+            <div class="source-card">
+                <div class="marker">// 03</div>
+                <div class="source-name"><span class="l-en">Lower risk than scaling ads</span><span class="l-da">Lavere risiko end at skalere ads</span></div>
+                <div class="source-detail"><span class="l-en">You grow revenue from traffic you already pay for, without raising acquisition cost.</span><span class="l-da">Du øger omsætningen fra trafik du allerede betaler for, uden at hæve anskaffelsesomkostningen.</span></div>
+            </div>
+        </div>
+        <div class="insight-box"><span class="l-en">Every other channel gets more efficient when your conversion rate goes up.</span><span class="l-da">Alle andre kanaler bliver mere effektive når din konverteringsrate stiger.</span></div>
+    </div>
+
+    <!-- 08 SECTION: RESULTS -->
+    <div class="card section-slide" data-index="8">
+        <div class="section-number">02</div>
+        <div class="section-kicker"><span class="l-en">Proof</span><span class="l-da">Bevis</span></div>
+        <div class="section-title"><span class="l-en">Results that speak for themselves.</span><span class="l-da">Resultater der taler for sig selv.</span></div>
+        <div class="section-sub"><span class="l-en">A sample of outcomes for ecommerce brands. Figures shared with permission.</span><span class="l-da">Et udvalg af resultater for ecommerce brands. Tal delt med tilladelse.</span></div>
+    </div>
+
+    <!-- 09 BY THE NUMBERS -->
+    <div class="card" data-index="9">
+        <div class="card-header">
+            <div class="card-label"><span class="l-en">By the numbers</span><span class="l-da">I tal</span></div>
+            <div class="card-title"><span class="l-en">Outcomes we have delivered.</span><span class="l-da">Resultater vi har skabt.</span></div>
+            <div class="card-subtitle"><span class="l-en">Real, measured outcomes from recent CRO tests across Danish ecommerce brands.</span><span class="l-da">Reelle, målte resultater fra nylige CRO tests for danske ecommerce brands.</span></div>
+        </div>
+        <div class="stat-grid">
+            <div class="stat-card">
+                <div class="stat-value">+19%</div>
+                <div class="stat-metric"><span class="l-en">Conversion rate</span><span class="l-da">Konverteringsrate</span></div>
+                <div class="stat-context"><span class="l-en">PH Import · 99.7% significance</span><span class="l-da">PH Import · 99,7% signifikans</span></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">2.2M+</div>
+                <div class="stat-metric"><span class="l-en">DKK revenue uplift / mo</span><span class="l-da">DKK omsætningsløft / md</span></div>
+                <div class="stat-context"><span class="l-en">Across 9 winning tests</span><span class="l-da">På tværs af 9 vindende tests</span></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">+11%</div>
+                <div class="stat-metric"><span class="l-en">Revenue per visitor</span><span class="l-da">Omsætning pr. besøgende</span></div>
+                <div class="stat-context"><span class="l-en">Comforth DK · product tags</span><span class="l-da">Comforth DK · produkttags</span></div>
+            </div>
+        </div>
+        <div class="insight-box"><span class="l-en">Monthly uplift is measured per test via Intelligems. The combined figure is total uplift identified across winning tests, not a single run rate.</span><span class="l-da">Månedligt løft måles pr. test via Intelligems. Det samlede tal er det totale løft identificeret på tværs af vindende tests, ikke én samlet rate.</span></div>
+    </div>
+
+    <!-- 10 CASE: PH Import Assurance icons below Add to Cart -->
+    <div class="card" data-index="10">
+        <div class="card-header" style="margin-bottom:18px">
+            <div class="card-label">CASE · PH IMPORT</div>
+            <div class="card-title" style="font-size:34px"><span class="l-en">Assurance icons below Add to Cart</span><span class="l-da">Assurance ikoner under Tilføj til kurv</span></div>
+        </div>
+        <div class="cs-wrap">
+            <div class="cs-left">
+                <div class="cs-block"><div class="lbl"><span class="l-en">Hypothesis</span><span class="l-da">Hypotese</span></div><p><span class="l-en">Place trust and assurance icons right below Add to Cart to close hesitation at the moment of purchase.</span><span class="l-da">Placér trust og assurance ikoner lige under Tilføj til kurv for at fjerne tøven i købsøjeblikket.</span></p></div>
+                <div class="cs-block"><div class="lbl"><span class="l-en">What changed</span><span class="l-da">Hvad vi ændrede</span></div><p><span class="l-en">Tested two trust placements below ATC. Assurance icons below the button won decisively.</span><span class="l-da">Testede to trust placeringer under ATC. Assurance ikoner under knappen vandt klart.</span></p></div>
+                <div class="cs-results">
+                    <div class="cs-chip"><div class="v">+19.1%</div><div class="k"><span class="l-en">CVR</span><span class="l-da">CVR</span></div></div>
+                    <div class="cs-chip"><div class="v">+17.5%</div><div class="k"><span class="l-en">Rev/visitor</span><span class="l-da">Oms./besøg.</span></div></div>
+                    <div class="cs-chip"><div class="v">+776K</div><div class="k"><span class="l-en">DKK / mo</span><span class="l-da">DKK / md</span></div></div>
+                </div>
+            </div>
+            <div class="cs-shots">
+                <div class="cs-shot"><div class="cap"><span class="l-en">Control</span><span class="l-da">Kontrol</span></div><div class="cs-frame"><img src="https://dashboard.cazyweb.com/uploads/pm/b6041453-dbe7-4a1a-bdc8-88ec77dcf613/e8d56e4e-04b4-4c1c-a2cf-e2b93b4eec07/fields/7d2233dd-2890-4f3d-b39e-61fd4162e22d/1781003434355-control-icon.png" alt="Control" loading="lazy"></div></div>
+                <div class="cs-shot win"><div class="cap"><span class="l-en">Winner</span><span class="l-da">Vinder</span></div><div class="cs-frame"><img src="https://dashboard.cazyweb.com/uploads/pm/b6041453-dbe7-4a1a-bdc8-88ec77dcf613/e8d56e4e-04b4-4c1c-a2cf-e2b93b4eec07/fields/8e6132fb-e9f8-4950-9a29-397762348c2f/1780606051582-v2.png" alt="Variant" loading="lazy"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 11 CASE: PH Import Quantity selector badge -->
+    <div class="card" data-index="11">
+        <div class="card-header" style="margin-bottom:18px">
+            <div class="card-label">CASE · PH IMPORT</div>
+            <div class="card-title" style="font-size:34px"><span class="l-en">Quantity selector badge</span><span class="l-da">Antalsvælger badge</span></div>
+        </div>
+        <div class="cs-wrap">
+            <div class="cs-left">
+                <div class="cs-block"><div class="lbl"><span class="l-en">Hypothesis</span><span class="l-da">Hypotese</span></div><p><span class="l-en">Preselect the 2 pack and add a '95% pick this option' badge to anchor shoppers on the higher value pack.</span><span class="l-da">Forvælg 2 stk. og tilføj et '95% vælger denne' badge for at lede kunderne mod den større pakke.</span></p></div>
+                <div class="cs-block"><div class="lbl"><span class="l-en">What changed</span><span class="l-da">Hvad vi ændrede</span></div><p><span class="l-en">2 pack selected by default, with a '95% picks this option' social proof badge.</span><span class="l-da">2 stk. valgt som standard, med et '95% vælger denne' social proof badge.</span></p></div>
+                <div class="cs-results">
+                    <div class="cs-chip"><div class="v">+8.7%</div><div class="k"><span class="l-en">Rev/visitor</span><span class="l-da">Oms./besøg.</span></div></div>
+                    <div class="cs-chip"><div class="v">+2.0%</div><div class="k"><span class="l-en">AOV</span><span class="l-da">AOV</span></div></div>
+                    <div class="cs-chip"><div class="v">+483K</div><div class="k"><span class="l-en">DKK / mo</span><span class="l-da">DKK / md</span></div></div>
+                </div>
+            </div>
+            <div class="cs-shots">
+                <div class="cs-shot"><div class="cap"><span class="l-en">Control</span><span class="l-da">Kontrol</span></div><div class="cs-frame"><img src="https://dashboard.cazyweb.com/uploads/pm/b6041453-dbe7-4a1a-bdc8-88ec77dcf613/f31c14e9-0cab-44ba-8333-f8d03120aaf9/fields/7d2233dd-2890-4f3d-b39e-61fd4162e22d/1780932716013-PH_Quantity_Selector_Control.png" alt="Control" loading="lazy"></div></div>
+                <div class="cs-shot win"><div class="cap"><span class="l-en">Winner</span><span class="l-da">Vinder</span></div><div class="cs-frame"><img src="https://dashboard.cazyweb.com/uploads/pm/b6041453-dbe7-4a1a-bdc8-88ec77dcf613/f31c14e9-0cab-44ba-8333-f8d03120aaf9/fields/886a74f7-a90f-446c-b188-c21c20e68e4f/1780932713646-PH_Quantity_Selector_Variant.png" alt="Variant" loading="lazy"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 12 CASE: PH Import Homepage theme -->
+    <div class="card" data-index="12">
+        <div class="card-header" style="margin-bottom:18px">
+            <div class="card-label">CASE · PH IMPORT</div>
+            <div class="card-title" style="font-size:34px"><span class="l-en">Homepage theme</span><span class="l-da">Forside tema</span></div>
+        </div>
+        <div class="cs-wrap">
+            <div class="cs-left">
+                <div class="cs-block"><div class="lbl"><span class="l-en">Hypothesis</span><span class="l-da">Hypotese</span></div><p><span class="l-en">Rerun the lighter homepage layout (headline, CTA, USPs) on its own to get a clean read after a diluted A/B/C.</span><span class="l-da">Genkør det lysere forside layout (overskrift, CTA, USP'er) alene for et rent resultat efter en udvandet A/B/C.</span></p></div>
+                <div class="cs-block"><div class="lbl"><span class="l-en">What changed</span><span class="l-da">Hvad vi ændrede</span></div><p><span class="l-en">Light background homepage with a clear headline, CTA, and USP row.</span><span class="l-da">Lys baggrund på forsiden med tydelig overskrift, CTA og USP række.</span></p></div>
+                <div class="cs-results">
+                    <div class="cs-chip"><div class="v">+15.7%</div><div class="k"><span class="l-en">Rev/visitor</span><span class="l-da">Oms./besøg.</span></div></div>
+                    <div class="cs-chip"><div class="v">+231K</div><div class="k"><span class="l-en">DKK / mo</span><span class="l-da">DKK / md</span></div></div>
+                </div>
+            </div>
+            <div class="cs-shots">
+                <div class="cs-shot"><div class="cap"><span class="l-en">Control</span><span class="l-da">Kontrol</span></div><div class="cs-frame"><img src="https://dashboard.cazyweb.com/uploads/pm/b6041453-dbe7-4a1a-bdc8-88ec77dcf613/1ae1fb36-a6b2-4c5d-b956-81fcb5f14d28/fields/7d2233dd-2890-4f3d-b39e-61fd4162e22d/1780965309630-hp-control.jpg" alt="Control" loading="lazy"></div></div>
+                <div class="cs-shot win"><div class="cap"><span class="l-en">Winner</span><span class="l-da">Vinder</span></div><div class="cs-frame"><img src="https://dashboard.cazyweb.com/uploads/pm/b6041453-dbe7-4a1a-bdc8-88ec77dcf613/1ae1fb36-a6b2-4c5d-b956-81fcb5f14d28/fields/886a74f7-a90f-446c-b188-c21c20e68e4f/1780965311727-hp-Variant-1.jpg" alt="Variant" loading="lazy"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 13 CASE: PH Import Volume discounts -->
+    <div class="card" data-index="13">
+        <div class="card-header" style="margin-bottom:18px">
+            <div class="card-label">CASE · PH IMPORT</div>
+            <div class="card-title" style="font-size:34px"><span class="l-en">Volume discounts</span><span class="l-da">Mængderabatter</span></div>
+        </div>
+        <div class="cs-wrap">
+            <div class="cs-left">
+                <div class="cs-block"><div class="lbl"><span class="l-en">Hypothesis</span><span class="l-da">Hypotese</span></div><p><span class="l-en">Add tiered quantity discounts on high volume consumables, where customers already buy in bulk.</span><span class="l-da">Tilføj trinvise mængderabatter på højvolumen forbrugsvarer, hvor kunderne allerede køber i store mængder.</span></p></div>
+                <div class="cs-block"><div class="lbl"><span class="l-en">What changed</span><span class="l-da">Hvad vi ændrede</span></div><p><span class="l-en">Tiered bulk discounting added on PH Ren 1 L and PIST VÆK 500 ml PDPs.</span><span class="l-da">Trinvis mængderabat tilføjet på PH Ren 1 L og PIST VÆK 500 ml PDP'er.</span></p></div>
+                <div class="cs-results">
+                    <div class="cs-chip"><div class="v">+13.5%</div><div class="k"><span class="l-en">CVR</span><span class="l-da">CVR</span></div></div>
+                    <div class="cs-chip"><div class="v">+151K</div><div class="k"><span class="l-en">DKK / mo</span><span class="l-da">DKK / md</span></div></div>
+                </div>
+            </div>
+            <div class="cs-shots">
+                <div class="cs-shot"><div class="cap"><span class="l-en">Control</span><span class="l-da">Kontrol</span></div><div class="cs-frame"><img src="https://dashboard.cazyweb.com/uploads/pm/b6041453-dbe7-4a1a-bdc8-88ec77dcf613/d1ac1d22-1530-4853-8e4b-51f45d5cd5d9/fields/7d2233dd-2890-4f3d-b39e-61fd4162e22d/1780922884849-Control_Volume_discount.png" alt="Control" loading="lazy"></div></div>
+                <div class="cs-shot win"><div class="cap"><span class="l-en">Winner</span><span class="l-da">Vinder</span></div><div class="cs-frame"><img src="https://dashboard.cazyweb.com/uploads/pm/b6041453-dbe7-4a1a-bdc8-88ec77dcf613/d1ac1d22-1530-4853-8e4b-51f45d5cd5d9/fields/886a74f7-a90f-446c-b188-c21c20e68e4f/1780922888825-Volume_discount_Variant.png" alt="Variant" loading="lazy"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 14 CASE: PH Import PDP first fold -->
+    <div class="card" data-index="14">
+        <div class="card-header" style="margin-bottom:18px">
+            <div class="card-label">CASE · PH IMPORT</div>
+            <div class="card-title" style="font-size:34px"><span class="l-en">PDP first fold</span><span class="l-da">PDP first fold</span></div>
+        </div>
+        <div class="cs-wrap">
+            <div class="cs-left">
+                <div class="cs-block"><div class="lbl"><span class="l-en">Observation</span><span class="l-da">Observation</span></div><p><span class="l-en">On mobile the product image took 60% of the screen, hiding title, price, and quantity.</span><span class="l-da">På mobil fyldte produktbilledet 60% af skærmen og skjulte titel, pris og antal.</span></p></div>
+                <div class="cs-block"><div class="lbl"><span class="l-en">Hypothesis</span><span class="l-da">Hypotese</span></div><p><span class="l-en">Tighten the mobile first fold so price, info, and quantity show without scrolling.</span><span class="l-da">Stram mobilens first fold så pris, info og antal vises uden at scrolle.</span></p></div>
+                <div class="cs-block"><div class="lbl"><span class="l-en">What changed</span><span class="l-da">Hvad vi ændrede</span></div><p><span class="l-en">Compact image carousel, resized fonts, horizontal badges, grid quantity selector, upsell moved below ATC.</span><span class="l-da">Kompakt billedkarrusel, justerede skrifttyper, vandrette badges, grid antalsvælger, upsell flyttet under ATC.</span></p></div>
+                <div class="cs-results">
+                    <div class="cs-chip"><div class="v">+5.2%</div><div class="k"><span class="l-en">Rev/visitor</span><span class="l-da">Oms./besøg.</span></div></div>
+                    <div class="cs-chip"><div class="v">+179K</div><div class="k"><span class="l-en">DKK / mo</span><span class="l-da">DKK / md</span></div></div>
+                </div>
+            </div>
+            <div class="cs-shots">
+                <div class="cs-shot"><div class="cap"><span class="l-en">Control</span><span class="l-da">Kontrol</span></div><div class="cs-frame"><img src="https://dashboard.cazyweb.com/uploads/pm/b6041453-dbe7-4a1a-bdc8-88ec77dcf613/8cb052f3-6a03-45d0-8587-3799c0b00d39/fields/7d2233dd-2890-4f3d-b39e-61fd4162e22d/1780924195077-Control_1st_fold.png" alt="Control" loading="lazy"></div></div>
+                <div class="cs-shot win"><div class="cap"><span class="l-en">Winner</span><span class="l-da">Vinder</span></div><div class="cs-frame"><img src="https://dashboard.cazyweb.com/uploads/pm/b6041453-dbe7-4a1a-bdc8-88ec77dcf613/8cb052f3-6a03-45d0-8587-3799c0b00d39/fields/886a74f7-a90f-446c-b188-c21c20e68e4f/1780924198478-Variant_1st_fold.png" alt="Variant" loading="lazy"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 15 CASE: IWAO Announcement bar: trust USPs -->
+    <div class="card" data-index="15">
+        <div class="card-header" style="margin-bottom:18px">
+            <div class="card-label">CASE · IWAO</div>
+            <div class="card-title" style="font-size:34px"><span class="l-en">Announcement bar: trust USPs</span><span class="l-da">Annoncebar: trust USP'er</span></div>
+        </div>
+        <div class="cs-wrap">
+            <div class="cs-left">
+                <div class="cs-block"><div class="lbl"><span class="l-en">Hypothesis</span><span class="l-da">Hypotese</span></div><p><span class="l-en">Replace rotating promo copy with trust USPs, since constant promos read as a sale site to premium shoppers.</span><span class="l-da">Erstat roterende kampagnetekst med trust USP'er, da konstante kampagner signalerer udsalgssite til premium kunder.</span></p></div>
+                <div class="cs-block"><div class="lbl"><span class="l-en">What changed</span><span class="l-da">Hvad vi ændrede</span></div><p><span class="l-en">Four auto scrolling trust USPs (0% financing, free 1 to 2 day delivery, up to 3 years warranty, 10,000+ customers) plus a pinned phone number.</span><span class="l-da">Fire auto scrollende trust USP'er (0% finansiering, gratis levering 1 til 2 hverdage, op til 3 års garanti, 10.000+ kunder) plus et fastgjort telefonnummer.</span></p></div>
+                <div class="cs-results">
+                    <div class="cs-chip"><div class="v">+133%</div><div class="k"><span class="l-en">Primary metric</span><span class="l-da">Primær metrik</span></div></div>
+                    <div class="cs-chip"><div class="v">+74K</div><div class="k"><span class="l-en">DKK / mo</span><span class="l-da">DKK / md</span></div></div>
+                </div>
+            </div>
+            <div class="cs-shots">
+                <div class="cs-shot"><div class="cap"><span class="l-en">Control</span><span class="l-da">Kontrol</span></div><div class="cs-frame"><img src="https://dashboard.cazyweb.com/uploads/pm/21e548df-01cc-4cbf-ae36-d68d428df789/4e5ae796-7c4f-480f-9188-7af3cdfda057/fields/4fb767c1-1a74-47a2-8d0b-f8f48e3282c2/1780925224154-IWao_Announcement_bar_control.png" alt="Control" loading="lazy"></div></div>
+                <div class="cs-shot win"><div class="cap"><span class="l-en">Winner</span><span class="l-da">Vinder</span></div><div class="cs-frame"><img src="https://dashboard.cazyweb.com/uploads/pm/21e548df-01cc-4cbf-ae36-d68d428df789/4e5ae796-7c4f-480f-9188-7af3cdfda057/fields/d3370ddd-d9f2-43f2-b034-fe0b830f3d9e/1780925227628-Iwao_Announcement_bar_Variant.png" alt="Variant" loading="lazy"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 16 CASE: IWAO PDP trust section + phone -->
+    <div class="card" data-index="16">
+        <div class="card-header" style="margin-bottom:18px">
+            <div class="card-label">CASE · IWAO</div>
+            <div class="card-title" style="font-size:34px"><span class="l-en">PDP trust section + phone</span><span class="l-da">PDP trust sektion + telefon</span></div>
+        </div>
+        <div class="cs-wrap">
+            <div class="cs-left">
+                <div class="cs-block"><div class="lbl"><span class="l-en">Hypothesis</span><span class="l-da">Hypotese</span></div><p><span class="l-en">Add a visible phone number and a risk reversal section, since high AOV buyers want reassurance at the decision point.</span><span class="l-da">Tilføj et synligt telefonnummer og en risk reversal sektion, da kunder med høj ordreværdi vil have tryghed i beslutningsøjeblikket.</span></p></div>
+                <div class="cs-block"><div class="lbl"><span class="l-en">What changed</span><span class="l-da">Hvad vi ændrede</span></div><p><span class="l-en">Phone number added below the product info, with a risk reversal section after the first fold.</span><span class="l-da">Telefonnummer tilføjet under produktinfo, med en risk reversal sektion efter first fold.</span></p></div>
+                <div class="cs-results">
+                    <div class="cs-chip"><div class="v">+38%</div><div class="k"><span class="l-en">Primary metric</span><span class="l-da">Primær metrik</span></div></div>
+                    <div class="cs-chip"><div class="v">+28K</div><div class="k"><span class="l-en">DKK / mo</span><span class="l-da">DKK / md</span></div></div>
+                </div>
+            </div>
+            <div class="cs-shots">
+                <div class="cs-shot"><div class="cap"><span class="l-en">Control</span><span class="l-da">Kontrol</span></div><div class="cs-frame"><img src="https://dashboard.cazyweb.com/uploads/pm/21e548df-01cc-4cbf-ae36-d68d428df789/9852c1b1-5ef8-439e-9c49-4c04c8dd072d/fields/4fb767c1-1a74-47a2-8d0b-f8f48e3282c2/1780925661308-IWAO_Trustsection_control.png" alt="Control" loading="lazy"></div></div>
+                <div class="cs-shot win"><div class="cap"><span class="l-en">Winner</span><span class="l-da">Vinder</span></div><div class="cs-frame"><img src="https://dashboard.cazyweb.com/uploads/pm/21e548df-01cc-4cbf-ae36-d68d428df789/9852c1b1-5ef8-439e-9c49-4c04c8dd072d/fields/d3370ddd-d9f2-43f2-b034-fe0b830f3d9e/1780925665092-IWAO_Trustsection_variant.png" alt="Variant" loading="lazy"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 17 CASE: Comforth DK PDP product tags -->
+    <div class="card" data-index="17">
+        <div class="card-header" style="margin-bottom:18px">
+            <div class="card-label">CASE · COMFORTH DK</div>
+            <div class="card-title" style="font-size:34px"><span class="l-en">PDP product tags</span><span class="l-da">PDP produkttags</span></div>
+        </div>
+        <div class="cs-wrap">
+            <div class="cs-left">
+                <div class="cs-block"><div class="lbl"><span class="l-en">Hypothesis</span><span class="l-da">Hypotese</span></div><p><span class="l-en">Surface key product attributes as tags in the first fold, since average scroll depth was only 35%.</span><span class="l-da">Vis centrale produktegenskaber som tags i first fold, da gennemsnitlig scroll dybde kun var 35%.</span></p></div>
+                <div class="cs-block"><div class="lbl"><span class="l-en">What changed</span><span class="l-da">Hvad vi ændrede</span></div><p><span class="l-en">Product tags added in the first fold of the PDP. The control had none.</span><span class="l-da">Produkttags tilføjet i first fold på PDP'en. Kontrollen havde ingen.</span></p></div>
+                <div class="cs-results">
+                    <div class="cs-chip"><div class="v">+10.8%</div><div class="k"><span class="l-en">Rev/visitor</span><span class="l-da">Oms./besøg.</span></div></div>
+                    <div class="cs-chip"><div class="v">+184K</div><div class="k"><span class="l-en">DKK / mo</span><span class="l-da">DKK / md</span></div></div>
+                </div>
+            </div>
+            <div class="cs-shots">
+                <div class="cs-shot"><div class="cap"><span class="l-en">Control</span><span class="l-da">Kontrol</span></div><div class="cs-frame"><img src="https://dashboard.cazyweb.com/uploads/pm/fe3ce318-9dab-41d3-9bf5-55220bf56b47/582e0d4a-8386-42f2-ad7a-4280a1e8f627/fields/16b67b79-fc8d-4230-a9aa-5890b05405c9/1781003962160-cf.png" alt="Control" loading="lazy"></div></div>
+                <div class="cs-shot win"><div class="cap"><span class="l-en">Winner</span><span class="l-da">Vinder</span></div><div class="cs-frame"><img src="https://dashboard.cazyweb.com/uploads/pm/fe3ce318-9dab-41d3-9bf5-55220bf56b47/582e0d4a-8386-42f2-ad7a-4280a1e8f627/fields/3dd03472-f48d-4ef1-9c8e-ec952a591f1a/1780066223932-Product_Tags_.png" alt="Variant" loading="lazy"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 18 CASE: Comforth DK PDP subtitle microcopy -->
+    <div class="card" data-index="18">
+        <div class="card-header" style="margin-bottom:18px">
+            <div class="card-label">CASE · COMFORTH DK</div>
+            <div class="card-title" style="font-size:34px"><span class="l-en">PDP subtitle microcopy</span><span class="l-da">PDP undertekst microcopy</span></div>
+        </div>
+        <div class="cs-wrap">
+            <div class="cs-left">
+                <div class="cs-block"><div class="lbl"><span class="l-en">Hypothesis</span><span class="l-da">Hypotese</span></div><p><span class="l-en">Add a benefit subtitle under the product title, where the buy box previously showed only the name.</span><span class="l-da">Tilføj en benefit undertekst under produkttitlen, hvor købsboksen før kun viste navnet.</span></p></div>
+                <div class="cs-block"><div class="lbl"><span class="l-en">What changed</span><span class="l-da">Hvad vi ændrede</span></div><p><span class="l-en">One benefit subtitle added under the title on four key PDPs.</span><span class="l-da">Én benefit undertekst tilføjet under titlen på fire centrale PDP'er.</span></p></div>
+                <div class="cs-results">
+                    <div class="cs-chip"><div class="v">+9.8%</div><div class="k"><span class="l-en">Rev/visitor</span><span class="l-da">Oms./besøg.</span></div></div>
+                    <div class="cs-chip"><div class="v">+143K</div><div class="k"><span class="l-en">DKK / mo</span><span class="l-da">DKK / md</span></div></div>
+                </div>
+            </div>
+            <div class="cs-shots">
+                <div class="cs-shot"><div class="cap"><span class="l-en">Control</span><span class="l-da">Kontrol</span></div><div class="cs-frame"><img src="https://dashboard.cazyweb.com/uploads/pm/fe3ce318-9dab-41d3-9bf5-55220bf56b47/1db4e0be-02a9-4021-8ce7-075fb9fbe234/fields/16b67b79-fc8d-4230-a9aa-5890b05405c9/1780065209880-Control_Product_tags.png" alt="Control" loading="lazy"></div></div>
+                <div class="cs-shot win"><div class="cap"><span class="l-en">Winner</span><span class="l-da">Vinder</span></div><div class="cs-frame"><img src="https://dashboard.cazyweb.com/uploads/pm/fe3ce318-9dab-41d3-9bf5-55220bf56b47/1db4e0be-02a9-4021-8ce7-075fb9fbe234/fields/3dd03472-f48d-4ef1-9c8e-ec952a591f1a/1780065815344-CFS_subtitle_microcopy_V1.png" alt="Variant" loading="lazy"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 19 SELECTED WINS -->
+    <div class="card" data-index="19">
+        <div class="card-header">
+            <div class="card-label"><span class="l-en">Selected wins</span><span class="l-da">Udvalgte gevinster</span></div>
+            <div class="card-title"><span class="l-en">More winning tests.</span><span class="l-da">Flere vindende tests.</span></div>
+            <div class="card-subtitle"><span class="l-en">A snapshot of recent winners across three Danish ecommerce brands.</span><span class="l-da">Et udpluk af nylige vindere på tværs af tre danske ecommerce brands.</span></div>
+        </div>
+        <div class="wins-table">
+            <div class="wins-row head">
+                <span><span class="l-en">Brand</span><span class="l-da">Brand</span></span>
+                <span><span class="l-en">Test</span><span class="l-da">Test</span></span>
+                <span style="text-align:right"><span class="l-en">Result</span><span class="l-da">Resultat</span></span>
+                <span style="text-align:right"><span class="l-en">Monthly DKK</span><span class="l-da">DKK / md</span></span>
+            </div>
+            <div class="wins-row"><div class="brand">PH Import</div><div class="test"><span class="l-en">Assurance below Add to Cart</span><span class="l-da">Assurance under Tilføj til kurv</span></div><div class="lift">CVR +19%</div><div class="mo">+776K</div></div>
+            <div class="wins-row"><div class="brand">PH Import</div><div class="test"><span class="l-en">Quantity selector badge</span><span class="l-da">Antalsvælger badge</span></div><div class="lift">RPV +9%</div><div class="mo">+483K</div></div>
+            <div class="wins-row"><div class="brand">PH Import</div><div class="test"><span class="l-en">Homepage theme</span><span class="l-da">Forside tema</span></div><div class="lift">RPV +16%</div><div class="mo">+231K</div></div>
+            <div class="wins-row"><div class="brand">Comforth DK</div><div class="test"><span class="l-en">Product tags</span><span class="l-da">Produkttags</span></div><div class="lift">RPV +11%</div><div class="mo">+184K</div></div>
+            <div class="wins-row"><div class="brand">PH Import</div><div class="test"><span class="l-en">Volume discounts</span><span class="l-da">Mængderabatter</span></div><div class="lift">CVR +14%</div><div class="mo">+151K</div></div>
+            <div class="wins-row"><div class="brand">Comforth DK</div><div class="test"><span class="l-en">Subtitle microcopy</span><span class="l-da">Undertekst microcopy</span></div><div class="lift">RPV +10%</div><div class="mo">+143K</div></div>
+            <div class="wins-row"><div class="brand">IWAO</div><div class="test"><span class="l-en">Announcement bar (trust USPs)</span><span class="l-da">Annoncebar (trust USP'er)</span></div><div class="lift">+133%</div><div class="mo">+74K</div></div>
+            <div class="wins-row"><div class="brand">IWAO</div><div class="test"><span class="l-en">PDP trust section + phone</span><span class="l-da">PDP trust sektion + telefon</span></div><div class="lift">+38%</div><div class="mo">+28K</div></div>
+        </div>
+        <div class="insight-box"><span class="l-en">Uplift shown on each test's primary metric (CVR or revenue per visitor), measured via Intelligems. Monthly figures are per test.</span><span class="l-da">Løft vist på hver tests primære metrik (CVR eller omsætning pr. besøgende), målt via Intelligems. Månedlige tal er pr. test.</span></div>
+    </div>
+
+    <!-- 20 WHAT CLIENTS SAY -->
+    <div class="card" data-index="20">
+        <div class="card-header">
+            <div class="card-label"><span class="l-en">Testimonials</span><span class="l-da">Anbefalinger</span></div>
+            <div class="card-title"><span class="l-en">What clients say.</span><span class="l-da">Hvad kunderne siger.</span></div>
+        </div>
+        <div class="quote-grid">
+            <div class="quote-card">
+                <div class="quote-mark">&ldquo;</div>
+                <div class="quote-text"><span class="ph">{{TESTIMONIAL_1_QUOTE}}</span></div>
+                <div class="quote-name"><span class="ph">{{TESTIMONIAL_1_NAME}}</span></div>
+                <div class="quote-role"><span class="ph">{{TESTIMONIAL_1_ROLE}}</span></div>
+            </div>
+            <div class="quote-card">
+                <div class="quote-mark">&ldquo;</div>
+                <div class="quote-text"><span class="ph">{{TESTIMONIAL_2_QUOTE}}</span></div>
+                <div class="quote-name"><span class="ph">{{TESTIMONIAL_2_NAME}}</span></div>
+                <div class="quote-role"><span class="ph">{{TESTIMONIAL_2_ROLE}}</span></div>
+            </div>
+            <div class="quote-card">
+                <div class="quote-mark">&ldquo;</div>
+                <div class="quote-text"><span class="ph">{{TESTIMONIAL_3_QUOTE}}</span></div>
+                <div class="quote-name"><span class="ph">{{TESTIMONIAL_3_NAME}}</span></div>
+                <div class="quote-role"><span class="ph">{{TESTIMONIAL_3_ROLE}}</span></div>
+            </div>
+        </div>
+        <div class="logo-strip">
+            <div class="strip-label"><span class="l-en">Trusted by leading ecommerce brands</span><span class="l-da">Betroet af førende ecommerce brands</span></div>
+            <div class="logo-row">
+                <div class="logo-tile">PH Import</div>
+                <div class="logo-tile">IWAO</div>
+                <div class="logo-tile">Comforth DK</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 21 LET'S TALK -->
+    <div class="thankyou-slide card" data-index="21">
+        <div class="ty-inner">
+            <div class="ty-title"><span class="l-en">Let's find your next growth.</span><span class="l-da">Lad os finde din næste vækst.</span></div>
+            <div class="ty-sub"><span class="l-en">Start with a free CRO audit. We analyze your store and show you the three biggest opportunities to increase sales. No obligation.</span><span class="l-da">Start med en gratis CRO audit. Vi analyserer din shop og viser dig de tre største muligheder for at øge salget. Helt uforpligtende.</span></div>
+            <div class="ty-accent"><span class="l-en">Prefer to talk first? Book a 20 minute intro call.</span><span class="l-da">Vil du hellere tale først? Book et 20 minutters intromøde.</span></div>
+            <div class="ty-cta-row">
+                <a class="eh-btn primary" href="{{AUDIT_LINK}}"><span class="l-en">Book a free CRO audit</span><span class="l-da">Book en gratis CRO audit</span></a>
+                <a class="eh-btn secondary" href="{{BOOKING_LINK}}"><span class="l-en">Book an intro call</span><span class="l-da">Book et intromøde</span></a>
+            </div>
+            <div class="ty-contact">info@ecomhouse.dk&nbsp;&nbsp;·&nbsp;&nbsp;ecomhouse.dk&nbsp;&nbsp;·&nbsp;&nbsp;<span class="l-en">Copenhagen, Denmark</span><span class="l-da">København, Danmark</span></div>
+            <div class="ty-powered"><span class="l-en">EcomHouse · Conversion optimization for ecommerce</span><span class="l-da">EcomHouse · Konverteringsoptimering for ecommerce</span></div>
+        </div>
+    </div>
+
+</main>
+
+<!-- Slide menu -->
+<div class="nav-menu-backdrop" id="navMenuBackdrop"></div>
+<div class="nav-menu" id="navMenu">
+    <div class="nav-menu-header">
+        <span class="title"><span class="l-en">Slides</span><span class="l-da">Dias</span></span>
+        <button class="close" id="navMenuClose" aria-label="Close">&times;</button>
+    </div>
+    <div class="nav-menu-content" id="navMenuContent"></div>
+</div>
+
+<!-- Nav controls -->
+<div class="nav-controls">
+    <div class="lang-toggle" role="group" aria-label="Language / Sprog">
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="da">DA</button>
+    </div>
+    <button class="nav-menu-btn" id="navMenuBtn" aria-label="Open slide menu">
+        <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <span class="l-en">Slides</span><span class="l-da">Dias</span>
+    </button>
+    <div class="nav-dots" id="navDots"></div>
+    <div class="nav-arrows">
+        <button class="nav-arrow" id="prevBtn" aria-label="Previous"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+        <button class="nav-arrow" id="nextBtn" aria-label="Next"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+    </div>
+</div>
+
+<script>
+var EN_TITLE = 'EcomHouse · How we work and the results we get';
+var DA_TITLE = 'EcomHouse · Sådan arbejder vi og de resultater vi skaber';
+
+var SLIDE_TITLES_EN = ['Cover','The gap','Why CRO','01 / How we work (section)','The framework','Research & Analytics','Testing & UX','Why CRO compounds','02 / Results (section)','By the numbers','Case · Assurance below ATC','Case · Quantity selector','Case · Homepage theme','Case · Volume discounts','Case · First fold','Case · Announcement bar','Case · Trust section','Case · Product tags','Case · Subtitle','Selected wins','What clients say',"Let's talk"];
+var SLIDE_TITLES_DA = ['Forside','Gabet','Derfor CRO','01 / Sådan arbejder vi (sektion)','Framework','Research & Analytics','Test & UX','Derfor forstærker CRO','02 / Resultater (sektion)','I tal','Case · Assurance under ATC','Case · Antalsvælger','Case · Forside tema','Case · Mængderabatter','Case · First fold','Case · Annoncebar','Case · Trust sektion','Case · Produkttags','Case · Undertekst','Udvalgte gevinster','Hvad kunderne siger','Lad os tale'];
+var SLIDE_SECTIONS_EN = [{title:'Intro',start:0,end:2},{title:'01 / How we work',start:3,end:7},{title:'02 / Results',start:8,end:9},{title:'Case studies',start:10,end:18},{title:'Proof',start:19,end:20},{title:'Close',start:21,end:21}];
+var SLIDE_SECTIONS_DA = [{title:'Intro',start:0,end:2},{title:'01 / Sådan arbejder vi',start:3,end:7},{title:'02 / Resultater',start:8,end:9},{title:'Cases',start:10,end:18},{title:'Proof',start:19,end:20},{title:'Afslutning',start:21,end:21}];
+var SLIDE_TITLES = SLIDE_TITLES_EN, SLIDE_SECTIONS = SLIDE_SECTIONS_EN;
+
+(function(){
+    var c=document.getElementById('scrollContainer'),cards=document.querySelectorAll('.card'),dots=document.getElementById('navDots'),prev=document.getElementById('prevBtn'),next=document.getElementById('nextBtn'),t=cards.length,cur=0;
+    var menuBtn=document.getElementById('navMenuBtn'),menu=document.getElementById('navMenu'),menuBackdrop=document.getElementById('navMenuBackdrop'),menuClose=document.getElementById('navMenuClose'),menuContent=document.getElementById('navMenuContent');
+    var langBtns=document.querySelectorAll('.lang-btn');
+
+    // build dots once (labels set in renderNav)
+    for(var i=0;i<t;i++){
+        var d=document.createElement('div');
+        d.className='nav-dot'+(i===0?' active':'');
+        d.setAttribute('data-index',i);
+        d.addEventListener('click',function(){go(parseInt(this.getAttribute('data-index')))});
+        dots.appendChild(d);
+    }
+
+    function buildMenu(){
+        menuContent.innerHTML='';
+        SLIDE_SECTIONS.forEach(function(sec){
+            var secEl=document.createElement('div'); secEl.className='nav-menu-section';
+            var hdr=document.createElement('div'); hdr.className='nav-menu-section-title'; hdr.textContent=sec.title; secEl.appendChild(hdr);
+            var grid=document.createElement('div'); grid.className='nav-menu-grid';
+            for(var j=sec.start;j<=sec.end;j++){
+                var item=document.createElement('div'); item.className='nav-menu-item'+(j===cur?' active':''); item.setAttribute('data-index',j);
+                var num=document.createElement('span'); num.className='num'; num.textContent=String(j+1).padStart(2,'0');
+                var titleSpan=document.createElement('span'); titleSpan.className='title'; titleSpan.textContent=SLIDE_TITLES[j]||'Slide '+(j+1);
+                item.appendChild(num); item.appendChild(titleSpan);
+                item.addEventListener('click',function(){go(parseInt(this.getAttribute('data-index')));closeMenu();});
+                grid.appendChild(item);
+            }
+            secEl.appendChild(grid); menuContent.appendChild(secEl);
+        });
+    }
+    function renderNav(){
+        document.querySelectorAll('.nav-dot').forEach(function(d,i){ d.title=(i+1).toString().padStart(2,'0')+'  ·  '+(SLIDE_TITLES[i]||'Slide '+(i+1)); });
+        buildMenu();
+    }
+
+    function openMenu(){menu.classList.add('open');menuBackdrop.classList.add('open');menuBtn.classList.add('open');var a=menuContent.querySelector('.nav-menu-item.active');if(a)a.scrollIntoView({block:'nearest'});}
+    function closeMenu(){menu.classList.remove('open');menuBackdrop.classList.remove('open');menuBtn.classList.remove('open');}
+    menuBtn.addEventListener('click',function(){if(menu.classList.contains('open'))closeMenu();else openMenu();});
+    menuClose.addEventListener('click',closeMenu);
+    menuBackdrop.addEventListener('click',closeMenu);
+
+    function upd(i){
+        cur=i;
+        document.querySelectorAll('.nav-dot').forEach(function(d,j){d.className='nav-dot'+(j===i?' active':'')});
+        document.querySelectorAll('.nav-menu-item').forEach(function(it){if(parseInt(it.getAttribute('data-index'))===i)it.classList.add('active');else it.classList.remove('active');});
+        var ehPage=document.getElementById('ehPageNum');
+        if(ehPage)ehPage.textContent=(i+1).toString().padStart(2,'0');
+        try{history.replaceState(null,'','#'+i);}catch(e){}
+    }
+    function go(i){if(i<0||i>=t)return;cards[i].scrollIntoView({behavior:'smooth',inline:'start'});upd(i)}
+    prev.addEventListener('click',function(){go(cur-1)});
+    next.addEventListener('click',function(){go(cur+1)});
+    var st;c.addEventListener('scroll',function(){clearTimeout(st);st=setTimeout(function(){
+        var idx=Math.round(c.scrollLeft/window.innerWidth);
+        var target=idx*window.innerWidth;
+        if(Math.abs(c.scrollLeft-target)>1){c.scrollTo({left:target,behavior:'smooth'});} // snap fully to one slide, never rest between two
+        if(idx!==cur)upd(idx);
+    },120)});
+    document.addEventListener('keydown',function(e){
+        if(e.key==='Escape'&&menu.classList.contains('open')){closeMenu();return;}
+        if(menu.classList.contains('open'))return;
+        if(e.key==='ArrowRight'||e.key==='ArrowDown'){e.preventDefault();go(cur+1)}
+        else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();go(cur-1)}
+    });
+
+    function setLang(l){
+        l=(l==='da')?'da':'en';
+        document.documentElement.classList.remove('lang-en','lang-da');
+        document.documentElement.classList.add('lang-'+l);
+        document.documentElement.lang=l;
+        document.title=(l==='da')?DA_TITLE:EN_TITLE;
+        langBtns.forEach(function(b){b.classList.toggle('active',b.getAttribute('data-lang')===l);});
+        SLIDE_TITLES=(l==='da')?SLIDE_TITLES_DA:SLIDE_TITLES_EN;
+        SLIDE_SECTIONS=(l==='da')?SLIDE_SECTIONS_DA:SLIDE_SECTIONS_EN;
+        renderNav();
+        try{localStorage.setItem('eh_deck_lang',l);}catch(e){}
+    }
+    langBtns.forEach(function(b){b.addEventListener('click',function(){setLang(this.getAttribute('data-lang'));});});
+
+    // initial language (saved choice, else browser language)
+    var saved=null; try{saved=localStorage.getItem('eh_deck_lang');}catch(e){}
+    setLang(saved || (((navigator.language||'en').toLowerCase().slice(0,2)==='da')?'da':'en'));
+
+    // initial slide from URL hash (deep link)
+    var h=parseInt((location.hash||'').replace('#',''),10);
+    if(!isNaN(h)&&h>=0&&h<t){cur=h;cards[h].scrollIntoView({inline:'start'});}
+    upd(cur);
+})();
+</script>
+</body>
+</html>
