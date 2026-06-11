@@ -125,7 +125,19 @@
         .cs-frame { height: 446px; border: 1px solid rgba(255,255,255,.12); border-radius: 12px; overflow: hidden; background: #0d0d0d; }
         .cs-shot.win .cs-frame { border-color: rgba(247,208,7,.5); }
         .cs-frame img { width: 100%; height: 100%; object-fit: cover; object-position: bottom center; display: block; }
-        @media (max-width: 900px) { .cs-wrap { grid-template-columns: 1fr; } .cs-frame { height: 300px; } }
+        .cs-shots-solo { justify-content: center; }
+        .cs-shots-solo .cs-shot { width: 72%; max-width: 270px; }
+        .cs-shots-solo .cs-frame img { object-position: top center; }
+        /* Desktop-screenshot case slide: stack text row above two landscape shots */
+        .cs-wrap-desk { display: block; max-width: 1180px; align-items: initial; }
+        .cs-desk-info { display: flex; gap: 30px; align-items: center; margin-bottom: 18px; }
+        .cs-desk-info .cs-block { margin-bottom: 0; flex: 1; }
+        .cs-desk-info .cs-results { margin-top: 0; flex-shrink: 0; }
+        .cs-shots-desk { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+        .cs-shots-desk .cs-shot { width: 100%; max-width: none; }
+        .cs-shots-desk .cs-frame { height: auto; aspect-ratio: 1918 / 921; }
+        .cs-shots-desk .cs-frame img { object-fit: cover; object-position: top center; }
+        @media (max-width: 900px) { .cs-wrap { grid-template-columns: 1fr; } .cs-frame { height: 300px; } .cs-shots-desk { grid-template-columns: 1fr; } .cs-shots-desk .cs-frame { height: auto; } .cs-desk-info { flex-direction: column; gap: 12px; align-items: flex-start; } }
 
         /* ===== SELECTED WINS TABLE ===== */
         .wins-table { width: 100%; max-width: 1040px; }
@@ -687,9 +699,8 @@
                     <div class="cs-chip"><div class="v">+74K</div><div class="k"><span class="l-en">DKK / mo</span><span class="l-da">DKK / md</span></div></div>
                 </div>
             </div>
-            <div class="cs-shots">
-                <div class="cs-shot"><div class="cap"><span class="l-en">Control</span><span class="l-da">Kontrol</span></div><div class="cs-frame"><img src="https://dashboard.cazyweb.com/uploads/pm/21e548df-01cc-4cbf-ae36-d68d428df789/4e5ae796-7c4f-480f-9188-7af3cdfda057/fields/4fb767c1-1a74-47a2-8d0b-f8f48e3282c2/1780925224154-IWao_Announcement_bar_control.png" alt="Control" loading="lazy"></div></div>
-                <div class="cs-shot win"><div class="cap"><span class="l-en">Winner</span><span class="l-da">Vinder</span></div><div class="cs-frame"><img src="images/1780925227628-Iwao_Announcement_bar_Variant.png" alt="Variant" loading="lazy"></div></div>
+            <div class="cs-shots cs-shots-solo">
+                <div class="cs-shot win"><div class="cap"><span class="l-en">Winner: trust USP bar</span><span class="l-da">Vinder: trust USP bar</span></div><div class="cs-frame"><img src="images/1780925227628-Iwao_Announcement_bar_Variant.png" alt="Winner" loading="lazy"></div></div>
             </div>
         </div>
     </div>
@@ -700,8 +711,8 @@
             <div class="card-label">CASE · IWAO</div>
             <div class="card-title" style="font-size:34px"><span class="l-en">PDP trust section + phone</span><span class="l-da">PDP trust sektion + telefon</span></div>
         </div>
-        <div class="cs-wrap">
-            <div class="cs-left">
+        <div class="cs-wrap cs-wrap-desk">
+            <div class="cs-desk-info">
                 <div class="cs-block"><div class="lbl"><span class="l-en">Hypothesis</span><span class="l-da">Hypotese</span></div><p><span class="l-en">Add a visible phone number and a risk reversal section, since high AOV buyers want reassurance at the decision point.</span><span class="l-da">Tilføj et synligt telefonnummer og en risk reversal sektion, da kunder med høj ordreværdi vil have tryghed i beslutningsøjeblikket.</span></p></div>
                 <div class="cs-block"><div class="lbl"><span class="l-en">What changed</span><span class="l-da">Hvad vi ændrede</span></div><p><span class="l-en">Phone number added below the product info, with a risk reversal section after the first fold.</span><span class="l-da">Telefonnummer tilføjet under produktinfo, med en risk reversal sektion efter first fold.</span></p></div>
                 <div class="cs-results">
@@ -709,7 +720,7 @@
                     <div class="cs-chip"><div class="v">+28K</div><div class="k"><span class="l-en">DKK / mo</span><span class="l-da">DKK / md</span></div></div>
                 </div>
             </div>
-            <div class="cs-shots">
+            <div class="cs-shots cs-shots-desk">
                 <div class="cs-shot"><div class="cap"><span class="l-en">Control</span><span class="l-da">Kontrol</span></div><div class="cs-frame"><img src="images/1780925661308-IWAO_Trustsection_control.png" alt="Control" loading="lazy"></div></div>
                 <div class="cs-shot win"><div class="cap"><span class="l-en">Winner</span><span class="l-da">Vinder</span></div><div class="cs-frame"><img src="images/1780925665092-IWAO_Trustsection_variant.png" alt="Variant" loading="lazy"></div></div>
             </div>
