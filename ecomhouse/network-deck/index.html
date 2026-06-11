@@ -234,6 +234,9 @@
 
         /* ===== PHONE (<=600px) ===== */
         @media (max-width: 600px) {
+            /* Scrims behind the fixed chrome so scrolling content never collides with the wordmark or nav bar */
+            body::before { content: ''; position: fixed; top: 0; left: 0; right: 0; height: 78px; background: linear-gradient(#000 0, #000 58px, rgba(0,0,0,0) 78px); z-index: 89; pointer-events: none; }
+            body::after { content: ''; position: fixed; bottom: 0; left: 0; right: 0; height: 70px; background: linear-gradient(rgba(0,0,0,0) 0, #000 34px); z-index: 89; pointer-events: none; }
             /* Chrome: shrink and declutter so it never sits on top of content */
             .eh-brand { top: 18px; left: 18px; }
             .eh-brand svg { height: 15px; }
@@ -242,7 +245,7 @@
             .eh-pagenum { bottom: 15px; right: 18px; font-size: 10px; }
 
             /* Cards: clear the top wordmark and the bottom nav bar; top-align and allow vertical scroll for tall slides */
-            .card { padding: 58px 18px 80px; justify-content: flex-start; overflow-y: auto; }
+            .card { padding: 80px 18px 82px; justify-content: flex-start; overflow-y: auto; }
             .card-header { margin-bottom: 22px; max-width: 100%; }
 
             /* Type down a notch */
