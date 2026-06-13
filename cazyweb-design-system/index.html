@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  CLEO DESIGN SYSTEM: built on the canonical Cazyweb brand-system template.
+  Source: web.meetcleo.com (Playwright computed CSS + live asset capture), 2026-06-12.
+  Fonts: PP Neue Montreal + Simplon Mono are licensed webfonts. This page loads the
+  nearest Google matches (Hanken Grotesk / IBM Plex Mono) as a fallback; swap in the
+  licensed .woff2 for pixel-exact rendering.
+-->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cazyweb Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     BRAND TOKENS: Cazyweb  (the only block that changes per brand)
+     ============================================================ */
+  :root {
+    /* Brand */
+    --ds-accent:       #2b3242;  /* slate: primary buttons, links, eyebrows */
+    --ds-accent-deep:  #1f2533;  /* ink: hover, footer, dark surfaces */
+    --ds-dark:         #1f2533;  /* darkest brand color */
+    --ds-alert:        #4569e8;  /* blue: signature accent, flags, highlights */
+    /* Surface */
+    --ds-white:        #ffffff;
+    --ds-cream:        #f6f8fb;  /* cloud: secondary surface / nav */
+    --ds-tint:         #e6edfb;  /* blue tint: surface for badges */
+    --ds-warm:         #eef2f7;  /* fog: cool section surface */
+    /* Text */
+    --ds-ink:          #1f2533;  /* titles */
+    --ds-body:         #1f2533;  /* body copy */
+    --ds-muted:        #5a6373;  /* captions (AA on white) */
+    --ds-line:         #e3e7ee;  /* hairlines */
+    /* Type */
+    --ds-font-head:    "PP Neue Montreal","PPNeueMontreal","Hanken Grotesk",-apple-system,BlinkMacSystemFont,sans-serif;
+    --ds-font-body:    "PP Neue Montreal","PPNeueMontreal","Hanken Grotesk",-apple-system,BlinkMacSystemFont,sans-serif;
+    --ds-mono:         "Simplon Mono","SimplonMono","IBM Plex Mono",ui-monospace,Menlo,monospace;
+    /* Geometry  (Cazyweb is very rounded: pill buttons, 48px cards) */
+    --ds-radius:       20px;     /* inputs / badges general rounding */
+    --ds-radius-card:  32px;     /* cards / tiles / imagery */
+    --ds-radius-pill:  999px;    /* buttons, chips, nav pills */
+    --ds-input-border: #ccd3de;
+    --ds-shadow:       0 12px 40px rgba(31,37,51,.10);  /* real card shadow */
+    --ds-shadow-btn:   0 6px 12px rgba(0,0,0,.10);
+    --ds-btn-tracking: 0;
+    --ds-btn-transform:none;
+    /* Documentation chrome only (NOT brand claims) */
+    --ds-radius-sm:    14px;
+    --ds-radius-xs:    8px;
+    --ds-shadow-doc:   0 12px 40px rgba(31,37,51,.10);
+    --ds-maxw:         100%;
+  }
+
+  /* ============================================================
+     PAGE CHROME  (shared template; reads the tokens above)
+     ============================================================ */
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: var(--ds-font-body); font-weight: 300; font-size: 16px; line-height: 1.6; color: var(--ds-body); background: var(--ds-white); -webkit-font-smoothing: antialiased; letter-spacing: -.01em; }
+  h1, h2, h3, h4 { font-family: var(--ds-font-head); color: var(--ds-ink); margin: 0 0 .4em; font-weight: 300; }
+  a { color: var(--ds-accent-deep); }
+  code { font-family: var(--ds-mono); font-size: .82em; background: var(--ds-cream); padding: .12em .42em; border-radius: var(--ds-radius-xs); color: var(--ds-dark); }
+
+  .ds-layout { display: flex; align-items: flex-start; }
+  .ds-nav { position: sticky; top: 0; height: 100vh; width: 248px; flex: 0 0 248px; background: var(--ds-cream); padding: 32px 24px; overflow-y: auto; border-right: 1px solid var(--ds-line); }
+  .ds-nav .brandmark { display: flex; align-items: center; gap: 10px; margin-bottom: 28px; color: var(--ds-dark); }
+  .ds-nav .brandmark svg { height: 22px; width: auto; }
+  .ds-nav a { display: block; padding: 7px 14px; margin: 1px 0; border-radius: var(--ds-radius-pill); font-family: var(--ds-font-head); font-size: 13px; font-weight: 450; color: var(--ds-body); text-decoration: none; transition: background .15s, color .15s; }
+  .ds-nav a:hover { background: var(--ds-white); color: var(--ds-dark); }
+  .ds-nav a.active { background: var(--ds-dark); color: #fff; }
+  .btn:focus-visible, .ds-nav a:focus-visible, .ds-menu-btn:focus-visible, .input:focus-visible { outline: 2px solid var(--ds-alert); outline-offset: 2px; }
+  .ds-nav .nav-label { font-family: var(--ds-mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--ds-muted); margin: 20px 14px 6px; }
+
+  .ds-main { flex: 1 1 auto; min-width: 0; }
+  .ds-section { padding: 84px clamp(24px, 6vw, 88px); border-bottom: 1px solid var(--ds-line); }
+  .ds-section.alt { background: var(--ds-warm); }
+  .ds-inner { max-width: var(--ds-maxw); margin: 0 auto; }
+  .eyebrow { font-family: var(--ds-mono); font-weight: 450; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ds-accent-deep); margin-bottom: 14px; }
+  .ds-section h2 { font-weight: 300; font-size: clamp(28px, 3.6vw, 44px); line-height: 1.08; letter-spacing: -.02em; }
+  .ds-section > .ds-inner > p.lead { font-size: 18px; max-width: 64ch; font-weight: 300; }
+  .muted { color: var(--ds-muted); }
+
+  /* Cover */
+  .ds-cover { padding: clamp(44px, 7vw, 92px) clamp(24px, 6vw, 88px) 72px; position: relative; overflow: hidden; background: #2a3242; border-bottom: 0; }
+  .ds-cover .cover-photo { position: absolute; inset: 0; background: url('assets/generated/ai-network-dark.png') center/cover; opacity: .7; }
+  .ds-cover .cover-tint { position: absolute; inset: 0; background: radial-gradient(120% 90% at 72% -10%, rgba(69,105,232,.5), transparent 55%), linear-gradient(180deg, rgba(42,50,66,.3), rgba(31,37,51,.7) 60%, #1f2533); }
+  .ds-cover .ds-inner { position: relative; z-index: 2; }
+  .cover-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(28px, 5vw, 60px); align-items: center; }
+  .ds-cover h1 { font-weight: 300; font-size: clamp(34px, 4.6vw, 56px); line-height: 1.05; letter-spacing: -.025em; color: #fff; }
+  /* chrome accent: metallic fill for accent text over dark/black backgrounds */
+  .ds-cover h1 b, .chrome {
+    font-weight: 300;
+    background: linear-gradient(180deg, #ffffff 0%, #f2f6fd 38%, #c4cde0 49%, #ffffff 53%, #e2e8f4 78%, #cfd7e7 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,.45));
+  }
+  .ds-cover .lead { color: rgba(255,255,255,.82); }
+  .ds-cover .meta { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 30px; font-family: var(--ds-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+  .ds-cover .meta span { color: rgba(255,255,255,.6); }
+  .ds-cover .meta b { color: #fff; font-weight: 450; }
+  .cover-wordmark { height: 38px; width: auto; color: #fff; margin-bottom: 28px; display: block; }
+  /* text wordmark (Cazyweb) */
+  /* real Cazyweb logo (inline SVG, fill: currentColor so it adapts per surface) */
+  .cwlogo { height: 22px; width: auto; display: inline-block; color: var(--ds-ink); }
+  .brandmark .cwlogo { height: 22px; color: var(--ds-dark); }
+  .ds-cover .cwlogo { height: 30px; display: block; margin-bottom: 28px; color: #fff; }
+  .logo-cell .cwlogo { height: 32px; }
+  .logo-cell.on-cream .cwlogo { color: var(--ds-ink); }
+  .logo-cell.on-dark .cwlogo, .logo-cell.on-peach .cwlogo { color: #fff; }
+  .icon-chip .cwlogo { height: 16px; color: var(--ds-accent); }
+  .cover-visual { border-radius: var(--ds-radius-card); overflow: hidden; aspect-ratio: 4/5; background: var(--ds-cream); box-shadow: var(--ds-shadow-doc); }
+  .cover-visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* Color */
+  .swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 18px; margin-top: 8px; }
+  .swatch { border: 1px solid var(--ds-line); border-radius: var(--ds-radius-sm); overflow: hidden; background: #fff; cursor: pointer; transition: transform .15s, box-shadow .15s; }
+  .swatch:hover { transform: translateY(-3px); box-shadow: var(--ds-shadow); }
+  .swatch .chip { height: 96px; display: flex; align-items: flex-end; justify-content: flex-end; padding: 10px; }
+  .swatch .copytag { font-family: var(--ds-mono); font-size: 9px; text-transform: uppercase; letter-spacing: .05em; background: rgba(255,255,255,.7); color: #2b3242; padding: 3px 7px; border-radius: var(--ds-radius-pill); opacity: 0; transition: opacity .15s; }
+  .swatch:hover .copytag { opacity: 1; }
+  .swatch .meta { padding: 12px 14px; }
+  .swatch .name { font-family: var(--ds-font-head); font-weight: 450; font-size: 13px; color: var(--ds-ink); }
+  .swatch .hex { font-family: var(--ds-mono); font-size: 12px; color: var(--ds-body); margin: 2px 0 4px; text-transform: uppercase; }
+  .swatch .use { font-size: 11.5px; color: var(--ds-muted); line-height: 1.45; }
+  .group-label { margin-top: 28px; font-family: var(--ds-mono); font-weight: 450; font-size: 12px; color: var(--ds-muted); letter-spacing: .08em; text-transform: uppercase; }
+  .ramp { display: flex; border-radius: var(--ds-radius-sm); overflow: hidden; margin-top: 10px; border: 1px solid var(--ds-line); }
+  .ramp div { flex: 1; height: 72px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px; font-family: var(--ds-mono); font-size: 10px; text-transform: uppercase; }
+  .accent-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+  .accent-row span { width: 52px; height: 52px; border-radius: 12px; border: 1px solid var(--ds-line); }
+
+  /* Type specimens */
+  .type-row { padding: 18px 0; border-bottom: 1px solid var(--ds-line); display: grid; grid-template-columns: 150px 1fr; gap: 24px; align-items: baseline; }
+  .type-row:last-child { border-bottom: 0; }
+  .type-row .tag { font-family: var(--ds-mono); font-size: 11px; color: var(--ds-muted); text-transform: uppercase; }
+  .sp-display { font-family: var(--ds-font-head); font-weight: 300; font-size: 56px; line-height: 1.04; color: var(--ds-ink); letter-spacing: -.03em; }
+  .sp-h1 { font-family: var(--ds-font-head); font-weight: 300; font-size: 44px; line-height: 1.08; color: var(--ds-ink); letter-spacing: -.025em; }
+  .sp-h2 { font-family: var(--ds-font-head); font-weight: 300; font-size: 31px; color: var(--ds-ink); letter-spacing: -.02em; }
+  .sp-h3 { font-family: var(--ds-font-head); font-weight: 450; font-size: 22px; color: var(--ds-ink); }
+  .sp-body { font-family: var(--ds-font-body); font-weight: 300; font-size: 18px; color: var(--ds-body); }
+  .sp-cap { font-family: var(--ds-font-body); font-weight: 300; font-size: 13px; color: var(--ds-muted); }
+  .sp-eye { font-family: var(--ds-mono); font-weight: 450; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--ds-accent-deep); }
+  .font-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 36px; }
+  .font-card { border: 1px solid var(--ds-line); border-radius: var(--ds-radius-sm); padding: 24px; background: #fff; }
+  .font-card .big { font-size: 50px; line-height: 1; margin-bottom: 10px; color: var(--ds-dark); }
+  .font-card .nm { font-family: var(--ds-font-head); font-weight: 450; font-size: 15px; color: var(--ds-ink); }
+  .font-card .row { font-size: 13px; color: var(--ds-muted); margin-top: 8px; }
+
+  /* Logo block */
+  .logo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+  .logo-cell { margin: 0; border: 1px solid var(--ds-line); border-radius: var(--ds-radius-sm); padding: 34px 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; min-height: 140px; }
+  .logo-cell svg { width: 120px; height: auto; }
+  .logo-cell.on-cream { background: var(--ds-cream); }
+  .logo-cell.on-dark { background: var(--ds-accent); }
+  .logo-cell.on-peach { background: var(--ds-alert); }
+  .logo-cell figcaption { font-family: var(--ds-mono); font-size: 11px; letter-spacing: .04em; text-transform: uppercase; color: var(--ds-muted); }
+  .logo-cell.on-dark figcaption { color: rgba(255,255,255,.72); }
+  .logo-cell.on-peach figcaption { color: rgba(31,37,51,.7); }
+  .logo-note { margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .do, .dont { border: 1px solid var(--ds-line); border-radius: var(--ds-radius-sm); padding: 16px 18px; background: #fff; font-size: 14px; }
+  .do .h, .dont .h { font-family: var(--ds-mono); font-weight: 450; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 8px; }
+  .do .h { color: #00a544; }
+  .dont .h { color: #fb2c36; }
+
+  /* Buttons: Cazyweb: fully rounded pills, soft shadow */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; font-family: var(--ds-font-head); font-weight: 450; font-size: 15px; line-height: 1; text-transform: var(--ds-btn-transform); letter-spacing: var(--ds-btn-tracking); padding: 14px 28px; border-radius: var(--ds-radius-pill); border: 1px solid transparent; text-decoration: none; transition: background .18s, color .18s, border-color .18s, filter .18s; box-shadow: var(--ds-shadow-btn); }
+  .btn-primary { background: var(--ds-accent); color: #fff; }
+  .btn-primary:hover { background: var(--ds-accent-deep); }
+  .btn-peach { background: var(--ds-alert); color: #fff; }
+  .btn-peach:hover { filter: brightness(1.06); }
+  .btn-ghost { background: rgba(31,37,51,.08); color: var(--ds-accent); box-shadow: none; }
+  .btn-ghost:hover { background: rgba(31,37,51,.14); }
+  .btn-outline { background: transparent; color: var(--ds-accent); border-color: rgba(71,32,28,.35); box-shadow: none; }
+  .btn-outline:hover { border-color: var(--ds-accent); }
+  .btn-sm { padding: 10px 20px; font-size: 13px; }
+  .btn-lg { padding: 17px 38px; font-size: 16px; }
+  .btn[disabled], .btn.is-disabled { background: var(--ds-line); color: #9a8780; cursor: not-allowed; pointer-events: none; box-shadow: none; }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin: 8px 0 26px; }
+  .lbl { font-family: var(--ds-mono); font-size: 12px; color: var(--ds-muted); text-transform: uppercase; letter-spacing: .04em; margin: 0 0 8px; }
+  .darkbar { background: var(--ds-accent); border-radius: var(--ds-radius-card); padding: 28px; margin-top: 8px; }
+  .darkbar .lbl { color: rgba(255,255,255,.6); }
+
+  /* Forms */
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  label.fld { display: block; font-family: var(--ds-font-head); font-size: 13px; font-weight: 450; color: var(--ds-ink); margin-bottom: 7px; }
+  .input, select.input, textarea.input { width: 100%; font-family: var(--ds-font-body); font-weight: 300; font-size: 15px; color: var(--ds-ink); padding: 13px 18px; border: 1px solid var(--ds-input-border); border-radius: var(--ds-radius-pill); background: #fff; }
+  textarea.input { border-radius: var(--ds-radius); }
+  .input:focus, select.input:focus, textarea.input:focus { outline: none; border-color: var(--ds-accent); box-shadow: 0 0 0 3px rgba(69,105,232,.28); }
+  .check-row { display: flex; align-items: center; gap: 10px; margin: 12px 0; font-size: 15px; font-weight: 300; }
+  .check-row input { accent-color: var(--ds-accent); width: 18px; height: 18px; }
+
+  /* Badges / flags */
+  .flag-new { display: inline-block; background: var(--ds-alert); color: #fff; font-family: var(--ds-mono); font-weight: 450; font-size: 11px; letter-spacing: .04em; text-transform: uppercase; padding: 6px 12px; border-radius: var(--ds-radius-pill); }
+  .label-trust { display: inline-flex; align-items: center; gap: 6px; background: var(--ds-tint); color: var(--ds-accent-deep); font-family: var(--ds-mono); font-size: 11px; font-weight: 450; letter-spacing: .04em; text-transform: uppercase; padding: 8px 16px; border-radius: var(--ds-radius-pill); }
+  .chip-tag { display:inline-block; background: rgba(31,37,51,.07); color: var(--ds-accent); font-size: 14px; font-weight: 450; padding: 9px 18px; border-radius: var(--ds-radius-pill); }
+  .chip-tag.on { background: var(--ds-accent); color: #fff; }
+  .eyebrow-chip { font-family: var(--ds-mono); font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--ds-accent-deep); }
+  .badge-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+
+  /* App moments (Cazyweb's signature product component, replaces e-com product tile) */
+  .demo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 6px; }
+  .demo { position: relative; aspect-ratio: 9/12; border-radius: var(--ds-radius-card); overflow: hidden; box-shadow: var(--ds-shadow); display: flex; align-items: center; justify-content: center; padding: 22px; }
+  .demo.g-sky { background: linear-gradient(180deg,#aab8cc,#5b6b86 60%,#374558); }
+  .demo.g-peach { background: linear-gradient(180deg,#c3d2f5,#6d86d6 65%,#3f53a8); }
+  .demo.g-cocoa { background: linear-gradient(180deg,#5a6781,#2b3242 60%,#1f2533); }
+  .glassbubble { color: var(--ds-accent-deep); border-radius: 24px; padding: 16px 20px; font-size: 15px; line-height: 1.35; font-weight: 300; max-width: 90%; }
+  .cleo-avatar { width: 46px; height: 46px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 14px; }
+  .cleo-dots { display: flex; align-items: center; gap: 3px; }
+  .cleo-dots i { width: 3px; background: var(--ds-accent); border-radius: 2px; display: block; }
+  .cleo-dots i:nth-child(1),.cleo-dots i:nth-child(2),.cleo-dots i:nth-child(4),.cleo-dots i:nth-child(5){ height: 5px; }
+  .cleo-dots i:nth-child(3){ height: 14px; }
+  .demo .stack { display: flex; flex-direction: column; align-items: flex-start; width: 100%; }
+  .chatcard { background:#fff; border:1px solid var(--ds-line); border-radius: var(--ds-radius-card); padding: 26px; max-width: 420px; margin-top: 26px; }
+  .bubble { padding: 13px 18px; border-radius: 22px; font-size: 15px; margin-bottom: 10px; max-width: 82%; line-height: 1.4; font-weight: 300; }
+  .bubble.user { background: var(--ds-cream); color: var(--ds-accent); margin-left: auto; border-bottom-right-radius: 6px; }
+  .bubble.cleo { background: var(--ds-accent); color: #fff; border-bottom-left-radius: 6px; }
+  .bubble.peach { background: var(--ds-alert); color: #fff; border-bottom-left-radius: 6px; }
+
+  /* Geometry + icons */
+  .token-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; }
+  .token-card { border: 1px solid var(--ds-line); border-radius: var(--ds-radius-sm); padding: 16px; background: #fff; }
+  .radius-demo { height: 64px; background: var(--ds-cream); border: 1px solid var(--ds-line); }
+  .elev-demo { height: 64px; background: #fff; border-radius: var(--ds-radius-sm); }
+  .token-card .tk { font-family: var(--ds-mono); font-size: 12px; color: var(--ds-ink); margin-top: 12px; }
+  .token-card .tv { font-size: 11.5px; color: var(--ds-muted); }
+
+  .icon-section { margin-top: 30px; }
+  .icon-wall { display: grid; grid-template-columns: repeat(auto-fill, minmax(108px,1fr)); gap: 14px; margin-top: 14px; }
+  .icon-chip { aspect-ratio: 1/1; border: 1px solid var(--ds-line); border-radius: var(--ds-radius-sm); background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: var(--ds-accent); transition: transform .15s, box-shadow .15s, background .15s; }
+  .icon-chip:hover { transform: translateY(-3px); box-shadow: var(--ds-shadow); }
+  .icon-chip svg { width: 26px; height: 26px; }
+  .icon-chip .ui { width: 28px; height: 28px; stroke: var(--ds-accent); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .icon-chip span { font-family: var(--ds-mono); font-size: 9px; text-transform: uppercase; letter-spacing: .03em; color: var(--ds-muted); }
+  .icon-chip.brand { background: var(--ds-cream); }
+
+  /* ===== Apple Liquid Glass material (tinted warm for Cazyweb) ===== */
+  .lg { position: relative; isolation: isolate; overflow: hidden; }
+  .lg::before { content: ""; position: absolute; inset: 0; z-index: -2; border-radius: inherit;
+    background: rgba(244,247,251,.40);
+    backdrop-filter: blur(18px) saturate(185%) brightness(1.06);
+    -webkit-backdrop-filter: blur(18px) saturate(185%) brightness(1.06);
+    box-shadow: inset 0 1.5px 1px rgba(255,255,255,.7), inset 0 -14px 24px rgba(255,255,255,.10), inset 0 0 0 1px rgba(255,255,255,.32); }
+  .lg::after { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; pointer-events: none;
+    background: linear-gradient(130deg, rgba(255,255,255,.5) 0%, rgba(255,255,255,0) 34%), radial-gradient(150% 80% at 50% 120%, rgba(255,255,255,.20), transparent 60%); }
+  /* Clear variant dims for legibility (Apple's adaptive behavior) so white text reads on any media */
+  .lg-clear::before { background: rgba(28,34,48,.34);
+    backdrop-filter: blur(30px) saturate(140%) brightness(.92); -webkit-backdrop-filter: blur(30px) saturate(140%) brightness(.92); }
+  .lg-float { box-shadow: 0 18px 44px rgba(31,37,51,.28); }
+  .lg-stage { position: relative; border-radius: var(--ds-radius-card); overflow: hidden; padding: 40px; display: flex; gap: 20px; flex-wrap: wrap; align-items: center; background-size: cover; background-position: center; min-height: 240px; margin-top: 8px; }
+  .glasscard { border-radius: 26px; padding: 24px 26px; width: 300px; max-width: 100%; color: var(--ds-accent-deep); }
+  .glasscard h4 { font-weight: 450; font-size: 18px; margin-bottom: 6px; }
+  .glasscard p { font-size: 14px; font-weight: 300; line-height: 1.5; }
+  .glasscard.lg-clear { color: #fff; text-shadow: 0 1px 14px rgba(0,0,0,.45); }
+  .glasscard.lg-clear h4 { color: #fff; }
+  .lg-pill { padding: 14px 26px; border-radius: var(--ds-radius-pill); font-family: var(--ds-font-head); font-weight: 450; font-size: 15px; color: #fff; cursor: pointer; border: 0; background: transparent; text-shadow: 0 1px 8px rgba(0,0,0,.35); }
+  .recipe { background: var(--ds-accent-deep); color: #eef2f7; font-family: var(--ds-mono); font-size: 12.5px; line-height: 1.7; padding: 22px 24px; border-radius: 18px; overflow-x: auto; margin-top: 18px; }
+  .recipe .c { color: #aec3f2; }
+
+  /* Imagery */
+  .img-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+  .img-grid figure { margin: 0; border-radius: var(--ds-radius-card); overflow: hidden; background: var(--ds-cream); aspect-ratio: 4/5; position: relative; }
+  .img-grid figure.wide { grid-column: span 2; aspect-ratio: 16/10; }
+  .img-grid img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .img-grid figcaption { position: absolute; left: 10px; bottom: 9px; font-family: var(--ds-mono); font-size: 9px; text-transform: uppercase; letter-spacing: .03em; color: #fff; background: rgba(31,37,51,.45); padding: 4px 9px; border-radius: var(--ds-radius-pill); backdrop-filter: blur(6px); }
+
+  /* Image library */
+  .lib-group { margin-top: 26px; font-family: var(--ds-mono); font-size: 12px; color: var(--ds-muted); letter-spacing: .08em; text-transform: uppercase; }
+  .lib-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 18px; margin-top: 12px; }
+  .lib-card { border: 1px solid var(--ds-line); border-radius: var(--ds-radius-sm); overflow: hidden; background: #fff; transition: transform .15s, box-shadow .15s; }
+  .lib-card:hover { transform: translateY(-3px); box-shadow: var(--ds-shadow); }
+  .lib-card.span2 { grid-column: span 2; }
+  .lib-card .thumb { aspect-ratio: 16/10; background: var(--ds-cream); overflow: hidden; }
+  .lib-card .thumb img, .lib-card .thumb video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .lib-card .thumb { position: relative; }
+  .lib-card .motion-tag { position: absolute; top: 8px; left: 8px; z-index: 2; font-family: var(--ds-mono); font-size: 9px; text-transform: uppercase; letter-spacing: .04em; color: #fff; background: rgba(31,37,51,.55); padding: 3px 8px; border-radius: var(--ds-radius-pill); backdrop-filter: blur(6px); }
+  .lib-card .cap { padding: 14px 16px 16px; }
+  .lib-card .nm { font-family: var(--ds-font-head); font-weight: 450; font-size: 14px; color: var(--ds-ink); }
+  .lib-card .use { font-size: 12px; color: var(--ds-muted); margin-top: 4px; line-height: 1.45; }
+  .lib-card .file { display: block; font-family: var(--ds-mono); font-size: 10px; color: var(--ds-muted); opacity: .75; margin-top: 8px; }
+
+  /* Voice */
+  .voice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .voice-grid .col { border: 1px solid var(--ds-line); border-radius: var(--ds-radius-sm); padding: 24px 26px; background: #fff; }
+  .voice-grid ul { margin: 0; padding-left: 18px; }
+  .voice-grid li { margin: 8px 0; font-size: 15px; font-weight: 300; }
+  .voice-grid .h { font-family: var(--ds-mono); font-weight: 450; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--ds-accent-deep); margin-bottom: 12px; }
+  .voice-lines { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:22px; }
+  .voice-line { border:1px solid var(--ds-line); border-radius: var(--ds-radius-sm); padding:22px 24px; background:#fff; }
+  .voice-line .big { font-weight:300; font-size:23px; letter-spacing:-.02em; line-height:1.15; }
+  .voice-line .why { font-family: var(--ds-mono); font-size:11px; text-transform:uppercase; letter-spacing:.04em; opacity:.6; margin-top:10px; }
+
+  /* Footer */
+  .ds-footer { background: var(--ds-accent-deep); color: #fff; padding: 48px clamp(24px,6vw,88px); }
+  .ds-footer .ds-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; align-items: center; }
+  .ds-footer a { color: #fff; }
+  .ds-footer .small { font-size: 13px; opacity: .85; }
+  .foot-social { display: flex; gap: 12px; }
+  .foot-social a { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,.1); display: flex; align-items: center; justify-content: center; color: #fff; transition: background .15s; }
+  .foot-social a:hover { background: rgba(255,255,255,.22); }
+  .foot-social svg { width: 17px; height: 17px; }
+  .store-row { display:flex; gap:12px; flex-wrap:wrap; }
+  .store-badge { display:inline-flex; align-items:center; gap:10px; background:#fff; color:var(--ds-accent-deep); border-radius:12px; padding:9px 16px; text-decoration:none; }
+  .store-badge .sb-sm { font-size:9px; opacity:.7; display:block; line-height:1; text-transform:uppercase; letter-spacing:.04em; }
+  .store-badge .sb-lg { font-size:15px; font-weight:450; line-height:1.2; }
+
+  /* Toast */
+  .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--ds-accent-deep); color: #fff; padding: 12px 22px; border-radius: var(--ds-radius-pill); font-family: var(--ds-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; z-index: 80; }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* Mobile */
+  .ds-menu-btn { display: none; }
+  @media (max-width: 860px) {
+    .ds-nav { position: fixed; transform: translateX(-100%); z-index: 40; transition: transform .25s; box-shadow: var(--ds-shadow-doc); width: 260px; flex-basis: 260px; }
+    .ds-nav.open { transform: translateX(0); }
+    .ds-menu-btn { display: inline-flex; position: fixed; top: 14px; right: 14px; z-index: 50; background: var(--ds-dark); color: #fff; border: 0; border-radius: var(--ds-radius-pill); padding: 11px 18px; font-family: var(--ds-mono); font-weight: 450; font-size: 12px; letter-spacing: .04em; text-transform: uppercase; cursor: pointer; }
+    .form-grid, .voice-grid, .voice-lines, .logo-note, .font-cards, .cover-grid, .demo-grid { grid-template-columns: 1fr; }
+    .cover-visual { aspect-ratio: 16/11; max-height: 380px; }
+    .type-row { grid-template-columns: 1fr; gap: 6px; }
+    .sp-display { font-size: 40px; }
+    .img-grid figure.wide { grid-column: span 1; }
+  }
+</style>
+</head>
+<body>
+
+<button class="ds-menu-btn" id="menuBtn">Sections</button>
+<div class="toast" id="toast">Copied</div>
+
+<div class="ds-layout">
+
+  <!-- ===================== SIDEBAR NAV ===================== -->
+  <aside class="ds-nav" id="dsNav">
+    <div class="brandmark">
+      <svg class="cwlogo" viewBox="0 0 1020 204" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cazyweb"><path d="M206 81.1092C206 103.815 198.991 125.963 185.936 144.509C172.88 163.055 154.421 177.087 133.094 184.678C111.767 192.268 88.6212 193.044 66.8375 186.897C45.0538 180.751 25.7023 167.985 11.4435 150.355L43.6133 124.159C52.4781 135.121 64.509 143.057 78.0521 146.878C91.5951 150.699 105.985 150.217 119.244 145.498C132.503 140.779 143.98 132.055 152.096 120.525C160.212 108.995 164.57 95.2255 164.57 81.1092H206Z" fill="currentColor"/><path d="M156.453 10.4652C116.818 10.4652 106.909 49.7119 106.909 49.7119H205.996C205.996 49.7119 196.068 10.4652 156.453 10.4652Z" fill="currentColor"/><path d="M49.5436 99.425C76.9057 99.425 99.0871 77.1679 99.0871 49.7125C99.0871 22.257 76.9057 0 49.5436 0C22.1814 0 0 22.257 0 49.7125C0 77.1679 22.1814 99.425 49.5436 99.425Z" fill="currentColor"/><path d="M254 104.694C254 94.164 256.118 84.9655 260.354 77.0984C264.711 69.2313 270.702 63.1797 278.327 58.9436C286.074 54.7075 294.909 52.5894 304.834 52.5894C317.542 52.5894 328.132 55.9178 336.604 62.5746C345.198 69.2313 350.826 78.6113 353.488 90.7145H320.447C317.663 82.9685 312.277 79.0954 304.289 79.0954C298.6 79.0954 294.062 81.3345 290.673 85.8127C287.284 90.1699 285.589 96.4636 285.589 104.694C285.589 112.924 287.284 119.278 290.673 123.756C294.062 128.113 298.6 130.292 304.289 130.292C312.277 130.292 317.663 126.419 320.447 118.673H353.488C350.826 130.534 345.198 139.854 336.604 146.631C328.011 153.409 317.421 156.798 304.834 156.798C294.909 156.798 286.074 154.68 278.327 150.444C270.702 146.208 264.711 140.156 260.354 132.289C256.118 124.422 254 115.224 254 104.694Z" fill="currentColor"/><path d="M354.844 104.512C354.844 94.1034 356.781 84.9655 360.654 77.0984C364.648 69.2313 370.034 63.1797 376.812 58.9436C383.59 54.7075 391.154 52.5894 399.505 52.5894C406.646 52.5894 412.879 54.0418 418.205 56.9466C423.651 59.8513 427.827 63.6638 430.732 68.3841V54.0418H461.776V155.346H430.732V141.003C427.706 145.724 423.47 149.536 418.023 152.441C412.698 155.346 406.465 156.798 399.324 156.798C391.094 156.798 383.59 154.68 376.812 150.444C370.034 146.087 364.648 139.975 360.654 132.108C356.781 124.119 354.844 114.921 354.844 104.512ZM430.732 104.694C430.732 96.9477 428.553 90.8356 424.196 86.3574C419.96 81.8792 414.755 79.6401 408.583 79.6401C402.41 79.6401 397.145 81.8792 392.788 86.3574C388.552 90.7145 386.434 96.7661 386.434 104.512C386.434 112.258 388.552 118.431 392.788 123.03C397.145 127.508 402.41 129.747 408.583 129.747C414.755 129.747 419.96 127.508 424.196 123.03C428.553 118.552 430.732 112.44 430.732 104.694Z" fill="currentColor"/><path d="M504.206 129.747H548.141V155.346H469.53V130.655L511.65 79.6401H469.894V54.0418H547.233V78.7323L504.206 129.747Z" fill="currentColor"/><path d="M659.628 54.0418L596.087 203.456H562.682L585.92 151.896L544.708 54.0418H579.384L602.804 117.402L626.042 54.0418H659.628Z" fill="currentColor"/><path d="M807.197 54.0418L779.784 155.346H745.471L729.495 89.6252L712.974 155.346H678.843L651.247 54.0418H682.292L696.635 126.48L713.7 54.0418H746.56L763.807 126.116L777.968 54.0418H807.197Z" fill="currentColor"/><path d="M905.453 103.06C905.453 105.965 905.272 108.99 904.909 112.137H834.65C835.134 118.431 837.131 123.272 840.641 126.661C844.272 129.929 848.689 131.563 853.894 131.563C861.64 131.563 867.026 128.295 870.051 121.759H903.093C901.399 128.416 898.312 134.407 893.834 139.733C889.477 145.058 883.97 149.234 877.313 152.259C870.657 155.285 863.213 156.798 854.983 156.798C845.058 156.798 836.223 154.68 828.477 150.444C820.731 146.208 814.679 140.156 810.322 132.289C805.965 124.422 803.786 115.224 803.786 104.694C803.786 94.164 805.904 84.9655 810.141 77.0984C814.498 69.2313 820.549 63.1797 828.295 58.9436C836.041 54.7075 844.937 52.5894 854.983 52.5894C864.786 52.5894 873.501 54.6469 881.126 58.762C888.751 62.8771 894.681 68.7472 898.918 76.3722C903.275 83.9972 905.453 92.8931 905.453 103.06ZM873.682 94.8902C873.682 89.5647 871.867 85.3286 868.236 82.1818C864.605 79.0349 860.066 77.4615 854.62 77.4615C849.415 77.4615 844.998 78.9744 841.367 82.0002C837.857 85.026 835.678 89.3227 834.831 94.8902H873.682Z" fill="currentColor"/><path d="M943.798 68.3841C946.703 63.6638 950.879 59.8513 956.325 56.9466C961.772 54.0418 968.005 52.5894 975.025 52.5894C983.376 52.5894 990.94 54.7075 997.718 58.9436C1004.5 63.1797 1009.82 69.2313 1013.69 77.0984C1017.69 84.9655 1019.69 94.1034 1019.69 104.512C1019.69 114.921 1017.69 124.119 1013.69 132.108C1009.82 139.975 1004.5 146.087 997.718 150.444C990.94 154.68 983.376 156.798 975.025 156.798C967.884 156.798 961.651 155.406 956.325 152.622C951 149.718 946.824 145.905 943.798 141.185V155.346H912.754V21H943.798V68.3841ZM988.096 104.512C988.096 96.7661 985.918 90.7145 981.56 86.3574C977.324 81.8792 972.059 79.6401 965.766 79.6401C959.593 79.6401 954.328 81.8792 949.971 86.3574C945.735 90.8356 943.617 96.9477 943.617 104.694C943.617 112.44 945.735 118.552 949.971 123.03C954.328 127.508 959.593 129.747 965.766 129.747C971.938 129.747 977.203 127.508 981.56 123.03C985.918 118.431 988.096 112.258 988.096 104.512Z" fill="currentColor"/></svg>
+    </div>
+    <div class="nav-label">Foundations</div>
+    <a href="#cover">Overview</a>
+    <a href="#essence">Brand essence</a>
+    <a href="#color">Color</a>
+    <a href="#type">Typography</a>
+    <a href="#logo">Logo</a>
+    <div class="nav-label">Components</div>
+    <a href="#buttons">Buttons</a>
+    <a href="#forms">Forms</a>
+    <a href="#badges">Badges &amp; chips</a>
+    <a href="#moments">App moments</a>
+    <div class="nav-label">System</div>
+    <a href="#tokens">Geometry &amp; icons</a>
+    <a href="#liquid-glass">Liquid Glass</a>
+    <a href="#imagery">Imagery</a>
+    <a href="#library">Image library</a>
+    <a href="#voice">Voice</a>
+  </aside>
+
+  <!-- ===================== MAIN ===================== -->
+  <main class="ds-main">
+
+    <!-- COVER -->
+    <header class="ds-section ds-cover" id="cover">
+      <div class="cover-photo"></div><div class="cover-tint"></div>
+      <div class="ds-inner">
+        <div class="cover-grid">
+          <div>
+            <svg class="cwlogo" viewBox="0 0 1020 204" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cazyweb"><path d="M206 81.1092C206 103.815 198.991 125.963 185.936 144.509C172.88 163.055 154.421 177.087 133.094 184.678C111.767 192.268 88.6212 193.044 66.8375 186.897C45.0538 180.751 25.7023 167.985 11.4435 150.355L43.6133 124.159C52.4781 135.121 64.509 143.057 78.0521 146.878C91.5951 150.699 105.985 150.217 119.244 145.498C132.503 140.779 143.98 132.055 152.096 120.525C160.212 108.995 164.57 95.2255 164.57 81.1092H206Z" fill="currentColor"/><path d="M156.453 10.4652C116.818 10.4652 106.909 49.7119 106.909 49.7119H205.996C205.996 49.7119 196.068 10.4652 156.453 10.4652Z" fill="currentColor"/><path d="M49.5436 99.425C76.9057 99.425 99.0871 77.1679 99.0871 49.7125C99.0871 22.257 76.9057 0 49.5436 0C22.1814 0 0 22.257 0 49.7125C0 77.1679 22.1814 99.425 49.5436 99.425Z" fill="currentColor"/><path d="M254 104.694C254 94.164 256.118 84.9655 260.354 77.0984C264.711 69.2313 270.702 63.1797 278.327 58.9436C286.074 54.7075 294.909 52.5894 304.834 52.5894C317.542 52.5894 328.132 55.9178 336.604 62.5746C345.198 69.2313 350.826 78.6113 353.488 90.7145H320.447C317.663 82.9685 312.277 79.0954 304.289 79.0954C298.6 79.0954 294.062 81.3345 290.673 85.8127C287.284 90.1699 285.589 96.4636 285.589 104.694C285.589 112.924 287.284 119.278 290.673 123.756C294.062 128.113 298.6 130.292 304.289 130.292C312.277 130.292 317.663 126.419 320.447 118.673H353.488C350.826 130.534 345.198 139.854 336.604 146.631C328.011 153.409 317.421 156.798 304.834 156.798C294.909 156.798 286.074 154.68 278.327 150.444C270.702 146.208 264.711 140.156 260.354 132.289C256.118 124.422 254 115.224 254 104.694Z" fill="currentColor"/><path d="M354.844 104.512C354.844 94.1034 356.781 84.9655 360.654 77.0984C364.648 69.2313 370.034 63.1797 376.812 58.9436C383.59 54.7075 391.154 52.5894 399.505 52.5894C406.646 52.5894 412.879 54.0418 418.205 56.9466C423.651 59.8513 427.827 63.6638 430.732 68.3841V54.0418H461.776V155.346H430.732V141.003C427.706 145.724 423.47 149.536 418.023 152.441C412.698 155.346 406.465 156.798 399.324 156.798C391.094 156.798 383.59 154.68 376.812 150.444C370.034 146.087 364.648 139.975 360.654 132.108C356.781 124.119 354.844 114.921 354.844 104.512ZM430.732 104.694C430.732 96.9477 428.553 90.8356 424.196 86.3574C419.96 81.8792 414.755 79.6401 408.583 79.6401C402.41 79.6401 397.145 81.8792 392.788 86.3574C388.552 90.7145 386.434 96.7661 386.434 104.512C386.434 112.258 388.552 118.431 392.788 123.03C397.145 127.508 402.41 129.747 408.583 129.747C414.755 129.747 419.96 127.508 424.196 123.03C428.553 118.552 430.732 112.44 430.732 104.694Z" fill="currentColor"/><path d="M504.206 129.747H548.141V155.346H469.53V130.655L511.65 79.6401H469.894V54.0418H547.233V78.7323L504.206 129.747Z" fill="currentColor"/><path d="M659.628 54.0418L596.087 203.456H562.682L585.92 151.896L544.708 54.0418H579.384L602.804 117.402L626.042 54.0418H659.628Z" fill="currentColor"/><path d="M807.197 54.0418L779.784 155.346H745.471L729.495 89.6252L712.974 155.346H678.843L651.247 54.0418H682.292L696.635 126.48L713.7 54.0418H746.56L763.807 126.116L777.968 54.0418H807.197Z" fill="currentColor"/><path d="M905.453 103.06C905.453 105.965 905.272 108.99 904.909 112.137H834.65C835.134 118.431 837.131 123.272 840.641 126.661C844.272 129.929 848.689 131.563 853.894 131.563C861.64 131.563 867.026 128.295 870.051 121.759H903.093C901.399 128.416 898.312 134.407 893.834 139.733C889.477 145.058 883.97 149.234 877.313 152.259C870.657 155.285 863.213 156.798 854.983 156.798C845.058 156.798 836.223 154.68 828.477 150.444C820.731 146.208 814.679 140.156 810.322 132.289C805.965 124.422 803.786 115.224 803.786 104.694C803.786 94.164 805.904 84.9655 810.141 77.0984C814.498 69.2313 820.549 63.1797 828.295 58.9436C836.041 54.7075 844.937 52.5894 854.983 52.5894C864.786 52.5894 873.501 54.6469 881.126 58.762C888.751 62.8771 894.681 68.7472 898.918 76.3722C903.275 83.9972 905.453 92.8931 905.453 103.06ZM873.682 94.8902C873.682 89.5647 871.867 85.3286 868.236 82.1818C864.605 79.0349 860.066 77.4615 854.62 77.4615C849.415 77.4615 844.998 78.9744 841.367 82.0002C837.857 85.026 835.678 89.3227 834.831 94.8902H873.682Z" fill="currentColor"/><path d="M943.798 68.3841C946.703 63.6638 950.879 59.8513 956.325 56.9466C961.772 54.0418 968.005 52.5894 975.025 52.5894C983.376 52.5894 990.94 54.7075 997.718 58.9436C1004.5 63.1797 1009.82 69.2313 1013.69 77.0984C1017.69 84.9655 1019.69 94.1034 1019.69 104.512C1019.69 114.921 1017.69 124.119 1013.69 132.108C1009.82 139.975 1004.5 146.087 997.718 150.444C990.94 154.68 983.376 156.798 975.025 156.798C967.884 156.798 961.651 155.406 956.325 152.622C951 149.718 946.824 145.905 943.798 141.185V155.346H912.754V21H943.798V68.3841ZM988.096 104.512C988.096 96.7661 985.918 90.7145 981.56 86.3574C977.324 81.8792 972.059 79.6401 965.766 79.6401C959.593 79.6401 954.328 81.8792 949.971 86.3574C945.735 90.8356 943.617 96.9477 943.617 104.694C943.617 112.44 945.735 118.552 949.971 123.03C954.328 127.508 959.593 129.747 965.766 129.747C971.938 129.747 977.203 127.508 981.56 123.03C985.918 118.431 988.096 112.258 988.096 104.512Z" fill="currentColor"/></svg>
+            <h1>The <b>Cazyweb</b> design system.</h1>
+            <p class="lead">A cool, neutral, glass-forward theme: clean whites, calm slate ink, and a single blue accent. Every color, type style, and component on this page reads from one token block so anything we design stays on brand.</p>
+            <div class="meta">
+              <span>Theme: <b>Cazyweb new</b></span>
+              <span>Tone: <b>cool neutral + blue</b></span>
+              <span>Material: <b>Liquid Glass</b></span>
+            </div>
+          </div>
+          <div class="cover-visual"><img src="assets/generated/hero-glass-ribbon.png" alt="Cazyweb liquid glass visual"></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- BRAND ESSENCE -->
+    <section class="ds-section alt" id="essence">
+      <div class="ds-inner">
+        <div class="eyebrow">Brand essence</div>
+        <h2>Calm, clean, a little bit blue.</h2>
+        <p class="lead">The visual system is cool and neutral (white, slate ink, cool gray) lifted by a single blue accent. Type is almost entirely light weight, everything is generously rounded, and surfaces use a glass material so content shines through. Quiet by default, with one clear pop of color for action.</p>
+        <div class="is-not" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px">
+          <div class="col voice-line" style="background:var(--ds-tint)"><div class="h" style="color:var(--ds-accent-deep)">It is</div>
+            <ul style="margin:0;padding-left:18px">
+              <li>Cool, neutral whites with a blue pop</li>
+              <li>Light-weight, oversized headlines</li>
+              <li>Very rounded: pill buttons, 48px cards</li>
+              <li>Glass surfaces, content shines through</li>
+            </ul>
+          </div>
+          <div class="col voice-line"><div class="h" style="color:var(--ds-accent-deep)">It is not</div>
+            <ul style="margin:0;padding-left:18px">
+              <li>Warm beige or heavy color</li>
+              <li>Heavy, bold, condensed type</li>
+              <li>Sharp corners or hard edges</li>
+              <li>Loud, saturated, or busy</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLOR -->
+    <section class="ds-section" id="color">
+      <div class="ds-inner">
+        <div class="eyebrow">Color</div>
+        <h2>Palette</h2>
+        <p class="lead">Cool neutrals carry the brand; a single blue is the signature accent, reserved for energy and action. Click any swatch to copy its hex.</p>
+        <div class="group-label">Brand</div>
+        <div class="swatch-grid">
+          <div class="swatch" data-hex="#2B3242"><div class="chip" style="background:#2b3242"><span class="copytag">Copy</span></div><div class="meta"><div class="name">Slate</div><div class="hex">#2B3242</div><div class="use">Primary brand, body text, primary buttons</div></div></div>
+          <div class="swatch" data-hex="#1F2533"><div class="chip" style="background:#1f2533"><span class="copytag">Copy</span></div><div class="meta"><div class="name">Ink</div><div class="hex">#1F2533</div><div class="use">Darkest ink, footer, overlays</div></div></div>
+          <div class="swatch" data-hex="#4569E8"><div class="chip" style="background:#4569e8"><span class="copytag">Copy</span></div><div class="meta"><div class="name">Blue</div><div class="hex">#4569E8</div><div class="use">Signature accent, energy, highlights</div></div></div>
+          <div class="swatch" data-hex="#AEB6C4"><div class="chip" style="background:#aeb6c4"><span class="copytag">Copy</span></div><div class="meta"><div class="name">Mist</div><div class="hex">#AEB6C4</div><div class="use">Neutral cool gray surface</div></div></div>
+        </div>
+        <div class="group-label">Surface</div>
+        <div class="swatch-grid">
+          <div class="swatch" data-hex="#FFFFFF"><div class="chip" style="background:#fff;border-bottom:1px solid var(--ds-line)"><span class="copytag">Copy</span></div><div class="meta"><div class="name">White</div><div class="hex">#FFFFFF</div><div class="use">Cards, text on dark</div></div></div>
+          <div class="swatch" data-hex="#F6F8FB"><div class="chip" style="background:#f6f8fb"><span class="copytag">Copy</span></div><div class="meta"><div class="name">Cloud</div><div class="hex">#F6F8FB</div><div class="use">Light cards, chips, nav</div></div></div>
+          <div class="swatch" data-hex="#EEF2F7"><div class="chip" style="background:#eef2f7"><span class="copytag">Copy</span></div><div class="meta"><div class="name">Fog</div><div class="hex">#EEF2F7</div><div class="use">Cool section background</div></div></div>
+          <div class="swatch" data-hex="#E6EDFB"><div class="chip" style="background:#e6edfb"><span class="copytag">Copy</span></div><div class="meta"><div class="name">Blue tint</div><div class="hex">#E6EDFB</div><div class="use">Glow washes, badge fills</div></div></div>
+        </div>
+        <div class="group-label">Text</div>
+        <div class="swatch-grid">
+          <div class="swatch" data-hex="#1F2533"><div class="chip" style="background:#1f2533"><span class="copytag">Copy</span></div><div class="meta"><div class="name">Ink</div><div class="hex">#1F2533</div><div class="use">Titles and body</div></div></div>
+          <div class="swatch" data-hex="#5A6373"><div class="chip" style="background:#5a6373"><span class="copytag">Copy</span></div><div class="meta"><div class="name">Muted</div><div class="hex">#5A6373</div><div class="use">Captions (AA on white)</div></div></div>
+          <div class="swatch" data-hex="#E3E7EE"><div class="chip" style="background:#e3e7ee"><span class="copytag">Copy</span></div><div class="meta"><div class="name">Hairline</div><div class="hex">#E3E7EE</div><div class="use">Borders, dividers</div></div></div>
+        </div>
+        <div class="group-label">Blue glow ramp</div>
+        <div class="ramp">
+          <div style="background:#e6edfb;color:#2b3242">#E6EDFB</div>
+          <div style="background:#cdd9f6;color:#2b3242">#CDD9F6</div>
+          <div style="background:#aec3f2;color:#2b3242">#AEC3F2</div>
+          <div style="background:#4569e8;color:#1f2533">#4569E8</div>
+        </div>
+        <div class="group-label">Accent system (product UI &amp; data viz only)</div>
+        <div class="accent-row">
+          <span style="background:#fb2c36"></span><span style="background:#ff8b1a"></span><span style="background:#fac800"></span><span style="background:#fff085"></span><span style="background:#05df72"></span><span style="background:#00a544"></span><span style="background:#00d3bd"></span><span style="background:#54a2ff"></span><span style="background:#c07eff"></span><span style="background:#e9d5ff"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- TYPOGRAPHY -->
+    <section class="ds-section alt" id="type">
+      <div class="ds-inner">
+        <div class="eyebrow">Typography</div>
+        <h2>Type</h2>
+        <p class="lead">PP Neue Montreal carries display and body, set at weight 300. That light weight is the signature move. Simplon Mono handles uppercase eyebrows, dates, and citations.</p>
+        <div class="font-cards">
+          <div class="font-card"><div class="big" style="font-family:var(--ds-font-head);font-weight:300;">Aa</div><div class="nm">PP Neue Montreal</div><div class="row">Display + body. Weights 300 / 450. Headlines always 300.</div></div>
+          <div class="font-card"><div class="big" style="font-family:var(--ds-mono);font-weight:400;text-transform:uppercase;">Aa</div><div class="nm">Simplon Mono</div><div class="row">Uppercase eyebrows, dates, citations, labels.</div></div>
+        </div>
+        <div class="type-row"><div class="tag">Display / 64 / 300</div><div class="sp-display">Get Cazyweb for free now.</div></div>
+        <div class="type-row"><div class="tag">Headline / 44 / 300</div><div class="sp-h1">Smart mind, smart mouth.</div></div>
+        <div class="type-row"><div class="tag">Section / 31 / 300</div><div class="sp-h2">Say yes to saving more.</div></div>
+        <div class="type-row"><div class="tag">Card title / 22 / 450</div><div class="sp-h3">Get your money off your mind.</div></div>
+        <div class="type-row"><div class="tag">Body / 18 / 300</div><div class="sp-body">Cazyweb gets to know you and your money, learns your habits, and tells it to you straight. No jargon, no judgement.</div></div>
+        <div class="type-row"><div class="tag">Eyebrow / mono</div><div class="sp-eye">Talk therapy for your wallet</div></div>
+        <div class="type-row"><div class="tag">Caption / 13</div><div class="sp-cap">Ashley Smith, App Store</div></div>
+      </div>
+    </section>
+
+    <!-- LOGO -->
+    <section class="ds-section" id="logo">
+      <div class="ds-inner">
+        <div class="eyebrow">Logo</div>
+        <h2>Logo usage</h2>
+        <p class="lead">The Cazyweb logo is the primary asset: the rounded "c" mark plus the lowercase wordmark, in a single color. Keep clear space around it equal to the height of the mark, and only place it on the approved backgrounds below.</p>
+        <div class="logo-grid">
+          <figure class="logo-cell on-cream"><svg class="cwlogo" viewBox="0 0 1020 204" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cazyweb"><path d="M206 81.1092C206 103.815 198.991 125.963 185.936 144.509C172.88 163.055 154.421 177.087 133.094 184.678C111.767 192.268 88.6212 193.044 66.8375 186.897C45.0538 180.751 25.7023 167.985 11.4435 150.355L43.6133 124.159C52.4781 135.121 64.509 143.057 78.0521 146.878C91.5951 150.699 105.985 150.217 119.244 145.498C132.503 140.779 143.98 132.055 152.096 120.525C160.212 108.995 164.57 95.2255 164.57 81.1092H206Z" fill="currentColor"/><path d="M156.453 10.4652C116.818 10.4652 106.909 49.7119 106.909 49.7119H205.996C205.996 49.7119 196.068 10.4652 156.453 10.4652Z" fill="currentColor"/><path d="M49.5436 99.425C76.9057 99.425 99.0871 77.1679 99.0871 49.7125C99.0871 22.257 76.9057 0 49.5436 0C22.1814 0 0 22.257 0 49.7125C0 77.1679 22.1814 99.425 49.5436 99.425Z" fill="currentColor"/><path d="M254 104.694C254 94.164 256.118 84.9655 260.354 77.0984C264.711 69.2313 270.702 63.1797 278.327 58.9436C286.074 54.7075 294.909 52.5894 304.834 52.5894C317.542 52.5894 328.132 55.9178 336.604 62.5746C345.198 69.2313 350.826 78.6113 353.488 90.7145H320.447C317.663 82.9685 312.277 79.0954 304.289 79.0954C298.6 79.0954 294.062 81.3345 290.673 85.8127C287.284 90.1699 285.589 96.4636 285.589 104.694C285.589 112.924 287.284 119.278 290.673 123.756C294.062 128.113 298.6 130.292 304.289 130.292C312.277 130.292 317.663 126.419 320.447 118.673H353.488C350.826 130.534 345.198 139.854 336.604 146.631C328.011 153.409 317.421 156.798 304.834 156.798C294.909 156.798 286.074 154.68 278.327 150.444C270.702 146.208 264.711 140.156 260.354 132.289C256.118 124.422 254 115.224 254 104.694Z" fill="currentColor"/><path d="M354.844 104.512C354.844 94.1034 356.781 84.9655 360.654 77.0984C364.648 69.2313 370.034 63.1797 376.812 58.9436C383.59 54.7075 391.154 52.5894 399.505 52.5894C406.646 52.5894 412.879 54.0418 418.205 56.9466C423.651 59.8513 427.827 63.6638 430.732 68.3841V54.0418H461.776V155.346H430.732V141.003C427.706 145.724 423.47 149.536 418.023 152.441C412.698 155.346 406.465 156.798 399.324 156.798C391.094 156.798 383.59 154.68 376.812 150.444C370.034 146.087 364.648 139.975 360.654 132.108C356.781 124.119 354.844 114.921 354.844 104.512ZM430.732 104.694C430.732 96.9477 428.553 90.8356 424.196 86.3574C419.96 81.8792 414.755 79.6401 408.583 79.6401C402.41 79.6401 397.145 81.8792 392.788 86.3574C388.552 90.7145 386.434 96.7661 386.434 104.512C386.434 112.258 388.552 118.431 392.788 123.03C397.145 127.508 402.41 129.747 408.583 129.747C414.755 129.747 419.96 127.508 424.196 123.03C428.553 118.552 430.732 112.44 430.732 104.694Z" fill="currentColor"/><path d="M504.206 129.747H548.141V155.346H469.53V130.655L511.65 79.6401H469.894V54.0418H547.233V78.7323L504.206 129.747Z" fill="currentColor"/><path d="M659.628 54.0418L596.087 203.456H562.682L585.92 151.896L544.708 54.0418H579.384L602.804 117.402L626.042 54.0418H659.628Z" fill="currentColor"/><path d="M807.197 54.0418L779.784 155.346H745.471L729.495 89.6252L712.974 155.346H678.843L651.247 54.0418H682.292L696.635 126.48L713.7 54.0418H746.56L763.807 126.116L777.968 54.0418H807.197Z" fill="currentColor"/><path d="M905.453 103.06C905.453 105.965 905.272 108.99 904.909 112.137H834.65C835.134 118.431 837.131 123.272 840.641 126.661C844.272 129.929 848.689 131.563 853.894 131.563C861.64 131.563 867.026 128.295 870.051 121.759H903.093C901.399 128.416 898.312 134.407 893.834 139.733C889.477 145.058 883.97 149.234 877.313 152.259C870.657 155.285 863.213 156.798 854.983 156.798C845.058 156.798 836.223 154.68 828.477 150.444C820.731 146.208 814.679 140.156 810.322 132.289C805.965 124.422 803.786 115.224 803.786 104.694C803.786 94.164 805.904 84.9655 810.141 77.0984C814.498 69.2313 820.549 63.1797 828.295 58.9436C836.041 54.7075 844.937 52.5894 854.983 52.5894C864.786 52.5894 873.501 54.6469 881.126 58.762C888.751 62.8771 894.681 68.7472 898.918 76.3722C903.275 83.9972 905.453 92.8931 905.453 103.06ZM873.682 94.8902C873.682 89.5647 871.867 85.3286 868.236 82.1818C864.605 79.0349 860.066 77.4615 854.62 77.4615C849.415 77.4615 844.998 78.9744 841.367 82.0002C837.857 85.026 835.678 89.3227 834.831 94.8902H873.682Z" fill="currentColor"/><path d="M943.798 68.3841C946.703 63.6638 950.879 59.8513 956.325 56.9466C961.772 54.0418 968.005 52.5894 975.025 52.5894C983.376 52.5894 990.94 54.7075 997.718 58.9436C1004.5 63.1797 1009.82 69.2313 1013.69 77.0984C1017.69 84.9655 1019.69 94.1034 1019.69 104.512C1019.69 114.921 1017.69 124.119 1013.69 132.108C1009.82 139.975 1004.5 146.087 997.718 150.444C990.94 154.68 983.376 156.798 975.025 156.798C967.884 156.798 961.651 155.406 956.325 152.622C951 149.718 946.824 145.905 943.798 141.185V155.346H912.754V21H943.798V68.3841ZM988.096 104.512C988.096 96.7661 985.918 90.7145 981.56 86.3574C977.324 81.8792 972.059 79.6401 965.766 79.6401C959.593 79.6401 954.328 81.8792 949.971 86.3574C945.735 90.8356 943.617 96.9477 943.617 104.694C943.617 112.44 945.735 118.552 949.971 123.03C954.328 127.508 959.593 129.747 965.766 129.747C971.938 129.747 977.203 127.508 981.56 123.03C985.918 118.431 988.096 112.258 988.096 104.512Z" fill="currentColor"/></svg><figcaption>On cloud</figcaption></figure>
+          <figure class="logo-cell on-dark"><svg class="cwlogo" viewBox="0 0 1020 204" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cazyweb"><path d="M206 81.1092C206 103.815 198.991 125.963 185.936 144.509C172.88 163.055 154.421 177.087 133.094 184.678C111.767 192.268 88.6212 193.044 66.8375 186.897C45.0538 180.751 25.7023 167.985 11.4435 150.355L43.6133 124.159C52.4781 135.121 64.509 143.057 78.0521 146.878C91.5951 150.699 105.985 150.217 119.244 145.498C132.503 140.779 143.98 132.055 152.096 120.525C160.212 108.995 164.57 95.2255 164.57 81.1092H206Z" fill="currentColor"/><path d="M156.453 10.4652C116.818 10.4652 106.909 49.7119 106.909 49.7119H205.996C205.996 49.7119 196.068 10.4652 156.453 10.4652Z" fill="currentColor"/><path d="M49.5436 99.425C76.9057 99.425 99.0871 77.1679 99.0871 49.7125C99.0871 22.257 76.9057 0 49.5436 0C22.1814 0 0 22.257 0 49.7125C0 77.1679 22.1814 99.425 49.5436 99.425Z" fill="currentColor"/><path d="M254 104.694C254 94.164 256.118 84.9655 260.354 77.0984C264.711 69.2313 270.702 63.1797 278.327 58.9436C286.074 54.7075 294.909 52.5894 304.834 52.5894C317.542 52.5894 328.132 55.9178 336.604 62.5746C345.198 69.2313 350.826 78.6113 353.488 90.7145H320.447C317.663 82.9685 312.277 79.0954 304.289 79.0954C298.6 79.0954 294.062 81.3345 290.673 85.8127C287.284 90.1699 285.589 96.4636 285.589 104.694C285.589 112.924 287.284 119.278 290.673 123.756C294.062 128.113 298.6 130.292 304.289 130.292C312.277 130.292 317.663 126.419 320.447 118.673H353.488C350.826 130.534 345.198 139.854 336.604 146.631C328.011 153.409 317.421 156.798 304.834 156.798C294.909 156.798 286.074 154.68 278.327 150.444C270.702 146.208 264.711 140.156 260.354 132.289C256.118 124.422 254 115.224 254 104.694Z" fill="currentColor"/><path d="M354.844 104.512C354.844 94.1034 356.781 84.9655 360.654 77.0984C364.648 69.2313 370.034 63.1797 376.812 58.9436C383.59 54.7075 391.154 52.5894 399.505 52.5894C406.646 52.5894 412.879 54.0418 418.205 56.9466C423.651 59.8513 427.827 63.6638 430.732 68.3841V54.0418H461.776V155.346H430.732V141.003C427.706 145.724 423.47 149.536 418.023 152.441C412.698 155.346 406.465 156.798 399.324 156.798C391.094 156.798 383.59 154.68 376.812 150.444C370.034 146.087 364.648 139.975 360.654 132.108C356.781 124.119 354.844 114.921 354.844 104.512ZM430.732 104.694C430.732 96.9477 428.553 90.8356 424.196 86.3574C419.96 81.8792 414.755 79.6401 408.583 79.6401C402.41 79.6401 397.145 81.8792 392.788 86.3574C388.552 90.7145 386.434 96.7661 386.434 104.512C386.434 112.258 388.552 118.431 392.788 123.03C397.145 127.508 402.41 129.747 408.583 129.747C414.755 129.747 419.96 127.508 424.196 123.03C428.553 118.552 430.732 112.44 430.732 104.694Z" fill="currentColor"/><path d="M504.206 129.747H548.141V155.346H469.53V130.655L511.65 79.6401H469.894V54.0418H547.233V78.7323L504.206 129.747Z" fill="currentColor"/><path d="M659.628 54.0418L596.087 203.456H562.682L585.92 151.896L544.708 54.0418H579.384L602.804 117.402L626.042 54.0418H659.628Z" fill="currentColor"/><path d="M807.197 54.0418L779.784 155.346H745.471L729.495 89.6252L712.974 155.346H678.843L651.247 54.0418H682.292L696.635 126.48L713.7 54.0418H746.56L763.807 126.116L777.968 54.0418H807.197Z" fill="currentColor"/><path d="M905.453 103.06C905.453 105.965 905.272 108.99 904.909 112.137H834.65C835.134 118.431 837.131 123.272 840.641 126.661C844.272 129.929 848.689 131.563 853.894 131.563C861.64 131.563 867.026 128.295 870.051 121.759H903.093C901.399 128.416 898.312 134.407 893.834 139.733C889.477 145.058 883.97 149.234 877.313 152.259C870.657 155.285 863.213 156.798 854.983 156.798C845.058 156.798 836.223 154.68 828.477 150.444C820.731 146.208 814.679 140.156 810.322 132.289C805.965 124.422 803.786 115.224 803.786 104.694C803.786 94.164 805.904 84.9655 810.141 77.0984C814.498 69.2313 820.549 63.1797 828.295 58.9436C836.041 54.7075 844.937 52.5894 854.983 52.5894C864.786 52.5894 873.501 54.6469 881.126 58.762C888.751 62.8771 894.681 68.7472 898.918 76.3722C903.275 83.9972 905.453 92.8931 905.453 103.06ZM873.682 94.8902C873.682 89.5647 871.867 85.3286 868.236 82.1818C864.605 79.0349 860.066 77.4615 854.62 77.4615C849.415 77.4615 844.998 78.9744 841.367 82.0002C837.857 85.026 835.678 89.3227 834.831 94.8902H873.682Z" fill="currentColor"/><path d="M943.798 68.3841C946.703 63.6638 950.879 59.8513 956.325 56.9466C961.772 54.0418 968.005 52.5894 975.025 52.5894C983.376 52.5894 990.94 54.7075 997.718 58.9436C1004.5 63.1797 1009.82 69.2313 1013.69 77.0984C1017.69 84.9655 1019.69 94.1034 1019.69 104.512C1019.69 114.921 1017.69 124.119 1013.69 132.108C1009.82 139.975 1004.5 146.087 997.718 150.444C990.94 154.68 983.376 156.798 975.025 156.798C967.884 156.798 961.651 155.406 956.325 152.622C951 149.718 946.824 145.905 943.798 141.185V155.346H912.754V21H943.798V68.3841ZM988.096 104.512C988.096 96.7661 985.918 90.7145 981.56 86.3574C977.324 81.8792 972.059 79.6401 965.766 79.6401C959.593 79.6401 954.328 81.8792 949.971 86.3574C945.735 90.8356 943.617 96.9477 943.617 104.694C943.617 112.44 945.735 118.552 949.971 123.03C954.328 127.508 959.593 129.747 965.766 129.747C971.938 129.747 977.203 127.508 981.56 123.03C985.918 118.431 988.096 112.258 988.096 104.512Z" fill="currentColor"/></svg><figcaption>On slate</figcaption></figure>
+          <figure class="logo-cell on-peach"><svg class="cwlogo" viewBox="0 0 1020 204" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cazyweb"><path d="M206 81.1092C206 103.815 198.991 125.963 185.936 144.509C172.88 163.055 154.421 177.087 133.094 184.678C111.767 192.268 88.6212 193.044 66.8375 186.897C45.0538 180.751 25.7023 167.985 11.4435 150.355L43.6133 124.159C52.4781 135.121 64.509 143.057 78.0521 146.878C91.5951 150.699 105.985 150.217 119.244 145.498C132.503 140.779 143.98 132.055 152.096 120.525C160.212 108.995 164.57 95.2255 164.57 81.1092H206Z" fill="currentColor"/><path d="M156.453 10.4652C116.818 10.4652 106.909 49.7119 106.909 49.7119H205.996C205.996 49.7119 196.068 10.4652 156.453 10.4652Z" fill="currentColor"/><path d="M49.5436 99.425C76.9057 99.425 99.0871 77.1679 99.0871 49.7125C99.0871 22.257 76.9057 0 49.5436 0C22.1814 0 0 22.257 0 49.7125C0 77.1679 22.1814 99.425 49.5436 99.425Z" fill="currentColor"/><path d="M254 104.694C254 94.164 256.118 84.9655 260.354 77.0984C264.711 69.2313 270.702 63.1797 278.327 58.9436C286.074 54.7075 294.909 52.5894 304.834 52.5894C317.542 52.5894 328.132 55.9178 336.604 62.5746C345.198 69.2313 350.826 78.6113 353.488 90.7145H320.447C317.663 82.9685 312.277 79.0954 304.289 79.0954C298.6 79.0954 294.062 81.3345 290.673 85.8127C287.284 90.1699 285.589 96.4636 285.589 104.694C285.589 112.924 287.284 119.278 290.673 123.756C294.062 128.113 298.6 130.292 304.289 130.292C312.277 130.292 317.663 126.419 320.447 118.673H353.488C350.826 130.534 345.198 139.854 336.604 146.631C328.011 153.409 317.421 156.798 304.834 156.798C294.909 156.798 286.074 154.68 278.327 150.444C270.702 146.208 264.711 140.156 260.354 132.289C256.118 124.422 254 115.224 254 104.694Z" fill="currentColor"/><path d="M354.844 104.512C354.844 94.1034 356.781 84.9655 360.654 77.0984C364.648 69.2313 370.034 63.1797 376.812 58.9436C383.59 54.7075 391.154 52.5894 399.505 52.5894C406.646 52.5894 412.879 54.0418 418.205 56.9466C423.651 59.8513 427.827 63.6638 430.732 68.3841V54.0418H461.776V155.346H430.732V141.003C427.706 145.724 423.47 149.536 418.023 152.441C412.698 155.346 406.465 156.798 399.324 156.798C391.094 156.798 383.59 154.68 376.812 150.444C370.034 146.087 364.648 139.975 360.654 132.108C356.781 124.119 354.844 114.921 354.844 104.512ZM430.732 104.694C430.732 96.9477 428.553 90.8356 424.196 86.3574C419.96 81.8792 414.755 79.6401 408.583 79.6401C402.41 79.6401 397.145 81.8792 392.788 86.3574C388.552 90.7145 386.434 96.7661 386.434 104.512C386.434 112.258 388.552 118.431 392.788 123.03C397.145 127.508 402.41 129.747 408.583 129.747C414.755 129.747 419.96 127.508 424.196 123.03C428.553 118.552 430.732 112.44 430.732 104.694Z" fill="currentColor"/><path d="M504.206 129.747H548.141V155.346H469.53V130.655L511.65 79.6401H469.894V54.0418H547.233V78.7323L504.206 129.747Z" fill="currentColor"/><path d="M659.628 54.0418L596.087 203.456H562.682L585.92 151.896L544.708 54.0418H579.384L602.804 117.402L626.042 54.0418H659.628Z" fill="currentColor"/><path d="M807.197 54.0418L779.784 155.346H745.471L729.495 89.6252L712.974 155.346H678.843L651.247 54.0418H682.292L696.635 126.48L713.7 54.0418H746.56L763.807 126.116L777.968 54.0418H807.197Z" fill="currentColor"/><path d="M905.453 103.06C905.453 105.965 905.272 108.99 904.909 112.137H834.65C835.134 118.431 837.131 123.272 840.641 126.661C844.272 129.929 848.689 131.563 853.894 131.563C861.64 131.563 867.026 128.295 870.051 121.759H903.093C901.399 128.416 898.312 134.407 893.834 139.733C889.477 145.058 883.97 149.234 877.313 152.259C870.657 155.285 863.213 156.798 854.983 156.798C845.058 156.798 836.223 154.68 828.477 150.444C820.731 146.208 814.679 140.156 810.322 132.289C805.965 124.422 803.786 115.224 803.786 104.694C803.786 94.164 805.904 84.9655 810.141 77.0984C814.498 69.2313 820.549 63.1797 828.295 58.9436C836.041 54.7075 844.937 52.5894 854.983 52.5894C864.786 52.5894 873.501 54.6469 881.126 58.762C888.751 62.8771 894.681 68.7472 898.918 76.3722C903.275 83.9972 905.453 92.8931 905.453 103.06ZM873.682 94.8902C873.682 89.5647 871.867 85.3286 868.236 82.1818C864.605 79.0349 860.066 77.4615 854.62 77.4615C849.415 77.4615 844.998 78.9744 841.367 82.0002C837.857 85.026 835.678 89.3227 834.831 94.8902H873.682Z" fill="currentColor"/><path d="M943.798 68.3841C946.703 63.6638 950.879 59.8513 956.325 56.9466C961.772 54.0418 968.005 52.5894 975.025 52.5894C983.376 52.5894 990.94 54.7075 997.718 58.9436C1004.5 63.1797 1009.82 69.2313 1013.69 77.0984C1017.69 84.9655 1019.69 94.1034 1019.69 104.512C1019.69 114.921 1017.69 124.119 1013.69 132.108C1009.82 139.975 1004.5 146.087 997.718 150.444C990.94 154.68 983.376 156.798 975.025 156.798C967.884 156.798 961.651 155.406 956.325 152.622C951 149.718 946.824 145.905 943.798 141.185V155.346H912.754V21H943.798V68.3841ZM988.096 104.512C988.096 96.7661 985.918 90.7145 981.56 86.3574C977.324 81.8792 972.059 79.6401 965.766 79.6401C959.593 79.6401 954.328 81.8792 949.971 86.3574C945.735 90.8356 943.617 96.9477 943.617 104.694C943.617 112.44 945.735 118.552 949.971 123.03C954.328 127.508 959.593 129.747 965.766 129.747C971.938 129.747 977.203 127.508 981.56 123.03C985.918 118.431 988.096 112.258 988.096 104.512Z" fill="currentColor"/></svg><figcaption>On blue</figcaption></figure>
+        </div>
+        <p class="muted" style="font-size:12.5px;margin:14px 0 0;">Single color only. Render in black on light surfaces and white (knockout) on dark or blue. Never recolor or add effects to the mark.</p>
+        <div class="logo-note">
+          <div class="do"><div class="h">Do</div>Keep it lowercase. Give it room. Use a single brand color.</div>
+          <div class="dont"><div class="h">Do not</div>Add gradients or outlines. Stretch it. Place it on a busy photo without a scrim.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUTTONS -->
+    <section class="ds-section alt" id="buttons">
+      <div class="ds-inner">
+        <div class="eyebrow">Components</div>
+        <h2>Buttons</h2>
+        <p class="lead">Every button is a fully rounded pill, weight 450, with a soft 6px/12px shadow. Primary actions are cocoa; peach is the high-energy accent; ghosts and outlines are secondary.</p>
+        <p class="lbl">Variants</p>
+        <div class="btn-row">
+          <button type="button" class="btn btn-primary">Get the app</button>
+          <button type="button" class="btn btn-peach">Start saving</button>
+          <button type="button" class="btn btn-ghost">Learn more</button>
+          <button type="button" class="btn btn-outline">About Cazyweb</button>
+        </div>
+        <p class="lbl">Sizes</p>
+        <div class="btn-row">
+          <button type="button" class="btn btn-primary btn-sm">Small</button>
+          <button type="button" class="btn btn-primary">Default</button>
+          <button type="button" class="btn btn-primary btn-lg">Large</button>
+        </div>
+        <p class="lbl">States</p>
+        <div class="btn-row">
+          <button type="button" class="btn btn-primary">Default</button>
+          <button type="button" class="btn btn-primary is-disabled" disabled>Disabled</button>
+        </div>
+        <div class="darkbar">
+          <p class="lbl">On dark</p>
+          <div class="btn-row" style="margin-bottom:0">
+            <button type="button" class="btn" style="background:#fff;color:#2b3242">Get the app</button>
+            <button type="button" class="btn btn-peach">Try Autopilot</button>
+            <button type="button" class="btn" style="background:rgba(255,255,255,.14);color:#fff;box-shadow:none">Features</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORMS -->
+    <section class="ds-section" id="forms">
+      <div class="ds-inner">
+        <div class="eyebrow">Components</div>
+        <h2>Form elements</h2>
+        <p class="lead">Inputs are pill-shaped to match the buttons, with a peach focus ring. Used for email capture, search, and the in-app message bar.</p>
+        <div class="form-grid">
+          <div><label class="fld">Email address</label><input class="input" type="email" placeholder="you@example.com"></div>
+          <div><label class="fld">Savings goal</label><select class="input"><option>Select one</option><option>Emergency fund</option><option>Holiday</option><option>Pay off a card</option></select></div>
+          <div style="grid-column:1 / -1"><label class="fld">Ask Cazyweb anything</label><textarea class="input" rows="3" placeholder="Can I afford takeout tonight?"></textarea></div>
+        </div>
+        <div style="margin-top:16px">
+          <label class="check-row"><input type="checkbox" checked> Send me Cazyweb's weekly money roast</label>
+          <label class="check-row"><input type="radio" name="r" checked> One-off boost</label>
+          <label class="check-row"><input type="radio" name="r"> Autopilot (recurring)</label>
+        </div>
+      </div>
+    </section>
+
+    <!-- BADGES -->
+    <section class="ds-section alt" id="badges">
+      <div class="ds-inner">
+        <div class="eyebrow">Components</div>
+        <h2>Badges &amp; chips</h2>
+        <p class="lead">Mono uppercase eyebrows label sections. Pill chips carry features and filters. Peach flags signal what is new.</p>
+        <div class="badge-row">
+          <span class="flag-new">New</span>
+          <span class="label-trust">4.7 &#9733; App Store</span>
+          <span class="eyebrow-chip">Introducing Cazyweb Autopilot</span>
+        </div>
+        <div class="badge-row" style="margin-top:18px">
+          <span class="chip-tag on">Save</span>
+          <span class="chip-tag">Budget</span>
+          <span class="chip-tag">Autopilot</span>
+          <span class="chip-tag">Cazyweb Card</span>
+          <span class="chip-tag">Credit Builder</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- APP MOMENTS (Cazyweb's signature component, in place of an e-com product tile) -->
+    <section class="ds-section" id="moments">
+      <div class="ds-inner">
+        <div class="eyebrow">Components</div>
+        <h2>App moments</h2>
+        <p class="lead">The signature component is the product moment: a single frosted-glass message floating on an atmospheric gradient, set in dark ink, capped by the circular avatar. Content shows through the glass behind it.</p>
+        <div class="demo-grid">
+          <div class="demo g-sky"><div class="stack"><div class="glassbubble lg">You sent $396 on Venmo this month. Next month, try sending Ven-less.</div><div class="cleo-avatar lg"><div class="cleo-dots"><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+          <div class="demo g-peach"><div class="stack"><div class="glassbubble lg">That's three coffees before 10am. Bestie, we need to talk about your barista.</div><div class="cleo-avatar lg"><div class="cleo-dots"><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+          <div class="demo g-cocoa"><div class="stack"><div class="glassbubble lg">Good news: I moved $40 to savings while you slept. You're welcome.</div><div class="cleo-avatar lg"><div class="cleo-dots"><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+        </div>
+        <p class="lbl" style="margin-top:30px">In-thread chat bubbles</p>
+        <div class="chatcard">
+          <div class="bubble user">Can I afford takeout tonight?</div>
+          <div class="bubble cleo">Bestie. You have $14 til Friday. That is a "make pasta" situation.</div>
+          <div class="bubble peach">Want me to move $20 to savings instead?</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GEOMETRY + ICONS -->
+    <section class="ds-section alt" id="tokens">
+      <div class="ds-inner">
+        <div class="eyebrow">System</div>
+        <h2>Geometry &amp; icons</h2>
+        <p class="lead">Cazyweb is defined by soft, generous rounding and very light elevation. It is also deliberately icon-light: the mark system is the wordmark, the dot avatar, and a small set of single-color glyphs.</p>
+        <p class="lbl">Corners</p>
+        <div class="token-grid">
+          <div class="token-card"><div class="radius-demo" style="border-radius:999px"></div><div class="tk">Pill / 999px</div><div class="tv">Buttons, chips, inputs, nav</div></div>
+          <div class="token-card"><div class="radius-demo" style="border-radius:48px"></div><div class="tk">Card / 48px</div><div class="tv">Content cards, app moments</div></div>
+          <div class="token-card"><div class="radius-demo" style="border-radius:20px"></div><div class="tk">Small / 16-20px</div><div class="tv">Tiles, small surfaces</div></div>
+        </div>
+        <p class="lbl" style="margin-top:26px">Elevation</p>
+        <div class="token-grid">
+          <div class="token-card"><div class="elev-demo" style="box-shadow:0 6px 12px rgba(0,0,0,.1)"></div><div class="tk">Button</div><div class="tv">0 6px 12px / 10%</div></div>
+          <div class="token-card"><div class="elev-demo" style="box-shadow:0 12px 40px rgba(31,37,51,.1)"></div><div class="tk">Card</div><div class="tv">0 12px 40px / 10%</div></div>
+          <div class="token-card"><div class="elev-demo" style="box-shadow:0 20px 60px rgba(31,37,51,.18)"></div><div class="tk">Float</div><div class="tv">0 20px 60px / 18%</div></div>
+        </div>
+
+        <div class="icon-section">
+          <p class="lbl">Brand marks (verified, from the live site)</p>
+          <div class="icon-wall">
+            <div class="icon-chip brand"><svg class="cwlogo" viewBox="0 0 1020 204" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cazyweb"><path d="M206 81.1092C206 103.815 198.991 125.963 185.936 144.509C172.88 163.055 154.421 177.087 133.094 184.678C111.767 192.268 88.6212 193.044 66.8375 186.897C45.0538 180.751 25.7023 167.985 11.4435 150.355L43.6133 124.159C52.4781 135.121 64.509 143.057 78.0521 146.878C91.5951 150.699 105.985 150.217 119.244 145.498C132.503 140.779 143.98 132.055 152.096 120.525C160.212 108.995 164.57 95.2255 164.57 81.1092H206Z" fill="currentColor"/><path d="M156.453 10.4652C116.818 10.4652 106.909 49.7119 106.909 49.7119H205.996C205.996 49.7119 196.068 10.4652 156.453 10.4652Z" fill="currentColor"/><path d="M49.5436 99.425C76.9057 99.425 99.0871 77.1679 99.0871 49.7125C99.0871 22.257 76.9057 0 49.5436 0C22.1814 0 0 22.257 0 49.7125C0 77.1679 22.1814 99.425 49.5436 99.425Z" fill="currentColor"/><path d="M254 104.694C254 94.164 256.118 84.9655 260.354 77.0984C264.711 69.2313 270.702 63.1797 278.327 58.9436C286.074 54.7075 294.909 52.5894 304.834 52.5894C317.542 52.5894 328.132 55.9178 336.604 62.5746C345.198 69.2313 350.826 78.6113 353.488 90.7145H320.447C317.663 82.9685 312.277 79.0954 304.289 79.0954C298.6 79.0954 294.062 81.3345 290.673 85.8127C287.284 90.1699 285.589 96.4636 285.589 104.694C285.589 112.924 287.284 119.278 290.673 123.756C294.062 128.113 298.6 130.292 304.289 130.292C312.277 130.292 317.663 126.419 320.447 118.673H353.488C350.826 130.534 345.198 139.854 336.604 146.631C328.011 153.409 317.421 156.798 304.834 156.798C294.909 156.798 286.074 154.68 278.327 150.444C270.702 146.208 264.711 140.156 260.354 132.289C256.118 124.422 254 115.224 254 104.694Z" fill="currentColor"/><path d="M354.844 104.512C354.844 94.1034 356.781 84.9655 360.654 77.0984C364.648 69.2313 370.034 63.1797 376.812 58.9436C383.59 54.7075 391.154 52.5894 399.505 52.5894C406.646 52.5894 412.879 54.0418 418.205 56.9466C423.651 59.8513 427.827 63.6638 430.732 68.3841V54.0418H461.776V155.346H430.732V141.003C427.706 145.724 423.47 149.536 418.023 152.441C412.698 155.346 406.465 156.798 399.324 156.798C391.094 156.798 383.59 154.68 376.812 150.444C370.034 146.087 364.648 139.975 360.654 132.108C356.781 124.119 354.844 114.921 354.844 104.512ZM430.732 104.694C430.732 96.9477 428.553 90.8356 424.196 86.3574C419.96 81.8792 414.755 79.6401 408.583 79.6401C402.41 79.6401 397.145 81.8792 392.788 86.3574C388.552 90.7145 386.434 96.7661 386.434 104.512C386.434 112.258 388.552 118.431 392.788 123.03C397.145 127.508 402.41 129.747 408.583 129.747C414.755 129.747 419.96 127.508 424.196 123.03C428.553 118.552 430.732 112.44 430.732 104.694Z" fill="currentColor"/><path d="M504.206 129.747H548.141V155.346H469.53V130.655L511.65 79.6401H469.894V54.0418H547.233V78.7323L504.206 129.747Z" fill="currentColor"/><path d="M659.628 54.0418L596.087 203.456H562.682L585.92 151.896L544.708 54.0418H579.384L602.804 117.402L626.042 54.0418H659.628Z" fill="currentColor"/><path d="M807.197 54.0418L779.784 155.346H745.471L729.495 89.6252L712.974 155.346H678.843L651.247 54.0418H682.292L696.635 126.48L713.7 54.0418H746.56L763.807 126.116L777.968 54.0418H807.197Z" fill="currentColor"/><path d="M905.453 103.06C905.453 105.965 905.272 108.99 904.909 112.137H834.65C835.134 118.431 837.131 123.272 840.641 126.661C844.272 129.929 848.689 131.563 853.894 131.563C861.64 131.563 867.026 128.295 870.051 121.759H903.093C901.399 128.416 898.312 134.407 893.834 139.733C889.477 145.058 883.97 149.234 877.313 152.259C870.657 155.285 863.213 156.798 854.983 156.798C845.058 156.798 836.223 154.68 828.477 150.444C820.731 146.208 814.679 140.156 810.322 132.289C805.965 124.422 803.786 115.224 803.786 104.694C803.786 94.164 805.904 84.9655 810.141 77.0984C814.498 69.2313 820.549 63.1797 828.295 58.9436C836.041 54.7075 844.937 52.5894 854.983 52.5894C864.786 52.5894 873.501 54.6469 881.126 58.762C888.751 62.8771 894.681 68.7472 898.918 76.3722C903.275 83.9972 905.453 92.8931 905.453 103.06ZM873.682 94.8902C873.682 89.5647 871.867 85.3286 868.236 82.1818C864.605 79.0349 860.066 77.4615 854.62 77.4615C849.415 77.4615 844.998 78.9744 841.367 82.0002C837.857 85.026 835.678 89.3227 834.831 94.8902H873.682Z" fill="currentColor"/><path d="M943.798 68.3841C946.703 63.6638 950.879 59.8513 956.325 56.9466C961.772 54.0418 968.005 52.5894 975.025 52.5894C983.376 52.5894 990.94 54.7075 997.718 58.9436C1004.5 63.1797 1009.82 69.2313 1013.69 77.0984C1017.69 84.9655 1019.69 94.1034 1019.69 104.512C1019.69 114.921 1017.69 124.119 1013.69 132.108C1009.82 139.975 1004.5 146.087 997.718 150.444C990.94 154.68 983.376 156.798 975.025 156.798C967.884 156.798 961.651 155.406 956.325 152.622C951 149.718 946.824 145.905 943.798 141.185V155.346H912.754V21H943.798V68.3841ZM988.096 104.512C988.096 96.7661 985.918 90.7145 981.56 86.3574C977.324 81.8792 972.059 79.6401 965.766 79.6401C959.593 79.6401 954.328 81.8792 949.971 86.3574C945.735 90.8356 943.617 96.9477 943.617 104.694C943.617 112.44 945.735 118.552 949.971 123.03C954.328 127.508 959.593 129.747 965.766 129.747C971.938 129.747 977.203 127.508 981.56 123.03C985.918 118.431 988.096 112.258 988.096 104.512Z" fill="currentColor"/></svg><span>Wordmark</span></div>
+            <div class="icon-chip brand"><div class="cleo-avatar" style="width:34px;height:34px;background:#fff;border:1px solid var(--ds-line)"><div class="cleo-dots"><i></i><i></i><i></i><i></i><i></i></div></div><span>Avatar</span></div>
+            <div class="icon-chip"><svg viewBox="0 0 18 21" fill="none"><path d="M13.1885 0H9.64933V14.3043C9.64933 16.0087 8.28817 17.4087 6.59423 17.4087C4.90029 17.4087 3.5391 16.0087 3.5391 14.3043C3.5391 12.6304 4.87005 11.2608 6.5035 11.2V7.60871C2.90388 7.66955 0 10.6217 0 14.3043C0 18.0174 2.96437 21 6.62449 21C10.2846 21 13.2489 17.987 13.2489 14.3043V6.96955C14.5799 7.94348 16.2133 8.52174 17.9375 8.55219V4.96087C15.2756 4.86957 13.1885 2.67826 13.1885 0Z" fill="currentColor"/></svg><span>TikTok</span></div>
+            <div class="icon-chip"><svg viewBox="0 0 20 18" fill="none"><path d="M15.1605 0H18.1123L11.6635 7.37056L19.25 17.4002H13.3098L8.65728 11.3173L3.3337 17.4002H0.380128L7.27776 9.51658L0 0H6.09097L10.2965 5.56004L15.1605 0ZM14.1245 15.6334H15.7601L5.20222 1.67399H3.44703L14.1245 15.6334Z" fill="currentColor"/></svg><span>X</span></div>
+            <div class="icon-chip"><svg viewBox="0 0 21 21" fill="none"><path d="M10.5 0C4.70106 0 0 4.70106 0 10.5C0 15.4241 3.39024 19.556 7.96362 20.6909V13.7088H5.79852V10.5H7.96362V9.11736C7.96362 5.54358 9.58104 3.8871 13.0897 3.8871C13.755 3.8871 14.9029 4.01772 15.3724 4.14792V7.05642C15.1246 7.03038 14.6941 7.01736 14.1595 7.01736C12.4379 7.01736 11.7726 7.66962 11.7726 9.36516V10.5H15.2023L14.6131 13.7088H11.7726V20.9231C16.9718 20.2952 21.0004 15.8684 21.0004 10.5C21 4.70106 16.2989 0 10.5 0Z" fill="currentColor"/></svg><span>Facebook</span></div>
+            <div class="icon-chip"><svg viewBox="0 0 21 21" fill="none"><path d="M10.5 1.89082C13.3055 1.89082 13.6377 1.90312 14.741 1.95234C15.7664 1.99746 16.3201 2.16973 16.6893 2.31328C17.1773 2.50195 17.5301 2.73164 17.8951 3.09668C18.2643 3.46582 18.4898 3.81445 18.6785 4.30254C18.8221 4.67168 18.9943 5.22949 19.0395 6.25078C19.0887 7.3582 19.101 7.69043 19.101 10.4918C19.101 13.2973 19.0887 13.6295 19.0395 14.7328C18.9943 15.7582 18.8221 16.3119 18.6785 16.6811C18.4898 17.1691 18.2602 17.5219 17.8951 17.8869C17.526 18.2561 17.1773 18.4816 16.6893 18.6703C16.3201 18.8139 15.7623 18.9861 14.741 19.0312C13.6336 19.0805 13.3014 19.0928 10.5 19.0928C7.69453 19.0928 7.36231 19.0805 6.25899 19.0312C5.23359 18.9861 4.67988 18.8139 4.31074 18.6703C3.82266 18.4816 3.46992 18.252 3.10488 17.8869C2.73574 17.5178 2.51016 17.1691 2.32148 16.6811C2.17793 16.3119 2.00566 15.7541 1.96055 14.7328C1.91133 13.6254 1.89902 13.2932 1.89902 10.4918C1.89902 7.68633 1.91133 7.3541 1.96055 6.25078C2.00566 5.22539 2.17793 4.67168 2.32148 4.30254C2.51016 3.81445 2.73984 3.46172 3.10488 3.09668C3.47402 2.72754 3.82266 2.50195 4.31074 2.31328C4.67988 2.16973 5.2377 1.99746 6.25899 1.95234C7.36231 1.90312 7.69453 1.89082 10.5 1.89082ZM10.5 0C7.64942 0 7.29258 0.0123047 6.17285 0.0615234C5.05723 0.110742 4.29024 0.291211 3.62578 0.549609C2.93262 0.820312 2.34609 1.17715 1.76367 1.76367C1.17715 2.34609 0.820313 2.93262 0.549609 3.62168C0.291211 4.29023 0.110742 5.05312 0.0615234 6.16875C0.0123047 7.29258 0 7.64941 0 10.5C0 13.3506 0.0123047 13.7074 0.0615234 14.8271C0.110742 15.9428 0.291211 16.7098 0.549609 17.3742C0.820313 18.0674 1.17715 18.6539 1.76367 19.2363C2.34609 19.8188 2.93262 20.1797 3.62168 20.4463C4.29024 20.7047 5.05313 20.8852 6.16875 20.9344C7.28848 20.9836 7.64531 20.9959 10.4959 20.9959C13.3465 20.9959 13.7033 20.9836 14.823 20.9344C15.9387 20.8852 16.7057 20.7047 17.3701 20.4463C18.0592 20.1797 18.6457 19.8188 19.2281 19.2363C19.8105 18.6539 20.1715 18.0674 20.4381 17.3783C20.6965 16.7098 20.877 15.9469 20.9262 14.8313C20.9754 13.7115 20.9877 13.3547 20.9877 10.5041C20.9877 7.65352 20.9754 7.29668 20.9262 6.17695C20.877 5.06133 20.6965 4.29434 20.4381 3.62988C20.1797 2.93262 19.8229 2.34609 19.2363 1.76367C18.6539 1.18125 18.0674 0.820312 17.3783 0.553711C16.7098 0.295312 15.9469 0.114844 14.8313 0.065625C13.7074 0.0123047 13.3506 0 10.5 0Z" fill="currentColor"/><path d="M10.5 5.10645C7.52227 5.10645 5.10645 7.52227 5.10645 10.5C5.10645 13.4777 7.52227 15.8936 10.5 15.8936C13.4777 15.8936 15.8936 13.4777 15.8936 10.5C15.8936 7.52227 13.4777 5.10645 10.5 5.10645ZM10.5 13.9986C8.56816 13.9986 7.00137 12.4318 7.00137 10.5C7.00137 8.56816 8.56816 7.00137 10.5 7.00137C12.4318 7.00137 13.9986 8.56816 13.9986 10.5C13.9986 12.4318 12.4318 13.9986 10.5 13.9986Z" fill="currentColor"/><path d="M17.366 4.89321C17.366 5.59048 16.8 6.1524 16.1068 6.1524C15.4096 6.1524 14.8477 5.58638 14.8477 4.89321C14.8477 4.19595 15.4137 3.63403 16.1068 3.63403C16.8 3.63403 17.366 4.20005 17.366 4.89321Z" fill="currentColor"/></svg><span>Instagram</span></div>
+          </div>
+
+          <p class="lbl" style="margin-top:26px">App UI icon style (rounded, 1.6 stroke, currentColor)</p>
+          <div class="icon-wall">
+            <div class="icon-chip"><svg class="ui" viewBox="0 0 24 24"><path d="M4 11l8-6 8 6"/><path d="M6 10v8a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-8"/></svg><span>Home</span></div>
+            <div class="icon-chip"><svg class="ui" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="3"/><path d="M3 10h18"/><path d="M16 14h2"/></svg><span>Card</span></div>
+            <div class="icon-chip"><svg class="ui" viewBox="0 0 24 24"><path d="M4 18V9"/><path d="M10 18V5"/><path d="M16 18v-7"/><path d="M21 18H3"/></svg><span>Budget</span></div>
+            <div class="icon-chip"><svg class="ui" viewBox="0 0 24 24"><path d="M5 17h14l-1.2-5.5a6 6 0 0 0-11.6 0L5 17z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span>Alerts</span></div>
+            <div class="icon-chip"><svg class="ui" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-6.2-8.5"/><path d="M12 7v5l3 2"/></svg><span>Autopilot</span></div>
+            <div class="icon-chip"><svg class="ui" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.6-2-3.4-2.3 1a7 7 0 0 0-1.7-1l-.4-2.5H10.5l-.4 2.5a7 7 0 0 0-1.7 1l-2.3-1-2 3.4 2 1.6a7 7 0 0 0 0 2l-2 1.6 2 3.4 2.3-1a7 7 0 0 0 1.7 1l.4 2.5h3l.4-2.5a7 7 0 0 0 1.7-1l2.3 1 2-3.4-2-1.6c.07-.33.1-.66.1-1z"/></svg><span>Settings</span></div>
+          </div>
+          <p class="muted" style="font-size:12.5px;margin-top:14px">There is no large decorative icon set. Lead with photography and the app moments; use functional glyphs only inside product UI. Source SVGs in <code>assets/icons/</code>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIQUID GLASS -->
+    <section class="ds-section alt" id="liquid-glass">
+      <div class="ds-inner">
+        <div class="eyebrow">System</div>
+        <h2>Liquid Glass</h2>
+        <p class="lead">Cazyweb's surfaces use a Liquid Glass material: Apple's dynamic material that "combines the optical properties of glass with a sense of fluidity," letting the content behind it shine through and infuse the surface. We tint it cool so it stays on brand. Two variants: Regular (more opaque, adaptive, stays legible) for chat, nav, and most controls; Clear (more transparent) for media-rich moments.</p>
+
+        <p class="lbl">Regular and Clear, over photography</p>
+        <div class="lg-stage" style="background-image:url('assets/generated/hero-glass-panels.png')">
+          <div class="glasscard lg lg-float"><h4>Regular</h4><p>Cool tint, adaptive, stays legible. Use for chat bubbles, navigation, toolbars, and most controls.</p></div>
+          <div class="glasscard lg lg-clear lg-float"><h4>Clear</h4><p>More transparent, lets the imagery dominate. Use over rich media and full bleed moments.</p></div>
+        </div>
+
+        <p class="lbl" style="margin-top:30px">Controls, over a moody gradient</p>
+        <div class="lg-stage" style="background:linear-gradient(120deg,#4a5a78,#5566aa 55%,#2b3242);min-height:150px">
+          <button class="lg lg-pill lg-float" type="button">Get the app</button>
+          <button class="lg lg-pill lg-float" type="button">Save</button>
+          <button class="lg lg-pill lg-float" type="button">Autopilot</button>
+          <span class="cleo-avatar lg lg-float" style="margin-top:0;width:50px;height:50px"><span class="cleo-dots"><i></i><i></i><i></i><i></i><i></i></span></span>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1.1fr .9fr;gap:28px;margin-top:30px;align-items:start">
+          <div>
+            <p class="lbl">Material recipe (regular)</p>
+            <pre class="recipe"><span class="c">/* translucent warm tint + backdrop blur:
+   content infuses the glass */</span>
+.glass {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 26px;            <span class="c">/* continuous radius */</span>
+}
+.glass::before {                  <span class="c">/* the glass body */</span>
+  content: ""; position: absolute; inset: 0;
+  z-index: -2; border-radius: inherit;
+  background: rgba(244,247,251,.40);
+  backdrop-filter: blur(18px) saturate(185%) brightness(1.06);
+  box-shadow:
+    inset 0 1.5px 1px rgba(255,255,255,.7),   <span class="c">/* top light */</span>
+    inset 0 0 0 1px rgba(255,255,255,.32);    <span class="c">/* lens rim */</span>
+}
+.glass::after {                   <span class="c">/* specular sheen */</span>
+  content: ""; position: absolute; inset: 0;
+  z-index: -1; border-radius: inherit;
+  background: linear-gradient(130deg,
+    rgba(255,255,255,.5) 0%, transparent 34%);
+}
+<span class="c">/* float above content */</span>
+box-shadow: 0 18px 44px rgba(31,37,51,.28);</pre>
+          </div>
+          <div>
+            <p class="lbl">Properties</p>
+            <div class="voice-line"><ul style="margin:0;padding-left:18px">
+              <li><b>Translucency:</b> content shines through and infuses the surface</li>
+              <li><b>Refraction:</b> backdrop blur with boosted saturation acts as a lens</li>
+              <li><b>Specular:</b> a bright inset top light and a diagonal sheen</li>
+              <li><b>Lens rim:</b> a hairline white edge defines the glass</li>
+              <li><b>Float:</b> a soft shadow separates it from content</li>
+              <li><b>Shape:</b> continuous large radii, capsule controls</li>
+            </ul></div>
+            <p class="muted" style="font-size:12px;margin-top:14px">Source: Apple, <a href="https://developer.apple.com/documentation/technologyoverviews/liquid-glass">Liquid Glass</a> (developer documentation). Be judicious with color so content stays legible and shines through.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMAGERY -->
+    <section class="ds-section" id="imagery">
+      <div class="ds-inner">
+        <div class="eyebrow">System</div>
+        <h2>Imagery direction</h2>
+        <p class="lead">Abstract, premium, and technical: frosted liquid glass, refractive light, and minimal forms on clean cool grounds, with the blue accent as the only saturated note. Generous negative space, no stock photography, no clutter. The full asset set is in the Image library below.</p>
+        <div class="img-grid">
+          <figure class="wide"><img src="assets/generated/hero-glass-panels.png" alt="Liquid glass panels"><figcaption>Glass panels</figcaption></figure>
+          <figure><img src="assets/generated/glass-mark-real.png" alt="Cazyweb glass mark"><figcaption>Glass mark</figcaption></figure>
+          <figure><img src="assets/generated/hero-glass-ribbon.png" alt="Glass ribbon"><figcaption>Glass ribbon</figcaption></figure>
+          <figure class="wide"><img src="assets/generated/ai-network-dark.png" alt="AI network"><figcaption>AI network</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMAGE LIBRARY -->
+    <section class="ds-section alt" id="library">
+      <div class="ds-inner">
+        <div class="eyebrow">System</div>
+        <h2>Image library</h2>
+        <p class="lead">Every generated brand asset, ready to use across the website and internal apps. All cool, minimal, and blue-accented. Files live in <code>assets/generated/</code>.</p>
+
+        <div class="lib-group">Heroes &amp; backgrounds</div>
+        <div class="lib-grid">
+          <div class="lib-card span2"><div class="thumb"><img src="assets/generated/web-hero.png" alt="Website hero"></div><div class="cap"><div class="nm">Website hero</div><div class="use">Homepage hero. Glass forms right, clean left space for a headline.</div><span class="file">web-hero.png &middot; 16:9</span></div></div>
+          <div class="lib-card span2"><div class="thumb"><img src="assets/generated/hero-glass-panels.png" alt="Glass panels"></div><div class="cap"><div class="nm">Glass panels</div><div class="use">Bright section hero or feature backdrop. Holds dark text well.</div><span class="file">hero-glass-panels.png &middot; 16:9</span></div></div>
+          <div class="lib-card span2"><div class="thumb"><img src="assets/generated/og-card.png" alt="Social card"></div><div class="cap"><div class="nm">Social / OG card</div><div class="use">Share-card background. Central space for an overlaid title.</div><span class="file">og-card.png &middot; 16:9</span></div></div>
+          <div class="lib-card span2"><div class="thumb"><img src="assets/generated/app-dashboard-bg.png" alt="Dashboard background"></div><div class="cap"><div class="nm">Dashboard texture</div><div class="use">Subtle dark app background. Low contrast so UI sits on top.</div><span class="file">app-dashboard-bg.png &middot; 16:9</span></div></div>
+        </div>
+
+        <div class="lib-group">Audience doors</div>
+        <div class="lib-grid">
+          <div class="lib-card"><div class="thumb"><img src="assets/generated/for-brands.png" alt="For Brands"></div><div class="cap"><div class="nm">For Brands</div><div class="use">Growth and scale. Pairs with the brand-side route.</div><span class="file">for-brands.png &middot; 4:3</span></div></div>
+          <div class="lib-card"><div class="thumb"><img src="assets/generated/for-agencies.png" alt="For Agencies"></div><div class="cap"><div class="nm">For Agencies</div><div class="use">Partnership and white-label systems. Agency-side route.</div><span class="file">for-agencies.png &middot; 4:3</span></div></div>
+        </div>
+
+        <div class="lib-group">App &amp; UI</div>
+        <div class="lib-grid">
+          <div class="lib-card"><div class="thumb"><img src="assets/generated/app-empty-state.png" alt="Empty state"></div><div class="cap"><div class="nm">Empty state</div><div class="use">Friendly empty states and onboarding moments.</div><span class="file">app-empty-state.png &middot; 4:3</span></div></div>
+          <div class="lib-card"><div class="thumb"><img src="assets/generated/glass-mark-real.png" alt="Cazyweb glass mark"></div><div class="cap"><div class="nm">Glass mark</div><div class="use">The real Cazyweb mark in frosted glass. App icon or spot visual.</div><span class="file">glass-mark-real.png &middot; 1:1</span></div></div>
+        </div>
+
+        <div class="lib-group">Motifs</div>
+        <div class="lib-grid">
+          <div class="lib-card"><div class="thumb"><img src="assets/generated/hero-glass-ribbon.png" alt="Glass ribbon"></div><div class="cap"><div class="nm">Glass ribbon</div><div class="use">Cover and section accent. Premium on white or dark.</div><span class="file">hero-glass-ribbon.png &middot; 16:9</span></div></div>
+          <div class="lib-card"><div class="thumb"><img src="assets/generated/ai-network-dark.png" alt="AI network"></div><div class="cap"><div class="nm">AI network</div><div class="use">Dark cover backdrop. Signals the AI lab.</div><span class="file">ai-network-dark.png &middot; 16:9</span></div></div>
+        </div>
+
+        <div class="lib-group">Case studies</div>
+        <div class="lib-grid">
+          <div class="lib-card"><div class="thumb"><img src="assets/generated/case-dan-henry.png" alt="Dan Henry case study"></div><div class="cap"><div class="nm">Dan Henry</div><div class="use">Watch on a glass slab, blue bezel rim. Case-study thumbnail.</div><span class="file">case-dan-henry.png &middot; 4:3</span></div></div>
+          <div class="lib-card"><div class="thumb"><img src="assets/generated/case-enavi.png" alt="Enavi case study"></div><div class="cap"><div class="nm">Enavi</div><div class="use">Layered glass UI panels, one blue. SaaS / product case study.</div><span class="file">case-enavi.png &middot; 4:3</span></div></div>
+          <div class="lib-card"><div class="thumb"><img src="assets/generated/case-kitchenware.png" alt="Kitchenware case study"></div><div class="cap"><div class="nm">Kitchenware</div><div class="use">Sculptural glass pot. DTC / FMCG case study.</div><span class="file">case-kitchenware.png &middot; 4:3</span></div></div>
+        </div>
+
+        <div class="lib-group">Partners</div>
+        <div class="lib-grid">
+          <div class="lib-card span2"><div class="thumb"><img src="assets/generated/partners-hero.png" alt="Partners hero"></div><div class="cap"><div class="nm">Partners hero</div><div class="use">Interlinked glass ribbons. /partners hero.</div><span class="file">partners-hero.png &middot; 16:9</span></div></div>
+          <div class="lib-card"><div class="thumb"><img src="assets/generated/partners-pod.png" alt="Partners pod"></div><div class="cap"><div class="nm">Partner pod</div><div class="use">Three balanced capsules, one blue. Pod / team unit.</div><span class="file">partners-pod.png &middot; 1:1</span></div></div>
+        </div>
+
+        <div class="lib-group">About</div>
+        <div class="lib-grid">
+          <div class="lib-card span2"><div class="thumb"><img src="assets/generated/about-global.png" alt="Global reach"></div><div class="cap"><div class="nm">Global</div><div class="use">Glass globe with blue meridians. /about global reach.</div><span class="file">about-global.png &middot; 16:9</span></div></div>
+        </div>
+
+        <div class="lib-group">Platform modules</div>
+        <div class="lib-grid">
+          <div class="lib-card"><div class="thumb"><img src="assets/generated/platform-pm.png" alt="Project management module"></div><div class="cap"><div class="nm">PM</div><div class="use">Glass kanban columns, one blue card. Project management.</div><span class="file">platform-pm.png &middot; 4:3</span></div></div>
+          <div class="lib-card"><div class="thumb"><img src="assets/generated/platform-cro.png" alt="CRO module"></div><div class="cap"><div class="nm">CRO</div><div class="use">Ascending glass bar chart, blue peak. Conversion.</div><span class="file">platform-cro.png &middot; 4:3</span></div></div>
+          <div class="lib-card"><div class="thumb"><img src="assets/generated/platform-reports.png" alt="Reports module"></div><div class="cap"><div class="nm">Reports</div><div class="use">Fanned glass slides, blue shimmer. Reporting.</div><span class="file">platform-reports.png &middot; 4:3</span></div></div>
+          <div class="lib-card"><div class="thumb"><img src="assets/generated/platform-connect.png" alt="Connect module"></div><div class="cap"><div class="nm">Connect</div><div class="use">Glass chat bubbles, one blue. Messaging / support.</div><span class="file">platform-connect.png &middot; 4:3</span></div></div>
+        </div>
+
+        <div class="lib-group">Utility</div>
+        <div class="lib-grid">
+          <div class="lib-card span2"><div class="thumb"><img src="assets/generated/cta-dark.png" alt="Dark CTA band"></div><div class="cap"><div class="nm">CTA band</div><div class="use">Dark slate field, blue glass ribbon. Full-width CTA.</div><span class="file">cta-dark.png &middot; 21:9</span></div></div>
+          <div class="lib-card"><div class="thumb"><img src="assets/generated/empty-404.png" alt="404 state"></div><div class="cap"><div class="nm">404 / empty</div><div class="use">Shattered glass circle, one blue fragment. Error states.</div><span class="file">empty-404.png &middot; 1:1</span></div></div>
+        </div>
+
+        <div class="lib-group">Motion (looping MP4)</div>
+        <div class="lib-grid">
+          <div class="lib-card span2"><div class="thumb"><span class="motion-tag">Loop</span><video src="assets/generated/motion/web-hero.mp4" poster="assets/generated/motion/web-hero-poster.jpg" autoplay muted loop playsinline></video></div><div class="cap"><div class="nm">Hero drift</div><div class="use">Glass forms drift and shimmer. Homepage hero loop.</div><span class="file">web-hero.mp4 &middot; 5s</span></div></div>
+          <div class="lib-card span2"><div class="thumb"><span class="motion-tag">Loop</span><video src="assets/generated/motion/partners-hero.mp4" poster="assets/generated/motion/partners-hero-poster.jpg" autoplay muted loop playsinline></video></div><div class="cap"><div class="nm">Partners knot</div><div class="use">Interlinked ribbons rotate. /partners loop.</div><span class="file">partners-hero.mp4 &middot; 5s</span></div></div>
+          <div class="lib-card span2"><div class="thumb"><span class="motion-tag">Loop</span><video src="assets/generated/motion/about-global.mp4" poster="assets/generated/motion/about-global-poster.jpg" autoplay muted loop playsinline></video></div><div class="cap"><div class="nm">Global spin</div><div class="use">Globe rotates, meridians glow. /about loop.</div><span class="file">about-global.mp4 &middot; 5s</span></div></div>
+          <div class="lib-card span2"><div class="thumb"><span class="motion-tag">Loop</span><video src="assets/generated/motion/cta-dark.mp4" poster="assets/generated/motion/cta-dark-poster.jpg" autoplay muted loop playsinline></video></div><div class="cap"><div class="nm">CTA ribbon</div><div class="use">Ribbon undulates, blue edge light travels. CTA band loop.</div><span class="file">cta-dark.mp4 &middot; 5s</span></div></div>
+          <div class="lib-card"><div class="thumb"><span class="motion-tag">Loop</span><video src="assets/generated/motion/glass-mark.mp4" poster="assets/generated/motion/glass-mark-poster.jpg" autoplay muted loop playsinline></video></div><div class="cap"><div class="nm">Mark spin</div><div class="use">Logo mark rotates, glow pulses. Loader / app icon loop.</div><span class="file">glass-mark.mp4 &middot; 5s</span></div></div>
+          <div class="lib-card"><div class="thumb"><span class="motion-tag">Loop</span><video src="assets/generated/motion/platform-cro.mp4" poster="assets/generated/motion/platform-cro-poster.jpg" autoplay muted loop playsinline></video></div><div class="cap"><div class="nm">CRO pulse</div><div class="use">Glass bars shimmer, blue bar pulses. Platform loop.</div><span class="file">platform-cro.mp4 &middot; 5s</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VOICE -->
+    <section class="ds-section alt" id="voice">
+      <div class="ds-inner">
+        <div class="eyebrow">System</div>
+        <h2>Voice &amp; copy</h2>
+        <p class="lead">We write as one team: confident, direct, slightly bold. The "Excellence is not optional." register, founder direct, not corporate polished. Short sentences, active voice, present tense. We lead with evidence, not adjectives, and every claim has to survive the question "show me where that came from."</p>
+        <div class="voice-lines">
+          <div class="voice-line"><div class="big">"Excellence is not optional."</div><div class="why">The register</div></div>
+          <div class="voice-line"><div class="big">"We build what's next."</div><div class="why">Always "we", never "I"</div></div>
+          <div class="voice-line"><div class="big">"+140% sales beats incredible results."</div><div class="why">Specific over superlative</div></div>
+          <div class="voice-line"><div class="big">"DTC kitchenware brand, US."</div><div class="why">NDA-safe by niche plus scale</div></div>
+        </div>
+        <div class="voice-grid">
+          <div class="col"><div class="h">Do</div><ul><li>Say "we", never "I"</li><li>Lead with real numbers and named outcomes</li><li>State prices plainly ("From $8k/mo")</li><li>Make CTAs verb plus object ("Book a Partner Call")</li><li>Declare the audience: For Brands or For Agencies</li></ul></div>
+          <div class="col"><div class="h">Do not</div><ul><li>Invent names, stats, or stock team members</li><li>Use filler: cutting-edge, unlock, elevate, world-class, seamless</li><li>Use em dashes or en dashes (plain hyphens only)</li><li>Say "contact us for pricing" or "Learn More"</li><li>Talk about our ambition over the buyer's risk</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="ds-footer">
+      <div class="ds-inner">
+        <div>
+          <strong style="font-family:var(--ds-font-head);font-weight:450;">Cazyweb Design System</strong>
+          <div class="small">Cazyweb new theme: cool, neutral, glass. Recolored from the source glass system.</div>
+          <div class="foot-social" style="margin-top:16px">
+            <a href="#" aria-label="TikTok"><svg viewBox="0 0 18 21" fill="none"><path d="M13.1885 0H9.64933V14.3043C9.64933 16.0087 8.28817 17.4087 6.59423 17.4087C4.90029 17.4087 3.5391 16.0087 3.5391 14.3043C3.5391 12.6304 4.87005 11.2608 6.5035 11.2V7.60871C2.90388 7.66955 0 10.6217 0 14.3043C0 18.0174 2.96437 21 6.62449 21C10.2846 21 13.2489 17.987 13.2489 14.3043V6.96955C14.5799 7.94348 16.2133 8.52174 17.9375 8.55219V4.96087C15.2756 4.86957 13.1885 2.67826 13.1885 0Z" fill="currentColor"/></svg></a>
+            <a href="#" aria-label="X"><svg viewBox="0 0 20 18" fill="none"><path d="M15.1605 0H18.1123L11.6635 7.37056L19.25 17.4002H13.3098L8.65728 11.3173L3.3337 17.4002H0.380128L7.27776 9.51658L0 0H6.09097L10.2965 5.56004L15.1605 0ZM14.1245 15.6334H15.7601L5.20222 1.67399H3.44703L14.1245 15.6334Z" fill="currentColor"/></svg></a>
+            <a href="#" aria-label="Facebook"><svg viewBox="0 0 21 21" fill="none"><path d="M10.5 0C4.70106 0 0 4.70106 0 10.5C0 15.4241 3.39024 19.556 7.96362 20.6909V13.7088H5.79852V10.5H7.96362V9.11736C7.96362 5.54358 9.58104 3.8871 13.0897 3.8871C13.755 3.8871 14.9029 4.01772 15.3724 4.14792V7.05642C15.1246 7.03038 14.6941 7.01736 14.1595 7.01736C12.4379 7.01736 11.7726 7.66962 11.7726 9.36516V10.5H15.2023L14.6131 13.7088H11.7726V20.9231C16.9718 20.2952 21.0004 15.8684 21.0004 10.5C21 4.70106 16.2989 0 10.5 0Z" fill="currentColor"/></svg></a>
+            <a href="#" aria-label="Instagram"><svg viewBox="0 0 21 21" fill="none"><path d="M10.5 1.89082C13.3055 1.89082 13.6377 1.90312 14.741 1.95234C15.7664 1.99746 16.3201 2.16973 16.6893 2.31328C17.1773 2.50195 17.5301 2.73164 17.8951 3.09668C18.2643 3.46582 18.4898 3.81445 18.6785 4.30254C18.8221 4.67168 18.9943 5.22949 19.0395 6.25078C19.0887 7.3582 19.101 7.69043 19.101 10.4918C19.101 13.2973 19.0887 13.6295 19.0395 14.7328C18.9943 15.7582 18.8221 16.3119 18.6785 16.6811C18.4898 17.1691 18.2602 17.5219 17.8951 17.8869C17.526 18.2561 17.1773 18.4816 16.6893 18.6703C16.3201 18.8139 15.7623 18.9861 14.741 19.0312C13.6336 19.0805 13.3014 19.0928 10.5 19.0928C7.69453 19.0928 7.36231 19.0805 6.25899 19.0312C5.23359 18.9861 4.67988 18.8139 4.31074 18.6703C3.82266 18.4816 3.46992 18.252 3.10488 17.8869C2.73574 17.5178 2.51016 17.1691 2.32148 16.6811C2.17793 16.3119 2.00566 15.7541 1.96055 14.7328C1.91133 13.6254 1.89902 13.2932 1.89902 10.4918C1.89902 7.68633 1.91133 7.3541 1.96055 6.25078C2.00566 5.22539 2.17793 4.67168 2.32148 4.30254C2.51016 3.81445 2.73984 3.46172 3.10488 3.09668C3.47402 2.72754 3.82266 2.50195 4.31074 2.31328C4.67988 2.16973 5.2377 1.99746 6.25899 1.95234C7.36231 1.90312 7.69453 1.89082 10.5 1.89082ZM10.5 0C7.64942 0 7.29258 0.0123047 6.17285 0.0615234C5.05723 0.110742 4.29024 0.291211 3.62578 0.549609C2.93262 0.820312 2.34609 1.17715 1.76367 1.76367C1.17715 2.34609 0.820313 2.93262 0.549609 3.62168C0.291211 4.29023 0.110742 5.05312 0.0615234 6.16875C0.0123047 7.29258 0 7.64941 0 10.5C0 13.3506 0.0123047 13.7074 0.0615234 14.8271C0.110742 15.9428 0.291211 16.7098 0.549609 17.3742C0.820313 18.0674 1.17715 18.6539 1.76367 19.2363C2.34609 19.8188 2.93262 20.1797 3.62168 20.4463C4.29024 20.7047 5.05313 20.8852 6.16875 20.9344C7.28848 20.9836 7.64531 20.9959 10.4959 20.9959C13.3465 20.9959 13.7033 20.9836 14.823 20.9344C15.9387 20.8852 16.7057 20.7047 17.3701 20.4463C18.0592 20.1797 18.6457 19.8188 19.2281 19.2363C19.8105 18.6539 20.1715 18.0674 20.4381 17.3783C20.6965 16.7098 20.877 15.9469 20.9262 14.8313C20.9754 13.7115 20.9877 13.3547 20.9877 10.5041C20.9877 7.65352 20.9754 7.29668 20.9262 6.17695C20.877 5.06133 20.6965 4.29434 20.4381 3.62988C20.1797 2.93262 19.8229 2.34609 19.2363 1.76367C18.6539 1.18125 18.0674 0.820312 17.3783 0.553711C16.7098 0.295312 15.9469 0.114844 14.8313 0.065625C13.7074 0.0123047 13.3506 0 10.5 0Z" fill="currentColor"/><path d="M10.5 5.10645C7.52227 5.10645 5.10645 7.52227 5.10645 10.5C5.10645 13.4777 7.52227 15.8936 10.5 15.8936C13.4777 15.8936 15.8936 13.4777 15.8936 10.5C15.8936 7.52227 13.4777 5.10645 10.5 5.10645ZM10.5 13.9986C8.56816 13.9986 7.00137 12.4318 7.00137 10.5C7.00137 8.56816 8.56816 7.00137 10.5 7.00137C12.4318 7.00137 13.9986 8.56816 13.9986 10.5C13.9986 12.4318 12.4318 13.9986 10.5 13.9986Z" fill="currentColor"/><path d="M17.366 4.89321C17.366 5.59048 16.8 6.1524 16.1068 6.1524C15.4096 6.1524 14.8477 5.58638 14.8477 4.89321C14.8477 4.19595 15.4137 3.63403 16.1068 3.63403C16.8 3.63403 17.366 4.20005 17.366 4.89321Z" fill="currentColor"/></svg></a>
+          </div>
+        </div>
+        <div class="store-row">
+          <a class="store-badge" href="https://apps.apple.com/us/app/cleo-ai-smart-money-manager/id1447274646"><span><span class="sb-sm">Download on the</span><span class="sb-lg">App Store</span></span></a>
+          <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.meetcleo.cleo"><span><span class="sb-sm">Get it on</span><span class="sb-lg">Google Play</span></span></a>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+  var btn = document.getElementById('menuBtn');
+  var nav = document.getElementById('dsNav');
+  btn.addEventListener('click', function(){ nav.classList.toggle('open'); });
+  nav.addEventListener('click', function(e){ if(e.target.tagName === 'A') nav.classList.remove('open'); });
+
+  // scroll-spy active nav
+  var links = [].slice.call(document.querySelectorAll('.ds-nav a'));
+  var map = {};
+  links.forEach(function(a){ map[a.getAttribute('href').slice(1)] = a; });
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){
+        links.forEach(function(a){ a.classList.remove('active'); });
+        if(map[en.target.id]) map[en.target.id].classList.add('active');
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  document.querySelectorAll('.ds-section').forEach(function(s){ if(s.id) obs.observe(s); });
+
+  // click-to-copy color swatches
+  var toast = document.getElementById('toast'), t;
+  document.querySelectorAll('.swatch').forEach(function(sw){
+    sw.addEventListener('click', function(){
+      var hex = sw.getAttribute('data-hex');
+      navigator.clipboard && navigator.clipboard.writeText(hex);
+      toast.textContent = 'Copied ' + hex;
+      toast.classList.add('show');
+      clearTimeout(t); t = setTimeout(function(){ toast.classList.remove('show'); }, 1400);
+    });
+  });
+
+  // play library loops when on screen, pause when off (muted autoplay guarantee + perf)
+  var vids = [].slice.call(document.querySelectorAll('.lib-card video'));
+  if (vids.length) {
+    var vobs = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        var v = en.target;
+        if (en.isIntersecting) { v.play().catch(function(){}); }
+        else { v.pause(); }
+      });
+    }, { rootMargin: '0px 0px 100px 0px', threshold: 0.2 });
+    vids.forEach(function(v){ v.muted = true; vobs.observe(v); });
+  }
+</script>
+
+</body>
+</html>
