@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  BLUE ATLAS  -  Landing page (immersive direction)
+  Photo-forward, light, geometric-sans aesthetic. Floating white container on a
+  blurred travel-photo background. Visa-by-destination cards, glass feature chips.
+  Imagery: original AI-generated for Blue Atlas, in ./imagery/.
+-->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blue Atlas · Visas &amp; travel protection</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E1A2B; --ink-soft:#3A4A5C; --muted:#6E7884;
+    --azure:#1A6DEC; --azure-deep:#0E4FB0; --gold:#D6A94E;
+    --line:#E8EAEE; --surface:#fff; --surface-2:#F3F5F8; --surface-3:#EEF2F7;
+    --radius:22px; --radius-sm:14px; --pill:100px;
+    --shadow:0 10px 40px rgba(14,26,43,.10); --shadow-lg:0 30px 80px rgba(8,18,33,.18);
+    --font:'Hanken Grotesk', system-ui, -apple-system, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;font-family:var(--font);color:var(--ink-soft);background:#cfd9e2;-webkit-font-smoothing:antialiased;line-height:1.6;}
+  /* blurred photo backdrop */
+  body::before{content:"";position:fixed;inset:-60px;background:url('imagery/hero-landscape.png') center/cover no-repeat;filter:blur(34px) saturate(1.15);transform:scale(1.12);z-index:-2;}
+  body::after{content:"";position:fixed;inset:0;background:linear-gradient(180deg,rgba(226,236,245,.30),rgba(226,236,245,.55));z-index:-1;}
+  h1,h2,h3,h4{margin:0;color:var(--ink);font-weight:400;letter-spacing:-.02em;line-height:1.04;}
+  p{margin:0;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .tnum{font-variant-numeric:tabular-nums;}
+
+  .page{max-width:1320px;margin:22px auto;background:var(--surface);border-radius:34px;box-shadow:var(--shadow-lg);overflow:hidden;}
+  .wrap{padding:0 clamp(18px,3.4vw,40px);}
+  .sec{padding:clamp(46px,6vw,84px) 0;}
+
+  /* icons */
+  .ic{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+
+  /* logo */
+  .mark .g{stroke:currentColor;fill:none;stroke-width:1.7;}
+  .mark .pin{fill:var(--gold);}
+  .logo{display:inline-flex;align-items:center;gap:9px;color:var(--ink);font-weight:600;font-size:19px;letter-spacing:-.01em;}
+
+  /* buttons */
+  .btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--font);font-weight:600;font-size:14px;cursor:pointer;border:0;border-radius:var(--pill);padding:13px 22px;transition:background .18s,color .18s,box-shadow .18s,transform .05s;}
+  .btn:active{transform:translateY(1px);}
+  .btn-dark{background:var(--ink);color:#fff;}
+  .btn-dark:hover{background:#1c2c40;}
+  .btn-azure{background:var(--azure);color:#fff;box-shadow:0 8px 22px rgba(26,109,236,.30);}
+  .btn-azure:hover{background:var(--azure-deep);}
+  .btn-white{background:#fff;color:var(--ink);}
+  .btn-light{background:var(--surface-2);color:var(--ink);}
+  .btn-light:hover{background:var(--surface-3);}
+  .circ{width:42px;height:42px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex:0 0 42px;}
+  .circ .ic{width:18px;height:18px;}
+  .circ-dark{background:var(--ink);color:#fff;}
+  .circ-azure{background:var(--azure);color:#fff;}
+  .circ-white{background:#fff;color:var(--ink);}
+  .cta-pair{display:inline-flex;align-items:center;gap:10px;}
+
+  .tag{display:inline-flex;align-items:center;gap:7px;background:var(--surface-2);color:var(--ink);font-weight:600;font-size:13px;padding:8px 16px;border-radius:var(--pill);}
+  .tag.line{background:transparent;border:1px solid var(--line);}
+
+  /* top bar */
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:20px 0 8px;gap:16px;}
+  .nav{display:flex;align-items:center;gap:4px;background:var(--surface-2);padding:5px;border-radius:var(--pill);}
+  .nav a{padding:9px 16px;border-radius:var(--pill);font-size:14px;font-weight:500;color:var(--ink-soft);}
+  .nav a.active{background:#fff;color:var(--ink);box-shadow:0 2px 8px rgba(14,26,43,.08);}
+  .nav a:hover:not(.active){color:var(--ink);}
+
+  /* hero */
+  .hero{position:relative;border-radius:28px;overflow:hidden;margin-top:10px;min-height:600px;display:flex;}
+  .hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,18,33,.18) 0%,transparent 30%,transparent 48%,rgba(8,18,33,.62) 100%);}
+  .hero-in{position:relative;z-index:1;width:100%;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(22px,3vw,38px);}
+  .hero-top{display:flex;justify-content:flex-end;}
+  .hero-copy{max-width:62ch;color:#fff;font-size:15px;line-height:1.55;text-shadow:0 1px 12px rgba(0,0,0,.25);align-self:flex-end;text-align:right;margin-left:auto;}
+  .hero h1{color:#fff;font-weight:300;font-size:clamp(42px,7vw,92px);letter-spacing:-.035em;text-shadow:0 2px 30px rgba(0,0,0,.30);}
+  .hero-mid{margin:auto 0;}
+  .hero-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+  .hero-stat{color:#fff;font-size:14px;line-height:1.3;}
+  .hero-stat b{display:block;font-size:15px;font-weight:700;}
+  .glass-row{display:flex;gap:10px;flex-wrap:wrap;}
+  .glass{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.34);color:#fff;font-weight:600;font-size:13px;padding:10px 16px;border-radius:var(--pill);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
+  .glass .ic{width:17px;height:17px;}
+  .glass-icons{display:flex;gap:8px;}
+  .glass-ic{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.34);color:#fff;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
+
+  /* section heads */
+  .head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:34px;}
+  .head h2{font-size:clamp(30px,4vw,48px);font-weight:300;letter-spacing:-.03em;}
+  .head .sub{max-width:42ch;color:var(--muted);font-size:15px;}
+  .ey{margin-bottom:16px;}
+
+  /* destination cards */
+  .dest-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .dcard{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:3/4.1;display:flex;align-items:flex-end;color:#fff;isolation:isolate;}
+  .dcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .5s ease;}
+  .dcard::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 38%,rgba(8,18,33,.78));z-index:-1;}
+  .dcard:hover img{transform:scale(1.05);}
+  .dcard .arrow{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;background:#fff;color:var(--ink);display:flex;align-items:center;justify-content:center;}
+  .dcard .flag{position:absolute;top:16px;left:16px;font-size:12px;font-weight:600;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:5px 12px;border-radius:var(--pill);}
+  .dcard .d-body{padding:18px;width:100%;}
+  .dcard .types{font-size:12.5px;opacity:.92;margin-bottom:6px;}
+  .dcard h3{color:#fff;font-size:21px;font-weight:600;letter-spacing:-.01em;}
+  .dcard .price{font-size:13px;opacity:.92;margin-top:4px;}
+  .dcard .price b{font-weight:700;font-size:17px;}
+
+  /* experience / proof */
+  .exp{background:var(--surface-2);border-radius:28px;padding:clamp(34px,5vw,64px);}
+  .exp .big{font-size:clamp(26px,3.4vw,40px);font-weight:300;color:var(--ink);letter-spacing:-.025em;max-width:26ch;line-height:1.12;}
+  .exp .big .m{color:var(--muted);}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:42px;}
+  .stat .n{font-size:clamp(34px,4vw,50px);font-weight:300;color:var(--ink);letter-spacing:-.02em;}
+  .stat .n .a{color:var(--azure);}
+  .stat .c{color:var(--muted);font-size:14px;margin-top:6px;}
+
+  /* how it works */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .stp{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;}
+  .stp .ico{width:46px;height:46px;border-radius:13px;background:var(--surface-3);color:var(--azure-deep);display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
+  .stp .ico .ic{width:23px;height:23px;}
+  .stp .n{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--azure);margin-bottom:6px;}
+  .stp h4{font-size:18px;font-weight:600;margin-bottom:7px;}
+  .stp p{font-size:14px;color:var(--muted);}
+
+  /* plan with confidence */
+  .plan{display:grid;grid-template-columns:1.1fr 1fr;gap:20px;align-items:stretch;}
+  .plan .pic{border-radius:var(--radius);overflow:hidden;position:relative;min-height:340px;}
+  .plan .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .plan .pic .cap{position:absolute;left:18px;bottom:18px;color:#fff;font-size:15px;font-weight:600;text-shadow:0 1px 10px rgba(0,0,0,.3);}
+  .plan .panel{background:var(--surface-2);border-radius:var(--radius);padding:clamp(26px,3vw,40px);display:flex;flex-direction:column;}
+  .plan .panel h3{font-size:clamp(22px,2.6vw,30px);font-weight:300;letter-spacing:-.02em;margin-bottom:14px;}
+  .plan .panel p{color:var(--muted);font-size:15px;margin-bottom:20px;}
+  .checklist{list-style:none;padding:0;margin:0 0 26px;display:flex;flex-direction:column;gap:13px;}
+  .checklist li{display:flex;align-items:center;gap:11px;font-size:15px;color:var(--ink);}
+  .checklist .chk{width:24px;height:24px;border-radius:50%;background:#E4F0E9;color:#1E8E5A;display:flex;align-items:center;justify-content:center;flex:0 0 24px;}
+  .checklist .chk .ic{width:14px;height:14px;stroke-width:2.2;}
+
+  /* testimonial */
+  .test-grid{display:grid;grid-template-columns:.9fr 1.1fr 1fr;gap:18px;}
+  .tcard{border:1px solid var(--line);border-radius:var(--radius);padding:26px;background:var(--surface);}
+  .tcard.score{background:var(--ink);color:#fff;border-color:transparent;display:flex;flex-direction:column;justify-content:space-between;}
+  .tcard.score .big{font-size:54px;font-weight:300;letter-spacing:-.02em;}
+  .tcard.score .big small{font-size:18px;opacity:.7;}
+  .tcard.score .meta{color:rgba(255,255,255,.7);font-size:14px;margin-top:6px;}
+  .tcard.score .li{display:flex;align-items:center;gap:9px;font-size:13.5px;color:rgba(255,255,255,.85);margin-top:14px;}
+  .tcard.score .li .ic{width:16px;height:16px;color:var(--gold);}
+  .tcard.pic{padding:0;overflow:hidden;position:relative;min-height:240px;}
+  .tcard.pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .tcard .stars{color:var(--gold);font-size:15px;letter-spacing:2px;margin-bottom:14px;}
+  .tcard blockquote{margin:0 0 18px;font-size:17px;color:var(--ink);line-height:1.45;font-weight:500;letter-spacing:-.01em;}
+  .tcard .who{display:flex;align-items:center;gap:11px;}
+  .tcard .who .av{width:38px;height:38px;border-radius:50%;background:var(--surface-3);color:var(--ink);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;}
+  .tcard .who .nm{font-weight:700;font-size:14px;color:var(--ink);}
+  .tcard .who .ro{font-size:12.5px;color:var(--muted);}
+
+  /* CTA */
+  .cta{position:relative;border-radius:28px;overflow:hidden;padding:clamp(48px,7vw,96px) clamp(24px,4vw,56px);color:#fff;text-align:center;}
+  .cta img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;}
+  .cta::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,18,33,.55),rgba(8,18,33,.72));z-index:-1;}
+  .cta h2{color:#fff;font-weight:300;font-size:clamp(30px,5vw,60px);letter-spacing:-.03em;max-width:18ch;margin:0 auto 14px;}
+  .cta p{color:rgba(255,255,255,.86);max-width:52ch;margin:0 auto 28px;font-size:16px;}
+
+  /* footer */
+  .foot{padding:40px 0 12px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:8px;}
+  .foot .links{display:flex;gap:22px;flex-wrap:wrap;font-size:14px;color:var(--muted);}
+  .foot .links a:hover{color:var(--ink);}
+  .foot .small{color:var(--muted);font-size:13px;}
+
+  @media(max-width:1000px){
+    .dest-grid{grid-template-columns:1fr 1fr;}
+    .stats{grid-template-columns:1fr 1fr;}
+    .steps{grid-template-columns:1fr 1fr;}
+    .plan{grid-template-columns:1fr;}
+    .test-grid{grid-template-columns:1fr;}
+    .nav{display:none;}
+  }
+  @media(max-width:600px){
+    .page{margin:10px;border-radius:24px;}
+    .dest-grid{grid-template-columns:1fr;}
+    .stats{grid-template-columns:1fr 1fr;}
+    .steps{grid-template-columns:1fr;}
+    .hero-copy{text-align:left;}
+    .hero{min-height:540px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- icon library -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></symbol>
+  <symbol id="i-passport" viewBox="0 0 24 24"><rect x="4.5" y="3" width="15" height="18" rx="2.2"/><circle cx="12" cy="10" r="3"/><path d="M9 16.5h6"/></symbol>
+  <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></symbol>
+  <symbol id="i-umbrella" viewBox="0 0 24 24"><path d="M12 3.2v1.6M3.2 12a8.8 8.8 0 0 1 17.6 0zM12 12v6.6a2.2 2.2 0 0 0 4.4 0"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M9.5 14l1.8 1.8L15 12"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.6-3 8.2-7 10-4-1.8-7-5.4-7-10V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="i-stamp" viewBox="0 0 24 24"><path d="M9.5 9.5a2.5 2.5 0 1 1 5 0c0 1.8-2 2.2-2 4h-1c0-1.8-2-2.2-2-4z"/><path d="M6 21h12M7.5 17.5h9"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21.5s-6.5-5.2-6.5-11A6.5 6.5 0 0 1 18.5 10.5c0 5.8-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2.5"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-2.5h5L16 7"/></symbol>
+</defs></svg>
+
+<div class="page">
+  <div class="wrap">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <a class="logo" href="#">
+        <svg class="mark" width="30" height="30" viewBox="0 0 40 40" style="color:var(--ink)" aria-hidden="true"><circle class="g" cx="20" cy="20" r="15"/><ellipse class="g" cx="20" cy="20" rx="6.4" ry="15"/><line class="g" x1="5" y1="20" x2="35" y2="20"/><path class="g" d="M7 13.5 H33 M7 26.5 H33"/><circle class="pin" cx="27.5" cy="12.5" r="3"/></svg>
+        Blue Atlas
+      </a>
+      <nav class="nav">
+        <a href="#" class="active">Home</a>
+        <a href="#destinations">Visas</a>
+        <a href="#how">How it works</a>
+        <a href="#proof">Why us</a>
+        <a href="#">Insurance</a>
+      </nav>
+      <div class="cta-pair">
+        <a class="btn btn-dark" href="#">Start application</a>
+        <a class="circ circ-dark" href="#" aria-label="Start"><svg class="ic"><use href="#i-arrow"/></svg></a>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <img src="imagery/hero-landscape.png" alt="Dramatic mountain landscape with a winding road">
+      <div class="hero-in">
+        <div class="hero-top">
+          <p class="hero-copy">We handle tourist, business, and USA visas, plus travel insurance, with clear timelines, transparent fees, and a real expert who checks every document before it reaches the embassy.</p>
+        </div>
+        <div class="hero-mid">
+          <h1>Go anywhere.<br>We handle the visa.</h1>
+        </div>
+        <div class="hero-bottom">
+          <div style="display:flex;align-items:center;gap:18px;">
+            <div class="hero-stat"><b>190+ Countries</b>covered worldwide</div>
+            <div class="glass-icons">
+              <span class="glass-ic" title="Passport"><svg class="ic"><use href="#i-passport"/></svg></span>
+              <span class="glass-ic" title="Documents"><svg class="ic"><use href="#i-doc"/></svg></span>
+              <span class="glass-ic" title="Verified"><svg class="ic"><use href="#i-shield"/></svg></span>
+              <span class="glass-ic" title="Destination"><svg class="ic"><use href="#i-pin"/></svg></span>
+            </div>
+          </div>
+          <div class="glass-row">
+            <span class="glass"><svg class="ic"><use href="#i-passport"/></svg> Tourist Visa</span>
+            <span class="glass"><svg class="ic"><use href="#i-briefcase"/></svg> Business Visa</span>
+            <span class="glass"><svg class="ic"><use href="#i-flag"/></svg> USA Visas</span>
+            <span class="glass"><svg class="ic"><use href="#i-umbrella"/></svg> Travel Insurance</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DESTINATIONS -->
+    <section class="sec" id="destinations">
+      <div class="head">
+        <div>
+          <span class="tag ey">Visas</span>
+          <h2>Find your visa,<br>by destination</h2>
+        </div>
+        <div class="cta-pair">
+          <a class="btn btn-dark" href="#">See all destinations</a>
+          <a class="circ circ-dark" href="#" aria-label="See all"><svg class="ic"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+      <div class="dest-grid">
+        <article class="dcard">
+          <img src="imagery/dest-japan.png" alt="Japan">
+          <span class="flag">Japan</span>
+          <a class="arrow" href="#" aria-label="Japan visa"><svg class="ic"><use href="#i-arrow"/></svg></a>
+          <div class="d-body"><div class="types">Tourist · Business</div><h3>Japan</h3><div class="price">from <b class="tnum">$49</b> · 5 to 7 days</div></div>
+        </article>
+        <article class="dcard">
+          <img src="imagery/dest-usa.png" alt="United States">
+          <span class="flag">United States</span>
+          <a class="arrow" href="#" aria-label="USA visa"><svg class="ic"><use href="#i-arrow"/></svg></a>
+          <div class="d-body"><div class="types">B1/B2 · F1 · all types</div><h3>United States</h3><div class="price">from <b class="tnum">$120</b> · expert assisted</div></div>
+        </article>
+        <article class="dcard">
+          <img src="imagery/dest-europe.png" alt="Schengen Europe">
+          <span class="flag">Schengen</span>
+          <a class="arrow" href="#" aria-label="Schengen visa"><svg class="ic"><use href="#i-arrow"/></svg></a>
+          <div class="d-body"><div class="types">Tourist · Business</div><h3>Europe</h3><div class="price">from <b class="tnum">$75</b> · 10 to 15 days</div></div>
+        </article>
+        <article class="dcard">
+          <img src="imagery/dest-dubai.png" alt="Dubai UAE">
+          <span class="flag">UAE</span>
+          <a class="arrow" href="#" aria-label="Dubai visa"><svg class="ic"><use href="#i-arrow"/></svg></a>
+          <div class="d-body"><div class="types">Tourist · 30 / 60 day</div><h3>Dubai</h3><div class="price">from <b class="tnum">$89</b> · 3 to 5 days</div></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE / PROOF -->
+    <section class="sec" id="proof" style="padding-top:0;">
+      <div class="exp">
+        <span class="tag" style="margin-bottom:22px;">Why Blue Atlas</span>
+        <p class="big">We carry the paperwork, <span class="m">so you can simply look forward to the trip. Clear odds, honest timelines, a real human on every application.</span></p>
+        <div class="stats">
+          <div class="stat"><div class="n tnum"><span class="a">99.2%</span></div><div class="c">Visa approval rate</div></div>
+          <div class="stat"><div class="n tnum">190+</div><div class="c">Countries covered</div></div>
+          <div class="stat"><div class="n tnum">50k+</div><div class="c">Travellers guided</div></div>
+          <div class="stat"><div class="n tnum">24/7</div><div class="c">Human support</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="sec" id="how" style="padding-top:0;">
+      <div class="head">
+        <div><span class="tag ey">How it works</span><h2>Four steps to approved</h2></div>
+        <p class="sub">The same calm path on every visa, from the first question to a stamp in your passport.</p>
+      </div>
+      <div class="steps">
+        <div class="stp"><div class="ico"><svg class="ic"><use href="#i-doc"/></svg></div><div class="n">Step 1</div><h4>Apply in minutes</h4><p>Answer a few questions. We list exactly which documents you need.</p></div>
+        <div class="stp"><div class="ico"><svg class="ic"><use href="#i-shield"/></svg></div><div class="n">Step 2</div><h4>We review everything</h4><p>An expert checks every page before it reaches the embassy.</p></div>
+        <div class="stp"><div class="ico"><svg class="ic"><use href="#i-stamp"/></svg></div><div class="n">Step 3</div><h4>Embassy submission</h4><p>We submit, track, and keep you posted at every stage.</p></div>
+        <div class="stp"><div class="ico"><svg class="ic"><use href="#i-globe"/></svg></div><div class="n">Step 4</div><h4>Approved &amp; insured</h4><p>Your visa arrives, with travel insurance ready for the trip.</p></div>
+      </div>
+    </section>
+
+    <!-- PLAN WITH CONFIDENCE -->
+    <section class="sec" style="padding-top:0;">
+      <div class="plan">
+        <div class="pic"><img src="imagery/hero-traveler.png" alt="A traveler at the airport"><span class="cap">Real moments from real approvals.</span></div>
+        <div class="panel">
+          <span class="tag" style="align-self:flex-start;margin-bottom:18px;">Ready when you are</span>
+          <h3>Plan your trip with confidence, from documents to departure.</h3>
+          <p>We gather everything a first-time applicant needs, so nothing comes back rejected for a missing page or the wrong photo size.</p>
+          <ul class="checklist">
+            <li><span class="chk"><svg class="ic"><use href="#i-check"/></svg></span> A clear document checklist for your destination</li>
+            <li><span class="chk"><svg class="ic"><use href="#i-check"/></svg></span> Expert review before every embassy submission</li>
+            <li><span class="chk"><svg class="ic"><use href="#i-check"/></svg></span> Travel insurance bundled on request</li>
+          </ul>
+          <div class="cta-pair"><a class="btn btn-azure" href="#">Start my application</a><a class="circ circ-azure" href="#" aria-label="Start"><svg class="ic"><use href="#i-arrow"/></svg></a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="sec" style="padding-top:0;">
+      <div class="head">
+        <div><span class="tag ey">Testimonials</span><h2>What travellers say</h2></div>
+        <p class="sub">Every application is built on trust, transparency, and a real person who has your back.</p>
+      </div>
+      <div class="test-grid">
+        <div class="tcard score">
+          <div>
+            <div class="big tnum">4.9<small>/5</small></div>
+            <div class="meta">Based on 280+ verified reviews</div>
+          </div>
+          <div>
+            <div class="li"><svg class="ic"><use href="#i-check"/></svg> 56k+ visas delivered</div>
+            <div class="li"><svg class="ic"><use href="#i-check"/></svg> Government authorised &amp; IATA</div>
+          </div>
+        </div>
+        <div class="tcard">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>"They caught a photo-size error I would have missed, fixed it, and my US business visa was approved in six days. I never once felt lost."</blockquote>
+          <div class="who"><span class="av">RM</span><div><div class="nm">Rohan Mehta</div><div class="ro">Business trip to San Francisco</div></div></div>
+        </div>
+        <div class="tcard pic"><img src="imagery/passport-stilllife.png" alt="Passport with visa stamps"></div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="sec" style="padding-top:0;">
+      <div class="cta">
+        <img src="imagery/skyline-dusk.png" alt="City skyline at dusk">
+        <h2>Ready to cross your next border?</h2>
+        <p>Tell us where you are headed. We will handle the visa, the documents, and the deadlines, so you can pack with confidence.</p>
+        <div class="cta-pair" style="justify-content:center;"><a class="btn btn-white" href="#">Start my application</a><a class="circ circ-white" href="#" aria-label="Start"><svg class="ic"><use href="#i-arrow"/></svg></a></div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="foot">
+      <a class="logo" href="#"><svg class="mark" width="26" height="26" viewBox="0 0 40 40" style="color:var(--ink)" aria-hidden="true"><circle class="g" cx="20" cy="20" r="15"/><ellipse class="g" cx="20" cy="20" rx="6.4" ry="15"/><line class="g" x1="5" y1="20" x2="35" y2="20"/><path class="g" d="M7 13.5 H33 M7 26.5 H33"/><circle class="pin" cx="27.5" cy="12.5" r="3"/></svg> Blue Atlas</a>
+      <div class="links"><a href="#destinations">Visas</a><a href="#">Insurance</a><a href="#how">How it works</a><a href="#proof">Why us</a><a href="#">Contact</a></div>
+      <div class="small">We carry the paperwork. You see the world.</div>
+    </footer>
+
+  </div>
+</div>
+
+</body>
+</html>

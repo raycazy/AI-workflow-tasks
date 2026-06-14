@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  ============================================================================
+  BLUE ATLAS  -  DESIGN SYSTEM (v3, immersive direction)
+  ============================================================================
+  Greenfield brand. This system matches the approved landing.html aesthetic:
+  light, photo-forward, Hanken Grotesk geometric sans, pill nav, circular-arrow
+  buttons, frosted-glass chips, visa-by-destination photo cards.
+  Supersedes the earlier serif/navy-gold editorial version.
+  Imagery: original AI-generated for Blue Atlas, in ./imagery/.
+  ============================================================================
+-->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blue Atlas Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     BRAND TOKENS  (v3). Source: Blue Atlas landing.html, 2026-06-15.
+     ============================================================ */
+  :root {
+    /* Brand */
+    --ds-accent:       #1A6DEC;   /* Azure: primary CTAs, links, interactive */
+    --ds-accent-deep:  #0E4FB0;   /* Deep Azure: hover, links on white */
+    --ds-ink:          #0E1A2B;   /* near-black navy: titles, dark buttons, dark UI */
+    --ds-gold:         #D6A94E;   /* signature gold: logo pin + sparing accents only */
+    /* Status */
+    --ds-success:      #1E8E5A;
+    --ds-warn:         #B7791F;
+    --ds-alert:        #C2410C;
+    /* Surface */
+    --ds-white:        #FFFFFF;
+    --ds-s2:           #F3F5F8;   /* soft panel / nav / pill tag */
+    --ds-s3:           #EEF2F7;   /* cooler soft surface */
+    /* Text */
+    --ds-body:         #3A4A5C;   /* body copy */
+    --ds-muted:        #6E7884;   /* captions (AA on white) */
+    --ds-line:         #E8EAEE;   /* hairline */
+    /* Type */
+    --ds-font:         'Hanken Grotesk', system-ui, -apple-system, sans-serif;
+    /* Geometry */
+    --ds-radius:       22px;      /* cards, panels */
+    --ds-radius-sm:    14px;      /* inputs, small cards, glass-icon squares */
+    --ds-pill:         100px;     /* buttons, pills, chips */
+    --ds-input-border: #D6DCE3;
+    --ds-shadow:       0 10px 40px rgba(14,26,43,.10);
+    --ds-shadow-lg:    0 30px 80px rgba(8,18,33,.18);
+    /* Documentation chrome only */
+    --ds-shadow-doc:   0 4px 24px rgba(14,26,43,.07);
+    --ds-maxw:         1000px;
+  }
+
+  /* ============================================================
+     PAGE CHROME
+     ============================================================ */
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: var(--ds-font); font-size: 16px; line-height: 1.65; color: var(--ds-body); background: var(--ds-white); -webkit-font-smoothing: antialiased; }
+  h1, h2, h3, h4 { font-family: var(--ds-font); color: var(--ds-ink); margin: 0 0 .4em; font-weight: 400; letter-spacing: -.02em; line-height: 1.08; }
+  a { color: var(--ds-accent-deep); }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .82em; background: var(--ds-s2); padding: .12em .42em; border-radius: 7px; color: var(--ds-ink); }
+  .tnum { font-variant-numeric: tabular-nums; }
+  .ic { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+
+  .ds-layout { display: flex; align-items: flex-start; }
+  .ds-nav { position: sticky; top: 0; height: 100vh; width: 256px; flex: 0 0 256px; background: var(--ds-s2); padding: 30px 22px; overflow-y: auto; border-right: 1px solid var(--ds-line); }
+  .ds-nav .brandmark { display: flex; align-items: center; gap: 9px; margin-bottom: 26px; }
+  .ds-nav .brandmark span { font-weight: 600; font-size: 16px; color: var(--ds-ink); letter-spacing: -.01em; }
+  .ds-nav a { display: block; padding: 8px 13px; margin: 1px 0; border-radius: var(--ds-pill); font-size: 13px; font-weight: 500; color: var(--ds-body); text-decoration: none; transition: background .15s, color .15s; }
+  .ds-nav a:hover { background: var(--ds-white); color: var(--ds-ink); }
+  .ds-nav a.active { background: var(--ds-ink); color: #fff; }
+  .btn:focus-visible, .ds-nav a:focus-visible, .ds-menu-btn:focus-visible, .input:focus-visible, .circ:focus-visible { outline: 2px solid var(--ds-accent); outline-offset: 2px; }
+  .ds-nav .nav-label { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--ds-muted); margin: 20px 13px 6px; font-weight: 700; }
+
+  .ds-main { flex: 1 1 auto; min-width: 0; }
+  .ds-section { padding: 80px clamp(24px, 6vw, 92px); border-bottom: 1px solid var(--ds-line); }
+  .ds-section.alt { background: var(--ds-s2); }
+  .ds-inner { max-width: var(--ds-maxw); margin: 0 auto; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 7px; background: var(--ds-s2); color: var(--ds-ink); font-weight: 600; font-size: 12.5px; padding: 7px 15px; border-radius: var(--ds-pill); margin-bottom: 18px; }
+  .ds-section.alt .eyebrow { background: var(--ds-white); }
+  .ds-section h2 { font-weight: 300; font-size: clamp(30px, 4.2vw, 48px); line-height: 1.05; letter-spacing: -.03em; }
+  .ds-section > .ds-inner > p.lead { font-size: 18px; max-width: 62ch; color: var(--ds-body); }
+  .muted { color: var(--ds-muted); }
+
+  /* logo */
+  .mark .g { stroke: currentColor; fill: none; stroke-width: 1.7; }
+  .mark .pin { fill: var(--ds-gold); }
+  .lockup { display: inline-flex; align-items: center; gap: 10px; }
+  .lockup .wm { font-weight: 600; line-height: 1; color: currentColor; letter-spacing: -.01em; }
+
+  /* Cover */
+  .ds-cover { padding: clamp(28px, 4vw, 44px) clamp(24px, 6vw, 92px) 70px; }
+  .cover-hero { position: relative; border-radius: 28px; overflow: hidden; min-height: 440px; display: flex; align-items: flex-end; box-shadow: var(--ds-shadow-lg); }
+  .cover-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .cover-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,18,33,.50) 0%, rgba(8,18,33,.12) 20%, transparent 42%, rgba(8,18,33,.70) 100%); }
+  .cover-in { position: relative; z-index: 1; padding: clamp(24px, 4vw, 44px); color: #fff; width: 100%; }
+  .cover-in .lockup { color: #fff; margin-bottom: 18px; }
+  .cover-in .lockup .wm { text-shadow: 0 1px 14px rgba(8,18,33,.55); }
+  .cover-in .lockup .mark { filter: drop-shadow(0 1px 8px rgba(8,18,33,.55)); }
+  .cover-in h1 { color: #fff; font-weight: 300; font-size: clamp(34px, 5.4vw, 64px); letter-spacing: -.035em; line-height: 1.0; }
+  .cover-in p { color: rgba(255,255,255,.9); max-width: 56ch; margin-top: 14px; font-size: 15px; }
+  .cover-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+  .cover-meta .glass { display: inline-flex; align-items: center; gap: 7px; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.32); color: #fff; font-weight: 600; font-size: 12.5px; padding: 8px 14px; border-radius: var(--ds-pill); backdrop-filter: blur(8px); }
+
+  /* Color */
+  .swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; margin-top: 8px; }
+  .swatch { border: 1px solid var(--ds-line); border-radius: var(--ds-radius-sm); overflow: hidden; background: #fff; }
+  .swatch .chip { height: 88px; }
+  .swatch .meta { padding: 12px 14px; }
+  .swatch .name { font-weight: 700; font-size: 13px; color: var(--ds-ink); }
+  .swatch .hex { font-family: ui-monospace, Menlo, monospace; font-size: 12px; color: var(--ds-body); margin: 2px 0 4px; text-transform: uppercase; }
+  .swatch .use { font-size: 11.5px; color: var(--ds-muted); line-height: 1.45; }
+  .group-label { margin-top: 28px; font-weight: 700; font-size: 13px; color: var(--ds-muted); letter-spacing: .1em; text-transform: uppercase; }
+
+  /* Type specimens */
+  .type-row { padding: 18px 0; border-bottom: 1px solid var(--ds-line); display: grid; grid-template-columns: 150px 1fr; gap: 24px; align-items: baseline; }
+  .type-row:last-child { border-bottom: 0; }
+  .type-row .tag { font-size: 12px; color: var(--ds-muted); font-family: ui-monospace, Menlo, monospace; }
+  .sp-display { font-weight: 300; font-size: 56px; line-height: 1.0; color: var(--ds-ink); letter-spacing: -.035em; }
+  .sp-h1 { font-weight: 300; font-size: 40px; line-height: 1.08; color: var(--ds-ink); letter-spacing: -.03em; }
+  .sp-h2 { font-weight: 400; font-size: 28px; color: var(--ds-ink); letter-spacing: -.02em; }
+  .sp-h3 { font-weight: 600; font-size: 20px; color: var(--ds-ink); letter-spacing: -.01em; }
+  .sp-body { font-weight: 400; font-size: 16px; color: var(--ds-body); }
+  .sp-cap { font-weight: 400; font-size: 13px; color: var(--ds-muted); }
+  .sp-eye { font-weight: 600; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ds-accent-deep); }
+  .font-card { border: 1px solid var(--ds-line); border-radius: var(--ds-radius-sm); padding: 28px; background: #fff; margin-bottom: 30px; }
+  .font-card .big { font-size: 64px; line-height: 1; margin-bottom: 12px; color: var(--ds-ink); font-weight: 300; letter-spacing: -.03em; }
+  .font-card .nm { font-weight: 700; font-size: 16px; color: var(--ds-ink); }
+  .font-card .row { font-size: 14px; color: var(--ds-muted); margin-top: 8px; }
+  .weights { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 16px; }
+  .weights span { color: var(--ds-ink); font-size: 22px; }
+
+  /* Logo block */
+  .logo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .logo-cell { margin: 0; border: 1px solid var(--ds-line); border-radius: var(--ds-radius-sm); padding: 34px 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; min-height: 150px; }
+  .logo-cell.on-soft { background: var(--ds-s2); }
+  .logo-cell.on-dark { background: var(--ds-ink); color: #fff; }
+  .logo-cell.on-photo { position: relative; overflow: hidden; color: #fff; }
+  .logo-cell.on-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .logo-cell.on-photo .lockup, .logo-cell.on-photo figcaption { position: relative; z-index: 1; }
+  .logo-cell.on-photo::after { content: ""; position: absolute; inset: 0; background: rgba(8,18,33,.4); }
+  .logo-cell figcaption { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ds-muted); }
+  .logo-cell.on-dark figcaption, .logo-cell.on-photo figcaption { color: rgba(255,255,255,.78); }
+  .logo-note { margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .do, .dont { border: 1px solid var(--ds-line); border-radius: var(--ds-radius-sm); padding: 16px 18px; background: #fff; font-size: 14px; }
+  .do .h, .dont .h { font-weight: 700; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 8px; }
+  .do .h { color: var(--ds-success); }
+  .dont .h { color: var(--ds-alert); }
+  .do ul, .dont ul { margin: 0; padding-left: 18px; }
+  .do li, .dont li { margin: 5px 0; }
+
+  /* Buttons */
+  .btn { display: inline-flex; align-items: center; gap: 9px; cursor: pointer; font-family: var(--ds-font); font-weight: 600; font-size: 14px; line-height: 1; border: 1.5px solid transparent; border-radius: var(--ds-pill); padding: 13px 22px; text-decoration: none; transition: background .18s, color .18s, border-color .18s, box-shadow .18s, transform .05s; }
+  .btn:active { transform: translateY(1px); }
+  .btn .ic { width: 17px; height: 17px; }
+  .btn-dark { background: var(--ds-ink); color: #fff; }
+  .btn-dark:hover { background: #1c2c40; }
+  .btn-azure { background: var(--ds-accent); color: #fff; box-shadow: 0 8px 22px rgba(26,109,236,.30); }
+  .btn-azure:hover { background: var(--ds-accent-deep); }
+  .btn-light { background: var(--ds-s2); color: var(--ds-ink); }
+  .btn-light:hover { background: var(--ds-s3); }
+  .btn-outline { background: transparent; color: var(--ds-ink); border-color: var(--ds-line); }
+  .btn-outline:hover { border-color: var(--ds-ink); }
+  .btn[disabled], .btn.is-disabled { background: var(--ds-s3); color: #9aa3ad; cursor: not-allowed; pointer-events: none; box-shadow: none; }
+  .circ { width: 42px; height: 42px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; flex: 0 0 42px; border: 0; cursor: pointer; }
+  .circ .ic { width: 18px; height: 18px; }
+  .circ-dark { background: var(--ds-ink); color: #fff; }
+  .circ-azure { background: var(--ds-accent); color: #fff; }
+  .cta-pair { display: inline-flex; align-items: center; gap: 10px; }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin: 8px 0 26px; }
+  .lbl { font-size: 12px; color: var(--ds-muted); font-family: ui-monospace, Menlo, monospace; margin: 0 0 8px; }
+
+  /* Forms */
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  label.fld { display: block; font-size: 13px; font-weight: 600; color: var(--ds-ink); margin-bottom: 7px; }
+  .input, select.input, textarea.input { width: 100%; font-family: var(--ds-font); font-size: 15px; color: var(--ds-ink); padding: 13px 15px; border: 1.5px solid var(--ds-input-border); border-radius: var(--ds-radius-sm); background: #fff; }
+  .input:focus, select.input:focus, textarea.input:focus { outline: none; border-color: var(--ds-accent); box-shadow: 0 0 0 3px rgba(26,109,236,.16); }
+  .check-row { display: flex; align-items: center; gap: 10px; margin: 12px 0; font-size: 15px; }
+  .check-row input { accent-color: var(--ds-accent); width: 18px; height: 18px; }
+
+  /* Status pills + trust + glass chips */
+  .pill { display: inline-flex; align-items: center; gap: 7px; font-weight: 600; font-size: 12.5px; padding: 6px 13px; border-radius: var(--ds-pill); }
+  .pill .dot { width: 7px; height: 7px; border-radius: 50%; }
+  .pill-submitted { background: #E7F0FD; color: var(--ds-accent-deep); } .pill-submitted .dot { background: var(--ds-accent); }
+  .pill-review { background: #F6ECD9; color: #8a5b13; } .pill-review .dot { background: var(--ds-warn); }
+  .pill-action { background: #F7E6DE; color: #9a330a; } .pill-action .dot { background: var(--ds-alert); }
+  .pill-approved { background: #E2F1E9; color: #15663f; } .pill-approved .dot { background: var(--ds-success); }
+  .trust { display: inline-flex; align-items: center; gap: 8px; background: #fff; color: var(--ds-ink); font-size: 12.5px; font-weight: 600; padding: 9px 15px; border-radius: var(--ds-pill); border: 1px solid var(--ds-line); }
+  .trust .ic { width: 17px; height: 17px; color: var(--ds-accent); }
+  .badge-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .glass-demo { position: relative; border-radius: var(--ds-radius); overflow: hidden; padding: 28px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .glass-demo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .glass-demo::after { content: ""; position: absolute; inset: 0; background: rgba(8,18,33,.32); }
+  .glass { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.34); color: #fff; font-weight: 600; font-size: 13px; padding: 10px 16px; border-radius: var(--ds-pill); backdrop-filter: blur(8px); }
+  .glass .ic { width: 16px; height: 16px; }
+
+  /* Destination card (core product tile) */
+  .dcard { width: 300px; position: relative; border-radius: var(--ds-radius); overflow: hidden; aspect-ratio: 3/4.1; display: flex; align-items: flex-end; color: #fff; }
+  .dcard img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .dcard::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 38%, rgba(8,18,33,.8)); }
+  .dcard .flag { position: absolute; top: 16px; left: 16px; z-index: 1; font-size: 12px; font-weight: 600; background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.3); backdrop-filter: blur(6px); padding: 5px 12px; border-radius: var(--ds-pill); }
+  .dcard .arrow { position: absolute; top: 14px; right: 14px; z-index: 1; width: 38px; height: 38px; border-radius: 50%; background: #fff; color: var(--ds-ink); display: flex; align-items: center; justify-content: center; }
+  .dcard .d-body { position: relative; z-index: 1; padding: 18px; width: 100%; }
+  .dcard .types { font-size: 12.5px; opacity: .92; margin-bottom: 6px; }
+  .dcard h4 { color: #fff; font-size: 22px; font-weight: 600; margin: 0; letter-spacing: -.01em; }
+  .dcard .price { font-size: 13px; opacity: .92; margin-top: 4px; }
+  .dcard .price b { font-weight: 700; font-size: 17px; }
+
+  /* Stepper */
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .stp { background: #fff; border: 1px solid var(--ds-line); border-radius: var(--ds-radius); padding: 24px; }
+  .stp .ico { width: 46px; height: 46px; border-radius: 13px; background: var(--ds-s3); color: var(--ds-accent-deep); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+  .stp .ico .ic { width: 23px; height: 23px; }
+  .stp .n { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ds-accent); margin-bottom: 6px; }
+  .stp h4 { font-size: 18px; font-weight: 600; margin-bottom: 7px; }
+  .stp p { font-size: 14px; color: var(--ds-muted); margin: 0; }
+
+  /* Proof band */
+  .proof { background: var(--ds-ink); border-radius: var(--ds-radius); padding: clamp(30px,4vw,52px); color: rgba(255,255,255,.82); }
+  .proof .lead2 { font-size: clamp(22px,2.8vw,32px); font-weight: 300; color: #fff; letter-spacing: -.02em; max-width: 26ch; line-height: 1.15; }
+  .proof .lead2 .m { color: rgba(255,255,255,.6); }
+  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 34px; }
+  .stat .num { font-size: clamp(32px,3.6vw,46px); font-weight: 300; color: #fff; letter-spacing: -.02em; }
+  .stat .num .a { color: #6fa8f5; }
+  .stat .cap { font-size: 13.5px; color: rgba(255,255,255,.66); margin-top: 8px; }
+
+  /* Testimonial */
+  .quote-card { display: grid; grid-template-columns: 1.4fr 1fr; gap: 0; border: 1px solid var(--ds-line); border-radius: var(--ds-radius); overflow: hidden; background: #fff; box-shadow: var(--ds-shadow); }
+  .quote-card .q { padding: 38px clamp(24px,4vw,44px); }
+  .quote-card .stars { color: var(--ds-gold); letter-spacing: 2px; font-size: 16px; margin-bottom: 14px; }
+  .quote-card blockquote { font-size: clamp(19px,2.2vw,24px); line-height: 1.4; color: var(--ds-ink); margin: 0 0 20px; font-weight: 500; letter-spacing: -.015em; }
+  .quote-card .who { display: flex; align-items: center; gap: 12px; }
+  .quote-card .who .av { width: 42px; height: 42px; border-radius: 50%; background: var(--ds-s3); color: var(--ds-ink); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; }
+  .quote-card .who .nm { font-weight: 700; font-size: 14px; color: var(--ds-ink); }
+  .quote-card .who .ro { font-size: 13px; color: var(--ds-muted); }
+  .quote-card .pic { position: relative; min-height: 220px; }
+  .quote-card .pic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+  /* Geometry + icons */
+  .token-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; }
+  .token-card { border: 1px solid var(--ds-line); border-radius: var(--ds-radius-sm); padding: 16px; background: #fff; }
+  .radius-demo { height: 60px; background: var(--ds-s3); border: 1px solid var(--ds-line); }
+  .elev-demo { height: 60px; background: #fff; border-radius: var(--ds-radius-sm); }
+  .token-card .tk { font-family: ui-monospace, Menlo, monospace; font-size: 12px; color: var(--ds-ink); margin-top: 12px; }
+  .token-card .tv { font-size: 11.5px; color: var(--ds-muted); }
+  .icon-board { display: grid; grid-template-columns: repeat(auto-fill, minmax(108px, 1fr)); gap: 12px; }
+  .icon-cell { border: 1px solid var(--ds-line); border-radius: var(--ds-radius-sm); background: #fff; padding: 18px 10px 12px; display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--ds-ink); }
+  .icon-cell .ic { width: 27px; height: 27px; }
+  .icon-cell span { font-size: 11px; color: var(--ds-muted); }
+
+  /* Imagery */
+  .img-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+  .img-grid figure { margin: 0; border-radius: var(--ds-radius-sm); overflow: hidden; aspect-ratio: 4/5; position: relative; display: flex; align-items: flex-end; padding: 15px; color: #fff; background: var(--ds-ink); }
+  .img-grid figure img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .img-grid figure::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 42%, rgba(8,18,33,.7)); }
+  .img-grid figcaption { position: relative; z-index: 1; }
+  .img-grid .k { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; color: #cfe0fb; }
+  .img-grid .v { font-size: 16px; font-weight: 600; line-height: 1.2; margin-top: 3px; letter-spacing: -.01em; }
+
+  /* Voice */
+  .voice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .voice-grid .col { border: 1px solid var(--ds-line); border-radius: var(--ds-radius-sm); padding: 22px 24px; background: #fff; }
+  .voice-grid ul { margin: 0; padding-left: 18px; }
+  .voice-grid li { margin: 7px 0; font-size: 15px; }
+  .voice-grid .h { font-weight: 700; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--ds-accent-deep); margin-bottom: 10px; }
+  .is-not { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 22px; }
+  .is-not .card { border: 1px solid var(--ds-line); border-radius: var(--ds-radius-sm); padding: 20px 22px; background: #fff; }
+  .is-not .card.is { background: #E7F0FD; border-color: #d3e3fb; }
+  .is-not h4 { font-weight: 700; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 10px; }
+  .is-not .is h4 { color: var(--ds-accent-deep); }
+  .is-not .card ul { margin: 0; padding-left: 18px; }
+  .is-not li { margin: 6px 0; font-size: 14.5px; }
+  .quote-lead { font-weight: 300; font-size: clamp(24px,3.2vw,34px); line-height: 1.2; color: var(--ds-ink); letter-spacing: -.025em; max-width: 24ch; }
+
+  /* Footer */
+  .ds-footer { background: var(--ds-ink); color: #fff; padding: 42px clamp(24px,6vw,92px); }
+  .ds-footer .ds-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; align-items: center; }
+  .ds-footer a { color: #6fa8f5; }
+  .ds-footer .small { font-size: 13px; opacity: .82; }
+
+  /* Mobile */
+  .ds-menu-btn { display: none; }
+  @media (max-width: 980px) { .steps, .stat-grid { grid-template-columns: 1fr 1fr; } .quote-card { grid-template-columns: 1fr; } .quote-card .pic { min-height: 200px; order: -1; } }
+  @media (max-width: 860px) {
+    .ds-nav { position: fixed; transform: translateX(-100%); z-index: 40; transition: transform .25s; box-shadow: var(--ds-shadow-doc); width: 264px; flex-basis: 264px; }
+    .ds-nav.open { transform: translateX(0); }
+    .ds-menu-btn { display: inline-flex; position: fixed; top: 14px; right: 14px; z-index: 50; background: var(--ds-ink); color: #fff; border: 0; border-radius: var(--ds-pill); padding: 11px 18px; font-weight: 600; font-size: 12px; letter-spacing: .04em; cursor: pointer; }
+    .form-grid, .voice-grid, .is-not, .logo-note { grid-template-columns: 1fr; }
+    .type-row { grid-template-columns: 1fr; gap: 6px; }
+    .sp-display { font-size: 40px; }
+  }
+  @media (max-width: 560px) { .stat-grid { grid-template-columns: 1fr 1fr; } .steps { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<button class="ds-menu-btn" id="menuBtn">Sections</button>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></symbol>
+  <symbol id="i-passport" viewBox="0 0 24 24"><rect x="4.5" y="3" width="15" height="18" rx="2.2"/><circle cx="12" cy="10" r="3"/><path d="M9 16.5h6"/></symbol>
+  <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></symbol>
+  <symbol id="i-umbrella" viewBox="0 0 24 24"><path d="M12 3.2v1.6M3.2 12a8.8 8.8 0 0 1 17.6 0zM12 12v6.6a2.2 2.2 0 0 0 4.4 0"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M9.5 14l1.8 1.8L15 12"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.6-3 8.2-7 10-4-1.8-7-5.4-7-10V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="i-stamp" viewBox="0 0 24 24"><path d="M9.5 9.5a2.5 2.5 0 1 1 5 0c0 1.8-2 2.2-2 4h-1c0-1.8-2-2.2-2-4z"/><path d="M6 21h12M7.5 17.5h9"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21.5s-6.5-5.2-6.5-11A6.5 6.5 0 0 1 18.5 10.5c0 5.8-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.2l3.2 1.8"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="2.2"/><path d="M4 10h16M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-support" viewBox="0 0 24 24"><path d="M4 13a8 8 0 0 1 16 0"/><rect x="3" y="13" width="3.4" height="6" rx="1.7"/><rect x="17.6" y="13" width="3.4" height="6" rx="1.7"/><path d="M20 19v.5a3 3 0 0 1-3 3h-2.5"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9.5" rx="2.2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+</defs></svg>
+
+<div class="ds-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="ds-nav" id="dsNav">
+    <div class="brandmark">
+      <svg class="mark" width="28" height="28" viewBox="0 0 40 40" style="color:var(--ds-ink)" aria-hidden="true"><circle class="g" cx="20" cy="20" r="15"/><ellipse class="g" cx="20" cy="20" rx="6.4" ry="15"/><line class="g" x1="5" y1="20" x2="35" y2="20"/><path class="g" d="M7 13.5 H33 M7 26.5 H33"/><circle class="pin" cx="27.5" cy="12.5" r="3"/></svg>
+      <span>Blue Atlas</span>
+    </div>
+    <div class="nav-label">Foundations</div>
+    <a href="#cover">Overview</a>
+    <a href="#essence">Brand essence</a>
+    <a href="#color">Color</a>
+    <a href="#type">Typography</a>
+    <a href="#logo">Logo</a>
+    <div class="nav-label">Components</div>
+    <a href="#buttons">Buttons</a>
+    <a href="#forms">Forms</a>
+    <a href="#badges">Status &amp; trust</a>
+    <a href="#glass">Glass chips</a>
+    <a href="#cards">Destination card</a>
+    <a href="#process">How it works</a>
+    <a href="#proof">Proof band</a>
+    <a href="#testimonial">Testimonial</a>
+    <div class="nav-label">System</div>
+    <a href="#tokens">Geometry</a>
+    <a href="#icons">Icons</a>
+    <a href="#imagery">Imagery</a>
+    <a href="#voice">Voice</a>
+  </aside>
+
+  <main class="ds-main">
+
+    <!-- COVER -->
+    <header class="ds-section ds-cover" id="cover">
+      <div class="cover-hero">
+        <img src="imagery/hero-landscape.png" alt="Dramatic mountain landscape">
+        <div class="cover-in">
+          <div class="lockup"><svg class="mark" width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><circle class="g" cx="20" cy="20" r="15"/><ellipse class="g" cx="20" cy="20" rx="6.4" ry="15"/><line class="g" x1="5" y1="20" x2="35" y2="20"/><path class="g" d="M7 13.5 H33 M7 26.5 H33"/><circle class="pin" cx="27.5" cy="12.5" r="3"/></svg><span class="wm" style="font-size:26px">Blue Atlas</span></div>
+          <h1>The Blue Atlas design system.</h1>
+          <p>The visual language behind blueatlas: a calm, premium visa and travel-protection brand. Light and photo-forward, built to look more trustworthy, more global, and more human than the category.</p>
+          <div class="cover-meta">
+            <span class="glass">Version v3</span>
+            <span class="glass">Created 15 Jun 2026</span>
+            <span class="glass">Matches the live landing page</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ESSENCE -->
+    <section class="ds-section alt" id="essence">
+      <div class="ds-inner">
+        <div class="eyebrow">Brand essence</div>
+        <h2>Borders, made effortless.</h2>
+        <p class="lead">A visa is a high-stakes, high-anxiety purchase. A rejection can cancel a honeymoon or sink a business deal. Blue Atlas removes that fear: an expert partner that carries the burden of paperwork, deadlines, and embassy rules so the traveller can simply look forward to the trip. "Atlas" is the world and the figure who shoulders its weight. "Blue" is the calm of clear skies.</p>
+        <div class="is-not">
+          <div class="card is">
+            <h4>It is</h4>
+            <ul>
+              <li>Calm, reassuring, and in control</li>
+              <li>Light, photo-forward, and premium</li>
+              <li>Transparent about fees, timelines, and odds</li>
+              <li>Human experts, backed by clear technology</li>
+              <li>Visa and travel insurance as one promise</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>It is not</h4>
+            <ul>
+              <li>Cluttered, loud, or discount-driven</li>
+              <li>Cold government-portal bureaucracy</li>
+              <li>A generic blue corporate travel agency</li>
+              <li>Hype, emoji, or exclamation marks</li>
+              <li>Vague about what a service actually costs</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLOR -->
+    <section class="ds-section" id="color">
+      <div class="ds-inner">
+        <div class="eyebrow">Color</div>
+        <h2>Palette</h2>
+        <p class="lead">A light, neutral system that lets photography carry the colour. Ink Navy does the heavy lifting for text and dark UI, Azure is the single interactive accent, and gold appears only as the logo pin and the rare premium touch. Status colours stay first-class, because status is the product.</p>
+
+        <div class="group-label">Brand</div>
+        <div class="swatch-grid">
+          <div class="swatch"><div class="chip" style="background:#0E1A2B"></div><div class="meta"><div class="name">Ink Navy</div><div class="hex">#0E1A2B</div><div class="use">Titles, body emphasis, dark buttons, footer.</div></div></div>
+          <div class="swatch"><div class="chip" style="background:#1A6DEC"></div><div class="meta"><div class="name">Azure</div><div class="hex">#1A6DEC</div><div class="use">Primary CTA, links, interactive, focus ring.</div></div></div>
+          <div class="swatch"><div class="chip" style="background:#0E4FB0"></div><div class="meta"><div class="name">Deep Azure</div><div class="hex">#0E4FB0</div><div class="use">Hover, links on white.</div></div></div>
+          <div class="swatch"><div class="chip" style="background:#D6A94E"></div><div class="meta"><div class="name">Signature Gold</div><div class="hex">#D6A94E</div><div class="use">Logo pin and rare premium accents only.</div></div></div>
+        </div>
+
+        <div class="group-label">Status</div>
+        <div class="swatch-grid">
+          <div class="swatch"><div class="chip" style="background:#1E8E5A"></div><div class="meta"><div class="name">Approved Green</div><div class="hex">#1E8E5A</div><div class="use">Approved, success, on-track.</div></div></div>
+          <div class="swatch"><div class="chip" style="background:#B7791F"></div><div class="meta"><div class="name">In-Review Amber</div><div class="hex">#B7791F</div><div class="use">Processing, awaiting embassy.</div></div></div>
+          <div class="swatch"><div class="chip" style="background:#C2410C"></div><div class="meta"><div class="name">Action Rust</div><div class="hex">#C2410C</div><div class="use">Action needed, deadline, missing document.</div></div></div>
+        </div>
+
+        <div class="group-label">Surface &amp; text</div>
+        <div class="swatch-grid">
+          <div class="swatch"><div class="chip" style="background:#FFFFFF;border-bottom:1px solid var(--ds-line)"></div><div class="meta"><div class="name">White</div><div class="hex">#FFFFFF</div><div class="use">Primary background, cards, the floating container.</div></div></div>
+          <div class="swatch"><div class="chip" style="background:#F3F5F8"></div><div class="meta"><div class="name">Soft</div><div class="hex">#F3F5F8</div><div class="use">Pill tags, nav, panels, alt sections.</div></div></div>
+          <div class="swatch"><div class="chip" style="background:#EEF2F7"></div><div class="meta"><div class="name">Soft Cool</div><div class="hex">#EEF2F7</div><div class="use">Icon tiles, hover, secondary blocks.</div></div></div>
+          <div class="swatch"><div class="chip" style="background:#3A4A5C"></div><div class="meta"><div class="name">Body</div><div class="hex">#3A4A5C</div><div class="use">Paragraph copy.</div></div></div>
+          <div class="swatch"><div class="chip" style="background:#6E7884"></div><div class="meta"><div class="name">Muted</div><div class="hex">#6E7884</div><div class="use">Captions, labels (AA on white).</div></div></div>
+          <div class="swatch"><div class="chip" style="background:#E8EAEE"></div><div class="meta"><div class="name">Line</div><div class="hex">#E8EAEE</div><div class="use">Hairlines, card borders.</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TYPOGRAPHY -->
+    <section class="ds-section alt" id="type">
+      <div class="ds-inner">
+        <div class="eyebrow">Typography</div>
+        <h2>Type</h2>
+        <p class="lead">One family does everything: Hanken Grotesk, a clean geometric sans. Headlines run light (weight 300) and tightly tracked for a modern, confident, premium feel. UI and body use 500 to 700. Tabular figures keep prices, percentages, and timelines aligned.</p>
+        <div class="font-card">
+          <div class="big">Aa <span class="tnum" style="color:var(--ds-accent)">123</span></div>
+          <div class="nm">Hanken Grotesk</div>
+          <div class="row">Display, headings, body, UI, buttons. A single grotesque for the whole brand.</div>
+          <div class="weights">
+            <span style="font-weight:300">Light 300</span>
+            <span style="font-weight:400">Regular 400</span>
+            <span style="font-weight:500">Medium 500</span>
+            <span style="font-weight:600">Semibold 600</span>
+            <span style="font-weight:700">Bold 700</span>
+          </div>
+        </div>
+        <div class="type-row"><div class="tag">Display / 56 / 300</div><div class="sp-display">Go anywhere</div></div>
+        <div class="type-row"><div class="tag">H1 / 40 / 300</div><div class="sp-h1">Find your visa, by destination</div></div>
+        <div class="type-row"><div class="tag">H2 / 28 / 400</div><div class="sp-h2">A dedicated expert, from apply to approved</div></div>
+        <div class="type-row"><div class="tag">H3 / 20 / 600</div><div class="sp-h3">What you need to apply</div></div>
+        <div class="type-row"><div class="tag">Body / 16 / 400</div><div class="sp-body">We review every document before it reaches the embassy, so nothing comes back for a missing page or a wrong photo size.</div></div>
+        <div class="type-row"><div class="tag">Numerals / tabular</div><div class="sp-h3 tnum">99.2%&nbsp;&nbsp;$49&nbsp;&nbsp;5 to 7 days</div></div>
+        <div class="type-row"><div class="tag">Caption / 13 / 400</div><div class="sp-cap">Processing times are estimates from the embassy and exclude weekends.</div></div>
+        <div class="type-row"><div class="tag">Eyebrow / 12 / 600</div><div class="sp-eye">Tourist visa</div></div>
+      </div>
+    </section>
+
+    <!-- LOGO -->
+    <section class="ds-section" id="logo">
+      <div class="ds-inner">
+        <div class="eyebrow">Logo</div>
+        <h2>Logo usage</h2>
+        <p class="lead">A meridian globe with a single gold pin (your destination, marked) paired with the Hanken Grotesk wordmark in semibold. Keep clear space around the lockup equal to the height of the globe. On photography, place it directly with no box, on a darkened area for legibility.</p>
+        <div class="logo-grid">
+          <figure class="logo-cell on-soft">
+            <div class="lockup" style="color:var(--ds-ink)"><svg class="mark" width="38" height="38" viewBox="0 0 40 40" aria-hidden="true"><circle class="g" cx="20" cy="20" r="15"/><ellipse class="g" cx="20" cy="20" rx="6.4" ry="15"/><line class="g" x1="5" y1="20" x2="35" y2="20"/><path class="g" d="M7 13.5 H33 M7 26.5 H33"/><circle class="pin" cx="27.5" cy="12.5" r="3"/></svg><span class="wm" style="font-size:23px">Blue Atlas</span></div>
+            <figcaption>Primary, on soft</figcaption>
+          </figure>
+          <figure class="logo-cell on-dark">
+            <div class="lockup" style="color:#fff"><svg class="mark" width="38" height="38" viewBox="0 0 40 40" aria-hidden="true"><circle class="g" cx="20" cy="20" r="15"/><ellipse class="g" cx="20" cy="20" rx="6.4" ry="15"/><line class="g" x1="5" y1="20" x2="35" y2="20"/><path class="g" d="M7 13.5 H33 M7 26.5 H33"/><circle class="pin" cx="27.5" cy="12.5" r="3"/></svg><span class="wm" style="font-size:23px">Blue Atlas</span></div>
+            <figcaption>Reversed, on Ink Navy</figcaption>
+          </figure>
+          <figure class="logo-cell on-photo">
+            <img src="imagery/skyline-dusk.png" alt="">
+            <div class="lockup" style="color:#fff"><svg class="mark" width="38" height="38" viewBox="0 0 40 40" aria-hidden="true"><circle class="g" cx="20" cy="20" r="15"/><ellipse class="g" cx="20" cy="20" rx="6.4" ry="15"/><line class="g" x1="5" y1="20" x2="35" y2="20"/><path class="g" d="M7 13.5 H33 M7 26.5 H33"/><circle class="pin" cx="27.5" cy="12.5" r="3"/></svg><span class="wm" style="font-size:23px">Blue Atlas</span></div>
+            <figcaption>On photography</figcaption>
+          </figure>
+        </div>
+        <div class="logo-note">
+          <div class="do"><div class="h">Do</div><ul><li>Keep the gold pin gold on every surface</li><li>Use the mark alone for app icons and avatars</li><li>Darken busy photos behind the reversed lockup</li></ul></div>
+          <div class="dont"><div class="h">Do not</div><ul><li>Recolour the wordmark gold or azure</li><li>Stretch, rotate, or add a drop shadow</li><li>Place the dark lockup on a dark photo</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUTTONS -->
+    <section class="ds-section alt" id="buttons">
+      <div class="ds-inner">
+        <div class="eyebrow">Components</div>
+        <h2>Buttons</h2>
+        <p class="lead">Fully rounded pills. The signature pattern is a text pill paired with a circular arrow button. Ink Navy is the everyday primary; Azure carries a glow for the single most important action on a screen.</p>
+        <p class="lbl">Pill + circular arrow (signature)</p>
+        <div class="btn-row">
+          <span class="cta-pair"><a class="btn btn-dark" href="#">Start application</a><a class="circ circ-dark" href="#" aria-label="Start"><svg class="ic"><use href="#i-arrow"/></svg></a></span>
+          <span class="cta-pair"><a class="btn btn-azure" href="#">Start my application</a><a class="circ circ-azure" href="#" aria-label="Start"><svg class="ic"><use href="#i-arrow"/></svg></a></span>
+        </div>
+        <p class="lbl">Variants</p>
+        <div class="btn-row">
+          <button type="button" class="btn btn-dark">Track application</button>
+          <button type="button" class="btn btn-azure">Start my visa</button>
+          <button type="button" class="btn btn-light">See requirements</button>
+          <button type="button" class="btn btn-outline">View all destinations</button>
+        </div>
+        <p class="lbl">States</p>
+        <div class="btn-row">
+          <button type="button" class="btn btn-dark">Default</button>
+          <button type="button" class="btn btn-dark is-disabled" disabled>Disabled</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORMS -->
+    <section class="ds-section" id="forms">
+      <div class="ds-inner">
+        <div class="eyebrow">Components</div>
+        <h2>Form elements</h2>
+        <p class="lead">Forms are the heart of a visa product. Inputs are large and forgiving with a 14px radius and an azure focus ring. Every field that can be explained, is explained, because uncertainty is what makes applicants abandon.</p>
+        <div class="form-grid">
+          <div><label class="fld">Full name (as in passport)</label><input class="input" type="text" placeholder="e.g. Priya Sharma"></div>
+          <div><label class="fld">Destination country</label><select class="input"><option>Select a country</option><option>Japan</option><option>United States</option><option>Schengen Area</option><option>United Arab Emirates</option></select></div>
+          <div><label class="fld">Visa type</label><select class="input"><option>Select a type</option><option>Tourist</option><option>Business</option><option>Student</option><option>Work</option></select></div>
+          <div><label class="fld">Travel date</label><input class="input" type="date"></div>
+          <div style="grid-column:1 / -1"><label class="fld">Anything we should know?</label><textarea class="input" rows="3" placeholder="Previous rejections, tight deadlines, group travel..."></textarea></div>
+        </div>
+        <div style="margin-top:16px">
+          <label class="check-row"><input type="checkbox" checked> Add Blue Atlas travel insurance to this trip</label>
+          <label class="check-row"><input type="radio" name="r" checked> Standard processing</label>
+          <label class="check-row"><input type="radio" name="r"> Priority processing</label>
+        </div>
+      </div>
+    </section>
+
+    <!-- BADGES -->
+    <section class="ds-section alt" id="badges">
+      <div class="ds-inner">
+        <div class="eyebrow">Components</div>
+        <h2>Status &amp; trust</h2>
+        <p class="lead">A clear, colour-coded pill for every stage of the application, plus quiet, credible trust chips with an azure icon. Never loud banners.</p>
+        <p class="lbl">Application status</p>
+        <div class="badge-row" style="margin-bottom:26px">
+          <span class="pill pill-submitted"><span class="dot"></span> Submitted</span>
+          <span class="pill pill-review"><span class="dot"></span> In review at embassy</span>
+          <span class="pill pill-action"><span class="dot"></span> Action needed</span>
+          <span class="pill pill-approved"><span class="dot"></span> Approved</span>
+        </div>
+        <p class="lbl">Trust signals</p>
+        <div class="badge-row">
+          <span class="trust"><svg class="ic"><use href="#i-shield"/></svg> 99.2% approval rate</span>
+          <span class="trust"><svg class="ic"><use href="#i-globe"/></svg> IATA accredited</span>
+          <span class="trust"><svg class="ic"><use href="#i-doc"/></svg> Government authorised</span>
+          <span class="trust"><svg class="ic"><use href="#i-support"/></svg> 24/7 human support</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- GLASS CHIPS -->
+    <section class="ds-section" id="glass">
+      <div class="ds-inner">
+        <div class="eyebrow">Components</div>
+        <h2>Glass chips</h2>
+        <p class="lead">Frosted-glass chips sit on top of hero photography to surface services and features without blocking the image. Translucent white, soft blur, white text and icon.</p>
+        <div class="glass-demo">
+          <img src="imagery/hero-landscape.png" alt="">
+          <span class="glass"><svg class="ic"><use href="#i-passport"/></svg> Tourist Visa</span>
+          <span class="glass"><svg class="ic"><use href="#i-briefcase"/></svg> Business Visa</span>
+          <span class="glass"><svg class="ic"><use href="#i-flag"/></svg> USA Visas</span>
+          <span class="glass"><svg class="ic"><use href="#i-umbrella"/></svg> Travel Insurance</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- DESTINATION CARD -->
+    <section class="ds-section alt" id="cards">
+      <div class="ds-inner">
+        <div class="eyebrow">Components</div>
+        <h2>Destination card</h2>
+        <p class="lead">The core catalogue unit. A full-bleed destination photo with a glass country chip, a white circular arrow, and the three things every applicant asks first overlaid at the foot: visa types, price from, and timeline.</p>
+        <div class="dcard">
+          <img src="imagery/dest-japan.png" alt="Japan">
+          <span class="flag">Japan</span>
+          <a class="arrow" href="#" aria-label="Japan visa"><svg class="ic"><use href="#i-arrow"/></svg></a>
+          <div class="d-body"><div class="types">Tourist &middot; Business</div><h4>Japan</h4><div class="price">from <b class="tnum">$49</b> &middot; 5 to 7 days</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="ds-section" id="process">
+      <div class="ds-inner">
+        <div class="eyebrow">Components</div>
+        <h2>How it works</h2>
+        <p class="lead">A four-step path, the same on every visa page. Each step is a soft white card with an icon tile, turning an intimidating bureaucratic process into a calm, finite journey.</p>
+        <div class="steps">
+          <div class="stp"><div class="ico"><svg class="ic"><use href="#i-doc"/></svg></div><div class="n">Step 1</div><h4>Apply in minutes</h4><p>Answer a few questions. We list exactly which documents you need.</p></div>
+          <div class="stp"><div class="ico"><svg class="ic"><use href="#i-shield"/></svg></div><div class="n">Step 2</div><h4>We review everything</h4><p>An expert checks every page before it reaches the embassy.</p></div>
+          <div class="stp"><div class="ico"><svg class="ic"><use href="#i-stamp"/></svg></div><div class="n">Step 3</div><h4>Embassy submission</h4><p>We submit, track, and keep you posted at every stage.</p></div>
+          <div class="stp"><div class="ico"><svg class="ic"><use href="#i-globe"/></svg></div><div class="n">Step 4</div><h4>Approved &amp; insured</h4><p>Your visa arrives, with travel insurance ready for the trip.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROOF -->
+    <section class="ds-section alt" id="proof">
+      <div class="ds-inner">
+        <div class="eyebrow">Components</div>
+        <h2>Proof band</h2>
+        <p class="lead">One dark evidence band per page. A light statement, then four numbers with an azure highlight on the hero stat. How Blue Atlas earns trust without shouting.</p>
+        <div class="proof" style="margin-top:8px">
+          <p class="lead2">We carry the paperwork, <span class="m">so you can simply look forward to the trip.</span></p>
+          <div class="stat-grid">
+            <div class="stat"><div class="num tnum"><span class="a">99.2%</span></div><div class="cap">Visa approval rate</div></div>
+            <div class="stat"><div class="num tnum">190+</div><div class="cap">Countries covered</div></div>
+            <div class="stat"><div class="num tnum">50k+</div><div class="cap">Travellers guided</div></div>
+            <div class="stat"><div class="num tnum">24/7</div><div class="cap">Human support</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIAL -->
+    <section class="ds-section" id="testimonial">
+      <div class="ds-inner">
+        <div class="eyebrow">Components</div>
+        <h2>Testimonial</h2>
+        <p class="lead">Quiet, specific, and human. A star row, a plain-spoken quote, a real-feeling name and trip, paired with brand imagery rather than a generic stock smile.</p>
+        <div class="quote-card">
+          <div class="q">
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <blockquote>"They caught a photo-size error I would have missed, fixed it, and my US business visa was approved in six days. I never once felt lost."</blockquote>
+            <div class="who"><span class="av">RM</span><div><div class="nm">Rohan Mehta</div><div class="ro">Business trip to San Francisco</div></div></div>
+          </div>
+          <div class="pic"><img src="imagery/lounge.png" alt="A traveler relaxed in an airport lounge"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GEOMETRY -->
+    <section class="ds-section alt" id="tokens">
+      <div class="ds-inner">
+        <div class="eyebrow">System</div>
+        <h2>Geometry</h2>
+        <p class="lead">Generous, soft corners and a light elevation that floats content like an app. The whole page sits in a 34px rounded container over blurred photography; everything inside is calmer.</p>
+        <p class="lbl">Corners</p>
+        <div class="token-grid">
+          <div class="token-card"><div class="radius-demo" style="border-radius:14px"></div><div class="tk">--ds-radius-sm</div><div class="tv">14px: inputs, small cards, icon tiles</div></div>
+          <div class="token-card"><div class="radius-demo" style="border-radius:22px"></div><div class="tk">--ds-radius</div><div class="tv">22px: cards, panels, destination cards</div></div>
+          <div class="token-card"><div class="radius-demo" style="border-radius:100px"></div><div class="tk">--ds-pill</div><div class="tv">100px: buttons, pills, chips</div></div>
+        </div>
+        <p class="lbl" style="margin-top:26px">Elevation</p>
+        <div class="token-grid">
+          <div class="token-card"><div class="elev-demo" style="box-shadow:var(--ds-shadow);border:1px solid var(--ds-line)"></div><div class="tk">--ds-shadow</div><div class="tv">Soft lift, default cards</div></div>
+          <div class="token-card"><div class="elev-demo" style="box-shadow:var(--ds-shadow-lg);border:1px solid var(--ds-line)"></div><div class="tk">--ds-shadow-lg</div><div class="tv">Floating container, hero</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ICONS -->
+    <section class="ds-section" id="icons">
+      <div class="ds-inner">
+        <div class="eyebrow">System</div>
+        <h2>Icon set</h2>
+        <p class="lead">A single line family on a 24px grid, 1.7 stroke, rounded joins. Travel and document led, never generic. The upward arrow is the brand's signature, used in every circular button.</p>
+        <div class="icon-board">
+          <div class="icon-cell"><svg class="ic"><use href="#i-arrow"/></svg><span>Arrow</span></div>
+          <div class="icon-cell"><svg class="ic"><use href="#i-passport"/></svg><span>Passport</span></div>
+          <div class="icon-cell"><svg class="ic"><use href="#i-briefcase"/></svg><span>Business</span></div>
+          <div class="icon-cell"><svg class="ic"><use href="#i-flag"/></svg><span>USA / flag</span></div>
+          <div class="icon-cell"><svg class="ic"><use href="#i-umbrella"/></svg><span>Insurance</span></div>
+          <div class="icon-cell"><svg class="ic"><use href="#i-globe"/></svg><span>Globe</span></div>
+          <div class="icon-cell"><svg class="ic"><use href="#i-shield"/></svg><span>Verified</span></div>
+          <div class="icon-cell"><svg class="ic"><use href="#i-stamp"/></svg><span>Stamp</span></div>
+          <div class="icon-cell"><svg class="ic"><use href="#i-doc"/></svg><span>Document</span></div>
+          <div class="icon-cell"><svg class="ic"><use href="#i-pin"/></svg><span>Destination</span></div>
+          <div class="icon-cell"><svg class="ic"><use href="#i-clock"/></svg><span>Processing</span></div>
+          <div class="icon-cell"><svg class="ic"><use href="#i-support"/></svg><span>Support</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMAGERY -->
+    <section class="ds-section alt" id="imagery">
+      <div class="ds-inner">
+        <div class="eyebrow">System</div>
+        <h2>Imagery direction</h2>
+        <p class="lead">Bright, real, aspirational travel: dramatic landscapes and recognisable destinations in clean natural light, plus calm human and document moments. Photography is the loudest thing on the page; the UI stays quiet around it. Generated for Blue Atlas, the set below defines the look.</p>
+        <div class="img-grid">
+          <figure><img src="imagery/hero-landscape.png" alt="Mountain landscape"><figcaption><div class="k">Hero</div><div class="v">Dramatic landscapes, big sky</div></figcaption></figure>
+          <figure><img src="imagery/dest-japan.png" alt="Japan"><figcaption><div class="k">Destination</div><div class="v">Recognisable, bright, clean</div></figcaption></figure>
+          <figure><img src="imagery/hero-traveler.png" alt="Traveler at airport"><figcaption><div class="k">Human</div><div class="v">Travellers at ease, not posing</div></figcaption></figure>
+          <figure><img src="imagery/passport-stilllife.png" alt="Passport still life"><figcaption><div class="k">Craft</div><div class="v">Passports and documents, close up</div></figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- VOICE -->
+    <section class="ds-section" id="voice">
+      <div class="ds-inner">
+        <div class="eyebrow">System</div>
+        <h2>Voice &amp; copy</h2>
+        <p class="lead">Calm, expert, and plain-spoken. We reduce anxiety with clarity, not exclamation marks. We say what something costs and how long it takes.</p>
+        <p class="quote-lead">"We carry the paperwork. You see the world."</p>
+        <div class="voice-grid" style="margin-top:26px">
+          <div class="col">
+            <div class="h">We sound like</div>
+            <ul>
+              <li>"Your documents are with the embassy. We expect a decision by Friday."</li>
+              <li>"One photo was the wrong size. We fixed it before submitting."</li>
+              <li>"Tourist visa, all fees included, from $49."</li>
+              <li>"A dedicated expert, from apply to approved."</li>
+            </ul>
+          </div>
+          <div class="col">
+            <div class="h">We never sound like</div>
+            <ul>
+              <li>"Apply now!!! Cheapest visas guaranteed!"</li>
+              <li>"Why choose us? Because we are awesome!"</li>
+              <li>"Visa processing fees may apply (see terms)."</li>
+              <li>Dense legal jargon or embassy acronyms unexplained</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="ds-footer">
+      <div class="ds-inner">
+        <div>
+          <strong style="font-weight:700;">Blue Atlas Design System v3</strong>
+          <div class="small">Matches the live landing page. Created 15 Jun 2026.</div>
+        </div>
+        <div class="small">Prepared by the Cazyweb design team.</div>
+      </div>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+  var btn = document.getElementById('menuBtn');
+  var nav = document.getElementById('dsNav');
+  btn.addEventListener('click', function(){ nav.classList.toggle('open'); });
+  nav.addEventListener('click', function(e){ if(e.target.tagName === 'A') nav.classList.remove('open'); });
+  var links = [].slice.call(document.querySelectorAll('.ds-nav a'));
+  var map = {};
+  links.forEach(function(a){ var id = a.getAttribute('href').slice(1); map[id] = a; });
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){
+        links.forEach(function(a){ a.classList.remove('active'); });
+        if(map[en.target.id]) map[en.target.id].classList.add('active');
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  document.querySelectorAll('.ds-section').forEach(function(s){ if(s.id) obs.observe(s); });
+</script>
+
+</body>
+</html>
