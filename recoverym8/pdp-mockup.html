@@ -59,7 +59,8 @@ img{display:block;max-width:100%}
 .gallery .main .gnav:hover{background:#fff;transform:translateY(-50%) scale(1.06)}
 .gallery .main .gnav svg{width:20px;height:20px;stroke:var(--ink);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .gallery .main .gnav.prev{left:12px}.gallery .main .gnav.next{right:12px}
-.thumbs{display:flex;gap:12px;margin-top:12px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;scroll-behavior:smooth;padding-bottom:2px}
+.gallery{min-width:0}
+.thumbs{display:flex;gap:12px;margin-top:12px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;scroll-behavior:smooth;padding-bottom:2px;min-width:0}
 .thumbs::-webkit-scrollbar{display:none}
 .thumbs img{flex:none;width:74px;height:74px;object-fit:cover;border-radius:10px;border:1.5px solid var(--dline);cursor:pointer;opacity:.7;transition:.15s}
 .thumbs img:hover,.thumbs img.on{opacity:1;border-color:var(--orange)}
