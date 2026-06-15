@@ -349,10 +349,19 @@ table.cmp{width:100%;border-collapse:separate;border-spacing:0;border:1px solid 
 
 @media(max-width:900px){
   .hero .grid,.feat,.rev-top{grid-template-columns:1fr}
-  .specs,.rev-cards{grid-template-columns:1fr 1fr}
+  .specs{grid-template-columns:1fr 1fr}
   .box-grid,.targets{grid-template-columns:repeat(2,1fr)}
   .nav{display:none}
   .foot .cols{grid-template-columns:1fr 1fr}
+  /* reviews: center the rating summary */
+  #reviews .head{text-align:center}
+  #reviews .head .eyebrow{justify-content:center}
+  .rev-top{text-align:center}
+  .bars{max-width:330px;margin:0 auto;width:100%}
+  /* reviews: swipeable card carousel */
+  .rev-cards{display:flex;grid-template-columns:none;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 -32px;padding:4px 32px}
+  .rev-cards::-webkit-scrollbar{display:none}
+  .rev-cards .rcard{flex:0 0 82%;scroll-snap-align:center}
   /* hero clears header + subnav so the transparent bars sit over the dark hero */
   .hero{margin-top:-102px;padding-top:132px}
   /* stop the thumbnail strip from forcing the column wider than the viewport */
