@@ -182,6 +182,36 @@
   .check-row { display: flex; align-items: center; gap: 10px; margin: 12px 0; font-size: 15px; }
   .check-row input { accent-color: var(--ds-accent); width: 18px; height: 18px; }
 
+  /* Lead form component */
+  .lead-wrap { display: grid; grid-template-columns: 1fr 1.05fr; gap: 28px; align-items: start; }
+  .lead-copy h3 { font-size: 26px; font-weight: 300; letter-spacing: -.02em; margin-bottom: 12px; }
+  .lead-copy p { color: var(--ds-muted); font-size: 15px; margin-bottom: 20px; max-width: 38ch; }
+  .reassure { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+  .reassure li { display: flex; align-items: center; gap: 11px; font-size: 15px; color: var(--ds-ink); }
+  .reassure .chk { width: 24px; height: 24px; border-radius: 50%; background: #E2F1E9; color: var(--ds-success); display: flex; align-items: center; justify-content: center; flex: 0 0 24px; }
+  .reassure .chk .ic { width: 14px; height: 14px; stroke-width: 2.2; }
+  .form-card { background: #fff; border: 1px solid var(--ds-line); border-radius: var(--ds-radius); padding: 26px; box-shadow: var(--ds-shadow); }
+  .seg { display: flex; flex-wrap: wrap; gap: 8px; }
+  .seg-opt { display: inline-flex; align-items: center; gap: 7px; border: 1.5px solid var(--ds-line); border-radius: var(--ds-pill); padding: 9px 14px; font-family: var(--ds-font); font-weight: 600; font-size: 13px; color: var(--ds-ink); background: #fff; cursor: pointer; transition: background .15s, border-color .15s, color .15s; }
+  .seg-opt .ic { width: 15px; height: 15px; color: var(--ds-accent-deep); }
+  .seg-opt:hover { border-color: #c2ccd6; }
+  .seg-opt.is-on { background: var(--ds-accent); border-color: var(--ds-accent); color: #fff; }
+  .seg-opt.is-on .ic { color: #fff; }
+  .field { margin-bottom: 16px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .fmeta { font-size: 12.5px; color: var(--ds-muted); margin-top: 10px; }
+  .submit-row { display: flex; align-items: center; gap: 12px; margin-top: 6px; }
+  .submit-row .btn { flex: 1; justify-content: center; }
+  /* page-level context banner + source note */
+  .ctx-banner { display: flex; align-items: center; gap: 12px; background: #E7F0FD; border: 1px solid #d3e3fb; border-radius: var(--ds-radius-sm); padding: 13px 16px; margin-bottom: 18px; }
+  .ctx-banner .ic { width: 18px; height: 18px; color: var(--ds-accent-deep); flex: 0 0 18px; }
+  .ctx-banner .t { font-size: 14px; color: var(--ds-ink); }
+  .ctx-banner .t b { font-weight: 700; }
+  .ctx-banner a { margin-left: auto; font-size: 12.5px; font-weight: 600; color: var(--ds-accent-deep); }
+  .src-note { margin-top: 18px; border: 1px solid var(--ds-line); border-radius: var(--ds-radius-sm); background: var(--ds-s2); padding: 16px 18px; }
+  .src-note .h { font-weight: 700; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ds-muted); margin-bottom: 8px; }
+  .src-note code { background: #fff; }
+
   /* Status pills + trust + glass chips */
   .pill { display: inline-flex; align-items: center; gap: 7px; font-weight: 600; font-size: 12.5px; padding: 6px 13px; border-radius: var(--ds-pill); }
   .pill .dot { width: 7px; height: 7px; border-radius: 50%; }
@@ -335,6 +365,7 @@
     <div class="nav-label">Components</div>
     <a href="#buttons">Buttons</a>
     <a href="#forms">Forms</a>
+    <a href="#leadform">Lead form</a>
     <a href="#badges">Status &amp; trust</a>
     <a href="#glass">Glass chips</a>
     <a href="#cards">Destination card</a>
@@ -532,6 +563,88 @@
           <label class="check-row"><input type="checkbox" checked> Add Blue Atlas travel insurance to this trip</label>
           <label class="check-row"><input type="radio" name="r" checked> Standard processing</label>
           <label class="check-row"><input type="radio" name="r"> Priority processing</label>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEAD FORM -->
+    <section class="ds-section" id="leadform">
+      <div class="ds-inner">
+        <div class="eyebrow">Components</div>
+        <h2>Lead capture form</h2>
+        <p class="lead">The site's primary goal is to capture a qualified enquiry, so the form is the main conversion, not a generic "book now". It runs in two modes. <strong>Generic</strong> (Contact page, homepage): the visitor picks what they need. <strong>Page-level</strong> (a specific visa or destination page): the service and destination are captured automatically from the page, so the visitor does not re-pick.</p>
+
+        <p class="lbl">Mode A &middot; Generic contact form (with service selector)</p>
+        <div class="lead-wrap" style="margin-bottom:40px">
+          <div class="lead-copy">
+            <h3>Tell us where you are headed.</h3>
+            <p>Share a few details and a visa expert calls back, usually within one business day, with your documents, timeline, and a quote.</p>
+            <ul class="reassure">
+              <li><span class="chk"><svg class="ic"><use href="#i-check"/></svg></span> A real human reply within 1 business day</li>
+              <li><span class="chk"><svg class="ic"><use href="#i-check"/></svg></span> No payment to enquire, no obligation</li>
+              <li><span class="chk"><svg class="ic"><use href="#i-check"/></svg></span> Documents, timeline, and odds up front</li>
+            </ul>
+          </div>
+          <form class="form-card" onsubmit="return false;">
+            <div class="field">
+              <label class="fld">What do you need?</label>
+              <div class="seg" id="dsServiceSeg" role="group" aria-label="Service">
+                <button type="button" class="seg-opt is-on" data-val="Tourist visa"><svg class="ic"><use href="#i-passport"/></svg> Tourist visa</button>
+                <button type="button" class="seg-opt" data-val="Business visa"><svg class="ic"><use href="#i-briefcase"/></svg> Business visa</button>
+                <button type="button" class="seg-opt" data-val="USA visa"><svg class="ic"><use href="#i-flag"/></svg> USA visa</button>
+                <button type="button" class="seg-opt" data-val="Travel insurance"><svg class="ic"><use href="#i-umbrella"/></svg> Insurance</button>
+                <button type="button" class="seg-opt" data-val="Not sure yet">Not sure yet</button>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="field"><label class="fld">Destination</label><select class="input"><option>Select a country</option><option>Japan</option><option>United States</option><option>Schengen Area</option><option>United Arab Emirates</option></select></div>
+              <div class="field"><label class="fld">Travel date (approx.)</label><input class="input" type="date"></div>
+            </div>
+            <div class="form-row">
+              <div class="field"><label class="fld">Full name</label><input class="input" type="text" placeholder="e.g. Priya Sharma"></div>
+              <div class="field"><label class="fld">Phone (WhatsApp)</label><input class="input" type="tel" placeholder="+1 555 000 0000"></div>
+            </div>
+            <div class="field" style="margin-bottom:18px"><label class="fld">Email</label><input class="input" type="email" placeholder="you@email.com"></div>
+            <div class="submit-row">
+              <button type="submit" class="btn btn-azure">Request my callback</button>
+              <button type="submit" class="circ circ-azure" aria-label="Submit"><svg class="ic"><use href="#i-arrow"/></svg></button>
+            </div>
+            <p class="fmeta">By submitting you agree to our privacy policy. We never share your details.</p>
+          </form>
+        </div>
+
+        <p class="lbl">Mode B &middot; Page-level form (service &amp; destination auto-captured)</p>
+        <div class="lead-wrap">
+          <div class="lead-copy">
+            <h3>One less thing to pick.</h3>
+            <p>On a destination or service page, the visitor already told us what they want by being there. We pre-fill it and hide the selector, so the form is shorter and converts better.</p>
+            <div class="src-note">
+              <div class="h">Auto-captured at build time (hidden fields)</div>
+              <div style="font-size:13.5px;color:var(--ds-body);line-height:1.7">
+                <code>source_service = "Tourist visa"</code><br>
+                <code>source_page = "/visas/japan-tourist"</code>
+              </div>
+              <p style="font-size:12.5px;color:var(--ds-muted);margin:10px 0 0">The backend fills these from the page the lead came from, so every enquiry is routed and attributed without the visitor doing extra work.</p>
+            </div>
+          </div>
+          <form class="form-card" onsubmit="return false;">
+            <div class="ctx-banner">
+              <svg class="ic"><use href="#i-pin"/></svg>
+              <div class="t">You are enquiring about <b>Japan &middot; Tourist visa</b></div>
+              <a href="#">Change</a>
+            </div>
+            <div class="form-row">
+              <div class="field"><label class="fld">Full name</label><input class="input" type="text" placeholder="e.g. Priya Sharma"></div>
+              <div class="field"><label class="fld">Phone (WhatsApp)</label><input class="input" type="tel" placeholder="+1 555 000 0000"></div>
+            </div>
+            <div class="field"><label class="fld">Email</label><input class="input" type="email" placeholder="you@email.com"></div>
+            <div class="field" style="margin-bottom:18px"><label class="fld">Travel date (approx.)</label><input class="input" type="date"></div>
+            <div class="submit-row">
+              <button type="submit" class="btn btn-azure">Request my callback</button>
+              <button type="submit" class="circ circ-azure" aria-label="Submit"><svg class="ic"><use href="#i-arrow"/></svg></button>
+            </div>
+            <p class="fmeta">Shorter form, same data. Service and destination travel with the lead automatically.</p>
+          </form>
         </div>
       </div>
     </section>
@@ -759,6 +872,13 @@
     });
   }, { rootMargin: '-45% 0px -50% 0px' });
   document.querySelectorAll('.ds-section').forEach(function(s){ if(s.id) obs.observe(s); });
+
+  var dsSeg = document.getElementById('dsServiceSeg');
+  if (dsSeg) dsSeg.addEventListener('click', function(e){
+    var b = e.target.closest('.seg-opt'); if(!b) return;
+    dsSeg.querySelectorAll('.seg-opt').forEach(function(o){ o.classList.remove('is-on'); });
+    b.classList.add('is-on');
+  });
 </script>
 
 </body>

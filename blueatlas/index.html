@@ -167,6 +167,33 @@
   .cta h2{color:#fff;font-weight:300;font-size:clamp(30px,5vw,60px);letter-spacing:-.03em;max-width:18ch;margin:0 auto 14px;}
   .cta p{color:rgba(255,255,255,.86);max-width:52ch;margin:0 auto 28px;font-size:16px;}
 
+  /* CONTACT / lead form */
+  .contact{background:var(--surface-2);border-radius:28px;padding:clamp(28px,4vw,52px);display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(24px,3.5vw,48px);align-items:start;}
+  .contact .lead-copy h2{font-size:clamp(28px,3.6vw,42px);font-weight:300;letter-spacing:-.03em;margin-bottom:16px;}
+  .contact .lead-copy p{color:var(--ink-soft);font-size:16px;margin-bottom:24px;max-width:40ch;}
+  .reassure{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:13px;}
+  .reassure li{display:flex;align-items:center;gap:11px;font-size:15px;color:var(--ink);}
+  .reassure .chk{width:24px;height:24px;border-radius:50%;background:#E2F1E9;color:#1E8E5A;display:flex;align-items:center;justify-content:center;flex:0 0 24px;}
+  .reassure .chk .ic{width:14px;height:14px;stroke-width:2.2;}
+  .callnote{margin-top:24px;font-size:14px;color:var(--muted);}
+  .callnote b{color:var(--ink);font-weight:700;}
+  .form-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:clamp(22px,2.6vw,30px);box-shadow:var(--shadow);}
+  label.fld{display:block;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:8px;}
+  .input,select.input,textarea.input{width:100%;font-family:var(--font);font-size:15px;color:var(--ink);padding:12px 14px;border:1.5px solid #D6DCE3;border-radius:var(--radius-sm);background:#fff;}
+  .input:focus,select.input:focus,textarea.input:focus{outline:none;border-color:var(--azure);box-shadow:0 0 0 3px rgba(26,109,236,.15);}
+  .field{margin-bottom:16px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .seg{display:flex;flex-wrap:wrap;gap:8px;}
+  .seg-opt{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--line);border-radius:var(--pill);padding:9px 14px;font-family:var(--font);font-weight:600;font-size:13px;color:var(--ink);background:#fff;cursor:pointer;transition:background .15s,border-color .15s,color .15s;}
+  .seg-opt .ic{width:15px;height:15px;color:var(--azure-deep);}
+  .seg-opt:hover{border-color:#c2ccd6;}
+  .seg-opt.is-on{background:var(--azure);border-color:var(--azure);color:#fff;}
+  .seg-opt.is-on .ic{color:#fff;}
+  .fmeta{font-size:12.5px;color:var(--muted);margin-top:10px;}
+  .fmeta a{color:var(--azure-deep);font-weight:600;}
+  .submit-row{display:flex;align-items:center;gap:12px;margin-top:6px;}
+  .submit-row .btn{flex:1;justify-content:center;}
+
   /* footer */
   .foot{padding:40px 0 12px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:8px;}
   .foot .links{display:flex;gap:22px;flex-wrap:wrap;font-size:14px;color:var(--muted);}
@@ -180,12 +207,14 @@
     .plan{grid-template-columns:1fr;}
     .test-grid{grid-template-columns:1fr;}
     .nav{display:none;}
+    .contact{grid-template-columns:1fr;}
   }
   @media(max-width:600px){
     .page{margin:10px;border-radius:24px;}
     .dest-grid{grid-template-columns:1fr;}
     .stats{grid-template-columns:1fr 1fr;}
     .steps{grid-template-columns:1fr;}
+    .form-row{grid-template-columns:1fr;}
     .hero-copy{text-align:left;}
     .hero{min-height:540px;}
   }
@@ -373,13 +402,55 @@
       </div>
     </section>
 
-    <!-- CTA -->
-    <section class="sec" style="padding-top:0;">
-      <div class="cta">
-        <img src="imagery/skyline-dusk.png" alt="City skyline at dusk">
-        <h2>Ready to cross your next border?</h2>
-        <p>Tell us where you are headed. We will handle the visa, the documents, and the deadlines, so you can pack with confidence.</p>
-        <div class="cta-pair" style="justify-content:center;"><a class="btn btn-white" href="#">Start my application</a><a class="circ circ-white" href="#" aria-label="Start"><svg class="ic"><use href="#i-arrow"/></svg></a></div>
+    <!-- CONTACT / LEAD FORM -->
+    <section class="sec" id="contact" style="padding-top:0;">
+      <div class="contact">
+        <div class="lead-copy">
+          <span class="tag" style="margin-bottom:18px;">Get started</span>
+          <h2>Tell us where you are headed.</h2>
+          <p>Share a few details and a visa expert will call you back, usually within one business day, with your exact documents, timeline, and a clear quote.</p>
+          <ul class="reassure">
+            <li><span class="chk"><svg class="ic"><use href="#i-check"/></svg></span> A real human reply within 1 business day</li>
+            <li><span class="chk"><svg class="ic"><use href="#i-check"/></svg></span> No payment to enquire, no obligation</li>
+            <li><span class="chk"><svg class="ic"><use href="#i-check"/></svg></span> Your documents, timeline, and odds up front</li>
+          </ul>
+          <div class="callnote">Prefer to talk now? Call <b>+1 (000) 000 0000</b>, 24/7.</div>
+        </div>
+
+        <form class="form-card" onsubmit="return false;">
+          <div class="field">
+            <label class="fld">What do you need?</label>
+            <div class="seg" id="serviceSeg" role="group" aria-label="Service">
+              <button type="button" class="seg-opt is-on" data-val="Tourist visa"><svg class="ic"><use href="#i-passport"/></svg> Tourist visa</button>
+              <button type="button" class="seg-opt" data-val="Business visa"><svg class="ic"><use href="#i-briefcase"/></svg> Business visa</button>
+              <button type="button" class="seg-opt" data-val="USA visa"><svg class="ic"><use href="#i-flag"/></svg> USA visa</button>
+              <button type="button" class="seg-opt" data-val="Travel insurance"><svg class="ic"><use href="#i-umbrella"/></svg> Travel insurance</button>
+              <button type="button" class="seg-opt" data-val="Not sure yet">Not sure yet</button>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label class="fld">Destination</label>
+              <select class="input" name="destination"><option value="">Select a country</option><option>Japan</option><option>United States</option><option>Schengen Area</option><option>United Arab Emirates</option><option>Other / not listed</option></select>
+            </div>
+            <div class="field"><label class="fld">Travel date (approx.)</label><input class="input" type="date" name="travel_date"></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label class="fld">Full name</label><input class="input" type="text" name="name" placeholder="e.g. Priya Sharma"></div>
+            <div class="field"><label class="fld">Phone (WhatsApp)</label><input class="input" type="tel" name="phone" placeholder="+1 555 000 0000"></div>
+          </div>
+          <div class="field"><label class="fld">Email</label><input class="input" type="email" name="email" placeholder="you@email.com"></div>
+          <div class="field" style="margin-bottom:18px;"><label class="fld">Anything we should know? (optional)</label><textarea class="input" name="message" rows="2" placeholder="Previous rejections, tight deadlines, group travel..."></textarea></div>
+
+          <!-- Auto-captured at build time by the backend: which page/service the lead came from -->
+          <input type="hidden" name="source_service" id="source_service" value="Tourist visa">
+          <input type="hidden" name="source_page" id="source_page" value="">
+
+          <div class="submit-row">
+            <button type="submit" class="btn btn-azure">Request my callback</button>
+            <button type="submit" class="circ circ-azure" aria-label="Submit"><svg class="ic"><use href="#i-arrow"/></svg></button>
+          </div>
+          <p class="fmeta">By submitting you agree to our <a href="#">privacy policy</a>. We never share your details.</p>
+        </form>
       </div>
     </section>
 
@@ -392,6 +463,21 @@
 
   </div>
 </div>
+
+<script>
+  (function(){
+    var seg = document.getElementById('serviceSeg');
+    var hidden = document.getElementById('source_service');
+    if (seg) seg.addEventListener('click', function(e){
+      var b = e.target.closest('.seg-opt'); if(!b) return;
+      seg.querySelectorAll('.seg-opt').forEach(function(o){ o.classList.remove('is-on'); });
+      b.classList.add('is-on');
+      if (hidden) hidden.value = b.getAttribute('data-val');
+    });
+    var sp = document.getElementById('source_page');
+    if (sp) sp.value = location.pathname + location.search;
+  })();
+</script>
 
 </body>
 </html>
