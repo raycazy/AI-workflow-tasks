@@ -166,11 +166,12 @@
     .needs{grid-template-columns:1fr;} .trow{grid-template-columns:1fr;gap:6px;}
     .costmeta{grid-template-columns:1fr;} .next .steps3{grid-template-columns:1fr;}
     .grow{grid-template-columns:1fr 1fr;}
+    /* drop the description column so the price column is never clipped */
+    table th:nth-child(2), table td:nth-child(2){ display:none; }
+    th,td{ padding:14px 18px; }
   }
   @media(max-width:600px){
     .page{margin:10px;border-radius:24px;}
-    /* drop the description column so the price is always visible */
-    table th:nth-child(2), table td:nth-child(2){ display:none; }
     th,td{ padding:13px 16px; }
     td.amt{ font-size:15px; }
     tr.total td.amt{ font-size:19px; }
