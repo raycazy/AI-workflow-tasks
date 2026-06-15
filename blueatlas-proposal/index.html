@@ -102,6 +102,14 @@
   .dlist li{display:flex;gap:10px;font-size:14px;font-weight:300;color:var(--muted);}
   .dlist .ic{width:17px;height:17px;color:var(--success);flex:0 0 17px;margin-top:2px;stroke-width:2.2;}
 
+  /* grow after launch */
+  .grow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:30px;}
+  .gcard{border:1px solid var(--hairline);border-radius:var(--r-card);padding:22px;}
+  .gcard .ico{width:44px;height:44px;border-radius:13px;background:var(--blue-100);color:var(--blue);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+  .gcard .ico .ic{width:22px;height:22px;}
+  .gcard h4{font-size:16px;font-weight:500;margin-bottom:6px;}
+  .gcard p{font-size:13.5px;font-weight:300;color:var(--muted);}
+
   .needs{display:grid;grid-template-columns:1fr 1fr;gap:12px 28px;margin-top:28px;list-style:none;padding:0;}
   .needs li{display:flex;gap:12px;font-size:15px;font-weight:300;color:var(--muted);padding:8px 0;}
   .needs .ic{width:20px;height:20px;color:var(--slate);flex:0 0 20px;margin-top:2px;}
@@ -157,6 +165,7 @@
     .previews{grid-template-columns:1fr;} .deliver{grid-template-columns:1fr;}
     .needs{grid-template-columns:1fr;} .trow{grid-template-columns:1fr;gap:6px;}
     .costmeta{grid-template-columns:1fr;} .next .steps3{grid-template-columns:1fr;}
+    .grow{grid-template-columns:1fr 1fr;}
   }
   @media(max-width:600px){ .page{margin:10px;border-radius:24px;} }
   @media print{ body{background:#fff;} .page{box-shadow:none;margin:0;max-width:none;} }
@@ -181,6 +190,10 @@
   <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 6h8M16 6h4M4 12h2M10 12h10M4 18h6M14 18h6"/><circle cx="14" cy="6" r="2"/><circle cx="8" cy="12" r="2"/><circle cx="12" cy="18" r="2"/></symbol>
   <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M4 20h4l10-10-4-4L4 16z"/><path d="M14 6l4 4"/></symbol>
   <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/></symbol>
+  <symbol id="i-megaphone" viewBox="0 0 24 24"><path d="M3 11v2a1 1 0 0 0 1 1h2l4.5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M14 8.5a4 4 0 0 1 0 7M17 6a8 8 0 0 1 0 12"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M4 7l8 5.5L20 7"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M5 18l-2.5 3.5V6a2 2 0 0 1 2-2h15a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2z"/><path d="M8 10h8M8 13.5h5"/></symbol>
 </defs></svg>
 
 <div class="page">
@@ -422,6 +435,19 @@
             <li>This shortens Phase 2 and de-risks the build.</li>
           </ul>
         </div>
+      </div>
+    </section>
+
+    <!-- GROW AFTER LAUNCH -->
+    <section class="sec">
+      <span class="eyebrow">Grow after launch</span>
+      <h2>Once the site is live, we can bring the traffic too.</h2>
+      <p class="intro">Optional services we offer after the website is delivered, to turn it into a steady stream of enquiries. Each is scoped and priced separately, whenever you are ready.</p>
+      <div class="grow">
+        <div class="gcard"><div class="ico"><svg class="ic"><use href="#i-target"/></svg></div><h4>Google Ads</h4><p>Search and Performance Max campaigns that capture visa demand the moment people look.</p></div>
+        <div class="gcard"><div class="ico"><svg class="ic"><use href="#i-megaphone"/></svg></div><h4>Meta Ads</h4><p>Facebook and Instagram campaigns to build awareness and retarget your website visitors.</p></div>
+        <div class="gcard"><div class="ico"><svg class="ic"><use href="#i-mail"/></svg></div><h4>Email marketing</h4><p>Automated follow-ups and broadcasts that nurture enquiries into booked applications.</p></div>
+        <div class="gcard"><div class="ico"><svg class="ic"><use href="#i-chat"/></svg></div><h4>WhatsApp marketing</h4><p>WhatsApp flows and broadcasts for fast, personal follow-up where your buyers already are.</p></div>
       </div>
     </section>
 
