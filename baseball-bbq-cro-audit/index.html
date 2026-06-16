@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0a0a0a">
+<title>Baseball BBQ: CRO Findings and Testing Roadmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --display: 'Inter Tight', 'Helvetica Neue', sans-serif;
+    --body: 'Inter', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --red: #d23636;
+    --red-2: #ff4a4a;
+    --green: #21d07a;
+    --yellow: #ffb01f;
+    --orange: #f5751c;
+  }
+  html[data-theme="dark"] {
+    --bg: #0a0a0a;
+    --bg-2: #141414;
+    --bg-3: #1c1c1c;
+    --line: rgba(255,255,255,0.08);
+    --line-strong: rgba(255,255,255,0.18);
+    --ink: #f5f5f5;
+    --ink-2: #b3b3b3;
+    --ink-3: #6e6e6e;
+    --shadow: 0 20px 60px rgba(0,0,0,0.45);
+    --grain-opacity: 0.35;
+    --nav-bg: rgba(20,20,20,.78);
+  }
+  html[data-theme="light"] {
+    --bg: #f6f5f1;
+    --bg-2: #ffffff;
+    --bg-3: #ebe9e3;
+    --line: rgba(0,0,0,0.10);
+    --line-strong: rgba(0,0,0,0.22);
+    --ink: #0d0d0d;
+    --ink-2: #545454;
+    --ink-3: #8a8a8a;
+    --shadow: 0 16px 40px rgba(0,0,0,0.08);
+    --grain-opacity: 0;
+    --nav-bg: rgba(255,255,255,.82);
+  }
+
+  *,*::before,*::after { box-sizing: border-box; }
+  html, body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--body); -webkit-font-smoothing: antialiased;
+    transition: background .3s ease, color .3s ease;
+    min-height: 100%; height: 100%; overflow: hidden;
+  }
+  body { overscroll-behavior: contain; touch-action: pan-y; }
+
+  .stage { position: fixed; inset: 0; display: grid; place-items: center; padding: 18px; }
+  .deck { width: 100%; height: 100%; max-width: 1400px; max-height: 860px; position: relative; }
+  .slide {
+    position: absolute; inset: 0; border-radius: 18px; overflow: hidden;
+    background: var(--bg); border: 1px solid var(--line); box-shadow: var(--shadow);
+    opacity: 0; pointer-events: none;
+    transform: translateX(40px) scale(.985);
+    transition: opacity .42s ease, transform .55s cubic-bezier(.2,.7,.2,1), background .3s ease, border-color .3s ease;
+    will-change: transform, opacity;
+  }
+  .slide.is-active { opacity: 1; pointer-events: auto; transform: translateX(0) scale(1); }
+  .slide.is-prev { opacity: 0; transform: translateX(-40px) scale(.985); }
+
+  .pad {
+    position: absolute; inset: 0;
+    padding: 48px 56px 96px;
+    overflow-y: auto; overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    display: flex; flex-direction: column;
+    scroll-behavior: smooth;
+  }
+  .pad::-webkit-scrollbar { width: 8px; }
+  .pad::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 4px; }
+  .pad::-webkit-scrollbar-thumb:hover { background: var(--ink-3); }
+
+  .top-row {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 28px; flex-shrink: 0;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--display); letter-spacing: .15em; font-size: 14px; color: var(--ink-2);
+  }
+  .brand-mark {
+    width: 22px; height: 22px;
+    background: var(--ink);
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='12' r='9' stroke-width='2' stroke='black' fill='none'/><path d='M5 8 q7 2 14 0 M5 16 q7 -2 14 0' stroke='black' stroke-width='1.4' fill='none'/></svg>") center / 95% no-repeat;
+            mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='12' r='9' stroke-width='2' stroke='black' fill='none'/><path d='M5 8 q7 2 14 0 M5 16 q7 -2 14 0' stroke='black' stroke-width='1.4' fill='none'/></svg>") center / 95% no-repeat;
+  }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 12px; border-radius: 999px;
+    background: rgba(210,54,54,0.14); color: var(--red-2);
+    font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+  }
+  .badge.green { background: rgba(33,208,122,0.16); color: var(--green); }
+  .badge.yellow { background: rgba(255,176,31,0.14); color: var(--yellow); }
+  .badge.orange { background: rgba(245,117,28,0.16); color: var(--orange); }
+  .badge.ghost { background: var(--bg-3); color: var(--ink-2); border: 1px solid var(--line); }
+  .eyebrow {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .25em; text-transform: uppercase; color: var(--ink-3);
+  }
+  h1, h2, h3 { margin: 0; font-weight: 700; }
+  .display {
+    font-family: var(--display); font-size: clamp(38px, 5.4vw, 84px);
+    font-weight: 800; line-height: 1.0; letter-spacing: -.035em;
+  }
+  .sub-display {
+    font-family: var(--display); font-size: clamp(28px, 3.6vw, 58px);
+    font-weight: 800; line-height: 1.04; letter-spacing: -.03em;
+  }
+  .h-section {
+    font-family: var(--display); font-size: clamp(22px, 2.5vw, 36px);
+    line-height: 1.15; letter-spacing: -.025em; font-weight: 700;
+  }
+  .lede { font-size: clamp(15px, 1.4vw, 18px); line-height: 1.55; color: var(--ink-2); max-width: 70ch; }
+  .small { font-size: 13px; color: var(--ink-3); }
+  .accent { color: var(--red); }
+  .num-display {
+    font-family: var(--display); font-size: clamp(56px, 9vw, 140px);
+    font-weight: 800; line-height: .9; letter-spacing: -.035em;
+  }
+  .mono { font-family: var(--mono); }
+  .grid { display: grid; gap: 24px; }
+  .cols-2 { grid-template-columns: 1fr 1fr; }
+  .cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+  .stat-card {
+    background: var(--bg-2); border: 1px solid var(--line);
+    border-radius: 12px; padding: 22px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .stat-card .k { font-family: var(--mono); font-size: 10px; letter-spacing: .25em; text-transform: uppercase; color: var(--ink-3); }
+  .stat-card .v { font-family: var(--display); font-size: 44px; line-height: 1; color: var(--ink); }
+  .stat-card .v.sm { font-size: 30px; }
+  .stat-card .d { font-size: 12px; color: var(--ink-2); margin-top: 4px; }
+  .stat-card.red { border-color: rgba(210,54,54,.35); background: linear-gradient(180deg, rgba(210,54,54,.08), transparent 80%), var(--bg-2); }
+  .stat-card.green { border-color: rgba(33,208,122,.35); }
+  .stat-card.orange { border-color: rgba(245,117,28,.35); background: linear-gradient(180deg, rgba(245,117,28,.08), transparent 80%), var(--bg-2); }
+
+  .funnel { display: grid; gap: 10px; }
+  .funnel-row {
+    display: grid; grid-template-columns: 180px 1fr 180px; align-items: center; gap: 16px;
+  }
+  .funnel-row .name { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
+  .funnel-bar-wrap { position: relative; height: 32px; background: var(--bg-3); border-radius: 6px; overflow: hidden; }
+  .funnel-bar { position: absolute; inset: 0 auto 0 0; background: linear-gradient(90deg, var(--red), #ff7a4a); }
+  .funnel-row .v { font-family: var(--mono); font-size: 13px; color: var(--ink); text-align: right; }
+  .funnel-row .v small { color: var(--ink-3); margin-left: 6px; }
+
+  .compare {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px; flex: 0 0 auto;
+  }
+  .compare-panel {
+    display: flex; flex-direction: column;
+    background: var(--bg-2); border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+  }
+  .compare-panel header {
+    padding: 14px 18px; border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .compare-panel header strong { font-family: var(--mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; }
+  .compare-body { padding: 18px; display: flex; flex-direction: column; gap: 10px; }
+  .compare-body ul { margin: 0; padding-left: 18px; color: var(--ink-2); font-size: 14px; line-height: 1.55; }
+  .compare-body li { margin-bottom: 6px; }
+  .compare-body li.bad::marker { color: var(--red); }
+  .compare-body li.good::marker { color: var(--green); }
+
+  .shot {
+    width: 100%; display: block;
+    border-radius: 10px; border: 1px solid var(--line); background: var(--bg-3);
+  }
+  .shot-wrap {
+    overflow: hidden; max-height: 440px;
+    border-radius: 10px; background: var(--bg-3); margin: 12px 18px;
+  }
+  .shot-wrap .shot { object-fit: cover; object-position: top center; width: 100%; max-height: 440px; }
+
+  .context-callout {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;
+    margin-bottom: 18px; padding: 16px;
+    background: var(--bg-2); border: 1px solid var(--line); border-radius: 12px;
+  }
+  .ctx-tile { display: flex; flex-direction: column; gap: 4px; }
+  .ctx-k { font-family: var(--mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-3); }
+  .ctx-v { font-family: var(--display); font-size: 44px; line-height: 1; font-weight: 800; letter-spacing: -.03em; color: var(--red); }
+  .ctx-d { font-size: 13px; line-height: 1.5; color: var(--ink-2); }
+  @media (max-width: 768px) { .context-callout { grid-template-columns: 1fr; } .ctx-v { font-size: 36px; } }
+
+  .priority-list { display: grid; gap: 10px; }
+  .priority-item {
+    display: grid; grid-template-columns: 56px 1fr auto; gap: 18px; align-items: center;
+    padding: 16px 18px;
+    background: var(--bg-2); border: 1px solid var(--line); border-radius: 10px;
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .priority-item:hover { border-color: var(--line-strong); transform: translateY(-1px); }
+  .priority-item .n { font-family: var(--display); font-size: 38px; color: var(--red); line-height: 1; }
+  .priority-item .t { font-size: 16px; font-weight: 600; color: var(--ink); }
+  .priority-item .t span { display: block; font-weight: 400; color: var(--ink-2); font-size: 13px; margin-top: 4px; }
+  .priority-item .tag { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-3); padding: 6px 10px; border: 1px solid var(--line); border-radius: 999px; white-space: nowrap; }
+  .priority-item .tag.ship { background: rgba(33,208,122,.10); color: var(--green); border-color: rgba(33,208,122,.35); }
+  .priority-item .tag.ab { background: rgba(245,117,28,.10); color: var(--orange); border-color: rgba(245,117,28,.35); }
+
+  table.flat { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.flat th, table.flat td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+  table.flat th { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+  table.flat td { color: var(--ink-2); }
+  table.flat td.num { font-family: var(--mono); color: var(--ink); text-align: right; }
+  table.flat tr:hover td { color: var(--ink); }
+  table.flat .row-good td.num { color: var(--green); }
+  table.flat .row-bad td.num { color: var(--red); }
+
+  .ab-table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13px; }
+  .ab-table thead th {
+    text-align: left; padding: 12px 14px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--ink-3); font-weight: 500; border-bottom: 1px solid var(--line-strong);
+  }
+  .ab-table tbody td { padding: 16px 14px; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--ink-2); }
+  .ab-table tbody tr:hover td { background: var(--bg-2); color: var(--ink); }
+  .ab-table tbody tr:first-child td { background: linear-gradient(90deg, rgba(210,54,54,.08), transparent 60%); }
+  .ab-table tbody tr:first-child:hover td { background: linear-gradient(90deg, rgba(210,54,54,.14), transparent 60%); }
+  .ab-table .n { font-family: var(--display); font-size: 24px; color: var(--red); line-height: 1; width: 48px; }
+  .ab-table strong { display: block; color: var(--ink); font-weight: 700; font-size: 14px; line-height: 1.3; margin-bottom: 4px; }
+  .ab-table span:not(.page-chip):not(.pri) { display: block; font-size: 12px; color: var(--ink-2); line-height: 1.5; }
+  .page-chip {
+    display: inline-flex; align-items: center;
+    font-family: var(--mono); font-size: 10px; letter-spacing: .15em; text-transform: uppercase; font-weight: 500;
+    padding: 4px 8px; border-radius: 4px; border: 1px solid var(--line);
+    background: var(--bg-3); color: var(--ink-2); white-space: nowrap;
+  }
+  .page-chip.site { background: rgba(210,54,54,.15); color: var(--red-2); border-color: rgba(210,54,54,.3); }
+  .page-chip.pdp { background: rgba(33,208,122,.12); color: var(--green); border-color: rgba(33,208,122,.3); }
+  .page-chip.cart { background: rgba(255,176,31,.14); color: var(--yellow); border-color: rgba(255,176,31,.3); }
+  .page-chip.coll { background: rgba(245,117,28,.14); color: var(--orange); border-color: rgba(245,117,28,.3); }
+  .page-chip.home { background: rgba(35,150,255,.12); color: #5ab4ff; border-color: rgba(35,150,255,.3); }
+  .pri {
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 10px; letter-spacing: .15em; font-weight: 700;
+    padding: 4px 8px; border-radius: 4px;
+  }
+  .pri.p0 { background: var(--red); color: #fff; }
+  .pri.p1 { background: rgba(255,176,31,.18); color: var(--yellow); border: 1px solid rgba(255,176,31,.4); }
+  .pri.p2 { background: var(--bg-3); color: var(--ink-2); border: 1px solid var(--line); }
+
+  .geo-bar { display: grid; gap: 8px; }
+  .geo-row { display: grid; grid-template-columns: 130px 1fr 90px 100px; align-items: center; gap: 14px; font-size: 13px; }
+  .geo-row .name { color: var(--ink-2); font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; }
+  .geo-row .bar { height: 22px; background: var(--bg-3); border-radius: 4px; overflow: hidden; position: relative; }
+  .geo-row .bar > i { display: block; height: 100%; background: var(--line-strong); }
+  .geo-row.us .bar > i { background: linear-gradient(90deg, var(--green), #5af0a8); }
+  .geo-row .num { font-family: var(--mono); text-align: right; color: var(--ink); }
+  .geo-row .rev { font-family: var(--mono); text-align: right; color: var(--ink); }
+  .geo-row.us .rev { color: var(--green); }
+  .geo-row.bot .num, .geo-row.bot .rev { color: var(--ink-3); }
+
+  .device-split { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .device-card { background: var(--bg-2); border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
+  .device-card.win { border-color: rgba(33,208,122,.4); }
+  .device-card.loss { border-color: rgba(210,54,54,.4); }
+  .device-card h4 {
+    font-family: var(--display); font-size: 32px; margin: 0 0 6px;
+    text-transform: uppercase; letter-spacing: -.01em; color: var(--ink);
+  }
+  .device-card .row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed var(--line); font-size: 14px; color: var(--ink-2); }
+  .device-card .row strong { color: var(--ink); font-family: var(--mono); font-size: 14px; }
+  .device-card .row:last-child { border-bottom: 0; }
+
+  .issue-list { display: grid; gap: 10px; }
+  .issue {
+    display: grid; grid-template-columns: 28px 1fr; gap: 12px;
+    padding: 12px 14px;
+    background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px;
+    font-size: 14px;
+  }
+  .issue .x { color: var(--red); font-family: var(--mono); font-size: 14px; line-height: 1.4; }
+  .issue .y { color: var(--green); font-family: var(--mono); font-size: 14px; line-height: 1.4; }
+  .issue strong { color: var(--ink); display: block; margin-bottom: 2px; }
+  .issue span { color: var(--ink-2); font-size: 13px; line-height: 1.5; }
+
+  .pullquote {
+    font-family: var(--display); font-size: clamp(30px, 3.8vw, 58px);
+    font-weight: 800; line-height: 1.04; letter-spacing: -.03em;
+    max-width: 22ch;
+  }
+  .pullquote .red { color: var(--red); }
+
+  .quote-card {
+    background: var(--bg-2); border: 1px solid var(--line); border-radius: 12px;
+    padding: 22px 26px; font-family: var(--display); font-size: 18px;
+    line-height: 1.35; color: var(--ink);
+  }
+  .quote-card .src { display: block; margin-top: 12px; font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+
+  .test-detail {
+    background: var(--bg-2); border: 1px solid var(--line); border-radius: 14px;
+    padding: 26px;
+  }
+  .test-detail .hyp-block {
+    display: grid; gap: 10px; padding: 16px 18px;
+    background: rgba(210,54,54,.06); border: 1px solid rgba(210,54,54,.25);
+    border-radius: 10px;
+  }
+  .test-detail .hyp-block.green {
+    background: rgba(33,208,122,.06); border-color: rgba(33,208,122,.25);
+  }
+  .test-detail .hyp-block .k { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--red-2); font-weight: 600; }
+  .test-detail .hyp-block.green .k { color: var(--green); }
+  .test-detail .hyp-block .v { font-size: 15px; line-height: 1.5; color: var(--ink); }
+  .test-detail .ctrl-var { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px; }
+  .ctrl-card, .var-card { padding: 16px 18px; border-radius: 10px; border: 1px solid var(--line); }
+  .ctrl-card { background: rgba(210,54,54,.04); border-color: rgba(210,54,54,.25); }
+  .var-card { background: rgba(33,208,122,.04); border-color: rgba(33,208,122,.25); }
+  .ctrl-card h5, .var-card h5 { font-family: var(--mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; margin: 0 0 12px; }
+  .ctrl-card h5 { color: var(--red-2); }
+  .var-card h5 { color: var(--green); }
+  .ctrl-card ul, .var-card ul { margin: 0; padding-left: 18px; font-size: 13px; line-height: 1.5; color: var(--ink-2); }
+  .ctrl-card li, .var-card li { margin-bottom: 6px; }
+
+  .title-slide .meta {
+    display: flex; gap: 24px; margin-top: 24px; flex-wrap: wrap;
+    font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: .15em; text-transform: uppercase;
+  }
+  .title-slide .meta span strong { color: var(--ink); font-weight: 500; }
+  .grain {
+    position: absolute; inset: 0; pointer-events: none; mix-blend-mode: overlay; opacity: var(--grain-opacity);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .35 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+  .ticker {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    background: var(--red); color: #fff; padding: 10px 0;
+    font-family: var(--display); font-size: 14px; letter-spacing: .15em; text-transform: uppercase;
+    overflow: hidden; white-space: nowrap;
+  }
+  .ticker-track { display: inline-block; animation: ticker 32s linear infinite; padding-left: 100%; }
+  .ticker-track span { padding: 0 32px; }
+  @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+
+  .tldr-grid { display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr); }
+  .tldr-card {
+    background: var(--bg-2); border: 1px solid var(--line); border-radius: 14px;
+    padding: 24px; display: flex; flex-direction: column; gap: 12px;
+  }
+  .tldr-card .num { font-family: var(--display); font-size: 76px; line-height: 1; color: var(--red); letter-spacing: -.02em; }
+  .tldr-card h3 { font-size: 20px; font-weight: 800; letter-spacing: -.01em; line-height: 1.18; color: var(--ink); }
+  .tldr-card p { font-size: 14px; line-height: 1.55; color: var(--ink-2); margin: 0; }
+  .tldr-card .pill {
+    align-self: flex-start; margin-top: auto;
+    padding: 6px 10px; border: 1px solid var(--line); border-radius: 999px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-3);
+  }
+
+  .nav {
+    position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 4px; align-items: center; padding: 6px;
+    background: var(--nav-bg); border: 1px solid var(--line);
+    backdrop-filter: blur(14px); border-radius: 999px; z-index: 30;
+    font-family: var(--mono); box-shadow: 0 8px 30px rgba(0,0,0,.18);
+  }
+  .nav button {
+    background: transparent; color: var(--ink); border: 0;
+    padding: 9px 14px; border-radius: 999px; cursor: pointer;
+    font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+    transition: background .15s ease;
+  }
+  .nav button:hover { background: var(--bg-3); }
+  .nav .count { padding: 0 10px; font-size: 12px; color: var(--ink-2); min-width: 76px; text-align: center; }
+  .nav .count strong { color: var(--ink); }
+  .nav .sep { width: 1px; height: 18px; background: var(--line); }
+  .theme-toggle {
+    background: transparent; border: 1px solid var(--line); color: var(--ink);
+    width: 36px; height: 36px; border-radius: 999px; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .theme-toggle:hover { background: var(--bg-3); }
+  .theme-toggle svg { width: 16px; height: 16px; }
+  html[data-theme="dark"] .theme-toggle .sun { display: block; }
+  html[data-theme="dark"] .theme-toggle .moon { display: none; }
+  html[data-theme="light"] .theme-toggle .sun { display: none; }
+  html[data-theme="light"] .theme-toggle .moon { display: block; }
+
+  .progress { position: fixed; left: 0; top: 0; right: 0; height: 2px; background: var(--line); z-index: 30; }
+  .progress > i { display: block; height: 100%; background: var(--red); width: 0; transition: width .4s ease; }
+
+  .index-overlay {
+    position: fixed; inset: 0; z-index: 60;
+    background: rgba(0,0,0,.6); backdrop-filter: blur(8px);
+    opacity: 0; pointer-events: none; transition: opacity .25s ease;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  .index-overlay.open { opacity: 1; pointer-events: auto; }
+  .index-panel {
+    width: min(680px, 100%); max-height: 80vh;
+    background: var(--bg); border: 1px solid var(--line-strong); border-radius: 18px;
+    box-shadow: 0 30px 80px rgba(0,0,0,.4); display: flex; flex-direction: column; overflow: hidden;
+    transform: translateY(8px); transition: transform .3s cubic-bezier(.2,.7,.2,1);
+  }
+  .index-overlay.open .index-panel { transform: translateY(0); }
+  .index-head { padding: 20px 24px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .index-title { font-family: var(--display); font-size: 22px; font-weight: 700; letter-spacing: -.02em; }
+  .index-close {
+    background: transparent; border: 0; color: var(--ink-2); cursor: pointer;
+    width: 32px; height: 32px; border-radius: 999px;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: background .15s, color .15s;
+  }
+  .index-close:hover { background: var(--bg-3); color: var(--ink); }
+  .index-close svg { width: 16px; height: 16px; }
+  .index-list { flex: 1; overflow-y: auto; padding: 6px; }
+  .index-list::-webkit-scrollbar { width: 8px; }
+  .index-list::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 4px; }
+  .index-item {
+    display: grid; grid-template-columns: 36px 1fr auto; gap: 12px; align-items: center;
+    padding: 12px 16px; border: 1px solid transparent; border-radius: 10px;
+    cursor: pointer; transition: background .15s, border-color .15s;
+    width: 100%; background: transparent; text-align: left; color: var(--ink); font-family: var(--body);
+  }
+  .index-item:hover, .index-item.focused { background: var(--bg-2); border-color: var(--line); }
+  .index-item.current { background: rgba(210,54,54,.06); border-color: rgba(210,54,54,.3); }
+  .index-item .num { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: .1em; }
+  .index-item.current .num { color: var(--red); font-weight: 700; }
+  .index-item .label { font-size: 15px; font-weight: 500; line-height: 1.3; }
+  .index-item .label span { display: block; font-size: 12px; color: var(--ink-3); margin-top: 2px; font-weight: 400; }
+  .index-item .chip {
+    font-family: var(--mono); font-size: 9px; letter-spacing: .15em; text-transform: uppercase; color: var(--ink-3);
+    padding: 4px 8px; border: 1px solid var(--line); border-radius: 999px;
+  }
+  .index-foot {
+    padding: 12px 24px; border-top: 1px solid var(--line);
+    font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: var(--ink-3);
+    display: flex; flex-wrap: wrap; gap: 6px; justify-content: center;
+  }
+  .index-foot .kbd { background: var(--bg-3); border: 1px solid var(--line); padding: 2px 6px; border-radius: 4px; color: var(--ink); font-family: var(--mono); font-size: 10px; }
+
+  .swipe-hint {
+    position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%);
+    font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-3);
+    background: var(--nav-bg); border: 1px solid var(--line); padding: 6px 12px; border-radius: 999px;
+    z-index: 29; opacity: 0; transition: opacity .4s ease; pointer-events: none; backdrop-filter: blur(10px);
+  }
+  .swipe-hint.show { opacity: 1; }
+
+  .title-slide .pad { justify-content: center; padding-bottom: 80px; }
+
+  @media (max-width: 1024px) {
+    .pad { padding: 36px 32px 90px; }
+    .funnel-row { grid-template-columns: 120px 1fr 130px; gap: 12px; }
+    .geo-row { grid-template-columns: 110px 1fr 80px 90px; }
+  }
+  @media (max-width: 768px) {
+    .stage { padding: 10px; }
+    .deck { max-height: none; height: 100%; }
+    .slide { border-radius: 14px; }
+    .pad { padding: 28px 22px 100px; }
+    .top-row { margin-bottom: 22px; flex-wrap: wrap; gap: 8px; }
+    .display { font-size: 44px; }
+    .sub-display { font-size: 34px; }
+    .h-section { font-size: 22px; }
+    .num-display { font-size: 84px; }
+    .pullquote { font-size: 36px; }
+    .tldr-grid, .compare, .cols-2, .cols-3, .device-split, .grid.cols-2, .grid.cols-3, .ctrl-var { grid-template-columns: 1fr !important; gap: 14px; }
+    .context-callout { grid-template-columns: 1fr; }
+    .funnel-row { grid-template-columns: 100px 1fr 110px; gap: 10px; font-size: 11px; }
+    .funnel-row .name { font-size: 10px; }
+    .funnel-bar-wrap { height: 26px; }
+    .priority-item { grid-template-columns: 40px 1fr; padding: 14px; }
+    .priority-item .tag { display: none; }
+    .priority-item .n { font-size: 30px; }
+    .geo-row { grid-template-columns: 90px 1fr 70px 80px; gap: 8px; font-size: 11px; }
+    .geo-row .name { font-size: 10px; letter-spacing: .08em; }
+    .device-card { padding: 18px; }
+    .device-card h4 { font-size: 26px; }
+    table.flat th, table.flat td { padding: 8px 6px; font-size: 11px; }
+    table.flat th:last-child, table.flat td:last-child { display: none; }
+    .ab-table thead { display: none; }
+    .ab-table tbody, .ab-table tr, .ab-table td { display: block; width: 100%; }
+    .ab-table tbody tr { padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .ab-table tbody td { padding: 4px 0; border: 0; }
+    .ab-table .n { font-size: 32px; margin-bottom: 6px; }
+    .ab-table td:nth-child(3), .ab-table td:nth-child(4), .ab-table td:nth-child(5) { display: inline-block; width: auto; margin-right: 8px; margin-top: 8px; }
+    .ab-table strong { font-size: 15px; }
+    .tldr-card .num { font-size: 60px; }
+    .shot-wrap { max-height: 320px; margin: 12px; }
+    .shot-wrap .shot { max-height: 320px; }
+    .stat-card { padding: 16px; }
+    .stat-card .v { font-size: 32px; }
+    .nav { bottom: 12px; }
+    .nav button { padding: 8px 10px; font-size: 11px; }
+    .nav .count { min-width: 60px; font-size: 11px; padding: 0 6px; }
+    .title-slide .meta { gap: 14px; font-size: 10px; }
+    .ticker { font-size: 12px; padding: 8px 0; }
+  }
+  @media (max-width: 420px) {
+    .pad { padding: 22px 16px 100px; }
+    .display { font-size: 36px; }
+    .sub-display { font-size: 28px; }
+    .num-display { font-size: 64px; }
+    .pullquote { font-size: 30px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .slide { transition: opacity .15s ease; transform: none !important; }
+    .ticker-track { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress"><i id="progress-bar"></i></div>
+
+<div class="stage" id="stage">
+  <div class="deck" id="deck">
+
+    <!-- 1. COVER -->
+    <section class="slide title-slide is-active" data-slide="1">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> BASEBALL BBQ / CRO AUDIT</div>
+          <div class="eyebrow">May 2026</div>
+        </div>
+        <div>
+          <div class="badge" style="margin-bottom: 22px;">● Findings + Testing Roadmap</div>
+          <h1 class="display">Three leaks.<br>Three tests.<br><span class="accent">A clearer 90 days.</span></h1>
+          <p class="lede" style="max-width: 60ch; margin-top: 18px;">An honest read on the data: where the funnel actually breaks, which fixes are worth your engineering time, and the three tests that will turn $11,840 of real US revenue into $20,000+ over the next 90 days.</p>
+        </div>
+        <div class="meta">
+          <span><strong>Site</strong> baseballbbq.com</span>
+          <span><strong>GA4</strong> 393859510</span>
+          <span><strong>Window</strong> Last 90 days (Feb 23 to May 24, 2026)</span>
+          <span><strong>AOV</strong> $131.09</span>
+        </div>
+      </div>
+      <div class="grain"></div>
+      <div class="ticker">
+        <div class="ticker-track">
+          <span>4.9 FROM 2,847 REVIEWS</span><span>•</span>
+          <span>AS SEEN ON GMA</span><span>•</span>
+          <span>PATENTED BAT-HANDLE</span><span>•</span>
+          <span>$13,240 IN 90 DAYS</span><span>•</span>
+          <span>PDP TO ATC: 1.20%</span><span>•</span>
+          <span>FEATURED COLLECTION: 783 SESS, $0</span><span>•</span>
+          <span>FIX THE LEAK</span><span>•</span>
+          <span>4.9 FROM 2,847 REVIEWS</span><span>•</span>
+          <span>AS SEEN ON GMA</span><span>•</span>
+          <span>PATENTED BAT-HANDLE</span><span>•</span>
+          <span>$13,240 IN 90 DAYS</span><span>•</span>
+          <span>PDP TO ATC: 1.20%</span><span>•</span>
+          <span>FEATURED COLLECTION: 783 SESS, $0</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. TL;DR -->
+    <section class="slide" data-slide="2">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> BASEBALL BBQ / CRO AUDIT</div>
+          <div class="eyebrow">2 / TL;DR</div>
+        </div>
+        <h2 class="sub-display" style="margin-bottom: 24px;">Three findings drive<br>the whole roadmap.</h2>
+
+        <div class="tldr-grid">
+          <div class="tldr-card">
+            <div class="num">01</div>
+            <h3>PDP to ATC is the leak. 98.8% drop.</h3>
+            <p>9,059 PDP views, 109 carts in 28 days. Generic "Top Quality / Fast Ship / SSL" badges sit below the buy button. The 4.9 / 2,847 reviews badge and lifetime warranty are invisible. This is the largest fixable lever on the site.</p>
+            <span class="pill">PDP rebuild</span>
+          </div>
+          <div class="tldr-card">
+            <div class="num">02</div>
+            <h3>Most-clicked collection earns $0.</h3>
+            <p>/collections/home-page-featured-products takes 783 sessions over 90 days at 37% bounce (people stay and look) and produces zero purchases. The composition is wrong, not the traffic.</p>
+            <span class="pill">Collection rebuild</span>
+          </div>
+          <div class="tldr-card">
+            <div class="num">03</div>
+            <h3>2,085 variants. Zero decision aid.</h3>
+            <p>No "Best for Dad" filter. No quiz. No comparison view. The brand's strongest asset (personalization) is buried at the end of the navigation. Gift-givers have no path.</p>
+            <span class="pill">Gift-Finder Quiz</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. The three tests (impactful roadmap headline) -->
+    <section class="slide" data-slide="3">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> BASEBALL BBQ / CRO AUDIT</div>
+          <div class="eyebrow">3 / The three tests</div>
+        </div>
+        <h2 class="sub-display" style="margin-bottom: 18px;">Three tests. Durable. Permanent.<br><span class="accent">$8k to $11k incremental in 90 days.</span></h2>
+        <p class="lede" style="margin-bottom: 22px;">All three are post Father's Day. All three keep paying after the season ends. Each has a clear hypothesis, a defined sample size, and a measurable win condition.</p>
+
+        <table class="ab-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Test</th>
+              <th>Page</th>
+              <th>Primary metric</th>
+              <th>P</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="n">01</td>
+              <td>
+                <strong>Featured Products collection rebuild</strong>
+                <span>Promote bundles (Triple Play / Grand Slam "Most Picked" / MVP) to the top, demote zero-CR SKUs, add "Best Value" badges, Judge.me stars on cards, and a "Build your own" CTA pointing to /collections/customizable. 783 sessions/90d, 0 purchases today.</span>
+              </td>
+              <td><span class="page-chip coll">Collection</span></td>
+              <td>Purchases from /collections/home-page-featured-products</td>
+              <td><span class="pri p0">P0</span></td>
+            </tr>
+            <tr>
+              <td class="n">02</td>
+              <td>
+                <strong>PDP buy-box rebuild</strong>
+                <span>Star rating + 76 reviews above the title. Brand-specific badges: lifetime warranty, free engraving, ships 1-2 days, free shipping over $100. Inline "+ Add custom engraving (+$10)" checkbox. "What's included" labeled image on bundle PDPs.</span>
+              </td>
+              <td><span class="page-chip pdp">PDP</span></td>
+              <td>PDP to Add-to-Cart rate</td>
+              <td><span class="pri p0">P0</span></td>
+            </tr>
+            <tr>
+              <td class="n">03</td>
+              <td>
+                <strong>Gift-Finder Quiz</strong>
+                <span>6 questions (Who is it for, Team, How often grills, Engrave text or logo, Budget, Gift now or later) returning a personalized bundle recommendation. Surfaced on homepage hero and as Step 2 of paid social flows. Email capture pre-result for retargeting.</span>
+              </td>
+              <td><span class="page-chip site">Site-wide</span></td>
+              <td>Quiz-completer CR vs sitewide 0.80%</td>
+              <td><span class="pri p1">P1</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="small" style="margin-top: 18px;">Sample size: Tests 01 and 02 ready to ship Week 4 with measurable signal in 4 to 6 weeks. Test 03 is a Month 3 build with a longer measurement window (target: 500 quiz completions / month, 8 weeks of data).</p>
+      </div>
+    </section>
+
+    <!-- 4. Test 01 detail -->
+    <section class="slide" data-slide="4">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> BASEBALL BBQ / CRO AUDIT</div>
+          <div class="eyebrow">4 / Test 01</div>
+        </div>
+        <h2 class="h-section" style="margin-bottom: 16px;">Test 01: Featured Products collection rebuild</h2>
+
+        <div class="test-detail">
+          <div class="hyp-block">
+            <span class="k">Why this test</span>
+            <span class="v">/collections/home-page-featured-products takes 783 sessions over 90 days at a 37% bounce rate (people stay and browse) and produces <strong>zero purchases</strong>. This is the most-clicked collection in the catalog and the most directly broken commercial surface on the site. Permanent fix, not seasonal.</span>
+          </div>
+          <div class="hyp-block green" style="margin-top: 12px;">
+            <span class="k">Hypothesis</span>
+            <span class="v">Re-curating the collection to lead with bundles and demoting zero-CR SKUs will convert 1 to 3% of the 783 sessions into purchases, turning $0 into <strong style="color: var(--green);">$500 to $1,500 / month</strong>.</span>
+          </div>
+
+          <div class="ctrl-var">
+            <div class="ctrl-card">
+              <h5>Control</h5>
+              <ul>
+                <li>Mixed-priority SKUs in arbitrary order</li>
+                <li>No bundle prioritization</li>
+                <li>No "Most Picked" or "Best Value" badges</li>
+                <li>Same "76 reviews" on every card</li>
+                <li>No "Build your own" CTA</li>
+                <li style="color: var(--red-2);"><strong>Sessions: 783 / 90d &middot; Purchases: 0 &middot; Revenue: $0</strong></li>
+              </ul>
+            </div>
+            <div class="var-card">
+              <h5>Variant</h5>
+              <ul>
+                <li><strong>Row 1:</strong> 3 hero bundles &mdash; Triple Play ($63), Grand Slam ($117, "Most Picked"), MVP ($177)</li>
+                <li><strong>Row 2:</strong> Top 6 single tools by review count</li>
+                <li><strong>Row 3:</strong> "Build your own" CTA &rarr; /collections/customizable</li>
+                <li>Demote: any SKU with zero sales in last 90d</li>
+                <li>Add: Judge.me per-product stars on cards</li>
+                <li style="color: var(--green);"><strong>Target CR: 1.5 to 3% &middot; Target / mo: $500 to $1,500</strong></li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="small" style="margin-top: 18px;"><strong style="color: var(--ink);">Primary metric:</strong> Purchases originating from /collections/home-page-featured-products &middot; <strong style="color: var(--ink);">Secondary:</strong> collection to PDP CTR, bundle CTR, bounce. <strong style="color: var(--ink);">Sample:</strong> 261 sessions / mo baseline. 6 to 8 weeks to detect a 1 to 3 purchase / mo lift at 90% confidence.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Test 02 detail -->
+    <section class="slide" data-slide="5">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> BASEBALL BBQ / CRO AUDIT</div>
+          <div class="eyebrow">5 / Test 02</div>
+        </div>
+        <h2 class="h-section" style="margin-bottom: 16px;">Test 02: PDP buy-box rebuild</h2>
+
+        <div class="test-detail">
+          <div class="hyp-block">
+            <span class="k">Why this test</span>
+            <span class="v">PDP to Add-to-Cart is <strong>1.20%</strong>. Industry benchmark for branded ecom is 4 to 7%. 9,059 PDP views in 28 days yield only 109 carts. The brand's actual trust assets (4.9/2,847 reviews, GMA press, lifetime warranty, free engraving, MLB license) are not in the buy box. The current badges are generic.</span>
+          </div>
+          <div class="hyp-block green" style="margin-top: 12px;">
+            <span class="k">Hypothesis</span>
+            <span class="v">Replacing generic trust badges with brand-specific reassurance, surfacing star rating above the title, and inlining the engraving upsell will lift PDP to ATC from 1.20% to <strong style="color: var(--green);">1.80 to 2.40%</strong>. At a $131 AOV, that is +25 to +50 incremental purchases / 28d, +$3.3k to +$6.5k / month.</span>
+          </div>
+
+          <div class="ctrl-var">
+            <div class="ctrl-card">
+              <h5>Control</h5>
+              <ul>
+                <li>Star rating below the fold (scroll to find)</li>
+                <li>Badges: "Top Quality / Fast Ship / Support / SSL" (generic)</li>
+                <li>"76 reviews" with no visible star count</li>
+                <li>Customization sent to a separate page</li>
+                <li>No "What's included" image on sets</li>
+                <li style="color: var(--red-2);"><strong>PDP to ATC: 1.20% &middot; 9,059 views, 109 carts</strong></li>
+              </ul>
+            </div>
+            <div class="var-card">
+              <h5>Variant</h5>
+              <ul>
+                <li>4.9 stars + 76 reviews immediately under product title</li>
+                <li>Badges: lifetime warranty, free engraving, ships 1-2 days, free ship $100+</li>
+                <li>"+ Add custom engraving (+$10 / +$20 with logo)" inline checkbox</li>
+                <li>"What's included" labeled hero image on bundle PDPs</li>
+                <li>"As Seen on GMA" strip below buy box</li>
+                <li style="color: var(--green);"><strong>Target PDP to ATC: 1.80 to 2.40%</strong></li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="small" style="margin-top: 18px;"><strong style="color: var(--ink);">Primary metric:</strong> PDP to Add-to-Cart rate &middot; <strong style="color: var(--ink);">Secondary:</strong> time on PDP, scroll depth past buy box, engraving attach rate. <strong style="color: var(--ink);">Sample:</strong> Aggregate across top 5 PDPs (~2,000 PDP views / 28d). Signal in 3 to 4 weeks.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Test 03 detail -->
+    <section class="slide" data-slide="6">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> BASEBALL BBQ / CRO AUDIT</div>
+          <div class="eyebrow">6 / Test 03</div>
+        </div>
+        <h2 class="h-section" style="margin-bottom: 16px;">Test 03: Gift-Finder Quiz</h2>
+
+        <div class="test-detail">
+          <div class="hyp-block">
+            <span class="k">Why this test</span>
+            <span class="v"><strong>2,085 product variants and zero decision aid.</strong> The primary buyer is a gift-giver (mom, partner, kid buying for dad / grandpa / brother). Choice paralysis is the structural enemy. A quiz that returns "Recommended for him: Grand Slam Set" collapses the decision and creates a defensible feature competitors do not have.</span>
+          </div>
+          <div class="hyp-block green" style="margin-top: 12px;">
+            <span class="k">Hypothesis</span>
+            <span class="v">A 6-question quiz returning a personalized bundle recommendation will lift session CR for quiz-takers to <strong style="color: var(--green);">3 to 6%</strong> (vs sitewide 0.80%), plus build a permanent email retargeting asset.</span>
+          </div>
+
+          <div class="ctrl-var">
+            <div class="ctrl-card">
+              <h5>Control (today)</h5>
+              <ul>
+                <li>Visitor lands, scrolls a 2,085-variant grid</li>
+                <li>No "Best for Dad" filter, no quiz, no comparison view</li>
+                <li>Picks based on familiarity, team, or bounces</li>
+                <li>Customization buried under a separate URL</li>
+                <li style="color: var(--red-2);"><strong>Sitewide CR: 0.80% &middot; PDP to ATC: 1.20%</strong></li>
+              </ul>
+            </div>
+            <div class="var-card">
+              <h5>Variant</h5>
+              <ul>
+                <li><strong>Q1:</strong> Who is it for? (Dad / Grandpa / Brother / Self / Other)</li>
+                <li><strong>Q2:</strong> Favorite team? (MLB picker)</li>
+                <li><strong>Q3:</strong> How often does he grill? (Weekend warrior / Tailgater / Pro)</li>
+                <li><strong>Q4:</strong> Engrave text or logo?</li>
+                <li><strong>Q5:</strong> Budget tier? ($50 / $100 / $200+)</li>
+                <li><strong>Q6:</strong> Gift now or later?</li>
+                <li>Result: pre-customized bundle. Email capture pre-result.</li>
+                <li style="color: var(--green);"><strong>Target quiz CR: 3 to 6% &middot; Email retargeting asset</strong></li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="small" style="margin-top: 18px;"><strong style="color: var(--ink);">Primary metric:</strong> Quiz-completer purchase rate vs non-quiz session CR &middot; <strong style="color: var(--ink);">Secondary:</strong> quiz starts, completions, email opt-in rate, time-to-purchase, AOV. <strong style="color: var(--ink);">Target:</strong> 500 completions / mo, ~8 weeks to compare cohorts.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. PDP heuristic -->
+    <section class="slide" data-slide="7">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> BASEBALL BBQ / CRO AUDIT</div>
+          <div class="eyebrow">7 / PDP (the leak)</div>
+        </div>
+        <h2 class="h-section" style="margin-bottom: 16px;">The PDP loses 98.8% of viewers. Here is why.</h2>
+
+        <div class="compare">
+          <div class="compare-panel">
+            <header><strong>Current PDP (Brushback Scraper)</strong><span class="badge ghost">Live</span></header>
+            <div class="shot-wrap">
+              <img class="shot" src="screenshots/pdp-brushback-desktop.png" alt="Current PDP" loading="lazy">
+            </div>
+          </div>
+          <div class="compare-panel">
+            <header><strong>What to fix</strong><span class="badge">High priority</span></header>
+            <div class="compare-body">
+              <p class="small" style="margin: 0 0 4px;">Working well: clean layout, big hero, "Choose options" selector, bundle cross-sell below. Solid foundation. Below is the gap that closes the 98.8% drop.</p>
+              <div class="issue-list">
+                <div class="issue" style="border-color: rgba(210,54,54,.45); background: rgba(210,54,54,.05);">
+                  <div class="x">&#9888;</div>
+                  <div><strong>Star rating not visible in the buy box</strong><span>Customers see "76 reviews" but no visible 4.9 stars. Move the rating + count immediately under the product title.</span></div>
+                </div>
+                <div class="issue" style="border-color: rgba(210,54,54,.45); background: rgba(210,54,54,.05);">
+                  <div class="x">&#9888;</div>
+                  <div><strong>Generic trust badges: Top Quality / Fast Ship / Support / SSL</strong><span>These say nothing. Replace with: lifetime warranty, free engraving, ships 1-2 business days, free shipping over $100. Every one of these is a real brand asset; the current badges are stock images.</span></div>
+                </div>
+                <div class="issue">
+                  <div class="x">&#10005;</div>
+                  <div><strong>Customization sent to a separate page</strong><span>"Available through our single tool customization program" is a link, not a checkbox. Customization is the brand moat; bring it inline as "+ Add custom engraving (+$10)" in the buy box.</span></div>
+                </div>
+                <div class="issue">
+                  <div class="x">&#10005;</div>
+                  <div><strong>No "What's included" image on bundle PDPs</strong><span>Grand Slam set is 5 pieces. The hero shows a single hero shot. Buyers want a labeled flat-lay of every component at $149 to $209 price points.</span></div>
+                </div>
+                <div class="issue">
+                  <div class="x">&#10005;</div>
+                  <div><strong>"As Seen on GMA / Live with Kelly / Fox News" not in buy box</strong><span>Strongest press validation on the site, currently below the buy zone. Bring the press strip into the buy box directly.</span></div>
+                </div>
+                <div class="issue">
+                  <div class="x">&#10005;</div>
+                  <div><strong>Same "76 reviews" on every PDP (global widget)</strong><span>Audit Judge.me wiring. Per-product star ratings + counts on each PDP.</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Featured Products Collection -->
+    <section class="slide" data-slide="8">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> BASEBALL BBQ / CRO AUDIT</div>
+          <div class="eyebrow">8 / Featured Products</div>
+        </div>
+        <h2 class="h-section" style="margin-bottom: 16px;">The most-clicked collection earns $0. Audit the composition.</h2>
+
+        <div class="context-callout">
+          <div class="ctx-tile">
+            <div class="ctx-k">Sessions (90d)</div>
+            <div class="ctx-v">783</div>
+            <div class="ctx-d">#5 most-visited landing page on the site.</div>
+          </div>
+          <div class="ctx-tile">
+            <div class="ctx-k">Bounce rate</div>
+            <div class="ctx-v" style="color: var(--green);">37%</div>
+            <div class="ctx-d">Low. People stay and look. The traffic is fine.</div>
+          </div>
+          <div class="ctx-tile">
+            <div class="ctx-k">Purchases (90d)</div>
+            <div class="ctx-v">0</div>
+            <div class="ctx-d">$0 revenue. The composition is the problem, not the traffic.</div>
+          </div>
+        </div>
+
+        <div class="grid cols-2" style="align-items: flex-start;">
+          <div class="compare-panel">
+            <header><strong>Current state</strong><span class="badge ghost">Live</span></header>
+            <div class="compare-body">
+              <ul>
+                <li class="bad">Mixed-priority SKUs in arbitrary order</li>
+                <li class="bad">No bundle prioritization (Triple Play, Grand Slam, MVP are not surfaced)</li>
+                <li class="bad">No "Most Picked" or "Best Value" badges</li>
+                <li class="bad">Same "76 reviews" count on every card</li>
+                <li class="bad">No "Build your own" CTA</li>
+                <li class="bad">Customization (the brand moat) absent from the entry path</li>
+              </ul>
+            </div>
+          </div>
+          <div class="compare-panel">
+            <header><strong>The fix</strong><span class="badge green">Test 01</span></header>
+            <div class="compare-body">
+              <ul>
+                <li class="good"><strong>Row 1:</strong> 3 hero bundles &mdash; Triple Play $63, Grand Slam $117 "Most Picked", MVP $177</li>
+                <li class="good"><strong>Row 2:</strong> Top 6 single tools by review count</li>
+                <li class="good"><strong>Row 3:</strong> "Build your own" CTA pointing to /collections/customizable</li>
+                <li class="good">Demote: any SKU with zero sales in the last 90 days</li>
+                <li class="good">Add: Judge.me per-product star ratings on cards</li>
+                <li class="good">Add: "Ships engraved in 1-2 days" badge on customizable SKUs</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. Homepage + Father's Day LP -->
+    <section class="slide" data-slide="9">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> BASEBALL BBQ / CRO AUDIT</div>
+          <div class="eyebrow">9 / Homepage + LP</div>
+        </div>
+        <h2 class="h-section" style="margin-bottom: 16px;">The hero buries your strongest trust signals. The LP is post-season.</h2>
+
+        <div class="compare">
+          <div class="compare-panel">
+            <header><strong>Homepage</strong><span class="badge ghost">Live</span></header>
+            <div class="shot-wrap">
+              <img class="shot" src="screenshots/home-desktop-hero-no-popup.png" alt="Homepage hero" loading="lazy">
+            </div>
+            <div class="compare-body" style="padding-top: 6px;">
+              <div class="issue-list">
+                <div class="issue">
+                  <div class="x">&#10005;</div>
+                  <div><strong>"4.9 from 2,847 reviews" badge sits below the hero</strong><span>The strongest social proof on the site is not in the hero. Move it under the headline alongside the press logos (GMA, Live with Kelly, Fox News).</span></div>
+                </div>
+                <div class="issue">
+                  <div class="x">&#10005;</div>
+                  <div><strong>Featured Products card lands users on a $0-revenue collection</strong><span>The most-clicked nav path on the page leads to a broken commercial surface. See Test 01.</span></div>
+                </div>
+                <div class="issue">
+                  <div class="x">&#10005;</div>
+                  <div><strong>No "Find the right kit" entry point</strong><span>The gift-finder quiz (Test 03) belongs in the hero post Father's Day as the durable conversion path.</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="compare-panel">
+            <header><strong>Father's Day LP (acknowledged: post-season)</strong><span class="badge yellow">Seasonal</span></header>
+            <div class="shot-wrap">
+              <img class="shot" src="screenshots/fathers-day-lp-mobile-full.png" alt="Father's Day LP mobile" loading="lazy">
+            </div>
+            <div class="compare-body" style="padding-top: 6px;">
+              <ul>
+                <li class="good">Copy is strong: "A gift he'll actually use every weekend"</li>
+                <li class="good">Bundle structure is clear (MVP / Triple Play / Grand Slam)</li>
+                <li class="good">Ship-by countdown ("Ships by June 10") creates real urgency</li>
+                <li class="bad">86.6% mobile bounce on 1,157 sessions / 28d (mobile LCP 50.6s)</li>
+                <li class="bad">Performance is at its current ceiling for this season; treat as a post-FD rebuild target for next year</li>
+              </ul>
+              <p class="small" style="margin-top: 4px;">For 2027 Father's Day: pre-launch perf audit (target LCP under 3s) and a Judge.me social-proof block tied to "see all 2,847 reviews."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. The funnel -->
+    <section class="slide" data-slide="10">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> BASEBALL BBQ / CRO AUDIT</div>
+          <div class="eyebrow">10 / The funnel</div>
+        </div>
+
+        <h2 class="sub-display" style="margin-bottom: 18px;">View Product to Add to Cart.<br><span class="accent">The 98.8% drop.</span></h2>
+        <p class="lede" style="margin-bottom: 24px;">GA4 sequential Funnel API. 28-day window. The biggest single leak in the funnel sits between PDP and cart. Mobile actually converts <strong style="color: var(--green);">14x better</strong> than desktop at this step.</p>
+
+        <div class="grid cols-2" style="align-items: flex-start;">
+          <div>
+            <div class="eyebrow" style="margin-bottom: 14px;">Total sequential funnel</div>
+            <div class="funnel">
+              <div class="funnel-row">
+                <div class="name">Session Start</div>
+                <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 100%;"></div></div>
+                <div class="v">12,625</div>
+              </div>
+              <div class="funnel-row">
+                <div class="name">View Product</div>
+                <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 71.8%;"></div></div>
+                <div class="v">9,059 <small>71.8%</small></div>
+              </div>
+              <div class="funnel-row">
+                <div class="name">Add to Cart</div>
+                <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 0.9%;"></div></div>
+                <div class="v" style="color: var(--red);">109 <small>1.20%</small></div>
+              </div>
+              <div class="funnel-row">
+                <div class="name">Begin Checkout</div>
+                <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 0.43%;"></div></div>
+                <div class="v">55 <small>50.5%</small></div>
+              </div>
+              <div class="funnel-row">
+                <div class="name">Purchase</div>
+                <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 0.2%;"></div></div>
+                <div class="v">25 <small>45.5%</small></div>
+              </div>
+            </div>
+            <p class="small" style="margin-top: 14px;">End-to-end: <strong style="color: var(--red);">0.20%</strong>. Industry: 1.5 to 3%. The leak is one step.</p>
+          </div>
+
+          <div>
+            <div class="eyebrow" style="margin-bottom: 14px;">PDP to ATC by device</div>
+            <div class="device-split">
+              <div class="device-card loss">
+                <h4>Desktop</h4>
+                <div class="small" style="margin-bottom: 12px;">8,322 PDP views</div>
+                <div class="row"><span>PDP to ATC</span><strong style="color: var(--red);">0.58%</strong></div>
+                <div class="row"><span>ATC events</span><strong>48</strong></div>
+                <div class="row"><span>Bounce</span><strong>79.3%</strong></div>
+                <div class="row"><span>Avg session</span><strong>25.9s</strong></div>
+                <div class="row"><span>Read</span><strong>Bot-dragged</strong></div>
+              </div>
+              <div class="device-card win">
+                <h4>Mobile</h4>
+                <div class="small" style="margin-bottom: 12px;">726 PDP views</div>
+                <div class="row"><span>PDP to ATC</span><strong style="color: var(--green);">8.13%</strong></div>
+                <div class="row"><span>ATC events</span><strong>59</strong></div>
+                <div class="row"><span>Bounce</span><strong>72.5%</strong></div>
+                <div class="row"><span>Avg session</span><strong>72.6s</strong></div>
+                <div class="row"><span>Read</span><strong>Real shoppers</strong></div>
+              </div>
+            </div>
+            <p class="small" style="margin-top: 14px;">Mobile converts 14x better at PDP to ATC. The buyer is on their phone. The redesign of the PDP buy box should be mobile-first.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. Traffic reality -->
+    <section class="slide" data-slide="11">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> BASEBALL BBQ / CRO AUDIT</div>
+          <div class="eyebrow">11 / Traffic reality</div>
+        </div>
+
+        <div class="grid cols-2" style="align-items: flex-start; gap: 36px;">
+          <div>
+            <div class="badge" style="margin-bottom: 16px;">● Data hygiene</div>
+            <h2 class="sub-display" style="margin-bottom: 18px;">The US is your store.<br>The other 26% is <span class="accent">noise</span>.</h2>
+            <p class="lede">27,025 sessions in 90 days. 101 purchases. Bot traffic from APAC inflates session counts, distorts bounce, and corrupts Google Ads optimization signal. Filter Singapore, India, Vietnam, and Hong Kong out of every GA4 report you use to make decisions.</p>
+            <p class="lede" style="margin-top: 14px;">Real performance (US only): <strong style="color: var(--green);">10,664 sessions, 85 purchases, $11,840 revenue, 0.80% CR.</strong></p>
+          </div>
+
+          <div>
+            <div class="eyebrow" style="margin-bottom: 14px;">Sessions vs. Revenue by Country (90d)</div>
+            <div class="geo-bar">
+              <div class="geo-row us">
+                <div class="name">United States</div>
+                <div class="bar"><i style="width: 100%;"></i></div>
+                <div class="num">10,664</div>
+                <div class="rev">$11,840</div>
+              </div>
+              <div class="geo-row bot">
+                <div class="name">Singapore</div>
+                <div class="bar"><i style="width: 30%;"></i></div>
+                <div class="num">3,265</div>
+                <div class="rev">$0</div>
+              </div>
+              <div class="geo-row bot">
+                <div class="name">India</div>
+                <div class="bar"><i style="width: 14%;"></i></div>
+                <div class="num">1,493</div>
+                <div class="rev">$0</div>
+              </div>
+              <div class="geo-row bot">
+                <div class="name">Vietnam</div>
+                <div class="bar"><i style="width: 11%;"></i></div>
+                <div class="num">1,141</div>
+                <div class="rev">$0</div>
+              </div>
+              <div class="geo-row bot">
+                <div class="name">Hong Kong</div>
+                <div class="bar"><i style="width: 10%;"></i></div>
+                <div class="num">1,037</div>
+                <div class="rev">$0</div>
+              </div>
+              <div class="geo-row">
+                <div class="name">All Others</div>
+                <div class="bar"><i style="width: 88%;"></i></div>
+                <div class="num">9,425</div>
+                <div class="rev">$1,400</div>
+              </div>
+            </div>
+            <p class="small" style="margin-top: 16px;">98.0% of revenue comes from the US. Filter APAC at the GA4 level OR block at the edge with Cloudflare.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. Channels -->
+    <section class="slide" data-slide="12">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> BASEBALL BBQ / CRO AUDIT</div>
+          <div class="eyebrow">12 / Channels</div>
+        </div>
+
+        <h2 class="sub-display" style="margin-bottom: 20px;">Google Organic does the<br>heavy lifting. Direct is bots.</h2>
+
+        <table class="flat">
+          <thead>
+            <tr>
+              <th>Source / Medium</th>
+              <th class="num">Sessions</th>
+              <th class="num">Purchases</th>
+              <th class="num">Revenue</th>
+              <th class="num">RPS</th>
+              <th>Verdict</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="row-good">
+              <td>google / organic</td>
+              <td class="num">1,607</td>
+              <td class="num">27</td>
+              <td class="num">$3,788</td>
+              <td class="num">$2.36</td>
+              <td>Best channel. Protect SEO.</td>
+            </tr>
+            <tr>
+              <td>google / cpc</td>
+              <td class="num">1,229</td>
+              <td class="num">16</td>
+              <td class="num">$1,947</td>
+              <td class="num">$1.58</td>
+              <td>Healthy. Verify enhanced conv.</td>
+            </tr>
+            <tr>
+              <td>ig / social</td>
+              <td class="num">607</td>
+              <td class="num">4</td>
+              <td class="num">$275</td>
+              <td class="num">$0.45</td>
+              <td>Engagement but weak conv.</td>
+            </tr>
+            <tr>
+              <td>(direct) / (none)</td>
+              <td class="num">20,540</td>
+              <td class="num">35</td>
+              <td class="num">$5,292</td>
+              <td class="num">$0.26</td>
+              <td>Bot-inflated. Filter or block.</td>
+            </tr>
+            <tr class="row-bad">
+              <td>facebook / (none)</td>
+              <td class="num">513</td>
+              <td class="num">1</td>
+              <td class="num">$117</td>
+              <td class="num">$0.23</td>
+              <td>88% bounce. Audit pixel firing.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="small" style="margin-top: 16px;">Returning users (1,007 sessions) drive <strong style="color: var(--ink);">$8,794 of revenue (66%)</strong>. The brand has strong repeat behavior. Test 03 (Gift-Finder Quiz) feeds the email retargeting flow that fuels this segment.</p>
+      </div>
+    </section>
+
+    <!-- 13. Mobile is the store -->
+    <section class="slide" data-slide="13">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> BASEBALL BBQ / CRO AUDIT</div>
+          <div class="eyebrow">13 / Mobile</div>
+        </div>
+
+        <div class="grid cols-2" style="align-items: center; gap: 36px;">
+          <div>
+            <div class="badge green" style="margin-bottom: 18px;">● Where the money is</div>
+            <h2 class="pullquote">Mobile converts<br><span class="red">14x better</span><br>on the PDP.</h2>
+            <p class="lede" style="margin-top: 20px;">Desktop sessions look huge on the dashboard, but most of them are bots: 79% bounce, 25.9s average session, near-zero ATC rate. The real shopper is on a phone, spends 72 seconds, and adds to cart at 8.13%. Design the rebuild for them.</p>
+          </div>
+
+          <div class="device-split">
+            <div class="device-card loss">
+              <h4>Desktop</h4>
+              <div class="small" style="margin-bottom: 12px;">$8,379 revenue (63%)</div>
+              <div class="row"><span>Sessions</span><strong>21,244</strong></div>
+              <div class="row"><span>Bounce</span><strong>79.3%</strong></div>
+              <div class="row"><span>Avg session</span><strong>25.9s</strong></div>
+              <div class="row"><span>Purchases</span><strong>52</strong></div>
+              <div class="row"><span>Note</span><strong style="color: var(--red);">Bot-inflated</strong></div>
+            </div>
+            <div class="device-card win">
+              <h4>Mobile</h4>
+              <div class="small" style="margin-bottom: 12px;">$4,780 revenue (36%)</div>
+              <div class="row"><span>Sessions</span><strong>5,579</strong></div>
+              <div class="row"><span>Bounce</span><strong>72.5%</strong></div>
+              <div class="row"><span>Avg session</span><strong>72.6s</strong></div>
+              <div class="row"><span>Purchases</span><strong>47</strong></div>
+              <div class="row"><span>Note</span><strong style="color: var(--green);">Real audience</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14. More ideas -->
+    <section class="slide" data-slide="14">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> BASEBALL BBQ / CRO AUDIT</div>
+          <div class="eyebrow">14 / More ideas</div>
+        </div>
+        <h2 class="sub-display" style="margin-bottom: 14px;">More ideas worth running.</h2>
+        <p class="lede" style="margin-bottom: 22px;">Beyond the three flagship tests. Some are direct implementations (ship them). Others are smaller A/B tests that validate the change before rolling out sitewide.</p>
+
+        <div class="priority-list">
+          <div class="priority-item">
+            <div class="n">01</div>
+            <div class="t">Move 4.9/2,847 reviews + press logos into the hero<span>Homepage and PDP. Strongest trust signals (GMA, Live with Kelly, Fox News, 4.9-star rating) currently sit below the fold. Surface them in the highest-attention spot. Worth A/B testing because the homepage is high-traffic and lift is measurable.</span></div>
+            <div class="tag ab">A/B Test</div>
+          </div>
+          <div class="priority-item">
+            <div class="n">02</div>
+            <div class="t">Replace generic PDP badges with brand-specific<span>Lifetime warranty, free engraving, ships in 1-2 business days, free shipping over $100. Every one of these is a real brand asset; the current "Top Quality / Fast Ship / Support / SSL" set is generic stock. Test on top 5 PDPs first.</span></div>
+            <div class="tag ab">A/B Test</div>
+          </div>
+          <div class="priority-item">
+            <div class="n">03</div>
+            <div class="t">Sticky mobile ATC bar<span>Mobile converts 14x better at PDP to ATC (8.13% vs 0.58%) but scroll depth is 42% on mobile. Half of mobile visitors lose visibility of the ATC button after scrolling. A sticky bottom bar with price + variant + ATC could lift mobile PDP to ATC further. Worth testing because the win is measurable.</span></div>
+            <div class="tag ab">A/B Test</div>
+          </div>
+          <div class="priority-item">
+            <div class="n">04</div>
+            <div class="t">Cart cross-sell "Complete your set"<span>ATC to Begin Checkout is 50% (half abandon at this stage). Adding a "Complete your set" or "Pair it with this engraving" cross-sell in the cart could lift AOV. Test because the cart is a known abandonment point and AOV lift should be measurable.</span></div>
+            <div class="tag ab">A/B Test</div>
+          </div>
+          <div class="priority-item">
+            <div class="n">05</div>
+            <div class="t">Sitewide free-shipping progress bar<span>Free shipping is $100 on homepage but $150 on PDPs. Standardize threshold and surface progress in cart and PDP ("$X away from free shipping"). Mixed messaging hurts trust. Ship direct, it is a consistency fix.</span></div>
+            <div class="tag ship">Ship Direct</div>
+          </div>
+          <div class="priority-item">
+            <div class="n">06</div>
+            <div class="t">Fix the broken Oakland Athletics PDP and audit team templates<span>51 sessions on the Oakland Athletics PDP, 100% bounce rate. Likely a 404, missing image, or template error. Audit all team-specific PDPs for the same pattern. Ship direct, it is a bug fix.</span></div>
+            <div class="tag ship">Ship Direct</div>
+          </div>
+          <div class="priority-item">
+            <div class="n">07</div>
+            <div class="t">Judge.me per-product review widget<span>The same "76 reviews" count appears on multiple PDPs (global widget). Audit Judge.me wiring and switch to per-product stars and counts on every card and PDP. Ship direct, it is a widget fix.</span></div>
+            <div class="tag ship">Ship Direct</div>
+          </div>
+          <div class="priority-item">
+            <div class="n">08</div>
+            <div class="t">Notify-me capture on sold-out variants<span>Personalized SKUs and team-specific products go out of stock. Today the variant just shows unavailable and the visitor leaves. Add a "Notify me when back" email capture on sold-out variants. Ship direct, it is intent capture.</span></div>
+            <div class="tag ship">Ship Direct</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 15. Voice of Customer -->
+    <section class="slide" data-slide="15">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> BASEBALL BBQ / CRO AUDIT</div>
+          <div class="eyebrow">15 / Voice of customer</div>
+        </div>
+
+        <div class="grid cols-2" style="gap: 36px; align-items: flex-start;">
+          <div>
+            <div class="badge green" style="margin-bottom: 18px;">● 2,847 verified reviews, 4.9 stars</div>
+            <h2 class="sub-display" style="margin-bottom: 20px;">The buyer is gifting.<br><span class="accent">Lead with reaction,<br>not features.</span></h2>
+            <p class="lede">Three praise themes drive the entire review corpus: <strong style="color: var(--ink);">gift reaction</strong>, <strong style="color: var(--ink);">"real tools, not gimmicks"</strong>, and <strong style="color: var(--ink);">customization quality</strong>. The PDP and LP should lead with the first, break the novelty objection with the second, and close with the third (1-2 day engraving turnaround). The current PDP leads with bullet specs.</p>
+          </div>
+
+          <div class="grid" style="gap: 14px;">
+            <div class="quote-card">
+              "He cried. My dad cried."
+              <span class="src">Julia M. &middot; Father's Day LP</span>
+            </div>
+            <div class="quote-card">
+              "These are not gimmicks. I expected novelty. I got real tools."
+              <span class="src">Derek R. &middot; Father's Day LP</span>
+            </div>
+            <div class="quote-card">
+              "Worth every dollar of the MVP set."
+              <span class="src">Leigh K. &middot; Father's Day LP</span>
+            </div>
+            <div class="quote-card">
+              "Easy to work with. Great customer service on customized orders."
+              <span class="src">Amazon brand store</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 16. Competitive / market gap -->
+    <section class="slide" data-slide="16">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> BASEBALL BBQ / CRO AUDIT</div>
+          <div class="eyebrow">16 / Market gap</div>
+        </div>
+        <h2 class="sub-display" style="margin-bottom: 18px;">Defend the premium niche.<br><span class="accent">Do not compete on price.</span></h2>
+
+        <div class="grid cols-2" style="gap: 36px; align-items: flex-start;">
+          <div>
+            <div class="badge green" style="margin-bottom: 14px;">● Where Baseball BBQ wins</div>
+            <ul style="margin: 0; padding-left: 18px; color: var(--ink-2); font-size: 14px; line-height: 1.7;">
+              <li><strong style="color: var(--ink);">Patented bat-handle design.</strong> YouTheFan and MLB Shop sell generic stainless tools with team logos riveted on. The IP is defensible.</li>
+              <li><strong style="color: var(--ink);">MLB + MiLB + College</strong> SKU coverage at one site. Rare combo in the category.</li>
+              <li><strong style="color: var(--ink);">Laser engraving in 1 to 2 business days.</strong> Competitors either don't offer it or take 7 to 14 days.</li>
+              <li><strong style="color: var(--ink);">Lifetime warranty.</strong> Most competitors offer no warranty.</li>
+              <li><strong style="color: var(--ink);">GMA / Live with Kelly / Fox News press.</strong> Generic competitors do not have this validation.</li>
+            </ul>
+          </div>
+          <div>
+            <div class="badge" style="margin-bottom: 14px;">● Where Baseball BBQ loses</div>
+            <ul style="margin: 0; padding-left: 18px; color: var(--ink-2); font-size: 14px; line-height: 1.7;">
+              <li><strong style="color: var(--ink);">Retail distribution.</strong> YouTheFan is in Home Depot, Walmart, Dick's. Casual gift shoppers find them in store first.</li>
+              <li><strong style="color: var(--ink);">Price floor.</strong> GEBALA at $15-30 and YouTheFan at $35-50 capture the entry-level gifter.</li>
+              <li><strong style="color: var(--ink);">Team-name SEO.</strong> "Yankees grill set" returns MLB Shop and YouTheFan first.</li>
+              <li><strong style="color: var(--ink);">No subscription / replenishment</strong> offer. Wider category gap, but a future moat.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="quote-card" style="margin-top: 24px; max-width: none; font-size: 20px; padding: 24px 28px; border-color: rgba(245,117,28,.4); background: linear-gradient(180deg, rgba(245,117,28,.06), transparent 80%), var(--bg-2);">
+          <strong style="color: var(--orange); font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; display: block; margin-bottom: 10px; font-weight: 600;">Positioning Statement</strong>
+          The premium MLB-licensed grilling gift that arrives engraved in 48 hours. The dad who gets this will cry.
+        </div>
+      </div>
+    </section>
+
+    <!-- 17. Roadmap & Success metrics -->
+    <section class="slide" data-slide="17">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> BASEBALL BBQ / CRO AUDIT</div>
+          <div class="eyebrow">17 / Success metrics</div>
+        </div>
+        <h2 class="sub-display" style="margin-bottom: 22px;">90-day scoreboard.</h2>
+
+        <table class="flat">
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th class="num">Today</th>
+              <th class="num">Target (90d)</th>
+              <th>Driving lever</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Sitewide session CR (US only)</td>
+              <td class="num">0.80%</td>
+              <td class="num" style="color: var(--green);">1.30%</td>
+              <td>Tests 01 + 02 + 03 combined</td>
+            </tr>
+            <tr>
+              <td>PDP to Add-to-Cart</td>
+              <td class="num">1.20%</td>
+              <td class="num" style="color: var(--green);">1.80%</td>
+              <td>Test 02: PDP buy box rebuild</td>
+            </tr>
+            <tr>
+              <td>Featured Products purchases (90d)</td>
+              <td class="num">0</td>
+              <td class="num" style="color: var(--green);">12 to 24</td>
+              <td>Test 01: Collection rebuild</td>
+            </tr>
+            <tr>
+              <td>Featured Products revenue (90d)</td>
+              <td class="num">$0</td>
+              <td class="num" style="color: var(--green);">$1.5k to $3k</td>
+              <td>Test 01: Collection rebuild</td>
+            </tr>
+            <tr>
+              <td>Mobile PDP to ATC</td>
+              <td class="num">8.13%</td>
+              <td class="num" style="color: var(--green);">9.5 to 11%</td>
+              <td>Test 02 + sticky mobile ATC</td>
+            </tr>
+            <tr>
+              <td>Quiz completion rate</td>
+              <td class="num">n/a</td>
+              <td class="num" style="color: var(--green);">5% of monthly traffic</td>
+              <td>Test 03: Gift-Finder Quiz</td>
+            </tr>
+            <tr>
+              <td>Quiz-completer purchase rate</td>
+              <td class="num">n/a</td>
+              <td class="num" style="color: var(--green);">3 to 6%</td>
+              <td>Test 03: Gift-Finder Quiz</td>
+            </tr>
+            <tr>
+              <td>Real US revenue (90 days)</td>
+              <td class="num">$11,840</td>
+              <td class="num" style="color: var(--green);">$20,000+</td>
+              <td>All quick wins + Tests combined</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="grid cols-3" style="margin-top: 24px; gap: 14px;">
+          <div class="stat-card">
+            <div class="k">Week 1-2</div>
+            <div class="v sm">Direct ships: Oakland PDP fix, free-ship bar, Judge.me, notify-me</div>
+          </div>
+          <div class="stat-card">
+            <div class="k">Week 3-6</div>
+            <div class="v sm">Test 01 + Test 02 launched. Smaller A/B tests in parallel</div>
+          </div>
+          <div class="stat-card">
+            <div class="k">Week 7-12</div>
+            <div class="v sm">Test 03 (Quiz) build + measurement window</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<div class="swipe-hint" id="swipe-hint">Swipe ←  → to navigate</div>
+
+<div class="nav" role="navigation" aria-label="Slide navigation">
+  <button class="theme-toggle" id="index-btn" aria-label="Slide index" title="Slide index (press i)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <div class="sep"></div>
+  <button id="prev" aria-label="Previous slide">← Prev</button>
+  <div class="count">SLIDE <strong id="cur">1</strong> / <strong id="total">17</strong></div>
+  <button id="next" aria-label="Next slide">Next →</button>
+  <div class="sep"></div>
+  <button class="theme-toggle" id="theme" aria-label="Toggle theme">
+    <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
+</div>
+
+<div class="index-overlay" id="index-overlay" aria-hidden="true">
+  <div class="index-panel">
+    <div class="index-head">
+      <div>
+        <div class="eyebrow">Slide index</div>
+        <div class="index-title">Jump to a slide</div>
+      </div>
+      <button class="index-close" id="index-close" aria-label="Close index">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="index-list" id="index-list"></div>
+    <div class="index-foot">
+      <span class="kbd">↑ ↓</span> navigate · <span class="kbd">Enter</span> jump · <span class="kbd">Esc</span> close · <span class="kbd">1-9</span> direct jump
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const total = slides.length;
+  let idx = 0;
+  let isAnimating = false;
+  const $cur = document.getElementById('cur');
+  const $total = document.getElementById('total');
+  const $prev = document.getElementById('prev');
+  const $next = document.getElementById('next');
+  const $bar = document.getElementById('progress-bar');
+  const $theme = document.getElementById('theme');
+  const $stage = document.getElementById('stage');
+  const $hint = document.getElementById('swipe-hint');
+
+  $total.textContent = total;
+
+  function go(n){
+    const next = Math.max(0, Math.min(total - 1, n));
+    if (next === idx || isAnimating) return;
+    isAnimating = true;
+    slides[idx].classList.remove('is-active');
+    slides[idx].classList.add('is-prev');
+    slides[next].classList.remove('is-prev');
+    slides[next].classList.add('is-active');
+    const pad = slides[next].querySelector('.pad');
+    if (pad) pad.scrollTop = 0;
+    idx = next;
+    $cur.textContent = idx + 1;
+    $bar.style.width = (((idx + 1) / total) * 100) + '%';
+    try {
+      const url = new URL(window.location.href);
+      url.hash = String(idx + 1);
+      history.replaceState(null, '', url);
+    } catch(e){}
+    setTimeout(() => { isAnimating = false; }, 420);
+  }
+
+  $prev.addEventListener('click', (e) => { e.stopPropagation(); go(idx - 1); });
+  $next.addEventListener('click', (e) => { e.stopPropagation(); go(idx + 1); });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.target.closest('input, textarea, [contenteditable="true"]')) return;
+    if (['ArrowRight','PageDown'].includes(e.key) || (e.key === ' ' && !e.shiftKey)) {
+      e.preventDefault(); go(idx + 1);
+    } else if (['ArrowLeft','PageUp'].includes(e.key) || (e.key === ' ' && e.shiftKey)) {
+      e.preventDefault(); go(idx - 1);
+    } else if (e.key === 'Home') {
+      e.preventDefault(); go(0);
+    } else if (e.key === 'End') {
+      e.preventDefault(); go(total - 1);
+    } else if (e.key >= '1' && e.key <= '9') {
+      go(parseInt(e.key) - 1);
+    }
+  });
+
+  let pStart = null;
+  let pMoved = false;
+  $stage.addEventListener('pointerdown', (e) => {
+    if (e.target.closest('button, a, .nav, input, select, textarea')) return;
+    pStart = { x: e.clientX, y: e.clientY, t: Date.now() };
+    pMoved = false;
+  }, { passive: true });
+  $stage.addEventListener('pointermove', (e) => {
+    if (!pStart) return;
+    const dx = e.clientX - pStart.x;
+    const dy = e.clientY - pStart.y;
+    if (Math.abs(dx) > 8 || Math.abs(dy) > 8) pMoved = true;
+  }, { passive: true });
+  function endPointer(e){
+    if (!pStart) return;
+    const dx = e.clientX - pStart.x;
+    const dy = e.clientY - pStart.y;
+    const adx = Math.abs(dx);
+    const ady = Math.abs(dy);
+    const dt = Date.now() - pStart.t;
+    pStart = null;
+    const swipeThreshold = 60;
+    if (adx > swipeThreshold && adx > ady * 1.3 && dt < 800) {
+      if (dx < 0) go(idx + 1); else go(idx - 1);
+      return;
+    }
+    if (!pMoved) {
+      const rect = $stage.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      if (x < rect.width * 0.12) go(idx - 1);
+      else if (x > rect.width * 0.88) go(idx + 1);
+    }
+  }
+  $stage.addEventListener('pointerup', endPointer);
+  $stage.addEventListener('pointercancel', () => { pStart = null; });
+
+  let wheelLock = false;
+  let wheelAccum = 0;
+  let wheelTimer = null;
+  $stage.addEventListener('wheel', (e) => {
+    const adx = Math.abs(e.deltaX);
+    const ady = Math.abs(e.deltaY);
+    if (adx <= ady) return;
+    if (wheelLock) return;
+    wheelAccum += e.deltaX;
+    clearTimeout(wheelTimer);
+    wheelTimer = setTimeout(() => { wheelAccum = 0; }, 250);
+    const trigger = 80;
+    if (wheelAccum > trigger) {
+      wheelLock = true; wheelAccum = 0;
+      go(idx + 1);
+      setTimeout(() => { wheelLock = false; }, 500);
+    } else if (wheelAccum < -trigger) {
+      wheelLock = true; wheelAccum = 0;
+      go(idx - 1);
+      setTimeout(() => { wheelLock = false; }, 500);
+    }
+  }, { passive: true });
+
+  function applyTheme(t){
+    document.documentElement.setAttribute('data-theme', t);
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', t === 'dark' ? '#0a0a0a' : '#f6f5f1');
+    try { localStorage.setItem('bbq-deck-theme', t); } catch(e){}
+  }
+  let savedTheme = null;
+  try { savedTheme = localStorage.getItem('bbq-deck-theme'); } catch(e){}
+  if (savedTheme === 'light' || savedTheme === 'dark') applyTheme(savedTheme);
+  else if (window.matchMedia('(prefers-color-scheme: light)').matches) applyTheme('light');
+  $theme.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+    applyTheme(cur === 'dark' ? 'light' : 'dark');
+  });
+
+  const slideMeta = [
+    { n: 1, label: 'Cover', sub: 'Three leaks. Three tests.', chip: 'Intro' },
+    { n: 2, label: 'TL;DR', sub: 'Three findings drive the roadmap', chip: 'Summary' },
+    { n: 3, label: 'The three tests', sub: 'Impactful roadmap headline', chip: 'Tests' },
+    { n: 4, label: 'Test 01', sub: 'Featured Products collection rebuild', chip: 'Test' },
+    { n: 5, label: 'Test 02', sub: 'PDP buy-box rebuild', chip: 'Test' },
+    { n: 6, label: 'Test 03', sub: 'Gift-Finder Quiz', chip: 'Test' },
+    { n: 7, label: 'PDP', sub: 'The 98.8% leak', chip: 'Page' },
+    { n: 8, label: 'Featured Products', sub: '783 sessions, $0 revenue', chip: 'Page' },
+    { n: 9, label: 'Homepage + LP', sub: 'Heroes and seasonality', chip: 'Page' },
+    { n: 10, label: 'The funnel', sub: 'Sequential GA4 funnel', chip: 'Data' },
+    { n: 11, label: 'Traffic reality', sub: 'US is the store', chip: 'Data' },
+    { n: 12, label: 'Channels', sub: 'Google Organic is the leader', chip: 'Data' },
+    { n: 13, label: 'Mobile', sub: '14x better at PDP to ATC', chip: 'Data' },
+    { n: 14, label: 'More ideas', sub: 'Ship direct vs A/B test', chip: 'Roadmap' },
+    { n: 15, label: 'Voice of customer', sub: 'He cried. My dad cried.', chip: 'Insight' },
+    { n: 16, label: 'Market gap', sub: 'Defend the premium niche', chip: 'Strategy' },
+    { n: 17, label: 'Success metrics', sub: '90-day scoreboard', chip: 'Outcome' },
+  ];
+  const $indexBtn = document.getElementById('index-btn');
+  const $indexOverlay = document.getElementById('index-overlay');
+  const $indexClose = document.getElementById('index-close');
+  const $indexList = document.getElementById('index-list');
+  let indexFocus = 0;
+
+  function buildIndex() {
+    $indexList.innerHTML = '';
+    slideMeta.forEach((m, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'index-item' + (i === idx ? ' current' : '');
+      btn.dataset.slide = m.n;
+      btn.innerHTML = `
+        <span class="num">${String(m.n).padStart(2,'0')}</span>
+        <span class="label">${m.label}<span>${m.sub}</span></span>
+        <span class="chip">${m.chip}</span>
+      `;
+      btn.addEventListener('click', () => { go(m.n - 1); closeIndex(); });
+      $indexList.appendChild(btn);
+    });
+  }
+  function openIndex() {
+    buildIndex();
+    indexFocus = idx;
+    updateIndexFocus();
+    $indexOverlay.classList.add('open');
+    $indexOverlay.setAttribute('aria-hidden', 'false');
+  }
+  function closeIndex() {
+    $indexOverlay.classList.remove('open');
+    $indexOverlay.setAttribute('aria-hidden', 'true');
+  }
+  function toggleIndex() { $indexOverlay.classList.contains('open') ? closeIndex() : openIndex(); }
+  function updateIndexFocus() {
+    const items = $indexList.querySelectorAll('.index-item');
+    items.forEach((el, i) => el.classList.toggle('focused', i === indexFocus));
+    const el = items[indexFocus];
+    if (el) el.scrollIntoView({ block: 'nearest' });
+  }
+  $indexBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleIndex(); });
+  $indexClose.addEventListener('click', (e) => { e.stopPropagation(); closeIndex(); });
+  $indexOverlay.addEventListener('click', (e) => { if (e.target === $indexOverlay) closeIndex(); });
+
+  window.addEventListener('keydown', (e) => {
+    const open = $indexOverlay.classList.contains('open');
+    if (open) {
+      if (e.key === 'Escape') { e.preventDefault(); closeIndex(); }
+      else if (e.key === 'ArrowDown') { e.preventDefault(); indexFocus = Math.min(slideMeta.length - 1, indexFocus + 1); updateIndexFocus(); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); indexFocus = Math.max(0, indexFocus - 1); updateIndexFocus(); }
+      else if (e.key === 'Enter') { e.preventDefault(); go(indexFocus); closeIndex(); }
+    } else {
+      if (e.key === 'i' || e.key === 'I') {
+        if (e.target.closest('input, textarea, [contenteditable="true"]')) return;
+        e.preventDefault();
+        openIndex();
+      }
+    }
+  });
+
+  const hash = parseInt((window.location.hash || '').replace('#',''), 10);
+  if (hash && hash >= 1 && hash <= total) {
+    slides.forEach(s => { s.classList.remove('is-active'); s.classList.add('is-prev'); });
+    slides[hash - 1].classList.remove('is-prev');
+    slides[hash - 1].classList.add('is-active');
+    idx = hash - 1;
+    $cur.textContent = idx + 1;
+    $bar.style.width = (((idx + 1) / total) * 100) + '%';
+  } else {
+    $bar.style.width = (1 / total * 100) + '%';
+  }
+
+  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+    $hint.classList.add('show');
+    setTimeout(() => $hint.classList.remove('show'), 3200);
+  }
+})();
+</script>
+</body>
+</html>
