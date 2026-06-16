@@ -855,7 +855,9 @@ table.cmp{width:100%;border-collapse:separate;border-spacing:0;border:1px solid 
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
 <script>
-  function swapImg(t){document.getElementById('mainimg').src=t.src;document.querySelectorAll('.thumbs img').forEach(function(i){i.classList.toggle('on',i===t);});}
+  function swapImg(t){document.getElementById('mainimg').src=t.src;document.querySelectorAll('.thumbs img').forEach(function(i){i.classList.toggle('on',i===t);});
+    var flag=document.querySelector('.gallery .main .flag');
+    if(flag)flag.style.display=/aplus-exports/.test(t.src)?'none':'';}
   function galleryNav(dir){
     var th=Array.prototype.slice.call(document.querySelectorAll('.thumbs img'));
     if(!th.length)return;
