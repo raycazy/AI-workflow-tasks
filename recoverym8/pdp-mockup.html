@@ -141,14 +141,15 @@ img{display:block;max-width:100%}
 .xcard .add:hover{background:var(--ink);color:#fff}
 .xcard .add svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
 
-/* USP BAR (premium icons, light) */
-.usp-bar{background:var(--sand);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.usp-bar .in{max-width:var(--maxw);margin:0 auto;padding:36px 32px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-.usp{display:flex;flex-direction:column;align-items:center;text-align:center;gap:9px}
-.usp svg{width:30px;height:30px;stroke:var(--ink);fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
-.usp .t{font-family:var(--display);font-weight:700;font-size:15px;color:var(--ink)}
-.usp .d{font-size:12.5px;color:var(--muted);max-width:26ch;line-height:1.45}
-@media(max-width:900px){.xsell{grid-template-columns:1fr 1fr;gap:12px}.usp-bar .in{grid-template-columns:1fr 1fr;gap:28px 16px;padding:30px 24px}}
+/* USP BAR (premium icons, dark, compact) */
+.usp-bar{background:var(--dark);border-top:1px solid var(--dline);border-bottom:1px solid var(--dline)}
+.usp-bar .in{max-width:var(--maxw);margin:0 auto;padding:18px 32px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.usp{display:flex;align-items:center;gap:12px;text-align:left}
+.usp svg{width:26px;height:26px;flex:none;stroke:var(--orange2);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.usp .tx{display:flex;flex-direction:column;gap:2px;min-width:0}
+.usp .t{font-family:var(--display);font-weight:700;font-size:14px;color:#fff;line-height:1.2}
+.usp .d{font-size:12px;color:var(--dmuted);line-height:1.35}
+@media(max-width:900px){.xsell{grid-template-columns:1fr 1fr;gap:12px}.usp-bar .in{grid-template-columns:1fr 1fr;gap:16px;padding:18px 24px}}
 
 /* section base */
 .sec{padding:80px 0}
@@ -474,20 +475,20 @@ table.cmp{width:100%;border-collapse:separate;border-spacing:0;border:1px solid 
 <!-- HERO (dark) -->
 <section class="hero"><div class="wrap"><div class="grid">
   <div class="gallery">
-    <div class="main"><span class="flag">Spar 27%</span><img id="mainimg" src="photography/dramatic-2-product-dark.png" alt="Recoverym8+ PRO">
+    <div class="main"><span class="flag">Spar 27%</span><img id="mainimg" src="photography/real-product-dramatic.png" alt="Recoverym8+ PRO">
       <button class="gnav prev" onclick="galleryNav(-1)" aria-label="Forrige billede"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
       <button class="gnav next" onclick="galleryNav(1)" aria-label="Næste billede"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
     </div>
     <div class="thumbs">
-      <img class="on" src="photography/dramatic-2-product-dark.png" onclick="swapImg(this)" alt="Recoverym8+ PRO i dramatisk lys">
+      <img class="on" src="photography/real-product-dramatic.png" onclick="swapImg(this)" alt="Recoverym8+ PRO i dramatisk lys">
       <img src="aplus-exports/aplus-3-hero.png" onclick="swapImg(this)" alt="Kraften i percussion-massage">
       <img src="aplus-exports/aplus-1-tech.png" onclick="swapImg(this)" alt="Specifikationer">
       <img src="aplus-exports/aplus-2-benefits.png" onclick="swapImg(this)" alt="Fordele">
-      <img src="photography/product-hero.png" onclick="swapImg(this)" alt="Recoverym8+ PRO set forfra">
-      <img src="photography/product-macro.png" onclick="swapImg(this)" alt="Nærbillede af hovedet">
+      <img src="photography/real-hero-light.png" onclick="swapImg(this)" alt="Recoverym8+ PRO set forfra">
+      <img src="photography/real-product-macro.png" onclick="swapImg(this)" alt="Nærbillede af hovedet">
       <img src="photography/product-flatlay.png" onclick="swapImg(this)" alt="Pistol med 7 hoveder">
-      <img src="photography/life-shoulder-studio.png" onclick="swapImg(this)" alt="I brug på skulderen">
-      <img src="photography/product-case.png" onclick="swapImg(this)" alt="Medfølgende hardcase">
+      <img src="photography/real-inuse-shoulder.webp" onclick="swapImg(this)" alt="I brug på skulderen">
+      <img src="photography/real-case.webp" onclick="swapImg(this)" alt="Medfølgende hardcase">
     </div>
   </div>
   <div class="buy">
@@ -814,19 +815,19 @@ table.cmp{width:100%;border-collapse:separate;border-spacing:0;border:1px solid 
 <div class="usp-bar"><div class="in">
   <div class="usp">
     <svg viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
-    <div class="t">Hurtig levering</div><div class="d">1-2 dages levering fra dansk lager</div>
+    <div class="tx"><div class="t">Hurtig levering</div><div class="d">1-2 dages levering fra dansk lager</div></div>
   </div>
   <div class="usp">
     <svg viewBox="0 0 24 24"><line x1="21" x2="14" y1="4" y2="4"/><line x1="10" x2="3" y1="4" y2="4"/><line x1="21" x2="12" y1="12" y2="12"/><line x1="8" x2="3" y1="12" y2="12"/><line x1="21" x2="16" y1="20" y2="20"/><line x1="12" x2="3" y1="20" y2="20"/><line x1="14" x2="14" y1="2" y2="6"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="16" x2="16" y1="18" y2="22"/></svg>
-    <div class="t">Prismatch</div><div class="d">Vi matcher prisen før dit køb</div>
+    <div class="tx"><div class="t">Prismatch</div><div class="d">Vi matcher prisen før dit køb</div></div>
   </div>
   <div class="usp">
     <svg viewBox="0 0 24 24"><path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2z"/><path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1"/></svg>
-    <div class="t">Dansk support</div><div class="d">Skriv til os døgnet rundt</div>
+    <div class="tx"><div class="t">Dansk support</div><div class="d">Skriv til os døgnet rundt</div></div>
   </div>
   <div class="usp">
     <svg viewBox="0 0 24 24"><polygon points="12 2 15.1 8.3 22 9.3 17 14.1 18.2 21 12 17.8 5.8 21 7 14.1 2 9.3 8.9 8.3 12 2"/></svg>
-    <div class="t">5 stjerner på Trustpilot</div><div class="d">755+ tilfredse danske kunder</div>
+    <div class="tx"><div class="t">5 stjerner på Trustpilot</div><div class="d">755+ tilfredse danske kunder</div></div>
   </div>
 </div></div>
 
