@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#0a0a0a">
+<meta name="theme-color" content="#141111">
 <title>Baseball BBQ: CRO Findings and Testing Roadmap</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,34 +14,37 @@
     --display: 'Inter Tight', 'Helvetica Neue', sans-serif;
     --body: 'Inter', system-ui, sans-serif;
     --mono: 'JetBrains Mono', ui-monospace, monospace;
-    --red: #d23636;
-    --red-2: #ff4a4a;
-    --green: #21d07a;
-    --yellow: #ffb01f;
-    --orange: #f5751c;
+    /* Baseball BBQ brand palette */
+    --red: #6a2727;          /* deep maroon (primary brand) */
+    --red-2: #a04545;        /* lighter maroon (hover, links on dark) */
+    --yellow: #f4c11d;       /* brand mustard yellow (success accent) */
+    --brown: #593b32;        /* warm brown (secondary) */
+    --cream: #cdc9c2;        /* warm parchment */
+    --green: #4a8a5c;        /* desaturated green (positive signal, brand-friendly) */
+    --orange: #c47b20;       /* warm amber, harmonizes with maroon */
   }
   html[data-theme="dark"] {
-    --bg: #0a0a0a;
-    --bg-2: #141414;
-    --bg-3: #1c1c1c;
+    --bg: #141111;           /* warm near-black */
+    --bg-2: #1c1818;
+    --bg-3: #24201f;
     --line: rgba(255,255,255,0.08);
     --line-strong: rgba(255,255,255,0.18);
-    --ink: #f5f5f5;
-    --ink-2: #b3b3b3;
-    --ink-3: #6e6e6e;
+    --ink: #f5f0e8;          /* warm cream-white text */
+    --ink-2: #b3aca0;
+    --ink-3: #6e6864;
     --shadow: 0 20px 60px rgba(0,0,0,0.45);
-    --grain-opacity: 0.35;
-    --nav-bg: rgba(20,20,20,.78);
+    --grain-opacity: 0.30;
+    --nav-bg: rgba(28,24,24,.78);
   }
   html[data-theme="light"] {
-    --bg: #f6f5f1;
+    --bg: #f5f0e8;           /* warm cream */
     --bg-2: #ffffff;
-    --bg-3: #ebe9e3;
+    --bg-3: #ebe6dd;
     --line: rgba(0,0,0,0.10);
     --line-strong: rgba(0,0,0,0.22);
-    --ink: #0d0d0d;
-    --ink-2: #545454;
-    --ink-3: #8a8a8a;
+    --ink: #1c1818;
+    --ink-2: #545048;
+    --ink-3: #8a857c;
     --shadow: 0 16px 40px rgba(0,0,0,0.08);
     --grain-opacity: 0;
     --nav-bg: rgba(255,255,255,.82);
@@ -98,12 +101,12 @@
   .badge {
     display: inline-flex; align-items: center; gap: 8px;
     padding: 6px 12px; border-radius: 999px;
-    background: rgba(210,54,54,0.14); color: var(--red-2);
+    background: rgba(106,39,39,0.14); color: var(--red-2);
     font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
   }
-  .badge.green { background: rgba(33,208,122,0.16); color: var(--green); }
-  .badge.yellow { background: rgba(255,176,31,0.14); color: var(--yellow); }
-  .badge.orange { background: rgba(245,117,28,0.16); color: var(--orange); }
+  .badge.green { background: rgba(74,138,92,0.16); color: var(--green); }
+  .badge.yellow { background: rgba(244,193,29,0.14); color: var(--yellow); }
+  .badge.orange { background: rgba(196,123,32,0.16); color: var(--orange); }
   .badge.ghost { background: var(--bg-3); color: var(--ink-2); border: 1px solid var(--line); }
   .eyebrow {
     font-family: var(--mono); font-size: 11px; letter-spacing: .25em; text-transform: uppercase; color: var(--ink-3);
@@ -143,9 +146,9 @@
   .stat-card .v { font-family: var(--display); font-size: 44px; line-height: 1; color: var(--ink); }
   .stat-card .v.sm { font-size: 30px; }
   .stat-card .d { font-size: 12px; color: var(--ink-2); margin-top: 4px; }
-  .stat-card.red { border-color: rgba(210,54,54,.35); background: linear-gradient(180deg, rgba(210,54,54,.08), transparent 80%), var(--bg-2); }
-  .stat-card.green { border-color: rgba(33,208,122,.35); }
-  .stat-card.orange { border-color: rgba(245,117,28,.35); background: linear-gradient(180deg, rgba(245,117,28,.08), transparent 80%), var(--bg-2); }
+  .stat-card.red { border-color: rgba(106,39,39,.35); background: linear-gradient(180deg, rgba(106,39,39,.08), transparent 80%), var(--bg-2); }
+  .stat-card.green { border-color: rgba(74,138,92,.35); }
+  .stat-card.orange { border-color: rgba(196,123,32,.35); background: linear-gradient(180deg, rgba(196,123,32,.08), transparent 80%), var(--bg-2); }
 
   .funnel { display: grid; gap: 10px; }
   .funnel-row {
@@ -208,8 +211,8 @@
   .priority-item .t { font-size: 16px; font-weight: 600; color: var(--ink); }
   .priority-item .t span { display: block; font-weight: 400; color: var(--ink-2); font-size: 13px; margin-top: 4px; }
   .priority-item .tag { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-3); padding: 6px 10px; border: 1px solid var(--line); border-radius: 999px; white-space: nowrap; }
-  .priority-item .tag.ship { background: rgba(33,208,122,.10); color: var(--green); border-color: rgba(33,208,122,.35); }
-  .priority-item .tag.ab { background: rgba(245,117,28,.10); color: var(--orange); border-color: rgba(245,117,28,.35); }
+  .priority-item .tag.ship { background: rgba(74,138,92,.10); color: var(--green); border-color: rgba(74,138,92,.35); }
+  .priority-item .tag.ab { background: rgba(196,123,32,.10); color: var(--orange); border-color: rgba(196,123,32,.35); }
 
   table.flat { width: 100%; border-collapse: collapse; font-size: 13px; }
   table.flat th, table.flat td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); }
@@ -228,8 +231,8 @@
   }
   .ab-table tbody td { padding: 16px 14px; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--ink-2); }
   .ab-table tbody tr:hover td { background: var(--bg-2); color: var(--ink); }
-  .ab-table tbody tr:first-child td { background: linear-gradient(90deg, rgba(210,54,54,.08), transparent 60%); }
-  .ab-table tbody tr:first-child:hover td { background: linear-gradient(90deg, rgba(210,54,54,.14), transparent 60%); }
+  .ab-table tbody tr:first-child td { background: linear-gradient(90deg, rgba(106,39,39,.08), transparent 60%); }
+  .ab-table tbody tr:first-child:hover td { background: linear-gradient(90deg, rgba(106,39,39,.14), transparent 60%); }
   .ab-table .n { font-family: var(--display); font-size: 24px; color: var(--red); line-height: 1; width: 48px; }
   .ab-table strong { display: block; color: var(--ink); font-weight: 700; font-size: 14px; line-height: 1.3; margin-bottom: 4px; }
   .ab-table span:not(.page-chip):not(.pri) { display: block; font-size: 12px; color: var(--ink-2); line-height: 1.5; }
@@ -239,10 +242,10 @@
     padding: 4px 8px; border-radius: 4px; border: 1px solid var(--line);
     background: var(--bg-3); color: var(--ink-2); white-space: nowrap;
   }
-  .page-chip.site { background: rgba(210,54,54,.15); color: var(--red-2); border-color: rgba(210,54,54,.3); }
-  .page-chip.pdp { background: rgba(33,208,122,.12); color: var(--green); border-color: rgba(33,208,122,.3); }
-  .page-chip.cart { background: rgba(255,176,31,.14); color: var(--yellow); border-color: rgba(255,176,31,.3); }
-  .page-chip.coll { background: rgba(245,117,28,.14); color: var(--orange); border-color: rgba(245,117,28,.3); }
+  .page-chip.site { background: rgba(106,39,39,.15); color: var(--red-2); border-color: rgba(106,39,39,.3); }
+  .page-chip.pdp { background: rgba(74,138,92,.12); color: var(--green); border-color: rgba(74,138,92,.3); }
+  .page-chip.cart { background: rgba(244,193,29,.14); color: var(--yellow); border-color: rgba(244,193,29,.3); }
+  .page-chip.coll { background: rgba(196,123,32,.14); color: var(--orange); border-color: rgba(196,123,32,.3); }
   .page-chip.home { background: rgba(35,150,255,.12); color: #5ab4ff; border-color: rgba(35,150,255,.3); }
   .pri {
     display: inline-flex; align-items: center; justify-content: center;
@@ -250,7 +253,7 @@
     padding: 4px 8px; border-radius: 4px;
   }
   .pri.p0 { background: var(--red); color: #fff; }
-  .pri.p1 { background: rgba(255,176,31,.18); color: var(--yellow); border: 1px solid rgba(255,176,31,.4); }
+  .pri.p1 { background: rgba(244,193,29,.18); color: var(--yellow); border: 1px solid rgba(244,193,29,.4); }
   .pri.p2 { background: var(--bg-3); color: var(--ink-2); border: 1px solid var(--line); }
 
   .geo-bar { display: grid; gap: 8px; }
@@ -266,8 +269,8 @@
 
   .device-split { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   .device-card { background: var(--bg-2); border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
-  .device-card.win { border-color: rgba(33,208,122,.4); }
-  .device-card.loss { border-color: rgba(210,54,54,.4); }
+  .device-card.win { border-color: rgba(74,138,92,.4); }
+  .device-card.loss { border-color: rgba(106,39,39,.4); }
   .device-card h4 {
     font-family: var(--display); font-size: 32px; margin: 0 0 6px;
     text-transform: uppercase; letter-spacing: -.01em; color: var(--ink);
@@ -308,19 +311,19 @@
   }
   .test-detail .hyp-block {
     display: grid; gap: 10px; padding: 16px 18px;
-    background: rgba(210,54,54,.06); border: 1px solid rgba(210,54,54,.25);
+    background: rgba(106,39,39,.06); border: 1px solid rgba(106,39,39,.25);
     border-radius: 10px;
   }
   .test-detail .hyp-block.green {
-    background: rgba(33,208,122,.06); border-color: rgba(33,208,122,.25);
+    background: rgba(74,138,92,.06); border-color: rgba(74,138,92,.25);
   }
   .test-detail .hyp-block .k { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--red-2); font-weight: 600; }
   .test-detail .hyp-block.green .k { color: var(--green); }
   .test-detail .hyp-block .v { font-size: 15px; line-height: 1.5; color: var(--ink); }
   .test-detail .ctrl-var { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px; }
   .ctrl-card, .var-card { padding: 16px 18px; border-radius: 10px; border: 1px solid var(--line); }
-  .ctrl-card { background: rgba(210,54,54,.04); border-color: rgba(210,54,54,.25); }
-  .var-card { background: rgba(33,208,122,.04); border-color: rgba(33,208,122,.25); }
+  .ctrl-card { background: rgba(106,39,39,.04); border-color: rgba(106,39,39,.25); }
+  .var-card { background: rgba(74,138,92,.04); border-color: rgba(74,138,92,.25); }
   .ctrl-card h5, .var-card h5 { font-family: var(--mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; margin: 0 0 12px; }
   .ctrl-card h5 { color: var(--red-2); }
   .var-card h5 { color: var(--green); }
@@ -426,7 +429,7 @@
     width: 100%; background: transparent; text-align: left; color: var(--ink); font-family: var(--body);
   }
   .index-item:hover, .index-item.focused { background: var(--bg-2); border-color: var(--line); }
-  .index-item.current { background: rgba(210,54,54,.06); border-color: rgba(210,54,54,.3); }
+  .index-item.current { background: rgba(106,39,39,.06); border-color: rgba(106,39,39,.3); }
   .index-item .num { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: .1em; }
   .index-item.current .num { color: var(--red); font-weight: 700; }
   .index-item .label { font-size: 15px; font-weight: 500; line-height: 1.3; }
@@ -818,11 +821,11 @@
             <div class="compare-body">
               <p class="small" style="margin: 0 0 4px;">Working well: clean layout, big hero, "Choose options" selector, bundle cross-sell below. Solid foundation. Below is the gap that closes the 98.8% drop.</p>
               <div class="issue-list">
-                <div class="issue" style="border-color: rgba(210,54,54,.45); background: rgba(210,54,54,.05);">
+                <div class="issue" style="border-color: rgba(106,39,39,.45); background: rgba(106,39,39,.05);">
                   <div class="x">&#9888;</div>
                   <div><strong>Star rating not visible in the buy box</strong><span>Customers see "76 reviews" but no visible 4.9 stars. Move the rating + count immediately under the product title.</span></div>
                 </div>
-                <div class="issue" style="border-color: rgba(210,54,54,.45); background: rgba(210,54,54,.05);">
+                <div class="issue" style="border-color: rgba(106,39,39,.45); background: rgba(106,39,39,.05);">
                   <div class="x">&#9888;</div>
                   <div><strong>Generic trust badges: Top Quality / Fast Ship / Support / SSL</strong><span>These say nothing. Replace with: lifetime warranty, free engraving, ships 1-2 business days, free shipping over $100. Every one of these is a real brand asset; the current badges are stock images.</span></div>
                 </div>
@@ -1323,7 +1326,7 @@
           </div>
         </div>
 
-        <div class="quote-card" style="margin-top: 24px; max-width: none; font-size: 20px; padding: 24px 28px; border-color: rgba(245,117,28,.4); background: linear-gradient(180deg, rgba(245,117,28,.06), transparent 80%), var(--bg-2);">
+        <div class="quote-card" style="margin-top: 24px; max-width: none; font-size: 20px; padding: 24px 28px; border-color: rgba(196,123,32,.4); background: linear-gradient(180deg, rgba(196,123,32,.06), transparent 80%), var(--bg-2);">
           <strong style="color: var(--orange); font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; display: block; margin-bottom: 10px; font-weight: 600;">Positioning Statement</strong>
           The premium MLB-licensed grilling gift that arrives engraved in 48 hours. The dad who gets this will cry.
         </div>
@@ -1572,7 +1575,7 @@
 
   function applyTheme(t){
     document.documentElement.setAttribute('data-theme', t);
-    document.querySelector('meta[name="theme-color"]').setAttribute('content', t === 'dark' ? '#0a0a0a' : '#f6f5f1');
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', t === 'dark' ? '#141111' : '#f5f0e8');
     try { localStorage.setItem('bbq-deck-theme', t); } catch(e){}
   }
   let savedTheme = null;
