@@ -330,6 +330,145 @@
   .ctrl-card ul, .var-card ul { margin: 0; padding-left: 18px; font-size: 13px; line-height: 1.5; color: var(--ink-2); }
   .ctrl-card li, .var-card li { margin-bottom: 6px; }
 
+  /* Inline mockup frames */
+  .mock-frame {
+    background: #f5f0e8; color: #1c1818;
+    border-radius: 8px; padding: 14px;
+    border: 1px solid rgba(0,0,0,.12);
+    font-family: var(--body); font-size: 11px;
+    display: flex; flex-direction: column; gap: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.18);
+  }
+  .mock-frame .mock-bar {
+    height: 6px; background: #6a2727; border-radius: 2px;
+  }
+  .mock-frame .mock-row {
+    display: grid; gap: 6px;
+  }
+  .mock-card {
+    background: #fff; border: 1px solid rgba(0,0,0,.08);
+    border-radius: 6px; padding: 8px 10px;
+    display: flex; flex-direction: column; gap: 4px;
+    position: relative;
+  }
+  .mock-card.featured { border-color: #f4c11d; box-shadow: 0 0 0 1px #f4c11d; }
+  .mock-card .mock-img {
+    background: linear-gradient(135deg, #2a2020, #4a3a30); height: 60px;
+    border-radius: 4px; display: flex; align-items: center; justify-content: center;
+    color: #f5f0e8; font-family: var(--mono); font-size: 9px; letter-spacing: .15em;
+  }
+  .mock-card .mock-title { font-weight: 700; font-size: 10px; color: #1c1818; }
+  .mock-card .mock-price { font-family: var(--mono); font-size: 10px; color: #6a2727; font-weight: 700; }
+  .mock-card .mock-stars { font-size: 8px; color: #f4c11d; }
+  .mock-card .mock-badge {
+    position: absolute; top: -6px; right: -6px;
+    background: #f4c11d; color: #1c1818;
+    font-family: var(--mono); font-size: 7px; letter-spacing: .1em; font-weight: 700;
+    padding: 3px 6px; border-radius: 3px; text-transform: uppercase;
+  }
+  .mock-card .mock-badge.maroon { background: #6a2727; color: #f5f0e8; }
+  .mock-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .mock-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .mock-cta {
+    background: #6a2727; color: #f5f0e8;
+    text-align: center; padding: 8px 12px;
+    border-radius: 4px; font-family: var(--mono); font-size: 10px;
+    font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  }
+  .mock-cta.outline {
+    background: transparent; border: 1px solid #6a2727; color: #6a2727;
+  }
+  .mock-pill {
+    display: inline-block; padding: 3px 8px; border-radius: 999px;
+    background: rgba(106,39,39,.1); color: #6a2727;
+    font-family: var(--mono); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700;
+    margin-right: 4px;
+  }
+  .mock-pill.yellow { background: rgba(244,193,29,.2); color: #8a6a00; }
+  .mock-stars-row {
+    display: flex; align-items: center; gap: 6px;
+    color: #f4c11d; font-size: 12px; font-weight: 700;
+  }
+  .mock-stars-row .mock-rev-count {
+    color: #545048; font-size: 10px; font-weight: 500;
+  }
+  .mock-badges {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px;
+    font-family: var(--mono); font-size: 8px; letter-spacing: .08em;
+  }
+  .mock-badges > div {
+    padding: 4px 6px; background: #ebe6dd; color: #1c1818;
+    border-radius: 3px; text-transform: uppercase; font-weight: 700;
+    text-align: center;
+  }
+  .mock-checkbox {
+    display: flex; align-items: center; gap: 6px;
+    padding: 6px 8px; border: 1px dashed #6a2727; border-radius: 4px;
+    font-size: 10px; color: #1c1818;
+  }
+  .mock-checkbox .mock-tick {
+    width: 12px; height: 12px; border: 1.5px solid #6a2727; border-radius: 3px;
+    display: inline-block; flex-shrink: 0;
+  }
+  .mock-quiz-card {
+    background: #fff; border: 1px solid rgba(0,0,0,.08);
+    border-radius: 8px; padding: 14px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .mock-progress {
+    height: 4px; background: #ebe6dd; border-radius: 2px; overflow: hidden;
+  }
+  .mock-progress > i {
+    display: block; height: 100%; background: #6a2727; width: 33%;
+  }
+  .mock-option {
+    padding: 8px 10px; border: 1px solid rgba(0,0,0,.12); border-radius: 6px;
+    font-size: 10px; color: #1c1818; cursor: pointer;
+  }
+  .mock-option.selected { border-color: #6a2727; background: rgba(106,39,39,.06); }
+  .mock-options { display: grid; gap: 6px; }
+
+  /* Real testing roadmap (Gantt-style) */
+  .roadmap {
+    display: grid; gap: 8px;
+  }
+  .roadmap-header {
+    display: grid; grid-template-columns: 260px repeat(13, 1fr); gap: 4px;
+    align-items: center; padding: 0 8px;
+  }
+  .roadmap-header .week-label {
+    font-family: var(--mono); font-size: 9px; color: var(--ink-3); letter-spacing: .1em; text-align: center;
+  }
+  .roadmap-row {
+    display: grid; grid-template-columns: 260px repeat(13, 1fr); gap: 4px;
+    align-items: center; padding: 10px 8px;
+    background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px;
+  }
+  .roadmap-row.flagship { border-color: rgba(106,39,39,.4); }
+  .roadmap-row .label {
+    font-size: 12px; color: var(--ink); font-weight: 600; line-height: 1.3;
+  }
+  .roadmap-row .label .sub {
+    display: block; font-size: 10px; color: var(--ink-3); font-weight: 400; font-family: var(--mono); letter-spacing: .05em; margin-top: 2px;
+  }
+  .roadmap-row .bar {
+    height: 20px; border-radius: 4px; position: relative;
+    background: rgba(106,39,39,.7);
+    font-family: var(--mono); font-size: 8px; letter-spacing: .1em;
+    color: #f5f0e8; display: flex; align-items: center; padding: 0 6px;
+    white-space: nowrap; overflow: hidden;
+  }
+  .roadmap-row .bar.ab { background: rgba(196,123,32,.7); }
+  .roadmap-row .bar.ship { background: rgba(74,138,92,.7); }
+  .roadmap-row .bar.flagship { background: linear-gradient(90deg, #6a2727, #a04545); }
+  .roadmap-legend {
+    display: flex; gap: 18px; margin-top: 14px; font-family: var(--mono); font-size: 10px; color: var(--ink-2); letter-spacing: .1em; text-transform: uppercase;
+  }
+  .roadmap-legend .sw {
+    display: inline-block; width: 14px; height: 8px; border-radius: 2px;
+    margin-right: 6px; vertical-align: middle;
+  }
+
   .title-slide .meta {
     display: flex; gap: 24px; margin-top: 24px; flex-wrap: wrap;
     font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: .15em; text-transform: uppercase;
@@ -532,8 +671,8 @@
         </div>
         <div>
           <div class="badge" style="margin-bottom: 22px;">● Findings + Testing Roadmap</div>
-          <h1 class="display">Three leaks.<br>Three tests.<br><span class="accent">A clearer 90 days.</span></h1>
-          <p class="lede" style="max-width: 60ch; margin-top: 18px;">An honest read on the data: where the funnel actually breaks, which fixes are worth your engineering time, and the three tests that will turn $11,840 of real US revenue into $20,000+ over the next 90 days.</p>
+          <h1 class="display">Three leaks.<br>Eleven moves.<br><span class="accent">A clearer 90 days.</span></h1>
+          <p class="lede" style="max-width: 60ch; margin-top: 18px;">A real 90-day program. <strong style="color: var(--ink);">3 flagship A/B tests</strong> with mockups, <strong style="color: var(--ink);">4 smaller A/B tests</strong> running in parallel, and <strong style="color: var(--ink);">4 direct ships</strong> that do not need a test. Target: $11,840 real US revenue to $20,000+.</p>
         </div>
         <div class="meta">
           <span><strong>Site</strong> baseballbbq.com</span>
@@ -652,160 +791,361 @@
       </div>
     </section>
 
-    <!-- 4. Test 01 detail -->
+    <!-- 4. 90-day testing program (Gantt) -->
     <section class="slide" data-slide="4">
       <div class="pad">
         <div class="top-row">
           <div class="brand"><div class="brand-mark"></div> BASEBALL BBQ / CRO AUDIT</div>
-          <div class="eyebrow">4 / Test 01</div>
+          <div class="eyebrow">4 / 90-day program</div>
         </div>
-        <h2 class="h-section" style="margin-bottom: 16px;">Test 01: Featured Products collection rebuild</h2>
+        <h2 class="h-section" style="margin-bottom: 10px;">The full 90-day testing program.</h2>
+        <p class="lede" style="margin-bottom: 20px;">3 flagship tests (sequenced to avoid interaction effects), 4 smaller A/B tests running in parallel where they do not collide, and 4 direct ships that do not need a test.</p>
 
-        <div class="test-detail">
-          <div class="hyp-block">
-            <span class="k">Why this test</span>
-            <span class="v">/collections/home-page-featured-products takes 783 sessions over 90 days at a 37% bounce rate (people stay and browse) and produces <strong>zero purchases</strong>. This is the most-clicked collection in the catalog and the most directly broken commercial surface on the site. Permanent fix, not seasonal.</span>
-          </div>
-          <div class="hyp-block green" style="margin-top: 12px;">
-            <span class="k">Hypothesis</span>
-            <span class="v">Re-curating the collection to lead with bundles and demoting zero-CR SKUs will convert 1 to 3% of the 783 sessions into purchases, turning $0 into <strong style="color: var(--green);">$500 to $1,500 / month</strong>.</span>
+        <div class="roadmap">
+          <div class="roadmap-header">
+            <div></div>
+            <div class="week-label">W1</div><div class="week-label">W2</div><div class="week-label">W3</div><div class="week-label">W4</div><div class="week-label">W5</div><div class="week-label">W6</div><div class="week-label">W7</div><div class="week-label">W8</div><div class="week-label">W9</div><div class="week-label">W10</div><div class="week-label">W11</div><div class="week-label">W12</div><div class="week-label">W13</div>
           </div>
 
-          <div class="ctrl-var">
-            <div class="ctrl-card">
-              <h5>Control</h5>
-              <ul>
-                <li>Mixed-priority SKUs in arbitrary order</li>
-                <li>No bundle prioritization</li>
-                <li>No "Most Picked" or "Best Value" badges</li>
-                <li>Same "76 reviews" on every card</li>
-                <li>No "Build your own" CTA</li>
-                <li style="color: var(--red-2);"><strong>Sessions: 783 / 90d &middot; Purchases: 0 &middot; Revenue: $0</strong></li>
-              </ul>
-            </div>
-            <div class="var-card">
-              <h5>Variant</h5>
-              <ul>
-                <li><strong>Row 1:</strong> 3 hero bundles &mdash; Triple Play ($63), Grand Slam ($117, "Most Picked"), MVP ($177)</li>
-                <li><strong>Row 2:</strong> Top 6 single tools by review count</li>
-                <li><strong>Row 3:</strong> "Build your own" CTA &rarr; /collections/customizable</li>
-                <li>Demote: any SKU with zero sales in last 90d</li>
-                <li>Add: Judge.me per-product stars on cards</li>
-                <li style="color: var(--green);"><strong>Target CR: 1.5 to 3% &middot; Target / mo: $500 to $1,500</strong></li>
-              </ul>
-            </div>
+          <div class="roadmap-row flagship">
+            <div class="label">Test 01: Featured Products rebuild<span class="sub">Flagship / Collection</span></div>
+            <div></div><div></div>
+            <div class="bar flagship" style="grid-column: 4 / span 6;">BUILD &middot; LAUNCH &middot; MEASURE</div>
+          </div>
+          <div class="roadmap-row flagship">
+            <div class="label">Test 02: PDP buy-box rebuild<span class="sub">Flagship / PDP</span></div>
+            <div></div><div></div><div></div><div></div>
+            <div class="bar flagship" style="grid-column: 6 / span 5;">BUILD &middot; LAUNCH &middot; MEASURE</div>
+          </div>
+          <div class="roadmap-row flagship">
+            <div class="label">Test 03: Gift-Finder Quiz<span class="sub">Flagship / Site-wide</span></div>
+            <div></div><div></div><div></div><div></div><div></div><div></div>
+            <div class="bar flagship" style="grid-column: 8 / span 7;">BUILD &middot; LAUNCH &middot; MEASURE</div>
           </div>
 
-          <p class="small" style="margin-top: 18px;"><strong style="color: var(--ink);">Primary metric:</strong> Purchases originating from /collections/home-page-featured-products &middot; <strong style="color: var(--ink);">Secondary:</strong> collection to PDP CTR, bundle CTR, bounce. <strong style="color: var(--ink);">Sample:</strong> 261 sessions / mo baseline. 6 to 8 weeks to detect a 1 to 3 purchase / mo lift at 90% confidence.</p>
+          <div class="roadmap-row">
+            <div class="label">Reviews + press in hero<span class="sub">A/B test / Home + PDP</span></div>
+            <div></div><div></div>
+            <div class="bar ab" style="grid-column: 4 / span 3;">A/B</div>
+          </div>
+          <div class="roadmap-row">
+            <div class="label">Brand-specific PDP badges<span class="sub">A/B test / PDP</span></div>
+            <div></div><div></div>
+            <div class="bar ab" style="grid-column: 4 / span 3;">A/B</div>
+          </div>
+          <div class="roadmap-row">
+            <div class="label">Sticky mobile ATC bar<span class="sub">A/B test / PDP mobile</span></div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div class="bar ab" style="grid-column: 9 / span 3;">A/B</div>
+          </div>
+          <div class="roadmap-row">
+            <div class="label">Cart cross-sell "Complete your set"<span class="sub">A/B test / Cart</span></div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div class="bar ab" style="grid-column: 11 / span 3;">A/B</div>
+          </div>
+
+          <div class="roadmap-row">
+            <div class="label">Oakland PDP fix + team template audit<span class="sub">Ship direct / Bug</span></div>
+            <div class="bar ship" style="grid-column: 2 / span 1;">SHIP</div>
+          </div>
+          <div class="roadmap-row">
+            <div class="label">Sitewide free-shipping progress bar<span class="sub">Ship direct / Cart</span></div>
+            <div></div>
+            <div class="bar ship" style="grid-column: 3 / span 1;">SHIP</div>
+          </div>
+          <div class="roadmap-row">
+            <div class="label">Judge.me per-product widget<span class="sub">Ship direct / PDP + PLP</span></div>
+            <div></div>
+            <div class="bar ship" style="grid-column: 3 / span 1;">SHIP</div>
+          </div>
+          <div class="roadmap-row">
+            <div class="label">Notify-me on sold-out variants<span class="sub">Ship direct / PDP</span></div>
+            <div></div><div></div>
+            <div class="bar ship" style="grid-column: 4 / span 1;">SHIP</div>
+          </div>
+        </div>
+
+        <div class="roadmap-legend">
+          <span><span class="sw" style="background: linear-gradient(90deg, #6a2727, #a04545);"></span>Flagship test</span>
+          <span><span class="sw" style="background: rgba(196,123,32,.7);"></span>Smaller A/B test</span>
+          <span><span class="sw" style="background: rgba(74,138,92,.7);"></span>Direct ship</span>
         </div>
       </div>
     </section>
 
-    <!-- 5. Test 02 detail -->
+    <!-- 5. Test 01 detail (Featured Products) with mockup -->
     <section class="slide" data-slide="5">
       <div class="pad">
         <div class="top-row">
           <div class="brand"><div class="brand-mark"></div> BASEBALL BBQ / CRO AUDIT</div>
-          <div class="eyebrow">5 / Test 02</div>
+          <div class="eyebrow">5 / Test 01</div>
         </div>
-        <h2 class="h-section" style="margin-bottom: 16px;">Test 02: PDP buy-box rebuild</h2>
+        <h2 class="h-section" style="margin-bottom: 12px;">Test 01: Featured Products collection rebuild</h2>
 
-        <div class="test-detail">
-          <div class="hyp-block">
-            <span class="k">Why this test</span>
-            <span class="v">PDP to Add-to-Cart is <strong>1.20%</strong>. Industry benchmark for branded ecom is 4 to 7%. 9,059 PDP views in 28 days yield only 109 carts. The brand's actual trust assets (4.9/2,847 reviews, GMA press, lifetime warranty, free engraving, MLB license) are not in the buy box. The current badges are generic.</span>
-          </div>
-          <div class="hyp-block green" style="margin-top: 12px;">
-            <span class="k">Hypothesis</span>
-            <span class="v">Replacing generic trust badges with brand-specific reassurance, surfacing star rating above the title, and inlining the engraving upsell will lift PDP to ATC from 1.20% to <strong style="color: var(--green);">1.80 to 2.40%</strong>. At a $131 AOV, that is +25 to +50 incremental purchases / 28d, +$3.3k to +$6.5k / month.</span>
-          </div>
-
-          <div class="ctrl-var">
-            <div class="ctrl-card">
-              <h5>Control</h5>
-              <ul>
-                <li>Star rating below the fold (scroll to find)</li>
-                <li>Badges: "Top Quality / Fast Ship / Support / SSL" (generic)</li>
-                <li>"76 reviews" with no visible star count</li>
-                <li>Customization sent to a separate page</li>
-                <li>No "What's included" image on sets</li>
-                <li style="color: var(--red-2);"><strong>PDP to ATC: 1.20% &middot; 9,059 views, 109 carts</strong></li>
-              </ul>
-            </div>
-            <div class="var-card">
-              <h5>Variant</h5>
-              <ul>
-                <li>4.9 stars + 76 reviews immediately under product title</li>
-                <li>Badges: lifetime warranty, free engraving, ships 1-2 days, free ship $100+</li>
-                <li>"+ Add custom engraving (+$10 / +$20 with logo)" inline checkbox</li>
-                <li>"What's included" labeled hero image on bundle PDPs</li>
-                <li>"As Seen on GMA" strip below buy box</li>
-                <li style="color: var(--green);"><strong>Target PDP to ATC: 1.80 to 2.40%</strong></li>
-              </ul>
-            </div>
-          </div>
-
-          <p class="small" style="margin-top: 18px;"><strong style="color: var(--ink);">Primary metric:</strong> PDP to Add-to-Cart rate &middot; <strong style="color: var(--ink);">Secondary:</strong> time on PDP, scroll depth past buy box, engraving attach rate. <strong style="color: var(--ink);">Sample:</strong> Aggregate across top 5 PDPs (~2,000 PDP views / 28d). Signal in 3 to 4 weeks.</p>
+        <div class="hyp-block">
+          <span class="k">Why this test</span>
+          <span class="v">/collections/home-page-featured-products takes 783 sessions over 90 days at a 37% bounce rate and produces <strong>zero purchases</strong>. The most-clicked collection in the catalog is the most directly broken commercial surface. Permanent fix.</span>
         </div>
+        <div class="hyp-block green" style="margin-top: 10px;">
+          <span class="k">Hypothesis</span>
+          <span class="v">Re-curating to lead with bundles + demoting zero-CR SKUs will convert 1 to 3% of the 783 sessions, turning $0 into <strong style="color: var(--green);">$500 to $1,500 / month</strong>.</span>
+        </div>
+
+        <div class="ctrl-var" style="margin-top: 16px;">
+          <div class="ctrl-card">
+            <h5>Control (today)</h5>
+            <div class="mock-frame">
+              <div class="mock-bar" style="background: #6a2727; height: 4px;"></div>
+              <div style="font-family: var(--mono); font-size: 9px; color: #545048; letter-spacing: .1em; text-transform: uppercase;">Featured Products</div>
+              <div class="mock-grid-3">
+                <div class="mock-card">
+                  <div class="mock-img">PRODUCT</div>
+                  <div class="mock-title">Slider Spatula</div>
+                  <div class="mock-price">$34.99</div>
+                  <div class="mock-stars">★★★★★ 76 reviews</div>
+                </div>
+                <div class="mock-card">
+                  <div class="mock-img">PRODUCT</div>
+                  <div class="mock-title">Forkball Fork</div>
+                  <div class="mock-price">$32.99</div>
+                  <div class="mock-stars">★★★★★ 76 reviews</div>
+                </div>
+                <div class="mock-card">
+                  <div class="mock-img">PRODUCT</div>
+                  <div class="mock-title">Brushback Scraper</div>
+                  <div class="mock-price">$24.99</div>
+                  <div class="mock-stars">★★★★★ 76 reviews</div>
+                </div>
+              </div>
+              <div class="mock-grid-3">
+                <div class="mock-card">
+                  <div class="mock-img">PRODUCT</div>
+                  <div class="mock-title">Apron (out of stock)</div>
+                  <div class="mock-price">$28.00</div>
+                  <div class="mock-stars">★★★★★ 76 reviews</div>
+                </div>
+                <div class="mock-card">
+                  <div class="mock-img">PRODUCT</div>
+                  <div class="mock-title">Hat (low CR)</div>
+                  <div class="mock-price">$22.99</div>
+                  <div class="mock-stars">★★★★★ 76 reviews</div>
+                </div>
+                <div class="mock-card">
+                  <div class="mock-img">PRODUCT</div>
+                  <div class="mock-title">Tee (low CR)</div>
+                  <div class="mock-price">$24.99</div>
+                  <div class="mock-stars">★★★★★ 76 reviews</div>
+                </div>
+              </div>
+              <div style="font-family: var(--mono); font-size: 9px; color: #a04545; letter-spacing: .1em; text-transform: uppercase; padding-top: 4px; border-top: 1px dashed rgba(0,0,0,.12);">783 sessions / 90d &middot; 0 purchases &middot; $0</div>
+            </div>
+          </div>
+          <div class="var-card">
+            <h5>Variant</h5>
+            <div class="mock-frame">
+              <div class="mock-bar" style="background: #6a2727; height: 4px;"></div>
+              <div style="font-family: var(--mono); font-size: 9px; color: #545048; letter-spacing: .1em; text-transform: uppercase;">Featured Products &middot; Bundles First</div>
+              <div class="mock-grid-3">
+                <div class="mock-card">
+                  <div class="mock-img" style="background: linear-gradient(135deg, #6a2727, #8a3a3a);">BUNDLE</div>
+                  <div class="mock-title">Triple Play Set</div>
+                  <div class="mock-price">$63 <span style="color: #4a8a5c; font-size: 8px;">SAVE 22%</span></div>
+                  <div class="mock-stars">★★★★★ 4.9 (124)</div>
+                </div>
+                <div class="mock-card featured">
+                  <div class="mock-badge">Most Picked</div>
+                  <div class="mock-img" style="background: linear-gradient(135deg, #6a2727, #a04545);">BUNDLE</div>
+                  <div class="mock-title">Grand Slam Set</div>
+                  <div class="mock-price">$117 <span style="color: #4a8a5c; font-size: 8px;">SAVE 28%</span></div>
+                  <div class="mock-stars">★★★★★ 4.9 (287)</div>
+                </div>
+                <div class="mock-card">
+                  <div class="mock-badge maroon">Best Value</div>
+                  <div class="mock-img" style="background: linear-gradient(135deg, #6a2727, #8a3a3a);">BUNDLE</div>
+                  <div class="mock-title">MVP Set</div>
+                  <div class="mock-price">$177 <span style="color: #4a8a5c; font-size: 8px;">SAVE 32%</span></div>
+                  <div class="mock-stars">★★★★★ 4.9 (89)</div>
+                </div>
+              </div>
+              <div class="mock-grid-3">
+                <div class="mock-card">
+                  <div class="mock-img">TOOL</div>
+                  <div class="mock-title">Slider Spatula</div>
+                  <div class="mock-price">$34.99</div>
+                  <div class="mock-stars">★★★★★ 4.9 (76)</div>
+                </div>
+                <div class="mock-card">
+                  <div class="mock-img">TOOL</div>
+                  <div class="mock-title">Forkball Fork</div>
+                  <div class="mock-price">$32.99</div>
+                  <div class="mock-stars">★★★★★ 4.8 (52)</div>
+                </div>
+                <div class="mock-card">
+                  <div class="mock-img">TOOL</div>
+                  <div class="mock-title">Brushback Scraper</div>
+                  <div class="mock-price">$24.99</div>
+                  <div class="mock-stars">★★★★★ 4.9 (76)</div>
+                </div>
+              </div>
+              <div class="mock-cta outline">+ Build your own set</div>
+              <div style="font-family: var(--mono); font-size: 9px; color: #4a8a5c; letter-spacing: .1em; text-transform: uppercase; padding-top: 4px; border-top: 1px dashed rgba(0,0,0,.12);">Target: 1.5 to 3% CR &middot; $500 to $1,500 / month</div>
+            </div>
+          </div>
+        </div>
+
+        <p class="small" style="margin-top: 14px;"><strong style="color: var(--ink);">Primary metric:</strong> Purchases from /collections/home-page-featured-products &middot; <strong style="color: var(--ink);">Sample:</strong> 261 sessions / mo. 6 to 8 weeks to significance for a 1 to 3 purchase / mo lift.</p>
       </div>
     </section>
 
-    <!-- 6. Test 03 detail -->
+    <!-- 6. Test 02 detail (PDP buy-box) with mockup -->
     <section class="slide" data-slide="6">
       <div class="pad">
         <div class="top-row">
           <div class="brand"><div class="brand-mark"></div> BASEBALL BBQ / CRO AUDIT</div>
-          <div class="eyebrow">6 / Test 03</div>
+          <div class="eyebrow">6 / Test 02</div>
         </div>
-        <h2 class="h-section" style="margin-bottom: 16px;">Test 03: Gift-Finder Quiz</h2>
+        <h2 class="h-section" style="margin-bottom: 12px;">Test 02: PDP buy-box rebuild</h2>
 
-        <div class="test-detail">
-          <div class="hyp-block">
-            <span class="k">Why this test</span>
-            <span class="v"><strong>2,085 product variants and zero decision aid.</strong> The primary buyer is a gift-giver (mom, partner, kid buying for dad / grandpa / brother). Choice paralysis is the structural enemy. A quiz that returns "Recommended for him: Grand Slam Set" collapses the decision and creates a defensible feature competitors do not have.</span>
-          </div>
-          <div class="hyp-block green" style="margin-top: 12px;">
-            <span class="k">Hypothesis</span>
-            <span class="v">A 6-question quiz returning a personalized bundle recommendation will lift session CR for quiz-takers to <strong style="color: var(--green);">3 to 6%</strong> (vs sitewide 0.80%), plus build a permanent email retargeting asset.</span>
-          </div>
+        <div class="hyp-block">
+          <span class="k">Why this test</span>
+          <span class="v">PDP to Add-to-Cart is <strong>1.20%</strong>. Industry: 4 to 7%. 9,059 PDP views in 28 days yield 109 carts. The brand's actual trust assets (4.9/2,847 reviews, GMA press, lifetime warranty, free engraving, MLB license) are not in the buy box.</span>
+        </div>
+        <div class="hyp-block green" style="margin-top: 10px;">
+          <span class="k">Hypothesis</span>
+          <span class="v">Replacing generic badges with brand-specific reassurance + star rating above title + inline engraving upsell will lift PDP to ATC from 1.20% to <strong style="color: var(--green);">1.80 to 2.40%</strong>. At $131 AOV, +$3.3k to +$6.5k / month.</span>
+        </div>
 
-          <div class="ctrl-var">
-            <div class="ctrl-card">
-              <h5>Control (today)</h5>
-              <ul>
-                <li>Visitor lands, scrolls a 2,085-variant grid</li>
-                <li>No "Best for Dad" filter, no quiz, no comparison view</li>
-                <li>Picks based on familiarity, team, or bounces</li>
-                <li>Customization buried under a separate URL</li>
-                <li style="color: var(--red-2);"><strong>Sitewide CR: 0.80% &middot; PDP to ATC: 1.20%</strong></li>
-              </ul>
-            </div>
-            <div class="var-card">
-              <h5>Variant</h5>
-              <ul>
-                <li><strong>Q1:</strong> Who is it for? (Dad / Grandpa / Brother / Self / Other)</li>
-                <li><strong>Q2:</strong> Favorite team? (MLB picker)</li>
-                <li><strong>Q3:</strong> How often does he grill? (Weekend warrior / Tailgater / Pro)</li>
-                <li><strong>Q4:</strong> Engrave text or logo?</li>
-                <li><strong>Q5:</strong> Budget tier? ($50 / $100 / $200+)</li>
-                <li><strong>Q6:</strong> Gift now or later?</li>
-                <li>Result: pre-customized bundle. Email capture pre-result.</li>
-                <li style="color: var(--green);"><strong>Target quiz CR: 3 to 6% &middot; Email retargeting asset</strong></li>
-              </ul>
+        <div class="ctrl-var" style="margin-top: 16px;">
+          <div class="ctrl-card">
+            <h5>Control (today)</h5>
+            <div class="mock-frame">
+              <div class="mock-grid-2" style="gap: 12px;">
+                <div class="mock-img" style="height: 100px;">PRODUCT IMG</div>
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                  <div class="mock-title" style="font-size: 13px;">"Brushback" Grill Scraper</div>
+                  <div style="font-size: 10px; color: #545048;">76 reviews</div>
+                  <div class="mock-price" style="font-size: 16px;">$24.99</div>
+                  <div style="font-size: 9px; color: #545048;">Default Title</div>
+                  <div class="mock-cta">Add to Cart</div>
+                </div>
+              </div>
+              <div class="mock-badges">
+                <div>Top Quality</div>
+                <div>Fast Ship</div>
+                <div>Support</div>
+                <div>SSL</div>
+              </div>
+              <div style="font-size: 9px; color: #545048; line-height: 1.4;">Customization available <span style="color: #6a2727; text-decoration: underline;">via our single tool customization program</span> (separate page)</div>
+              <div style="font-family: var(--mono); font-size: 9px; color: #a04545; letter-spacing: .1em; text-transform: uppercase; padding-top: 4px; border-top: 1px dashed rgba(0,0,0,.12);">PDP to ATC: 1.20% &middot; 9,059 views, 109 carts</div>
             </div>
           </div>
-
-          <p class="small" style="margin-top: 18px;"><strong style="color: var(--ink);">Primary metric:</strong> Quiz-completer purchase rate vs non-quiz session CR &middot; <strong style="color: var(--ink);">Secondary:</strong> quiz starts, completions, email opt-in rate, time-to-purchase, AOV. <strong style="color: var(--ink);">Target:</strong> 500 completions / mo, ~8 weeks to compare cohorts.</p>
+          <div class="var-card">
+            <h5>Variant</h5>
+            <div class="mock-frame">
+              <div class="mock-grid-2" style="gap: 12px;">
+                <div class="mock-img" style="height: 100px;">PRODUCT IMG</div>
+                <div style="display: flex; flex-direction: column; gap: 5px;">
+                  <div class="mock-title" style="font-size: 13px;">"Brushback" Grill Scraper</div>
+                  <div class="mock-stars-row">★★★★★ 4.9 <span class="mock-rev-count">76 reviews</span></div>
+                  <div class="mock-price" style="font-size: 16px;">$24.99</div>
+                  <div class="mock-checkbox"><span class="mock-tick"></span> Add custom engraving (+$10)</div>
+                  <div class="mock-cta">Add to Cart</div>
+                </div>
+              </div>
+              <div class="mock-badges">
+                <div style="background: rgba(106,39,39,.12); color: #6a2727;">Lifetime Warranty</div>
+                <div style="background: rgba(106,39,39,.12); color: #6a2727;">Free Engraving</div>
+                <div style="background: rgba(106,39,39,.12); color: #6a2727;">Ships 1-2 Days</div>
+                <div style="background: rgba(106,39,39,.12); color: #6a2727;">Free Ship $100+</div>
+              </div>
+              <div style="display: flex; gap: 6px; align-items: center; padding: 6px 8px; background: rgba(244,193,29,.15); border-radius: 4px;">
+                <span style="font-family: var(--mono); font-size: 8px; color: #8a6a00; letter-spacing: .1em; text-transform: uppercase; font-weight: 700;">As Seen On</span>
+                <span style="font-size: 9px; font-weight: 700; color: #1c1818;">GMA &middot; Live with Kelly &middot; Fox News</span>
+              </div>
+              <div style="font-family: var(--mono); font-size: 9px; color: #4a8a5c; letter-spacing: .1em; text-transform: uppercase; padding-top: 4px; border-top: 1px dashed rgba(0,0,0,.12);">Target PDP to ATC: 1.80 to 2.40%</div>
+            </div>
+          </div>
         </div>
+
+        <p class="small" style="margin-top: 14px;"><strong style="color: var(--ink);">Primary metric:</strong> PDP to Add-to-Cart rate &middot; <strong style="color: var(--ink);">Sample:</strong> Top 5 PDPs aggregated (~2,000 views / 28d). Signal in 3 to 4 weeks.</p>
       </div>
     </section>
 
-    <!-- 7. PDP heuristic -->
+    <!-- 7. Test 03 detail (Gift-Finder Quiz) with mockup -->
     <section class="slide" data-slide="7">
       <div class="pad">
         <div class="top-row">
           <div class="brand"><div class="brand-mark"></div> BASEBALL BBQ / CRO AUDIT</div>
-          <div class="eyebrow">7 / PDP (the leak)</div>
+          <div class="eyebrow">7 / Test 03</div>
+        </div>
+        <h2 class="h-section" style="margin-bottom: 12px;">Test 03: Gift-Finder Quiz</h2>
+
+        <div class="hyp-block">
+          <span class="k">Why this test</span>
+          <span class="v"><strong>2,085 product variants and zero decision aid.</strong> Primary buyer is a gift-giver. Choice paralysis is the structural enemy. A quiz returning "Recommended for him: Grand Slam Set" collapses the decision.</span>
+        </div>
+        <div class="hyp-block green" style="margin-top: 10px;">
+          <span class="k">Hypothesis</span>
+          <span class="v">A 6-question quiz returning a personalized bundle will lift session CR for quiz-takers to <strong style="color: var(--green);">3 to 6%</strong> (vs sitewide 0.80%), plus build a permanent email retargeting asset.</span>
+        </div>
+
+        <div class="ctrl-var" style="margin-top: 16px;">
+          <div class="ctrl-card">
+            <h5>Control (today)</h5>
+            <div class="mock-frame">
+              <div class="mock-bar" style="background: #6a2727; height: 4px;"></div>
+              <div style="font-family: var(--mono); font-size: 9px; color: #545048; letter-spacing: .1em; text-transform: uppercase;">Homepage hero</div>
+              <div class="mock-img" style="height: 80px;">FATHER'S DAY HERO (SEASONAL)</div>
+              <div style="font-family: var(--mono); font-size: 9px; color: #545048; letter-spacing: .1em; text-transform: uppercase; margin-top: 4px;">2,085 variants below</div>
+              <div class="mock-grid-3">
+                <div class="mock-card"><div class="mock-img" style="height: 30px;">SKU</div><div class="mock-price">?</div></div>
+                <div class="mock-card"><div class="mock-img" style="height: 30px;">SKU</div><div class="mock-price">?</div></div>
+                <div class="mock-card"><div class="mock-img" style="height: 30px;">SKU</div><div class="mock-price">?</div></div>
+              </div>
+              <div class="mock-grid-3">
+                <div class="mock-card"><div class="mock-img" style="height: 30px;">SKU</div><div class="mock-price">?</div></div>
+                <div class="mock-card"><div class="mock-img" style="height: 30px;">SKU</div><div class="mock-price">?</div></div>
+                <div class="mock-card"><div class="mock-img" style="height: 30px;">SKU</div><div class="mock-price">?</div></div>
+              </div>
+              <div style="font-family: var(--mono); font-size: 9px; color: #a04545; letter-spacing: .1em; text-transform: uppercase; padding-top: 4px; border-top: 1px dashed rgba(0,0,0,.12);">Sitewide CR: 0.80% &middot; PDP to ATC: 1.20%</div>
+            </div>
+          </div>
+          <div class="var-card">
+            <h5>Variant</h5>
+            <div class="mock-frame">
+              <div class="mock-bar" style="background: #6a2727; height: 4px;"></div>
+              <div style="font-family: var(--mono); font-size: 9px; color: #545048; letter-spacing: .1em; text-transform: uppercase;">Homepage hero &middot; Evergreen</div>
+              <div class="mock-quiz-card">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <span style="font-family: var(--mono); font-size: 8px; color: #6a2727; letter-spacing: .15em; text-transform: uppercase; font-weight: 700;">Gift Finder &middot; 60 seconds</span>
+                  <span style="font-family: var(--mono); font-size: 8px; color: #545048;">1 of 6</span>
+                </div>
+                <div class="mock-progress"><i></i></div>
+                <div style="font-size: 13px; font-weight: 700; color: #1c1818; line-height: 1.3;">Who are you shopping for?</div>
+                <div class="mock-options">
+                  <div class="mock-option selected">Dad</div>
+                  <div class="mock-option">Grandpa</div>
+                  <div class="mock-option">Brother or partner</div>
+                  <div class="mock-option">Myself</div>
+                </div>
+                <div class="mock-cta">Next question →</div>
+              </div>
+              <div style="font-family: var(--mono); font-size: 8px; color: #545048; letter-spacing: .1em;">Result page: pre-customized bundle + email capture pre-result</div>
+              <div style="font-family: var(--mono); font-size: 9px; color: #4a8a5c; letter-spacing: .1em; text-transform: uppercase; padding-top: 4px; border-top: 1px dashed rgba(0,0,0,.12);">Target quiz CR: 3 to 6% &middot; Email retargeting asset</div>
+            </div>
+          </div>
+        </div>
+
+        <p class="small" style="margin-top: 14px;"><strong style="color: var(--ink);">Primary metric:</strong> Quiz-completer purchase rate vs non-quiz CR &middot; <strong style="color: var(--ink);">Target:</strong> 500 completions / mo, 8 weeks to compare cohorts.</p>
+      </div>
+    </section>
+
+    <!-- 8. PDP heuristic -->
+    <section class="slide" data-slide="8">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> BASEBALL BBQ / CRO AUDIT</div>
+          <div class="eyebrow">8 / PDP (the leak)</div>
         </div>
         <h2 class="h-section" style="margin-bottom: 16px;">The PDP loses 98.8% of viewers. Here is why.</h2>
 
@@ -852,12 +1192,12 @@
       </div>
     </section>
 
-    <!-- 8. Featured Products Collection -->
-    <section class="slide" data-slide="8">
+    <!-- 9. Featured Products Collection -->
+    <section class="slide" data-slide="9">
       <div class="pad">
         <div class="top-row">
           <div class="brand"><div class="brand-mark"></div> BASEBALL BBQ / CRO AUDIT</div>
-          <div class="eyebrow">8 / Featured Products</div>
+          <div class="eyebrow">9 / Featured Products</div>
         </div>
         <h2 class="h-section" style="margin-bottom: 16px;">The most-clicked collection earns $0. Audit the composition.</h2>
 
@@ -910,12 +1250,12 @@
       </div>
     </section>
 
-    <!-- 9. Homepage (post Father's Day) -->
-    <section class="slide" data-slide="9">
+    <!-- 10. Homepage (post Father's Day) -->
+    <section class="slide" data-slide="10">
       <div class="pad">
         <div class="top-row">
           <div class="brand"><div class="brand-mark"></div> BASEBALL BBQ / CRO AUDIT</div>
-          <div class="eyebrow">9 / Homepage (evergreen)</div>
+          <div class="eyebrow">10 / Homepage (evergreen)</div>
         </div>
         <h2 class="h-section" style="margin-bottom: 8px;">The current hero is Father's Day. The evergreen hero needs a job.</h2>
         <p class="lede" style="margin-bottom: 16px;">The hero swaps every season. The recommendation is not about today's Father's Day banner. It is about what the <strong style="color: var(--ink);">always-on</strong> hero needs to do for the other 11 months when there is no holiday peg.</p>
@@ -961,12 +1301,12 @@
       </div>
     </section>
 
-    <!-- 10. The funnel -->
-    <section class="slide" data-slide="10">
+    <!-- 11. The funnel -->
+    <section class="slide" data-slide="11">
       <div class="pad">
         <div class="top-row">
           <div class="brand"><div class="brand-mark"></div> BASEBALL BBQ / CRO AUDIT</div>
-          <div class="eyebrow">10 / The funnel</div>
+          <div class="eyebrow">11 / The funnel</div>
         </div>
 
         <h2 class="sub-display" style="margin-bottom: 18px;">View Product to Add to Cart.<br><span class="accent">The 98.8% drop.</span></h2>
@@ -1033,12 +1373,12 @@
       </div>
     </section>
 
-    <!-- 11. Traffic reality -->
-    <section class="slide" data-slide="11">
+    <!-- 12. Traffic reality -->
+    <section class="slide" data-slide="12">
       <div class="pad">
         <div class="top-row">
           <div class="brand"><div class="brand-mark"></div> BASEBALL BBQ / CRO AUDIT</div>
-          <div class="eyebrow">11 / Traffic reality</div>
+          <div class="eyebrow">12 / Traffic reality</div>
         </div>
 
         <div class="grid cols-2" style="align-items: flex-start; gap: 36px;">
@@ -1095,12 +1435,12 @@
       </div>
     </section>
 
-    <!-- 12. Channels -->
-    <section class="slide" data-slide="12">
+    <!-- 13. Channels -->
+    <section class="slide" data-slide="13">
       <div class="pad">
         <div class="top-row">
           <div class="brand"><div class="brand-mark"></div> BASEBALL BBQ / CRO AUDIT</div>
-          <div class="eyebrow">12 / Channels</div>
+          <div class="eyebrow">13 / Channels</div>
         </div>
 
         <h2 class="sub-display" style="margin-bottom: 20px;">Google Organic does the<br>heavy lifting. Direct is bots.</h2>
@@ -1164,12 +1504,12 @@
       </div>
     </section>
 
-    <!-- 13. Mobile is the store -->
-    <section class="slide" data-slide="13">
+    <!-- 14. Mobile is the store -->
+    <section class="slide" data-slide="14">
       <div class="pad">
         <div class="top-row">
           <div class="brand"><div class="brand-mark"></div> BASEBALL BBQ / CRO AUDIT</div>
-          <div class="eyebrow">13 / Mobile</div>
+          <div class="eyebrow">14 / Mobile</div>
         </div>
 
         <div class="grid cols-2" style="align-items: center; gap: 36px;">
@@ -1203,12 +1543,12 @@
       </div>
     </section>
 
-    <!-- 14. More ideas -->
-    <section class="slide" data-slide="14">
+    <!-- 15. More ideas -->
+    <section class="slide" data-slide="15">
       <div class="pad">
         <div class="top-row">
           <div class="brand"><div class="brand-mark"></div> BASEBALL BBQ / CRO AUDIT</div>
-          <div class="eyebrow">14 / More ideas</div>
+          <div class="eyebrow">15 / More ideas</div>
         </div>
         <h2 class="sub-display" style="margin-bottom: 14px;">More ideas worth running.</h2>
         <p class="lede" style="margin-bottom: 22px;">Beyond the three flagship tests. Some are direct implementations (ship them). Others are smaller A/B tests that validate the change before rolling out sitewide.</p>
@@ -1258,12 +1598,12 @@
       </div>
     </section>
 
-    <!-- 15. Voice of Customer -->
-    <section class="slide" data-slide="15">
+    <!-- 16. Voice of Customer -->
+    <section class="slide" data-slide="16">
       <div class="pad">
         <div class="top-row">
           <div class="brand"><div class="brand-mark"></div> BASEBALL BBQ / CRO AUDIT</div>
-          <div class="eyebrow">15 / Voice of customer</div>
+          <div class="eyebrow">16 / Voice of customer</div>
         </div>
 
         <div class="grid cols-2" style="gap: 36px; align-items: flex-start;">
@@ -1295,12 +1635,12 @@
       </div>
     </section>
 
-    <!-- 16. Competitive / market gap -->
-    <section class="slide" data-slide="16">
+    <!-- 17. Competitive / market gap -->
+    <section class="slide" data-slide="17">
       <div class="pad">
         <div class="top-row">
           <div class="brand"><div class="brand-mark"></div> BASEBALL BBQ / CRO AUDIT</div>
-          <div class="eyebrow">16 / Market gap</div>
+          <div class="eyebrow">17 / Market gap</div>
         </div>
         <h2 class="sub-display" style="margin-bottom: 18px;">Defend the premium niche.<br><span class="accent">Do not compete on price.</span></h2>
 
@@ -1333,12 +1673,12 @@
       </div>
     </section>
 
-    <!-- 17. Roadmap & Success metrics -->
-    <section class="slide" data-slide="17">
+    <!-- 18. Roadmap & Success metrics -->
+    <section class="slide" data-slide="18">
       <div class="pad">
         <div class="top-row">
           <div class="brand"><div class="brand-mark"></div> BASEBALL BBQ / CRO AUDIT</div>
-          <div class="eyebrow">17 / Success metrics</div>
+          <div class="eyebrow">18 / Success metrics</div>
         </div>
         <h2 class="sub-display" style="margin-bottom: 22px;">90-day scoreboard.</h2>
 
@@ -1589,23 +1929,24 @@
   });
 
   const slideMeta = [
-    { n: 1, label: 'Cover', sub: 'Three leaks. Three tests.', chip: 'Intro' },
+    { n: 1, label: 'Cover', sub: 'Three leaks. Eleven moves.', chip: 'Intro' },
     { n: 2, label: 'TL;DR', sub: 'Three findings drive the roadmap', chip: 'Summary' },
-    { n: 3, label: 'The three tests', sub: 'Impactful roadmap headline', chip: 'Tests' },
-    { n: 4, label: 'Test 01', sub: 'Featured Products collection rebuild', chip: 'Test' },
-    { n: 5, label: 'Test 02', sub: 'PDP buy-box rebuild', chip: 'Test' },
-    { n: 6, label: 'Test 03', sub: 'Gift-Finder Quiz', chip: 'Test' },
-    { n: 7, label: 'PDP', sub: 'The 98.8% leak', chip: 'Page' },
-    { n: 8, label: 'Featured Products', sub: '783 sessions, $0 revenue', chip: 'Page' },
-    { n: 9, label: 'Homepage (evergreen)', sub: 'What the post-FD hero needs', chip: 'Page' },
-    { n: 10, label: 'The funnel', sub: 'Sequential GA4 funnel', chip: 'Data' },
-    { n: 11, label: 'Traffic reality', sub: 'US is the store', chip: 'Data' },
-    { n: 12, label: 'Channels', sub: 'Google Organic is the leader', chip: 'Data' },
-    { n: 13, label: 'Mobile', sub: '14x better at PDP to ATC', chip: 'Data' },
-    { n: 14, label: 'More ideas', sub: 'Ship direct vs A/B test', chip: 'Roadmap' },
-    { n: 15, label: 'Voice of customer', sub: 'He cried. My dad cried.', chip: 'Insight' },
-    { n: 16, label: 'Market gap', sub: 'Defend the premium niche', chip: 'Strategy' },
-    { n: 17, label: 'Success metrics', sub: '90-day scoreboard', chip: 'Outcome' },
+    { n: 3, label: 'The three tests', sub: 'Flagship table overview', chip: 'Tests' },
+    { n: 4, label: '90-day program', sub: 'Full Gantt of all 11 moves', chip: 'Roadmap' },
+    { n: 5, label: 'Test 01', sub: 'Featured Products rebuild (with mockup)', chip: 'Test' },
+    { n: 6, label: 'Test 02', sub: 'PDP buy-box rebuild (with mockup)', chip: 'Test' },
+    { n: 7, label: 'Test 03', sub: 'Gift-Finder Quiz (with mockup)', chip: 'Test' },
+    { n: 8, label: 'PDP', sub: 'The 98.8% leak', chip: 'Page' },
+    { n: 9, label: 'Featured Products', sub: '783 sessions, $0 revenue', chip: 'Page' },
+    { n: 10, label: 'Homepage (evergreen)', sub: 'What the post-FD hero needs', chip: 'Page' },
+    { n: 11, label: 'The funnel', sub: 'Sequential GA4 funnel', chip: 'Data' },
+    { n: 12, label: 'Traffic reality', sub: 'US is the store', chip: 'Data' },
+    { n: 13, label: 'Channels', sub: 'Google Organic is the leader', chip: 'Data' },
+    { n: 14, label: 'Mobile', sub: '14x better at PDP to ATC', chip: 'Data' },
+    { n: 15, label: 'More ideas', sub: 'Ship direct vs A/B test', chip: 'Roadmap' },
+    { n: 16, label: 'Voice of customer', sub: 'He cried. My dad cried.', chip: 'Insight' },
+    { n: 17, label: 'Market gap', sub: 'Defend the premium niche', chip: 'Strategy' },
+    { n: 18, label: 'Success metrics', sub: '90-day scoreboard', chip: 'Outcome' },
   ];
   const $indexBtn = document.getElementById('index-btn');
   const $indexOverlay = document.getElementById('index-overlay');
