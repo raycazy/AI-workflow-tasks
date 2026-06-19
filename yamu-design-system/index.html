@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yamu Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&family=Raleway:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* ===== Brand ===== */
+  --orange:#f5751c;          /* primary accent / CTAs */
+  --orange-light:#f9a877;    /* logo light tone / soft accent */
+  --orange-deep:#d85f0e;     /* hover / pressed */
+  --navy:#071820;            /* brand dark / canvas base */
+
+  /* ===== Dark surface scale ===== */
+  --surface-0:#040f15;       /* page background (deepest) */
+  --surface-1:#071820;       /* brand navy panel */
+  --surface-2:#0c2630;       /* raised card */
+  --surface-3:#123240;       /* hover / nested */
+  --line:#1d3a47;            /* hairline border */
+  --line-soft:#152e39;
+
+  /* ===== Text on dark ===== */
+  --text:#eef4f6;            /* primary */
+  --text-2:#a9c0c9;          /* secondary */
+  --text-3:#6f8a95;          /* muted / captions */
+
+  /* ===== Semantic (tuned for dark) ===== */
+  --success:#34c759;
+  --success-bg:rgba(52,199,89,.14);
+  --error:#ff5a5a;
+  --error-bg:rgba(255,90,90,.14);
+  --warn:#ffb020;
+  --warn-bg:rgba(255,176,32,.14);
+  --info:#4aa8ff;
+  --info-bg:rgba(74,168,255,.14);
+
+  /* ===== Geometry ===== */
+  --r-sm:8px;
+  --r-md:14px;
+  --r-lg:22px;
+  --r-pill:999px;
+
+  /* ===== Elevation (glow-forward on dark) ===== */
+  --shadow-1:0 1px 2px rgba(0,0,0,.4);
+  --shadow-2:0 14px 40px rgba(0,0,0,.45);
+  --glow:0 0 0 1px rgba(245,117,28,.35), 0 14px 50px -12px rgba(245,117,28,.45);
+
+  /* ===== Fonts ===== */
+  --display:'Plus Jakarta Sans',sans-serif;
+  --body:'Manrope',sans-serif;
+  --num:'Poppins',sans-serif;
+
+  /* doc-only spacing */
+  --pad:clamp(20px,5vw,64px);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--body);
+  background:
+    radial-gradient(1100px 520px at 82% -8%, rgba(245,117,28,.16), transparent 60%),
+    radial-gradient(900px 480px at 0% 18%, rgba(74,168,255,.06), transparent 55%),
+    var(--surface-0);
+  color:var(--text);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  letter-spacing:.1px;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* ===== Layout shell ===== */
+.shell{display:grid;grid-template-columns:248px 1fr;max-width:1400px;margin:0 auto;min-height:100vh}
+
+/* ===== Side nav ===== */
+.sidenav{
+  position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;
+  border-right:1px solid var(--line);
+  background:linear-gradient(180deg,var(--surface-1),var(--surface-0));
+  padding:28px 22px;
+}
+.sidenav .brand{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.sidenav .brand img{width:34px;height:auto}
+.sidenav .brand b{font-family:var(--display);font-weight:800;font-size:18px;letter-spacing:.4px}
+.sidenav .ver{font-size:11px;color:var(--text-3);margin:0 0 26px 44px;letter-spacing:.6px;text-transform:uppercase}
+.sidenav nav a{
+  display:block;font-size:13.5px;color:var(--text-2);padding:8px 12px;border-radius:var(--r-sm);
+  transition:.18s;border-left:2px solid transparent;
+}
+.sidenav nav a:hover{color:var(--text);background:var(--surface-2)}
+.sidenav .navlabel{font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--text-3);margin:22px 0 8px 12px;font-weight:700}
+
+/* ===== Main ===== */
+main{padding:0 var(--pad) 120px}
+section{padding-top:96px;scroll-margin-top:24px}
+.eyebrow{font-family:var(--num);font-weight:600;font-size:12px;letter-spacing:2.4px;text-transform:uppercase;color:var(--orange);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--orange);display:inline-block;border-radius:2px}
+h2.title{font-family:var(--display);font-weight:800;font-size:clamp(26px,3.4vw,40px);line-height:1.1;letter-spacing:-.5px}
+.lede{color:var(--text-2);max-width:62ch;margin-top:14px;font-size:16.5px}
+
+/* ===== Hero ===== */
+.hero{padding-top:84px;min-height:78vh;display:flex;flex-direction:column;justify-content:center}
+.hero .logo{width:min(360px,62vw);margin-bottom:36px;filter:drop-shadow(0 18px 50px rgba(245,117,28,.32))}
+.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(40px,7vw,82px);line-height:1.02;letter-spacing:-1.6px}
+.hero h1 .mark{color:var(--orange)}
+.hero p{color:var(--text-2);max-width:60ch;font-size:clamp(16px,2vw,20px);margin-top:22px}
+.hero .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+.chip{font-family:var(--num);font-size:12.5px;font-weight:500;color:var(--text-2);border:1px solid var(--line);background:var(--surface-1);padding:7px 14px;border-radius:var(--r-pill)}
+.chip b{color:var(--orange);font-weight:600}
+
+/* ===== Essence ===== */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:34px}
+.essence{border:1px solid var(--line);border-radius:var(--r-lg);padding:30px;background:var(--surface-1)}
+.essence h3{font-family:var(--display);font-size:13px;letter-spacing:1.6px;text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:9px}
+.essence ul{list-style:none}
+.essence li{padding:9px 0;color:var(--text-2);border-bottom:1px solid var(--line-soft);font-size:15px}
+.essence li:last-child{border-bottom:0}
+.essence.is h3{color:var(--success)}
+.essence.isnot h3{color:var(--text-3)}
+.dot{width:8px;height:8px;border-radius:50%}
+
+/* ===== Color ===== */
+.swgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-top:30px}
+.sw{border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;background:var(--surface-1);cursor:pointer;transition:.18s}
+.sw:hover{transform:translateY(-3px);box-shadow:var(--shadow-2)}
+.sw .fill{height:104px;display:flex;align-items:flex-end;padding:12px;position:relative}
+.sw .copy{position:absolute;top:10px;right:10px;font-size:10px;letter-spacing:.5px;text-transform:uppercase;opacity:0;transition:.18s;background:rgba(0,0,0,.4);padding:4px 8px;border-radius:var(--r-pill);color:#fff}
+.sw:hover .copy{opacity:1}
+.sw .info{padding:13px 14px 16px}
+.sw .info .name{font-weight:700;font-size:14px}
+.sw .info .role{color:var(--text-3);font-size:12px;margin-top:2px}
+.sw .info .hex{font-family:var(--num);font-size:12.5px;color:var(--text-2);margin-top:9px;letter-spacing:.5px}
+.subhead{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.4px;color:var(--text);margin:40px 0 4px}
+.subnote{color:var(--text-3);font-size:13px}
+
+/* ===== Typography ===== */
+.fontcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:30px}
+.fontcard{border:1px solid var(--line);border-radius:var(--r-lg);padding:26px;background:var(--surface-1)}
+.fontcard .big{font-size:48px;line-height:1;margin-bottom:14px}
+.fontcard .label{font-family:var(--num);font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--orange);font-weight:600}
+.fontcard .role{color:var(--text-2);font-size:14px;margin-top:6px}
+.fontcard .wts{color:var(--text-3);font-size:12px;margin-top:14px;font-family:var(--num)}
+.scale{margin-top:36px;border-top:1px solid var(--line);padding-top:14px}
+.scale .row{display:flex;align-items:baseline;gap:22px;padding:14px 0;border-bottom:1px solid var(--line-soft)}
+.scale .row .tag{font-family:var(--num);font-size:11px;color:var(--text-3);width:120px;flex:none;letter-spacing:.5px}
+.scale .row .spec{font-family:var(--display);color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ===== Logo block ===== */
+.logos{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:30px}
+.logobox{border:1px solid var(--line);border-radius:var(--r-lg);padding:46px;display:flex;align-items:center;justify-content:center;min-height:180px}
+.logobox.dark{background:var(--surface-1)}
+.logobox.light{background:#ffffff}
+.logobox img{width:min(240px,60%)}
+.logobox.dark .cap,.logobox.light .cap{position:absolute}
+.logocap{font-size:12px;color:var(--text-3);margin-top:10px;font-family:var(--num)}
+.donts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:18px}
+.dont{border:1px solid var(--line);border-radius:var(--r-md);padding:18px;background:var(--surface-1);font-size:13.5px;color:var(--text-2);display:flex;gap:10px}
+.dont svg{flex:none;color:var(--error)}
+
+/* ===== Buttons ===== */
+.btnrow{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:30px}
+.btn{font-family:var(--display);font-weight:700;font-size:15px;border:0;border-radius:var(--r-pill);padding:14px 28px;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:10px;letter-spacing:.2px}
+.btn svg{width:17px;height:17px}
+.btn-primary{background:var(--orange);color:#fff;box-shadow:0 10px 30px -8px rgba(245,117,28,.6)}
+.btn-primary:hover{background:var(--orange-deep);transform:translateY(-2px)}
+.btn-secondary{background:transparent;color:var(--text);border:1.5px solid var(--line)}
+.btn-secondary:hover{border-color:var(--orange);color:var(--orange)}
+.btn-ghost{background:transparent;color:var(--orange);padding-left:8px;padding-right:8px}
+.btn-ghost:hover{gap:14px}
+.btn:focus-visible{outline:3px solid rgba(245,117,28,.5);outline-offset:2px}
+.btn[disabled]{opacity:.4;cursor:not-allowed;transform:none!important}
+.btn-sm{padding:9px 18px;font-size:13px}
+.btn-lg{padding:18px 36px;font-size:17px}
+.stateline{display:flex;flex-wrap:wrap;gap:14px;margin-top:22px}
+.statechip{font-family:var(--num);font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:1px;align-self:center}
+
+/* ===== Forms ===== */
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:30px;max-width:760px}
+.field label{display:block;font-size:13px;font-weight:600;color:var(--text-2);margin-bottom:8px}
+.input,select,textarea{
+  width:100%;font-family:var(--body);font-size:15px;color:var(--text);
+  background:var(--surface-1);border:1.5px solid var(--line);border-radius:var(--r-sm);
+  padding:13px 15px;transition:.18s;
+}
+.input::placeholder,textarea::placeholder{color:var(--text-3)}
+.input:focus,select:focus,textarea:focus{outline:0;border-color:var(--orange);box-shadow:0 0 0 4px rgba(245,117,28,.16)}
+textarea{resize:vertical;min-height:96px}
+.checkrow{display:flex;align-items:center;gap:11px;margin-top:6px;color:var(--text-2);font-size:14px}
+.checkrow input{width:19px;height:19px;accent-color:var(--orange)}
+
+/* ===== Badges ===== */
+.badgewrap{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px;align-items:center}
+.badge{font-family:var(--num);font-weight:600;font-size:12.5px;padding:6px 13px;border-radius:var(--r-pill);display:inline-flex;align-items:center;gap:6px}
+.b-up{background:var(--success-bg);color:var(--success)}
+.b-down{background:var(--error-bg);color:var(--error)}
+.b-warn{background:var(--warn-bg);color:var(--warn)}
+.b-info{background:var(--info-bg);color:var(--info)}
+.b-accent{background:rgba(245,117,28,.16);color:var(--orange)}
+.b-solid{background:var(--orange);color:#fff}
+.b-outline{background:transparent;border:1px solid var(--line);color:var(--text-2)}
+
+/* ===== Cards ===== */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:30px}
+.card{border:1px solid var(--line);border-radius:var(--r-lg);padding:26px;background:var(--surface-1);transition:.2s}
+.card:hover{border-color:var(--line);box-shadow:var(--shadow-2);transform:translateY(-3px)}
+.statcard .k{font-family:var(--num);font-weight:700;font-size:42px;color:var(--orange);line-height:1}
+.statcard .lab{color:var(--text-2);font-size:14px;margin-top:8px}
+.statcard .delta{margin-top:12px}
+.findcard{border-left:3px solid var(--orange)}
+.findcard .sev{font-family:var(--num);font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--orange);font-weight:600}
+.findcard h4{font-family:var(--display);font-size:18px;margin:8px 0 8px}
+.findcard p{color:var(--text-2);font-size:14px}
+
+/* ===== Geometry / elevation ===== */
+.geogrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin-top:30px}
+.geo{border:1px solid var(--line);background:var(--surface-1);padding:22px;text-align:center}
+.geobox{height:70px;background:linear-gradient(135deg,var(--orange),var(--orange-light));margin:0 auto 14px;width:100%}
+.geo .n{font-family:var(--num);font-size:13px;color:var(--text)}
+.geo .d{color:var(--text-3);font-size:12px}
+.elev{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:20px;margin-top:20px}
+.elevbox{height:96px;border-radius:var(--r-md);background:var(--surface-2);display:flex;align-items:flex-end;padding:12px;font-family:var(--num);font-size:12px;color:var(--text-3)}
+
+/* ===== Icons ===== */
+.icongrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:14px;margin-top:30px}
+.icon{border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface-1);padding:22px 12px;text-align:center;transition:.18s}
+.icon:hover{border-color:var(--orange);color:var(--orange)}
+.icon svg{width:26px;height:26px;color:var(--orange);margin-bottom:10px}
+.icon span{display:block;font-size:11px;color:var(--text-3);font-family:var(--num)}
+.icon:hover span{color:var(--orange)}
+
+/* ===== Motion ===== */
+.motiongrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:30px}
+.mtile{border:1px solid var(--line);border-radius:var(--r-md);padding:22px;background:var(--surface-1)}
+.mtile .name{font-family:var(--num);font-weight:600;color:var(--text);font-size:14px}
+.mtile .val{font-family:var(--num);font-size:12px;color:var(--text-3);margin-top:4px}
+.mball{width:18px;height:18px;border-radius:50%;background:var(--orange);margin-top:16px}
+
+/* ===== Voice ===== */
+.voice{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:30px}
+.vcol{border:1px solid var(--line);border-radius:var(--r-lg);padding:26px;background:var(--surface-1)}
+.vcol h4{font-family:var(--display);font-size:13px;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:16px}
+.vcol.good h4{color:var(--success)}
+.vcol.bad h4{color:var(--error)}
+.vcol p{color:var(--text-2);font-size:14.5px;padding:10px 0;border-bottom:1px solid var(--line-soft)}
+.vcol p:last-child{border:0}
+.vcol .q{color:var(--text);font-style:italic}
+
+/* ===== Footer ===== */
+footer{border-top:1px solid var(--line);margin-top:110px;padding:40px var(--pad);color:var(--text-3);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:var(--num)}
+footer b{color:var(--orange)}
+
+/* toast */
+#toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(30px);background:var(--orange);color:#fff;padding:11px 22px;border-radius:var(--r-pill);font-family:var(--num);font-size:13px;font-weight:600;opacity:0;transition:.25s;pointer-events:none;z-index:50}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ===== Responsive ===== */
+@media(max-width:980px){
+  .shell{grid-template-columns:1fr}
+  .sidenav{display:none}
+  .split,.logos,.formgrid,.voice{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- ============ SIDE NAV ============ -->
+  <aside class="sidenav">
+    <div class="brand"><img src="logo.png" alt="Yamu"><b>Yamu</b></div>
+    <div class="ver">Design System · v1.0</div>
+    <nav>
+      <div class="navlabel">Foundations</div>
+      <a href="#essence">Brand essence</a>
+      <a href="#color">Color</a>
+      <a href="#type">Typography</a>
+      <a href="#logo">Logo</a>
+      <div class="navlabel">Components</div>
+      <a href="#buttons">Buttons</a>
+      <a href="#forms">Forms</a>
+      <a href="#badges">Badges &amp; tags</a>
+      <a href="#cards">Cards</a>
+      <div class="navlabel">System</div>
+      <a href="#geometry">Geometry &amp; elevation</a>
+      <a href="#icons">Iconography</a>
+      <a href="#motion">Motion</a>
+      <a href="#voice">Voice &amp; tone</a>
+    </nav>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <main>
+
+    <!-- HERO -->
+    <header class="hero">
+      <img class="logo" src="logo.png" alt="Yamu Media">
+      <h1>The Yamu<br><span class="mark">Design System.</span></h1>
+      <p>The single source of truth for how Yamu looks, reads, and behaves. Color, type, components, and voice for every audit, landing page, deck, and dashboard we ship.</p>
+      <div class="meta">
+        <span class="chip">Mode <b>Dark</b></span>
+        <span class="chip">Accent <b>#F5751C</b></span>
+        <span class="chip">Canvas <b>#071820</b></span>
+        <span class="chip">Type <b>Plus Jakarta · Manrope</b></span>
+        <span class="chip">Updated <b>Jun 2026</b></span>
+      </div>
+    </header>
+
+    <!-- ESSENCE -->
+    <section id="essence">
+      <div class="eyebrow">Brand essence</div>
+      <h2 class="title">Clear, credible, conversion led.</h2>
+      <p class="lede">Yamu is a CRO and design studio. The brand should read like a sharp analyst who also has taste: data first, never loud, always actionable.</p>
+      <div class="split">
+        <div class="essence is">
+          <h3><span class="dot" style="background:var(--success)"></span>It is</h3>
+          <ul>
+            <li>Confident and evidence based</li>
+            <li>Calm, modern, generous with space</li>
+            <li>Orange used as a precise highlight, not a wash</li>
+            <li>Numbers and outcomes front and center</li>
+            <li>Plain English, short sentences</li>
+          </ul>
+        </div>
+        <div class="essence isnot">
+          <h3><span class="dot" style="background:var(--text-3)"></span>It is not</h3>
+          <ul>
+            <li>Hype, salesy, or paratactic ("Fast. Simple. Done.")</li>
+            <li>Cluttered or gradient heavy</li>
+            <li>Orange on orange on orange</li>
+            <li>Jargon or vague growth speak</li>
+            <li>Em dashes, ever</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLOR -->
+    <section id="color">
+      <div class="eyebrow">Color</div>
+      <h2 class="title">A navy canvas, lit by orange.</h2>
+      <p class="lede">The system is dark by default. Deep navy carries the page, orange does the pointing. Click any swatch to copy its hex.</p>
+
+      <div class="subhead">Brand</div>
+      <div class="subnote">The non negotiables. Orange is the only true accent.</div>
+      <div class="swgrid">
+        <div class="sw" data-hex="#F5751C"><div class="fill" style="background:#F5751C"><span class="copy">click to copy</span></div><div class="info"><div class="name">Yamu Orange</div><div class="role">Primary accent, CTAs, links</div><div class="hex">#F5751C</div></div></div>
+        <div class="sw" data-hex="#F9A877"><div class="fill" style="background:#F9A877"><span class="copy">click to copy</span></div><div class="info"><div class="name">Light Orange</div><div class="role">Logo tone, soft highlight</div><div class="hex">#F9A877</div></div></div>
+        <div class="sw" data-hex="#D85F0E"><div class="fill" style="background:#D85F0E"><span class="copy">click to copy</span></div><div class="info"><div class="name">Deep Orange</div><div class="role">Hover, pressed states</div><div class="hex">#D85F0E</div></div></div>
+        <div class="sw" data-hex="#071820"><div class="fill" style="background:#071820"><span class="copy">click to copy</span></div><div class="info"><div class="name">Brand Navy</div><div class="role">Brand dark, panels</div><div class="hex">#071820</div></div></div>
+      </div>
+
+      <div class="subhead">Surface scale</div>
+      <div class="subnote">Layered darkness builds depth without shadows fighting the background.</div>
+      <div class="swgrid">
+        <div class="sw" data-hex="#040F15"><div class="fill" style="background:#040F15"><span class="copy">click to copy</span></div><div class="info"><div class="name">Surface 0</div><div class="role">Page background</div><div class="hex">#040F15</div></div></div>
+        <div class="sw" data-hex="#071820"><div class="fill" style="background:#071820"><span class="copy">click to copy</span></div><div class="info"><div class="name">Surface 1</div><div class="role">Default panel</div><div class="hex">#071820</div></div></div>
+        <div class="sw" data-hex="#0C2630"><div class="fill" style="background:#0C2630"><span class="copy">click to copy</span></div><div class="info"><div class="name">Surface 2</div><div class="role">Raised card</div><div class="hex">#0C2630</div></div></div>
+        <div class="sw" data-hex="#123240"><div class="fill" style="background:#123240"><span class="copy">click to copy</span></div><div class="info"><div class="name">Surface 3</div><div class="role">Hover, nested</div><div class="hex">#123240</div></div></div>
+        <div class="sw" data-hex="#1D3A47"><div class="fill" style="background:#1D3A47"><span class="copy">click to copy</span></div><div class="info"><div class="name">Hairline</div><div class="role">Borders, dividers</div><div class="hex">#1D3A47</div></div></div>
+      </div>
+
+      <div class="subhead">Text</div>
+      <div class="swgrid">
+        <div class="sw" data-hex="#EEF4F6"><div class="fill" style="background:#EEF4F6"><span class="copy" style="color:#071820;background:rgba(255,255,255,.5)">click to copy</span></div><div class="info"><div class="name">Text Primary</div><div class="role">Headings, body</div><div class="hex">#EEF4F6</div></div></div>
+        <div class="sw" data-hex="#A9C0C9"><div class="fill" style="background:#A9C0C9"><span class="copy" style="color:#071820;background:rgba(255,255,255,.5)">click to copy</span></div><div class="info"><div class="name">Text Secondary</div><div class="role">Supporting copy</div><div class="hex">#A9C0C9</div></div></div>
+        <div class="sw" data-hex="#6F8A95"><div class="fill" style="background:#6F8A95"><span class="copy">click to copy</span></div><div class="info"><div class="name">Text Muted</div><div class="role">Captions, labels</div><div class="hex">#6F8A95</div></div></div>
+      </div>
+
+      <div class="subhead">Semantic</div>
+      <div class="subnote">Reserved for data and status. Tuned to read on dark, never for decoration.</div>
+      <div class="swgrid">
+        <div class="sw" data-hex="#34C759"><div class="fill" style="background:#34C759"><span class="copy">click to copy</span></div><div class="info"><div class="name">Success</div><div class="role">Positive metric, win</div><div class="hex">#34C759</div></div></div>
+        <div class="sw" data-hex="#FF5A5A"><div class="fill" style="background:#FF5A5A"><span class="copy">click to copy</span></div><div class="info"><div class="name">Error</div><div class="role">Negative metric, issue</div><div class="hex">#FF5A5A</div></div></div>
+        <div class="sw" data-hex="#FFB020"><div class="fill" style="background:#FFB020"><span class="copy">click to copy</span></div><div class="info"><div class="name">Warning</div><div class="role">Caution, mid priority</div><div class="hex">#FFB020</div></div></div>
+        <div class="sw" data-hex="#4AA8FF"><div class="fill" style="background:#4AA8FF"><span class="copy">click to copy</span></div><div class="info"><div class="name">Info</div><div class="role">Neutral note, link</div><div class="hex">#4AA8FF</div></div></div>
+      </div>
+    </section>
+
+    <!-- TYPOGRAPHY -->
+    <section id="type">
+      <div class="eyebrow">Typography</div>
+      <h2 class="title">Geometric display, humanist body.</h2>
+      <p class="lede">Plus Jakarta Sans leads headlines. Manrope carries body text. Poppins handles numbers and data so metrics feel deliberate.</p>
+      <div class="fontcards">
+        <div class="fontcard">
+          <div class="big" style="font-family:var(--display);font-weight:800">Aa</div>
+          <div class="label">Display</div>
+          <div style="font-family:var(--display);font-weight:700;font-size:20px;margin-top:6px">Plus Jakarta Sans</div>
+          <div class="role">Headlines, section titles, button labels.</div>
+          <div class="wts">400 · 500 · 600 · 700 · 800</div>
+        </div>
+        <div class="fontcard">
+          <div class="big" style="font-family:var(--body);font-weight:700">Aa</div>
+          <div class="label">Body</div>
+          <div style="font-family:var(--body);font-weight:700;font-size:20px;margin-top:6px">Manrope</div>
+          <div class="role">Paragraphs, lists, captions, UI text.</div>
+          <div class="wts">300 · 400 · 500 · 600 · 700 · 800</div>
+        </div>
+        <div class="fontcard">
+          <div class="big" style="font-family:var(--num);font-weight:700">123</div>
+          <div class="label">Numeric</div>
+          <div style="font-family:var(--num);font-weight:700;font-size:20px;margin-top:6px">Poppins</div>
+          <div class="role">Stats, percentages, data labels, chips.</div>
+          <div class="wts">400 · 500 · 600 · 700</div>
+        </div>
+      </div>
+      <div class="subnote" style="margin-top:22px">Fallback families from the audit deck system: Raleway and Montserrat for long form and alternate sans needs.</div>
+
+      <div class="scale">
+        <div class="row"><span class="tag">Display / 64</span><span class="spec" style="font-size:64px;font-weight:800;letter-spacing:-1.5px">Turn traffic into revenue</span></div>
+        <div class="row"><span class="tag">H1 / 44</span><span class="spec" style="font-size:44px;font-weight:800;letter-spacing:-1px">Conversion, by the numbers</span></div>
+        <div class="row"><span class="tag">H2 / 32</span><span class="spec" style="font-size:32px;font-weight:700;letter-spacing:-.5px">Where the leaks are</span></div>
+        <div class="row"><span class="tag">H3 / 24</span><span class="spec" style="font-size:24px;font-weight:600">Three tests for this quarter</span></div>
+        <div class="row"><span class="tag">Body / 16</span><span class="spec" style="font-size:16px;font-weight:400;font-family:var(--body);color:var(--text-2)">The mobile add to cart sits below the fold. Moving it up is the cheapest win on this page.</span></div>
+        <div class="row"><span class="tag">Caption / 13</span><span class="spec" style="font-size:13px;font-weight:500;font-family:var(--num);color:var(--text-3);letter-spacing:.5px">SOURCE: GA4, LAST 90 DAYS</span></div>
+      </div>
+    </section>
+
+    <!-- LOGO -->
+    <section id="logo">
+      <div class="eyebrow">Logo</div>
+      <h2 class="title">The mark and the wordmark.</h2>
+      <p class="lede">A two tone orange "V" formed from a person and a checkmark, paired with the YAMU wordmark. Give it room and keep it orange.</p>
+      <div class="logos">
+        <div class="logobox dark"><img src="logo.png" alt="Yamu on dark"></div>
+        <div class="logobox light"><img src="logo.png" alt="Yamu on light"></div>
+      </div>
+      <div class="subnote" style="margin-top:10px">Primary lockup on navy (left) and on white (right). The orange mark holds on both. Minimum clearspace equals the height of the "V" mark on all sides.</div>
+      <div class="donts">
+        <div class="dont"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 8l8 8M16 8l-8 8"/></svg>Do not recolor the mark outside the orange family.</div>
+        <div class="dont"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 8l8 8M16 8l-8 8"/></svg>Do not stretch, skew, or rotate the lockup.</div>
+        <div class="dont"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 8l8 8M16 8l-8 8"/></svg>Do not place on a busy photo without a scrim.</div>
+        <div class="dont"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 8l8 8M16 8l-8 8"/></svg>Do not add shadows, outlines, or effects.</div>
+      </div>
+    </section>
+
+    <!-- BUTTONS -->
+    <section id="buttons">
+      <div class="eyebrow">Buttons</div>
+      <h2 class="title">One loud button per view.</h2>
+      <p class="lede">Pill shaped, confident, generous padding. The orange primary is the single most important action. Everything else steps back.</p>
+      <div class="btnrow">
+        <button class="btn btn-primary">Book a CRO audit
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <button class="btn btn-secondary">View the work</button>
+        <button class="btn btn-ghost">Read the case study
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+      <div class="btnrow">
+        <button class="btn btn-primary btn-sm">Small</button>
+        <button class="btn btn-primary">Default</button>
+        <button class="btn btn-primary btn-lg">Large</button>
+        <button class="btn btn-primary" disabled>Disabled</button>
+      </div>
+      <div class="stateline">
+        <span class="statechip">States · rest, hover lifts and darkens, focus shows a soft orange ring, disabled drops to 40%</span>
+      </div>
+    </section>
+
+    <!-- FORMS -->
+    <section id="forms">
+      <div class="eyebrow">Forms</div>
+      <h2 class="title">Quiet fields, clear focus.</h2>
+      <p class="lede">Inputs sit on panel navy with a hairline border. Focus is the only place orange appears, so the active field is obvious.</p>
+      <div class="formgrid">
+        <div class="field"><label>Full name</label><input class="input" placeholder="Jane Doe"></div>
+        <div class="field"><label>Work email</label><input class="input" type="email" placeholder="jane@company.com"></div>
+        <div class="field"><label>Monthly revenue</label>
+          <select><option>Select a range</option><option>Under $50k</option><option>$50k to $250k</option><option>$250k+</option></select>
+        </div>
+        <div class="field"><label>Website URL</label><input class="input" placeholder="https://"></div>
+        <div class="field" style="grid-column:1/-1"><label>What are you trying to improve?</label><textarea placeholder="Tell us about your conversion goals..."></textarea></div>
+      </div>
+      <label class="checkrow"><input type="checkbox" checked> Send me the monthly CRO teardown</label>
+    </section>
+
+    <!-- BADGES -->
+    <section id="badges">
+      <div class="eyebrow">Badges &amp; tags</div>
+      <h2 class="title">Status at a glance.</h2>
+      <p class="lede">Used heavily in audits and dashboards. Semantic color carries the meaning, the pill keeps it compact.</p>
+      <div class="badgewrap">
+        <span class="badge b-up">&#9650; +18.4% CR</span>
+        <span class="badge b-down">&#9660; -12% AOV</span>
+        <span class="badge b-warn">Mid priority</span>
+        <span class="badge b-info">Tracking ready</span>
+        <span class="badge b-accent">A/B test</span>
+        <span class="badge b-solid">New</span>
+        <span class="badge b-outline">Draft</span>
+      </div>
+    </section>
+
+    <!-- CARDS -->
+    <section id="cards">
+      <div class="eyebrow">Cards</div>
+      <h2 class="title">Containers for evidence.</h2>
+      <p class="lede">The repeating units of a Yamu deliverable: a stat, a finding, a recommendation.</p>
+      <div class="cards">
+        <div class="card statcard">
+          <div class="k">+34%</div>
+          <div class="lab">Checkout completion after test</div>
+          <div class="delta"><span class="badge b-up">&#9650; statistically significant</span></div>
+        </div>
+        <div class="card findcard">
+          <div class="sev">High impact</div>
+          <h4>Mobile CTA below the fold</h4>
+          <p>The add to cart never appears in the first viewport on mobile. 71% of sessions are mobile. Move it up.</p>
+        </div>
+        <div class="card">
+          <div class="sev" style="font-family:var(--num);font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--text-3);font-weight:600">Recommendation</div>
+          <h4 style="font-family:var(--display);font-size:18px;margin:8px 0">Add trust badges to PDP</h4>
+          <p style="color:var(--text-2);font-size:14px">Reviews and guarantee near the buy box. Low effort, addresses the top objection from review mining.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GEOMETRY -->
+    <section id="geometry">
+      <div class="eyebrow">Geometry &amp; elevation</div>
+      <h2 class="title">Soft corners, layered depth.</h2>
+      <p class="lede">Rounded but not bubbly. On dark, depth comes from surface layering and a restrained orange glow, not heavy drop shadows.</p>
+      <div class="geogrid">
+        <div class="geo"><div class="geobox" style="border-radius:8px"></div><div class="n">8px</div><div class="d">Inputs, chips</div></div>
+        <div class="geo"><div class="geobox" style="border-radius:14px"></div><div class="n">14px</div><div class="d">Cards, panels</div></div>
+        <div class="geo"><div class="geobox" style="border-radius:22px"></div><div class="n">22px</div><div class="d">Feature blocks</div></div>
+        <div class="geo"><div class="geobox" style="border-radius:999px"></div><div class="n">Pill</div><div class="d">Buttons, badges</div></div>
+      </div>
+      <div class="elev">
+        <div class="elevbox" style="box-shadow:var(--shadow-1)">Level 1 · hairline</div>
+        <div class="elevbox" style="box-shadow:var(--shadow-2)">Level 2 · raised</div>
+        <div class="elevbox" style="box-shadow:var(--glow)">Glow · accent focus</div>
+      </div>
+    </section>
+
+    <!-- ICONS -->
+    <section id="icons">
+      <div class="eyebrow">Iconography</div>
+      <h2 class="title">Line icons, never emoji.</h2>
+      <p class="lede">Stroke icons at 1.8 to 2px, orange on dark. Emoji never ships in production. SVG only.</p>
+      <div class="icongrid">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg><span>Growth</span></div>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><span>Audit</span></div>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg><span>Win</span></div>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 9h6v6H9z"/></svg><span>Test</span></div>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span>Speed</span></div>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6L9 17l-5-5"/></svg><span>Done</span></div>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9h18M9 21V9"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg><span>Layout</span></div>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span>Pulse</span></div>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.6-2-3.4-2.4 1a7 7 0 0 0-1.7-1L16.5 3h-4l-.3 2.6a7 7 0 0 0-1.7 1l-2.4-1-2 3.4 2 1.6a7 7 0 0 0 0 2l-2 1.6 2 3.4 2.4-1a7 7 0 0 0 1.7 1l.3 2.6h4l.3-2.6a7 7 0 0 0 1.7-1l2.4 1 2-3.4-2-1.6a7 7 0 0 0 .1-1z"/></svg><span>Setup</span></div>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l19-9-9 19-2-8z"/></svg><span>Send</span></div>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L23 6H6"/></svg><span>Cart</span></div>
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 9V5a3 3 0 0 0-6 0v4"/><rect x="5" y="9" width="14" height="11" rx="2"/></svg><span>Trust</span></div>
+      </div>
+    </section>
+
+    <!-- MOTION -->
+    <section id="motion">
+      <div class="eyebrow">Motion</div>
+      <h2 class="title">Purposeful, never busy.</h2>
+      <p class="lede">Motion guides the eye to outcomes. Short, eased, and used sparingly. Reveals on scroll, counters on stats, lift on hover.</p>
+      <div class="motiongrid">
+        <div class="mtile"><div class="name">Micro</div><div class="val">120ms · ease-out</div><div class="mball" style="transition:transform .12s ease-out" onmouseover="this.style.transform='translateX(40px)'" onmouseout="this.style.transform='translateX(0)'"></div></div>
+        <div class="mtile"><div class="name">Standard</div><div class="val">220ms · cubic-bezier(.2,.8,.2,1)</div><div class="mball" style="transition:transform .22s cubic-bezier(.2,.8,.2,1)" onmouseover="this.style.transform='translateX(40px)'" onmouseout="this.style.transform='translateX(0)'"></div></div>
+        <div class="mtile"><div class="name">Entrance</div><div class="val">600ms · scroll reveal (GSAP)</div><div class="mball" style="transition:transform .6s cubic-bezier(.16,1,.3,1)" onmouseover="this.style.transform='translateX(40px)'" onmouseout="this.style.transform='translateX(0)'"></div></div>
+      </div>
+      <div class="subnote" style="margin-top:16px">Hover any track to preview its easing. Counters animate with GSAP on enter. Respect prefers-reduced-motion.</div>
+    </section>
+
+    <!-- VOICE -->
+    <section id="voice">
+      <div class="eyebrow">Voice &amp; tone</div>
+      <h2 class="title">Write like a sharp analyst.</h2>
+      <p class="lede">Plain English, short sentences, every claim backed by a number. No hype, no em dashes, no anticipating objections.</p>
+      <div class="voice">
+        <div class="vcol good">
+          <h4>Do</h4>
+          <p class="q">"Mobile is 71% of sessions but converts at half the desktop rate. That gap is the opportunity."</p>
+          <p class="q">"Three tests for Q3, ranked by expected lift."</p>
+          <p>Lead with the metric. Name the source. Recommend one clear action.</p>
+        </div>
+        <div class="vcol bad">
+          <h4>Avoid</h4>
+          <p class="q">"Unlock explosive growth and skyrocket your revenue!"</p>
+          <p class="q">"Fast. Simple. Done."</p>
+          <p>No paratactic fragments, no growth speak, no em dashes. Use periods, colons, and parentheses instead.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <span>Yamu Media · Design System v1.0</span>
+  <span>Navy <b>#071820</b> · Orange <b>#F5751C</b> · Updated June 2026</span>
+</footer>
+
+<div id="toast">Copied</div>
+
+<script>
+const toast=document.getElementById('toast');
+document.querySelectorAll('.sw').forEach(sw=>{
+  sw.addEventListener('click',()=>{
+    const hex=sw.dataset.hex;
+    navigator.clipboard&&navigator.clipboard.writeText(hex);
+    toast.textContent=hex+' copied';
+    toast.classList.add('show');
+    clearTimeout(window._t);
+    window._t=setTimeout(()=>toast.classList.remove('show'),1400);
+  });
+});
+</script>
+</body>
+</html>
