@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#ffffff">
+<title>IWAO · CRO Program · Q2 2026 Test Roadmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --display: 'Assistant', system-ui, sans-serif;
+    --body: 'Assistant', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --coral: #f05c46;
+    --coral-soft: #fcdeda;
+    --coral-tint: #fef7f6;
+    --green: #00B67A;
+    --blue: #334fb4;
+  }
+  html[data-theme="light"] {
+    --bg: #ece8e1;
+    --slide: #ffffff;
+    --bg-2: #f6f6f6;
+    --bg-3: #f9f9f9;
+    --line: rgba(18,18,18,0.10);
+    --line-strong: rgba(18,18,18,0.20);
+    --ink: #121212;
+    --ink-2: #555555;
+    --ink-3: #8c8c8c;
+    --shadow: 0 18px 50px rgba(18,18,18,0.10);
+    --nav-bg: rgba(255,255,255,.86);
+  }
+  html[data-theme="dark"] {
+    --bg: #16171c;
+    --slide: #1d1f26;
+    --bg-2: #242833;
+    --bg-3: #20222a;
+    --line: rgba(255,255,255,0.10);
+    --line-strong: rgba(255,255,255,0.22);
+    --ink: #f3f1ee;
+    --ink-2: #b3b1ad;
+    --ink-3: #79776f;
+    --shadow: 0 22px 60px rgba(0,0,0,0.45);
+    --nav-bg: rgba(36,40,51,.84);
+  }
+
+  *,*::before,*::after { box-sizing: border-box; }
+  html, body {
+    margin: 0; height: 100%; overflow: hidden;
+    background: var(--bg); color: var(--ink);
+    font-family: var(--body);
+    -webkit-font-smoothing: antialiased;
+    transition: background .3s ease, color .3s ease;
+  }
+  body { overscroll-behavior: contain; touch-action: pan-y; }
+
+  /* Progress */
+  .progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; background: transparent; z-index: 60; }
+  .progress i { display: block; height: 100%; width: 0; background: var(--coral); transition: width .45s cubic-bezier(.2,.7,.2,1); }
+
+  /* Stage */
+  .stage { position: fixed; inset: 0; display: grid; place-items: center; padding: 18px; }
+  .deck { width: 100%; height: 100%; max-width: 1400px; max-height: 870px; position: relative; }
+  .slide {
+    position: absolute; inset: 0; border-radius: 20px; overflow: hidden;
+    background: var(--slide); border: 1px solid var(--line); box-shadow: var(--shadow);
+    opacity: 0; pointer-events: none; transform: translateX(40px) scale(.985);
+    transition: opacity .42s ease, transform .55s cubic-bezier(.2,.7,.2,1), background .3s ease, border-color .3s ease;
+    will-change: transform, opacity;
+  }
+  .slide.is-active { opacity: 1; pointer-events: auto; transform: translateX(0) scale(1); }
+  .slide.is-prev { opacity: 0; transform: translateX(-40px) scale(.985); }
+
+  .pad {
+    position: absolute; inset: 0; padding: 44px 52px 92px; overflow-y: auto; overflow-x: hidden;
+    -webkit-overflow-scrolling: touch; display: flex; flex-direction: column; scroll-behavior: smooth;
+  }
+  .pad::-webkit-scrollbar { width: 8px; }
+  .pad::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 4px; }
+
+  /* Typography helpers */
+  .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--coral); font-weight: 600; }
+  h1 { font-family: var(--display); font-weight: 800; letter-spacing: -0.02em; line-height: 1.04; margin: 0; }
+  h2 { font-family: var(--display); font-weight: 700; letter-spacing: -0.015em; line-height: 1.1; margin: 0; }
+  p { line-height: 1.55; color: var(--ink-2); }
+  a { color: var(--coral); }
+
+  /* Logo wordmark */
+  .logo { font-family: var(--display); font-weight: 800; letter-spacing: .04em; font-size: 22px; display: inline-flex; align-items: baseline; gap: 2px; color: var(--ink); }
+  .logo .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--coral); display: inline-block; transform: translateY(-12px); margin-left: 1px; }
+
+  /* Chips & badges */
+  .chip { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; padding: 5px 10px; border-radius: 40px; border: 1px solid var(--line-strong); color: var(--ink-2); white-space: nowrap; }
+  .chip.tid { background: var(--coral); border-color: var(--coral); color: #fff; font-weight: 700; letter-spacing: .1em; }
+  .chip.page { color: var(--ink); }
+  .chip.pillar { border-style: solid; }
+  .chip.pillar.a { color: var(--coral); border-color: var(--coral-soft); background: var(--coral-tint); }
+  .chip.pillar.b { color: var(--blue); border-color: rgba(51,79,180,.25); background: rgba(51,79,180,.06); }
+  .chip.pillar.c { color: var(--green); border-color: rgba(0,182,122,.28); background: rgba(0,182,122,.07); }
+  .chip.status { color: var(--ink-3); }
+  .chip.impact { color: var(--ink); border-color: var(--line-strong); }
+  .chip.ease.high { color: var(--green); border-color: rgba(0,182,122,.35); }
+
+  /* Card top row */
+  .card-top { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 18px; }
+  .card-top .spacer { flex: 1; }
+  .card-title { font-family: var(--display); font-weight: 800; font-size: clamp(26px, 3.2vw, 38px); letter-spacing: -0.02em; line-height: 1.06; margin: 0 0 6px; }
+  .card-sub { font-family: var(--mono); font-size: 12px; color: var(--ink-3); letter-spacing: .02em; margin-bottom: 24px; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .col { display: flex; flex-direction: column; gap: 18px; }
+  .block { }
+  .block-h { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--coral); font-weight: 600; margin-bottom: 10px; }
+  .block ul, .block ol { margin: 0; padding-left: 18px; }
+  .block li { line-height: 1.5; color: var(--ink-2); margin-bottom: 8px; font-size: 15px; }
+  .block li b { color: var(--ink); font-weight: 600; }
+
+  .hyp { background: var(--coral-tint); border: 1px solid var(--coral-soft); border-radius: 14px; padding: 16px 18px; }
+  html[data-theme="dark"] .hyp { background: rgba(240,92,70,.10); border-color: rgba(240,92,70,.30); }
+  .hyp p { margin: 0; color: var(--ink); font-size: 15px; line-height: 1.55; }
+  .hyp b { color: var(--coral); font-weight: 700; letter-spacing: .02em; }
+
+  .meta-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .meta { background: var(--bg-3); border: 1px solid var(--line); border-radius: 12px; padding: 11px 13px; }
+  .meta span { display: block; font-family: var(--mono); font-size: 9.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 4px; }
+  .meta b { font-size: 13.5px; font-weight: 600; color: var(--ink); line-height: 1.3; }
+
+  .ref { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-size: 13.5px; font-weight: 600; color: var(--coral); padding: 11px 15px; border: 1px solid var(--coral-soft); background: var(--coral-tint); border-radius: 40px; transition: background .2s ease; }
+  html[data-theme="dark"] .ref { background: rgba(240,92,70,.10); border-color: rgba(240,92,70,.30); }
+  .ref:hover { background: var(--coral-soft); }
+  .ref svg { width: 14px; height: 14px; }
+
+  /* Cover */
+  .cover { justify-content: space-between; padding: 56px 60px; }
+  .cover-top { display: flex; align-items: center; justify-content: space-between; }
+  .cover-mid h1 { font-size: clamp(40px, 6vw, 76px); }
+  .cover-mid .lead { font-size: clamp(17px, 2vw, 21px); color: var(--ink-2); max-width: 640px; margin-top: 18px; line-height: 1.5; }
+  .cover-tag { font-family: var(--mono); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-3); }
+  .cover-foot { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; font-family: var(--mono); font-size: 12px; color: var(--ink-3); letter-spacing: .04em; }
+  .cover-foot .dotsep { width: 4px; height: 4px; border-radius: 50%; background: var(--coral); }
+
+  /* Stat tiles */
+  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 4px 0 0; }
+  .stat { background: var(--bg-3); border: 1px solid var(--line); border-radius: 16px; padding: 20px; }
+  .stat .v { font-family: var(--display); font-weight: 800; font-size: 40px; letter-spacing: -0.02em; color: var(--ink); line-height: 1; }
+  .stat .v.coral { color: var(--coral); }
+  .stat .v.green { color: var(--green); }
+  .stat .k { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin-top: 10px; }
+
+  /* Win cards */
+  .wins { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 22px; }
+  .win { border: 1px solid var(--line); border-radius: 16px; padding: 20px 22px; background: var(--slide); position: relative; }
+  .win .wt { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+  .win .wh { font-size: 18px; font-weight: 700; color: var(--ink); margin: 8px 0 12px; line-height: 1.25; }
+  .win .wm { display: flex; align-items: baseline; gap: 10px; }
+  .win .wm b { font-family: var(--display); font-weight: 800; font-size: 30px; color: var(--green); letter-spacing: -0.02em; }
+  .win .wm span { font-size: 13px; color: var(--ink-2); }
+  .win .wl { margin-top: 8px; font-size: 13.5px; color: var(--ink-2); }
+
+  /* Pillars */
+  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 8px; }
+  .pillar-card { border: 1px solid var(--line); border-radius: 16px; padding: 20px; background: var(--bg-3); }
+  .pillar-card .pl { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; margin-bottom: 10px; }
+  .pillar-card.a .pl { color: var(--coral); }
+  .pillar-card.b .pl { color: var(--blue); }
+  .pillar-card.c .pl { color: var(--green); }
+  .pillar-card h3 { margin: 0 0 8px; font-size: 17px; font-weight: 700; color: var(--ink); line-height: 1.25; }
+  .pillar-card p { margin: 0 0 10px; font-size: 13.5px; }
+  .pillar-card .tests { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: .06em; }
+
+  /* Flat table */
+  table.flat { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  table.flat th { text-align: left; font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; padding: 9px 12px; border-bottom: 1px solid var(--line-strong); }
+  table.flat td { padding: 10px 12px; border-bottom: 1px solid var(--line); color: var(--ink-2); vertical-align: middle; }
+  table.flat td b { color: var(--ink); font-weight: 600; }
+  table.flat .t-id { font-family: var(--mono); font-weight: 700; color: var(--coral); }
+  .tag-pill { display: inline-block; font-family: var(--mono); font-size: 10px; letter-spacing: .06em; text-transform: uppercase; padding: 3px 8px; border-radius: 40px; border: 1px solid var(--line-strong); }
+  .tag-pill.high { color: var(--green); border-color: rgba(0,182,122,.4); }
+  .tag-pill.med { color: var(--ink-2); }
+
+  /* Sequencing rows */
+  .seq { display: flex; flex-direction: column; gap: 14px; margin-top: 6px; }
+  .seq-row { display: grid; grid-template-columns: 56px 1fr; gap: 18px; align-items: start; border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; background: var(--bg-3); }
+  .seq-row .num { font-family: var(--display); font-weight: 800; font-size: 34px; color: var(--coral); line-height: 1; }
+  .seq-row h3 { margin: 0 0 6px; font-size: 16px; font-weight: 700; color: var(--ink); }
+  .seq-row p { margin: 0; font-size: 13.5px; }
+  .seq-row .ids { font-family: var(--mono); font-size: 11px; color: var(--ink-3); margin-top: 8px; letter-spacing: .05em; }
+
+  .note { margin-top: auto; padding-top: 18px; font-size: 12.5px; color: var(--ink-3); border-top: 1px solid var(--line); }
+
+  .section-h { display: flex; align-items: baseline; gap: 14px; margin-bottom: 22px; flex-wrap: wrap; }
+  .section-h h2 { font-size: clamp(24px, 3vw, 34px); }
+
+  /* Big always-visible side arrows (primary navigation) */
+  .side-nav { position: fixed; top: 50%; transform: translateY(-50%); z-index: 62; width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; cursor: pointer; background: var(--nav-bg); backdrop-filter: blur(14px); border: 1px solid var(--line-strong); color: var(--ink); box-shadow: var(--shadow); transition: background .2s ease, transform .2s ease, opacity .2s ease; }
+  .side-nav:hover { background: var(--coral); border-color: var(--coral); color: #fff; transform: translateY(-50%) scale(1.06); }
+  .side-nav svg { width: 24px; height: 24px; }
+  .side-nav.prev { left: 26px; }
+  .side-nav.next { right: 26px; }
+  .side-nav[disabled] { opacity: .28; pointer-events: none; }
+
+  /* Swipe hint */
+  .swipe-hint { position: fixed; bottom: 82px; left: 50%; transform: translateX(-50%); font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); background: var(--nav-bg); backdrop-filter: blur(14px); padding: 9px 16px; border-radius: 40px; border: 1px solid var(--line-strong); box-shadow: var(--shadow); opacity: 0; pointer-events: none; transition: opacity .4s ease; z-index: 55; }
+  .swipe-hint.show { opacity: 1; }
+
+  /* Nav */
+  .nav { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 6px; background: var(--nav-bg); backdrop-filter: blur(14px); border: 1px solid var(--line); border-radius: 40px; padding: 6px 8px; z-index: 60; box-shadow: var(--shadow); }
+  .nav button { font-family: var(--body); font-size: 13px; font-weight: 600; color: var(--ink); background: transparent; border: none; padding: 8px 14px; border-radius: 30px; cursor: pointer; transition: background .2s ease; }
+  .nav button:hover { background: var(--bg-2); }
+  .nav button[disabled] { opacity: .32; pointer-events: none; }
+  .nav .count { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; color: var(--ink-2); padding: 0 6px; white-space: nowrap; }
+  .nav .count strong { color: var(--coral); }
+  .nav .sep { width: 1px; height: 20px; background: var(--line-strong); }
+  .theme-toggle { display: grid; place-items: center; width: 38px; height: 38px; padding: 0 !important; }
+  .theme-toggle svg { width: 17px; height: 17px; }
+  html[data-theme="dark"] .theme-toggle .sun { display: block; }
+  html[data-theme="dark"] .theme-toggle .moon { display: none; }
+  html[data-theme="light"] .theme-toggle .sun { display: none; }
+  html[data-theme="light"] .theme-toggle .moon { display: block; }
+
+  /* Index overlay */
+  .index-overlay { position: fixed; inset: 0; background: rgba(18,18,18,.5); backdrop-filter: blur(6px); display: grid; place-items: center; opacity: 0; pointer-events: none; transition: opacity .25s ease; z-index: 80; }
+  .index-overlay.open { opacity: 1; pointer-events: auto; }
+  .index-panel { width: min(620px, 92vw); max-height: 82vh; background: var(--slide); border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--shadow); display: flex; flex-direction: column; overflow: hidden; transform: translateY(10px); transition: transform .25s ease; }
+  .index-overlay.open .index-panel { transform: translateY(0); }
+  .index-head { display: flex; align-items: center; justify-content: space-between; padding: 20px 22px; border-bottom: 1px solid var(--line); }
+  .index-title { font-family: var(--display); font-weight: 700; font-size: 19px; }
+  .index-close { background: transparent; border: none; color: var(--ink-2); cursor: pointer; width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; }
+  .index-close:hover { background: var(--bg-2); }
+  .index-close svg { width: 18px; height: 18px; }
+  .index-list { overflow-y: auto; padding: 10px; }
+  .index-item { display: flex; align-items: center; gap: 14px; width: 100%; text-align: left; background: transparent; border: none; border-radius: 12px; padding: 12px 14px; cursor: pointer; color: var(--ink); transition: background .15s ease; }
+  .index-item:hover, .index-item.focused { background: var(--bg-2); }
+  .index-item.current { background: var(--coral-tint); }
+  html[data-theme="dark"] .index-item.current { background: rgba(240,92,70,.14); }
+  .index-item .num { font-family: var(--mono); font-size: 12px; color: var(--coral); font-weight: 700; width: 26px; }
+  .index-item .label { flex: 1; font-weight: 600; font-size: 14.5px; display: flex; flex-direction: column; }
+  .index-item .label span { font-weight: 400; font-size: 12px; color: var(--ink-3); margin-top: 2px; }
+  .index-item .chip { font-family: var(--mono); font-size: 9.5px; }
+  .index-foot { padding: 12px 22px; border-top: 1px solid var(--line); font-size: 11.5px; color: var(--ink-3); }
+  .kbd { font-family: var(--mono); background: var(--bg-2); border: 1px solid var(--line); border-radius: 5px; padding: 1px 6px; font-size: 10.5px; }
+
+  @media (max-width: 900px) {
+    .pad { padding: 32px 24px 88px; }
+    .grid2, .wins, .pillars { grid-template-columns: 1fr; }
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .cover { padding: 40px 28px; }
+    .meta-row { grid-template-columns: 1fr; }
+    .seq-row { grid-template-columns: 1fr; gap: 8px; }
+    table.flat { font-size: 12px; }
+    table.flat th:nth-child(3), table.flat td:nth-child(3) { display: none; }
+    .side-nav { width: 44px; height: 44px; top: auto; bottom: 78px; transform: none; }
+    .side-nav:hover { transform: scale(1.06); }
+    .side-nav svg { width: 20px; height: 20px; }
+    .side-nav.prev { left: 12px; }
+    .side-nav.next { right: 12px; }
+    .swipe-hint { bottom: 132px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress"><i id="progress-bar"></i></div>
+
+<div class="stage" id="stage">
+  <div class="deck" id="deck">
+
+    <!-- 1 · COVER -->
+    <section class="slide title-slide is-active cover" data-slide="1">
+      <div class="pad cover">
+        <div class="cover-top">
+          <span class="logo">IWAO<span class="dot"></span></span>
+          <span class="cover-tag">CRO Program · Q2 2026</span>
+        </div>
+        <div class="cover-mid">
+          <div class="eyebrow" style="margin-bottom:18px;">Next quarter test roadmap</div>
+          <h1>What to test<br>next quarter.</h1>
+          <p class="lead">Nine new experiments built on what Q1 proved: this audience converts on trust, human access, and de-risking, not on discounts. Each card carries an observation, a hypothesis, the test, and a reference.</p>
+        </div>
+        <div class="cover-foot">
+          <span>iwao.dk</span><span class="dotsep"></span>
+          <span>9 proposed tests</span><span class="dotsep"></span>
+          <span>3 strategic pillars</span><span class="dotsep"></span>
+          <span>Prepared by Bhaskar Roy</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 · WHAT Q1 PROVED -->
+    <section class="slide" data-slide="2">
+      <div class="pad">
+        <div class="section-h">
+          <div class="eyebrow">The spine of Q2</div>
+        </div>
+        <h2 style="font-size:clamp(26px,3.4vw,40px);max-width:760px;">Two tests have already won, and they say the same thing.</h2>
+        <div class="wins">
+          <div class="win">
+            <div class="wt">T01 · PDP trust section + phone number</div>
+            <div class="wh">Human reassurance at the decision point</div>
+            <div class="wm"><b>+38.0%</b><span>ATC rate · 11.36 to 15.68</span></div>
+            <div class="wl">+27.931 DKK / month. A visible phone number below the product info was enough to move add to cart by a third.</div>
+          </div>
+          <div class="win">
+            <div class="wt">T02 · Announcement bar: trust vs promo</div>
+            <div class="wh">Premium framing beats promotional framing</div>
+            <div class="wm"><b>+133.4%</b><span>sitewide CVR · 5.78 to 13.49</span></div>
+            <div class="wl">+74.439 DKK / month. Replacing rotating birthday promo copy with trust USPs more than doubled conversion.</div>
+          </div>
+        </div>
+        <p style="margin-top:24px;max-width:820px;font-size:16px;color:var(--ink);">
+          For an 8.000 to 125.000 DKK considered purchase, buyers convert on <b style="color:var(--coral)">trust, access to a human, and de-risking</b>, not urgency and price cuts. Q1 removed friction on the page. <b style="color:var(--ink)">Q2 should guide the long high ticket decision and capture the buyer who is not ready to buy today.</b>
+        </p>
+      </div>
+    </section>
+
+    <!-- 3 · PIPELINE AT A GLANCE -->
+    <section class="slide" data-slide="3">
+      <div class="pad">
+        <div class="section-h">
+          <div class="eyebrow">Pipeline at a glance</div>
+        </div>
+        <div class="stat-grid">
+          <div class="stat"><div class="v coral">9</div><div class="k">New tests proposed</div></div>
+          <div class="stat"><div class="v">3</div><div class="k">Quick wins (high ease)</div></div>
+          <div class="stat"><div class="v">3</div><div class="k">Strategic pillars</div></div>
+          <div class="stat"><div class="v green">2.5%</div><div class="k">Current PDP ATC baseline</div></div>
+        </div>
+        <div class="pillars" style="margin-top:22px;">
+          <div class="pillar-card a">
+            <div class="pl">Pillar A</div>
+            <h3>Scale the human reassurance lever</h3>
+            <p>Q1's strongest win was human contact. Extend it across channels and devices.</p>
+            <div class="tests">T08 · T09 · T16</div>
+          </div>
+          <div class="pillar-card b">
+            <div class="pl">Pillar B</div>
+            <h3>De-risk and reframe the decision</h3>
+            <p>Lead with financing, headline the guarantees, drop sale site urgency.</p>
+            <div class="tests">T10 · T11 · T12</div>
+          </div>
+          <div class="pillar-card c">
+            <div class="pl">Pillar C</div>
+            <h3>Guide choice and capture deliberation</h3>
+            <p>Route confused buyers to the right chair, and capture the ones not ready today.</p>
+            <div class="tests">T13 · T14 · T15</div>
+          </div>
+        </div>
+        <table class="flat" style="margin-top:24px;">
+          <thead><tr><th>ID</th><th>Test</th><th>Page</th><th>Impact</th><th>Ease</th></tr></thead>
+          <tbody>
+            <tr><td class="t-id">T08</td><td><b>Showroom visit as a conversion</b></td><td>HP · PDP</td><td><span class="tag-pill high">High</span></td><td><span class="tag-pill med">Med</span></td></tr>
+            <tr><td class="t-id">T09</td><td><b>Human contact beyond phone</b></td><td>PDP · Cart</td><td><span class="tag-pill high">High</span></td><td><span class="tag-pill med">Med</span></td></tr>
+            <tr><td class="t-id">T10</td><td><b>Financing first price + calculator</b></td><td>PDP · PLP</td><td><span class="tag-pill high">High</span></td><td><span class="tag-pill med">Med</span></td></tr>
+            <tr><td class="t-id">T11</td><td><b>Countdown to price confidence frame</b></td><td>PDP · Site</td><td><span class="tag-pill med">Med</span></td><td><span class="tag-pill high">High</span></td></tr>
+            <tr><td class="t-id">T12</td><td><b>Risk reversal as a hero</b></td><td>PDP · Site</td><td><span class="tag-pill high">High</span></td><td><span class="tag-pill med">Med</span></td></tr>
+            <tr><td class="t-id">T13</td><td><b>Promote FIND MIN MASSAGESTOL quiz</b></td><td>HP · Site</td><td><span class="tag-pill high">High</span></td><td><span class="tag-pill med">Med</span></td></tr>
+            <tr><td class="t-id">T14</td><td><b>Compare tool + tech explainer</b></td><td>PLP · PDP</td><td><span class="tag-pill med">Med</span></td><td><span class="tag-pill med">Med</span></td></tr>
+            <tr><td class="t-id">T15</td><td><b>Capture the long deliberation</b></td><td>Sitewide</td><td><span class="tag-pill high">High</span></td><td><span class="tag-pill med">Med</span></td></tr>
+            <tr><td class="t-id">T16</td><td><b>Mobile sticky ATC + tap to call</b></td><td>PDP mobile</td><td><span class="tag-pill med">Med</span></td><td><span class="tag-pill high">High</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 4 · T08 -->
+    <section class="slide" data-slide="4">
+      <div class="pad">
+        <div class="card-top">
+          <span class="chip tid">T08</span>
+          <span class="chip page">Homepage · PDP</span>
+          <span class="chip pillar a">Pillar A · Human reassurance</span>
+          <span class="spacer"></span>
+          <span class="chip impact">Impact High</span>
+          <span class="chip ease">Ease Medium</span>
+        </div>
+        <h2 class="card-title">Showroom visit as a first class conversion</h2>
+        <div class="card-sub">IWAO | A/B | HP + PDP | Book a free showroom visit or virtual demo</div>
+        <div class="grid2">
+          <div class="col">
+            <div class="block">
+              <div class="block-h">Observation</div>
+              <ul>
+                <li>The Glostrup showroom and <b>egne teknikere</b> are the single biggest differentiator versus online only competitors.</li>
+                <li>Yet "SHOWROOM" lives as a secondary outlined button with no booking flow and no tracked intent.</li>
+                <li>For an 8.000 to 125.000 DKK purchase, a large share of buyers want to sit in the chair before paying.</li>
+              </ul>
+            </div>
+            <div class="hyp">
+              <div class="block-h">Hypothesis</div>
+              <p><b>IF</b> we turn booking a showroom visit or virtual demo into a prominent calendar based micro conversion, <b>WE EXPECT</b> more captured high intent leads and more assisted high AOV sales, <b>BECAUSE</b> try before you buy removes the biggest fear on a considered purchase and gives sales a warm, high closing offline channel.</p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="block">
+              <div class="block-h">What we are testing</div>
+              <ol>
+                <li>Booking widget: date and time, phone, product of interest.</li>
+                <li>Homepage hero secondary CTA + PDP entry below ATC.</li>
+                <li>Variant B adds an exit intent showroom invite.</li>
+              </ol>
+            </div>
+            <div class="meta-row">
+              <div class="meta"><span>Key metric</span><b>Showroom booking rate + attributed revenue</b></div>
+              <div class="meta"><span>Device</span><b>All devices</b></div>
+              <div class="meta"><span>Tracked via</span><b>Intelligems + GA4 event</b></div>
+              <div class="meta"><span>Framework</span><b>Stat sig 70% · MDE 15% · Z 3</b></div>
+            </div>
+            <a class="ref" href="https://www.hastens.com/en_nl/book-an-appointment" target="_blank" rel="noopener">Reference: Hästens book an appointment <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 · T09 -->
+    <section class="slide" data-slide="5">
+      <div class="pad">
+        <div class="card-top">
+          <span class="chip tid">T09</span>
+          <span class="chip page">PDP · Cart</span>
+          <span class="chip pillar a">Pillar A · Human reassurance</span>
+          <span class="spacer"></span>
+          <span class="chip impact">Impact High</span>
+          <span class="chip ease">Ease Medium</span>
+        </div>
+        <h2 class="card-title">Scale human contact beyond the phone number</h2>
+        <div class="card-sub">IWAO | A/B | PDP + Cart | Tal med en ekspert: chat, callback, WhatsApp</div>
+        <div class="grid2">
+          <div class="col">
+            <div class="block">
+              <div class="block-h">Observation</div>
+              <ul>
+                <li>A static phone number drove <b>+38% ATC</b> in T01, the strongest lever found so far.</li>
+                <li>But a phone call is high friction for many shoppers.</li>
+                <li>There is currently no live chat, callback request, or messaging option anywhere on the site.</li>
+              </ul>
+            </div>
+            <div class="hyp">
+              <div class="block-h">Hypothesis</div>
+              <p><b>IF</b> we add a "Tal med en ekspert" cluster (live chat, request a callback, WhatsApp) anchored at PDP and cart, <b>WE EXPECT</b> higher ATC and cart to checkout, <b>BECAUSE</b> the winning Q1 lever was human access, and lower friction ways to ask a question capture the buyers who will not pick up the phone.</p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="block">
+              <div class="block-h">What we are testing</div>
+              <ol>
+                <li>Contact cluster on PDP and cart.</li>
+                <li>Proactive chat trigger after dwell on the price section.</li>
+                <li>Callback request form for after hours.</li>
+              </ol>
+            </div>
+            <div class="meta-row">
+              <div class="meta"><span>Key metric</span><b>ATC + cart to checkout rate</b></div>
+              <div class="meta"><span>Device</span><b>All devices</b></div>
+              <div class="meta"><span>Tracked via</span><b>Intelligems</b></div>
+              <div class="meta"><span>Framework</span><b>Stat sig 70% · MDE 15% · Z 3</b></div>
+            </div>
+            <a class="ref" href="https://www.eightsleep.com/" target="_blank" rel="noopener">Reference: Eight Sleep concierge support <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 · T10 -->
+    <section class="slide" data-slide="6">
+      <div class="pad">
+        <div class="card-top">
+          <span class="chip tid">T10</span>
+          <span class="chip page">PDP · Collection</span>
+          <span class="chip pillar b">Pillar B · De-risk</span>
+          <span class="spacer"></span>
+          <span class="chip impact">Impact High</span>
+          <span class="chip ease">Ease Medium</span>
+        </div>
+        <h2 class="card-title">Financing first price + Anyday calculator</h2>
+        <div class="card-sub">IWAO | A/B | PDP + PLP | Lead with the monthly figure, not the sticker</div>
+        <div class="grid2">
+          <div class="col">
+            <div class="block">
+              <div class="block-h">Observation</div>
+              <ul>
+                <li>Financing ("fra X kr/md med Anyday, rentefri") recurs in the winning trust messaging.</li>
+                <li>The cart and PDP notes flag that financing visibility disappears down funnel: PDP shows 292 kr/md, cart shows a lump 8.495 DKK.</li>
+                <li>A 45.995 kr sticker triggers shock. "292 kr/md" reframes it as affordable.</li>
+              </ul>
+            </div>
+            <div class="hyp">
+              <div class="block-h">Hypothesis</div>
+              <p><b>IF</b> we lead with the monthly figure as a co primary price anchor on PDP and every collection card, with an interactive "beregn din ydelse" calculator, <b>WE EXPECT</b> higher ATC and PDP click through, <b>BECAUSE</b> monthly framing lowers perceived cost and 0% financing is a decisive de risker on high ticket considered buys.</p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="block">
+              <div class="block-h">What we are testing</div>
+              <ol>
+                <li>PDP price block: total + bold monthly + calculator.</li>
+                <li>Collection cards show "fra X kr/md".</li>
+                <li>Anyday 0% terms shown inline at the anchor.</li>
+              </ol>
+            </div>
+            <div class="meta-row">
+              <div class="meta"><span>Key metric</span><b>ATC + PDP click through rate</b></div>
+              <div class="meta"><span>Device</span><b>All devices</b></div>
+              <div class="meta"><span>Tracked via</span><b>Intelligems</b></div>
+              <div class="meta"><span>Framework</span><b>Stat sig 70% · MDE 15% · Z 3</b></div>
+            </div>
+            <a class="ref" href="https://www.eightsleep.com/financing/" target="_blank" rel="noopener">Reference: Eight Sleep financing + Lovesac <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 · T11 -->
+    <section class="slide" data-slide="7">
+      <div class="pad">
+        <div class="card-top">
+          <span class="chip tid">T11</span>
+          <span class="chip page">PDP · Sitewide</span>
+          <span class="chip pillar b">Pillar B · De-risk</span>
+          <span class="spacer"></span>
+          <span class="chip impact">Impact Medium</span>
+          <span class="chip ease high">Ease High · fastest win</span>
+        </div>
+        <h2 class="card-title">Replace the "sale ends" countdown with price confidence</h2>
+        <div class="card-sub">IWAO | A/B | PDP | Kill artificial urgency on a premium product</div>
+        <div class="grid2">
+          <div class="col">
+            <div class="block">
+              <div class="block-h">Observation</div>
+              <ul>
+                <li>PDPs run a green "TILBUDDET UDLØBER OM..." countdown.</li>
+                <li>This is exactly the promotional, sale site signal that <b>lost in T02</b> and contradicts the brand's winning premium positioning.</li>
+                <li>Artificial urgency can erode trust on a 50.000 kr purchase.</li>
+              </ul>
+            </div>
+            <div class="hyp">
+              <div class="block-h">Hypothesis</div>
+              <p><b>IF</b> we replace the countdown with a price confidence frame (PriceRunner købsgaranti, nettets laveste pris, lowest price guarantee), <b>WE EXPECT</b> equal or higher ATC with higher trust, <b>BECAUSE</b> T02 already proved this audience converts on legitimacy not promo pressure, and price match confidence removes the "should I wait or shop around" objection without sale site theatrics.</p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="block">
+              <div class="block-h">What we are testing</div>
+              <ol>
+                <li>A: countdown (control).</li>
+                <li>B: price guarantee confidence frame.</li>
+                <li>C: no timer at all.</li>
+              </ol>
+            </div>
+            <div class="meta-row">
+              <div class="meta"><span>Key metric</span><b>ATC rate + bounce rate</b></div>
+              <div class="meta"><span>Device</span><b>All devices</b></div>
+              <div class="meta"><span>Tracked via</span><b>Intelligems</b></div>
+              <div class="meta"><span>Framework</span><b>Stat sig 70% · MDE 15% · Z 3</b></div>
+            </div>
+            <a class="ref" href="https://dashboard.cazyweb.com/boards/share/4de74153-f1ce-4e75-aeed-5ca47e7078f0" target="_blank" rel="noopener">Reference: extends the T02 winner <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8 · T12 -->
+    <section class="slide" data-slide="8">
+      <div class="pad">
+        <div class="card-top">
+          <span class="chip tid">T12</span>
+          <span class="chip page">PDP · Sitewide</span>
+          <span class="chip pillar b">Pillar B · De-risk</span>
+          <span class="spacer"></span>
+          <span class="chip impact">Impact High</span>
+          <span class="chip ease">Ease Medium</span>
+        </div>
+        <h2 class="card-title">Risk reversal as a hero, not a footnote</h2>
+        <div class="card-sub">IWAO | A/B | PDP | Headline the trial, return, and own technicians</div>
+        <div class="grid2">
+          <div class="col">
+            <div class="block">
+              <div class="block-h">Observation</div>
+              <ul>
+                <li>"Risk exposure" is a named buyer barrier in the pipeline.</li>
+                <li>Strong guarantees exist (14 dages garanti, 24 to 36 mdr. reklamationsret, gratis levering, egne teknikere, PriceRunner up to 50.000 kr) but they sit low on the page.</li>
+                <li>High ticket leaders make the trial or return promise a headline.</li>
+              </ul>
+            </div>
+            <div class="hyp">
+              <div class="block-h">Hypothesis</div>
+              <p><b>IF</b> we elevate one bold risk reversal promise next to the ATC ("14 dage til at prøve den. Vi henter den gratis, hvis du ikke er tilfreds. Egne teknikere leverer og installerer."), <b>WE EXPECT</b> higher ATC, <b>BECAUSE</b> the fear of being stuck with the wrong 8.000 to 125.000 DKK chair is the dominant objection, and a visible plain language safety net neutralises it at the decision point.</p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="block">
+              <div class="block-h">What we are testing</div>
+              <ol>
+                <li>PDP risk reversal strip directly near the ATC button.</li>
+                <li>Plain language, one bold promise, not a badge row.</li>
+                <li>If operations allow, test an explicit home trial promise.</li>
+              </ol>
+            </div>
+            <div class="meta-row">
+              <div class="meta"><span>Key metric</span><b>ATC rate</b></div>
+              <div class="meta"><span>Device</span><b>All devices</b></div>
+              <div class="meta"><span>Tracked via</span><b>Intelligems</b></div>
+              <div class="meta"><span>Framework</span><b>Stat sig 70% · MDE 15% · Z 3</b></div>
+            </div>
+            <a class="ref" href="https://purple.com/returns" target="_blank" rel="noopener">Reference: Purple 100 night trial <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9 · T13 -->
+    <section class="slide" data-slide="9">
+      <div class="pad">
+        <div class="card-top">
+          <span class="chip tid">T13</span>
+          <span class="chip page">Homepage · Sitewide</span>
+          <span class="chip pillar c">Pillar C · Guide & capture</span>
+          <span class="spacer"></span>
+          <span class="chip impact">Impact High</span>
+          <span class="chip ease">Ease Medium · asset exists</span>
+        </div>
+        <h2 class="card-title">Make FIND MIN MASSAGESTOL the primary guided selling entry</h2>
+        <div class="card-sub">IWAO | A/B | HP | Surface the quiz that is already buried in the header</div>
+        <div class="grid2">
+          <div class="col">
+            <div class="block">
+              <div class="block-h">Observation</div>
+              <ul>
+                <li>Buyers struggle to distinguish 2D / 3D / 4D / 8D and which model fits ("model confusion" and "fit uncertainty" barriers).</li>
+                <li>The brand already has a "FIND MIN MASSAGESTOL" quiz, but it is a small header button competing with the showroom CTA.</li>
+                <li>The asset exists and is underused.</li>
+              </ul>
+            </div>
+            <div class="hyp">
+              <div class="block-h">Hypothesis</div>
+              <p><b>IF</b> we promote the quiz to the homepage hero primary CTA and add it as a PDP and collection "ikke sikker på hvilken model?" entry plus exit intent, <b>WE EXPECT</b> more qualified PDP visits and higher ATC, <b>BECAUSE</b> guided selling routes confused high ticket buyers to the right chair instead of leaving them to scan 16 products blindly.</p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="block">
+              <div class="block-h">What we are testing</div>
+              <ol>
+                <li>HP hero quiz CTA vs the current generic CTA.</li>
+                <li>PDP and collection "not sure which model?" entry.</li>
+                <li>Exit intent quiz prompt.</li>
+              </ol>
+            </div>
+            <div class="meta-row">
+              <div class="meta"><span>Key metric</span><b>Quiz completion + downstream ATC</b></div>
+              <div class="meta"><span>Device</span><b>All devices</b></div>
+              <div class="meta"><span>Tracked via</span><b>Intelligems</b></div>
+              <div class="meta"><span>Framework</span><b>Stat sig 70% · MDE 15% · Z 3</b></div>
+            </div>
+            <a class="ref" href="https://www.eightsleep.com/pod-quiz/" target="_blank" rel="noopener">Reference: Eight Sleep Pod Quiz <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 · T14 -->
+    <section class="slide" data-slide="10">
+      <div class="pad">
+        <div class="card-top">
+          <span class="chip tid">T14</span>
+          <span class="chip page">Collection · PDP</span>
+          <span class="chip pillar c">Pillar C · Guide & capture</span>
+          <span class="spacer"></span>
+          <span class="chip impact">Impact Medium</span>
+          <span class="chip ease">Ease Medium</span>
+        </div>
+        <h2 class="card-title">Persistent compare tool + 2D / 3D / 4D / 8D explainer</h2>
+        <div class="card-sub">IWAO | A/B | PLP + PDP | Keep the comparison on site, stop the leak to Google</div>
+        <div class="grid2">
+          <div class="col">
+            <div class="block">
+              <div class="block-h">Observation</div>
+              <ul>
+                <li>"No comparison tool causing buyers to leave and Google to compare" is an explicitly named collection page leak.</li>
+                <li>A standalone, sitewide compare drawer plus a simple tech tier explainer attacks "model confusion" directly.</li>
+                <li>It stops buyers leaving the site to research elsewhere.</li>
+              </ul>
+            </div>
+            <div class="hyp">
+              <div class="block-h">Hypothesis</div>
+              <p><b>IF</b> we add a floating "sammenlign" tool (up to 3 chairs, spec + price + monthly side by side) plus a short 2D / 3D / 4D / 8D explainer, <b>WE EXPECT</b> higher PDP click through and ATC and lower exit to search, <b>BECAUSE</b> keeping the comparison on site removes the reason to leave and answers "what is the difference?" at the moment of doubt.</p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="block">
+              <div class="block-h">What we are testing</div>
+              <ol>
+                <li>Floating compare drawer (up to 3 chairs).</li>
+                <li>Side by side spec, price, and monthly table.</li>
+                <li>Short interactive technology tier explainer.</li>
+              </ol>
+            </div>
+            <div class="meta-row">
+              <div class="meta"><span>Key metric</span><b>Compare engagement + PDP CTR + ATC</b></div>
+              <div class="meta"><span>Device</span><b>All devices</b></div>
+              <div class="meta"><span>Tracked via</span><b>Intelligems</b></div>
+              <div class="meta"><span>Framework</span><b>Stat sig 70% · MDE 15% · Z 3</b></div>
+            </div>
+            <a class="ref" href="https://www.ogawaworldusa.com/pages/comparison-chart" target="_blank" rel="noopener">Reference: Ogawa comparison chart <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 · T15 -->
+    <section class="slide" data-slide="11">
+      <div class="pad">
+        <div class="card-top">
+          <span class="chip tid">T15</span>
+          <span class="chip page">Sitewide</span>
+          <span class="chip pillar c">Pillar C · Guide & capture</span>
+          <span class="spacer"></span>
+          <span class="chip impact">Impact High</span>
+          <span class="chip ease">Ease Medium</span>
+        </div>
+        <h2 class="card-title">Capture the long deliberation</h2>
+        <div class="card-sub">IWAO | A/B | Sitewide | Exit intent lead magnet + save and price alert</div>
+        <div class="grid2">
+          <div class="col">
+            <div class="block">
+              <div class="block-h">Observation</div>
+              <ul>
+                <li>ATC sits at ~2.5%, so roughly 97.5% of high intent traffic leaves with no trackable next step.</li>
+                <li>An 8.000 to 125.000 DKK purchase has a long, multi session deliberation.</li>
+                <li>There is no on site capture for the not ready buyer beyond a newsletter.</li>
+              </ul>
+            </div>
+            <div class="hyp">
+              <div class="block-h">Hypothesis</div>
+              <p><b>IF</b> we add an exit intent or scroll depth capture offering a buyer's guide, a financing pre check, or a showroom invite, plus a "gem / få prisbesked" save option, <b>WE EXPECT</b> more captured leads and more returning visit conversions, <b>BECAUSE</b> long deliberation needs a low commitment next step, and owned contact lets email and retargeting carry the buyer back.</p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="block">
+              <div class="block-h">What we are testing</div>
+              <ol>
+                <li>Exit intent modal variants: guide vs showroom vs financing.</li>
+                <li>"Gem / få prisbesked" save and price drop alert.</li>
+                <li>Winning offer feeds the email flows.</li>
+              </ol>
+            </div>
+            <div class="meta-row">
+              <div class="meta"><span>Key metric</span><b>Lead capture rate + assisted conversion</b></div>
+              <div class="meta"><span>Device</span><b>All devices</b></div>
+              <div class="meta"><span>Tracked via</span><b>Intelligems + ESP</b></div>
+              <div class="meta"><span>Framework</span><b>Stat sig 70% · MDE 15% · Z 3</b></div>
+            </div>
+            <a class="ref" href="https://purple.com/" target="_blank" rel="noopener">Reference: high ticket buyer guide capture <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12 · T16 -->
+    <section class="slide" data-slide="12">
+      <div class="pad">
+        <div class="card-top">
+          <span class="chip tid">T16</span>
+          <span class="chip page">PDP mobile</span>
+          <span class="chip pillar a">Pillar A · Human reassurance</span>
+          <span class="spacer"></span>
+          <span class="chip impact">Impact Medium</span>
+          <span class="chip ease high">Ease High · quick win</span>
+        </div>
+        <h2 class="card-title">Mobile sticky ATC with monthly price + tap to call</h2>
+        <div class="card-sub">IWAO | A/B | PDP mobile | Keep the decision and the phone one tap away</div>
+        <div class="grid2">
+          <div class="col">
+            <div class="block">
+              <div class="block-h">Observation</div>
+              <ul>
+                <li>Mobile PDP buries the ATC and financing below long content.</li>
+                <li>The cart redesign already flags "CTA pushed below fold on mobile."</li>
+                <li>Phone won on desktop. Mobile buyers need that same reassurance persistently in thumb reach.</li>
+              </ul>
+            </div>
+            <div class="hyp">
+              <div class="block-h">Hypothesis</div>
+              <p><b>IF</b> we add a sticky mobile bar (product, monthly price, ATC, tap to call), <b>WE EXPECT</b> higher mobile ATC and call rate, <b>BECAUSE</b> it keeps the decision and the winning human contact lever one tap away through a long page.</p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="block">
+              <div class="block-h">What we are testing</div>
+              <ol>
+                <li>Sticky mobile bar: product, monthly price, ATC, tap to call.</li>
+                <li>On vs off.</li>
+                <li>Appears after the hero scrolls past.</li>
+              </ol>
+            </div>
+            <div class="meta-row">
+              <div class="meta"><span>Key metric</span><b>Mobile ATC + call taps</b></div>
+              <div class="meta"><span>Device</span><b>Mobile</b></div>
+              <div class="meta"><span>Tracked via</span><b>Intelligems</b></div>
+              <div class="meta"><span>Framework</span><b>Stat sig 70% · MDE 15% · Z 3</b></div>
+            </div>
+            <a class="ref" href="https://www.eightsleep.com/product/pod5plus/" target="_blank" rel="noopener">Reference: high ticket mobile sticky pattern <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13 · SEQUENCING -->
+    <section class="slide" data-slide="13">
+      <div class="pad">
+        <div class="section-h">
+          <div class="eyebrow">Suggested sequencing & next steps</div>
+        </div>
+        <h2 style="margin-bottom:20px;">Quick wins first, then the high impact bets.</h2>
+        <div class="seq">
+          <div class="seq-row">
+            <div class="num">1</div>
+            <div>
+              <h3>Ship the quick wins</h3>
+              <p>Low effort, fast reads. Each is a copy or component swap that can go live within the week.</p>
+              <div class="ids">T11 countdown swap · T16 mobile sticky ATC · T13 promote the existing quiz</div>
+            </div>
+          </div>
+          <div class="seq-row">
+            <div class="num">2</div>
+            <div>
+              <h3>Then the high impact bets</h3>
+              <p>The structural levers that build on Q1's winning themes of human access and de-risking.</p>
+              <div class="ids">T08 showroom booking · T09 chat and callback · T10 financing first · T12 risk reversal</div>
+            </div>
+          </div>
+          <div class="seq-row">
+            <div class="num">3</div>
+            <div>
+              <h3>Round out the quarter</h3>
+              <p>Decision support and lead capture that compound across the long deliberation cycle.</p>
+              <div class="ids">T14 compare tool · T15 lead capture</div>
+            </div>
+          </div>
+        </div>
+        <div class="note">
+          Dependencies: if T05 (PDP full redesign) wins, fold T10, T11, and T12 into the new PDP rather than testing on the old one. If T04 (homepage redesign) wins, T13's quiz hero builds on that layout. T15's winning offer should feed the email flows.
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<button class="side-nav prev" id="prev-big" aria-label="Previous slide" title="Previous (←)">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+</button>
+<button class="side-nav next" id="next-big" aria-label="Next slide" title="Next (→)">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+</button>
+
+<div class="swipe-hint" id="swipe-hint">Use the arrows, swipe, or ← → keys</div>
+
+<div class="nav" role="navigation" aria-label="Slide navigation">
+  <button class="theme-toggle" id="index-btn" aria-label="Slide index" title="Slide index (press i)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <div class="sep"></div>
+  <button id="prev" aria-label="Previous slide">← Prev</button>
+  <div class="count">SLIDE <strong id="cur">1</strong> / <strong id="total">13</strong></div>
+  <button id="next" aria-label="Next slide">Next →</button>
+  <div class="sep"></div>
+  <button class="theme-toggle" id="theme" aria-label="Toggle theme">
+    <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
+</div>
+
+<div class="index-overlay" id="index-overlay" aria-hidden="true">
+  <div class="index-panel">
+    <div class="index-head">
+      <div>
+        <div class="eyebrow">Slide index</div>
+        <div class="index-title">Jump to a slide</div>
+      </div>
+      <button class="index-close" id="index-close" aria-label="Close index">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="index-list" id="index-list"></div>
+    <div class="index-foot">
+      <span class="kbd">↑ ↓</span> navigate · <span class="kbd">Enter</span> jump · <span class="kbd">Esc</span> close · <span class="kbd">1-9</span> direct jump
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const total = slides.length;
+  let idx = 0;
+  let isAnimating = false;
+
+  const $cur = document.getElementById('cur');
+  const $total = document.getElementById('total');
+  const $prev = document.getElementById('prev');
+  const $next = document.getElementById('next');
+  const $bar = document.getElementById('progress-bar');
+  const $theme = document.getElementById('theme');
+  const $stage = document.getElementById('stage');
+  const $hint = document.getElementById('swipe-hint');
+  const $prevBig = document.getElementById('prev-big');
+  const $nextBig = document.getElementById('next-big');
+
+  $total.textContent = total;
+
+  function updateEnds(){
+    const atStart = idx === 0, atEnd = idx === total - 1;
+    $prevBig.disabled = atStart; $nextBig.disabled = atEnd;
+    $prev.disabled = atStart; $next.disabled = atEnd;
+  }
+
+  function go(n){
+    const next = Math.max(0, Math.min(total - 1, n));
+    if (next === idx || isAnimating) return;
+    isAnimating = true;
+    slides[idx].classList.remove('is-active');
+    slides[idx].classList.add('is-prev');
+    slides[next].classList.remove('is-prev');
+    slides[next].classList.add('is-active');
+    const pad = slides[next].querySelector('.pad');
+    if (pad) pad.scrollTop = 0;
+    idx = next;
+    $cur.textContent = idx + 1;
+    $bar.style.width = (((idx + 1) / total) * 100) + '%';
+    updateEnds();
+    try { const url = new URL(window.location.href); url.hash = String(idx + 1); history.replaceState(null, '', url); } catch(e){}
+    setTimeout(() => { isAnimating = false; }, 420);
+  }
+
+  $prev.addEventListener('click', (e) => { e.stopPropagation(); go(idx - 1); });
+  $next.addEventListener('click', (e) => { e.stopPropagation(); go(idx + 1); });
+  $prevBig.addEventListener('click', (e) => { e.stopPropagation(); go(idx - 1); });
+  $nextBig.addEventListener('click', (e) => { e.stopPropagation(); go(idx + 1); });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.target.closest('input, textarea, [contenteditable="true"]')) return;
+    if (['ArrowRight','PageDown'].includes(e.key) || (e.key === ' ' && !e.shiftKey)) { e.preventDefault(); go(idx + 1); }
+    else if (['ArrowLeft','PageUp'].includes(e.key) || (e.key === ' ' && e.shiftKey)) { e.preventDefault(); go(idx - 1); }
+    else if (e.key === 'Home') { e.preventDefault(); go(0); }
+    else if (e.key === 'End') { e.preventDefault(); go(total - 1); }
+    else if (e.key >= '1' && e.key <= '9') { go(parseInt(e.key) - 1); }
+  });
+
+  let pStart = null, pMoved = false;
+  $stage.addEventListener('pointerdown', (e) => {
+    if (e.target.closest('button, a, .nav, input, select, textarea')) return;
+    pStart = { x: e.clientX, y: e.clientY, t: Date.now() }; pMoved = false;
+  }, { passive: true });
+  $stage.addEventListener('pointermove', (e) => {
+    if (!pStart) return;
+    if (Math.abs(e.clientX - pStart.x) > 8 || Math.abs(e.clientY - pStart.y) > 8) pMoved = true;
+  }, { passive: true });
+  function endPointer(e){
+    if (!pStart) return;
+    const dx = e.clientX - pStart.x, dy = e.clientY - pStart.y;
+    const adx = Math.abs(dx), ady = Math.abs(dy), dt = Date.now() - pStart.t;
+    pStart = null;
+    if (adx > 60 && adx > ady * 1.3 && dt < 800) { if (dx < 0) go(idx + 1); else go(idx - 1); return; }
+    if (!pMoved) {
+      const rect = $stage.getBoundingClientRect(); const x = e.clientX - rect.left;
+      if (x < rect.width * 0.12) go(idx - 1); else if (x > rect.width * 0.88) go(idx + 1);
+    }
+  }
+  $stage.addEventListener('pointerup', endPointer);
+  $stage.addEventListener('pointercancel', () => { pStart = null; });
+
+  let wheelLock = false, wheelAccum = 0, wheelTimer = null;
+  $stage.addEventListener('wheel', (e) => {
+    const adx = Math.abs(e.deltaX), ady = Math.abs(e.deltaY);
+    if (adx <= ady) return;
+    if (wheelLock) return;
+    wheelAccum += e.deltaX;
+    clearTimeout(wheelTimer);
+    wheelTimer = setTimeout(() => { wheelAccum = 0; }, 250);
+    if (wheelAccum > 80) { wheelLock = true; wheelAccum = 0; go(idx + 1); setTimeout(() => { wheelLock = false; }, 500); }
+    else if (wheelAccum < -80) { wheelLock = true; wheelAccum = 0; go(idx - 1); setTimeout(() => { wheelLock = false; }, 500); }
+  }, { passive: true });
+
+  function applyTheme(t){
+    document.documentElement.setAttribute('data-theme', t);
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', t === 'dark' ? '#16171c' : '#ffffff');
+    try { localStorage.setItem('iwao-q2-deck-theme', t); } catch(e){}
+  }
+  let savedTheme = null;
+  try { savedTheme = localStorage.getItem('iwao-q2-deck-theme'); } catch(e){}
+  if (savedTheme === 'light' || savedTheme === 'dark') applyTheme(savedTheme);
+  else if (window.matchMedia('(prefers-color-scheme: dark)').matches) applyTheme('dark');
+  $theme.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const cur = document.documentElement.getAttribute('data-theme') || 'light';
+    applyTheme(cur === 'dark' ? 'light' : 'dark');
+  });
+
+  const slideMeta = [
+    { n: 1, label: 'Cover', sub: 'Q2 2026 test roadmap', chip: 'Intro' },
+    { n: 2, label: 'What Q1 proved', sub: 'Two winners, one lesson', chip: 'Spine' },
+    { n: 3, label: 'Pipeline at a glance', sub: '9 tests, 3 pillars', chip: 'Overview' },
+    { n: 4, label: 'T08 Showroom booking', sub: 'Visit as a conversion', chip: 'Pillar A' },
+    { n: 5, label: 'T09 Human contact', sub: 'Beyond the phone number', chip: 'Pillar A' },
+    { n: 6, label: 'T10 Financing first', sub: 'Monthly price + calculator', chip: 'Pillar B' },
+    { n: 7, label: 'T11 Price confidence', sub: 'Replace the countdown', chip: 'Pillar B' },
+    { n: 8, label: 'T12 Risk reversal', sub: 'Headline the guarantees', chip: 'Pillar B' },
+    { n: 9, label: 'T13 Guided selling', sub: 'Promote the quiz', chip: 'Pillar C' },
+    { n: 10, label: 'T14 Compare tool', sub: 'Tech tier explainer', chip: 'Pillar C' },
+    { n: 11, label: 'T15 Capture leads', sub: 'The long deliberation', chip: 'Pillar C' },
+    { n: 12, label: 'T16 Mobile sticky ATC', sub: 'Tap to call in thumb reach', chip: 'Pillar A' },
+    { n: 13, label: 'Sequencing', sub: 'Order and next steps', chip: 'Roadmap' },
+  ];
+  const $indexBtn = document.getElementById('index-btn');
+  const $indexOverlay = document.getElementById('index-overlay');
+  const $indexClose = document.getElementById('index-close');
+  const $indexList = document.getElementById('index-list');
+  let indexFocus = 0;
+
+  function buildIndex() {
+    $indexList.innerHTML = '';
+    slideMeta.forEach((m, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'index-item' + (i === idx ? ' current' : '');
+      btn.dataset.slide = m.n;
+      btn.innerHTML = `<span class="num">${String(m.n).padStart(2,'0')}</span><span class="label">${m.label}<span>${m.sub}</span></span><span class="chip">${m.chip}</span>`;
+      btn.addEventListener('click', () => { go(m.n - 1); closeIndex(); });
+      $indexList.appendChild(btn);
+    });
+  }
+  function openIndex() { buildIndex(); indexFocus = idx; updateIndexFocus(); $indexOverlay.classList.add('open'); $indexOverlay.setAttribute('aria-hidden', 'false'); }
+  function closeIndex() { $indexOverlay.classList.remove('open'); $indexOverlay.setAttribute('aria-hidden', 'true'); }
+  function toggleIndex() { $indexOverlay.classList.contains('open') ? closeIndex() : openIndex(); }
+  function updateIndexFocus() {
+    const items = $indexList.querySelectorAll('.index-item');
+    items.forEach((el, i) => el.classList.toggle('focused', i === indexFocus));
+    const el = items[indexFocus]; if (el) el.scrollIntoView({ block: 'nearest' });
+  }
+  $indexBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleIndex(); });
+  $indexClose.addEventListener('click', (e) => { e.stopPropagation(); closeIndex(); });
+  $indexOverlay.addEventListener('click', (e) => { if (e.target === $indexOverlay) closeIndex(); });
+
+  window.addEventListener('keydown', (e) => {
+    const open = $indexOverlay.classList.contains('open');
+    if (open) {
+      if (e.key === 'Escape') { e.preventDefault(); closeIndex(); }
+      else if (e.key === 'ArrowDown') { e.preventDefault(); indexFocus = Math.min(slideMeta.length - 1, indexFocus + 1); updateIndexFocus(); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); indexFocus = Math.max(0, indexFocus - 1); updateIndexFocus(); }
+      else if (e.key === 'Enter') { e.preventDefault(); go(indexFocus); closeIndex(); }
+    } else {
+      if (e.key === 'i' || e.key === 'I') {
+        if (e.target.closest('input, textarea, [contenteditable="true"]')) return;
+        e.preventDefault(); openIndex();
+      }
+    }
+  });
+
+  const hash = parseInt((window.location.hash || '').replace('#',''), 10);
+  if (hash && hash >= 1 && hash <= total) {
+    slides.forEach(s => { s.classList.remove('is-active'); s.classList.add('is-prev'); });
+    slides[hash - 1].classList.remove('is-prev');
+    slides[hash - 1].classList.add('is-active');
+    idx = hash - 1; $cur.textContent = idx + 1; $bar.style.width = (((idx + 1) / total) * 100) + '%';
+  } else { $bar.style.width = (1 / total * 100) + '%'; }
+  updateEnds();
+
+  // Show the navigation hint briefly on every device on first load
+  $hint.classList.add('show'); setTimeout(() => $hint.classList.remove('show'), 4000);
+})();
+</script>
+</body>
+</html>
