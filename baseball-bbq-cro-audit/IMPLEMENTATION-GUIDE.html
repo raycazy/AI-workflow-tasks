@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Baseball BBQ CRO: Implementation Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --display: 'Inter Tight', sans-serif;
+    --body: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+    --bg: #f5f0e8;
+    --bg-2: #ffffff;
+    --bg-3: #ebe6dd;
+    --ink: #1c1818;
+    --ink-2: #545048;
+    --ink-3: #8a857c;
+    --maroon: #6a2727;
+    --maroon-2: #a04545;
+    --yellow: #f4c11d;
+    --green: #4a8a5c;
+    --orange: #c47b20;
+    --line: rgba(0,0,0,.10);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--body); -webkit-font-smoothing: antialiased;
+    line-height: 1.55;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 60px 28px 80px; }
+  header { margin-bottom: 60px; padding-bottom: 32px; border-bottom: 2px solid var(--maroon); }
+  .eyebrow { font-family: var(--mono); font-size: 12px; color: var(--maroon); letter-spacing: .25em; text-transform: uppercase; font-weight: 700; }
+  h1 { font-family: var(--display); font-size: clamp(36px, 5vw, 56px); font-weight: 800; letter-spacing: -.02em; line-height: 1.05; margin: 14px 0 16px; }
+  h1 .accent { color: var(--maroon); }
+  .lede { font-size: 19px; color: var(--ink-2); max-width: 66ch; line-height: 1.55; }
+  .meta { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 22px; font-family: var(--mono); font-size: 12px; color: var(--ink-3); letter-spacing: .12em; text-transform: uppercase; }
+  .meta strong { color: var(--ink); font-weight: 600; }
+  .toc { background: var(--bg-2); border: 1px solid var(--line); border-radius: 12px; padding: 24px 28px; margin-bottom: 60px; }
+  .toc h3 { font-family: var(--display); font-size: 14px; letter-spacing: .15em; text-transform: uppercase; color: var(--maroon); margin: 0 0 14px; font-weight: 700; }
+  .toc ol { margin: 0; padding-left: 22px; columns: 2; column-gap: 32px; }
+  .toc li { margin-bottom: 8px; break-inside: avoid; }
+  .toc a { color: var(--ink); text-decoration: none; border-bottom: 1px dashed transparent; }
+  .toc a:hover { border-bottom-color: var(--maroon); color: var(--maroon); }
+  h2 { font-family: var(--display); font-size: 30px; font-weight: 800; letter-spacing: -.015em; margin: 64px 0 6px; padding-top: 24px; border-top: 1px solid var(--line); }
+  h2.no-rule { border-top: 0; padding-top: 0; margin-top: 48px; }
+  h2 .num { font-family: var(--mono); font-size: 13px; color: var(--maroon); letter-spacing: .2em; font-weight: 700; margin-right: 12px; vertical-align: middle; }
+  h2 .pri-chip { display: inline-block; padding: 4px 10px; border-radius: 4px; font-family: var(--mono); font-size: 11px; letter-spacing: .12em; font-weight: 700; margin-left: 10px; vertical-align: middle; text-transform: uppercase; }
+  h2 .pri-chip.p0 { background: var(--maroon); color: white; }
+  h2 .pri-chip.p1 { background: rgba(244,193,29,.25); color: #8a6a00; }
+  h2 .pri-chip.p2 { background: var(--bg-3); color: var(--ink-2); border: 1px solid var(--line); }
+  h2 .pri-chip.ship { background: rgba(74,138,92,.18); color: var(--green); }
+  h2 .pri-chip.ab { background: rgba(196,123,32,.18); color: var(--orange); }
+  .summary-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 16px 0 28px; }
+  .summary-row .kv { background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; padding: 14px 18px; }
+  .summary-row .kv .k { font-family: var(--mono); font-size: 10px; color: var(--ink-3); letter-spacing: .15em; text-transform: uppercase; font-weight: 600; }
+  .summary-row .kv .v { font-size: 14px; color: var(--ink); margin-top: 4px; line-height: 1.45; }
+  .summary-row .kv .v strong { color: var(--maroon); font-weight: 700; }
+  h3 { font-family: var(--display); font-size: 20px; font-weight: 700; letter-spacing: -.01em; margin: 28px 0 10px; color: var(--ink); }
+  h4 { font-family: var(--mono); font-size: 12px; color: var(--maroon); letter-spacing: .15em; text-transform: uppercase; font-weight: 700; margin: 22px 0 8px; }
+  p { color: var(--ink-2); margin: 10px 0; }
+  ul, ol { color: var(--ink-2); padding-left: 22px; margin: 10px 0; }
+  ul li, ol li { margin-bottom: 6px; }
+  ul li strong, ol li strong { color: var(--ink); font-weight: 600; }
+  code, kbd { font-family: var(--mono); background: var(--bg-3); padding: 1px 6px; border-radius: 3px; font-size: 12.5px; color: var(--maroon); }
+  pre { background: var(--bg-3); padding: 14px 16px; border-radius: 6px; overflow-x: auto; font-family: var(--mono); font-size: 12.5px; line-height: 1.5; color: var(--ink); }
+  .callout { background: var(--bg-2); border-left: 4px solid var(--maroon); padding: 14px 18px; margin: 18px 0; border-radius: 0 6px 6px 0; }
+  .callout.ok { border-left-color: var(--green); }
+  .callout.warn { border-left-color: var(--yellow); }
+  .callout strong { color: var(--ink); font-weight: 700; }
+  table.spec { width: 100%; border-collapse: collapse; margin: 14px 0 20px; font-size: 13.5px; }
+  table.spec th, table.spec td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--line); color: var(--ink-2); }
+  table.spec th { font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); letter-spacing: .14em; text-transform: uppercase; font-weight: 600; border-bottom: 2px solid var(--line); }
+  table.spec td strong { color: var(--ink); font-weight: 600; }
+  .back-to-deck { display: inline-block; padding: 10px 18px; background: var(--maroon); color: white; border-radius: 6px; text-decoration: none; font-family: var(--mono); font-size: 11px; letter-spacing: .15em; text-transform: uppercase; font-weight: 700; margin-top: 8px; }
+  .back-to-deck:hover { background: var(--maroon-2); }
+  footer { margin-top: 80px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--ink-3); font-size: 13px; }
+  @media (max-width: 680px) {
+    .toc ol { columns: 1; }
+    .summary-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Implementation Guide · June 2026</div>
+  <h1>Baseball BBQ.<br><span class="accent">90-day CRO plan — for the team.</span></h1>
+  <p class="lede">Every test and ship from the deck, explained for the team that will build it. Each idea has the why, the spec, the acceptance criteria, and how to measure it. Priority order matches the deck.</p>
+  <div class="meta">
+    <span><strong>Site</strong> baseballbbq.com</span>
+    <span><strong>GA4</strong> 393859510</span>
+    <span><strong>Window</strong> 90 days (Feb 23 to May 24, 2026)</span>
+    <span><strong>AOV</strong> $131.09</span>
+  </div>
+  <a class="back-to-deck" href="https://raycazy.github.io/AI-workflow-tasks/baseball-bbq-cro-audit/">← Back to deck</a>
+</header>
+
+<div class="toc">
+  <h3>Eleven moves in priority order</h3>
+  <ol>
+    <li><a href="#test01">Flagship Test 01 — PDP buy-box rebuild</a></li>
+    <li><a href="#test02">Flagship Test 02 — Navigation + Product Discovery</a></li>
+    <li><a href="#test03">Flagship Test 03 — Gift-Finder Quiz</a></li>
+    <li><a href="#fp">A/B — Featured Products collection rebuild</a></li>
+    <li><a href="#reviews">A/B — Reviews + press logos in hero</a></li>
+    <li><a href="#badges">A/B — Brand-specific PDP badges</a></li>
+    <li><a href="#sticky">A/B — Sticky mobile ATC bar</a></li>
+    <li><a href="#drawer">A/B — Drawer cart + OCU upsell flows</a></li>
+    <li><a href="#shipbar">Ship — Sitewide free-shipping progress bar</a></li>
+    <li><a href="#oakland">Ship — Fix Oakland Athletics PDP + audit team templates</a></li>
+    <li><a href="#notify">Ship — Notify-me capture on sold-out variants</a></li>
+  </ol>
+</div>
+
+<!-- ====================== TEST 01 ====================== -->
+<h2 id="test01"><span class="num">TEST 01</span>PDP buy-box rebuild <span class="pri-chip p0">P0 · Flagship</span></h2>
+
+<div class="summary-row">
+  <div class="kv"><div class="k">Why</div><div class="v">PDP to Add-to-Cart is <strong>1.20%</strong>. Industry benchmark is 4–7%. 9,059 PDP views / 28 days produced only 109 carts. The brand's real trust assets (4.9/2,847 reviews, GMA press, lifetime warranty, free engraving) are not in the buy box.</div></div>
+  <div class="kv"><div class="k">Target</div><div class="v">PDP to ATC <strong>1.20% → 1.80–2.40%</strong>. At $131 AOV: +25 to +50 incremental purchases / 28 days = +$3.3k to +$6.5k / month.</div></div>
+</div>
+
+<h3>What to build (component spec)</h3>
+
+<p>Rebuild the right-column buy box on the product template. Apply to all PDPs. Top-5 PDPs by traffic first for the test:</p>
+<ol>
+  <li><code>/products/brushback-grill-scraper</code></li>
+  <li><code>/products/grand-slam-combo-set</code></li>
+  <li><code>/products/triple-play-combo-set</code></li>
+  <li><code>/products/mvp-combo-set</code></li>
+  <li><code>/products/home-plate-cutting-board</code></li>
+</ol>
+
+<h4>Element order, top to bottom</h4>
+<ol>
+  <li><strong>Product title</strong> (no change to text).</li>
+  <li><strong>Star rating row.</strong> 5 yellow stars + numeric rating (4.9) + review count link. Pulls live from Judge.me per-product widget. Click opens the reviews accordion below.</li>
+  <li><strong>Price.</strong> Existing styling. If on sale, strikethrough compare-at + savings tag.</li>
+  <li><strong>Variant selector.</strong> If multi-variant, keep existing radio/dropdown.</li>
+  <li><strong>Engraving option (NEW).</strong> Card-style checkbox with thick maroon border on hover. Label: "Add custom engraving (+$10)". Sub-label: "Text or logo. Ships in 1-2 business days." When checked, append <code>_engraving</code> line-item property to cart and add a $10 upsell SKU.</li>
+  <li><strong>Quantity stepper.</strong> Standard − / qty / + control.</li>
+  <li><strong>Add to Cart button (maroon, full-width).</strong> Text: "Add to cart · $XX.XX" where price updates dynamically when engraving is checked.</li>
+  <li><strong>Shop Pay express checkout button</strong> (already exists, keep below ATC).</li>
+  <li><strong>Brand-specific badges grid (2x2).</strong> Replace the current "Top Quality / Fast Ship / Support / SSL" badges with:
+    <ul>
+      <li>⭐ Lifetime Warranty</li>
+      <li>✎ Free Engraving</li>
+      <li>⏱ Ships 1-2 Business Days</li>
+      <li>⇪ Free Shipping over $100</li>
+    </ul>
+    Each badge: maroon icon, dark text, light maroon background tint, full border.
+  </li>
+  <li><strong>"As Seen On" press strip.</strong> Black background, yellow eyebrow "As Seen On", white logos: GMA · Live with Kelly · Fox News. Subtle box-shadow.</li>
+  <li><strong>For bundle PDPs only:</strong> Add a "What's included" labeled flat-lay image directly under the gallery. Show all components labeled with names.</li>
+</ol>
+
+<h3>Theme files to edit (Shopify)</h3>
+<table class="spec">
+  <thead><tr><th>File</th><th>Change</th></tr></thead>
+  <tbody>
+    <tr><td><code>sections/main-product.liquid</code></td><td>Reorder blocks; remove old badges; add new badges + press strip + engraving option</td></tr>
+    <tr><td><code>snippets/product-rating.liquid</code> (new)</td><td>Renders Judge.me <code>product_rating</code> + review count below title</td></tr>
+    <tr><td><code>snippets/engraving-option.liquid</code> (new)</td><td>Renders the engraving checkbox + line-item property</td></tr>
+    <tr><td><code>snippets/product-badges.liquid</code> (new)</td><td>Renders the 4 brand-specific badges</td></tr>
+    <tr><td><code>snippets/press-strip.liquid</code> (new)</td><td>Renders "As Seen On" strip</td></tr>
+    <tr><td><code>assets/component-product-badges.css</code></td><td>All styling for new buy-box elements</td></tr>
+    <tr><td><code>config/settings_schema.json</code></td><td>Add schema toggles so admin can enable/disable each badge per product</td></tr>
+  </tbody>
+</table>
+
+<h3>Engraving option — implementation detail</h3>
+<p>Use Shopify line-item properties. When the checkbox is checked, the form posts <code>properties[Custom engraving]=Yes (+$10)</code> with the product. The +$10 charge can be handled two ways:</p>
+<ul>
+  <li><strong>Recommended:</strong> Add a $10 add-on SKU (e.g. <code>engraving-fee-10</code>) to the cart in the same submit handler (one extra POST to /cart/add.js). Engraving instructions captured via a separate text field on the next step.</li>
+  <li>Alt: Use a Shopify app (Customily, Infinite Options) if a richer text/logo-upload UI is needed. App-based is faster to ship but adds 100-200ms TBT.</li>
+</ul>
+
+<h3>Tracking events to add (GTM datalayer)</h3>
+<pre><code>// On PDP buy-box paint (variant only)
+dataLayer.push({ event: 'pdp_variant_view', product_id: '{{ product.id }}' });
+
+// On engraving checkbox toggle
+dataLayer.push({ event: 'engraving_toggled', product_id: '{{ product.id }}', state: checked });
+
+// On ATC click
+dataLayer.push({ event: 'pdp_atc_click', product_id: '{{ product.id }}', engraving: checked });</code></pre>
+
+<h3>Acceptance criteria</h3>
+<ul>
+  <li>PDP loads identically on mobile and desktop for the variant.</li>
+  <li>Stars + review count visible above the fold on iPhone 13 (390 × 844).</li>
+  <li>Engraving checkbox adds $10 add-on SKU to cart correctly. Receipt shows engraving line item.</li>
+  <li>"As Seen On" strip does not push ATC button below the fold.</li>
+  <li>All 4 badge icons render correctly in Safari, Chrome, Firefox, Edge.</li>
+  <li>Total Blocking Time on PDP stays under +50ms vs control.</li>
+</ul>
+
+<h3>Measurement</h3>
+<table class="spec">
+  <tbody>
+    <tr><td><strong>Primary metric</strong></td><td>PDP-to-Add-to-Cart rate</td></tr>
+    <tr><td><strong>Secondary</strong></td><td>Time on PDP, scroll depth past buy box, engraving attach rate, AOV with engraving</td></tr>
+    <tr><td><strong>Sample size</strong></td><td>Aggregate across top 5 PDPs (~2,000 PDP views / 28d)</td></tr>
+    <tr><td><strong>Time to significance</strong></td><td>3 to 4 weeks at current traffic</td></tr>
+    <tr><td><strong>Tool</strong></td><td>Shopify A/B Test app, Convert, or Google Optimize replacement (e.g. VWO, Optimizely)</td></tr>
+  </tbody>
+</table>
+
+<!-- ====================== TEST 02 ====================== -->
+<h2 id="test02"><span class="num">TEST 02</span>Navigation + Product Discovery Redesign <span class="pri-chip p0">P0 · Flagship</span></h2>
+
+<div class="summary-row">
+  <div class="kv"><div class="k">Why</div><div class="v">Product discovery is broken. 7 top-nav items, hidden mega menu, "Featured Products" earns $0, 1 in 17 sessions resorts to /search. The best-converting collection is 3 clicks deep. Takes 7 clicks from homepage to a team-specific product.</div></div>
+  <div class="kv"><div class="k">Target</div><div class="v"><strong>+15 to +30% header-to-PLP CTR</strong> · <strong>-50% /search reliance</strong> · -10% bounce on collection pages.</div></div>
+</div>
+
+<h3>What to build</h3>
+
+<h4>1. Collapse the top nav from 7 items to 5 intent-driven items</h4>
+
+<table class="spec">
+  <thead><tr><th>Current</th><th>Variant</th></tr></thead>
+  <tbody>
+    <tr><td>SHOP</td><td>SHOP BY TEAM ▾</td></tr>
+    <tr><td>CUSTOM</td><td>SETS ▾</td></tr>
+    <tr><td>NEW RELEASES</td><td>PERSONALIZE</td></tr>
+    <tr><td>SPECIAL COLLECTIONS</td><td>GIFTS ▾</td></tr>
+    <tr><td>PARTNER PRODUCTS</td><td>APPAREL</td></tr>
+    <tr><td>INFO</td><td><em>(move to footer)</em></td></tr>
+    <tr><td>BEAT THE STREAK GAME</td><td><em>(move to promo bar above nav)</em></td></tr>
+  </tbody>
+</table>
+
+<h4>2. Build a visual mega menu for "Shop by Team"</h4>
+<p>Three tabs across the top of the mega menu: <strong>MLB · MiLB · College</strong>. Below the tabs, a 6-column grid of team logos (visual buttons, hover state shows team name). Search box top-right of the mega menu for direct team typing.</p>
+
+<h4>3. Build a "Sets" mega menu</h4>
+<p>Featured bundles surfaced as visual cards: Triple Play · Grand Slam (with "Most Picked" badge) · MVP. Plus quick links: Cutting Boards · Tool Sets · Single Tools.</p>
+
+<h4>4. Build a "Gifts" mega menu</h4>
+<p>Three primary entries: Take the Gift Quiz (links to Test 03) · Gifts under $50 · Personalized Gifts. Plus seasonal block (Father's Day, Holidays).</p>
+
+<h4>5. Replace the dead Featured Products collection</h4>
+<p>The collection at <code>/collections/home-page-featured-products-collection</code> currently shows mixed-priority SKUs. Re-curate to lead with the 3 bestseller bundles, demote zero-sale SKUs, add per-product Judge.me stars. See section <a href="#fp">Featured Products rebuild</a> for full spec — it ships alongside this test.</p>
+
+<h4>6. Add a "Build Your Own" CTA</h4>
+<p>Persistent CTA in the header (right side, before cart icon) or as a primary nav item if space allows. Click goes to <code>/collections/customizable</code>. Personalization is the brand moat and currently buried.</p>
+
+<h3>Theme files to edit</h3>
+<table class="spec">
+  <thead><tr><th>File</th><th>Change</th></tr></thead>
+  <tbody>
+    <tr><td><code>sections/header.liquid</code></td><td>Replace existing menu markup with new 5-item structure. Add mega-menu containers.</td></tr>
+    <tr><td><code>snippets/mega-menu-teams.liquid</code> (new)</td><td>Render MLB/MiLB/College tabs + team grid. Use Shopify metafields to attach team logos.</td></tr>
+    <tr><td><code>snippets/mega-menu-sets.liquid</code> (new)</td><td>Render featured bundle cards.</td></tr>
+    <tr><td><code>snippets/mega-menu-gifts.liquid</code> (new)</td><td>Render gift entries (quiz, $50-and-under, personalized).</td></tr>
+    <tr><td><code>assets/component-mega-menu.css</code></td><td>All mega-menu styling, mobile bottom-drawer variant.</td></tr>
+    <tr><td><code>assets/mega-menu.js</code></td><td>Hover-open with 200ms delay, click-open on mobile, focus trap for accessibility.</td></tr>
+    <tr><td>Shopify Admin → Navigation</td><td>Reorganize main menu. Hide old "Special Collections" and "Partner Products" entries from primary nav.</td></tr>
+  </tbody>
+</table>
+
+<h3>Mobile</h3>
+<p>Top nav becomes a hamburger that opens a slide-in drawer. Inside the drawer: 5 top-level items expand into accordion sections. Team picker is a 3-column grid of logo tiles inside the drawer. The "Build Your Own" CTA pinned to bottom of drawer.</p>
+
+<h3>Acceptance criteria</h3>
+<ul>
+  <li>Path from homepage to a Yankees PLP: ≤ 3 clicks (was 7).</li>
+  <li>Mega menu opens on hover within 200ms on desktop.</li>
+  <li>Mega menu is keyboard-navigable (tab order, Escape closes).</li>
+  <li>All team logos load lazily, do not block LCP.</li>
+  <li>Mobile drawer closes when a link is clicked.</li>
+</ul>
+
+<h3>Measurement</h3>
+<table class="spec">
+  <tbody>
+    <tr><td><strong>Primary</strong></td><td>Header-to-PLP click-through rate (custom GTM event on each nav item)</td></tr>
+    <tr><td><strong>Secondary</strong></td><td>/search session share (target: -50%); collection-to-PDP CTR; time-to-first-PDP</td></tr>
+    <tr><td><strong>Sample</strong></td><td>Sitewide test (no traffic constraint)</td></tr>
+    <tr><td><strong>Time to significance</strong></td><td>3 to 4 weeks</td></tr>
+  </tbody>
+</table>
+
+<!-- ====================== TEST 03 ====================== -->
+<h2 id="test03"><span class="num">TEST 03</span>Gift-Finder Quiz <span class="pri-chip p1">P1 · Flagship</span></h2>
+
+<div class="summary-row">
+  <div class="kv"><div class="k">Why</div><div class="v">2,085 product variants and zero decision aid. The buyer is a gift-giver. Choice paralysis is structural. A quiz that returns "Recommended for him: Grand Slam Set" collapses the decision and creates an email retargeting asset.</div></div>
+  <div class="kv"><div class="k">Target</div><div class="v">Quiz-completer purchase rate <strong>3 to 6%</strong> (vs sitewide 0.80%). 500 monthly completions builds a list of warm leads for email retargeting.</div></div>
+</div>
+
+<h3>What to build</h3>
+
+<h4>Quiz card placement</h4>
+<ul>
+  <li><strong>Homepage hero</strong> (right side of evergreen hero, post Father's Day).</li>
+  <li><strong>Gifts mega menu</strong> (primary entry).</li>
+  <li><strong>End of paid social flow</strong> (Step 2 after the Father's Day LP, when re-routing post-season).</li>
+  <li><strong>Persistent floating button</strong> bottom-right of every page ("Find the right kit") that opens the quiz overlay.</li>
+</ul>
+
+<h4>Six questions</h4>
+<ol>
+  <li>Who are you shopping for? (Dad / Grandpa / Brother or partner / Myself / Other)</li>
+  <li>Favorite team? (MLB picker with grid + MiLB + College + Skip)</li>
+  <li>How often does he grill? (Weekend warrior / Tailgater / Pro)</li>
+  <li>Engrave text or logo? (Text only / Add a logo / No engraving)</li>
+  <li>Budget tier? (Under $50 / $50–100 / $100–200 / $200+)</li>
+  <li>Gift now or later? (Now / Within 2 weeks / Planning ahead)</li>
+</ol>
+
+<h4>Result logic</h4>
+<p>Map answers to one of three bundle recommendations:</p>
+<ul>
+  <li><strong>Triple Play Set</strong> ($63): under $50–100 budget, weekend warrior.</li>
+  <li><strong>Grand Slam Set</strong> ($117, default): $50–200 budget, any user (the most-recommended).</li>
+  <li><strong>MVP Set</strong> ($177): $200+ budget, tailgater/pro.</li>
+</ul>
+<p>Apply the selected team's licensing/SKU variant automatically. Pre-fill engraving text field with "Dad" or "[Their Name]" placeholder if Q1=Dad/Grandpa/Brother.</p>
+
+<h4>Pre-result email capture</h4>
+<p>Between Q6 and the result screen, show: "Where should we send your match? (we won't spam)" with an email field. Skippable. Captured emails go into Klaviyo with a quiz_completed tag and the recommended bundle as a custom property.</p>
+
+<h4>Result page</h4>
+<p>"Based on your answers, the Grand Slam Set is the right kit for him." Show the bundle preview with image, description ("5 tools. Bat-handle grips. Lifetime warranty. Free engraving with his name."), price + savings. Dual CTAs: "Add to cart" (primary maroon) and "See 2 more matches" (secondary outline) that opens a side panel with the runner-up bundles.</p>
+
+<h3>Theme + app files</h3>
+<table class="spec">
+  <thead><tr><th>Where</th><th>What</th></tr></thead>
+  <tbody>
+    <tr><td><code>sections/gift-finder-quiz.liquid</code> (new)</td><td>Quiz markup, hidden by default. Opens as an overlay.</td></tr>
+    <tr><td><code>assets/gift-finder.js</code></td><td>Quiz state machine, question/answer logic, result mapping, Klaviyo POST.</td></tr>
+    <tr><td><code>assets/gift-finder.css</code></td><td>Styling.</td></tr>
+    <tr><td><code>templates/page.gift-finder.json</code> (new)</td><td>A standalone <code>/pages/gift-finder</code> route for direct linking from social.</td></tr>
+    <tr><td>Klaviyo</td><td>Create a "Quiz Completed" event + flow: 1) send email with their recommendation, 2) 24-hour follow-up if they didn't buy, 3) 72-hour with a 10% off code.</td></tr>
+    <tr><td>GTM</td><td>Events: <code>quiz_started</code>, <code>quiz_question_answered</code> (per Q), <code>quiz_completed</code>, <code>quiz_added_to_cart</code>, <code>quiz_email_captured</code>.</td></tr>
+  </tbody>
+</table>
+
+<h3>Build alternatives</h3>
+<p>If building from scratch is too costly, evaluate apps: <strong>Octane AI Quiz</strong>, <strong>RevenueHunt Product Recommender</strong>, or <strong>Visual Quiz Builder</strong>. Trade-off: faster ship, less brand control, $50–$200/mo. Decide before scoping.</p>
+
+<h3>Acceptance criteria</h3>
+<ul>
+  <li>Quiz completion time: 60 seconds median (6 questions × ~10 seconds).</li>
+  <li>Quiz works without JS frameworks (vanilla JS preferred to minimize bundle size).</li>
+  <li>Result page renders the recommended bundle with the correct team variant pre-selected.</li>
+  <li>Email captured before result lands in Klaviyo with <code>quiz_completed</code> + <code>recommended_bundle</code> properties.</li>
+  <li>Quiz state persists in localStorage (returning visitors can resume).</li>
+  <li>Mobile-first design; quiz overlay covers viewport on small screens, modal on desktop.</li>
+</ul>
+
+<h3>Measurement</h3>
+<table class="spec">
+  <tbody>
+    <tr><td><strong>Primary</strong></td><td>Quiz-completer purchase rate vs non-quiz session CR</td></tr>
+    <tr><td><strong>Secondary</strong></td><td>Quiz starts, completions, drop-off per question, email opt-in rate, time-to-purchase from completion, AOV of quiz-takers vs site avg</td></tr>
+    <tr><td><strong>Sample</strong></td><td>Target 500 completions / month (≈ 5% of monthly real US sessions)</td></tr>
+    <tr><td><strong>Time to compare cohorts</strong></td><td>~8 weeks</td></tr>
+  </tbody>
+</table>
+
+<!-- ====================== FP ====================== -->
+<h2 id="fp"><span class="num">4</span>Featured Products collection rebuild <span class="pri-chip ab">A/B test</span> <span class="pri-chip p1">P1</span></h2>
+
+<div class="summary-row">
+  <div class="kv"><div class="k">Why</div><div class="v"><code>/collections/home-page-featured-products-collection</code> takes <strong>783 sessions over 90 days</strong> at 37% bounce (people stay and look) and produces <strong>zero purchases</strong>. Most-clicked collection in the catalog, broken commercially.</div></div>
+  <div class="kv"><div class="k">Target</div><div class="v">1.5–3% CR on the collection = $500–$1,500 / month, permanent.</div></div>
+</div>
+
+<h3>What to build</h3>
+<p>Re-curate the collection. This is a metafield + Shopify admin change, not heavy code.</p>
+<ol>
+  <li><strong>Row 1: 3 hero bundles in this order:</strong>
+    <ul>
+      <li>Triple Play Set ($63) — "Save 22%" green pill</li>
+      <li>Grand Slam Set ($117) — "Most Picked" yellow corner badge</li>
+      <li>MVP Set ($177) — "Best Value" maroon corner badge</li>
+    </ul>
+  </li>
+  <li><strong>Row 2: Top 6 single tools</strong> by review count (Slider Spatula, Forkball Fork, Brushback Scraper, Splitfinger Tongs, Home Plate Cutting Board, Curveball Carving Knife).</li>
+  <li><strong>Row 3: Apparel</strong> (only if still in scope). Demote anything with zero sales in the last 90 days.</li>
+  <li><strong>End: "Build Your Own" CTA card</strong> with dashed border, pointing to <code>/collections/customizable</code>.</li>
+  <li><strong>Per-product star ratings:</strong> Replace the static "76 reviews" with real per-product Judge.me <code>product_rating_count</code> values.</li>
+</ol>
+
+<h3>Theme files</h3>
+<table class="spec">
+  <thead><tr><th>File</th><th>Change</th></tr></thead>
+  <tbody>
+    <tr><td><code>sections/main-collection-product-grid.liquid</code></td><td>Add corner badge slots driven by collection metafield <code>custom.featured_badge</code> (per product).</td></tr>
+    <tr><td><code>snippets/product-card.liquid</code></td><td>Replace static review count with Judge.me snippet. Add savings % pill if compare_at_price exists.</td></tr>
+    <tr><td>Shopify Admin → Collection</td><td>Manually reorder products in the Featured Products collection.</td></tr>
+  </tbody>
+</table>
+
+<h3>Acceptance criteria</h3>
+<ul>
+  <li>3 bundles appear in row 1, Grand Slam tagged "Most Picked".</li>
+  <li>Zero-sale SKUs not shown on first scroll.</li>
+  <li>"Build your own" card appears at end of grid.</li>
+  <li>Each card shows its real review count.</li>
+</ul>
+
+<h3>Measurement</h3>
+<table class="spec">
+  <tbody>
+    <tr><td><strong>Primary</strong></td><td>Purchases originating from this collection</td></tr>
+    <tr><td><strong>Secondary</strong></td><td>Collection-to-PDP CTR, bundle CTR, bounce</td></tr>
+    <tr><td><strong>Sample / time</strong></td><td>261 sessions/mo baseline. 6–8 weeks at 90% confidence to detect 1–3 purchases/mo lift.</td></tr>
+  </tbody>
+</table>
+
+<!-- ====================== REVIEWS ====================== -->
+<h2 id="reviews"><span class="num">5</span>Reviews + press logos into hero <span class="pri-chip ab">A/B test</span> <span class="pri-chip p1">P1</span></h2>
+
+<p><strong>What.</strong> Move the "4.9 from 2,847 reviews" rating and the press logos (GMA · Live with Kelly · Fox News) into the hero on the homepage AND under the product title on every PDP. They currently sit below the fold.</p>
+<p><strong>Why.</strong> Strongest trust signals on the site, used in the weakest position.</p>
+<p><strong>Spec.</strong></p>
+<ul>
+  <li><strong>Homepage hero:</strong> Add a horizontal strip directly under the H1: gold stars + "4.9 from 2,847 reviews" link + small grey logos GMA · Live with Kelly · Fox News (50–60px width each).</li>
+  <li><strong>PDP:</strong> Stars row already in Test 01. Add a small "As Seen On" strip beneath the buy box (also in Test 01). For PDPs not in Test 01, ship as a smaller standalone test.</li>
+</ul>
+<p><strong>Files:</strong> <code>sections/main-hero.liquid</code>, <code>snippets/press-strip.liquid</code>.</p>
+<p><strong>Measurement:</strong> Homepage-to-PDP CTR. Target +5 to +10%.</p>
+
+<!-- ====================== BADGES ====================== -->
+<h2 id="badges"><span class="num">6</span>Brand-specific PDP badges <span class="pri-chip ab">A/B test</span> <span class="pri-chip p1">P1</span></h2>
+
+<p><strong>What.</strong> Replace the generic "Top Quality / Fast Ship / Support / SSL" badges on PDPs with brand-specific reassurance: Lifetime Warranty · Free Engraving · Ships 1–2 Business Days · Free Shipping over $100.</p>
+<p><strong>Why.</strong> Generic badges add no information. Brand-specific signals address actual gift-buyer objections.</p>
+<p><strong>Note.</strong> This is included in Test 01 (PDP buy-box rebuild) for the top 5 PDPs. As a standalone A/B test, apply to the remaining PDPs separately so the lift can be measured independently.</p>
+<p><strong>Files:</strong> <code>snippets/product-badges.liquid</code> (built in Test 01).</p>
+<p><strong>Measurement:</strong> PDP-to-ATC rate on non-Test-01 PDPs. Target +8 to +15%.</p>
+
+<!-- ====================== STICKY ====================== -->
+<h2 id="sticky"><span class="num">7</span>Sticky mobile ATC bar <span class="pri-chip ab">A/B test</span> <span class="pri-chip p2">P2</span></h2>
+
+<p><strong>What.</strong> A persistent bottom bar on mobile PDPs that shows product thumbnail + variant + price + "Add to cart" button. Slides up after the user scrolls past the main buy box.</p>
+<p><strong>Why.</strong> Mobile already converts 14× better than desktop at PDP-to-ATC (8.13% vs 0.58%), but mobile scroll depth is only 42%. Half of mobile users lose visibility of the ATC button after scrolling past it.</p>
+<p><strong>Spec.</strong></p>
+<ul>
+  <li>Appears at viewport bottom when buy box is scrolled out of view (use IntersectionObserver on the original ATC button).</li>
+  <li>Height: 64px on mobile, hidden on desktop.</li>
+  <li>Slide-up animation: 300ms ease-out.</li>
+  <li>Contents: 48px square product image | product title (truncated to 1 line) | variant (truncated) + price | Add to cart button (maroon, 44px tall).</li>
+  <li>Click ATC scrolls back to buy box AND triggers the add-to-cart action.</li>
+</ul>
+<p><strong>Files:</strong> <code>snippets/sticky-atc.liquid</code> (new), <code>assets/sticky-atc.js</code>, <code>assets/sticky-atc.css</code>.</p>
+<p><strong>Measurement:</strong> Mobile PDP-to-ATC rate. Target +10 to +20%.</p>
+
+<!-- ====================== DRAWER ====================== -->
+<h2 id="drawer"><span class="num">8</span>Drawer cart + OCU upsell flows (pre + post-purchase) <span class="pri-chip ab">A/B test</span> <span class="pri-chip p1">P1</span></h2>
+
+<div class="summary-row">
+  <div class="kv"><div class="k">Why</div><div class="v">Site uses the default cart page (not a drawer). ATC-to-Checkout is 50% (half abandon). At $131 AOV, even a 10% AOV lift is +$1.3k/month. Strong AOV lever.</div></div>
+  <div class="kv"><div class="k">Target</div><div class="v">AOV +10 to +20%, ATC-to-Checkout drop -20 to -30%.</div></div>
+</div>
+
+<h3>Two changes ship together</h3>
+
+<h4>Part A: Drawer cart (replaces /cart page)</h4>
+<ul>
+  <li>Open from header cart icon as a right-side slide-out drawer (350px wide on desktop, full-width on mobile).</li>
+  <li>Show cart items, quantity controls, line items (including engraving add-ons), subtotal.</li>
+  <li>Free shipping progress bar at top ("You're $XX away from free shipping").</li>
+  <li>Express checkout buttons: Shop Pay, Apple Pay, Google Pay (above standard Checkout button).</li>
+  <li>Trust strip in the drawer footer (Lifetime Warranty · Ships 1–2 Days).</li>
+  <li>The standalone <code>/cart</code> page remains accessible (some users prefer it) but the drawer is the primary cart experience.</li>
+</ul>
+
+<h4>Part B: One Click Upsell (OCU) flows</h4>
+<ol>
+  <li><strong>Pre-purchase upsell</strong> (inside the drawer cart, after add-to-cart): "Customers also bought" or "Complete the set". Example: if cart has the Brushback Scraper, suggest the matching Slider Spatula at a 10% discount. One-tap add.</li>
+  <li><strong>Post-purchase upsell</strong> (on the thank-you page): a richer upsell with a 20% discount and 30-second timer. Example: "Add the Home Plate Cutting Board for $39 (regular $49). Same delivery." One-click add, no re-entering payment.</li>
+</ol>
+<p><strong>App recommendation:</strong> <a href="https://apps.shopify.com/zipify-oneclickupsell">Zipify OneClickUpsell (OCU)</a> for the post-purchase flow (industry standard, integrates with Shopify Checkout). For the pre-purchase drawer upsell, build native or use <a href="https://apps.shopify.com/in-cart-upsell">In Cart Upsell &amp; Cross Sell</a>.</p>
+
+<h3>Files</h3>
+<table class="spec">
+  <thead><tr><th>File</th><th>Change</th></tr></thead>
+  <tbody>
+    <tr><td><code>sections/cart-drawer.liquid</code> (new)</td><td>Drawer markup, line items, totals, express checkout.</td></tr>
+    <tr><td><code>snippets/cart-upsell.liquid</code> (new)</td><td>Render 1-2 upsell products in the drawer based on cart contents.</td></tr>
+    <tr><td><code>assets/cart-drawer.js</code></td><td>Open/close logic, live cart updates via Shopify Cart API, upsell click → add to cart.</td></tr>
+    <tr><td><code>assets/cart-drawer.css</code></td><td>Drawer styling.</td></tr>
+    <tr><td>Zipify OCU app</td><td>Install and configure post-purchase funnels. Recommended funnels: 1) "Add Home Plate Cutting Board for 20% off" if cart has any bundle, 2) "Add 3 more tools for 25% off" if cart has a single tool.</td></tr>
+  </tbody>
+</table>
+
+<h3>Acceptance criteria</h3>
+<ul>
+  <li>Drawer opens within 100ms of clicking cart icon.</li>
+  <li>Adding upsell from drawer updates totals without page reload.</li>
+  <li>Engraving line item properties carry through to checkout.</li>
+  <li>Post-purchase upsell triggers on the thank-you page only, not before payment.</li>
+  <li>Mobile drawer is full-width and dismissible via swipe-right.</li>
+</ul>
+
+<h3>Measurement</h3>
+<table class="spec">
+  <tbody>
+    <tr><td><strong>Primary</strong></td><td>AOV (pre-purchase upsell take rate) + Thank-you-page upsell conversion rate</td></tr>
+    <tr><td><strong>Secondary</strong></td><td>ATC-to-Checkout drop rate, cart abandonment rate, drawer open rate</td></tr>
+    <tr><td><strong>Sample</strong></td><td>All ATCs (109/28d in current baseline, expected to grow with Test 01 + 02)</td></tr>
+    <tr><td><strong>Time to significance</strong></td><td>4 to 6 weeks</td></tr>
+  </tbody>
+</table>
+
+<!-- ====================== SHIP BAR ====================== -->
+<h2 id="shipbar"><span class="num">9</span>Sitewide free-shipping progress bar <span class="pri-chip ship">Ship Direct</span></h2>
+
+<p><strong>What.</strong> A persistent progress bar in the header (or top of cart drawer) showing "You're $XX away from free shipping". Updates live as cart total changes.</p>
+<p><strong>Why.</strong> Free shipping is $100 on homepage but $150 on PDPs (inconsistent). Standardizing the threshold and surfacing progress motivates upsell and removes mixed messaging.</p>
+<p><strong>Spec.</strong></p>
+<ul>
+  <li>Header announcement bar replaces current static "Orders over $100 eligible for free shipping" with dynamic: "$X away from free shipping. <a>Add a tool →</a>" when cart > 0.</li>
+  <li>When cart total ≥ $100: "Free shipping unlocked ✓".</li>
+  <li>Same bar appears at top of cart drawer (Part of Test 08).</li>
+  <li>Update Shopify settings to use $100 as the single threshold sitewide. Remove the $150 mention from PDPs.</li>
+</ul>
+<p><strong>Files.</strong> <code>sections/announcement-bar.liquid</code>, <code>assets/free-ship-bar.js</code> (reads <code>theme.Shopify.cart.subtotal</code>, recalculates remaining).</p>
+<p><strong>Measurement.</strong> AOV. Track items-per-cart pre and post.</p>
+
+<!-- ====================== OAKLAND ====================== -->
+<h2 id="oakland"><span class="num">10</span>Fix Oakland Athletics PDP + audit team templates <span class="pri-chip ship">Ship Direct</span></h2>
+
+<p><strong>What.</strong> Investigate why <code>/products/oakland-athletics-team-jersey-cutting-board-...</code> has 51 sessions / 28d and a 100% bounce rate. Likely a broken image, missing variant, template error, or 404. Audit all team-specific PDPs (30+ MLB teams) for the same pattern.</p>
+<p><strong>Why.</strong> Every broken team PDP burns paid traffic invisibly. If the bug repeats across teams, the impact compounds.</p>
+<p><strong>Steps.</strong></p>
+<ol>
+  <li>Open the Oakland PDP in Chrome DevTools. Check console for JS errors, check Network tab for failed asset loads, check the rendered HTML for missing variant options or empty Liquid blocks.</li>
+  <li>Compare against a working team PDP (e.g. Yankees). Find the diff.</li>
+  <li>Run a Shopify GraphQL query against products tagged with team metafields to flag any product with: missing images, no available variants, empty <code>product.description</code>, or 404 redirect handles.</li>
+  <li>Fix the root cause (likely in <code>templates/product.team-board.json</code> or a missing metafield value).</li>
+  <li>Re-test on Oakland. Confirm session bounce drops in GA4 within 7 days.</li>
+</ol>
+
+<!-- ====================== NOTIFY-ME ====================== -->
+<h2 id="notify"><span class="num">11</span>Notify-me capture on sold-out variants <span class="pri-chip ship">Ship Direct</span></h2>
+
+<p><strong>What.</strong> When a variant is sold out, replace the disabled "Out of stock" text with an email field: "Notify me when this is back in stock". Submit captures email + product variant ID into Klaviyo.</p>
+<p><strong>Why.</strong> Personalized SKUs and team-specific products go out of stock regularly. Today the visitor sees "Unavailable" and leaves. Notify-me captures intent.</p>
+<p><strong>Spec.</strong></p>
+<ul>
+  <li>Replace the disabled variant button with a single email input + "Notify me" button.</li>
+  <li>POST to Klaviyo via the <code>/api/identify</code> endpoint with custom property <code>back_in_stock_variant_id</code>.</li>
+  <li>Klaviyo flow: when the variant's <code>inventory_quantity</code> goes from 0 to >0, send an email to all profiles with that variant in their property list.</li>
+</ul>
+<p><strong>App alternative.</strong> <a href="https://apps.shopify.com/back-in-stock">Back in Stock</a> or Klaviyo's native Back-in-Stock flow if available.</p>
+<p><strong>Files.</strong> <code>snippets/notify-me.liquid</code> (new), <code>assets/notify-me.js</code>.</p>
+
+<!-- ====================== TRACKING / DATA HYGIENE ====================== -->
+<h2 class="no-rule">Tracking and data hygiene (run alongside)</h2>
+
+<p>Not tied to a specific test, but ship early in Week 1 because every other metric depends on clean data:</p>
+
+<ol>
+  <li><strong>Audit Web Pixels Manager + GTM coverage.</strong> Pixels (Meta, Clarity) are installed via Shopify WPM, which bypasses GTM debug. Misfires are invisible. A 1-hour audit verifies Meta Pixel events fire on every standard event (ViewContent / AddToCart / InitiateCheckout / Purchase) and that Meta CAPI is configured server-side. Also confirm Google Ads enhanced conversions are firing (look for <code>enhanced_conversion_user_data</code> in GTM preview).</li>
+  <li><strong>Add GA4 IP filter for SG / IN / VN / HK datacenter ranges.</strong> 26% of traffic is APAC bot. Distorts funnel, bounce, and Google Ads optimization signal. Filter via GA4 Admin → Data Settings → Data Filters. No revenue impact directly, but unlocks every downstream decision.</li>
+  <li><strong>Standardize tracking event naming.</strong> Apply the <code>YM</code> / <code>ym_</code> prefix convention used elsewhere (GTM tags, GA4 events, Google Ads conversions) for any new events added by these tests.</li>
+</ol>
+
+<footer>
+  <p>Prepared by Yamu Media · June 2026 · <a href="https://raycazy.github.io/AI-workflow-tasks/baseball-bbq-cro-audit/" style="color: var(--maroon);">Back to deck</a></p>
+</footer>
+
+</div>
+</body>
+</html>
