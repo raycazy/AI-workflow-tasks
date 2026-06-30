@@ -152,6 +152,9 @@
 
   /* Win cards */
   .wins { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 22px; }
+  .wins.tri { grid-template-columns: repeat(3, 1fr); }
+  .wins.tri .win { padding: 18px; }
+  .wins.tri .wm b { font-size: 26px; }
   .win { border: 1px solid var(--line); border-radius: 16px; padding: 20px 22px; background: var(--slide); position: relative; }
   .win .wt { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
   .win .wh { font-size: 18px; font-weight: 700; color: var(--ink); margin: 8px 0 12px; line-height: 1.25; }
@@ -245,7 +248,7 @@
 
   @media (max-width: 900px) {
     .pad { padding: 32px 24px 88px; }
-    .grid2, .wins, .pillars { grid-template-columns: 1fr; }
+    .grid2, .wins, .pillars, .wins.tri { grid-template-columns: 1fr; }
     .stat-grid { grid-template-columns: repeat(2, 1fr); }
     .cover { padding: 40px 28px; }
     .meta-row { grid-template-columns: 1fr; }
@@ -293,13 +296,13 @@
       <div class="pad">
         <div class="section-h"><div class="eyebrow">What we have done so far</div></div>
         <h2 style="max-width:840px;">A full quarter of testing, mapped and shipped across the funnel.</h2>
-        <p style="max-width:840px;margin:14px 0 2px;font-size:16px;">Seven experiments designed, built, and run across PDP, cart, homepage, collection, and sitewide. Two are deployed winners, three are live, two are queued.</p>
+        <p style="max-width:840px;margin:14px 0 2px;font-size:16px;">Seven experiments designed, built, and run across PDP, cart, homepage, collection, and sitewide. Three are winners, two are live, two are queued.</p>
         <table class="flat" style="margin-top:20px;">
           <thead><tr><th>ID</th><th>Test</th><th>Page</th><th>Status</th></tr></thead>
           <tbody>
             <tr><td class="t-id">T01</td><td><b>Trust section + phone number</b></td><td>All PDPs</td><td><span class="tag-pill high">Deployed · Won</span></td></tr>
             <tr><td class="t-id">T02</td><td><b>Announcement bar: trust vs promo</b></td><td>Sitewide</td><td><span class="tag-pill high">Deployed · Won</span></td></tr>
-            <tr><td class="t-id">T03</td><td><b>Cart full redesign</b></td><td>Cart</td><td><span class="tag-pill med">Live · reading</span></td></tr>
+            <tr><td class="t-id">T03</td><td><b>Cart full redesign</b></td><td>Cart</td><td><span class="tag-pill high">Won</span></td></tr>
             <tr><td class="t-id">T04</td><td><b>Homepage full redesign</b></td><td>Homepage</td><td><span class="tag-pill med">Live · reading</span></td></tr>
             <tr><td class="t-id">T05</td><td><b>PDP full redesign</b></td><td>Top PDP</td><td><span class="tag-pill med">Live · reading</span></td></tr>
             <tr><td class="t-id">T06</td><td><b>Collection full redesign</b></td><td>Collection</td><td><span class="tag-pill">Queued</span></td></tr>
@@ -313,27 +316,34 @@
     <section class="slide" data-slide="3">
       <div class="pad">
         <div class="section-h"><div class="eyebrow">Results so far</div></div>
-        <h2 style="max-width:780px;">Two deployed winners. Over 100.000 DKK in new monthly run rate.</h2>
-        <div class="stat-grid" style="margin-top:20px;grid-template-columns:repeat(3,1fr);">
+        <h2 style="max-width:820px;">Three winning tests. Over 110.000 DKK in new monthly run rate.</h2>
+        <div class="stat-grid" style="margin-top:20px;grid-template-columns:repeat(4,1fr);">
           <div class="stat"><div class="v green">+38%</div><div class="k">T01 · PDP add to cart</div></div>
           <div class="stat"><div class="v green">+133%</div><div class="k">T02 · sitewide conversion</div></div>
-          <div class="stat"><div class="v coral">+102.370</div><div class="k">DKK / month combined uplift</div></div>
+          <div class="stat"><div class="v green">+13.3%</div><div class="k">T03 · cart conversion</div></div>
+          <div class="stat"><div class="v coral">+112.473</div><div class="k">DKK / month combined uplift</div></div>
         </div>
-        <div class="wins" style="margin-top:18px;">
+        <div class="wins tri" style="margin-top:18px;">
           <div class="win">
             <div class="wt">T01 · PDP trust section + phone number</div>
             <div class="wh">Human reassurance at the decision point</div>
-            <div class="wm"><b>+38.0%</b><span>ATC rate · 11.36 to 15.68</span></div>
-            <div class="wl">+27.931 DKK / month. A visible phone number below the product info was enough to move add to cart by a third.</div>
+            <div class="wm"><b>+38.0%</b><span>ATC · 11.36 to 15.68</span></div>
+            <div class="wl">+27.931 DKK / month. A visible phone number below the product info moved add to cart by a third.</div>
           </div>
           <div class="win">
             <div class="wt">T02 · Announcement bar: trust vs promo</div>
             <div class="wh">Premium framing beats promotional framing</div>
             <div class="wm"><b>+133.4%</b><span>sitewide CVR · 5.78 to 13.49</span></div>
-            <div class="wl">+74.439 DKK / month. Replacing rotating birthday promo copy with trust USPs more than doubled conversion.</div>
+            <div class="wl">+74.439 DKK / month. Trust USPs in place of birthday promo copy more than doubled conversion.</div>
+          </div>
+          <div class="win">
+            <div class="wt">T03 · Cart full redesign</div>
+            <div class="wh">Removing anxiety at the highest-stakes step</div>
+            <div class="wm"><b>+13.3%</b><span>cart CVR · +9.84% RPV</span></div>
+            <div class="wl">+10.103 DKK / month. Cleaner pricing, restored financing, a risk-reversal strip, and tap-to-call lifted cart progression.</div>
           </div>
         </div>
-        <p class="note" style="margin-top:18px;">Three more tests are live and reading (T03 cart, T04 homepage, T05 PDP redesign). Their results will add to this number.</p>
+        <p class="note" style="margin-top:18px;">Two more tests are live and reading (T04 homepage, T05 PDP redesign). Their results will add to this number.</p>
       </div>
     </section>
 
@@ -341,7 +351,7 @@
     <section class="slide" data-slide="4">
       <div class="pad">
         <div class="section-h"><div class="eyebrow">What Q2 proved</div></div>
-        <h2 style="font-size:clamp(26px,3.4vw,40px);max-width:820px;">Both winners say the same thing about this buyer.</h2>
+        <h2 style="font-size:clamp(26px,3.4vw,40px);max-width:820px;">All three winners say the same thing about this buyer.</h2>
         <p style="margin-top:18px;max-width:850px;font-size:16px;color:var(--ink);">
           For an 8.000 to 125.000 DKK considered purchase, buyers convert on <b style="color:var(--coral)">trust, access to a human, and de-risking</b>, not urgency and price cuts. Q2 removed friction on the page. <b>Q3 should guide the long high ticket decision and capture the buyer who is not ready to buy today.</b> That points at three pillars.
         </p>
@@ -1034,7 +1044,7 @@
   const slideMeta = [
     { n: 1, label: 'Cover', sub: 'Q3 2026 roadmap', chip: 'Intro' },
     { n: 2, label: 'What we have done', sub: 'Q2 pipeline, 7 tests', chip: 'Recap' },
-    { n: 3, label: 'Results so far', sub: 'Two winners, +102k DKK/mo', chip: 'Results' },
+    { n: 3, label: 'Results so far', sub: 'Three winners, +112k DKK/mo', chip: 'Results' },
     { n: 4, label: 'What Q2 proved', sub: 'The lesson, three pillars', chip: 'Lesson' },
     { n: 5, label: 'What is next at a glance', sub: '9 tests across 3 pillars', chip: 'Overview' },
     { n: 6, label: 'T08 Showroom booking', sub: 'Visit as a conversion', chip: 'Pillar A' },
