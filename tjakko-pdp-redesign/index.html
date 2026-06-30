@@ -92,7 +92,7 @@
 
   /* KEPT: footprint width diagram */
   .footprint{text-align:center;margin-bottom:22px}
-  .footprint img{max-width:420px;margin:0 auto}
+  .footprint img{margin:0 auto}
 
   /* KEPT: accordions */
   .acc{border-top:1px solid var(--line)}
@@ -187,7 +187,8 @@
   .legend .keep{color:var(--muted);font-size:11px;padding:0 14px 12px;line-height:1.4}
 
   @media(max-width:880px){
-    .pdp{grid-template-columns:1fr;gap:28px;padding:18px}
+    .pdp{display:block;padding:18px}
+    .pdp .gallery{margin-bottom:28px}
     nav.main{display:none}
     .edu{grid-template-columns:1fr;padding:22px}
     .sg-steps{grid-template-columns:1fr}
