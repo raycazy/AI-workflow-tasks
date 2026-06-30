@@ -555,6 +555,9 @@
         .dc-title{font-size:15px;font-weight:600;color:#fff;margin-bottom:6px}
         .dc-desc{font-size:11px;color:#999;line-height:1.6;margin-bottom:12px}
         .dc-open{font-size:11px;font-weight:600;color:#F7D007}
+        /* ===== TEST-PLAN MOCKUP LINK ===== */
+        .tp-mocklink{display:inline-block;margin-top:9px;color:#1F4A2E;font-size:11px;font-weight:700;letter-spacing:.5px;text-decoration:underline;text-underline-offset:3px;font-family:'Inter',sans-serif;}
+        .tp-mocklink:hover{color:#111;}
     </style>
 </head>
 
@@ -1168,46 +1171,6 @@
         </table>
         <div class="scorecard-total"><span class="lbl">Biggest single lever</span><span class="val">Close the View to ATC leak: reviews + sizing + trust</span></div>
     </div>
-
-    <!-- SLIDE 25: RECOMMENDED DESIGNS -->
-    <div class="card" data-index="25">
-        <div class="card-header">
-            <div class="card-label">Recommended designs</div>
-            <div class="card-title">Mockups for the top fixes</div>
-            <div class="card-subtitle">On-brand redesigns of the three highest-impact surfaces, built from TJ&Aring;KKO's real tokens (Arvo + Poppins, ink + sage green). Each one is a live, clickable page. Together they attack the View to ATC leak and the AOV gap.</div>
-        </div>
-        <div class="designs-grid">
-            <a class="design-card" href="https://raycazy.github.io/AI-workflow-tasks/tjakko-pdp-redesign/" target="_blank" rel="noopener">
-                <div class="dc-shot"><img src="assets/mock-pdp.jpg" alt="PDP redesign mockup"></div>
-                <div class="dc-body">
-                    <div class="dc-tag">Product page</div>
-                    <div class="dc-title">Reviews + inline sizing</div>
-                    <div class="dc-desc">42 Trustpilot reviews surfaced, inline foot-measure guide with PDF template, no pre-selected size. Attacks the 96% View to ATC drop.</div>
-                    <div class="dc-open">Open mockup &#9656;</div>
-                </div>
-            </a>
-            <a class="design-card" href="https://raycazy.github.io/AI-workflow-tasks/tjakko-cart-redesign/" target="_blank" rel="noopener">
-                <div class="dc-shot"><img src="assets/mock-cart.jpg" alt="Cart redesign mockup"></div>
-                <div class="dc-body">
-                    <div class="dc-tag">Cart</div>
-                    <div class="dc-title">Free shipping meter + cross-sell</div>
-                    <div class="dc-desc">"Du &auml;r 901 kr fr&aring;n fri frakt" progress bar, low price add-ons, Swedish terms text. Lifts AOV toward 1700 kr.</div>
-                    <div class="dc-open">Open mockup &#9656;</div>
-                </div>
-            </a>
-            <a class="design-card" href="https://raycazy.github.io/AI-workflow-tasks/tjakko-homepage-hero/" target="_blank" rel="noopener">
-                <div class="dc-shot"><img src="assets/mock-home.jpg" alt="Homepage hero redesign mockup"></div>
-                <div class="dc-body">
-                    <div class="dc-tag">Homepage</div>
-                    <div class="dc-title">Benefit-led hero</div>
-                    <div class="dc-desc">"Frihet f&ouml;r f&ouml;tterna" hero with Trustpilot trust row and rated bestseller tiles. Supplier promo demoted below.</div>
-                    <div class="dc-open">Open mockup &#9656;</div>
-                </div>
-            </a>
-        </div>
-        <div class="insight-box">These are starting points sized for a designer-to-developer handoff, not final art. The "Just ship" items (reviews, sizing, Swedish terms) can go live close to as shown. The layout changes (hero, threshold) should run as A/B tests against the 1.41% baseline.</div>
-    </div>
-
     <!-- SLIDE 26: SECTION 06 TEST PLANS -->
     <div class="section-slide card" data-index="26">
         <div class="section-number">06</div>
@@ -1270,8 +1233,9 @@
                     <div class="tp-mockup-label">CONTROL</div>
                 </div>
                 <div class="tp-mockup">
-                    <div class="tp-phone"><div class="tp-screen"><img src="assets/var-pdp.jpg" class="shot"><span class="tp-annotation" style="top:54px;right:14px">REVIEWS</span><span class="tp-annotation" style="bottom:30px;left:14px">SIZING GUIDE</span></div></div>
+                    <div class="tp-phone"><div class="tp-screen"><img src="assets/var-pdp.jpg" class="shot"><span class="tp-annotation" style="top:46px;right:14px">TRUSTPILOT</span><span class="tp-annotation" style="top:182px;left:14px">SIZE GUIDE</span></div></div>
                     <div class="tp-mockup-label variant">VARIANT</div>
+                    <a class="tp-mocklink" href="https://raycazy.github.io/AI-workflow-tasks/tjakko-pdp-redesign/" target="_blank" rel="noopener">Open live mockup &#9656;</a>
                 </div>
             </div>
         </div>
@@ -1333,6 +1297,7 @@
                 <div class="tp-mockup">
                     <div class="tp-phone"><div class="tp-screen"><img src="assets/var-cart.jpg" class="shot"><span class="tp-annotation" style="top:70px;right:14px">FREE SHIP BAR</span></div></div>
                     <div class="tp-mockup-label variant">VARIANT</div>
+                    <a class="tp-mocklink" href="https://raycazy.github.io/AI-workflow-tasks/tjakko-cart-redesign/" target="_blank" rel="noopener">Open live mockup &#9656;</a>
                 </div>
             </div>
         </div>
@@ -1394,6 +1359,7 @@
                 <div class="tp-mockup">
                     <div class="tp-phone"><div class="tp-screen"><img src="assets/var-home.jpg" class="shot"><span class="tp-annotation" style="top:150px;left:14px">BENEFIT HERO</span></div></div>
                     <div class="tp-mockup-label variant">VARIANT</div>
+                    <a class="tp-mocklink" href="https://raycazy.github.io/AI-workflow-tasks/tjakko-homepage-hero/" target="_blank" rel="noopener">Open live mockup &#9656;</a>
                 </div>
             </div>
         </div>
@@ -1427,7 +1393,7 @@
         <span>Menu</span>
     </button>
     <div class="nav-dots" id="navDots"></div>
-    <div class="nav-counter" id="navCounter">01 / 31</div>
+    <div class="nav-counter" id="navCounter">01 / 30</div>
     <div class="nav-arrows">
         <button class="nav-arrow" id="prevBtn" aria-label="Previous"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
         <button class="nav-arrow" id="nextBtn" aria-label="Next"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
@@ -1462,7 +1428,6 @@ var SLIDE_TITLES = [
     '90-day roadmap',
     'Ship vs A/B test',
     'Summary scorecard',
-    'Recommended designs',
     '06 / A/B test plans (section)',
     'T01 · PDP reviews + sizing',
     'T02 · Cart free shipping',
@@ -1476,8 +1441,8 @@ var SLIDE_SECTIONS = [
     { title: '02 / Conversion walk', start: 10, end: 14 },
     { title: '03 / Voice of customer', start: 15, end: 17 },
     { title: '04 / Competitor benchmark', start: 18, end: 20 },
-    { title: '05 / Roadmap', start: 21, end: 25 },
-    { title: '06 / A/B test plans', start: 26, end: 30 }
+    { title: '05 / Roadmap', start: 21, end: 24 },
+    { title: '06 / A/B test plans', start: 25, end: 29 }
 ];
 
 (function(){

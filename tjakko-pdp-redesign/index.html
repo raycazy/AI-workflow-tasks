@@ -9,8 +9,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#121212; --bg:#ffffff; --sage:#D4E6B5; --sage-deep:#b9d191; --red:#DD1D1D;
-    --gold:#E8A33D; --line:#e7e7e2; --muted:#6b6b66;
+    --ink:#121212; --bg:#ffffff; --sage:#D4E6B5; --sage-deep:#9ec06f; --red:#DD1D1D;
+    --gold:#E8A33D; --tp:#00b67a; --line:#e7e7e2; --muted:#6b6b66;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   body{font-family:'Poppins',sans-serif;color:var(--ink);background:#f4f4f0;line-height:1.6;-webkit-font-smoothing:antialiased}
@@ -19,21 +19,16 @@
   a{color:inherit}
   .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
 
-  /* ribbon */
   .ribbon{background:var(--ink);color:#fff;font-size:12.5px;letter-spacing:.3px;text-align:center;padding:9px 16px}
-  .ribbon b{color:var(--sage)}
-  .ribbon span{opacity:.8}
+  .ribbon b{color:var(--sage)} .ribbon span{opacity:.85}
 
-  /* store chrome */
   .ann-bar{background:#faf6ee;color:var(--red);text-align:center;font-size:12.5px;font-style:italic;padding:7px 16px;border-bottom:1px solid var(--line)}
   .usp{background:var(--ink);color:#fff}
   .usp .wrap{display:flex;gap:28px;justify-content:center;align-items:center;padding:8px 24px;font-size:12px;letter-spacing:.3px;flex-wrap:wrap}
-  .usp svg{vertical-align:-2px;margin-right:6px}
   header.site{background:#fff;border-bottom:1px solid var(--line)}
   header.site .wrap{display:flex;align-items:center;justify-content:space-between;padding:16px 24px}
   .logo{display:flex;align-items:center;gap:10px;font-family:'Arvo',serif;font-weight:700;font-size:20px;letter-spacing:1px}
-  .logo svg{display:block}
-  nav.main{display:flex;gap:22px;font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:.5px}
+  nav.main{display:flex;gap:20px;font-size:12.5px;font-weight:500;text-transform:uppercase;letter-spacing:.5px}
   nav.main a{text-decoration:none}
   .head-icons{display:flex;gap:16px;align-items:center}
   .head-icons svg{width:22px;height:22px}
@@ -41,7 +36,6 @@
   .crumbs{font-size:12px;color:var(--muted);padding:16px 0}
   .crumbs a{text-decoration:none}
 
-  /* product layout */
   .pdp{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;background:#fff;padding:32px;border:1px solid var(--line);border-radius:6px}
   .gallery .main-img{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#f7f7f3}
   .gallery .main-img img{width:100%;aspect-ratio:1/1;object-fit:cover}
@@ -50,20 +44,24 @@
   .thumbs img.active{border-color:var(--ink)}
 
   .vendor{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-  .ptitle{font-size:30px;line-height:1.15;margin-bottom:10px}
+  .ptitle{font-size:28px;line-height:1.15;margin-bottom:12px}
 
-  /* rating row (NEW) */
-  .rating-row{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
-  .stars{color:var(--gold);font-size:18px;letter-spacing:1px}
-  .rating-row .score{font-weight:700;font-size:14px}
-  .rating-row .count{font-size:13px;color:var(--muted);text-decoration:underline;cursor:pointer}
-  .tp{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--muted)}
-  .tp b{color:#00b67a}
+  /* NEW: Trustpilot aggregate by title */
+  .tp-rate{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+  .tp-stars{display:inline-flex;gap:2px}
+  .tp-stars i{width:18px;height:18px;background:var(--tp);display:inline-flex;align-items:center;justify-content:center;border-radius:2px}
+  .tp-stars i svg{width:13px;height:13px;fill:#fff}
+  .tp-rate .score{font-weight:700;font-size:14px}
+  .tp-rate a{font-size:13px;color:var(--muted);text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+  .tp-rate a .cnt{text-decoration:underline}
+  .tp-word{display:inline-flex;align-items:center;gap:4px;font-weight:700;color:var(--ink)}
+  .tp-word svg{width:15px;height:15px}
 
-  .price{font-size:22px;font-weight:700;margin-bottom:20px}
+  .price{font-size:22px;font-weight:700;margin:4px 0 20px}
 
-  .opt-label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin:0 0 8px}
-  .opt-label .req{color:var(--red);font-weight:600;text-transform:none;letter-spacing:0;margin-left:8px;font-size:12px}
+  .opt-label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin:0 0 8px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .opt-label .req{color:var(--red);font-weight:600;text-transform:none;letter-spacing:0;font-size:12px}
+  .opt-label .sizelink{font-weight:600;text-transform:none;letter-spacing:0;font-size:12.5px;color:var(--ink);text-decoration:underline;cursor:pointer;display:inline-flex;align-items:center;gap:5px}
   .swatches{display:flex;gap:10px;margin-bottom:22px}
   .swatch{width:54px;height:54px;border-radius:4px;border:1px solid var(--line);overflow:hidden;cursor:pointer}
   .swatch.active{outline:2px solid var(--ink);outline-offset:2px}
@@ -74,108 +72,145 @@
   .size:hover{background:#f3f3ee}
   .size.sel{background:var(--ink);color:#fff}
   .size.soldout{color:#bbb;border-color:#e3e3e0;text-decoration:line-through;cursor:not-allowed}
-  .size-hint{font-size:12.5px;color:var(--red);margin-bottom:16px;display:flex;align-items:center;gap:6px}
+  .size-hint{font-size:12.5px;color:var(--red);margin-bottom:16px}
 
-  /* fit indicator (kept) */
-  .fit{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:6px;padding:12px 16px;margin-bottom:18px}
-  .fit .ico{font-family:'Arvo',serif;font-weight:700}
-  .fit .t{font-size:13px}
-  .fit .t b{display:block;font-size:13px}
-  .fit .t span{color:var(--muted);font-size:12px}
-
-  /* inline sizing guide (NEW) */
-  .sizeguide{background:var(--sage);border-radius:8px;padding:20px 22px;margin-bottom:22px}
-  .sizeguide h3{font-size:17px;margin-bottom:6px}
-  .sizeguide p.sub{font-size:13px;color:#33402a;margin-bottom:14px}
-  .sg-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
-  .sg-step{background:rgba(255,255,255,.7);border-radius:6px;padding:12px}
-  .sg-step .n{font-family:'Arvo',serif;font-weight:700;font-size:15px;margin-bottom:4px}
-  .sg-step .x{font-size:12px;color:#33402a;line-height:1.5}
-  .sg-callout{background:var(--ink);color:#fff;border-radius:6px;padding:10px 14px;font-size:13px;margin-bottom:14px}
-  .sg-callout b{color:var(--sage)}
-  .sg-table{width:100%;border-collapse:collapse;font-size:12.5px;background:rgba(255,255,255,.7);border-radius:6px;overflow:hidden;margin-bottom:14px}
-  .sg-table th,.sg-table td{padding:7px 10px;text-align:center;border-bottom:1px solid rgba(0,0,0,.06)}
-  .sg-table th{background:rgba(255,255,255,.5);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.5px}
-  .sg-pdf{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--ink);border-radius:3px;padding:10px 16px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.85px;text-decoration:none}
-
-  .atc{width:100%;background:var(--ink);color:#fff;border:none;border-radius:3px;padding:17px;font-family:'Poppins',sans-serif;font-weight:700;font-size:15px;text-transform:uppercase;letter-spacing:.85px;cursor:pointer;margin-bottom:14px}
+  .atc{width:100%;background:var(--ink);color:#fff;border:none;border-radius:3px;padding:17px;font-family:'Poppins',sans-serif;font-weight:700;font-size:15px;text-transform:uppercase;letter-spacing:.85px;cursor:pointer;margin-bottom:16px}
   .atc:hover{opacity:.9}
 
-  .reassure{display:flex;align-items:center;gap:8px;justify-content:center;font-size:13px;color:#2c4a1f;background:var(--sage);border-radius:6px;padding:10px;margin-bottom:18px}
+  /* KEPT: pickup availability */
+  .pickup{font-size:13px;margin-bottom:18px;line-height:1.5}
+  .pickup .ok{color:#2c7a1f;font-weight:600;display:flex;align-items:center;gap:6px}
+  .pickup .sub{color:var(--muted);font-size:12.5px;margin:2px 0 0 22px}
+  .pickup a{display:inline-block;margin:4px 0 0 22px;font-size:12.5px;text-decoration:underline}
 
-  .trust{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center;font-size:11.5px;color:var(--muted)}
-  .trust .ti svg{width:24px;height:24px;margin:0 auto 5px;display:block;color:var(--ink)}
+  /* KEPT: trust icons */
+  .trust{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center;font-size:11.5px;color:var(--muted);padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:18px}
+  .trust .ti svg{width:24px;height:24px;margin:0 auto 6px;display:block;color:var(--ink)}
 
-  /* reviews section (NEW / populated) */
+  /* KEPT: description */
+  .pdesc{font-size:13.5px;color:#444;line-height:1.65;margin-bottom:20px}
+
+  /* KEPT: footprint width diagram */
+  .footprint{text-align:center;margin-bottom:22px}
+  .footprint img{max-width:420px;margin:0 auto}
+
+  /* KEPT: accordions */
+  .acc{border-top:1px solid var(--line)}
+  .acc details{border-bottom:1px solid var(--line)}
+  .acc summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:15px 0;font-weight:600;font-size:15px}
+  .acc summary::-webkit-details-marker{display:none}
+  .acc summary .chk{width:18px;height:18px;border:1.5px solid var(--ink);border-radius:3px;display:inline-flex;align-items:center;justify-content:center}
+  .acc summary .chk svg{width:11px;height:11px;stroke:var(--ink);fill:none;stroke-width:3}
+  .acc summary .car{margin-left:auto;transition:transform .2s}
+  .acc details[open] summary .car{transform:rotate(180deg)}
+  .acc .body{padding:0 0 16px 28px;font-size:13px;color:#555;line-height:1.6}
+
+  /* KEPT: educational section */
+  .edu{background:#fff;border:1px solid var(--line);border-radius:6px;padding:36px;margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
+  .edu h2{font-size:30px;line-height:1.15;margin-bottom:14px}
+  .edu p{font-size:13.5px;color:#555;line-height:1.65;margin-bottom:16px}
+  .edu ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .edu li{font-family:'Arvo',serif;font-weight:700;font-size:16px}
+  .edu-compare{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .edu-compare figure{position:relative;border-radius:8px;overflow:hidden;border:1px solid var(--line)}
+  .edu-compare img{width:100%;height:auto;display:block}
+  .edu-compare figcaption{position:absolute;top:10px;left:10px;background:var(--ink);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:3px}
+  .edu-compare figure.good figcaption{background:var(--sage-deep);color:#1c2b10}
+
+  /* KEPT: image-review carousel + NEW Trustpilot header */
   .reviews{background:#fff;border:1px solid var(--line);border-radius:6px;padding:32px;margin-top:24px}
-  .rev-head{display:flex;align-items:center;gap:26px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:22px}
-  .rev-big{font-family:'Arvo',serif;font-size:46px;line-height:1}
-  .rev-head .stars{font-size:22px}
-  .rev-meta{font-size:13px;color:var(--muted)}
-  .rev-dist{flex:1;min-width:220px}
-  .rev-bar{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted);margin:3px 0}
-  .rev-bar .track{flex:1;height:7px;background:#eee;border-radius:4px;overflow:hidden}
-  .rev-bar .fill{height:100%;background:var(--gold)}
-  .rev-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-  .rev-card{border:1px solid var(--line);border-radius:6px;padding:16px}
-  .rev-card .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-  .rev-card .who{font-weight:600;font-size:13px}
-  .rev-card .who span{display:block;font-size:11px;color:var(--muted);font-weight:400}
-  .rev-card .stars{font-size:14px}
-  .rev-card p{font-size:13px;line-height:1.55}
-  .rev-card .verified{font-size:11px;color:#00875a;margin-top:8px;display:flex;align-items:center;gap:5px}
+  .rev-top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+  .rev-top h2{font-size:26px}
+  .rev-tp{display:inline-flex;align-items:center;gap:10px;text-decoration:none;border:1px solid var(--line);border-radius:8px;padding:8px 14px}
+  .rev-tp:hover{border-color:var(--tp)}
+  .rev-tp .score{font-weight:700;font-size:15px}
+  .rev-tp .meta{font-size:11px;color:var(--muted)}
+  .rev-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
+  .rev-track::-webkit-scrollbar{height:6px}
+  .rev-track::-webkit-scrollbar-thumb{background:#ddd;border-radius:3px}
+  .rev-card{flex:0 0 230px;scroll-snap-align:start;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+  .rev-card img{width:100%;aspect-ratio:1/1;object-fit:cover;background:#f1f1ec}
+  .rev-card .b{padding:12px 14px}
+  .rev-card .who{font-weight:600;font-size:13px;display:flex;align-items:center;gap:6px}
+  .rev-card .who .v{color:var(--tp);display:inline-flex}
+  .rev-card .who .v svg{width:14px;height:14px;fill:var(--tp)}
+  .rev-card .stars{color:var(--gold);font-size:13px;margin-top:4px}
 
-  footer.site{background:var(--ink);color:#cfcfca;margin-top:32px;padding:36px 0;font-size:13px}
+  footer.site{background:var(--ink);color:#cfcfca;margin-top:32px;padding:36px 0 90px;font-size:13px}
   footer.site .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;align-items:center}
-  .pay{display:flex;gap:8px}
+  .pay{display:flex;gap:8px;flex-wrap:wrap}
   .pay span{background:#2a2a2a;border-radius:3px;padding:3px 8px;font-size:10px;letter-spacing:.5px}
 
-  /* annotation tags */
-  .tag{display:inline-flex;align-items:center;gap:6px;background:#fff7d6;border:1px solid #e9d27a;color:#7a5c00;font-size:11px;font-weight:600;border-radius:20px;padding:3px 10px;margin-bottom:10px}
-  .tag .dot{width:16px;height:16px;border-radius:50%;background:#E8A33D;color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
-  .new-outline{position:relative;outline:2px dashed var(--sage-deep);outline-offset:6px;border-radius:8px}
+  /* KEPT: sticky ATC */
+  .sticky-atc{position:fixed;left:0;right:0;bottom:0;z-index:60;background:#fff;border-top:1px solid var(--line);box-shadow:0 -6px 22px rgba(0,0,0,.10);transform:translateY(110%);transition:transform .25s}
+  .sticky-atc.show{transform:none}
+  .sticky-atc .wrap{display:flex;align-items:center;gap:16px;padding:12px 24px}
+  .sticky-atc img{width:46px;height:46px;object-fit:cover;border-radius:6px;border:1px solid var(--line)}
+  .sticky-atc .nm{font-weight:600;font-size:14px}
+  .sticky-atc .pr{font-weight:700;font-size:14px}
+  .sticky-atc select{margin-left:auto;border:1px solid var(--ink);border-radius:3px;padding:9px 12px;font:inherit;font-size:13px}
+  .sticky-atc .sbtn{background:var(--ink);color:#fff;border:none;border-radius:3px;padding:12px 22px;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.6px;cursor:pointer}
 
-  /* legend */
-  .legend{position:fixed;right:18px;bottom:18px;z-index:50;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.14);width:290px;font-size:12px;overflow:hidden}
-  .legend h4{background:var(--ink);color:#fff;font-family:'Poppins';font-size:12px;text-transform:uppercase;letter-spacing:1px;padding:10px 14px;font-weight:600}
-  .legend ul{list-style:none;padding:12px 14px;display:flex;flex-direction:column;gap:10px}
-  .legend li{display:flex;gap:9px;line-height:1.4}
-  .legend .dot{flex:none;width:18px;height:18px;border-radius:50%;background:#E8A33D;color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
-  .legend b{display:block}
-  .legend h4{cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px}
+  /* NEW: size-guide popup (was a buried link) */
+  .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:80;display:none;align-items:center;justify-content:center;padding:20px}
+  .modal-bg.open{display:flex}
+  .modal{background:#fff;border-radius:12px;max-width:560px;width:100%;max-height:88vh;overflow:auto;padding:26px}
+  .modal h3{font-size:20px;margin-bottom:4px}
+  .modal .sub{font-size:13px;color:var(--muted);margin-bottom:18px}
+  .modal .x{float:right;font-size:24px;line-height:1;cursor:pointer;color:var(--muted);border:none;background:none}
+  .sg-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+  .sg-step{background:var(--sage);border-radius:8px;padding:14px}
+  .sg-step .n{font-family:'Arvo',serif;font-weight:700;font-size:16px;margin-bottom:4px}
+  .sg-step .x2{font-size:12px;color:#33402a;line-height:1.5}
+  .sg-callout{background:var(--ink);color:#fff;border-radius:8px;padding:12px 16px;font-size:13px;margin-bottom:16px}
+  .sg-callout b{color:var(--sage)}
+  .sg-table{width:100%;border-collapse:collapse;font-size:12.5px;border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-bottom:16px}
+  .sg-table th,.sg-table td{padding:8px 10px;text-align:center;border-bottom:1px solid var(--line)}
+  .sg-table th{background:#f7f7f3;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+  .sg-pdf{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;border-radius:3px;padding:12px 18px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.85px;text-decoration:none}
+
+  /* annotation tags + legend */
+  .tag{display:inline-flex;align-items:center;gap:6px;background:#fff7d6;border:1px solid #e9d27a;color:#7a5c00;font-size:11px;font-weight:600;border-radius:20px;padding:3px 10px;margin-bottom:8px}
+  .tag .dot{width:16px;height:16px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
+  .new-outline{outline:2px dashed var(--sage-deep);outline-offset:5px;border-radius:8px}
+
+  .legend{position:fixed;right:18px;bottom:84px;z-index:55;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.16);width:300px;font-size:12px;overflow:hidden}
+  .legend h4{background:var(--ink);color:#fff;font-size:12px;text-transform:uppercase;letter-spacing:1px;padding:10px 14px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px}
   .legend .chev{transition:transform .2s;font-size:11px}
-  .legend.collapsed ul{display:none}
+  .legend.collapsed ul,.legend.collapsed .keep{display:none}
   .legend.collapsed{width:auto}
   .legend:not(.collapsed) .chev{transform:rotate(90deg)}
+  .legend ul{list-style:none;padding:12px 14px;display:flex;flex-direction:column;gap:10px}
+  .legend li{display:flex;gap:9px;line-height:1.4}
+  .legend .dot{flex:none;width:18px;height:18px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
+  .legend b{display:block}
+  .legend .keep{color:var(--muted);font-size:11px;padding:0 14px 12px;line-height:1.4}
 
   @media(max-width:880px){
     .pdp{grid-template-columns:1fr;gap:28px;padding:18px}
     nav.main{display:none}
+    .edu{grid-template-columns:1fr;padding:22px}
     .sg-steps{grid-template-columns:1fr}
-    .rev-grid{grid-template-columns:1fr}
     .legend{display:none}
     .usp .wrap{gap:14px;font-size:11px}
+    .sticky-atc .nm,.sticky-atc .pr{display:none}
+    .sticky-atc select{margin-left:0}
   }
 </style>
 </head>
 <body>
 
-<div class="ribbon"><b>EcomHouse redesign mockup</b> &nbsp;<span>Proposed TJÅKKO product page. Changes outlined in sage. See the legend, lower right.</span></div>
+<div class="ribbon"><b>EcomHouse redesign mockup</b> &nbsp;<span>The real TJÅKKO product page, with only the marked CRO changes. Everything else is kept. See legend, lower right.</span></div>
 
 <div class="ann-bar">Just nu förseningar på beställningar på skor från Shapen. Övriga märken levereras som vanligt.</div>
 <div class="usp"><div class="wrap">
-  <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>Omtyckt kundtjänst</span>
-  <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 109-9"/><path d="M3 4v5h5"/></svg>Bytesrätt 40 dagar</span>
-  <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Fri frakt från 1700 kr</span>
+  <span>Omtyckt kundtjänst</span><span>Bytesrätt 40 dagar</span><span>Fri frakt från 1700 kr</span>
 </div></div>
 
 <header class="site"><div class="wrap">
-  <div class="logo">
-    <svg width="30" height="24" viewBox="0 0 30 24" fill="var(--ink)"><path d="M15 1l8 14H7zM3 23l6-10 4 7-2 3zm24 0H15l3-5z"/></svg>
-    TJÅKKO
-  </div>
+  <div class="logo"><svg width="30" height="24" viewBox="0 0 30 24" fill="var(--ink)"><path d="M15 1l8 14H7zM3 23l6-10 4 7-2 3zm24 0H15l3-5z"/></svg>TJÅKKO</div>
   <nav class="main">
-    <a href="#">Minimalistiska skor</a><a href="#">Outdoorkängor</a><a href="#">Accessoarer</a><a href="#">Varumärken</a><a href="#">Rea</a>
+    <a href="#">Minimalistiska skor</a><a href="#">Outdoorkängor</a><a href="#">Accessoarer</a><a href="#">Tillbehör</a><a href="#">Varumärken</a><a href="#">Kontakta oss</a>
   </nav>
   <div class="head-icons">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
@@ -187,29 +222,34 @@
   <div class="crumbs"><a href="#">Hem</a> / <a href="#">Barfotaskor</a> / Seacamp II CNX</div>
 
   <div class="pdp">
-    <!-- gallery -->
     <div class="gallery">
       <div class="main-img"><img id="hero" src="https://tjakko.se/cdn/shop/files/vividblue3.jpg?width=1100" alt="Seacamp II CNX Vivid Blue"></div>
       <div class="thumbs">
         <img class="active" src="https://tjakko.se/cdn/shop/files/vividblue3.jpg?width=200" onclick="document.getElementById('hero').src=this.src.replace('200','1100');setActive(this)" alt="">
         <img src="https://tjakko.se/cdn/shop/files/vividblue4.webp?width=200" onclick="document.getElementById('hero').src=this.src.replace('200','1100');setActive(this)" alt="">
+        <img src="https://tjakko.se/cdn/shop/files/vividblue1.jpg?width=200" onclick="document.getElementById('hero').src=this.src.replace('200','1100');setActive(this)" alt="">
       </div>
     </div>
 
-    <!-- buy box -->
     <div class="buybox">
       <div class="vendor">KEEN</div>
       <h1 class="ptitle">Seacamp II CNX minimalistisk barnsandal</h1>
 
-      <!-- NEW: aggregate rating surfaced -->
-      <div class="rating-row">
-        <span class="tag"><span class="dot">1</span> Omdömen synliga</span>
-      </div>
-      <div class="rating-row">
-        <span class="stars">★★★★<span style="color:#dcdcd6">★</span></span>
+      <!-- NEW: Trustpilot aggregate surfaced by the title -->
+      <div class="tp-rate new-outline">
+        <span class="tag" style="margin:0"><span class="dot">1</span> Omdömen synliga</span>
+        <span class="tp-stars">
+          <i><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.5 1.6 6.7L12 17.3 5.8 20.7l1.6-6.7L2.2 8.9l6.9-.6z"/></svg></i>
+          <i><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.5 1.6 6.7L12 17.3 5.8 20.7l1.6-6.7L2.2 8.9l6.9-.6z"/></svg></i>
+          <i><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.5 1.6 6.7L12 17.3 5.8 20.7l1.6-6.7L2.2 8.9l6.9-.6z"/></svg></i>
+          <i><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.5 1.6 6.7L12 17.3 5.8 20.7l1.6-6.7L2.2 8.9l6.9-.6z"/></svg></i>
+          <i style="background:#dcdcd6"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.5 1.6 6.7L12 17.3 5.8 20.7l1.6-6.7L2.2 8.9l6.9-.6z"/></svg></i>
+        </span>
         <span class="score">4,3</span>
-        <span class="count">42 omdömen</span>
-        <span class="tp">på <b>Trustpilot</b></span>
+        <a href="https://se.trustpilot.com/review/tjakko.se" target="_blank" rel="noopener">
+          <span class="cnt">42 omdömen</span> på
+          <span class="tp-word"><svg viewBox="0 0 24 24"><path fill="#00b67a" d="M12 2l2.9 6.3 6.9.6-5.2 4.5 1.6 6.7L12 17.3 5.8 20.7l1.6-6.7L2.2 8.9l6.9-.6z"/></svg>Trustpilot</span>
+        </a>
       </div>
 
       <div class="price">799 kr</div>
@@ -220,96 +260,101 @@
         <span class="swatch"><img src="https://tjakko.se/cdn/shop/files/vividblue3.jpg?width=120" alt=""></span>
       </div>
 
-      <!-- NEW: no pre-selected size + clear prompt -->
-      <p class="opt-label">Storlek <span class="req">Välj din storlek</span></p>
+      <!-- CHANGED: no pre-selected size + size chart now opens a popup -->
+      <div class="opt-label">
+        <span>Storlek <span class="req">Välj din storlek</span></span>
+        <span class="sizelink" onclick="document.getElementById('sizeModal').classList.add('open')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7l4-4 14 14-4 4zM7 11l2 2M11 7l2 2M15 11l2 2"/></svg>
+          Storleksguide
+        </span>
+      </div>
       <div class="sizes">
         <span class="size">19</span><span class="size">20-21</span><span class="size">22</span>
         <span class="size">23</span><span class="size">24</span><span class="size">25-26</span>
         <span class="size">27-28</span><span class="size">29</span><span class="size">30</span>
         <span class="size soldout">31</span><span class="size">32-33</span><span class="size">34</span><span class="size">35</span>
       </div>
-      <div class="size-hint">
-        <span class="tag" style="margin:0"><span class="dot">3</span> Ingen förvald storlek</span>
-      </div>
-
-      <div class="fit">
-        <span class="ico">👣 BRED</span>
-        <div class="t"><b>Den här modellen är bred &amp; rymlig</b><span>Gott om plats för tårna att spreta naturligt.</span></div>
-      </div>
-
-      <!-- NEW: inline sizing guide -->
-      <div class="sizeguide new-outline">
-        <span class="tag"><span class="dot">2</span> Inbyggd storleksguide (förut gömd i FAQ)</span>
-        <h3>Hitta rätt storlek på 30 sekunder</h3>
-        <p class="sub">Sizing är den vanligaste anledningen till byte. Mät en gång, beställ rätt.</p>
-        <div class="sg-steps">
-          <div class="sg-step"><div class="n">1</div><div class="x">Ställ hälen mot en vägg, stå på ett papper.</div></div>
-          <div class="sg-step"><div class="n">2</div><div class="x">Markera längsta tån och mät i cm.</div></div>
-          <div class="sg-step"><div class="n">3</div><div class="x">Lägg till buffert och välj storlek nedan.</div></div>
-        </div>
-        <div class="sg-callout">Tumregel: välj en innerlängd som är <b>ca 1 till 1,5 cm längre</b> än foten, så får tårna plats att röra sig.</div>
-        <table class="sg-table">
-          <thead><tr><th>Fotlängd</th><th>13,5 cm</th><th>14,5 cm</th><th>15,5 cm</th><th>16,5 cm</th><th>17,5 cm</th></tr></thead>
-          <tbody><tr><td>EU storlek</td><td>22</td><td>23</td><td>24</td><td>25-26</td><td>27-28</td></tr></tbody>
-        </table>
-        <a class="sg-pdf" href="#" onclick="return false">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
-          Ladda ner fotmall (PDF)
-        </a>
-      </div>
+      <div class="size-hint"><span class="tag" style="margin:0"><span class="dot">3</span> Ingen förvald storlek</span></div>
 
       <button class="atc">Lägg i varukorgen</button>
-      <div class="reassure">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 109-9"/><path d="M3 4v5h5"/></svg>
-        Fel storlek? 40 dagars öppet köp och smidigt byte. Många byter en gång och hittar rätt.
+
+      <!-- KEPT: pickup availability -->
+      <div class="pickup">
+        <span class="ok"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg> Hämtning tillgänglig på TJÅKKO</span>
+        <div class="sub">Vanligtvis redo inom 5 dagar eller mer</div>
+        <a href="#">Visa butiksinformation</a>
       </div>
 
+      <!-- KEPT: trust icons -->
       <div class="trust">
         <div class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 13l4 4L19 7"/></svg>Omtyckt kundtjänst</div>
         <div class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h5"/></svg>Enkla returer med QR-kod</div>
         <div class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg>Säkra leveranser</div>
       </div>
+
+      <!-- KEPT: product description -->
+      <p class="pdesc">Seacamp II CNX är KEEN:s klassiska hybridsandal för barn, byggd för dagar som blandar vatten, lek och rörelse. Gummiskyddet skyddar tårna, bungee-snörningen sitter säkert utan att behöva knyta och hela sandalen går rakt in i tvättmaskinen när dagen är slut.</p>
+
+      <!-- KEPT: footprint width diagram (image is self-contained) -->
+      <div class="footprint">
+        <img src="https://tjakko.se/cdn/shop/files/Bredpassform.png?width=760" alt="Den här modellen är bred och rymlig i storlek och passform">
+      </div>
+
+      <!-- KEPT: accordions -->
+      <div class="acc">
+        <details open>
+          <summary><span class="chk"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> Produktinformation <span class="car">⌄</span></summary>
+          <div class="body">Tvättbart, snabbtorkande material. Tåskydd i gummi, bungee-snörning, halkfri yttersula för grepp på blöta och ojämna underlag. Maskintvättbar.</div>
+        </details>
+        <details>
+          <summary><span class="chk"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> Materialinformation <span class="car">⌄</span></summary>
+          <div class="body">Överdel av återvunnet, tvättbart textil. Innersula och yttersula i hållbart gummi. Fri från PFAS enligt KEEN.</div>
+        </details>
+        <details>
+          <summary><span class="chk"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span> Returinformation <span class="car">⌄</span></summary>
+          <div class="body">40 dagars öppet köp och fria byten. Enkel retur med QR-kod. Returfrakt 99 kr.</div>
+        </details>
+      </div>
     </div>
   </div>
 
-  <!-- NEW: populated reviews -->
-  <div class="reviews new-outline" id="reviews">
-    <span class="tag"><span class="dot">1</span> 42 riktiga omdömen, hämtade från Trustpilot (förut: "0 recensioner")</span>
-    <div class="rev-head">
-      <div>
-        <div class="rev-big">4,3</div>
-        <div class="stars">★★★★<span style="color:#dcdcd6">★</span></div>
-        <div class="rev-meta">42 omdömen på Trustpilot</div>
-      </div>
-      <div class="rev-dist">
-        <div class="rev-bar"><span>5★</span><span class="track"><span class="fill" style="width:71%"></span></span><span>29</span></div>
-        <div class="rev-bar"><span>4★</span><span class="track"><span class="fill" style="width:15%"></span></span><span>6</span></div>
-        <div class="rev-bar"><span>3★</span><span class="track"><span class="fill" style="width:10%"></span></span><span>4</span></div>
-        <div class="rev-bar"><span>2★</span><span class="track"><span class="fill" style="width:0%"></span></span><span>0</span></div>
-        <div class="rev-bar"><span>1★</span><span class="track"><span class="fill" style="width:5%"></span></span><span>2</span></div>
-      </div>
+  <!-- KEPT: educational section -->
+  <div class="edu">
+    <div>
+      <h2>Varför är barfotaskor bra?</h2>
+      <p>Vanliga skor är ofta trånga vilket har tryckt ihop dina tår i alla år. Du kan få hallux valgus vilket kräver en operation, eller kanske hälsporre som tar månader att läka.</p>
+      <ul>
+        <li>Klämda tår</li><li>Hallux valgus</li><li>Hälsporre</li><li>Fotsmärta</li><li>Ont i ryggen</li><li>Stel sula</li>
+      </ul>
     </div>
-    <div class="rev-grid">
-      <div class="rev-card">
-        <div class="top"><div class="who">Luise<span>Verifierat köp</span></div><div class="stars">★★★★★</div></div>
-        <p>"Sköna skor som jag kan ha på hela dagen utan att bli trött i fötterna på samma sätt som med de gamla skor. Känns som att sätta fötterna fria."</p>
-        <div class="verified"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>Verifierad köpare</div>
-      </div>
-      <div class="rev-card">
-        <div class="top"><div class="who">Anna<span>Verifierat köp</span></div><div class="stars">★★★★★</div></div>
-        <p>"Supersköna och snygga skor, mycket nöjd med mitt köp. Storlekstabellen fungerade bra, behövde inte byta."</p>
-        <div class="verified"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>Verifierad köpare</div>
-      </div>
-      <div class="rev-card">
-        <div class="top"><div class="who">Sofie W.<span>Verifierat köp</span></div><div class="stars">★★★★★</div></div>
-        <p>"Beställde barfotaskor till dottern. Kontaktade företaget direkt som ändrade snabbt och smidigt åt mig. Skorna kom fort, var snygga och sköna."</p>
-        <div class="verified"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>Verifierad köpare</div>
-      </div>
-      <div class="rev-card">
-        <div class="top"><div class="who">Marita B.<span>Verifierat köp</span></div><div class="stars">★★★★★</div></div>
-        <p>"Snabb återkoppling vid byte av storlek, bra kvalitet och bra bredd på skorna."</p>
-        <div class="verified"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>Verifierad köpare</div>
-      </div>
+    <div class="edu-compare">
+      <figure><figcaption>Trånga skor</figcaption><img src="https://tjakko.se/cdn/shop/files/Before_small_911a5705-8a46-458c-a80b-b7567ae9e409.png?width=700" alt="Trånga skor"></figure>
+      <figure class="good"><figcaption>Friska fötter</figcaption><img src="https://tjakko.se/cdn/shop/files/After_small_49af8d14-522f-438b-aa97-59fc9d6b459a.png?width=700" alt="Friska fötter"></figure>
+    </div>
+  </div>
+
+  <!-- KEPT: image-review carousel + NEW Trustpilot header -->
+  <div class="reviews">
+    <div class="rev-top">
+      <h2>Nöjda kunder</h2>
+      <a class="rev-tp new-outline" href="https://se.trustpilot.com/review/tjakko.se" target="_blank" rel="noopener">
+        <span class="tp-stars">
+          <i><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.5 1.6 6.7L12 17.3 5.8 20.7l1.6-6.7L2.2 8.9l6.9-.6z"/></svg></i>
+          <i><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.5 1.6 6.7L12 17.3 5.8 20.7l1.6-6.7L2.2 8.9l6.9-.6z"/></svg></i>
+          <i><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.5 1.6 6.7L12 17.3 5.8 20.7l1.6-6.7L2.2 8.9l6.9-.6z"/></svg></i>
+          <i><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.5 1.6 6.7L12 17.3 5.8 20.7l1.6-6.7L2.2 8.9l6.9-.6z"/></svg></i>
+          <i style="background:#dcdcd6"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.5 1.6 6.7L12 17.3 5.8 20.7l1.6-6.7L2.2 8.9l6.9-.6z"/></svg></i>
+        </span>
+        <span><span class="score">4,3 / 5</span><br><span class="meta">42 omdömen på <span class="tp-word"><svg viewBox="0 0 24 24"><path fill="#00b67a" d="M12 2l2.9 6.3 6.9.6-5.2 4.5 1.6 6.7L12 17.3 5.8 20.7l1.6-6.7L2.2 8.9l6.9-.6z"/></svg>Trustpilot</span></span></span>
+      </a>
+    </div>
+    <div class="rev-track">
+      <div class="rev-card"><img src="https://cdn-pri.vitals.app/phrev/79524004163/209010129-1780647868.0903.jpg" alt="Patricia Baldesjö"><div class="b"><div class="who">Patricia Baldesjö <span class="v"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12l3 3 7-7" fill="none" stroke="#fff" stroke-width="2.4"/></svg></span></div><div class="stars">★★★★★</div></div></div>
+      <div class="rev-card"><img src="https://cdn-pri.vitals.app/phrev/79524004163/207754785-1778502574.879.jpg" alt="Patrik Andersson"><div class="b"><div class="who">Patrik Andersson <span class="v"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12l3 3 7-7" fill="none" stroke="#fff" stroke-width="2.4"/></svg></span></div><div class="stars">★★★★★</div></div></div>
+      <div class="rev-card"><img src="https://cdn-pri.vitals.app/phrev/79524004163/207655118-1778401222.7706.jpg" alt="Helena Jensen"><div class="b"><div class="who">Helena Jensen <span class="v"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12l3 3 7-7" fill="none" stroke="#fff" stroke-width="2.4"/></svg></span></div><div class="stars">★★★★★</div></div></div>
+      <div class="rev-card"><img src="https://cdn-pri.vitals.app/phrev/79524004163/201498832-1771531838.6209.jpg" alt="Madelene Hultgren Neese"><div class="b"><div class="who">Madelene Hultgren <span class="v"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12l3 3 7-7" fill="none" stroke="#fff" stroke-width="2.4"/></svg></span></div><div class="stars">★★★★★</div></div></div>
+      <div class="rev-card"><img src="https://cdn-pri.vitals.app/phrev/79524004163/201367161-1771314293.4097.jpg" alt="Ingela Lenell"><div class="b"><div class="who">Ingela Lenell <span class="v"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12l3 3 7-7" fill="none" stroke="#fff" stroke-width="2.4"/></svg></span></div><div class="stars">★★★★☆</div></div></div>
+      <div class="rev-card"><img src="https://cdn-pri.vitals.app/phrev/79524004163/200910496-1770567251.3113.jpg" alt="Patrik Wallgren"><div class="b"><div class="who">Patrik Wallgren <span class="v"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M7 12l3 3 7-7" fill="none" stroke="#fff" stroke-width="2.4"/></svg></span></div><div class="stars">★★★★★</div></div></div>
     </div>
   </div>
 </div>
@@ -319,18 +364,59 @@
   <div class="pay"><span>KLARNA</span><span>VISA</span><span>MASTERCARD</span><span>PAYPAL</span><span>APPLE PAY</span><span>GOOGLE PAY</span></div>
 </div></footer>
 
+<!-- KEPT: sticky ATC -->
+<div class="sticky-atc" id="stickyAtc"><div class="wrap">
+  <img src="https://tjakko.se/cdn/shop/files/vividblue4.webp?width=120" alt="">
+  <div><div class="nm">Seacamp II CNX</div><div class="pr">799 kr</div></div>
+  <select aria-label="Storlek"><option>Vivid Blue / Välj storlek</option><option>Vivid Blue / 24</option><option>Vivid Blue / 25-26</option></select>
+  <button class="sbtn">Lägg i korgen</button>
+</div></div>
+
+<!-- NEW: size-guide popup -->
+<div class="modal-bg" id="sizeModal">
+  <div class="modal">
+    <button class="x" onclick="document.getElementById('sizeModal').classList.remove('open')">&times;</button>
+    <span class="tag"><span class="dot">2</span> Storleksguide som popup (förut gömd i FAQ)</span>
+    <h3>Hitta rätt storlek på 30 sekunder</h3>
+    <p class="sub">Sizing är den vanligaste anledningen till byte. Mät en gång, beställ rätt.</p>
+    <div class="sg-steps">
+      <div class="sg-step"><div class="n">1</div><div class="x2">Ställ hälen mot en vägg, stå på ett papper.</div></div>
+      <div class="sg-step"><div class="n">2</div><div class="x2">Markera längsta tån och mät i cm.</div></div>
+      <div class="sg-step"><div class="n">3</div><div class="x2">Lägg till buffert och välj storlek.</div></div>
+    </div>
+    <div class="sg-callout">Tumregel: välj en innerlängd som är <b>ca 1 till 1,5 cm längre</b> än foten, så får tårna plats att röra sig.</div>
+    <table class="sg-table">
+      <thead><tr><th>Fotlängd</th><th>13,5 cm</th><th>14,5 cm</th><th>15,5 cm</th><th>16,5 cm</th><th>17,5 cm</th></tr></thead>
+      <tbody><tr><td>EU storlek</td><td>22</td><td>23</td><td>24</td><td>25-26</td><td>27-28</td></tr></tbody>
+    </table>
+    <a class="sg-pdf" href="#" onclick="return false">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+      Ladda ner fotmall (PDF)
+    </a>
+  </div>
+</div>
+
 <div class="legend collapsed" id="legend">
-  <h4 onclick="this.parentElement.classList.toggle('collapsed')">What changed <span class="chev">&#9656;</span></h4>
+  <h4 onclick="this.parentElement.classList.toggle('collapsed')">CRO changes <span class="chev">&#9656;</span></h4>
   <ul>
-    <li><span class="dot">1</span><span><b>Reviews surfaced</b>Aggregate 4,3 / 42 omdömen by the title, plus a populated reviews block. Was "0 recensioner".</span></li>
-    <li><span class="dot">2</span><span><b>Inline sizing guide</b>Measure steps, cm to EU table, +1 cm rule, PDF foot template. Was buried in the FAQ.</span></li>
+    <li><span class="dot">1</span><span><b>Trustpilot rating surfaced</b>4,3 / 42 omdömen by the title and on the review carousel, with the Trustpilot logo, hyperlinked. Was: no rating shown.</span></li>
+    <li><span class="dot">2</span><span><b>Size guide as a popup</b>The "Storleksguide" link by the size selector opens a measure guide + PDF. Was: buried in the FAQ.</span></li>
     <li><span class="dot">3</span><span><b>No pre-selected size</b>Forces a deliberate choice, fewer wrong-size adds.</span></li>
   </ul>
+  <div class="keep">Kept from the live page: navigation, photo reviews, description, pickup, width diagram, accordions, "Varför barfotaskor" section, and the sticky add-to-cart.</div>
 </div>
 
 <script>
   function setActive(t){document.querySelectorAll('.thumbs img').forEach(i=>i.classList.remove('active'));t.classList.add('active');}
-  document.querySelectorAll('.size:not(.soldout)').forEach(s=>s.addEventListener('click',function(){document.querySelectorAll('.size').forEach(x=>x.classList.remove('sel'));this.classList.add('sel');document.querySelector('.size-hint .tag').style.opacity=.35;}));
+  document.querySelectorAll('.size:not(.soldout)').forEach(s=>s.addEventListener('click',function(){document.querySelectorAll('.size').forEach(x=>x.classList.remove('sel'));this.classList.add('sel');var h=document.querySelector('.size-hint');if(h)h.style.opacity=.35;}));
+  // close size modal on backdrop click / Esc
+  var mb=document.getElementById('sizeModal');
+  mb.addEventListener('click',function(e){if(e.target===mb)mb.classList.remove('open');});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')mb.classList.remove('open');});
+  // sticky ATC: show after the main ATC scrolls out of view
+  var mainAtc=document.querySelector('.atc'), sticky=document.getElementById('stickyAtc');
+  function onScroll(){var r=mainAtc.getBoundingClientRect();if(r.bottom<60||r.top>window.innerHeight)sticky.classList.add('show');else sticky.classList.remove('show');}
+  window.addEventListener('scroll',onScroll);window.addEventListener('resize',onScroll);onScroll();
 </script>
 </body>
 </html>
