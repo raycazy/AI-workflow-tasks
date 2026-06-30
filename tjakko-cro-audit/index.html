@@ -534,6 +534,27 @@
         .worked-fee { margin-top: auto; padding-top: 12px; border-top: 1px solid rgba(255,255,255,.1); display: flex; justify-content: space-between; align-items: baseline; }
         .worked-fee .lbl-fee { font-size: 11px; color: #999999; text-transform: uppercase; letter-spacing: 1px; }
         .worked-fee .val-fee { font-size: 22px; color: #F7D007; font-weight: 600; }
+    
+        /* ===== PAGE WALK (screenshot + findings) ===== */
+        .walk{display:grid;grid-template-columns:226px 1fr;gap:34px;max-width:1120px;width:100%;align-items:start}
+        .walk-left{display:flex;flex-direction:column;align-items:center;gap:12px;position:sticky;top:0}
+        .phone{width:216px;border:8px solid #1c1c1c;border-radius:30px;overflow:hidden;background:#000;box-shadow:0 18px 44px rgba(0,0,0,.45)}
+        .phone img{width:100%;height:432px;object-fit:cover;object-position:top;display:block}
+        .phone-cap{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#999}
+        .mock-btn{display:inline-flex;align-items:center;gap:7px;background:#F7D007;color:#111;font-size:10.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:9px 14px;border-radius:4px;text-decoration:none}
+        .mock-btn:hover{filter:brightness(.94)}
+        .walk .opp-layout{max-width:none}
+        /* ===== RECOMMENDED DESIGNS GRID ===== */
+        .designs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1040px;width:100%}
+        .design-card{display:flex;flex-direction:column;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;overflow:hidden;text-decoration:none;transition:border-color .2s,transform .2s}
+        .design-card:hover{border-color:rgba(247,208,7,.5);transform:translateY(-3px)}
+        .dc-shot{height:172px;overflow:hidden;background:#0c0c0c;border-bottom:1px solid rgba(255,255,255,.08)}
+        .dc-shot img{width:100%;height:100%;object-fit:cover;object-position:top}
+        .dc-body{padding:16px 18px}
+        .dc-tag{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#F7D007;margin-bottom:6px}
+        .dc-title{font-size:15px;font-weight:600;color:#fff;margin-bottom:6px}
+        .dc-desc{font-size:11px;color:#999;line-height:1.6;margin-bottom:12px}
+        .dc-open{font-size:11px;font-weight:600;color:#F7D007}
     </style>
 </head>
 
@@ -804,7 +825,7 @@
             <div class="card-title">A strong story, led by the wrong slide</div>
             <div class="card-subtitle">The homepage holds attention (16.9% bounce, 4m54s on site), so the raw material is good. The issue is what gets the spotlight.</div>
         </div>
-        <div class="opp-layout">
+        <div class="walk"><div class="walk-left"><div class="phone"><img src="assets/home-current.jpg" alt="Live homepage, mobile"></div><div class="phone-cap">Live homepage, mobile</div><a class="mock-btn" href="https://raycazy.github.io/AI-workflow-tasks/tjakko-homepage-hero/" target="_blank" rel="noopener">See the homepage redesign <span>&#9656;</span></a></div><div class="opp-layout">
             <div class="opp-block">
                 <div class="opp-block-title">What we observed</div>
                 <ul class="opp-list">
@@ -826,6 +847,7 @@
                 </ul>
             </div>
         </div>
+        </div>
         <div class="insight-box">Customers describe the product as "att s&auml;tta f&ouml;tterna fria" (setting the feet free). That line belongs in the hero. A supplier's summer promo does not.</div>
     </div>
 
@@ -836,7 +858,7 @@
             <div class="card-title">Products pushed below a wall of copy</div>
             <div class="card-subtitle">/collections/barfotaskor. Filters exist (good), but a shopper works to reach a product, and on a slow connection may not see one at all.</div>
         </div>
-        <div class="opp-layout">
+        <div class="walk"><div class="walk-left"><div class="phone"><img src="assets/collection-current.jpg" alt="Live collection, mobile"></div><div class="phone-cap">Live collection, mobile</div></div><div class="opp-layout">
             <div class="opp-block">
                 <div class="opp-block-title">What we observed</div>
                 <ul class="opp-list">
@@ -858,6 +880,7 @@
                 </ul>
             </div>
         </div>
+        </div>
         <div class="insight-box">A collection page exists to show products. Right now a mobile visitor reads a brand essay first, then waits for images. Both are fixable without losing the education TJ&Aring;KKO rightly cares about.</div>
     </div>
 
@@ -868,7 +891,7 @@
             <div class="card-title">A rich PDP with an empty review box</div>
             <div class="card-subtitle">This is where the 96% leak happens. The PDP is content rich (gallery, fit indicator, trust badges, cross-sell), but two gaps undercut it, and both map to what customers complain about.</div>
         </div>
-        <div class="opp-layout">
+        <div class="walk"><div class="walk-left"><div class="phone"><img src="assets/pdp-current.jpg" alt="Live product page, mobile"></div><div class="phone-cap">Live product page, mobile</div><a class="mock-btn" href="https://raycazy.github.io/AI-workflow-tasks/tjakko-pdp-redesign/" target="_blank" rel="noopener">See the PDP redesign <span>&#9656;</span></a></div><div class="opp-layout">
             <div class="opp-block">
                 <div class="opp-block-title">Working well (keep)</div>
                 <ul class="opp-list">
@@ -888,6 +911,7 @@
                 </ul>
             </div>
         </div>
+        </div>
         <div class="insight-box"><strong>The highest impact fix in this audit:</strong> import the 42 Trustpilot reviews (4.3/5) into the on-site widget and surface the aggregate score on the PDP and collection cards. The proof already exists. It just is not on the page where 96% of viewers walk away.</div>
     </div>
 
@@ -898,7 +922,7 @@
             <div class="card-title">No nudge toward the free shipping line</div>
             <div class="card-subtitle">Checkout converts well (66% of starts), so this is about AOV, not fixing a broken checkout. The cart leaves the biggest AOV lever on the table.</div>
         </div>
-        <div class="opp-layout">
+        <div class="walk"><div class="walk-left"><div class="phone"><img src="assets/cart-current.jpg" alt="Live cart, mobile"></div><div class="phone-cap">Live cart, mobile</div><a class="mock-btn" href="https://raycazy.github.io/AI-workflow-tasks/tjakko-cart-redesign/" target="_blank" rel="noopener">See the cart redesign <span>&#9656;</span></a></div><div class="opp-layout">
             <div class="opp-block">
                 <div class="opp-block-title">What we observed</div>
                 <ul class="opp-list">
@@ -918,6 +942,7 @@
                     <li>Translate the terms checkbox to Swedish.</li>
                 </ul>
             </div>
+        </div>
         </div>
         <div class="insight-box">A progress bar plus a few cross-sells is the cleanest AOV win, and it softens a 1700 kr threshold that currently reads as a barrier rather than a goal.</div>
     </div>
@@ -1143,8 +1168,47 @@
         <div class="scorecard-total"><span class="lbl">Biggest single lever</span><span class="val">Close the View to ATC leak: reviews + sizing + mobile speed</span></div>
     </div>
 
-    <!-- SLIDE 25: THANK YOU -->
-    <div class="thankyou-slide card" data-index="25">
+    <!-- SLIDE 25: RECOMMENDED DESIGNS -->
+    <div class="card" data-index="25">
+        <div class="card-header">
+            <div class="card-label">Recommended designs</div>
+            <div class="card-title">Mockups for the top fixes</div>
+            <div class="card-subtitle">On-brand redesigns of the three highest-impact surfaces, built from TJ&Aring;KKO's real tokens (Arvo + Poppins, ink + sage green). Each one is a live, clickable page. Together they attack the View to ATC leak and the AOV gap.</div>
+        </div>
+        <div class="designs-grid">
+            <a class="design-card" href="https://raycazy.github.io/AI-workflow-tasks/tjakko-pdp-redesign/" target="_blank" rel="noopener">
+                <div class="dc-shot"><img src="assets/mock-pdp.jpg" alt="PDP redesign mockup"></div>
+                <div class="dc-body">
+                    <div class="dc-tag">Product page</div>
+                    <div class="dc-title">Reviews + inline sizing</div>
+                    <div class="dc-desc">42 Trustpilot reviews surfaced, inline foot-measure guide with PDF template, no pre-selected size. Attacks the 96% View to ATC drop.</div>
+                    <div class="dc-open">Open mockup &#9656;</div>
+                </div>
+            </a>
+            <a class="design-card" href="https://raycazy.github.io/AI-workflow-tasks/tjakko-cart-redesign/" target="_blank" rel="noopener">
+                <div class="dc-shot"><img src="assets/mock-cart.jpg" alt="Cart redesign mockup"></div>
+                <div class="dc-body">
+                    <div class="dc-tag">Cart</div>
+                    <div class="dc-title">Free shipping meter + cross-sell</div>
+                    <div class="dc-desc">"Du &auml;r 901 kr fr&aring;n fri frakt" progress bar, low price add-ons, Swedish terms text. Lifts AOV toward 1700 kr.</div>
+                    <div class="dc-open">Open mockup &#9656;</div>
+                </div>
+            </a>
+            <a class="design-card" href="https://raycazy.github.io/AI-workflow-tasks/tjakko-homepage-hero/" target="_blank" rel="noopener">
+                <div class="dc-shot"><img src="assets/mock-home.jpg" alt="Homepage hero redesign mockup"></div>
+                <div class="dc-body">
+                    <div class="dc-tag">Homepage</div>
+                    <div class="dc-title">Benefit-led hero</div>
+                    <div class="dc-desc">"Frihet f&ouml;r f&ouml;tterna" hero with Trustpilot trust row and rated bestseller tiles. Supplier promo demoted below.</div>
+                    <div class="dc-open">Open mockup &#9656;</div>
+                </div>
+            </a>
+        </div>
+        <div class="insight-box">These are starting points sized for a designer-to-developer handoff, not final art. The "Just ship" items (reviews, sizing, Swedish terms) can go live close to as shown. The layout changes (hero, threshold) should run as A/B tests against the 1.41% baseline.</div>
+    </div>
+
+    <!-- SLIDE 26: THANK YOU -->
+    <div class="thankyou-slide card" data-index="26">
         <div class="title-text" style="position:relative;z-index:2">
             <div class="card-label" style="color:#F7D007;letter-spacing:3px;margin-bottom:14px">Next step</div>
             <h1 class="ty-title" style="font-size:56px">Win the cart-add.<br><span class="eh-yellow">Fix mobile.</span> Surface the proof.</h1>
@@ -1171,7 +1235,7 @@
         <span>Menu</span>
     </button>
     <div class="nav-dots" id="navDots"></div>
-    <div class="nav-counter" id="navCounter">01 / 26</div>
+    <div class="nav-counter" id="navCounter">01 / 27</div>
     <div class="nav-arrows">
         <button class="nav-arrow" id="prevBtn" aria-label="Previous"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
         <button class="nav-arrow" id="nextBtn" aria-label="Next"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
@@ -1206,6 +1270,7 @@ var SLIDE_TITLES = [
     '90-day roadmap',
     'Ship vs A/B test',
     'Summary scorecard',
+    'Recommended designs',
     'Thank you'
 ];
 var SLIDE_SECTIONS = [
@@ -1215,7 +1280,7 @@ var SLIDE_SECTIONS = [
     { title: '02 / Conversion walk', start: 10, end: 14 },
     { title: '03 / Voice of customer', start: 15, end: 17 },
     { title: '04 / Competitor benchmark', start: 18, end: 20 },
-    { title: '05 / Roadmap & close', start: 21, end: 25 }
+    { title: '05 / Roadmap & close', start: 21, end: 26 }
 ];
 
 (function(){
