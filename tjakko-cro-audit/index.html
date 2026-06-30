@@ -1207,8 +1207,199 @@
         <div class="insight-box">These are starting points sized for a designer-to-developer handoff, not final art. The "Just ship" items (reviews, sizing, Swedish terms) can go live close to as shown. The layout changes (hero, threshold) should run as A/B tests against the 1.41% baseline.</div>
     </div>
 
-    <!-- SLIDE 26: THANK YOU -->
-    <div class="thankyou-slide card" data-index="26">
+    <!-- SLIDE 26: SECTION 06 TEST PLANS -->
+    <div class="section-slide card" data-index="26">
+        <div class="section-number">06</div>
+        <div class="section-kicker">Ready to run</div>
+        <div class="section-title">A/B test plans</div>
+        <div class="section-sub">The top three ideas written up as test cards: observation, hypothesis, metrics, and a control vs variant view. Built against the 1.41% GA4 baseline.</div>
+    </div>
+
+    <!-- TEST PLAN T01: PDP REVIEWS + SIZING -->
+    <div class="card tp-card" data-index="27">
+        <div class="tp-left">
+            <div class="tp-badge"><span class="e-mark">e</span>Test Plan</div>
+            <div class="tp-section">
+                <h3>Observation</h3>
+                <div class="tp-underline"></div>
+                <p>GA4 funnel: only <strong style="color:#F7D007">3.9% of product viewers add to cart</strong> (96% drop). The PDP renders "0 recensioner" despite 42 Trustpilot reviews at 4.3/5, sizing help is a link to a separate table, and the smallest size is pre-selected.</p>
+            </div>
+            <div class="tp-section">
+                <h3>Hypothesis</h3>
+                <div class="tp-underline"></div>
+                <p>If we surface the 42 reviews and move sizing guidance inline on the PDP, then View to Add-to-Cart will rise, because the two biggest objections in customer reviews (unproven trust and sizing uncertainty) get answered at the decision point.</p>
+            </div>
+            <div class="tp-section">
+                <h3>What we are testing</h3>
+                <div class="tp-underline"></div>
+                <ul>
+                    <li>Aggregate rating by the title + a populated review block</li>
+                    <li>Inline foot-measure guide, per-brand size table, PDF template</li>
+                    <li>Remove the pre-selected smallest size</li>
+                </ul>
+            </div>
+            <div class="tp-section">
+                <h3>Key metrics</h3>
+                <div class="tp-underline"></div>
+                <ol>
+                    <li class="primary">Add-to-Cart rate</li>
+                    <li>PDP conversion rate</li>
+                    <li>Exchange / return rate (guardrail)</li>
+                </ol>
+            </div>
+            <div class="tp-target-box">
+                <div class="tp-target-grid">
+                    <div><div class="label">Duration</div><div class="value">3 to 4 weeks</div></div>
+                    <div><div class="label">Device</div><div class="value">All devices</div></div>
+                    <div><div class="label">Expected impact</div><div class="value">High</div></div>
+                    <div><div class="label">URL</div><div class="value">Product page (PDP)</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="tp-right">
+            <div class="tp-title">T01 &middot; PDP &middot; Surface reviews + inline sizing</div>
+            <div class="tp-meta-bar">
+                <span class="lbl">Test ID:</span><span class="val">TJ-T01</span>
+                <span class="lbl">Status:</span><span class="val">In planning</span>
+                <span class="tp-pill-ab">A/B Test</span>
+            </div>
+            <div class="tp-mockups">
+                <div class="tp-mockup">
+                    <div class="tp-phone"><div class="tp-screen"><img src="assets/ctrl-pdp.jpg" class="shot"></div></div>
+                    <div class="tp-mockup-label">CONTROL</div>
+                </div>
+                <div class="tp-mockup">
+                    <div class="tp-phone"><div class="tp-screen"><img src="assets/var-pdp.jpg" class="shot"><span class="tp-annotation" style="top:54px;right:14px">REVIEWS</span><span class="tp-annotation" style="bottom:30px;left:14px">SIZING GUIDE</span></div></div>
+                    <div class="tp-mockup-label variant">VARIANT</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TEST PLAN T02: CART FREE SHIPPING -->
+    <div class="card tp-card" data-index="28">
+        <div class="tp-left">
+            <div class="tp-badge"><span class="e-mark">e</span>Test Plan</div>
+            <div class="tp-section">
+                <h3>Observation</h3>
+                <div class="tp-underline"></div>
+                <p>AOV is <strong style="color:#F7D007">~1,986 SEK</strong> against a 1700 kr free-shipping threshold, but the cart shows no progress toward it and no cross-sell. The threshold is high versus rivals (simplybarefoot 498 kr).</p>
+            </div>
+            <div class="tp-section">
+                <h3>Hypothesis</h3>
+                <div class="tp-underline"></div>
+                <p>If we add a free-shipping progress bar and 2 to 3 low price cross-sells, then AOV and revenue per session will rise, because shoppers near the threshold get a clear, low effort path to unlock free shipping.</p>
+            </div>
+            <div class="tp-section">
+                <h3>What we are testing</h3>
+                <div class="tp-underline"></div>
+                <ul>
+                    <li>"Du &auml;r X kr fr&aring;n fri frakt" progress bar with dynamic fill</li>
+                    <li>Cross-sell row (socks, insoles, shoe care)</li>
+                    <li>Swedish consent text (was English)</li>
+                </ul>
+            </div>
+            <div class="tp-section">
+                <h3>Key metrics</h3>
+                <div class="tp-underline"></div>
+                <ol>
+                    <li class="primary">Average order value</li>
+                    <li>Revenue per session</li>
+                    <li>Free-shipping attach rate</li>
+                </ol>
+            </div>
+            <div class="tp-target-box">
+                <div class="tp-target-grid">
+                    <div><div class="label">Duration</div><div class="value">3 weeks</div></div>
+                    <div><div class="label">Device</div><div class="value">All devices</div></div>
+                    <div><div class="label">Expected impact</div><div class="value">Medium to high</div></div>
+                    <div><div class="label">URL</div><div class="value">Cart</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="tp-right">
+            <div class="tp-title">T02 &middot; Cart &middot; Free shipping meter + cross-sell</div>
+            <div class="tp-meta-bar">
+                <span class="lbl">Test ID:</span><span class="val">TJ-T02</span>
+                <span class="lbl">Status:</span><span class="val">In planning</span>
+                <span class="tp-pill-ab">A/B Test</span>
+            </div>
+            <div class="tp-mockups">
+                <div class="tp-mockup">
+                    <div class="tp-phone"><div class="tp-screen"><img src="assets/cart-current.jpg" class="shot"></div></div>
+                    <div class="tp-mockup-label">CONTROL</div>
+                </div>
+                <div class="tp-mockup">
+                    <div class="tp-phone"><div class="tp-screen"><img src="assets/var-cart.jpg" class="shot"><span class="tp-annotation" style="top:70px;right:14px">FREE SHIP BAR</span></div></div>
+                    <div class="tp-mockup-label variant">VARIANT</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TEST PLAN T03: HOMEPAGE HERO -->
+    <div class="card tp-card" data-index="29">
+        <div class="tp-left">
+            <div class="tp-badge"><span class="e-mark">e</span>Test Plan</div>
+            <div class="tp-section">
+                <h3>Observation</h3>
+                <div class="tp-underline"></div>
+                <p>The homepage holds attention (<strong style="color:#F7D007">16.9% bounce</strong>) but leads with a rotating SHAPEN supplier banner, not TJ&Aring;KKO's own benefit. Bestseller tiles show no star ratings.</p>
+            </div>
+            <div class="tp-section">
+                <h3>Hypothesis</h3>
+                <div class="tp-underline"></div>
+                <p>If we lead with TJ&Aring;KKO's own promise ("Frihet f&ouml;r f&ouml;tterna") plus a Trustpilot trust row and rated tiles, then homepage to PDP click-through and overall CVR will rise, because the value proposition and social proof are clear above the fold.</p>
+            </div>
+            <div class="tp-section">
+                <h3>What we are testing</h3>
+                <div class="tp-underline"></div>
+                <ul>
+                    <li>Benefit hero with two clear CTAs</li>
+                    <li>Trust row (4,3/5 Trustpilot, 40-day returns, free shipping)</li>
+                    <li>Star ratings on tiles, supplier promo demoted below</li>
+                </ul>
+            </div>
+            <div class="tp-section">
+                <h3>Key metrics</h3>
+                <div class="tp-underline"></div>
+                <ol>
+                    <li class="primary">Homepage to PDP click-through</li>
+                    <li>Site-wide conversion rate</li>
+                    <li>Bounce rate (guardrail)</li>
+                </ol>
+            </div>
+            <div class="tp-target-box">
+                <div class="tp-target-grid">
+                    <div><div class="label">Duration</div><div class="value">3 to 4 weeks</div></div>
+                    <div><div class="label">Device</div><div class="value">All devices</div></div>
+                    <div><div class="label">Expected impact</div><div class="value">Medium</div></div>
+                    <div><div class="label">URL</div><div class="value">Homepage</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="tp-right">
+            <div class="tp-title">T03 &middot; Homepage &middot; Benefit-led hero</div>
+            <div class="tp-meta-bar">
+                <span class="lbl">Test ID:</span><span class="val">TJ-T03</span>
+                <span class="lbl">Status:</span><span class="val">In planning</span>
+                <span class="tp-pill-ab">A/B Test</span>
+            </div>
+            <div class="tp-mockups">
+                <div class="tp-mockup">
+                    <div class="tp-phone"><div class="tp-screen"><img src="assets/home-current.jpg" class="shot"></div></div>
+                    <div class="tp-mockup-label">CONTROL</div>
+                </div>
+                <div class="tp-mockup">
+                    <div class="tp-phone"><div class="tp-screen"><img src="assets/var-home.jpg" class="shot"><span class="tp-annotation" style="top:150px;left:14px">BENEFIT HERO</span></div></div>
+                    <div class="tp-mockup-label variant">VARIANT</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 30: THANK YOU -->
+    <div class="thankyou-slide card" data-index="30">
         <div class="title-text" style="position:relative;z-index:2">
             <div class="card-label" style="color:#F7D007;letter-spacing:3px;margin-bottom:14px">Next step</div>
             <h1 class="ty-title" style="font-size:56px">Win the cart-add.<br><span class="eh-yellow">Fix mobile.</span> Surface the proof.</h1>
@@ -1235,7 +1426,7 @@
         <span>Menu</span>
     </button>
     <div class="nav-dots" id="navDots"></div>
-    <div class="nav-counter" id="navCounter">01 / 27</div>
+    <div class="nav-counter" id="navCounter">01 / 31</div>
     <div class="nav-arrows">
         <button class="nav-arrow" id="prevBtn" aria-label="Previous"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
         <button class="nav-arrow" id="nextBtn" aria-label="Next"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
@@ -1271,6 +1462,10 @@ var SLIDE_TITLES = [
     'Ship vs A/B test',
     'Summary scorecard',
     'Recommended designs',
+    '06 / A/B test plans (section)',
+    'T01 · PDP reviews + sizing',
+    'T02 · Cart free shipping',
+    'T03 · Homepage hero',
     'Thank you'
 ];
 var SLIDE_SECTIONS = [
@@ -1280,7 +1475,8 @@ var SLIDE_SECTIONS = [
     { title: '02 / Conversion walk', start: 10, end: 14 },
     { title: '03 / Voice of customer', start: 15, end: 17 },
     { title: '04 / Competitor benchmark', start: 18, end: 20 },
-    { title: '05 / Roadmap & close', start: 21, end: 26 }
+    { title: '05 / Roadmap', start: 21, end: 25 },
+    { title: '06 / A/B test plans', start: 26, end: 30 }
 ];
 
 (function(){
