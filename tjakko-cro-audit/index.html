@@ -642,7 +642,7 @@
                 <div class="issue-number">02</div>
                 <div class="issue-content">
                     <h3>Mobile is 86% of traffic, converts 3x worse</h3>
-                    <p>Mobile 1.06% CVR vs desktop 3.86% on 40,896 mobile sessions. With mobile LCP up to 33.9s, speed is throttling the majority of revenue.</p>
+                    <p>Mobile 1.06% CVR vs desktop 3.86% on 40,896 mobile sessions. The same PDP friction (hidden reviews, buried sizing) bites hardest on a small screen, where the buy decision is tightest.</p>
                     <span class="issue-stat">Mobile CVR 1.06% vs 3.86%</span>
                 </div>
             </div>
@@ -665,8 +665,8 @@
             <div class="issue-card">
                 <div class="issue-number">05</div>
                 <div class="issue-content">
-                    <h3>75% of sessions are paid, half wasted on slow pages</h3>
-                    <p>Facebook paid 20,013 sessions at 0.76% CVR vs Google CPC at 1.51%. Paid traffic landing on a slow mobile PDP that does not convert is burning budget.</p>
+                    <h3>75% of sessions are paid, half underperforming</h3>
+                    <p>Facebook paid 20,013 sessions at 0.76% CVR vs Google CPC at 1.51%. Paid traffic landing on a PDP that does not convert is burning budget.</p>
                     <span class="issue-stat">FB paid 0.76% CVR</span>
                 </div>
             </div>
@@ -744,22 +744,22 @@
         <div class="card-header">
             <div class="card-label">Device split</div>
             <div class="card-title">Mobile is the business, and it underperforms</div>
-            <div class="card-subtitle">90-day GA4. Mobile carries the traffic and most of the revenue, but converts at barely a quarter of desktop. This is the same View to ATC leak, concentrated where the speed is worst.</div>
+            <div class="card-subtitle">90-day GA4. Mobile carries the traffic and most of the revenue, but converts at barely a quarter of desktop. This is the same View to ATC leak, amplified on small screens where the buy decision is tightest.</div>
         </div>
         <div class="compare-layout">
             <div class="compare-box">
                 <div class="compare-label">Mobile (86% of sessions)</div>
                 <div class="compare-rate bad">1.06%</div>
-                <div class="compare-sub">40,896 sessions &middot; 435 orders<br>800,166 SEK &middot; LCP up to 33.9s</div>
+                <div class="compare-sub">40,896 sessions &middot; 435 orders<br>800,166 SEK &middot; 86% of all sessions</div>
             </div>
             <div class="compare-vs">vs</div>
             <div class="compare-box highlight">
                 <div class="compare-label">Desktop (12% of sessions)</div>
                 <div class="compare-rate good">3.86%</div>
-                <div class="compare-sub">5,779 sessions &middot; 223 orders<br>511,806 SEK &middot; LCP 5.7s</div>
+                <div class="compare-sub">5,779 sessions &middot; 223 orders<br>511,806 SEK &middot; 12% of sessions</div>
             </div>
         </div>
-        <div class="insight-box"><strong>Est. opportunity:</strong> lifting mobile from 1.06% to just 1.5% conversion (still far below desktop) is roughly 180 extra orders per quarter at ~1,839 SEK, about <strong>330,000 SEK per quarter</strong> (~110K SEK/month). Mobile speed is the foundation that unlocks it.</div>
+        <div class="insight-box"><strong>Est. opportunity:</strong> lifting mobile from 1.06% to just 1.5% conversion (still far below desktop) is roughly 180 extra orders per quarter at ~1,839 SEK, about <strong>330,000 SEK per quarter</strong> (~110K SEK/month). The lever is the mobile buy-box experience (reviews, sizing, trust), not raw page speed.</div>
     </div>
 
     <!-- SLIDE 7: TRAFFIC -->
@@ -767,7 +767,7 @@
         <div class="card-header">
             <div class="card-label">Traffic &amp; spend</div>
             <div class="card-title">Three quarters of sessions are paid</div>
-            <div class="card-subtitle">90-day GA4 by source / medium. Paid social brings the most sessions but converts worst, so the slow, low converting PDP is paid for twice.</div>
+            <div class="card-subtitle">90-day GA4 by source / medium. Paid social brings the most sessions but converts worst, so the low-converting PDP is paid for twice.</div>
         </div>
         <table class="data-table">
             <thead><tr><th>Source / medium</th><th class="num">Sessions</th><th class="num">Share</th><th class="num">Orders</th><th class="num">CVR</th><th class="num">Revenue</th></tr></thead>
@@ -779,7 +779,7 @@
                 <tr><td>shopify_email</td><td class="num">793</td><td class="num">2%</td><td class="num">17</td><td class="num good">2.14%</td><td class="num">27,294 SEK</td></tr>
             </tbody>
         </table>
-        <div class="insight-box">Facebook paid is 42% of sessions at <strong>0.76% CVR</strong>, half of Google CPC's 1.51%. Email converts best (2.14%) on tiny volume, an underused owned channel. Fixing the mobile PDP lifts the return on every paid krona, and the cheapest growth may be sending more of the loyal base through email.</div>
+        <div class="insight-box">Facebook paid is 42% of sessions at <strong>0.76% CVR</strong>, half of Google CPC's 1.51%. Email converts best (2.14%) on tiny volume, an underused owned channel. Fixing the PDP lifts the return on every paid krona, and the cheapest growth may be sending more of the loyal base through email.</div>
     </div>
 
     <!-- SLIDE 8: SECTION 01 PERFORMANCE -->
@@ -787,15 +787,15 @@
         <div class="section-number">01</div>
         <div class="section-kicker">Foundation</div>
         <div class="section-title">Site performance</div>
-        <div class="section-sub">The device data has a cause. On mobile, TJ&Aring;KKO's storefront does not render fast enough to convert, and PageSpeed says so loudly.</div>
+        <div class="section-sub">A hygiene check, not the headline. Shopify stores routinely score low on synthetic mobile tests, so we treat this as a field-data follow-up, not a primary lever.</div>
     </div>
 
     <!-- SLIDE 9: PAGESPEED -->
     <div class="card" data-index="9">
         <div class="card-header">
             <div class="card-label">Core Web Vitals</div>
-            <div class="card-title">Why mobile converts at 1.06%</div>
-            <div class="card-subtitle">Google PageSpeed, measured 26 Jun 2026. A First Contentful Paint near 23s means a phone shopper, 86% of your traffic, stares at a blank or half built page for the time it takes to read this sentence twice.</div>
+            <div class="card-title">Mobile speed: worth a look, not the headline</div>
+            <div class="card-subtitle">Google PageSpeed lab scores, measured 26 Jun 2026. These are synthetic, throttled tests, and Shopify stores routinely score 30 to 50 on mobile here. Treat them as directional, and confirm against real-user field data (Chrome UX Report) before investing in speed work.</div>
         </div>
         <table class="data-table">
             <thead>
@@ -807,7 +807,7 @@
                 <tr><td>PDP (Seacamp II)</td><td class="num danger">47</td><td class="num danger">23.7s</td><td class="num danger">27.6s</td><td class="num danger">44</td><td class="num warn">4.9s</td><td class="num warn">0.179</td></tr>
             </tbody>
         </table>
-        <div class="insight-box"><strong>What this means:</strong> Google treats LCP above 4.0s as "poor". TJ&Aring;KKO's mobile LCP is 27 to 34s, roughly 7x to 8x that line. On our own cold capture the collection page rendered almost entirely blank below the hero because product images had not loaded. This is the direct, measurable cause of the mobile conversion gap, so it is fix #1.</div>
+        <div class="insight-box"><strong>How to read this:</strong> the lab numbers look alarming, but they are not what real shoppers feel, and almost every Shopify store scores poorly here. We did see the collection grid load slowly on a cold visit, so a lightweight image-loading pass is worth doing. It is a hygiene item, though, not the main conversion lever. The View to ATC fixes (reviews, sizing, trust) come first.</div>
     </div>
 
     <!-- SLIDE 10: SECTION 02 HEURISTICS -->
@@ -1081,12 +1081,12 @@
                 <div class="phase-tag">Phase 1 &middot; weeks 1-3</div>
                 <div class="phase-name">Foundation &amp; free wins</div>
                 <div class="phase-when">Highest impact, low to medium effort</div>
-                <div class="phase-impact"><div class="lbl">Targets</div><div class="val">Mobile CVR + View to ATC</div></div>
+                <div class="phase-impact"><div class="lbl">Targets</div><div class="val">View to ATC</div></div>
                 <ul class="phase-list">
-                    <li>Fix mobile performance (image priority, lazy load, render path)</li>
                     <li>Import 42 Trustpilot reviews into Judge.me, show stars on PDP + cards</li>
                     <li>Free shipping progress bar in cart</li>
                     <li>Translate the English terms checkbox</li>
+                    <li>Lightweight image-loading pass (after a CrUX field check)</li>
                 </ul>
             </div>
             <div class="phase-card p2">
@@ -1156,7 +1156,8 @@
             <thead><tr><th>Dimension</th><th>Today</th><th>Evidence</th><th class="num">Priority</th></tr></thead>
             <tbody>
                 <tr><td>View to Add-to-Cart</td><td class="danger">Critical</td><td>96.1% of product viewers never add to cart (GA4 funnel)</td><td class="num danger">P1</td></tr>
-                <tr><td>Mobile performance</td><td class="danger">Poor</td><td>86% of traffic, 1.06% CVR vs 3.86% desktop; LCP up to 33.9s</td><td class="num danger">P1</td></tr>
+                <tr><td>Mobile buy-box UX</td><td class="warn">Weak</td><td>86% of traffic at 1.06% CVR vs 3.86%; reviews/sizing on small screens</td><td class="num danger">P1</td></tr>
+                <tr><td>Mobile speed (lab)</td><td class="warn">Shopify-typical</td><td>Low synthetic scores like most Shopify stores; confirm via CrUX before acting</td><td class="num warn">P3</td></tr>
                 <tr><td>Social proof on page</td><td class="danger">Missing</td><td>42 reviews exist, 0 shown on PDP/cards</td><td class="num danger">P1</td></tr>
                 <tr><td>Sizing guidance</td><td class="warn">Buried</td><td>#1 objection (10/41 reviews), help is in FAQ not PDP</td><td class="num warn">P2</td></tr>
                 <tr><td>AOV / shipping ladder</td><td class="warn">Unused</td><td>AOV ~1,986 SEK near 1700 kr threshold, no progress bar</td><td class="num warn">P2</td></tr>
@@ -1165,7 +1166,7 @@
                 <tr><td>Engagement &amp; trust basics</td><td class="good">Solid</td><td>37.6% bounce, 40-day exchange, broad payments, S&aacute;mi story</td><td class="num good">keep</td></tr>
             </tbody>
         </table>
-        <div class="scorecard-total"><span class="lbl">Biggest single lever</span><span class="val">Close the View to ATC leak: reviews + sizing + mobile speed</span></div>
+        <div class="scorecard-total"><span class="lbl">Biggest single lever</span><span class="val">Close the View to ATC leak: reviews + sizing + trust</span></div>
     </div>
 
     <!-- SLIDE 25: RECOMMENDED DESIGNS -->
@@ -1402,8 +1403,8 @@
     <div class="thankyou-slide card" data-index="30">
         <div class="title-text" style="position:relative;z-index:2">
             <div class="card-label" style="color:#F7D007;letter-spacing:3px;margin-bottom:14px">Next step</div>
-            <h1 class="ty-title" style="font-size:56px">Win the cart-add.<br><span class="eh-yellow">Fix mobile.</span> Surface the proof.</h1>
-            <p class="ty-sub" style="max-width:780px;margin-top:18px">96% of product viewers leave before adding to cart, almost all of them on mobile. Phase 1 (speed + reviews + progress bar) carries no downside and can ship in three weeks.</p>
+            <h1 class="ty-title" style="font-size:56px">Win the cart-add.<br><span class="eh-yellow">Surface the proof.</span> Nail the sizing.</h1>
+            <p class="ty-sub" style="max-width:780px;margin-top:18px">96% of product viewers leave before adding to cart. Phase 1 (reviews + sizing + free-shipping bar) carries no downside and can ship in three weeks.</p>
             <p style="color:#F7D007;font-size:15px;margin-top:24px">Conservative target: ~330,000 SEK per quarter from mobile conversion alone.</p>
             <p class="ty-powered" style="margin-top:36px">Prepared by EcomHouse</p>
         </div>
