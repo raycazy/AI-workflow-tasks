@@ -572,6 +572,18 @@
         .proof-card .pc-chip{background:rgba(247,208,7,.08);border:1px solid rgba(247,208,7,.25);border-radius:8px;padding:8px 12px;text-align:center;min-width:78px}
         .proof-card .pc-chip .v{font-size:19px;font-weight:700;color:#F7D007;line-height:1;font-variant-numeric:tabular-nums}
         .proof-card .pc-chip .k{font-size:9px;color:#999;text-transform:uppercase;letter-spacing:1px;margin-top:5px}
+        /* ===== TEXT-SIZE CONTROL (A- / A / A+) ===== */
+        :root{--fs:1;}
+        .card > *{zoom:var(--fs);}                 /* scale the content inside each slide */
+        .card.tp-card > *{zoom:1;}                 /* leave the test-plan phone columns at fixed size */
+        .card{overflow-y:auto;align-items:safe center;}  /* let a slide scroll if the larger text overflows */
+        .fs-control{position:fixed;top:16px;right:84px;z-index:95;display:flex;align-items:center;gap:2px;background:rgba(20,20,18,.55);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:3px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);}
+        .fs-control button{min-width:26px;height:26px;border:none;background:transparent;color:#EFEEEE;font-family:'Inter',sans-serif;font-weight:800;cursor:pointer;border-radius:14px;line-height:1;padding:0 6px;transition:background .15s,color .15s;}
+        .fs-control button:hover{background:rgba(247,208,7,.2);color:#F7D007;}
+        /* stack the "Open live mockup" and "Open in Figma" links under the variant */
+        .tp-mockup .tp-mocklink{display:block;margin-top:6px;}
+        .tp-mocklink.figma{color:#0d2818;}
+        .tp-mocklink.figma:hover{color:#111;}
     </style>
 </head>
 
@@ -1248,6 +1260,7 @@
                     <div class="tp-phone"><div class="tp-screen"><img src="assets/var-pdp.jpg" class="shot"><span class="tp-annotation" style="top:46px;right:14px">TRUSTPILOT</span><span class="tp-annotation" style="top:182px;left:14px">SIZE GUIDE</span></div></div>
                     <div class="tp-mockup-label variant">VARIANT</div>
                     <a class="tp-mocklink" href="https://raycazy.github.io/AI-workflow-tasks/tjakko-pdp-redesign/" target="_blank" rel="noopener">Open live mockup &#9656;</a>
+                    <a class="tp-mocklink figma" href="https://www.figma.com/design/n8Acn83TsdZPpt0yvY08YP/TJAKKO-Audit?node-id=0-1" target="_blank" rel="noopener">Open in Figma &#9656;</a>
                 </div>
             </div>
         </div>
@@ -1309,6 +1322,7 @@
                     <div class="tp-phone"><div class="tp-screen"><img src="assets/var-cart.jpg" class="shot"><span class="tp-annotation" style="top:250px;left:14px">CROSS-SELL</span></div></div>
                     <div class="tp-mockup-label variant">VARIANT</div>
                     <a class="tp-mocklink" href="https://raycazy.github.io/AI-workflow-tasks/tjakko-cart-redesign/" target="_blank" rel="noopener">Open live mockup &#9656;</a>
+                    <a class="tp-mocklink figma" href="https://www.figma.com/design/n8Acn83TsdZPpt0yvY08YP/TJAKKO-Audit?node-id=0-1" target="_blank" rel="noopener">Open in Figma &#9656;</a>
                 </div>
             </div>
         </div>
@@ -1370,6 +1384,7 @@
                     <div class="tp-phone"><div class="tp-screen"><img src="assets/var-home.jpg" class="shot"><span class="tp-annotation" style="top:150px;left:14px">BENEFIT HERO</span></div></div>
                     <div class="tp-mockup-label variant">VARIANT</div>
                     <a class="tp-mocklink" href="https://raycazy.github.io/AI-workflow-tasks/tjakko-homepage-hero/" target="_blank" rel="noopener">Open live mockup &#9656;</a>
+                    <a class="tp-mocklink figma" href="https://www.figma.com/design/n8Acn83TsdZPpt0yvY08YP/TJAKKO-Audit?node-id=0-1" target="_blank" rel="noopener">Open in Figma &#9656;</a>
                 </div>
             </div>
         </div>
@@ -1429,6 +1444,152 @@
             </div>
         </div>
         <div class="insight-box"><strong>Zero-row service:</strong> you are not expected to do production work. We handle everything from research through analysis. You approve the pre-test brief and the rollout decision.</div>
+    </div>
+
+    <!-- PRE-TEST BRIEF (reused, EcomHouse standard) -->
+    <div class="card" data-index="31">
+        <div class="card-header">
+            <div class="card-label">Pre-test analysis</div>
+            <div class="card-title">Every test launches with a written brief</div>
+            <div class="card-subtitle">No test starts without a documented, approved brief. This protects both sides: the client knows the rules, the agency knows the success criteria.</div>
+        </div>
+        <div class="brief-grid">
+            <div class="brief-col test-setup">
+                <h3><span class="tag">// PART 1</span>Test setup</h3>
+                <ul class="brief-list">
+                    <li><strong>Hypothesis</strong> and the Control vs Variant difference</li>
+                    <li><strong>Audience</strong> and traffic filters (mobile only, returning, country, etc.)</li>
+                    <li><strong>Funnel stage</strong> being tested and the corresponding stage multiplier</li>
+                    <li><strong>URL targeting</strong> (homepage, PDP, cart, checkout)</li>
+                    <li><strong>Frozen baselines</strong> for upper-funnel tests, pulled from the trailing 30 days</li>
+                </ul>
+            </div>
+            <div class="brief-col stat-params">
+                <h3><span class="tag">// PART 2</span>Statistical parameters</h3>
+                <ul class="brief-list">
+                    <li><strong>Primary metric</strong> RPV when measurable, otherwise the relevant funnel-stage metric</li>
+                    <li><strong>Statistical confidence</strong> 80% by default, higher on request</li>
+                    <li><strong>Minimum visitor and order count</strong> required before conclusion</li>
+                    <li><strong>Worked fee range</strong> (+5%, +10%, +15% scenarios) so you know the maximum fee before saying yes</li>
+                    <li><strong>Data sources</strong> for every input figure, named explicitly</li>
+                </ul>
+            </div>
+        </div>
+        <div class="insight-box"><strong>The test does not launch until you approve the brief in writing.</strong> Approved conditions govern the test and the fee.</div>
+    </div>
+
+    <!-- A/B TESTING PROTOCOL (reused) -->
+    <div class="card" data-index="32">
+        <div class="card-header">
+            <div class="card-label">Testing protocol</div>
+            <div class="card-title">How we run tests</div>
+            <div class="card-subtitle">Strict guardrails on tooling, statistical rigor, and conclusion. Tests only conclude when all approved conditions are met.</div>
+        </div>
+        <div class="protocol-grid">
+            <div class="protocol-card">
+                <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+                <div class="lbl">Default tool</div>
+                <div class="val">Intelligems</div>
+                <div class="sub">Or any other test tool you prefer (Convert, GrowthBook, Shopify-native), subject to written approval.</div>
+            </div>
+            <div class="protocol-card">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 21h18M7 21V13M12 21V7M17 21V11"/></svg>
+                <div class="lbl">Confidence</div>
+                <div class="val">80% minimum</div>
+                <div class="sub">Statistical confidence threshold for declaring a winner. Higher thresholds set per test if you require it.</div>
+            </div>
+            <div class="protocol-card">
+                <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg>
+                <div class="lbl">Conclusion</div>
+                <div class="val">All conditions met</div>
+                <div class="sub">Tests only conclude when minimum visitors, orders and confidence are reached. No early calls except for technical issues or clear-loser revenue protection.</div>
+            </div>
+            <div class="protocol-card">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M5 12a8 8 0 0 1 14 0M8 15a4 4 0 0 1 8 0"/><circle cx="12" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg>
+                <div class="lbl">Reporting</div>
+                <div class="val">Weekly Loom</div>
+                <div class="sub">Loom or written summary every week, plus a running test log with all hypotheses, results and rollouts you can access anytime.</div>
+            </div>
+        </div>
+        <div class="insight-box"><strong>You have direct access to the testing software at all times.</strong> Live results, traffic splits and historical tests visible to your team without going through us.</div>
+    </div>
+
+    <!-- PERFORMANCE PRICING (reused) -->
+    <div class="card" data-index="33">
+        <div class="card-header">
+            <div class="card-label">Compensation</div>
+            <div class="card-title">We win when you win</div>
+            <div class="card-subtitle">Performance-based fee on every winning test rolled out to 100% of traffic. One-time charge per test. No attribution window. No recurring tail.</div>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card lead">
+                <div class="tag">// PERFORMANCE FEE</div>
+                <h3>% of estimated monthly revenue uplift</h3>
+                <div class="price-line">Y %</div>
+                <div class="desc">Charged once per winning test on rollout. Calculated from the test's measured uplift and your own data, with the agreed stage multiplier applied. Full methodology in Schedule A.</div>
+                <ul>
+                    <li>One time fee per winning test</li>
+                    <li>No recurring tail, no attribution window</li>
+                    <li>Loser and inconclusive tests are free</li>
+                </ul>
+            </div>
+            <div class="pricing-card">
+                <div class="tag">// OPTIONAL RETAINER</div>
+                <h3>Fixed monthly fee</h3>
+                <div class="price-line">X kr / month</div>
+                <div class="desc">Optional. Predictable monthly cost on top of (or instead of) the performance fee. Some clients prefer this for budgeting.</div>
+                <ul>
+                    <li>Billed on the 1st, in advance</li>
+                    <li>Void if not agreed</li>
+                    <li>Stackable with the performance fee</li>
+                </ul>
+            </div>
+        </div>
+        <div class="insight-box"><strong>Billing:</strong> one invoice on the 1st of each month covering the retainer (if any) plus the performance fee for every winning test rolled out the previous month. Loser and inconclusive tests are free.</div>
+    </div>
+
+    <!-- STAGE MULTIPLIERS (reused) -->
+    <div class="card" data-index="34">
+        <div class="card-header">
+            <div class="card-label">Schedule A &middot; Stage multipliers</div>
+            <div class="card-title">Tests further from purchase carry more projection risk</div>
+            <div class="card-subtitle">The stage multiplier discounts the performance fee for upper-funnel tests where revenue impact is estimated rather than directly measured. Approved in the pre-test brief, before the test runs.</div>
+        </div>
+        <div class="multiplier-stack">
+            <div class="mult-row">
+                <div class="mult-pct p100">100 %</div>
+                <div class="body">
+                    <div class="stages">RPV &middot; AOV &middot; Purchase CVR &middot; Checkout CVR &middot; Post-purchase</div>
+                    <div class="why">Revenue measured directly by the testing software. No projection needed.</div>
+                </div>
+                <div class="mult-bar"><div class="fill p100"></div></div>
+            </div>
+            <div class="mult-row">
+                <div class="mult-pct p75">75 %</div>
+                <div class="body">
+                    <div class="stages">Cart to checkout &middot; PDP add to cart</div>
+                    <div class="why">One step from purchase. Light projection of downstream behavior.</div>
+                </div>
+                <div class="mult-bar"><div class="fill p75"></div></div>
+            </div>
+            <div class="mult-row">
+                <div class="mult-pct p50">50 %</div>
+                <div class="body">
+                    <div class="stages">Collection to PDP &middot; PDP engagement</div>
+                    <div class="why">Two steps from purchase. Multiple downstream conversion rates to project.</div>
+                </div>
+                <div class="mult-bar"><div class="fill p50"></div></div>
+            </div>
+            <div class="mult-row">
+                <div class="mult-pct p25">25 %</div>
+                <div class="body">
+                    <div class="stages">Homepage to collection &middot; Navigation &middot; Site search</div>
+                    <div class="why">Three or more steps from purchase. Heaviest projection assumptions.</div>
+                </div>
+                <div class="mult-bar"><div class="fill p25"></div></div>
+            </div>
+        </div>
+        <div class="insight-box"><strong>Only your own data goes into the estimate.</strong> No industry benchmarks, no agency assumptions. Visitors, baseline CVRs and AOV are pulled from the trailing 30 days of GA4 and Shopify, frozen pre-test, and approved by you.</div>
     </div>
 
     <!-- PROVEN RESULTS: PH IMPORT CASE STUDIES -->
@@ -1509,7 +1670,7 @@
         <span>Menu</span>
     </button>
     <div class="nav-dots" id="navDots"></div>
-    <div class="nav-counter" id="navCounter">01 / 33</div>
+    <div class="nav-counter" id="navCounter">01 / 37</div>
     <div class="nav-arrows">
         <button class="nav-arrow" id="prevBtn" aria-label="Previous"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
         <button class="nav-arrow" id="nextBtn" aria-label="Next"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
@@ -1550,6 +1711,10 @@ var SLIDE_TITLES = [
     'T03 · Homepage hero',
     '07 / EcomHouse method (section)',
     'Six steps, end to end',
+    'Pre-test brief',
+    'A/B testing protocol',
+    'Performance pricing',
+    'Stage multipliers',
     'Recent test wins',
     'Thank you'
 ];
@@ -1562,7 +1727,7 @@ var SLIDE_SECTIONS = [
     { title: '04 / Competitor benchmark', start: 18, end: 20 },
     { title: '05 / Roadmap', start: 21, end: 24 },
     { title: '06 / A/B test plans', start: 25, end: 28 },
-    { title: '07 / Method & proof', start: 29, end: 32 }
+    { title: '07 / Method & proof', start: 29, end: 36 }
 ];
 
 (function(){
@@ -1728,6 +1893,23 @@ var SLIDE_SECTIONS = [
         update();
     });
     update();
+})();
+</script>
+<div class="fs-control" role="group" aria-label="Text size">
+  <button id="fsDown" title="Smaller text" style="font-size:11px">A</button>
+  <button id="fsReset" title="Reset text size" style="font-size:13px">A</button>
+  <button id="fsUp" title="Larger text" style="font-size:16px">A</button>
+</div>
+<script>
+(function(){
+  var min=0.85,max=1.30,step=0.10,fs=1;
+  try{var s=localStorage.getItem('tjfs'); if(s){var p=parseFloat(s); if(!isNaN(p))fs=Math.min(max,Math.max(min,p));}}catch(e){}
+  function apply(){document.documentElement.style.setProperty('--fs',fs.toFixed(2));try{localStorage.setItem('tjfs',fs);}catch(e){}}
+  function set(v){fs=Math.min(max,Math.max(min,Math.round(v*100)/100));apply();}
+  document.getElementById('fsUp').addEventListener('click',function(){set(fs+step);});
+  document.getElementById('fsDown').addEventListener('click',function(){set(fs-step);});
+  document.getElementById('fsReset').addEventListener('click',function(){set(1);});
+  apply();
 })();
 </script>
 </body>
