@@ -121,10 +121,13 @@
   .reviews{background:#fff;border:1px solid var(--line);border-radius:6px;padding:32px;margin-top:24px}
   .rev-top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:20px}
   .rev-top h2{font-size:26px}
-  .rev-tp{display:inline-flex;align-items:center;gap:10px;text-decoration:none;border:1px solid var(--line);border-radius:8px;padding:8px 14px}
+  .rev-tp{display:inline-flex;align-items:center;gap:12px;text-decoration:none;border:1px solid var(--line);border-radius:8px;padding:9px 16px;flex-wrap:wrap}
   .rev-tp:hover{border-color:var(--tp)}
-  .rev-tp .score{font-weight:700;font-size:15px}
-  .rev-tp .meta{font-size:11px;color:var(--muted)}
+  .rev-tp .tp-stars i{width:20px;height:20px}
+  .rev-tp .sc{font-weight:700;font-size:16px}
+  .rev-tp .sc small{font-weight:400;color:var(--muted);font-size:13px}
+  .rev-tp .cnt{font-size:12.5px;color:var(--muted);text-decoration:underline}
+  .rev-tp .tp-word{font-size:14px}
   .rev-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
   .rev-track::-webkit-scrollbar{height:6px}
   .rev-track::-webkit-scrollbar-thumb{background:#ddd;border-radius:3px}
@@ -324,13 +327,11 @@
     <div>
       <h2>Varför är barfotaskor bra?</h2>
       <p>Vanliga skor är ofta trånga vilket har tryckt ihop dina tår i alla år. Du kan få hallux valgus vilket kräver en operation, eller kanske hälsporre som tar månader att läka.</p>
-      <ul>
-        <li>Klämda tår</li><li>Hallux valgus</li><li>Hälsporre</li><li>Fotsmärta</li><li>Ont i ryggen</li><li>Stel sula</li>
-      </ul>
+      <p>Barfotaskor ger tårna plats att spreta, en naturlig hälisättning och en mjuk, flexibel sula som låter foten arbeta som den ska.</p>
     </div>
     <div class="edu-compare">
-      <figure><figcaption>Trånga skor</figcaption><img src="https://tjakko.se/cdn/shop/files/Before_small_911a5705-8a46-458c-a80b-b7567ae9e409.png?width=700" alt="Trånga skor"></figure>
-      <figure class="good"><figcaption>Friska fötter</figcaption><img src="https://tjakko.se/cdn/shop/files/After_small_49af8d14-522f-438b-aa97-59fc9d6b459a.png?width=700" alt="Friska fötter"></figure>
+      <figure><img src="https://tjakko.se/cdn/shop/files/Before_small_911a5705-8a46-458c-a80b-b7567ae9e409.png?width=700" alt="Vanliga trånga skor"></figure>
+      <figure><img src="https://tjakko.se/cdn/shop/files/After_small_49af8d14-522f-438b-aa97-59fc9d6b459a.png?width=700" alt="Vanliga barfotaskor"></figure>
     </div>
   </div>
 
@@ -338,7 +339,8 @@
   <div class="reviews">
     <div class="rev-top">
       <h2>Nöjda kunder</h2>
-      <a class="rev-tp new-outline" href="https://se.trustpilot.com/review/tjakko.se" target="_blank" rel="noopener">
+      <a class="rev-tp" href="https://se.trustpilot.com/review/tjakko.se" target="_blank" rel="noopener">
+        <span class="tp-word"><svg viewBox="0 0 24 24"><path fill="#00b67a" d="M12 2l2.9 6.3 6.9.6-5.2 4.5 1.6 6.7L12 17.3 5.8 20.7l1.6-6.7L2.2 8.9l6.9-.6z"/></svg>Trustpilot</span>
         <span class="tp-stars">
           <i><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.5 1.6 6.7L12 17.3 5.8 20.7l1.6-6.7L2.2 8.9l6.9-.6z"/></svg></i>
           <i><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.5 1.6 6.7L12 17.3 5.8 20.7l1.6-6.7L2.2 8.9l6.9-.6z"/></svg></i>
@@ -346,7 +348,8 @@
           <i><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.5 1.6 6.7L12 17.3 5.8 20.7l1.6-6.7L2.2 8.9l6.9-.6z"/></svg></i>
           <i style="background:#dcdcd6"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.5 1.6 6.7L12 17.3 5.8 20.7l1.6-6.7L2.2 8.9l6.9-.6z"/></svg></i>
         </span>
-        <span><span class="score">4,3 / 5</span><br><span class="meta">42 omdömen på <span class="tp-word"><svg viewBox="0 0 24 24"><path fill="#00b67a" d="M12 2l2.9 6.3 6.9.6-5.2 4.5 1.6 6.7L12 17.3 5.8 20.7l1.6-6.7L2.2 8.9l6.9-.6z"/></svg>Trustpilot</span></span></span>
+        <span class="sc">4,3<small> / 5</small></span>
+        <span class="cnt">42 omdömen</span>
       </a>
     </div>
     <div class="rev-track">
