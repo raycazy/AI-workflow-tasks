@@ -562,6 +562,16 @@
         .tp-mockups{align-items:flex-start;}
         /* the "Test Plan" pill was removed, so give the first heading room to clear the fixed wordmark */
         .tp-left{padding-top:56px;}
+        /* ===== PROVEN RESULTS (case study cards) ===== */
+        .proof-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:1000px;width:100%}
+        .proof-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:20px 22px}
+        .proof-card .pc-client{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:#F7D007;text-transform:uppercase;margin-bottom:8px}
+        .proof-card .pc-title{font-size:16px;font-weight:600;color:#fff;margin-bottom:6px}
+        .proof-card .pc-desc{font-size:11px;color:#999;line-height:1.6;margin-bottom:14px}
+        .proof-card .pc-res{display:flex;gap:10px;flex-wrap:wrap}
+        .proof-card .pc-chip{background:rgba(247,208,7,.08);border:1px solid rgba(247,208,7,.25);border-radius:8px;padding:8px 12px;text-align:center;min-width:78px}
+        .proof-card .pc-chip .v{font-size:19px;font-weight:700;color:#F7D007;line-height:1;font-variant-numeric:tabular-nums}
+        .proof-card .pc-chip .k{font-size:9px;color:#999;text-transform:uppercase;letter-spacing:1px;margin-top:5px}
     </style>
 </head>
 
@@ -1365,8 +1375,114 @@
         </div>
     </div>
 
-    <!-- SLIDE 30: THANK YOU -->
-    <div class="thankyou-slide card" data-index="30">
+    <!-- SLIDE 29: SECTION 07 METHOD & PROOF -->
+    <div class="section-slide card" data-index="29">
+        <div class="section-number">07</div>
+        <div class="section-kicker">Who runs this</div>
+        <div class="section-title">How EcomHouse works</div>
+        <div class="section-sub">A zero-row CRO service: we run research, design, build, QA, deploy, test, and analysis end to end. Here is the method, and what it has delivered.</div>
+    </div>
+
+    <!-- METHOD: 6-STEP -->
+    <div class="card" data-index="30">
+        <div class="card-header">
+            <div class="card-label">The EcomHouse method</div>
+            <div class="card-title">Six steps, end to end</div>
+            <div class="card-subtitle">You approve, we execute. Every step is owned by us, including build, QA and rollout. Your only required action is written approval at the brief and rollout stages.</div>
+        </div>
+        <div class="method-flow">
+            <div class="method-step">
+                <div class="num">// 01</div>
+                <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                <h4>Research</h4>
+                <p>GA4, Shopify, heatmaps, recordings, reviews, support tickets.</p>
+            </div>
+            <div class="method-step">
+                <div class="num">// 02</div>
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a7 7 0 0 0-4 12.5V17h8v-1.5A7 7 0 0 0 12 3z"/></svg>
+                <h4>Ideate</h4>
+                <p>Hypothesis, variant concepts, copy, on-brand mockup.</p>
+            </div>
+            <div class="method-step">
+                <div class="num">// 03</div>
+                <svg class="icon-svg" viewBox="0 0 24 24"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1M9 11h6M9 15h4"/></svg>
+                <h4>Pre-test brief</h4>
+                <p>Written brief: metric, confidence, sample size, guardrails.</p>
+            </div>
+            <div class="method-step">
+                <div class="num">// 04</div>
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.5-.5-.5-2.5z"/></svg>
+                <h4>Build &amp; QA</h4>
+                <p>Shopify or test-tool variant, tracked, QA'd across devices.</p>
+            </div>
+            <div class="method-step">
+                <div class="num">// 05</div>
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M14 7h7v7"/></svg>
+                <h4>Run &amp; monitor</h4>
+                <p>Live test with guardrail watch and weekly progress updates.</p>
+            </div>
+            <div class="method-step">
+                <div class="num">// 06</div>
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2a14 14 0 0 1 5 9c0 1-3 5-9 5l-4-4c0-6 5-9 5-9z"/><circle cx="12" cy="9" r="1.8"/><path d="M5 19c-1 0-3 0-3 3 0-1 1-3 3-3z"/></svg>
+                <h4>Analyze &amp; roll out</h4>
+                <p>Written verdict, winners rolled out to 100% of traffic.</p>
+            </div>
+        </div>
+        <div class="insight-box"><strong>Zero-row service:</strong> you are not expected to do production work. We handle everything from research through analysis. You approve the pre-test brief and the rollout decision.</div>
+    </div>
+
+    <!-- PROVEN RESULTS: PH IMPORT CASE STUDIES -->
+    <div class="card" data-index="31">
+        <div class="card-header">
+            <div class="card-label">Proven results</div>
+            <div class="card-title">Recent A/B tests we shipped</div>
+            <div class="card-subtitle">Live winners on PH Import (Danish Shopify store), measured in Intelligems. These are the same levers we are recommending for TJ&Aring;KKO: trust at the buy box, a clear hero, and basket / pack UX.</div>
+        </div>
+        <div class="proof-grid">
+            <div class="proof-card">
+                <div class="pc-client">Case &middot; PH Import</div>
+                <div class="pc-title">Assurance icons below Add to Cart</div>
+                <div class="pc-desc">Trust icons placed right under the ATC to close hesitation at the moment of purchase. Same idea as surfacing your reviews on the PDP.</div>
+                <div class="pc-res">
+                    <div class="pc-chip"><div class="v">+19.1%</div><div class="k">CVR</div></div>
+                    <div class="pc-chip"><div class="v">+17.5%</div><div class="k">Rev / visitor</div></div>
+                    <div class="pc-chip"><div class="v">+776K</div><div class="k">DKK / mo</div></div>
+                </div>
+            </div>
+            <div class="proof-card">
+                <div class="pc-client">Case &middot; PH Import</div>
+                <div class="pc-title">Lighter homepage hero</div>
+                <div class="pc-desc">Light background homepage with a clear headline, CTA and USP row. The same move as your benefit-led hero test.</div>
+                <div class="pc-res">
+                    <div class="pc-chip"><div class="v">+15.7%</div><div class="k">Rev / visitor</div></div>
+                    <div class="pc-chip"><div class="v">+231K</div><div class="k">DKK / mo</div></div>
+                </div>
+            </div>
+            <div class="proof-card">
+                <div class="pc-client">Case &middot; PH Import</div>
+                <div class="pc-title">Pack selector + social-proof badge</div>
+                <div class="pc-desc">Preselected the higher pack with a "95% pick this option" badge. Related to how your size and pack choices are framed.</div>
+                <div class="pc-res">
+                    <div class="pc-chip"><div class="v">+8.7%</div><div class="k">Rev / visitor</div></div>
+                    <div class="pc-chip"><div class="v">+2.0%</div><div class="k">AOV</div></div>
+                    <div class="pc-chip"><div class="v">+483K</div><div class="k">DKK / mo</div></div>
+                </div>
+            </div>
+            <div class="proof-card">
+                <div class="pc-client">Case &middot; PH Import</div>
+                <div class="pc-title">Tiered volume discounts</div>
+                <div class="pc-desc">Bulk discounting on high-volume consumables. The same AOV lever as your cart-drawer cross-sell.</div>
+                <div class="pc-res">
+                    <div class="pc-chip"><div class="v">+13.5%</div><div class="k">CVR</div></div>
+                    <div class="pc-chip"><div class="v">+151K</div><div class="k">DKK / mo</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="insight-box">Every result above is a live, rolled-out A/B winner, not a projection. The recommendations in this deck target the same levers that produced them.</div>
+    </div>
+
+    <!-- SLIDE 32: THANK YOU -->
+    <div class="thankyou-slide card" data-index="32">
         <div class="title-text" style="position:relative;z-index:2">
             <div class="card-label" style="color:#F7D007;letter-spacing:3px;margin-bottom:14px">Next step</div>
             <h1 class="ty-title" style="font-size:56px">Win the cart-add.<br><span class="eh-yellow">Surface the proof.</span> Nail the sizing.</h1>
@@ -1393,7 +1509,7 @@
         <span>Menu</span>
     </button>
     <div class="nav-dots" id="navDots"></div>
-    <div class="nav-counter" id="navCounter">01 / 30</div>
+    <div class="nav-counter" id="navCounter">01 / 33</div>
     <div class="nav-arrows">
         <button class="nav-arrow" id="prevBtn" aria-label="Previous"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
         <button class="nav-arrow" id="nextBtn" aria-label="Next"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
@@ -1432,6 +1548,9 @@ var SLIDE_TITLES = [
     'T01 · PDP reviews + sizing',
     'T02 · Cart free shipping',
     'T03 · Homepage hero',
+    '07 / EcomHouse method (section)',
+    'Six steps, end to end',
+    'Recent test wins',
     'Thank you'
 ];
 var SLIDE_SECTIONS = [
@@ -1442,7 +1561,8 @@ var SLIDE_SECTIONS = [
     { title: '03 / Voice of customer', start: 15, end: 17 },
     { title: '04 / Competitor benchmark', start: 18, end: 20 },
     { title: '05 / Roadmap', start: 21, end: 24 },
-    { title: '06 / A/B test plans', start: 25, end: 29 }
+    { title: '06 / A/B test plans', start: 25, end: 28 },
+    { title: '07 / Method & proof', start: 29, end: 32 }
 ];
 
 (function(){
