@@ -1,0 +1,2009 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#071820">
+<title>Get Maine Lobster: CRO Audit and 90 Day Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --display: 'Plus Jakarta Sans', 'Helvetica Neue', sans-serif;
+    --body: 'Manrope', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    /* Yamu brand palette */
+    --red: #F5751C;          /* Yamu orange (primary accent) */
+    --red-2: #F9A877;        /* light orange (hover, links on dark) */
+    --yellow: #FFB020;       /* amber (warning accent) */
+    --brown: #123240;        /* deep teal navy (secondary) */
+    --cream: #EEF4F6;        /* cool paper */
+    --green: #34C759;        /* positive signal */
+    --orange: #D85F0E;       /* deep orange (emphasis on light) */
+  }
+  html[data-theme="dark"] {
+    --bg: #071820;           /* Yamu dark navy */
+    --bg-2: #0C222C;
+    --bg-3: #123240;
+    --line: rgba(255,255,255,0.08);
+    --line-strong: rgba(255,255,255,0.18);
+    --ink: #EEF4F6;          /* cool paper text */
+    --ink-2: #A9C0C9;
+    --ink-3: #6F8A95;
+    --shadow: 0 20px 60px rgba(0,0,0,0.45);
+    --grain-opacity: 0.30;
+    --nav-bg: rgba(12,34,44,.78);
+  }
+  html[data-theme="light"] {
+    --bg: #F1F5F6;           /* cool paper */
+    --bg-2: #ffffff;
+    --bg-3: #E4ECEE;
+    --line: rgba(0,0,0,0.10);
+    --line-strong: rgba(0,0,0,0.22);
+    --ink: #071820;
+    --ink-2: #44606B;
+    --ink-3: #8AA0A8;
+    --shadow: 0 16px 40px rgba(0,0,0,0.08);
+    --grain-opacity: 0;
+    --nav-bg: rgba(255,255,255,.82);
+  }
+
+  *,*::before,*::after { box-sizing: border-box; }
+  html, body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--body); -webkit-font-smoothing: antialiased;
+    transition: background .3s ease, color .3s ease;
+    min-height: 100%; height: 100%; overflow: hidden;
+  }
+  body { overscroll-behavior: contain; touch-action: pan-y; }
+
+  .stage { position: fixed; inset: 0; display: grid; place-items: center; padding: 18px; }
+  .deck { width: 100%; height: 100%; max-width: 1400px; max-height: 860px; position: relative; }
+  .slide {
+    position: absolute; inset: 0; border-radius: 18px; overflow: hidden;
+    background: var(--bg); border: 1px solid var(--line); box-shadow: var(--shadow);
+    opacity: 0; pointer-events: none;
+    transform: translateX(40px) scale(.985);
+    transition: opacity .42s ease, transform .55s cubic-bezier(.2,.7,.2,1), background .3s ease, border-color .3s ease;
+    content-visibility: auto;
+    contain-intrinsic-size: 100% 100%;
+  }
+  .slide.is-active, .slide.is-prev { will-change: transform, opacity; content-visibility: visible; }
+  .slide.is-active { opacity: 1; pointer-events: auto; transform: translateX(0) scale(1); }
+  .slide.is-prev { opacity: 0; transform: translateX(-40px) scale(.985); }
+
+  .pad {
+    position: absolute; inset: 0;
+    padding: 48px 56px 96px;
+    overflow-y: auto; overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    display: flex; flex-direction: column;
+    scroll-behavior: smooth;
+  }
+  .pad::-webkit-scrollbar { width: 8px; }
+  .pad::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 4px; }
+  .pad::-webkit-scrollbar-thumb:hover { background: var(--ink-3); }
+
+  .top-row {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 28px; flex-shrink: 0;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--display); letter-spacing: .15em; font-size: 14px; color: var(--ink-2);
+  }
+  .brand-mark {
+    width: 22px; height: 22px;
+    background: var(--ink);
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='12' r='9' stroke-width='2' stroke='black' fill='none'/><path d='M5 8 q7 2 14 0 M5 16 q7 -2 14 0' stroke='black' stroke-width='1.4' fill='none'/></svg>") center / 95% no-repeat;
+            mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='12' r='9' stroke-width='2' stroke='black' fill='none'/><path d='M5 8 q7 2 14 0 M5 16 q7 -2 14 0' stroke='black' stroke-width='1.4' fill='none'/></svg>") center / 95% no-repeat;
+  }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 12px; border-radius: 999px;
+    background: rgba(245,117,28,0.14); color: var(--red-2);
+    font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+  }
+  .badge.green { background: rgba(74,138,92,0.16); color: var(--green); }
+  .badge.yellow { background: rgba(244,193,29,0.14); color: var(--yellow); }
+  .badge.orange { background: rgba(196,123,32,0.16); color: var(--orange); }
+  .badge.ghost { background: var(--bg-3); color: var(--ink-2); border: 1px solid var(--line); }
+  .eyebrow {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .25em; text-transform: uppercase; color: var(--ink-3);
+  }
+  h1, h2, h3 { margin: 0; font-weight: 700; }
+  .display {
+    font-family: var(--display); font-size: clamp(38px, 5.4vw, 84px);
+    font-weight: 800; line-height: 1.0; letter-spacing: -.035em;
+  }
+  .sub-display {
+    font-family: var(--display); font-size: clamp(28px, 3.6vw, 58px);
+    font-weight: 800; line-height: 1.04; letter-spacing: -.03em;
+  }
+  .h-section {
+    font-family: var(--display); font-size: clamp(22px, 2.5vw, 36px);
+    line-height: 1.15; letter-spacing: -.025em; font-weight: 700;
+  }
+  .lede { font-size: clamp(15px, 1.4vw, 18px); line-height: 1.55; color: var(--ink-2); max-width: 70ch; }
+  .small { font-size: 13px; color: var(--ink-3); }
+  .accent { color: var(--red); }
+  .num-display {
+    font-family: var(--display); font-size: clamp(56px, 9vw, 140px);
+    font-weight: 800; line-height: .9; letter-spacing: -.035em;
+  }
+  .mono { font-family: var(--mono); }
+  .grid { display: grid; gap: 24px; }
+  .cols-2 { grid-template-columns: 1fr 1fr; }
+  .cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+  .stat-card {
+    background: var(--bg-2); border: 1px solid var(--line);
+    border-radius: 12px; padding: 22px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .stat-card .k { font-family: var(--mono); font-size: 10px; letter-spacing: .25em; text-transform: uppercase; color: var(--ink-3); }
+  .stat-card .v { font-family: var(--display); font-size: 44px; line-height: 1; color: var(--ink); }
+  .stat-card .v.sm { font-size: 30px; }
+  .stat-card .d { font-size: 12px; color: var(--ink-2); margin-top: 4px; }
+  .stat-card.red { border-color: rgba(245,117,28,.35); background: linear-gradient(180deg, rgba(245,117,28,.08), transparent 80%), var(--bg-2); }
+  .stat-card.green { border-color: rgba(74,138,92,.35); }
+  .stat-card.orange { border-color: rgba(196,123,32,.35); background: linear-gradient(180deg, rgba(196,123,32,.08), transparent 80%), var(--bg-2); }
+
+  .funnel { display: grid; gap: 10px; }
+  .funnel-row {
+    display: grid; grid-template-columns: 180px 1fr 180px; align-items: center; gap: 16px;
+  }
+  .funnel-row .name { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
+  .funnel-bar-wrap { position: relative; height: 32px; background: var(--bg-3); border-radius: 6px; overflow: hidden; }
+  .funnel-bar { position: absolute; inset: 0 auto 0 0; background: linear-gradient(90deg, var(--red), #ff7a4a); }
+  .funnel-row .v { font-family: var(--mono); font-size: 13px; color: var(--ink); text-align: right; }
+  .funnel-row .v small { color: var(--ink-3); margin-left: 6px; }
+
+  .compare {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px; flex: 0 0 auto;
+  }
+  .compare-panel {
+    display: flex; flex-direction: column;
+    background: var(--bg-2); border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+  }
+  .compare-panel header {
+    padding: 14px 18px; border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .compare-panel header strong { font-family: var(--mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; }
+  .compare-body { padding: 18px; display: flex; flex-direction: column; gap: 10px; }
+  .compare-body ul { margin: 0; padding-left: 18px; color: var(--ink-2); font-size: 14px; line-height: 1.55; }
+  .compare-body li { margin-bottom: 6px; }
+  .compare-body li.bad::marker { color: var(--red); }
+  .compare-body li.good::marker { color: var(--green); }
+
+  .shot {
+    width: 100%; display: block;
+    border-radius: 10px; border: 1px solid var(--line); background: var(--bg-3);
+  }
+  .shot-wrap {
+    overflow: hidden; max-height: 440px;
+    border-radius: 10px; background: var(--bg-3); margin: 12px 18px;
+  }
+  .shot-wrap .shot { object-fit: cover; object-position: top center; width: 100%; max-height: 440px; }
+
+  .context-callout {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;
+    margin-bottom: 18px; padding: 16px;
+    background: var(--bg-2); border: 1px solid var(--line); border-radius: 12px;
+  }
+  .ctx-tile { display: flex; flex-direction: column; gap: 4px; }
+  .ctx-k { font-family: var(--mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-3); }
+  .ctx-v { font-family: var(--display); font-size: 44px; line-height: 1; font-weight: 800; letter-spacing: -.03em; color: var(--red); }
+  .ctx-d { font-size: 13px; line-height: 1.5; color: var(--ink-2); }
+  @media (max-width: 768px) { .context-callout { grid-template-columns: 1fr; } .ctx-v { font-size: 36px; } }
+
+  .priority-list { display: grid; gap: 10px; }
+  .priority-item {
+    display: grid; grid-template-columns: 56px 1fr auto; gap: 18px; align-items: center;
+    padding: 16px 18px;
+    background: var(--bg-2); border: 1px solid var(--line); border-radius: 10px;
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .priority-item:hover { border-color: var(--line-strong); transform: translateY(-1px); }
+  .priority-item .n { font-family: var(--display); font-size: 38px; color: var(--red); line-height: 1; }
+  .priority-item .t { font-size: 16px; font-weight: 600; color: var(--ink); }
+  .priority-item .t span { display: block; font-weight: 400; color: var(--ink-2); font-size: 13px; margin-top: 4px; }
+  .priority-item .tag { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-3); padding: 6px 10px; border: 1px solid var(--line); border-radius: 999px; white-space: nowrap; }
+  .priority-item .tag.ship { background: rgba(74,138,92,.10); color: var(--green); border-color: rgba(74,138,92,.35); }
+  .priority-item .tag.ab { background: rgba(196,123,32,.10); color: var(--orange); border-color: rgba(196,123,32,.35); }
+
+  table.flat { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.flat th, table.flat td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+  table.flat th { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+  table.flat td { color: var(--ink-2); }
+  table.flat td.num { font-family: var(--mono); color: var(--ink); text-align: right; }
+  table.flat tr:hover td { color: var(--ink); }
+  table.flat .row-good td.num { color: var(--green); }
+  table.flat .row-bad td.num { color: var(--red); }
+
+  .ab-table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13px; }
+  .ab-table thead th {
+    text-align: left; padding: 12px 14px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--ink-3); font-weight: 500; border-bottom: 1px solid var(--line-strong);
+  }
+  .ab-table tbody td { padding: 16px 14px; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--ink-2); }
+  .ab-table tbody tr:hover td { background: var(--bg-2); color: var(--ink); }
+  .ab-table tbody tr:first-child td { background: linear-gradient(90deg, rgba(245,117,28,.08), transparent 60%); }
+  .ab-table tbody tr:first-child:hover td { background: linear-gradient(90deg, rgba(245,117,28,.14), transparent 60%); }
+  .ab-table .n { font-family: var(--display); font-size: 24px; color: var(--red); line-height: 1; width: 48px; }
+  .ab-table strong { display: block; color: var(--ink); font-weight: 700; font-size: 14px; line-height: 1.3; margin-bottom: 4px; }
+  .ab-table span:not(.page-chip):not(.pri) { display: block; font-size: 12px; color: var(--ink-2); line-height: 1.5; }
+  .page-chip {
+    display: inline-flex; align-items: center;
+    font-family: var(--mono); font-size: 10px; letter-spacing: .15em; text-transform: uppercase; font-weight: 500;
+    padding: 4px 8px; border-radius: 4px; border: 1px solid var(--line);
+    background: var(--bg-3); color: var(--ink-2); white-space: nowrap;
+  }
+  .page-chip.site { background: rgba(245,117,28,.15); color: var(--red-2); border-color: rgba(245,117,28,.3); }
+  .page-chip.pdp { background: rgba(74,138,92,.12); color: var(--green); border-color: rgba(74,138,92,.3); }
+  .page-chip.cart { background: rgba(244,193,29,.14); color: var(--yellow); border-color: rgba(244,193,29,.3); }
+  .page-chip.coll { background: rgba(196,123,32,.14); color: var(--orange); border-color: rgba(196,123,32,.3); }
+  .page-chip.home { background: rgba(35,150,255,.12); color: #5ab4ff; border-color: rgba(35,150,255,.3); }
+  .pri {
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 10px; letter-spacing: .15em; font-weight: 700;
+    padding: 4px 8px; border-radius: 4px;
+  }
+  .pri.p0 { background: var(--red); color: #fff; }
+  .pri.p1 { background: rgba(244,193,29,.18); color: var(--yellow); border: 1px solid rgba(244,193,29,.4); }
+  .pri.p2 { background: var(--bg-3); color: var(--ink-2); border: 1px solid var(--line); }
+
+  .geo-bar { display: grid; gap: 8px; }
+  .geo-row { display: grid; grid-template-columns: 130px 1fr 90px 100px; align-items: center; gap: 14px; font-size: 13px; }
+  .geo-row .name { color: var(--ink-2); font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; }
+  .geo-row .bar { height: 22px; background: var(--bg-3); border-radius: 4px; overflow: hidden; position: relative; }
+  .geo-row .bar > i { display: block; height: 100%; background: var(--line-strong); }
+  .geo-row.us .bar > i { background: linear-gradient(90deg, var(--green), #5af0a8); }
+  .geo-row .num { font-family: var(--mono); text-align: right; color: var(--ink); }
+  .geo-row .rev { font-family: var(--mono); text-align: right; color: var(--ink); }
+  .geo-row.us .rev { color: var(--green); }
+  .geo-row.bot .num, .geo-row.bot .rev { color: var(--ink-3); }
+
+  .device-split { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .device-card { background: var(--bg-2); border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
+  .device-card.win { border-color: rgba(74,138,92,.4); }
+  .device-card.loss { border-color: rgba(245,117,28,.4); }
+  .device-card h4 {
+    font-family: var(--display); font-size: 32px; margin: 0 0 6px;
+    text-transform: uppercase; letter-spacing: -.01em; color: var(--ink);
+  }
+  .device-card .row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed var(--line); font-size: 14px; color: var(--ink-2); }
+  .device-card .row strong { color: var(--ink); font-family: var(--mono); font-size: 14px; }
+  .device-card .row:last-child { border-bottom: 0; }
+
+  .issue-list { display: grid; gap: 10px; }
+  .issue {
+    display: grid; grid-template-columns: 28px 1fr; gap: 12px;
+    padding: 12px 14px;
+    background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px;
+    font-size: 14px;
+  }
+  .issue .x { color: var(--red); font-family: var(--mono); font-size: 14px; line-height: 1.4; }
+  .issue .y { color: var(--green); font-family: var(--mono); font-size: 14px; line-height: 1.4; }
+  .issue strong { color: var(--ink); display: block; margin-bottom: 2px; }
+  .issue span { color: var(--ink-2); font-size: 13px; line-height: 1.5; }
+
+  .pullquote {
+    font-family: var(--display); font-size: clamp(30px, 3.8vw, 58px);
+    font-weight: 800; line-height: 1.04; letter-spacing: -.03em;
+    max-width: 22ch;
+  }
+  .pullquote .red { color: var(--red); }
+
+  .quote-card {
+    background: var(--bg-2); border: 1px solid var(--line); border-radius: 12px;
+    padding: 22px 26px; font-family: var(--display); font-size: 18px;
+    line-height: 1.35; color: var(--ink);
+  }
+  .quote-card .src { display: block; margin-top: 12px; font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+
+  .test-detail {
+    background: var(--bg-2); border: 1px solid var(--line); border-radius: 14px;
+    padding: 26px;
+  }
+  .test-detail .hyp-block {
+    display: grid; gap: 10px; padding: 16px 18px;
+    background: rgba(245,117,28,.06); border: 1px solid rgba(245,117,28,.25);
+    border-radius: 10px;
+  }
+  .test-detail .hyp-block.green {
+    background: rgba(74,138,92,.06); border-color: rgba(74,138,92,.25);
+  }
+  .test-detail .hyp-block .k { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--red-2); font-weight: 600; }
+  .test-detail .hyp-block.green .k { color: var(--green); }
+  .test-detail .hyp-block .v { font-size: 15px; line-height: 1.5; color: var(--ink); }
+  .ctrl-var { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px; }
+  .ctrl-card, .var-card { padding: 16px 18px; border-radius: 10px; border: 1px solid var(--line); }
+  .ctrl-card { background: rgba(245,117,28,.04); border-color: rgba(245,117,28,.25); }
+  .var-card { background: rgba(74,138,92,.04); border-color: rgba(74,138,92,.25); }
+  .ctrl-card h5, .var-card h5 { font-family: var(--mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; margin: 0 0 12px; }
+  .ctrl-card h5 { color: var(--red-2); }
+  .var-card h5 { color: var(--green); }
+  .ctrl-card ul, .var-card ul { margin: 0; padding-left: 18px; font-size: 13px; line-height: 1.5; color: var(--ink-2); }
+  .ctrl-card li, .var-card li { margin-bottom: 6px; }
+
+  /* Inline mockup frames */
+  .mock-frame {
+    background: #f5f0e8; color: #1c1818;
+    border-radius: 8px; padding: 14px;
+    border: 1px solid rgba(0,0,0,.12);
+    font-family: var(--body); font-size: 11px;
+    display: flex; flex-direction: column; gap: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.18);
+  }
+  .mock-frame .mock-bar {
+    height: 6px; background: #F5751C; border-radius: 2px;
+  }
+  .mock-frame .mock-row {
+    display: grid; gap: 6px;
+  }
+  .mock-card {
+    background: #fff; border: 1px solid rgba(0,0,0,.08);
+    border-radius: 6px; padding: 8px 10px;
+    display: flex; flex-direction: column; gap: 4px;
+    position: relative;
+  }
+  .mock-card.featured { border-color: #f4c11d; box-shadow: 0 0 0 1px #f4c11d; }
+  .mock-card .mock-img {
+    background: linear-gradient(135deg, #2a2020, #4a3a30); height: 60px;
+    border-radius: 4px; display: flex; align-items: center; justify-content: center;
+    color: #f5f0e8; font-family: var(--mono); font-size: 9px; letter-spacing: .15em;
+  }
+  .mock-card .mock-title { font-weight: 700; font-size: 10px; color: #1c1818; }
+  .mock-card .mock-price { font-family: var(--mono); font-size: 10px; color: #F5751C; font-weight: 700; }
+  .mock-card .mock-stars { font-size: 8px; color: #f4c11d; }
+  .mock-card .mock-badge {
+    position: absolute; top: -6px; right: -6px;
+    background: #f4c11d; color: #1c1818;
+    font-family: var(--mono); font-size: 7px; letter-spacing: .1em; font-weight: 700;
+    padding: 3px 6px; border-radius: 3px; text-transform: uppercase;
+  }
+  .mock-card .mock-badge.maroon { background: #F5751C; color: #f5f0e8; }
+  .mock-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .mock-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .mock-cta {
+    background: #F5751C; color: #f5f0e8;
+    text-align: center; padding: 8px 12px;
+    border-radius: 4px; font-family: var(--mono); font-size: 10px;
+    font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  }
+  .mock-cta.outline {
+    background: transparent; border: 1px solid #F5751C; color: #F5751C;
+  }
+  .mock-pill {
+    display: inline-block; padding: 3px 8px; border-radius: 999px;
+    background: rgba(245,117,28,.1); color: #F5751C;
+    font-family: var(--mono); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700;
+    margin-right: 4px;
+  }
+  .mock-pill.yellow { background: rgba(244,193,29,.2); color: #8a6a00; }
+  .mock-stars-row {
+    display: flex; align-items: center; gap: 6px;
+    color: #f4c11d; font-size: 12px; font-weight: 700;
+  }
+  .mock-stars-row .mock-rev-count {
+    color: #545048; font-size: 10px; font-weight: 500;
+  }
+  .mock-badges {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px;
+    font-family: var(--mono); font-size: 8px; letter-spacing: .08em;
+  }
+  .mock-badges > div {
+    padding: 4px 6px; background: #ebe6dd; color: #1c1818;
+    border-radius: 3px; text-transform: uppercase; font-weight: 700;
+    text-align: center;
+  }
+  .mock-checkbox {
+    display: flex; align-items: center; gap: 6px;
+    padding: 6px 8px; border: 1px dashed #F5751C; border-radius: 4px;
+    font-size: 10px; color: #1c1818;
+  }
+  .mock-checkbox .mock-tick {
+    width: 12px; height: 12px; border: 1.5px solid #F5751C; border-radius: 3px;
+    display: inline-block; flex-shrink: 0;
+  }
+  .mock-quiz-card {
+    background: #fff; border: 1px solid rgba(0,0,0,.08);
+    border-radius: 8px; padding: 14px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .mock-progress {
+    height: 4px; background: #ebe6dd; border-radius: 2px; overflow: hidden;
+  }
+  .mock-progress > i {
+    display: block; height: 100%; background: #F5751C; width: 33%;
+  }
+  .mock-option {
+    padding: 8px 10px; border: 1px solid rgba(0,0,0,.12); border-radius: 6px;
+    font-size: 10px; color: #1c1818; cursor: pointer;
+  }
+  .mock-option.selected { border-color: #F5751C; background: rgba(245,117,28,.06); }
+  .mock-options { display: grid; gap: 6px; }
+
+  
+  /* High-fidelity mockup styles */
+  .hifi-frame {
+    background: #ffffff; color: #1c1818;
+    border-radius: 10px; padding: 0;
+    border: 1px solid rgba(0,0,0,.1);
+    font-family: var(--body); font-size: 11px;
+    display: flex; flex-direction: column;
+    box-shadow: 0 6px 18px rgba(0,0,0,.2);
+    overflow: hidden;
+  }
+  .hifi-frame .hf-topbar {
+    background: #F5751C; color: #f5f0e8;
+    padding: 5px 10px;
+    font-family: var(--mono); font-size: 8px; letter-spacing: .15em; text-transform: uppercase;
+    text-align: center; font-weight: 700;
+  }
+  .hifi-frame .hf-nav {
+    background: #1c1818; color: #f5f0e8;
+    padding: 7px 12px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: var(--display); font-size: 11px; font-weight: 700; letter-spacing: .12em;
+  }
+  .hifi-frame .hf-nav .hf-logo {
+    display: flex; align-items: center; gap: 6px;
+  }
+  .hifi-frame .hf-nav .hf-logo::before {
+    content: ""; width: 14px; height: 14px;
+    border-radius: 50%; border: 1.5px solid #f4c11d;
+    display: inline-block;
+  }
+  .hifi-frame .hf-nav .hf-menu {
+    display: flex; gap: 10px; font-size: 9px; font-weight: 500;
+  }
+  .hifi-frame .hf-nav .hf-menu span { letter-spacing: .1em; opacity: .8; }
+  .hifi-frame .hf-body { padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+  .hifi-frame .hf-crumb {
+    font-family: var(--mono); font-size: 8px; color: #8a857c;
+    letter-spacing: .1em; text-transform: uppercase;
+  }
+  .hifi-frame .hf-h1 {
+    font-family: var(--display); font-size: 14px; font-weight: 800;
+    color: #1c1818; line-height: 1.2; letter-spacing: -.01em;
+  }
+  .hifi-frame .hf-sort {
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--mono); font-size: 8px; color: #545048;
+    padding: 6px 0; border-bottom: 1px solid rgba(0,0,0,.06);
+    letter-spacing: .1em; text-transform: uppercase;
+  }
+
+  /* High-fi product cards */
+  .hf-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .hf-card {
+    background: #fff; border-radius: 6px;
+    display: flex; flex-direction: column; gap: 4px;
+    position: relative; overflow: hidden;
+    border: 1px solid rgba(0,0,0,.06);
+  }
+  .hf-card.bundle { border-color: rgba(245,117,28,.2); }
+  .hf-card.featured { border-color: #f4c11d; box-shadow: 0 0 0 1.5px #f4c11d; }
+  .hf-card .hf-img {
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, #2a1f1f 0%, #4a3530 50%, #6a4a40 100%);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hf-card .hf-img.product {
+    background: linear-gradient(135deg, #d4cfc4 0%, #b8b3a8 100%);
+  }
+  .hf-card .hf-img.bundle-hero {
+    background: linear-gradient(135deg, #F5751C 0%, #8a3a3a 50%, #a04545 100%);
+  }
+  .hf-card .hf-img .hf-img-label {
+    font-family: var(--mono); font-size: 8px; color: rgba(255,255,255,.85);
+    letter-spacing: .15em; text-transform: uppercase;
+    padding: 3px 8px; border: 1px solid rgba(255,255,255,.25);
+    border-radius: 2px;
+  }
+  .hf-card .hf-img.product .hf-img-label {
+    color: rgba(28,24,24,.7); border-color: rgba(28,24,24,.2);
+  }
+  .hf-card .hf-card-body { padding: 8px 8px 10px; display: flex; flex-direction: column; gap: 3px; }
+  .hf-card .hf-title { font-size: 10px; font-weight: 700; color: #1c1818; line-height: 1.25; }
+  .hf-card .hf-price-row { display: flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 10px; font-weight: 700; color: #1c1818; }
+  .hf-card .hf-save { color: #4a8a5c; font-size: 8px; font-weight: 600; }
+  .hf-card .hf-stars { font-size: 8px; color: #f4c11d; letter-spacing: .5px; }
+  .hf-card .hf-stars .hf-rev { color: #545048; margin-left: 3px; }
+  .hf-card .hf-corner-badge {
+    position: absolute; top: 6px; right: 6px;
+    background: #f4c11d; color: #1c1818;
+    font-family: var(--mono); font-size: 7px; letter-spacing: .1em;
+    font-weight: 700; padding: 3px 6px; border-radius: 3px; text-transform: uppercase;
+    z-index: 2;
+  }
+  .hf-card .hf-corner-badge.maroon { background: #F5751C; color: #f5f0e8; }
+  .hf-card .hf-swatches {
+    display: flex; gap: 3px; padding: 0 8px 6px;
+  }
+  .hf-card .hf-swatches > span {
+    width: 10px; height: 10px; border-radius: 50%;
+    border: 1px solid rgba(0,0,0,.15);
+    display: inline-block;
+  }
+
+  /* High-fi PDP layout */
+  .hf-pdp { display: grid; grid-template-columns: 1.1fr 1fr; gap: 12px; }
+  .hf-pdp-gallery { display: flex; flex-direction: column; gap: 6px; }
+  .hf-pdp-hero {
+    aspect-ratio: 1/1;
+    background: linear-gradient(135deg, #2a1f1f 0%, #4a3530 50%, #6a4a40 100%);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,.7);
+    font-family: var(--mono); font-size: 9px; letter-spacing: .15em; text-transform: uppercase;
+  }
+  .hf-pdp-thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+  .hf-pdp-thumb {
+    aspect-ratio: 1/1; background: linear-gradient(135deg, #3a2f2f, #5a4540);
+    border-radius: 4px; border: 1px solid rgba(0,0,0,.1);
+  }
+  .hf-pdp-thumb.active { border-color: #F5751C; border-width: 2px; }
+  .hf-pdp-buybox { display: flex; flex-direction: column; gap: 7px; }
+  .hf-pdp-title { font-family: var(--display); font-size: 14px; font-weight: 800; color: #1c1818; line-height: 1.2; letter-spacing: -.01em; }
+  .hf-pdp-stars-row {
+    display: flex; align-items: center; gap: 5px; font-size: 10px;
+  }
+  .hf-pdp-stars-row .hf-pdp-stars { color: #f4c11d; letter-spacing: 1px; font-size: 11px; }
+  .hf-pdp-stars-row .hf-pdp-rating { font-weight: 700; color: #1c1818; }
+  .hf-pdp-stars-row .hf-pdp-rev-link { color: #F5751C; text-decoration: underline; font-size: 9px; }
+  .hf-pdp-price-row { display: flex; align-items: baseline; gap: 8px; }
+  .hf-pdp-price { font-family: var(--display); font-size: 18px; font-weight: 800; color: #1c1818; }
+  .hf-pdp-strike { font-size: 11px; color: #8a857c; text-decoration: line-through; }
+  .hf-pdp-qty-row { display: flex; gap: 6px; align-items: center; }
+  .hf-pdp-qty {
+    display: flex; align-items: center; border: 1px solid rgba(0,0,0,.2);
+    border-radius: 4px; overflow: hidden;
+  }
+  .hf-pdp-qty button {
+    width: 22px; height: 26px; background: #f5f0e8; border: 0;
+    font-size: 12px; color: #1c1818; cursor: pointer; font-family: var(--mono);
+  }
+  .hf-pdp-qty .qty-val {
+    width: 28px; text-align: center; font-family: var(--mono); font-size: 10px;
+  }
+  .hf-engrave-box {
+    display: flex; align-items: flex-start; gap: 8px;
+    padding: 8px 10px; background: rgba(244,193,29,.12);
+    border: 1px solid rgba(244,193,29,.4);
+    border-radius: 5px; font-size: 9px;
+  }
+  .hf-engrave-box .hf-tick {
+    width: 14px; height: 14px; border: 1.5px solid #F5751C;
+    border-radius: 3px; flex-shrink: 0; margin-top: 1px;
+    background: #fff; display: flex; align-items: center; justify-content: center;
+  }
+  .hf-engrave-box strong { color: #1c1818; font-size: 9.5px; font-weight: 700; display: block; }
+  .hf-engrave-box span { color: #545048; line-height: 1.4; }
+  .hf-pdp-atc {
+    background: #F5751C; color: #f5f0e8;
+    padding: 11px; border-radius: 5px;
+    text-align: center; font-family: var(--display);
+    font-size: 11px; font-weight: 800; letter-spacing: .15em; text-transform: uppercase;
+  }
+  .hf-pdp-shoppay {
+    background: #5a31f4; color: #fff;
+    padding: 9px; border-radius: 5px;
+    text-align: center; font-family: var(--display);
+    font-size: 10px; font-weight: 800; letter-spacing: .1em;
+  }
+  .hf-pdp-badges-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 5px;
+    margin-top: 4px;
+  }
+  .hf-pdp-badges-grid > div {
+    display: flex; align-items: center; gap: 5px;
+    padding: 6px 8px; background: rgba(245,117,28,.06);
+    border: 1px solid rgba(245,117,28,.15);
+    border-radius: 4px; font-size: 8.5px; color: #1c1818;
+  }
+  .hf-pdp-badges-grid > div .ic {
+    color: #F5751C; font-family: var(--mono); font-size: 11px; font-weight: 700;
+  }
+  .hf-pdp-badges-grid > div strong { font-weight: 700; }
+  .hf-press-strip {
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 10px; background: #1c1818; color: #f5f0e8;
+    border-radius: 4px; font-size: 8px; letter-spacing: .12em; text-transform: uppercase;
+  }
+  .hf-press-strip strong { color: #f4c11d; font-family: var(--mono); font-weight: 700; }
+  .hf-press-strip .hf-press-logos { display: flex; gap: 8px; font-family: var(--display); font-weight: 700; font-size: 9px; }
+
+  /* PDP control bullets (when used as placeholder for current state) */
+  .hf-pdp-current-badges {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 5px;
+  }
+  .hf-pdp-current-badges > div {
+    text-align: center; padding: 6px;
+    background: #ebe6dd; color: #545048;
+    border-radius: 3px; font-family: var(--mono); font-size: 8px;
+    letter-spacing: .1em; text-transform: uppercase; font-weight: 700;
+  }
+
+  /* High-fi Quiz mockup */
+  .hf-quiz-stage { display: flex; flex-direction: column; gap: 8px; }
+  .hf-quiz-stage > .stage-label {
+    font-family: var(--mono); font-size: 8px; color: #F5751C;
+    letter-spacing: .15em; text-transform: uppercase; font-weight: 700;
+  }
+  .hf-quiz-card {
+    background: #fff; border: 1px solid rgba(245,117,28,.2);
+    border-radius: 8px; padding: 14px;
+    display: flex; flex-direction: column; gap: 9px;
+    box-shadow: 0 4px 14px rgba(0,0,0,.08);
+  }
+  .hf-quiz-head {
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .hf-quiz-head .hf-quiz-eyebrow {
+    font-family: var(--mono); font-size: 8px; color: #F5751C;
+    letter-spacing: .18em; text-transform: uppercase; font-weight: 700;
+  }
+  .hf-quiz-head .hf-quiz-counter {
+    font-family: var(--mono); font-size: 8px; color: #8a857c;
+  }
+  .hf-quiz-progress { height: 4px; background: #ebe6dd; border-radius: 2px; overflow: hidden; }
+  .hf-quiz-progress > i { display: block; height: 100%; background: linear-gradient(90deg, #F5751C, #a04545); }
+  .hf-quiz-q { font-family: var(--display); font-size: 13px; font-weight: 800; color: #1c1818; line-height: 1.25; }
+  .hf-quiz-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .hf-quiz-opt {
+    padding: 8px 10px; border: 1px solid rgba(0,0,0,.12);
+    border-radius: 5px; font-size: 10px; color: #1c1818;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .hf-quiz-opt::before {
+    content: ""; width: 12px; height: 12px;
+    border: 1.5px solid rgba(0,0,0,.25); border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .hf-quiz-opt.selected { border-color: #F5751C; background: rgba(245,117,28,.06); }
+  .hf-quiz-opt.selected::before { background: #F5751C; border-color: #F5751C; box-shadow: inset 0 0 0 2px #fff; }
+  .hf-quiz-cta {
+    background: #F5751C; color: #f5f0e8;
+    padding: 9px; border-radius: 5px; text-align: center;
+    font-family: var(--display); font-size: 10px; font-weight: 800;
+    letter-spacing: .12em; text-transform: uppercase;
+  }
+  .hf-quiz-cta.outline {
+    background: transparent; color: #F5751C; border: 1px solid #F5751C;
+  }
+  .hf-result-card {
+    background: #fff; border: 1px solid rgba(245,117,28,.2);
+    border-radius: 8px; padding: 12px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .hf-result-head {
+    font-family: var(--display); font-size: 12px; font-weight: 800;
+    color: #1c1818; line-height: 1.2;
+  }
+  .hf-result-head .accent { color: #F5751C; }
+  .hf-result-bundle {
+    display: grid; grid-template-columns: 60px 1fr; gap: 8px; align-items: center;
+    padding: 8px; background: rgba(245,117,28,.05); border-radius: 6px;
+  }
+  .hf-result-bundle-img {
+    aspect-ratio: 1/1;
+    background: linear-gradient(135deg, #F5751C, #a04545);
+    border-radius: 5px;
+  }
+  .hf-result-bundle-info { display: flex; flex-direction: column; gap: 3px; }
+  .hf-result-bundle-info .name { font-weight: 800; font-size: 11px; color: #1c1818; }
+  .hf-result-bundle-info .why { font-size: 9px; color: #545048; line-height: 1.4; }
+  .hf-result-bundle-info .price { font-family: var(--mono); font-size: 11px; color: #F5751C; font-weight: 700; margin-top: 2px; }
+
+  /* Empty-grid placeholder for current-state quiz control */
+  .hf-empty-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
+  .hf-empty-card {
+    aspect-ratio: 1/1.2;
+    background: #ebe6dd; border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(28,24,24,.3); font-size: 8px; font-family: var(--mono);
+    letter-spacing: .15em;
+  }
+
+  /* Real testing roadmap (Gantt-style) */
+  .roadmap {
+    display: grid; gap: 8px;
+  }
+  .roadmap-header {
+    display: grid; grid-template-columns: 260px repeat(13, 1fr); gap: 4px;
+    align-items: center; padding: 0 8px;
+  }
+  .roadmap-header .week-label {
+    font-family: var(--mono); font-size: 9px; color: var(--ink-3); letter-spacing: .1em; text-align: center;
+  }
+  .roadmap-row {
+    display: grid; grid-template-columns: 260px repeat(13, 1fr); gap: 4px;
+    align-items: center; padding: 10px 8px;
+    background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px;
+  }
+  .roadmap-row.flagship { border-color: rgba(245,117,28,.4); }
+  .roadmap-row .label {
+    font-size: 12px; color: var(--ink); font-weight: 600; line-height: 1.3;
+  }
+  .roadmap-row .label .sub {
+    display: block; font-size: 10px; color: var(--ink-3); font-weight: 400; font-family: var(--mono); letter-spacing: .05em; margin-top: 2px;
+  }
+  .roadmap-row .bar {
+    height: 20px; border-radius: 4px; position: relative;
+    background: rgba(245,117,28,.7);
+    font-family: var(--mono); font-size: 8px; letter-spacing: .1em;
+    color: #f5f0e8; display: flex; align-items: center; padding: 0 6px;
+    white-space: nowrap; overflow: hidden;
+  }
+  .roadmap-row .bar.ab { background: rgba(196,123,32,.7); }
+  .roadmap-row .bar.ship { background: rgba(74,138,92,.7); }
+  .roadmap-row .bar.flagship { background: linear-gradient(90deg, #F5751C, #a04545); }
+  .roadmap-legend {
+    display: flex; gap: 18px; margin-top: 14px; font-family: var(--mono); font-size: 10px; color: var(--ink-2); letter-spacing: .1em; text-transform: uppercase;
+  }
+  .roadmap-legend .sw {
+    display: inline-block; width: 14px; height: 8px; border-radius: 2px;
+    margin-right: 6px; vertical-align: middle;
+  }
+
+  .title-slide .meta {
+    display: flex; gap: 24px; margin-top: 24px; flex-wrap: wrap;
+    font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: .15em; text-transform: uppercase;
+  }
+  .title-slide .meta span strong { color: var(--ink); font-weight: 500; }
+  .grain {
+    position: absolute; inset: 0; pointer-events: none; mix-blend-mode: overlay; opacity: var(--grain-opacity);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .35 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+  .ticker {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    background: var(--red); color: #fff; padding: 10px 0;
+    font-family: var(--display); font-size: 14px; letter-spacing: .15em; text-transform: uppercase;
+    overflow: hidden; white-space: nowrap;
+  }
+  .ticker-track { display: inline-block; animation: ticker 32s linear infinite; padding-left: 100%; }
+  .ticker-track span { padding: 0 32px; }
+  @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+
+  .tldr-grid { display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr); }
+  .tldr-card {
+    background: var(--bg-2); border: 1px solid var(--line); border-radius: 14px;
+    padding: 24px; display: flex; flex-direction: column; gap: 12px;
+  }
+  .tldr-card .num { font-family: var(--display); font-size: 76px; line-height: 1; color: var(--red); letter-spacing: -.02em; }
+  .tldr-card h3 { font-size: 20px; font-weight: 800; letter-spacing: -.01em; line-height: 1.18; color: var(--ink); }
+  .tldr-card p { font-size: 14px; line-height: 1.55; color: var(--ink-2); margin: 0; }
+  .tldr-card .pill {
+    align-self: flex-start; margin-top: auto;
+    padding: 6px 10px; border: 1px solid var(--line); border-radius: 999px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-3);
+  }
+
+  .nav {
+    position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 4px; align-items: center; padding: 6px;
+    background: var(--nav-bg); border: 1px solid var(--line);
+    backdrop-filter: blur(14px); border-radius: 999px; z-index: 30;
+    font-family: var(--mono); box-shadow: 0 8px 30px rgba(0,0,0,.18);
+  }
+  .nav button {
+    background: transparent; color: var(--ink); border: 0;
+    padding: 9px 14px; border-radius: 999px; cursor: pointer;
+    font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+    transition: background .15s ease;
+  }
+  .nav button:hover { background: var(--bg-3); }
+  .nav .count { padding: 0 10px; font-size: 12px; color: var(--ink-2); min-width: 76px; text-align: center; }
+  .nav .count strong { color: var(--ink); }
+  .nav .sep { width: 1px; height: 18px; background: var(--line); }
+  .theme-toggle {
+    background: transparent; border: 1px solid var(--line); color: var(--ink);
+    width: 36px; height: 36px; border-radius: 999px; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .theme-toggle:hover { background: var(--bg-3); }
+  .theme-toggle svg { width: 16px; height: 16px; }
+  html[data-theme="dark"] .theme-toggle .sun { display: block; }
+  html[data-theme="dark"] .theme-toggle .moon { display: none; }
+  html[data-theme="light"] .theme-toggle .sun { display: none; }
+  html[data-theme="light"] .theme-toggle .moon { display: block; }
+
+  .progress { position: fixed; left: 0; top: 0; right: 0; height: 2px; background: var(--line); z-index: 30; }
+  .progress > i { display: block; height: 100%; background: var(--red); width: 0; transition: width .4s ease; }
+
+  .index-overlay {
+    position: fixed; inset: 0; z-index: 60;
+    background: rgba(0,0,0,.6); backdrop-filter: blur(8px);
+    opacity: 0; pointer-events: none; transition: opacity .25s ease;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  .index-overlay.open { opacity: 1; pointer-events: auto; }
+  .index-panel {
+    width: min(680px, 100%); max-height: 80vh;
+    background: var(--bg); border: 1px solid var(--line-strong); border-radius: 18px;
+    box-shadow: 0 30px 80px rgba(0,0,0,.4); display: flex; flex-direction: column; overflow: hidden;
+    transform: translateY(8px); transition: transform .3s cubic-bezier(.2,.7,.2,1);
+  }
+  .index-overlay.open .index-panel { transform: translateY(0); }
+  .index-head { padding: 20px 24px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .index-title { font-family: var(--display); font-size: 22px; font-weight: 700; letter-spacing: -.02em; }
+  .index-close {
+    background: transparent; border: 0; color: var(--ink-2); cursor: pointer;
+    width: 32px; height: 32px; border-radius: 999px;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: background .15s, color .15s;
+  }
+  .index-close:hover { background: var(--bg-3); color: var(--ink); }
+  .index-close svg { width: 16px; height: 16px; }
+  .index-list { flex: 1; overflow-y: auto; padding: 6px; }
+  .index-list::-webkit-scrollbar { width: 8px; }
+  .index-list::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 4px; }
+  .index-item {
+    display: grid; grid-template-columns: 36px 1fr auto; gap: 12px; align-items: center;
+    padding: 12px 16px; border: 1px solid transparent; border-radius: 10px;
+    cursor: pointer; transition: background .15s, border-color .15s;
+    width: 100%; background: transparent; text-align: left; color: var(--ink); font-family: var(--body);
+  }
+  .index-item:hover, .index-item.focused { background: var(--bg-2); border-color: var(--line); }
+  .index-item.current { background: rgba(245,117,28,.06); border-color: rgba(245,117,28,.3); }
+  .index-item .num { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: .1em; }
+  .index-item.current .num { color: var(--red); font-weight: 700; }
+  .index-item .label { font-size: 15px; font-weight: 500; line-height: 1.3; }
+  .index-item .label span { display: block; font-size: 12px; color: var(--ink-3); margin-top: 2px; font-weight: 400; }
+  .index-item .chip {
+    font-family: var(--mono); font-size: 9px; letter-spacing: .15em; text-transform: uppercase; color: var(--ink-3);
+    padding: 4px 8px; border: 1px solid var(--line); border-radius: 999px;
+  }
+  .index-foot {
+    padding: 12px 24px; border-top: 1px solid var(--line);
+    font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: var(--ink-3);
+    display: flex; flex-wrap: wrap; gap: 6px; justify-content: center;
+  }
+  .index-foot .kbd { background: var(--bg-3); border: 1px solid var(--line); padding: 2px 6px; border-radius: 4px; color: var(--ink); font-family: var(--mono); font-size: 10px; }
+
+  .swipe-hint {
+    position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%);
+    font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-3);
+    background: var(--nav-bg); border: 1px solid var(--line); padding: 6px 12px; border-radius: 999px;
+    z-index: 29; opacity: 0; transition: opacity .4s ease; pointer-events: none; backdrop-filter: blur(10px);
+  }
+  .swipe-hint.show { opacity: 1; }
+
+  .title-slide .pad { justify-content: center; padding-bottom: 80px; }
+
+  @media (max-width: 1024px) {
+    .pad { padding: 36px 32px 90px; }
+    .funnel-row { grid-template-columns: 120px 1fr 130px; gap: 12px; }
+    .geo-row { grid-template-columns: 110px 1fr 80px 90px; }
+  }
+  @media (max-width: 768px) {
+    .stage { padding: 10px; }
+    .deck { max-height: none; height: 100%; }
+    .slide { border-radius: 14px; }
+    .pad { padding: 28px 22px 100px; }
+    .top-row { margin-bottom: 22px; flex-wrap: wrap; gap: 8px; }
+    .display { font-size: 44px; }
+    .sub-display { font-size: 34px; }
+    .h-section { font-size: 22px; }
+    .num-display { font-size: 84px; }
+    .pullquote { font-size: 36px; }
+    .tldr-grid, .compare, .cols-2, .cols-3, .device-split, .grid.cols-2, .grid.cols-3, .ctrl-var { grid-template-columns: 1fr !important; gap: 14px; }
+    .context-callout { grid-template-columns: 1fr; }
+    .funnel-row { grid-template-columns: 100px 1fr 110px; gap: 10px; font-size: 11px; }
+    .funnel-row .name { font-size: 10px; }
+    .funnel-bar-wrap { height: 26px; }
+    .priority-item { grid-template-columns: 40px 1fr; padding: 14px; }
+    .priority-item .tag { display: none; }
+    .priority-item .n { font-size: 30px; }
+    .geo-row { grid-template-columns: 90px 1fr 70px 80px; gap: 8px; font-size: 11px; }
+    .geo-row .name { font-size: 10px; letter-spacing: .08em; }
+    .device-card { padding: 18px; }
+    .device-card h4 { font-size: 26px; }
+    table.flat th, table.flat td { padding: 8px 6px; font-size: 11px; }
+    table.flat th:last-child, table.flat td:last-child { display: none; }
+    .ab-table thead { display: none; }
+    .ab-table tbody, .ab-table tr, .ab-table td { display: block; width: 100%; }
+    .ab-table tbody tr { padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .ab-table tbody td { padding: 4px 0; border: 0; }
+    .ab-table .n { font-size: 32px; margin-bottom: 6px; }
+    .ab-table td:nth-child(3), .ab-table td:nth-child(4), .ab-table td:nth-child(5) { display: inline-block; width: auto; margin-right: 8px; margin-top: 8px; }
+    .ab-table strong { font-size: 15px; }
+    .tldr-card .num { font-size: 60px; }
+    .shot-wrap { max-height: 320px; margin: 12px; }
+    .shot-wrap .shot { max-height: 320px; }
+    .stat-card { padding: 16px; }
+    .stat-card .v { font-size: 32px; }
+    .nav { bottom: 12px; }
+    .nav button { padding: 8px 10px; font-size: 11px; }
+    .nav .count { min-width: 60px; font-size: 11px; padding: 0 6px; }
+    .title-slide .meta { gap: 14px; font-size: 10px; }
+    .ticker { font-size: 12px; padding: 8px 0; }
+  }
+  @media (max-width: 420px) {
+    .pad { padding: 22px 16px 100px; }
+    .display { font-size: 36px; }
+    .sub-display { font-size: 28px; }
+    .num-display { font-size: 64px; }
+    .pullquote { font-size: 30px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .slide { transition: opacity .15s ease; transform: none !important; }
+    .ticker-track { animation: none; }
+  }
+  @media (max-width: 768px) {
+    table.funnel6 th:nth-child(4), table.funnel6 td:nth-child(4),
+    table.funnel6 th:nth-child(5), table.funnel6 td:nth-child(5) { display: none; }
+    table.funnel6 th:last-child, table.funnel6 td:last-child { display: table-cell; }
+  }
+  </style>
+</head>
+<body>
+
+<div class="progress"><i id="progress-bar"></i></div>
+
+<div class="stage" id="stage">
+  <div class="deck" id="deck">
+
+    <!-- 1. COVER -->
+    <section class="slide title-slide is-active" data-slide="1">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> GET MAINE LOBSTER / CRO AUDIT</div>
+          <div class="eyebrow">July 2026</div>
+        </div>
+        <div>
+          <div class="badge" style="margin-bottom: 22px;">&#9679; Findings + 90 Day Plan</div>
+          <h1 class="display">Get Maine Lobster.<br><span class="accent">CRO audit and 90 day plan.</span></h1>
+          <p class="lede" style="max-width: 62ch; margin-top: 18px;">Findings from 90 days of GA4 and Shopify Analytics data, a full site walkthrough, live competitor fetches, and the review corpus. Three structural problems, five quick wins, and three flagship tests, sequenced so measurement lands first.</p>
+        </div>
+        <div class="meta">
+          <span><strong>Site</strong> getmainelobster.com</span>
+          <span><strong>GA4</strong> 290646087</span>
+          <span><strong>Window</strong> Apr 11 to Jul 9, 2026 (90 days)</span>
+          <span><strong>Prepared by</strong> Yamu Media</span>
+        </div>
+      </div>
+      <div class="grain"></div>
+      <div class="ticker">
+        <div class="ticker-track">
+          <span>8,985 REVIEWS AT 4.9</span><span>&#8226;</span>
+          <span>GOOD HOUSEKEEPING #1</span><span>&#8226;</span>
+          <span>SHOPIFY ORDERS: 4,238 AT 1.25% CR</span><span>&#8226;</span>
+          <span>GA4 PURCHASES RECORDED: 1</span><span>&#8226;</span>
+          <span>MOBILE LCP: 23.6S</span><span>&#8226;</span>
+          <span>ATTENTIVE = 44% OF SESSIONS</span><span>&#8226;</span>
+          <span>FIX THE MEASUREMENT FIRST</span><span>&#8226;</span>
+          <span>8,985 REVIEWS AT 4.9</span><span>&#8226;</span>
+          <span>GOOD HOUSEKEEPING #1</span><span>&#8226;</span>
+          <span>SHOPIFY ORDERS: 4,238 AT 1.25% CR</span><span>&#8226;</span>
+          <span>GA4 PURCHASES RECORDED: 1</span><span>&#8226;</span>
+          <span>MOBILE LCP: 23.6S</span><span>&#8226;</span>
+          <span>ATTENTIVE = 44% OF SESSIONS</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. TL;DR -->
+    <section class="slide" data-slide="2">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> GET MAINE LOBSTER / CRO AUDIT</div>
+          <div class="eyebrow">2 / TL;DR</div>
+        </div>
+        <h2 class="sub-display" style="margin-bottom: 24px;">Three findings drive<br>the whole roadmap.</h2>
+
+        <div class="tldr-grid">
+          <div class="tldr-card">
+            <div class="num">01</div>
+            <h3>The business cannot see itself.</h3>
+            <p>Shopify recorded 4,238 orders at a 1.25% conversion rate in the window. GA4 recorded 1 purchase ($39.98). No add to cart, no begin checkout, no purchase events exist, and the configured "key events" are two engagement timers. Every ad platform is optimizing blind.</p>
+            <span class="pill">Tracking repair</span>
+          </div>
+          <div class="tldr-card">
+            <div class="num">02</div>
+            <h3>Paid traffic lands on the worst page.</h3>
+            <p>The best sellers collection takes 65,422 sessions, mostly Facebook, and converts at 0.37%. The homepage converts at 2.01% and the Weekly Catch deal page at 3.21% (Shopify). Lifting that one page to the 1.25% site average is roughly 575 orders per quarter.</p>
+            <span class="pill">Landing experience</span>
+          </div>
+          <div class="tldr-card">
+            <div class="num">03</div>
+            <h3>Mobile paints in 23.6s and the premium is undefended.</h3>
+            <p>68.8% of sessions are mobile and the hero takes 23.6s to paint (LCP), from five verified theme defects. Meanwhile the flagship twin tails cost $89.99 vs $59.99 at Maine Lobster Now, with the justifiers buried below the fold. A one star review says it verbatim: "You have to be kidding $60.00 for a 6oz lobster!"</p>
+            <span class="pill">Speed + PDP module</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. WHAT IS WORKING -->
+    <section class="slide" data-slide="3">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> GET MAINE LOBSTER / CRO AUDIT</div>
+          <div class="eyebrow">3 / What is working</div>
+        </div>
+        <h2 class="sub-display" style="margin-bottom: 10px;">The foundations are real.<br><span class="accent">Protect them.</span></h2>
+        <p class="lede" style="margin-bottom: 22px; max-width: 70ch;">This audit leads with problems because that is where the money is, but the brand assets underneath are genuine and rare in this category.</p>
+
+        <div class="grid cols-3" style="gap: 14px;">
+          <div class="stat-card">
+            <div class="k">Review depth</div>
+            <div class="v">8,985 at 4.9</div>
+            <div class="d">Okendo, flagship tail group. 98% would recommend. Best single PDP proof in the competitive set.</div>
+          </div>
+          <div class="stat-card">
+            <div class="k">Press</div>
+            <div class="v sm">Good Housekeeping #1</div>
+            <div class="d">Plus NYT, Today, Business Insider, BuzzFeed. Real citations, not logo soup.</div>
+          </div>
+          <div class="stat-card">
+            <div class="k">Delivery date picker</div>
+            <div class="v sm">Pick your arrival day</div>
+            <div class="d">Checkout calendar no competitor matches. Currently invisible until the last step.</div>
+          </div>
+          <div class="stat-card">
+            <div class="k">Cart drawer</div>
+            <div class="v sm">3 tier incentive ladder</div>
+            <div class="d">Free shipping, free chowda, free gift card progress bar plus Rebuy cross sells. Best executed component on the site.</div>
+          </div>
+          <div class="stat-card">
+            <div class="k">Weekly Catch pages</div>
+            <div class="v sm">Deal pages that convert</div>
+            <div class="d">The /blogs/todays-deals landers are the only pages GA4 shows converting. The format demonstrably works.</div>
+          </div>
+          <div class="stat-card">
+            <div class="k">Owned audience</div>
+            <div class="v sm">44% from Attentive</div>
+            <div class="d">Email + SMS drive 119,618 sessions per quarter. Returning users browse 2.6x longer than new.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. MEASUREMENT BLACKOUT -->
+    <section class="slide" data-slide="4">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> GET MAINE LOBSTER / CRO AUDIT</div>
+          <div class="eyebrow">4 / Measurement</div>
+        </div>
+        <h2 class="sub-display" style="margin-bottom: 18px;">Shopify counted 4,238 orders.<br><span class="accent">GA4 counted one.</span></h2>
+
+        <div class="context-callout">
+          <div class="ctx-tile">
+            <div class="ctx-k">GA4 vs Shopify purchases</div>
+            <div class="ctx-v" style="color: var(--red);">1 / 4,238</div>
+            <div class="ctx-d">GA4 captured 0.02% of real orders ($39.98 of recorded revenue). The integration is not installed, not merely misfiring.</div>
+          </div>
+          <div class="ctx-tile">
+            <div class="ctx-k">add_to_cart events</div>
+            <div class="ctx-v" style="color: var(--red);">0</div>
+            <div class="ctx-d">begin_checkout: also 0. view_item: 160 against roughly 300,000 expected.</div>
+          </div>
+          <div class="ctx-tile">
+            <div class="ctx-k">"Conversions" in reports</div>
+            <div class="ctx-v">133,747</div>
+            <div class="ctx-d">Almost exactly the sum of two engagement timers (30 seconds on site + viewed 3 pages). Vanity key events.</div>
+          </div>
+        </div>
+
+        <div class="grid cols-2" style="align-items: flex-start; gap: 24px; margin-top: 20px;">
+          <div>
+            <div class="eyebrow" style="margin-bottom: 12px;">Knock on damage</div>
+            <div class="issue-list">
+              <div class="issue">
+                <div class="x">&#10005;</div>
+                <div><strong>39% of sessions land on "(not set)"</strong><span>99.9% bounce, 0.2s duration. Events fire without page context and poison session quality metrics site wide.</span></div>
+              </div>
+              <div class="issue">
+                <div class="x">&#10005;</div>
+                <div><strong>Ad platforms optimize blind</strong><span>Facebook (29% of traffic) and Google Ads cannot be attributed to revenue. Budget rebalancing is impossible on evidence.</span></div>
+              </div>
+              <div class="issue">
+                <div class="x">&#10005;</div>
+                <div><strong>Bot traffic counts as conversions</strong><span>trafficheap.cc referral: 500 sessions, 0% bounce, 471 fake key events. Needs a referral exclusion.</span></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="eyebrow" style="margin-bottom: 12px;">The fix (week 1 to 2)</div>
+            <div class="priority-list">
+              <div class="priority-item">
+                <div class="n">1</div>
+                <div class="t">Enable Shopify's Google &amp; YouTube channel GA4 integration<span>Restores view_item, add_to_cart, begin_checkout, purchase with order parity.</span></div>
+              </div>
+              <div class="priority-item">
+                <div class="n">2</div>
+                <div class="t">Reset key events<span>Mark purchase + begin_checkout as key events. Demote the two engagement timers.</span></div>
+              </div>
+              <div class="priority-item">
+                <div class="n">3</div>
+                <div class="t">Install Microsoft Clarity (free) + filter the bot referral<span>Behavioral evidence for every test that follows. No heatmap or session recording exists today.</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. SPEED -->
+    <section class="slide" data-slide="5">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> GET MAINE LOBSTER / CRO AUDIT</div>
+          <div class="eyebrow">5 / Mobile speed</div>
+        </div>
+        <h2 class="sub-display" style="margin-bottom: 18px;">The hero paints at 23.6 seconds<br>for <span class="accent">68.8% of your traffic</span>.</h2>
+
+        <div class="grid cols-2" style="align-items: flex-start; gap: 24px;">
+          <div>
+            <div class="eyebrow" style="margin-bottom: 12px;">Core Web Vitals (PageSpeed, Jul 10)</div>
+            <table class="flat">
+              <thead><tr><th>Metric</th><th class="num">Mobile</th><th class="num">Desktop</th><th class="num">Target</th></tr></thead>
+              <tbody>
+                <tr><td>Performance score</td><td class="num" style="color: var(--red);">44</td><td class="num" style="color: var(--red);">33</td><td class="num">90+</td></tr>
+                <tr><td>First Contentful Paint</td><td class="num" style="color: var(--red);">8.7s</td><td class="num">1.2s</td><td class="num">&lt;1.8s</td></tr>
+                <tr><td>Largest Contentful Paint</td><td class="num" style="color: var(--red);">23.6s</td><td class="num">2.9s</td><td class="num">&lt;2.5s</td></tr>
+                <tr><td>Cumulative Layout Shift</td><td class="num">0.002</td><td class="num" style="color: var(--red);">0.435</td><td class="num">&lt;0.1</td></tr>
+                <tr><td>Speed Index</td><td class="num" style="color: var(--red);">13.0s</td><td class="num">2.9s</td><td class="num">&lt;3.4s</td></tr>
+              </tbody>
+            </table>
+            <p class="small" style="margin-top: 14px;">Desktop scores below mobile despite faster paints because layout shift (0.435) and blocking time drag the score. Google/SOASTA research: bounce probability rises 90% as load goes from 1s to 5s.</p>
+          </div>
+          <div>
+            <div class="eyebrow" style="margin-bottom: 12px;">Five verified defects (browser console, every page)</div>
+            <div class="issue-list">
+              <div class="issue" style="border-color: rgba(245,117,28,.45); background: rgba(245,117,28,.05);">
+                <div class="x">&#9888;</div>
+                <div><strong>Broken preload on every page</strong><span>A literal "Liquid error (layout/theme line 101): invalid url input" is preloaded as a URL.</span></div>
+              </div>
+              <div class="issue" style="border-color: rgba(245,117,28,.45); background: rgba(245,117,28,.05);">
+                <div class="x">&#9888;</div>
+                <div><strong>Dead tracking subdomain still installed</strong><span>hnvrprl.getmainelobster.com fails SSL; cdn.js.1p-data.com returns 403. Pure deletion, wasted connection time.</span></div>
+              </div>
+              <div class="issue">
+                <div class="x">&#10005;</div>
+                <div><strong>Duplicate JS declarations</strong><span>"HeaderMenu already declared" and "Unexpected token export" on load.</span></div>
+              </div>
+              <div class="issue">
+                <div class="x">&#10005;</div>
+                <div><strong>Carousel init errors</strong><span>Flickity data attribute is not valid JSON, in both the theme asset and the Rebuy copy.</span></div>
+              </div>
+              <div class="issue">
+                <div class="x">&#10005;</div>
+                <div><strong>Press logo band shifts layout</strong><span>Lazy loads render empty gray boxes; the biggest contributor to desktop CLS 0.435.</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. TRAFFIC -->
+    <section class="slide" data-slide="6">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> GET MAINE LOBSTER / CRO AUDIT</div>
+          <div class="eyebrow">6 / Traffic reality</div>
+        </div>
+        <div class="grid cols-2" style="gap: 36px; align-items: flex-start;">
+          <div>
+            <h2 class="sub-display" style="margin-bottom: 18px;">Attentive is the engine.<br><span class="accent">44% of all sessions.</span></h2>
+            <p class="lede" style="margin-bottom: 16px;">Email and SMS together outweigh Facebook paid. That is strength (owned audience) and risk (one deliverability wobble is a revenue event). Google traffic shows the best engagement quality in the mix but receives a fraction of the attention.</p>
+            <div class="context-callout" style="grid-template-columns: 1fr 1fr;">
+              <div class="ctx-tile">
+                <div class="ctx-k">Returning users</div>
+                <div class="ctx-v" style="color: var(--green);">2.5 visits</div>
+                <div class="ctx-d">285s avg duration, 23% bounce. The list keeps coming back.</div>
+              </div>
+              <div class="ctx-tile">
+                <div class="ctx-k">New users</div>
+                <div class="ctx-v">95%</div>
+                <div class="ctx-d">Of 191,488 users. 110s duration, 39% bounce. Acquisition is doing volume.</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="eyebrow" style="margin-bottom: 14px;">Sessions by source / medium (90d)</div>
+            <div class="geo-bar">
+              <div class="geo-row us">
+                <div class="name">facebook / paid</div>
+                <div class="bar"><i style="width: 100%;"></i></div>
+                <div class="num">77,924</div>
+                <div class="rev" style="color: var(--red);">0.33-0.43% CR</div>
+              </div>
+              <div class="geo-row us">
+                <div class="name">attentive / email</div>
+                <div class="bar"><i style="width: 88%;"></i></div>
+                <div class="num">68,815</div>
+                <div class="rev">up to 6.05% CR</div>
+              </div>
+              <div class="geo-row us">
+                <div class="name">attentive / sms</div>
+                <div class="bar"><i style="width: 65%;"></i></div>
+                <div class="num">50,803</div>
+                <div class="rev">up to 4.62% CR</div>
+              </div>
+              <div class="geo-row">
+                <div class="name">(direct) / (none)</div>
+                <div class="bar"><i style="width: 45%;"></i></div>
+                <div class="num">34,865</div>
+                <div class="rev">56% bounce</div>
+              </div>
+              <div class="geo-row">
+                <div class="name">google / organic</div>
+                <div class="bar"><i style="width: 20%;"></i></div>
+                <div class="num">15,315</div>
+                <div class="rev">29% bounce</div>
+              </div>
+              <div class="geo-row">
+                <div class="name">google / cpc</div>
+                <div class="bar"><i style="width: 17%;"></i></div>
+                <div class="num">13,621</div>
+                <div class="rev">30% bounce</div>
+              </div>
+              <div class="geo-row bot">
+                <div class="name">trafficheap.cc (bot)</div>
+                <div class="bar"><i style="width: 2%;"></i></div>
+                <div class="num">500</div>
+                <div class="rev">filter it</div>
+              </div>
+            </div>
+            <p class="small" style="margin-top: 16px;">Conversion rates from the Shopify UTM campaign breakdown: all three Facebook funnel stages (TOF, MOF, BOF) convert between 0.33% and 0.43% (78,933 sessions, 294 orders), while the Attentive SMS welcome does 4.62% and store credit emails do 6.05%. The gap is the landing experience, not the audience.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. LANDING PAGES -->
+    <section class="slide" data-slide="7">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> GET MAINE LOBSTER / CRO AUDIT</div>
+          <div class="eyebrow">7 / Landing pages</div>
+        </div>
+        <h2 class="h-section" style="margin-bottom: 8px;">The number one paid landing page converts at 0.37%.</h2>
+        <p class="lede" style="margin-bottom: 16px;">Real funnel rates from Shopify Analytics (Apr 10 to Jul 9). Sitewide: 339,824 sessions, 7.89% added to cart, 4.54% reached checkout, 4,238 orders, 1.25% conversion rate.</p>
+        <table class="flat funnel6">
+          <thead><tr><th>Landing page</th><th class="num">Sessions</th><th class="num">ATC rate</th><th class="num">Checkout</th><th class="num">Orders</th><th class="num">Conv. rate</th></tr></thead>
+          <tbody>
+            <tr><td>/collections/lobster-best-sellers <span class="page-chip plp">PLP</span></td><td class="num">65,422</td><td class="num" style="color: var(--red);">4.27%</td><td class="num">1.14%</td><td class="num">242</td><td class="num" style="color: var(--red);">0.37%</td></tr>
+            <tr><td>/ <span class="page-chip home">Home</span></td><td class="num">62,451</td><td class="num">9.55%</td><td class="num">5.63%</td><td class="num">1,254</td><td class="num" style="color: var(--green);">2.01%</td></tr>
+            <tr><td>/collections/july-fourth-lobster <span class="page-chip plp">PLP</span></td><td class="num">13,678</td><td class="num">11.16%</td><td class="num">4.42%</td><td class="num">187</td><td class="num">1.37%</td></tr>
+            <tr><td>/collections/rare-jumbo-lobster-tails <span class="page-chip plp">PLP</span></td><td class="num">13,073</td><td class="num">14.50%</td><td class="num">5.09%</td><td class="num">210</td><td class="num">1.61%</td></tr>
+            <tr><td>/collections/prime-time-lobster <span class="page-chip plp">PLP</span></td><td class="num">9,609</td><td class="num">9.25%</td><td class="num">3.87%</td><td class="num">131</td><td class="num">1.36%</td></tr>
+            <tr><td>/collections/maine-lobster-made-for-dad <span class="page-chip plp">PLP</span></td><td class="num">8,515</td><td class="num">7.39%</td><td class="num">2.23%</td><td class="num">53</td><td class="num" style="color: var(--red);">0.62%</td></tr>
+            <tr><td>/products/6-7oz-over-sized-maine-lobster-tails <span class="page-chip pdp">PDP</span></td><td class="num">7,352</td><td class="num">9.36%</td><td class="num">3.58%</td><td class="num">105</td><td class="num">1.43%</td></tr>
+            <tr><td>/blogs/todays-deals/perfectly-cooked-maine-lobster-meat <span class="page-chip site">Deal</span></td><td class="num">4,830</td><td class="num" style="color: var(--green);">21.30%</td><td class="num" style="color: var(--green);">19.38%</td><td class="num">155</td><td class="num" style="color: var(--green);">3.21%</td></tr>
+          </tbody>
+        </table>
+        <p class="small" style="margin-top: 14px;">Best sellers takes 19% of all sessions and converts at less than a fifth of the homepage rate. The Weekly Catch deal page format converts at 3.21% with a 21.3% add to cart rate. Lifting best sellers to the site average alone is roughly 575 orders per quarter, about $52K at the flagship price (Est.).</p>
+      </div>
+    </section>
+
+    <!-- 8. HOMEPAGE -->
+    <section class="slide" data-slide="8">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> GET MAINE LOBSTER / CRO AUDIT</div>
+          <div class="eyebrow">8 / Homepage</div>
+        </div>
+        <h2 class="h-section" style="margin-bottom: 16px;">The best performing entry has self inflicted trust leaks.</h2>
+        <div class="compare">
+          <div class="compare-panel">
+            <header><strong>Homepage, Jul 10</strong><span class="badge ghost">Live</span></header>
+            <div class="shot-wrap">
+              <img class="shot" src="screenshots/home-desktop-part1.jpeg" alt="Get Maine Lobster homepage hero and press band" loading="lazy">
+            </div>
+          </div>
+          <div class="compare-panel">
+            <header><strong>What to fix</strong><span class="badge">Quick wins</span></header>
+            <div class="compare-body">
+              <p class="small" style="margin: 0 0 4px;">Working well: strong hero promise, real press band, 30% bounce and 185s average duration, best of any entry point. The gaps below are content bugs, not design problems.</p>
+              <div class="issue-list">
+                <div class="issue" style="border-color: rgba(245,117,28,.45); background: rgba(245,117,28,.05);">
+                  <div class="x">&#9888;</div>
+                  <div><strong>Three different review counts in one scroll</strong><span>"OVER 19K 5-STAR RATINGS" in the hero, "18,000+ FIVE-STAR REVIEWS" in the red card, "19,031 VERIFIED" at the review wall. Wire one live number from Okendo.</span></div>
+                </div>
+                <div class="issue" style="border-color: rgba(245,117,28,.45); background: rgba(245,117,28,.05);">
+                  <div class="x">&#9888;</div>
+                  <div><strong>A review card is authored by "John Doe"</strong><span>One placeholder name can poison the perceived authenticity of every real review around it. There are 8.4K five star reviews to choose from.</span></div>
+                </div>
+                <div class="issue">
+                  <div class="x">&#10005;</div>
+                  <div><strong>Hero CTA points at the July 4th collection</strong><span>"BEST PRICE &amp; FREE SHIPPING" links to /collections/july-fourth-lobster a week after the holiday. Retarget to an evergreen Weekly Catch destination.</span></div>
+                </div>
+                <div class="issue">
+                  <div class="x">&#10005;</div>
+                  <div><strong>Second press band renders empty gray boxes</strong><span>Lazy load failure tied to the broken preload. An empty "as seen in" section is worse than none.</span></div>
+                </div>
+                <div class="issue">
+                  <div class="x">&#10005;</div>
+                  <div><strong>The date picker USP is invisible here</strong><span>"Pick your delivery date" is the strongest differentiator and appears nowhere before checkout.</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. COLLECTION -->
+    <section class="slide" data-slide="9">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> GET MAINE LOBSTER / CRO AUDIT</div>
+          <div class="eyebrow">9 / Collection</div>
+        </div>
+        <h2 class="h-section" style="margin-bottom: 16px;">62,261 entries land here. Small fixes compound.</h2>
+
+        <div class="context-callout">
+          <div class="ctx-tile">
+            <div class="ctx-k">Entry sessions (90d)</div>
+            <div class="ctx-v">62,261</div>
+            <div class="ctx-d">The number one real landing page, ahead of the homepage. Most paid social lands here.</div>
+          </div>
+          <div class="ctx-tile">
+            <div class="ctx-k">Bounce</div>
+            <div class="ctx-v" style="color: var(--green);">37.7%</div>
+            <div class="ctx-d">Healthy. The traffic is fine; the page just gives it no wayfinding.</div>
+          </div>
+          <div class="ctx-tile">
+            <div class="ctx-k">SKUs</div>
+            <div class="ctx-v">16</div>
+            <div class="ctx-d">No filters needed at this size. Anchor chips (Tails / Live / Kits / Meat) would do the job.</div>
+          </div>
+        </div>
+
+        <div class="compare" style="margin-top: 20px;">
+          <div class="compare-panel">
+            <header><strong>/collections/lobster-best-sellers, Jul 10</strong><span class="badge ghost">Live</span></header>
+            <div class="shot-wrap">
+              <img class="shot" src="screenshots/collection-part1.jpeg" alt="Best sellers collection page" loading="lazy">
+            </div>
+          </div>
+          <div class="compare-panel">
+            <header><strong>What to fix</strong><span class="badge">P1</span></header>
+            <div class="compare-body">
+              <div class="issue-list">
+                <div class="issue" style="border-color: rgba(245,117,28,.45); background: rgba(245,117,28,.05);">
+                  <div class="x">&#9888;</div>
+                  <div><strong>Duplicated FAQ, verified in screenshot</strong><span>"Is your Maine lobster wild-caught?" appears twice in a row on the page Good Housekeeping's badge is supposed to legitimize.</span></div>
+                </div>
+                <div class="issue">
+                  <div class="x">&#10005;</div>
+                  <div><strong>No wayfinding across 16 SKUs</strong><span>Scroll is the only navigation. Add anchor chips by category matching the homepage shop tiles.</span></div>
+                </div>
+                <div class="issue">
+                  <div class="x">&#10005;</div>
+                  <div><strong>No unit economics on cards</strong><span>$89.99 / $114.99 / $149.99 with no per tail framing. "2 tails, $45 per tail" makes comparison easier and softens sticker shock.</span></div>
+                </div>
+                <div class="issue">
+                  <div class="x">&#10005;</div>
+                  <div><strong>Below fold cards render blank white</strong><span>Late lazy load. Paid social buyers who scroll immediately see empty cards. Bundled with the speed program.</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. PDP -->
+    <section class="slide" data-slide="10">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> GET MAINE LOBSTER / CRO AUDIT</div>
+          <div class="eyebrow">10 / Product page</div>
+        </div>
+        <h2 class="h-section" style="margin-bottom: 16px;">$89.99 vs $59.99 elsewhere. The page never says why.</h2>
+        <div class="compare">
+          <div class="compare-panel">
+            <header><strong>Flagship PDP buy box, Jul 10</strong><span class="badge ghost">Live</span></header>
+            <div class="shot-wrap">
+              <img class="shot" src="screenshots/crop-pdp-buybox.jpeg" alt="Twin Grandeur 6-7 oz buy box" loading="lazy">
+            </div>
+            <div class="compare-body">
+              <p class="small" style="margin: 0;">Working well: rating + count above the title, USP checklist, delivery date promise ("Get it as soon as Tuesday, July 14"), quantity + ATC above the fold. The buy box itself is solid.</p>
+            </div>
+          </div>
+          <div class="compare-panel">
+            <header><strong>What to fix</strong><span class="badge">Tests 01 + 03</span></header>
+            <div class="compare-body">
+              <div class="issue-list">
+                <div class="issue" style="border-color: rgba(245,117,28,.45); background: rgba(245,117,28,.05);">
+                  <div class="x">&#9888;</div>
+                  <div><strong>No sticky add to cart on mobile</strong><span>Verified: zero buy path visible at 2,500px scroll on a roughly 5,000px page. 68.8% of traffic is mobile and the review wall pulls them far below the only buy button.</span></div>
+                </div>
+                <div class="issue" style="border-color: rgba(245,117,28,.45); background: rgba(245,117,28,.05);">
+                  <div class="x">&#9888;</div>
+                  <div><strong>The $30 premium is never defended</strong><span>Maine Lobster Now sells the same 6-7 oz pair for $59.99. The 18 minute nitrogen flash freeze, dock direct sourcing, and date choice live below the fold or in accordions. Add a "Why ours costs more" module beside the buy box.</span></div>
+                </div>
+                <div class="issue">
+                  <div class="x">&#10005;</div>
+                  <div><strong>One star themes unanswered at point of sale</strong><span>Thawed arrivals, missing items, size doubt. A guarantee module (dry ice photo, "arrives frozen or we replace it", weight transparency) answers all of them with existing operational facts.</span></div>
+                </div>
+                <div class="issue">
+                  <div class="x">&#10005;</div>
+                  <div><strong>"100% ALL NATURAL" trust card appears twice</strong><span>Duplicate in the icon band, verified in the DOM. Template sloppiness at the moment of consideration.</span></div>
+                </div>
+                <div class="issue">
+                  <div class="x">&#10005;</div>
+                  <div><strong>Review widget mixes other tail products</strong><span>"Reviewing Twin Pack 12-14 oz" appears on the 6-7 oz PDP. Label the count "across our lobster tails" before a skeptic discounts all 8,985.</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. CART + CHECKOUT -->
+    <section class="slide" data-slide="11">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> GET MAINE LOBSTER / CRO AUDIT</div>
+          <div class="eyebrow">11 / Cart + checkout</div>
+        </div>
+        <h2 class="h-section" style="margin-bottom: 16px;">Only 27.5% of checkout sessions complete. The $25 fee appears after the address form.</h2>
+        <p class="lede" style="margin-bottom: 16px;">Shopify: 15,423 sessions reached checkout, 4,238 finished. Each point of completion is roughly 154 orders per quarter.</p>
+
+        <div class="grid cols-3" style="gap: 20px; align-items: flex-start;">
+          <div class="compare-panel">
+            <header><strong>Cart drawer, Jul 10</strong><span class="badge green">Keep</span></header>
+            <div class="shot-wrap">
+              <img class="shot" src="screenshots/crop-cart-drawer.jpeg" alt="Cart drawer with incentive ladder" loading="lazy">
+            </div>
+          </div>
+          <div style="grid-column: span 2;">
+            <div class="context-callout" style="grid-template-columns: 1fr 1fr 1fr;">
+              <div class="ctx-tile">
+                <div class="ctx-k">The reveal</div>
+                <div class="ctx-v" style="color: var(--red);">+$25.00</div>
+                <div class="ctx-d">$89.99 + $25.00 + $2.22 tax = $117.21, shown only after address entry. A 28% surcharge at the last step.</div>
+              </div>
+              <div class="ctx-tile">
+                <div class="ctx-k">Free shipping bar</div>
+                <div class="ctx-v">$200</div>
+                <div class="ctx-d">Highest in the set. Maine Lobster Now: $150. Luke's: free on everything with an $80 minimum.</div>
+              </div>
+              <div class="ctx-tile">
+                <div class="ctx-k">Arrival days</div>
+                <div class="ctx-v">Tue to Fri</div>
+                <div class="ctx-d">Weekend dates disabled with no explanation. LobsterAnywhere delivers Saturday.</div>
+              </div>
+            </div>
+            <div class="issue-list" style="margin-top: 16px;">
+              <div class="issue" style="border-color: rgba(245,117,28,.45); background: rgba(245,117,28,.05);">
+                <div class="x">&#9888;</div>
+                <div><strong>Disclose shipping in the cart drawer, with the story</strong><span>"Orders under $200 ship overnight in an insulated dry ice box for $25." The fee is defensible; the silence is not. Test a $150 threshold arm alongside.</span></div>
+              </div>
+              <div class="issue">
+                <div class="x">&#10005;</div>
+                <div><strong>Explain the missing weekend dates</strong><span>One line converts inflexibility into care: "No weekend transit, so your lobster never sits in a depot."</span></div>
+              </div>
+              <div class="issue">
+                <div class="x">&#10005;</div>
+                <div><strong>Guarantee and protection fine print contradict</strong><span>"We'll make it right, guaranteed" sits near "we will not be liable for lost or stolen packages." Co-locate the guarantee with the $3 protection toggle.</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. VOICE OF CUSTOMER -->
+    <section class="slide" data-slide="12">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> GET MAINE LOBSTER / CRO AUDIT</div>
+          <div class="eyebrow">12 / Voice of customer</div>
+        </div>
+        <div class="grid cols-2" style="gap: 36px; align-items: flex-start;">
+          <div>
+            <div class="badge green" style="margin-bottom: 18px;">&#9679; 8,985 reviews, 4.9 stars, 98% recommend</div>
+            <h2 class="sub-display" style="margin-bottom: 20px;">They buy occasions and<br><span class="accent">arrival day reliability.</span></h2>
+            <p class="lede">The five star corpus centers on two themes: the lobster arrived exactly when promised and still frozen, and it made the occasion (July 4th, anniversaries, "lobster fest at home"). The PDP sells specs. The customers are selling occasions. Copy should follow the customers.</p>
+            <div class="quote-card" style="margin-top: 18px;">
+              "It arrived on the requested date and was still frozen. I broiled it and it was fantastic. This my 5th or 6th order and never disappointed."
+              <span class="src">Jim L. &middot; 20-24 oz tail</span>
+            </div>
+            <div class="quote-card" style="margin-top: 12px;">
+              "So worth the waiting anticipation and price. Next time I need to buy 2 lobsters per person at the table."
+              <span class="src">Noelle H. &middot; twin pack tails</span>
+            </div>
+          </div>
+          <div>
+            <div class="badge" style="margin-bottom: 18px;">&#9679; The 95 one star reviews are an objection list</div>
+            <div class="grid" style="gap: 12px;">
+              <div class="quote-card" style="border-color: rgba(245,117,28,.4);">
+                "Opened up the box to find a warm pound of lobster meat and two warm lobster tails. All the ice was gone."
+                <span class="src">Robert P. &middot; cold chain failure</span>
+              </div>
+              <div class="quote-card" style="border-color: rgba(245,117,28,.4);">
+                "Did not receive every item I purchased. When I called to be reimbursed I was told that this was not possible."
+                <span class="src">Wendi &middot; fulfillment + service</span>
+              </div>
+              <div class="quote-card" style="border-color: rgba(245,117,28,.4);">
+                "You have to be kidding $60.00 for a 6oz lobster!"
+                <span class="src">Shari W. &middot; price shock</span>
+              </div>
+            </div>
+            <p class="small" style="margin-top: 16px;">Every theme is answerable on page with existing operational facts: the guarantee already exists at checkout, the dry ice packaging already exists in the box, the weights already exist on the scale. None of it is visible at the point of sale.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13. COMPETITORS -->
+    <section class="slide" data-slide="13">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> GET MAINE LOBSTER / CRO AUDIT</div>
+          <div class="eyebrow">13 / Competitors</div>
+        </div>
+        <h2 class="h-section" style="margin-bottom: 8px;">Priced at the premium end, without the premium story.</h2>
+        <p class="lede" style="margin-bottom: 18px;">All three competitor sites fetched live on July 10. Prices as displayed that day.</p>
+        <table class="flat">
+          <thead><tr><th>Element</th><th>Get Maine Lobster</th><th>LobsterAnywhere</th><th>Maine Lobster Now</th><th>Luke's Lobster</th></tr></thead>
+          <tbody>
+            <tr><td>Free shipping</td><td style="color: var(--red);">$200 threshold</td><td>Item level only</td><td>$150 (else $40 flat)</td><td style="color: var(--green);">All orders, $80 min</td></tr>
+            <tr><td>6-7 oz tails</td><td style="color: var(--red);">$89.99 pair</td><td>from $22 / tail</td><td style="color: var(--green);">$59.99 pair</td><td>from $114 / tail</td></tr>
+            <tr><td>Live lobster</td><td>$114.99 twin (1.2-1.4 lb)</td><td>from $34 single (1.5 lb)</td><td>from $97.98 (1.5 lb)</td><td>not displayed</td></tr>
+            <tr><td>Review proof</td><td style="color: var(--green);">8,985 on flagship PDP</td><td>6,800+ five star</td><td>17,067+ sitewide</td><td>thin</td></tr>
+            <tr><td>Delivery promise</td><td style="color: var(--green);">Overnight + date picker</td><td>Next day, Tue to Sat</td><td>Free overnight</td><td>Free overnight</td></tr>
+            <tr><td>Certifications</td><td>None shown</td><td>None shown</td><td>NOAA, BAP</td><td>B Corp</td></tr>
+            <tr><td>Subscription</td><td>None</td><td>None</td><td>None</td><td>None</td></tr>
+          </tbody>
+        </table>
+        <div class="quote-card" style="margin-top: 20px; max-width: none; font-size: 18px; padding: 20px 26px; border-color: rgba(245,117,28,.4); background: linear-gradient(180deg, rgba(245,117,28,.06), transparent 80%), var(--bg-2);">
+          <strong style="color: var(--orange); font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; display: block; margin-bottom: 10px; font-weight: 600;">Position read</strong>
+          Above Maine Lobster Now on price without defending it, below Luke's on brand story without needing to be. The defensible weapons are the date picker, the review depth, and the Weekly Catch engine.
+        </div>
+      </div>
+    </section>
+
+    <!-- 14. MARKET GAP -->
+    <section class="slide" data-slide="14">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> GET MAINE LOBSTER / CRO AUDIT</div>
+          <div class="eyebrow">14 / Market gap</div>
+        </div>
+        <div class="grid cols-2" style="gap: 36px; align-items: center;">
+          <div>
+            <div class="badge green" style="margin-bottom: 18px;">&#9679; Category white space</div>
+            <h2 class="pullquote">Nobody owns<br><span class="red">recurring lobster.</span></h2>
+            <p class="lede" style="margin-top: 20px;">The entire competitive set sells one off boxes. No subscription, no recurring delivery, no club. First mover converts an owned audience into revenue that discounting cannot match.</p>
+          </div>
+          <div>
+            <div class="eyebrow" style="margin-bottom: 12px;">Why Get Maine Lobster is best placed</div>
+            <div class="priority-list">
+              <div class="priority-item">
+                <div class="n">1</div>
+                <div class="t">44% of sessions already come from Attentive<span>The owned list is the largest channel. A club offer has a free distribution engine.</span></div>
+              </div>
+              <div class="priority-item">
+                <div class="n">2</div>
+                <div class="t">Returning users behave like members already<span>2.5 sessions each, 285s average duration, 23% bounce.</span></div>
+              </div>
+              <div class="priority-item">
+                <div class="n">3</div>
+                <div class="t">The Weekly Catch habit loop exists<span>The /blogs/todays-deals landers are already a weekly ritual and the only pages GA4 shows converting.</span></div>
+              </div>
+              <div class="priority-item">
+                <div class="n">4</div>
+                <div class="t">The membership app is already installed<span>Inveterate runs on the site today but is invisible in the funnel. Concept: "Weekly Catch Club" on the PDP and post purchase.</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 15. ROADMAP -->
+    <section class="slide" data-slide="15">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> GET MAINE LOBSTER / CRO AUDIT</div>
+          <div class="eyebrow">15 / Roadmap</div>
+        </div>
+        <h2 class="h-section" style="margin-bottom: 10px;">The 13 week plan.</h2>
+        <p class="lede" style="margin-bottom: 20px;">Measurement and speed land first because every test after them depends on both. Three flagship tests follow, sequenced to avoid interaction effects.</p>
+
+        <div class="roadmap">
+          <div class="roadmap-header">
+            <div></div>
+            <div class="week-label">W1</div><div class="week-label">W2</div><div class="week-label">W3</div><div class="week-label">W4</div><div class="week-label">W5</div><div class="week-label">W6</div><div class="week-label">W7</div><div class="week-label">W8</div><div class="week-label">W9</div><div class="week-label">W10</div><div class="week-label">W11</div><div class="week-label">W12</div><div class="week-label">W13</div>
+          </div>
+
+          <div class="roadmap-row">
+            <div class="label">GA4 repair + key event reset + Clarity + bot filter<span class="sub">Ship direct / P0</span></div>
+            <div class="bar ship" style="grid-column: 2 / span 2;">SHIP</div>
+          </div>
+          <div class="roadmap-row">
+            <div class="label">Content cleanup: John Doe, review counts, duplicate FAQ + trust card, hero CTA<span class="sub">Ship direct / Quick win</span></div>
+            <div class="bar ship" style="grid-column: 2 / span 1;">SHIP</div>
+          </div>
+          <div class="roadmap-row">
+            <div class="label">Dead tracker + broken preload removal, then full speed program<span class="sub">Ship direct / P0</span></div>
+            <div class="bar ship" style="grid-column: 3 / span 4;">SHIP + MEASURE</div>
+          </div>
+
+          <div class="roadmap-row flagship">
+            <div class="label">Test 01: Sticky mobile add to cart<span class="sub">Flagship / PDP mobile</span></div>
+            <div></div><div></div>
+            <div class="bar flagship" style="grid-column: 4 / span 5;">BUILD &middot; LAUNCH &middot; MEASURE</div>
+          </div>
+          <div class="roadmap-row flagship">
+            <div class="label">Test 02: Cart shipping disclosure + $150 threshold arm<span class="sub">Flagship / Cart + checkout</span></div>
+            <div></div><div></div><div></div><div></div>
+            <div class="bar flagship" style="grid-column: 6 / span 5;">BUILD &middot; LAUNCH &middot; MEASURE</div>
+          </div>
+          <div class="roadmap-row flagship">
+            <div class="label">Test 03: PDP premium justification + guarantee module<span class="sub">Flagship / PDP</span></div>
+            <div></div><div></div><div></div><div></div><div></div><div></div>
+            <div class="bar flagship" style="grid-column: 8 / span 6;">BUILD &middot; LAUNCH &middot; MEASURE</div>
+          </div>
+
+          <div class="roadmap-row">
+            <div class="label">Weekend date explanation + guarantee co-location<span class="sub">A/B test / Checkout</span></div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div class="bar ab" style="grid-column: 9 / span 3;">A/B</div>
+          </div>
+          <div class="roadmap-row">
+            <div class="label">Weekly Catch Club concept (subscription white space)<span class="sub">Strategic / Scope in W10+</span></div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div class="bar ab" style="grid-column: 11 / span 3;">SCOPE</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 16. SCOREBOARD -->
+    <section class="slide" data-slide="16">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> GET MAINE LOBSTER / CRO AUDIT</div>
+          <div class="eyebrow">16 / Scoreboard</div>
+        </div>
+        <h2 class="sub-display" style="margin-bottom: 22px;">The 90 day scoreboard.</h2>
+        <table class="flat">
+          <thead><tr><th>Metric</th><th class="num">Today</th><th class="num">Target</th><th>Measured by</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>GA4 purchase events</td>
+              <td class="num" style="color: var(--red);">1 / 90 days</td>
+              <td class="num" style="color: var(--green);">100% of orders</td>
+              <td>GA4 vs Shopify order count parity</td>
+            </tr>
+            <tr>
+              <td>Mobile LCP (homepage)</td>
+              <td class="num" style="color: var(--red);">23.6s</td>
+              <td class="num" style="color: var(--green);">&lt; 4.0s</td>
+              <td>PageSpeed Insights, monthly</td>
+            </tr>
+            <tr>
+              <td>Mobile PDP to cart rate</td>
+              <td class="num">unknown</td>
+              <td class="num" style="color: var(--green);">baseline + 10%</td>
+              <td>add_to_cart / PDP sessions (Test 01)</td>
+            </tr>
+            <tr>
+              <td>Checkout completion</td>
+              <td class="num" style="color: var(--red);">27.5%</td>
+              <td class="num" style="color: var(--green);">32%+</td>
+              <td>Shopify: completed / reached checkout (Test 02)</td>
+            </tr>
+            <tr>
+              <td>Best sellers landing conversion</td>
+              <td class="num" style="color: var(--red);">0.37%</td>
+              <td class="num" style="color: var(--green);">1.25%+ (site avg)</td>
+              <td>Shopify landing page breakdown, monthly</td>
+            </tr>
+            <tr>
+              <td>Bot key events</td>
+              <td class="num" style="color: var(--red);">471 / 90d</td>
+              <td class="num" style="color: var(--green);">0</td>
+              <td>GA4 referral exclusion</td>
+            </tr>
+            <tr>
+              <td>Review count consistency</td>
+              <td class="num" style="color: var(--red);">3 numbers</td>
+              <td class="num" style="color: var(--green);">1 live number</td>
+              <td>Okendo wired sitewide</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="grid cols-3" style="margin-top: 24px; gap: 14px;">
+          <div class="stat-card">
+            <div class="k">Week 1 to 2</div>
+            <div class="v sm">Tracking repair, content cleanup, dead code removal. Baselines exist by week 2.</div>
+          </div>
+          <div class="stat-card">
+            <div class="k">Week 3 to 8</div>
+            <div class="v sm">Speed program measured, Test 01 and Test 02 launched.</div>
+          </div>
+          <div class="stat-card">
+            <div class="k">Week 8 to 13</div>
+            <div class="v sm">Test 03 measured, checkout A/B, Weekly Catch Club scoped.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<div class="swipe-hint" id="swipe-hint">Swipe ←  → to navigate</div>
+
+<div class="nav" role="navigation" aria-label="Slide navigation">
+  <button class="theme-toggle" id="index-btn" aria-label="Slide index" title="Slide index (press i)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <div class="sep"></div>
+  <button id="prev" aria-label="Previous slide">← Prev</button>
+  <div class="count">SLIDE <strong id="cur">1</strong> / <strong id="total">17</strong></div>
+  <button id="next" aria-label="Next slide">Next →</button>
+  <div class="sep"></div>
+  <button class="theme-toggle" id="theme" aria-label="Toggle theme">
+    <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
+</div>
+
+<div class="index-overlay" id="index-overlay" aria-hidden="true">
+  <div class="index-panel">
+    <div class="index-head">
+      <div>
+        <div class="eyebrow">Slide index</div>
+        <div class="index-title">Jump to a slide</div>
+      </div>
+      <button class="index-close" id="index-close" aria-label="Close index">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="index-list" id="index-list"></div>
+    <div class="index-foot">
+      <span class="kbd">↑ ↓</span> navigate · <span class="kbd">Enter</span> jump · <span class="kbd">Esc</span> close · <span class="kbd">1-9</span> direct jump
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const total = slides.length;
+  let idx = 0;
+  let isAnimating = false;
+  const $cur = document.getElementById('cur');
+  const $total = document.getElementById('total');
+  const $prev = document.getElementById('prev');
+  const $next = document.getElementById('next');
+  const $bar = document.getElementById('progress-bar');
+  const $theme = document.getElementById('theme');
+  const $stage = document.getElementById('stage');
+  const $hint = document.getElementById('swipe-hint');
+
+  $total.textContent = total;
+
+  function go(n){
+    const next = Math.max(0, Math.min(total - 1, n));
+    if (next === idx || isAnimating) return;
+    isAnimating = true;
+    slides[idx].classList.remove('is-active');
+    slides[idx].classList.add('is-prev');
+    slides[next].classList.remove('is-prev');
+    slides[next].classList.add('is-active');
+    const pad = slides[next].querySelector('.pad');
+    if (pad) pad.scrollTop = 0;
+    idx = next;
+    $cur.textContent = idx + 1;
+    $bar.style.width = (((idx + 1) / total) * 100) + '%';
+    // Pause the ticker animation when not on the title slide (perf: avoids continuous repaint)
+    document.querySelectorAll('.ticker-track').forEach(t => {
+      t.style.animationPlayState = (idx === 0) ? 'running' : 'paused';
+    });
+    try {
+      const url = new URL(window.location.href);
+      url.hash = String(idx + 1);
+      history.replaceState(null, '', url);
+    } catch(e){}
+    setTimeout(() => { isAnimating = false; }, 420);
+  }
+
+  $prev.addEventListener('click', (e) => { e.stopPropagation(); go(idx - 1); });
+  $next.addEventListener('click', (e) => { e.stopPropagation(); go(idx + 1); });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.target.closest('input, textarea, [contenteditable="true"]')) return;
+    if (['ArrowRight','PageDown'].includes(e.key) || (e.key === ' ' && !e.shiftKey)) {
+      e.preventDefault(); go(idx + 1);
+    } else if (['ArrowLeft','PageUp'].includes(e.key) || (e.key === ' ' && e.shiftKey)) {
+      e.preventDefault(); go(idx - 1);
+    } else if (e.key === 'Home') {
+      e.preventDefault(); go(0);
+    } else if (e.key === 'End') {
+      e.preventDefault(); go(total - 1);
+    } else if (e.key >= '1' && e.key <= '9') {
+      go(parseInt(e.key) - 1);
+    }
+  });
+
+  let pStart = null;
+  let pMoved = false;
+  $stage.addEventListener('pointerdown', (e) => {
+    if (e.target.closest('button, a, .nav, input, select, textarea')) return;
+    pStart = { x: e.clientX, y: e.clientY, t: Date.now() };
+    pMoved = false;
+  }, { passive: true });
+  $stage.addEventListener('pointermove', (e) => {
+    if (!pStart) return;
+    const dx = e.clientX - pStart.x;
+    const dy = e.clientY - pStart.y;
+    if (Math.abs(dx) > 8 || Math.abs(dy) > 8) pMoved = true;
+  }, { passive: true });
+  function endPointer(e){
+    if (!pStart) return;
+    const dx = e.clientX - pStart.x;
+    const dy = e.clientY - pStart.y;
+    const adx = Math.abs(dx);
+    const ady = Math.abs(dy);
+    const dt = Date.now() - pStart.t;
+    pStart = null;
+    const swipeThreshold = 60;
+    if (adx > swipeThreshold && adx > ady * 1.3 && dt < 800) {
+      if (dx < 0) go(idx + 1); else go(idx - 1);
+      return;
+    }
+    // Click-to-navigate disabled. Use arrow buttons, keyboard arrows, or drag/swipe.
+  }
+  $stage.addEventListener('pointerup', endPointer);
+  $stage.addEventListener('pointercancel', () => { pStart = null; });
+
+  let wheelLock = false;
+  let wheelAccum = 0;
+  let wheelTimer = null;
+  $stage.addEventListener('wheel', (e) => {
+    const adx = Math.abs(e.deltaX);
+    const ady = Math.abs(e.deltaY);
+    if (adx <= ady) return;
+    if (wheelLock) return;
+    wheelAccum += e.deltaX;
+    clearTimeout(wheelTimer);
+    wheelTimer = setTimeout(() => { wheelAccum = 0; }, 250);
+    const trigger = 80;
+    if (wheelAccum > trigger) {
+      wheelLock = true; wheelAccum = 0;
+      go(idx + 1);
+      setTimeout(() => { wheelLock = false; }, 500);
+    } else if (wheelAccum < -trigger) {
+      wheelLock = true; wheelAccum = 0;
+      go(idx - 1);
+      setTimeout(() => { wheelLock = false; }, 500);
+    }
+  }, { passive: true });
+
+  function applyTheme(t){
+    document.documentElement.setAttribute('data-theme', t);
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', t === 'dark' ? '#141111' : '#f5f0e8');
+    try { localStorage.setItem('bbq-deck-theme', t); } catch(e){}
+  }
+  let savedTheme = null;
+  try { savedTheme = localStorage.getItem('bbq-deck-theme'); } catch(e){}
+  if (savedTheme === 'light' || savedTheme === 'dark') applyTheme(savedTheme);
+  else if (window.matchMedia('(prefers-color-scheme: light)').matches) applyTheme('light');
+  $theme.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+    applyTheme(cur === 'dark' ? 'light' : 'dark');
+  });
+
+  const slideMeta = [
+    { n: 1,  label: 'Cover', sub: 'CRO audit and 90 day plan', chip: 'Start' },
+    { n: 2,  label: 'TL;DR', sub: 'Three findings drive the roadmap', chip: 'Summary' },
+    { n: 3,  label: 'What is working', sub: 'Strengths worth protecting', chip: 'Context' },
+    { n: 4,  label: 'Measurement blackout', sub: 'GA4 saw 1 of 4,238 orders', chip: 'P0' },
+    { n: 5,  label: 'Mobile speed', sub: '23.6s LCP on 69% of traffic', chip: 'P0' },
+    { n: 6,  label: 'Traffic reality', sub: 'Facebook 0.4% CR, the list up to 6%', chip: 'Data' },
+    { n: 7,  label: 'Landing pages', sub: 'The 0.37% paid front door', chip: 'Data' },
+    { n: 8,  label: 'Homepage', sub: 'Trust leaks on the best entry', chip: 'Heuristic' },
+    { n: 9,  label: 'Collection', sub: 'The number one landing page', chip: 'Heuristic' },
+    { n: 10, label: 'Product page', sub: 'The undefended premium', chip: 'Heuristic' },
+    { n: 11, label: 'Cart and checkout', sub: 'The $25 surprise', chip: 'Heuristic' },
+    { n: 12, label: 'Voice of customer', sub: 'Verbatim, both directions', chip: 'Evidence' },
+    { n: 13, label: 'Competitors', sub: 'Fetched live, July 10', chip: 'Market' },
+    { n: 14, label: 'Market gap', sub: 'Nobody owns recurring lobster', chip: 'Strategy' },
+    { n: 15, label: 'Roadmap', sub: '13 week plan', chip: 'Plan' },
+    { n: 16, label: 'Scoreboard', sub: 'Success metrics', chip: 'Outcome' },
+  ];
+  const $indexBtn = document.getElementById('index-btn');
+  const $indexOverlay = document.getElementById('index-overlay');
+  const $indexClose = document.getElementById('index-close');
+  const $indexList = document.getElementById('index-list');
+  let indexFocus = 0;
+
+  function buildIndex() {
+    $indexList.innerHTML = '';
+    slideMeta.forEach((m, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'index-item' + (i === idx ? ' current' : '');
+      btn.dataset.slide = m.n;
+      btn.innerHTML = `
+        <span class="num">${String(m.n).padStart(2,'0')}</span>
+        <span class="label">${m.label}<span>${m.sub}</span></span>
+        <span class="chip">${m.chip}</span>
+      `;
+      btn.addEventListener('click', () => { go(m.n - 1); closeIndex(); });
+      $indexList.appendChild(btn);
+    });
+  }
+  function openIndex() {
+    buildIndex();
+    indexFocus = idx;
+    updateIndexFocus();
+    $indexOverlay.classList.add('open');
+    $indexOverlay.setAttribute('aria-hidden', 'false');
+  }
+  function closeIndex() {
+    $indexOverlay.classList.remove('open');
+    $indexOverlay.setAttribute('aria-hidden', 'true');
+  }
+  function toggleIndex() { $indexOverlay.classList.contains('open') ? closeIndex() : openIndex(); }
+  function updateIndexFocus() {
+    const items = $indexList.querySelectorAll('.index-item');
+    items.forEach((el, i) => el.classList.toggle('focused', i === indexFocus));
+    const el = items[indexFocus];
+    if (el) el.scrollIntoView({ block: 'nearest' });
+  }
+  $indexBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleIndex(); });
+  $indexClose.addEventListener('click', (e) => { e.stopPropagation(); closeIndex(); });
+  $indexOverlay.addEventListener('click', (e) => { if (e.target === $indexOverlay) closeIndex(); });
+
+  window.addEventListener('keydown', (e) => {
+    const open = $indexOverlay.classList.contains('open');
+    if (open) {
+      if (e.key === 'Escape') { e.preventDefault(); closeIndex(); }
+      else if (e.key === 'ArrowDown') { e.preventDefault(); indexFocus = Math.min(slideMeta.length - 1, indexFocus + 1); updateIndexFocus(); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); indexFocus = Math.max(0, indexFocus - 1); updateIndexFocus(); }
+      else if (e.key === 'Enter') { e.preventDefault(); go(indexFocus); closeIndex(); }
+    } else {
+      if (e.key === 'i' || e.key === 'I') {
+        if (e.target.closest('input, textarea, [contenteditable="true"]')) return;
+        e.preventDefault();
+        openIndex();
+      }
+    }
+  });
+
+  const hash = parseInt((window.location.hash || '').replace('#',''), 10);
+  if (hash && hash >= 1 && hash <= total) {
+    slides.forEach(s => { s.classList.remove('is-active'); s.classList.add('is-prev'); });
+    slides[hash - 1].classList.remove('is-prev');
+    slides[hash - 1].classList.add('is-active');
+    idx = hash - 1;
+    $cur.textContent = idx + 1;
+    $bar.style.width = (((idx + 1) / total) * 100) + '%';
+  } else {
+    $bar.style.width = (1 / total * 100) + '%';
+  }
+
+  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+    $hint.classList.add('show');
+    setTimeout(() => $hint.classList.remove('show'), 3200);
+  }
+})();
+</script>
+</body>
+</html>
