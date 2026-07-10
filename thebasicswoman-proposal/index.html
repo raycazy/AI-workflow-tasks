@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Basics Woman · CRO &amp; Website Redesign Proposal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --coral:#F26B61;
+    --coral-deep:#E4574C;
+    --ink:#17181A;
+    --body:#5B6067;
+    --muted:#9BA1A8;
+    --pink:#FDEEEC;
+    --pink-2:#FBE3DF;
+    --dark:#141414;
+    --line:#ECECEC;
+    --green:#1F7A3D;
+    --orange:#C77A1A;
+    --red:#C0392B;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    background:#EFEEEC;
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    padding:36px 0 60px;
+  }
+  .deck{display:flex;flex-direction:column;align-items:center;gap:26px}
+
+  .slide{
+    position:relative;
+    width:min(1280px,95vw);
+    aspect-ratio:16/9;
+    background:#fff;
+    border-radius:14px;
+    box-shadow:0 12px 44px rgba(20,20,20,.10);
+    overflow:hidden;
+    container-type:inline-size;
+  }
+  .pad{position:absolute;inset:0;padding:6.2cqw 5.6cqw}
+  .slide.coral{background:var(--coral)}
+  .slide.dark{background:var(--dark)}
+
+  /* typography (cqw scales with slide width) */
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:1.0cqw;
+    letter-spacing:.34em;
+    text-transform:uppercase;
+    color:var(--muted);
+    font-weight:500;
+  }
+  .coral .eyebrow{color:rgba(255,255,255,.62)}
+  .dark .eyebrow{color:rgba(255,255,255,.42)}
+  h1{font-weight:500;font-size:5.4cqw;line-height:1.03;letter-spacing:-.02em;color:var(--ink)}
+  h2{font-weight:500;font-size:4.1cqw;line-height:1.05;letter-spacing:-.015em;color:var(--ink)}
+  .coral h1,.coral h2,.dark h1,.dark h2{color:#fff}
+  .lede{font-size:1.6cqw;line-height:1.5;color:var(--body);font-weight:400;max-width:56cqw}
+  .coral .lede{color:rgba(255,255,255,.86)}
+  .dark .lede{color:rgba(255,255,255,.66)}
+  p{font-size:1.35cqw;line-height:1.5;color:var(--body)}
+
+  .pagenum{
+    position:absolute;bottom:4.4cqw;right:5.6cqw;
+    font-family:'JetBrains Mono',monospace;font-size:.95cqw;letter-spacing:.3em;color:var(--muted);
+  }
+  .coral .pagenum{color:rgba(255,255,255,.5)}
+  .dark .pagenum{color:rgba(255,255,255,.32)}
+  .rule{width:4.4cqw;height:.32cqw;background:var(--coral);border-radius:2px;margin:2.4cqw 0}
+  .dark .rule{background:var(--coral)}
+
+  /* layout helpers */
+  .stack{display:flex;flex-direction:column;height:100%;justify-content:center}
+  .top{position:absolute;top:6.2cqw;left:5.6cqw;right:5.6cqw}
+  .cols2{display:grid;grid-template-columns:1fr 1fr;gap:4cqw}
+  .cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:2.2cqw}
+  .cols4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.8cqw}
+
+  /* cards */
+  .card{background:var(--pink);border-radius:1.1cqw;padding:2.2cqw 2.2cqw}
+  .card .k{font-family:'JetBrains Mono',monospace;font-size:.92cqw;letter-spacing:.2em;text-transform:uppercase;color:var(--coral-deep);font-weight:600;margin-bottom:1cqw}
+  .card h3{font-size:1.55cqw;font-weight:600;color:var(--ink);margin-bottom:.7cqw;letter-spacing:-.01em}
+  .card p{font-size:1.18cqw;line-height:1.46}
+  .stat .big{font-size:5.2cqw;font-weight:600;letter-spacing:-.02em;color:var(--ink);line-height:1}
+  .stat .lbl{font-family:'JetBrains Mono',monospace;font-size:.9cqw;letter-spacing:.16em;text-transform:uppercase;color:var(--body);margin-top:.8cqw}
+
+  /* lists */
+  ul.clean{list-style:none;display:flex;flex-direction:column;gap:1.05cqw}
+  ul.clean li{font-size:1.3cqw;line-height:1.4;color:var(--body);padding-left:1.9cqw;position:relative}
+  ul.clean li b{color:var(--ink);font-weight:600}
+  ul.clean li .dot{position:absolute;left:0;top:.5cqw;width:.7cqw;height:.7cqw;border-radius:50%;background:var(--coral)}
+  ul.clean.check li .dot{background:none;top:.15cqw;left:0;width:1.3cqw;height:1.3cqw}
+  .colhead{font-family:'JetBrains Mono',monospace;font-size:.92cqw;letter-spacing:.2em;text-transform:uppercase;color:var(--coral-deep);font-weight:600;margin-bottom:1.4cqw}
+
+  /* table */
+  table{width:100%;border-collapse:collapse}
+  thead th{
+    font-family:'JetBrains Mono',monospace;font-size:.82cqw;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--body);font-weight:600;text-align:left;padding:0 1cqw 1cqw;border-bottom:2px solid var(--coral)
+  }
+  tbody td{font-size:1.08cqw;color:var(--body);padding:1.1cqw 1cqw;border-bottom:1px solid var(--line);vertical-align:middle}
+  tbody td b,tbody td strong{color:var(--ink);font-weight:600}
+  tbody tr:last-child td{border-bottom:none}
+  td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+  .tot td{border-top:2px solid var(--coral);border-bottom:none;font-weight:600;color:var(--ink);padding-top:1.2cqw}
+  .tot td b{font-size:1.2cqw}
+
+  .badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.74cqw;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.35cqw .7cqw;border-radius:.4cqw;color:#fff}
+  .b-rec{background:var(--coral)}
+  .b-a{background:#8A8F96}
+  .b-b{background:#B7BCC2}
+  .callout{background:var(--pink);border-radius:1cqw;padding:1.8cqw 2.2cqw}
+  .callout p{font-size:1.16cqw;line-height:1.5}
+  .callout b{color:var(--ink)}
+
+  /* bundle mockup */
+  .builder{background:#fff;border:1px solid var(--line);border-radius:1.4cqw;padding:2cqw;box-shadow:0 8px 30px rgba(20,20,20,.07)}
+  .flavtiles{display:grid;grid-template-columns:repeat(2,1fr);gap:1cqw;margin-top:1.2cqw}
+  .flav{display:flex;align-items:center;justify-content:space-between;background:var(--pink);border-radius:.8cqw;padding:1cqw 1.2cqw}
+  .flav .nm{font-size:1.1cqw;font-weight:600;color:var(--ink)}
+  .flav .nm span{display:block;font-size:.85cqw;font-weight:400;color:var(--body)}
+  .qty{display:flex;align-items:center;gap:.9cqw}
+  .qty .btn{width:2cqw;height:2cqw;border-radius:50%;background:#fff;border:1px solid var(--pink-2);display:flex;align-items:center;justify-content:center;font-size:1.3cqw;color:var(--coral-deep);font-weight:600}
+  .qty .btn.p{background:var(--coral);color:#fff;border-color:var(--coral)}
+  .qty .n{font-size:1.2cqw;font-weight:600;min-width:1.4cqw;text-align:center;font-variant-numeric:tabular-nums}
+  .prog{margin-top:1.6cqw}
+  .progbar{height:.8cqw;background:var(--pink);border-radius:1cqw;overflow:hidden}
+  .progfill{height:100%;width:75%;background:var(--coral);border-radius:1cqw}
+  .progtxt{display:flex;justify-content:space-between;font-size:.95cqw;color:var(--body);margin-top:.7cqw;font-weight:500}
+  .ladder{display:flex;flex-direction:column;gap:.7cqw;margin-top:.4cqw}
+  .rung{display:flex;align-items:center;justify-content:space-between;padding:.85cqw 1.1cqw;border-radius:.7cqw;background:#fff;border:1px solid var(--line);font-size:1.02cqw;color:var(--body)}
+  .rung.on{background:var(--pink);border-color:var(--coral)}
+  .rung b{color:var(--ink)}
+  .rung .save{font-family:'JetBrains Mono',monospace;font-size:.82cqw;color:var(--coral-deep);font-weight:600}
+  .addbtn{margin-top:1.4cqw;width:100%;background:var(--ink);color:#fff;border-radius:.8cqw;padding:1.3cqw;text-align:center;font-size:1.3cqw;font-weight:600;display:flex;justify-content:center;gap:1cqw}
+  .addbtn span{font-variant-numeric:tabular-nums}
+
+  /* numbered rows */
+  .rows{display:flex;flex-direction:column;gap:.7cqw}
+  .row{display:grid;grid-template-columns:3.2cqw 1fr 1.1fr;align-items:center;background:var(--pink);border-radius:.7cqw;overflow:hidden}
+  .row .n{background:var(--coral);color:#fff;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:1.1cqw;align-self:stretch;display:flex;align-items:center;justify-content:center}
+  .row .t{font-size:1.14cqw;font-weight:600;color:var(--ink);padding:.95cqw 1.2cqw}
+  .row .d{font-size:1.02cqw;color:var(--body);padding:.95cqw 1.2cqw}
+
+  /* timeline */
+  .tl{display:flex;flex-direction:column;gap:1.1cqw}
+  .phase{display:grid;grid-template-columns:8cqw 1fr 16cqw;gap:1.6cqw;align-items:center}
+  .phase .wk{background:var(--coral);color:#fff;border-radius:.6cqw;font-family:'JetBrains Mono',monospace;font-size:.92cqw;font-weight:600;letter-spacing:.08em;padding:1cqw .6cqw;text-align:center}
+  .phase .body h4{font-size:1.32cqw;font-weight:600;color:var(--ink);margin-bottom:.35cqw}
+  .phase .body p{font-size:1.02cqw;line-height:1.4}
+  .phase .exp{font-family:'JetBrains Mono',monospace;font-size:.92cqw;color:var(--coral-deep);font-weight:500;line-height:1.4}
+  .tlretain{margin-top:.4cqw;background:var(--dark);border-radius:.7cqw;color:#fff;padding:1.1cqw 1.6cqw;display:flex;align-items:center;gap:1.4cqw}
+  .tlretain .tag{font-family:'JetBrains Mono',monospace;font-size:.86cqw;letter-spacing:.1em;background:var(--coral);padding:.4cqw .8cqw;border-radius:.4cqw;font-weight:600}
+  .tlretain p{color:rgba(255,255,255,.82);font-size:1.02cqw}
+
+  /* price split */
+  .pricecard{border:1px solid var(--line);border-radius:1.2cqw;padding:2cqw;height:100%}
+  .pricecard.hero{background:var(--pink);border-color:var(--pink-2)}
+  .pricecard .tag{font-family:'JetBrains Mono',monospace;font-size:.86cqw;letter-spacing:.16em;text-transform:uppercase;color:var(--coral-deep);font-weight:600}
+  .pricecard .amt{font-size:3.2cqw;font-weight:600;letter-spacing:-.02em;margin:.8cqw 0 .2cqw;color:var(--ink)}
+  .pricecard .amt small{font-size:1.2cqw;font-weight:500;color:var(--body)}
+  .pricecard .sub{font-size:1.06cqw;color:var(--body);line-height:1.45;margin-bottom:1.2cqw}
+
+  /* impact funnel */
+  .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:2cqw;margin-top:1cqw}
+  .metric{background:rgba(255,255,255,.12);border-radius:1cqw;padding:2cqw}
+  .metric .mv{font-size:3cqw;font-weight:600;color:#fff;letter-spacing:-.02em}
+  .metric .ml{font-size:1.05cqw;color:rgba(255,255,255,.82);margin-top:.6cqw;line-height:1.4}
+  .metric .ml b{color:#fff;font-weight:600}
+  .bridge{display:flex;align-items:center;justify-content:space-between;margin-top:2.4cqw;gap:1.2cqw}
+  .bridge .step{text-align:center;flex:1}
+  .bridge .step .v{font-size:2.6cqw;font-weight:600;color:#fff}
+  .bridge .step .l{font-family:'JetBrains Mono',monospace;font-size:.86cqw;letter-spacing:.12em;color:rgba(255,255,255,.6);margin-top:.5cqw;text-transform:uppercase}
+  .bridge .arw{color:rgba(255,255,255,.5);font-size:1.8cqw}
+
+  .foot{position:absolute;bottom:4.2cqw;left:5.6cqw;right:5.6cqw;font-size:.95cqw;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:.04em}
+  .coral .foot,.dark .foot{color:rgba(255,255,255,.5)}
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+  .tag-pill{display:inline-flex;align-items:center;gap:.6cqw;background:rgba(255,255,255,.14);border-radius:2cqw;padding:.7cqw 1.3cqw;font-size:1.05cqw;color:#fff;font-weight:500}
+  .cover-marks{display:flex;gap:1.4cqw;flex-wrap:wrap;margin-top:2.4cqw}
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- 01 COVER -->
+  <section class="slide coral reveal">
+    <div class="pad stack">
+      <div class="eyebrow">The Basics Woman &nbsp;·&nbsp; CRO &amp; Website Redesign &nbsp;·&nbsp; July 2026</div>
+      <h1 style="margin-top:2.4cqw">CRO &amp; Website<br>Redesign</h1>
+      <p class="lede" style="margin-top:2.2cqw">The redesign plan, team effort, and investment to convert the store from ₹35L to ₹1.5Cr a month. A custom bundle builder, a premium theme rebuild, and an ongoing CRO testing engine.</p>
+      <div class="cover-marks">
+        <div class="tag-pill">Custom bundle builder</div>
+        <div class="tag-pill">New UI / UX + theme</div>
+        <div class="tag-pill">Ongoing CRO retainer</div>
+      </div>
+    </div>
+    <div class="pagenum">01</div>
+  </section>
+
+  <!-- 02 OPPORTUNITY -->
+  <section class="slide reveal">
+    <div class="top">
+      <div class="eyebrow">The Opportunity</div>
+      <h2 style="margin-top:1.8cqw">You proved demand. Now the store<br>has to catch up to the raise.</h2>
+    </div>
+    <div class="pad" style="padding-top:20cqw">
+      <div class="cols2" style="align-items:center">
+        <div class="cols2" style="gap:1.6cqw">
+          <div class="card stat"><div class="big">₹35L</div><div class="lbl">Revenue / month now</div></div>
+          <div class="card stat"><div class="big">4.2x</div><div class="lbl">Blended ROAS</div></div>
+          <div class="card stat"><div class="big">47K+</div><div class="lbl">Customers</div></div>
+          <div class="card stat"><div class="big">₹1,590</div><div class="lbl">Average order value</div></div>
+        </div>
+        <div>
+          <p style="font-size:1.5cqw;color:var(--ink);font-weight:500;line-height:1.42">In six months we scaled the brand from ₹10L to ₹40L a month at a 4.2x blended ROAS.</p>
+          <p style="margin-top:1.4cqw">The next leg, to ₹1Cr and then ₹1.5Cr, is a different problem. It is not a traffic problem. It is a conversion and average order value problem. More spend into the current site pours water into a leaky funnel: a heavy, slow page, a low intent product page, and no way to sell bundles. This proposal fixes the store so paid growth compounds instead of plateauing.</p>
+        </div>
+      </div>
+    </div>
+    <div class="pagenum">02</div>
+  </section>
+
+  <!-- 03 BLOCKERS -->
+  <section class="slide reveal">
+    <div class="top">
+      <div class="eyebrow">What's Blocking Scale</div>
+      <h2 style="margin-top:1.8cqw">Four things capping the funnel</h2>
+    </div>
+    <div class="pad" style="padding-top:19cqw">
+      <div class="cols4">
+        <div class="card"><div class="k">01 · Speed</div><h3>Script bloat</h3><p>161 scripts on the product page, jQuery loaded twice, zombie scripts from removed apps. Slow pages lose mobile buyers.</p></div>
+        <div class="card"><div class="k">02 · Product page</div><h3>Low intent PDP</h3><p>A ghost outline add to cart button, no sticky bar, no cross sell, no comparison, no urgency. Intent leaks on scroll.</p></div>
+        <div class="card"><div class="k">03 · Mobile</div><h3>70% of traffic</h3><p>A full screen quiz popup on load, overlapping floating widgets over the buy button, tiny thumbnails, no sticky cart.</p></div>
+        <div class="card"><div class="k">04 · Bundles</div><h3>No bundle engine</h3><p>Customers cannot build their own sachet box with tiered pricing. The single biggest untapped average order value lever.</p></div>
+      </div>
+      <div class="callout" style="margin-top:2.2cqw">
+        <p>The audit from your team already mapped the symptoms. This proposal is the fix: what we build, how many hours it takes across design, development, and project management, and what each change is expected to move.</p>
+      </div>
+    </div>
+    <div class="pagenum">03</div>
+  </section>
+
+  <!-- 04 FLAGSHIP HOOK (dark) -->
+  <section class="slide dark reveal">
+    <div class="pad stack">
+      <div class="eyebrow">Flagship Unlock</div>
+      <h1 style="margin-top:2cqw;font-size:4.9cqw">Let customers build their<br>own sachet bundle</h1>
+      <div class="rule"></div>
+      <p class="lede">Pick up to 8 sachets from any of the flavors. Price drops as the box grows. You believe Shopify and every app you tried cannot do this. Half of that is true, and the other half is exactly why it kept breaking.</p>
+    </div>
+    <div class="pagenum">04</div>
+  </section>
+
+  <!-- 05 SHOPFLO DIAGNOSIS -->
+  <section class="slide reveal">
+    <div class="top">
+      <div class="eyebrow">Why It Kept Failing</div>
+      <h2 style="margin-top:1.8cqw">The blocker is Shopflo, not Shopify</h2>
+    </div>
+    <div class="pad" style="padding-top:18.5cqw">
+      <div class="cols2">
+        <div>
+          <p style="font-size:1.44cqw;color:var(--ink);font-weight:500;line-height:1.42;margin-bottom:1.3cqw">Shopflo handles 98% of your orders. It replaces the Shopify checkout entirely.</p>
+          <p>Almost every bundle app calculates its price inside its own cart drawer or a draft order. Shopflo never sees that layer, so the bundle price is dropped or the box splits into full price items at checkout. That is why app after app looked broken. The apps were fine. The checkout could not read them.</p>
+          <div class="callout" style="margin-top:1.6cqw">
+            <p><b>Two facts change everything.</b> Your 4 flavors are already separate products with their own inventory. And Shopflo does honor Shopify backend automatic discounts. That is the seam we build through.</p>
+          </div>
+        </div>
+        <div>
+          <div class="colhead">What survives Shopflo vs what breaks</div>
+          <ul class="clean">
+            <li><span class="dot" style="background:var(--green)"></span><b>Survives.</b> Native Shopify line items. Each sachet added as a real cart line.</li>
+            <li><span class="dot" style="background:var(--green)"></span><b>Survives.</b> Backend automatic discounts keyed on total quantity. The tier pricing.</li>
+            <li><span class="dot" style="background:var(--green)"></span><b>Survives.</b> First party Shopify Bundles, officially supported by Shopflo since Sept 2025.</li>
+            <li><span class="dot" style="background:var(--red)"></span><b>Breaks.</b> Apps that price inside their own cart drawer or draft order.</li>
+            <li><span class="dot" style="background:var(--red)"></span><b>Breaks.</b> Discount code based bundles and most cart transform price overrides.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="pagenum">05</div>
+  </section>
+
+  <!-- 06 HOW WE BUILD IT -->
+  <section class="slide reveal">
+    <div class="top">
+      <div class="eyebrow">How We Build It</div>
+      <h2 style="margin-top:1.8cqw">One path we recommend, two safe fallbacks</h2>
+    </div>
+    <div class="pad" style="padding-top:17.5cqw">
+      <table>
+        <thead><tr><th style="width:12cqw">Approach</th><th>How it works</th><th style="width:15cqw">Trade-off</th><th style="width:8cqw"></th></tr></thead>
+        <tbody>
+          <tr>
+            <td><b>Theme native builder</b></td>
+            <td>A "pick up to 8" picker built into the theme. Each sachet is added as its own Shopify line item. A backend automatic discount keyed on total quantity delivers the tier price. Per flavor inventory decrements natively. No Shopify Plus needed.</td>
+            <td>Cart shows separate sachet lines, not one merged bundle line. Arguably clearer for the buyer.</td>
+            <td><span class="badge b-rec">Recommended</span></td>
+          </tr>
+          <tr>
+            <td><b>Shopify Bundles packs</b></td>
+            <td>Model 4 pack, 6 pack and 8 pack as first party Shopify Bundles products, each priced at its tier, each letting the buyer choose a flavor per slot.</td>
+            <td>Discrete pack sizes, not a continuous slider. The only bundle Shopflo officially supports.</td>
+            <td><span class="badge b-a">Fallback A</span></td>
+          </tr>
+          <tr>
+            <td><b>Simple Bundles app</b></td>
+            <td>A continuous build your own box app with component level inventory and native line items.</td>
+            <td>Commit only after Shopflo confirms in writing it renders the expanded components and price.</td>
+            <td><span class="badge b-b">Fallback B</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout" style="margin-top:1.6cqw">
+        <p><b>The point:</b> we already have a working architecture that fits your exact stack. This is a build, not an experiment.</p>
+      </div>
+    </div>
+    <div class="pagenum">06</div>
+  </section>
+
+  <!-- 07 BUILDER UX -->
+  <section class="slide reveal">
+    <div class="top">
+      <div class="eyebrow">Bundle Builder · UX Concept</div>
+      <h2 style="margin-top:1.8cqw">What the customer sees</h2>
+    </div>
+    <div class="pad" style="padding-top:17cqw">
+      <div class="cols2" style="gap:3cqw;align-items:start">
+        <div class="builder">
+          <div style="font-size:1.4cqw;font-weight:600;color:var(--ink)">Build your box</div>
+          <div style="font-size:1cqw;color:var(--body);margin-top:.3cqw">Mix any flavors. The more you add, the more you save.</div>
+          <div class="flavtiles">
+            <div class="flav"><div class="nm">Chocolate<span>25g protein</span></div><div class="qty"><div class="btn">&minus;</div><div class="n">2</div><div class="btn p">+</div></div></div>
+            <div class="flav"><div class="nm">Coffee<span>25g protein</span></div><div class="qty"><div class="btn">&minus;</div><div class="n">2</div><div class="btn p">+</div></div></div>
+            <div class="flav"><div class="nm">Vanilla<span>25g protein</span></div><div class="qty"><div class="btn">&minus;</div><div class="n">1</div><div class="btn p">+</div></div></div>
+            <div class="flav"><div class="nm">Matcha<span>25g protein</span></div><div class="qty"><div class="btn">&minus;</div><div class="n">1</div><div class="btn p">+</div></div></div>
+          </div>
+          <div class="prog">
+            <div class="progbar"><div class="progfill"></div></div>
+            <div class="progtxt"><span>6 of 8 selected</span><span>Add 2 more to unlock 25% off</span></div>
+          </div>
+          <div class="addbtn">Add box to cart <span>₹4,290</span></div>
+        </div>
+        <div>
+          <div class="colhead">The pricing ladder, live as they build</div>
+          <div class="ladder">
+            <div class="rung"><span>Any <b>2</b> sachets</span><span class="save">Base price</span></div>
+            <div class="rung"><span>Any <b>4</b> sachets</span><span class="save">Save 10%</span></div>
+            <div class="rung on"><span>Any <b>6</b> sachets</span><span class="save">Save 18%  ·  current</span></div>
+            <div class="rung"><span>Any <b>8</b> sachets</span><span class="save">Save 25%</span></div>
+          </div>
+          <ul class="clean" style="margin-top:1.8cqw">
+            <li><span class="dot"></span>Live price and savings update on every tap.</li>
+            <li><span class="dot"></span>A progress nudge pushes the buyer to the next tier. This is the average order value driver.</li>
+            <li><span class="dot"></span>Sticky on mobile so the box total and add button never leave the screen.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="foot">Illustrative mockup. Final flavors, tiers and discount percentages set with you before build.</div>
+    <div class="pagenum">07</div>
+  </section>
+
+  <!-- 08 UI/UX + THEME -->
+  <section class="slide reveal">
+    <div class="top">
+      <div class="eyebrow">New UI / UX + Premium Theme</div>
+      <h2 style="margin-top:1.8cqw">A product page rebuilt to convert</h2>
+    </div>
+    <div class="pad" style="padding-top:17cqw">
+      <div class="cols2" style="gap:3cqw;align-items:start">
+        <div>
+          <div class="colhead">Target product page order</div>
+          <div class="rows">
+            <div class="row"><div class="n">01</div><div class="t">Gallery + video</div><div class="d">6 curated images and 1 video, down from 14</div></div>
+            <div class="row"><div class="n">02</div><div class="t">Trust, rating, price, ATC</div><div class="d">Solid filled button, sticky on scroll</div></div>
+            <div class="row"><div class="n">03</div><div class="t">Build your own bundle</div><div class="d">The picker, front and centre</div></div>
+            <div class="row"><div class="n">04</div><div class="t">Benefits + comparison</div><div class="d">Metafield driven, versus generic protein</div></div>
+            <div class="row"><div class="n">05</div><div class="t">Reviews + FAQ</div><div class="d">Judge.me photos, FAQ with SEO schema</div></div>
+          </div>
+        </div>
+        <div>
+          <div class="colhead">Site wide, in the new theme</div>
+          <ul class="clean">
+            <li><span class="dot"></span><b>Mega menu</b> with images and columns for category discovery.</li>
+            <li><span class="dot"></span><b>Cart drawer</b> with an upsell slot for the sachet box.</li>
+            <li><span class="dot"></span><b>Sticky add to cart</b> on desktop and mobile.</li>
+            <li><span class="dot"></span><b>Speed built in.</b> Zombie scripts gone, jQuery de duplicated, 3 Google tags merged to 1.</li>
+            <li><span class="dot"></span><b>Metafield driven content</b> so your team edits the page from Shopify Admin.</li>
+          </ul>
+          <div class="callout" style="margin-top:1.4cqw">
+            <p><b>Editable without a developer.</b> Benefits, ingredients, FAQ, comparison and trust badges all move to metafields. A content change goes from a developer ticket taking 1 to 2 days to a self serve edit in minutes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pagenum">08</div>
+  </section>
+
+  <!-- 09 RETAINER PROGRAM -->
+  <section class="slide reveal">
+    <div class="top">
+      <div class="eyebrow">The CRO Retainer</div>
+      <h2 style="margin-top:1.8cqw">After launch, we keep compounding it</h2>
+    </div>
+    <div class="pad" style="padding-top:18cqw">
+      <div class="cols2" style="gap:3cqw;align-items:center">
+        <div>
+          <p style="font-size:1.44cqw;color:var(--ink);font-weight:500;line-height:1.42;margin-bottom:1.2cqw">A live store is never finished. The retainer is an always on testing and fixing engine, not a report you file away.</p>
+          <p>Every month the team runs experiments on the pages that matter, ships new landing pages for your ad campaigns so paid traffic lands on a page built to convert, and clears any bugs or breakages before they cost orders. Continuous monitoring of the funnel, speed and analytics catches problems while they are small.</p>
+        </div>
+        <div class="cols2" style="gap:1.4cqw">
+          <div class="card"><div class="k">Test</div><h3>Heavy A/B testing</h3><p>2 to 3 live experiments a month on high traffic pages.</p></div>
+          <div class="card"><div class="k">Land</div><h3>Landing pages</h3><p>1 to 2 campaign landing pages a month for paid traffic.</p></div>
+          <div class="card"><div class="k">Fix</div><h3>Website fixes</h3><p>Bugs, breakages and quick wins cleared as they surface.</p></div>
+          <div class="card"><div class="k">Watch</div><h3>Monitoring</h3><p>Funnel, speed and analytics watched every week.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="pagenum">09</div>
+  </section>
+
+  <!-- 10 MODELED IMPACT (coral) -->
+  <section class="slide coral reveal">
+    <div class="top">
+      <div class="eyebrow">Modeled Impact</div>
+      <h2 style="margin-top:1.8cqw;color:#fff">What each lever is expected to move</h2>
+    </div>
+    <div class="pad" style="padding-top:17.5cqw">
+      <div class="metrics">
+        <div class="metric"><div class="mv">+15 to 25%</div><div class="ml">Add to cart rate, from sticky filled ATC, speed and a rebuilt PDP</div></div>
+        <div class="metric"><div class="mv">+10 to 20%</div><div class="ml">Average order value, from the bundle builder and cart cross sell</div></div>
+        <div class="metric"><div class="mv">Faster edits</div><div class="ml">Product page changes move from days to minutes with metafields</div></div>
+      </div>
+      <div class="bridge">
+        <div class="step"><div class="v">₹35 to 45L</div><div class="l">Today</div></div>
+        <div class="arw">→</div>
+        <div class="step"><div class="v">₹1Cr</div><div class="l">CVR × AOV × spend</div></div>
+        <div class="arw">→</div>
+        <div class="step"><div class="v">₹1.5Cr</div><div class="l">Target / month</div></div>
+      </div>
+      <div class="foot">Modeled. Estimated from DTC health and beauty benchmarks and your current metrics. Compounds with your existing paid growth. Actuals confirmed through the retainer test program.</div>
+    </div>
+    <div class="pagenum">10</div>
+  </section>
+
+  <!-- 11 EFFORT -->
+  <section class="slide reveal">
+    <div class="top">
+      <div class="eyebrow">Team Effort</div>
+      <h2 style="margin-top:1.8cqw">Hours behind the build</h2>
+    </div>
+    <div class="pad" style="padding-top:17.5cqw">
+      <table>
+        <thead><tr>
+          <th>Workstream</th>
+          <th class="num" style="text-align:right">Designer</th>
+          <th class="num" style="text-align:right">Developer</th>
+          <th class="num" style="text-align:right">PM · QA</th>
+          <th class="num" style="text-align:right">Total</th>
+          <th style="width:24cqw">Moves this metric</th>
+        </tr></thead>
+        <tbody>
+          <tr><td><b>Speed + tracking cleanup</b></td><td class="num" style="text-align:right">0h</td><td class="num" style="text-align:right">12h</td><td class="num" style="text-align:right">4h</td><td class="num" style="text-align:right"><b>16h</b></td><td>Page load and LCP, so fewer bounce</td></tr>
+          <tr><td><b>Build your own bundle engine</b></td><td class="num" style="text-align:right">14h</td><td class="num" style="text-align:right">40h</td><td class="num" style="text-align:right">12h</td><td class="num" style="text-align:right"><b>66h</b></td><td>Average order value and new bundle revenue</td></tr>
+          <tr><td><b>Theme migration, PDP, homepage, mega menu</b></td><td class="num" style="text-align:right">30h</td><td class="num" style="text-align:right">45h</td><td class="num" style="text-align:right">14h</td><td class="num" style="text-align:right"><b>89h</b></td><td>Nav to product view rate, ATC to cart rate</td></tr>
+          <tr><td><b>Metafield architecture</b></td><td class="num" style="text-align:right">2h</td><td class="num" style="text-align:right">14h</td><td class="num" style="text-align:right">5h</td><td class="num" style="text-align:right"><b>21h</b></td><td>Edit velocity, no developer for content</td></tr>
+          <tr><td><b>QA + phased launch</b></td><td class="num" style="text-align:right">2h</td><td class="num" style="text-align:right">6h</td><td class="num" style="text-align:right">10h</td><td class="num" style="text-align:right"><b>18h</b></td><td>A stable, tested go live</td></tr>
+          <tr class="tot"><td><b>Total</b></td><td class="num" style="text-align:right"><b>48h</b></td><td class="num" style="text-align:right"><b>117h</b></td><td class="num" style="text-align:right"><b>45h</b></td><td class="num" style="text-align:right"><b>210h</b></td><td>Across design, development and PM with QA</td></tr>
+        </tbody>
+      </table>
+      <div class="foot">PM hours include quality assurance across every workstream. Retainer effort runs separately at roughly 65 to 70 hours a month.</div>
+    </div>
+    <div class="pagenum">11</div>
+  </section>
+
+  <!-- 12 ENGAGEMENT / PRICING -->
+  <section class="slide reveal">
+    <div class="top">
+      <div class="eyebrow">Engagement + Investment</div>
+      <h2 style="margin-top:1.8cqw">A redesign project, then a CRO retainer</h2>
+    </div>
+    <div class="pad" style="padding-top:16.5cqw">
+      <div class="cols2" style="gap:2.2cqw;align-items:stretch">
+        <div class="pricecard hero">
+          <div class="tag">A · One time build</div>
+          <div class="amt">₹3.2L <small>to ₹4.2L</small></div>
+          <div class="sub">Around 210 team hours. Everything shipped and tested.</div>
+          <table>
+            <tbody style="font-size:.98cqw">
+              <tr><td style="padding:.58cqw 0">Speed + tracking cleanup</td><td class="num" style="text-align:right;padding:.58cqw 0"><b>₹40K</b></td></tr>
+              <tr><td style="padding:.58cqw 0">Design (UI / UX, bundle builder, PDP)</td><td class="num" style="text-align:right;padding:.58cqw 0"><b>₹80K</b></td></tr>
+              <tr><td style="padding:.58cqw 0">Build your own bundle engine</td><td class="num" style="text-align:right;padding:.58cqw 0"><b>₹90K</b></td></tr>
+              <tr><td style="padding:.58cqw 0">Theme migration + PDP + homepage + mega menu</td><td class="num" style="text-align:right;padding:.58cqw 0"><b>₹1.0L</b></td></tr>
+              <tr><td style="padding:.58cqw 0">Metafield architecture</td><td class="num" style="text-align:right;padding:.58cqw 0"><b>₹40K</b></td></tr>
+              <tr><td style="padding:.58cqw 0">Premium theme license, pass through</td><td class="num" style="text-align:right;padding:.58cqw 0"><b>₹32K</b></td></tr>
+              <tr><td style="padding:.58cqw 0;color:var(--coral-deep)">QA + phased launch</td><td class="num" style="text-align:right;padding:.58cqw 0;color:var(--coral-deep)"><b>Included</b></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pricecard">
+          <div class="tag">B · CRO retainer</div>
+          <div class="amt">₹1.2L <small>/ month</small></div>
+          <div class="sub">Ongoing, starts month 1. Roughly 65 to 70 team hours a month.</div>
+          <ul class="clean" style="gap:1.15cqw">
+            <li><span class="dot"></span>Heavy A/B testing, 2 to 3 live experiments a month</li>
+            <li><span class="dot"></span>Landing pages for ad campaigns, 1 to 2 a month</li>
+            <li><span class="dot"></span>Website fixes and bug resolution</li>
+            <li><span class="dot"></span>Continuous monitoring of funnel, speed and analytics</li>
+          </ul>
+          <div class="callout" style="margin-top:1.4cqw;background:var(--pink)"><p>Focused on conversion. No email or lifecycle work in this scope.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="foot">Indicative India market pricing for July 2026. Final figures confirmed on kickoff.</div>
+    <div class="pagenum">12</div>
+  </section>
+
+  <!-- 13 TIMELINE -->
+  <section class="slide reveal">
+    <div class="top">
+      <div class="eyebrow">Timeline</div>
+      <h2 style="margin-top:1.8cqw">Live in 6 to 8 weeks</h2>
+    </div>
+    <div class="pad" style="padding-top:16.5cqw">
+      <div class="tl">
+        <div class="phase">
+          <div class="wk">Weeks 1 to 2</div>
+          <div class="body"><h4>Speed, quick wins + design kickoff</h4><p>Remove zombie scripts, de duplicate jQuery, merge 3 Google tags to 1. Sticky and filled add to cart, fix the mobile quiz popup, upgrade the plan. Design starts on the bundle builder and new PDP.</p></div>
+          <div class="exp">Expected 10 to 15% conversion lift</div>
+        </div>
+        <div class="phase">
+          <div class="wk">Weeks 2 to 4</div>
+          <div class="body"><h4>Bundle engine + upsell</h4><p>Approve bundle and PDP designs. Build the pick up to 8 builder, wire the tiered automatic discount, QA it through a real Shopflo checkout. Configure cart drawer and Frequently Bought Together. Homepage and mega menu design in parallel.</p></div>
+          <div class="exp">Expected 10 to 20% AOV lift</div>
+        </div>
+        <div class="phase">
+          <div class="wk">Weeks 4 to 6</div>
+          <div class="body"><h4>Theme migration</h4><p>Build the premium theme from approved designs: 11 section product page, homepage, mega menu, metafield definitions. Mobile pass. Stays unpublished until fully tested.</p></div>
+          <div class="exp">The biggest workstream, not rushed</div>
+        </div>
+        <div class="phase">
+          <div class="wk">Weeks 6 to 8</div>
+          <div class="body"><h4>Advanced CRO + launch</h4><p>Subscriptions, product videos, image optimization, full QA, phased go live, first A/B tests set live.</p></div>
+          <div class="exp">Retainer test program begins</div>
+        </div>
+      </div>
+      <div class="tlretain">
+        <div class="tag">RETAINER</div>
+        <p>The ₹1.2L a month CRO retainer runs from month 1, alongside the redesign and continuing after launch.</p>
+      </div>
+    </div>
+    <div class="pagenum">13</div>
+  </section>
+
+  <!-- 14 PROOF (dark) -->
+  <section class="slide dark reveal">
+    <div class="top">
+      <div class="eyebrow">Proof · CRO Track Record</div>
+      <h2 style="margin-top:1.8cqw;color:#fff">This playbook lifts revenue per visitor</h2>
+    </div>
+    <div class="pad" style="padding-top:17.5cqw">
+      <p class="lede" style="margin-bottom:2.4cqw;max-width:64cqw">The same levers we are proposing here, from a sticky filled add to cart to a build your own bundle engine to speed and navigation, have moved revenue per visitor across comparable DTC builds.</p>
+      <div class="metrics">
+        <div class="metric"><div class="mv">+34%</div><div class="ml"><b>Revenue per visitor.</b> Supplements DTC, after a PDP rebuild and sticky add to cart.</div></div>
+        <div class="metric"><div class="mv">+22%</div><div class="ml"><b>Revenue per visitor.</b> Beauty brand, after a build your own bundle and cart upsell.</div></div>
+        <div class="metric"><div class="mv">+18%</div><div class="ml"><b>Revenue per visitor.</b> Health food, after a speed and mega menu rebuild.</div></div>
+      </div>
+      <div class="foot">Illustrative anonymized results from prior CRO builds. Named case studies and exact figures swapped in before you send.</div>
+    </div>
+    <div class="pagenum">14</div>
+  </section>
+
+  <!-- 15 NEXT STEPS (coral) -->
+  <section class="slide coral reveal">
+    <div class="top">
+      <div class="eyebrow">Next Steps</div>
+      <h2 style="margin-top:1.8cqw;color:#fff">Ready to start this week</h2>
+    </div>
+    <div class="pad" style="padding-top:17.5cqw">
+      <div class="cols3">
+        <div style="background:rgba(255,255,255,.14);border-radius:1cqw;padding:2cqw">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:1.6cqw;color:#fff;font-weight:600">01</div>
+          <div style="font-size:1.3cqw;color:#fff;font-weight:600;margin:.8cqw 0 .5cqw">Green light</div>
+          <p style="color:rgba(255,255,255,.82);font-size:1.05cqw;line-height:1.45">Confirm the scope and investment. We lock the kickoff date.</p>
+        </div>
+        <div style="background:rgba(255,255,255,.14);border-radius:1cqw;padding:2cqw">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:1.6cqw;color:#fff;font-weight:600">02</div>
+          <div style="font-size:1.3cqw;color:#fff;font-weight:600;margin:.8cqw 0 .5cqw">Access</div>
+          <p style="color:rgba(255,255,255,.82);font-size:1.05cqw;line-height:1.45">Theme and admin access, and a short call with Shopflo to confirm the discount path.</p>
+        </div>
+        <div style="background:rgba(255,255,255,.14);border-radius:1cqw;padding:2cqw">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:1.6cqw;color:#fff;font-weight:600">03</div>
+          <div style="font-size:1.3cqw;color:#fff;font-weight:600;margin:.8cqw 0 .5cqw">Week 1 ships</div>
+          <p style="color:rgba(255,255,255,.82);font-size:1.05cqw;line-height:1.45">Speed and quick wins go live while the bundle build begins.</p>
+        </div>
+      </div>
+      <p class="lede" style="margin-top:2.6cqw;color:#fff;max-width:64cqw">Clean the foundation, build the bundle engine, then scale the structure. The store becomes an asset the raise can stand on.</p>
+    </div>
+    <div class="pagenum">15</div>
+  </section>
+
+</div>
+<script>
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
