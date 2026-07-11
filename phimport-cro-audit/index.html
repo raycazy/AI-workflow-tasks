@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PH Import — CRO Audit</title>
+    <title>PH Import CRO Audit</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -235,14 +235,23 @@
         .ps-row { display: flex; justify-content: space-between; font-size: 11px; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,.04); }
         .ps-row .lbl { color: #868383; }
 
+        /* ===== INDEX / CONTENTS ===== */
+        .toc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; max-width: 780px; width: 100%; }
+        .toc-item { display: flex; align-items: center; gap: 18px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 10px; padding: 16px 22px; cursor: pointer; transition: border-color .3s, background-color .3s; text-align: left; }
+        .toc-item:hover { border-color: rgba(149,193,32,.5); background: rgba(149,193,32,.06); }
+        .toc-num { font-size: 24px; font-weight: 200; color: rgba(149,193,32,.45); min-width: 40px; transition: color .3s; }
+        .toc-item:hover .toc-num { color: #95C120; }
+        .toc-name { font-size: 12px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: #fff; margin-bottom: 4px; }
+        .toc-slide { font-size: 10px; color: #868383; letter-spacing: 1px; }
+
         /* ===== NAV ===== */
         .nav-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 14px 40px; background: linear-gradient(transparent, rgba(0,0,0,.9) 40%); }
         .nav-dots { display: flex; gap: 4px; }
-        .nav-dot { width: 6px; height: 6px; border-radius: 50%; background: #333; cursor: pointer; transition: all .3s; }
+        .nav-dot { width: 6px; height: 6px; border-radius: 50%; background: #333; cursor: pointer; transition: background-color .3s, width .3s, border-radius .3s; }
         .nav-dot.active { background: #95C120; width: 18px; border-radius: 3px; }
         .nav-counter { font-size: 11px; color: #868383; letter-spacing: 2px; }
         .nav-arrows { display: flex; gap: 10px; }
-        .nav-arrow { width: 34px; height: 34px; border: 1px solid #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all .3s; background: none; color: #fff; }
+        .nav-arrow { width: 34px; height: 34px; border: 1px solid #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: border-color .3s, background-color .3s; background: none; color: #fff; }
         .nav-arrow:hover { border-color: #95C120; background: rgba(149,193,32,.1); }
         .nav-arrow svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
     </style>
@@ -266,8 +275,27 @@
         <div class="title-nav-hint">Scroll to explore <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
     </div>
 
-    <!-- SLIDE 1: WHAT WE ANALYZED -->
+    <!-- SLIDE 1: INDEX / CONTENTS -->
     <div class="card" data-index="1">
+        <div class="card-header">
+            <div class="card-label">Index</div>
+            <div class="card-title">Contents</div>
+            <div class="card-subtitle">Click any section to jump straight to it</div>
+        </div>
+        <div class="toc-grid">
+            <div class="toc-item" data-target="#sec-summary"><div class="toc-num">ES</div><div><div class="toc-name">Executive Summary</div><div class="toc-slide"></div></div></div>
+            <div class="toc-item" data-target="#sec-ga4"><div class="toc-num">01</div><div><div class="toc-name">GA4 Analytics</div><div class="toc-slide"></div></div></div>
+            <div class="toc-item" data-target="#sec-clarity"><div class="toc-num">02</div><div><div class="toc-name">Microsoft Clarity</div><div class="toc-slide"></div></div></div>
+            <div class="toc-item" data-target="#sec-voc"><div class="toc-num">03</div><div><div class="toc-name">Voice of Customer</div><div class="toc-slide"></div></div></div>
+            <div class="toc-item" data-target="#sec-heuristic"><div class="toc-num">04</div><div><div class="toc-name">Heuristic Analysis</div><div class="toc-slide"></div></div></div>
+            <div class="toc-item" data-target="#sec-competitors"><div class="toc-num">05</div><div><div class="toc-name">Competitor Landscape</div><div class="toc-slide"></div></div></div>
+            <div class="toc-item" data-target="#sec-roadmap"><div class="toc-num">06</div><div><div class="toc-name">CRO Roadmap</div><div class="toc-slide"></div></div></div>
+            <div class="toc-item" data-target="#sec-technical"><div class="toc-num">07</div><div><div class="toc-name">Technical Audit</div><div class="toc-slide"></div></div></div>
+        </div>
+    </div>
+
+    <!-- SLIDE 2: WHAT WE ANALYZED -->
+    <div class="card" data-index="2">
         <div class="card-header">
             <div class="card-label">Data Sources</div>
             <div class="card-title">What We Analyzed</div>
@@ -284,8 +312,8 @@
         </div>
     </div>
 
-    <!-- SLIDE 2: EXECUTIVE SUMMARY -->
-    <div class="card" data-index="2">
+    <!-- SLIDE 3: EXECUTIVE SUMMARY -->
+    <div class="card" id="sec-summary" data-index="3">
         <div class="card-header">
             <div class="card-label">Executive Summary</div>
             <div class="card-title">Key Findings</div>
@@ -300,15 +328,15 @@
         </div>
     </div>
 
-    <!-- SLIDE 3: GA4 SECTION HEADER -->
-    <div class="card section-slide" data-index="3">
+    <!-- SLIDE 4: GA4 SECTION HEADER -->
+    <div class="card section-slide" id="sec-ga4" data-index="4">
         <div class="section-number">01</div>
         <div class="section-title">GA4 Analytics</div>
         <div class="section-sub">90 Day Performance Data &nbsp;|&nbsp; 1.08M Sessions &nbsp;|&nbsp; 11.0M DKK Revenue</div>
     </div>
 
-    <!-- SLIDE 4: GA4 DASHBOARD -->
-    <div class="card" data-index="4">
+    <!-- SLIDE 5: GA4 DASHBOARD -->
+    <div class="card" data-index="5">
         <div class="card-header">
             <div class="card-label">GA4 &mdash; 90 Days</div>
             <div class="card-title">Performance Dashboard</div>
@@ -328,8 +356,8 @@
         </div>
     </div>
 
-    <!-- SLIDE 5: FUNNEL -->
-    <div class="card" data-index="5">
+    <!-- SLIDE 6: FUNNEL -->
+    <div class="card" data-index="6">
         <div class="card-header">
             <div class="card-label">GA4 &mdash; 90 Days</div>
             <div class="card-title">E-Commerce Funnel</div>
@@ -345,8 +373,8 @@
         </div>
     </div>
 
-    <!-- SLIDE 6: BIGGEST LEAKS -->
-    <div class="card" data-index="6">
+    <!-- SLIDE 7: BIGGEST LEAKS -->
+    <div class="card" data-index="7">
         <div class="card-header">
             <div class="card-label">GA4 &mdash; 90 Days</div>
             <div class="card-title">Biggest Funnel Leaks</div>
@@ -359,8 +387,8 @@
         </div>
     </div>
 
-    <!-- SLIDE 7: DEVICE PERFORMANCE -->
-    <div class="card" data-index="7">
+    <!-- SLIDE 8: DEVICE PERFORMANCE -->
+    <div class="card" data-index="8">
         <div class="card-header">
             <div class="card-label">GA4 &mdash; 90 Days</div>
             <div class="card-title">Device Performance</div>
@@ -375,8 +403,8 @@
         <div class="insight-box"><strong>Key Insight:</strong> Desktop CR (7.65%) is 3.2x higher than mobile (2.38%) &mdash; yet 87.5% of traffic is mobile. Desktop AOV is 19% higher (411 vs 346 DKK). Improving mobile CR by just 1 percentage point = ~9,400 extra orders/year. <strong>Estimated uplift: ~3.4M DKK annually.</strong></div>
     </div>
 
-    <!-- SLIDE 8: TRAFFIC SOURCES -->
-    <div class="card" data-index="8">
+    <!-- SLIDE 9: TRAFFIC SOURCES -->
+    <div class="card" data-index="9">
         <div class="card-header">
             <div class="card-label">GA4 &mdash; 90 Days</div>
             <div class="card-title">Traffic Source Performance</div>
@@ -395,8 +423,8 @@
         <div class="insight-box">"(not set)" at 63.3% indicates severe UTM attribution loss. Estimated 80%+ of traffic is from Facebook when accounting for lost UTMs.</div>
     </div>
 
-    <!-- SLIDE 9: TRAFFIC TAKEAWAYS -->
-    <div class="card" data-index="9">
+    <!-- SLIDE 10: TRAFFIC TAKEAWAYS -->
+    <div class="card" data-index="10">
         <div class="card-header">
             <div class="card-label">GA4 &mdash; 90 Days</div>
             <div class="card-title">Traffic Source Key Takeaways</div>
@@ -410,8 +438,8 @@
         <div class="insight-box"><strong>UTM Attribution Crisis:</strong> 63.3% of sessions have '(not set)' source &mdash; Facebook in-app browser strips UTM parameters during redirects.</div>
     </div>
 
-    <!-- SLIDE 10: TOP LANDING PAGES -->
-    <div class="card" data-index="10">
+    <!-- SLIDE 11: TOP LANDING PAGES -->
+    <div class="card" data-index="11">
         <div class="card-header">
             <div class="card-label">GA4 &mdash; 90 Days</div>
             <div class="card-title">Top Landing Pages</div>
@@ -428,8 +456,8 @@
         </table>
     </div>
 
-    <!-- SLIDE 11: 3X CONVERSION GAP -->
-    <div class="card" data-index="11">
+    <!-- SLIDE 12: 3X CONVERSION GAP -->
+    <div class="card" data-index="12">
         <div class="card-header">
             <div class="card-label">Key Finding</div>
             <div class="card-title">The 3x Conversion Gap</div>
@@ -443,8 +471,8 @@
         <div class="insight-box"><strong>The Opportunity:</strong> Facebook ads send traffic directly to PDPs which lack homepage trust signals. If PDP CR improved from 1.45% to 2.5% = ~7,500 additional purchases per quarter. <strong>Estimated uplift: ~2.7M DKK/quarter / ~10.8M DKK annually.</strong><br>Fix: Add Trustpilot strip, free shipping bar, and navigation to PDPs.</div>
     </div>
 
-    <!-- SLIDE 12: NEW VS RETURNING -->
-    <div class="card" data-index="12">
+    <!-- SLIDE 13: NEW VS RETURNING -->
+    <div class="card" data-index="13">
         <div class="card-header">
             <div class="card-label">GA4 &mdash; 90 Days</div>
             <div class="card-title">New vs Returning Users</div>
@@ -474,8 +502,8 @@
         <div class="insight-box"><strong>Retention Opportunity:</strong> Returning users convert 31% better and spend 8% more per order. Cleaning supplies = strong repeat-purchase category. No loyalty program, auto-reorder, or subscription mechanism exists. Building retention features is a direct revenue lever.</div>
     </div>
 
-    <!-- SLIDE 13: DAY OF WEEK -->
-    <div class="card" data-index="13">
+    <!-- SLIDE 14: DAY OF WEEK -->
+    <div class="card" data-index="14">
         <div class="card-header">
             <div class="card-label">GA4 &mdash; 90 Days</div>
             <div class="card-title">Day of Week Performance</div>
@@ -493,15 +521,15 @@
         <div class="insight-box">Sunday is the highest-revenue day (24.6% of total) with both highest traffic and highest CR. Facebook ad campaigns likely drive heavy weekend engagement.</div>
     </div>
 
-    <!-- SLIDE 14: CLARITY SECTION -->
-    <div class="card section-slide" data-index="14">
+    <!-- SLIDE 15: CLARITY SECTION -->
+    <div class="card section-slide" id="sec-clarity" data-index="15">
         <div class="section-number">02</div>
         <div class="section-title">Microsoft Clarity</div>
         <div class="section-sub">Behavioral Analytics &nbsp;|&nbsp; 20,036 Sessions &nbsp;|&nbsp; 3-Day Snapshot</div>
     </div>
 
-    <!-- SLIDE 15: CLARITY OVERVIEW -->
-    <div class="card" data-index="15">
+    <!-- SLIDE 16: CLARITY OVERVIEW -->
+    <div class="card" data-index="16">
         <div class="card-header">
             <div class="card-label">Clarity &mdash; 3 Days</div>
             <div class="card-title">Behavioral Analytics Overview</div>
@@ -528,8 +556,8 @@
         </div>
     </div>
 
-    <!-- SLIDE 16: HOMEPAGE ANALYSIS -->
-    <div class="card" data-index="16">
+    <!-- SLIDE 17: HOMEPAGE ANALYSIS -->
+    <div class="card" data-index="17">
         <div class="card-header">
             <div class="card-label">Page Analysis</div>
             <div class="card-title">Homepage</div>
@@ -548,8 +576,8 @@
         </div>
     </div>
 
-    <!-- SLIDE 17: PDP ANALYSIS -->
-    <div class="card" data-index="17">
+    <!-- SLIDE 18: PDP ANALYSIS -->
+    <div class="card" data-index="18">
         <div class="card-header">
             <div class="card-label">Page Analysis</div>
             <div class="card-title">Product Pages (PDP)</div>
@@ -568,8 +596,8 @@
         </div>
     </div>
 
-    <!-- SLIDE 18: COLLECTION ANALYSIS -->
-    <div class="card" data-index="18">
+    <!-- SLIDE 19: COLLECTION ANALYSIS -->
+    <div class="card" data-index="19">
         <div class="card-header">
             <div class="card-label">Page Analysis</div>
             <div class="card-title">Collection Pages</div>
@@ -587,8 +615,8 @@
         </div>
     </div>
 
-    <!-- SLIDE 19: PAGESPEED -->
-    <div class="card" data-index="19">
+    <!-- SLIDE 20: PAGESPEED -->
+    <div class="card" data-index="20">
         <div class="card-header">
             <div class="card-label">Technical</div>
             <div class="card-title">PageSpeed Performance</div>
@@ -604,15 +632,15 @@
         </div>
     </div>
 
-    <!-- SLIDE 20: VOC SECTION -->
-    <div class="card section-slide" data-index="20">
+    <!-- SLIDE 21: VOC SECTION -->
+    <div class="card section-slide" id="sec-voc" data-index="21">
         <div class="section-number">03</div>
         <div class="section-title">Voice of Customer</div>
         <div class="section-sub">4,008 JudgeMe Reviews Analyzed</div>
     </div>
 
-    <!-- SLIDE 21: REVIEW DISTRIBUTION -->
-    <div class="card" data-index="21">
+    <!-- SLIDE 22: REVIEW DISTRIBUTION -->
+    <div class="card" data-index="22">
         <div class="card-header">
             <div class="card-label">JudgeMe Reviews</div>
             <div class="card-title">Rating Distribution</div>
@@ -636,8 +664,8 @@
         </div>
     </div>
 
-    <!-- SLIDE 22: SENTIMENT THEMES -->
-    <div class="card" data-index="22">
+    <!-- SLIDE 23: SENTIMENT THEMES -->
+    <div class="card" data-index="23">
         <div class="card-header">
             <div class="card-label">Voice of Customer</div>
             <div class="card-title">Customer Sentiment Themes</div>
@@ -671,15 +699,15 @@
         </div>
     </div>
 
-    <!-- SLIDE 23: HEURISTIC SECTION -->
-    <div class="card section-slide" data-index="23">
+    <!-- SLIDE 24: HEURISTIC SECTION -->
+    <div class="card section-slide" id="sec-heuristic" data-index="24">
         <div class="section-number">04</div>
         <div class="section-title">Heuristic Analysis</div>
         <div class="section-sub">Score: 54/100 &nbsp;|&nbsp; 22 Issues Across 4 Page Types</div>
     </div>
 
-    <!-- SLIDE 24: HEURISTIC OVERVIEW -->
-    <div class="card" data-index="24">
+    <!-- SLIDE 25: HEURISTIC OVERVIEW -->
+    <div class="card" data-index="25">
         <div class="card-header">
             <div class="card-label">Heuristic Review</div>
             <div class="card-title">4 Page Types Evaluated</div>
@@ -702,8 +730,8 @@
         </div>
     </div>
 
-    <!-- SLIDE 25: HIGH PRIORITY ISSUES -->
-    <div class="card" data-index="25">
+    <!-- SLIDE 26: HIGH PRIORITY ISSUES -->
+    <div class="card" data-index="26">
         <div class="card-header">
             <div class="card-label">Heuristic Review</div>
             <div class="card-title">High Priority Issues</div>
@@ -723,8 +751,8 @@
         </table>
     </div>
 
-    <!-- SLIDE 26: STRENGTHS -->
-    <div class="card" data-index="26">
+    <!-- SLIDE 27: STRENGTHS -->
+    <div class="card" data-index="27">
         <div class="card-header">
             <div class="card-label">Heuristic Review</div>
             <div class="card-title">Strengths to Preserve</div>
@@ -740,15 +768,15 @@
         </div>
     </div>
 
-    <!-- SLIDE 27: COMPETITOR SECTION -->
-    <div class="card section-slide" data-index="27">
+    <!-- SLIDE 28: COMPETITOR SECTION -->
+    <div class="card section-slide" id="sec-competitors" data-index="28">
         <div class="section-number">05</div>
         <div class="section-title">Competitor Landscape</div>
         <div class="section-sub">Biltema &nbsp;|&nbsp; Detailzone &nbsp;|&nbsp; AutoDoc DK</div>
     </div>
 
-    <!-- SLIDE 28: COMPETITOR TABLE -->
-    <div class="card" data-index="28">
+    <!-- SLIDE 29: COMPETITOR TABLE -->
+    <div class="card" data-index="29">
         <div class="card-header">
             <div class="card-label">Competitors</div>
             <div class="card-title">Comparison</div>
@@ -764,8 +792,8 @@
         </table>
     </div>
 
-    <!-- SLIDE 29: COMPETITIVE GAPS -->
-    <div class="card" data-index="29">
+    <!-- SLIDE 30: COMPETITIVE GAPS -->
+    <div class="card" data-index="30">
         <div class="card-header">
             <div class="card-label">Competitors</div>
             <div class="card-title">Key Competitive Gaps</div>
@@ -779,15 +807,15 @@
         </div>
     </div>
 
-    <!-- SLIDE 30: CRO ROADMAP SECTION -->
-    <div class="card section-slide" data-index="30">
+    <!-- SLIDE 31: CRO ROADMAP SECTION -->
+    <div class="card section-slide" id="sec-roadmap" data-index="31">
         <div class="section-number">06</div>
         <div class="section-title">CRO Roadmap</div>
         <div class="section-sub">Data-Backed Tests &nbsp;|&nbsp; Page / Observation / Test / Hypothesis</div>
     </div>
 
-    <!-- SLIDE 31: CRO ROADMAP HIGH PRIORITY -->
-    <div class="card" data-index="31" style="justify-content:flex-start;padding-top:36px">
+    <!-- SLIDE 32: CRO ROADMAP HIGH PRIORITY -->
+    <div class="card" data-index="32" style="justify-content:flex-start;padding-top:36px">
         <div class="card-header">
             <div class="card-label">CRO Roadmap</div>
             <div class="card-title">High Priority Tests</div>
@@ -806,8 +834,8 @@
         </table>
     </div>
 
-    <!-- SLIDE 32: CRO ROADMAP CONTENT & TRUST -->
-    <div class="card" data-index="32" style="justify-content:flex-start;padding-top:36px">
+    <!-- SLIDE 33: CRO ROADMAP CONTENT & TRUST -->
+    <div class="card" data-index="33" style="justify-content:flex-start;padding-top:36px">
         <div class="card-header">
             <div class="card-label">CRO Roadmap</div>
             <div class="card-title">Content & Trust Tests</div>
@@ -821,15 +849,15 @@
         </table>
     </div>
 
-    <!-- SLIDE 33: TECHNICAL AUDIT SECTION -->
-    <div class="card section-slide" data-index="33">
+    <!-- SLIDE 34: TECHNICAL AUDIT SECTION -->
+    <div class="card section-slide" id="sec-technical" data-index="34">
         <div class="section-number">07</div>
         <div class="section-title">Technical Audit</div>
         <div class="section-sub">JavaScript Error Deep Dive &nbsp;|&nbsp; Dev Team Handoff</div>
     </div>
 
-    <!-- SLIDE 34: ROOT CAUSE -->
-    <div class="card" data-index="34">
+    <!-- SLIDE 35: ROOT CAUSE -->
+    <div class="card" data-index="35">
         <div class="card-header">
             <div class="card-label">Technical Audit</div>
             <div class="card-title">Root Cause Analysis</div>
@@ -857,8 +885,8 @@
         </div>
     </div>
 
-    <!-- SLIDE 35: SCRIPT BLOAT -->
-    <div class="card" data-index="35">
+    <!-- SLIDE 36: SCRIPT BLOAT -->
+    <div class="card" data-index="36">
         <div class="card-header">
             <div class="card-label">Technical Audit</div>
             <div class="card-title">Script Bloat & Conflicts</div>
@@ -891,8 +919,8 @@
         <div class="insight-box" style="border-color:rgba(239,68,68,.3);background:rgba(239,68,68,.05)"><strong style="color:#ef4444">Klaviyo = 21 scripts total.</strong> Also: lazysizes loaded from external store (githubfix.myshopify.com). Gorgias chat installed but unconfigured.</div>
     </div>
 
-    <!-- SLIDE 36: RECOMMENDED FIXES -->
-    <div class="card" data-index="36">
+    <!-- SLIDE 37: RECOMMENDED FIXES -->
+    <div class="card" data-index="37">
         <div class="card-header">
             <div class="card-label">Technical Audit</div>
             <div class="card-title">Recommended Fixes</div>
@@ -912,8 +940,8 @@
         <div class="insight-box" style="border-color:rgba(239,68,68,.3);background:rgba(239,68,68,.05)"><strong style="color:#ef4444">Key Finding:</strong> The MutationObserver Script (Error #2) actively removes the src attribute from Facebook Pixel and Shopify Pay scripts. This means <strong style="color:#ef4444">Facebook ad campaigns cannot optimize for conversions</strong> and <strong style="color:#ef4444">Shop Pay checkout is disabled</strong>.</div>
     </div>
 
-    <!-- SLIDE 37: THANK YOU -->
-    <div class="card thankyou-slide" data-index="37">
+    <!-- SLIDE 38: THANK YOU -->
+    <div class="card thankyou-slide" data-index="38">
         <div class="title-slide" style="min-width:auto;height:auto;padding:0;background:transparent">
             <div class="ty-title">Thank You</div>
             <div class="ty-sub">phimport.dk CRO Audit &nbsp;|&nbsp; February 2026</div>
@@ -927,7 +955,7 @@
 <!-- NAV -->
 <div class="nav-bar">
     <div class="nav-dots" id="navDots"></div>
-    <div class="nav-counter" id="navCounter">01 / 38</div>
+    <div class="nav-counter" id="navCounter">01 / 39</div>
     <div class="nav-arrows">
         <button class="nav-arrow" id="prevBtn" aria-label="Previous"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
         <button class="nav-arrow" id="nextBtn" aria-label="Next"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
@@ -940,6 +968,7 @@
     for(var i=0;i<t;i++){var d=document.createElement('div');d.className='nav-dot'+(i===0?' active':'');d.setAttribute('data-index',i);d.addEventListener('click',function(){go(parseInt(this.getAttribute('data-index')))});dots.appendChild(d)}
     function upd(i){cur=i;document.querySelectorAll('.nav-dot').forEach(function(d,j){d.className='nav-dot'+(j===i?' active':'')});ctr.textContent=(i+1).toString().padStart(2,'0')+' / '+t.toString().padStart(2,'0')}
     function go(i){if(i<0||i>=t)return;cards[i].scrollIntoView({behavior:'smooth',inline:'start'});upd(i)}
+    document.querySelectorAll('.toc-item').forEach(function(item){var target=document.querySelector(item.getAttribute('data-target')),idx=Array.prototype.indexOf.call(cards,target),lbl=item.querySelector('.toc-slide');if(lbl&&idx>-1)lbl.textContent='Slide '+(idx+1);item.addEventListener('click',function(){if(idx>-1)go(idx)})});
     prev.addEventListener('click',function(){go(cur-1)});next.addEventListener('click',function(){go(cur+1)});
     var st;c.addEventListener('scroll',function(){clearTimeout(st);st=setTimeout(function(){var idx=Math.round(c.scrollLeft/window.innerWidth);if(idx!==cur)upd(idx)},100)});
     document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='ArrowDown'){e.preventDefault();go(cur+1)}else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();go(cur-1)}});
