@@ -219,12 +219,21 @@
     }
   });
 
-  // Mockup behavior. Production: POST /api/register, appends to the Google Sheet.
+  // Partner registrations post to the Google Sheet via an Apps Script webhook.
+  // Paste the deployed /exec URL here; while empty the form only shows the confirmation.
+  const REGISTER_ENDPOINT = '';
   const partnerForm = document.getElementById('partner-form');
   const partnerEmail = document.getElementById('partner-email');
   partnerForm.addEventListener('submit', (e) => {
     e.preventDefault();
     if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(partnerEmail.value.trim())) {
+      if (REGISTER_ENDPOINT) {
+        fetch(REGISTER_ENDPOINT, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: new URLSearchParams({ email: partnerEmail.value.trim(), source: 'homepage' })
+        }).catch(() => {});
+      }
       const done = document.createElement('p');
       done.className = 'confirmation';
       done.textContent = 'Thank you. We will be in touch.';
