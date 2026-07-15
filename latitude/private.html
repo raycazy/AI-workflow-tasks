@@ -66,6 +66,18 @@
   .ig { color: var(--ink-40); display: flex; padding: 12px 0 12px 4px; transition: color 200ms ease-out; }
   .ig:hover { color: var(--ink); }
   .ig svg { width: 16px; height: 16px; }
+  .signout {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color: var(--ink-64);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    padding: 14px 0;
+    transition: color 200ms ease-out;
+  }
+  .signout:hover { color: var(--ink); }
+  .signout svg { display: none; width: 17px; height: 17px; }
 
   main { padding-top: 56px; }
 
@@ -239,8 +251,11 @@
   section[id] { scroll-margin-top: 56px; }
 
   @media (max-width: 720px) {
-    nav { gap: 18px; }
-    .wordmark { letter-spacing: 0.3em; }
+    header { padding: 0 16px; }
+    nav { gap: 12px; }
+    .wordmark { font-size: 12px; letter-spacing: 0.2em; }
+    .signout span { display: none; }
+    .signout svg { display: block; }
     .destination-intro { padding: 64px 20px 48px; }
     .destination-pair { grid-template-columns: 1fr; }
     .destination-pair img { aspect-ratio: 4 / 3; }
@@ -263,6 +278,15 @@
         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
         <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+      </svg>
+    </a>
+    <!-- Mockup: links home. Production: POST /api/signout clears the access cookie first. -->
+    <a class="signout" href="index.html" aria-label="Sign out">
+      <span>Sign out</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+        <polyline points="16 17 21 12 16 7"></polyline>
+        <line x1="21" y1="12" x2="9" y2="12"></line>
       </svg>
     </a>
   </nav>
