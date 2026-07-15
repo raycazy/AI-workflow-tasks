@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LATITUDE &middot; Maldives 2026</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fff'/%3E%3Ccircle cx='16' cy='16' r='6' fill='none' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@300,300i,400,500&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+  :root {
+    --bg: #ffffff;
+    --ink: #000000;
+    --ink-88: rgba(0, 0, 0, 0.88);
+    --ink-64: rgba(0, 0, 0, 0.64);
+    --ink-40: rgba(0, 0, 0, 0.45);
+    --hairline: rgba(0, 0, 0, 0.16);
+    --sans: 'Switzer', 'Helvetica Neue', Arial, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { display: block; max-width: 100%; }
+
+  /* Header */
+  header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    height: 56px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .wordmark {
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .wordmark .degree { letter-spacing: 0; }
+  nav { display: flex; align-items: center; gap: 28px; }
+  nav a {
+    font-size: 12px;
+    color: var(--ink-64);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    padding: 14px 0;
+    transition: color 200ms ease-out;
+  }
+  nav a:hover { color: var(--ink); }
+  .ig { color: var(--ink-40); display: flex; padding: 12px 0 12px 4px; transition: color 200ms ease-out; }
+  .ig:hover { color: var(--ink); }
+  .ig svg { width: 16px; height: 16px; }
+
+  main { padding-top: 56px; }
+
+  /* Destination */
+  .hero { height: min(78vh, 820px); }
+  .hero img { width: 100%; height: 100%; object-fit: cover; }
+  .destination-intro {
+    text-align: center;
+    padding: 96px 24px 64px;
+  }
+  .coords {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.28em;
+    color: var(--ink-64);
+    font-variant-numeric: tabular-nums;
+  }
+  .destination-intro h1 {
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: clamp(32px, 5vw + 8px, 64px);
+    line-height: 1.15;
+    margin-top: 24px;
+    text-wrap: balance;
+  }
+  .destination-detail {
+    margin-top: 20px;
+    font-size: 16px;
+    color: var(--ink-64);
+    line-height: 1.7;
+  }
+  .destination-pair {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 4px;
+    padding: 0 0 96px;
+  }
+  .destination-pair img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 3 / 2; }
+
+  .parallel { height: 1px; background: var(--hairline); }
+
+  /* Philosophy */
+  .philosophy {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 112px 24px 128px;
+  }
+  .philosophy h2 {
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: clamp(28px, 3vw + 12px, 40px);
+    line-height: 1.25;
+    text-wrap: balance;
+  }
+  .philosophy p {
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 1.75;
+    color: var(--ink-88);
+    margin-top: 36px;
+    text-wrap: pretty;
+  }
+  .philosophy .closing {
+    font-style: italic;
+    color: var(--ink-64);
+    margin-top: 48px;
+  }
+
+  /* Gallery */
+  .gallery-head { padding: 96px 24px 48px; text-align: center; }
+  .gallery-head h2 {
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 32px;
+  }
+  .gallery-head p { font-size: 14px; color: var(--ink-64); margin-top: 12px; }
+  .gallery { columns: 3 300px; column-gap: 4px; padding: 0 4px 4px; }
+  .gallery button {
+    display: block;
+    width: 100%;
+    margin-bottom: 4px;
+    border: 0;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+    break-inside: avoid;
+  }
+  .gallery button:focus-visible { outline: 1px solid var(--ink); outline-offset: -2px; }
+  .gallery img { width: 100%; transition: opacity 200ms ease-out; }
+  .gallery button:hover img { opacity: 0.82; }
+
+  /* Lightbox */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.97);
+    display: none;
+    flex-direction: column;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox-stage {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 0;
+    padding: 64px 72px 16px;
+  }
+  .lightbox-stage img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .lightbox-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 24px 24px;
+  }
+  .lightbox-count { font-size: 12px; letter-spacing: 0.2em; color: var(--ink-64); font-variant-numeric: tabular-nums; }
+  .download {
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    text-indent: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border: 1px solid var(--ink);
+    padding: 14px 28px;
+    transition: background-color 200ms ease-out, color 200ms ease-out;
+  }
+  .download:hover { background: var(--ink); color: var(--bg); }
+  .lightbox-close, .lightbox-prev, .lightbox-next {
+    position: absolute;
+    background: none;
+    border: 0;
+    color: var(--ink-64);
+    cursor: pointer;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 200ms ease-out;
+  }
+  .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover { color: var(--ink); }
+  .lightbox-close { top: 12px; right: 16px; }
+  .lightbox-prev { left: 12px; top: 50%; transform: translateY(-50%); }
+  .lightbox-next { right: 12px; top: 50%; transform: translateY(-50%); }
+  .lightbox svg { width: 22px; height: 22px; }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--hairline);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 32px 24px;
+    margin-top: 4px;
+  }
+  footer .note { font-size: 12px; color: var(--ink-64); }
+
+  /* Scroll reveal: the private document surfaces as it is read.
+     Scoped under html.js so content stays visible without JavaScript. */
+  @media (prefers-reduced-motion: no-preference) {
+    html.js .fade { opacity: 0; transform: translateY(12px); transition: opacity 600ms ease-out, transform 600ms ease-out; }
+    html.js .fade.in { opacity: 1; transform: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+  section[id] { scroll-margin-top: 56px; }
+
+  @media (max-width: 720px) {
+    nav { gap: 18px; }
+    .wordmark { letter-spacing: 0.3em; }
+    .destination-intro { padding: 64px 20px 48px; }
+    .destination-pair { grid-template-columns: 1fr; }
+    .destination-pair img { aspect-ratio: 4 / 3; }
+    .philosophy { padding: 80px 24px 96px; }
+    .philosophy p { font-size: 18px; }
+    .lightbox-stage { padding: 56px 12px 8px; }
+    .lightbox-bar { flex-direction: column; align-items: center; gap: 20px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <a class="wordmark" href="#top">Latitude<span class="degree">&deg;</span></a>
+  <nav aria-label="Sections">
+    <a href="#destination">Destination</a>
+    <a href="#philosophy">Philosophy</a>
+    <a href="#gallery">Gallery</a>
+    <a class="ig" href="https://instagram.com" target="_blank" rel="noopener" aria-label="Latitude on Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+      </svg>
+    </a>
+  </nav>
+</header>
+
+<main id="top">
+  <!-- Destination -->
+  <section id="destination">
+    <div class="hero">
+      <img src="images/hero-day.jpg" alt="Fushifaru island and its lagoon from the air">
+    </div>
+    <div class="destination-intro fade">
+      <p class="coords">5&deg;29&prime; N &nbsp;/&nbsp; 73&deg;31&prime; E</p>
+      <h1>Latitude Maldives 2026</h1>
+      <p class="destination-detail">Fushifaru Maldives, Lhaviyani Atoll<br>1 to 4 October 2026</p>
+    </div>
+    <div class="destination-pair">
+      <img src="images/villa-2.webp" alt="Beach villa deck at sunset, Fushifaru" loading="lazy">
+      <img src="images/exp-3.webp" alt="The spa courtyard of Fushifaru from above" loading="lazy">
+    </div>
+  </section>
+
+  <div class="parallel" role="presentation"></div>
+
+  <!-- Philosophy -->
+  <section id="philosophy">
+    <div class="philosophy fade">
+      <h2>Relationships before business.</h2>
+      <p>Latitude is a private gathering, held once a year, in a place chosen for its distance as much as its beauty. There is no stage, no exhibition booth, and nothing to walk past. A few days, a small number of people, and time enough to talk properly.</p>
+      <p>Everyone present is there by invitation. We select each designer and each brand partner with care, so that every conversation is worth the days it takes to have it. Nothing at Latitude is pitched or presented. Ideas are discussed across a table, between two people who chose to sit down together.</p>
+      <p>What forms over those days is not a lead or a contact but an acquaintance: dinners shared, water crossed, mornings without a schedule. The work follows from the relationship, in its own time, and lasts as long as the relationship does.</p>
+      <p class="closing">Trust is built in person, slowly. Everything else follows.</p>
+    </div>
+  </section>
+
+  <div class="parallel" role="presentation"></div>
+
+  <!-- Gallery -->
+  <section id="gallery">
+    <div class="gallery-head fade">
+      <h2>Gallery</h2>
+      <p>Latitude Maldives 2026. Photographs from the gathering, to keep.</p>
+    </div>
+    <div class="gallery" id="gallery-grid"></div>
+  </section>
+</main>
+
+<footer>
+  <a class="wordmark" href="#top">Latitude<span class="degree">&deg;</span></a>
+  <p class="note">Private to Latitude participants</p>
+</footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photograph viewer">
+  <button class="lightbox-close" id="lb-close" aria-label="Close">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
+  </button>
+  <button class="lightbox-prev" id="lb-prev" aria-label="Previous photograph">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="14 5 7 12 14 19"/></svg>
+  </button>
+  <button class="lightbox-next" id="lb-next" aria-label="Next photograph">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="10 5 17 12 10 19"/></svg>
+  </button>
+  <div class="lightbox-stage"><img id="lb-img" src="" alt=""></div>
+  <div class="lightbox-bar">
+    <span class="lightbox-count" id="lb-count"></span>
+    <a class="download" id="lb-download" href="" download>Download original</a>
+  </div>
+</div>
+
+<script>
+  const photos = [
+    { src: 'images/hero-aerial.jpg', alt: 'Hammock over the lagoon sandbank' },
+    { src: 'images/act-1.webp', alt: 'Divers on the house reef' },
+    { src: 'images/exp-1.webp', alt: 'Sea turtle over the coral' },
+    { src: 'images/yoga-1.webp', alt: 'Morning yoga on the beach' },
+    { src: 'images/exp-2.webp', alt: 'Paddleboarding past the water villas' },
+    { src: 'images/dine-2.webp', alt: 'Breakfast above the lagoon' },
+    { src: 'images/exp-4.webp', alt: 'Manta rays from the air' },
+    { src: 'images/bk-1.webp', alt: 'Massage by the water' },
+    { src: 'images/act-2.webp', alt: 'The shallows of the house reef' },
+    { src: 'images/villa-1.webp', alt: 'Overwater villas at dusk' },
+    { src: 'images/home-exp-1.webp', alt: 'The Fushifaru swing, six metres down' }
+  ];
+
+  const grid = document.getElementById('gallery-grid');
+  photos.forEach((p, i) => {
+    const b = document.createElement('button');
+    b.setAttribute('aria-label', 'View photograph ' + (i + 1));
+    const img = document.createElement('img');
+    img.src = p.src;
+    img.alt = p.alt;
+    img.loading = 'lazy';
+    b.appendChild(img);
+    b.addEventListener('click', () => openLightbox(i));
+    grid.appendChild(b);
+  });
+
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lb-img');
+  const lbCount = document.getElementById('lb-count');
+  const lbDownload = document.getElementById('lb-download');
+  let current = 0;
+  let lastFocus = null;
+
+  function render() {
+    const p = photos[current];
+    lbImg.src = p.src;
+    lbImg.alt = p.alt;
+    lbCount.textContent = String(current + 1).padStart(2, '0') + ' / ' + String(photos.length).padStart(2, '0');
+    lbDownload.href = p.src;
+    lbDownload.download = 'latitude-maldives-2026-' + String(current + 1).padStart(2, '0') + p.src.slice(p.src.lastIndexOf('.'));
+  }
+  function openLightbox(i) {
+    current = i;
+    render();
+    lastFocus = document.activeElement;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('lb-close').focus();
+  }
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+    if (lastFocus) lastFocus.focus();
+  }
+  document.getElementById('lb-close').addEventListener('click', closeLightbox);
+  document.getElementById('lb-prev').addEventListener('click', () => { current = (current + photos.length - 1) % photos.length; render(); });
+  document.getElementById('lb-next').addEventListener('click', () => { current = (current + 1) % photos.length; render(); });
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') { current = (current + photos.length - 1) % photos.length; render(); }
+    if (e.key === 'ArrowRight') { current = (current + 1) % photos.length; render(); }
+    if (e.key === 'Tab') {
+      // Keep focus inside the dialog while it is open
+      const focusables = lightbox.querySelectorAll('button, a[href]');
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      else if (!lightbox.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+    }
+  });
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox || e.target.classList.contains('lightbox-stage')) closeLightbox(); });
+
+  // Scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade').forEach((el) => io.observe(el));
+</script>
+</body>
+</html>
