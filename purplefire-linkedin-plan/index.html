@@ -1,0 +1,1822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daniel Chabert · LinkedIn 60 Day Plan · PurpleFire</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700;800&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5F4F9;
+    --card:#FFFFFF;
+    --ink:#16112B;
+    --purple:#210B50;
+    --orange:#FF8A35;
+    --orange-ink:#9A4E10;
+    --orange-tint:#FFF3E8;
+    --orange-line:#EFD3B8;
+    --lav-tint:#F1EDFB;
+    --lav-line:#D5C8F0;
+    --line:#E2DFEC;
+    --muted:#6E6A7E;
+    --green:#1F7A3D;
+    --green-tint:#EAF4ED;
+    --green-line:#C4DFCD;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
+    --disp:'Schibsted Grotesk',system-ui,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:'Hanken Grotesk',system-ui,-apple-system,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    font-size:16px;
+    line-height:1.6;
+  }
+  ::selection{background:var(--purple);color:#fff;}
+  button:focus-visible,input:focus-visible{outline:2px solid var(--purple);outline-offset:2px;}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px 96px;}
+
+  /* ============ HERO ============ */
+  .hero{
+    background:var(--purple);
+    color:#fff;
+    padding:64px 24px 56px;
+  }
+  .hero-inner{max-width:960px;margin:0 auto;}
+  .hero .kicker{
+    display:inline-block;
+    font-family:var(--mono);
+    font-size:12px;
+    font-weight:500;
+    color:var(--orange);
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    margin-bottom:24px;
+  }
+  .hero h1{
+    font-family:var(--disp);
+    font-size:40px;
+    font-weight:800;
+    line-height:1.08;
+    letter-spacing:-0.01em;
+    margin-bottom:16px;
+    max-width:640px;
+  }
+  .hero p.sub{font-size:16px;line-height:1.7;color:#C9BFE6;max-width:620px;}
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+    gap:1px;
+    background:rgba(255,255,255,0.16);
+    border:1px solid rgba(255,255,255,0.16);
+    margin-top:40px;
+  }
+  .stat{
+    background:var(--purple);
+    padding:16px 14px 14px;
+  }
+  .stat .n{font-family:var(--disp);font-size:28px;font-weight:700;color:#fff;line-height:1.1;}
+  .stat .l{font-family:var(--mono);font-size:12px;color:#9D8FC7;margin-top:4px;line-height:1.4;}
+
+  /* ============ DECISIONS ============ */
+  .decisions{
+    background:var(--orange-tint);
+    border:1px solid var(--orange-line);
+    border-radius:6px;
+    padding:28px;
+    margin:40px 0 0;
+  }
+  .decisions h2{
+    font-family:var(--mono);
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--orange-ink);
+    margin-bottom:14px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .decisions ol{padding-left:20px;}
+  .decisions li{margin-bottom:10px;font-size:14px;line-height:1.65;}
+  .decisions li:last-child{margin-bottom:0;}
+  .decisions li strong{color:var(--purple);}
+
+  /* ============ SECTION HEADERS ============ */
+  h2.section{
+    font-family:var(--disp);
+    font-size:28px;
+    font-weight:700;
+    letter-spacing:-0.01em;
+    color:var(--purple);
+    margin:64px 0 8px;
+  }
+  p.section-sub{color:var(--muted);margin-bottom:24px;font-size:14px;line-height:1.65;max-width:720px;}
+
+  /* ============ PREP TABLE ============ */
+  .prep{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .prep-row{
+    display:grid;
+    grid-template-columns:40px 84px 1fr 96px;
+    gap:14px;
+    align-items:center;
+    padding:14px 20px;
+    border-bottom:1px solid var(--line);
+    font-size:14px;
+    line-height:1.5;
+  }
+  .prep-row:last-child{border-bottom:none;}
+  .prep-row.done{background:var(--green-tint);}
+  .prep-row.done span:nth-child(3){color:var(--muted);text-decoration:line-through;text-decoration-color:var(--green-line);}
+  .prep-row .who{
+    font-family:var(--mono);
+    font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;
+    padding:2px 8px;border-radius:4px;text-align:center;
+  }
+  .who.daniel{background:var(--lav-tint);color:var(--purple);border:1px solid var(--lav-line);}
+  .who.bhaskar{background:var(--purple);color:#fff;border:1px solid var(--purple);}
+  .prep-row .date{font-family:var(--mono);font-weight:600;color:var(--purple);font-size:12px;letter-spacing:.04em;text-transform:uppercase;}
+
+  /* ============ FILTERS ============ */
+  .toolbar{
+    position:sticky;top:0;z-index:30;
+    background:var(--paper);
+    padding:16px 0 14px;
+    display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+    border-bottom:1px solid var(--line);
+  }
+  .chip{
+    font-family:'Hanken Grotesk',system-ui,sans-serif;
+    font-size:14px;font-weight:500;
+    border:1px solid var(--line);
+    background:var(--card);
+    color:var(--ink);
+    padding:7px 14px;border-radius:6px;
+    cursor:pointer;
+    transition:border-color .15s ease,background .15s ease,color .15s ease;
+  }
+  .chip:hover{border-color:var(--purple);}
+  .chip.active{background:var(--purple);color:#fff;border-color:var(--purple);}
+  .toolbar .progress{
+    margin-left:auto;
+    font-family:var(--mono);
+    font-size:12px;font-weight:600;color:var(--purple);
+    letter-spacing:.04em;
+    background:var(--card);
+    border:1px solid var(--line);
+    padding:7px 14px;border-radius:6px;
+  }
+
+  /* ============ WEEK BLOCKS ============ */
+  .week{margin-top:48px;}
+  .week-head{
+    display:flex;align-items:baseline;gap:14px;margin-bottom:16px;
+    padding-bottom:12px;
+    border-bottom:1px solid var(--line);
+  }
+  .week-head .wk{
+    font-family:var(--mono);
+    font-size:12px;font-weight:600;
+    letter-spacing:.12em;text-transform:uppercase;
+    color:var(--purple);
+    border:1px solid var(--lav-line);
+    background:var(--lav-tint);
+    padding:3px 10px;border-radius:4px;
+  }
+  .week-head h3{font-family:var(--disp);font-size:24px;color:var(--purple);font-weight:700;letter-spacing:-0.01em;}
+  .week-head .dates{font-family:var(--mono);color:var(--muted);font-size:12px;letter-spacing:.04em;margin-left:auto;}
+
+  /* ============ POST CARDS ============ */
+  .post{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:6px;
+    margin-bottom:10px;
+    overflow:hidden;
+    transition:border-color .15s ease;
+  }
+  .post:hover{border-color:#B9AEDC;}
+  .post.open{border-color:var(--purple);}
+  .post.hidden{display:none;}
+  .post-head{
+    display:flex;align-items:center;gap:16px;
+    padding:16px 20px;
+    cursor:pointer;
+    user-select:none;
+  }
+  .post-check{
+    width:18px;height:18px;flex:none;
+    accent-color:var(--green);
+    cursor:pointer;
+  }
+  .post-when{
+    flex:none;width:64px;
+  }
+  .post-when .d{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;}
+  .post-when .dt{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--purple);letter-spacing:.02em;}
+  .post-title{flex:1;min-width:0;}
+  .post-title h4{font-size:16px;font-weight:600;color:var(--ink);line-height:1.4;}
+  .post-title .id{font-family:var(--mono);font-size:12px;color:var(--muted);font-weight:400;letter-spacing:.05em;text-transform:uppercase;margin-bottom:2px;}
+  .badge{
+    flex:none;
+    font-family:var(--mono);
+    font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;
+    padding:3px 9px;border-radius:4px;
+  }
+  .badge.results{background:var(--orange-tint);color:var(--orange-ink);border:1px solid var(--orange-line);}
+  .badge.knowledge{background:var(--lav-tint);color:var(--purple);border:1px solid var(--lav-line);}
+  .badge.video{background:var(--purple);color:#fff;border:1px solid var(--purple);}
+  .badge.leadmagnet{background:var(--green-tint);color:var(--green);border:1px solid var(--green-line);}
+  .badge.guess{background:var(--card);color:var(--purple);border:1px solid var(--purple);}
+  .chev{flex:none;width:18px;height:18px;transition:transform .2s ease;color:var(--muted);}
+  .post.open .chev{transform:rotate(180deg);}
+  .post.posted .post-title h4{color:var(--muted);}
+  .post.posted{background:#FBFAF7;}
+
+  .post-body{display:none;padding:0 20px 24px;}
+  .post.open .post-body{display:block;}
+  .brief{
+    display:grid;grid-template-columns:104px 1fr;gap:8px 16px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:16px 18px;
+    font-size:14px;
+    line-height:1.6;
+    margin-bottom:16px;
+  }
+  .brief dt{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--purple);text-transform:uppercase;letter-spacing:.06em;padding-top:2px;}
+  .brief dd{color:var(--ink);}
+
+  .copy-label{
+    display:flex;align-items:center;justify-content:space-between;
+    margin-bottom:10px;
+  }
+  .copy-label span{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--purple);text-transform:uppercase;letter-spacing:.1em;}
+  .copy-btn{
+    font-family:'Hanken Grotesk',system-ui,sans-serif;
+    font-size:14px;font-weight:600;
+    background:var(--orange);color:var(--purple);
+    border:1px solid var(--orange);
+    padding:6px 18px;border-radius:6px;
+    cursor:pointer;
+    transition:filter .15s ease,background .15s ease,border-color .15s ease,color .15s ease;
+  }
+  .copy-btn:hover{filter:brightness(1.05);}
+  .copy-btn.copied{background:var(--green);border-color:var(--green);color:#fff;}
+
+  .li-preview{
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:20px;
+    background:var(--card);
+  }
+  .li-author{display:flex;gap:10px;align-items:center;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--line);}
+  .li-avatar{
+    width:40px;height:40px;border-radius:50%;
+    background:var(--purple);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--disp);font-weight:700;font-size:14px;flex:none;
+  }
+  .li-author .nm{font-weight:600;font-size:14px;}
+  .li-author .rl{font-size:12px;color:var(--muted);}
+  pre.post-copy{
+    font-family:'Hanken Grotesk',system-ui,sans-serif;
+    font-size:14px;
+    white-space:pre-wrap;
+    line-height:1.65;
+  }
+
+  .script{
+    border:1px solid var(--line);
+    border-radius:6px;
+    background:var(--card);
+    padding:20px;
+  }
+  .script p{margin-bottom:12px;font-size:14px;}
+  .script .cue{
+    display:block;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:8px 12px;
+    font-family:var(--mono);
+    font-size:12px;font-weight:500;color:var(--purple);
+    margin-bottom:12px;
+  }
+  .video-specs{
+    display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;
+  }
+  .spec{
+    font-family:var(--mono);
+    font-size:12px;font-weight:500;
+    background:var(--paper);
+    border:1px solid var(--line);
+    color:var(--purple);
+    padding:3px 10px;border-radius:4px;
+    letter-spacing:.02em;
+  }
+
+  /* ============ AFTER 30 / CHECKLIST ============ */
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  @media (max-width:720px){.grid2{grid-template-columns:1fr;}}
+  .panel{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:24px;
+  }
+  .panel h3{font-family:var(--disp);font-size:20px;color:var(--purple);font-weight:700;margin-bottom:12px;}
+  .panel ul{padding-left:18px;}
+  .panel li{margin-bottom:10px;font-size:14px;line-height:1.65;}
+  .panel li strong{color:var(--purple);}
+
+  footer{
+    margin-top:64px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+    text-align:center;
+    font-family:var(--mono);
+    color:var(--muted);font-size:12px;letter-spacing:.04em;
+  }
+  @media (max-width:640px){
+    .hero{padding:48px 20px 40px;}
+    .hero h1{font-size:32px;}
+    .prep-row{grid-template-columns:32px 70px 1fr;}
+    .prep-row .who{display:none;}
+    .post-when{width:56px;}
+    .badge{display:none;}
+    .week-head .dates{display:none;}
+    .brief{grid-template-columns:1fr;gap:2px 0;}
+    .brief dt{padding-top:8px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{transition:none!important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <span class="kicker">PurpleFire · Client Acquisition</span>
+    <h1>Daniel's LinkedIn 60 Day Plan</h1>
+    <p class="sub">July 15 to September 11, 2026. Every post anchored to a real test, a real number, or a real pattern from 1,300+ experiments. Month 1 is pre written proof; month 2 reacts to real outcomes and pivots the audience toward BFCM. Goal: 4 to 6 qualified conversations with Danish and Nordic Shopify founders.</p>
+    <div class="stats">
+      <div class="stat"><div class="n">40</div><div class="l">posts, Mon to Fri</div></div>
+      <div class="stat"><div class="n">11</div><div class="l">results posts</div></div>
+      <div class="stat"><div class="n">10</div><div class="l">knowledge posts</div></div>
+      <div class="stat"><div class="n">8</div><div class="l">guess the winner votes</div></div>
+      <div class="stat"><div class="n">6</div><div class="l">videos with scripts</div></div>
+      <div class="stat"><div class="n">5</div><div class="l">lead magnets + offers</div></div>
+      <div class="stat"><div class="n">~5h</div><div class="l">Daniel's total effort</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="decisions">
+    <h2>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b25412" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg>
+      Two decisions before anything publishes
+    </h2>
+    <ol>
+      <li><strong>Client naming.</strong> Posts name PH Import and Qookware. Get a one line OK from each founder. If either declines, swap to "a Danish cleaning products brand" / "a Danish cookware brand". The numbers stay identical.</li>
+      <li><strong>Numbers discipline.</strong> Only PH Import T05 (+19.13% CVR) is at 99.7% statistical significance. Everything else is 78 to 91% ("trending"). The copy states measured lifts from test windows without claiming statistical proof. Do not round the language up when posting or replying to comments.</li>
+    </ol>
+  </div>
+
+  <h2 class="section">Prep week · Jul 15 to 19</h2>
+  <p class="section-sub">Tick items off as they land. Progress saves in your browser.</p>
+  <div class="prep" id="prep">
+    <label class="prep-row"><input type="checkbox" class="post-check" data-key="prep1"><span class="date">Jul 15</span><span>Approve all post copy, make the two decisions above</span><span class="who daniel">Daniel</span></label>
+    <label class="prep-row"><input type="checkbox" class="post-check" data-key="prep2"><span class="date">Jul 16</span><span>Record videos 1 to 4 in one sitting (~90 min with retakes)</span><span class="who daniel">Daniel</span></label>
+    <label class="prep-row"><input type="checkbox" class="post-check" data-key="prep3"><span class="date">Jul 16</span><span>Ask PH Import + Qookware founders for naming OK and referral intros</span><span class="who daniel">Daniel</span></label>
+    <label class="prep-row"><input type="checkbox" class="post-check" data-key="prep4"><span class="date">Jul 17</span><span>Build "Vault Top 20" lead magnet PDF (from the vault index, real client names)</span><span class="who bhaskar">Bhaskar</span></label>
+    <label class="prep-row"><input type="checkbox" class="post-check" data-key="prep5"><span class="date">Jul 17</span><span>Produce 5 result card images from deck crops (dark card, big green number, before/after phones)</span><span class="who bhaskar">Bhaskar</span></label>
+    <label class="prep-row"><input type="checkbox" class="post-check" data-key="prep6"><span class="date">Jul 18</span><span>Edit videos: captions, 4:5 crop, hook overlay in first 2 seconds</span><span class="who bhaskar">Bhaskar</span></label>
+    <label class="prep-row"><input type="checkbox" class="post-check" data-key="prep7"><span class="date">Jul 19</span><span>Load everything into the scheduler or hand Daniel a paste ready folder</span><span class="who bhaskar">Bhaskar</span></label>
+  </div>
+
+  <h2 class="section">The 40 posts</h2>
+  <p class="section-sub">Filter by type, click a card for the full copy, hit Copy to grab it paste ready. The checkbox marks a post as published. Tuesdays are "guess the winner" votes: the audience votes with reactions, and that week's reveal post opens with the real vote split (fill it in before posting). Month 2 cards marked REACTIVE get final copy drafted 2 to 3 days ahead from real month 1 outcomes; the framework and hook live on the card.</p>
+
+  <div class="toolbar" id="toolbar">
+    <button class="chip active" data-filter="all">All 40</button>
+    <button class="chip" data-filter="results">Results</button>
+    <button class="chip" data-filter="knowledge">Knowledge</button>
+    <button class="chip" data-filter="video">Videos</button>
+    <button class="chip" data-filter="guess">Guess the winner</button>
+    <button class="chip" data-filter="leadmagnet">Lead magnets</button>
+    <span class="progress" id="progress">0 / 16 posted</span>
+  </div>
+
+  <!-- ================= WEEK 1 ================= -->
+  <div class="week" data-week="1">
+    <div class="week-head"><span class="wk">Week 1</span><h3>Proof</h3><span class="dates">Jul 20 to 24</span></div>
+
+    <article class="post" data-type="results">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="p1" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Mon</div><div class="dt">Jul 20</div></div>
+        <div class="post-title"><div class="id">Post 1 · static image</div><h4>+19.13% CVR from the pixels under the buy button</h4></div>
+        <span class="badge results">Results</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief">
+          <dt>Source</dt><dd>PH Import T05, assurance icons below ATC. The flagship: 99.7% significance.</dd>
+          <dt>Visual</dt><dd>Template card: "+19.13% CVR" huge, subline "776,058 DKK/month incremental", before/after crop from PH-Import-cro-deck.pdf page 8.</dd>
+        </dl>
+        <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
+        <div class="li-preview">
+          <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
+          <pre class="post-copy">The highest ROI pixels on a product page sit directly under the Add to Cart button.
+
+We proved it in May on PH Import, a Danish cleaning products store.
+
+Their PDP had a "recommended products" block above the buy button. Data showed it earned 1% of clicks. The Add to Cart button next to it: 7%.
+
+So we killed the upsell and tested two variants of reassurance in that exact spot. The winner: simple assurance icons directly below Add to Cart, covering delivery time, return policy, and guarantee.
+
+Result over 60 days:
+• Conversion rate: 6.3% to 7.5% (+19.13%)
+• Revenue per session: +17.5%
+• 99.7% statistical significance
+• 776,058 DKK per month in incremental revenue
+
+The lesson: shoppers hesitate at the exact moment of commitment, not while browsing. Reassurance placed at that moment outperforms any upsell you can put there.
+
+Check your own PDP. What sits directly under your buy button, and is it answering the question your customer is silently asking?</pre>
+        </div>
+      </div>
+    </article>
+
+    <article class="post" data-type="guess">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="pg1" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Tue</div><div class="dt">Jul 21</div></div>
+        <div class="post-title"><div class="id">Post G1 · static image · reaction vote</div><h4>Vote: how big was the sticky ATC lift?</h4></div>
+        <span class="badge guess">Guess</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief">
+          <dt>Source</dt><dd>Qookware T04. Direction is guessable, so the vote is about magnitude.</dd>
+          <dt>Visual</dt><dd>Side by side phone crops from Qookware-cro-deck.pdf page 7: control PDP vs sticky bar variant, labeled A and B. Do not show the result.</dd>
+          <dt>Reveal</dt><dd>Post 4 on Friday. Open it with the vote outcome (fill in the real split) and name the closest guess.</dd>
+        </dl>
+        <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
+        <div class="li-preview">
+          <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
+          <pre class="post-copy">Time to test your CRO instincts. Real A/B test, real money.
+
+A Danish cookware store. 87% of its traffic is mobile, and the average shopper scrolls past the Add to Cart button in 74 seconds, then never scrolls back.
+
+Variant A: the standard product page.
+Variant B: same page, plus a sticky Add to Cart bar that appears when the native button scrolls out of view.
+
+B won. That part you'd guess. The real question is by how much.
+
+How big was the mobile conversion lift?
+
+Like = under 10%
+Celebrate = 10 to 20%
+Love = over 20%
+
+Bonus round: comment your exact percentage. Closest guess gets named in Friday's reveal.
+
+Full breakdown Friday, including the monthly revenue number.</pre>
+        </div>
+      </div>
+    </article>
+
+    <article class="post" data-type="video">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="p2" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Wed</div><div class="dt">Jul 22</div></div>
+        <div class="post-title"><div class="id">Post 2 · video 1 · Daniel records</div><h4>13 tests, 13 winners. The process, not luck.</h4></div>
+        <span class="badge video">Video</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <div class="video-specs">
+          <span class="spec">Talking head</span><span class="spec">75 to 90 sec</span><span class="spec">Captions burned in</span><span class="spec">Hook overlay: "13 A/B tests. 13 winners."</span><span class="spec">CTA: comment PROCESS</span>
+        </div>
+        <div class="copy-label"><span>Script (~200 words spoken)</span><button class="copy-btn">Copy</button></div>
+        <div class="script"><pre class="post-copy">This spring we ran 13 A/B tests across two Danish webshops. All 13 won. Combined, they're worth about 3.8 million kroner per month in incremental revenue.
+
+That's not luck, and honestly, it's not genius either. It's boring discipline, three rules.
+
+Rule one: no test without an observation. We never start from "let's try a new button color." We start from data. Example: on one store, 87 percent of sessions were mobile, and the average shopper scrolled past the Add to Cart button in 74 seconds and never saw it again. That's an observation worth testing.
+
+[B-ROLL: screen recording of scroll heatmap or the deck observation slide]
+
+Rule two: the hypothesis names the metric. "If we add a sticky Add to Cart bar on mobile, revenue per session goes up, because the button stays visible when intent peaks." If we can't write that sentence, we don't build the test.
+
+Rule three: we measure revenue per session, not clicks. Clicks flatter you. Revenue doesn't lie.
+
+[B-ROLL: post-test report card, +25% CVR]
+
+That sticky bar? Plus 25 percent conversion on mobile.
+
+I've turned our exact test brief template into a one pager. Comment PROCESS and I'll send it over.</pre></div>
+      </div>
+    </article>
+
+    <article class="post" data-type="knowledge">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="p3" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Thu</div><div class="dt">Jul 23</div></div>
+        <div class="post-title"><div class="id">Post 3</div><h4>Trust wins at the friction point, not in the footer</h4></div>
+        <span class="badge knowledge">Knowledge</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief">
+          <dt>Source</dt><dd>Pattern across PH Import T05, Qookware T01, and the vault (German Car Accessories shipping test).</dd>
+          <dt>Visual</dt><dd>Simple graphic: PDP wireframe with a green zone under the ATC button labeled "highest leverage real estate".</dd>
+        </dl>
+        <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
+        <div class="li-preview">
+          <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
+          <pre class="post-copy">After 1,300+ A/B tests, one pattern keeps repeating:
+
+Trust wins tests when it's placed at the moment of friction. Not in a footer. Not on an About page. At the exact pixel where the customer hesitates.
+
+Three examples, two from our current programs and one from the vault:
+
+1. Assurance icons directly below Add to Cart: +19% conversion (99.7% significance).
+2. USP pointers moved from below the fold to directly under the price on a cookware store: +14% revenue per visitor. Why? 56% of visitors bounced within 74 seconds, before they ever scrolled to the USPs.
+3. From the PurpleFire vault: a free shipping message placed directly above the buy button on German Car Accessories: +44% revenue per visitor.
+
+The mistake most stores make is treating trust as decoration. Badges everywhere, guarantees nowhere near the button.
+
+The fix is placement, not volume: find where people drop off, then answer their objection at that exact spot.
+
+Where does your drop off happen? That's where your guarantee belongs.</pre>
+        </div>
+      </div>
+    </article>
+
+    <article class="post" data-type="results">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="p4" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Fri</div><div class="dt">Jul 24</div></div>
+        <div class="post-title"><div class="id">Post 4 · static image</div><h4>+25.32% mobile CVR from a sticky Add to Cart bar</h4></div>
+        <span class="badge results">Results</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief">
+          <dt>Source</dt><dd>Qookware T04, sticky mobile ATC.</dd>
+          <dt>Visual</dt><dd>Template card: "+25.32% CVR" huge, subline "Mobile PDP, 267,414 DKK/month", before/after phone crops from Qookware-cro-deck.pdf pages 7 to 8.</dd>
+        </dl>
+        <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
+        <div class="li-preview">
+          <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
+          <pre class="post-copy">87% of this store's traffic is mobile. Its product page was designed on a 27 inch monitor.
+
+Qookware sells premium cookware in Denmark. Great products, strong reviews, 4.8 stars.
+
+But mobile converted at 4.9% while desktop did 7.2%. And the session recordings showed why: average mobile dwell time on the PDP was 74 seconds, and shoppers scrolled past the Add to Cart button early, then never scrolled back.
+
+The friction wasn't intent. It was visibility.
+
+The test: a sticky Add to Cart bar that appears once the native button scrolls out of view.
+
+Result over the test window:
+• Mobile conversion: +25.32%
+• Revenue per session: +21.12%
+• 267,414 DKK per month incremental
+
+My take after hundreds of mobile tests: stop scaling desktop designs down. Design the mobile PDP first, because that's where your customers actually are.
+
+Quick check for your own store: open your bestseller on your phone, scroll for 5 seconds, and see if you can still buy without scrolling back up.</pre>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- ================= WEEK 2 ================= -->
+  <div class="week" data-week="2">
+    <div class="week-head"><span class="wk">Week 2</span><h3>Mobile + Vault</h3><span class="dates">Jul 27 to 31</span></div>
+
+    <article class="post" data-type="knowledge">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="p5" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Mon</div><div class="dt">Jul 27</div></div>
+        <div class="post-title"><div class="id">Post 5</div><h4>Mobile is the business. Desktop is the preview.</h4></div>
+        <span class="badge knowledge">Knowledge</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief">
+          <dt>Source</dt><dd>Qookware observations (T03 + T04) and the spring mobile test set.</dd>
+          <dt>Visual</dt><dd>Stat card, three lines: "87% of sessions. 74 seconds. 0.9% CVR." Dark card.</dd>
+        </dl>
+        <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
+        <div class="li-preview">
+          <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
+          <pre class="post-copy">This store got 87% of its traffic from mobile and converted it at 0.9%. Most founders would draw exactly the wrong conclusion.
+
+The full picture, before we touched anything:
+
+• 87% of sessions on mobile
+• 74 seconds average time on a product page
+• Mobile homepage conversion: 0.9%. Desktop visitors stayed 137 seconds on that same homepage; mobile visitors gave it 56.
+
+Most founders read this and conclude "mobile shoppers just browse."
+
+Wrong conclusion. Mobile shoppers buy fine when the page respects how they behave: fast scroll, thumb reach, zero patience for hunting.
+
+What actually moved the needle across our mobile tests this spring:
+
+1. Sticky Add to Cart once the button leaves the viewport (+25% CVR)
+2. Collection shortcuts directly under the header, so shoppers reach category pages in one tap
+3. Compact bundle selectors that don't push the buy button below three screens of options
+4. USPs above the fold, because 56% never scroll past it
+
+None of these are redesigns. Each is one focused change to how mobile shoppers actually move.
+
+If your mobile conversion is less than 60% of desktop, you don't have a traffic problem. You have a thumb problem.</pre>
+        </div>
+      </div>
+    </article>
+
+    <article class="post" data-type="guess">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="pg2" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Tue</div><div class="dt">Jul 28</div></div>
+        <div class="post-title"><div class="id">Post G2 · static image · reaction vote</div><h4>Vote: which bundle layout made 623K more?</h4></div>
+        <span class="badge guess">Guess</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief">
+          <dt>Source</dt><dd>PH Import T02. A genuine coin flip for most readers.</dd>
+          <dt>Visual</dt><dd>Side by side crops from PH-Import-cro-deck.pdf page 3: ascending 2 row grid (A) vs descending single row carousel (B), labeled. Do not show the result.</dd>
+          <dt>Reveal</dt><dd>Post 7 on Thursday. Open with the vote split and quote the sharpest comment.</dd>
+        </dl>
+        <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
+        <div class="li-preview">
+          <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
+          <pre class="post-copy">Two ways to sell the exact same five bundle options. One of them made 623,413 DKK more per month. Which one?
+
+A Danish store selling cleaning products people buy in bulk. Quantity options: 1, 2, 3, 6 or 12 units.
+
+Layout A: all five options visible in a grid, cheapest first (1 up to 12).
+Layout B: a single row carousel, biggest bundles first (12, 6, 3), the rest one swipe away.
+
+Same products. Same prices. Same discounts. Only the layout and the order changed.
+
+Vote:
+Like = A (show everything, cheapest first)
+Love = B (carousel, biggest first)
+
+Comment your reasoning. The sharpest logic gets quoted in Thursday's reveal, win or lose.
+
+Answer Thursday, with the full post-test data.</pre>
+        </div>
+      </div>
+    </article>
+
+    <article class="post" data-type="leadmagnet">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="p6" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Wed</div><div class="dt">Jul 29</div></div>
+        <div class="post-title"><div class="id">Post 6 · static image · comment gate</div><h4>The Vault: 1,300+ tests, comment VAULT</h4></div>
+        <span class="badge leadmagnet">Lead magnet</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief">
+          <dt>Asset</dt><dd>"Vault Top 20" PDF built from the vault index (prep week task 4).</dd>
+          <dt>Visual</dt><dd>Card: "1,300+ A/B tests. 100+ stores." with a blurred grid of test cards behind it.</dd>
+          <dt>Mechanics</dt><dd>Reply to every VAULT comment, DM the PDF within the hour. Connections only, say so in the post.</dd>
+        </dl>
+        <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
+        <div class="li-preview">
+          <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
+          <pre class="post-copy">We've run 1,300+ A/B tests across 100+ ecommerce stores.
+
+Most lost. That's how testing works, and anyone who tells you otherwise is selling something.
+
+But the winners cluster into patterns. The same 20 changes keep producing revenue, store after store, niche after niche:
+
+• Reassurance at the buy button, not in the footer
+• Defaults that anchor to the bundle most people should buy
+• Review photos instead of review text walls
+• One competing CTA removed near the price
+• Shipping clarity before the cart, not inside it
+
+I've pulled the 20 highest impact patterns into one document: the hypothesis, the change, and the measured lift for each, so you can steal the thinking, not just the tactic.
+
+Comment VAULT and I'll DM it to you. (Connections only, so we can actually message.)</pre>
+        </div>
+      </div>
+    </article>
+
+    <article class="post" data-type="results">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="p7" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Thu</div><div class="dt">Jul 30</div></div>
+        <div class="post-title"><div class="id">Post 7 · static image</div><h4>Reordering five buttons: 623,413 DKK per month</h4></div>
+        <span class="badge results">Results</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief">
+          <dt>Source</dt><dd>PH Import T02, quantity tiers reordered, descending, single row carousel.</dd>
+          <dt>Visual</dt><dd>Template card: "+16.57% RPV" huge, subline "623,413 DKK/month", before/after selector crop from PH-Import-cro-deck.pdf page 3.</dd>
+        </dl>
+        <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
+        <div class="li-preview">
+          <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
+          <pre class="post-copy">We changed the ORDER of five buttons. It was worth 623,413 DKK per month.
+
+PH Import sells cleaning products Danes buy in bulk. Their product pages offered quantity bundles: 1, 2, 3, 6, or 12 units, laid out in a two row grid, ascending, cheapest first.
+
+Two problems with that:
+
+1. Ascending order anchors everyone to the cheapest option. The first price you see becomes the reference price.
+2. On mobile, the big grid pushed the Add to Cart button an extra screen down. Shoppers had to scroll past every option before they could buy anything.
+
+The test: a single row carousel showing the biggest bundles first (12, 6, 3), with the small quantities one swipe away.
+
+No price changes. No copy changes. Same five options.
+
+Result: revenue per session up 16.57%. Driven by average order value, exactly as hypothesized.
+
+Your customers take the path you pave. If the cheapest option is the default path, that's the one they'll walk.
+
+What's the first price a visitor sees on your bestseller?</pre>
+        </div>
+      </div>
+    </article>
+
+    <article class="post" data-type="knowledge">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="p8" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Fri</div><div class="dt">Jul 31</div></div>
+        <div class="post-title"><div class="id">Post 8</div><h4>The best test we ran this quarter added nothing</h4></div>
+        <span class="badge knowledge">Knowledge</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief">
+          <dt>Source</dt><dd>Qookware T02, wishlist button removal.</dd>
+          <dt>Visual</dt><dd>Before/after crop from Qookware-cro-deck.pdf page 4: PDP with and without the wishlist button.</dd>
+        </dl>
+        <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
+        <div class="li-preview">
+          <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
+          <pre class="post-copy">The best test we ran this quarter added nothing. It removed one button.
+
+Qookware's product page had an "Add to Wish List" button sitting directly below the price, above the Add to Cart. Prime real estate, primary visual hierarchy.
+
+Think about what that placement says: before you decide to buy, here's an easier, lower commitment way out.
+
+We removed it. That's the whole test.
+
+Revenue per session: +21.46%.
+
+Every element on a page has a job, and every element also has a cost: attention, hesitation, one more decision before the decision that matters. Wishlists, "compare" widgets, social share buttons, a second CTA to "learn more". Each one is a polite exit door next to the checkout.
+
+A rule we apply constantly: for each element near your buy button, ask "does this move the shopper toward purchase?" If the honest answer is no, test removing it. Subtraction is free, fast to build, and shockingly often it wins.
+
+What's the least useful element within a thumb's reach of your Add to Cart button?</pre>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- ================= WEEK 3 ================= -->
+  <div class="week" data-week="3">
+    <div class="week-head"><span class="wk">Week 3</span><h3>Teardown + AOV</h3><span class="dates">Aug 3 to 7</span></div>
+
+    <article class="post" data-type="video">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="p9" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Mon</div><div class="dt">Aug 3</div></div>
+        <div class="post-title"><div class="id">Post 9 · video 2 · Daniel records</div><h4>The 5 minute webshop teardown routine</h4></div>
+        <span class="badge video">Video</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <div class="video-specs">
+          <span class="spec">Talking head + screen recording</span><span class="spec">90 sec</span><span class="spec">Use a real non client Danish store</span><span class="spec">Hook overlay: "5 minute webshop teardown"</span><span class="spec">Seeds the Post 15 offer</span>
+        </div>
+        <div class="copy-label"><span>Script (~210 words spoken)</span><button class="copy-btn">Copy</button></div>
+        <div class="script"><pre class="post-copy">Give me any webshop and five minutes, and I'll tell you where it's leaking money. Here's the exact routine.
+
+[SCREEN: open a store's bestseller PDP on a phone frame]
+
+First: the phone test. I open the bestseller on mobile and scroll like an impatient customer, because 85 to 90 percent of visitors are on mobile and they give you about 74 seconds. Can I still buy after five seconds of scrolling? Is there anything sticky? On most stores the buy button is gone by screen two and never comes back.
+
+Second: the buy zone. I look at what sits within a thumb's reach of Add to Cart. I want reassurance there: delivery time, returns, guarantee. What I usually find: upsells nobody clicks, wishlist buttons, or nothing at all.
+
+[SCREEN: zoom on the area under the ATC button]
+
+Third: the anchor. What's the first price a shopper sees? If it's the cheapest option, the store is training people to spend less. Bundles first, singles second.
+
+Fourth: proof. Are the reviews visible near the decision, and do any of them have photos? Text walls get skimmed. Photos get believed.
+
+That's the five minute version. The full version has 40 more checks and real data behind it.
+
+Want me to run it on your store? Watch this space Thursday next week.</pre></div>
+      </div>
+    </article>
+
+    <article class="post" data-type="guess">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="pg3" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Tue</div><div class="dt">Aug 4</div></div>
+        <div class="post-title"><div class="id">Post G3 · static image · reaction vote</div><h4>Vote: text reviews vs photo reviews, and the twist</h4></div>
+        <span class="badge guess">Guess</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief">
+          <dt>Source</dt><dd>PH Import T03. The twist (same orders, more revenue) is the comment engine.</dd>
+          <dt>Visual</dt><dd>Side by side crops from PH-Import-cro-deck.pdf page 4: text review carousel (A) vs image first carousel (B), labeled. Do not show the result.</dd>
+          <dt>Reveal</dt><dd>Post 10 on Wednesday. Shout out the first commenter who named AOV as the mechanism.</dd>
+        </dl>
+        <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
+        <div class="li-preview">
+          <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
+          <pre class="post-copy">A store has 4,000+ product reviews. Two ways to show them on the product page. One quietly makes 12% more revenue. How?
+
+Version A: the classic review carousel. Star rating, reviewer name, review text.
+Version B: image first. The customer's photo leads, stars and text follow.
+
+Here's the twist that makes this one interesting: the winner did NOT get more orders. Both versions produced almost exactly the same number of purchases.
+
+So the vote is double:
+Like = A wins
+Love = B wins
+And in the comments: if the orders stayed flat, where did the extra 12% revenue come from?
+
+The first person to name the mechanism gets a shoutout tomorrow.
+
+Reveal tomorrow with the full numbers.</pre>
+        </div>
+      </div>
+    </article>
+
+    <article class="post" data-type="results">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="p10" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Wed</div><div class="dt">Aug 5</div></div>
+        <div class="post-title"><div class="id">Post 10 · static image</div><h4>Same orders, 12% more revenue: the AOV effect</h4></div>
+        <span class="badge results">Results</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief">
+          <dt>Source</dt><dd>PH Import T03, image first review carousel. Order counts and AOV verified against the deck post-test slide.</dd>
+          <dt>Visual</dt><dd>Template card: "+11.97% RPV, same number of orders" with the review carousel before/after from PH-Import-cro-deck.pdf page 4.</dd>
+        </dl>
+        <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
+        <div class="li-preview">
+          <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
+          <pre class="post-copy">Same traffic, same number of orders, 12% more revenue.
+
+That's the test result most people don't believe until they see the mechanism.
+
+PH Import had 4,000+ reviews on their cleaning products. Every single one displayed as text. But shoppers buying cleaning products want to SEE the result: the limescale gone, the mold removed, the sofa saved.
+
+The test: replace the text review carousel with an image first version. Customer photo leads, then stars, then the review text.
+
+60 day result:
+• Orders: 192 in control, 192 in variant. Identical.
+• Revenue per visitor: +11.97%
+• Average order value: 336 to 369 DKK
+• 260,349 DKK per month incremental
+
+Read that again: conversion barely moved. People who were going to buy bought anyway. But seeing real results from real customers made them confident enough to buy MORE.
+
+Social proof isn't just about convincing the undecided. Done right, it upgrades the already convinced.
+
+If your reviews are a wall of text, you're leaving the second effect on the table.</pre>
+        </div>
+      </div>
+    </article>
+
+    <article class="post" data-type="knowledge">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="p11" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Thu</div><div class="dt">Aug 6</div></div>
+        <div class="post-title"><div class="id">Post 11</div><h4>Nobody reads your product page. Everybody reads your defaults.</h4></div>
+        <span class="badge knowledge">Knowledge</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief">
+          <dt>Source</dt><dd>PH Import T09 (default badge), T02 (order), T08 (volume discounts).</dd>
+          <dt>Visual</dt><dd>Crop from PH-Import-cro-deck.pdf page 11: the "95% PICKS THIS OPTION" badge variant.</dd>
+        </dl>
+        <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
+        <div class="li-preview">
+          <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
+          <pre class="post-copy">Nobody reads your product page. Everybody reads your defaults.
+
+Three tests from our own programs, one principle:
+
+Test 1: A store's quantity selector defaulted to 1 unit, the lowest possible order. We pre selected the 2 pack and added a badge: "95% picks this option." Revenue per session: +8.73%. Worth 483,434 DKK per month.
+
+Test 2: Same store, different page: bundles reordered so the 12 pack shows first instead of last. +16.57% revenue per session.
+
+Test 3: Tiered volume discounts made visible on products people already buy in bulk. Conversion: +13.52%.
+
+The principle: shoppers don't calculate, they anchor. The first option they see becomes "normal," and everything else gets judged against it. If "normal" is your smallest, cheapest configuration, you've set your own ceiling.
+
+This isn't manipulation. The 2 pack genuinely was what most customers picked. The default just stopped hiding it.
+
+Look at your bestseller right now: what does a visitor get if they change nothing and click buy? That default is quietly deciding your average order value.</pre>
+        </div>
+      </div>
+    </article>
+
+    <article class="post" data-type="results">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="p12" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Fri</div><div class="dt">Aug 7</div></div>
+        <div class="post-title"><div class="id">Post 12 · static image</div><h4>Charisma vs clarity above the fold: +15.70% RPV</h4></div>
+        <span class="badge results">Results</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief">
+          <dt>Source</dt><dd>PH Import T07, homepage above the fold rerun. The 4,094 reviews and 100,000 customers figures come from the store's own header, visible in the deck screenshot.</dd>
+          <dt>Visual</dt><dd>Template card: "+15.70% RPV" with the before/after homepage crops from PH-Import-cro-deck.pdf page 10 (founder photo vs headline + CTA + USPs).</dd>
+        </dl>
+        <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
+        <div class="li-preview">
+          <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
+          <pre class="post-copy">Their homepage opened with a giant photo of the founder pointing at you. Charming. Also expensive.
+
+PH Import's original mobile homepage: hero image, then "Most popular" products. No headline. No value proposition. No reason to stay unless you already knew the brand.
+
+New visitors got charisma when they needed clarity.
+
+The test: keep the founder, add the missing 3 seconds of information above the fold:
+• Headline: what this store solves ("Professionel rengøring uden besvær")
+• One line of proof: Denmark's best selling cleaning products, direct from the importer
+• Two CTAs: shop bestsellers, see bundles
+• 4,094 reviews + 100,000 customers, right under the buttons
+
+Revenue per session: +15.70%. Worth 230,884 DKK per month.
+
+The homepage has one job for a first time visitor: answer "am I in the right place?" in under 3 seconds. Brand personality is what makes them remember you. Clarity is what makes them scroll.
+
+Cover your logo and look at your homepage. Could a stranger say what you sell, for whom, and why you, in 3 seconds?</pre>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- ================= WEEK 4 ================= -->
+  <div class="week" data-week="4">
+    <div class="week-head"><span class="wk">Week 4</span><h3>Compounding + Offer</h3><span class="dates">Aug 10 to 14</span></div>
+
+    <article class="post" data-type="video">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="p13" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Mon</div><div class="dt">Aug 10</div></div>
+        <div class="post-title"><div class="id">Post 13 · video 3 · Daniel records</div><h4>Most A/B tests are theater. Here's what wins.</h4></div>
+        <span class="badge video">Video</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <div class="video-specs">
+          <span class="spec">Talking head</span><span class="spec">75 sec</span><span class="spec">Hook overlay: "Most A/B tests are theater."</span><span class="spec">CTA: comment VAULT (second push)</span>
+        </div>
+        <div class="copy-label"><span>Script (~190 words spoken)</span><button class="copy-btn">Copy</button></div>
+        <div class="script"><pre class="post-copy">Most A/B testing is theater. Button colors, headline synonyms, hero image A versus hero image B. Fifty fifty coin flips dressed up as strategy.
+
+After 1,300 plus tests, here's what actually separates winners from noise. Winners change what the shopper experiences at a decision point. Noise changes decoration.
+
+The decision points are always the same four:
+
+One: the first screen. Am I in the right place? We added a headline and two CTAs to a homepage that opened with just a photo. Plus 15.7 percent revenue per session.
+
+Two: the moment of commitment, right at Add to Cart. Assurance icons under the button: plus 19 percent conversion at 99.7 percent significance. Best test we ran all year.
+
+[B-ROLL: deck cards of both results]
+
+Three: the quantity decision. Which option looks normal? Defaults and order decide your average cart.
+
+Four: the proof moment. Can I trust this? Review photos beat review text, every time we've tested it.
+
+If a test idea doesn't touch one of those four moments, we don't build it.
+
+I've packaged the 20 patterns that keep winning into one doc. Comment VAULT and it's yours.</pre></div>
+      </div>
+    </article>
+
+    <article class="post" data-type="guess">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="pg4" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Tue</div><div class="dt">Aug 11</div></div>
+        <div class="post-title"><div class="id">Post G4 · static image · reaction vote</div><h4>Vote: spot the difference (kr vs DKK)</h4></div>
+        <span class="badge guess">Guess</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief">
+          <dt>Source</dt><dd>PH Import T04. The most shareable of the four: everyone has an opinion and most will get it wrong.</dd>
+          <dt>Visual</dt><dd>Two price tags side by side, large: "129,00 DKK" (A) vs "129 kr" (B). Nothing else on the card. Do not show the result.</dd>
+          <dt>Reveal</dt><dd>Post 14 on Wednesday. Open with how many voted "CRO theater" and quote the best explanation.</dd>
+        </dl>
+        <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
+        <div class="li-preview">
+          <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
+          <pre class="post-copy">Spot the difference. Then tell me if it mattered.
+
+A: 129,00 DKK
+B: 129 kr
+
+Same price. Same product. Same page. The only change on the entire site was how the currency is written.
+
+We A/B tested it on a Danish webshop. Did it move revenue?
+
+Like = no measurable difference, this is CRO theater
+Celebrate = small but real lift (under 5%)
+Love = big lift (over 5%)
+
+If you think it mattered, comment WHY a currency label changes buying behavior. Best explanation gets quoted in tomorrow's reveal.
+
+Answer tomorrow. The number surprised us too.</pre>
+        </div>
+      </div>
+    </article>
+
+    <article class="post" data-type="knowledge">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="p14" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Wed</div><div class="dt">Aug 12</div></div>
+        <div class="post-title"><div class="id">Post 14</div><h4>The most boring test we ran this year: kr vs DKK</h4></div>
+        <span class="badge knowledge">Knowledge</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief">
+          <dt>Source</dt><dd>PH Import T04, currency symbol micro test.</dd>
+          <dt>Visual</dt><dd>Simple card: "kr vs DKK. +2.16%. 131,754 DKK per month."</dd>
+        </dl>
+        <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
+        <div class="li-preview">
+          <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
+          <pre class="post-copy">The most boring test we ran this year: changing "DKK" to "kr" on price tags.
+
+That's it. Same prices. Same layout. "129,00 DKK" became "129 kr".
+
+Why even test this? Danish shoppers think in "kroner", not in ISO currency codes. "DKK" is how banks write. "kr" is how people talk. Small mismatch, tiny friction, but it sits on every single price a visitor reads.
+
+Result: +2.16% revenue per session. Worth 131,754 DKK per month on this store's traffic.
+
+Nobody puts +2.16% in a case study. But here's the math that matters: this took two hours to build, carries zero risk, and pays out every month forever.
+
+Our 9 test program on this store produced two hero results, a handful of solid singles like this one, and zero losers this round. Stacked together: about 3.3 million DKK per month incremental.
+
+CRO compounds like interest. The hero tests get the applause. The boring ones quietly pay the rent.
+
+What's the smallest mismatch between how you write and how your customers talk?</pre>
+        </div>
+      </div>
+    </article>
+
+    <article class="post" data-type="leadmagnet">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="p15" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Thu</div><div class="dt">Aug 13</div></div>
+        <div class="post-title"><div class="id">Post 15 · text only · the offer</div><h4>5 free 48 hour teardown spots</h4></div>
+        <span class="badge leadmagnet">Lead magnet</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief">
+          <dt>Format</dt><dd>Plain text, no image. Text only often outperforms for offer posts; it reads personal, not campaign.</dd>
+          <dt>Mechanics</dt><dd>Comment gate plus direct DM path. Deliver each teardown as a short video within 48 hours, no pitch inside.</dd>
+        </dl>
+        <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
+        <div class="li-preview">
+          <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
+          <pre class="post-copy">For the past month I've been posting our test results: +19% conversion, +25% mobile conversion, +21% from deleting one button.
+
+Several founders have asked the same thing: "would this work on my store?"
+
+Honest answer: I don't know until I've seen your data. So let's find out properly.
+
+I'm opening 5 spots for a free CRO teardown of your webshop:
+
+• I run the same analysis we use on our paying clients
+• You get 3 concrete, prioritized findings with the revenue leak quantified
+• Delivered as a short video walkthrough within 48 hours
+• No slides full of generic best practices. Your store, your data, your numbers.
+
+Who it's for: Shopify stores doing 300K+ DKK per month, in Denmark or the Nordics, that run paid traffic.
+
+Why free: because roughly 1 in 3 of these turns into a longer conversation, and that's how we prefer to meet clients. No pitch inside the teardown itself.
+
+First 5 only, then I close it. Comment "TEARDOWN" and I'll reach out, or message me directly with your store URL.</pre>
+        </div>
+      </div>
+    </article>
+
+    <article class="post" data-type="video">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="p16" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Fri</div><div class="dt">Aug 14</div></div>
+        <div class="post-title"><div class="id">Post 16 · video 4 · Daniel records</div><h4>How AI runs our CRO program, with receipts</h4></div>
+        <span class="badge video">Video</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <div class="video-specs">
+          <span class="spec">Talking head + screen recording</span><span class="spec">90 sec</span><span class="spec">Hook overlay: "Our CRO analyst is an AI. 13 for 13."</span><span class="spec">CTA: follow + TEARDOWN reminder</span>
+        </div>
+        <div class="copy-label"><span>Script (~220 words spoken)</span><button class="copy-btn">Copy</button></div>
+        <div class="script"><pre class="post-copy">Everyone claims AI changed how they work. Here's what it concretely looks like in our CRO agency, with numbers.
+
+The old way: an analyst spends two weeks auditing one store. Heatmaps, analytics, session recordings, competitor research. Two weeks, one audit, then you start designing.
+
+Our way now: an AI agent system does that analysis in about three hours. It reads the analytics, mines thousands of reviews for the customer's actual words, checks every template against a library of 1,300 past tests, and drafts the test briefs. Humans decide what's worth testing, design it properly, and make the calls. The machine does the digging.
+
+[SCREEN: quick montage, analytics, review mining output, a test brief]
+
+Is it better? You tell me. This spring that pipeline produced 13 tests across two Danish stores. All 13 won. Combined value: about 3.8 million kroner per month in incremental revenue.
+
+Not because AI is magic. Because analysis stopped being the bottleneck. When research is cheap, you only ship tests backed by evidence, and evidence backed tests win more.
+
+[B-ROLL: the two deck cover slides with totals]
+
+That's the whole play: machine speed for research, human judgment for decisions.
+
+If you want that pipeline pointed at your store, yesterday I opened 5 free teardown spots. A few are still left. DM me "TEARDOWN".</pre></div>
+      </div>
+    </article>
+  </div>
+
+  <div class="week" data-week="5">
+    <div class="week-head"><span class="wk">Week 5</span><h3>Cash in the teardowns</h3><span class="dates">Aug 17 to 21</span></div>
+
+    <article class="post" data-type="leadmagnet">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="p17" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Mon</div><div class="dt">Aug 17</div></div>
+        <div class="post-title"><div class="id">Post 17 · comment gate · highest intent</div><h4>Comment your top page, get a free CRO redesign</h4></div>
+        <span class="badge leadmagnet">Lead magnet</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief">
+          <dt>Why</dt><dd>Commenting a URL is zero friction, works for non-connections, and every comment is a brand owner publicly self-identifying as a lead. Non-fulfilled commenters go straight onto the outbound list.</dd>
+          <dt>Fulfillment</dt><dd>Our AI pipeline, not Daniel: screenshot + brand extraction, redesign mockup built on vault patterns, annotated before/after image DM'd. Cap: first 10, roughly 1 to 2 supervised hours each. Nordics priority, waitlist the rest. Ask permission in the DM to reuse as a before/after post.</dd>
+          <dt>Visual</dt><dd>One strong before/after example (PH Import or Qookware crop with permission, or an anonymized vault pair).</dd>
+        </dl>
+        <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
+        <div class="li-preview">
+          <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
+          <pre class="post-copy">Comment your store's highest traffic page. I'll send you back a CRO optimized redesign of it. Free.
+
+Not a checklist. Not generic tips. An actual redesign mockup of your page, rebuilt around what keeps winning across 1,300+ A/B tests:
+
+• Reassurance at the buy button, where hesitation actually happens
+• A mobile first layout, because that's where 85%+ of your visitors are
+• Defaults and ordering that anchor to the right option, not the cheapest
+
+How it works:
+1. Comment the URL of your highest traffic page (for most stores: the bestseller product page or the homepage)
+2. We rebuild it and send you the before/after mockup in your DMs
+3. No call required, no pitch inside. If you love it, you know where to find me.
+
+First 10 comments only, because a real team builds each one. Danish and Nordic Shopify stores get priority.
+
+Your traffic is already paying for that page. Might as well make it convert.</pre>
+        </div>
+      </div>
+    </article>
+
+    <article class="post" data-type="guess">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="pg5" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Tue</div><div class="dt">Aug 18</div></div>
+        <div class="post-title"><div class="id">Post G5 · static image · reaction vote</div><h4>Vote: one long gallery or tabs?</h4></div>
+        <span class="badge guess">Guess</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief"><dt>Source</dt><dd>PH Import T01, image gallery tabs.</dd><dt>Visual</dt><dd>Side by side PDP gallery crops from PH-Import-cro-deck.pdf page 2, labeled A and B. Do not show the result.</dd><dt>Reveal</dt><dd>Post 18 on Thursday, with the vote split filled in.</dd></dl>
+        <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
+        <div class="li-preview">
+          <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
+          <pre class="post-copy">Your product gallery has 12 images. Your customer looks at 3. Which 3?
+
+A Danish store noticed something odd in their data: after adding more product images, video engagement DROPPED. More content, less attention.
+
+The test on their top 3 product pages:
+
+Version A: the standard gallery. All images in one long swipe.
+Version B: the same images, organized into tabs (Product, How to use, Reviews) so shoppers can jump to what they care about.
+
+Vote:
+Like = A (one long gallery, keep it simple)
+Love = B (tabs, let them navigate)
+
+Comment what you think it did to revenue per visitor: nothing, small lift, or big lift?
+
+Reveal Thursday with the exact number.</pre>
+        </div>
+      </div>
+    </article>
+    <article class="post" data-type="knowledge">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="p19" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Wed</div><div class="dt">Aug 19</div></div>
+        <div class="post-title"><div class="id">Post 19 · reactive</div><h4>The 3 leaks we found in every teardown</h4></div>
+        <span class="badge knowledge">Knowledge</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief"><dt>Type</dt><dd>REACTIVE SLOT: copy drafted 2 to 3 days ahead from real month 1/2 outcomes.</dd><dt>Hook option</dt><dd>"I looked inside [N] Danish webshops last week. [N-1] had the same problem."</dd></dl>
+        <div class="li-preview"><pre class="post-copy">FRAMEWORK: "We ran N free teardowns last week. The same 3 leaks showed up in almost every store." Structure: 3 patterns, each with the share of audited stores that had it, one fix each. CTA: soft reminder that a few teardown spots reopen soon. Draft from the real teardown findings.</pre></div>
+      </div>
+    </article>
+    <article class="post" data-type="results">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="p18" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Thu</div><div class="dt">Aug 20</div></div>
+        <div class="post-title"><div class="id">Post 18 · reveal of G5</div><h4>Tabs won: +23.45% RPV, 484,183 DKK/month</h4></div>
+        <span class="badge results">Results</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief"><dt>Vote tie-in</dt><dd>Open with Tuesday's vote split (fill real numbers) and name the closest guess.</dd><dt>Visual</dt><dd>Template card "+23.45% RPV", gallery crops from PH-Import-cro-deck.pdf page 2.</dd></dl>
+        <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
+        <div class="li-preview">
+          <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
+          <pre class="post-copy">Tabs won, and not by a little.
+
+[Tuesday's vote: X% called it. Fill in before posting.]
+
+The tabbed gallery lifted revenue per visitor 23.45% on the top 3 product pages. Worth 484,183 DKK per month on this store's traffic.
+
+Why it works: a long image gallery treats every shopper the same. But the shopper who needs to see the product in use and the shopper hunting for social proof are on different missions. Tabs let each one complete their mission in two taps instead of twelve swipes.
+
+The deeper pattern, and we see it across the 1,300+ tests in our vault: navigation beats volume. More content rarely wins. Findable content almost always does.
+
+Same logic applies to your whole PDP: can a first time visitor reach the answer to THEIR question in under 5 seconds? That's the test your gallery has to pass.</pre>
+        </div>
+      </div>
+    </article>
+    <article class="post" data-type="video">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="p20" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Fri</div><div class="dt">Aug 21</div></div>
+        <div class="post-title"><div class="id">Post 20 · video 5 · reactive</div><h4>What free teardowns taught me about Danish webshops</h4></div>
+        <span class="badge video">Video</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief"><dt>Type</dt><dd>REACTIVE SLOT: copy drafted 2 to 3 days ahead from real month 1/2 outcomes.</dd><dt>Format</dt><dd>Talking head, 60 to 90 sec. Script drafted Wed Aug 19 from real findings.</dd><dt>CTA</dt><dd>Comment VAULT (third push, new audience by now).</dd></dl>
+        <div class="li-preview"><pre class="post-copy">SCRIPT FRAMEWORK: same three rules structure as video 1 (observation, hypothesis, revenue metric), applied to the real teardown findings. Cold open on the most surprising finding, close on the VAULT comment gate.</pre></div>
+      </div>
+    </article>
+  </div>
+
+  <div class="week" data-week="6">
+    <div class="week-head"><span class="wk">Week 6</span><h3>The redesign that lost</h3><span class="dates">Aug 24 to 28</span></div>
+
+    <article class="post" data-type="results">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="p21" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Mon</div><div class="dt">Aug 24</div></div>
+        <div class="post-title"><div class="id">Post 21 · reactive showcase</div><h4>Redesign play before/after #1</h4></div>
+        <span class="badge results">Results</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief"><dt>Type</dt><dd>REACTIVE SLOT: copy drafted 2 to 3 days ahead from real month 1/2 outcomes.</dd><dt>Permission</dt><dd>Ask when delivering the mockup. Fallback: anonymize (blur logo and brand colors) or use a PH Import/Qookware before/after.</dd></dl>
+        <div class="li-preview"><pre class="post-copy">FRAMEWORK: post the split image of the first fulfilled redesign, walk through 3 changes and the vault test backing each. End with the waitlist line for redesign round 2.</pre></div>
+      </div>
+    </article>
+    <article class="post" data-type="guess">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="pg6" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Tue</div><div class="dt">Aug 25</div></div>
+        <div class="post-title"><div class="id">Post G6 · static image · reaction vote</div><h4>Vote: the redesign or the old page?</h4></div>
+        <span class="badge guess">Guess</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief"><dt>Source</dt><dd>Vault test, Her Fantasy Box: their new PDP template vs the old one it replaced. The counterintuitive one.</dd><dt>Visual</dt><dd>Two PDP layouts labeled A (old) and B (redesign). Do not reveal which is old.</dd><dt>Reveal</dt><dd>Post 23 on Thursday.</dd></dl>
+        <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
+        <div class="li-preview">
+          <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
+          <pre class="post-copy">Her Fantasy Box spent months redesigning their product page. Cleaner, more modern, more on trend.
+
+Then we did something uncomfortable: we A/B tested the shiny new template against the old one they'd just replaced.
+
+Version A: the old page.
+Version B: the redesign.
+
+One of them converts meaningfully better. Which one?
+
+Like = A, the old page wins
+Love = B, the redesign wins
+
+Before you vote: "newer" and "better looking" are not the same variable as "converts better." That's all I'll say.
+
+Comment your reasoning. Reveal Thursday, and this one has a lesson that costs some brands hundreds of thousands.</pre>
+        </div>
+      </div>
+    </article>
+    <article class="post" data-type="knowledge">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="p22" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Wed</div><div class="dt">Aug 26</div></div>
+        <div class="post-title"><div class="id">Post 22</div><h4>Mobile shoppers don't browse. They forage.</h4></div>
+        <span class="badge knowledge">Knowledge</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief"><dt>Source</dt><dd>Qookware T03 (directional, paused early: the copy says so honestly) plus vault navigation patterns.</dd><dt>Visual</dt><dd>Before/after mobile homepage crop from Qookware-cro-deck.pdf page 5.</dd></dl>
+        <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
+        <div class="li-preview">
+          <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
+          <pre class="post-copy">Mobile shoppers don't browse your store. They forage.
+
+A shopper lands from an ad, gives you about 60 seconds, and either finds a path to the thing they want or leaves. Nothing on that journey matters more than the first tap.
+
+What the data showed on a Danish cookware store: mobile homepage conversion sat at 0.9% while users spent 56 seconds looking mostly at a hero banner.
+
+The test: a horizontally scrollable row of category shortcuts (Bestsellers, Offers, the top product types) placed directly under the header. One tap from landing to the right shelf.
+
+Conversion and revenue per session both jumped. We paused the test early with the variant ahead by more than 60%, so treat the size with care, but the direction was unambiguous, and it matches a pattern our vault confirms across dozens of stores: search and navigation visibility tests win far more often than hero redesigns.
+
+The takeaway: your homepage's job on mobile isn't to impress. It's to route. Count the taps between landing and your bestseller. If it's more than two, that's your next test.</pre>
+        </div>
+      </div>
+    </article>
+    <article class="post" data-type="results">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="p23" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Thu</div><div class="dt">Aug 27</div></div>
+        <div class="post-title"><div class="id">Post 23 · reveal of G6</div><h4>The old page won: +7.79% CVR</h4></div>
+        <span class="badge results">Results</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief"><dt>Vote tie-in</dt><dd>Open with the vote split (fill real numbers).</dd><dt>Visual</dt><dd>The A/B pair with the winner marked, plus "+7.79% CVR" card.</dd></dl>
+        <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
+        <div class="li-preview">
+          <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
+          <pre class="post-copy">The old page won. Conversion +7.79%, add to cart +6.07%.
+
+[Tuesday's vote: X% backed the redesign. Fill in before posting.]
+
+We've now retested this on multiple products for that brand. Same answer every time: the old template out converts the new one. The redesign, months of work, made the store measurably worse.
+
+This is the most expensive pattern in ecommerce and we see it constantly in our vault: the full redesign nobody tested. New template, new brand look, launched over a weekend, and conversion quietly drops 5 to 15% with everyone too invested to ask whether the old version was better.
+
+The redesign wasn't ugly. It was untested. Those are different failures.
+
+The rule we run all our programs by: redesigns are hypotheses, not upgrades. Test the new against the old before you delete the old. And if you already redesigned and revenue feels softer since, that's not bad luck. That's a test you can still run.</pre>
+        </div>
+      </div>
+    </article>
+    <article class="post" data-type="video">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="p24" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Fri</div><div class="dt">Aug 28</div></div>
+        <div class="post-title"><div class="id">Post 24 · video 6</div><h4>Behind the scenes: the AI redesign pipeline</h4></div>
+        <span class="badge video">Video</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief"><dt>Format</dt><dd>Screen recording montage + voiceover, 90 sec. The "how is this even possible" post.</dd><dt>CTA</dt><dd>Waitlist for redesign round 2.</dd></dl>
+        <div class="li-preview"><pre class="post-copy">SCRIPT FRAMEWORK: cold open on a finished before/after ("this took our pipeline about two hours"), then 4 beats: read the store, mine the reviews, match against 1,300 tests, human makes the calls. Close: "Machines for research, humans for judgment. Round 2 of the free redesigns opens soon. Comments open."</pre></div>
+      </div>
+    </article>
+  </div>
+
+  <div class="week" data-week="7">
+    <div class="week-head"><span class="wk">Week 7</span><h3>Honesty as strategy</h3><span class="dates">Aug 31 to Sep 4</span></div>
+
+    <article class="post" data-type="results">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="p25" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Mon</div><div class="dt">Aug 31</div></div>
+        <div class="post-title"><div class="id">Post 25 · static image</div><h4>USPs moved above the buy button: +20.43% CVR</h4></div>
+        <span class="badge results">Results</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief"><dt>Source</dt><dd>Qookware T01, pointers above ATC. Last unused own result.</dd><dt>Visual</dt><dd>Template card "+20.43% CVR", subline "120,717 DKK/month", crops from Qookware-cro-deck.pdf page 2.</dd></dl>
+        <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
+        <div class="li-preview">
+          <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
+          <pre class="post-copy">56% of this store's visitors bounced in 74 seconds. They left before ever reaching the part of the page that explains why the product is good.
+
+That's the silent failure mode of most product pages: the persuasion lives below the fold, and most shoppers never get there.
+
+Qookware's PDP had strong USPs: 5 practical sizes, non slip bottoms, freezer and dishwasher safe. All listed as tags below the Add to Cart button, below the fold for most mobile users.
+
+The test: move those USPs directly under the price, above the buy button, as a tight checklist.
+
+Result:
+• Conversion: +20.43%
+• Revenue per visitor: +14.09%
+• 120,717 DKK per month incremental
+• Held across devices, no segment weirdness
+
+Nothing was added, nothing rewritten. The same five arguments, moved to where people actually look before deciding.
+
+Audit your own PDP: list your three strongest selling points, then check where they sit. If they're below the buy button, you're persuading people who already decided.</pre>
+        </div>
+      </div>
+    </article>
+    <article class="post" data-type="guess">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="pg7" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Tue</div><div class="dt">Sep 1</div></div>
+        <div class="post-title"><div class="id">Post G7 · static image · reaction vote</div><h4>Vote: search icon or fat search bar?</h4></div>
+        <span class="badge guess">Guess</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief"><dt>Source</dt><dd>Vault test, Sport and Fitness Exchange: search box visibility.</dd><dt>Visual</dt><dd>Two mobile headers labeled A (icon) and B (full search bar). Do not show the result.</dd><dt>Reveal</dt><dd>Post 27 on Thursday.</dd></dl>
+        <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
+        <div class="li-preview">
+          <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
+          <pre class="post-copy">Sport and Fitness Exchange. A huge catalog, thousands of products, every visitor hunting for something specific.
+
+Their mobile header had search tucked behind a small magnifying glass icon. Standard, clean, minimal.
+
+The test:
+
+Version A: keep the search icon.
+Version B: a full, always visible search bar across the top of the page.
+
+Uglier? A little. But did it convert?
+
+Like = A, the clean icon wins
+Love = B, the fat search bar wins
+
+And the bonus question for the comments: how BIG was the gap? This one surprised our own team.
+
+Reveal Thursday.</pre>
+        </div>
+      </div>
+    </article>
+    <article class="post" data-type="knowledge">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="p26" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Wed</div><div class="dt">Sep 2</div></div>
+        <div class="post-title"><div class="id">Post 26 · the honesty post</div><h4>The test of ours that failed (and the rerun that won)</h4></div>
+        <span class="badge knowledge">Knowledge</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief"><dt>Source</dt><dd>PH Import T06: V1 flat, V2 +5.21% RPV. This post is the credibility engine for the 13 for 13 claim.</dd><dt>Visual</dt><dd>Two cards: "V1: flat" and "V2: +5.21% RPV, 178,797 DKK/month".</dd></dl>
+        <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
+        <div class="li-preview">
+          <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
+          <pre class="post-copy">Time to show you a test of ours that failed.
+
+April, Danish cleaning store, mobile product pages. The data was screaming: only 4.4% add to cart rate, 60% of users never scrolled past the first content block, only 29% ever saw the buy button.
+
+So we rebuilt the first fold. Compact gallery, tighter fonts, quantity selector up top. Launched the test, waited, and... nothing. Flat. No lift, no loss.
+
+Most teams file that under "first fold optimization doesn't work" and move on. That's usually the wrong lesson.
+
+A flat result means one of two things: the hypothesis is wrong, or the execution didn't go far enough. The underlying data (60% not scrolling, 29% reaching the button) was too strong to abandon, so we kept the hypothesis and sharpened the execution: an even more compact carousel, product info pulled higher, the upsell moved below the buy button.
+
+The rerun: +5.21% revenue per session. 178,797 DKK per month. Same idea, second attempt.
+
+Testing isn't a slot machine where you pull once and accept the answer. When the evidence is strong and the test is flat, the next move is usually a better variant, not a new theory.
+
+(And when 13 tests in a row win, this is why: the losers and flats happen quietly in the iteration loop, and only the survivors make the case study.)</pre>
+        </div>
+      </div>
+    </article>
+    <article class="post" data-type="results">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="p27" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Thu</div><div class="dt">Sep 3</div></div>
+        <div class="post-title"><div class="id">Post 27 · reveal of G7</div><h4>The fat search bar won: +60.69% CVR</h4></div>
+        <span class="badge results">Results</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief"><dt>Vote tie-in</dt><dd>Open with the vote split (fill real numbers).</dd><dt>Visual</dt><dd>The A/B header pair with "+60.69% CVR" card.</dd></dl>
+        <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
+        <div class="li-preview">
+          <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
+          <pre class="post-copy">The fat search bar won. Conversion up 60.69%.
+
+[Tuesday's vote: X% picked it. Fill in before posting.]
+
+Not 6%. Sixty. On a store with a big catalog, making search impossible to miss beat the minimal icon by one of the largest margins in our vault.
+
+The mechanism is simple: on a large catalog, search users are your best users. They know what they want, they're closer to the money, and every one of them you fail to route into search gets dumped into generic browsing instead.
+
+The general rule from our test library: the bigger your catalog, the more your revenue depends on findability, not persuasion. Stores under ~50 products win with better product pages. Stores with hundreds win with better routes: search, filters, category shortcuts.
+
+Which side of that line is your store on, and does your mobile header reflect it?</pre>
+        </div>
+      </div>
+    </article>
+    <article class="post" data-type="leadmagnet">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="p28" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Fri</div><div class="dt">Sep 4</div></div>
+        <div class="post-title"><div class="id">Post 28 · comment gate</div><h4>Lead magnet #3: the 44 point teardown checklist</h4></div>
+        <span class="badge leadmagnet">Lead magnet</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief"><dt>Asset</dt><dd>One page PDF of the teardown routine; build in week 6.</dd><dt>Visual</dt><dd>Card: "The 44 point CRO teardown checklist" with a blurred checklist behind it.</dd></dl>
+        <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
+        <div class="li-preview">
+          <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
+          <pre class="post-copy">The past month I've torn down more Danish webshops than I can count. Same routine every time: 44 checks, phone first, data before opinions.
+
+It covers:
+• The 9 checks around your buy button (where most revenue leaks live)
+• The mobile visibility pass (what actually stays on screen while a real thumb scrolls)
+• The anchor audit: what your defaults and option ordering teach people to spend
+• The proof pass: where reviews sit relative to the decision, and whether anyone believes them
+
+It's the exact list our team runs before we design a single test. No fluff, no "add urgency badges".
+
+Comment CHECKLIST and I'll DM it to you. (Connections only, so the DM actually goes through.)</pre>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="week" data-week="8">
+    <div class="week-head"><span class="wk">Week 8</span><h3>The BFCM pivot</h3><span class="dates">Sep 7 to 11</span></div>
+
+    <article class="post" data-type="knowledge">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="p29" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Mon</div><div class="dt">Sep 7</div></div>
+        <div class="post-title"><div class="id">Post 29 · reactive recap</div><h4>60 days of receipts</h4></div>
+        <span class="badge knowledge">Knowledge</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief"><dt>Type</dt><dd>REACTIVE SLOT: copy drafted 2 to 3 days ahead from real month 1/2 outcomes.</dd><dt>Draft</dt><dd>Sep 5, from real stats: posts, votes, teardowns, redesigns, program numbers.</dd></dl>
+        <div class="li-preview"><pre class="post-copy">FRAMEWORK: "60 days ago I started posting our test results. Here is everything that happened." Cumulative numbers list (posts published, votes cast, teardowns delivered, redesigns shipped, 13 for 13, ~3.75M DKK/month), one lesson, thank the audience, tease month 3.</pre></div>
+      </div>
+    </article>
+    <article class="post" data-type="guess">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="pg8" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Tue</div><div class="dt">Sep 8</div></div>
+        <div class="post-title"><div class="id">Post G8 · static image · reaction vote</div><h4>Vote: how much is cart hierarchy worth?</h4></div>
+        <span class="badge guess">Guess</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief"><dt>Source</dt><dd>Vault test, Bay Optiks: cart drawer hierarchy.</dd><dt>Visual</dt><dd>Two cart drawers labeled A (standard) and B (rebuilt hierarchy). Do not show the result.</dd><dt>Reveal</dt><dd>Post 31 on Thursday.</dd></dl>
+        <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
+        <div class="li-preview">
+          <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
+          <pre class="post-copy">The most ignored page in ecommerce is the one closest to the money.
+
+Bay Optiks' cart drawer: product thumbnails, a discount field, shipping note, upsell block, two buttons competing for attention. Standard stuff. Nobody had touched it in years.
+
+We rebuilt the hierarchy. Same elements, reordered: line items readable at a glance, ONE unmistakable checkout button, reassurance right beneath it, distractions demoted.
+
+Version A: the old cart.
+Version B: the rebuilt hierarchy.
+
+How much did B move conversion?
+
+Like = under 20%
+Celebrate = 20 to 50%
+Love = over 50%
+
+Hint: people who open the cart already want to buy. The only question is how much friction you charge them on the way out.
+
+Reveal Thursday.</pre>
+        </div>
+      </div>
+    </article>
+    <article class="post" data-type="knowledge">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="p30" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Wed</div><div class="dt">Sep 9</div></div>
+        <div class="post-title"><div class="id">Post 30 · the BFCM math post</div><h4>Why CRO in September decides Black Friday</h4></div>
+        <span class="badge knowledge">Knowledge</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief"><dt>Visual</dt><dd>Simple timeline graphic: Sep test rounds, Oct rollout, Nov peak traffic.</dd><dt>Role</dt><dd>Pivots the audience toward Q4 urgency; sets up Thursday and Friday.</dd></dl>
+        <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
+        <div class="li-preview">
+          <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
+          <pre class="post-copy">Every krone you spend on Black Friday ads flows through pages you could have fixed in September.
+
+The math nobody runs:
+
+A proper A/B test needs 3 to 6 weeks to reach a decision, depending on your traffic. Count backward from late November and the calendar is brutal: tests started in September get 2 rounds of learning plus rollout before BFCM. Tests started in late October get nothing. You go into your biggest weekend with whatever page you happen to have.
+
+Now stack the numbers from our own spring programs: assurance icons at the buy button +19% conversion. Sticky mobile ATC +25%. Bundle reordering +16% revenue per session. Imagine any one of those live during the single highest traffic week of your year, when every 1% of conversion is worth more than in any other month.
+
+That's the actual ROI window of CRO: not "someday", but banked winners multiplied by peak season traffic.
+
+If Q4 matters to your store, your testing program starts now, not on November 1st.
+
+What's the one page you already know underperforms going into Q4?</pre>
+        </div>
+      </div>
+    </article>
+    <article class="post" data-type="results">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="p31" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Thu</div><div class="dt">Sep 10</div></div>
+        <div class="post-title"><div class="id">Post 31 · reveal of G8</div><h4>Cart hierarchy: +85.08% CVR</h4></div>
+        <span class="badge results">Results</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief"><dt>Vote tie-in</dt><dd>Open with the vote split (fill real numbers).</dd><dt>Visual</dt><dd>The cart A/B pair with "+85.08% CVR" card.</dd><dt>Role</dt><dd>Sets up Friday's offer explicitly.</dd></dl>
+        <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
+        <div class="li-preview">
+          <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
+          <pre class="post-copy">Conversion up 85.08%. From reorganizing a cart drawer.
+
+[Tuesday's vote: X% said over 50%. Fill in before posting.]
+
+No new features. No discounts. The same cart, with a hierarchy a stressed human can parse: what am I buying, what does it cost, where do I pay, why is this safe. In that order, nothing competing.
+
+Carts win this big because they're the highest intent real estate on the site and the least tested. Everyone redesigns homepages nobody converts on, while the drawer every single buyer passes through hasn't been questioned since the theme was installed.
+
+With Black Friday maths in mind (yesterday's post), a cart win is the best kind of win: it compounds with every promotion you run in Q4.
+
+Tomorrow I'm opening the last teardown round before the Q4 lockdown. If your cart is on your conscience, that's the moment.</pre>
+        </div>
+      </div>
+    </article>
+    <article class="post" data-type="leadmagnet">
+      <div class="post-head">
+        <input type="checkbox" class="post-check" data-key="p32" onclick="event.stopPropagation()">
+        <div class="post-when"><div class="d">Fri</div><div class="dt">Sep 11</div></div>
+        <div class="post-title"><div class="id">Post 32 · text only · the offer</div><h4>Last teardown round before Q4</h4></div>
+        <span class="badge leadmagnet">Lead magnet</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="post-body">
+        <dl class="brief"><dt>Format</dt><dd>Text only, same mechanics as Post 15, BFCM frame plus a Q4 priority order inside every teardown.</dd></dl>
+        <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
+        <div class="li-preview">
+          <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
+          <pre class="post-copy">Last call before Q4: I'm opening 5 more free CRO teardown spots, and these are the last ones before Black Friday season locks our calendar.
+
+Same deal as last time:
+• The same analysis we run for paying clients, on your store
+• 3 prioritized findings with the revenue leak quantified
+• Short video walkthrough, delivered within 48 hours
+• No pitch inside the teardown
+
+One difference this round: every teardown comes with a Q4 priority order, which fixes to ship before late November and which tests still fit in the window.
+
+Who it's for: Shopify stores doing 300K+ DKK per month, Denmark or Nordics, running paid traffic into Q4.
+
+Last round, spots went in two days, so: comment TEARDOWN and I'll reach out, or message me directly with your store URL.
+
+---
+
+# After Day 60
+
+- **Measure:** followers are vanity; count DMs, VAULT/PROCESS/CHECKLIST/TEARDOWN comments, redesign play URLs, and booked calls. Target across 60 days: 4 to 6 qualified conversations, 1 to 2 signed.
+- **Refill:** the vault index has 208 documented winners; at this cadence that's 12+ months of results, knowledge, and guess posts. Month 3 drafts in a day, and by then it should be majority reactive: client outcomes, Q4 war stories, teardown findings.
+- **Engagement rule for Daniel:** 15 minutes after posting, reply to every comment; DM the lead magnet within the hour (LinkedIn rewards fast reply velocity, and slow lead magnet delivery kills trust).
+- **Repurpose:** each video becomes 2 short clips; the teardown offer post repeats monthly with fresh results.</pre>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <h2 class="section">After day 60</h2>
+  <div class="grid2">
+    <div class="panel">
+      <h3>Measure what matters</h3>
+      <ul>
+        <li><strong>Ignore follower count.</strong> Count DMs, VAULT / PROCESS / CHECKLIST / TEARDOWN comments, redesign play URLs, and booked calls.</li>
+        <li><strong>Target across 60 days:</strong> 4 to 6 qualified conversations with Danish/Nordic Shopify founders, 1 to 2 signed.</li>
+        <li><strong>Engagement rule:</strong> 15 minutes after posting, Daniel replies to every comment. Lead magnets DM'd within the hour. Daily: 5 substantive comments on ICP posts, 10 connection requests.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3>Refill and repurpose</h3>
+      <ul>
+        <li><strong>The vault index holds 208 documented winners:</strong> 12+ months of material at this cadence. Next batch drafts in one day.</li>
+        <li><strong>Each video becomes 2 short clips</strong> for a second wave of posts.</li>
+        <li><strong>The teardown offer repeats monthly</strong> with fresh results as proof.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="section">Production checklist</h2>
+  <div class="prep">
+    <label class="prep-row"><input type="checkbox" class="post-check" data-key="prod1"><span class="date">Asset 1</span><span>Vault Top 20 PDF (real client names) for the Post 6 and 13 CTAs</span><span class="who bhaskar">Bhaskar</span></label>
+    <label class="prep-row"><input type="checkbox" class="post-check" data-key="prod2"><span class="date">Asset 2</span><span>Test brief template one pager for the Post 2 CTA</span><span class="who bhaskar">Bhaskar</span></label>
+    <label class="prep-row"><input type="checkbox" class="post-check" data-key="prod3"><span class="date">Asset 3</span><span>5 result card images (Posts 1, 4, 7, 10, 12) from deck crops</span><span class="who bhaskar">Bhaskar</span></label>
+    <label class="prep-row"><input type="checkbox" class="post-check" data-key="prod4"><span class="date">Asset 4</span><span>4 video edits with captions and hook overlays</span><span class="who bhaskar">Bhaskar</span></label>
+    <label class="prep-row"><input type="checkbox" class="post-check" data-key="prod5"><span class="date">Asset 5</span><span>Stat card graphics (Posts 3, 5, 11, 14)</span><span class="who bhaskar">Bhaskar</span></label>
+  </div>
+
+  <footer>PurpleFire x Cazyweb · Prepared July 2026 · Source data: PH Import + Qookware CRO decks and the PurpleFire split testing vault</footer>
+</div>
+
+<script>
+(function(){
+  var LS = 'pf30plan';
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(LS) || '{}'); } catch(e) { state = {}; }
+
+  function save(){ localStorage.setItem(LS, JSON.stringify(state)); }
+
+  // checkboxes: restore + persist
+  var checks = document.querySelectorAll('.post-check');
+  checks.forEach(function(cb){
+    var key = cb.getAttribute('data-key');
+    if (state[key]) cb.checked = true;
+    syncRow(cb);
+    cb.addEventListener('change', function(){
+      state[key] = cb.checked;
+      save();
+      syncRow(cb);
+      updateProgress();
+    });
+  });
+
+  function syncRow(cb){
+    var post = cb.closest('.post');
+    if (post) post.classList.toggle('posted', cb.checked);
+    var row = cb.closest('.prep-row');
+    if (row) row.classList.toggle('done', cb.checked);
+  }
+
+  function updateProgress(){
+    var total = 0, done = 0;
+    document.querySelectorAll('.post .post-check').forEach(function(cb){
+      total++;
+      if (cb.checked) done++;
+    });
+    document.getElementById('progress').textContent = done + ' / ' + total + ' posted';
+  }
+  updateProgress();
+
+  // expand/collapse
+  document.querySelectorAll('.post-head').forEach(function(head){
+    head.addEventListener('click', function(){
+      head.parentElement.classList.toggle('open');
+    });
+  });
+
+  // type filter
+  document.querySelectorAll('.chip').forEach(function(chip){
+    chip.addEventListener('click', function(){
+      document.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('active'); });
+      chip.classList.add('active');
+      var f = chip.getAttribute('data-filter');
+      document.querySelectorAll('.post').forEach(function(p){
+        p.classList.toggle('hidden', f !== 'all' && p.getAttribute('data-type') !== f);
+      });
+    });
+  });
+
+  // copy buttons
+  document.querySelectorAll('.copy-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var body = btn.closest('.post-body');
+      var pre = body.querySelector('pre.post-copy');
+      navigator.clipboard.writeText(pre.textContent).then(function(){
+        btn.textContent = 'Copied';
+        btn.classList.add('copied');
+        setTimeout(function(){
+          btn.textContent = 'Copy';
+          btn.classList.remove('copied');
+        }, 1600);
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
