@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Munchkin Infant Formula, Made with Organic Milk | PDP Redesign Mockup</title>
+<link rel="stylesheet" href="https://use.typekit.net/hmn1xgt.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Munchkin formula brand tokens (sampled from live site 2026-07-15) */
+    --green: #325420;          /* primary CTA green */
+    --green-dark: #27421a;
+    --green-soft: #e3f3d4;     /* badge green */
+    --navy: #104c6a;           /* secondary / checkout */
+    --coral: #f26d6c;          /* accent (used sparingly) */
+    --cream: #fdfbf9;          /* page background */
+    --sand: #eae8e1;           /* section alt background */
+    --amber-bg: #fff5de;       /* promo bar */
+    --ink: #14201a;
+    --ink-2: #4c554e;
+    --ink-3: #6a716b;
+    --line: rgba(20,32,26,.12);
+    --sans: 'Matter', 'Inter', 'Helvetica Neue', helvetica, arial, sans-serif;
+    --serif: 'baskerville-display-pt', 'Libre Baskerville', Baskerville, Georgia, serif;
+    --radius: 14px;
+    --shadow: 0 10px 30px rgba(20,32,26,.08);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--cream); color: var(--ink);
+    font-family: var(--sans); -webkit-font-smoothing: antialiased;
+    font-size: 16px; line-height: 1.55;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: var(--navy); }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+  .narrow { max-width: 760px; margin: 0 auto; }
+  section { padding: 56px 0; }
+  h1, h2, h3 { line-height: 1.12; margin: 0 0 14px; letter-spacing: -.015em; }
+  h2 { font-size: clamp(26px, 4.5vw, 40px); font-weight: 800; }
+  h3 { font-size: 19px; font-weight: 700; }
+  .serif-accent { font-family: var(--serif); font-style: italic; font-weight: 400; }
+  .lede { color: var(--ink-2); font-size: 17px; max-width: 62ch; }
+  .center { text-align: center; }
+  .center .lede { margin-left: auto; margin-right: auto; }
+
+  /* Gate tags (build notes) */
+  .gate {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: var(--amber-bg); border: 1px solid #e8cf96; color: #8a6a1f;
+    font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    padding: 2px 8px; border-radius: 999px; vertical-align: middle; margin-left: 6px;
+    white-space: nowrap;
+  }
+  body.hide-gates .gate { display: none; }
+  .build-toggle {
+    position: fixed; bottom: 86px; right: 14px; z-index: 90;
+    background: #fff; border: 1px solid var(--line); border-radius: 999px;
+    box-shadow: var(--shadow); padding: 8px 14px; font-size: 12px; font-weight: 600;
+    cursor: pointer; color: var(--ink-2); font-family: var(--sans);
+  }
+
+  /* 1. Promo bar */
+  .promo {
+    background: var(--amber-bg); color: #6b4a10;
+    font-size: 13.5px; font-weight: 600; text-align: center;
+    padding: 9px 16px;
+  }
+  .promo strong { color: #4d3405; }
+
+  /* Header */
+  header.site {
+    background: var(--cream); border-bottom: 1px solid var(--line);
+    position: relative; z-index: 20;
+  }
+  .site-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 20px; max-width: 1200px; margin: 0 auto;
+  }
+  .site-inner .icons { display: flex; gap: 16px; align-items: center; }
+  .site-inner svg { width: 22px; height: 22px; stroke: var(--ink); }
+  .logo img { height: 30px; width: auto; }
+  .crumbs {
+    font-size: 12px; color: var(--ink-3); padding: 10px 20px 0; max-width: 1200px; margin: 0 auto;
+  }
+  .crumbs a { color: var(--ink-3); text-decoration: none; }
+
+  /* 2. Buy box */
+  .buybox { padding: 12px 0 40px; }
+  .buybox-grid {
+    display: grid; gap: 18px;
+    grid-template-areas: "head" "gallery" "detail";
+  }
+  .bb-head { grid-area: head; }
+  .bb-gallery { grid-area: gallery; }
+  .bb-detail { grid-area: detail; }
+  @media (min-width: 900px) {
+    .buybox-grid {
+      grid-template-columns: 1.05fr 1fr; gap: 12px 48px; align-items: start;
+      grid-template-areas: "gallery head" "gallery detail";
+    }
+    .buybox { padding-top: 28px; }
+  }
+  .gallery { position: relative; }
+  .gallery-main {
+    background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+    overflow: hidden; display: grid; place-items: center;
+    height: 54vw; max-height: 350px;
+  }
+  @media (min-width: 900px) { .gallery-main { height: auto; max-height: none; aspect-ratio: 1/1; } }
+  .gallery-main img { object-fit: contain; width: 100%; height: 100%; }
+  .thumbs { display: flex; gap: 8px; margin-top: 10px; overflow-x: auto; padding-bottom: 4px; }
+  .thumbs button {
+    flex: 0 0 58px; height: 58px; border-radius: 10px; border: 1.5px solid var(--line);
+    background: #fff; padding: 3px; cursor: pointer;
+  }
+  .thumbs button.on { border-color: var(--green); }
+  .thumbs img { width: 100%; height: 100%; object-fit: cover; border-radius: 7px; }
+
+  .rating-row { display: flex; align-items: center; gap: 8px; font-size: 13.5px; margin-bottom: 10px; flex-wrap: wrap; }
+  .stars-svg { height: 16px; width: 88px; display: inline-block; }
+  .stars-svg.lg { height: 20px; width: 110px; }
+  .badge-new { background: var(--green-soft); color: var(--green); font-weight: 700; font-size: 12px; padding: 3px 10px; border-radius: 999px; }
+
+  .title-h1 { font-size: clamp(24px, 4.2vw, 34px); font-weight: 800; }
+  .title-h1 .sub { display: block; font-size: .62em; font-weight: 600; color: var(--ink-2); margin-top: 4px; }
+  .pos-line { font-size: 16.5px; font-weight: 600; margin: 12px 0 2px; }
+  .pos-sub { font-size: 13px; color: var(--ink-3); margin: 0 0 14px; }
+
+  .benefits { list-style: none; margin: 0 0 16px; padding: 0; display: grid; gap: 8px; }
+  .benefits li { display: flex; gap: 10px; align-items: flex-start; font-size: 14.5px; color: var(--ink-2); }
+  .benefits li strong { color: var(--ink); font-weight: 600; }
+  .tick { flex: 0 0 18px; height: 18px; margin-top: 2px; }
+  .tick circle { fill: var(--green-soft); }
+  .tick path { stroke: var(--green); stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+  .price-block { border-top: 1px solid var(--line); padding-top: 14px; margin-top: 4px; }
+  .price-row { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .price { font-size: 30px; font-weight: 800; }
+  .strike { color: var(--ink-3); text-decoration: line-through; font-size: 16px; }
+  .save-chip { background: var(--green-soft); color: var(--green); font-weight: 700; font-size: 12.5px; padding: 3px 9px; border-radius: 999px; }
+  .per-oz { font-size: 13px; color: var(--ink-2); margin-top: 3px; }
+
+  .selector { margin: 16px 0 0; }
+  .selector .lbl { font-size: 12.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 8px; }
+  .pills { display: flex; gap: 8px; flex-wrap: wrap; }
+  .pills button {
+    border: 1.5px solid var(--line); background: #fff; color: var(--ink);
+    padding: 9px 16px; border-radius: 999px; font-size: 14px; font-weight: 600; cursor: pointer;
+    font-family: var(--sans);
+  }
+  .pills button.on { background: var(--green); border-color: var(--green); color: #fff; }
+
+  .plan { display: grid; gap: 10px; margin-top: 16px; }
+  .plan-card {
+    border: 1.5px solid var(--line); border-radius: var(--radius); background: #fff;
+    padding: 14px 16px; cursor: pointer; display: grid; gap: 3px; position: relative;
+  }
+  .plan-card.on { border-color: var(--green); box-shadow: 0 0 0 1px var(--green); }
+  .plan-card .p-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .plan-card .p-name { font-weight: 700; font-size: 15px; display: flex; align-items: center; gap: 8px; }
+  .plan-card .p-price { font-weight: 800; font-size: 16px; white-space: nowrap; }
+  .plan-card .p-sub { font-size: 13px; color: var(--ink-2); }
+  .radio { width: 18px; height: 18px; border: 2px solid var(--line); border-radius: 50%; flex: 0 0 18px; }
+  .plan-card.on .radio { border-color: var(--green); background: radial-gradient(circle, var(--green) 0 45%, transparent 50%); }
+  .p-tag { background: var(--green-soft); color: var(--green); font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; }
+
+  .cta {
+    display: block; width: 100%; margin-top: 16px;
+    background: var(--green); color: #fff; border: 0; cursor: pointer;
+    font-family: var(--sans); font-size: 16.5px; font-weight: 700;
+    padding: 16px; border-radius: 999px; text-align: center; text-decoration: none;
+  }
+  .cta:hover { background: var(--green-dark); }
+  .cta-micro { font-size: 13px; color: var(--ink-2); margin-top: 10px; line-height: 1.5; }
+  .cta-micro strong { color: var(--ink); }
+  .express { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .express span {
+    border: 1px solid var(--line); border-radius: 8px; background: #fff;
+    font-size: 12.5px; font-weight: 700; text-align: center; padding: 10px 4px; color: var(--ink-2);
+  }
+  .delivery { font-size: 13px; color: var(--ink-2); margin-top: 12px; display: flex; gap: 8px; align-items: center; }
+  .delivery svg { width: 17px; height: 17px; stroke: var(--green); flex: 0 0 17px; }
+
+  /* 3. Certs strip */
+  .certs { background: var(--sand); padding: 26px 0; }
+  .certs-row { display: flex; gap: 10px 26px; align-items: center; justify-content: center; flex-wrap: wrap; font-size: 13.5px; font-weight: 600; color: var(--ink-2); }
+  .certs-row .c { display: flex; gap: 8px; align-items: center; }
+  .certs-row svg { width: 18px; height: 18px; stroke: var(--green); }
+  .certs-fwd { text-align: center; font-size: 13px; color: var(--ink-3); margin-top: 10px; }
+  .certs-fwd a { color: var(--green); font-weight: 600; }
+
+  /* Section scaffolding */
+  .sec-label { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--green); margin-bottom: 10px; }
+  .card {
+    background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 20px 22px; box-shadow: none;
+  }
+  .grid2 { display: grid; gap: 16px; }
+  .grid3 { display: grid; gap: 16px; }
+  @media (min-width: 760px) { .grid2 { grid-template-columns: 1fr 1fr; } .grid3 { grid-template-columns: repeat(3, 1fr); } }
+
+  /* 4. Panel */
+  .panel-txt { font-size: 13.5px; line-height: 1.7; color: var(--ink-2); background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
+  .freefrom { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+  .freefrom span { background: var(--green-soft); color: var(--green); font-size: 13px; font-weight: 700; padding: 6px 12px; border-radius: 999px; }
+  .reframe {
+    font-family: var(--serif); font-style: italic; font-size: clamp(19px, 3vw, 24px);
+    color: var(--ink); line-height: 1.45; margin: 22px auto 0; max-width: 34ch; text-align: center;
+  }
+
+  /* 5. Extras */
+  .extra-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; }
+  .extra-card h4 { margin: 0 0 4px; font-size: 15.5px; }
+  .extra-card p { margin: 0; font-size: 13.5px; color: var(--ink-2); }
+  .candor { border: 1.5px solid var(--green); background: #fff; border-radius: var(--radius); padding: 20px 22px; margin-top: 16px; }
+  .candor h4 { margin: 0 0 6px; font-size: 15.5px; }
+  .candor p { margin: 0; font-size: 14px; color: var(--ink-2); }
+
+  /* 7. Comparison */
+  .cmp { width: 100%; border-collapse: collapse; background: #fff; border-radius: var(--radius); overflow: hidden; font-size: 13.5px; }
+  .cmp-wrap { border: 1px solid var(--line); border-radius: var(--radius); overflow-x: auto; }
+  .cmp th, .cmp td { padding: 12px 12px; text-align: center; border-bottom: 1px solid var(--line); }
+  .cmp th:first-child, .cmp td:first-child { text-align: left; font-weight: 600; }
+  .cmp thead th { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); }
+  .cmp .us { background: rgba(50,84,32,.055); font-weight: 700; }
+  .cmp .yes { color: var(--green); font-weight: 800; }
+  .cmp .no { color: var(--ink-3); }
+  .floor { font-size: 13px; color: var(--ink-3); margin-top: 10px; }
+
+  /* 8. Trial */
+  .trial { background: var(--green); color: #fff; }
+  .trial .sec-label { color: var(--green-soft); }
+  .trial h2 { color: #fff; }
+  .trial .lede { color: rgba(255,255,255,.85); }
+  .stat-cards { display: grid; gap: 12px; grid-template-columns: repeat(3, 1fr); margin: 24px 0 18px; }
+  @media (max-width: 700px) { .stat-cards { grid-template-columns: 1fr; } }
+  .stat-cards .sc { background: rgba(255,255,255,.09); border: 1px solid rgba(255,255,255,.22); border-radius: var(--radius); padding: 18px; }
+  .stat-cards .sc .n { font-size: 30px; font-weight: 800; line-height: 1.05; }
+  .stat-cards .sc .d { font-size: 13px; color: rgba(255,255,255,.82); margin-top: 5px; }
+  .doc-link {
+    display: inline-flex; align-items: center; gap: 10px; background: #fff; color: var(--ink);
+    border-radius: 12px; padding: 12px 18px; text-decoration: none; font-weight: 700; font-size: 14.5px;
+  }
+  .doc-link svg { width: 18px; height: 18px; stroke: var(--green); }
+
+  /* 9. Safety */
+  .lot-box { display: flex; gap: 10px; margin-top: 16px; }
+  .lot-box input {
+    flex: 1; border: 1.5px solid var(--line); border-radius: 999px; padding: 12px 18px;
+    font-family: var(--sans); font-size: 14px; background: #fff; color: var(--ink);
+  }
+  .lot-box button { border: 0; background: var(--navy); color: #fff; font-weight: 700; border-radius: 999px; padding: 12px 20px; cursor: pointer; font-family: var(--sans); }
+
+  /* 10. Switch */
+  .video-ph {
+    aspect-ratio: 16/9; border-radius: var(--radius); background: var(--sand) center/cover no-repeat;
+    display: grid; place-items: center; position: relative; overflow: hidden; border: 1px solid var(--line);
+  }
+  .video-ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .play {
+    position: relative; z-index: 2; width: 68px; height: 68px; border-radius: 50%;
+    background: rgba(255,255,255,.92); display: grid; place-items: center; box-shadow: var(--shadow);
+  }
+  .play svg { width: 24px; height: 24px; fill: var(--green); margin-left: 4px; }
+  .sched { display: grid; gap: 8px; margin-top: 18px; }
+  .sched .day { display: grid; grid-template-columns: 96px 1fr; gap: 12px; background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 11px 14px; font-size: 14px; align-items: center; }
+  .sched .day b { color: var(--green); font-size: 13px; }
+
+  /* 11. Reviews */
+  .rev-sum { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 18px; }
+  .rev-sum .big { font-size: 44px; font-weight: 800; line-height: 1; }
+  .rev-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; }
+  .rev-card .q { font-size: 14.5px; line-height: 1.55; }
+  .rev-card .who { font-size: 12.5px; color: var(--ink-3); margin-top: 10px; display: flex; gap: 6px; align-items: center; }
+  .verified { color: var(--green); font-weight: 700; font-size: 11.5px; }
+  .honesty {
+    border-left: none; background: var(--sand); border-radius: var(--radius);
+    padding: 20px 22px; margin-top: 18px; font-size: 15px;
+  }
+
+  /* 12/13. Offer + guarantee */
+  .bridge { background: var(--sand); }
+  .bridge-steps { display: grid; gap: 12px; margin-top: 22px; }
+  @media (min-width: 820px) { .bridge-steps { grid-template-columns: repeat(3, 1fr); } }
+  .step { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; position: relative; }
+  .step .num { width: 30px; height: 30px; border-radius: 50%; background: var(--green); color: #fff; font-weight: 800; display: grid; place-items: center; font-size: 14px; margin-bottom: 10px; }
+  .step h4 { margin: 0 0 6px; font-size: 16px; }
+  .step p { margin: 0; font-size: 13.5px; color: var(--ink-2); }
+  .g-terms { display: grid; gap: 12px; margin-top: 20px; }
+  @media (min-width: 820px) { .g-terms { grid-template-columns: repeat(3, 1fr); } }
+  .g-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; font-size: 14px; color: var(--ink-2); }
+  .g-card b { color: var(--ink); display: block; margin-bottom: 4px; }
+  .g-seal {
+    width: 108px; height: 108px; border-radius: 50%; background: var(--green); color: #fff;
+    display: grid; place-items: center; text-align: center; font-weight: 800; font-size: 12px;
+    line-height: 1.25; padding: 12px; margin: 0 auto 18px; letter-spacing: .02em;
+    box-shadow: 0 0 0 6px var(--green-soft);
+  }
+
+  /* 16. FAQ */
+  details { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 0; margin-bottom: 10px; }
+  details summary { cursor: pointer; list-style: none; font-weight: 700; font-size: 15px; padding: 16px 18px; display: flex; justify-content: space-between; gap: 10px; align-items: center; }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::after { content: "+"; font-size: 20px; color: var(--green); font-weight: 600; }
+  details[open] summary::after { content: "\2212"; }
+  details .a { padding: 0 18px 16px; font-size: 14.5px; color: var(--ink-2); }
+
+  /* 17. Final CTA */
+  .final { background: var(--green); color: #fff; text-align: center; }
+  .final h2 { color: #fff; max-width: 26ch; margin: 0 auto 14px; }
+  .final .cta { max-width: 380px; margin: 22px auto 0; background: #fff; color: var(--green); }
+  .final .cta:hover { background: var(--green-soft); }
+  .final .cta-micro { color: rgba(255,255,255,.85); max-width: 52ch; margin-left: auto; margin-right: auto; }
+
+  /* Sticky ATC */
+  .sticky-atc {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 80;
+    background: #fff; border-top: 1px solid var(--line);
+    box-shadow: 0 -8px 24px rgba(20,32,26,.10);
+    padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+    display: flex; gap: 12px; align-items: center;
+    transform: translateY(110%); transition: transform .28s ease;
+  }
+  .sticky-atc.show { transform: translateY(0); }
+  .sticky-atc img { width: 44px; height: 44px; object-fit: contain; border-radius: 8px; border: 1px solid var(--line); background: #fff; }
+  .sticky-atc .s-info { flex: 1; min-width: 0; }
+  .sticky-atc .s-name { font-size: 13px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .sticky-atc .s-sub { font-size: 11.5px; color: var(--green); font-weight: 600; }
+  .sticky-atc .cta { width: auto; margin: 0; padding: 12px 22px; font-size: 14.5px; flex-shrink: 0; }
+
+  footer.site { background: var(--sand); padding: 34px 0 110px; font-size: 13px; color: var(--ink-3); }
+  .foot-note { max-width: 760px; margin: 0 auto; text-align: center; }
+
+  .mockup-banner {
+    background: var(--navy); color: #fff; text-align: center; font-size: 11px; padding: 4px 12px;
+  }
+  @media (max-width: 900px) {
+    .promo { font-size: 12px; padding: 7px 12px; }
+    .crumbs { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-top: 8px; }
+    .buybox { padding-top: 8px; }
+    .buybox-grid { gap: 12px; }
+    .rating-row { margin-bottom: 6px; font-size: 12.5px; }
+    .gate { font-size: 9px; padding: 1px 6px; }
+    .title-h1 { font-size: 22px; }
+    .gallery-main { height: 46vw; max-height: 290px; }
+    .thumbs button { flex: 0 0 46px; height: 46px; }
+    .logo img { height: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="mockup-banner">Redesign mockup for review. Amber tags mark items gated on client confirmation; not for production as is.</div>
+
+<!-- 1. PROMO BAR -->
+<div class="promo">Free shipping over $50. Try Munchkin with a <strong>100% money back guarantee</strong>, the only one in the category. <span class="gate">confirm 30 day policy</span></div>
+
+<header class="site">
+  <div class="site-inner">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    <a class="logo" href="#"><img src="assets/munchkin-logo.png" alt="Munchkin"></a>
+    <div class="icons">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+    </div>
+  </div>
+</header>
+<div class="crumbs"><a href="#">Home</a> / <a href="#">Infant Feeding</a> / Munchkin Infant Formula with Organic Milk</div>
+
+<!-- 2. BUY BOX -->
+<section class="buybox wrap" id="buybox">
+  <div class="buybox-grid">
+    <div class="bb-head">
+      <div class="rating-row">
+        <span class="badge-new">New</span>
+        <svg class="stars-svg " viewBox="0 0 88 16" aria-label="4.7 out of 5 stars" role="img"><defs><path id="star-shape" d="M8 1.2l2.1 4.25 4.7.68-3.4 3.31.8 4.67L8 11.9l-4.2 2.21.8-4.67-3.4-3.31 4.7-.68z"/><clipPath id="star-clip"><rect x="0" y="0" width="82.7" height="16"/></clipPath></defs><g fill="#d8d5cc"><use href="#star-shape" x="0"/><use href="#star-shape" x="18"/><use href="#star-shape" x="36"/><use href="#star-shape" x="54"/><use href="#star-shape" x="72"/></g><g fill="#e7a615" clip-path="url(#star-clip)"><use href="#star-shape" x="0"/><use href="#star-shape" x="18"/><use href="#star-shape" x="36"/><use href="#star-shape" x="54"/><use href="#star-shape" x="72"/></g></svg>
+        <a href="#reviews">4.7 out of 5 across 196 reviews at Target</a>
+        <span class="gate">confirm count + fix 0.0 widget</span>
+      </div>
+      <h1 class="title-h1">Munchkin Infant Formula, Made with Organic Milk<span class="sub">Milk based powder with iron. 0 to 12 months.</span></h1>
+    </div>
+    <div class="gallery bb-gallery">
+      <div class="gallery-main"><img id="hero-img" src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/munchkin-infant-formula-made-with-organic-milk_37f2d546-c917-4fea-8ba4-b2b039d05ae8.png?v=1778027190&width=880" alt="Munchkin Infant Formula with Organic Milk can beside its ingredient panel"></div>
+      <div class="thumbs" id="thumbs">
+        <button class="on" data-src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/munchkin-infant-formula-made-with-organic-milk_37f2d546-c917-4fea-8ba4-b2b039d05ae8.png?v=1778027190&width=880"><img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/munchkin-infant-formula-made-with-organic-milk_37f2d546-c917-4fea-8ba4-b2b039d05ae8.png?v=1778027190&width=135" alt="Can"></button>
+        <button data-src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/infant-formula-organic-nutrient-facts.jpg?v=1778536544&width=880"><img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/infant-formula-organic-nutrient-facts.jpg?v=1778536544&width=135" alt="The readable panel"></button>
+        <button data-src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/10_Ingredients_-_Organic_1f3e61c4-ad7c-494a-a59d-60b45b80345c.jpg?v=1772141809&width=880"><img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/10_Ingredients_-_Organic_1f3e61c4-ad7c-494a-a59d-60b45b80345c.jpg?v=1772141809&width=135" alt="The 10 shared ingredients"></button>
+        <button data-src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/Certified-Clean-Organic.jpg?v=1777671040&width=880"><img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/Certified-Clean-Organic.jpg?v=1777671040&width=135" alt="Certifications and testing"></button>
+        <button data-src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/Formula_-_Enhanced_Image_9_663f5a52-a0e5-4b33-b7b5-1fe8e54a0b71.jpg?v=1772142138&width=880"><img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/Formula_-_Enhanced_Image_9_663f5a52-a0e5-4b33-b7b5-1fe8e54a0b71.jpg?v=1772142138&width=135" alt="Lifestyle"></button>
+        <button data-src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/munchkin-recommended-scoops-per-feeding.jpg?v=1778536515&width=880"><img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/munchkin-recommended-scoops-per-feeding.jpg?v=1778536515&width=135" alt="Scoops per feeding"></button>
+      </div>
+    </div>
+    <div class="bb-detail">
+      <p class="pos-line" style="margin-top: 0;">Clean depth without the markup, <span class="serif-accent">with a receipt.</span></p>
+      <p class="pos-sub">Built on 10 ingredients also found in breastmilk. Structure and levels differ.</p>
+      <ul class="benefits">
+        <li><svg class="tick" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/><path d="m6 10.5 2.6 2.6L14 7.5"/></svg><span><strong>No corn syrup,</strong> lactose first.</span></li>
+        <li><svg class="tick" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/><path d="m6 10.5 2.6 2.6L14 7.5"/></svg><span><strong>Organic milk</strong> from grass fed New Zealand cows.</span></li>
+        <li><svg class="tick" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/><path d="m6 10.5 2.6 2.6L14 7.5"/></svg><span><strong>The only premium formula with a published clinical trial.</strong> <span class="gate">confirm paper is public</span></span></li>
+      </ul>
+
+      <div class="price-block">
+        <div class="price-row"><span class="price" id="price">$39.99</span><span class="strike" id="strike">$79.98</span><span class="save-chip" id="savechip">Trial: 2 cans for the price of 1</span></div>
+        <div class="per-oz">$39.99 a can, about $1.55 an ounce, below the boutique organics. <span class="gate">verify can size + per oz math</span></div>
+      </div>
+
+      <div class="selector">
+        <div class="lbl">Milk type</div>
+        <div class="pills"><button class="on">Organic Milk</button><button>Original Milk</button></div>
+      </div>
+
+      <div class="plan" role="radiogroup" aria-label="Order type">
+        <div class="plan-card on" data-price="$39.99" data-strike="$79.98" data-chip="Trial: 2 cans for the price of 1" data-name="Trial, 2 cans" tabindex="0">
+          <div class="p-head"><span class="p-name"><span class="radio"></span> Start with the trial</span><span class="p-price">$39.99</span></div>
+          <div class="p-sub">2 cans. Pay today, protected by the 100% money back guarantee for 30 days. If her stomach settles, your subscription continues at your locked price until her first birthday. <span class="gate">price lock + MBG policy</span></div>
+        </div>
+        <div class="plan-card" data-price="$71.98" data-strike="$79.98" data-chip="Subscribe and save 10%" data-name="Subscription, 2 cans" tabindex="0">
+          <div class="p-head"><span class="p-name"><span class="radio"></span> Subscribe and save <span class="p-tag">Price locks to her first birthday</span></span><span class="p-price">$71.98</span></div>
+          <div class="p-sub">2 cans every 4 weeks. 10% off every order, free shipping, reminder before every charge, cancel in one tap.</div>
+        </div>
+        <div class="plan-card" data-price="$79.98" data-strike="" data-chip="Regular price, 2 cans" data-name="One time, 2 cans" tabindex="0">
+          <div class="p-head"><span class="p-name"><span class="radio"></span> One time order</span><span class="p-price">$79.98</span></div>
+          <div class="p-sub">2 cans at regular price, no subscription. New here? The trial above already gives you 2 cans for the price of 1.</div>
+        </div>
+      </div>
+
+      <button class="cta" id="main-cta">Start with the trial</button>
+      <p class="cta-micro"><strong>100% money back for 30 days.</strong> If her stomach does not settle, every dollar back and keep the cans. No brand in this category offers that. <span class="gate">legal review</span></p>
+      <div class="express"><span>Shop&nbsp;Pay</span><span>Apple&nbsp;Pay</span><span>PayPal</span></div>
+      <div class="delivery"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 7h11v10H3zM14 10h4l3 3v4h-7z"/><circle cx="7" cy="17" r="1.6"/><circle cx="17" cy="17" r="1.6"/></svg> Free shipping over $50, arrives in 2 to 5 business days.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. CERTS STRIP -->
+<div class="certs">
+  <div class="wrap">
+    <div class="certs-row">
+      <span class="c"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 3 4 6v6c0 5 3.4 7.7 8 9 4.6-1.3 8-4 8-9V6l-8-3Z"/></svg> USDA Organic</span>
+      <span class="c"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Pesticide free</span>
+      <span class="c"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 8l8 8M16 8l-8 8"/></svg> No corn syrup, palm oil in blend explained below, no maltodextrin <span class="gate">confirm each vs label</span></span>
+      <span class="c"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 17.5 6.5 21l1.5-6L3 10.5l6.2-.5L12 4l2.8 6 6.2.5L16 15l1.5 6z"/></svg> Clean Label Project <span class="gate">confirm status</span></span>
+    </div>
+    <div class="certs-fwd">The certifications are the floor. <a href="#trial">The proof is the clinical trial below.</a></div>
+  </div>
+</div>
+
+<!-- 4. INGREDIENT PANEL -->
+<section class="wrap narrow" id="panel">
+  <div class="sec-label">The panel</div>
+  <h2>Run your checklist <span class="serif-accent">on our panel.</span></h2>
+  <p class="lede">Lactose first. The full list is printed right here, nothing folded away.</p>
+  <div class="panel-txt">
+    Grass Fed Organic Nonfat Milk, Organic Lactose, Vegetable Oils [High 2-Palmitic Acid Vegetable Oil (derived from Palm Stearin, High Oleic Sunflower), Soy, Coconut, High Oleic Sunflower, Sunflower], Organic Whey Protein Concentrate, Alpha-Lactalbumin Whey Protein, Galactooligosaccharides, less than 1%: Fructooligosaccharides, Mortierella Alpina Oil (ARA), Schizochytrium Sp. Oil (DHA), Calcium Carbonate, Calcium Phosphate, Potassium Citrate, Ferrous Sulfate, Sodium Chloride, Potassium Chloride, Potassium Iodide, Magnesium Chloride, Magnesium Phosphate, Sodium Citrate, Zinc Sulfate, Copper Sulfate, Manganese Sulfate, Sodium Selenite, Soy Lecithin, Mixed Tocopherols, Ascorbyl Palmitate, Choline Bitartrate, Ascorbic Acid, Niacinamide, Calcium Pantothenate, Vitamin A Palmitate, Vitamin B12, Vitamin D3, Riboflavin, Thiamine Hydrochloride, Vitamin B6 Hydrochloride, Folic Acid, Vitamin K1, Biotin, Inositol, Vitamin E Acetate, Nucleotides, Beta-Carotene, Lutein, Lactoferrin, Taurine, L-Carnitine. Contains Milk and Soy.
+  </div>
+  <div class="freefrom">
+    <span>No corn syrup</span><span>No maltodextrin</span><span>No artificial growth hormones</span><span>Non GMO</span>
+  </div>
+  <p class="reframe">"You have spent hours learning not to trust formula marketing. Good. You are exactly who this label was written for."</p>
+</section>
+
+<!-- 5. THE EXTRAS -->
+<section class="wrap" id="extras" style="padding-top: 20px;">
+  <div class="narrow center" style="margin-bottom: 26px;">
+    <div class="sec-label">The extras</div>
+    <h2>The extras the pricier cans leave out, <span class="serif-accent">by name.</span></h2>
+    <p class="lede">One card per ingredient, plain function. DHA and ARA are table stakes, so they sit on the panel, not here. <span class="gate">verify actual bioactive deck before naming</span></p>
+  </div>
+  <div class="grid3">
+    <div class="extra-card"><h4>Alpha Lactalbumin</h4><p>The dominant whey protein in breastmilk. Easier to digest than standard whey blends.</p></div>
+    <div class="extra-card"><h4>Lactoferrin</h4><p>An iron binding protein that supports her gut and natural immunity.</p></div>
+    <div class="extra-card"><h4>Beta Palmitate</h4><p>A fat structure that mirrors how breastmilk carries palmitic acid. Softer stools, less discomfort.</p></div>
+    <div class="extra-card"><h4>Nucleotides</h4><p>Building blocks for rapidly growing cells, including the gut lining.</p></div>
+    <div class="extra-card"><h4>Lutein and Beta Carotene</h4><p>Carotenoids for developing eyes and healthy cells.</p></div>
+    <div class="extra-card"><h4>Taurine and L Carnitine</h4><p>Support energy metabolism and muscle development.</p></div>
+  </div>
+  <div class="candor">
+    <h4>About the palm and soy on our panel</h4>
+    <p>The palm piece builds a fat structure babies also get from breastmilk. The soy lecithin blends the oils evenly. We list everything and tell you why it is there. <span class="gate">confirm with product team</span></p>
+  </div>
+</section>
+
+<!-- 6. SOURCING -->
+<section class="wrap" id="sourcing" style="padding-top: 24px;">
+  <div class="grid2" style="align-items: center;">
+    <img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/Formula-Enhanced-Image-4-Organic.jpg?v=1777671040&width=880" alt="Grass fed New Zealand dairy pasture" style="border-radius: var(--radius); border: 1px solid var(--line);">
+    <div>
+      <div class="sec-label">Sourcing</div>
+      <h2>Grass fed organic milk, made <span class="serif-accent">under one roof.</span></h2>
+      <p class="lede">Organic milk from grass fed New Zealand cows, blended and canned in one facility inspected by both the US and Canadian regulators. One roof means every can is traceable to the same standard. <span class="gate">confirm facility + inspection claims</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- 7. COMPARISON -->
+<section class="wrap narrow" id="comparison" style="padding-top: 24px;">
+  <div class="sec-label">The cross shop</div>
+  <h2>The comparison the other brands <span class="serif-accent">will not show you.</span></h2>
+  <p class="lede" style="margin-bottom: 18px;">You are running it in your head anyway. Here it is in the open, every number checkable. <span class="gate">verify all competitor numbers vs current labels and prices</span></p>
+  <div class="cmp-wrap">
+  <table class="cmp">
+    <thead><tr><th></th><th class="us">Munchkin</th><th>Bobbie Organic</th><th>Kendamil Organic</th></tr></thead>
+    <tbody>
+      <tr><td>Labeled shared breastmilk ingredients</td><td class="us">10</td><td class="no">3</td><td class="no">5</td></tr>
+      <tr><td>Published clinical trial you can read</td><td class="us yes">Yes</td><td class="no">No</td><td class="no">No</td></tr>
+      <tr><td>Price per ounce (est.)</td><td class="us">~$1.55</td><td class="no">~$1.84</td><td class="no">~$1.42</td></tr>
+      <tr><td>Money back guarantee</td><td class="us yes">100%, 30 days</td><td class="no">All sales final</td><td class="no">None</td></tr>
+      <tr><td>Made under one roof, dual government inspection</td><td class="us yes">Yes</td><td class="no">Contract facilities</td><td class="no">UK facility</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="floor">Every formula sold in the US clears the same FDA nutrient floor. The differences sit above it.</p>
+</section>
+
+<!-- 8. CLINICAL TRIAL -->
+<section class="trial" id="trial">
+  <div class="wrap narrow">
+    <div class="sec-label">The proof</div>
+    <h2>Every other premium formula says <span class="serif-accent">inspired by breast milk.</span><br>We ran the trial and published it.</h2>
+    <div class="stat-cards">
+      <div class="sc"><div class="n">16 weeks</div><div class="d">Randomized, double blind, controlled trial</div></div>
+      <div class="sc"><div class="n">260</div><div class="d">Infants enrolled</div></div>
+      <div class="sc"><div class="n">2x fewer</div><div class="d">Digestive side effects vs the control formula (9.7% vs 20.8%) <span class="gate">confirm figures + legal</span></div></div>
+    </div>
+    <p class="lede" style="margin-bottom: 20px;">The only published clinical trial in premium formula, and the only one you can pull up today from a brand still on the shelf. Less fussiness and gas, softer stools, healthy growth over the study.</p>
+    <a class="doc-link" href="#"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/></svg> Read the published study</a>
+  </div>
+</section>
+
+<!-- 9. SAFETY + RECALL ANSWER -->
+<section class="wrap narrow" id="safety">
+  <div class="sec-label">Safety and testing</div>
+  <h2>The clean brands you trusted got recalled. <span class="serif-accent">Here is why this one is different to check.</span></h2>
+  <p class="lede">Every batch is screened before it ships. You can look up the results for the exact lot in your hand. <span class="gate">lookup page is interim; do not promise before live</span></p>
+  <div class="card" style="margin-top: 18px;">
+    <p style="margin: 0; font-size: 14.5px; color: var(--ink-2);">ByHeart and Nara were recalled for the thing parents feared most. That is exactly why every Munchkin lot is tested and posted before it leaves the facility, and why you hear from us first if anything is ever off. <span class="gate">"hear from us first" is a ceiling item</span></p>
+  </div>
+  <div class="lot-box">
+    <input type="text" placeholder="Enter the lot number on the bottom of your can" aria-label="Lot number">
+    <button>Look up my batch</button>
+  </div>
+</section>
+
+<!-- 10. HOW TO SWITCH -->
+<section class="wrap narrow" id="switch" style="padding-top: 24px;">
+  <div class="sec-label">Switching</div>
+  <h2>Switch with <span class="serif-accent">nothing to lose.</span></h2>
+  <p class="lede">A short walkthrough and a day by day schedule that follows your pediatrician's two week rule. And if it does not go well, the money back guarantee has you, which no other formula can say.</p>
+  <div class="video-ph" style="margin-top: 18px;">
+    <img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/Formula_-_Enhanced_Image_9_663f5a52-a0e5-4b33-b7b5-1fe8e54a0b71.jpg?v=1772142138&width=1200" alt="">
+    <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+  </div>
+  <p style="font-size: 13px; color: var(--ink-3); margin-top: 8px;">How to switch your baby to a new formula safely. <span class="gate">produce the video</span></p>
+  <div class="sched">
+    <div class="day"><b>Days 1 to 3</b><span>1 part Munchkin to 3 parts current formula</span></div>
+    <div class="day"><b>Days 4 to 6</b><span>Half and half</span></div>
+    <div class="day"><b>Days 7 to 9</b><span>3 parts Munchkin to 1 part current formula</span></div>
+    <div class="day"><b>Days 10 to 14</b><span>Full Munchkin, watch her cues, and text us with anything</span></div>
+  </div>
+</section>
+
+<!-- 11. REVIEWS -->
+<section class="wrap" id="reviews" style="background: #fff; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); max-width: none;">
+  <div class="wrap">
+    <div class="sec-label">Parents like you</div>
+    <h2>Loved by parents <span class="serif-accent">who read labels.</span></h2>
+    <div class="rev-sum">
+      <span class="big">4.7</span>
+      <div><svg class="stars-svg lg" viewBox="0 0 88 16" aria-label="4.7 out of 5 stars" role="img"><defs><path id="star-shape" d="M8 1.2l2.1 4.25 4.7.68-3.4 3.31.8 4.67L8 11.9l-4.2 2.21.8-4.67-3.4-3.31 4.7-.68z"/><clipPath id="star-clip"><rect x="0" y="0" width="82.7" height="16"/></clipPath></defs><g fill="#d8d5cc"><use href="#star-shape" x="0"/><use href="#star-shape" x="18"/><use href="#star-shape" x="36"/><use href="#star-shape" x="54"/><use href="#star-shape" x="72"/></g><g fill="#e7a615" clip-path="url(#star-clip)"><use href="#star-shape" x="0"/><use href="#star-shape" x="18"/><use href="#star-shape" x="36"/><use href="#star-shape" x="54"/><use href="#star-shape" x="72"/></g></svg><div style="font-size: 13px; color: var(--ink-2);">196 reviews at Target and munchkin.com <span class="gate">confirm count, syndication, verified filter</span></div></div>
+    </div>
+    <div class="grid3">
+      <div class="rev-card"><div class="q">"We switched to this formula after the Nara recall and within a couple days I noticed baby's stool went back to the color and smell of when we were breastfeeding. Less constipation and less gas overall too."</div><div class="who"><span class="verified">Verified buyer</span> · Recall switcher</div></div>
+      <div class="rev-card"><div class="q">"My son has GI problems and this is the first milk that he hasn't gotten sick from! And the best part is, there is no smell to it! The powder is really fine so you don't need to worry about clumps."</div><div class="who"><span class="verified">Verified buyer</span> · Juliana T.</div></div>
+      <div class="rev-card"><div class="q">"We will be switching to Munchkin formula from the expensive purple can formula. Also you get great value for your money with this product! This triplet mama highly recommends!"</div><div class="who"><span class="verified">Verified buyer</span> · Angelica F.</div></div>
+    </div>
+    <div class="honesty">
+      <strong>Munchkin has made baby products for almost 40 years, with more than 350 patents.</strong> Formula is new for us. The trial is how we earned the right to make it.
+    </div>
+  </div>
+</section>
+
+<!-- 12. OFFER + BRIDGE -->
+<section class="bridge" id="offer">
+  <div class="wrap narrow">
+    <div class="sec-label">How the trial works</div>
+    <h2>Try it first, with 30 days <span class="serif-accent">to change your mind.</span></h2>
+    <p class="lede">A year of formula runs about $2,760, so a locked price is worth real money. <span class="gate">MBG policy + price lock via Recharge</span></p>
+    <div class="bridge-steps">
+      <div class="step"><div class="num">1</div><h4>Buy the trial today</h4><p>Two cans for $39.99, shipped free. You pay upfront, fully protected by the money back guarantee.</p></div>
+      <div class="step"><div class="num">2</div><h4>Two weeks to settle</h4><p>Follow the switching schedule. Text the feeding line with anything. If her stomach does not settle, every dollar back, keep or donate the cans.</p></div>
+      <div class="step"><div class="num">3</div><h4>Your price locks</h4><p>If it works, your subscription continues at your locked price until her first birthday. Reminder before every charge, cancel in one tap. No daily texts, ever.</p></div>
+    </div>
+    <p style="font-size: 13.5px; color: var(--ink-2); margin-top: 16px;">Prefer to buy once? A one time order with Buy 1 Get 1 stays available above. And you never run out: guaranteed supply for subscribers. <span class="gate">supply guarantee</span></p>
+  </div>
+</section>
+
+<!-- 13. GUARANTEE -->
+<section class="wrap narrow center" id="guarantee">
+  <div class="g-seal">100%<br>MONEY BACK<br>30 DAYS</div>
+  <div class="sec-label">The guarantee</div>
+  <h2>You have heard the stories. Two weeks in, the gas is worse, and you are stuck with $80 of cans and a brand that says <span class="serif-accent">all sales are final.</span></h2>
+  <p class="lede">So we do the opposite. If her stomach has not settled within 30 days, you get 100% of your money back. No questions, no return shipping. <span class="gate">legal review on outcome tied guarantee</span></p>
+  <div class="g-terms" style="text-align: left;">
+    <div class="g-card"><b>One tap</b>In your account, or text us. That is the whole process.</div>
+    <div class="g-card"><b>Keep the cans</b>Or we send a label and donate them to a family who needs them. <span class="gate">donation partner</span></div>
+    <div class="g-card"><b>Why we can</b>We are the only premium formula that can make this promise, because we ran the only published trial in the category. We know what week two looks like when it works.</div>
+  </div>
+</section>
+
+<!-- 14. FEEDING SUPPORT -->
+<section class="wrap narrow" id="support" style="padding-top: 24px;">
+  <div class="card" style="display: grid; grid-template-columns: 56px 1fr; gap: 16px; align-items: start;">
+    <div style="width: 56px; height: 56px; border-radius: 50%; background: var(--green-soft); display: grid; place-items: center;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#325420" stroke-width="2" style="width: 26px; height: 26px;"><path d="M21 12a8 8 0 0 1-8 8H4l2-3a8 8 0 1 1 15-5Z"/><path d="M9 11h.01M13 11h.01M17 11h.01" stroke-linecap="round"/></svg>
+    </div>
+    <div>
+      <h3 style="margin-bottom: 6px;">A feeding specialist you can text, <span class="serif-accent">from day one.</span></h3>
+      <p style="margin: 0; font-size: 14.5px; color: var(--ink-2);">Questions at 3am are normal. Text a board certified feeding specialist through your first month, included with your trial, before you have committed to anything. <span class="gate">contract specialists; business hours interim</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- 15. ECOSYSTEM -->
+<section class="wrap narrow" id="ecosystem" style="padding-top: 24px;">
+  <div class="sec-label">Beyond the can</div>
+  <h2>The only formula brand that can <span class="serif-accent">furnish the nursery too.</span></h2>
+  <p class="lede">Your first box includes a bottle starter kit. As your subscription continues, the sterilizer, dispenser, and next stage essentials arrive free at milestones through her first year. A formula only brand cannot do this. <span class="gate">confirm gift structure + COGS</span></p>
+  <div class="grid3" style="margin-top: 18px;">
+    <div class="extra-card"><h4>Box one</h4><p>Bottle starter kit, free with your trial.</p></div>
+    <div class="extra-card"><h4>Month three</h4><p>The formula dispenser that pairs with your routine.</p></div>
+    <div class="extra-card"><h4>Milestones after</h4><p>Sterilizer and next stage essentials as she grows, free at milestones.</p></div>
+  </div>
+</section>
+
+<!-- 16. FAQ -->
+<section class="wrap narrow" id="faq" style="padding-top: 24px;">
+  <div class="sec-label">Questions parents ask</div>
+  <h2>Answered in <span class="serif-accent">plain language.</span></h2>
+  <details open>
+    <summary>How do I switch my baby to a new formula safely?</summary>
+    <div class="a">Gradually, over about two weeks, following the schedule above: start 1 to 3, move to half and half, then 3 to 1, then full Munchkin. Most babies switch without difficulty. Watch her cues, and text the feeding line with anything that worries you.</div>
+  </details>
+  <details open>
+    <summary>What if it does not work for us?</summary>
+    <div class="a">Then it costs you nothing. If her stomach has not settled within 30 days of your trial, you get 100% of your money back, no return shipping, keep or donate the cans. We are the only premium formula that offers this. <span class="gate">MBG policy</span></div>
+  </details>
+  <details>
+    <summary>Why is there palm oil and soy on the panel?</summary>
+    <div class="a">The palm derived piece builds a fat structure (beta palmitate) that babies also get from breastmilk, and it is tied to softer stools in the research. The soy lecithin blends the oils evenly. Nothing on the panel is filler, and we will always tell you why an ingredient is there.</div>
+  </details>
+  <details>
+    <summary>Why might I notice colored residue in the bottle after feeding?</summary>
+    <div class="a">The iron in formula can oxidize and leave a brownish tint once a prepared bottle sits, which is why we say feed within one hour and rinse right after. It washes with warm soapy water. If you see anything that does not match this description, text us a photo and we will look at it with you.</div>
+  </details>
+  <details>
+    <summary>How do I prepare a bottle?</summary>
+    <div class="a">One unpacked level scoop per 1 fl oz of water, cap and shake until dissolved, feed within an hour. The scoop sits in its own holder at the top of the can, and the ratio is printed on the label.</div>
+  </details>
+  <details>
+    <summary>Where is it made?</summary>
+    <div class="a">In one purpose built facility in Canada, inspected by both US and Canadian regulators, so every can is traceable to the same standard.</div>
+  </details>
+  <details>
+    <summary>Where can I buy it?</summary>
+    <div class="a">Right here, with the trial, the guarantee, and the locked subscription price. Munchkin formula is also at Target, but the trial pricing, the guarantee, and the price lock are only available here.</div>
+  </details>
+</section>
+
+<!-- 17. FINAL CTA -->
+<section class="final" id="final">
+  <div class="wrap">
+    <div class="sec-label" style="color: var(--green-soft);">The close</div>
+    <h2>You checked the panel, the comparison, and the only published trial. <span class="serif-accent">Start with the trial.</span></h2>
+    <a class="cta" href="#buybox">Start with the trial, $39.99</a>
+    <p class="cta-micro">100% money back for 30 days, the only guarantee in the category. Keep the cans. Subscribe and your price locks to her first birthday.</p>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="foot-note">Redesign mockup built from the Health Optimizer PDP brief (2026-07) and the PDP audit (2026-07-15). Amber tags mark client gated claims. Fonts: Matter and Baskerville Display PT in production via the existing Typekit kit; this mockup falls back to Inter and Libre Baskerville where unlicensed.</div>
+</footer>
+
+<!-- STICKY ATC -->
+<div class="sticky-atc" id="sticky">
+  <img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/munchkin-infant-formula-made-with-organic-milk_37f2d546-c917-4fea-8ba4-b2b039d05ae8.png?v=1778027190&width=135" alt="">
+  <div class="s-info">
+    <div class="s-name">Organic Milk Formula · <span id="s-name">Trial, 2 cans</span> · <span id="s-price">$39.99</span></div>
+    <div class="s-sub">100% money back for 30 days</div>
+  </div>
+  <a class="cta" href="#buybox" id="s-cta">Start the trial</a>
+</div>
+
+<button class="build-toggle" id="gate-toggle">Hide build notes</button>
+
+<script>
+(function(){
+  // Gallery
+  const hero = document.getElementById('hero-img');
+  document.querySelectorAll('#thumbs button').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('#thumbs button').forEach(x => x.classList.remove('on'));
+      b.classList.add('on');
+      hero.src = b.dataset.src;
+    });
+  });
+
+  // Plan selector
+  const price = document.getElementById('price');
+  const strike = document.getElementById('strike');
+  const chip = document.getElementById('savechip');
+  const mainCta = document.getElementById('main-cta');
+  const sPrice = document.getElementById('s-price');
+  document.querySelectorAll('.plan-card').forEach(c => {
+    c.addEventListener('click', () => {
+      document.querySelectorAll('.plan-card').forEach(x => x.classList.remove('on'));
+      c.classList.add('on');
+      price.textContent = c.dataset.price;
+      sPrice.textContent = c.dataset.price;
+      document.getElementById('s-name').textContent = c.dataset.name;
+      strike.textContent = c.dataset.strike;
+      strike.style.display = c.dataset.strike ? '' : 'none';
+      chip.textContent = c.dataset.chip;
+      const name = c.querySelector('.p-name').textContent.trim();
+      mainCta.textContent = name.startsWith('Start') ? 'Start with the trial' : (name.startsWith('Subscribe') ? 'Subscribe and save' : 'Add to Bag');
+    });
+  });
+
+  // Sticky ATC after buy box scrolls out
+  const buybox = document.getElementById('buybox');
+  const sticky = document.getElementById('sticky');
+  const io = new IntersectionObserver(([e]) => {
+    sticky.classList.toggle('show', !e.isIntersecting && e.boundingClientRect.top < 0);
+  }, { threshold: 0 });
+  io.observe(buybox);
+
+  // Gate toggle
+  const gt = document.getElementById('gate-toggle');
+  gt.addEventListener('click', () => {
+    document.body.classList.toggle('hide-gates');
+    gt.textContent = document.body.classList.contains('hide-gates') ? 'Show build notes' : 'Hide build notes';
+  });
+})();
+</script>
+</body>
+</html>
