@@ -89,9 +89,9 @@
   /* 2. Buy box */
   .buybox { padding: 18px 0 56px; }
   .buybox-grid { display: grid; gap: 20px; grid-template-areas: "head" "gallery" "detail"; }
-  .bb-head { grid-area: head; }
-  .bb-gallery { grid-area: gallery; }
-  .bb-detail { grid-area: detail; }
+  .bb-head { grid-area: head; min-width: 0; }
+  .bb-gallery { grid-area: gallery; min-width: 0; }
+  .bb-detail { grid-area: detail; min-width: 0; }
   @media (min-width: 900px) {
     .buybox-grid {
       grid-template-columns: 1.08fr 1fr; gap: 14px 64px; align-items: start;
@@ -174,6 +174,14 @@
     transition: background .15s ease;
   }
   .cta:hover { background: var(--green-dark); }
+  .cta-secondary {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; margin-top: 10px; padding: 14px;
+    background: transparent; color: var(--green); border: 1.5px solid var(--green);
+    border-radius: 999px; font-size: 14.5px; font-weight: 700; text-decoration: none;
+    transition: background .15s ease;
+  }
+  .cta-secondary:hover { background: var(--green-soft); }
   .cta-micro { font-size: 13.5px; color: var(--ink-2); margin-top: 12px; line-height: 1.55; }
   .cta-micro strong { color: var(--ink); }
   .express { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 9px; margin-top: 14px; }
@@ -184,11 +192,78 @@
   .delivery { font-size: 13.5px; color: var(--ink-2); margin-top: 14px; display: flex; gap: 9px; align-items: center; }
   .delivery svg { width: 18px; height: 18px; stroke: var(--green); flex: 0 0 18px; }
 
+  /* UGC video strip (Bobbie pattern) */
+  .ugc-row-wrap { margin-top: 22px; }
+  .ugc-label { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 10px; }
+  .ugc-row { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 6px; -webkit-overflow-scrolling: touch; }
+  .ugc-card {
+    position: relative; flex: 0 0 118px; height: 176px; border-radius: 14px; overflow: hidden;
+    border: 0; padding: 0; cursor: pointer; background: var(--card);
+  }
+  .ugc-card img { width: 100%; height: 100%; object-fit: cover; }
+  .ugc-play {
+    position: absolute; top: 8px; right: 8px; width: 30px; height: 30px; border-radius: 50%;
+    background: rgba(255,255,255,.92); display: grid; place-items: center;
+  }
+  .ugc-play svg { width: 13px; height: 13px; fill: var(--green); margin-left: 2px; }
+  .ugc-cap {
+    position: absolute; left: 0; right: 0; bottom: 0; padding: 22px 9px 9px;
+    background: linear-gradient(transparent, rgba(10,16,10,.72));
+    color: #fff; font-size: 11px; font-weight: 600; line-height: 1.3; text-align: left;
+    font-family: var(--sans);
+  }
+
+  /* Floating doctor video widget */
+  .doc-widget {
+    position: fixed; left: 14px; bottom: 92px; z-index: 85;
+    display: flex; align-items: center; gap: 10px;
+    background: transparent; border: 0; padding: 0; cursor: pointer; font-family: var(--sans);
+  }
+  .doc-bubble {
+    width: 68px; height: 68px; border-radius: 50%; overflow: hidden; position: relative;
+    border: 3px solid #fff; box-shadow: 0 10px 30px rgba(30,39,33,.25);
+    background: var(--green-soft);
+  }
+  .doc-bubble img { width: 100%; height: 100%; object-fit: cover; }
+  .doc-bubble::after {
+    content: ""; position: absolute; inset: 0; border-radius: 50%;
+    background: rgba(20,32,26,.18) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M9 6.5v11l9-5.5z' fill='white'/></svg>") center / 22px no-repeat;
+  }
+  .doc-chip {
+    background: rgba(255,255,255,.96); border-radius: 999px; padding: 8px 13px;
+    font-size: 11.5px; font-weight: 700; color: var(--ink); box-shadow: var(--shadow);
+    max-width: 150px; text-align: left; line-height: 1.3;
+  }
+  .doc-chip span { display: block; font-weight: 500; color: var(--ink-3); font-size: 10.5px; }
+  .doc-modal {
+    position: fixed; inset: 0; z-index: 120; background: rgba(10,16,10,.55); backdrop-filter: blur(6px);
+    display: none; place-items: center; padding: 20px;
+  }
+  .doc-modal.open { display: grid; }
+  .doc-panel {
+    width: min(340px, 92vw); aspect-ratio: 9/16; border-radius: 22px; overflow: hidden; position: relative;
+    background: linear-gradient(180deg, var(--green-soft), #fff);
+    display: grid; place-items: center; text-align: center; padding: 28px;
+  }
+  .doc-panel .play { position: static; margin-bottom: 16px; }
+  .doc-panel h4 { margin: 0 0 8px; font-size: 18px; }
+  .doc-panel p { margin: 0; font-size: 13.5px; color: var(--ink-2); }
+  .doc-close {
+    position: absolute; top: 12px; right: 12px; width: 34px; height: 34px; border-radius: 50%;
+    background: rgba(255,255,255,.9); border: 0; cursor: pointer; font-size: 17px; color: var(--ink);
+  }
+  @media (max-width: 760px) { .doc-chip { display: none; } .doc-widget { bottom: 86px; } }
+
   /* 3. Certs strip */
   .certs { background: #fff; padding: 34px 0; }
   .certs-row { display: flex; gap: 14px 34px; align-items: center; justify-content: center; flex-wrap: wrap; font-size: 14px; font-weight: 600; color: var(--ink-2); }
   .certs-row .c { display: flex; gap: 9px; align-items: center; }
   .certs-row svg { width: 19px; height: 19px; stroke: var(--green); }
+  .certs-row.badges { gap: 22px 44px; }
+  .certs-row.badges .c { flex-direction: column; gap: 8px; }
+  .certs-row.badges img { height: 74px; width: auto; }
+  .certs-row.badges em { font-style: normal; font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); font-weight: 700; }
+  @media (max-width: 760px) { .certs-row.badges img { height: 58px; } }
   .certs-fwd { text-align: center; font-size: 13.5px; color: var(--ink-3); margin-top: 14px; }
   .certs-fwd a { color: var(--green); font-weight: 600; }
 
@@ -268,6 +343,10 @@
   .cmp .us { background: rgba(76,136,40,.07); font-weight: 700; }
   .cmp .yes { color: var(--green-bright); font-weight: 800; }
   .cmp .no { color: var(--ink-3); font-weight: 400; }
+  .cmp-logo { height: 22px; width: auto; display: inline-block; }
+  .cmp-logo.kendamil { height: 16px; }
+  .hrt { width: 22px; height: 22px; fill: none; stroke: #c9cec9; stroke-width: 1.8; display: inline-block; vertical-align: middle; }
+  .hrt.on { fill: var(--green); stroke: var(--green); }
   .floor { font-size: 13.5px; color: var(--ink-3); margin-top: 14px; }
 
   /* 8. Trial */
@@ -456,8 +535,8 @@
       </ul>
 
       <div class="price-block">
-        <div class="price-row"><span class="price" id="price">$39.99</span><span class="strike" id="strike">$79.98</span><span class="save-chip" id="savechip">Trial: 2 cans for the price of 1</span></div>
-        <div class="per-oz">$39.99 a can, about $1.55 an ounce, below the boutique organics. <span class="gate">verify can size + per oz math</span></div>
+        <div class="price-row"><span class="price" id="price">$9</span><span class="strike" id="strike">$79.98 value</span><span class="save-chip" id="savechip">Trial: 2 cans, you cover $9 shipping</span></div>
+        <div class="per-oz">After the trial: $39.99 a can, about $1.55 an ounce, below the boutique organics. <span class="gate">verify trial economics + per oz math</span></div>
       </div>
 
       <div class="selector">
@@ -466,9 +545,9 @@
       </div>
 
       <div class="plan" role="radiogroup" aria-label="Order type">
-        <div class="plan-card on" data-price="$39.99" data-strike="$79.98" data-chip="Trial: 2 cans for the price of 1" data-name="Trial, 2 cans" tabindex="0">
-          <div class="p-head"><span class="p-name"><span class="radio"></span> Start with the trial</span><span class="p-price">$39.99</span></div>
-          <div class="p-sub">2 cans. Pay today, protected by the 100% money back guarantee for 30 days. If her stomach settles, your subscription continues at your locked price until her first birthday. <span class="gate">price lock + MBG policy</span></div>
+        <div class="plan-card on" data-price="$9" data-strike="$79.98 value" data-chip="Trial: 2 cans, you cover $9 shipping" data-name="Trial, 2 cans" tabindex="0">
+          <div class="p-head"><span class="p-name"><span class="radio"></span> Start with the trial</span><span class="p-price">$9 shipping</span></div>
+          <div class="p-sub">2 full size cans. You pay only $9 shipping today, protected by the 100% money back guarantee for 30 days. If her stomach settles, your subscription continues at your locked price until her first birthday. <span class="gate">trial economics + price lock + MBG policy</span></div>
         </div>
         <div class="plan-card" data-price="$71.98" data-strike="$79.98" data-chip="Subscribe and save 10%" data-name="Subscription, 2 cans" tabindex="0">
           <div class="p-head"><span class="p-name"><span class="radio"></span> Subscribe and save <span class="p-tag">Price locks to her first birthday</span></span><span class="p-price">$71.98</span></div>
@@ -476,14 +555,27 @@
         </div>
         <div class="plan-card" data-price="$79.98" data-strike="" data-chip="Regular price, 2 cans" data-name="One time, 2 cans" tabindex="0">
           <div class="p-head"><span class="p-name"><span class="radio"></span> One time order</span><span class="p-price">$79.98</span></div>
-          <div class="p-sub">2 cans at regular price, no subscription. New here? The trial above already gives you 2 cans for the price of 1.</div>
+          <div class="p-sub">2 cans at regular price, no subscription. New here? The trial above gives you 2 cans for just $9 shipping.</div>
         </div>
       </div>
 
-      <button class="cta" id="main-cta">Start with the trial · $39.99</button>
+      <button class="cta" id="main-cta">Start the trial · $9 shipping</button>
+      <a class="cta-secondary" href="#trial">Not convinced yet? Read the clinical proof
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </a>
       <p class="cta-micro"><strong>100% money back for 30 days.</strong> If her stomach does not settle, every dollar back and keep the cans. No brand in this category offers that. <span class="gate">legal review</span></p>
       <div class="express"><span>Shop&nbsp;Pay</span><span>Apple&nbsp;Pay</span><span>PayPal</span></div>
-      <div class="delivery"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 7h11v10H3zM14 10h4l3 3v4h-7z"/><circle cx="7" cy="17" r="1.6"/><circle cx="17" cy="17" r="1.6"/></svg> Free shipping over $50, arrives in 2 to 5 business days.</div>
+      <div class="delivery"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 7h11v10H3zM14 10h4l3 3v4h-7z"/><circle cx="7" cy="17" r="1.6"/><circle cx="17" cy="17" r="1.6"/></svg> Arrives in 2 to 5 business days. Free shipping on subscriptions.</div>
+
+      <div class="ugc-row-wrap">
+        <div class="ugc-label">Real parents, real switches <span class="gate">produce UGC videos</span></div>
+        <div class="ugc-row">
+          <button class="ugc-card"><img src="assets/ugc-dad.jpg" alt=""><span class="ugc-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="ugc-cap">Why we switched after the recall</span></button>
+          <button class="ugc-card"><img src="assets/ugc-mom.jpg" alt=""><span class="ugc-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="ugc-cap">Her first bottle of Munchkin</span></button>
+          <button class="ugc-card"><img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/preview_images/1c1ee86846a845ee82b443d80fcb13fb.thumbnail.0000000000.jpg?v=1773937495&width=400" alt=""><span class="ugc-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="ugc-cap">Unboxing the trial</span></button>
+          <button class="ugc-card"><img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/10_Ingredients_-_Organic_1f3e61c4-ad7c-494a-a59d-60b45b80345c.jpg?v=1772141809&width=400" alt=""><span class="ugc-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="ugc-cap">How it mixes, no clumps</span></button>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -491,11 +583,11 @@
 <!-- 3. CERTS STRIP -->
 <div class="certs">
   <div class="wrap">
-    <div class="certs-row">
-      <span class="c"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 3 4 6v6c0 5 3.4 7.7 8 9 4.6-1.3 8-4 8-9V6l-8-3Z"/></svg> USDA Organic</span>
-      <span class="c"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Pesticide free</span>
-      <span class="c"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 8l8 8M16 8l-8 8"/></svg> No corn syrup, palm oil in blend explained below, no maltodextrin <span class="gate">confirm each vs label</span></span>
-      <span class="c"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 17.5 6.5 21l1.5-6L3 10.5l6.2-.5L12 4l2.8 6 6.2.5L16 15l1.5 6z"/></svg> Clean Label Project <span class="gate">confirm status</span></span>
+    <div class="certs-row badges">
+      <span class="c"><img src="assets/badge-usda.png" alt="USDA Organic"><em>USDA Organic</em></span>
+      <span class="c"><img src="assets/badge-purity-award.png" alt="Clean Label Project Purity Award"><em>Purity Award</em></span>
+      <span class="c"><img src="assets/badge-pesticide-free.png" alt="Clean Label Project Certified Pesticide Free"><em>Pesticide Free</em></span>
+      <span class="c"><img src="assets/badge-1000day.png" alt="Clean Label Project First 1,000 Day Promise"><em>1,000 Day Promise</em></span>
     </div>
     <div class="certs-fwd">The certifications are the floor. <a href="#trial">The proof is the clinical trial below.</a></div>
   </div>
@@ -563,13 +655,23 @@
   <p class="lede" style="margin-bottom: 18px;">You are running it in your head anyway. Here it is in the open, every number checkable. <span class="gate">verify all competitor numbers vs current labels and prices</span></p>
   <div class="cmp-wrap">
   <table class="cmp">
-    <thead><tr><th></th><th class="us">Munchkin</th><th>Bobbie Organic</th><th>Kendamil Organic</th></tr></thead>
+    <thead><tr>
+      <th></th>
+      <th class="us"><img class="cmp-logo" src="assets/munchkin-logo.png" alt="Munchkin"></th>
+      <th><img class="cmp-logo" src="assets/logo-bobbie.png" alt="Bobbie"></th>
+      <th><img class="cmp-logo kendamil" src="assets/logo-kendamil.svg" alt="Kendamil"></th>
+    </tr></thead>
     <tbody>
       <tr><td>Labeled shared breastmilk ingredients</td><td class="us">10</td><td class="no">3</td><td class="no">5</td></tr>
-      <tr><td>Published clinical trial you can read</td><td class="us yes">Yes</td><td class="no">No</td><td class="no">No</td></tr>
+      <tr><td>Published clinical trial you can read</td>
+        <td class="us"><svg class="hrt on" viewBox="0 0 24 24"><path d="M12 21s-7.5-4.9-10-9.2C.4 8.9 2.3 5 6 5c2.2 0 3.7 1.2 6 3.6C14.3 6.2 15.8 5 18 5c3.7 0 5.6 3.9 4 6.8C19.5 16.1 12 21 12 21Z"/></svg></td>
+        <td><svg class="hrt" viewBox="0 0 24 24"><path d="M12 21s-7.5-4.9-10-9.2C.4 8.9 2.3 5 6 5c2.2 0 3.7 1.2 6 3.6C14.3 6.2 15.8 5 18 5c3.7 0 5.6 3.9 4 6.8C19.5 16.1 12 21 12 21Z"/></svg></td>
+        <td><svg class="hrt" viewBox="0 0 24 24"><path d="M12 21s-7.5-4.9-10-9.2C.4 8.9 2.3 5 6 5c2.2 0 3.7 1.2 6 3.6C14.3 6.2 15.8 5 18 5c3.7 0 5.6 3.9 4 6.8C19.5 16.1 12 21 12 21Z"/></svg></td></tr>
       <tr><td>Price per ounce (est.)</td><td class="us">~$1.55</td><td class="no">~$1.84</td><td class="no">~$1.42</td></tr>
-      <tr><td>Money back guarantee</td><td class="us yes">100%, 30 days</td><td class="no">All sales final</td><td class="no">None</td></tr>
-      <tr><td>Made under one roof, dual government inspection</td><td class="us yes">Yes</td><td class="no">Contract facilities</td><td class="no">UK facility</td></tr>
+      <tr><td>Money back guarantee</td><td class="us">100%, 30 days</td><td class="no">All sales final</td><td class="no">None</td></tr>
+      <tr><td>Made under one roof, dual government inspection</td>
+        <td class="us"><svg class="hrt on" viewBox="0 0 24 24"><path d="M12 21s-7.5-4.9-10-9.2C.4 8.9 2.3 5 6 5c2.2 0 3.7 1.2 6 3.6C14.3 6.2 15.8 5 18 5c3.7 0 5.6 3.9 4 6.8C19.5 16.1 12 21 12 21Z"/></svg></td>
+        <td class="no">Contract facilities</td><td class="no">UK facility</td></tr>
     </tbody>
   </table>
   </div>
@@ -654,7 +756,7 @@
       <p class="lede" style="margin: 0;">Box one arrives with your two cans and the bottle starter kit. <span class="gate">confirm gift structure</span> From there, three steps.</p>
     </div>
     <div class="bridge-steps">
-      <div class="step"><div class="num">1</div><h4>Buy the trial today</h4><p>Two cans for $39.99, shipped free. You pay upfront, fully protected by the money back guarantee.</p></div>
+      <div class="step"><div class="num">1</div><h4>Start the trial today</h4><p>Two full size cans. You cover $9 shipping, and the money back guarantee covers everything else.</p></div>
       <div class="step"><div class="num">2</div><h4>Two weeks to settle</h4><p>Follow the switching schedule. Text the feeding line with anything. If her stomach does not settle, every dollar back, keep or donate the cans.</p></div>
       <div class="step"><div class="num">3</div><h4>Your price locks</h4><p>If it works, your subscription continues at your locked price until her first birthday. Reminder before every charge, cancel in one tap. No daily texts, ever.</p></div>
     </div>
@@ -739,7 +841,7 @@
   <div class="wrap">
     <div class="sec-label" style="color: var(--green-soft);">The close</div>
     <h2>You checked the panel, the comparison, and the only published trial. <span class="serif-accent">Start with the trial.</span></h2>
-    <a class="cta" href="#buybox">Start with the trial, $39.99</a>
+    <a class="cta" href="#buybox">Start the trial · $9 shipping</a>
     <p class="cta-micro">100% money back for 30 days, the only guarantee in the category. Keep the cans. Subscribe and your price locks to her first birthday.</p>
   </div>
 </section>
@@ -752,10 +854,25 @@
 <div class="sticky-atc" id="sticky">
   <img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/munchkin-infant-formula-made-with-organic-milk_37f2d546-c917-4fea-8ba4-b2b039d05ae8.png?v=1778027190&width=135" alt="">
   <div class="s-info">
-    <div class="s-name">Organic Milk Formula · <span id="s-name">Trial, 2 cans</span> · <span id="s-price">$39.99</span></div>
+    <div class="s-name">Organic Milk Formula · <span id="s-name">Trial, 2 cans</span> · <span id="s-price">$9</span></div>
     <div class="s-sub">100% money back for 30 days</div>
   </div>
   <a class="cta" href="#buybox" id="s-cta">Start the trial</a>
+</div>
+
+<button class="doc-widget" id="doc-widget" aria-label="Watch the pediatrician video">
+  <span class="doc-bubble"><img src="assets/ugc-mom.jpg" alt=""></span>
+  <span class="doc-chip">Pediatrician: switching safely <span>0:45 · tap to watch</span></span>
+</button>
+<div class="doc-modal" id="doc-modal" aria-hidden="true">
+  <div class="doc-panel">
+    <button class="doc-close" id="doc-close" aria-label="Close video">✕</button>
+    <div>
+      <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      <h4>A pediatrician on switching</h4>
+      <p>45 second walkthrough of the two week switch, filmed with a board certified pediatrician. <span class="gate">film + license the clip</span></p>
+    </div>
+  </div>
 </div>
 
 <button class="build-toggle" id="gate-toggle">Show build notes</button>
@@ -801,6 +918,13 @@
     sticky.classList.toggle('show', !e.isIntersecting && e.boundingClientRect.top < 0);
   }, { threshold: 0 });
   io.observe(buybox);
+
+  // Floating doctor video widget
+  const dw = document.getElementById('doc-widget');
+  const dm = document.getElementById('doc-modal');
+  dw.addEventListener('click', () => { dm.classList.add('open'); dm.setAttribute('aria-hidden', 'false'); });
+  document.getElementById('doc-close').addEventListener('click', () => { dm.classList.remove('open'); dm.setAttribute('aria-hidden', 'true'); });
+  dm.addEventListener('click', (e) => { if (e.target === dm) { dm.classList.remove('open'); dm.setAttribute('aria-hidden', 'true'); } });
 
   // Gate toggle (hidden by default for a clean read)
   const gt = document.getElementById('gate-toggle');
