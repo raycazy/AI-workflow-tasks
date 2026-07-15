@@ -39,9 +39,9 @@
   }
   img { max-width: 100%; display: block; }
   a { color: var(--navy); }
-  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 22px; }
+  .wrap { max-width: 1160px; margin: 0 auto; padding-left: 22px; padding-right: 22px; }
   .narrow { max-width: 720px; margin: 0 auto; }
-  section { padding: 84px 0; }
+  section { padding-top: 56px; padding-bottom: 56px; }
   h1, h2, h3 { line-height: 1.08; margin: 0 0 16px; letter-spacing: -.02em; }
   h2 { font-size: clamp(30px, 4.6vw, 46px); font-weight: 700; }
   h3 { font-size: 20px; font-weight: 700; }
@@ -87,7 +87,7 @@
   .crumbs a { color: var(--ink-3); text-decoration: none; }
 
   /* 2. Buy box */
-  .buybox { padding: 18px 0 56px; }
+  .buybox { padding-top: 18px; padding-bottom: 48px; }
   .buybox-grid { display: grid; gap: 20px; grid-template-areas: "head" "gallery" "detail"; }
   .bb-head { grid-area: head; min-width: 0; }
   .bb-gallery { grid-area: gallery; min-width: 0; }
@@ -422,11 +422,9 @@
   @media (min-width: 820px) { .g-terms { grid-template-columns: repeat(3, 1fr); } }
   .g-card { background: var(--card); border-radius: var(--radius); padding: 24px; font-size: 14.5px; color: var(--ink-2); }
   .g-card b { color: var(--ink); display: block; margin-bottom: 5px; font-size: 15.5px; }
-  .g-seal {
-    width: 118px; height: 118px; border-radius: 50%; background: var(--green); color: #fff;
-    display: grid; place-items: center; text-align: center; font-weight: 700; font-size: 12.5px;
-    line-height: 1.3; padding: 14px; margin: 0 auto 22px; letter-spacing: .04em;
-    box-shadow: 0 0 0 8px var(--green-soft);
+  .g-seal-svg {
+    width: 150px; height: 150px; display: block; margin: 0 auto 22px;
+    filter: drop-shadow(0 10px 24px rgba(50,84,32,.25));
   }
 
   /* 16. FAQ */
@@ -468,7 +466,7 @@
     background: var(--sand); color: var(--ink-3); text-align: center; font-size: 10.5px; padding: 4px 12px;
   }
   @media (max-width: 900px) {
-    section { padding: 60px 0; }
+    section { padding-top: 44px; padding-bottom: 44px; }
     .promo { font-size: 12px; padding: 8px 12px; }
     .crumbs { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-top: 6px; }
     .buybox { padding-top: 8px; }
@@ -616,7 +614,7 @@
 </section>
 
 <!-- 5. THE EXTRAS -->
-<section class="wrap" id="extras" style="padding-top: 20px;">
+<section class="wrap" id="extras">
   <div class="narrow center" style="margin-bottom: 26px;">
     <div class="sec-label">The extras</div>
     <h2>The extras the pricier cans leave out, <span class="serif-accent">by name.</span></h2>
@@ -649,7 +647,7 @@
 </section>
 
 <!-- 7. COMPARISON -->
-<section class="wrap narrow" id="comparison" style="padding-top: 24px;">
+<section class="wrap narrow" id="comparison">
   <div class="sec-label">The cross shop</div>
   <h2>The comparison the other brands <span class="serif-accent">will not show you.</span></h2>
   <p class="lede" style="margin-bottom: 18px;">You are running it in your head anyway. Here it is in the open, every number checkable. <span class="gate">verify all competitor numbers vs current labels and prices</span></p>
@@ -708,7 +706,7 @@
 </section>
 
 <!-- 10. HOW TO SWITCH -->
-<section class="wrap narrow" id="switch" style="padding-top: 24px;">
+<section class="wrap narrow" id="switch">
   <div class="sec-label">Switching</div>
   <h2>Switch with <span class="serif-accent">nothing to lose.</span></h2>
   <p class="lede">A short walkthrough and a day by day schedule that follows your pediatrician's two week rule. And if it does not go well, the money back guarantee has you, which no other formula can say.</p>
@@ -766,7 +764,16 @@
 
 <!-- 13. GUARANTEE -->
 <section class="wrap narrow center" id="guarantee">
-  <div class="g-seal">100%<br>MONEY BACK<br>30 DAYS</div>
+  <svg class="g-seal-svg" viewBox="0 0 130 130" role="img" aria-label="100 percent money back guarantee, 30 days">
+      <polygon points="65.0,5.0 71.1,10.8 78.4,6.5 83.0,13.6 91.0,10.9 94.0,18.9 102.4,18.1 103.5,26.5 111.9,27.6 111.1,36.0 119.1,39.0 116.4,47.0 123.5,51.6 119.2,58.9 125.0,65.0 119.2,71.1 123.5,78.4 116.4,83.0 119.1,91.0 111.1,94.0 111.9,102.4 103.5,103.5 102.4,111.9 94.0,111.1 91.0,119.1 83.0,116.4 78.4,123.5 71.1,119.2 65.0,125.0 58.9,119.2 51.6,123.5 47.0,116.4 39.0,119.1 36.0,111.1 27.6,111.9 26.5,103.5 18.1,102.4 18.9,94.0 10.9,91.0 13.6,83.0 6.5,78.4 10.8,71.1 5.0,65.0 10.8,58.9 6.5,51.6 13.6,47.0 10.9,39.0 18.9,36.0 18.1,27.6 26.5,26.5 27.6,18.1 36.0,18.9 39.0,10.9 47.0,13.6 51.6,6.5 58.9,10.8" fill="var(--green)"/>
+      <circle cx="65" cy="65" r="47" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="1.2"/>
+      <defs><path id="seal-arc" d="M 65,65 m -39,0 a 39,39 0 1,1 78,0 a 39,39 0 1,1 -78,0"/></defs>
+      <text font-size="9.2" fill="#fff" font-weight="700" letter-spacing="1.7" font-family="Matter, Inter, sans-serif">
+        <textPath href="#seal-arc" startOffset="0%">100% MONEY BACK GUARANTEE &#8226;</textPath>
+      </text>
+      <text x="65" y="62" text-anchor="middle" font-size="26" font-weight="800" fill="#fff" font-family="Matter, Inter, sans-serif" letter-spacing="-0.5">30</text>
+      <text x="65" y="78" text-anchor="middle" font-size="10.5" font-weight="700" fill="#fff" font-family="Matter, Inter, sans-serif" letter-spacing="3">DAYS</text>
+    </svg>
   <div class="sec-label">The guarantee</div>
   <h2>You have heard the stories. Two weeks in, the gas is worse, and you are stuck with $80 of cans and a brand that says <span class="serif-accent">all sales are final.</span></h2>
   <p class="lede">So we do the opposite. If her stomach has not settled within 30 days, you get 100% of your money back. No questions, no return shipping. <span class="gate">legal review on outcome tied guarantee</span></p>
@@ -778,7 +785,7 @@
 </section>
 
 <!-- 14. FEEDING SUPPORT -->
-<section class="wrap narrow" id="support" style="padding-top: 24px;">
+<section class="wrap narrow" id="support">
   <div class="card" style="display: grid; grid-template-columns: 56px 1fr; gap: 16px; align-items: start;">
     <div style="width: 56px; height: 56px; border-radius: 50%; background: var(--green-soft); display: grid; place-items: center;">
       <svg viewBox="0 0 24 24" fill="none" stroke="#325420" stroke-width="2" style="width: 26px; height: 26px;"><path d="M21 12a8 8 0 0 1-8 8H4l2-3a8 8 0 1 1 15-5Z"/><path d="M9 11h.01M13 11h.01M17 11h.01" stroke-linecap="round"/></svg>
@@ -791,7 +798,7 @@
 </section>
 
 <!-- 15. ECOSYSTEM -->
-<section class="wrap narrow" id="ecosystem" style="padding-top: 24px;">
+<section class="wrap narrow" id="ecosystem">
   <div class="sec-label">Beyond the can</div>
   <h2>The only formula brand that can <span class="serif-accent">furnish the nursery too.</span></h2>
   <p class="lede">Your first box includes a bottle starter kit. As your subscription continues, the sterilizer, dispenser, and next stage essentials arrive free at milestones through her first year. A formula only brand cannot do this. <span class="gate">confirm gift structure + COGS</span></p>
@@ -803,7 +810,7 @@
 </section>
 
 <!-- 16. FAQ -->
-<section class="wrap narrow" id="faq" style="padding-top: 24px;">
+<section class="wrap narrow" id="faq">
   <div class="sec-label">Questions parents ask</div>
   <h2>Answered in <span class="serif-accent">plain language.</span></h2>
   <details open>
