@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#f7f4ee">
+<title>Munchkin Infant Formula: PDP Audit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --display: 'Inter Tight', 'Helvetica Neue', sans-serif;
+    --body: 'Inter', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    /* Munchkin formula palette */
+    --green: #3c5230;         /* formula deep green (primary) */
+    --green-2: #5a7a48;       /* lighter green */
+    --navy: #1d4356;          /* munchkin cart navy */
+    --red: #c0392b;           /* logo red, used for negative signals */
+    --amber: #c98a1e;         /* warm amber (warning) */
+    --cream: #f7f4ee;
+  }
+  html[data-theme="dark"] {
+    --bg: #131511;
+    --bg-2: #1a1d17;
+    --bg-3: #22261e;
+    --line: rgba(255,255,255,0.08);
+    --line-strong: rgba(255,255,255,0.18);
+    --ink: #f2f0e9;
+    --ink-2: #aeaca0;
+    --ink-3: #6d6b62;
+    --shadow: 0 20px 60px rgba(0,0,0,0.45);
+    --grain-opacity: 0.28;
+    --nav-bg: rgba(26,29,23,.78);
+    --pos: #7ba766;           /* positive on dark */
+  }
+  html[data-theme="light"] {
+    --bg: #f7f4ee;
+    --bg-2: #ffffff;
+    --bg-3: #ece8df;
+    --line: rgba(0,0,0,0.10);
+    --line-strong: rgba(0,0,0,0.22);
+    --ink: #1c211a;
+    --ink-2: #4f5449;
+    --ink-3: #6d7066;
+    --shadow: 0 16px 40px rgba(0,0,0,0.08);
+    --grain-opacity: 0;
+    --nav-bg: rgba(255,255,255,.82);
+    --pos: #3c5230;
+  }
+
+  *,*::before,*::after { box-sizing: border-box; }
+  html, body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--body); -webkit-font-smoothing: antialiased;
+    transition: background .3s ease, color .3s ease;
+    min-height: 100%; height: 100%; overflow: hidden;
+  }
+  body { overscroll-behavior: contain; touch-action: pan-y; }
+
+  .stage { position: fixed; inset: 0; display: grid; place-items: center; padding: 18px; }
+  .deck { width: 100%; height: 100%; max-width: 1400px; max-height: 860px; position: relative; }
+  .slide {
+    position: absolute; inset: 0; border-radius: 18px; overflow: hidden;
+    background: var(--bg); border: 1px solid var(--line); box-shadow: var(--shadow);
+    opacity: 0; pointer-events: none;
+    transform: translateX(40px) scale(.985);
+    transition: opacity .42s ease, transform .55s cubic-bezier(.2,.7,.2,1), background .3s ease, border-color .3s ease;
+    content-visibility: auto;
+    contain-intrinsic-size: 100% 100%;
+  }
+  .slide.is-active, .slide.is-prev { will-change: transform, opacity; content-visibility: visible; }
+  .slide.is-active { opacity: 1; pointer-events: auto; transform: translateX(0) scale(1); }
+  .slide.is-prev { opacity: 0; transform: translateX(-40px) scale(.985); }
+
+  .pad {
+    position: absolute; inset: 0;
+    padding: 48px 56px 132px;
+    overflow-y: auto; overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    display: flex; flex-direction: column;
+    scroll-behavior: smooth;
+  }
+  .pad::-webkit-scrollbar { width: 8px; }
+  .pad::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 4px; }
+
+  .top-row {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 28px; flex-shrink: 0;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--display); letter-spacing: .15em; font-size: 14px; color: var(--ink-2);
+  }
+  .brand-mark {
+    width: 22px; height: 22px; background: var(--green);
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 3 C7 3 4 7 4 11 c0 5 4 9 8 9 s8-4 8-9 c0-4-3-8-8-8 Z M9 10 a1.4 1.4 0 1 0 0.01 0 Z M15 10 a1.4 1.4 0 1 0 0.01 0 Z' fill='black'/></svg>") center / 95% no-repeat;
+            mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 3 C7 3 4 7 4 11 c0 5 4 9 8 9 s8-4 8-9 c0-4-3-8-8-8 Z M9 10 a1.4 1.4 0 1 0 0.01 0 Z M15 10 a1.4 1.4 0 1 0 0.01 0 Z' fill='black'/></svg>") center / 95% no-repeat;
+  }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 12px; border-radius: 999px;
+    background: rgba(60,82,48,0.12); color: var(--green-2);
+    font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+  }
+  .badge.red { background: rgba(192,57,43,0.12); color: var(--red); }
+  .badge.amber { background: rgba(201,138,30,0.14); color: var(--amber); }
+  .badge.navy { background: rgba(29,67,86,0.12); color: var(--navy); }
+  .badge.ghost { background: var(--bg-3); color: var(--ink-2); border: 1px solid var(--line); }
+  .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: .25em; text-transform: uppercase; color: var(--ink-3); }
+  h1, h2, h3 { margin: 0; font-weight: 700; }
+  .display {
+    font-family: var(--display); font-size: clamp(38px, 5.4vw, 84px);
+    font-weight: 800; line-height: 1.0; letter-spacing: -.035em;
+  }
+  .sub-display {
+    font-family: var(--display); font-size: clamp(28px, 3.6vw, 58px);
+    font-weight: 800; line-height: 1.04; letter-spacing: -.03em;
+  }
+  .h-section {
+    font-family: var(--display); font-size: clamp(22px, 2.5vw, 36px);
+    line-height: 1.15; letter-spacing: -.025em; font-weight: 700;
+  }
+  .lede { font-size: clamp(15px, 1.4vw, 18px); line-height: 1.55; color: var(--ink-2); max-width: 70ch; }
+  .small { font-size: 13px; color: var(--ink-3); }
+  .accent { color: var(--green); }
+  .neg { color: var(--red); }
+  .mono { font-family: var(--mono); }
+  .grid { display: grid; gap: 24px; }
+  .cols-2 { grid-template-columns: 1fr 1fr; }
+  .cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+  .stat-card {
+    background: var(--bg-2); border: 1px solid var(--line);
+    border-radius: 12px; padding: 22px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .stat-card .k { font-family: var(--mono); font-size: 10px; letter-spacing: .25em; text-transform: uppercase; color: var(--ink-3); }
+  .stat-card .v { font-family: var(--display); font-size: 44px; line-height: 1; color: var(--ink); font-weight: 800; letter-spacing: -.02em; }
+  .stat-card .v.sm { font-size: 30px; }
+  .stat-card .d { font-size: 12px; color: var(--ink-2); margin-top: 4px; line-height: 1.5; }
+  .stat-card.red { border-color: rgba(192,57,43,.35); background: linear-gradient(180deg, rgba(192,57,43,.06), transparent 80%), var(--bg-2); }
+  .stat-card.green { border-color: rgba(60,82,48,.4); background: linear-gradient(180deg, rgba(60,82,48,.06), transparent 80%), var(--bg-2); }
+  .stat-card.amber { border-color: rgba(201,138,30,.4); background: linear-gradient(180deg, rgba(201,138,30,.07), transparent 80%), var(--bg-2); }
+
+  .funnel { display: grid; gap: 10px; }
+  .funnel-row { display: grid; grid-template-columns: 200px 1fr 210px; align-items: center; gap: 16px; }
+  .funnel-row .name { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
+  .funnel-bar-wrap { position: relative; height: 32px; background: var(--bg-3); border-radius: 6px; overflow: hidden; }
+  .funnel-bar { position: absolute; inset: 0 auto 0 0; background: linear-gradient(90deg, var(--green), var(--green-2)); }
+  .funnel-bar.leak { background: linear-gradient(90deg, var(--red), #e07856); }
+  .funnel-row .v { font-family: var(--mono); font-size: 13px; color: var(--ink); text-align: right; }
+  .funnel-row .v small { color: var(--ink-3); margin-left: 6px; }
+
+  table.flat { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table.flat th {
+    text-align: left; font-family: var(--mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--ink-3); padding: 10px 12px; border-bottom: 1px solid var(--line-strong);
+  }
+  table.flat td { padding: 12px; border-bottom: 1px solid var(--line); color: var(--ink-2); vertical-align: top; line-height: 1.5; }
+  table.flat td strong { color: var(--ink); }
+  table.flat tr.hl td { background: rgba(60,82,48,.06); }
+  table.flat tr.bad td { background: rgba(192,57,43,.05); }
+  table.flat .num { font-family: var(--mono); }
+
+  .shot { width: 100%; display: block; border-radius: 10px; border: 1px solid var(--line); background: var(--bg-3); }
+  .shot-wrap { overflow: hidden; max-height: 460px; border-radius: 10px; background: var(--bg-3); }
+  .shot-wrap .shot { object-fit: cover; object-position: top center; width: 100%; }
+  .shot-cap { font-family: var(--mono); font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: var(--ink-3); margin-top: 8px; }
+
+  .quote-card {
+    background: var(--bg-2); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .quote-card .q { font-size: 15px; line-height: 1.55; color: var(--ink); font-style: italic; }
+  .quote-card .who { font-family: var(--mono); font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: var(--ink-3); }
+  .quote-card.warn { border-color: rgba(192,57,43,.3); }
+
+  .theme-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .theme-chip {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .08em;
+    padding: 7px 12px; border-radius: 999px; border: 1px solid var(--line);
+    background: var(--bg-2); color: var(--ink-2);
+  }
+  .theme-chip strong { color: var(--green); font-weight: 700; }
+
+  .myth-card {
+    background: var(--bg-2); border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .myth-card .myth {
+    padding: 14px 18px; background: rgba(192,57,43,.07); border-bottom: 1px solid var(--line);
+    font-weight: 700; color: var(--ink); font-size: 14px; line-height: 1.4;
+  }
+  .myth-card .myth .tag { font-family: var(--mono); font-size: 9px; letter-spacing: .2em; color: var(--red); display: block; margin-bottom: 4px; text-transform: uppercase; }
+  .myth-card .truth { padding: 14px 18px; font-size: 13px; line-height: 1.55; color: var(--ink-2); flex: 1; }
+  .myth-card .truth .tag { font-family: var(--mono); font-size: 9px; letter-spacing: .2em; color: var(--green); display: block; margin-bottom: 4px; text-transform: uppercase; }
+  .myth-card .asset { padding: 10px 18px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 10px; letter-spacing: .06em; color: var(--ink-3); }
+  .myth-card .asset strong { color: var(--green); }
+
+  .priority-item {
+    display: grid; grid-template-columns: 56px 1fr auto; gap: 16px; align-items: center;
+    background: var(--bg-2); border: 1px solid var(--line); border-radius: 12px; padding: 16px 20px;
+  }
+  .priority-item .n { font-family: var(--display); font-size: 34px; font-weight: 800; color: var(--green); }
+  .priority-item .t { font-weight: 700; color: var(--ink); font-size: 15px; line-height: 1.35; }
+  .priority-item .t span { display: block; font-weight: 400; font-size: 13px; color: var(--ink-2); margin-top: 3px; }
+  .priority-item .tag { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); text-align: right; white-space: nowrap; }
+  .priority-item.p0 { border-color: rgba(192,57,43,.35); }
+  .priority-item.p0 .n { color: var(--red); }
+
+  .callout {
+    border-left: none; border: 1px solid var(--line); background: var(--bg-2);
+    border-radius: 12px; padding: 16px 20px; font-size: 14px; line-height: 1.6; color: var(--ink-2);
+  }
+  .callout strong { color: var(--ink); }
+
+  .title-slide .meta {
+    display: flex; gap: 24px; margin-top: 24px; flex-wrap: wrap;
+    font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: .15em; text-transform: uppercase;
+  }
+  .title-slide .meta span strong { color: var(--ink); font-weight: 500; }
+  .grain {
+    position: absolute; inset: 0; pointer-events: none; mix-blend-mode: overlay; opacity: var(--grain-opacity);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .35 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+  .ticker {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    background: var(--green); color: #f4f1e9; padding: 10px 0;
+    font-family: var(--display); font-size: 14px; letter-spacing: .15em; text-transform: uppercase;
+    overflow: hidden; white-space: nowrap;
+  }
+  .ticker-track { display: inline-block; animation: ticker 34s linear infinite; padding-left: 100%; }
+  .ticker-track span { padding: 0 32px; }
+  @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+
+  .tldr-grid { display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr); }
+  .tldr-card {
+    background: var(--bg-2); border: 1px solid var(--line); border-radius: 14px;
+    padding: 24px; display: flex; flex-direction: column; gap: 12px;
+  }
+  .tldr-card .num { font-family: var(--display); font-size: 68px; line-height: 1; color: var(--red); letter-spacing: -.02em; font-weight: 800; }
+  .tldr-card h3 { font-size: 19px; font-weight: 800; letter-spacing: -.01em; line-height: 1.2; color: var(--ink); }
+  .tldr-card p { font-size: 14px; line-height: 1.55; color: var(--ink-2); margin: 0; }
+  .tldr-card .pill {
+    align-self: flex-start; margin-top: auto;
+    padding: 6px 10px; border: 1px solid var(--line); border-radius: 999px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-3);
+  }
+
+  .nav {
+    position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 4px; align-items: center; padding: 6px;
+    background: var(--nav-bg); border: 1px solid var(--line);
+    backdrop-filter: blur(14px); border-radius: 999px; z-index: 30;
+    font-family: var(--mono); box-shadow: 0 8px 30px rgba(0,0,0,.18);
+  }
+  .nav button {
+    background: transparent; color: var(--ink); border: 0;
+    padding: 9px 14px; border-radius: 999px; cursor: pointer;
+    font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+    transition: background .15s ease;
+  }
+  .nav button:hover { background: var(--bg-3); }
+  .nav .count { padding: 0 10px; font-size: 12px; color: var(--ink-2); min-width: 76px; text-align: center; }
+  .nav .count strong { color: var(--ink); }
+  .nav .sep { width: 1px; height: 18px; background: var(--line); }
+  .theme-toggle {
+    background: transparent; border: 1px solid var(--line); color: var(--ink);
+    width: 36px; height: 36px; border-radius: 999px; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .theme-toggle:hover { background: var(--bg-3); }
+  .theme-toggle svg { width: 16px; height: 16px; }
+  html[data-theme="dark"] .theme-toggle .sun { display: block; }
+  html[data-theme="dark"] .theme-toggle .moon { display: none; }
+  html[data-theme="light"] .theme-toggle .sun { display: none; }
+  html[data-theme="light"] .theme-toggle .moon { display: block; }
+
+  .progress { position: fixed; left: 0; top: 0; right: 0; height: 2px; background: var(--line); z-index: 30; }
+  .progress > i { display: block; height: 100%; background: var(--green); width: 0; transition: width .4s ease; }
+
+  .index-overlay {
+    position: fixed; inset: 0; z-index: 60;
+    background: rgba(0,0,0,.6); backdrop-filter: blur(8px);
+    opacity: 0; pointer-events: none; transition: opacity .25s ease;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  .index-overlay.open { opacity: 1; pointer-events: auto; }
+  .index-panel {
+    width: min(680px, 100%); max-height: 80vh;
+    background: var(--bg); border: 1px solid var(--line-strong); border-radius: 18px;
+    box-shadow: 0 30px 80px rgba(0,0,0,.4); display: flex; flex-direction: column; overflow: hidden;
+    transform: translateY(8px); transition: transform .3s cubic-bezier(.2,.7,.2,1);
+  }
+  .index-overlay.open .index-panel { transform: translateY(0); }
+  .index-head { padding: 20px 24px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .index-title { font-family: var(--display); font-size: 22px; font-weight: 700; letter-spacing: -.02em; }
+  .index-close {
+    background: transparent; border: 0; color: var(--ink-2); cursor: pointer;
+    width: 32px; height: 32px; border-radius: 999px;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: background .15s, color .15s;
+  }
+  .index-close:hover { background: var(--bg-3); color: var(--ink); }
+  .index-close svg { width: 16px; height: 16px; }
+  .index-list { flex: 1; overflow-y: auto; padding: 6px; }
+  .index-list::-webkit-scrollbar { width: 8px; }
+  .index-list::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 4px; }
+  .index-item {
+    display: grid; grid-template-columns: 36px 1fr auto; gap: 12px; align-items: center;
+    padding: 12px 16px; border: 1px solid transparent; border-radius: 10px;
+    cursor: pointer; transition: background .15s, border-color .15s;
+    width: 100%; background: transparent; text-align: left; color: var(--ink); font-family: var(--body);
+  }
+  .index-item:hover, .index-item.focused { background: var(--bg-2); border-color: var(--line); }
+  .index-item.current { background: rgba(60,82,48,.07); border-color: rgba(60,82,48,.3); }
+  .index-item .num { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: .1em; }
+  .index-item.current .num { color: var(--green); font-weight: 700; }
+  .index-item .label { font-size: 15px; font-weight: 500; line-height: 1.3; }
+  .index-item .label span { display: block; font-size: 12px; color: var(--ink-3); margin-top: 2px; font-weight: 400; }
+  .index-item .chip {
+    font-family: var(--mono); font-size: 9px; letter-spacing: .15em; text-transform: uppercase; color: var(--ink-3);
+    padding: 4px 8px; border: 1px solid var(--line); border-radius: 999px;
+  }
+  .index-foot {
+    padding: 12px 24px; border-top: 1px solid var(--line);
+    font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: var(--ink-3);
+    display: flex; flex-wrap: wrap; gap: 6px; justify-content: center;
+  }
+  .index-foot .kbd { background: var(--bg-3); border: 1px solid var(--line); padding: 2px 6px; border-radius: 4px; color: var(--ink); font-family: var(--mono); font-size: 10px; }
+
+  .swipe-hint {
+    position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%);
+    font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-3);
+    background: var(--nav-bg); border: 1px solid var(--line); padding: 6px 12px; border-radius: 999px;
+    z-index: 29; opacity: 0; transition: opacity .4s ease; pointer-events: none; backdrop-filter: blur(10px);
+  }
+  .swipe-hint.show { opacity: 1; }
+
+  .title-slide .pad { justify-content: center; padding-bottom: 80px; }
+
+  .src { font-family: var(--mono); font-size: 10px; color: var(--ink-3); letter-spacing: .04em; margin-top: auto; padding-top: 18px; line-height: 1.6; }
+
+  @media (max-width: 1024px) {
+    .pad { padding: 36px 32px 90px; }
+    .funnel-row { grid-template-columns: 130px 1fr 150px; gap: 12px; }
+  }
+  @media (max-width: 768px) {
+    .stage { padding: 10px; }
+    .deck { max-height: none; height: 100%; }
+    .slide { border-radius: 14px; }
+    .pad { padding: 28px 22px 100px; }
+    .top-row { margin-bottom: 22px; flex-wrap: wrap; gap: 8px; }
+    .display { font-size: 44px; }
+    .sub-display { font-size: 34px; }
+    .h-section { font-size: 22px; }
+    .tldr-grid, .cols-2, .cols-3, .cols-4, .grid.cols-2, .grid.cols-3 { grid-template-columns: 1fr !important; gap: 14px; }
+    .funnel-row { grid-template-columns: 100px 1fr 120px; gap: 10px; font-size: 11px; }
+    .funnel-row .name { font-size: 10px; }
+    .funnel-bar-wrap { height: 26px; }
+    .priority-item { grid-template-columns: 40px 1fr; padding: 14px; }
+    .priority-item .tag { display: none; }
+    .priority-item .n { font-size: 28px; }
+    table.flat th, table.flat td { padding: 8px 6px; font-size: 11px; }
+    .tldr-card .num { font-size: 54px; }
+    .shot-wrap { max-height: 320px; }
+    .stat-card { padding: 16px; }
+    .stat-card .v { font-size: 32px; }
+    .nav { bottom: 12px; }
+    .nav button { padding: 8px 10px; font-size: 11px; }
+    .nav .count { min-width: 60px; font-size: 11px; padding: 0 6px; }
+    .title-slide .meta { gap: 14px; font-size: 10px; }
+    .ticker { font-size: 12px; padding: 8px 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .slide { transition: opacity .15s ease; transform: none !important; }
+    .ticker-track { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress"><i id="progress-bar"></i></div>
+
+<div class="stage" id="stage">
+  <div class="deck" id="deck">
+
+    <!-- 1. COVER -->
+    <section class="slide title-slide is-active" data-slide="1">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> MUNCHKIN / FORMULA PDP AUDIT</div>
+          <div class="eyebrow">July 2026</div>
+        </div>
+        <div>
+          <div class="badge" style="margin-bottom: 22px;">● Findings + optimization roadmap</div>
+          <h1 class="display">Munchkin Infant Formula.<br><span class="accent">PDP audit.</span></h1>
+          <p class="lede" style="max-width: 62ch; margin-top: 18px;">The organic formula PDP is now the biggest landing page on munchkin.com and converts at a quarter of the site average. This deck covers where the loss happens, what customers and the market say, and the fixes in priority order.</p>
+        </div>
+        <div class="meta">
+          <span><strong>Page</strong> /infant-formula-organic</span>
+          <span><strong>GA4</strong> 284940365</span>
+          <span><strong>Window</strong> Jun 14 to Jul 13, 2026</span>
+          <span><strong>Traffic</strong> 93% mobile</span>
+        </div>
+      </div>
+      <div class="grain"></div>
+      <div class="ticker">
+        <div class="ticker-track">
+          <span>#1 LANDING PAGE ON THE SITE</span><span>•</span>
+          <span>LANDING CVR 0.37% VS SITE 1.40%</span><span>•</span>
+          <span>MOBILE LCP 10.9S</span><span>•</span>
+          <span>VIEW TO CART 1.17%</span><span>•</span>
+          <span>CART TO PURCHASE 52%</span><span>•</span>
+          <span>4.7 STARS, 104 REVIEWS</span><span>•</span>
+          <span>#1 LANDING PAGE ON THE SITE</span><span>•</span>
+          <span>LANDING CVR 0.37% VS SITE 1.40%</span><span>•</span>
+          <span>MOBILE LCP 10.9S</span><span>•</span>
+          <span>VIEW TO CART 1.17%</span><span>•</span>
+          <span>CART TO PURCHASE 52%</span><span>•</span>
+          <span>4.7 STARS, 104 REVIEWS</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. TLDR -->
+    <section class="slide" data-slide="2">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> MUNCHKIN / FORMULA PDP AUDIT</div>
+          <div class="eyebrow">2 / Summary</div>
+        </div>
+        <h2 class="sub-display" style="margin-bottom: 24px;">Three findings explain<br>the 0.37% conversion rate.</h2>
+        <div class="tldr-grid">
+          <div class="tldr-card">
+            <div class="num">1.17%</div>
+            <h3>The leak is before the cart, not in it.</h3>
+            <p>Only 588 of 50,235 product viewers add to cart (1.17%). Once added, 52% complete purchase. Munchkin's own sippy cup PDPs run 2.2% to 4.9% view to add on the same traffic engine.</p>
+            <div class="pill">GA4 · page scoped events</div>
+          </div>
+          <div class="tldr-card">
+            <div class="num">10.9s</div>
+            <h3>Mobile is 93% of traffic and the page takes 11 seconds to paint.</h3>
+            <p>Mobile PageSpeed is 38/100 (LCP 10.9s, FCP 9.0s). Mobile bounce is 76% vs 42% on desktop, and mobile engaged time averages 3.5 seconds. Many paid visitors never see the page.</p>
+            <div class="pill">PageSpeed · Jul 15</div>
+          </div>
+          <div class="tldr-card">
+            <div class="num">1.75<span style="font-size:32px">vp</span></div>
+            <h3>The offer is invisible at the moment of decision.</h3>
+            <p>On mobile, the $39.99 Buy 1 Get 1 offer sits 1.5 viewports down and Add to Bag 1.75 viewports down a 15 viewport page with no sticky cart button. A Target link sits above the price.</p>
+            <div class="pill">Live capture · iPhone 13</div>
+          </div>
+        </div>
+        <p class="src">Sources: GA4 property 284940365 (Jun 14 to Jul 13, 2026), Google PageSpeed Insights (2026-07-15), live page captures (2026-07-15).</p>
+      </div>
+    </section>
+
+    <!-- 3. FUNNEL -->
+    <section class="slide" data-slide="3">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> MUNCHKIN / FORMULA PDP AUDIT</div>
+          <div class="eyebrow">3 / Data</div>
+        </div>
+        <h2 class="sub-display" style="margin-bottom: 10px;">The funnel narrows once,<br>and it narrows at the page.</h2>
+        <p class="lede" style="margin-bottom: 28px;">Unique users on /infant-formula-organic, 30 days. Checkout is healthy. The page is not.</p>
+        <div class="funnel" style="margin-bottom: 26px;">
+          <div class="funnel-row">
+            <div class="name">Page view</div>
+            <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 100%;"></div></div>
+            <div class="v">51,625 <small>users</small></div>
+          </div>
+          <div class="funnel-row">
+            <div class="name">View item</div>
+            <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 97%;"></div></div>
+            <div class="v">50,235 <small>97%</small></div>
+          </div>
+          <div class="funnel-row">
+            <div class="name">Add to cart</div>
+            <div class="funnel-bar-wrap"><div class="funnel-bar leak" style="width: 3.5%; min-width: 14px;"></div></div>
+            <div class="v">588 <small class="neg">1.17% of viewers</small></div>
+          </div>
+          <div class="funnel-row">
+            <div class="name">Purchase</div>
+            <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 1.9%; min-width: 10px;"></div></div>
+            <div class="v">307 <small style="color: var(--pos)">52% of adders</small></div>
+          </div>
+        </div>
+        <div class="grid cols-3">
+          <div class="stat-card red">
+            <div class="k">Landing CVR</div>
+            <div class="v">0.37%</div>
+            <div class="d">188 purchases attributed to 51,083 entry sessions (landing scoped; the funnel's 307 is item scoped across all sessions). This page is the site's #1 landing page, ahead of the homepage.</div>
+          </div>
+          <div class="stat-card">
+            <div class="k">Site average CVR</div>
+            <div class="v">1.40%</div>
+            <div class="d">4,508 purchases from 321,542 sessions. Homepage entries convert at 3.25%.</div>
+          </div>
+          <div class="stat-card green">
+            <div class="k">Cart to purchase</div>
+            <div class="v">52%</div>
+            <div class="d">The cart drawer and checkout do their job. Every fix in this deck targets the step before them.</div>
+          </div>
+        </div>
+        <p class="src">Method: per event unique users on the page path (GA4 v1beta), not a strict sequential funnel. Purchases are item scoped for the organic formula due to an item naming mismatch (slide 16).</p>
+      </div>
+    </section>
+
+    <!-- 4. OWN-BRAND BENCHMARK -->
+    <section class="slide" data-slide="4">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> MUNCHKIN / FORMULA PDP AUDIT</div>
+          <div class="eyebrow">4 / Data</div>
+        </div>
+        <h2 class="sub-display" style="margin-bottom: 10px;">Munchkin's own PDPs<br>prove what this page could do.</h2>
+        <p class="lede" style="margin-bottom: 24px;">Item scoped view to add rates, same site, same 30 days, same traffic engine.</p>
+        <table class="flat" style="margin-bottom: 22px;">
+          <thead><tr><th>Product</th><th>Items viewed</th><th>Added to cart</th><th>View to add</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Miracle 360 Tropical Swirl Sippy, 10oz</strong></td><td class="num">38,204</td><td class="num">1,870</td><td class="num" style="color: var(--pos); font-weight: 700;">4.89%</td></tr>
+            <tr><td><strong>Miracle 360 Stainless Steel Sippy, 10oz</strong></td><td class="num">61,488</td><td class="num">1,843</td><td class="num" style="color: var(--pos); font-weight: 700;">3.00%</td></tr>
+            <tr><td><strong>Miracle 360 Trainer Cup, 7oz</strong></td><td class="num">34,208</td><td class="num">761</td><td class="num" style="color: var(--pos); font-weight: 700;">2.22%</td></tr>
+            <tr class="bad"><td><strong>Organic Infant Formula, 2 cans</strong></td><td class="num">117,436</td><td class="num">991</td><td class="num neg" style="font-weight: 700;">0.84%</td></tr>
+          </tbody>
+        </table>
+        <div class="callout">
+          <strong>A $17 sippy cup and a $40 formula have different consideration cycles.</strong> But a 2.6x to 5.8x gap on the same site and brand is a page problem, not a category problem. The formula's 0.84% here and the 1.17% user rate on slide 3 are the same behavior at two measurement scopes; the difference comes from variant level view inflation (slide 16).
+        </div>
+        <p class="src">Source: GA4 item scoped metrics, Jun 14 to Jul 13, 2026.</p>
+      </div>
+    </section>
+
+    <!-- 5. MOBILE REALITY -->
+    <section class="slide" data-slide="5">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> MUNCHKIN / FORMULA PDP AUDIT</div>
+          <div class="eyebrow">5 / Data</div>
+        </div>
+        <h2 class="sub-display" style="margin-bottom: 24px;">A mobile page with<br>a desktop design budget.</h2>
+        <div class="grid cols-2" style="align-items: start;">
+          <div>
+            <table class="flat" style="margin-bottom: 18px;">
+              <thead><tr><th>Device</th><th>Sessions</th><th>Bounce</th><th>Engaged time</th></tr></thead>
+              <tbody>
+                <tr class="bad"><td><strong>Mobile</strong> (92.8%)</td><td class="num">69,155</td><td class="num neg">76.1%</td><td class="num neg">~3.5s</td></tr>
+                <tr class="hl"><td><strong>Desktop</strong> (3.8%)</td><td class="num">2,824</td><td class="num" style="color: var(--pos)">41.6%</td><td class="num" style="color: var(--pos)">~25.2s</td></tr>
+                <tr><td><strong>Tablet</strong> (3.5%)</td><td class="num">2,572</td><td class="num">67.2%</td><td class="num">~1.7s</td></tr>
+              </tbody>
+            </table>
+            <div class="grid" style="gap: 14px;">
+              <div class="stat-card amber">
+                <div class="k">PageSpeed mobile</div>
+                <div class="v">38<span style="font-size: 22px; color: var(--ink-3)">/100</span></div>
+                <div class="d">FCP 9.0s · LCP 10.9s · Speed Index 12.7s · Time to Interactive 26.5s. Desktop scores 55 with 2.0s LCP: the payload is the problem, not the server. The HTML document alone is 724KB before GTM, Klaviyo, TikTok, Algolia, Rebuy, Yotpo and Loop load.</div>
+              </div>
+              <div class="callout"><strong>Same content, two outcomes.</strong> Desktop shows offer, price and Add to Bag in the first viewport and behaves like a normal PDP. Mobile hides all three below two screens of header and title. The bounce gap (76% vs 42%) is the design gap.</div>
+            </div>
+          </div>
+          <div>
+            <div class="shot-wrap" style="max-height: 300px;"><img class="shot" src="assets/desktop-atf.jpg" alt="Desktop above the fold: buy box visible"></div>
+            <div class="shot-cap">Desktop first viewport: offer visible, converts fine</div>
+            <div class="shot-wrap" style="max-height: 260px; margin-top: 14px;"><img class="shot" src="assets/mobile-atf.jpg" alt="Mobile above the fold: no price, no CTA"></div>
+            <div class="shot-cap">Mobile first viewport: no product, no price, no CTA</div>
+          </div>
+        </div>
+        <p class="src">Device split covers all formula page paths; the organic PDP contributes 72% of these sessions. Engaged time = userEngagementDuration / sessions (approximate).</p>
+      </div>
+    </section>
+
+    <!-- 6. MOBILE ATF ANATOMY -->
+    <section class="slide" data-slide="6">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> MUNCHKIN / FORMULA PDP AUDIT</div>
+          <div class="eyebrow">6 / Page</div>
+        </div>
+        <h2 class="sub-display" style="margin-bottom: 24px;">What 51,083 ad clicks<br>see first each month.</h2>
+        <div class="grid cols-2" style="align-items: start;">
+          <div>
+            <div class="shot-wrap" style="max-height: 520px;"><img class="shot" src="assets/mobile-seg0.jpg" alt="Mobile top of page: title, image, Target link, then price"></div>
+            <div class="shot-cap">Mobile, first ~3 viewports stitched</div>
+          </div>
+          <div class="grid" style="gap: 14px; align-content: start;">
+            <div class="stat-card red">
+              <div class="k">Viewport 1</div>
+              <div class="v sm">Banner, logo, search bar, title</div>
+              <div class="d">No product image, no price, no rating context, no CTA. The search bar alone takes 90px of the most valuable screen on the site.</div>
+            </div>
+            <div class="stat-card red">
+              <div class="k">Before the price appears</div>
+              <div class="v sm">A Target link</div>
+              <div class="d">"Also available at your local Target store" sits above the offer. The highest intent readers get an exit ramp before they see $39.99.</div>
+            </div>
+            <div class="stat-card amber">
+              <div class="k">Viewport 1.5 to 1.75</div>
+              <div class="v sm">$39.99 offer + Add to Bag</div>
+              <div class="d">The strongest entry offer in the category (Buy 1 Can Get 1 Free, free shipping) finally appears. Visitors averaging 3.5 seconds of engaged time rarely make it here.</div>
+            </div>
+            <div class="stat-card red">
+              <div class="k">Viewports 2 to 15</div>
+              <div class="v sm">No sticky cart button</div>
+              <div class="d">Verified via DOM probe: the only fixed element while scrolling is the header with the search bar. Readers of the (strong) clinical content have no way to act without scrolling back.</div>
+            </div>
+          </div>
+        </div>
+        <p class="src">Live captures, iPhone 13 viewport, 2026-07-15. Fixed element audit via scripted DOM probe at 3,000px scroll depth.</p>
+      </div>
+    </section>
+
+    <!-- 7. BUY BOX -->
+    <section class="slide" data-slide="7">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> MUNCHKIN / FORMULA PDP AUDIT</div>
+          <div class="eyebrow">7 / Page</div>
+        </div>
+        <h2 class="sub-display" style="margin-bottom: 24px;">The buy box undersells<br>a repeat purchase product.</h2>
+        <div class="grid cols-3" style="align-items: start; margin-bottom: 22px;">
+          <div class="stat-card amber">
+            <div class="k">Selector confusion</div>
+            <div class="v sm">"Trial 2 Cans" vs "2 Cans"</div>
+            <div class="d">Two options deliver the identical two cans: one at $39.99, one at $79.98, distinguished only by the word Trial. GA4 confirms the noise: 991 adds on the trial option vs 5, 14, 8 and 8 on the 1/4/6/8 can options.</div>
+          </div>
+          <div class="stat-card amber">
+            <div class="k">Hidden subscription</div>
+            <div class="v sm">Subscribe &amp; Save invisible by default</div>
+            <div class="d">The 10% subscription ($71.98 for 2 cans) only appears after selecting a non default quantity. On the default trial selection a parent sees no ongoing price story for a product they will buy 8 to 12 times a year.</div>
+          </div>
+          <div class="stat-card green">
+            <div class="k">What already works</div>
+            <div class="v sm">Cart converts at 52%</div>
+            <div class="d">The drawer is fast and clean: free shipping bar, clear pricing, one tap to checkout. Intent that reaches the cart mostly converts. The job is getting intent there.</div>
+          </div>
+        </div>
+        <div class="grid cols-2" style="align-items: start;">
+          <div>
+            <div class="shot-wrap" style="max-height: 340px;"><img class="shot" src="assets/mobile-buybox.jpg" alt="Mobile buy box: quantity, order type, add to bag"></div>
+            <div class="shot-cap">Mobile buy box as shipped</div>
+          </div>
+          <div>
+            <div class="shot-wrap" style="max-height: 340px;"><img class="shot" src="assets/cart-drawer.jpg" alt="Cart drawer after add to bag"></div>
+            <div class="shot-cap">Cart drawer: clean, fast, 52% completion</div>
+          </div>
+        </div>
+        <p class="src">Live captures and variant probes, 2026-07-15. Variant add counts: GA4 item scoped, 30 days.</p>
+      </div>
+    </section>
+
+    <!-- 8. TRAFFIC QUALITY -->
+    <section class="slide" data-slide="8">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> MUNCHKIN / FORMULA PDP AUDIT</div>
+          <div class="eyebrow">8 / Data</div>
+        </div>
+        <h2 class="sub-display" style="margin-bottom: 10px;">The page monetizes warm intent<br>and wastes cold spend.</h2>
+        <p class="lede" style="margin-bottom: 24px;">Entry sessions on formula pages by source, 30 days.</p>
+        <table class="flat" style="margin-bottom: 20px;">
+          <thead><tr><th>Entry source</th><th>Sessions</th><th>Bounce</th><th>Purchases</th><th>CVR</th></tr></thead>
+          <tbody>
+            <tr class="hl"><td><strong>Google CPC, brand search style</strong> (kwd-214819076)</td><td class="num">252</td><td class="num">33 to 41%</td><td class="num">34</td><td class="num" style="color: var(--pos); font-weight: 700;">13 to 14%</td></tr>
+            <tr class="hl"><td><strong>Google Shopping w/ trial param</strong> (campaign 23597341379)</td><td class="num">1,430</td><td class="num">56.7%</td><td class="num">19</td><td class="num" style="color: var(--pos)">1.33%</td></tr>
+            <tr><td><strong>Direct</strong></td><td class="num">559</td><td class="num">58.3%</td><td class="num">15</td><td class="num" style="color: var(--pos)">2.68%</td></tr>
+            <tr class="bad"><td><strong>Google CPC, campaign 23599339119</strong></td><td class="num">2,122</td><td class="num">70.8%</td><td class="num">7</td><td class="num neg">0.0 to 0.4%</td></tr>
+            <tr class="bad"><td><strong>TikTok social</strong></td><td class="num">130</td><td class="num neg">85.4%</td><td class="num neg">0</td><td class="num neg">0%</td></tr>
+          </tbody>
+        </table>
+        <div class="callout"><strong>Until the mobile page is fixed, cold traffic on this URL is buying bounces.</strong> Visitors who arrive warm (brand search, direct, returning users at 47% engagement vs 25% for new) convert at 7 to 35x the cold rate. Media action: shift budget toward brand and retargeting while the P0 page fixes ship, then re-open prospecting.</div>
+        <p class="src">Source: GA4 landing page + source/medium report, Jun 14 to Jul 13, 2026. Row 1 aggregates the two kwd-214819076 ad entries (134 + 118 sessions, 17 purchases each).</p>
+      </div>
+    </section>
+
+    <!-- 9. VOC ONSITE -->
+    <section class="slide" data-slide="9">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> MUNCHKIN / FORMULA PDP AUDIT</div>
+          <div class="eyebrow">9 / Voice of customer</div>
+        </div>
+        <h2 class="sub-display" style="margin-bottom: 10px;">Customers already wrote<br>the copy this page needs.</h2>
+        <p class="lede" style="margin-bottom: 20px;">93 of 104 on-site reviews mined (platform average 4.73). The themes below are counted mentions, not impressions.</p>
+        <div class="theme-chips" style="margin-bottom: 20px;">
+          <span class="theme-chip"><strong>49</strong> mixing / dissolves</span>
+          <span class="theme-chip"><strong>27</strong> scoop design</span>
+          <span class="theme-chip"><strong>22</strong> gas relief</span>
+          <span class="theme-chip"><strong>20</strong> no clumping</span>
+          <span class="theme-chip"><strong>17</strong> tummy</span>
+          <span class="theme-chip"><strong>16</strong> smell</span>
+          <span class="theme-chip"><strong>15</strong> switching</span>
+          <span class="theme-chip"><strong>14</strong> sleep</span>
+          <span class="theme-chip"><strong>7</strong> affordability</span>
+        </div>
+        <div class="grid cols-2" style="margin-bottom: 18px;">
+          <div class="quote-card">
+            <div class="q">"We switched to this formula after the Nara recall and within a couple days I noticed baby's stool went back to the color and smell of when we were breastfeeding."</div>
+            <div class="who">5 star review · recall switcher</div>
+          </div>
+          <div class="quote-card">
+            <div class="q">"My son has GI problems and this is the first milk that he hasn't gotten sick from!"</div>
+            <div class="who">5 star review · "Where has this been?!"</div>
+          </div>
+          <div class="quote-card">
+            <div class="q">"We will be switching to Munchkin formula from the expensive 'purple can' formula. Also you get great value for your money."</div>
+            <div class="who">5 star review · Enfamil switcher</div>
+          </div>
+          <div class="quote-card warn">
+            <div class="q">"Most of the reviews here are incentivized. This one isn't." Also flagged: brown residue after mixing, and the can's "Breast milk is best" label reading as judgment of formula feeding moms.</div>
+            <div class="who">1 and 2 star reviews · objections to answer on page</div>
+          </div>
+        </div>
+        <div class="callout"><strong>The gap:</strong> switching anxiety is the purchase moment (15 mentions, recall refugees by name), yet the page never addresses "switching from another formula" outside a buried FAQ. The hero says "Believe in your feed"; customers say gas, sleep, mixing, switching.</div>
+        <p class="src">Source: Yotpo reviews API for product 10276778180896, fetched 2026-07-15. Distribution: 73x5, 15x4, 2x3, 1x2, 2x1.</p>
+      </div>
+    </section>
+
+    <!-- 10. VOC EXTERNAL -->
+    <section class="slide" data-slide="10">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> MUNCHKIN / FORMULA PDP AUDIT</div>
+          <div class="eyebrow">10 / Voice of customer</div>
+        </div>
+        <h2 class="sub-display" style="margin-bottom: 10px;">Off-site, the story is<br>tougher, and more useful.</h2>
+        <p class="lede" style="margin-bottom: 20px;">Independent voice from Reddit and Target's native (non incentivized) reviews. This is the skepticism the PDP has to answer.</p>
+        <div class="grid cols-3" style="margin-bottom: 18px;">
+          <div class="stat-card amber">
+            <div class="k">Social proof credibility</div>
+            <div class="v">89%</div>
+            <div class="d">of the organic formula's Target reviews are flagged incentivized by Target's own API (112 of 126), syndicated from the brand's program. The ~20 native Target reviews skew sharply more negative. One native review is literally titled "Not an incentivized review."</div>
+          </div>
+          <div class="stat-card red">
+            <div class="k">Category mood post recall</div>
+            <div class="v sm">"Boutique" distrust</div>
+            <div class="d">"I wouldn't trust any boutique style formula right now." "Why not try a well studied, backed by the test of time formula?" Munchkin launched between the ByHeart (Nov 2025) and Nara (Jun 2026) recalls, onto the same Target shelf both occupied.</div>
+          </div>
+          <div class="stat-card red">
+            <div class="k">Independent complaint cluster</div>
+            <div class="v sm">Residue + constipation</div>
+            <div class="d">Color change / rust residue / staining appears across native Target 1 stars and Reddit ("black specks", "stains my glass bottles"), plus a constipation cluster. "I thought about it but once I saw those reviews I was like oh nope!": the reviews themselves now block purchases.</div>
+          </div>
+        </div>
+        <div class="grid cols-2" style="margin-bottom: 18px;">
+          <div class="quote-card">
+            <div class="q">"What are we feeding our babies now a days for us scarred Nara parents lol"</div>
+            <div class="who">r/FormulaFeeders · the exact segment the PDP should speak to</div>
+          </div>
+          <div class="quote-card">
+            <div class="q">"I would hope because Munchkin is such a big brand, it would be well tested, but after Nara, definitely skeptical."</div>
+            <div class="who">r/FormulaFeeders · trust transfer is real but conditional</div>
+          </div>
+          <div class="quote-card warn">
+            <div class="q">"I commented under an ad on their Instagram kindly inquiring why they added palm oil and soy, and it got deleted!! ... makes me even more wary."</div>
+            <div class="who">r/FormulaFeeders · palm oil objection, unanswered publicly</div>
+          </div>
+          <div class="quote-card warn">
+            <div class="q">"The formula canister literally says 'Breast Milk is best for babies' on the back... it feels shameful towards moms who formula feed. My milk supply never came in so I didn't have a choice."</div>
+            <div class="who">Native Target 1 star · packaging copy alienates the buyer</div>
+          </div>
+        </div>
+        <div class="callout"><strong>What this means for the page:</strong> answer the residue question proactively (an FAQ exists but reviews never link to it), answer palm oil / SN-2 palmitate in plain language instead of deleting questions, rebalance visible reviews toward verified non incentivized ones, and speak directly to "scarred" recall switchers, because trust is the conversion currency in this category right now.</div>
+        <p class="src">Sources: Target ratings API (TCINs 94856713 / 94856712, fetched 2026-07-15), r/FormulaFeeders threads (2026), FDA recall notices, BusinessWire launch release (Feb 2026). Quotes verbatim; em dashes in originals replaced per style rules.</p>
+      </div>
+    </section>
+
+    <!-- 11. MARKET NEED -->
+    <section class="slide" data-slide="11">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> MUNCHKIN / FORMULA PDP AUDIT</div>
+          <div class="eyebrow">11 / Market</div>
+        </div>
+        <h2 class="sub-display" style="margin-bottom: 10px;">The market is moving<br>toward exactly this product.</h2>
+        <p class="lede" style="margin-bottom: 24px;">Four forces make a clinically tested, North American made, European style organic formula timely.</p>
+        <div class="grid cols-4" style="margin-bottom: 20px;">
+          <div class="stat-card">
+            <div class="k">Formula is the norm</div>
+            <div class="v">~75%</div>
+            <div class="d">of US infants receive formula within the first 6 months; only ~25% are exclusively breastfed at 6 months. Combo feeding is the dominant real pattern. (CDC, 2022 birth cohort)</div>
+          </div>
+          <div class="stat-card green">
+            <div class="k">Organic outpaces the category</div>
+            <div class="v">6.6%</div>
+            <div class="d">CAGR for North American organic infant formula vs roughly 4 to 5% for total US formula. Publishers disagree on absolute size; the direction is consistent. (MRFR 2024; CMI 2024)</div>
+          </div>
+          <div class="stat-card amber">
+            <div class="k">Trust is broken</div>
+            <div class="v">3<span style="font-size:22px; color: var(--ink-3)"> waves</span></div>
+            <div class="d">Abbott 2022 (2 deaths, 43% out of stock), ByHeart Nov 2025 (botulism, all lots), Nara Jun 2026 (organic brand, sold at Target, all lots). Recall refugees re-shop the category every time. (FDA)</div>
+          </div>
+          <div class="stat-card">
+            <div class="k">European style demand</div>
+            <div class="v">$164M</div>
+            <div class="d">Bobbie's reported 2025 ARR (third party estimate) built on EU style organic positioning; Kendamil entered US retail in 2024. Parents pay a premium for the style, often via risky grey imports. (GetLatka, Est.)</div>
+          </div>
+        </div>
+        <div class="callout"><strong>The Nara recall is the sharpest signal.</strong> An organic formula sold at Target and DTC, recalled across all lots in June 2026: the same shelf, channel and buyer as Munchkin. Those parents are re-shopping right now, and Munchkin's own reviews already show them arriving ("We switched after the Nara recall"). One honest constraint: over half of US formula volume flows through WIC, which DTC organic does not reach, so the realistic audience is the cash paying premium organic buyer. (USDA ERS, FY2024)</div>
+        <p class="src">Sources: CDC breastfeeding data (2022 cohort); Market Research Future, NA organic infant formula (2024); Custom Market Insights, US infant formula (2024); FDA recall notices (2022, Nov 2025, Jun 2026); USDA ERS WIC data (FY2024); GetLatka/Crunchbase (Est.). Full URL list in audit appendix.</p>
+      </div>
+    </section>
+
+    <!-- 12. MARKET GAPS -->
+    <section class="slide" data-slide="12">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> MUNCHKIN / FORMULA PDP AUDIT</div>
+          <div class="eyebrow">12 / Market</div>
+        </div>
+        <h2 class="sub-display" style="margin-bottom: 10px;">Four pieces of whitespace,<br>and the PDP claims none of them.</h2>
+        <p class="lede" style="margin-bottom: 24px;">Each gap is real in the competitor set, and each maps to an asset Munchkin already owns but buries.</p>
+        <table class="flat" style="margin-bottom: 20px;">
+          <thead><tr><th>Whitespace</th><th>Who else claims it</th><th>Munchkin's asset</th><th>Where it sits today</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Clinically trialed organic</strong></td><td>No organic competitor leads with its own RCT</td><td>260 infant, 16 week randomized controlled trial (manufacturer reported): GI side effects 9.7% vs 20.8% control</td><td class="neg">Inside an FAQ accordion, ~12 viewports down</td></tr>
+            <tr><td><strong>Traceability after the botulism recalls</strong></td><td>ByHeart's site is a recall hub; Nara is gone from shelves</td><td>Single purpose built Canadian facility, every batch under both FDA and Health Canada standards</td><td class="neg">Three bullets in a collapsed "Quality &amp; Safety" accordion</td></tr>
+            <tr><td><strong>Risk reversal</strong></td><td>Bobbie: "all sales final". Kendamil: none visible</td><td>A refund guarantee already exists (one per household, trial orders)</td><td class="neg">Buried in the returns FAQ; the buy box never mentions it</td></tr>
+            <tr><td><strong>Combo feeder positioning</strong></td><td>Category markets formula as all or nothing</td><td>"Shares 10 ingredients with breastmilk" is a natural complement story; Flow Nipple Shield and lactation line already cross sold on page</td><td class="neg">Framed as brand poetry ("Believe in your feed"), not as combo feeding permission</td></tr>
+          </tbody>
+        </table>
+        <div class="callout"><strong>Underserved segments to aim messaging at:</strong> recall refugees (ByHeart Nov 2025, Nara Jun 2026, both actively re-shopping), combo feeders (the majority pattern), late switchers coming off exclusive breastfeeding, and budget conscious organic buyers for whom the $39.99 trial beats a $250 to $350/month premium commitment.</div>
+        <p class="src">Competitor claims verified on live PDPs 2026-07-15. Munchkin guarantee and RCT: munchkin.com (manufacturer reported). Segment sizing: CDC 2022 cohort, FDA recall notices.</p>
+      </div>
+    </section>
+
+    <!-- 13. COMPETITORS -->
+    <section class="slide" data-slide="13">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> MUNCHKIN / FORMULA PDP AUDIT</div>
+          <div class="eyebrow">13 / Competitors</div>
+        </div>
+        <h2 class="sub-display" style="margin-bottom: 10px;">Where Munchkin stands against<br>Bobbie, Kendamil and ByHeart.</h2>
+        <p class="lede" style="margin-bottom: 22px;">Live PDPs fetched and verified 2026-07-15.</p>
+        <table class="flat" style="margin-bottom: 20px;">
+          <thead><tr><th></th><th>Munchkin</th><th>Bobbie</th><th>Kendamil US</th><th>ByHeart</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Price per can</strong></td><td class="num"><strong>$39.99 reg · trial $20</strong></td><td class="num">$26.00 / $23.40 sub (14.1oz)</td><td class="num">$39.99 (28.2oz)</td><td class="num">Unverified</td></tr>
+            <tr><td><strong>Est. price per oz</strong></td><td class="num">~$1.55</td><td class="num">$1.84 / $1.66 sub</td><td class="num">$1.42 (lowest)</td><td class="num">Unverified</td></tr>
+            <tr><td><strong>Trial offer</strong></td><td style="color: var(--pos); font-weight: 700;">B1G1: 2 cans $39.99</td><td>10% off first month</td><td>None</td><td>25% off $175 (code)</td></tr>
+            <tr><td><strong>Subscription</strong></td><td class="num neg">10%, hidden by default</td><td style="color: var(--pos)">10%, front and center, cancel anytime</td><td>None</td><td>Unverified</td></tr>
+            <tr><td><strong>Switching support</strong></td><td class="num">Email + phone line</td><td style="color: var(--pos)">Quiz, Feeding Room, AI answers, expert sessions</td><td>Prep guide, 24/7 WhatsApp</td><td>Recall content only</td></tr>
+            <tr><td><strong>Review volume on PDP</strong></td><td class="num">104 @ 4.7</td><td class="num">Not shown (awards instead)</td><td class="num" style="color: var(--pos)">3,010 @ 4.9</td><td class="num">Not retrievable</td></tr>
+            <tr><td><strong>Money back guarantee</strong></td><td style="color: var(--amber); font-weight: 700;">Exists, buried in FAQ</td><td class="num">None ("all sales final")</td><td class="num">None</td><td class="num">Recall refunds only</td></tr>
+          </tbody>
+        </table>
+        <div class="grid cols-3">
+          <div class="callout"><strong>Bobbie owns the switching objection</strong> with a stacked support system. That is the clearest experience gap to close.</div>
+          <div class="callout"><strong>ByHeart is mid recall</strong> (per their own site). Their customers are actively re-shopping the category this quarter.</div>
+          <div class="callout"><strong>No competitor offers a guarantee, and Munchkin hides its own.</strong> A refund guarantee already exists in the returns FAQ. Surfacing it in the buy box is free differentiation.</div>
+        </div>
+        <p class="src">Bobbie PDP: hibobbie.com. Kendamil US PDP: us.kendamil.com (sold out online at time of check). ByHeart economics unverifiable: site is a recall hub as of 2026-07-15.</p>
+      </div>
+    </section>
+
+    <!-- 14. MYTHS -->
+    <section class="slide" data-slide="14">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> MUNCHKIN / FORMULA PDP AUDIT</div>
+          <div class="eyebrow">14 / Myths to answer on page</div>
+        </div>
+        <h2 class="sub-display" style="margin-bottom: 10px;">Six myths stand between<br>a skeptical parent and Add to Bag.</h2>
+        <p class="lede" style="margin-bottom: 22px;">Each one is answerable with an asset Munchkin already has. The PDP currently answers none of them explicitly.</p>
+        <div class="grid cols-3" style="gap: 14px;">
+          <div class="myth-card">
+            <div class="myth"><span class="tag">Myth 01</span>"European imported formula is always safer."</div>
+            <div class="truth"><span class="tag">The counter</span>FDA and EU standards are different, not ranked; the AAP warns against non FDA registered imports (HiPP, Holle) over traceability. EU style without import risk is the win.</div>
+            <div class="asset">Answer with: <strong>dual FDA + Health Canada standards, European style recipe</strong></div>
+          </div>
+          <div class="myth-card">
+            <div class="myth"><span class="tag">Myth 02</span>"Formula means giving up on what's best."</div>
+            <div class="truth"><span class="tag">The counter</span>~75% of US infants receive formula in the first 6 months; combo feeding is the norm. A 1 star review flags the can's "Breast milk is best" label as guilt inducing. Position as complement, not surrender.</div>
+            <div class="asset">Answer with: <strong>10 shared breastmilk ingredients, combo feeding framing</strong></div>
+          </div>
+          <div class="myth-card">
+            <div class="myth"><span class="tag">Myth 03</span>"New formula brands are risky."</div>
+            <div class="truth"><span class="tag">The counter</span>Brand age is not safety (Abbott 2022). Testing and traceability are. Munchkin is a 40 year infant brand with its own 260 infant RCT and a dedicated facility: a new formula, not a new company.</div>
+            <div class="asset">Answer with: <strong>clinical trial + 40 year heritage + single facility</strong></div>
+          </div>
+          <div class="myth-card">
+            <div class="myth"><span class="tag">Myth 04</span>"The organic label is just marketing."</div>
+            <div class="truth"><span class="tag">The counter</span>USDA Organic is a federally audited standard, and the product adds Clean Label Project contaminant testing on top. Reviews show it lands: "it's also certified organic!"</div>
+            <div class="asset">Answer with: <strong>USDA Organic + Clean Label Project purity award</strong></div>
+          </div>
+          <div class="myth-card">
+            <div class="myth"><span class="tag">Myth 05</span>"Switching will wreck my baby's stomach."</div>
+            <div class="truth"><span class="tag">The counter</span>Pediatric guidance: most babies switch without difficulty; all US formulas meet the same FDA nutrient floor. The RCT measured fewer GI side effects than control (9.7% vs 20.8%).</div>
+            <div class="asset">Answer with: <strong>$39.99 trial + surfaced refund guarantee + RCT outcomes</strong></div>
+          </div>
+          <div class="myth-card">
+            <div class="myth"><span class="tag">Myth 06</span>"A gear brand can't do serious nutrition."</div>
+            <div class="truth"><span class="tag">The counter</span>Category credibility now comes from evidence, not pharma heritage (Bobbie, founded 2018, reached ~$164M ARR, Est.). Munchkin built a dedicated facility and ran its own trial instead of white labeling.</div>
+            <div class="asset">Answer with: <strong>purpose built facility + clinical program + 350+ patents</strong></div>
+          </div>
+        </div>
+        <p class="src">Sources: CDC (2022 cohort), AAP formula guidance, FDA infant formula standards, FDA recall notices (2022 to 2026), munchkin.com clinical claims (manufacturer reported), GetLatka (Est.). Myth slide is for messaging strategy; consumer copy must not name competitors.</p>
+      </div>
+    </section>
+
+    <!-- 15. TRACKING -->
+    <section class="slide" data-slide="15">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> MUNCHKIN / FORMULA PDP AUDIT</div>
+          <div class="eyebrow">15 / Data hygiene</div>
+        </div>
+        <h2 class="sub-display" style="margin-bottom: 24px;">Fix two tracking bugs<br>before A/B testing anything.</h2>
+        <div class="grid cols-2" style="margin-bottom: 20px;">
+          <div class="stat-card red">
+            <div class="k">Bug 1</div>
+            <div class="v sm">item_name mismatch breaks funnel joins</div>
+            <div class="d">view_item and add_to_cart fire as "Munchkin Infant Formula Made with Organic Milk, 2 Cans" while checkout and purchase fire as "Munchkin Infant Formula with Organic Milk". In GA4 item reports the PDP items show 0 purchases and the purchase item shows 0 views. Align item_id and item_name across the whole event chain.</div>
+          </div>
+          <div class="stat-card red">
+            <div class="k">Bug 2</div>
+            <div class="v sm">view_item fires for all 5 quantity variants</div>
+            <div class="d">The 1, 4, 6 and 8 can variants each logged exactly 58,718 item views (the 2 can default logged double), inflating item views roughly 5x per pageview. Fire view_item once, for the selected variant.</div>
+          </div>
+        </div>
+        <div class="callout"><strong>Why this matters now:</strong> every test in the roadmap will be read through item level funnels. With these two bugs live, view to add and view to purchase deltas will be distorted before the first experiment starts. Also worth adding: Microsoft Clarity (or equivalent) on this URL. No session recording tool was detectable, so scroll and tap behavior in this audit is inferred from GA4 and DOM probes, not observed.</div>
+        <p class="src">Tags verified present: GTM-5JH6JH6N (GA4 and Meta load through it), Klaviyo, TikTok, Algolia, Rebuy, Yotpo, Loop. Triple Whale attribution params (tw_) on all paid entries.</p>
+      </div>
+    </section>
+
+    <!-- 16. ROADMAP -->
+    <section class="slide" data-slide="16">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> MUNCHKIN / FORMULA PDP AUDIT</div>
+          <div class="eyebrow">16 / Roadmap</div>
+        </div>
+        <h2 class="sub-display" style="margin-bottom: 24px;">Eight moves,<br>in this order.</h2>
+        <div class="grid" style="gap: 10px;">
+          <div class="priority-item p0">
+            <div class="n">01</div>
+            <div class="t">Mobile performance sprint: LCP under 3s<span>SSR or static buy box, defer third party scripts until interaction, lazy load below the ingredient section. Desktop already proves the content converts when it renders.</span></div>
+            <div class="tag">P0 · eng sprint</div>
+          </div>
+          <div class="priority-item p0">
+            <div class="n">02</div>
+            <div class="t">Rebuild mobile above the fold<span>Image, one line title, stars, "$39.99 (was $79.98) Buy 1 Can Get 1 Free + free shipping", Add to Bag: all in viewport 1. Collapse the search bar to an icon.</span></div>
+            <div class="tag">P0 · design + dev</div>
+          </div>
+          <div class="priority-item p0">
+            <div class="n">03</div>
+            <div class="t">Sticky add to cart bar on mobile<span>Price + offer chip + Add to Bag once the buy box scrolls out. Ships this week; the 52% cart completion is waiting for it.</span></div>
+            <div class="tag">P0 · ship now</div>
+          </div>
+          <div class="priority-item">
+            <div class="n">04</div>
+            <div class="t">Move the Target link below Add to Bag<span>Keep the retail halo, stop handing the highest intent readers an exit before they see the offer. Add a click listener first to measure the leak.</span></div>
+            <div class="tag">P1 · ship now</div>
+          </div>
+          <div class="priority-item">
+            <div class="n">05</div>
+            <div class="t">Restructure offer and quantity<span>One highlighted new customer offer, then quantity tiers with per can pricing and Subscribe &amp; Save visible on every tier including the trial.</span></div>
+            <div class="tag">P1 · test</div>
+          </div>
+          <div class="priority-item">
+            <div class="n">06</div>
+            <div class="t">Pull proof into the buy box<span>One clinical line ("shown to reduce gas and fussiness in a 260 infant trial") plus the ingredient comparison table moved directly under the buy box.</span></div>
+            <div class="tag">P1 · test</div>
+          </div>
+          <div class="priority-item">
+            <div class="n">07</div>
+            <div class="t">"Switching to Munchkin" module + surface the refund guarantee<span>Use review language (gas, sleep, recall switchers). The guarantee already exists in the returns FAQ; move it next to Add to Bag. No competitor shows one.</span></div>
+            <div class="tag">P2 · test</div>
+          </div>
+          <div class="priority-item">
+            <div class="n">08</div>
+            <div class="t">Rebalance media while P0 ships<span>Shift budget from 0.0 to 0.4% CVR cold entries and TikTok toward brand search and retargeting (13%+ CVR), then re-open prospecting on the fixed page.</span></div>
+            <div class="tag">P2 · media</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 17. REVENUE MATH -->
+    <section class="slide" data-slide="17">
+      <div class="pad">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> MUNCHKIN / FORMULA PDP AUDIT</div>
+          <div class="eyebrow">17 / What success looks like</div>
+        </div>
+        <h2 class="sub-display" style="margin-bottom: 24px;">The scoreboard for<br>the next 90 days.</h2>
+        <div class="grid cols-3" style="margin-bottom: 22px;">
+          <div class="stat-card">
+            <div class="k">Today</div>
+            <div class="v">307</div>
+            <div class="d">purchases / 30 days, $14.7K item revenue, at 1.17% view to add and 52% cart completion.</div>
+          </div>
+          <div class="stat-card amber">
+            <div class="k">At 2.5% view to add</div>
+            <div class="v">~650</div>
+            <div class="d">purchases / 30 days. Roughly +$16.6K/month at the current $48 average item revenue. Still below the sippy cup range.</div>
+          </div>
+          <div class="stat-card green">
+            <div class="k">At 3.0% view to add</div>
+            <div class="v">~790</div>
+            <div class="d">purchases / 30 days. Roughly +$23K/month. Matches the Miracle 360 Stainless rate on the same site. Subscription LTV comes on top.</div>
+          </div>
+        </div>
+        <table class="flat">
+          <thead><tr><th>Metric</th><th>Baseline (30d)</th><th>Target</th><th>Owner</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Mobile LCP</strong></td><td class="num">10.9s</td><td class="num">&lt; 3.0s</td><td>Engineering</td></tr>
+            <tr><td><strong>Mobile bounce (page)</strong></td><td class="num">76.1%</td><td class="num">&lt; 55%</td><td>Eng + design</td></tr>
+            <tr><td><strong>View to add (users)</strong></td><td class="num">1.17%</td><td class="num">2.5%+</td><td>CRO tests 2 to 6</td></tr>
+            <tr><td><strong>Landing CVR</strong></td><td class="num">0.37%</td><td class="num">1.0%+</td><td>All</td></tr>
+            <tr><td><strong>Subscription share of formula orders</strong></td><td class="num">Not measured today</td><td class="num">Measure, then target</td><td>Offer restructure (5)</td></tr>
+          </tbody>
+        </table>
+        <p class="src">Projections use current 52% cart completion and $48 average item revenue; target view to add rates are borrowed from item scoped benchmarks and applied to the user scoped base, so treat as directional estimates.</p>
+      </div>
+    </section>
+
+    <!-- 18. CLOSE -->
+    <section class="slide" data-slide="18">
+      <div class="pad" style="justify-content: center;">
+        <div class="top-row">
+          <div class="brand"><div class="brand-mark"></div> MUNCHKIN / FORMULA PDP AUDIT</div>
+          <div class="eyebrow">18 / Next steps</div>
+        </div>
+        <h2 class="display" style="margin-bottom: 24px;">Questions?</h2>
+        <p class="lede" style="max-width: 62ch;">Suggested first moves: ship the sticky cart bar and relocate the Target link this week, and scope the mobile performance sprint with engineering. The full written audit with methodology and every data table sits alongside this deck.</p>
+        <div class="meta" style="display: flex; gap: 24px; margin-top: 28px; flex-wrap: wrap; font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: .15em; text-transform: uppercase;">
+          <span><strong style="color: var(--ink); font-weight: 500;">Written audit</strong>&nbsp; audit.md</span>
+          <span><strong style="color: var(--ink); font-weight: 500;">Data</strong>&nbsp; GA4 284940365 · PageSpeed · Yotpo · live captures</span>
+          <span><strong style="color: var(--ink); font-weight: 500;">Prepared</strong>&nbsp; 2026-07-15</span>
+        </div>
+      </div>
+      <div class="grain"></div>
+    </section>
+
+  </div>
+</div>
+
+<div class="nav">
+  <button id="prev-btn" aria-label="Previous slide">←</button>
+  <div class="count"><strong id="cur">1</strong> / <span id="total">18</span></div>
+  <button id="next-btn" aria-label="Next slide">→</button>
+  <div class="sep"></div>
+  <button id="index-btn" aria-label="Slide index">Index</button>
+  <div class="sep"></div>
+  <button class="theme-toggle" id="theme-btn" aria-label="Toggle theme">
+    <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+  </button>
+</div>
+
+<div class="swipe-hint" id="swipe-hint">Swipe to navigate</div>
+
+<div class="index-overlay" id="index-overlay" aria-hidden="true">
+  <div class="index-panel">
+    <div class="index-head">
+      <div class="index-title">Slide index</div>
+      <button class="index-close" id="index-close" aria-label="Close index">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="index-list" id="index-list"></div>
+    <div class="index-foot">
+      <span class="kbd">←</span><span class="kbd">→</span> navigate &nbsp; <span class="kbd">I</span> index &nbsp; <span class="kbd">1-9</span> jump &nbsp; <span class="kbd">Esc</span> close
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const total = slides.length;
+  const $cur = document.getElementById('cur');
+  const $total = document.getElementById('total');
+  const $bar = document.getElementById('progress-bar');
+  const $prev = document.getElementById('prev-btn');
+  const $next = document.getElementById('next-btn');
+  const $theme = document.getElementById('theme-btn');
+  const $stage = document.getElementById('stage');
+  const $hint = document.getElementById('swipe-hint');
+  $total.textContent = total;
+  let idx = 0;
+  let isAnimating = false;
+
+  function go(next) {
+    if (isAnimating) return;
+    if (next < 0 || next >= total || next === idx) return;
+    isAnimating = true;
+    slides[idx].classList.remove('is-active');
+    slides[idx].classList.add('is-prev');
+    slides[next].classList.remove('is-prev');
+    slides[next].classList.add('is-active');
+    const pad = slides[next].querySelector('.pad');
+    if (pad) pad.scrollTop = 0;
+    idx = next;
+    $cur.textContent = idx + 1;
+    $bar.style.width = (((idx + 1) / total) * 100) + '%';
+    document.querySelectorAll('.ticker-track').forEach(t => {
+      t.style.animationPlayState = (idx === 0) ? 'running' : 'paused';
+    });
+    try {
+      const url = new URL(window.location.href);
+      url.hash = String(idx + 1);
+      history.replaceState(null, '', url);
+    } catch(e){}
+    setTimeout(() => { isAnimating = false; }, 420);
+  }
+
+  $prev.addEventListener('click', (e) => { e.stopPropagation(); go(idx - 1); });
+  $next.addEventListener('click', (e) => { e.stopPropagation(); go(idx + 1); });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.target.closest('input, textarea, [contenteditable="true"]')) return;
+    if (['ArrowRight','PageDown'].includes(e.key) || (e.key === ' ' && !e.shiftKey)) {
+      e.preventDefault(); go(idx + 1);
+    } else if (['ArrowLeft','PageUp'].includes(e.key) || (e.key === ' ' && e.shiftKey)) {
+      e.preventDefault(); go(idx - 1);
+    } else if (e.key === 'Home') {
+      e.preventDefault(); go(0);
+    } else if (e.key === 'End') {
+      e.preventDefault(); go(total - 1);
+    } else if (e.key >= '1' && e.key <= '9') {
+      go(parseInt(e.key) - 1);
+    }
+  });
+
+  let pStart = null;
+  let pMoved = false;
+  $stage.addEventListener('pointerdown', (e) => {
+    if (e.target.closest('button, a, .nav, input, select, textarea')) return;
+    pStart = { x: e.clientX, y: e.clientY, t: Date.now() };
+    pMoved = false;
+  }, { passive: true });
+  $stage.addEventListener('pointermove', (e) => {
+    if (!pStart) return;
+    const dx = e.clientX - pStart.x;
+    const dy = e.clientY - pStart.y;
+    if (Math.abs(dx) > 8 || Math.abs(dy) > 8) pMoved = true;
+  }, { passive: true });
+  function endPointer(e){
+    if (!pStart) return;
+    const dx = e.clientX - pStart.x;
+    const dy = e.clientY - pStart.y;
+    const adx = Math.abs(dx);
+    const ady = Math.abs(dy);
+    const dt = Date.now() - pStart.t;
+    pStart = null;
+    const swipeThreshold = 60;
+    if (adx > swipeThreshold && adx > ady * 1.3 && dt < 800) {
+      if (dx < 0) go(idx + 1); else go(idx - 1);
+      return;
+    }
+  }
+  $stage.addEventListener('pointerup', endPointer);
+  $stage.addEventListener('pointercancel', () => { pStart = null; });
+
+  let wheelLock = false;
+  let wheelAccum = 0;
+  let wheelTimer = null;
+  $stage.addEventListener('wheel', (e) => {
+    const adx = Math.abs(e.deltaX);
+    const ady = Math.abs(e.deltaY);
+    if (adx <= ady) return;
+    if (wheelLock) return;
+    wheelAccum += e.deltaX;
+    clearTimeout(wheelTimer);
+    wheelTimer = setTimeout(() => { wheelAccum = 0; }, 250);
+    const trigger = 80;
+    if (wheelAccum > trigger) {
+      wheelLock = true; wheelAccum = 0;
+      go(idx + 1);
+      setTimeout(() => { wheelLock = false; }, 500);
+    } else if (wheelAccum < -trigger) {
+      wheelLock = true; wheelAccum = 0;
+      go(idx - 1);
+      setTimeout(() => { wheelLock = false; }, 500);
+    }
+  }, { passive: true });
+
+  function applyTheme(t){
+    document.documentElement.setAttribute('data-theme', t);
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', t === 'dark' ? '#131511' : '#f7f4ee');
+    try { localStorage.setItem('munchkin-deck-theme', t); } catch(e){}
+  }
+  let savedTheme = null;
+  try { savedTheme = localStorage.getItem('munchkin-deck-theme'); } catch(e){}
+  if (savedTheme === 'light' || savedTheme === 'dark') applyTheme(savedTheme);
+  else if (window.matchMedia('(prefers-color-scheme: dark)').matches) applyTheme('dark');
+  $theme.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const cur = document.documentElement.getAttribute('data-theme') || 'light';
+    applyTheme(cur === 'dark' ? 'light' : 'dark');
+  });
+
+  const slideMeta = [
+    { n: 1, label: 'Cover', sub: 'PDP audit', chip: 'Intro' },
+    { n: 2, label: 'Summary', sub: 'Three findings explain 0.37%', chip: 'Summary' },
+    { n: 3, label: 'The funnel', sub: '1.17% view to add, 52% checkout', chip: 'Data' },
+    { n: 4, label: 'Own-brand benchmark', sub: 'Sippy cups vs formula', chip: 'Data' },
+    { n: 5, label: 'Mobile reality', sub: '93% mobile, LCP 10.9s', chip: 'Data' },
+    { n: 6, label: 'Above the fold', sub: 'What ad clicks see first', chip: 'Page' },
+    { n: 7, label: 'Buy box', sub: 'Offer confusion, hidden subscription', chip: 'Page' },
+    { n: 8, label: 'Traffic quality', sub: 'Warm converts, cold bounces', chip: 'Data' },
+    { n: 9, label: 'Voice of customer', sub: 'On-site reviews', chip: 'Insight' },
+    { n: 10, label: 'Voice of customer', sub: 'Off-site: Reddit, Target, press', chip: 'Insight' },
+    { n: 11, label: 'Market need', sub: 'Why this product, why now', chip: 'Market' },
+    { n: 12, label: 'Market gaps', sub: 'Whitespace to own', chip: 'Market' },
+    { n: 13, label: 'Competitors', sub: 'Bobbie, Kendamil, ByHeart', chip: 'Market' },
+    { n: 14, label: 'Myths to answer', sub: 'Category objections on page', chip: 'Strategy' },
+    { n: 15, label: 'Tracking hygiene', sub: 'Two bugs before testing', chip: 'Data' },
+    { n: 16, label: 'Roadmap', sub: 'Eight moves in order', chip: 'Roadmap' },
+    { n: 17, label: 'Success metrics', sub: '90-day scoreboard', chip: 'Outcome' },
+    { n: 18, label: 'Next steps', sub: 'Questions', chip: 'Close' },
+  ];
+  const $indexBtn = document.getElementById('index-btn');
+  const $indexOverlay = document.getElementById('index-overlay');
+  const $indexClose = document.getElementById('index-close');
+  const $indexList = document.getElementById('index-list');
+  let indexFocus = 0;
+
+  function buildIndex() {
+    $indexList.innerHTML = '';
+    slideMeta.forEach((m, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'index-item' + (i === idx ? ' current' : '');
+      btn.dataset.slide = m.n;
+      btn.innerHTML = `
+        <span class="num">${String(m.n).padStart(2,'0')}</span>
+        <span class="label">${m.label}<span>${m.sub}</span></span>
+        <span class="chip">${m.chip}</span>
+      `;
+      btn.addEventListener('click', () => { go(m.n - 1); closeIndex(); });
+      $indexList.appendChild(btn);
+    });
+  }
+  function openIndex() {
+    buildIndex();
+    indexFocus = idx;
+    updateIndexFocus();
+    $indexOverlay.classList.add('open');
+    $indexOverlay.setAttribute('aria-hidden', 'false');
+  }
+  function closeIndex() {
+    $indexOverlay.classList.remove('open');
+    $indexOverlay.setAttribute('aria-hidden', 'true');
+  }
+  function toggleIndex() { $indexOverlay.classList.contains('open') ? closeIndex() : openIndex(); }
+  function updateIndexFocus() {
+    const items = $indexList.querySelectorAll('.index-item');
+    items.forEach((el, i) => el.classList.toggle('focused', i === indexFocus));
+    const el = items[indexFocus];
+    if (el) el.scrollIntoView({ block: 'nearest' });
+  }
+  $indexBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleIndex(); });
+  $indexClose.addEventListener('click', (e) => { e.stopPropagation(); closeIndex(); });
+  $indexOverlay.addEventListener('click', (e) => { if (e.target === $indexOverlay) closeIndex(); });
+
+  window.addEventListener('keydown', (e) => {
+    const open = $indexOverlay.classList.contains('open');
+    if (open) {
+      if (e.key === 'Escape') { e.preventDefault(); closeIndex(); }
+      else if (e.key === 'ArrowDown') { e.preventDefault(); indexFocus = Math.min(slideMeta.length - 1, indexFocus + 1); updateIndexFocus(); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); indexFocus = Math.max(0, indexFocus - 1); updateIndexFocus(); }
+      else if (e.key === 'Enter') { e.preventDefault(); go(indexFocus); closeIndex(); }
+    } else {
+      if (e.key === 'i' || e.key === 'I') {
+        if (e.target.closest('input, textarea, [contenteditable="true"]')) return;
+        e.preventDefault();
+        openIndex();
+      }
+    }
+  });
+
+  const hash = parseInt((window.location.hash || '').replace('#',''), 10);
+  if (hash && hash >= 1 && hash <= total) {
+    slides.forEach(s => { s.classList.remove('is-active'); s.classList.add('is-prev'); });
+    slides[hash - 1].classList.remove('is-prev');
+    slides[hash - 1].classList.add('is-active');
+    idx = hash - 1;
+    $cur.textContent = idx + 1;
+    $bar.style.width = (((idx + 1) / total) * 100) + '%';
+  } else {
+    $bar.style.width = (1 / total * 100) + '%';
+  }
+
+  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+    $hint.classList.add('show');
+    setTimeout(() => $hint.classList.remove('show'), 3200);
+  }
+})();
+</script>
+</body>
+</html>
