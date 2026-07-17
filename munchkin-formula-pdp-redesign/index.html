@@ -20,6 +20,12 @@
     --card: #f7f6f3;           /* soft borderless card (live site pattern) */
     --sand: #f3f1ea;
     --amber-bg: #fff5de;
+    --amber-ink: #a97614;
+    --sky-soft: #e8f3fa;
+    --sky-ink: #2b6e93;
+    --butter-soft: #fdf3d9;
+    --coral: #e2554f;
+    --coral-soft: #fdeae8;
     --ink: #1e2721;
     --ink-2: #565e57;
     --ink-3: #6a716b;
@@ -565,6 +571,42 @@
   .switch-link svg { width: 22px; height: 22px; fill: var(--green-soft); stroke: var(--green); stroke-width: 1.4; border-radius: 50%; background: var(--green-soft); padding: 4px; box-sizing: border-box; }
   .avail-line { display: flex; gap: 9px; align-items: center; margin-top: 14px; font-size: 12.5px; color: var(--ink-2); }
   .avail-line svg { width: 18px; height: 18px; stroke: var(--red, #c0392b); stroke: #cc0000; flex: 0 0 18px; }
+
+
+  /* Color accent pass: supporting UI gets the brand's secondary hues; green stays the conversion color */
+  .mchip:nth-child(2) { background: var(--navy); }
+  .age-chip { background: var(--butter-soft); color: var(--amber-ink); }
+  .no-cloud .pill b { color: var(--coral); }
+  .trust-icons svg {
+    width: 54px; height: 54px; padding: 13px; border-radius: 50%; box-sizing: border-box;
+  }
+  .trust-icons .ti:nth-child(1) svg { background: var(--green-soft); stroke: var(--green); }
+  .trust-icons .ti:nth-child(2) svg { background: var(--sky-soft); stroke: var(--sky-ink); }
+  .trust-icons .ti:nth-child(3) svg { background: var(--butter-soft); stroke: var(--amber-ink); }
+  .trust-icons .ti:nth-child(4) svg { background: var(--coral-soft); stroke: var(--coral); }
+  .grid3 .extra-card:nth-child(3n+1) { background: var(--sky-soft); }
+  .grid3 .extra-card:nth-child(3n+1) h4 { color: var(--sky-ink); }
+  .grid3 .extra-card:nth-child(3n+2) { background: var(--butter-soft); }
+  .grid3 .extra-card:nth-child(3n+2) h4 { color: var(--amber-ink); }
+  .grid3 .extra-card:nth-child(3n) { background: var(--green-soft); }
+  .rev-card:nth-child(1) { background: var(--green-soft); }
+  .rev-card:nth-child(1) .q::before { color: var(--green); }
+  .rev-card:nth-child(2) { background: var(--sky-soft); }
+  .rev-card:nth-child(2) .q::before { color: var(--sky-ink); }
+  .rev-card:nth-child(3) { background: var(--butter-soft); }
+  .rev-card:nth-child(3) .q::before { color: var(--amber-ink); }
+  .bridge-steps .step:nth-child(2) .num { background: var(--sky-ink); }
+  .bridge-steps .step:nth-child(3) .num { background: var(--amber-ink); }
+  .g-terms .g-card:nth-child(1) { background: var(--green-soft); }
+  .g-terms .g-card:nth-child(2) { background: var(--sky-soft); }
+  .g-terms .g-card:nth-child(3) { background: var(--butter-soft); }
+  .sched .day:nth-child(2) { background: var(--sky-soft); }
+  .sched .day:nth-child(2) b { color: var(--sky-ink); }
+  .sched .day:nth-child(3) { background: var(--butter-soft); }
+  .sched .day:nth-child(3) b { color: var(--amber-ink); }
+  .sched .day:nth-child(4) { background: var(--green-soft); }
+  .theme-chips .theme-chip:nth-child(3n+2) { background: var(--sky-soft); border-color: transparent; }
+  .theme-chips .theme-chip:nth-child(3n) { background: var(--butter-soft); border-color: transparent; }
 
   .mockup-banner {
     background: var(--sand); color: var(--ink-3); text-align: center; font-size: 10.5px; padding: 4px 12px;
