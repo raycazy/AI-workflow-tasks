@@ -556,6 +556,16 @@
   .gal-seal { position: absolute; right: 12px; bottom: 12px; width: 62px; height: 62px; z-index: 3; filter: drop-shadow(0 6px 14px rgba(30,39,33,.18)); }
   .gallery-main { position: relative; }
 
+
+  .oc-includes { list-style: none; margin: 10px 0 0; padding: 10px 0 0; border-top: 1px solid rgba(50,84,32,.15); display: grid; gap: 5px; grid-column: 1 / -1; width: 100%; }
+  .oc-includes li { font-size: 12.5px; color: var(--ink-2); padding-left: 20px; position: relative; }
+  .oc-includes li::before { content: ""; position: absolute; left: 2px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--green-soft); box-shadow: inset 0 0 0 2.5px var(--green); }
+  .offer-card { flex-wrap: wrap; }
+  .switch-link { display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 13px; font-weight: 600; color: var(--green); text-decoration: none; }
+  .switch-link svg { width: 22px; height: 22px; fill: var(--green-soft); stroke: var(--green); stroke-width: 1.4; border-radius: 50%; background: var(--green-soft); padding: 4px; box-sizing: border-box; }
+  .avail-line { display: flex; gap: 9px; align-items: center; margin-top: 14px; font-size: 12.5px; color: var(--ink-2); }
+  .avail-line svg { width: 18px; height: 18px; stroke: var(--red, #c0392b); stroke: #cc0000; flex: 0 0 18px; }
+
   .mockup-banner {
     background: var(--sand); color: var(--ink-3); text-align: center; font-size: 10.5px; padding: 4px 12px;
   }
@@ -607,7 +617,7 @@
         <svg class="stars-svg " viewBox="0 0 88 16" aria-label="4.7 out of 5 stars" role="img"><defs><path id="star-shape" d="M8 1.2l2.1 4.25 4.7.68-3.4 3.31.8 4.67L8 11.9l-4.2 2.21.8-4.67-3.4-3.31 4.7-.68z"/><clipPath id="star-clip"><rect x="0" y="0" width="82.7" height="16"/></clipPath></defs><g fill="#d8d5cc"><use href="#star-shape" x="0"/><use href="#star-shape" x="18"/><use href="#star-shape" x="36"/><use href="#star-shape" x="54"/><use href="#star-shape" x="72"/></g><g fill="#e7a615" clip-path="url(#star-clip)"><use href="#star-shape" x="0"/><use href="#star-shape" x="18"/><use href="#star-shape" x="36"/><use href="#star-shape" x="54"/><use href="#star-shape" x="72"/></g></svg>
         <a href="#reviews">4.7 (196)</a>
         <span class="gate">confirm count + fix 0.0 widget</span>
-        <span class="age-chip">0 to 12 months</span>
+        <span class="age-chip">Newborn to 12 months</span>
       </div>
     </div>
     <div class="gallery bb-gallery">
@@ -629,9 +639,9 @@
       <div class="thumbs" id="thumbs">
         <button class="on" data-src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/munchkin-infant-formula-made-with-organic-milk_37f2d546-c917-4fea-8ba4-b2b039d05ae8.png?v=1778027190&width=880"><img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/munchkin-infant-formula-made-with-organic-milk_37f2d546-c917-4fea-8ba4-b2b039d05ae8.png?v=1778027190&width=135" alt="Can"></button>
         <button data-src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/infant-formula-organic-nutrient-facts.jpg?v=1778536544&width=880"><img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/infant-formula-organic-nutrient-facts.jpg?v=1778536544&width=135" alt="The readable panel"></button>
+        <button data-src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/Formula_-_Enhanced_Image_9_663f5a52-a0e5-4b33-b7b5-1fe8e54a0b71.jpg?v=1772142138&width=880"><img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/Formula_-_Enhanced_Image_9_663f5a52-a0e5-4b33-b7b5-1fe8e54a0b71.jpg?v=1772142138&width=135" alt="Lifestyle"></button>
         <button data-src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/10_Ingredients_-_Organic_1f3e61c4-ad7c-494a-a59d-60b45b80345c.jpg?v=1772141809&width=880"><img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/10_Ingredients_-_Organic_1f3e61c4-ad7c-494a-a59d-60b45b80345c.jpg?v=1772141809&width=135" alt="The 10 shared ingredients"></button>
         <button data-src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/Certified-Clean-Organic.jpg?v=1777671040&width=880"><img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/Certified-Clean-Organic.jpg?v=1777671040&width=135" alt="Certifications and testing"></button>
-        <button data-src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/Formula_-_Enhanced_Image_9_663f5a52-a0e5-4b33-b7b5-1fe8e54a0b71.jpg?v=1772142138&width=880"><img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/Formula_-_Enhanced_Image_9_663f5a52-a0e5-4b33-b7b5-1fe8e54a0b71.jpg?v=1772142138&width=135" alt="Lifestyle"></button>
         <button data-src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/munchkin-recommended-scoops-per-feeding.jpg?v=1778536515&width=880"><img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/munchkin-recommended-scoops-per-feeding.jpg?v=1778536515&width=135" alt="Scoops per feeding"></button>
       </div>
     </div>
@@ -643,16 +653,17 @@
         <img src="assets/badge-1000day.png" alt="Clean Label Project First 1,000 Day Promise">
         <img src="assets/badge-eu-blend.png" alt="European Blend">
       </div>
-      <p class="pos-line" style="margin-top: 14px;">Built on 10 of the nutrients found in breast milk, <span class="soft">nature's blueprint, thoughtfully matched.</span></p>
+      <p class="pos-line" style="margin-top: 14px;">Built on 10 of the nutrients found in breast milk, <span class="soft">nature's blueprint, thoughtfully matched from newborn to year one.</span></p>
       <ul class="benefits">
         <li><svg class="tick" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/><path d="m6 10.5 2.6 2.6L14 7.5"/></svg><span><strong>Calmer tummy, less gas, less crying,</strong> proven on 260 real babies. <span class="gate">manufacturer reported RCT</span></span></li>
+        <li style="margin-left: 31px; margin-top: -4px;"><a href="#extras" style="font-size: 13px; font-weight: 600; color: var(--green);">See all 10 ingredients, explained</a></li>
         <li><svg class="tick" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/><path d="m6 10.5 2.6 2.6L14 7.5"/></svg><span><strong>USDA Organic milk,</strong> no corn syrup, no shortcuts.</span></li>
         <li><svg class="tick" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/><path d="m6 10.5 2.6 2.6L14 7.5"/></svg><span><strong>Trusted by parents for 40 years,</strong> zero recalls, ever. <span class="gate">verify recall claim + legal</span></span></li>
       </ul>
 
       <div class="price-block">
         <div class="price-row"><span class="price" id="price">$0</span><span class="strike" id="strike">$79.98</span><span class="save-chip" id="savechip">Trial: 2 FREE cans</span></div>
-        <div class="per-oz" id="per-oz">After the trial: $39.99 a can, about $1.55 an ounce, below the boutique organics. <span class="gate">verify trial economics + per oz math</span></div>
+        <div class="per-oz" id="per-oz">After the trial: $39.99 a can, about $1.55 an ounce. Each can is 25.8 oz, nearly double the typical 14.1 oz boutique can, so parents save about $30 a month. <span class="gate">verify trial economics + $30/mo math</span></div>
       </div>
 
       <div class="selector">
@@ -676,7 +687,7 @@
         <div class="bundle-row" id="bundle-row">
           <button class="bundle on" data-size="trial" data-price="$0" data-strike="$79.98" data-chip="Trial: 2 FREE cans" data-name="Trial, 2 cans" data-note="46 four oz bottles. Ideal for trying it out." tabindex="0"><b>Trial</b><i>2 cans</i></button>
           <button class="bundle" data-size="4" data-price="$143.96" data-strike="$159.96" data-chip="Subscribe and save 10%" data-name="4 cans monthly" data-note="Combo feeding, about three weeks of bottles. Free shipping." tabindex="0"><b>4 cans</b><i>Combo</i></button>
-          <button class="bundle rec" data-size="6" data-price="$215.95" data-strike="$239.94" data-chip="Subscribe and save 10%" data-name="6 cans monthly" data-note="Formula fed, about a month of bottles. Free shipping." tabindex="0"><span class="rec-tag">Recommended</span><b>6 cans</b><i>Monthly</i></button>
+          <button class="bundle rec" data-size="6" data-price="$215.95" data-strike="$239.94" data-chip="Subscribe and save 10%" data-name="6 cans monthly" data-note="What an average full time feeding month takes. At 25.8 oz a can, nearly double most brands. Free shipping." tabindex="0"><span class="rec-tag">Recommended</span><b>6 cans</b><i>Monthly</i></button>
           <button class="bundle" data-size="8" data-price="$287.93" data-strike="$319.92" data-chip="Subscribe and save 10%" data-name="8 cans monthly" data-note="Full time feeding, never run out. Free shipping." tabindex="0"><b>8 cans</b><i>Full time</i></button>
         </div>
         <div class="bundle-note" id="bundle-note">46 four oz bottles. Ideal for trying it out.</div>
@@ -689,6 +700,12 @@
           <span id="oc-sub">Feeding is a big first, so we make the first step easy: 2 free cans, you just pay $9 shipping. Protected by the 100% money back guarantee. <span class="gate">trial economics + MBG policy</span></span>
         </div>
         <div class="oc-price"><s id="oc-strike">$79.98</s> <b id="oc-p">$0</b></div>
+      <ul class="oc-includes" id="oc-includes">
+        <li>2 full size 25.8 oz cans</li>
+        <li>Bottle starter kit in box one <span class="gate">confirm gift</span></li>
+        <li>Text line to a feeding specialist <span class="gate">contract specialists</span></li>
+        <li>The printed switching guide</li>
+      </ul>
       </div>
 
       <button class="cta" id="main-cta">Start with the trial</button>
@@ -696,8 +713,10 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
       </a>
       <p class="cta-micro" id="cta-micro"><strong>$0 today, just $9 shipping.</strong> 100% money back for 30 days: if her stomach does not settle, every dollar back and keep the cans. Then your subscription price locks until her first birthday. <span class="gate">legal review + price lock</span></p>
+      <a class="switch-link" href="#switch"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Watch: how to switch formulas safely, the two week guide</a>
       <div class="express"><span>Shop&nbsp;Pay</span><span>Apple&nbsp;Pay</span><span>PayPal</span></div>
 
+      <div class="avail-line"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M4 9h16l-1.2 11H5.2L4 9Z"/><path d="M8 9V7a4 4 0 0 1 8 0v2"/></svg> Also on shelves at Target nationwide. The trial, guarantee, and price lock live only here.</div>
       <div class="trust-icons">
         <div class="ti"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.4 2.4 4.6-5.3"/></svg><span>30 day money back guarantee</span></div>
         <div class="ti"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 3 4.5 6v5.5c0 4.6 3.1 7.2 7.5 8.5 4.4-1.3 7.5-3.9 7.5-8.5V6L12 3Z"/></svg><span>No artificial hormones</span></div>
@@ -730,6 +749,7 @@
       <div class="bb-accordions">
         <details><summary>Nutrition &amp; Ingredients</summary><div class="a">Lactose first, no corn syrup, no maltodextrin. The full panel is printed in the section below, nothing folded away. <a href="#panel">Jump to the panel.</a></div></details>
         <details><summary>Preparation &amp; Instructions</summary><div class="a">One unpacked level scoop per 1 fl oz of water, cap and shake until dissolved, feed within an hour. The scoop sits in its own holder at the top of the can.</div></details>
+        <details><summary>Allergens</summary><div class="a">Contains milk and soy. Munchkin formula is milk based and is not for babies with a diagnosed cows milk protein allergy; ask your pediatrician before switching. <span class="gate">Sarah and Kristen to provide final allergy education copy</span></div></details>
         <details><summary>Quality &amp; Safety</summary><div class="a">Made in one purpose built facility inspected by both the US FDA and the Canadian CFIA, with every batch screened before it ships. <a href="#safety">See the testing and recall answer.</a></div></details>
       </div>
     </div>
@@ -839,8 +859,8 @@
 <!-- 9. SAFETY + RECALL ANSWER -->
 <section class="wrap narrow" id="safety">
   <div class="sec-label">Safety and testing</div>
-  <h2>The clean brands you trusted got recalled. <span class="serif-accent">Here is why this one is different to check.</span></h2>
-  <p class="lede">Every batch is screened before it ships. You can look up the results for the exact lot in your hand. <span class="gate">lookup page is interim; do not promise before live</span></p>
+  <h2>Tested like it's <span class="serif-accent">our own baby's.</span></h2>
+  <p class="lede">Nothing ships until every batch passes screening for lead, arsenic, cronobacter, and harmful bacteria. Look up the results for the exact lot in your hand. <span class="gate">confirm screening scope with QA; lookup page is interim</span></p>
   <div class="card" style="margin-top: 18px;">
     <p style="margin: 0; font-size: 14.5px; color: var(--ink-2);">ByHeart and Nara were recalled for the thing parents feared most. That is exactly why every Munchkin lot is tested and posted before it leaves the facility, and why you hear from us first if anything is ever off. <span class="gate">"hear from us first" is a ceiling item</span></p>
   </div>
