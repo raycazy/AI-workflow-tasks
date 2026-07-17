@@ -63,9 +63,6 @@
     transition: color 200ms ease-out;
   }
   nav a:hover { color: var(--ink); }
-  .ig { color: var(--ink-40); display: flex; padding: 12px 0 12px 4px; transition: color 200ms ease-out; }
-  .ig:hover { color: var(--ink); }
-  .ig svg { width: 16px; height: 16px; }
   .signout {
     display: flex;
     align-items: center;
@@ -141,6 +138,8 @@
     margin-top: 36px;
     text-wrap: pretty;
   }
+  .philosophy .lede { color: var(--ink); margin-top: 28px; }
+  .philosophy p.line { margin-top: 14px; }
   .philosophy .closing {
     font-style: italic;
     color: var(--ink-64);
@@ -238,6 +237,16 @@
     margin-top: 4px;
   }
   footer .note { font-size: 12px; color: var(--ink-64); }
+  .outlinks { display: flex; gap: 40px; }
+  .outlinks a {
+    font-size: 12px;
+    color: var(--ink-64);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    padding: 14px 4px;
+    transition: color 200ms ease-out;
+  }
+  .outlinks a:hover { color: var(--ink); }
 
   /* Scroll reveal: the private document surfaces as it is read.
      Scoped under html.js so content stays visible without JavaScript. */
@@ -271,15 +280,8 @@
   <a class="wordmark" href="#top">Latitude<span class="degree">&deg;</span></a>
   <nav aria-label="Sections">
     <a href="#destination">Destination</a>
-    <a href="#philosophy">Philosophy</a>
+    <a href="#beyond-practice">Beyond Practice</a>
     <a href="#gallery">Gallery</a>
-    <a class="ig" href="https://www.instagram.com/latitude.beyond" target="_blank" rel="noopener" aria-label="Latitude on Instagram">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-      </svg>
-    </a>
     <!-- Mockup: links home. Production: POST /api/signout clears the access cookie first. -->
     <a class="signout" href="index.html" aria-label="Sign out">
       <span>Sign out</span>
@@ -311,14 +313,29 @@
 
   <div class="parallel" role="presentation"></div>
 
-  <!-- Philosophy -->
-  <section id="philosophy">
+  <!-- Beyond Practice -->
+  <section id="beyond-practice">
     <div class="philosophy fade">
-      <h2>Relationships before business.</h2>
-      <p>Latitude is a private gathering, held once a year, in a place chosen for its distance as much as its beauty. There is no stage, no exhibition booth, and nothing to walk past. A few days, a small number of people, and time enough to talk properly.</p>
-      <p>Everyone present is there by invitation. We select each designer and each brand partner with care, so that every conversation is worth the days it takes to have it. Nothing at Latitude is pitched or presented. Ideas are discussed across a table, between two people who chose to sit down together.</p>
-      <p>What forms over those days is not a lead or a contact but an acquaintance: dinners shared, water crossed, mornings without a schedule. The work follows from the relationship, in its own time, and lasts as long as the relationship does.</p>
-      <p class="closing">Trust is built in person, slowly. Everything else follows.</p>
+      <h2>Beyond Practice</h2>
+      <p class="lede">The conversations that change your practice rarely happen inside it.</p>
+      <p>Latitude was created around a simple belief.</p>
+      <p>The most valuable relationships in design are never built across a presentation table.</p>
+      <p class="line">They are built over time.</p>
+      <p class="line">Over breakfasts that last a little longer.</p>
+      <p class="line">On a boat with nowhere else to be.</p>
+      <p class="line">Walking back after dinner.</p>
+      <p class="line">Watching the sun disappear without checking the time.</p>
+      <p>No exhibition.</p>
+      <p class="line">No presentations.</p>
+      <p class="line">No sales agenda.</p>
+      <p class="line">No audience.</p>
+      <p>At Latitude, brands are not sponsors, and designers are not attendees. Everyone arrives simply as people with a shared appreciation for design, craftsmanship, and meaningful conversation.</p>
+      <p>Every invitation is intentional.</p>
+      <p class="line">Every person changes the dynamic.</p>
+      <p class="line">Every conversation has the chance to become something much larger.</p>
+      <p>Because business is rarely the first thing discussed.</p>
+      <p class="line">And often the last thing remembered.</p>
+      <p class="closing">Relationships come first.<br>Everything else follows.</p>
     </div>
   </section>
 
@@ -336,6 +353,11 @@
 
 <footer>
   <a class="wordmark" href="#top">Latitude<span class="degree">&deg;</span></a>
+  <nav class="outlinks" aria-label="Latitude elsewhere">
+    <a href="https://www.instagram.com/latitude.beyond" target="_blank" rel="noopener">Instagram</a>
+    <!-- Placeholder until the real Spotify playlist URL is shared -->
+    <a href="https://open.spotify.com" target="_blank" rel="noopener">Sound of Latitude</a>
+  </nav>
   <p class="note">Private to Latitude participants</p>
 </footer>
 

@@ -41,6 +41,7 @@
     padding: 32px 24px;
     position: relative;
   }
+  section:last-of-type { padding-bottom: 88px; }
   /* The latitude lines: the page's only structure */
   .parallel {
     height: 1px;
@@ -125,21 +126,25 @@
     line-height: 1.7;
   }
 
-  /* Instagram: the only public link */
-  .instagram {
+  /* The only public links: Instagram and the playlist */
+  .outlinks {
     position: fixed;
-    right: 24px;
-    bottom: 20px;
-    color: var(--ink-40);
+    left: 0;
+    right: 0;
+    bottom: 12px;
     display: flex;
-    align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
+    gap: 40px;
+  }
+  .outlinks a {
+    font-size: 12px;
+    color: var(--ink-40);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    padding: 14px 4px;
     transition: color 200ms ease-out;
   }
-  .instagram:hover { color: var(--ink); }
-  .instagram svg { width: 17px; height: 17px; }
+  .outlinks a:hover { color: var(--ink); }
 
   /* Entry sequence: latitude lines draw first, then the three stanzas surface */
   @media (prefers-reduced-motion: no-preference) {
@@ -194,13 +199,11 @@
   </section>
 </main>
 
-<a class="instagram" href="https://www.instagram.com/latitude.beyond" target="_blank" rel="noopener" aria-label="Latitude on Instagram">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-  </svg>
-</a>
+<nav class="outlinks" aria-label="Latitude elsewhere">
+  <a href="https://www.instagram.com/latitude.beyond" target="_blank" rel="noopener">Instagram</a>
+  <!-- Placeholder until the real Spotify playlist URL is shared -->
+  <a href="https://open.spotify.com" target="_blank" rel="noopener">Sound of Latitude</a>
+</nav>
 
 <script>
   // Mockup behavior. Production: POST /api/enter, server-side key check, HttpOnly cookie.
