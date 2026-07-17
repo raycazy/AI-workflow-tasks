@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>cazyweb · CRO & Landing Page Portfolio (Confidential)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A0A0A;
+  --ink-2:#27272A;
+  --paper:#FFFFFF;
+  --paper-2:#F6F6F7;
+  --paper-3:#EFEFF1;
+  --line:#E4E4E7;
+  --line-2:#D4D4D8;
+  --zinc-500:#71717A;
+  --zinc-400:#A1A1AA;
+  --win:#137A44;
+  --win-fill:#E7F2EB;
+  --win-line:#BEE0CB;
+  --shadow:0 1px 2px rgba(9,9,11,.04), 0 12px 32px rgba(9,9,11,.06);
+  --maxw:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Poppins',system-ui,sans-serif;
+  color:var(--ink);
+  background:var(--paper);
+  -webkit-font-smoothing:antialiased;
+  line-height:1.55;
+  overflow-x:hidden;
+}
+body.locked{overflow:hidden;height:100vh}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+
+/* ---------- GATE ---------- */
+#gate{
+  position:fixed;inset:0;z-index:1000;
+  background:var(--ink);color:var(--paper);
+  display:flex;align-items:center;justify-content:center;
+  padding:28px;
+}
+#gate.hidden{opacity:0;visibility:hidden;transition:opacity .6s ease,visibility .6s}
+.gate-card{max-width:480px;width:100%;text-align:left}
+.gate-mark{display:flex;align-items:center;gap:10px;margin-bottom:44px}
+.gate-mark img{height:26px;filter:invert(1)}
+.gate-eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--zinc-400);margin-bottom:18px;
+  display:flex;align-items:center;gap:8px;
+}
+.gate-eyebrow::before{content:"";width:7px;height:7px;background:#F5C518;border-radius:50%;box-shadow:0 0 0 4px rgba(245,197,24,.18)}
+.gate-card h1{font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1.2;margin-bottom:20px}
+.gate-disclaimer{
+  font-size:14px;color:#C4C4CC;line-height:1.7;
+  border:1px solid #26262B;border-radius:10px;padding:18px 20px;background:#161618;margin-bottom:26px;
+}
+.gate-disclaimer strong{color:var(--paper);font-weight:600}
+.gate-form{display:flex;flex-direction:column;gap:12px}
+.gate-form label{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--zinc-400)}
+.gate-row{display:flex;gap:10px}
+#pw{
+  flex:1;background:#161618;border:1px solid #303036;color:var(--paper);
+  padding:14px 16px;border-radius:9px;font-size:16px;font-family:'JetBrains Mono',monospace;letter-spacing:.04em;
+}
+#pw:focus{outline:none;border-color:var(--paper)}
+#pw::placeholder{color:#5A5A62;letter-spacing:.2em}
+.gate-btn{
+  background:var(--paper);color:var(--ink);border:none;cursor:pointer;
+  padding:0 26px;border-radius:9px;font-family:'Poppins';font-weight:600;font-size:14px;
+  transition:transform .12s ease,background .2s;
+}
+.gate-btn:hover{background:#EDEDED}
+.gate-btn:active{transform:scale(.98)}
+.gate-err{font-family:'JetBrains Mono',monospace;font-size:12px;color:#F87171;min-height:16px;letter-spacing:.02em}
+.shake{animation:shake .4s}
+@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
+
+/* ---------- NAV ---------- */
+header.nav{
+  position:sticky;top:0;z-index:80;background:rgba(255,255,255,.82);
+  backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid var(--line);
+}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:700;letter-spacing:-.03em;font-size:20px}
+.brand img{height:22px}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-size:14px;color:var(--zinc-500);font-weight:500;transition:color .18s}
+.nav-links a:hover{color:var(--ink)}
+.nav-tag{
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink);border:1px solid var(--line-2);border-radius:100px;padding:5px 12px;display:flex;align-items:center;gap:7px;
+}
+.nav-tag::before{content:"";width:6px;height:6px;border-radius:50%;background:#F5C518}
+.nav-toggle{display:none}
+
+/* ---------- HERO ---------- */
+.hero{padding:96px 0 40px;border-bottom:1px solid var(--line)}
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--zinc-500);display:flex;align-items:center;gap:10px;margin-bottom:26px;
+}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--ink)}
+.hero h1{
+  font-size:clamp(38px,6.2vw,76px);font-weight:700;letter-spacing:-.035em;line-height:1.02;max-width:15ch;
+}
+.hero h1 em{font-style:normal;position:relative;white-space:nowrap}
+.hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.08em;height:.10em;background:#F5C518;z-index:-1;opacity:.9}
+.hero-sub{margin-top:26px;font-size:clamp(16px,1.7vw,19px);color:var(--ink-2);max-width:56ch;line-height:1.6}
+
+/* impact panel */
+.impact{
+  margin-top:56px;border:1px solid var(--line);border-radius:16px;background:var(--paper);
+  box-shadow:var(--shadow);overflow:hidden;
+}
+.impact-top{
+  display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:1px;background:var(--line);
+}
+.impact-cell{padding:28px 30px;background:var(--paper)}
+.impact-cell .k{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--zinc-500);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.impact-hero .v{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:clamp(34px,4.6vw,52px);letter-spacing:-.02em;line-height:1}
+.impact-hero .v .cur{color:var(--zinc-400);font-size:.5em;font-weight:500;letter-spacing:.02em;margin-left:8px}
+.impact-cell .v{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:clamp(30px,3.6vw,40px);letter-spacing:-.01em;line-height:1}
+.impact-cell .note{font-size:12px;color:var(--zinc-500);margin-top:12px;line-height:1.5}
+.win-dot{color:var(--win)}
+.impact-brands{
+  display:flex;flex-wrap:wrap;gap:8px;padding:18px 30px;border-top:1px solid var(--line);background:var(--paper-2);
+}
+.brand-chip{
+  font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.04em;color:var(--ink-2);
+  border:1px solid var(--line-2);background:var(--paper);border-radius:100px;padding:6px 14px;
+}
+.brand-chip b{color:var(--ink);font-weight:700}
+
+/* ---------- SECTION SHELL ---------- */
+section{padding:88px 0}
+.sec-line{border-top:1px solid var(--line)}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:48px;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(28px,3.4vw,40px);font-weight:700;letter-spacing:-.03em;line-height:1.05;max-width:20ch}
+.sec-head p{color:var(--zinc-500);font-size:16px;max-width:44ch;line-height:1.6}
+.sec-idx{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--zinc-500);margin-bottom:16px}
+
+/* ---------- METHOD ---------- */
+.method{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.step{padding:26px 24px;background:var(--paper)}
+.step .n{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--zinc-400);margin-bottom:16px}
+.step h3{font-size:16px;font-weight:600;letter-spacing:-.01em;margin-bottom:8px}
+.step p{font-size:14px;color:var(--zinc-500);line-height:1.55}
+
+/* ---------- CASE STUDIES ---------- */
+.case{
+  border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-bottom:26px;background:var(--paper);
+  box-shadow:var(--shadow);
+}
+.case-top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 30px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.case-tags{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.tag{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;color:var(--ink-2);border:1px solid var(--line-2);border-radius:6px;padding:4px 9px}
+.tag.brand-tag{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.case-idx{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--zinc-400);letter-spacing:.1em}
+.case-body{display:grid;grid-template-columns:1.15fr 1fr;gap:0}
+.case-narrative{padding:34px 30px}
+.case-narrative h3{font-size:clamp(22px,2.3vw,28px);font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:24px}
+.field{margin-bottom:22px}
+.field .lab{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--zinc-500);margin-bottom:8px}
+.field p{font-size:14px;color:var(--ink-2);line-height:1.62}
+.case-measure{padding:34px 30px;background:var(--paper-2);display:flex;flex-direction:column;justify-content:center;gap:26px}
+
+/* readout signature */
+.readout .rlab{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--zinc-500);margin-bottom:16px}
+.rbar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px}
+.rside{border:1px solid var(--line-2);border-radius:10px;padding:16px 16px;background:var(--paper);text-align:center}
+.rside.variant{border-color:var(--win-line);background:var(--win-fill)}
+.rside .rt{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--zinc-500);margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:6px}
+.rside.variant .rt{color:var(--win)}
+.rside .rv{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:clamp(22px,2.6vw,30px);letter-spacing:-.01em;line-height:1}
+.rside.variant .rv{color:var(--win)}
+.rside .ru{font-size:12px;color:var(--zinc-500);margin-top:6px}
+.win-badge{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--win)}
+.rarrow{font-family:'JetBrains Mono',monospace;color:var(--zinc-400);font-size:20px}
+.delta-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.delta{border:1px solid var(--line);border-radius:10px;padding:16px;background:var(--paper)}
+.delta .dl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--zinc-500);margin-bottom:8px}
+.delta .dv{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:22px;letter-spacing:-.01em}
+.delta .dv.up{color:var(--win)}
+.delta .dv .u{font-size:12px;color:var(--zinc-500);font-weight:500}
+.measure-foot{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--zinc-500);letter-spacing:.02em;display:flex;align-items:center;gap:8px}
+.measure-foot .win-tag{color:var(--win);border:1px solid var(--win-line);background:var(--win-fill);border-radius:5px;padding:3px 8px;letter-spacing:.1em;text-transform:uppercase;font-size:10px}
+
+/* ---------- TABLE ---------- */
+.table-wrap{border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.tscroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:720px}
+thead th{
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--zinc-500);text-align:left;padding:16px 18px;border-bottom:1px solid var(--line);background:var(--paper-2);font-weight:500;
+}
+thead th.num{text-align:right}
+tbody td{padding:15px 18px;border-bottom:1px solid var(--line);font-size:14px;vertical-align:middle}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:var(--paper-2)}
+td.tname{font-weight:500;letter-spacing:-.01em;max-width:320px}
+td .tid{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--zinc-400);margin-right:10px}
+td.mono-c{font-family:'JetBrains Mono',monospace;text-align:right;letter-spacing:-.01em}
+.brandmini{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-2);border:1px solid var(--line-2);border-radius:5px;padding:3px 7px;white-space:nowrap}
+.up{color:var(--win);font-weight:700}
+tfoot td{padding:18px;font-family:'JetBrains Mono',monospace;background:var(--ink);color:var(--paper);font-size:14px;letter-spacing:.02em}
+tfoot td.num{text-align:right;font-weight:700}
+tfoot .win-dot{color:#7BE3A6}
+
+/* ---------- LP GALLERY ---------- */
+.lp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.lp-card{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--paper);box-shadow:var(--shadow);display:flex;flex-direction:column}
+.lp-head{padding:22px 24px;border-bottom:1px solid var(--line)}
+.lp-head .lp-brand{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
+.lp-head h3{font-size:20px;font-weight:700;letter-spacing:-.02em}
+.lp-head p{font-size:14px;color:var(--zinc-500);line-height:1.5;margin-top:2px}
+.lp-frames{display:flex;gap:18px;padding:24px;background:var(--paper-2);align-items:flex-start;justify-content:center}
+.frame-d{flex:1;max-width:100%}
+.browser{border:1px solid var(--line-2);border-radius:10px 10px 0 0;overflow:hidden;background:#fff;box-shadow:0 8px 24px rgba(9,9,11,.10)}
+.browser-bar{height:30px;background:var(--paper-3);display:flex;align-items:center;gap:6px;padding:0 12px;border-bottom:1px solid var(--line)}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--line-2)}
+.scrollview{height:420px;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin}
+.scrollview img{width:100%}
+.frame-m{width:180px;flex:none}
+.phone{border:6px solid #111;border-radius:26px;overflow:hidden;background:#111;box-shadow:0 10px 26px rgba(9,9,11,.16)}
+.phone .scrollview{height:400px;border-radius:18px}
+.scroll-hint{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--zinc-400);text-align:center;padding:10px;background:var(--paper-2);border-top:1px solid var(--line)}
+
+/* ---------- MY 1ST YEARS ---------- */
+.m1y{border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);background:var(--paper)}
+.m1y-top{display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--line)}
+.m1y-narr{padding:34px 30px}
+.m1y-narr h3{font-size:clamp(22px,2.4vw,28px);font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:22px}
+.m1y-measure{padding:34px 30px;background:var(--paper-2);display:flex;flex-direction:column;gap:18px;justify-content:center}
+.m1y-slides{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line)}
+.m1y-slide{background:var(--paper);padding:20px}
+.m1y-slide .sl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--zinc-500);margin-bottom:12px}
+.m1y-slide img{border:1px solid var(--line);border-radius:8px}
+
+/* ---------- FOOTER ---------- */
+.foot{background:var(--ink);color:var(--paper);padding:88px 0 40px}
+.foot-big{font-size:clamp(30px,5vw,58px);font-weight:700;letter-spacing:-.035em;line-height:1.05;max-width:16ch}
+.foot-big span{color:var(--zinc-500)}
+.foot-sub{color:#B4B4BC;font-size:16px;max-width:50ch;margin-top:22px;line-height:1.6}
+.foot-cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+.btn-primary{background:var(--paper);color:var(--ink);padding:15px 26px;border-radius:10px;font-weight:600;font-size:14px;transition:transform .12s,background .2s}
+.btn-primary:hover{background:#EDEDED;transform:translateY(-1px)}
+.btn-ghost{border:1px solid #37373D;color:var(--paper);padding:15px 26px;border-radius:10px;font-weight:500;font-size:14px;transition:border-color .2s}
+.btn-ghost:hover{border-color:var(--paper)}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-top:72px;padding-top:26px;border-top:1px solid #26262B;flex-wrap:wrap}
+.foot-bottom .fb-mark{display:flex;align-items:center;gap:9px;font-weight:700;letter-spacing:-.03em}
+.foot-bottom .fb-mark img{height:20px;filter:invert(1)}
+.foot-note{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--zinc-500);letter-spacing:.04em;max-width:52ch;line-height:1.6}
+
+/* ---------- CASE STUDY v2 (before/after) ---------- */
+.cs{margin-bottom:80px}
+.cs:last-child{margin-bottom:0}
+.cs-head{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:8px;flex-wrap:wrap}
+.cs-num{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--zinc-400);letter-spacing:.1em;padding-top:8px}
+.cs-tags{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.cs-title{font-size:clamp(26px,3.4vw,42px);font-weight:700;letter-spacing:-.03em;line-height:1.08;max-width:22ch;margin:14px 0 0}
+.cs-title .hl{background:var(--win-fill);box-shadow:0 0 0 4px var(--win-fill);border-radius:2px}
+.cs-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:44px;margin-top:36px;align-items:start}
+@media(max-width:980px){.cs-grid{grid-template-columns:1fr;gap:32px}}
+
+/* before/after */
+.ba{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--paper);box-shadow:var(--shadow)}
+.ba-frames{display:grid;grid-template-columns:1fr 1fr;background:var(--line);gap:1px}
+.ba-col{background:var(--paper-2);display:flex;flex-direction:column}
+.ba-cap{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 16px;background:var(--paper);border-bottom:1px solid var(--line)}
+.ba-cap .cl{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--zinc-500)}
+.ba-col.win .ba-cap .cl{color:var(--win)}
+.ba-win-pill{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--win);background:var(--win-fill);border:1px solid var(--win-line);border-radius:5px;padding:3px 7px;display:flex;align-items:center;gap:5px}
+.ba-win-pill::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--win)}
+.ba-view{height:460px;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;position:relative}
+.ba-view img{width:100%;display:block}
+.ba-note{display:flex;gap:14px;padding:18px 20px;border-top:1px solid var(--line);background:var(--paper);align-items:flex-start}
+.ba-chip{flex:none;width:26px;height:26px;border-radius:7px;background:var(--ink);color:var(--paper);font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.ba-note .nt{font-size:14px;color:var(--ink-2);line-height:1.55}
+.ba-note .nt b{color:var(--ink);font-weight:600}
+.ba-hint{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--zinc-400);text-align:center;padding:8px;background:var(--paper-2);border-top:1px solid var(--line)}
+
+/* case narrative column */
+.cs-narr{display:flex;flex-direction:column;gap:24px}
+.cs-block .lab{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--zinc-500);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.cs-block p{font-size:16px;color:var(--ink-2);line-height:1.62}
+.cs-hyp{border:1px solid var(--line);border-radius:12px;padding:20px 22px;background:var(--paper-2)}
+.cs-hyp p{font-size:16px;line-height:1.6;color:var(--ink)}
+.cs-hyp .q{color:var(--win);font-weight:600}
+
+/* result strip */
+.result{border:1px solid var(--ink);border-radius:12px;overflow:hidden;background:var(--ink);color:var(--paper)}
+.result-top{display:flex;align-items:baseline;gap:16px;padding:24px 24px 20px;flex-wrap:wrap}
+.result-num{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:clamp(40px,5.4vw,60px);letter-spacing:-.02em;line-height:.9;color:#7BE3A6}
+.result-metric{font-size:16px;color:#C4C4CC;line-height:1.3;max-width:18ch}
+.result-metric b{color:var(--paper);font-weight:600;display:block;font-size:18px}
+.result-strip{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid #26262B}
+.rs-cell{flex:1;min-width:33%;padding:14px 20px;border-top:1px solid #26262B;margin-top:-1px}
+.rs-cell .rk{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--zinc-500);margin-bottom:6px}
+.rs-cell .rv{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:500;letter-spacing:-.01em}
+.rs-cell .rv.mono-big{font-size:18px;font-weight:700}
+.cs-learn{display:flex;gap:14px;align-items:flex-start;padding-top:4px}
+.cs-learn .ll{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--zinc-500);flex:none;padding-top:2px}
+.cs-learn p{font-size:16px;color:var(--ink-2);line-height:1.6}
+
+/* ---------- WIN INDEX GRID ---------- */
+.win-band{display:flex;align-items:center;justify-content:space-between;gap:20px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:14px;padding:22px 26px;margin-bottom:32px;flex-wrap:wrap}
+.win-band .wb-v{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:clamp(24px,3vw,34px);letter-spacing:-.01em}
+.win-band .wb-v .win-dot{color:#7BE3A6}
+.win-band .wb-k{font-size:14px;color:#B4B4BC;max-width:40ch;line-height:1.5}
+.win-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:16px}
+.win-card{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column;transition:transform .18s ease,box-shadow .18s ease}
+.win-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.win-thumb{height:150px;overflow:hidden;background:var(--paper-2);border-bottom:1px solid var(--line);position:relative}
+.win-thumb img{width:100%;display:block;object-fit:cover;object-position:top}
+.win-thumb .wt-tid{position:absolute;top:10px;left:10px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--paper);background:rgba(10,10,10,.82);border-radius:5px;padding:4px 8px}
+.win-thumb .wt-up{position:absolute;top:10px;right:10px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:var(--win);background:var(--paper);border:1px solid var(--win-line);border-radius:5px;padding:4px 8px}
+.win-info{padding:14px 16px;display:flex;flex-direction:column;gap:10px;flex:1}
+.win-info h4{font-size:16px;font-weight:600;letter-spacing:-.01em;line-height:1.3}
+.win-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:auto}
+.win-meta .wm-brand{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-2);border:1px solid var(--line-2);border-radius:5px;padding:3px 7px}
+.win-meta .wm-surf{font-size:12px;color:var(--zinc-500)}
+.win-rev{display:flex;align-items:baseline;justify-content:space-between;gap:8px;padding-top:10px;border-top:1px solid var(--line)}
+.win-rev .wr-k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--zinc-500)}
+.win-rev .wr-v{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700}
+
+/* ---------- CAPABILITIES ---------- */
+.cap-lead{border:1px solid var(--line);border-radius:16px;padding:34px 32px;background:var(--paper-2);margin-bottom:24px}
+.cap-lead p{font-size:clamp(18px,2vw,22px);line-height:1.5;letter-spacing:-.01em;color:var(--ink);max-width:62ch}
+.cap-lead p b{font-weight:600}
+.cap-lead p .q{color:var(--win);font-weight:600}
+.cap-sub{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--zinc-500);margin:36px 0 14px}
+.platforms{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.plat{background:var(--paper);padding:22px 22px;display:flex;flex-direction:column;gap:8px}
+.plat .pn{font-size:20px;font-weight:600;letter-spacing:-.01em}
+.plat .pt{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--zinc-500)}
+.cap-services{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+.svc{border:1px solid var(--line);border-radius:14px;padding:26px 24px;background:var(--paper)}
+.svc .sn{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--zinc-400);margin-bottom:16px;letter-spacing:.1em}
+.svc h3{font-size:18px;font-weight:600;letter-spacing:-.01em;margin-bottom:10px}
+.svc p{font-size:14px;color:var(--zinc-500);line-height:1.6}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:900px){
+  .impact-top{grid-template-columns:1fr}
+  .method{grid-template-columns:1fr 1fr}
+  .case-body{grid-template-columns:1fr}
+  .lp-grid{grid-template-columns:1fr}
+  .m1y-top{grid-template-columns:1fr}
+  .m1y-slides{grid-template-columns:1fr}
+  .cap-services{grid-template-columns:1fr}
+  .platforms{grid-template-columns:1fr 1fr}
+}
+@media(max-width:680px){
+  .wrap{padding:0 18px}
+  .nav-links{display:none}
+  .hero{padding:64px 0 32px}
+  section{padding:64px 0}
+  .method{grid-template-columns:1fr}
+  .frame-m{width:150px}
+  .lp-frames{flex-direction:column;align-items:center}
+  .frame-d{width:100%}
+}
+@media(prefers-reduced-motion:reduce){
+  *{scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none;transition:none}
+}
+</style>
+</head>
+<body class="locked">
+
+<!-- ============ GATE ============ -->
+<div id="gate">
+  <div class="gate-card">
+    <div class="gate-mark"><img src="assets/cazyweb-logo.png" alt="cazyweb"></div>
+    <div class="gate-eyebrow">Confidential portfolio</div>
+    <h1>You are about to view confidential client work.</h1>
+    <div class="gate-disclaimer">
+      This portfolio contains <strong>real client names, live experiment data, and revenue figures</strong> shared under NDA. By entering, you agree to keep everything here private and <strong>not to share, screenshot, or forward it to any third party.</strong> Access is granted for your review only.
+    </div>
+    <form class="gate-form" id="gateForm" autocomplete="off">
+      <label for="pw">Enter password to continue</label>
+      <div class="gate-row">
+        <input type="password" id="pw" placeholder="••••••••••••" autocomplete="off" aria-describedby="err">
+        <button class="gate-btn" type="submit">Unlock</button>
+      </div>
+      <div class="gate-err" id="err" role="alert"></div>
+    </form>
+  </div>
+</div>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top"><img src="assets/cazyweb-logo.png" alt="cazyweb"></a>
+    <nav class="nav-links">
+      <a href="#impact">Impact</a>
+      <a href="#cases">Case studies</a>
+      <a href="#tests">All tests</a>
+      <a href="#capabilities">Build</a>
+      <a href="#landing">Landing pages</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <span class="nav-tag">Confidential</span>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<a id="top"></a>
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">CRO &amp; landing page portfolio</div>
+    <h1>We design the decisive moment, then <em>measure the revenue</em> it moves.</h1>
+    <p class="hero-sub">Cazyweb runs a structured experimentation program: research the leak, form a hypothesis, design the change, and prove the lift to statistical significance. This is a selection of winning tests and landing pages from that program.</p>
+
+    <!-- IMPACT PANEL -->
+    <div class="impact" id="impact">
+      <div class="impact-top">
+        <div class="impact-cell impact-hero">
+          <div class="k"><span class="win-dot">●</span> Net new monthly revenue from winning tests</div>
+          <div class="v"><span id="counter">0</span><span class="cur">DKK / mo</span></div>
+          <div class="note">Sum of monthly revenue uplift across all winning experiments, measured in Intelligems at 90%+ confidence.</div>
+        </div>
+        <div class="impact-cell">
+          <div class="k">Winning tests</div>
+          <div class="v">21</div>
+          <div class="note">Statistically significant wins, shipped to production.</div>
+        </div>
+        <div class="impact-cell">
+          <div class="k">Brands in program</div>
+          <div class="v">04</div>
+          <div class="note">Danish and European DTC brands under active CRO retainer.</div>
+        </div>
+      </div>
+      <div class="impact-brands">
+        <span class="brand-chip"><b>PH Import</b> · cleaning &amp; home, DK</span>
+        <span class="brand-chip"><b>Comforth</b> · wellness, DK</span>
+        <span class="brand-chip"><b>Qookware</b> · kitchenware, DK</span>
+        <span class="brand-chip"><b>IWAO</b> · consumer goods, EU</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ METHOD ============ -->
+<section class="sec-line" id="method">
+  <div class="wrap">
+    <div class="sec-idx">How we work</div>
+    <div class="sec-head" style="margin-bottom:36px">
+      <h2>Every win follows the same path.</h2>
+      <p>No guessing, no redesign for its own sake. We only ship changes we can defend with data.</p>
+    </div>
+    <div class="method">
+      <div class="step"><div class="n">01</div><h3>Research</h3><p>Analytics, session replay and heatmaps locate exactly where revenue leaks.</p></div>
+      <div class="step"><div class="n">02</div><h3>Hypothesis</h3><p>A falsifiable bet: change X, because Y, to lift metric Z.</p></div>
+      <div class="step"><div class="n">03</div><h3>Design</h3><p>On-brand variants built for the buy moment, not for the mockup.</p></div>
+      <div class="step"><div class="n">04</div><h3>Test</h3><p>A/B and A/B/C split tests run live in Intelligems on real traffic.</p></div>
+      <div class="step"><div class="n">05</div><h3>Measure</h3><p>Winners called at significance, then deployed. Losers teach the next test.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CASE STUDIES ============ -->
+<section class="sec-line" id="cases">
+  <div class="wrap">
+    <div class="sec-idx">Featured wins · deep dives</div>
+    <div class="sec-head">
+      <h2>Three tests, three changes, real money moved.</h2>
+      <p>Our highest-impact winners this quarter, all on PH Import, a high-volume Danish cleaning brand. Real control and variant screenshots, the hypothesis behind each, and the measured result.</p>
+    </div>
+
+    <!-- CS 01 -->
+    <article class="cs reveal">
+      <div class="cs-head">
+        <div>
+          <div class="cs-tags">
+            <span class="tag brand-tag">PH Import</span>
+            <span class="tag">All PDPs</span>
+            <span class="tag">A/B/C</span>
+            <span class="tag">May 2026</span>
+            <span class="tag">All devices</span>
+          </div>
+          <h2 class="cs-title">Trust at the buy moment lifted revenue per visitor <span class="hl">+4.1%</span>.</h2>
+        </div>
+        <span class="cs-num">01</span>
+      </div>
+      <div class="cs-grid">
+        <div class="ba">
+          <div class="ba-frames">
+            <div class="ba-col">
+              <div class="ba-cap"><span class="cl">Control</span></div>
+              <div class="ba-view"><img src="assets/tests/T01-control.jpg" loading="lazy" alt="PH Import PDP control, no assurance icons at the buy moment"></div>
+              <div class="ba-hint">Scroll to the buy box</div>
+            </div>
+            <div class="ba-col win">
+              <div class="ba-cap"><span class="cl">Variant</span><span class="ba-win-pill">Winner</span></div>
+              <div class="ba-view"><img src="assets/tests/T01-v1.jpg" loading="lazy" alt="PH Import PDP variant with assurance icons below the bundle selector"></div>
+              <div class="ba-hint">Scroll to the buy box</div>
+            </div>
+          </div>
+          <div class="ba-note">
+            <span class="ba-chip">1</span>
+            <p class="nt"><b>What changed:</b> a strip of assurance icons (free shipping over 300 kr, 100,000+ customers, 1 to 3 day delivery) was added directly below the bundle selector, at the moment of decision.</p>
+          </div>
+        </div>
+        <div class="cs-narr">
+          <div class="cs-block">
+            <div class="lab">Observation</div>
+            <p>The recommended product above add-to-cart earned about 1% click-through on desktop and 0.7% on mobile, against 7% for the ATC button. The upsell pulled 0.1% of clicks. The space at the buy moment was not helping people buy.</p>
+          </div>
+          <div class="cs-block">
+            <div class="lab">Hypothesis</div>
+            <div class="cs-hyp"><p>Because reassurance at the point of decision reinforces <span class="q">both trust and the bundle choice</span>, moving assurance icons below the bundles will lift add-to-cart rate, conversion and revenue per visitor.</p></div>
+          </div>
+          <div class="result">
+            <div class="result-top">
+              <div class="result-num">+4.14%</div>
+              <div class="result-metric"><b>Revenue per visitor</b>23.69 to 24.68 DKK</div>
+            </div>
+            <div class="result-strip">
+              <div class="rs-cell"><div class="rk">Monthly uplift</div><div class="rv mono-big">846,342 DKK</div></div>
+              <div class="rs-cell"><div class="rk">Test type</div><div class="rv">A/B/C</div></div>
+              <div class="rs-cell"><div class="rk">Measured in</div><div class="rv">Intelligems</div></div>
+            </div>
+          </div>
+          <div class="cs-learn">
+            <span class="ll">Learning</span>
+            <p>Trust content works hardest at the decision, not the top of the page. This opened a run of buy-moment reassurance tests across the catalog.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- CS 02 -->
+    <article class="cs reveal">
+      <div class="cs-head">
+        <div>
+          <div class="cs-tags">
+            <span class="tag brand-tag">PH Import</span>
+            <span class="tag">PDP</span>
+            <span class="tag">A/B</span>
+            <span class="tag">June 2026</span>
+            <span class="tag">Mobile</span>
+          </div>
+          <h2 class="cs-title">A compact bundle carousel raised mobile conversion <span class="hl">+16.6%</span>.</h2>
+        </div>
+        <span class="cs-num">02</span>
+      </div>
+      <div class="cs-grid">
+        <div class="ba">
+          <div class="ba-frames">
+            <div class="ba-col">
+              <div class="ba-cap"><span class="cl">Control</span></div>
+              <div class="ba-view"><img src="assets/tests/T02-control.jpg" loading="lazy" alt="PH Import mobile PDP control with a tall stacked quantity grid"></div>
+              <div class="ba-hint">Stacked quantity grid</div>
+            </div>
+            <div class="ba-col win">
+              <div class="ba-cap"><span class="cl">Variant</span><span class="ba-win-pill">Winner</span></div>
+              <div class="ba-view"><img src="assets/tests/T02-v1.jpg" loading="lazy" alt="PH Import mobile PDP variant with a single-row bundle carousel and ATC in view"></div>
+              <div class="ba-hint">One-row carousel, ATC in view</div>
+            </div>
+          </div>
+          <div class="ba-note">
+            <span class="ba-chip">1</span>
+            <p class="nt"><b>What changed:</b> the tall stacked quantity grid became a single-row carousel with the highest-value bundles (12, 6, 3) shown first, so the add-to-cart button stays in view.</p>
+          </div>
+        </div>
+        <div class="cs-narr">
+          <div class="cs-block">
+            <div class="lab">Observation</div>
+            <p>On mobile the stacked quantity grid filled the first fold and pushed add-to-cart far down the page. Buyers defaulted to the smallest pack because it sat first in the list.</p>
+          </div>
+          <div class="cs-block">
+            <div class="lab">Hypothesis</div>
+            <div class="cs-hyp"><p>Because a compact, highest-first selector anchors buyers on <span class="q">larger bundles</span> and brings ATC into view sooner, reordering and collapsing the tiers will lift order value and revenue per visitor on mobile.</p></div>
+          </div>
+          <div class="result">
+            <div class="result-top">
+              <div class="result-num">+16.57%</div>
+              <div class="result-metric"><b>Mobile conversion rate</b>8.30% to 9.68%</div>
+            </div>
+            <div class="result-strip">
+              <div class="rs-cell"><div class="rk">Monthly uplift</div><div class="rv mono-big">623,413 DKK</div></div>
+              <div class="rs-cell"><div class="rk">Segment</div><div class="rv">Mobile</div></div>
+              <div class="rs-cell"><div class="rk">Measured in</div><div class="rv">Intelligems</div></div>
+            </div>
+          </div>
+          <div class="cs-learn">
+            <span class="ll">Learning</span>
+            <p>Vertical space at the buy moment is a conversion lever on mobile. Compacting decision UI became a repeatable pattern.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- CS 03 -->
+    <article class="cs reveal">
+      <div class="cs-head">
+        <div>
+          <div class="cs-tags">
+            <span class="tag brand-tag">PH Import</span>
+            <span class="tag">Top 3 PDPs</span>
+            <span class="tag">A/B</span>
+            <span class="tag">June 2026</span>
+            <span class="tag">10 day test</span>
+          </div>
+          <h2 class="cs-title">Tabbing the image gallery raised conversion <span class="hl">+23.5%</span>.</h2>
+        </div>
+        <span class="cs-num">03</span>
+      </div>
+      <div class="cs-grid">
+        <div class="ba">
+          <div class="ba-frames">
+            <div class="ba-col">
+              <div class="ba-cap"><span class="cl">Control</span></div>
+              <div class="ba-view"><img src="assets/tests/T03-control.jpg" loading="lazy" alt="PH Import PDP control with a plain image gallery"></div>
+              <div class="ba-hint">Plain gallery</div>
+            </div>
+            <div class="ba-col win">
+              <div class="ba-cap"><span class="cl">Variant</span><span class="ba-win-pill">Winner</span></div>
+              <div class="ba-view"><img src="assets/tests/T03-v1.jpg" loading="lazy" alt="PH Import PDP variant with a tabbed image gallery"></div>
+              <div class="ba-hint">Tabbed gallery</div>
+            </div>
+          </div>
+          <div class="ba-note">
+            <span class="ba-chip">1</span>
+            <p class="nt"><b>What changed:</b> tabs were added to the product image gallery so shoppers always know which part of the gallery they are viewing, restoring the clarity lost when new images were added.</p>
+          </div>
+        </div>
+        <div class="cs-narr">
+          <div class="cs-block">
+            <div class="lab">Observation</div>
+            <p>After new images were added to the gallery, interaction with the product video dropped sharply. Buyers were losing track of where they were in the gallery and what they were looking at.</p>
+          </div>
+          <div class="cs-block">
+            <div class="lab">Hypothesis</div>
+            <div class="cs-hyp"><p>Because clearer gallery navigation helps buyers <span class="q">understand the product</span>, adding tabs to the image gallery will lift conversion rate.</p></div>
+          </div>
+          <div class="result">
+            <div class="result-top">
+              <div class="result-num">+23.45%</div>
+              <div class="result-metric"><b>Conversion rate</b>5.35% to 6.60%</div>
+            </div>
+            <div class="result-strip">
+              <div class="rs-cell"><div class="rk">Monthly uplift</div><div class="rv mono-big">484,183 DKK</div></div>
+              <div class="rs-cell"><div class="rk">Duration</div><div class="rv">10 days</div></div>
+              <div class="rs-cell"><div class="rk">Measured in</div><div class="rv">Intelligems</div></div>
+            </div>
+          </div>
+          <div class="cs-learn">
+            <span class="ll">Learning</span>
+            <p>Navigational clarity converts. A small wayfinding cue in the media beat adding more media.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ ALL TESTS INDEX ============ -->
+<section class="sec-line" id="tests">
+  <div class="wrap">
+    <div class="sec-idx">The full program</div>
+    <div class="sec-head">
+      <h2>21 winning tests. Four brands. One method.</h2>
+      <p>Every winner below reached significance and shipped to production. Each card shows the winning variant. Ranked by monthly revenue uplift.</p>
+    </div>
+
+    <div class="win-band reveal">
+      <div class="wb-v"><span class="win-dot">&#9679;</span> 4,756,543 DKK / mo</div>
+      <div class="wb-k">Net new monthly revenue across all 21 winning experiments, measured in Intelligems and deployed live.</div>
+    </div>
+
+    <div class="win-grid reveal">
+      <div class="win-card"><div class="win-thumb"><span class="wt-tid">T01</span><span class="wt-up">+4.14%</span><img src="assets/tests/T01-v1.jpg" loading="lazy" alt="Assurance icons below ATC variant"></div><div class="win-info"><h4>Assurance icons below ATC</h4><div class="win-meta"><span class="wm-brand">PH Import</span><span class="wm-surf">All PDPs · RPV</span></div><div class="win-rev"><span class="wr-k">Monthly uplift</span><span class="wr-v">846,342</span></div></div></div>
+      <div class="win-card"><div class="win-thumb"><span class="wt-tid">T02</span><span class="wt-up">+16.57%</span><img src="assets/tests/T02-v1.jpg" loading="lazy" alt="Quantity tiers mobile variant"></div><div class="win-info"><h4>Quantity tiers, mobile</h4><div class="win-meta"><span class="wm-brand">PH Import</span><span class="wm-surf">PDP · CVR</span></div><div class="win-rev"><span class="wr-k">Monthly uplift</span><span class="wr-v">623,413</span></div></div></div>
+      <div class="win-card"><div class="win-thumb"><span class="wt-tid">T03</span><span class="wt-up">+23.45%</span><img src="assets/tests/T03-v1.jpg" loading="lazy" alt="Image gallery tabs variant"></div><div class="win-info"><h4>Image gallery tabs</h4><div class="win-meta"><span class="wm-brand">PH Import</span><span class="wm-surf">PDP · CVR</span></div><div class="win-rev"><span class="wr-k">Monthly uplift</span><span class="wr-v">484,183</span></div></div></div>
+      <div class="win-card"><div class="win-thumb"><span class="wt-tid">T04</span><span class="wt-up">+8.73%</span><img src="assets/tests/T04-v1.jpg" loading="lazy" alt="Quantity selector badge variant"></div><div class="win-info"><h4>Quantity selector badge</h4><div class="win-meta"><span class="wm-brand">PH Import</span><span class="wm-surf">PDP · CVR</span></div><div class="win-rev"><span class="wr-k">Monthly uplift</span><span class="wr-v">483,434</span></div></div></div>
+      <div class="win-card"><div class="win-thumb"><span class="wt-tid">T16</span><span class="wt-up">+21.12%</span><img src="assets/tests/T16-v1.jpg" loading="lazy" alt="Sticky ATC variant"></div><div class="win-info"><h4>Sticky add-to-cart</h4><div class="win-meta"><span class="wm-brand">Qookware</span><span class="wm-surf">PDP · CVR</span></div><div class="win-rev"><span class="wr-k">Monthly uplift</span><span class="wr-v">267,414</span></div></div></div>
+      <div class="win-card"><div class="win-thumb"><span class="wt-tid">T05</span><span class="wt-up">+11.97%</span><img src="assets/tests/T05-v1.jpg" loading="lazy" alt="Image review carousel variant"></div><div class="win-info"><h4>Image review carousel</h4><div class="win-meta"><span class="wm-brand">PH Import</span><span class="wm-surf">PDP · RPV</span></div><div class="win-rev"><span class="wr-k">Monthly uplift</span><span class="wr-v">260,349</span></div></div></div>
+      <div class="win-card"><div class="win-thumb"><span class="wt-tid">T06</span><span class="wt-up">+15.70%</span><img src="assets/tests/T06-v1.jpg" loading="lazy" alt="Homepage theme rerun variant"></div><div class="win-info"><h4>Homepage theme rerun</h4><div class="win-meta"><span class="wm-brand">PH Import</span><span class="wm-surf">Homepage · RPV</span></div><div class="win-rev"><span class="wr-k">Monthly uplift</span><span class="wr-v">230,884</span></div></div></div>
+      <div class="win-card"><div class="win-thumb"><span class="wt-tid">T11</span><span class="wt-up">+10.83%</span><img src="assets/tests/T11-v1.jpg" loading="lazy" alt="Product tags info variant"></div><div class="win-info"><h4>Product tags info</h4><div class="win-meta"><span class="wm-brand">Comforth</span><span class="wm-surf">PDP · CVR</span></div><div class="win-rev"><span class="wr-k">Monthly uplift</span><span class="wr-v">183,515</span></div></div></div>
+      <div class="win-card"><div class="win-thumb"><span class="wt-tid">T07</span><span class="wt-up">+5.21%</span><img src="assets/tests/T07-v1.jpg" loading="lazy" alt="First-fold optimization variant"></div><div class="win-info"><h4>First-fold optimization v2</h4><div class="win-meta"><span class="wm-brand">PH Import</span><span class="wm-surf">PDPs · RPV</span></div><div class="win-rev"><span class="wr-k">Monthly uplift</span><span class="wr-v">178,797</span></div></div></div>
+      <div class="win-card"><div class="win-thumb"><span class="wt-tid">T12</span><span class="wt-up">+15.52%</span><img src="assets/tests/T12-v1.jpg" loading="lazy" alt="Cart drawer redesign variant"></div><div class="win-info"><h4>Cart drawer redesign v3</h4><div class="win-meta"><span class="wm-brand">Comforth</span><span class="wm-surf">Sitewide · RPV</span></div><div class="win-rev"><span class="wr-k">Monthly uplift</span><span class="wr-v">171,285</span></div></div></div>
+      <div class="win-card"><div class="win-thumb"><span class="wt-tid">T08</span><span class="wt-up">+13.52%</span><img src="assets/tests/T08-v1.jpg" loading="lazy" alt="Volume discounts variant"></div><div class="win-info"><h4>Volume discounts</h4><div class="win-meta"><span class="wm-brand">PH Import</span><span class="wm-surf">PDP · CVR</span></div><div class="win-rev"><span class="wr-k">Monthly uplift</span><span class="wr-v">151,084</span></div></div></div>
+      <div class="win-card"><div class="win-thumb noimg" style="display:flex;align-items:center;justify-content:center"><span class="wt-tid">T09</span><span class="wt-up">+5.08%</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--zinc-400)">Checkout test</span></div><div class="win-info"><h4>Checkout shipping threshold</h4><div class="win-meta"><span class="wm-brand">PH Import</span><span class="wm-surf">Checkout · RPV</span></div><div class="win-rev"><span class="wr-k">Monthly uplift</span><span class="wr-v">146,274</span></div></div></div>
+      <div class="win-card"><div class="win-thumb"><span class="wt-tid">T13</span><span class="wt-up">+9.79%</span><img src="assets/tests/T13-v1.jpg" loading="lazy" alt="Subtitle microcopy variant"></div><div class="win-info"><h4>Subtitle microcopy</h4><div class="win-meta"><span class="wm-brand">Comforth</span><span class="wm-surf">PDPs · RPV</span></div><div class="win-rev"><span class="wr-k">Monthly uplift</span><span class="wr-v">142,979</span></div></div></div>
+      <div class="win-card"><div class="win-thumb"><span class="wt-tid">T14</span><span class="wt-up">+18.52%</span><img src="assets/tests/T14-v1.jpg" loading="lazy" alt="Gift vs mystery gift variant"></div><div class="win-info"><h4>Gift vs mystery gift</h4><div class="win-meta"><span class="wm-brand">Comforth</span><span class="wm-surf">Cart · CVR</span></div><div class="win-rev"><span class="wr-k">Monthly uplift</span><span class="wr-v">137,543</span></div></div></div>
+      <div class="win-card"><div class="win-thumb"><span class="wt-tid">T10</span><span class="wt-up">+2.16%</span><img src="assets/tests/T10-v1.jpg" loading="lazy" alt="Currency symbol variant"></div><div class="win-info"><h4>DKK vs kr currency symbol</h4><div class="win-meta"><span class="wm-brand">PH Import</span><span class="wm-surf">Sitewide · RPV</span></div><div class="win-rev"><span class="wr-k">Monthly uplift</span><span class="wr-v">131,754</span></div></div></div>
+      <div class="win-card"><div class="win-thumb"><span class="wt-tid">T17</span><span class="wt-up">+14.09%</span><img src="assets/tests/T17-v1.jpg" loading="lazy" alt="Pointers above ATC variant"></div><div class="win-info"><h4>Pointers above ATC</h4><div class="win-meta"><span class="wm-brand">Qookware</span><span class="wm-surf">PDP · RPV</span></div><div class="win-rev"><span class="wr-k">Monthly uplift</span><span class="wr-v">120,717</span></div></div></div>
+      <div class="win-card"><div class="win-thumb"><span class="wt-tid">T19</span><span class="wt-up">+133.42%</span><img src="assets/tests/T19-v1.jpg" loading="lazy" alt="Trust USP announcement bar variant"></div><div class="win-info"><h4>Trust USP announcement bar</h4><div class="win-meta"><span class="wm-brand">IWAO</span><span class="wm-surf">Sitewide · CVR</span></div><div class="win-rev"><span class="wr-k">Monthly uplift</span><span class="wr-v">74,439</span></div></div></div>
+      <div class="win-card"><div class="win-thumb"><span class="wt-tid">T18</span><span class="wt-up">+62.94%</span><img src="assets/tests/T18-v1.jpg" loading="lazy" alt="Collection linkers mobile variant"></div><div class="win-info"><h4>Collection linkers, mobile</h4><div class="win-meta"><span class="wm-brand">Qookware</span><span class="wm-surf">Homepage · CVR</span></div><div class="win-rev"><span class="wr-k">Monthly uplift</span><span class="wr-v">46,671</span></div></div></div>
+      <div class="win-card"><div class="win-thumb"><span class="wt-tid">T15</span><span class="wt-up">+31.53%</span><img src="assets/tests/T15-v1.jpg" loading="lazy" alt="Purchase reassurance bar variant"></div><div class="win-info"><h4>Purchase reassurance bar</h4><div class="win-meta"><span class="wm-brand">Comforth</span><span class="wm-surf">Sitewide · CVR</span></div><div class="win-rev"><span class="wr-k">Monthly uplift</span><span class="wr-v">37,432</span></div></div></div>
+      <div class="win-card"><div class="win-thumb"><span class="wt-tid">T20</span><span class="wt-up">+38.03%</span><img src="assets/tests/T20-v1.jpg" loading="lazy" alt="Trust section plus phone number variant"></div><div class="win-info"><h4>Trust section plus phone no.</h4><div class="win-meta"><span class="wm-brand">IWAO</span><span class="wm-surf">PDP · CVR</span></div><div class="win-rev"><span class="wr-k">Monthly uplift</span><span class="wr-v">27,931</span></div></div></div>
+      <div class="win-card"><div class="win-thumb"><span class="wt-tid">T21</span><span class="wt-up">+13.33%</span><img src="assets/tests/T21-v1.jpg" loading="lazy" alt="Cart full redesign variant"></div><div class="win-info"><h4>Cart full redesign</h4><div class="win-meta"><span class="wm-brand">IWAO</span><span class="wm-surf">Cart · CVR</span></div><div class="win-rev"><span class="wr-k">Monthly uplift</span><span class="wr-v">10,103</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAPABILITIES ============ -->
+<section class="sec-line" id="capabilities">
+  <div class="wrap">
+    <div class="sec-idx">How we build and ship</div>
+    <div class="sec-head">
+      <h2>We develop and ship winning tests on any stack.</h2>
+      <p>We build tests in code, so we are not tied to one platform. Whatever your team runs, we develop the variant, QA it, and launch it.</p>
+    </div>
+
+    <div class="cap-lead reveal">
+      <p>Our variants are built in <b>JavaScript and CSS</b>, which means we work inside whatever experimentation tool your team already uses. And when a test wins, we do not stop at a report: <span class="q">we implement the proven variant straight into your Shopify production.</span></p>
+    </div>
+
+    <div class="cap-sub">Experimentation platforms we build in</div>
+    <div class="platforms reveal">
+      <div class="plat"><span class="pn">Intelligems</span><span class="pt">Shopify native</span></div>
+      <div class="plat"><span class="pn">Convert</span><span class="pt">A/B and MVT</span></div>
+      <div class="plat"><span class="pn">VWO</span><span class="pt">A/B and MVT</span></div>
+      <div class="plat"><span class="pn">AB Tasty</span><span class="pt">A/B and MVT</span></div>
+      <div class="plat"><span class="pn">Adobe Target</span><span class="pt">Enterprise</span></div>
+      <div class="plat"><span class="pn">Any JS based tool</span><span class="pt">Custom code</span></div>
+    </div>
+
+    <div class="cap-sub">What we deliver</div>
+    <div class="cap-services reveal">
+      <div class="svc">
+        <div class="sn">01</div>
+        <h3>Experiment development</h3>
+        <p>A/B, A/B/C and multivariate tests built in JavaScript and CSS, QA'd across devices and browsers, then launched in your platform of choice.</p>
+      </div>
+      <div class="svc">
+        <div class="sn">02</div>
+        <h3>Shopify development</h3>
+        <p>Theme, sections, Liquid, and custom PDP, cart and checkout builds. We work safely inside your live store, on a dev theme first.</p>
+      </div>
+      <div class="svc">
+        <div class="sn">03</div>
+        <h3>Winner implementation</h3>
+        <p>Winning variants shipped into your production theme, cleanly and permanently, so the uplift is banked instead of left running in a test tool.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LANDING PAGES ============ -->
+<section class="sec-line" id="landing">
+  <div class="wrap">
+    <div class="sec-idx">Landing page design</div>
+    <div class="sec-head">
+      <h2>Conversion-first landing pages, built to be tested.</h2>
+      <p>Full-length landing pages we designed and shipped for DTC brands. Each is structured around a single buying decision. Scroll any frame to see the full page.</p>
+    </div>
+    <div class="lp-grid">
+
+      <!-- Kineon -->
+      <div class="lp-card reveal">
+        <div class="lp-head">
+          <div class="lp-brand"><h3>Kineon</h3><span class="tag">Red-light therapy</span></div>
+          <p>Two persona-led variants of the Move+ landing page, each built around a different buyer story and pain point.</p>
+        </div>
+        <div class="lp-frames">
+          <div class="frame-d">
+            <div class="browser"><div class="browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+              <div class="scrollview"><img src="assets/kineon-emily-desk.jpg" loading="lazy" alt="Kineon landing page, Emily variant, desktop"></div>
+            </div>
+            <div class="scroll-hint">Variant A · scroll to explore</div>
+          </div>
+          <div class="frame-m">
+            <div class="phone"><div class="scrollview"><img src="assets/kineon-mk-mob.jpg" loading="lazy" alt="Kineon landing page, mobile"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Brain Luxury -->
+      <div class="lp-card reveal">
+        <div class="lp-head">
+          <div class="lp-brand"><h3>Brain Luxury</h3><span class="tag">Nootropics</span></div>
+          <p>Two concept directions, Gamma and Delta, exploring different ways to frame the science and the ritual.</p>
+        </div>
+        <div class="lp-frames">
+          <div class="frame-d">
+            <div class="browser"><div class="browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+              <div class="scrollview"><img src="assets/brain-delta-desk.jpg" loading="lazy" alt="Brain Luxury landing page, Delta concept, desktop"></div>
+            </div>
+            <div class="scroll-hint">Delta concept · scroll to explore</div>
+          </div>
+          <div class="frame-m">
+            <div class="phone"><div class="scrollview"><img src="assets/brain-gamma-mob.jpg" loading="lazy" alt="Brain Luxury landing page, Gamma concept, mobile"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Neuro Gum -->
+      <div class="lp-card reveal">
+        <div class="lp-head">
+          <div class="lp-brand"><h3>Neuro Gum</h3><span class="tag">Functional gum</span></div>
+          <p>A focus-and-energy landing page designed to turn a low-consideration impulse product into a subscription decision.</p>
+        </div>
+        <div class="lp-frames">
+          <div class="frame-d">
+            <div class="browser"><div class="browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+              <div class="scrollview"><img src="assets/neuro-desk.jpg" loading="lazy" alt="Neuro Gum landing page, desktop"></div>
+            </div>
+            <div class="scroll-hint">Desktop · scroll to explore</div>
+          </div>
+          <div class="frame-m">
+            <div class="phone"><div class="scrollview"><img src="assets/neuro-mob.jpg" loading="lazy" alt="Neuro Gum landing page, mobile"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dan Henry -->
+      <div class="lp-card reveal">
+        <div class="lp-head">
+          <div class="lp-brand"><h3>Dan Henry</h3><span class="tag">Watches</span></div>
+          <p>Product launch landing pages for the 1962 and 1972 vintage-inspired timepieces, built for launch-day conversion.</p>
+        </div>
+        <div class="lp-frames">
+          <div class="frame-d">
+            <div class="browser"><div class="browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+              <div class="scrollview"><img src="assets/danhenry-1962-desk.jpg" loading="lazy" alt="Dan Henry 1962 launch landing page, desktop"></div>
+            </div>
+            <div class="scroll-hint">1962 launch · scroll to explore</div>
+          </div>
+          <div class="frame-d">
+            <div class="browser"><div class="browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+              <div class="scrollview"><img src="assets/danhenry-1972-desk.jpg" loading="lazy" alt="Dan Henry 1972 landing page, desktop"></div>
+            </div>
+            <div class="scroll-hint">1972 launch · scroll to explore</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ MY 1ST YEARS CASE ============ -->
+<section class="sec-line" id="research">
+  <div class="wrap">
+    <div class="sec-idx">Research to result · featured case study</div>
+    <div class="sec-head">
+      <h2>On-site search: one usability fix, two significant wins.</h2>
+      <p>A worked example of the full method for My 1st Years, from the data that started it to the significance that ended it.</p>
+    </div>
+
+    <div class="m1y reveal">
+      <div class="m1y-top">
+        <div class="m1y-narr">
+          <h3>Making search visible turned browsers into buyers.</h3>
+          <div class="field">
+            <div class="lab">The signal</div>
+            <p>Only 8.5% of users touched on-site search, yet those who did converted at 12.5%, against 5.6% for sessions without search. Search buyers converted at roughly 2.25 times the rate. The lever was hiding in plain sight behind a small magnifier icon.</p>
+          </div>
+          <div class="field">
+            <div class="lab">The change</div>
+            <p>We replaced the search icon with a visible search bar on desktop and mobile, and added microcopy inside it to draw attention. Nothing else on the page moved.</p>
+          </div>
+          <div class="field">
+            <div class="lab">The call</div>
+            <p>The variant won on both goals at significance and was recommended for rollout, with the search-and-purchase journey queued as the next optimization.</p>
+          </div>
+        </div>
+        <div class="m1y-measure">
+          <div class="readout">
+            <div class="rlab">Search engagement rate</div>
+            <div class="rbar">
+              <div class="rside control"><div class="rt">Control</div><div class="rv">11.78<span style="font-size:.5em">%</span></div></div>
+              <div class="rarrow">&rarr;</div>
+              <div class="rside variant"><div class="rt"><span class="win-badge"></span> Winner</div><div class="rv">14.76<span style="font-size:.5em">%</span></div></div>
+            </div>
+          </div>
+          <div class="delta-grid">
+            <div class="delta"><div class="dl">Engagement uplift</div><div class="dv up">+25.31%</div><div class="dl" style="margin-top:6px;margin-bottom:0">100% confidence</div></div>
+            <div class="delta"><div class="dl">Search-purchase uplift</div><div class="dv up">+26.10%</div><div class="dl" style="margin-top:6px;margin-bottom:0">97.46% confidence</div></div>
+          </div>
+          <div class="measure-foot"><span class="win-tag">Winner</span> 39,030 visitors · statistically significant on both goals</div>
+        </div>
+      </div>
+      <div class="m1y-slides">
+        <div class="m1y-slide"><div class="sl">Strategy · problem, hypothesis, rationale</div><img src="assets/my1styears-strategy.jpg" loading="lazy" alt="On-site search usability strategy slide"></div>
+        <div class="m1y-slide"><div class="sl">Control vs variant</div><img src="assets/my1styears-variants.jpg" loading="lazy" alt="Control and variant designs for the search test"></div>
+        <div class="m1y-slide"><div class="sl">Results summary</div><img src="assets/my1styears-results.jpg" loading="lazy" alt="Results table comparing original and variant"></div>
+        <div class="m1y-slide"><div class="sl">Significance detail · Intelligems</div><img src="assets/my1styears-results2.jpg" loading="lazy" alt="Detailed significance results by goal"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER / CTA ============ -->
+<footer class="foot" id="contact">
+  <div class="wrap">
+    <div class="foot-big">Excellence is not optional. <span>Let's find your next winning test.</span></div>
+    <p class="foot-sub">If you run a DTC brand doing real volume, we can pressure-test your funnel and show you where the revenue is leaking, before you commit to a redesign.</p>
+    <div class="foot-cta">
+      <a class="btn-primary" href="https://cazyweb.com" target="_blank" rel="noopener">Book a CRO call</a>
+      <a class="btn-ghost" href="mailto:hello@cazyweb.com">hello@cazyweb.com</a>
+    </div>
+    <div class="foot-bottom">
+      <div class="fb-mark"><img src="assets/cazyweb-logo.png" alt="cazyweb"></div>
+      <div class="foot-note">Confidential. Client names, experiment data and revenue figures shown here are shared under NDA for your review only. Please do not redistribute.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var PW = "Portfolio@2026";
+  var gate = document.getElementById('gate');
+  var form = document.getElementById('gateForm');
+  var input = document.getElementById('pw');
+  var err = document.getElementById('err');
+  var body = document.body;
+
+  // Session persistence so a reload during review does not re-prompt
+  try{ if(sessionStorage.getItem('cw_unlocked')==='1'){ unlock(true); } }catch(e){}
+
+  function unlock(instant){
+    gate.classList.add('hidden');
+    body.classList.remove('locked');
+    try{ sessionStorage.setItem('cw_unlocked','1'); }catch(e){}
+    if(!instant){ startCounter(); }
+    else { setCounterFinal(); }
+    initReveal();
+    setTimeout(function(){ if(gate.parentNode){ gate.style.display='none'; } }, 700);
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(input.value === PW){
+      err.textContent = '';
+      unlock(false);
+    } else {
+      err.textContent = 'Incorrect password. Please try again.';
+      form.classList.remove('shake'); void form.offsetWidth; form.classList.add('shake');
+      input.select();
+    }
+  });
+  input.focus();
+
+  // Count-up for the impact number
+  var TARGET = 4756543;
+  var counterEl = document.getElementById('counter');
+  function fmt(n){ return Math.round(n).toLocaleString('en-US'); }
+  function setCounterFinal(){ if(counterEl) counterEl.textContent = fmt(TARGET); }
+  function startCounter(){
+    if(!counterEl) return;
+    if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){ setCounterFinal(); return; }
+    var dur=1600, start=null;
+    function tick(ts){
+      if(!start) start=ts;
+      var p=Math.min((ts-start)/dur,1);
+      var eased=1-Math.pow(1-p,3);
+      counterEl.textContent=fmt(TARGET*eased);
+      if(p<1) requestAnimationFrame(tick); else setCounterFinal();
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // Scroll reveal
+  function initReveal(){
+    var els=document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){ els.forEach(function(el){el.classList.add('in');}); return; }
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+    },{threshold:.12, rootMargin:'0px 0px -40px 0px'});
+    els.forEach(function(el){ io.observe(el); });
+  }
+})();
+</script>
+</body>
+</html>
