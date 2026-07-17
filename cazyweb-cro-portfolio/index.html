@@ -332,6 +332,17 @@ tfoot .win-dot{color:#7BE3A6}
 .win-rev .wr-k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--zinc-500)}
 .win-rev .wr-v{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700}
 
+/* ---------- GO DEEPER LINKS ---------- */
+.more-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:44px}
+.more-card{border:1px solid var(--line);border-radius:14px;padding:26px 28px;background:var(--paper);display:flex;flex-direction:column;gap:10px;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+.more-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--line-2)}
+.more-card .mc-k{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--zinc-500);display:flex;align-items:center;gap:8px}
+.more-card .mc-k::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--win)}
+.more-card .mc-t{font-size:20px;font-weight:600;letter-spacing:-.02em;color:var(--ink);line-height:1.25}
+.more-card .mc-d{font-size:14px;color:var(--zinc-500);line-height:1.55}
+.more-card .mc-cta{font-size:14px;font-weight:600;color:var(--ink);margin-top:6px;display:inline-flex;align-items:center;gap:8px}
+.more-card:hover .mc-cta{gap:12px}
+
 /* ---------- CAPABILITIES ---------- */
 .cap-lead{border:1px solid var(--line);border-radius:16px;padding:34px 32px;background:var(--paper-2);margin-bottom:24px}
 .cap-lead p{font-size:clamp(18px,2vw,22px);line-height:1.5;letter-spacing:-.01em;color:var(--ink);max-width:62ch}
@@ -705,6 +716,21 @@ tfoot .win-dot{color:#7BE3A6}
       <div class="win-card"><div class="win-thumb"><span class="wt-tid">T15</span><span class="wt-up">+31.53%</span><img src="assets/tests/T15-v1.jpg" loading="lazy" alt="Purchase reassurance bar variant"></div><div class="win-info"><h4>Purchase reassurance bar</h4><div class="win-meta"><span class="wm-brand">Comforth</span><span class="wm-surf">Sitewide · CVR</span></div><div class="win-rev"><span class="wr-k">Monthly uplift</span><span class="wr-v">37,432</span></div></div></div>
       <div class="win-card"><div class="win-thumb"><span class="wt-tid">T20</span><span class="wt-up">+38.03%</span><img src="assets/tests/T20-v1.jpg" loading="lazy" alt="Trust section plus phone number variant"></div><div class="win-info"><h4>Trust section plus phone no.</h4><div class="win-meta"><span class="wm-brand">IWAO</span><span class="wm-surf">PDP · CVR</span></div><div class="win-rev"><span class="wr-k">Monthly uplift</span><span class="wr-v">27,931</span></div></div></div>
       <div class="win-card"><div class="win-thumb"><span class="wt-tid">T21</span><span class="wt-up">+13.33%</span><img src="assets/tests/T21-v1.jpg" loading="lazy" alt="Cart full redesign variant"></div><div class="win-info"><h4>Cart full redesign</h4><div class="win-meta"><span class="wm-brand">IWAO</span><span class="wm-surf">Cart · CVR</span></div><div class="win-rev"><span class="wr-k">Monthly uplift</span><span class="wr-v">10,103</span></div></div></div>
+    </div>
+
+    <div class="more-grid reveal">
+      <a class="more-card" href="https://dashboard.cazyweb.com/boards/share/6ae89686-2b79-4160-adb4-26e418c58a10" target="_blank" rel="noopener">
+        <span class="mc-k">Live activity report</span>
+        <span class="mc-t">See the experimentation program running in real time.</span>
+        <span class="mc-d">The live board of tests in flight, shipped, and measured across the account.</span>
+        <span class="mc-cta">Open the board &rarr;</span>
+      </a>
+      <a class="more-card" href="https://raycazy.github.io/AI-workflow-tasks/phimport-cro-audit/" target="_blank" rel="noopener">
+        <span class="mc-k">Sample CRO audit</span>
+        <span class="mc-t">Read a full conversion audit, start to finish.</span>
+        <span class="mc-d">The PH Import audit that turns research into a prioritised test roadmap.</span>
+        <span class="mc-cta">Open the audit &rarr;</span>
+      </a>
     </div>
   </div>
 </section>
