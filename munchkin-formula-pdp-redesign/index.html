@@ -576,7 +576,7 @@
   .switch-link { display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 13px; font-weight: 600; color: var(--green); text-decoration: none; }
   .switch-link svg { width: 22px; height: 22px; fill: var(--green-soft); stroke: var(--green); stroke-width: 1.4; border-radius: 50%; background: var(--green-soft); padding: 4px; box-sizing: border-box; }
   .avail-line { display: flex; gap: 9px; align-items: center; margin-top: 14px; font-size: 12.5px; color: var(--ink-2); }
-  .avail-line svg { width: 18px; height: 18px; stroke: var(--red, #c0392b); stroke: #cc0000; flex: 0 0 18px; }
+  .avail-line svg { width: 18px; height: 18px; flex: 0 0 18px; }
 
 
   /* Color accent pass: supporting UI gets the brand's secondary hues; green stays the conversion color */
@@ -786,12 +786,32 @@
       <a class="switch-link" href="#switch"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Watch: how to switch formulas safely, the two week guide</a>
       <div class="express"><span>Shop&nbsp;Pay</span><span>Apple&nbsp;Pay</span><span>PayPal</span></div>
 
-      <div class="avail-line"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M4 9h16l-1.2 11H5.2L4 9Z"/><path d="M8 9V7a4 4 0 0 1 8 0v2"/></svg> Also on shelves at Target nationwide. The trial, guarantee, and price lock live only here.</div>
+      <div class="avail-line"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#cc0000"/><circle cx="12" cy="12" r="6.6" fill="#fff"/><circle cx="12" cy="12" r="3.3" fill="#cc0000"/></svg> Also on shelves at Target nationwide. The trial, guarantee, and price lock live only here.</div>
       <div class="trust-icons">
-        <div class="ti"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.4 2.4 4.6-5.3"/></svg><span>30 day money back guarantee</span></div>
-        <div class="ti"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 3 4.5 6v5.5c0 4.6 3.1 7.2 7.5 8.5 4.4-1.3 7.5-3.9 7.5-8.5V6L12 3Z"/></svg><span>No artificial hormones</span></div>
-        <div class="ti"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 6.6l.9 1.8 2 .3-1.4 1.4.3 2-1.8-.9-1.8.9.3-2-1.4-1.4 2-.3z" fill="currentColor" stroke="none"/></svg><span>European blend</span></div>
-        <div class="ti"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M4 10h16M4 14h16M7 10V7.5A2.5 2.5 0 0 1 9.5 5h5A2.5 2.5 0 0 1 17 7.5V10M7 14v2.5A2.5 2.5 0 0 0 9.5 19h5a2.5 2.5 0 0 0 2.5-2.5V14"/></svg><span>FDA + CFIA inspected facility</span></div>
+        <div class="ti"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7">
+          <path d="M20 12a8 8 0 1 1-2.3-5.6" stroke-linecap="round"/>
+          <path d="M20.5 3.5V7h-3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="12" y="15.2" text-anchor="middle" font-size="8.2" font-weight="700" font-family="Matter, Inter, sans-serif" stroke="none" fill="currentColor">30</text>
+        </svg><span>30 day money back guarantee</span></div>
+        <div class="ti"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7">
+          <path d="M12 3 4.8 5.8v5.7c0 4.4 3 6.9 7.2 8.2 4.2-1.3 7.2-3.8 7.2-8.2V5.8L12 3Z" stroke-linejoin="round"/>
+          <path d="M12 15.5c2.6-.8 3.9-2.7 3.9-5.6-2.9 0-5 .8-5.7 3.1" stroke-linejoin="round"/>
+          <path d="M12 15.5c0-2.2.6-3.6 2-4.8" stroke-linecap="round"/>
+        </svg><span>No artificial hormones</span></div>
+        <div class="ti"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+          <path id="eu-star" d="M12 2.4l.62 1.9h2l-1.62 1.18.62 1.9L12 6.2l-1.62 1.18.62-1.9L9.38 4.3h2z"/>
+          <use href="#eu-star" transform="rotate(51.4 12 12)"/>
+          <use href="#eu-star" transform="rotate(102.8 12 12)"/>
+          <use href="#eu-star" transform="rotate(154.3 12 12)"/>
+          <use href="#eu-star" transform="rotate(205.7 12 12)"/>
+          <use href="#eu-star" transform="rotate(257.1 12 12)"/>
+          <use href="#eu-star" transform="rotate(308.6 12 12)"/>
+        </svg><span>European blend</span></div>
+        <div class="ti"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7">
+          <rect x="5.5" y="4.5" width="13" height="17" rx="2"/>
+          <path d="M9.5 4.5V3.4A1.4 1.4 0 0 1 10.9 2h2.2a1.4 1.4 0 0 1 1.4 1.4v1.1" stroke-linejoin="round"/>
+          <path d="m8.8 13.4 2.2 2.2 4.2-4.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg><span>FDA + CFIA inspected facility</span></div>
       </div>
 
       <div class="ugc-row-wrap">
