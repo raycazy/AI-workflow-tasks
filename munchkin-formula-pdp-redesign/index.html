@@ -114,14 +114,14 @@
   }
   .gallery { position: relative; }
   .gallery-main {
-    background: radial-gradient(120% 100% at 50% 0%, #eef6e2 0%, var(--green-soft) 100%);
+    background: var(--green-soft);
     border-radius: var(--radius);
     overflow: hidden; display: grid; place-items: center;
-    height: 56vw; max-height: 380px; padding: 20px;
+    height: 56vw; max-height: 380px;
   }
-  @media (min-width: 900px) { .gallery-main { height: auto; max-height: none; aspect-ratio: 1/1; padding: 44px; } }
-  .gallery-main img { filter: drop-shadow(0 22px 30px rgba(30,39,33,.16)); }
-  .gallery-main img { object-fit: contain; width: 100%; height: 100%; }
+  @media (min-width: 900px) { .gallery-main { height: auto; max-height: none; aspect-ratio: 1/1; } }
+  
+  .gallery-main img { object-fit: cover; width: 100%; height: 100%; border-radius: inherit; object-position: center 62%; }
   .thumbs { display: flex; gap: 10px; margin-top: 12px; overflow-x: auto; padding-bottom: 4px; }
   .thumbs button {
     flex: 0 0 60px; height: 60px; border-radius: 14px; border: 1.5px solid transparent;
@@ -255,7 +255,7 @@
   .doc-modal.open { display: grid; }
   .doc-panel {
     width: min(340px, 92vw); aspect-ratio: 9/16; border-radius: 22px; overflow: hidden; position: relative;
-    background: linear-gradient(180deg, var(--green-soft), #fff);
+    background: linear-gradient(rgba(253,251,249,.55), rgba(253,251,249,.88)), url("assets/doctor.jpg") center/cover;
     display: grid; place-items: center; text-align: center; padding: 28px;
   }
   .doc-panel .play { position: static; margin-bottom: 16px; }
@@ -650,7 +650,7 @@
     .rating-row { margin-bottom: 8px; font-size: 12.5px; }
     .gate { font-size: 9px; padding: 1px 6px; }
     .title-h1 { font-size: 23px; }
-    .gallery-main { height: 46vw; max-height: 290px; }
+    .gallery-main { height: 78vw; max-height: 430px; }
     .thumbs button { flex: 0 0 48px; height: 48px; }
     .logo img { height: 27px; }
     .trial, .final { margin-left: 10px; margin-right: 10px; }
@@ -694,9 +694,9 @@
     </div>
     <div class="gallery bb-gallery">
       <div class="gallery-main">
-        <img id="hero-img" src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/munchkin-infant-formula-made-with-organic-milk_37f2d546-c917-4fea-8ba4-b2b039d05ae8.png?v=1778027190&width=880" alt="Munchkin Infant Formula with Organic Milk can beside its ingredient panel">
+        <img id="hero-img" src="assets/hero-composite.jpg" alt="Munchkin Infant Formula with Organic Milk can beside its ingredient panel">
         <button class="gal-doc-chip" id="gal-doc-chip">
-          <img src="assets/doctor-avatar.png" alt="">
+          <img src="assets/doctor.jpg" alt="">
           <span><em>Expert endorsement</em>What doctors say<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
         </button>
         <svg class="gal-seal" viewBox="0 0 80 80" aria-label="30 day money back guarantee">
@@ -709,7 +709,8 @@
         </svg>
       </div>
       <div class="thumbs" id="thumbs">
-        <button class="on" data-src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/munchkin-infant-formula-made-with-organic-milk_37f2d546-c917-4fea-8ba4-b2b039d05ae8.png?v=1778027190&width=880"><img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/munchkin-infant-formula-made-with-organic-milk_37f2d546-c917-4fea-8ba4-b2b039d05ae8.png?v=1778027190&width=135" alt="Can"></button>
+        <button class="on" data-src="assets/hero-composite.jpg"><img src="assets/hero-composite-thumb.jpg" alt="Can on set"></button>
+        <button data-src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/munchkin-infant-formula-made-with-organic-milk_37f2d546-c917-4fea-8ba4-b2b039d05ae8.png?v=1778027190&width=880"><img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/munchkin-infant-formula-made-with-organic-milk_37f2d546-c917-4fea-8ba4-b2b039d05ae8.png?v=1778027190&width=135" alt="Can packshot"></button>
         <button data-src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/infant-formula-organic-nutrient-facts.jpg?v=1778536544&width=880"><img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/infant-formula-organic-nutrient-facts.jpg?v=1778536544&width=135" alt="The readable panel"></button>
         <button data-src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/Formula_-_Enhanced_Image_9_663f5a52-a0e5-4b33-b7b5-1fe8e54a0b71.jpg?v=1772142138&width=880"><img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/Formula_-_Enhanced_Image_9_663f5a52-a0e5-4b33-b7b5-1fe8e54a0b71.jpg?v=1772142138&width=135" alt="Lifestyle"></button>
         <button data-src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/10_Ingredients_-_Organic_1f3e61c4-ad7c-494a-a59d-60b45b80345c.jpg?v=1772141809&width=880"><img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/10_Ingredients_-_Organic_1f3e61c4-ad7c-494a-a59d-60b45b80345c.jpg?v=1772141809&width=135" alt="The 10 shared ingredients"></button>
@@ -860,7 +861,7 @@
     <p class="lede">All 10, in the approved words. <span class="gate">benefit lines approved by regulatory (Kristin, 7/17)</span></p>
   </div>
   <div class="macro-band">
-    <img class="bgimg" src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/10_Ingredients_-_Organic_1f3e61c4-ad7c-494a-a59d-60b45b80345c.jpg?v=1772141809&width=1320" alt="Munchkin formula powder with scoop, with the 10 shared ingredients labeled">
+    <img class="bgimg" src="assets/macro.jpg" alt="Macro of the formula powder">
   </div>
   <div class="grid10">
     <div class="extra-card"><h4>Lutein</h4><p>For eye health</p></div>
@@ -955,7 +956,7 @@
   <h2>Switch with <span class="serif-accent">nothing to lose.</span></h2>
   <p class="lede">A short walkthrough and a day by day schedule that follows your pediatrician's two week rule. And if it does not go well, the money back guarantee has you, which no other formula can say.</p>
   <div class="video-ph" style="margin-top: 18px;">
-    <img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/5_Key_Points_-_Organic_af99db8b-89a1-4273-8c9b-0b9d814543b9.jpg?v=1772057928&width=1400" alt="" style="object-position: left center;">
+    <img src="assets/bottles.jpg" alt="">
     <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
   </div>
   <p style="font-size: 13px; color: var(--ink-3); margin-top: 8px;">How to switch your baby to a new formula safely. <span class="gate">produce the video</span></p>
@@ -1110,7 +1111,7 @@
 </div>
 
 <button class="doc-widget" id="doc-widget" aria-label="Watch the pediatrician video">
-  <span class="doc-bubble"><img src="assets/ugc-mom.jpg" alt=""></span>
+  <span class="doc-bubble"><img src="assets/doctor.jpg" alt=""></span>
   <span class="doc-chip">Pediatrician: switching safely <span>0:45 · tap to watch</span></span>
 </button>
 <div class="doc-modal" id="doc-modal" aria-hidden="true">
