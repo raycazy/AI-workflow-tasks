@@ -475,7 +475,7 @@
     background: var(--green-bright); color: #f7f6f3; font-size: 10.5px; font-weight: 600;
     letter-spacing: .08em; text-transform: capitalize; padding: 4px 12px; border-radius: 999px;
   }
-  .title-h1 .t2 { display: block; font-weight: 400; font-size: .88em; }
+  .title-h1 .t2 { display: block; font-weight: 400; font-size: .55em; margin-top: 2px; }
   .age-chip {
     background: var(--green-soft); color: #282928; font-size: 11px; font-weight: 600;
     letter-spacing: .1em; text-transform: uppercase; padding: 4px 12px; border-radius: 999px; margin-left: auto;
@@ -608,6 +608,28 @@
   .theme-chips .theme-chip:nth-child(3n+2) { background: var(--sky-soft); border-color: transparent; }
   .theme-chips .theme-chip:nth-child(3n) { background: var(--butter-soft); border-color: transparent; }
 
+
+  .asterisk-note { font-size: 11px; color: var(--ink-3); margin: -8px 0 14px; }
+  .badge-qai {
+    width: 46px; height: 46px; border-radius: 50%; background: #fff; border: 2px solid var(--green);
+    display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
+    font-size: 6.8px; font-weight: 600; color: var(--green); text-align: center; line-height: 1.25;
+    letter-spacing: .02em; text-transform: uppercase;
+  }
+  .badge-qai b { font-size: 7.5px; }
+  .pb-foot { font-size: 10.5px; color: rgba(255,255,255,.7); margin-top: 10px; }
+  .cmp-subhead { font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); margin: 0 0 12px; }
+  .grid10 { display: grid; gap: 10px; grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 760px) { .grid10 { grid-template-columns: repeat(5, 1fr); } }
+  .grid10 .extra-card { padding: 16px 14px; }
+  .grid10 .extra-card h4 { font-size: 14px; margin-bottom: 3px; }
+  .grid10 .extra-card p { font-size: 12.5px; }
+  .grid10 .extra-card:nth-child(5n+1) { background: var(--sky-soft); } .grid10 .extra-card:nth-child(5n+1) h4 { color: var(--sky-ink); }
+  .grid10 .extra-card:nth-child(5n+2) { background: var(--butter-soft); } .grid10 .extra-card:nth-child(5n+2) h4 { color: var(--amber-ink); }
+  .grid10 .extra-card:nth-child(5n+3) { background: var(--green-soft); } .grid10 .extra-card:nth-child(5n+3) h4 { color: var(--green); }
+  .grid10 .extra-card:nth-child(5n+4) { background: var(--coral-soft); } .grid10 .extra-card:nth-child(5n+4) h4 { color: var(--coral); }
+  .grid10 .extra-card:nth-child(5n) { background: var(--card); } .grid10 .extra-card:nth-child(5n) h4 { color: var(--ink); }
+
   .mockup-banner {
     background: var(--sand); color: var(--ink-3); text-align: center; font-size: 10.5px; padding: 4px 12px;
   }
@@ -689,18 +711,19 @@
     </div>
     <div class="bb-detail">
       <div class="badge-row-bb">
-        <img src="assets/badge-usda.png" alt="USDA Organic">
+        <span class="badge-qai">Certified<br>Organic<br><b>by QAI</b></span><span class="gate">need QAI logo asset</span>
         <img src="assets/badge-purity-award.png" alt="Clean Label Project Purity Award">
         <img src="assets/badge-pesticide-free.png" alt="Clean Label Project Certified Pesticide Free">
         <img src="assets/badge-1000day.png" alt="Clean Label Project First 1,000 Day Promise">
         <img src="assets/badge-eu-blend.png" alt="European Blend">
       </div>
-      <p class="pos-line" style="margin-top: 14px;">Built on 10 of the nutrients found in breast milk, <span class="soft">nature's blueprint, thoughtfully matched from newborn to year one.</span></p>
+      <p class="pos-line" style="margin-top: 14px;">Built on 10 of the nutrients found in breastmilk*, <span class="soft">thoughtfully selected, from newborn to year one.</span></p>
+      <p class="asterisk-note">*Structure and levels differ from those in breastmilk.</p>
       <ul class="benefits">
-        <li><svg class="tick" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/><path d="m6 10.5 2.6 2.6L14 7.5"/></svg><span><strong>Calmer tummy, less gas, less crying,</strong> proven on 260 real babies. <span class="gate">manufacturer reported RCT</span></span></li>
+        <li><svg class="tick" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/><path d="m6 10.5 2.6 2.6L14 7.5"/></svg><span><strong>Clinically Tested:</strong> less than half the tummy aches vs the control formula (9.7% vs 20.8%), on 260 babies. <span class="gate">manufacturer reported RCT</span></span></li>
         <li style="margin-left: 31px; margin-top: -4px;"><a href="#extras" style="font-size: 13px; font-weight: 600; color: var(--green);">See all 10 ingredients, explained</a></li>
         <li><svg class="tick" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/><path d="m6 10.5 2.6 2.6L14 7.5"/></svg><span><strong>USDA Organic milk,</strong> no corn syrup, no shortcuts.</span></li>
-        <li><svg class="tick" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/><path d="m6 10.5 2.6 2.6L14 7.5"/></svg><span><strong>Trusted by parents for 40 years,</strong> zero recalls, ever. <span class="gate">verify recall claim + legal</span></span></li>
+        <li><svg class="tick" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/><path d="m6 10.5 2.6 2.6L14 7.5"/></svg><span><strong>Trusted by parents for 40 years.</strong> Zero formula recalls. <span class="gate">regulatory approved phrasing per Kristin</span></span></li>
       </ul>
 
       <div class="price-block">
@@ -713,12 +736,12 @@
         <div class="milk-cards" id="milk-cards">
           <button class="milk-card on">
             <span class="radio"></span>
-            <span class="mc-txt"><b>Organic Milk</b><i>Certified organic, grass fed</i></span>
+            <span class="mc-txt"><b>Organic Milk</b><i>USDA Organic milk</i></span>
             <img src="assets/thumb-organic.jpg" alt="">
           </button>
           <button class="milk-card">
             <span class="radio"></span>
-            <span class="mc-txt"><b>Original Milk</b><i>Same blend, everyday milk</i></span>
+            <span class="mc-txt"><b>Original Milk</b><i>Same nutrition, smarter budget</i></span>
             <img src="assets/thumb-original.jpg" alt="">
           </button>
         </div>
@@ -728,9 +751,9 @@
         <div class="lbl">Select a bundle size</div>
         <div class="bundle-row" id="bundle-row">
           <button class="bundle on" data-size="trial" data-price="$0" data-strike="$79.98" data-chip="Trial: 2 FREE cans" data-name="Trial, 2 cans" data-note="46 four oz bottles. Ideal for trying it out." tabindex="0"><b>Trial</b><i>2 cans</i></button>
-          <button class="bundle" data-size="4" data-price="$143.96" data-strike="$159.96" data-chip="Subscribe and save 10%" data-name="4 cans monthly" data-note="Combo feeding, about three weeks of bottles. Free shipping." tabindex="0"><b>4 cans</b><i>Combo</i></button>
-          <button class="bundle rec" data-size="6" data-price="$215.95" data-strike="$239.94" data-chip="Subscribe and save 10%" data-name="6 cans monthly" data-note="What an average full time feeding month takes. At 25.8 oz a can, nearly double most brands. Free shipping." tabindex="0"><span class="rec-tag">Recommended</span><b>6 cans</b><i>Monthly</i></button>
-          <button class="bundle" data-size="8" data-price="$287.93" data-strike="$319.92" data-chip="Subscribe and save 10%" data-name="8 cans monthly" data-note="Full time feeding, never run out. Free shipping." tabindex="0"><b>8 cans</b><i>Full time</i></button>
+          <button class="bundle rec" data-size="4" data-price="$143.96" data-strike="$159.96" data-chip="Subscribe and save 10%" data-name="4 cans monthly" data-note="Covers an average full time feeding month. Free shipping." tabindex="0"><span class="rec-tag">Recommended</span><b>4 cans</b><i>Monthly</i></button>
+          <button class="bundle" data-size="6" data-price="$215.95" data-strike="$239.94" data-chip="Subscribe and save 10%" data-name="6 cans monthly" data-note="For multiples, or a six week buffer. At 25.8 oz a can, nearly double most brands. Free shipping." tabindex="0"><b>6 cans</b><i>Multiples</i></button>
+          <button class="bundle" data-size="8" data-price="$287.93" data-strike="$319.92" data-chip="Subscribe and save 10%" data-name="8 cans monthly" data-note="Twins, full time. Never run out. Free shipping." tabindex="0"><b>8 cans</b><i>Twins</i></button>
         </div>
         <div class="bundle-note" id="bundle-note">46 four oz bottles. Ideal for trying it out.</div>
       </div>
@@ -781,12 +804,13 @@
           <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M9 3h6M10 3v5.2L4.7 17a3 3 0 0 0 2.6 4.5h9.4A3 3 0 0 0 19.3 17L14 8.2V3"/><path d="M7.5 14h9"/></svg>
           Don't take our word for it
         </div>
-        <h3>Independently tested. Clinically proven. Published.</h3>
-        <p>Every other formula asks you to trust the label. Munchkin is the only premium formula with a published clinical trial, and every batch is screened by an independent lab for heavy metals, pesticides, and pathogens. <span class="gate">confirm screening scope with QA</span></p>
+        <h3>Independently screened. Clinically tested. Published.</h3>
+        <p>Every other formula asks you to trust the label. Munchkin is the only premium formula* with a published clinical trial, and every batch is screened by an independent lab (Eurofins) for heavy metals, pesticides, and pathogens. <span class="gate">confirm screening scope with QA</span></p>
         <a href="#trial">Read the study and our standards</a>
+        <div class="pb-foot">*Compared to Bobbie, Kendamil, and Little Spoon, 7/17/26.</div>
       </div>
 
-      <div class="certs-line">USDA Organic &middot; Clean Label Project Certified &middot; Pesticide Free &middot; Non GMO &middot; FDA and CFIA inspected</div>
+      <div class="certs-line">USDA Organic Milk &middot; Certified Organic by QAI &middot; Clean Label Project Certified &middot; Pesticide Free &middot; Non GMO &middot; FDA and CFIA inspected</div>
 
       <div class="bb-accordions">
         <details><summary>Nutrition &amp; Ingredients</summary><div class="a">Lactose first, no corn syrup, no maltodextrin. The full panel is printed in the section below, nothing folded away. <a href="#panel">Jump to the panel.</a></div></details>
@@ -825,18 +849,22 @@
   <div class="narrow center" style="margin-bottom: 26px;">
     <div class="sec-label">The extras</div>
     <h2>The extras the pricier cans leave out, <span class="serif-accent">by name.</span></h2>
-    <p class="lede">One card per ingredient, plain function. DHA and ARA are table stakes, so they sit on the panel, not here. <span class="gate">verify actual bioactive deck before naming</span></p>
+    <p class="lede">All 10, in the approved words. <span class="gate">benefit lines approved by regulatory (Kristin, 7/17)</span></p>
   </div>
   <div class="macro-band">
     <img class="bgimg" src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/10_Ingredients_-_Organic_1f3e61c4-ad7c-494a-a59d-60b45b80345c.jpg?v=1772141809&width=1320" alt="Munchkin formula powder with scoop, with the 10 shared ingredients labeled">
   </div>
-  <div class="grid3">
-    <div class="extra-card"><h4>Alpha Lactalbumin</h4><p>The dominant whey protein in breastmilk. Easier to digest than standard whey blends.</p></div>
-    <div class="extra-card"><h4>Lactoferrin</h4><p>An iron binding protein that supports her gut and natural immunity.</p></div>
-    <div class="extra-card"><h4>Beta Palmitate</h4><p>A fat structure that mirrors how breastmilk carries palmitic acid. Softer stools, less discomfort.</p></div>
-    <div class="extra-card"><h4>Nucleotides</h4><p>Building blocks for rapidly growing cells, including the gut lining.</p></div>
-    <div class="extra-card"><h4>Lutein and Beta Carotene</h4><p>Carotenoids for developing eyes and healthy cells.</p></div>
-    <div class="extra-card"><h4>Taurine and L Carnitine</h4><p>Support energy metabolism and muscle development.</p></div>
+  <div class="grid10">
+    <div class="extra-card"><h4>Lutein</h4><p>For eye health</p></div>
+    <div class="extra-card"><h4>Beta Carotene</h4><p>For healthy skin</p></div>
+    <div class="extra-card"><h4>DHA</h4><p>For growing minds</p></div>
+    <div class="extra-card"><h4>ARA</h4><p>For strong development</p></div>
+    <div class="extra-card"><h4>Beta Palmitate</h4><p>For happy tummies</p></div>
+    <div class="extra-card"><h4>Alpha-Lactalbumin</h4><p>For gentle nutrition</p></div>
+    <div class="extra-card"><h4>Lactoferrin</h4><p>For natural protection</p></div>
+    <div class="extra-card"><h4>Taurine</h4><p>For early strength</p></div>
+    <div class="extra-card"><h4>Nucleotides</h4><p>For steady growth</p></div>
+    <div class="extra-card"><h4>L-Carnitine</h4><p>For lasting energy</p></div>
   </div>
   <div class="candor">
     <h4>About the palm and soy on our panel</h4>
@@ -880,21 +908,22 @@
     </tbody>
   </table>
   </div>
-  <p class="floor">Every formula sold in the US clears the same FDA nutrient floor. The differences sit above it.</p>
+  <p class="floor">Every formula sold in the US clears the same FDA nutrient floor. The differences sit above it. This chart is based on each formula's labeled ingredient list, and so may not account for undeclared but naturally present ingredients.</p>
 </section>
 
 <!-- 8. CLINICAL TRIAL -->
 <section class="trial" id="trial">
   <div class="wrap narrow">
     <div class="sec-label">The proof</div>
-    <h2>Every other premium formula says <span class="serif-accent">inspired by breast milk.</span><br>We ran the trial and published it.</h2>
+    <h2>Every other premium formula says <span class="serif-accent">inspired by breastmilk.</span><br>We ran the trial and published it.</h2>
     <div class="stat-cards">
       <div class="sc"><div class="n">16 weeks</div><div class="d">Randomized, double blind, controlled trial</div></div>
       <div class="sc"><div class="n">260</div><div class="d">Infants enrolled</div></div>
       <div class="sc"><div class="n">2x fewer</div><div class="d">Digestive side effects vs the control formula (9.7% vs 20.8%) <span class="gate">confirm figures + legal</span></div></div>
     </div>
-    <p class="lede" style="margin-bottom: 20px;">The only published clinical trial in premium formula, and the only one you can pull up today from a brand still on the shelf. Less fussiness and gas, softer stools, healthy growth over the study.</p>
+    <p class="lede" style="margin-bottom: 20px;">The only published clinical trial in premium formula*, and the only one you can pull up today from a brand still on the shelf. Less fussiness and gas, softer stools, healthy growth over the study, compared to the control formula.</p>
     <a class="doc-link" href="#"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/></svg> Read the published study</a>
+    <p style="font-size: 11.5px; color: rgba(255,255,255,.75); margin-top: 14px;">*Compared to Bobbie, Kendamil, and Little Spoon, 7/17/26.</p>
   </div>
 </section>
 
