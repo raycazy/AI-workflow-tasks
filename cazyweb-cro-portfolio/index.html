@@ -10,19 +10,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Boldonse&family=Figtree:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --canvas:#E9EBED;
+  --canvas:#EEF2F7;
   --panel:#FFFFFF;
-  --panel-2:#F3F4F5;
-  --ink:#0E0E0E;
-  --ink-2:#393939;
-  --grey:#6A6A6C;
-  --line:#DADCDE;
-  --line-2:#C9CBCE;
-  --accent:#FF4925;
-  --accent-ink:#E23A16;
-  --dark:#141414;
-  --dark-2:#1E1E1E;
-  --dark-line:#2C2C2C;
+  --panel-2:#F4F7FB;
+  --ink:#1F2533;
+  --ink-2:#2B3242;
+  --grey:#5A6373;
+  --line:#DCE3EC;
+  --line-2:#C3CCD9;
+  --accent:#4569E8;
+  --accent-ink:#3355CC;
+  --dark:#191D28;
+  --dark-2:#232838;
+  --dark-line:#333A4A;
   --shadow:0 2px 4px rgba(14,14,14,.04), 0 18px 40px rgba(14,14,14,.07);
   --shadow-btn:0 10px 24px rgba(14,14,14,.22);
   --maxw:1240px;
@@ -86,7 +86,7 @@ img{max-width:100%;display:block}
 .gate-mark img{height:26px;filter:invert(1)}
 .gate-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--dark-2);border:1px solid var(--dark-line);border-radius:100px;padding:8px 14px;margin-bottom:26px}
 .gate-eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent)}
-.gate-card h1{font-family:var(--disp);text-transform:uppercase;font-weight:400;font-size:clamp(32px,5vw,52px);letter-spacing:-.02em;line-height:1.14;margin-bottom:22px}
+.gate-card h1{font-family:var(--disp);text-transform:uppercase;font-weight:400;font-size:clamp(32px,5vw,52px);letter-spacing:-.02em;line-height:1.24;margin-bottom:22px}
 .gate-card h1 .ac{color:var(--accent)}
 .gate-disclaimer{font-size:16px;color:#B9B9BB;line-height:1.7;border:1px solid var(--dark-line);border-radius:16px;padding:20px 22px;background:var(--dark-2);margin-bottom:26px}
 .gate-disclaimer strong{color:#fff;font-weight:600}
@@ -99,7 +99,7 @@ img{max-width:100%;display:block}
 .gate-btn{background:#fff;color:var(--ink);border:none;cursor:pointer;padding:16px 28px;border-radius:100px;font-family:var(--sans);font-weight:800;font-size:14px;letter-spacing:.02em;text-transform:uppercase;transition:transform .14s ease,background .2s,color .2s}
 .gate-btn:hover{background:var(--accent);color:#fff}
 .gate-btn:active{transform:scale(.98)}
-.gate-err{font-family:var(--mono);font-size:12px;color:#FF7A5C;min-height:16px;letter-spacing:.02em}
+.gate-err{font-family:var(--mono);font-size:12px;color:#F98080;min-height:16px;letter-spacing:.02em}
 .shake{animation:shake .4s}
 @keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
 
@@ -141,14 +141,14 @@ header.nav{position:sticky;top:0;z-index:80;background:rgba(233,235,237,.8);back
 .manifesto{background:var(--dark);color:#fff;border-radius:32px;margin:0 auto;padding:clamp(48px,7vw,96px) clamp(32px,5vw,80px)}
 .manifesto .m-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;background:var(--dark-2);border:1px solid var(--dark-line);border-radius:100px;padding:8px 14px;margin-bottom:30px}
 .manifesto .m-eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent)}
-.manifesto p{font-family:var(--disp);text-transform:uppercase;font-weight:400;font-size:clamp(24px,3.8vw,52px);letter-spacing:-.02em;line-height:1.2;color:#4A4A4C;max-width:20ch}
+.manifesto p{font-family:var(--disp);text-transform:uppercase;font-weight:400;font-size:clamp(22px,3vw,42px);letter-spacing:-.02em;line-height:1.4;color:#565E70;max-width:20ch}
 .manifesto p .lit{color:#fff}
 .manifesto p .ac{color:var(--accent)}
 
 /* ---------- SECTION SHELL ---------- */
 section{padding:96px 0}
 .sec-head{margin-bottom:52px;max-width:900px}
-.sec-head h2{font-family:var(--disp);text-transform:uppercase;font-weight:400;font-size:clamp(32px,5.2vw,64px);letter-spacing:-.02em;line-height:1.1;margin-top:20px}
+.sec-head h2{font-family:var(--disp);text-transform:uppercase;font-weight:400;font-size:clamp(32px,5.2vw,64px);letter-spacing:-.02em;line-height:1.28;margin-top:20px}
 .sec-head h2 .ac{color:var(--accent)}
 .sec-head p{color:var(--ink-2);font-size:18px;max-width:52ch;line-height:1.55;margin-top:22px;font-weight:500}
 .sec-idx{display:inline-flex}
@@ -168,7 +168,7 @@ section{padding:96px 0}
 .cs-head{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;flex-wrap:wrap}
 .cs-num{font-family:var(--disp);font-size:clamp(30px,4vw,52px);color:var(--line-2);letter-spacing:-.02em;line-height:1}
 .cs-tags{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.cs-title{font-family:var(--disp);text-transform:uppercase;font-weight:400;font-size:clamp(28px,4vw,52px);letter-spacing:-.02em;line-height:1.1;max-width:20ch;margin:18px 0 0}
+.cs-title{font-family:var(--disp);text-transform:uppercase;font-weight:400;font-size:clamp(28px,4vw,52px);letter-spacing:-.02em;line-height:1.2;max-width:20ch;margin:18px 0 0}
 .cs-title .hl{color:var(--accent)}
 .cs-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:44px;margin-top:38px;align-items:start}
 
@@ -240,7 +240,7 @@ section{padding:96px 0}
 .more-card:hover{transform:translateY(-4px);box-shadow:0 8px 16px rgba(14,14,14,.08),0 26px 50px rgba(14,14,14,.12)}
 .more-card .mc-k{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);display:flex;align-items:center;gap:8px}
 .more-card .mc-k::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent)}
-.more-card .mc-t{font-family:var(--disp);text-transform:uppercase;font-weight:400;font-size:22px;letter-spacing:-.02em;color:var(--ink);line-height:1.05}
+.more-card .mc-t{font-family:var(--disp);text-transform:uppercase;font-weight:400;font-size:22px;letter-spacing:-.02em;color:var(--ink);line-height:1.2}
 .more-card .mc-d{font-size:16px;color:var(--grey);line-height:1.55}
 .more-card .mc-cta{font-family:var(--sans);font-weight:800;font-size:14px;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);margin-top:8px;display:inline-flex;align-items:center;gap:8px}
 .more-card:hover .mc-cta{gap:12px}
@@ -284,7 +284,7 @@ section{padding:96px 0}
 .m1y{border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:var(--shadow);background:var(--panel)}
 .m1y-top{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line)}
 .m1y-narr{padding:36px 32px;background:var(--panel)}
-.m1y-narr h3{font-family:var(--disp);text-transform:uppercase;font-weight:400;font-size:clamp(22px,2.6vw,32px);letter-spacing:-.02em;line-height:1.15;margin-bottom:24px}
+.m1y-narr h3{font-family:var(--disp);text-transform:uppercase;font-weight:400;font-size:clamp(22px,2.6vw,32px);letter-spacing:-.02em;line-height:1.3;margin-bottom:24px}
 .m1y-measure{padding:36px 32px;background:var(--panel-2);display:flex;flex-direction:column;gap:20px;justify-content:center}
 .m1y-slides{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line)}
 .m1y-slide{background:var(--panel);padding:22px}
@@ -296,7 +296,7 @@ section{padding:96px 0}
 .readout .rlab{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--grey);margin-bottom:16px}
 .rbar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px}
 .rside{border:1px solid var(--line);border-radius:16px;padding:16px;background:var(--panel);text-align:center}
-.rside.variant{border-color:var(--accent);background:#FFF1EC}
+.rside.variant{border-color:var(--accent);background:#EDF1FE}
 .rside .rt{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--grey);margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:6px}
 .rside.variant .rt{color:var(--accent)}
 .rside .rv{font-family:var(--disp);font-weight:400;font-size:clamp(24px,2.6vw,32px);letter-spacing:-.02em;line-height:1}
@@ -317,8 +317,8 @@ section{padding:96px 0}
 .foot{background:var(--dark);color:#fff;border-radius:32px 32px 0 0;padding:clamp(56px,7vw,96px) 0 44px;margin-top:40px}
 .foot-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;background:var(--dark-2);border:1px solid var(--dark-line);border-radius:100px;padding:8px 14px;margin-bottom:28px}
 .foot-eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent)}
-.foot-big{font-family:var(--disp);text-transform:uppercase;font-weight:400;font-size:clamp(34px,6.4vw,84px);letter-spacing:-.03em;line-height:1.16;max-width:16ch}
-.foot-big span{color:#4A4A4C}
+.foot-big{font-family:var(--disp);text-transform:uppercase;font-weight:400;font-size:clamp(34px,6.4vw,84px);letter-spacing:-.03em;line-height:1.3;max-width:16ch}
+.foot-big span{color:#565E70}
 .foot-big .ac{color:var(--accent)}
 .foot-sub{color:#B9B9BB;font-size:18px;max-width:50ch;margin-top:24px;line-height:1.55}
 .foot-cta{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap}
@@ -468,7 +468,7 @@ section{padding:96px 0}
   <div class="wrap">
     <div class="manifesto reveal">
       <div class="m-eyebrow">The bet we make</div>
-      <p><span class="lit">We do not guess.</span> We find where revenue leaks, form a falsifiable hypothesis, and let real traffic decide. <span class="ac">Winners ship. Losers teach the next test.</span></p>
+      <p><span class="lit">We do not guess.</span> We find the leak, form a hypothesis, and let real traffic decide. <span class="ac">Winners ship.</span></p>
     </div>
   </div>
 </section>
