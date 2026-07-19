@@ -10,15 +10,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --void:#0A0D14;
-  --stage:#0F131C;
-  --surface:#161B26;
-  --surface-2:#1D2331;
-  --line:#252C3B;
-  --line-2:#333C4E;
-  --ink:#F3F5F9;
-  --muted:#9AA3B5;
-  --dim:#606A7E;
+  --void:#121826;
+  --stage:#171E2F;
+  --surface:#1C2437;
+  --surface-2:#242E45;
+  --line:#2C3750;
+  --line-2:#3C4A68;
+  --ink:#EFF2F8;
+  --muted:#A3AEC4;
+  --dim:#71809A;
   --accent:#4569E8;
   --accent-lit:#8AA4FF;
   --maxw:1280px;
@@ -27,7 +27,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;background:var(--void)}
-body{font-family:var(--disp);color:var(--ink);background:var(--void);-webkit-font-smoothing:antialiased;line-height:1.55;overflow-x:hidden}
+body{font-family:var(--disp);color:var(--ink);background:var(--void);background-image:radial-gradient(1200px 700px at 78% -8%,rgba(69,105,232,.16),transparent 62%),radial-gradient(900px 600px at 0% 100%,rgba(138,164,255,.07),transparent 60%);background-attachment:fixed;-webkit-font-smoothing:antialiased;line-height:1.55;overflow-x:hidden}
 body.locked{overflow:hidden;height:100vh}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
@@ -133,10 +133,12 @@ section.blk{padding:120px 0}
 
 /* stage */
 .act-stage{position:relative}
-.shot{position:relative;height:min(64vh,620px);overflow:hidden;border-radius:20px;border:1px solid var(--line);background:var(--surface-2);box-shadow:0 30px 80px rgba(0,0,0,.5)}
-.shot-track{position:absolute;top:0;left:0;width:100%;will-change:transform}
-.shot-track img{width:100%;display:block}
-.shot-b{position:absolute;top:0;left:0;width:100%;clip-path:inset(0 0 100% 0)}
+.shot{position:relative;height:min(72vh,700px);overflow:hidden;border-radius:20px;border:1px solid var(--line);background:linear-gradient(180deg,var(--surface-2),var(--stage));box-shadow:0 30px 80px rgba(0,0,0,.45);cursor:zoom-in}
+.shot-track{position:absolute;inset:26px 26px 26px 26px}
+.shot-track img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;display:block;border-radius:8px}
+.shot-b{clip-path:inset(0 0 100% 0)}
+.shot-expand{position:absolute;bottom:14px;right:14px;z-index:4;display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);background:rgba(18,24,38,.82);border:1px solid var(--line-2);border-radius:100px;padding:8px 14px;cursor:zoom-in;transition:background .18s}
+.shot:hover .shot-expand{background:var(--accent)}
 .shot-badge{position:absolute;top:14px;left:14px;z-index:3;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);background:rgba(10,13,20,.78);border:1px solid var(--line-2);border-radius:100px;padding:6px 12px}
 .shot-badge.b{left:auto;right:14px;color:var(--void);background:var(--accent-lit);border-color:var(--accent-lit);font-weight:700;opacity:0}
 .shot-scan{position:absolute;left:0;right:0;height:2px;background:var(--accent-lit);box-shadow:0 0 24px 4px rgba(138,164,255,.6);opacity:0;z-index:2}
@@ -350,6 +352,7 @@ section.blk{padding:120px 0}
             <img class="shot-a" src="../assets/my1styears-variants.jpg" alt="My 1st Years control and variant search designs">
             <img class="shot-b" src="../assets/my1styears-results.jpg" alt="My 1st Years on-site search results">
           </div>
+          <span class="shot-expand">⤢ Full preview</span>
         </div>
       </div>
       <div>
@@ -397,6 +400,7 @@ section.blk{padding:120px 0}
             <img class="shot-a" src="../assets/tests/T01-control.jpg" alt="PH Import PDP control">
             <img class="shot-b" src="../assets/tests/T01-v1.jpg" alt="PH Import PDP variant with assurance icons">
           </div>
+          <span class="shot-expand">⤢ Full preview</span>
         </div>
       </div>
       <div>
@@ -444,6 +448,7 @@ section.blk{padding:120px 0}
             <img class="shot-a" src="../assets/tests/T16-control.jpg" alt="Qookware mobile PDP control">
             <img class="shot-b" src="../assets/tests/T16-v1.jpg" alt="Qookware mobile PDP with sticky add to cart">
           </div>
+          <span class="shot-expand">⤢ Full preview</span>
         </div>
       </div>
       <div>
@@ -491,6 +496,7 @@ section.blk{padding:120px 0}
             <img class="shot-a" src="../assets/tests/T11-control.jpg" alt="Comforth PDP control">
             <img class="shot-b" src="../assets/tests/T11-v1.jpg" alt="Comforth PDP with product tags above the fold">
           </div>
+          <span class="shot-expand">⤢ Full preview</span>
         </div>
       </div>
       <div>
@@ -738,16 +744,6 @@ section.blk{padding:120px 0}
           defaults:{ease:'none'}
         });
 
-        // pan the tall screenshot slowly through the whole act
-        var pan = 0;
-        function measurePan(){
-          var imgH = track.getBoundingClientRect().height;
-          var boxH = shot.getBoundingClientRect().height;
-          pan = Math.max(0, imgH - boxH);
-        }
-        measurePan();
-        window.addEventListener('load', function(){ measurePan(); ScrollTrigger.refresh(); });
-
         // step 1
         tl.to(steps[0],{opacity:1,y:0,duration:.6})
           .to(steps[0],{opacity:0,y:-10,duration:.4},'+=1.2')
@@ -768,8 +764,6 @@ section.blk{padding:120px 0}
           .to(delta,{opacity:1,duration:.4},'>-0.3')
           .to({},{duration:1.2});
 
-        // gentle pan across the whole timeline
-        if(pan>0) tl.to(track,{y:-pan,duration:tl.duration(),ease:'none'},0);
       });
     });
 
@@ -838,7 +832,7 @@ section.blk{padding:120px 0}
     function done(){ lb.classList.remove('open'); document.body.style.overflow=''; img.src='';
       if(window.gsap){ gsap.set(lb,{clearProps:'opacity'}); gsap.set(panel,{clearProps:'opacity,transform'}); } }
     function shut(){ if(hasGsap&&!reduced) gsap.to(lb,{opacity:0,duration:.2,ease:'power2.in',onComplete:done}); else done(); }
-    document.querySelectorAll('.scrollview img, .win-thumb img').forEach(function(im){
+    document.querySelectorAll('.scrollview img, .win-thumb img, .shot img').forEach(function(im){
       im.addEventListener('click',function(e){ e.stopPropagation(); open(im.currentSrc||im.src, im.alt); });
     });
     lb.addEventListener('click',shut);
