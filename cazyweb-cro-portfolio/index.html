@@ -182,7 +182,8 @@ section{padding:96px 0}
 .ba-col.win .ba-cap .cl{color:var(--accent)}
 .ba-win-pill{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.06em;color:#fff;background:var(--accent);border-radius:100px;padding:5px 11px;display:flex;align-items:center;gap:6px}
 .ba-win-pill::before{content:"";width:6px;height:6px;border-radius:50%;background:#fff}
-.ba-view{height:460px;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;position:relative}
+.ba-view{height:460px;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;-ms-overflow-style:none;position:relative}
+.ba-view::-webkit-scrollbar{width:0;height:0;display:none}
 .ba-view img{width:100%;display:block}
 .ba-note{display:flex;gap:14px;padding:20px 22px;background:var(--panel);align-items:flex-start}
 .ba-chip{flex:none;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font-family:var(--sans);font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center}
@@ -280,7 +281,8 @@ section{padding:96px 0}
 .browser{border:1px solid var(--line-2);border-radius:12px 12px 0 0;overflow:hidden;background:#fff;box-shadow:0 8px 24px rgba(14,14,14,.10)}
 .browser-bar{height:32px;background:var(--panel-2);display:flex;align-items:center;gap:6px;padding:0 12px}
 .dot{width:9px;height:9px;border-radius:50%;background:var(--line-2)}
-.scrollview{height:420px;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin}
+.scrollview{height:420px;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;-ms-overflow-style:none}
+.scrollview::-webkit-scrollbar{width:0;height:0;display:none}
 .scrollview img{width:100%}
 .frame-m{width:184px;flex:none}
 .phone{border:6px solid var(--ink);border-radius:30px;overflow:hidden;background:var(--ink);box-shadow:0 10px 26px rgba(14,14,14,.18)}
@@ -785,11 +787,11 @@ section{padding:96px 0}
     <div class="sec-idx">How we build and ship</div>
     <div class="sec-head">
       <h2>We develop and ship winning tests on any stack.</h2>
-      <p>We build tests in code, so we are not tied to one platform. Whatever your team runs, we develop the variant, QA it, and launch it.</p>
+      <p>We build tests in code, so we are not tied to one platform. Whatever your team runs, we develop the variant, QA it, and launch it. We also do the Shopify development that ships the winner.</p>
     </div>
 
     <div class="cap-lead reveal">
-      <p>Our variants are built in <b>JavaScript and CSS</b>, which means we work inside whatever experimentation tool your team already uses. And when a test wins, we do not stop at a report: <span class="q">we implement the proven variant straight into your Shopify production.</span></p>
+      <p>Our variants are built in <b>JavaScript and CSS</b>, which means we work inside whatever experimentation tool your team already uses. And when a test wins, we do not stop at a report: <span class="q">our Shopify development team implements the proven variant straight into production.</span></p>
     </div>
 
     <div class="cap-sub">Experimentation platforms we build in</div>
