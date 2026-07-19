@@ -988,7 +988,9 @@ section{padding:96px 0}
      If BOTH lists are empty, any valid email + the password is accepted.
      Generate a hash:  echo -n "person@company.com" | shasum -a 256
      ------------------------------------------------------------------ */
-  var ALLOWED_EMAIL_HASHES = [];
+  var ALLOWED_EMAIL_HASHES = [
+    'c203c6121afa0193772ea9dc0d0b3358a5c4daa05ceb579a59d595b5c4c93a3f' // Rene, boringecom.com
+  ];
   var ALLOWED_DOMAINS = [];
   var ACCESS_LOG_URL = ''; // optional: POST endpoint to record who opened it
 
