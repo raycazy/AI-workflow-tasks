@@ -105,6 +105,7 @@ img{max-width:100%;display:block}
 .gate-btn:hover{background:var(--accent);color:#fff}
 .gate-btn:active{transform:scale(.98)}
 .gate-err{font-family:var(--mono);font-size:12px;color:#F98080;min-height:16px;letter-spacing:.02em}
+.gate-nda{font-size:14px;line-height:1.6;color:#7C7C7E;max-width:62ch}
 .shake{animation:shake .4s}
 @keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
 
@@ -414,7 +415,7 @@ section{padding:96px 0}
     <div class="gate-eyebrow">Confidential portfolio</div>
     <h1>You are about to view <span class="ac">confidential</span> client work.</h1>
     <div class="gate-disclaimer">
-      This portfolio contains <strong>real client names, live experiment data, and revenue figures</strong> shared under NDA. By entering, you agree to keep everything here private and <strong>not to share, screenshot, or forward it to any third party.</strong> Access is granted for your review only.
+      Real client names, live experiment data and revenue figures. <strong>Access is limited to approved emails.</strong>
     </div>
     <form class="gate-form" id="gateForm" autocomplete="off">
       <div class="gate-fields">
@@ -431,10 +432,11 @@ section{padding:96px 0}
         <label for="pw">Access password</label>
         <div class="gate-row">
           <input type="password" id="pw" placeholder="••••••••••••" autocomplete="off" aria-describedby="err">
-          <button class="gate-btn" type="submit">Unlock</button>
+          <button class="gate-btn" type="submit">Sign in</button>
         </div>
       </div>
       <div class="gate-err" id="err" role="alert"></div>
+      <p class="gate-nda">By signing in you accept the NDA: keep this work private, and do not share, screenshot or forward it to any third party.</p>
     </form>
   </div>
 </div>
