@@ -146,9 +146,11 @@ section.blk{padding:120px 0}
 .shot-b{clip-path:inset(0 0 100% 0)}
 .shot-expand{position:absolute;bottom:14px;right:14px;z-index:4;display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:rgba(18,24,38,.82);border:1px solid var(--line-2);border-radius:100px;padding:8px 14px;cursor:zoom-in;transition:background .18s}
 .shot:hover .shot-expand{background:var(--accent)}
-.shot-tabs{display:none;gap:6px;margin-top:16px;justify-content:center}
-.shot-tabs button{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line-2);background:var(--surface);color:var(--muted);border-radius:100px;padding:10px 20px;cursor:pointer;transition:background .18s ease,color .18s ease,border-color .18s ease}
-.shot-tabs button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.shot-tabs{display:none;align-items:center;gap:8px;margin:16px auto 0;width:fit-content}
+.shot-tabs .st-lab{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.shot-tabs .st-seg{display:inline-flex;gap:4px;background:var(--surface-2);border:1px solid var(--line);border-radius:100px;padding:4px}
+.shot-tabs button{font-family:var(--sans);font-weight:600;font-size:13px;letter-spacing:.02em;border:none;background:transparent;color:var(--muted);border-radius:100px;padding:9px 20px;cursor:pointer;transition:background .2s ease,color .2s ease}
+.shot-tabs button.on{background:var(--accent);color:#fff;box-shadow:0 2px 8px rgba(69,105,232,.35)}
 .shot-badge{position:absolute;top:14px;left:14px;z-index:3;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:rgba(10,13,20,.78);border:1px solid var(--line-2);border-radius:100px;padding:6px 12px}
 .shot-badge.b{left:auto;right:14px;color:var(--void);background:var(--accent-lit);border-color:var(--accent-lit);font-weight:700;opacity:0}
 .shot-scan{position:absolute;left:0;right:0;height:2px;background:var(--accent-lit);box-shadow:0 0 24px 4px rgba(138,164,255,.6);opacity:0;z-index:2}
@@ -208,6 +210,16 @@ section.blk{padding:120px 0}
 .cap p{font-size:15px;color:var(--muted);line-height:1.6}
 .cap .n{font-family:var(--mono);font-size:12px;color:var(--accent-lit);letter-spacing:.1em}
 .plat-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:26px}
+.more-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:44px}
+@media(max-width:680px){.more-grid{grid-template-columns:1fr}}
+.more-card{border:1px solid var(--line);border-radius:18px;padding:28px 30px;background:var(--surface);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px;text-align:left;transition:transform .18s ease,box-shadow .18s ease}
+.more-card:hover{transform:translateY(-3px);box-shadow:0 8px 16px rgba(31,37,51,.08),0 26px 50px rgba(31,37,51,.12)}
+.more-card .mc-k{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);display:flex;align-items:center;gap:8px}
+.more-card .mc-k::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.more-card .mc-t{font-size:20px;font-weight:600;letter-spacing:-.01em;color:var(--ink);line-height:1.25}
+.more-card .mc-d{font-size:15px;color:var(--muted);line-height:1.55}
+.more-card .mc-cta{font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.02em;color:var(--accent);margin-top:6px;display:inline-flex;align-items:center;gap:8px}
+.more-card:hover .mc-cta{gap:12px}
 .plat{font-family:var(--mono);font-size:14px;color:var(--ink);border:1px solid var(--line-2);background:var(--surface);border-radius:100px;padding:10px 18px}
 
 /* ---------- FOOTER ---------- */
@@ -244,7 +256,7 @@ section.blk{padding:120px 0}
   .act-steps{position:static;min-height:0;display:flex;flex-direction:column;gap:22px}
   .step{position:static;opacity:1}
   .shot{height:min(56vh,520px)}
-  .act-rail{position:static;margin-top:28px}
+  .act-rail{display:none}
   .rail-in{grid-template-columns:1fr}
   .lp-grid{grid-template-columns:1fr}
   .cap-grid{grid-template-columns:1fr}
@@ -556,6 +568,21 @@ section.blk{padding:120px 0}
       <div class="win"><div class="win-thumb"><span class="win-id">T17</span><span class="win-up">+14.09%</span><img src="../assets/tests/T17-v1.jpg" loading="lazy" alt="Pointers above ATC variant"></div><div class="win-info"><h4>Pointers above ATC</h4><div class="win-meta"><span class="win-brand">Qookware</span></div><div class="win-rev"><span class="k">Monthly</span><span class="v">$17,495</span></div></div></div>
       <div class="win"><div class="win-thumb"><span class="win-id">T19</span><span class="win-up">+133.42%</span><img src="../assets/tests/T19-v1.jpg" loading="lazy" alt="Trust USP announcement bar variant"></div><div class="win-info"><h4>Trust USP announcement bar</h4><div class="win-meta"><span class="win-brand">IWAO</span></div><div class="win-rev"><span class="k">Monthly</span><span class="v">$10,788</span></div></div></div>
     </div>
+
+    <div class="more-grid">
+      <a class="more-card" href="https://dashboard.cazyweb.com/boards/share/6ae89686-2b79-4160-adb4-26e418c58a10" target="_blank" rel="noopener">
+        <span class="mc-k">Live activity report</span>
+        <span class="mc-t">See the experimentation program running in real time.</span>
+        <span class="mc-d">The live board of tests in flight, shipped and measured across the account.</span>
+        <span class="mc-cta">Open the board &rarr;</span>
+      </a>
+      <a class="more-card" href="https://raycazy.github.io/AI-workflow-tasks/phimport-cro-audit/" target="_blank" rel="noopener">
+        <span class="mc-k">Sample CRO audit</span>
+        <span class="mc-t">Read a full conversion audit, start to finish.</span>
+        <span class="mc-d">The PH Import audit that turns research into a prioritised test roadmap.</span>
+        <span class="mc-cta">Open the audit &rarr;</span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -812,7 +839,7 @@ section.blk{padding:120px 0}
         var tabs=stage.querySelector('.shot-tabs');
         if(!tabs){
           tabs=document.createElement('div'); tabs.className='shot-tabs';
-          tabs.innerHTML='<button class="on" data-v="c">'+labC+'</button><button data-v="v">'+labV+'</button>';
+          tabs.innerHTML='<span class="st-lab">Compare</span><span class="st-seg"><button class="on" data-v="c">'+labC+'</button><button data-v="v">'+labV+'</button></span>';
           stage.appendChild(tabs);
           tabs.querySelector('[data-v="c"]').addEventListener('click',function(){ show(false,true); });
           tabs.querySelector('[data-v="v"]').addEventListener('click',function(){ show(true,true); });
