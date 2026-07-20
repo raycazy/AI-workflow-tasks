@@ -109,9 +109,13 @@ section.blk{padding:120px 0}
 .act{position:relative}
 .act-pin{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:92px 0 30px}
 .act-inner{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;width:100%;flex:1}
-.act-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.act-meta{display:flex;flex-wrap:wrap;align-items:baseline;margin-bottom:20px;font-family:var(--mono);font-size:13px}
 .tag{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--muted);border:1px solid var(--line-2);border-radius:100px;padding:5px 12px}
 .tag.brand{background:var(--ink);color:var(--void);border-color:var(--ink);font-weight:700}
+/* case-study meta reads as plain metadata, not a row of buttons */
+.act-meta .tag{border:none;background:none;border-radius:0;padding:0;color:var(--muted);letter-spacing:.03em}
+.act-meta .tag.brand{color:var(--ink);font-weight:700}
+.act-meta .tag:not(:last-child)::after{content:"\00B7";margin:0 10px;color:var(--line-2)}
 .act-title{font-weight:300;font-size:clamp(28px,3.6vw,46px);letter-spacing:-.02em;line-height:1.1;margin-bottom:30px}
 .act-title b{font-weight:600;color:var(--accent-lit)}
 
