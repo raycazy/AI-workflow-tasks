@@ -146,6 +146,9 @@ section.blk{padding:120px 0}
 .shot-b{clip-path:inset(0 0 100% 0)}
 .shot-expand{position:absolute;bottom:14px;right:14px;z-index:4;display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:rgba(18,24,38,.82);border:1px solid var(--line-2);border-radius:100px;padding:8px 14px;cursor:zoom-in;transition:background .18s}
 .shot:hover .shot-expand{background:var(--accent)}
+.shot-tabs{display:none;gap:6px;margin-top:16px;justify-content:center}
+.shot-tabs button{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line-2);background:var(--surface);color:var(--muted);border-radius:100px;padding:10px 20px;cursor:pointer;transition:background .18s ease,color .18s ease,border-color .18s ease}
+.shot-tabs button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 .shot-badge{position:absolute;top:14px;left:14px;z-index:3;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:rgba(10,13,20,.78);border:1px solid var(--line-2);border-radius:100px;padding:6px 12px}
 .shot-badge.b{left:auto;right:14px;color:var(--void);background:var(--accent-lit);border-color:var(--accent-lit);font-weight:700;opacity:0}
 .shot-scan{position:absolute;left:0;right:0;height:2px;background:var(--accent-lit);box-shadow:0 0 24px 4px rgba(138,164,255,.6);opacity:0;z-index:2}
@@ -236,6 +239,7 @@ section.blk{padding:120px 0}
 /* ---------- RESPONSIVE ---------- */
 @media(max-width:1000px){
   .act-inner{grid-template-columns:1fr;gap:32px}
+  .shot-tabs{display:flex}
   .act-pin{min-height:auto;padding:60px 0}
   .act-steps{position:static;min-height:0;display:flex;flex-direction:column;gap:22px}
   .step{position:static;opacity:1}
@@ -774,22 +778,47 @@ section.blk{padding:120px 0}
       });
     });
 
-    // mobile/tablet: no pinning, simple reveals (pinning long sections is painful on touch)
+    // mobile/tablet: no pinning. The reveal is user-driven via Control/Variant tabs,
+    // so the change is explicit and replayable (scroll-scrubbing feels broken on touch).
     mm.add('(max-width: 1000px)', function(){
       gsap.utils.toArray('[data-act]').forEach(function(act){
         gsap.set(act.querySelectorAll('.step'),{opacity:1,y:0});
-        var shotB=act.querySelector('.shot-b'), badgeB=act.querySelector('.shot-badge.b'),
+        var stage=act.querySelector('.act-stage'),
+            shotB=act.querySelector('.shot-b'),
+            badgeA=act.querySelector('.shot-badge:not(.b)'),
+            badgeB=act.querySelector('.shot-badge.b'),
             delta=act.querySelector('.m-delta'), val=act.querySelector('.m-val');
         var from=parseFloat(val.dataset.from), to=parseFloat(val.dataset.to),
             dec=parseInt(val.dataset.dec||'2',10), pre=val.dataset.prefix||'', suf=val.dataset.suffix||'';
-        var proxy={v:from};
+
+        // reset to control every time we enter the mobile context
         gsap.set(shotB,{clipPath:'inset(0 0 100% 0)'});
         gsap.set([badgeB,delta],{opacity:0});
-        gsap.timeline({scrollTrigger:{trigger:act,start:'top 60%',once:true},defaults:{ease:'power2.out'}})
-          .to(shotB,{clipPath:'inset(0 0 0% 0)',duration:1.1})
-          .to(badgeB,{opacity:1,duration:.3},'-=0.4')
-          .to(proxy,{v:to,duration:1,onUpdate:function(){ val.textContent=pre+proxy.v.toFixed(dec)+suf; }},'-=0.6')
-          .to(delta,{opacity:1,duration:.4},'-=0.3');
+        val.textContent=pre+from.toFixed(dec)+suf;
+
+        function paint(o){ val.textContent=pre+o.v.toFixed(dec)+suf; }
+        function show(variant, animate){
+          if(tabs){ tabs.querySelectorAll('button').forEach(function(b){ b.classList.toggle('on',(b.dataset.v==='v')===variant); }); }
+          var d = animate ? {clip:.7, fade:.3, num:.6} : {clip:0, fade:0, num:0};
+          gsap.to(shotB,{clipPath: variant?'inset(0 0 0% 0)':'inset(0 0 100% 0)', duration:d.clip, ease:'power3.inOut', overwrite:true});
+          gsap.to([badgeB,delta],{opacity:variant?1:0, duration:d.fade, overwrite:true});
+          var cur=parseFloat((val.textContent||'').replace(/[^0-9.]/g,''))||from;
+          gsap.to({v:cur},{v:variant?to:from, duration:d.num, ease:'power2.out', onUpdate:function(){paint(this.targets()[0]);}, overwrite:true});
+        }
+
+        // build the tabs once, labelled from the badges
+        var isResult=/result/i.test((badgeB?badgeB.textContent:''));
+        var labC=isResult?'Test':'Control', labV=isResult?'Result':'Variant';
+        var tabs=stage.querySelector('.shot-tabs');
+        if(!tabs){
+          tabs=document.createElement('div'); tabs.className='shot-tabs';
+          tabs.innerHTML='<button class="on" data-v="c">'+labC+'</button><button data-v="v">'+labV+'</button>';
+          stage.appendChild(tabs);
+          tabs.querySelector('[data-v="c"]').addEventListener('click',function(){ show(false,true); });
+          tabs.querySelector('[data-v="v"]').addEventListener('click',function(){ show(true,true); });
+        } else {
+          show(false,false);
+        }
       });
     });
 
