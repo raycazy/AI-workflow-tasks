@@ -234,6 +234,10 @@
   .badge.video{background:var(--purple);color:#fff;border:1px solid var(--purple);}
   .badge.leadmagnet{background:var(--green-tint);color:var(--green);border:1px solid var(--green-line);}
   .badge.guess{background:var(--card);color:var(--purple);border:1px solid var(--purple);}
+  .status{flex:none;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:4px;}
+  .status.ready{background:var(--green-tint);color:var(--green);border:1px solid var(--green-line);}
+  .status.pending{background:var(--orange-tint);color:var(--orange-ink);border:1px solid var(--orange-line);}
+  .status.textonly{background:var(--paper);color:var(--muted);border:1px solid var(--line);}
   .chev{flex:none;width:18px;height:18px;transition:transform .2s ease;color:var(--muted);}
   .post.open .chev{transform:rotate(180deg);}
   .post.posted .post-title h4{color:var(--muted);}
@@ -511,7 +515,7 @@ Full breakdown Friday, including the monthly revenue number.</pre>
       </div>
       <div class="post-body">
         <dl class="brief"><dt>Visual</dt><dd>Stat card: "13 / 13" huge with the two deck cover totals beneath, or the three rules as a simple typographic card.</dd><dt>CTA</dt><dd>Comment PROCESS for the test brief one pager (asset on the production list). Ties into Friday's sticky ATC reveal.</dd></dl>
-        <div class="asset"><div class="asset-lbl">Optional image if the video slips · plus the PROCESS gate asset: <a href="post-images/week1/PurpleFire-AB-Test-Brief.pdf">PurpleFire-AB-Test-Brief.pdf</a></div><img src="post-images/week1/post2.png" alt="Post image"></div>
+        <div class="asset"><div class="asset-lbl">Ready post image · download and attach · plus the PROCESS gate asset: <a href="post-images/week1/PurpleFire-AB-Test-Brief.pdf">PurpleFire-AB-Test-Brief.pdf</a></div><img src="post-images/week1/post2.png" alt="Post image"></div>
         <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
         <div class="li-preview">
           <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
@@ -2273,6 +2277,25 @@ Enjoy your Sunday. The webshops can wait until Monday.</pre>
         p.classList.toggle('hidden', f !== 'all' && p.getAttribute('data-type') !== f);
       });
     });
+  });
+
+  // asset status chips
+  document.querySelectorAll('.post').forEach(function(post){
+    var badge = post.querySelector('.badge');
+    if (!badge) return;
+    var cls, txt;
+    if (post.querySelector('.asset img')) { cls = 'ready'; txt = 'asset ready'; }
+    else {
+      var dts = post.querySelectorAll('.brief dt');
+      var hasVisual = false;
+      dts.forEach(function(d){ if (/visual|asset/i.test(d.textContent)) hasVisual = true; });
+      if (hasVisual) { cls = 'pending'; txt = 'asset pending'; }
+      else { cls = 'textonly'; txt = 'text only'; }
+    }
+    var s = document.createElement('span');
+    s.className = 'status ' + cls;
+    s.textContent = txt;
+    badge.parentNode.insertBefore(s, badge);
   });
 
   // copy buttons
