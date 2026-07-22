@@ -262,6 +262,13 @@
   .asset .asset-lbl{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--purple);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;}
   .asset img{width:100%;max-width:400px;border:1px solid var(--line);border-radius:6px;display:block;}
   .asset a{font-size:14px;color:var(--purple);font-weight:600;}
+  .asset-gallery{margin:0 0 16px;}
+  .asset-gallery .cur-wrap img{width:100%;max-width:400px;border:2px solid var(--green-line);border-radius:6px;display:block;}
+  .asset-gallery .alts{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px;}
+  .asset-gallery figure{margin:0;}
+  .asset-gallery .alts img{width:180px;border:1px solid var(--line);border-radius:6px;display:block;}
+  .asset-gallery figcaption{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:4px;letter-spacing:.04em;}
+  .head-thumb{height:56px;width:auto;border-radius:6px;border:1px solid var(--line);flex:none;display:block;}
   .copy-label{
     display:flex;align-items:center;justify-content:space-between;
     margin-bottom:10px;
@@ -439,8 +446,8 @@
           <dt>Source</dt><dd>PH Import T05, assurance icons below ATC. The flagship: 99.7% significance.</dd>
           <dt>Visual</dt><dd>Template card: "+19.13% CVR" huge, subline "776,058 DKK/month incremental", before/after crop from PH-Import-cro-deck.pdf page 8.</dd>
         </dl>
-        <div class="asset"><div class="asset-lbl">Ready post image · download and attach</div><img src="post-images/week1/post1.png" alt="Post image"></div>
-        <div class="asset"><div class="asset-lbl">Before / after version · attach as image 2 or use instead</div><img src="post-images/week1/post1ba.png" alt="Before after image"></div>
+        <div class="asset-gallery"><div class="asset-lbl">Post image · latest version</div><figure class="cur-wrap"><img src="post-images/week1/post1ba.png" alt="Post image"><figcaption>v3 phone mockup · current</figcaption></figure><div class="alts"><figure><img src="post-images/week1/post1drip.png" alt=""><figcaption>red/green panels</figcaption></figure><figure><img src="post-images/week1/post1.png" alt=""><figcaption>typographic</figcaption></figure></div></div>
+        
         <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
         <div class="li-preview">
           <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
@@ -479,7 +486,7 @@ Check your own PDP. What sits directly under your buy button, and is it answerin
           <dt>Visual</dt><dd>Side by side phone crops from Qookware-cro-deck.pdf page 7: control PDP vs sticky bar variant, labeled A and B. Do not show the result.</dd>
           <dt>Reveal</dt><dd>Post 4 on Friday. Open it with the vote outcome (fill in the real split) and name the closest guess.</dd>
         </dl>
-        <div class="asset"><div class="asset-lbl">Ready vote image · download and attach</div><img src="post-images/week1/postg1.png" alt="Post image"></div>
+        <div class="asset-gallery"><div class="asset-lbl">Post image · latest version</div><figure class="cur-wrap"><img src="post-images/week1/postg1.png" alt="Post image"><figcaption>v2 phone vote card · current</figcaption></figure></div>
         <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
         <div class="li-preview">
           <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
@@ -515,7 +522,7 @@ Full breakdown Friday, including the monthly revenue number.</pre>
       </div>
       <div class="post-body">
         <dl class="brief"><dt>Visual</dt><dd>Stat card: "13 / 13" huge with the two deck cover totals beneath, or the three rules as a simple typographic card.</dd><dt>CTA</dt><dd>Comment PROCESS for the test brief one pager (asset on the production list). Ties into Friday's sticky ATC reveal.</dd></dl>
-        <div class="asset"><div class="asset-lbl">Ready post image · download and attach · plus the PROCESS gate asset: <a href="post-images/week1/PurpleFire-AB-Test-Brief.pdf">PurpleFire-AB-Test-Brief.pdf</a></div><img src="post-images/week1/post2.png" alt="Post image"></div>
+        <div class="asset-gallery"><div class="asset-lbl">Post image · latest version · PROCESS gate asset: <a href="post-images/week1/PurpleFire-AB-Test-Brief.pdf">test brief PDF</a></div><figure class="cur-wrap"><img src="post-images/week1/post2.png" alt="Post image"><figcaption>v2 process card · current</figcaption></figure></div>
         <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
         <div class="li-preview">
           <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
@@ -549,7 +556,7 @@ I've turned our exact test brief template into a one pager. Comment PROCESS and 
           <dt>Source</dt><dd>Pattern across PH Import T05, Qookware T01, and the vault (German Car Accessories shipping test).</dd>
           <dt>Visual</dt><dd>Simple graphic: PDP wireframe with a green zone under the ATC button labeled "highest leverage real estate".</dd>
         </dl>
-        <div class="asset"><div class="asset-lbl">Ready post image · download and attach</div><img src="post-images/week1/post3.png" alt="Post image"></div>
+        <div class="asset-gallery"><div class="asset-lbl">Post image · latest version</div><figure class="cur-wrap"><img src="post-images/week1/post3.png" alt="Post image"><figcaption>v2 statement card · current</figcaption></figure></div>
         <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
         <div class="li-preview">
           <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
@@ -585,8 +592,8 @@ Where does your drop off happen? That's where your guarantee belongs.</pre>
           <dt>Source</dt><dd>Qookware T04, sticky mobile ATC.</dd>
           <dt>Visual</dt><dd>Template card: "+25.32% CVR" huge, subline "Mobile PDP, 267,414 DKK/month", before/after phone crops from Qookware-cro-deck.pdf pages 7 to 8.</dd>
         </dl>
-        <div class="asset"><div class="asset-lbl">Ready reveal image · download and attach</div><img src="post-images/week1/post4.png" alt="Post image"></div>
-        <div class="asset"><div class="asset-lbl">Before / after version · attach as image 2 or use instead</div><img src="post-images/week1/post4ba.png" alt="Before after image"></div>
+        <div class="asset-gallery"><div class="asset-lbl">Post image · latest version</div><figure class="cur-wrap"><img src="post-images/week1/post4ba.png" alt="Post image"><figcaption>v3 phone mockup · current</figcaption></figure><div class="alts"><figure><img src="post-images/week1/post4drip.png" alt=""><figcaption>red/green panels</figcaption></figure><figure><img src="post-images/week1/post4.png" alt=""><figcaption>typographic</figcaption></figure></div></div>
+        
         <div class="copy-label"><span>Post copy</span><button class="copy-btn">Copy</button></div>
         <div class="li-preview">
           <div class="li-author"><div class="li-avatar">DC</div><div><div class="nm">Daniel Chabert</div><div class="rl">Founder, PurpleFire</div></div></div>
@@ -2279,12 +2286,22 @@ Enjoy your Sunday. The webshops can wait until Monday.</pre>
     });
   });
 
+  // head thumbnails (latest version only)
+  document.querySelectorAll('.post').forEach(function(post){
+    var img = post.querySelector('.asset-gallery .cur-wrap img');
+    var when = post.querySelector('.post-when');
+    if (!img || !when) return;
+    var t = document.createElement('img');
+    t.src = img.src; t.className = 'head-thumb'; t.alt = '';
+    when.parentNode.insertBefore(t, when.nextSibling);
+  });
+
   // asset status chips
   document.querySelectorAll('.post').forEach(function(post){
     var badge = post.querySelector('.badge');
     if (!badge) return;
     var cls, txt;
-    if (post.querySelector('.asset img')) { cls = 'ready'; txt = 'asset ready'; }
+    if (post.querySelector('.asset img, .asset-gallery img')) { cls = 'ready'; txt = 'asset ready'; }
     else {
       var dts = post.querySelectorAll('.brief dt');
       var hasVisual = false;
