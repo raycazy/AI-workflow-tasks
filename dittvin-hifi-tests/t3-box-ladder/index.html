@@ -6806,9 +6806,12 @@ input, select, textarea {
               
 
               
-<!-- CRO TEST T3: AOV Box Ladder + taste accordion -->
+<!-- CRO TEST T3: AOV Box Ladder + per-wine taste accordion -->
 <div class="cro-ladder">
   <style>
+    /* hide the theme's useless single-option grouped swatch (only "Lada") */
+    .selector-wrapper,.swatch[data-option-index="0"]{display:none!important}
+
     .cro-ladder{font-family:'Rubik',sans-serif;margin:14px 0}
     .cro-ladder .lh{font-size:14px;font-weight:600;color:#2f2b29;margin-bottom:8px}
     .cro-ladder .tiers{display:flex;gap:8px}
@@ -6822,24 +6825,28 @@ input, select, textarea {
     .cro-ladder .tier.sel .dot{border-color:#7c1220}
     .cro-ladder .tier.sel .dot::after{content:"";width:7px;height:7px;border-radius:50%;background:#7c1220}
     .cro-ladder .tier .flag{position:absolute;top:-8px;left:50%;transform:translateX(-50%);background:#c69a46;color:#3a2a00;font-size:9px;font-weight:700;padding:2px 8px;border-radius:20px;white-space:nowrap}
+
     /* accordion */
     .cro-ingar{margin-top:12px;border:1px solid #e7e1dd;border-radius:10px;background:#faf7f5;overflow:hidden}
-    .cro-ingar summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:13px 14px;font-size:14px;font-weight:600;color:#2f2b29}
+    .cro-ingar summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:13px 14px;font-size:14px;font-weight:600;color:#2f2b29}
     .cro-ingar summary::-webkit-details-marker{display:none}
-    .cro-ingar summary .sub{font-size:12px;font-weight:500;color:#8a807a;margin-left:auto;margin-right:10px}
-    .cro-ingar summary .chev{width:16px;height:16px;stroke:#7c1220;fill:none;stroke-width:2;transition:transform .2s}
+    .cro-ingar summary .sub{font-size:12px;font-weight:500;color:#8a807a;margin-left:auto}
+    .cro-ingar summary .chev{width:16px;height:16px;stroke:#7c1220;fill:none;stroke-width:2;transition:transform .2s;flex-shrink:0}
     .cro-ingar[open] summary .chev{transform:rotate(180deg)}
     .cro-ingar .body{padding:0 14px 14px}
-    .cro-ingar .wl{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid #ece7e3}
-    .cro-ingar .qty{font-size:13px;font-weight:700;color:#7c1220;min-width:26px;text-align:right}
-    .cro-ingar .sw{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+    .cro-ingar .wl{display:flex;align-items:flex-start;gap:10px;padding:12px 0;border-top:1px solid #ece7e3}
+    .cro-ingar .qty{font-size:13px;font-weight:700;color:#7c1220;min-width:26px;text-align:right;padding-top:1px}
+    .cro-ingar .sw{width:11px;height:11px;border-radius:50%;flex-shrink:0;margin-top:3px}
     .cro-ingar .nmwrap{flex:1;min-width:0}
-    .cro-ingar .nm{font-size:13px;color:#2f2b29;font-weight:500}
+    .cro-ingar .nm{font-size:13px;color:#2f2b29;font-weight:600}
     .cro-ingar .fl{font-size:11px;color:#8a807a;margin-top:1px}
-    .cro-ingar .viv{font-size:11px;font-weight:600;color:#6b3fa0;background:#f1ecf9;padding:2px 7px;border-radius:10px;flex-shrink:0}
-    .cro-ingar .scale{display:flex;align-items:center;gap:8px;margin-top:14px;padding-top:12px;border-top:1px solid #ece7e3;font-size:12px;color:#8a807a}
-    .cro-ingar .track{flex:1;height:6px;background:linear-gradient(90deg,#e7e1dd,#d8b46a);border-radius:3px;position:relative}
-    .cro-ingar .track i{position:absolute;top:-3px;left:60%;width:12px;height:12px;border-radius:50%;background:#7c1220;border:2px solid #fff}
+    .cro-ingar .viv{font-size:11px;font-weight:600;color:#6b3fa0;background:#f1ecf9;padding:2px 7px;border-radius:10px;flex-shrink:0;margin-top:2px}
+    /* per-wine taste profile */
+    .cro-ingar .tp{display:flex;gap:14px;margin-top:8px}
+    .cro-ingar .ax{flex:1}
+    .cro-ingar .axl{display:flex;justify-content:space-between;font-size:9px;color:#a89f99;margin-bottom:3px}
+    .cro-ingar .bar{height:4px;background:#ece7e3;border-radius:2px;position:relative}
+    .cro-ingar .bar i{position:absolute;top:-2px;width:8px;height:8px;border-radius:50%;background:#7c1220;border:1.5px solid #fff}
   </style>
 
   <div class="lh">Välj din låda</div>
@@ -6850,17 +6857,56 @@ input, select, textarea {
   </div>
 
   <details class="cro-ingar" open>
-    <summary>
-      Vad ingår i lådan
-      <span class="sub">12 viner · 4 sorter</span>
-      <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-    </summary>
+    <summary>Vad ingår i lådan <span class="sub">12 viner &middot; 4 sorter</span><svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></summary>
     <div class="body">
-      <div class="wl"><span class="qty">3&times;</span><span class="sw" style="background:#7c1220"></span><span class="nmwrap"><div class="nm">Primitivo di Manduria, Puglia</div><div class="fl">Rött &middot; mörka bär, kryddig, mjuka tanniner</div></span><span class="viv">Vivino 4,1</span></div>
-      <div class="wl"><span class="qty">3&times;</span><span class="sw" style="background:#7c1220"></span><span class="nmwrap"><div class="nm">Baronello Rosso, Toscana</div><div class="fl">Rött &middot; mjuk, körsbär, balanserad</div></span><span class="viv">Vivino 3,9</span></div>
-      <div class="wl"><span class="qty">3&times;</span><span class="sw" style="background:#e6c96b"></span><span class="nmwrap"><div class="nm">Grillo Bianco, Sicilia</div><div class="fl">Vitt &middot; frisk, citrus, torr</div></span><span class="viv">Vivino 4,0</span></div>
-      <div class="wl"><span class="qty">3&times;</span><span class="sw" style="background:#e8a0b4"></span><span class="nmwrap"><div class="nm">Fantini Rosé, Abruzzo</div><div class="fl">Rosé &middot; bär, torr, lätt</div></span><span class="viv">Vivino 3,8</span></div>
-      <div class="scale">Torrt <span class="track"><i></i></span> Sött</div>
+      <div class="wl">
+        <span class="qty">3&times;</span><span class="sw" style="background:#7c1220"></span>
+        <div class="nmwrap">
+          <div class="nm">Primitivo di Manduria, Puglia</div>
+          <div class="fl">Rött &middot; mörka bär, kryddig, mjuka tanniner</div>
+          <div class="tp">
+            <div class="ax"><div class="axl"><span>Torrt</span><span>Sött</span></div><div class="bar"><i style="left:32%"></i></div></div>
+            <div class="ax"><div class="axl"><span>Lätt</span><span>Fylligt</span></div><div class="bar"><i style="left:86%"></i></div></div>
+          </div>
+        </div>
+        <span class="viv">Vivino 4,1</span>
+      </div>
+      <div class="wl">
+        <span class="qty">3&times;</span><span class="sw" style="background:#7c1220"></span>
+        <div class="nmwrap">
+          <div class="nm">Baronello Rosso, Toscana</div>
+          <div class="fl">Rött &middot; mjuk, körsbär, balanserad</div>
+          <div class="tp">
+            <div class="ax"><div class="axl"><span>Torrt</span><span>Sött</span></div><div class="bar"><i style="left:30%"></i></div></div>
+            <div class="ax"><div class="axl"><span>Lätt</span><span>Fylligt</span></div><div class="bar"><i style="left:58%"></i></div></div>
+          </div>
+        </div>
+        <span class="viv">Vivino 3,9</span>
+      </div>
+      <div class="wl">
+        <span class="qty">3&times;</span><span class="sw" style="background:#e6c96b"></span>
+        <div class="nmwrap">
+          <div class="nm">Grillo Bianco, Sicilia</div>
+          <div class="fl">Vitt &middot; frisk, citrus, torr</div>
+          <div class="tp">
+            <div class="ax"><div class="axl"><span>Torrt</span><span>Sött</span></div><div class="bar"><i style="left:16%"></i></div></div>
+            <div class="ax"><div class="axl"><span>Lätt</span><span>Fylligt</span></div><div class="bar"><i style="left:30%"></i></div></div>
+          </div>
+        </div>
+        <span class="viv">Vivino 4,0</span>
+      </div>
+      <div class="wl">
+        <span class="qty">3&times;</span><span class="sw" style="background:#e8a0b4"></span>
+        <div class="nmwrap">
+          <div class="nm">Fantini Rosé, Abruzzo</div>
+          <div class="fl">Rosé &middot; bär, torr, lätt</div>
+          <div class="tp">
+            <div class="ax"><div class="axl"><span>Torrt</span><span>Sött</span></div><div class="bar"><i style="left:22%"></i></div></div>
+            <div class="ax"><div class="axl"><span>Lätt</span><span>Fylligt</span></div><div class="bar"><i style="left:26%"></i></div></div>
+          </div>
+        </div>
+        <span class="viv">Vivino 3,8</span>
+      </div>
     </div>
   </details>
 </div>
