@@ -6806,30 +6806,65 @@ input, select, textarea {
               
 
               
-<!-- CRO TEST T3: AOV Box Ladder -->
+<!-- CRO TEST T3: AOV Box Ladder + taste accordion -->
 <div class="cro-ladder">
   <style>
     .cro-ladder{font-family:'Rubik',sans-serif;margin:14px 0}
-    .cro-ladder .lh{font-size:14px;font-weight:600;color:#25302a;margin-bottom:8px}
-    .cro-ladder .tier{display:flex;align-items:center;gap:10px;border:1.5px solid #e2ddd8;border-radius:10px;padding:12px;margin-bottom:8px;position:relative;cursor:pointer;background:#fff}
+    .cro-ladder .lh{font-size:14px;font-weight:600;color:#2f2b29;margin-bottom:8px}
+    .cro-ladder .tiers{display:flex;gap:8px}
+    .cro-ladder .tier{flex:1;border:1.5px solid #e2ddd8;border-radius:10px;padding:12px 8px 10px;text-align:center;position:relative;background:#fff;cursor:pointer;min-width:0}
     .cro-ladder .tier.sel{border-color:#7c1220;background:#fbf4f5}
-    .cro-ladder .radio{width:18px;height:18px;border:1.5px solid #c9beb8;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center}
-    .cro-ladder .tier.sel .radio{border-color:#7c1220}
-    .cro-ladder .tier.sel .radio::after{content:"";width:9px;height:9px;border-radius:50%;background:#7c1220}
-    .cro-ladder .ti{flex:1}
-    .cro-ladder .ti .t1{font-size:14px;font-weight:600;color:#25302a}
-    .cro-ladder .ti .t2{font-size:12px;color:#8a807a;margin-top:1px}
-    .cro-ladder .tp2{text-align:right}
-    .cro-ladder .tp2 .pp{font-size:15px;font-weight:700;color:#25302a}
-    .cro-ladder .tp2 .pb{font-size:12px;color:#8a807a}
-    .cro-ladder .flag{position:absolute;top:-9px;right:12px;background:#c69a46;color:#3a2a00;font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px}
+    .cro-ladder .tier .t1{font-size:13px;font-weight:700;color:#2f2b29;line-height:1.2}
+    .cro-ladder .tier .t2{font-size:10px;color:#8a807a;margin:2px 0 8px}
+    .cro-ladder .tier .pp{font-size:15px;font-weight:700;color:#2f2b29}
+    .cro-ladder .tier .pb{font-size:10px;color:#8a807a;margin-top:1px}
+    .cro-ladder .tier .dot{width:14px;height:14px;border:1.5px solid #c9beb8;border-radius:50%;margin:0 auto 6px;display:flex;align-items:center;justify-content:center}
+    .cro-ladder .tier.sel .dot{border-color:#7c1220}
+    .cro-ladder .tier.sel .dot::after{content:"";width:7px;height:7px;border-radius:50%;background:#7c1220}
+    .cro-ladder .tier .flag{position:absolute;top:-8px;left:50%;transform:translateX(-50%);background:#c69a46;color:#3a2a00;font-size:9px;font-weight:700;padding:2px 8px;border-radius:20px;white-space:nowrap}
+    /* accordion */
+    .cro-ingar{margin-top:12px;border:1px solid #e7e1dd;border-radius:10px;background:#faf7f5;overflow:hidden}
+    .cro-ingar summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:13px 14px;font-size:14px;font-weight:600;color:#2f2b29}
+    .cro-ingar summary::-webkit-details-marker{display:none}
+    .cro-ingar summary .sub{font-size:12px;font-weight:500;color:#8a807a;margin-left:auto;margin-right:10px}
+    .cro-ingar summary .chev{width:16px;height:16px;stroke:#7c1220;fill:none;stroke-width:2;transition:transform .2s}
+    .cro-ingar[open] summary .chev{transform:rotate(180deg)}
+    .cro-ingar .body{padding:0 14px 14px}
+    .cro-ingar .wl{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid #ece7e3}
+    .cro-ingar .qty{font-size:13px;font-weight:700;color:#7c1220;min-width:26px;text-align:right}
+    .cro-ingar .sw{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+    .cro-ingar .nmwrap{flex:1;min-width:0}
+    .cro-ingar .nm{font-size:13px;color:#2f2b29;font-weight:500}
+    .cro-ingar .fl{font-size:11px;color:#8a807a;margin-top:1px}
+    .cro-ingar .viv{font-size:11px;font-weight:600;color:#6b3fa0;background:#f1ecf9;padding:2px 7px;border-radius:10px;flex-shrink:0}
+    .cro-ingar .scale{display:flex;align-items:center;gap:8px;margin-top:14px;padding-top:12px;border-top:1px solid #ece7e3;font-size:12px;color:#8a807a}
+    .cro-ingar .track{flex:1;height:6px;background:linear-gradient(90deg,#e7e1dd,#d8b46a);border-radius:3px;position:relative}
+    .cro-ingar .track i{position:absolute;top:-3px;left:60%;width:12px;height:12px;border-radius:50%;background:#7c1220;border:2px solid #fff}
   </style>
+
   <div class="lh">Välj din låda</div>
-  <div class="tier"><div class="radio"></div><div class="ti"><div class="t1">6 viner</div><div class="t2">Prova på</div></div><div class="tp2"><div class="pp">381 kr</div><div class="pb">64 kr/fl</div></div></div>
-  <div class="tier sel"><span class="flag">Populärast</span><div class="radio"></div><div class="ti"><div class="t1">12 viner XL</div><div class="t2">Bäst värde</div></div><div class="tp2"><div class="pp">641 kr</div><div class="pb">53 kr/fl</div></div></div>
-  <div class="tier"><div class="radio"></div><div class="ti"><div class="t1">12 viner Lyx, Guld</div><div class="t2">Prisbelönta viner</div></div><div class="tp2"><div class="pp">720 kr</div><div class="pb">60 kr/fl</div></div></div>
+  <div class="tiers">
+    <div class="tier"><div class="dot"></div><div class="t1">6 viner</div><div class="t2">Prova på</div><div class="pp">381 kr</div><div class="pb">64 kr/fl</div></div>
+    <div class="tier sel"><span class="flag">Populärast</span><div class="dot"></div><div class="t1">12 viner XL</div><div class="t2">Bäst värde</div><div class="pp">641 kr</div><div class="pb">53 kr/fl</div></div>
+    <div class="tier"><div class="dot"></div><div class="t1">12 Lyx, Guld</div><div class="t2">Prisbelönt</div><div class="pp">720 kr</div><div class="pb">60 kr/fl</div></div>
+  </div>
+
+  <details class="cro-ingar" open>
+    <summary>
+      Vad ingår i lådan
+      <span class="sub">12 viner · 4 sorter</span>
+      <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="body">
+      <div class="wl"><span class="qty">3&times;</span><span class="sw" style="background:#7c1220"></span><span class="nmwrap"><div class="nm">Primitivo di Manduria, Puglia</div><div class="fl">Rött &middot; mörka bär, kryddig, mjuka tanniner</div></span><span class="viv">Vivino 4,1</span></div>
+      <div class="wl"><span class="qty">3&times;</span><span class="sw" style="background:#7c1220"></span><span class="nmwrap"><div class="nm">Baronello Rosso, Toscana</div><div class="fl">Rött &middot; mjuk, körsbär, balanserad</div></span><span class="viv">Vivino 3,9</span></div>
+      <div class="wl"><span class="qty">3&times;</span><span class="sw" style="background:#e6c96b"></span><span class="nmwrap"><div class="nm">Grillo Bianco, Sicilia</div><div class="fl">Vitt &middot; frisk, citrus, torr</div></span><span class="viv">Vivino 4,0</span></div>
+      <div class="wl"><span class="qty">3&times;</span><span class="sw" style="background:#e8a0b4"></span><span class="nmwrap"><div class="nm">Fantini Rosé, Abruzzo</div><div class="fl">Rosé &middot; bär, torr, lätt</div></span><span class="viv">Vivino 3,8</span></div>
+      <div class="scale">Torrt <span class="track"><i></i></span> Sött</div>
+    </div>
+  </details>
 </div>
-<!-- /CRO TEST T3 ladder -->
+<!-- /CRO TEST T3 -->
 
 <div class="MA-product-qty-btn">
                 
@@ -6964,34 +6999,7 @@ input, select, textarea {
             
                   
             
-              
-<!-- CRO TEST T3: Vad ingar per-wine detail -->
-<div class="cro-whats">
-  <style>
-    .cro-whats{font-family:'Rubik',sans-serif;margin:16px 0 8px}
-    .cro-whats .box{border:1px solid #e7e1dd;border-radius:10px;padding:16px}
-    .cro-whats .wh{font-size:15px;font-weight:600;color:#25302a;margin-bottom:10px}
-    .cro-whats .wl{display:flex;align-items:center;gap:8px;font-size:13px;padding:8px 0;border-top:1px solid #f0ebe7}
-    .cro-whats .wl:first-of-type{border-top:none;padding-top:0}
-    .cro-whats .sw{width:9px;height:9px;border-radius:50%;flex-shrink:0}
-    .cro-whats .nm{flex:1;color:#37433c}
-    .cro-whats .viv{font-size:11px;font-weight:600;color:#6b3fa0;background:#f1ecf9;padding:2px 7px;border-radius:10px}
-    .cro-whats .scale{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:12px;color:#8a807a}
-    .cro-whats .track{flex:1;height:6px;background:linear-gradient(90deg,#e7e1dd,#d8b46a);border-radius:3px;position:relative}
-    .cro-whats .track i{position:absolute;top:-3px;left:62%;width:12px;height:12px;border-radius:50%;background:#7c1220;border:2px solid #fff}
-  </style>
-  <div class="box">
-    <div class="wh">Vad ingår i lådan</div>
-    <div class="wl"><span class="sw" style="background:#7c1220"></span><span class="nm">Primitivo di Manduria, Puglia</span><span class="viv">Vivino 4,1</span></div>
-    <div class="wl"><span class="sw" style="background:#7c1220"></span><span class="nm">Baronello Rosso, Toscana</span><span class="viv">Vivino 3,9</span></div>
-    <div class="wl"><span class="sw" style="background:#e6c96b"></span><span class="nm">Grillo Bianco, Sicilia</span><span class="viv">Vivino 4,0</span></div>
-    <div class="wl"><span class="sw" style="background:#e8a0b4"></span><span class="nm">Fantini Rosé, Abruzzo</span><span class="viv">Vivino 3,8</span></div>
-    <div class="scale">Torrt <span class="track"><i></i></span> Sött</div>
-  </div>
-</div>
-<!-- /CRO TEST T3 whats -->
-
-<div class="tabs__product-page vertical-tabs">
+              <div class="tabs__product-page vertical-tabs">
   <div class="wrapper-tab-content">
     
 
