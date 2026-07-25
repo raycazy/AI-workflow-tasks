@@ -6806,7 +6806,7 @@ input, select, textarea {
               
 
               
-<!-- CRO TEST T3: AOV Box Ladder + per-wine taste accordion -->
+<!-- CRO TEST T3: AOV Box Ladder + compact per-wine taste accordion -->
 <div class="cro-ladder">
   <style>
     /* hide the theme's useless single-option grouped swatch (only "Lada") */
@@ -6833,20 +6833,20 @@ input, select, textarea {
     .cro-ingar summary .sub{font-size:12px;font-weight:500;color:#8a807a;margin-left:auto}
     .cro-ingar summary .chev{width:16px;height:16px;stroke:#7c1220;fill:none;stroke-width:2;transition:transform .2s;flex-shrink:0}
     .cro-ingar[open] summary .chev{transform:rotate(180deg)}
-    .cro-ingar .body{padding:0 14px 14px}
-    .cro-ingar .wl{display:flex;align-items:flex-start;gap:10px;padding:12px 0;border-top:1px solid #ece7e3}
+    .cro-ingar .body{padding:0 14px 12px}
+    .cro-ingar .wl{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-top:1px solid #ece7e3}
     .cro-ingar .qty{font-size:13px;font-weight:700;color:#7c1220;min-width:26px;text-align:right;padding-top:1px}
     .cro-ingar .sw{width:11px;height:11px;border-radius:50%;flex-shrink:0;margin-top:3px}
     .cro-ingar .nmwrap{flex:1;min-width:0}
     .cro-ingar .nm{font-size:13px;color:#2f2b29;font-weight:600}
     .cro-ingar .fl{font-size:11px;color:#8a807a;margin-top:1px}
     .cro-ingar .viv{font-size:11px;font-weight:600;color:#6b3fa0;background:#f1ecf9;padding:2px 7px;border-radius:10px;flex-shrink:0;margin-top:2px}
-    /* per-wine taste profile */
-    .cro-ingar .tp{display:flex;gap:14px;margin-top:8px}
-    .cro-ingar .ax{flex:1}
-    .cro-ingar .axl{display:flex;justify-content:space-between;font-size:9px;color:#a89f99;margin-bottom:3px}
-    .cro-ingar .bar{height:4px;background:#ece7e3;border-radius:2px;position:relative}
-    .cro-ingar .bar i{position:absolute;top:-2px;width:8px;height:8px;border-radius:50%;background:#7c1220;border:1.5px solid #fff}
+    /* compact per-wine taste profile: pip meters */
+    .cro-ingar .tp{display:flex;gap:16px;margin-top:6px;font-size:11px;color:#8a807a}
+    .cro-ingar .mt{display:inline-flex;align-items:center;gap:6px}
+    .cro-ingar .pips{display:inline-flex;gap:3px}
+    .cro-ingar .pips span{width:6px;height:6px;border-radius:50%;background:#e2dbd5}
+    .cro-ingar .pips span.on{background:#7c1220}
   </style>
 
   <div class="lh">Välj din låda</div>
@@ -6865,8 +6865,8 @@ input, select, textarea {
           <div class="nm">Primitivo di Manduria, Puglia</div>
           <div class="fl">Rött &middot; mörka bär, kryddig, mjuka tanniner</div>
           <div class="tp">
-            <div class="ax"><div class="axl"><span>Torrt</span><span>Sött</span></div><div class="bar"><i style="left:32%"></i></div></div>
-            <div class="ax"><div class="axl"><span>Lätt</span><span>Fylligt</span></div><div class="bar"><i style="left:86%"></i></div></div>
+            <span class="mt">Sötma <span class="pips"><span class="on"></span><span class="on"></span><span></span><span></span><span></span></span></span>
+            <span class="mt">Kropp <span class="pips"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span></span>
           </div>
         </div>
         <span class="viv">Vivino 4,1</span>
@@ -6877,8 +6877,8 @@ input, select, textarea {
           <div class="nm">Baronello Rosso, Toscana</div>
           <div class="fl">Rött &middot; mjuk, körsbär, balanserad</div>
           <div class="tp">
-            <div class="ax"><div class="axl"><span>Torrt</span><span>Sött</span></div><div class="bar"><i style="left:30%"></i></div></div>
-            <div class="ax"><div class="axl"><span>Lätt</span><span>Fylligt</span></div><div class="bar"><i style="left:58%"></i></div></div>
+            <span class="mt">Sötma <span class="pips"><span class="on"></span><span class="on"></span><span></span><span></span><span></span></span></span>
+            <span class="mt">Kropp <span class="pips"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span></span>
           </div>
         </div>
         <span class="viv">Vivino 3,9</span>
@@ -6889,8 +6889,8 @@ input, select, textarea {
           <div class="nm">Grillo Bianco, Sicilia</div>
           <div class="fl">Vitt &middot; frisk, citrus, torr</div>
           <div class="tp">
-            <div class="ax"><div class="axl"><span>Torrt</span><span>Sött</span></div><div class="bar"><i style="left:16%"></i></div></div>
-            <div class="ax"><div class="axl"><span>Lätt</span><span>Fylligt</span></div><div class="bar"><i style="left:30%"></i></div></div>
+            <span class="mt">Sötma <span class="pips"><span class="on"></span><span></span><span></span><span></span><span></span></span></span>
+            <span class="mt">Kropp <span class="pips"><span class="on"></span><span class="on"></span><span></span><span></span><span></span></span></span>
           </div>
         </div>
         <span class="viv">Vivino 4,0</span>
@@ -6901,8 +6901,8 @@ input, select, textarea {
           <div class="nm">Fantini Rosé, Abruzzo</div>
           <div class="fl">Rosé &middot; bär, torr, lätt</div>
           <div class="tp">
-            <div class="ax"><div class="axl"><span>Torrt</span><span>Sött</span></div><div class="bar"><i style="left:22%"></i></div></div>
-            <div class="ax"><div class="axl"><span>Lätt</span><span>Fylligt</span></div><div class="bar"><i style="left:26%"></i></div></div>
+            <span class="mt">Sötma <span class="pips"><span class="on"></span><span class="on"></span><span></span><span></span><span></span></span></span>
+            <span class="mt">Kropp <span class="pips"><span class="on"></span><span class="on"></span><span></span><span></span><span></span></span></span>
           </div>
         </div>
         <span class="viv">Vivino 3,8</span>
