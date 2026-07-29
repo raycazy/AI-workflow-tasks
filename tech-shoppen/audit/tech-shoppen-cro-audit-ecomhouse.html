@@ -1,0 +1,2180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tech-shoppen.dk &middot; CRO Audit &amp; Opportunity Report &middot; EcomHouse</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; overflow: hidden; background: #000000; color: #EFEEEE; font-family: 'Inter', sans-serif; }
+
+        /* ===== ECOMHOUSE CHROME (fixed overlays on every slide) ===== */
+        .eh-brand { position: fixed; top: 22px; left: 32px; z-index: 90; pointer-events: none; display: flex; align-items: center; height: 22px; }
+        .eh-brand svg { height: 18px; width: auto; display: block; }
+        .eh-year { position: fixed; top: 24px; right: 32px; z-index: 90; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #EFEEEE; letter-spacing: 1px; pointer-events: none; }
+        .eh-copyright { position: fixed; bottom: 22px; left: 32px; z-index: 90; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 1.5px; color: #EFEEEE; pointer-events: none; }
+        .eh-pagenum { position: fixed; bottom: 22px; right: 32px; z-index: 90; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 1px; color: #EFEEEE; pointer-events: none; font-variant-numeric: tabular-nums; }
+
+        /* Title color split (first word yellow): utility class for new title styling */
+        .eh-yellow { color: #F7D007; }
+        .eh-muted { color: #555555; }
+
+        /* Tighter, heavier title styles to match EcomHouse master file (override legacy NW thin-uppercase) */
+        .card-title { font-family: 'Inter', sans-serif !important; font-weight: 800 !important; letter-spacing: -0.02em !important; text-transform: none !important; font-size: 44px !important; line-height: 1.05 !important; color: #fff !important; }
+        .section-title { font-family: 'Inter', sans-serif !important; font-weight: 800 !important; letter-spacing: -0.025em !important; text-transform: none !important; font-size: 64px !important; line-height: 1.0 !important; color: #fff !important; }
+        .ty-title { font-family: 'Inter', sans-serif !important; font-weight: 800 !important; letter-spacing: -0.02em !important; text-transform: none !important; font-size: 56px !important; line-height: 1.05 !important; }
+        .section-kicker { font-family: 'Inter', sans-serif !important; font-weight: 700 !important; }
+        .card-label { font-family: 'Inter', sans-serif !important; font-weight: 700 !important; }
+
+        /* Cover slide logo */
+        .nw-cover-logo { position: relative; z-index: 2; width: 96px; height: 96px; margin-bottom: 28px; border-radius: 14px; background: #ffffff; padding: 8px; box-shadow: 0 8px 28px rgba(0,0,0,.35); display: block; }
+        .nw-cover-logo img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+        /* ===== SCROLL ===== */
+        .scroll-container { display: flex; height: 100vh; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+        .scroll-container::-webkit-scrollbar { display: none; }
+
+        /* ===== CARD ===== */
+        .card { min-width: 100vw; height: 100vh; scroll-snap-align: start; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 28px 48px 60px; position: relative; }
+
+        /* ===== TITLE SLIDE ===== */
+        .title-slide { background: #000; overflow: hidden; justify-content: flex-start !important; align-items: flex-start !important; padding: 120px 80px !important; }
+        .title-slide::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 1100px 700px at 70% 25%, rgba(247,208,7,.28), rgba(247,208,7,.08) 35%, transparent 70%), linear-gradient(180deg, #000 0%, #000 100%); opacity: 1; }
+        .title-slide::after { content: ''; position: absolute; inset: 0; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0'/></filter><rect width='200' height='200' filter='url(%23n)' opacity='0.7'/></svg>"); opacity: 0.35; mix-blend-mode: overlay; pointer-events: none; }
+        .title-logo { position: relative; z-index: 1; height: 110px; width: auto; margin-bottom: 28px; filter: drop-shadow(0 6px 24px rgba(0,191,105,0.18)); }
+        .title-badge { position: relative; z-index: 1; background: #F7D007; color: #111111; font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; padding: 8px 24px; border-radius: 4px; margin-bottom: 40px; }
+        .title-brand { display: none; }  /* Replaced by eh-brand chrome */
+        .title-text { position: relative; z-index: 2; text-align: left; max-width: 1100px; }
+        .title-text h1 { font-family: 'Inter', sans-serif; font-size: 92px; font-weight: 900; letter-spacing: -0.035em; text-transform: none; margin-bottom: 16px; line-height: 1.0; }
+        .title-text h1 .yellow { color: #F7D007; }
+        .title-text p { font-family: 'Inter', sans-serif; font-size: 16px; letter-spacing: 1px; text-transform: none; color: #999999; font-weight: 400; margin-top: 24px; }
+        .title-meta { position: relative; z-index: 2; margin-top: 40px; text-align: left; }
+        .title-meta p { font-family: 'Inter', sans-serif; font-size: 13px; letter-spacing: 0.5px; color: #999999; margin-bottom: 6px; font-weight: 400; }
+        .title-pills { position: relative; z-index: 2; display: flex; gap: 12px; margin-top: 32px; }
+        .title-pill { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 1px; padding: 10px 18px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.15); border-radius: 8px; color: #EFEEEE; text-transform: uppercase; }
+        .title-nav-hint { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 1; display: flex; align-items: center; gap: 12px; color: #999999; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; animation: pulse 2s ease-in-out infinite; }
+        .title-nav-hint svg { width: 20px; height: 20px; stroke: #999999; }
+        @keyframes pulse { 0%,100% { opacity: .4; } 50% { opacity: 1; } }
+
+        /* ===== SECTION HEADER ===== */
+        .section-slide { background: #000; }
+        .section-slide::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(247,208,7,.05) 0%, transparent 60%); }
+        .section-number { font-size: 100px; font-weight: 200; color: rgba(247,208,7,.12); margin-bottom: 16px; position: relative; z-index: 1; font-family: 'JetBrains Mono', monospace; }
+        .section-kicker { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: #F7D007; position: relative; z-index: 1; margin-bottom: 10px; font-weight: 600; }
+        .section-title { font-size: 40px; font-weight: 300; letter-spacing: 4px; text-transform: uppercase; position: relative; z-index: 1; margin-bottom: 14px; }
+        .section-sub { font-size: 13px; color: #999999; letter-spacing: 1px; position: relative; z-index: 1; max-width: 700px; text-align: center; line-height: 1.7; }
+
+        /* ===== CARD HEADERS ===== */
+        .card-header { text-align: center; margin-bottom: 26px; }
+        .card-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #F7D007; margin-bottom: 8px; font-weight: 500; }
+        .card-title { font-size: 26px; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; color: #fff; }
+        .card-subtitle { font-size: 12px; color: #999999; margin-top: 8px; letter-spacing: .5px; max-width: 700px; line-height: 1.7; margin-left: auto; margin-right: auto; }
+
+        /* ===== DATA TABLE ===== */
+        .data-table { width: 100%; max-width: 960px; border-collapse: collapse; }
+        .data-table th { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #999999; font-weight: 500; padding: 10px 12px; text-align: left; border-bottom: 1px solid rgba(255,255,255,.15); }
+        .data-table td { font-size: 12px; color: #ccc; padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,.06); }
+        .data-table tr:hover td { background: rgba(255,255,255,.02); }
+        .data-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+        .data-table .accent { color: #F7D007; font-weight: 500; }
+        .data-table .danger { color: #ef4444; font-weight: 500; }
+        .data-table .warn { color: #f59e0b; }
+        .data-table .good { color: #22c55e; font-weight: 500; }
+
+        /* ===== METRICS ===== */
+        .metrics-grid { display: flex; flex-wrap: wrap; gap: 16px; max-width: 980px; justify-content: center; }
+        .metric-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 22px 18px; text-align: center; min-width: 160px; flex: 1; }
+        .metric-value { font-size: 30px; font-weight: 300; color: #fff; margin-bottom: 4px; font-variant-numeric: tabular-nums; }
+        .metric-value.accent { color: #F7D007; }
+        .metric-value.red { color: #ef4444; }
+        .metric-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #999999; }
+        .metric-sub { font-size: 10px; color: #6b7c75; margin-top: 6px; line-height: 1.4; }
+
+        /* ===== SOURCE / FEATURE CARDS ===== */
+        .source-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 920px; width: 100%; }
+        .source-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 22px 20px; }
+        .source-card .marker { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #F7D007; margin-bottom: 12px; font-weight: 600; text-transform: uppercase; }
+        .source-name { font-size: 14px; font-weight: 500; color: #fff; margin-bottom: 10px; }
+        .source-detail { font-size: 11px; color: #999999; line-height: 1.7; }
+        .source-detail strong { color: #F7D007; }
+
+        /* ===== ISSUES CARDS ===== */
+        .issues-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 980px; width: 100%; }
+        .issue-card { background: rgba(239,68,68,.06); border: 1px solid rgba(239,68,68,.2); border-radius: 12px; padding: 20px; display: flex; gap: 14px; }
+        .issue-number { font-size: 32px; font-weight: 300; color: #ef4444; line-height: 1; min-width: 38px; font-family: 'JetBrains Mono', monospace; }
+        .issue-content h3 { font-size: 13px; font-weight: 600; letter-spacing: .5px; margin-bottom: 6px; }
+        .issue-content p { font-size: 11px; color: #999; line-height: 1.6; }
+        .issue-stat { display: inline-block; background: rgba(239,68,68,.15); color: #ef4444; font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 4px; margin-top: 6px; }
+
+        /* ===== OPPORTUNITY CARD (custom for this deck) ===== */
+        .opp-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; max-width: 1060px; width: 100%; }
+        .opp-impact { grid-column: 1 / -1; display: flex; align-items: center; gap: 18px; background: rgba(247,208,7,.06); border: 1px solid rgba(247,208,7,.22); border-radius: 12px; padding: 16px 22px; }
+        .opp-impact .label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #999999; }
+        .opp-impact .value { font-size: 22px; font-weight: 400; color: #F7D007; line-height: 1.1; }
+        .opp-pill { font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 6px 12px; border-radius: 20px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
+        .opp-pill.effort-low { background: rgba(34,197,94,.15); color: #22c55e; border: 1px solid rgba(34,197,94,.3); }
+        .opp-pill.effort-med { background: rgba(245,158,11,.15); color: #f59e0b; border: 1px solid rgba(245,158,11,.3); }
+        .opp-pill.effort-high { background: rgba(239,68,68,.15); color: #ef4444; border: 1px solid rgba(239,68,68,.3); }
+        .opp-pill.time { background: rgba(255,255,255,.06); color: #ccc; border: 1px solid rgba(255,255,255,.12); }
+        .opp-block { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 22px; }
+        .opp-block-title { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #F7D007; margin-bottom: 14px; font-weight: 500; }
+        .opp-list { list-style: none; padding: 0; }
+        .opp-list li { font-size: 11px; color: #ccc; line-height: 1.7; padding: 6px 0 6px 18px; position: relative; border-bottom: 1px solid rgba(255,255,255,.04); }
+        .opp-list li:last-child { border-bottom: none; }
+        .opp-list li::before { content: ''; position: absolute; left: 0; top: 13px; width: 6px; height: 6px; background: #F7D007; border-radius: 50%; opacity: .8; }
+        .opp-list.numbered { counter-reset: step; }
+        .opp-list.numbered li { padding-left: 28px; }
+        .opp-list.numbered li::before { content: counter(step); counter-increment: step; background: transparent; border: 1px solid rgba(247,208,7,.4); color: #F7D007; width: 18px; height: 18px; border-radius: 50%; top: 6px; font-size: 9px; font-weight: 600; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; }
+        .opp-math { font-size: 11px; color: #999999; font-style: italic; padding: 12px 0; line-height: 1.7; }
+        .opp-math strong { color: #F7D007; font-style: normal; font-weight: 500; }
+        .action-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 1px; font-weight: 700; padding: 2px 7px; border-radius: 3px; margin-right: 8px; vertical-align: 1px; }
+        .action-tag.ship { background: rgba(34,197,94,.14); color: #22c55e; border: 1px solid rgba(34,197,94,.3); }
+        .action-tag.test { background: rgba(247,208,7,.14); color: #F7D007; border: 1px solid rgba(247,208,7,.3); }
+
+        /* ===== SHIP vs TEST SPLIT SLIDE ===== */
+        .split-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; max-width: 1080px; width: 100%; }
+        .split-col { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 24px; }
+        .split-col.ship { border: 1.5px solid rgba(34,197,94,.4); }
+        .split-col.test { border: 1.5px solid rgba(247,208,7,.4); }
+        .split-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+        .split-head .name { font-size: 14px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; }
+        .split-head .name.ship { color: #22c55e; }
+        .split-head .name.test { color: #F7D007; }
+        .split-head .meta { font-size: 10px; color: #999999; font-family: 'JetBrains Mono', monospace; }
+        .split-desc { font-size: 11px; color: #999999; line-height: 1.6; margin-bottom: 14px; }
+        .split-row { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,.05); font-size: 11px; }
+        .split-row:last-child { border-bottom: none; }
+        .split-row .num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #999999; min-width: 26px; }
+        .split-row .label { flex: 1; color: #ccc; }
+        .split-row .impact { font-size: 10px; color: #fff; font-variant-numeric: tabular-nums; }
+
+        /* ===== INSIGHT BOX ===== */
+        .insight-box { max-width: 980px; width: 100%; background: rgba(247,208,7,.08); border: 1px solid rgba(247,208,7,.25); border-radius: 10px; padding: 16px 22px; margin-top: 18px; font-size: 12px; color: #ccc; line-height: 1.7; }
+        .insight-box strong { color: #F7D007; }
+
+        /* ===== TAKEAWAY CARDS ===== */
+        .takeaway-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 980px; width: 100%; }
+        .takeaway-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 10px; padding: 20px; }
+        .takeaway-title { font-size: 13px; font-weight: 500; margin-bottom: 4px; color: #F7D007; }
+        .takeaway-stat { font-size: 11px; color: #999999; margin-bottom: 8px; }
+        .takeaway-text { font-size: 11px; color: #ccc; line-height: 1.6; }
+
+        /* ===== COMPARE (mobile vs desktop) ===== */
+        .compare-layout { display: flex; gap: 32px; max-width: 820px; width: 100%; align-items: stretch; }
+        .compare-box { flex: 1; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 28px; text-align: center; }
+        .compare-box.highlight { border-color: rgba(247,208,7,.3); background: rgba(247,208,7,.05); }
+        .compare-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #999999; margin-bottom: 12px; }
+        .compare-rate { font-size: 46px; font-weight: 300; margin-bottom: 4px; }
+        .compare-rate.good { color: #F7D007; }
+        .compare-rate.bad { color: #ef4444; }
+        .compare-sub { font-size: 11px; color: #999999; line-height: 1.6; }
+        .compare-vs { display: flex; align-items: center; justify-content: center; font-size: 24px; color: #333; font-weight: 200; padding: 0 8px; }
+
+        /* ===== ROADMAP PHASES ===== */
+        .phase-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; max-width: 1100px; width: 100%; }
+        .phase-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 22px; position: relative; overflow: hidden; }
+        .phase-card.p1 { border: 1.5px solid rgba(239,68,68,.4); }
+        .phase-card.p2 { border: 1.5px solid rgba(245,158,11,.4); }
+        .phase-card.p3 { border: 1.5px solid rgba(34,197,94,.4); }
+        .phase-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #999999; margin-bottom: 6px; text-transform: uppercase; font-weight: 600; }
+        .phase-name { font-size: 16px; font-weight: 500; margin-bottom: 6px; }
+        .phase-when { font-size: 11px; color: #999999; margin-bottom: 14px; letter-spacing: .5px; }
+        .phase-impact { background: rgba(247,208,7,.1); border: 1px solid rgba(247,208,7,.25); border-radius: 6px; padding: 8px 12px; margin-bottom: 14px; }
+        .phase-impact .lbl { font-size: 9px; letter-spacing: 2px; color: #999999; text-transform: uppercase; margin-bottom: 2px; }
+        .phase-impact .val { font-size: 14px; color: #F7D007; font-weight: 500; }
+        .phase-list { list-style: none; padding: 0; }
+        .phase-list li { font-size: 11px; color: #ccc; padding: 6px 0 6px 16px; position: relative; line-height: 1.5; border-bottom: 1px solid rgba(255,255,255,.04); }
+        .phase-list li:last-child { border-bottom: none; }
+        .phase-list li::before { content: '→'; position: absolute; left: 0; top: 6px; color: #F7D007; font-weight: 700; }
+
+        /* ===== LANDSCAPE BARS ===== */
+        .landscape-layout { display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; max-width: 1040px; width: 100%; }
+        .bucket-list { display: flex; flex-direction: column; gap: 12px; }
+        .bucket-row { display: flex; align-items: center; gap: 14px; }
+        .bucket-name { font-size: 11px; color: #ccc; letter-spacing: 1px; text-transform: uppercase; width: 160px; font-weight: 500; }
+        .bucket-bar-wrap { flex: 1; height: 38px; background: rgba(255,255,255,.04); border-radius: 6px; overflow: hidden; }
+        .bucket-bar { height: 100%; display: flex; align-items: center; padding: 0 14px; color: #fff; font-size: 12px; font-weight: 500; }
+        .bucket-bar.crit { background: linear-gradient(90deg, #ef4444, #c2410c); }
+        .bucket-bar.high { background: linear-gradient(90deg, #f59e0b, #d97706); }
+        .bucket-bar.low { background: linear-gradient(90deg, #22c55e, #15803d); }
+        .lever-list { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 22px; }
+        .lever-title { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #F7D007; margin-bottom: 16px; font-weight: 500; }
+        .lever-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.05); }
+        .lever-row:last-child { border-bottom: none; }
+        .lever-num { width: 22px; height: 22px; border-radius: 50%; background: rgba(247,208,7,.15); border: 1px solid rgba(247,208,7,.3); color: #F7D007; font-size: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'JetBrains Mono', monospace; }
+        .lever-name { flex: 1; font-size: 11px; color: #ccc; }
+        .lever-value { font-size: 11px; color: #F7D007; font-weight: 500; font-variant-numeric: tabular-nums; }
+
+        /* ===== SCORECARD ===== */
+        .scorecard-total { display: flex; justify-content: space-between; align-items: center; background: #111111; border: 1px solid rgba(247,208,7,.25); border-radius: 8px; padding: 14px 22px; margin-top: 16px; max-width: 960px; width: 100%; }
+        .scorecard-total .lbl { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #fff; font-weight: 500; }
+        .scorecard-total .val { font-size: 18px; color: #F7D007; font-weight: 500; }
+
+        /* ===== THANK YOU ===== */
+        .thankyou-slide { background: #000; }
+        .ty-title { font-size: 46px; font-weight: 300; letter-spacing: 4px; text-transform: uppercase; position: relative; z-index: 1; margin-bottom: 20px; }
+        .ty-sub { font-size: 13px; color: #999999; letter-spacing: 2px; position: relative; z-index: 1; margin-bottom: 8px; }
+        .ty-powered { font-size: 10px; color: #6b7c75; letter-spacing: 1px; position: relative; z-index: 1; margin-top: 36px; }
+        .ty-cta { display: inline-block; margin-top: 32px; padding: 12px 24px; background: #F7D007; color: #111111; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; border-radius: 4px; text-decoration: none; }
+
+        /* ===== NAV ===== */
+        .nav-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: center; align-items: center; gap: 20px; padding: 14px 40px; background: linear-gradient(transparent, rgba(0,0,0,.9) 40%); }
+        .nav-counter { display: none; }  /* Hidden, using eh-pagenum instead */
+        .nav-dots { display: flex; gap: 4px; }
+        .nav-dot { width: 6px; height: 6px; border-radius: 50%; background: #333; cursor: pointer; transition: background .3s, width .3s, border-radius .3s; }
+        .nav-dot.active { background: #F7D007; width: 18px; border-radius: 3px; }
+        .nav-counter { font-size: 11px; color: #999999; letter-spacing: 2px; font-family: 'JetBrains Mono', monospace; }
+        .nav-arrows { display: flex; gap: 10px; }
+        .nav-arrow { width: 34px; height: 34px; border: 1px solid #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background .3s, border-color .3s, color .3s; background: none; color: #fff; }
+        .nav-arrow:hover { border-color: #F7D007; background: rgba(247,208,7,.1); }
+        .nav-arrow svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+        /* ===== TEST PLAN SLIDES (Nordic Weed branded) ===== */
+        .card.tp-card { flex-direction: row; padding: 0; align-items: stretch; justify-content: flex-start; }
+        .tp-left { width: 38%; background: #111111; padding: 36px 40px 50px; display: flex; flex-direction: column; overflow-y: auto; }
+        .tp-left::-webkit-scrollbar { display: none; }
+        .tp-badge { display: inline-flex; align-items: center; gap: 8px; background: #F7D007; color: #111111; font-size: 13px; font-weight: 700; letter-spacing: 1px; padding: 8px 16px; border-radius: 20px; align-self: flex-start; margin-bottom: 28px; font-family: 'Inter', sans-serif; }
+        .tp-badge .e-mark { width: 22px; height: 22px; background: #111111; color: #F7D007; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; }
+        .tp-section { margin-bottom: 18px; }
+        .tp-section h3 { font-size: 20px; font-weight: 600; color: #fff; margin-bottom: 6px; letter-spacing: .3px; }
+        .tp-underline { width: 100%; height: 1px; background: #F7D007; margin-bottom: 12px; }
+        .tp-section p, .tp-section li { font-size: 12.5px; color: #EFEEEE; line-height: 1.65; }
+        .tp-section ul { padding-left: 0; list-style: none; }
+        .tp-section ul li { padding-left: 16px; position: relative; margin-bottom: 5px; }
+        .tp-section ul li::before { content: '•'; position: absolute; left: 0; top: 0; color: #F7D007; font-weight: 800; }
+        .tp-section ol { padding-left: 0; list-style: none; counter-reset: km; }
+        .tp-section ol li { padding-left: 22px; position: relative; margin-bottom: 4px; counter-increment: km; font-size: 12.5px; color: #EFEEEE; }
+        .tp-section ol li::before { content: counter(km) '.'; position: absolute; left: 0; top: 0; font-weight: 500; color: #EFEEEE; }
+        .tp-section ol li.primary { color: #F7D007; font-weight: 600; }
+        .tp-section ol li.primary::before { color: #F7D007; font-weight: 700; }
+        .tp-target-box { border: 1px solid #F7D007; border-radius: 8px; padding: 20px 22px; margin-top: auto; }
+        .tp-target-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .tp-target-grid .label { font-size: 13px; color: #F7D007; font-weight: 600; margin-bottom: 6px; letter-spacing: .3px; }
+        .tp-target-grid .value { font-size: 11.5px; color: #fff; line-height: 1.5; }
+
+        .tp-right { width: 62%; background: #FFFFFF; background-image: linear-gradient(rgba(18,42,30,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(18,42,30,.06) 1px, transparent 1px); background-size: 30px 30px; padding: 36px 48px; display: flex; flex-direction: column; overflow-y: auto; color: #111111; }
+        .tp-right::-webkit-scrollbar { display: none; }
+        .tp-title { font-size: 30px; font-weight: 700; color: #111111; margin-bottom: 14px; letter-spacing: -.3px; font-family: 'Inter', sans-serif; }
+        .tp-meta-bar { display: flex; align-items: center; gap: 16px; padding: 10px 18px; border: 1.5px solid #111111; border-radius: 8px; margin-bottom: 24px; }
+        .tp-meta-bar .lbl { color: #111111; font-weight: 700; font-size: 13px; }
+        .tp-meta-bar .val { color: #111111; font-size: 13px; }
+        .tp-pill-ab { margin-left: auto; padding: 6px 18px; border-radius: 6px; font-size: 12px; font-weight: 700; letter-spacing: .5px; background: #F7D007; color: #111111; }
+
+        .tp-mockups { display: flex; gap: 50px; justify-content: center; align-items: flex-end; flex: 1; padding: 8px 0 24px; }
+        .tp-mockup { display: flex; flex-direction: column; align-items: center; }
+        .tp-phone { width: 240px; height: 500px; border-radius: 36px; background: #000; border: 6px solid #111111; box-shadow: 0 22px 50px rgba(18,42,30,.22); position: relative; overflow: hidden; }
+        .tp-phone::before { content: ''; position: absolute; top: 6px; left: 50%; transform: translateX(-50%); width: 76px; height: 18px; background: #111111; border-radius: 16px; z-index: 50; }
+        .tp-screen { width: 100%; height: 100%; overflow: hidden; position: relative; padding-top: 24px; background: #000; }
+        .tp-screen .shot { position: absolute; top: 24px; left: 0; width: 100%; height: calc(100% - 24px); object-fit: cover; object-position: top center; }
+        .tp-mockup-label { margin-top: 14px; font-size: 13px; font-weight: 700; letter-spacing: 3px; color: #111111; font-family: 'Inter', sans-serif; }
+        .tp-mockup-label.variant { color: #1F4A2E; }
+
+        .tp-popup-bg { position: absolute; inset: 0; background: rgba(0,0,0,.75); display: flex; align-items: center; justify-content: center; padding: 22px; z-index: 35; backdrop-filter: blur(2px); }
+        .tp-popup { background: #0a0a0a; border-radius: 12px; padding: 20px 18px; text-align: center; border: 1.5px solid #00BF69; box-shadow: 0 0 24px rgba(0,191,105,.25); position: relative; width: 100%; }
+        .tp-popup .close { position: absolute; top: 6px; right: 10px; font-size: 14px; color: #888; }
+        .tp-popup .badge-mini { background: #00BF69; color: #000; font-size: 8px; font-weight: 800; padding: 4px 10px; border-radius: 12px; display: inline-block; margin-bottom: 10px; letter-spacing: 1px; }
+        .tp-popup h3 { font-family: 'Playfair Display', serif; font-size: 16px; color: #fff; font-weight: 600; margin-bottom: 6px; line-height: 1.2; }
+        .tp-popup p { font-size: 9px; color: #B8C5E8; line-height: 1.5; margin-bottom: 12px; }
+        .tp-popup .pop-cta { background: #00BF69; color: #fff; padding: 8px 14px; border-radius: 40px; font-size: 9px; font-weight: 600; }
+        .tp-popup .code { background: rgba(0,191,105,.15); color: #00BF69; padding: 4px 10px; border-radius: 4px; font-size: 9px; font-weight: 700; letter-spacing: 2px; display: inline-block; margin-bottom: 10px; border: 1px dashed #00BF69; }
+
+        .tp-sticky-bar { position: absolute; bottom: 0; left: 0; right: 0; background: #0a0a0a; border-top: 1px solid rgba(0,191,105,.3); padding: 8px 12px; display: flex; gap: 8px; align-items: center; z-index: 30; box-shadow: 0 -8px 16px rgba(0,0,0,.5); }
+        .tp-sticky-bar .price { font-family: 'Playfair Display', serif; font-size: 12px; font-weight: 700; color: #00BF69; }
+        .tp-sticky-bar .price-old { font-size: 8px; color: #888; text-decoration: line-through; margin-left: 4px; }
+        .tp-sticky-bar .btn { flex: 1; background: #00BF69; color: #fff; padding: 8px; border-radius: 40px; font-size: 9px; text-align: center; font-weight: 600; }
+
+        .tp-abovefold { position: absolute; top: 24px; left: 0; right: 0; background: #0a0a0a; padding: 8px 12px; display: flex; gap: 8px; align-items: center; justify-content: space-between; z-index: 30; border-bottom: 1px solid rgba(0,191,105,.2); }
+        .tp-abovefold .name { font-family: 'Playfair Display', serif; font-size: 11px; color: #fff; font-weight: 600; line-height: 1.1; margin-bottom: 2px; }
+        .tp-abovefold .price-row { display: flex; align-items: center; gap: 4px; }
+        .tp-abovefold .price-row .price { font-size: 11px; color: #00BF69; font-weight: 700; }
+        .tp-abovefold .price-row .old { font-size: 8px; color: #888; text-decoration: line-through; }
+        .tp-abovefold .savings { background: #00BF69; color: #000; font-size: 7px; font-weight: 700; padding: 2px 6px; border-radius: 8px; }
+
+        .tp-bundle-overlay { position: absolute; top: 24px; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0,0,0,.92) 0%, #000 30%, #000 100%); padding: 14px 12px 12px; overflow: hidden; z-index: 30; }
+        .tp-bundle-overlay .head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+        .tp-bundle-overlay .head .logo { color: #00BF69; font-size: 9px; font-weight: 800; letter-spacing: 1px; }
+        .tp-bundle-overlay h2 { font-family: 'Playfair Display', serif; color: #fff; font-size: 13px; margin-bottom: 4px; line-height: 1.2; }
+        .tp-bundle-overlay .sub { color: #B8C5E8; font-size: 8px; margin-bottom: 12px; }
+        .tp-bundle-card { background: linear-gradient(135deg, rgba(0,191,105,.08), rgba(0,0,0,.6)); border: 1px solid rgba(0,191,105,.3); border-radius: 8px; padding: 8px 10px; margin-bottom: 6px; display: flex; gap: 8px; align-items: center; }
+        .tp-bundle-card.featured { border-color: #00BF69; background: rgba(0,191,105,.12); }
+        .tp-bundle-card .thumb { width: 32px; height: 32px; background: #1a1a1a; border-radius: 5px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+        .tp-bundle-card .body { flex: 1; }
+        .tp-bundle-card .tag { font-size: 6px; color: #000; background: #00BF69; padding: 1px 5px; border-radius: 6px; display: inline-block; margin-bottom: 2px; font-weight: 700; letter-spacing: .5px; }
+        .tp-bundle-card .name { font-family: 'Playfair Display', serif; font-size: 9px; color: #fff; font-weight: 600; line-height: 1.1; }
+        .tp-bundle-card .meta { font-size: 7px; color: #B8C5E8; }
+        .tp-bundle-card .price { font-size: 10px; color: #00BF69; font-weight: 700; }
+        .tp-bundle-overlay .alt-link { text-align: center; font-size: 8px; color: #B8C5E8; padding-top: 8px; border-top: 1px dashed rgba(0,191,105,.25); }
+        .tp-bundle-overlay .alt-link strong { color: #00BF69; }
+
+        .tp-hero-rotation { position: absolute; top: 88px; left: 12px; right: 12px; height: 130px; border-radius: 10px; background: linear-gradient(135deg, #0a0a0a 0%, #133d28 50%, #00BF69 200%); padding: 12px; display: flex; flex-direction: column; justify-content: center; z-index: 30; overflow: hidden; border: 1px solid rgba(0,191,105,.4); }
+        .tp-hero-rotation .kicker { color: #00BF69; font-size: 7px; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 4px; }
+        .tp-hero-rotation h2 { font-family: 'Playfair Display', serif; color: #fff; font-size: 13px; line-height: 1.1; margin-bottom: 8px; }
+        .tp-hero-rotation .cta { background: #00BF69; color: #fff; padding: 5px 12px; border-radius: 40px; font-size: 8px; font-weight: 600; align-self: flex-start; }
+        .tp-hero-rotation .dots { position: absolute; bottom: 6px; left: 50%; transform: translateX(-50%); display: flex; gap: 3px; }
+        .tp-hero-rotation .dots div { width: 10px; height: 3px; background: rgba(255,255,255,.3); border-radius: 2px; }
+        .tp-hero-rotation .dots div.active { background: #00BF69; }
+
+        .tp-nav-blocks { position: absolute; top: 120px; left: 12px; right: 12px; z-index: 30; }
+        .tp-nav-blocks .row { display: flex; gap: 6px; margin-bottom: 6px; }
+        .tp-nav-blocks .block { background: linear-gradient(135deg, #000000, #133d28); border: 1px solid rgba(0,191,105,.3); border-radius: 8px; padding: 8px; flex: 1; min-height: 56px; display: flex; flex-direction: column; justify-content: space-between; }
+        .tp-nav-blocks .block.hero { background: linear-gradient(135deg, #00BF69, #0a3a25); flex: 2; min-height: 68px; }
+        .tp-nav-blocks .block .tag { font-size: 6px; font-weight: 800; color: #00BF69; letter-spacing: .5px; }
+        .tp-nav-blocks .block.hero .tag { color: #000; }
+        .tp-nav-blocks .block .name { font-family: 'Playfair Display', serif; color: #fff; font-size: 9px; font-weight: 600; line-height: 1.1; }
+        .tp-nav-blocks .block.hero .name { color: #000; font-size: 11px; }
+        .tp-nav-blocks .block .count { font-size: 6px; color: #B8C5E8; }
+        .tp-nav-blocks .block.hero .count { color: rgba(0,0,0,.7); }
+
+        .tp-crosssell { position: absolute; left: 12px; right: 12px; top: 270px; background: #0a0a0a; border: 1.5px dashed #00BF69; border-radius: 10px; padding: 10px; z-index: 30; }
+        .tp-crosssell .title { font-size: 9px; color: #00BF69; font-weight: 700; margin-bottom: 8px; letter-spacing: .5px; }
+        .tp-crosssell .items { display: flex; gap: 6px; }
+        .tp-crosssell .item { flex: 1; background: rgba(0,191,105,.06); padding: 6px; border-radius: 6px; text-align: center; border: 1px solid rgba(0,191,105,.15); }
+        .tp-crosssell .item .img { height: 24px; background: #1a1a1a; border-radius: 4px; margin-bottom: 4px; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+        .tp-crosssell .item .nm { font-size: 7px; color: #fff; font-weight: 500; line-height: 1.1; margin-bottom: 2px; }
+        .tp-crosssell .item .add { font-size: 7px; color: #00BF69; font-weight: 700; }
+
+        .tp-spec { margin-top: 10px; max-width: 250px; text-align: left; font-family: 'Inter', sans-serif; font-size: 10px; color: #111111; line-height: 1.5; list-style: none; padding: 0; }
+        .tp-spec li { padding-left: 14px; position: relative; margin-bottom: 4px; }
+        .tp-spec li::before { content: ''; position: absolute; left: 0; top: 5px; width: 7px; height: 7px; background: #F7D007; border: 1px solid #111111; border-radius: 2px; }
+        .tp-cap { margin-top: 10px; max-width: 250px; font-family: 'Inter', sans-serif; font-size: 10px; color: #555555; font-style: italic; text-align: center; line-height: 1.5; }
+        .tp-annotation { position: absolute; background: #F7D007; color: #111111; font-size: 9px; font-weight: 800; padding: 3px 9px; border-radius: 12px; letter-spacing: .5px; z-index: 60; box-shadow: 0 3px 10px rgba(247,208,7,.5); white-space: nowrap; }
+
+        /* ===== METHODOLOGY SLIDES ===== */
+        .method-flow { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; max-width: 1100px; width: 100%; }
+        .method-step { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 10px; padding: 14px 12px; text-align: center; position: relative; }
+        .method-step .num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #F7D007; font-weight: 700; margin-bottom: 8px; }
+        .method-step .icon { font-size: 22px; margin-bottom: 8px; }
+        .icon-svg { stroke: #F7D007; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; margin: 0 auto 8px; display: block; }
+        .method-step .icon-svg { width: 28px; height: 28px; }
+        .protocol-card .icon-svg { width: 30px; height: 30px; }
+        .icon-mini { fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; display: block; }
+
+        /* ===== INTERACTIVE CALCULATOR ===== */
+        .calc-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 22px; max-width: 1100px; width: 100%; }
+        .calc-panel, .calc-output { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 24px; }
+        .calc-panel h4, .calc-output h4 { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #F7D007; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 18px; font-weight: 700; }
+        .calc-row { margin-bottom: 14px; }
+        .calc-row:last-child { margin-bottom: 0; }
+        .calc-label-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+        .calc-label-row .lbl { font-size: 11px; color: #ccc; font-weight: 500; }
+        .calc-label-row .val { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #F7D007; font-weight: 700; }
+        .calc-label-row .val .delta { font-size: 9px; color: #999999; margin-left: 6px; font-weight: 500; }
+        .calc-slider { width: 100%; height: 4px; background: rgba(255,255,255,.08); border-radius: 2px; outline: none; -webkit-appearance: none; appearance: none; cursor: pointer; }
+        .calc-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 18px; height: 18px; background: #F7D007; border-radius: 50%; cursor: pointer; box-shadow: 0 0 0 4px rgba(247,208,7,.15); transition: box-shadow .15s; }
+        .calc-slider::-webkit-slider-thumb:hover { box-shadow: 0 0 0 8px rgba(247,208,7,.25); }
+        .calc-slider::-moz-range-thumb { width: 18px; height: 18px; background: #F7D007; border-radius: 50%; cursor: pointer; border: none; box-shadow: 0 0 0 4px rgba(247,208,7,.15); }
+        .calc-input { width: 100%; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 14px; padding: 10px 14px; border-radius: 6px; outline: none; transition: border-color .15s; }
+        .calc-input:focus { border-color: #F7D007; }
+        .calc-baseline { font-size: 9px; color: #6b7c75; margin-top: 4px; font-family: 'JetBrains Mono', monospace; }
+
+        .calc-projection { background: rgba(247,208,7,.06); border: 1.5px solid rgba(247,208,7,.3); border-radius: 10px; padding: 18px; margin-bottom: 14px; }
+        .calc-projection .lbl { font-size: 10px; color: #999999; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; font-weight: 600; }
+        .calc-projection .val { font-size: 32px; color: #F7D007; font-weight: 300; line-height: 1; margin-bottom: 6px; font-family: 'JetBrains Mono', monospace; }
+        .calc-projection .delta { font-size: 12px; color: #ccc; font-weight: 500; }
+        .calc-projection .delta.positive { color: #F7D007; }
+        .calc-projection .delta.negative { color: #ef4444; }
+        .calc-projection .delta strong { font-weight: 700; }
+        .calc-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 12px 0; border-top: 1px solid rgba(255,255,255,.06); }
+        .calc-meta .meta-cell { text-align: center; }
+        .calc-meta .meta-cell .meta-lbl { font-size: 9px; color: #999999; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; font-weight: 600; }
+        .calc-meta .meta-cell .meta-val { font-size: 14px; color: #fff; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+        .calc-reset { width: 100%; background: transparent; border: 1px solid rgba(247,208,7,.3); color: #F7D007; padding: 10px; border-radius: 6px; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-top: 12px; transition: background .15s, border-color .15s, color .15s; }
+        .calc-reset:hover { background: rgba(247,208,7,.1); border-color: #F7D007; }
+
+        /* ===== SLIDE MENU (TOC drop-up) ===== */
+        .nav-menu-btn { display: flex; align-items: center; gap: 6px; height: 34px; padding: 0 14px; border: 1px solid #333; border-radius: 17px; background: none; color: #fff; cursor: pointer; transition: background .3s, border-color .3s, color .3s; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; }
+        .nav-menu-btn:hover, .nav-menu-btn.open { border-color: #F7D007; background: rgba(247,208,7,.1); color: #F7D007; }
+        .nav-menu-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; }
+
+        .nav-menu-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 99; opacity: 0; pointer-events: none; transition: opacity .25s; }
+        .nav-menu-backdrop.open { opacity: 1; pointer-events: auto; }
+
+        .nav-menu { position: fixed; bottom: 70px; left: 50%; transform: translateX(-50%) translateY(20px); width: 720px; max-width: calc(100vw - 60px); max-height: 65vh; background: #1a1a1a; border: 1px solid rgba(247,208,7,.3); border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,.5), 0 0 30px rgba(247,208,7,.1); z-index: 110; display: flex; flex-direction: column; overflow: hidden; opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s; }
+        .nav-menu.open { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+        .nav-menu-header { padding: 16px 22px; border-bottom: 1px solid rgba(255,255,255,.08); display: flex; justify-content: space-between; align-items: center; }
+        .nav-menu-header .title { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: #fff; letter-spacing: .5px; }
+        .nav-menu-header .close { background: none; border: none; color: #999999; cursor: pointer; padding: 4px 8px; font-size: 18px; font-family: inherit; line-height: 1; }
+        .nav-menu-header .close:hover { color: #F7D007; }
+        .nav-menu-content { padding: 14px 18px 18px; overflow-y: auto; flex: 1; }
+        .nav-menu-content::-webkit-scrollbar { width: 6px; }
+        .nav-menu-content::-webkit-scrollbar-thumb { background: rgba(247,208,7,.3); border-radius: 3px; }
+        .nav-menu-section { margin-bottom: 14px; }
+        .nav-menu-section:last-child { margin-bottom: 0; }
+        .nav-menu-section-title { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #F7D007; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; padding: 6px 10px; margin-bottom: 4px; border-bottom: 1px solid rgba(247,208,7,.15); }
+        .nav-menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+        .nav-menu-item { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 6px; cursor: pointer; transition: background .15s; font-family: 'Inter', sans-serif; font-size: 12px; color: #ccc; }
+        .nav-menu-item:hover { background: rgba(247,208,7,.08); color: #fff; }
+        .nav-menu-item.active { background: rgba(247,208,7,.15); color: #F7D007; font-weight: 600; }
+        .nav-menu-item .num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #6b7c75; min-width: 24px; }
+        .nav-menu-item.active .num { color: #F7D007; }
+        .nav-menu-item .title { flex: 1; line-height: 1.3; }
+
+        /* ===== RESEARCH SLIDES ===== */
+        .funnel-stack { display: flex; flex-direction: column; gap: 6px; max-width: 1000px; width: 100%; }
+        .funnel-step { display: flex; align-items: center; gap: 18px; }
+        .funnel-step .label { width: 150px; text-align: right; font-size: 12px; color: #ccc; font-weight: 500; flex-shrink: 0; }
+        .funnel-step .bar-wrap { flex: 1; height: 44px; background: rgba(255,255,255,.04); border-radius: 6px; position: relative; overflow: hidden; }
+        .funnel-step .bar { height: 100%; background: linear-gradient(90deg, #1F4A2E, #F7D007); border-radius: 6px; display: flex; align-items: center; padding: 0 14px; }
+        .funnel-step .bar .count { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #fff; font-weight: 700; }
+        .funnel-step .bar .pct { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(255,255,255,.7); margin-left: 8px; }
+        .funnel-step .drop { width: 110px; text-align: left; flex-shrink: 0; }
+        .funnel-step .drop .val { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #ef4444; font-weight: 700; }
+        .funnel-step .drop .lbl { font-size: 9px; color: #999999; text-transform: uppercase; letter-spacing: 1px; }
+        .funnel-step.no-drop .drop { visibility: hidden; }
+
+        .device-split { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 1000px; width: 100%; }
+        .device-card { background: rgba(255,255,255,.04); border-radius: 12px; padding: 22px; }
+        .device-card.mobile { border: 1.5px solid rgba(239,68,68,.3); }
+        .device-card.desktop { border: 1.5px solid rgba(247,208,7,.3); }
+        .device-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,.06); }
+        .device-head .name { font-size: 16px; font-weight: 600; color: #fff; }
+        .device-head .pct { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 700; }
+        .device-card.mobile .device-head .pct { color: #ef4444; }
+        .device-card.desktop .device-head .pct { color: #F7D007; }
+        .device-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .device-stat .lbl { font-size: 9px; color: #999999; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
+        .device-stat .val { font-family: 'JetBrains Mono', monospace; font-size: 16px; color: #fff; font-weight: 600; }
+
+        .nvr-strip { display: flex; gap: 18px; max-width: 1000px; width: 100%; margin-top: 16px; }
+        .nvr-card { flex: 1; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 10px; padding: 14px 18px; }
+        .nvr-card .lbl { font-size: 10px; color: #999999; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; font-weight: 600; }
+        .nvr-card .row { display: flex; justify-content: space-between; padding: 4px 0; font-size: 12px; }
+        .nvr-card .row .k { color: #999999; }
+        .nvr-card .row .v { font-family: 'JetBrains Mono', monospace; color: #fff; font-weight: 600; }
+
+        .day-bars { display: flex; flex-direction: column; gap: 6px; max-width: 1000px; width: 100%; }
+        .day-row { display: flex; align-items: center; gap: 14px; }
+        .day-row .label { width: 90px; text-align: right; font-size: 12px; color: #ccc; font-weight: 500; }
+        .day-row .bar-wrap { flex: 1; height: 32px; background: rgba(255,255,255,.04); border-radius: 5px; position: relative; overflow: hidden; }
+        .day-row .bar { height: 100%; border-radius: 5px; display: flex; align-items: center; padding: 0 12px; }
+        .day-row .bar.peak { background: linear-gradient(90deg, #1F4A2E, #F7D007); }
+        .day-row .bar.normal { background: rgba(247,208,7,.25); }
+        .day-row .bar.low { background: rgba(239,68,68,.3); }
+        .day-row .bar .v { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #fff; font-weight: 700; }
+        .day-row .meta { width: 80px; text-align: left; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #999999; }
+
+        .product-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; max-width: 1080px; width: 100%; }
+        .product-col { background: rgba(255,255,255,.04); border-radius: 12px; padding: 20px; }
+        .product-col.heroes { border: 1.5px solid rgba(247,208,7,.3); }
+        .product-col.gems { border: 1.5px solid rgba(93,197,182,.3); }
+        .product-col.dead { border: 1.5px solid rgba(239,68,68,.3); }
+        .product-col h3 { font-size: 13px; font-weight: 700; margin-bottom: 4px; letter-spacing: .3px; }
+        .product-col.heroes h3 { color: #F7D007; }
+        .product-col.gems h3 { color: #5DC5B6; }
+        .product-col.dead h3 { color: #ef4444; }
+        .product-col .summary { font-size: 10px; color: #999999; margin-bottom: 12px; }
+        .product-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,.05); font-size: 11px; }
+        .product-row:last-child { border-bottom: none; }
+        .product-row .name { color: #ccc; flex: 1; padding-right: 8px; }
+        .product-row .val { font-family: 'JetBrains Mono', monospace; color: #fff; font-weight: 600; font-size: 11px; white-space: nowrap; }
+
+        .method-step h4 { font-size: 12px; color: #fff; font-weight: 600; margin-bottom: 4px; line-height: 1.2; }
+        .method-step p { font-size: 9px; color: #999999; line-height: 1.4; }
+        .method-step::after { content: '→'; position: absolute; right: -10px; top: 50%; transform: translateY(-50%); color: #F7D007; font-size: 14px; font-weight: 700; z-index: 5; }
+        .method-step:last-child::after { display: none; }
+
+        .brief-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 1040px; width: 100%; }
+        .brief-col { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 22px; }
+        .brief-col.test-setup { border: 1.5px solid rgba(247,208,7,.4); }
+        .brief-col.stat-params { border: 1.5px solid rgba(93,197,182,.4); }
+        .brief-col h3 { font-size: 14px; color: #fff; font-weight: 600; margin-bottom: 14px; letter-spacing: .3px; }
+        .brief-col h3 .tag { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #F7D007; margin-right: 8px; }
+        .brief-col.stat-params h3 .tag { color: #5DC5B6; }
+        .brief-list { list-style: none; padding: 0; }
+        .brief-list li { padding: 8px 0 8px 20px; position: relative; font-size: 11px; color: #ccc; line-height: 1.5; border-bottom: 1px solid rgba(255,255,255,.04); }
+        .brief-list li:last-child { border-bottom: none; }
+        .brief-list li::before { content: '\2713'; position: absolute; left: 0; top: 8px; color: #F7D007; font-weight: 700; }
+        .brief-list li strong { color: #fff; font-weight: 600; }
+
+        .protocol-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; max-width: 1080px; width: 100%; }
+        .protocol-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 22px 18px; text-align: center; }
+        .protocol-card .icon { font-size: 26px; margin-bottom: 10px; }
+        .protocol-card .lbl { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #F7D007; font-weight: 700; margin-bottom: 6px; letter-spacing: 1px; text-transform: uppercase; }
+        .protocol-card .val { font-size: 17px; color: #fff; font-weight: 600; margin-bottom: 6px; line-height: 1.2; }
+        .protocol-card .sub { font-size: 10px; color: #999999; line-height: 1.5; }
+
+        .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 1040px; width: 100%; align-items: stretch; }
+        .pricing-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 24px; }
+        .pricing-card.lead { background: rgba(247,208,7,.06); border: 1.5px solid rgba(247,208,7,.3); }
+        .pricing-card .tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #F7D007; font-weight: 700; letter-spacing: 1px; margin-bottom: 8px; text-transform: uppercase; }
+        .pricing-card h3 { font-size: 22px; color: #fff; font-weight: 600; margin-bottom: 8px; line-height: 1.2; }
+        .pricing-card .price-line { font-size: 32px; color: #F7D007; font-weight: 300; margin-bottom: 10px; line-height: 1; }
+        .pricing-card .desc { font-size: 12px; color: #ccc; line-height: 1.6; }
+        .pricing-card ul { list-style: none; padding: 0; margin-top: 12px; }
+        .pricing-card ul li { padding: 6px 0 6px 20px; position: relative; font-size: 11px; color: #ccc; line-height: 1.5; }
+        .pricing-card ul li::before { content: '→'; position: absolute; left: 0; color: #F7D007; font-weight: 700; }
+
+        .multiplier-stack { display: flex; flex-direction: column; gap: 8px; max-width: 980px; width: 100%; }
+        .mult-row { display: flex; align-items: center; gap: 16px; padding: 14px 20px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 10px; }
+        .mult-pct { font-size: 28px; font-weight: 300; min-width: 80px; text-align: center; font-variant-numeric: tabular-nums; }
+        .mult-pct.p100 { color: #F7D007; }
+        .mult-pct.p75 { color: #5DC5B6; }
+        .mult-pct.p50 { color: #f59e0b; }
+        .mult-pct.p25 { color: #ef4444; }
+        .mult-row .body { flex: 1; }
+        .mult-row .stages { font-size: 12px; color: #fff; font-weight: 500; margin-bottom: 3px; }
+        .mult-row .why { font-size: 10px; color: #999999; }
+        .mult-bar { width: 80px; height: 6px; background: rgba(255,255,255,.05); border-radius: 3px; overflow: hidden; }
+        .mult-bar .fill { height: 100%; border-radius: 3px; }
+        .mult-bar .fill.p100 { width: 100%; background: #F7D007; }
+        .mult-bar .fill.p75 { width: 75%; background: #5DC5B6; }
+        .mult-bar .fill.p50 { width: 50%; background: #f59e0b; }
+        .mult-bar .fill.p25 { width: 25%; background: #ef4444; }
+
+        .worked-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; max-width: 1080px; width: 100%; }
+        .worked-col { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 22px; display: flex; flex-direction: column; }
+        .worked-col.upper { border: 1.5px solid rgba(239,68,68,.4); }
+        .worked-col.direct { border: 1.5px solid rgba(247,208,7,.4); }
+        .worked-col h3 { font-size: 14px; color: #fff; font-weight: 600; margin-bottom: 4px; }
+        .worked-col .lbl { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #999999; margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase; }
+        .worked-step { display: flex; align-items: center; gap: 10px; padding: 6px 0; font-size: 11px; color: #ccc; border-bottom: 1px dashed rgba(255,255,255,.06); }
+        .worked-step:last-of-type { border-bottom: none; }
+        .worked-step .step-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #F7D007; min-width: 18px; }
+        .worked-step .step-text { flex: 1; }
+        .worked-step .step-val { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #fff; font-weight: 600; text-align: right; }
+        .worked-fee { margin-top: auto; padding-top: 12px; border-top: 1px solid rgba(255,255,255,.1); display: flex; justify-content: space-between; align-items: baseline; }
+        .worked-fee .lbl-fee { font-size: 11px; color: #999999; text-transform: uppercase; letter-spacing: 1px; }
+        .worked-fee .val-fee { font-size: 22px; color: #F7D007; font-weight: 600; }
+    
+        /* ===== PAGE WALK (screenshot + findings) ===== */
+        .walk{display:grid;grid-template-columns:226px 1fr;gap:34px;max-width:1120px;width:100%;align-items:start}
+        .walk-left{display:flex;flex-direction:column;align-items:center;gap:12px;position:sticky;top:0}
+        .phone{width:216px;border:8px solid #1c1c1c;border-radius:30px;overflow:hidden;background:#000;box-shadow:0 18px 44px rgba(0,0,0,.45)}
+        .phone img{width:100%;height:432px;object-fit:cover;object-position:top;display:block}
+        .phone-cap{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#999}
+        .mock-btn{display:inline-flex;align-items:center;gap:7px;background:#F7D007;color:#111;font-size:10.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:9px 14px;border-radius:4px;text-decoration:none}
+        .mock-btn:hover{filter:brightness(.94)}
+        .walk .opp-layout{max-width:none}
+        /* ===== RECOMMENDED DESIGNS GRID ===== */
+        .designs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1040px;width:100%}
+        .design-card{display:flex;flex-direction:column;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;overflow:hidden;text-decoration:none;transition:border-color .2s,transform .2s}
+        .design-card:hover{border-color:rgba(247,208,7,.5);transform:translateY(-3px)}
+        .dc-shot{height:172px;overflow:hidden;background:#0c0c0c;border-bottom:1px solid rgba(255,255,255,.08)}
+        .dc-shot img{width:100%;height:100%;object-fit:cover;object-position:top}
+        .dc-body{padding:16px 18px}
+        .dc-tag{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#F7D007;margin-bottom:6px}
+        .dc-title{font-size:15px;font-weight:600;color:#fff;margin-bottom:6px}
+        .dc-desc{font-size:11px;color:#999;line-height:1.6;margin-bottom:12px}
+        .dc-open{font-size:11px;font-weight:600;color:#F7D007}
+        /* ===== TEST-PLAN MOCKUP LINK ===== */
+        .tp-mocklink{display:inline-block;margin-top:9px;color:#1F4A2E;font-size:11px;font-weight:700;letter-spacing:.5px;text-decoration:underline;text-underline-offset:3px;font-family:'Inter',sans-serif;}
+        .tp-mocklink:hover{color:#111;}
+        /* top-align the two phones so the extra "Open live mockup" link under VARIANT does not shift it up */
+        .tp-mockups{align-items:flex-start;}
+        /* the "Test Plan" pill was removed, so give the first heading room to clear the fixed wordmark */
+        .tp-left{padding-top:56px;}
+        /* ===== PROVEN RESULTS (case study cards) ===== */
+        .proof-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:1000px;width:100%}
+        .proof-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:20px 22px}
+        .proof-card .pc-client{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:#F7D007;text-transform:uppercase;margin-bottom:8px}
+        .proof-card .pc-title{font-size:16px;font-weight:600;color:#fff;margin-bottom:6px}
+        .proof-card .pc-desc{font-size:11px;color:#999;line-height:1.6;margin-bottom:14px}
+        .proof-card .pc-res{display:flex;gap:10px;flex-wrap:wrap}
+        .proof-card .pc-chip{background:rgba(247,208,7,.08);border:1px solid rgba(247,208,7,.25);border-radius:8px;padding:8px 12px;text-align:center;min-width:78px}
+        .proof-card .pc-chip .v{font-size:19px;font-weight:700;color:#F7D007;line-height:1;font-variant-numeric:tabular-nums}
+        .proof-card .pc-chip .k{font-size:9px;color:#999;text-transform:uppercase;letter-spacing:1px;margin-top:5px}
+        /* ===== TEXT-SIZE CONTROL (A- / A / A+) ===== */
+        :root{--fs:1;}
+        .card > *{zoom:var(--fs);}                 /* scale the content inside each slide */
+        .card.tp-card > *{zoom:1;}                 /* leave the test-plan phone columns at fixed size */
+        .card{overflow-y:auto;align-items:safe center;}  /* let a slide scroll if the larger text overflows */
+        .fs-control{position:fixed;top:16px;right:84px;z-index:95;display:flex;align-items:center;gap:2px;background:rgba(20,20,18,.55);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:3px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);}
+        .fs-control button{min-width:26px;height:26px;border:none;background:transparent;color:#EFEEEE;font-family:'Inter',sans-serif;font-weight:800;cursor:pointer;border-radius:14px;line-height:1;padding:0 6px;transition:background .15s,color .15s;}
+        .fs-control button:hover{background:rgba(247,208,7,.2);color:#F7D007;}
+        /* stack the "Open live mockup" and "Open in Figma" links under the variant */
+        .tp-mockup .tp-mocklink{display:block;margin-top:6px;}
+        .tp-mocklink.figma{color:#0d2818;}
+        .tp-mocklink.figma:hover{color:#111;}
+
+        /* ===== TRACK RECORD (real test cards) ===== */
+        .track-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; max-width: 1140px; width: 100%; }
+        .track-card { background: rgba(255,255,255,.04); border: 1.5px solid rgba(247,208,7,.45); border-radius: 12px; padding: 22px 22px 18px; display: flex; flex-direction: column; }
+        .track-card .brand { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #999; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; margin-bottom: 6px; }
+        .track-card .test { font-size: 18px; font-weight: 700; color: #fff; line-height: 1.2; letter-spacing: -0.2px; margin-bottom: 14px; min-height: 44px; }
+        .track-card .primary-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #F7D007; letter-spacing: 1.8px; text-transform: uppercase; font-weight: 700; margin-bottom: 4px; }
+        .track-card .primary-value { font-family: 'JetBrains Mono', monospace; font-size: 46px; font-weight: 700; color: #F7D007; line-height: 1; letter-spacing: -0.5px; margin-bottom: 6px; }
+        .track-card .ci { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #999; margin-bottom: 6px; }
+        .track-card .monthly { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #fff; font-weight: 700; margin-bottom: 12px; }
+        .track-card .divider { height: 1px; background: rgba(255,255,255,0.08); margin-bottom: 10px; }
+        .track-card .secondary { display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; }
+        .track-card .secondary .row { display: grid; grid-template-columns: 1fr 1.4fr auto; gap: 6px; font-size: 10px; align-items: baseline; }
+        .track-card .secondary .lbl { color: #999; font-weight: 700; letter-spacing: 0.3px; }
+        .track-card .secondary .val { color: #ccc; font-family: 'JetBrains Mono', monospace; }
+        .track-card .secondary .delta { color: #F7D007; font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+        .track-card .note { font-size: 10px; color: #999; line-height: 1.55; font-style: italic; margin-top: auto; }
+        .track-footer { max-width: 1140px; width: 100%; margin-top: 14px; font-size: 10px; color: #6b7c75; text-align: center; font-style: italic; }
+        
+        /* ===== CASE STUDY SLIDE ===== */
+        .case-card { flex-direction: row !important; padding: 0 !important; align-items: stretch !important; justify-content: flex-start !important; }
+        .case-left { width: 44%; background: #0c0c0c; padding: 64px 36px 50px; display: flex; flex-direction: column; gap: 14px; overflow-y: auto; }
+        .case-left::-webkit-scrollbar { display: none; }
+        .case-badge { display: inline-flex; align-items: center; gap: 8px; background: #F7D007; color: #111; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; padding: 6px 12px; border-radius: 18px; align-self: flex-start; font-family: 'Inter', sans-serif; text-transform: uppercase; }
+        .case-brand { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #999; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; }
+        .case-title { font-family: 'Inter', sans-serif; font-size: 26px; font-weight: 800; color: #fff; line-height: 1.1; letter-spacing: -0.5px; margin-top: -4px; }
+        .case-primary { background: rgba(247,208,7,0.06); border: 1.5px solid rgba(247,208,7,0.35); border-radius: 12px; padding: 16px 18px; margin-top: 4px; }
+        .case-primary .lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #F7D007; letter-spacing: 1.8px; text-transform: uppercase; font-weight: 700; margin-bottom: 4px; }
+        .case-primary .val { font-family: 'JetBrains Mono', monospace; font-size: 48px; font-weight: 700; color: #F7D007; line-height: 1; letter-spacing: -0.5px; margin-bottom: 6px; }
+        .case-primary .ci { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #999; }
+        .case-primary .impact { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #fff; font-weight: 700; margin-top: 4px; }
+        .case-table { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 14px 16px; }
+        .case-table .head { display: grid; grid-template-columns: 1.6fr 1fr 1fr 0.7fr; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #999; letter-spacing: 1.2px; text-transform: uppercase; font-weight: 700; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 6px; }
+        .case-table .head .col-ctrl, .case-table .head .col-var, .case-table .head .col-delta { text-align: right; }
+        .case-table .head .col-var { color: #F7D007; }
+        .case-table .row { display: grid; grid-template-columns: 1.6fr 1fr 1fr 0.7fr; gap: 8px; font-size: 11px; padding: 4px 0; align-items: baseline; }
+        .case-table .row .metric { color: #fff; font-weight: 600; }
+        .case-table .row .ctrl { color: #999; font-family: 'JetBrains Mono', monospace; text-align: right; }
+        .case-table .row .var { color: #fff; font-weight: 700; font-family: 'JetBrains Mono', monospace; text-align: right; }
+        .case-table .row .delta { color: #F7D007; font-weight: 700; font-family: 'JetBrains Mono', monospace; text-align: right; }
+        .case-note { font-size: 11px; color: #ccc; line-height: 1.6; font-style: italic; }
+        
+        .case-right { width: 56%; background: #f4f4f1; background-image: linear-gradient(rgba(0,0,0,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,.04) 1px, transparent 1px); background-size: 26px 26px; padding: 64px 44px 36px; display: flex; flex-direction: column; overflow-y: auto; color: #111; }
+        .case-right::-webkit-scrollbar { display: none; }
+        .case-right .title-bar { font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 800; letter-spacing: -0.3px; color: #111; margin-bottom: 14px; }
+        .case-right .meta-bar { display: flex; align-items: center; gap: 14px; padding: 8px 14px; border: 1.5px solid #111; border-radius: 8px; margin-bottom: 22px; background: #fff; flex-wrap: wrap; }
+        .case-right .meta-bar .lbl { color: #111; font-weight: 700; font-size: 11px; }
+        .case-right .meta-bar .val { color: #111; font-size: 11px; font-family: 'JetBrains Mono', monospace; }
+        .case-right .meta-bar .pill-ab { margin-left: auto; padding: 5px 12px; border-radius: 6px; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; background: #F7D007; color: #111; text-transform: uppercase; }
+        .case-mockups { display: flex; gap: 24px; justify-content: center; flex: 1; padding: 4px 0 12px; }
+        .case-mockup { flex: 1; max-width: 240px; display: flex; flex-direction: column; }
+        .case-mockup-label { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 800; letter-spacing: 2px; color: #111; margin-bottom: 8px; text-transform: uppercase; text-align: center; }
+        .case-mockup-label.variant { color: #F7D007; background: #111; padding: 4px 10px; border-radius: 4px; align-self: center; }
+        .case-frame { background: #fff; border: 1.5px solid #111; border-radius: 12px; overflow: hidden; position: relative; box-shadow: 0 18px 36px rgba(0,0,0,0.18); aspect-ratio: 1 / 1.85; }
+        .case-frame img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+    </style>
+</head>
+
+<body>
+
+<!-- EcomHouse fixed chrome -->
+<div class="eh-brand" id="ehBrand" aria-label="EcomHouse">
+    <svg viewBox="0 0 163 18" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+        <path d="M-0.000187397 17.088V0.288012H12.6958V3.40801H3.86381V13.968H13.0078V17.088H-0.000187397ZM3.57581 10.08V7.05601H11.6638V10.08H3.57581ZM24.1414 17.376C22.8454 17.376 21.6374 17.168 20.5174 16.752C19.4134 16.32 18.4534 15.712 17.6374 14.928C16.8214 14.144 16.1814 13.224 15.7174 12.168C15.2694 11.112 15.0454 9.95201 15.0454 8.68801C15.0454 7.42401 15.2694 6.26401 15.7174 5.20801C16.1814 4.15201 16.8214 3.23201 17.6374 2.44801C18.4694 1.66401 19.4374 1.06401 20.5414 0.648011C21.6454 0.216012 22.8534 1.23978e-05 24.1654 1.23978e-05C25.6214 1.23978e-05 26.9334 0.256012 28.1014 0.768013C29.2854 1.26401 30.2774 2.00001 31.0774 2.97601L28.5814 5.28001C28.0054 4.62401 27.3654 4.13601 26.6614 3.81601C25.9574 3.48001 25.1894 3.31201 24.3574 3.31201C23.5734 3.31201 22.8534 3.44001 22.1974 3.69601C21.5414 3.95201 20.9734 4.32001 20.4934 4.80001C20.0134 5.28001 19.6374 5.84801 19.3654 6.50401C19.1094 7.16001 18.9814 7.88801 18.9814 8.68801C18.9814 9.48801 19.1094 10.216 19.3654 10.872C19.6374 11.528 20.0134 12.096 20.4934 12.576C20.9734 13.056 21.5414 13.424 22.1974 13.68C22.8534 13.936 23.5734 14.064 24.3574 14.064C25.1894 14.064 25.9574 13.904 26.6614 13.584C27.3654 13.248 28.0054 12.744 28.5814 12.072L31.0774 14.376C30.2774 15.352 29.2854 16.096 28.1014 16.608C26.9334 17.12 25.6134 17.376 24.1414 17.376ZM40.8786 17.376C39.5506 17.376 38.3186 17.16 37.1826 16.728C36.0626 16.296 35.0866 15.688 34.2546 14.904C33.4386 14.12 32.7986 13.2 32.3346 12.144C31.8866 11.088 31.6626 9.93601 31.6626 8.68801C31.6626 7.44001 31.8866 6.28801 32.3346 5.23201C32.7986 4.17601 33.4466 3.25601 34.2786 2.47201C35.1106 1.68801 36.0866 1.08001 37.2066 0.648011C38.3266 0.216012 39.5426 1.23978e-05 40.8546 1.23978e-05C42.1826 1.23978e-05 43.3986 0.216012 44.5026 0.648011C45.6226 1.08001 46.5906 1.68801 47.4066 2.47201C48.2386 3.25601 48.8866 4.17601 49.3506 5.23201C49.8146 6.27201 50.0466 7.42401 50.0466 8.68801C50.0466 9.93601 49.8146 11.096 49.3506 12.168C48.8866 13.224 48.2386 14.144 47.4066 14.928C46.5906 15.696 45.6226 16.296 44.5026 16.728C43.3986 17.16 42.1906 17.376 40.8786 17.376ZM40.8546 14.064C41.6066 14.064 42.2946 13.936 42.9186 13.68C43.5586 13.424 44.1186 13.056 44.5986 12.576C45.0786 12.096 45.4466 11.528 45.7026 10.872C45.9746 10.216 46.1106 9.48801 46.1106 8.68801C46.1106 7.88801 45.9746 7.16001 45.7026 6.50401C45.4466 5.84801 45.0786 5.28001 44.5986 4.80001C44.1346 4.32001 43.5826 3.95201 42.9426 3.69601C42.3026 3.44001 41.6066 3.31201 40.8546 3.31201C40.1026 3.31201 39.4066 3.44001 38.7666 3.69601C38.1426 3.95201 37.5906 4.32001 37.1106 4.80001C36.6306 5.28001 36.2546 5.84801 35.9826 6.50401C35.7266 7.16001 35.5986 7.88801 35.5986 8.68801C35.5986 9.47201 35.7266 10.2 35.9826 10.872C36.2546 11.528 36.6226 12.096 37.0866 12.576C37.5666 13.056 38.1266 13.424 38.7666 13.68C39.4066 13.936 40.1026 14.064 40.8546 14.064ZM52.9686 17.088V0.288012H56.1846L63.3366 12.144H61.6326L68.6646 0.288012H71.8566L71.9046 17.088H68.2566L68.2326 5.88001H68.9046L63.2886 15.312H61.5366L55.8006 5.88001H56.6166V17.088H52.9686Z" fill="#F7D007"/>
+        <path d="M87.4104 17.088V0.288012H91.2984V17.088H87.4104ZM75.8904 17.088V0.288012H79.7784V17.088H75.8904ZM79.4904 10.2V6.91201H87.6984V10.2H79.4904ZM103.433 17.376C102.105 17.376 100.873 17.16 99.7373 16.728C98.6173 16.296 97.6413 15.688 96.8092 14.904C95.9933 14.12 95.3533 13.2 94.8893 12.144C94.4413 11.088 94.2173 9.93601 94.2173 8.68801C94.2173 7.44001 94.4413 6.28801 94.8893 5.23201C95.3533 4.17601 96.0013 3.25601 96.8333 2.47201C97.6653 1.68801 98.6413 1.08001 99.7613 0.648011C100.881 0.216012 102.097 1.23978e-05 103.409 1.23978e-05C104.737 1.23978e-05 105.953 0.216012 107.057 0.648011C108.177 1.08001 109.145 1.68801 109.961 2.47201C110.793 3.25601 111.441 4.17601 111.905 5.23201C112.369 6.27201 112.601 7.42401 112.601 8.68801C112.601 9.93601 112.369 11.096 111.905 12.168C111.441 13.224 110.793 14.144 109.961 14.928C109.145 15.696 108.177 16.296 107.057 16.728C105.953 17.16 104.745 17.376 103.433 17.376ZM103.409 14.064C104.161 14.064 104.849 13.936 105.473 13.68C106.113 13.424 106.673 13.056 107.153 12.576C107.633 12.096 108.001 11.528 108.257 10.872C108.529 10.216 108.665 9.48801 108.665 8.68801C108.665 7.88801 108.529 7.16001 108.257 6.50401C108.001 5.84801 107.633 5.28001 107.153 4.80001C106.689 4.32001 106.137 3.95201 105.497 3.69601C104.857 3.44001 104.161 3.31201 103.409 3.31201C102.657 3.31201 101.961 3.44001 101.321 3.69601C100.697 3.95201 100.145 4.32001 99.6653 4.80001C99.1853 5.28001 98.8093 5.84801 98.5373 6.50401C98.2813 7.16001 98.1533 7.88801 98.1533 8.68801C98.1533 9.47201 98.2813 10.2 98.5373 10.872C98.8093 11.528 99.1773 12.096 99.6413 12.576C100.121 13.056 100.681 13.424 101.321 13.68C101.961 13.936 102.657 14.064 103.409 14.064ZM122.987 17.376C120.603 17.376 118.739 16.712 117.395 15.384C116.051 14.056 115.379 12.16 115.379 9.69601V0.288012H119.267V9.55201C119.267 11.152 119.595 12.304 120.251 13.008C120.907 13.712 121.827 14.064 123.011 14.064C124.195 14.064 125.115 13.712 125.771 13.008C126.427 12.304 126.755 11.152 126.755 9.55201V0.288012H130.595V9.69601C130.595 12.16 129.923 14.056 128.579 15.384C127.235 16.712 125.371 17.376 122.987 17.376ZM139.957 17.376C138.613 17.376 137.325 17.2 136.093 16.848C134.861 16.48 133.869 16.008 133.117 15.432L134.437 12.504C135.157 13.016 136.005 13.44 136.981 13.776C137.973 14.096 138.973 14.256 139.981 14.256C140.749 14.256 141.365 14.184 141.829 14.04C142.309 13.88 142.661 13.664 142.885 13.392C143.109 13.12 143.221 12.808 143.221 12.456C143.221 12.008 143.045 11.656 142.693 11.4C142.341 11.128 141.877 10.912 141.301 10.752C140.725 10.576 140.085 10.416 139.381 10.272C138.693 10.112 137.997 9.92001 137.293 9.69601C136.605 9.47201 135.973 9.18401 135.397 8.83201C134.821 8.48001 134.349 8.01601 133.981 7.44001C133.629 6.86401 133.453 6.12801 133.453 5.23201C133.453 4.27201 133.709 3.40001 134.221 2.61601C134.749 1.81601 135.533 1.18401 136.573 0.720012C137.629 0.240012 138.949 1.23978e-05 140.533 1.23978e-05C141.589 1.23978e-05 142.629 0.128012 143.653 0.384012C144.677 0.624012 145.581 0.992012 146.365 1.48801L145.165 4.44001C144.381 3.99201 143.597 3.66401 142.813 3.45601C142.029 3.23201 141.261 3.12001 140.509 3.12001C139.757 3.12001 139.141 3.20801 138.661 3.38401C138.181 3.56001 137.837 3.79201 137.629 4.08001C137.421 4.35201 137.317 4.67201 137.317 5.04001C137.317 5.47201 137.493 5.82401 137.845 6.09601C138.197 6.35201 138.661 6.56001 139.237 6.72001C139.813 6.88001 140.445 7.04001 141.133 7.20001C141.837 7.36001 142.533 7.54401 143.221 7.75201C143.925 7.96001 144.565 8.24001 145.141 8.59201C145.717 8.94401 146.181 9.40801 146.533 9.98401C146.901 10.56 147.085 11.288 147.085 12.168C147.085 13.112 146.821 13.976 146.293 14.76C145.765 15.544 144.973 16.176 143.917 16.656C142.877 17.136 141.557 17.376 139.957 17.376ZM149.742 17.088V0.288012H162.438V3.40801H153.606V13.968H162.75V17.088H149.742ZM153.318 10.08V7.05601H161.406V10.08H153.318Z" fill="#EFEEEE"/>
+    </svg>
+</div>
+<div class="eh-year">2026</div>
+<div class="eh-copyright">ECOMHOUSE ©ALL RIGHTS RESERVED</div>
+<div class="eh-pagenum" id="ehPageNum">01</div>
+<div class="scroll-container" id="scrollContainer">
+
+    <!-- SLIDE 0: COVER -->
+    <div class="title-slide card" data-index="0">
+        <div class="title-text">
+            <h1><span class="yellow">TECH-SHOPPEN.DK</span><br>CRO Audit &amp; Opportunity Report</h1>
+            <div class="title-pills">
+                <span class="title-pill">GA4 ANALYSIS</span>
+                <span class="title-pill">SEQUENTIAL FUNNEL</span>
+                <span class="title-pill">HEURISTIC AUDIT</span>
+                <span class="title-pill">VOICE OF CUSTOMER</span>
+                <span class="title-pill">COMPETITORS</span>
+            </div>
+        </div>
+        <div class="title-meta">
+            <p>tech-shoppen.dk&nbsp;&nbsp;&middot;&nbsp;&nbsp;Kids tech &amp; home gadgets, Shopify, Denmark&nbsp;&nbsp;&middot;&nbsp;&nbsp;Audit date 15 Jul 2026</p>
+            <p>GA4 property 375103003 (90-day pull, 16 Apr to 15 Jul 2026, + sequential funnel), PageSpeed, 404 Trustpilot reviews, 3 verified competitors, full heuristic walk of 4 page types</p>
+            <p>Prepared by EcomHouse</p>
+        </div>
+        <div class="title-nav-hint">
+            <span>Use arrow keys or swipe</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+    </div>
+
+    <!-- SLIDE 1: METHODOLOGY -->
+    <div class="card" data-index="1">
+        <div class="card-header">
+            <div class="card-label">Methodology</div>
+            <div class="card-title">How this audit was built</div>
+            <div class="card-subtitle">Every finding is grounded in GA4 data, live page behaviour, or the customer's own words. <strong style="color:#F7D007">Absolute GA4 numbers are directional</strong> (consent and the Shopify Web Pixels Manager suppress some events, and a third of purchases arrive with no source), but the step to step ratios are unaffected and they drive every priority in this deck.</div>
+        </div>
+        <div class="source-grid">
+            <div class="source-card">
+                <div class="marker">// 01</div>
+                <div class="source-name">GA4 evidence</div>
+                <div class="source-detail">90-day pull + sequential funnel from <strong>property 375103003</strong>: sessions, revenue, device split, per-product landing performance, and a true View to Purchase funnel (Funnel API, not raw event counts).</div>
+            </div>
+            <div class="source-card">
+                <div class="marker">// 02</div>
+                <div class="source-name">Live page &amp; speed</div>
+                <div class="source-detail">Full walk of homepage, collection, KidsBuddy PDP and cart on desktop and mobile, plus <strong>Google PageSpeed</strong> on homepage and PDP, plus a tag audit (GTM, GA4, Google Ads, Meta all verified live).</div>
+            </div>
+            <div class="source-card">
+                <div class="marker">// 03</div>
+                <div class="source-name">VOC + competitors</div>
+                <div class="source-detail"><strong>404 Trustpilot reviews</strong> (3.9/5) theme coded with verbatim Danish quotes, plus 3 verified competitors: xplora.dk, kidsbuddy.dk and techbutik.dk, each checked live.</div>
+            </div>
+        </div>
+        <div class="insight-box"><strong>One gap worth naming:</strong> no behavioral analytics tool (Microsoft Clarity or Hotjar) is installed, so there are no session recordings or rage-click maps behind this audit. Clarity is free; installing it is itself a recommendation of this deck.</div>
+    </div>
+
+    <!-- SLIDE 2: EXECUTIVE SUMMARY -->
+    <div class="card" data-index="2">
+        <div class="card-header">
+            <div class="card-label">Executive summary</div>
+            <div class="card-title">Where the money is leaking</div>
+            <div class="card-subtitle">90-day GA4: 49,156 sessions, 1,496 orders, 945,697 DKK revenue, 3.04% conversion, 632 DKK AOV. A healthy top line with six specific leaks under it.</div>
+        </div>
+        <div class="issues-grid">
+            <div class="issue-card">
+                <div class="issue-number">01</div>
+                <div class="issue-content">
+                    <h3>92.8% drop from View Product to Add to Cart</h3>
+                    <p>GA4 sequential funnel: 27,696 users view a product, only 1,994 add to cart. This is the single biggest leak, and it is concentrated on the long-tail PDPs, not KidsBuddy.</p>
+                    <span class="issue-stat">7.2% view to ATC</span>
+                </div>
+            </div>
+            <div class="issue-card">
+                <div class="issue-number">02</div>
+                <div class="issue-content">
+                    <h3>A third of all orders have no traffic source</h3>
+                    <p>The "(not set)" channel holds 498 of 1,496 purchases and 296,226 DKK (31% of revenue) at a reported 100% bounce. Ad budgets are being steered on data that cannot see a third of the outcomes.</p>
+                    <span class="issue-stat">498 orders unattributed</span>
+                </div>
+            </div>
+            <div class="issue-card">
+                <div class="issue-number">03</div>
+                <div class="issue-content">
+                    <h3>Mobile wins the cart, then loses the checkout</h3>
+                    <p>Mobile is 89% of sessions and actually adds to cart better than desktop (7.4% vs 5.3%), but only 45.3% of mobile checkouts complete vs 64.9% on desktop.</p>
+                    <span class="issue-stat">45.3% vs 64.9% checkout</span>
+                </div>
+            </div>
+            <div class="issue-card">
+                <div class="issue-number">04</div>
+                <div class="issue-content">
+                    <h3>36% of traffic produces 9% of revenue</h3>
+                    <p>Facebook paid (11,335 sessions, 0.86% CVR) and MakeInfluence influencer traffic (6,277 sessions, 0.64% CVR, 2.5 DKK/session) together bring 17,612 sessions but only 86,671 DKK.</p>
+                    <span class="issue-stat">FB 6.3 DKK vs Google 19.5 DKK / session</span>
+                </div>
+            </div>
+            <div class="issue-card">
+                <div class="issue-number">05</div>
+                <div class="issue-content">
+                    <h3>KidsBuddy is 56% of revenue, and its #1 objection is unanswered</h3>
+                    <p>The PDP converts a healthy 2.93%, but 7 of the last 39 Trustpilot reviews attack GPS accuracy and the SeTracker2 app, and the page says nothing about either. It is one store riding on one product, and that product carries one unanswered doubt.</p>
+                    <span class="issue-stat">528,276 DKK on one PDP</span>
+                </div>
+            </div>
+            <div class="issue-card">
+                <div class="issue-number">06</div>
+                <div class="issue-content">
+                    <h3>Returning visitors convert 3x, and almost none come back</h3>
+                    <p>Returning sessions convert at 7.02% vs 2.37% for new, yet only 15% of sessions are returning and Klaviyo email drives just 1,293 sessions in 90 days (2.6% of traffic).</p>
+                    <span class="issue-stat">7.02% vs 2.37% CVR</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 3: SECTION 00 NUMBERS -->
+    <div class="section-slide card" data-index="3">
+        <div class="section-number">00</div>
+        <div class="section-kicker">Quantitative analysis</div>
+        <div class="section-title">The numbers</div>
+        <div class="section-sub">GA4 property 375103003. 90-day totals (16 Apr to 15 Jul 2026) and a sequential View to Purchase funnel. This is where the priority order comes from.</div>
+    </div>
+
+    <!-- SLIDE 4: BASELINE -->
+    <div class="card" data-index="4">
+        <div class="card-header">
+            <div class="card-label">Baseline</div>
+            <div class="card-title">Where tech-shoppen.dk stands today</div>
+            <div class="card-subtitle">Last 90 days, GA4 property 375103003. Treat absolute numbers as directional anchors, not exact figures.</div>
+        </div>
+        <div class="metrics-grid">
+            <div class="metric-card"><div class="metric-value accent">945,697 DKK</div><div class="metric-label">Revenue (90d)</div></div>
+            <div class="metric-card"><div class="metric-value">49,156</div><div class="metric-label">Sessions</div></div>
+            <div class="metric-card"><div class="metric-value">1,496</div><div class="metric-label">Orders</div></div>
+            <div class="metric-card"><div class="metric-value">3.04%</div><div class="metric-label">Conversion rate</div></div>
+            <div class="metric-card"><div class="metric-value">632 DKK</div><div class="metric-label">Avg order value</div></div>
+        </div>
+        <div class="metrics-grid" style="margin-top:16px">
+            <div class="metric-card"><div class="metric-value">44,083</div><div class="metric-label">Users</div></div>
+            <div class="metric-card"><div class="metric-value">19.24 DKK</div><div class="metric-label">Revenue / session</div></div>
+            <div class="metric-card"><div class="metric-value">17.7%</div><div class="metric-label">Engagement rate</div></div>
+            <div class="metric-card"><div class="metric-value">96%</div><div class="metric-label">Sessions from Denmark</div></div>
+            <div class="metric-card"><div class="metric-value accent">89%</div><div class="metric-label">Traffic on mobile</div></div>
+        </div>
+        <div class="insight-box">A 3.04% blended conversion rate is a real strength for a store this young. The caution flags are the 17.7% engagement rate (82% of sessions bounce, typical of cold paid PDP traffic) and how concentrated everything is: one product, one country, one device class. The audit is about widening the base under a funnel that already works.</div>
+    </div>
+
+    <!-- SLIDE 5: FUNNEL -->
+    <div class="card" data-index="5">
+        <div class="card-header">
+            <div class="card-label">Funnel decomposition</div>
+            <div class="card-title">Two steps are eating the funnel</div>
+            <div class="card-subtitle">GA4 sequential funnel (Funnel API, unique users per step, counting same-session journeys only; the full 90-day total is 1,496 orders). Most stores leak in one place. Tech-shoppen leaks in two: the add to cart, and the checkout itself.</div>
+        </div>
+        <div class="landscape-layout">
+            <div class="bucket-list">
+                <div class="bucket-row"><div class="bucket-name">Session start</div><div class="bucket-bar-wrap"><div class="bucket-bar low" style="width:100%">29,566</div></div></div>
+                <div class="bucket-row"><div class="bucket-name">View product</div><div class="bucket-bar-wrap"><div class="bucket-bar low" style="width:93.7%">27,696 &middot; 93.7%</div></div></div>
+                <div class="bucket-row"><div class="bucket-name">Add to cart</div><div class="bucket-bar-wrap"><div class="bucket-bar crit" style="width:22%">1,994 &middot; 7.2%</div></div></div>
+                <div class="bucket-row"><div class="bucket-name">Begin checkout</div><div class="bucket-bar-wrap"><div class="bucket-bar high" style="width:17%">1,029 &middot; 51.6%</div></div></div>
+                <div class="bucket-row"><div class="bucket-name">Purchase</div><div class="bucket-bar-wrap"><div class="bucket-bar high" style="width:14%">481 &middot; 46.7%</div></div></div>
+            </div>
+            <div class="lever-list">
+                <div class="lever-title">Step completion</div>
+                <div class="lever-row"><div class="lever-num">1</div><div class="lever-name">Session &rarr; View product</div><div class="lever-value">93.7%</div></div>
+                <div class="lever-row"><div class="lever-num">2</div><div class="lever-name">View &rarr; Add to cart</div><div class="lever-value" style="color:#ef4444">7.2%</div></div>
+                <div class="lever-row"><div class="lever-num">3</div><div class="lever-name">Cart &rarr; Begin checkout</div><div class="lever-value">51.6%</div></div>
+                <div class="lever-row"><div class="lever-num">4</div><div class="lever-name">Checkout &rarr; Purchase</div><div class="lever-value" style="color:#f59e0b">46.7%</div></div>
+            </div>
+        </div>
+        <div class="insight-box"><strong>92.8% of product viewers never add to cart</strong>, and of those who then start a checkout, more than half abandon it. 93.7% of sessions reach a product page (ads land straight on PDPs), so there is no awareness problem. The whole game is trust at the buy box and friction in the checkout.</div>
+    </div>
+
+    <!-- SLIDE 6: DEVICE -->
+    <div class="card" data-index="6">
+        <div class="card-header">
+            <div class="card-label">Device split</div>
+            <div class="card-title">Mobile fills the cart. Checkout empties it.</div>
+            <div class="card-subtitle">89% of sessions are mobile. The funnel shows mobile shoppers are MORE willing to add to cart than desktop (7.4% vs 5.3%), so the product convinces them. Then the mobile checkout gives half of them back.</div>
+        </div>
+        <div class="compare-layout">
+            <div class="compare-box">
+                <div class="compare-label">Mobile (89% of sessions)</div>
+                <div class="compare-rate bad">45.3%</div>
+                <div class="compare-sub">checkout completion<br>43,862 sessions &middot; 1,276 orders &middot; 801,256 DKK &middot; 2.91% CVR</div>
+            </div>
+            <div class="compare-vs">vs</div>
+            <div class="compare-box highlight">
+                <div class="compare-label">Desktop (11% of sessions)</div>
+                <div class="compare-rate good">64.9%</div>
+                <div class="compare-sub">checkout completion<br>5,363 sessions &middot; 214 orders &middot; 141,696 DKK &middot; 3.99% CVR</div>
+            </div>
+        </div>
+        <div class="insight-box"><strong>Est. opportunity:</strong> lifting mobile checkout completion from 45.3% to 55% (still 10 points under desktop) is roughly <strong>+270 orders per quarter at the 628 DKK mobile AOV, about Est. 170,000 DKK per quarter</strong>. The levers sit inside the checkout: payment method order (MobilePay first on mobile), shipping cost surprise, and express-pay buttons before the form.</div>
+    </div>
+
+    <!-- SLIDE 7: TRAFFIC -->
+    <div class="card" data-index="7">
+        <div class="card-header">
+            <div class="card-label">Traffic &amp; spend</div>
+            <div class="card-title">Four paid channels, a 10x efficiency spread</div>
+            <div class="card-subtitle">90-day GA4 by source / medium. Revenue per session is the honest comparison: it combines conversion rate and order value into what one click is actually worth. Top sources shown; the remainder is long tail.</div>
+        </div>
+        <table class="data-table">
+            <thead><tr><th>Source / medium</th><th class="num">Sessions</th><th class="num">Orders</th><th class="num">CVR</th><th class="num">Rev / session</th><th class="num">Revenue</th></tr></thead>
+            <tbody>
+                <tr><td>google / cpc</td><td class="num">14,109</td><td class="num">414</td><td class="num good">2.93%</td><td class="num good">19.5 DKK</td><td class="num">275,505 DKK</td></tr>
+                <tr><td>facebook / paid</td><td class="num">11,335</td><td class="num">98</td><td class="num danger">0.86%</td><td class="num danger">6.3 DKK</td><td class="num">71,103 DKK</td></tr>
+                <tr><td>makeinfluence / influencer</td><td class="num">6,277</td><td class="num">40</td><td class="num danger">0.64%</td><td class="num danger">2.5 DKK</td><td class="num">15,568 DKK</td></tr>
+                <tr><td>partnerads / affiliate</td><td class="num">6,073</td><td class="num">262</td><td class="num good">4.31%</td><td class="num good">28.6 DKK</td><td class="num">173,600 DKK</td></tr>
+                <tr><td>(not set)</td><td class="num">4,386</td><td class="num">498</td><td class="num warn">n/a</td><td class="num warn">n/a</td><td class="num">296,226 DKK</td></tr>
+                <tr><td>(direct) / (none)</td><td class="num">3,023</td><td class="num">77</td><td class="num">2.55%</td><td class="num">16.5 DKK</td><td class="num">49,782 DKK</td></tr>
+                <tr><td>Klaviyo / email</td><td class="num">1,293</td><td class="num">43</td><td class="num good">3.33%</td><td class="num">18.7 DKK</td><td class="num">24,192 DKK</td></tr>
+                <tr><td>google / organic</td><td class="num">1,138</td><td class="num">25</td><td class="num">2.20%</td><td class="num">13.6 DKK</td><td class="num">15,444 DKK</td></tr>
+            </tbody>
+        </table>
+        <div class="insight-box">An affiliate click via Partner-ads is worth <strong>11x an influencer click</strong> (28.6 vs 2.5 DKK) and Google CPC is worth 3x Facebook. Facebook and MakeInfluence together are 36% of all sessions for 9% of revenue. Before scaling spend, fix what those clicks land on, and see the next slide: the "(not set)" row means some of this table's credit is misassigned.</div>
+    </div>
+
+    <!-- SLIDE 8: ATTRIBUTION -->
+    <div class="card" data-index="8">
+        <div class="card-header">
+            <div class="card-label">Attribution</div>
+            <div class="card-title">A third of your orders are invisible to marketing</div>
+            <div class="card-subtitle">The single strangest number in the account, and the most fixable. 498 orders (296,226 DKK) sit in a channel GA4 literally calls "(not set)", reported with 100% bounce and zero engagement.</div>
+        </div>
+        <div class="compare-layout">
+            <div class="compare-box">
+                <div class="compare-label">"(not set)" channel &middot; 90 days</div>
+                <div class="compare-rate bad">498</div>
+                <div class="compare-sub">orders with no traffic source<br>4,386 sessions &middot; 296,226 DKK &middot; 31% of all revenue<br>100% bounce, 0 engaged sessions: these are broken sessions, not real visits</div>
+            </div>
+            <div class="compare-vs">+</div>
+            <div class="compare-box">
+                <div class="compare-label">"(not set)" landing page</div>
+                <div class="compare-rate bad">1,863</div>
+                <div class="compare-sub">sessions with no landing page<br>99.5% bounce &middot; 0 purchases attributed<br>the classic signature of tracking broken by consent handling or session loss</div>
+            </div>
+        </div>
+        <div class="insight-box"><strong>What this means in practice:</strong> Google and Meta smart bidding, and every "which channel works" decision, currently run on two thirds of the truth. The fix list is standard and cheap: verify Consent Mode v2 fires before GA4, check the cookie banner is not blocking first-party analytics cookies on the checkout domain, enforce UTM tags on every paid, influencer and email link, and add Meta Conversions API server-side. Do this before judging any channel in the previous table.</div>
+    </div>
+
+    <!-- SLIDE 9: PRODUCT ECONOMICS -->
+    <div class="card" data-index="9">
+        <div class="card-header">
+            <div class="card-label">Product economics</div>
+            <div class="card-title">One PDP pays for everything. The rest leak.</div>
+            <div class="card-subtitle">Landing sessions per product, 90 days. KidsBuddy converts 2.93% as a cold landing page. The long tail converts at a third to a tenth of that, on the same store, same traffic playbook.</div>
+        </div>
+        <table class="data-table">
+            <thead><tr><th>Landing page</th><th class="num">Sessions</th><th class="num">Orders</th><th class="num">CVR</th><th class="num">Revenue</th><th class="num">Rev share</th></tr></thead>
+            <tbody>
+                <tr><td class="accent">KidsBuddy GPS smartwatch</td><td class="num">24,331</td><td class="num">713</td><td class="num good">2.93%</td><td class="num">528,276 DKK</td><td class="num">55.9%</td></tr>
+                <tr><td>B&aelig;rbar blender</td><td class="num">684</td><td class="num">34</td><td class="num good">4.97%</td><td class="num">4,710 DKK</td><td class="num">0.5%</td></tr>
+                <tr><td>Kidsboard magnettavle</td><td class="num">3,553</td><td class="num">75</td><td class="num">2.11%</td><td class="num">43,893 DKK</td><td class="num">4.6%</td></tr>
+                <tr><td>Noomu s&oslash;vntr&aelig;ner</td><td class="num">1,291</td><td class="num">25</td><td class="num">1.94%</td><td class="num">11,354 DKK</td><td class="num">1.2%</td></tr>
+                <tr><td>Stjernehimmel projektor</td><td class="num">3,548</td><td class="num">60</td><td class="num warn">1.69%</td><td class="num">17,231 DKK</td><td class="num">1.8%</td></tr>
+                <tr><td>Beamly wifi projektor</td><td class="num">2,806</td><td class="num">30</td><td class="num warn">1.07%</td><td class="num">21,699 DKK</td><td class="num">2.3%</td></tr>
+                <tr><td>Glimmt l&oslash;becykel</td><td class="num">3,080</td><td class="num">28</td><td class="num danger">0.91%</td><td class="num">21,094 DKK</td><td class="num">2.2%</td></tr>
+                <tr><td>Smart cleaner</td><td class="num">224</td><td class="num">0</td><td class="num danger">0.00%</td><td class="num">0 DKK</td><td class="num">0%</td></tr>
+            </tbody>
+        </table>
+        <div class="insight-box"><strong>The spread is the opportunity.</strong> Glimmt, Beamly and Stjernehimmel receive 9,434 mostly paid sessions and convert at 0.91 to 1.69%. Bringing just those three up to Kidsboard's ordinary 2.11% is <strong>Est. +80 orders per quarter (~50,000 DKK)</strong>, before touching the winner. And KidsBuddy's own lever is attach: the 299 DKK screen guarantee is sold as a separate product (which converts 7.58% for the few who find it) instead of a one-tap add-on in the buy box.</div>
+    </div>
+
+    <!-- SLIDE 10: RETENTION -->
+    <div class="card" data-index="10">
+        <div class="card-header">
+            <div class="card-label">Retention &amp; email</div>
+            <div class="card-title">The 3x audience nobody is inviting back</div>
+            <div class="card-subtitle">90-day GA4, new vs returning. A gadget store for parents has natural repeat purchases (siblings, birthdays, the next gadget), and the data says returning visitors already behave like fans.</div>
+        </div>
+        <div class="compare-layout">
+            <div class="compare-box">
+                <div class="compare-label">New visitors (85% of sessions)</div>
+                <div class="compare-rate bad">2.37%</div>
+                <div class="compare-sub">41,374 sessions &middot; 979 orders<br>590,220 DKK &middot; 86.6% bounce</div>
+            </div>
+            <div class="compare-vs">vs</div>
+            <div class="compare-box highlight">
+                <div class="compare-label">Returning visitors (15% of sessions)</div>
+                <div class="compare-rate good">7.02%</div>
+                <div class="compare-sub">7,348 sessions &middot; 516 orders<br>355,177 DKK &middot; 57.7% bounce</div>
+            </div>
+        </div>
+        <div class="insight-box">Klaviyo is installed and converting well (3.33% CVR, 18.7 DKK/session) but drove only <strong>1,293 sessions in 90 days</strong>, 2.6% of traffic. Post-purchase flows (SIM top-up reminders, accessory cross-sell, screen-guarantee offer within the 14-day window), a browse-abandon flow, and one campaign per week to the buyer list are the cheapest sessions this store can buy. One caveat from the reviews, in their own words later in this deck: fix support reply times first, or email volume amplifies the frustration.</div>
+    </div>
+
+    <!-- SLIDE 11: SECTION 01 PERFORMANCE -->
+    <div class="section-slide card" data-index="11">
+        <div class="section-number">01</div>
+        <div class="section-kicker">Foundation</div>
+        <div class="section-title">Site performance</div>
+        <div class="section-sub">A hygiene check, not the headline. Shopify stores routinely score low on synthetic mobile tests, so we treat this as directional. One number still stands out.</div>
+    </div>
+
+    <!-- SLIDE 12: PAGESPEED -->
+    <div class="card" data-index="12">
+        <div class="card-header">
+            <div class="card-label">Core Web Vitals</div>
+            <div class="card-title">The money page is the heaviest page</div>
+            <div class="card-subtitle">Google PageSpeed lab scores, measured 15 Jul 2026. Synthetic and throttled: most Shopify stores land at 30 to 50 on mobile, so read direction, not absolutes, and confirm against Chrome UX field data before investing.</div>
+        </div>
+        <table class="data-table">
+            <thead>
+                <tr><th>Page</th><th class="num">Perf (mobile)</th><th class="num">LCP mobile</th><th class="num">TBT mobile</th><th class="num">Speed Index mobile</th><th class="num">Perf (desktop)</th><th class="num">LCP desktop</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Homepage</td><td class="num warn">40</td><td class="num warn">6.6s</td><td class="num warn">1,090ms</td><td class="num warn">7.1s</td><td class="num warn">60</td><td class="num good">1.6s</td></tr>
+                <tr><td>PDP (KidsBuddy)</td><td class="num danger">28</td><td class="num danger">9.4s</td><td class="num danger">2,000ms</td><td class="num danger">13.5s</td><td class="num warn">52</td><td class="num good">1.8s</td></tr>
+            </tbody>
+        </table>
+        <div class="insight-box"><strong>How to read this:</strong> the homepage sits in the normal Shopify band. The KidsBuddy PDP does not: a 9.4s lab LCP and 13.5s Speed Index on the page that receives <strong>24,331 sessions (49% of all traffic)</strong>, on a store that is 89% mobile. The practical step is small: compress the PDP's image stack and the 11 badge logos, audit installed apps, defer third-party scripts, then verify the gain in CrUX. Hygiene task, worth doing because of where the weight sits.</div>
+    </div>
+
+    <!-- SLIDE 13: SECTION 02 HEURISTICS -->
+    <div class="section-slide card" data-index="13">
+        <div class="section-number">02</div>
+        <div class="section-kicker">Page by page</div>
+        <div class="section-title">The conversion walk</div>
+        <div class="section-sub">Why 92.8% of viewers do not add to cart, and why half of mobile checkouts die. Homepage to collection to PDP to cart, every claim verified against a captured screenshot or live fetch.</div>
+    </div>
+    <!-- SLIDE 14: HOMEPAGE -->
+    <div class="card" data-index="14">
+        <div class="card-header">
+            <div class="card-label">Homepage</div>
+            <div class="card-title">A strong hero, undercut by its own popup</div>
+            <div class="card-subtitle">The homepage converts its landings at 2.08% with a 57% bounce, by far the healthiest engagement on the site. It is also only 6% of landings: ads skip it and land cold on PDPs.</div>
+        </div>
+        <div class="walk"><div class="walk-left"><div class="phone"><img src="screenshots/home-mobile-full.png" alt="Live homepage, mobile"></div><div class="phone-cap">Live homepage, mobile &middot; 15 Jul 2026</div></div><div class="opp-layout">
+            <div class="opp-block">
+                <div class="opp-block-title">What we observed</div>
+                <ul class="opp-list">
+                    <li>Real lifestyle hero (a child holding the watch) with a benefit headline: <strong>"Det perfekte ur til dit barn"</strong>. Genuinely good.</li>
+                    <li>A Klaviyo popup ("Du har f&aring;et en Eksklusiv Rabat!") fires after ~5-7 seconds and <strong>covers the entire mobile fold</strong>, on every fresh page load, PDPs included.</li>
+                    <li>The hero badge says <strong>"Fremragende" with green stars</strong>. The store's live Trustpilot score is 3.9, which Trustpilot labels "God". One click of fact-checking costs the badge its credibility.</li>
+                    <li>Hero CTA is a vague <strong>"Se den her"</strong>, and the rotating slideshow moves the message before it lands.</li>
+                    <li>Navigation is flat: Alle produkter / Bestsellers / Tilbud / Pakker. <strong>No category entry points</strong> (b&oslash;rn, hjem, projektor) anywhere.</li>
+                </ul>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">What to do</div>
+                <ul class="opp-list numbered">
+                    <li>Delay the popup to exit intent or 30s+, and never over a PDP buy box.</li>
+                    <li>Replace "Fremragende" with the true, checkable number: <strong>"4.000+ anmeldelser"</strong> or "+10.000 kunder". Honest numbers survive the click.</li>
+                    <li>Make the CTA concrete: "Se KidsBuddy, fra 749 kr".</li>
+                    <li>Add 3-4 category tiles above "Popul&aelig;rt lige nu".</li>
+                    <li>Keep the lifestyle hero. It is the best asset on the site.</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+        <div class="insight-box">The homepage is not the problem, it is the proof: when visitors land somewhere with story and context, bounce halves (57% vs 82% sitewide). The task is to bring that context to the PDPs, where 84% of landings actually arrive.</div>
+    </div>
+
+    <!-- SLIDE 15: COLLECTION -->
+    <div class="card" data-index="15">
+        <div class="card-header">
+            <div class="card-label">Collection / PLP</div>
+            <div class="card-title">One flat list, no proof, no paths</div>
+            <div class="card-subtitle">/collections/produkter converts landings at 4.07%, second best on the site, but receives only 565 landing sessions in 90 days. The page works; nothing sends traffic to it.</div>
+        </div>
+        <div class="walk"><div class="walk-left"><div class="phone"><img src="screenshots/collection-produkter-mobile-full.png" alt="Live collection page, mobile"></div><div class="phone-cap">Live collection, mobile &middot; 15 Jul 2026</div></div><div class="opp-layout">
+            <div class="opp-block">
+                <div class="opp-block-title">What we observed</div>
+                <ul class="opp-list">
+                    <li>34 products in one flat "Alle produkter" grid: watches, projectors, blenders and KidsBuddy accessories side by side. <strong>Only price and stock filters</strong>, no categories.</li>
+                    <li><strong>No review stars on any product card</strong>, while the KidsBuddy accessory cards show green stars baked into the product photos themselves, which reads as fabricated proof.</li>
+                    <li>Discount badges ("Spar 25%") on most cards + "Vejledende udsalgspris" anchors everywhere, a pattern shoppers now associate with dropship stores.</li>
+                    <li>Clean 2-column mobile grid, fast to scan, prices visible. The basics are right.</li>
+                </ul>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">What to do</div>
+                <ul class="opp-list numbered">
+                    <li>Split into 3-4 real collections (B&oslash;rn &amp; tryghed, Sov &amp; stemning, Hjem) and link them from nav + homepage tiles.</li>
+                    <li>Show Loox stars + counts on cards for products that have reviews.</li>
+                    <li>Add a "KidsBuddy tilbeh&oslash;r" collection and link it from the KidsBuddy PDP (owners come back for straps, chargers, glass).</li>
+                    <li>Reserve strikethrough anchors for real campaign periods to protect price credibility.</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+        <div class="insight-box">Collection and Bestsellers landings convert at 4.07% and 4.76%, roughly <strong>double the PDP average</strong>, because shoppers who navigate there themselves arrive warm. More internal paths into these pages (category tiles, nav, PDP cross-links) is free conversion.</div>
+    </div>
+
+    <!-- SLIDE 16: PDP KIDSBUDDY -->
+    <div class="card" data-index="16">
+        <div class="card-header">
+            <div class="card-label">Product page &middot; KidsBuddy</div>
+            <div class="card-title">The money page sells hard and reassures little</div>
+            <div class="card-subtitle">24,331 landing sessions, 2.93% CVR, 56% of revenue. The buy box stacks offer on offer (25% off, ViaBill, SuperDeal, countdown), while the #1 customer doubt (GPS + app) is answered nowhere.</div>
+        </div>
+        <div class="walk"><div class="walk-left"><div class="phone"><img src="screenshots/pdp-kidsbuddy-mobile-full.png" alt="Live KidsBuddy PDP, mobile"></div><div class="phone-cap">Live KidsBuddy PDP, mobile &middot; 15 Jul 2026</div></div><div class="opp-layout">
+            <div class="opp-block">
+                <div class="opp-block-title">What we observed</div>
+                <ul class="opp-list">
+                    <li>Good bones: 6 USP bullets, color variants, countdown to next-day dispatch, sticky ATC, ViaBill monthly price, 30-day guarantee below.</li>
+                    <li><strong>No review stars or count anywhere in the buy box.</strong> Loox sits far below the fold; the product twin kidsbuddy.dk shows "4.8/5 fra 2,200+ for&aelig;ldre" at the price.</li>
+                    <li>The "SuperDeal" bundle is <strong>pre-selected: clicking the plain TILF&Oslash;J TIL KURV added 3 items (999 kr)</strong> when the shopper expected one for 749 kr.</li>
+                    <li>Trust is outsourced to <strong>11 affiliate "best in test" badges</strong>, while GPS accuracy and the SeTracker2 app (7 and 5 recent Trustpilot complaints) go unmentioned.</li>
+                    <li>No video, no real app screenshots in context, no "how the GPS works" expectations block. Gallery is a stock render.</li>
+                </ul>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">What to do</div>
+                <ul class="opp-list numbered">
+                    <li>Pin Loox stars + review count directly under the title.</li>
+                    <li>Flip the SuperDeal radio default ("1x Kidsbuddy 749 kr" pre-selected). Surprise items in the cart are refund complaints in waiting.</li>
+                    <li>Add an honest GPS + app block: real SeTracker2 screens, "GPS er pr&aelig;cis udend&oslash;rs, mindre pr&aelig;cis indend&oslash;rs" expectations, setup help.</li>
+                    <li>Add a 20-30s demo video (live tracking + a video call).</li>
+                    <li>Add the anti-Xplora comparison: 749 kr once vs 1,599 kr + abonnement.</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+        <div class="insight-box"><strong>The math of honesty:</strong> this page needs 24,331 people a quarter to believe a 749 kr safety device for their child works. Every element that overstates (a "Fremragende" badge vs a 3.9 Trustpilot, an auto-added bundle, affiliate badges as proof) feeds the "dropshipping" suspicion that 4 recent reviews voice verbatim. The fixes above are additions of proof, not redesigns.</div>
+    </div>
+
+    <!-- SLIDE 17: LONG-TAIL PDP -->
+    <div class="card" data-index="17">
+        <div class="card-header">
+            <div class="card-label">Product page &middot; long tail</div>
+            <div class="card-title">The same template cannot carry a 349 kr impulse buy</div>
+            <div class="card-subtitle">Moona Stjernehimmel: 3,548 landing sessions, 1.69% CVR, 87.6% bounce, 3m54s average visit. Glimmt l&oslash;becykel: 3,080 sessions at 0.91%. Beamly: 2,806 at 1.07%. Together: 9,434 sessions converting at half the store average.</div>
+        </div>
+        <div class="walk"><div class="walk-left"><div class="phone"><img src="screenshots/pdp-stjernehimmel-mobile-full.png" alt="Live Stjernehimmel PDP, mobile"></div><div class="phone-cap">Live Moona PDP, mobile &middot; 15 Jul 2026</div></div><div class="opp-layout">
+            <div class="opp-block">
+                <div class="opp-block-title">What we observed</div>
+                <ul class="opp-list">
+                    <li>Same template as KidsBuddy but with the trust stripped out: <strong>3 thin USP bullets</strong> ("Magisk stemning i ethvert rum"), no testimonials, no badges, no guarantee block up top.</li>
+                    <li>Gallery is a <strong>generic supplier render</strong> (product + remote on white), identical to what a shopper finds on any marketplace at half the price.</li>
+                    <li>Same "Spar 22%" + "Vejledende udsalgspris" anchor pattern, which reads as markup, not value, without proof around it.</li>
+                    <li>The Klaviyo discount popup interrupts these cold paid landings too.</li>
+                    <li>No cross-sell into the rest of the catalog (a star projector buyer is a Noomu night-light buyer).</li>
+                </ul>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">What to do</div>
+                <ul class="opp-list numbered">
+                    <li>Build one stronger long-tail PDP template: lifestyle photo first (the room, dark, stars on), stars + count, delivery promise at ATC.</li>
+                    <li>Shoot or source one photo in real context per hero product. One image is the whole gap.</li>
+                    <li>Add "K&oslash;bes ofte sammen" cross-sells between the kids products.</li>
+                    <li>Roll the winner template to Glimmt and Beamly and measure against their 0.91% / 1.07% baselines.</li>
+                    <li>Pause or fix Smart Cleaner (224 sessions, 0 orders, 2m26s of wasted ad clicks).</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+        <div class="insight-box">Visitors spend nearly 4 minutes on the Moona page and still do not buy: interest is there, belief is not. Lifting just Moona, Glimmt and Beamly to Kidsboard's ordinary 2.11% adds <strong>Est. +80 orders per quarter</strong> from traffic already being paid for.</div>
+    </div>
+
+    <!-- SLIDE 18: CART -->
+    <div class="card" data-index="18">
+        <div class="card-header">
+            <div class="card-label">Cart drawer</div>
+            <div class="card-title">A good drawer with two silent leaks</div>
+            <div class="card-subtitle">GA4: 51.6% of add-to-carts reach checkout, and then only 45.3% of mobile checkouts finish. The drawer itself has the right furniture. Two details work against it.</div>
+        </div>
+        <div class="walk"><div class="walk-left"><div class="phone"><img src="screenshots/cart-mobile.png" alt="Cart drawer, mobile"></div><div class="phone-cap">Cart drawer after one ATC click &middot; 15 Jul 2026</div></div><div class="opp-layout">
+            <div class="opp-block">
+                <div class="opp-block-title">What we observed</div>
+                <ul class="opp-list">
+                    <li>Strong furniture: free-shipping progress ("Tillykke! Du har opn&aring;et gratis levering!"), a 1% charity selector, payment logos, "+10.000 GLADE KUNDER" bar.</li>
+                    <li><strong>The 749 kr decision became a 999 kr total</strong>: the pre-selected SuperDeal added the guarantee (299 kr, discounted to 249 kr in the bundle) and cable without an explicit choice. Sticker shock at the drawer is the classic cart&rarr;checkout killer.</li>
+                    <li>A <strong>manual "Jeg accepterer handelsbetingelserne" checkbox</strong> gates the checkout button. Unticked, the CTA silently fails: pure friction, and not required at this step for Danish shops (Shopify checkout collects acceptance).</li>
+                    <li>The trust bar claims <strong>5 stars</strong>; Trustpilot says 3.9. Same credibility tax as the hero.</li>
+                </ul>
+            </div>
+            <div class="opp-block">
+                <div class="opp-block-title">What to do</div>
+                <ul class="opp-list numbered">
+                    <li>Make the bundle opt-in on the PDP so the drawer total matches the expectation set at the ATC click.</li>
+                    <li>Remove the terms checkbox from the drawer (keep acceptance at checkout).</li>
+                    <li>Swap the 5-star claim for a real, checkable number.</li>
+                    <li>Add one-tap express pay (MobilePay / Shop Pay) in the drawer for the 89% on mobile.</li>
+                    <li>Keep the charity selector and the free-shipping bar. Both are genuinely good.</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+        <div class="insight-box"><strong>Test order matters here:</strong> the checkbox removal and express-pay placement target the 45.3% mobile checkout completion directly and are cheap to run. The bundle opt-in test protects both the cart&rarr;checkout step and the pipeline of refund complaints that feeds Trustpilot.</div>
+    </div>
+    <!-- SLIDE: SECTION 03 VOC -->
+    <div class="section-slide card" data-index="19">
+        <div class="section-number">03</div>
+        <div class="section-kicker">In their own words</div>
+        <div class="section-title">Voice of customer</div>
+        <div class="section-sub">404 Trustpilot reviews (3.9/5), theme coded from the 39 most recent verbatims plus the 1-star filter. The praise and the complaints point at the same pages.</div>
+    </div>
+
+    <!-- SLIDE: VOC THEMES -->
+    <div class="card" data-index="20">
+        <div class="card-header">
+            <div class="card-label">VOC &middot; theme counts</div>
+            <div class="card-title">What 404 reviews actually talk about</div>
+            <div class="card-subtitle">Trustpilot distribution: 62% five-star, but 22% of all reviews are 1 or 2 stars. The negatives cluster on one product doubt (KidsBuddy GPS + app) and one service pattern (slow, robotic replies).</div>
+        </div>
+        <div class="landscape-layout">
+            <div class="bucket-list">
+                <div class="bucket-row"><div class="bucket-name">Fast delivery (pos)</div><div class="bucket-bar-wrap"><div class="bucket-bar low" style="width:100%">9+ mentions</div></div></div>
+                <div class="bucket-row"><div class="bucket-name">Service unresponsive / AI replies</div><div class="bucket-bar-wrap"><div class="bucket-bar crit" style="width:100%">9 mentions</div></div></div>
+                <div class="bucket-row"><div class="bucket-name">Helpful service (pos)</div><div class="bucket-bar-wrap"><div class="bucket-bar low" style="width:89%">8 mentions</div></div></div>
+                <div class="bucket-row"><div class="bucket-name">GPS inaccurate / unusable</div><div class="bucket-bar-wrap"><div class="bucket-bar crit" style="width:78%">7 mentions</div></div></div>
+                <div class="bucket-row"><div class="bucket-name">Return / refund friction</div><div class="bucket-bar-wrap"><div class="bucket-bar crit" style="width:78%">7 mentions</div></div></div>
+                <div class="bucket-row"><div class="bucket-name">App quality (Turkish text, ads)</div><div class="bucket-bar-wrap"><div class="bucket-bar high" style="width:56%">5 mentions</div></div></div>
+                <div class="bucket-row"><div class="bucket-name">"Cheap China product" perception</div><div class="bucket-bar-wrap"><div class="bucket-bar high" style="width:44%">4 mentions</div></div></div>
+            </div>
+            <div class="lever-list">
+                <div class="lever-title">Reads as</div>
+                <div class="lever-row"><div class="lever-num">1</div><div class="lever-name">Delivery speed is a real strength</div><div class="lever-value">say it louder</div></div>
+                <div class="lever-row"><div class="lever-num">2</div><div class="lever-name">GPS doubt is the product objection</div><div class="lever-value">answer on PDP</div></div>
+                <div class="lever-row"><div class="lever-num">3</div><div class="lever-name">Refund flow creates 1-star reviews</div><div class="lever-value">fix policy</div></div>
+                <div class="lever-row"><div class="lever-num">4</div><div class="lever-name">App experience needs honest framing</div><div class="lever-value">show the app</div></div>
+                <div class="lever-row"><div class="lever-num">5</div><div class="lever-name">"Dropshipping" suspicion needs provenance</div><div class="lever-value">own the story</div></div>
+            </div>
+        </div>
+        <div class="insight-box"><strong>The service paradox:</strong> customer service is simultaneously the most praised theme (pre-sale help, a staff member "Jim" named with praise) and the most attacked one (a broken 48 hour reply promise, "envejskommunikation" (one-way communication), and gift cards offered instead of refunds). Two reviewers state their refund only arrived after posting the Trustpilot review. That is a policy fix, not a website fix, and it caps every trust signal the site can show.</div>
+    </div>
+
+    <!-- SLIDE: VOC VERBATIM -->
+    <div class="card" data-index="21">
+        <div class="card-header">
+            <div class="card-label">VOC &middot; verbatim</div>
+            <div class="card-title">The customer is writing your copy</div>
+            <div class="card-subtitle">All quotes are verbatim Trustpilot reviews for tech-shoppen.dk, captured 15 Jul 2026. English gloss in italics.</div>
+        </div>
+        <div class="takeaway-grid">
+            <div class="takeaway-card">
+                <div class="takeaway-title">The purchase driver (5&#9733;)</div>
+                <div class="takeaway-text">"Det har givet os en k&aelig;mpe ro i maven i hverdagen ... det f&oslash;les bare trygt og smart"<br><em style="color:#999">It gives us huge peace of mind in daily life. It just feels safe and smart.</em><br><span style="color:#6b7c75">&rarr; "Ro i maven" is the hero headline. Parents buy calm, not hardware.</span></div>
+            </div>
+            <div class="takeaway-card">
+                <div class="takeaway-title">The product doubt (1&#9733;)</div>
+                <div class="takeaway-text">"GPSen er helt hen i vejret ... Appen er virkelig d&aring;rlig og med meget d&aring;rligt oversat dansk/tyrkisk blanding?! ... Levering var dog super hurtigt!"<br><em style="color:#999">The GPS is way off, the app is a badly translated Danish/Turkish mix. Delivery was super fast though.</em><br><span style="color:#6b7c75">&rarr; The PDP must show real app screens and honest GPS expectations.</span></div>
+            </div>
+            <div class="takeaway-card">
+                <div class="takeaway-title">The refund wound (1&#9733;)</div>
+                <div class="takeaway-text">"I erkender problemet men vil nu kun tilbyde et gavekort og ikke pengene retur ... If&oslash;lge k&oslash;beloven har vi ret til at f&aring; pengene retur"<br><em style="color:#999">You admit the problem but only offer a gift card, not a refund. Under the Sale of Goods Act we have the right to our money back.</em><br><span style="color:#6b7c75">&rarr; Offering gift cards before refunds at reklamation is manufacturing 1-star reviews.</span></div>
+            </div>
+            <div class="takeaway-card">
+                <div class="takeaway-title">The email irony (2&#9733;)</div>
+                <div class="takeaway-text">"De svarer ikke p&aring; deres mails, men ironisk nok modtager jeg en frygtelig masse nyheds- og opf&oslash;lgende mails p&aring; min bestilling"<br><em style="color:#999">They do not answer support mails, but ironically I receive a huge stream of newsletter and follow-up mails about my order.</em><br><span style="color:#6b7c75">&rarr; Scale email only after support response times are fixed.</span></div>
+            </div>
+        </div>
+        <div class="insight-box"><strong>The on-site / off-site gap:</strong> the PDP shows a curated 4-star Loox widget and 11 "best in test" affiliate badges, while Trustpilot (3.9, 404 reviews, 16% 1-star) is where shoppers actually check. The store is e-m&aelig;rket certified (buyer protection up to 10,000 DKK) and that badge is doing none of the work it could near the buy button.</div>
+    </div>
+
+    <!-- SLIDE: WHY BUY / WHY NOT -->
+    <div class="card" data-index="22">
+        <div class="card-header">
+            <div class="card-label">Customer intelligence</div>
+            <div class="card-title">Why they buy. Why they hesitate.</div>
+            <div class="card-subtitle">Compiled from 404 Trustpilot reviews, on-site Loox quotes, and the GA4 behaviour of 44,083 users. The left column belongs on the PDP. The right column is what the PDP must answer.</div>
+        </div>
+        <div class="split-layout">
+            <div class="split-col ship">
+                <div class="split-head"><span class="name ship">Why they buy</span><span class="meta">amplify</span></div>
+                <div class="split-desc">The drivers, in the customers' own order of intensity.</div>
+                <div class="split-row"><div class="num">01</div><div class="label">"Ro i maven": GPS + call = peace of mind</div><div class="impact">hero</div></div>
+                <div class="split-row"><div class="num">02</div><div class="label">Fast delivery, 1-3 days, praised even in 1-star reviews</div><div class="impact">buy box</div></div>
+                <div class="split-row"><div class="num">03</div><div class="label">749 kr once vs Xplora at 1,599 kr + 99 kr/month</div><div class="impact">compare</div></div>
+                <div class="split-row"><div class="num">04</div><div class="label">SIM included, no subscription</div><div class="impact">buy box</div></div>
+                <div class="split-row"><div class="num">05</div><div class="label">Danish shop, Danish service, e-m&aelig;rket</div><div class="impact">trust bar</div></div>
+            </div>
+            <div class="split-col test">
+                <div class="split-head"><span class="name test">Why they hesitate</span><span class="meta">answer</span></div>
+                <div class="split-desc">Objections found verbatim in reviews, unanswered on the page.</div>
+                <div class="split-row"><div class="num">01</div><div class="label">"Does the GPS actually work?" (7 reviews say no)</div><div class="impact">critical</div></div>
+                <div class="split-row"><div class="num">02</div><div class="label">App quality: Turkish text, ads, missing features</div><div class="impact">critical</div></div>
+                <div class="split-row"><div class="num">03</div><div class="label">"Cheap China product / dropshipping" suspicion</div><div class="impact">high</div></div>
+                <div class="split-row"><div class="num">04</div><div class="label">No phone number, slow replies, robotic emails</div><div class="impact">high</div></div>
+                <div class="split-row"><div class="num">05</div><div class="label">Gift card instead of refund at reklamation</div><div class="impact">policy</div></div>
+            </div>
+        </div>
+        <div class="insight-box">The store already owns everything the left column needs (speed, price, SIM model, e-m&aelig;rket). The right column is why 92.8% of viewers still walk away: when a parent buys safety for 749 kr and "does it actually work" goes unanswered, the default answer is no.</div>
+    </div>
+
+    <!-- SLIDE: SECTION 04 COMPETITORS -->
+    <div class="section-slide card" data-index="23">
+        <div class="section-number">04</div>
+        <div class="section-kicker">The field</div>
+        <div class="section-title">Competitor benchmark</div>
+        <div class="section-sub">Three verified Danish competitors for the KidsBuddy watch: xplora.dk (premium leader), kidsbuddy.dk (identical product, same price) and techbutik.dk (budget dropship). Every claim fetched live, 15 Jul 2026.</div>
+    </div>
+
+    <!-- SLIDE: COMPETITOR MATRIX -->
+    <div class="card" data-index="24">
+        <div class="card-header">
+            <div class="card-label">Benchmark matrix</div>
+            <div class="card-title">Same watch, same price, different proof</div>
+            <div class="card-subtitle">kidsbuddy.dk sells the identical watch at the identical 749 kr. The fight is not on price. It is on visible proof and delivery sharpness, and on reframing against Xplora's subscription.</div>
+        </div>
+        <table class="data-table">
+            <thead>
+                <tr><th>Dimension</th><th>tech-shoppen.dk</th><th>xplora.dk</th><th>kidsbuddy.dk</th><th>techbutik.dk</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Price</td><td class="good">749 kr (25% off)</td><td class="danger">1,199 to 1,599 kr</td><td class="warn">749 kr (identical)</td><td class="good">299 kr</td></tr>
+                <tr><td>Ongoing cost</td><td class="good">SIM included, 0 kr/mo</td><td class="danger">99 to 109 kr/month app</td><td class="good">SIM included, 0 kr/mo</td><td class="good">Pay as you go</td></tr>
+                <tr><td>Reviews at the offer</td><td class="danger">Loox widget, no count shown</td><td class="good">4.67 to 4.86 stars per product</td><td class="good">4.8/5, "2,200+ parents"</td><td class="good">"2,368+ bed&oslash;mmelser"</td></tr>
+                <tr><td>Delivery promise</td><td class="warn">1-3 hverdage</td><td>Not verified</td><td class="good">1-2 hverdage</td><td class="danger">5-8 hverdage</td></tr>
+                <tr><td>BNPL</td><td class="good">ViaBill + Klarna</td><td>Not verified</td><td class="warn">Anyday only</td><td class="danger">None</td></tr>
+                <tr><td>Video on PDP</td><td class="danger">None</td><td>Not verified</td><td class="danger">None</td><td class="danger">None</td></tr>
+                <tr><td>Insurance upsell</td><td class="warn">Separate 299 kr product</td><td>Not verified</td><td class="danger">None</td><td class="danger">None</td></tr>
+            </tbody>
+        </table>
+        <div class="insight-box"><strong>The twin problem:</strong> a parent googling this watch finds kidsbuddy.dk showing "4.8/5 fra 2,200+ for&aelig;ldre" and 1-2 day delivery for the same 749 kr. Tech-shoppen's counters (Klarna + ViaBill, the screen guarantee, "+10.000 tilfredse kunder") exist but are not deployed at the buy box where the twin wins the comparison.</div>
+    </div>
+
+    <!-- SLIDE: ADOPTABLE PATTERNS -->
+    <div class="card" data-index="25">
+        <div class="card-header">
+            <div class="card-label">Steal these</div>
+            <div class="card-title">Five patterns worth adopting</div>
+            <div class="card-subtitle">Each one observed live on a named competitor (or missing across all of them), mapped to a tech-shoppen gap on the View to ATC step.</div>
+        </div>
+        <div class="source-grid" style="grid-template-columns:repeat(3,1fr)">
+            <div class="source-card"><div class="marker">// 01</div><div class="source-name">Hard review count at the offer</div><div class="source-detail">kidsbuddy.dk leads with "4.8/5 fra 2,200+ for&aelig;ldre" next to the price. <strong>Tech-shoppen has Loox installed but shows no aggregate count near the ATC.</strong> Pin stars + count to the buy box.</div></div>
+            <div class="source-card"><div class="marker">// 02</div><div class="source-name">Anti-subscription comparison</div><div class="source-detail">Xplora costs 1,599 kr plus ~1,188 kr/year for the app. <strong>A "749 kr once, ingen abonnement" comparison block on the PDP</strong> reframes tech-shoppen from "cheap option" to "smart buy".</div></div>
+            <div class="source-card"><div class="marker">// 03</div><div class="source-name">Sharper delivery promise</div><div class="source-detail">kidsbuddy.dk promises 1-2 hverdage. Tech-shoppen ships same day before 14:00 but says a soft "1-3 dage". <strong>Test "Bestil f&oslash;r kl. 14, afsendt i dag" at the ATC.</strong></div></div>
+            <div class="source-card"><div class="marker">// 04</div><div class="source-name">Insurance as a buy-box toggle</div><div class="source-detail">No competitor offers device insurance at all. Tech-shoppen owns a 299 kr screen guarantee <strong>hidden as a separate product</strong>. A one-tap add-on is uncontested AOV.</div></div>
+            <div class="source-card"><div class="marker">// 05</div><div class="source-name">PDP demo video</div><div class="source-detail">None of the three competitors show video. <strong>A 20-30s clip of live GPS tracking + a video call answers the #1 objection</strong> ("does it actually work") in a way no badge can.</div></div>
+            <div class="source-card"><div class="marker">// 06</div><div class="source-name">Own the twin fight</div><div class="source-detail">The identical watch is sold at the same price one search result away. Differentiate on what the twin lacks: <strong>Klarna/ViaBill, the screen guarantee, and e-m&aelig;rket buyer protection</strong>, all shown at the decision point.</div></div>
+        </div>
+        <div class="insight-box"><strong>Retail channel note:</strong> Power and Elgiganten stock Xplora (verified via PriceRunner) but not this watch class at this price. The premium retail shelf anchors the category price high, which is exactly the comparison the PDP should be making.</div>
+    </div>
+
+    <!-- SLIDE: SECTION 05 ROADMAP -->
+    <div class="section-slide card" data-index="26">
+        <div class="section-number">05</div>
+        <div class="section-kicker">Sequenced for impact</div>
+        <div class="section-title">90-day roadmap</div>
+        <div class="section-sub">Ordered by impact over effort. Fix the data first (you cannot steer blind), then the two funnel leaks, then the moat.</div>
+    </div>
+
+    <!-- SLIDE: PHASES -->
+    <div class="card" data-index="27">
+        <div class="card-header">
+            <div class="card-label">Prioritized plan</div>
+            <div class="card-title">What to do, in what order</div>
+            <div class="card-subtitle">Effort is engineering effort. Impact is read from the GA4 funnel: the leaks are View to ATC (92.8%) and mobile checkout completion (45.3%), and a third of orders are unattributed.</div>
+        </div>
+        <div class="phase-grid">
+            <div class="phase-card p1">
+                <div class="phase-tag">Phase 1 &middot; weeks 1-3</div>
+                <div class="phase-name">Data &amp; free wins</div>
+                <div class="phase-when">Highest certainty, low effort</div>
+                <div class="phase-impact"><div class="lbl">Targets</div><div class="val">Attribution + trust</div></div>
+                <ul class="phase-list">
+                    <li>Fix "(not set)": Consent Mode v2 check, UTM enforcement, Meta CAPI</li>
+                    <li>Install Microsoft Clarity (free) for recordings ahead of testing</li>
+                    <li>Surface review stars + count at the KidsBuddy buy box</li>
+                    <li>Attach the 299 kr screen guarantee as a buy-box add-on</li>
+                    <li>Sharpen delivery line: "Bestil f&oslash;r kl. 14, afsendt i dag"</li>
+                </ul>
+            </div>
+            <div class="phase-card p2">
+                <div class="phase-tag">Phase 2 &middot; weeks 4-7</div>
+                <div class="phase-name">Answer the doubt</div>
+                <div class="phase-when">High impact, medium effort</div>
+                <div class="phase-impact"><div class="lbl">Targets</div><div class="val">View to ATC</div></div>
+                <ul class="phase-list">
+                    <li>KidsBuddy PDP: real app screenshots + honest GPS expectations block</li>
+                    <li>20-30s demo video (GPS tracking + video call) in the gallery</li>
+                    <li>"749 kr once, ingen abonnement" comparison vs Xplora</li>
+                    <li>Mobile checkout pass: MobilePay first, express pay above the form</li>
+                    <li>Long-tail PDP template fix (Glimmt, Beamly, Stjernehimmel)</li>
+                </ul>
+            </div>
+            <div class="phase-card p3">
+                <div class="phase-tag">Phase 3 &middot; weeks 8-12</div>
+                <div class="phase-name">Retention &amp; the moat</div>
+                <div class="phase-when">Compounding, builds the base</div>
+                <ul class="phase-list">
+                    <li>Klaviyo flows: post-purchase, browse abandon, guarantee offer (14-day window)</li>
+                    <li>Reklamation policy: refund before gift card, always</li>
+                    <li>e-m&aelig;rket badge + Danish service block near ATC</li>
+                    <li>PDP speed pass: image stack + app audit, verify in CrUX</li>
+                    <li>Collection page: category filters + review stars on cards</li>
+                </ul>
+            </div>
+        </div>
+        <div class="insight-box"><strong>Conservative target:</strong> the two funnel fixes alone (View to ATC 7.2% to 9.0%, mobile checkout 45.3% to 55%) are worth <strong>Est. 250,000 to 400,000 DKK per quarter</strong> at the current 632 DKK AOV, before any gain from redirecting ad spend once attribution is honest.</div>
+    </div>
+
+    <!-- SLIDE: SHIP VS TEST -->
+    <div class="card" data-index="28">
+        <div class="card-header">
+            <div class="card-label">Execution</div>
+            <div class="card-title">Just ship vs A/B test</div>
+            <div class="card-subtitle">Some fixes are obviously correct with no downside, ship them. Others change the buying experience enough to deserve a measured test against the 3.04% baseline.</div>
+        </div>
+        <div class="split-layout">
+            <div class="split-col ship">
+                <div class="split-head"><span class="name ship">Just ship</span><span class="meta">no downside</span></div>
+                <div class="split-desc">Correctness, data and hygiene fixes. No reason to gate these behind a test.</div>
+                <div class="split-row"><div class="num">01</div><div class="label">Consent / UTM / CAPI attribution repair</div><div class="impact">P1</div></div>
+                <div class="split-row"><div class="num">02</div><div class="label">Install Clarity, baseline recordings</div><div class="impact">P1</div></div>
+                <div class="split-row"><div class="num">03</div><div class="label">Review stars + count at buy box</div><div class="impact">P1</div></div>
+                <div class="split-row"><div class="num">04</div><div class="label">Refund before gift card at reklamation</div><div class="impact">P3</div></div>
+                <div class="split-row"><div class="num">05</div><div class="label">PDP image/app weight pass</div><div class="impact">P3</div></div>
+            </div>
+            <div class="split-col test">
+                <div class="split-head"><span class="name test">A/B test</span><span class="meta">measure it</span></div>
+                <div class="split-desc">Changes to the offer or layout where the win should be proven, in test order.</div>
+                <div class="split-row"><div class="num">01</div><div class="label">Screen guarantee as buy-box add-on</div><div class="impact">AOV</div></div>
+                <div class="split-row"><div class="num">02</div><div class="label">GPS expectations + app screens block</div><div class="impact">View&rarr;ATC</div></div>
+                <div class="split-row"><div class="num">03</div><div class="label">Anti-subscription comparison vs Xplora</div><div class="impact">View&rarr;ATC</div></div>
+                <div class="split-row"><div class="num">04</div><div class="label">Demo video in PDP gallery</div><div class="impact">View&rarr;ATC</div></div>
+                <div class="split-row"><div class="num">05</div><div class="label">Mobile checkout: express pay first</div><div class="impact">checkout CVR</div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE: SCORECARD -->
+    <div class="card" data-index="29">
+        <div class="card-header">
+            <div class="card-label">Summary scorecard</div>
+            <div class="card-title">tech-shoppen.dk at a glance</div>
+            <div class="card-subtitle">Where the store stands today against the dimensions that decide conversion for kids gadgets, with the evidence behind each.</div>
+        </div>
+        <table class="data-table">
+            <thead><tr><th>Dimension</th><th>Today</th><th>Evidence</th><th class="num">Priority</th></tr></thead>
+            <tbody>
+                <tr><td>Attribution &amp; data trust</td><td class="danger">Broken</td><td>498 of 1,496 orders in "(not set)"; 1,863 sessions with no landing page</td><td class="num danger">P1</td></tr>
+                <tr><td>View to Add-to-Cart</td><td class="danger">Critical</td><td>92.8% of product viewers never add (GA4 sequential funnel)</td><td class="num danger">P1</td></tr>
+                <tr><td>Proof at the buy box</td><td class="danger">Missing</td><td>No review count near ATC while the product twin shows "2,200+ parents"</td><td class="num danger">P1</td></tr>
+                <tr><td>Mobile checkout</td><td class="warn">Leaky</td><td>45.3% completion vs 64.9% desktop, on 89% mobile traffic</td><td class="num warn">P2</td></tr>
+                <tr><td>KidsBuddy objection handling</td><td class="warn">Absent</td><td>GPS doubts in 7 and app complaints in 5 of 39 recent reviews, unanswered on PDP</td><td class="num warn">P2</td></tr>
+                <tr><td>AOV mechanics</td><td class="warn">Half built</td><td>299 kr guarantee sold separately; no bundles; "Pakker" nav exists</td><td class="num warn">P2</td></tr>
+                <tr><td>Paid efficiency</td><td class="warn">Uneven</td><td>Partner-ads 28.6 DKK/session vs MakeInfluence 2.5 DKK/session</td><td class="num warn">P2</td></tr>
+                <tr><td>Retention / email</td><td class="warn">Underused</td><td>Returning CVR 7.02% vs 2.37%; Klaviyo = 2.6% of sessions</td><td class="num warn">P3</td></tr>
+                <tr><td>Delivery &amp; logistics</td><td class="good">Strength</td><td>Praised in 9+ reviews, even inside 1-star reviews</td><td class="num good">keep</td></tr>
+                <tr><td>Blended conversion</td><td class="good">Healthy</td><td>3.04% overall, KidsBuddy 2.93% as cold landing</td><td class="num good">keep</td></tr>
+            </tbody>
+        </table>
+        <div class="scorecard-total"><span class="lbl">Biggest single lever</span><span class="val">Answer the GPS doubt at the buy box, then unbreak the data</span></div>
+    </div>
+    <!-- SECTION 06: A/B TEST PLANS -->
+    <div class="section-slide card" data-index="30">
+        <div class="section-number">06</div>
+        <div class="section-kicker">Ready to run</div>
+        <div class="section-title">A/B test plans</div>
+        <div class="section-sub">The three highest-priority tests, written to the pre-test brief standard: observation, hypothesis, variant spec, metrics and guardrails. Baselines are frozen from this audit's 90-day GA4 pull.</div>
+    </div>
+
+    <!-- TEST PLAN T01: PDP PROOF -->
+    <div class="card tp-card" data-index="31">
+        <div class="tp-left">
+            <div class="tp-section">
+                <h3>Observation</h3>
+                <div class="tp-underline"></div>
+                <p>GA4 funnel: only <strong style="color:#F7D007">7.2% of product viewers add to cart</strong>. The KidsBuddy buy box shows no review stars or count, while the product twin kidsbuddy.dk shows "4.8/5 fra 2,200+ for&aelig;ldre" at the same 749 kr. The #1 objection in recent Trustpilot reviews (GPS accuracy, 7 mentions; SeTracker2 app, 5 mentions) is answered nowhere on the page.</p>
+            </div>
+            <div class="tp-section">
+                <h3>Hypothesis</h3>
+                <div class="tp-underline"></div>
+                <p>If we pin the Loox rating + review count under the title and add an honest GPS + app expectations block with real app screens, then add-to-cart rate will rise, because the two doubts that stop a 749 kr parent purchase get answered at the decision point.</p>
+            </div>
+            <div class="tp-section">
+                <h3>What we are testing</h3>
+                <div class="tp-underline"></div>
+                <ul>
+                    <li>Loox stars + count pinned under the product title</li>
+                    <li>"S&aring;dan virker GPS'en" block: real SeTracker2 screens + honest accuracy expectations</li>
+                    <li>e-m&aelig;rket buyer protection + "749 kr once, ingen abonnement" line near the ATC</li>
+                </ul>
+            </div>
+            <div class="tp-section">
+                <h3>Key metrics</h3>
+                <div class="tp-underline"></div>
+                <ol>
+                    <li class="primary">Add-to-cart rate (PDP)</li>
+                    <li>PDP conversion rate</li>
+                    <li>Return / reklamation rate (guardrail)</li>
+                </ol>
+            </div>
+            <div class="tp-target-box">
+                <div class="tp-target-grid">
+                    <div><div class="label">Duration</div><div class="value">3 to 4 weeks</div></div>
+                    <div><div class="label">Device</div><div class="value">All devices</div></div>
+                    <div><div class="label">Baseline</div><div class="value">2.93% CVR &middot; 24,331 sessions / quarter</div></div>
+                    <div><div class="label">URL</div><div class="value">/products/kidsbuddy</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="tp-right">
+            <div class="tp-title">T01 &middot; PDP &middot; Proof at the buy box</div>
+            <div class="tp-meta-bar">
+                <span class="lbl">Test ID:</span><span class="val">TS-T01</span>
+                <span class="lbl">Status:</span><span class="val">In planning</span>
+                <span class="tp-pill-ab">A/B Test</span>
+            </div>
+            <div class="tp-mockups">
+                <div class="tp-mockup">
+                    <div class="tp-phone"><div class="tp-screen"><img src="screenshots/pdp-kidsbuddy-mobile-fold.png" class="shot"></div></div>
+                    <div class="tp-mockup-label">CONTROL &middot; LIVE PDP</div>
+                    <a class="tp-mocklink" href="../mockups/t01-pdp-proof/index.html" target="_blank" rel="noopener">Open the variant design &#9656;</a>
+                </div>
+                <div class="tp-mockup">
+                    <div class="tp-phone"><div class="tp-screen"><img src="screenshots/pdp-kidsbuddy-mobile-fold.png" class="shot"></div></div>
+                    <div class="tp-mockup-label variant">VARIANT &middot; CHANGE SPEC</div>
+                    <ul class="tp-spec"><li>Loox stars + review count pinned under the title</li><li>GPS + app expectations block with real app screens</li><li>e-m&aelig;rket + "ingen abonnement" line near the ATC</li></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TEST PLAN T02: SUPERDEAL OPT-IN -->
+    <div class="card tp-card" data-index="32">
+        <div class="tp-left">
+            <div class="tp-section">
+                <h3>Observation</h3>
+                <div class="tp-underline"></div>
+                <p>The "SuperDeal" bundle is pre-selected: clicking the plain TILF&Oslash;J TIL KURV added <strong style="color:#F7D007">3 items totalling 999 kr</strong> when the shopper expected one item at 749 kr. GA4: only 51.6% of add-to-carts reach checkout. Trustpilot 1-star reviews cluster on refund friction, the downstream cost of surprise totals.</p>
+            </div>
+            <div class="tp-section">
+                <h3>Hypothesis</h3>
+                <div class="tp-underline"></div>
+                <p>If the bundle becomes an explicit opt-in (single item pre-selected, SuperDeal as a visible choice), then cart to checkout rate will rise, because the drawer total matches the price the shopper committed to at the ATC click.</p>
+            </div>
+            <div class="tp-section">
+                <h3>What we are testing</h3>
+                <div class="tp-underline"></div>
+                <ul>
+                    <li>Flip the existing radio default: "1x Kidsbuddy &middot; 749 kr" pre-selected, SuperDeal as the upgrade</li>
+                    <li>Bundle contents itemized before the click, not after</li>
+                    <li>Guarantee (299 kr) also available as a single checkbox add-on</li>
+                </ul>
+            </div>
+            <div class="tp-section">
+                <h3>Key metrics</h3>
+                <div class="tp-underline"></div>
+                <ol>
+                    <li class="primary">Cart to checkout rate</li>
+                    <li>Revenue per visitor</li>
+                    <li>AOV + bundle attach rate (guardrails)</li>
+                </ol>
+            </div>
+            <div class="tp-target-box">
+                <div class="tp-target-grid">
+                    <div><div class="label">Duration</div><div class="value">3 to 4 weeks</div></div>
+                    <div><div class="label">Device</div><div class="value">All devices</div></div>
+                    <div><div class="label">Baseline</div><div class="value">51.6% cart &rarr; checkout &middot; 632 DKK AOV</div></div>
+                    <div><div class="label">URL</div><div class="value">/products/kidsbuddy buy box + cart drawer</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="tp-right">
+            <div class="tp-title">T02 &middot; Buy box &middot; SuperDeal as a choice, not a surprise</div>
+            <div class="tp-meta-bar">
+                <span class="lbl">Test ID:</span><span class="val">TS-T02</span>
+                <span class="lbl">Status:</span><span class="val">In planning</span>
+                <span class="tp-pill-ab">A/B Test</span>
+            </div>
+            <div class="tp-mockups">
+                <div class="tp-mockup">
+                    <div class="tp-phone"><div class="tp-screen"><img src="screenshots/pdp-kidsbuddy-superdeal-mobile.png" class="shot"></div></div>
+                    <div class="tp-mockup-label">CONTROL &middot; LIVE BUY BOX</div>
+                    <a class="tp-mocklink" href="../mockups/t02-superdeal-flip/index.html" target="_blank" rel="noopener">Open the variant design &#9656;</a>
+                    <div class="tp-cap">The radio already exists: SuperDeal (999 kr, 3 items) is pre-selected, "1x Kidsbuddy &middot; 749 kr" sits below it.</div>
+                </div>
+                <div class="tp-mockup">
+                    <div class="tp-phone"><div class="tp-screen"><img src="screenshots/pdp-kidsbuddy-superdeal-mobile.png" class="shot"></div></div>
+                    <div class="tp-mockup-label variant">VARIANT &middot; CHANGE SPEC</div>
+                    <ul class="tp-spec"><li>Flip the default: "1x Kidsbuddy &middot; 749 kr" pre-selected</li><li>SuperDeal stays first as the visible upgrade with its "spar 198 kr" saving</li><li>Guarantee also available as a single checkbox add-on</li></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TEST PLAN T03: MOBILE CHECKOUT PATH -->
+    <div class="card tp-card" data-index="33">
+        <div class="tp-left">
+            <div class="tp-section">
+                <h3>Observation</h3>
+                <div class="tp-underline"></div>
+                <p>GA4 funnel: mobile checkout completion is <strong style="color:#F7D007">45.3% vs 64.9% on desktop</strong>, on a store where 89% of sessions are mobile. The drawer gates its checkout button behind a manual "Jeg accepterer handelsbetingelserne" checkbox and offers no one-tap express payment before the address form.</p>
+            </div>
+            <div class="tp-section">
+                <h3>Hypothesis</h3>
+                <div class="tp-underline"></div>
+                <p>If we remove the drawer-level terms checkbox and surface express payment (MobilePay first) before the form, then mobile checkout completion will rise toward desktop's rate, because the two highest-friction taps on a phone disappear.</p>
+            </div>
+            <div class="tp-section">
+                <h3>What we are testing</h3>
+                <div class="tp-underline"></div>
+                <ul>
+                    <li>Remove the terms checkbox from the drawer (acceptance stays in checkout)</li>
+                    <li>Express pay row (MobilePay / Shop Pay) above VELG LEVERINGSMETODE</li>
+                    <li>Real review count replaces the 5-star "+10.000 GLADE KUNDER" claim</li>
+                </ul>
+            </div>
+            <div class="tp-section">
+                <h3>Key metrics</h3>
+                <div class="tp-underline"></div>
+                <ol>
+                    <li class="primary">Checkout completion rate (mobile)</li>
+                    <li>Overall conversion rate</li>
+                    <li>Payment method mix (diagnostic)</li>
+                </ol>
+            </div>
+            <div class="tp-target-box">
+                <div class="tp-target-grid">
+                    <div><div class="label">Duration</div><div class="value">3 to 4 weeks</div></div>
+                    <div><div class="label">Device</div><div class="value">Mobile focus (89% of traffic)</div></div>
+                    <div><div class="label">Baseline</div><div class="value">45.3% completion &middot; Est. +170K DKK / quarter at 55%</div></div>
+                    <div><div class="label">URL</div><div class="value">Cart drawer + checkout</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="tp-right">
+            <div class="tp-title">T03 &middot; Checkout &middot; Two fewer taps on mobile</div>
+            <div class="tp-meta-bar">
+                <span class="lbl">Test ID:</span><span class="val">TS-T03</span>
+                <span class="lbl">Status:</span><span class="val">In planning</span>
+                <span class="tp-pill-ab">A/B Test</span>
+            </div>
+            <div class="tp-mockups">
+                <div class="tp-mockup">
+                    <div class="tp-phone"><div class="tp-screen"><img src="screenshots/cart-mobile.png" class="shot"></div></div>
+                    <div class="tp-mockup-label">CONTROL &middot; LIVE DRAWER</div>
+                    <a class="tp-mocklink" href="../mockups/t03-cart-drawer/index.html" target="_blank" rel="noopener">Open the variant design &#9656;</a>
+                    <div class="tp-cap">A manual terms checkbox gates the checkout button.</div>
+                </div>
+                <div class="tp-mockup">
+                    <div class="tp-phone"><div class="tp-screen"><img src="screenshots/cart-mobile.png" class="shot"></div></div>
+                    <div class="tp-mockup-label variant">VARIANT &middot; CHANGE SPEC</div>
+                    <ul class="tp-spec"><li>Terms checkbox removed (acceptance stays in checkout)</li><li>MobilePay / Shop Pay express row above the CTA</li><li>Real review count replaces the 5-star claim</li></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="section-slide card" data-index="34">
+        <div class="section-number">07</div>
+        <div class="section-kicker">Who runs this</div>
+        <div class="section-title">How EcomHouse works</div>
+        <div class="section-sub">A zero-row CRO service: we run research, design, build, QA, deploy, test, and analysis end to end. Here is the method, and what it has delivered.</div>
+    </div>
+
+    <!-- METHOD: 6-STEP -->
+    <div class="card" data-index="35">
+        <div class="card-header">
+            <div class="card-label">The EcomHouse method</div>
+            <div class="card-title">Six steps, end to end</div>
+            <div class="card-subtitle">You approve, we execute. Every step is owned by us, including build, QA and rollout. Your only required action is written approval at the brief and rollout stages.</div>
+        </div>
+        <div class="method-flow">
+            <div class="method-step">
+                <div class="num">// 01</div>
+                <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                <h4>Research</h4>
+                <p>GA4, Shopify, heatmaps, recordings, reviews, support tickets.</p>
+            </div>
+            <div class="method-step">
+                <div class="num">// 02</div>
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a7 7 0 0 0-4 12.5V17h8v-1.5A7 7 0 0 0 12 3z"/></svg>
+                <h4>Ideate</h4>
+                <p>Hypothesis, variant concepts, copy, on-brand mockup.</p>
+            </div>
+            <div class="method-step">
+                <div class="num">// 03</div>
+                <svg class="icon-svg" viewBox="0 0 24 24"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1M9 11h6M9 15h4"/></svg>
+                <h4>Pre-test brief</h4>
+                <p>Written brief: metric, confidence, sample size, guardrails.</p>
+            </div>
+            <div class="method-step">
+                <div class="num">// 04</div>
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.5-.5-.5-2.5z"/></svg>
+                <h4>Build &amp; QA</h4>
+                <p>Shopify or test-tool variant, tracked, QA'd across devices.</p>
+            </div>
+            <div class="method-step">
+                <div class="num">// 05</div>
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M14 7h7v7"/></svg>
+                <h4>Run &amp; monitor</h4>
+                <p>Live test with guardrail watch and weekly progress updates.</p>
+            </div>
+            <div class="method-step">
+                <div class="num">// 06</div>
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+                <h4>Analyze &amp; roll out</h4>
+                <p>Written verdict, winners rolled out to 100% of traffic.</p>
+            </div>
+        </div>
+        <div class="insight-box"><strong>Zero-row service:</strong> you are not expected to do production work. We handle everything from research through analysis. You approve the pre-test brief and the rollout decision.</div>
+    </div>
+
+    <!-- PRE-TEST BRIEF (reused, EcomHouse standard) -->
+    <div class="card" data-index="36">
+        <div class="card-header">
+            <div class="card-label">Pre-test analysis</div>
+            <div class="card-title">Every test launches with a written brief</div>
+            <div class="card-subtitle">No test starts without a documented, approved brief. This protects both sides: the client knows the rules, the agency knows the success criteria.</div>
+        </div>
+        <div class="brief-grid">
+            <div class="brief-col test-setup">
+                <h3><span class="tag">// PART 1</span>Test setup</h3>
+                <ul class="brief-list">
+                    <li><strong>Hypothesis</strong> and the Control vs Variant difference</li>
+                    <li><strong>Audience</strong> and traffic filters (mobile only, returning, country, etc.)</li>
+                    <li><strong>Funnel stage</strong> being tested and the corresponding stage multiplier</li>
+                    <li><strong>URL targeting</strong> (homepage, PDP, cart, checkout)</li>
+                    <li><strong>Frozen baselines</strong> for upper-funnel tests, pulled from the trailing 30 days</li>
+                </ul>
+            </div>
+            <div class="brief-col stat-params">
+                <h3><span class="tag">// PART 2</span>Statistical parameters</h3>
+                <ul class="brief-list">
+                    <li><strong>Primary metric</strong> RPV when measurable, otherwise the relevant funnel-stage metric</li>
+                    <li><strong>Statistical confidence</strong> 80% by default, higher on request</li>
+                    <li><strong>Minimum visitor and order count</strong> required before conclusion</li>
+                    <li><strong>Worked fee range</strong> (+5%, +10%, +15% scenarios) so you know the maximum fee before saying yes</li>
+                    <li><strong>Data sources</strong> for every input figure, named explicitly</li>
+                </ul>
+            </div>
+        </div>
+        <div class="insight-box"><strong>The test does not launch until you approve the brief in writing.</strong> Approved conditions govern the test and the fee.</div>
+    </div>
+
+    <!-- A/B TESTING PROTOCOL (reused) -->
+    <div class="card" data-index="37">
+        <div class="card-header">
+            <div class="card-label">Testing protocol</div>
+            <div class="card-title">How we run tests</div>
+            <div class="card-subtitle">Strict guardrails on tooling, statistical rigor, and conclusion. Tests only conclude when all approved conditions are met.</div>
+        </div>
+        <div class="protocol-grid">
+            <div class="protocol-card">
+                <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+                <div class="lbl">Default tool</div>
+                <div class="val">Intelligems</div>
+                <div class="sub">Or any other test tool you prefer (Convert, GrowthBook, Shopify-native), subject to written approval.</div>
+            </div>
+            <div class="protocol-card">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 21h18M7 21V13M12 21V7M17 21V11"/></svg>
+                <div class="lbl">Confidence</div>
+                <div class="val">80% minimum</div>
+                <div class="sub">Statistical confidence threshold for declaring a winner. Higher thresholds set per test if you require it.</div>
+            </div>
+            <div class="protocol-card">
+                <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg>
+                <div class="lbl">Conclusion</div>
+                <div class="val">All conditions met</div>
+                <div class="sub">Tests only conclude when minimum visitors, orders and confidence are reached. No early calls except for technical issues or clear-loser revenue protection.</div>
+            </div>
+            <div class="protocol-card">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M5 12a8 8 0 0 1 14 0M8 15a4 4 0 0 1 8 0"/><circle cx="12" cy="19" r="1.5" fill="currentColor" stroke="none"/></svg>
+                <div class="lbl">Reporting</div>
+                <div class="val">Weekly Loom</div>
+                <div class="sub">Loom or written summary every week, plus a running test log with all hypotheses, results and rollouts you can access anytime.</div>
+            </div>
+        </div>
+        <div class="insight-box"><strong>You have direct access to the testing software at all times.</strong> Live results, traffic splits and historical tests visible to your team without going through us.</div>
+    </div>
+
+    <!-- PERFORMANCE PRICING (reused) -->
+    <div class="card" data-index="38">
+        <div class="card-header">
+            <div class="card-label">Compensation</div>
+            <div class="card-title">We win when you win</div>
+            <div class="card-subtitle">Performance-based fee on every winning test rolled out to 100% of traffic. One-time charge per test. No attribution window. No recurring tail.</div>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card lead">
+                <div class="tag">// PERFORMANCE FEE</div>
+                <h3>% of estimated monthly revenue uplift</h3>
+                <div class="price-line">Y %</div>
+                <div class="desc">Charged once per winning test on rollout. Calculated from the test's measured uplift and your own data, with the agreed stage multiplier applied. Full methodology in Schedule A.</div>
+                <ul>
+                    <li>One time fee per winning test</li>
+                    <li>No recurring tail, no attribution window</li>
+                    <li>Loser and inconclusive tests are free</li>
+                </ul>
+            </div>
+            <div class="pricing-card">
+                <div class="tag">// OPTIONAL RETAINER</div>
+                <h3>Fixed monthly fee</h3>
+                <div class="price-line">X kr / month</div>
+                <div class="desc">Optional. Predictable monthly cost on top of (or instead of) the performance fee. Some clients prefer this for budgeting.</div>
+                <ul>
+                    <li>Billed on the 1st, in advance</li>
+                    <li>Void if not agreed</li>
+                    <li>Stackable with the performance fee</li>
+                </ul>
+            </div>
+        </div>
+        <div class="insight-box"><strong>Billing:</strong> one invoice on the 1st of each month covering the retainer (if any) plus the performance fee for every winning test rolled out the previous month. Loser and inconclusive tests are free.</div>
+    </div>
+
+    <!-- STAGE MULTIPLIERS (reused) -->
+    <div class="card" data-index="39">
+        <div class="card-header">
+            <div class="card-label">Schedule A &middot; Stage multipliers</div>
+            <div class="card-title">Tests further from purchase carry more projection risk</div>
+            <div class="card-subtitle">The stage multiplier discounts the performance fee for upper-funnel tests where revenue impact is estimated rather than directly measured. Approved in the pre-test brief, before the test runs.</div>
+        </div>
+        <div class="multiplier-stack">
+            <div class="mult-row">
+                <div class="mult-pct p100">100 %</div>
+                <div class="body">
+                    <div class="stages">RPV &middot; AOV &middot; Purchase CVR &middot; Checkout CVR &middot; Post-purchase</div>
+                    <div class="why">Revenue measured directly by the testing software. No projection needed.</div>
+                </div>
+                <div class="mult-bar"><div class="fill p100"></div></div>
+            </div>
+            <div class="mult-row">
+                <div class="mult-pct p75">75 %</div>
+                <div class="body">
+                    <div class="stages">Cart to checkout &middot; PDP add to cart</div>
+                    <div class="why">One step from purchase. Light projection of downstream behavior.</div>
+                </div>
+                <div class="mult-bar"><div class="fill p75"></div></div>
+            </div>
+            <div class="mult-row">
+                <div class="mult-pct p50">50 %</div>
+                <div class="body">
+                    <div class="stages">Collection to PDP &middot; PDP engagement</div>
+                    <div class="why">Two steps from purchase. Multiple downstream conversion rates to project.</div>
+                </div>
+                <div class="mult-bar"><div class="fill p50"></div></div>
+            </div>
+            <div class="mult-row">
+                <div class="mult-pct p25">25 %</div>
+                <div class="body">
+                    <div class="stages">Homepage to collection &middot; Navigation &middot; Site search</div>
+                    <div class="why">Three or more steps from purchase. Heaviest projection assumptions.</div>
+                </div>
+                <div class="mult-bar"><div class="fill p25"></div></div>
+            </div>
+        </div>
+        <div class="insight-box"><strong>Only your own data goes into the estimate.</strong> No industry benchmarks, no agency assumptions. Visitors, baseline CVRs and AOV are pulled from the trailing 30 days of GA4 and Shopify, frozen pre-test, and approved by you.</div>
+    </div>
+
+    <!-- PROVEN RESULTS: PH IMPORT CASE STUDIES -->
+    <!-- SLIDE 30: TRACK RECORD OVERVIEW -->
+    <div class="card" data-index="40">
+        <div class="card-header">
+            <div class="card-label">Track record</div>
+            <div class="card-title">Three winning EcomHouse tests</div>
+            <div class="card-subtitle">Real results from EcomHouse client engagements. Each test rolled out to 100 % of traffic after meeting the pre-approved confidence threshold. <strong>IntelliGEMS</strong> test tool.</div>
+        </div>
+        <div class="track-grid">
+            <div class="track-card">
+                <div class="brand">Comforth · DK</div>
+                <div class="test">Product tags on collection cards</div>
+                <div class="primary-label">Profit / visitor</div>
+                <div class="primary-value">+11,42%</div>
+                <div class="ci">-11 % to +39 % CI</div>
+                <div class="monthly">+106.550 kr / mo</div>
+                <div class="divider"></div>
+                <div class="secondary">
+                    <div class="row"><span class="lbl">CR</span><span class="val">2,09% → 2,37%</span><span class="delta">+13,07%</span></div>
+                    <div class="row"><span class="lbl">RPV</span><span class="val">26,88 → 29,87 kr</span><span class="delta">+11,13%</span></div>
+                    <div class="row"><span class="lbl">Orders / mo</span><span class="val">+169</span><span class="delta"></span></div>
+                </div>
+                <div class="note">Added trust and benefit tags to product cards. Lift compounded across all three commercial metrics.</div>
+            </div>
+            <div class="track-card">
+                <div class="brand">PH Import · DK</div>
+                <div class="test">PDP volume discount tiers</div>
+                <div class="primary-label">Conversion rate</div>
+                <div class="primary-value">+11,08%</div>
+                <div class="ci">-3 % to +27 % CI</div>
+                <div class="monthly">+134.917 kr / mo (RPV)</div>
+                <div class="divider"></div>
+                <div class="secondary">
+                    <div class="row"><span class="lbl">RPV</span><span class="val">20,36 → 23,84 kr</span><span class="delta">+17,10%</span></div>
+                    <div class="row"><span class="lbl">AOV</span><span class="val">293,47 → 309,37 kr</span><span class="delta">+5,42%</span></div>
+                    <div class="row"><span class="lbl">Orders / mo</span><span class="val">+298</span><span class="delta"></span></div>
+                </div>
+                <div class="note">Surfaced volume discount tiers on the PDP. CR was primary, RPV and AOV lifted simultaneously.</div>
+            </div>
+            <div class="track-card">
+                <div class="brand">PH Import · DK</div>
+                <div class="test">Homepage hero optimization</div>
+                <div class="primary-label">Revenue / visitor</div>
+                <div class="primary-value">+20,87%</div>
+                <div class="ci">-12 % to +67 % CI</div>
+                <div class="monthly">+272.913 kr / mo</div>
+                <div class="divider"></div>
+                <div class="secondary">
+                    <div class="row"><span class="lbl">CR</span><span class="val">16,3% → 17,6%</span><span class="delta">+7,72%</span></div>
+                    <div class="row"><span class="lbl">AOV</span><span class="val">401,87 → 450,94 kr</span><span class="delta">+12,21%</span></div>
+                    <div class="row"><span class="lbl">PDP view rate</span><span class="val">56,6% → 61,8%</span><span class="delta">+9,21%</span></div>
+                </div>
+                <div class="note">Reworked homepage hero with lighter background. Lifted the full funnel: more PDP views, higher AOV, more revenue.</div>
+            </div>
+        </div>
+        <div class="track-footer">Source: IntelliGEMS test reports. Confidence intervals reflect the range of likely true effect. References available on request.</div>
+    </div>
+
+    <!-- SLIDE 31: CASE STUDY 01 · COMFORTH -->
+    <div class="card case-card" data-index="41">
+        <div class="case-left">
+            <div class="case-badge">Case study · 01</div>
+            <div class="case-brand">Comforth · DK</div>
+            <div class="case-title">Product tags on collection cards</div>
+            <div class="case-primary">
+                <div class="lbl">Profit per visitor (primary)</div>
+                <div class="val">+11,42%</div>
+                <div class="ci">-11 % to +39 % CI</div>
+                <div class="impact">+106.550 kr / month projected</div>
+            </div>
+            <div class="case-table">
+                <div class="head">
+                    <span>Metric</span><span class="col-ctrl">Control</span><span class="col-var">Variant</span><span class="col-delta">Δ</span>
+                </div>
+                <div class="row"><span class="metric">Conversion rate</span><span class="ctrl">2,09 %</span><span class="var">2,37 %</span><span class="delta">+13,07%</span></div>
+                <div class="row"><span class="metric">Revenue / visitor</span><span class="ctrl">26,88 kr</span><span class="var">29,87 kr</span><span class="delta">+11,13%</span></div>
+                <div class="row"><span class="metric">Profit / visitor</span><span class="ctrl">15,07 kr</span><span class="var">16,80 kr</span><span class="delta">+11,42%</span></div>
+                <div class="row"><span class="metric">Est. orders / mo</span><span class="ctrl">·</span><span class="var">+169</span><span class="delta"></span></div>
+            </div>
+            <div class="case-note">Added benefit and trust tags directly to product cards on collection pages. Variant lifted all three commercial metrics with no degradation on any guardrail. IntelliGEMS, 100 % rollout.</div>
+        </div>
+        <div class="case-right">
+            <div class="title-bar">Comforth · Collection card tags</div>
+            <div class="meta-bar">
+                <span class="lbl">Tool:</span><span class="val">IntelliGEMS</span>
+                <span class="lbl">Primary:</span><span class="val">Profit / visitor</span>
+                <span class="pill-ab">Rolled out</span>
+            </div>
+            <div class="case-mockups">
+                <div class="case-mockup">
+                    <div class="case-mockup-label">Control</div>
+                    <div class="case-frame"><img src="assets/test-comforth-control.png" alt="Comforth control"/></div>
+                </div>
+                <div class="case-mockup">
+                    <div class="case-mockup-label variant">Variant</div>
+                    <div class="case-frame"><img src="assets/test-comforth-variant.png" alt="Comforth variant"/></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 32: CASE STUDY 02 · PH IMPORT VOLUME DISCOUNT -->
+    <div class="card case-card" data-index="42">
+        <div class="case-left">
+            <div class="case-badge">Case study · 02</div>
+            <div class="case-brand">PH Import · DK</div>
+            <div class="case-title">PDP volume discount tiers</div>
+            <div class="case-primary">
+                <div class="lbl">Conversion rate (primary)</div>
+                <div class="val">+11,08%</div>
+                <div class="ci">-3 % to +27 % CI</div>
+                <div class="impact">+298 orders / month · +134.917 kr / mo</div>
+            </div>
+            <div class="case-table">
+                <div class="head">
+                    <span>Metric</span><span class="col-ctrl">Control</span><span class="col-var">Variant</span><span class="col-delta">Δ</span>
+                </div>
+                <div class="row"><span class="metric">Conversion rate</span><span class="ctrl">6,94 %</span><span class="var">7,71 %</span><span class="delta">+11,08%</span></div>
+                <div class="row"><span class="metric">Revenue / visitor</span><span class="ctrl">20,36 kr</span><span class="var">23,84 kr</span><span class="delta">+17,10%</span></div>
+                <div class="row"><span class="metric">Profit / visitor</span><span class="ctrl">10,49 kr</span><span class="var">12,25 kr</span><span class="delta">+16,68%</span></div>
+                <div class="row"><span class="metric">Avg order value</span><span class="ctrl">293,47 kr</span><span class="var">309,37 kr</span><span class="delta">+5,42%</span></div>
+            </div>
+            <div class="case-note">Surfaced volume discount tiers directly on the PDP. Variant lifted purchase rate, AOV, and downstream profit simultaneously. IntelliGEMS, 100 % rollout.</div>
+        </div>
+        <div class="case-right">
+            <div class="title-bar">PH Import · PDP volume discount</div>
+            <div class="meta-bar">
+                <span class="lbl">Tool:</span><span class="val">IntelliGEMS</span>
+                <span class="lbl">Primary:</span><span class="val">Conversion rate</span>
+                <span class="pill-ab">Rolled out</span>
+            </div>
+            <div class="case-mockups">
+                <div class="case-mockup">
+                    <div class="case-mockup-label">Control</div>
+                    <div class="case-frame"><img src="assets/test-ph-volume-control.jpg" alt="PH Import volume control"/></div>
+                </div>
+                <div class="case-mockup">
+                    <div class="case-mockup-label variant">Variant</div>
+                    <div class="case-frame"><img src="assets/test-ph-volume-variant.jpg" alt="PH Import volume variant"/></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 33: CASE STUDY 03 · PH IMPORT HOMEPAGE HERO -->
+    <div class="card case-card" data-index="43">
+        <div class="case-left">
+            <div class="case-badge">Case study · 03</div>
+            <div class="case-brand">PH Import · DK</div>
+            <div class="case-title">Homepage hero optimization</div>
+            <div class="case-primary">
+                <div class="lbl">Revenue per visitor (primary)</div>
+                <div class="val">+20,87%</div>
+                <div class="ci">-12 % to +67 % CI</div>
+                <div class="impact">+251 orders / month · +272.913 kr / mo</div>
+            </div>
+            <div class="case-table">
+                <div class="head">
+                    <span>Metric</span><span class="col-ctrl">Control</span><span class="col-var">Variant</span><span class="col-delta">Δ</span>
+                </div>
+                <div class="row"><span class="metric">Revenue / visitor</span><span class="ctrl">65,50 kr</span><span class="var">79,17 kr</span><span class="delta">+20,87%</span></div>
+                <div class="row"><span class="metric">Profit / visitor</span><span class="ctrl">34,78 kr</span><span class="var">42,35 kr</span><span class="delta">+21,78%</span></div>
+                <div class="row"><span class="metric">Avg order value</span><span class="ctrl">401,87 kr</span><span class="var">450,94 kr</span><span class="delta">+12,21%</span></div>
+                <div class="row"><span class="metric">PDP view rate</span><span class="ctrl">56,6 %</span><span class="var">61,8 %</span><span class="delta">+9,21%</span></div>
+            </div>
+            <div class="case-note">Reworked homepage hero with a lighter background and a sharper category-led layout. Lift compounded through PDP views, AOV, and revenue. IntelliGEMS, 100 % rollout.</div>
+        </div>
+        <div class="case-right">
+            <div class="title-bar">PH Import · Homepage hero</div>
+            <div class="meta-bar">
+                <span class="lbl">Tool:</span><span class="val">IntelliGEMS</span>
+                <span class="lbl">Primary:</span><span class="val">Revenue / visitor</span>
+                <span class="pill-ab">Rolled out</span>
+            </div>
+            <div class="case-mockups">
+                <div class="case-mockup">
+                    <div class="case-mockup-label">Control</div>
+                    <div class="case-frame"><img src="assets/test-ph-hero-control.jpg" alt="PH Import hero control"/></div>
+                </div>
+                <div class="case-mockup">
+                    <div class="case-mockup-label variant">Variant</div>
+                    <div class="case-frame"><img src="assets/test-ph-hero-variant.jpg" alt="PH Import hero variant"/></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="thankyou-slide card" data-index="44">
+        <div class="title-text" style="position:relative;z-index:2">
+            <div class="card-label" style="color:#F7D007;letter-spacing:3px;margin-bottom:14px">Next step</div>
+            <h1 class="ty-title" style="font-size:56px">Unbreak the data,<br><span class="eh-yellow">answer the doubt,</span> and win the add-to-cart.</h1>
+            <p class="ty-sub" style="max-width:780px;margin-top:18px">92.8% of product viewers leave before adding to cart, and a third of orders are invisible to the channels that bought them. Phase 1 (attribution repair, proof at the buy box, Clarity installed) carries no downside and can ship in three weeks.</p>
+            <p style="color:#F7D007;font-size:16px;margin-top:24px">Conservative target: Est. 250,000 to 400,000 DKK per quarter from the two funnel fixes alone.</p>
+            <p class="ty-powered" style="margin-top:36px">Prepared by EcomHouse</p>
+        </div>
+    </div>
+
+</div><!-- /scroll-container -->
+
+<!-- NAV -->
+<div class="nav-menu-backdrop" id="navMenuBackdrop"></div>
+<div class="nav-menu" id="navMenu">
+    <div class="nav-menu-header">
+        <span class="title">Jump to slide</span>
+        <button class="close" id="navMenuClose" aria-label="Close menu">&times;</button>
+    </div>
+    <div class="nav-menu-content" id="navMenuContent"></div>
+</div>
+<div class="nav-bar">
+    <button class="nav-menu-btn" id="navMenuBtn" aria-label="Open slide menu">
+        <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <span>Menu</span>
+    </button>
+    <div class="nav-dots" id="navDots"></div>
+    <div class="nav-counter" id="navCounter">01 / 45</div>
+    <div class="nav-arrows">
+        <button class="nav-arrow" id="prevBtn" aria-label="Previous"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+        <button class="nav-arrow" id="nextBtn" aria-label="Next"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+    </div>
+</div>
+
+<script>
+// Slide titles + section structure for navigation menu
+var SLIDE_TITLES = [
+    'Cover',
+    'How this audit was built',
+    'Executive summary',
+    '00 / The numbers (section)',
+    'Baseline metrics',
+    'Funnel decomposition',
+    'Device split',
+    'Traffic & spend',
+    'Attribution black hole',
+    'Product economics',
+    'Retention & email',
+    '01 / Site performance (section)',
+    'Core Web Vitals',
+    '02 / Conversion walk (section)',
+    'Homepage',
+    'Collection / PLP',
+    'PDP · KidsBuddy',
+    'PDP · long tail',
+    'Cart drawer',
+    '03 / Voice of customer (section)',
+    'VOC theme counts',
+    'VOC verbatim quotes',
+    'Why they buy / hesitate',
+    '04 / Competitor benchmark (section)',
+    'Competitor matrix',
+    'Adoptable patterns',
+    '05 / Roadmap (section)',
+    '90-day roadmap',
+    'Ship vs A/B test',
+    'Summary scorecard',
+    '06 / A/B test plans (section)',
+    'T01 · PDP · Proof at the buy box',
+    'T02 · Buy box · SuperDeal opt-in',
+    'T03 · Checkout · Two fewer taps',
+    '07 / How EcomHouse works (section)',
+    'Six steps, end to end',
+    'Pre-test brief',
+    'A/B testing protocol',
+    'Performance pricing',
+    'Stage multipliers',
+    'Track record · three wins',
+    'Case study 01 · Comforth',
+    'Case study 02 · PH Import PDP',
+    'Case study 03 · PH Import hero',
+    'Thank you'
+];
+var SLIDE_SECTIONS = [
+    { title: 'Intro', start: 0, end: 2 },
+    { title: '00 / The numbers', start: 3, end: 10 },
+    { title: '01 / Site performance', start: 11, end: 12 },
+    { title: '02 / Conversion walk', start: 13, end: 18 },
+    { title: '03 / Voice of customer', start: 19, end: 22 },
+    { title: '04 / Competitor benchmark', start: 23, end: 25 },
+    { title: '05 / Roadmap', start: 26, end: 29 },
+    { title: '06 / A/B test plans', start: 30, end: 33 },
+    { title: '07 / How EcomHouse works', start: 34, end: 44 }
+];
+
+(function(){
+    var c=document.getElementById('scrollContainer'),cards=document.querySelectorAll('.card'),dots=document.getElementById('navDots'),ctr=document.getElementById('navCounter'),prev=document.getElementById('prevBtn'),next=document.getElementById('nextBtn'),t=cards.length,cur=0;
+    var menuBtn=document.getElementById('navMenuBtn'),menu=document.getElementById('navMenu'),menuBackdrop=document.getElementById('navMenuBackdrop'),menuClose=document.getElementById('navMenuClose'),menuContent=document.getElementById('navMenuContent');
+
+    // Build dots with title tooltips
+    for(var i=0;i<t;i++){
+        var d=document.createElement('div');
+        d.className='nav-dot'+(i===0?' active':'');
+        d.setAttribute('data-index',i);
+        d.title = (i+1).toString().padStart(2,'0') + '  ·  ' + (SLIDE_TITLES[i] || 'Slide ' + (i+1));
+        d.addEventListener('click',function(){go(parseInt(this.getAttribute('data-index')))});
+        dots.appendChild(d);
+    }
+
+    // Build sectioned slide menu
+    SLIDE_SECTIONS.forEach(function(sec){
+        var secEl = document.createElement('div');
+        secEl.className = 'nav-menu-section';
+        var hdr = document.createElement('div');
+        hdr.className = 'nav-menu-section-title';
+        hdr.textContent = sec.title;
+        secEl.appendChild(hdr);
+        var grid = document.createElement('div');
+        grid.className = 'nav-menu-grid';
+        for (var j = sec.start; j <= sec.end; j++) {
+            var item = document.createElement('div');
+            item.className = 'nav-menu-item';
+            item.setAttribute('data-index', j);
+            var num = document.createElement('span');
+            num.className = 'num';
+            num.textContent = String(j+1).padStart(2,'0');
+            var titleSpan = document.createElement('span');
+            titleSpan.className = 'title';
+            titleSpan.textContent = SLIDE_TITLES[j] || 'Slide ' + (j+1);
+            item.appendChild(num);
+            item.appendChild(titleSpan);
+            item.addEventListener('click', function(){
+                go(parseInt(this.getAttribute('data-index')));
+                closeMenu();
+            });
+            grid.appendChild(item);
+        }
+        secEl.appendChild(grid);
+        menuContent.appendChild(secEl);
+    });
+
+    function openMenu(){
+        menu.classList.add('open');
+        menuBackdrop.classList.add('open');
+        menuBtn.classList.add('open');
+        var active = menuContent.querySelector('.nav-menu-item.active');
+        if (active) active.scrollIntoView({block: 'nearest'});
+    }
+    function closeMenu(){
+        menu.classList.remove('open');
+        menuBackdrop.classList.remove('open');
+        menuBtn.classList.remove('open');
+    }
+    menuBtn.addEventListener('click', function(){
+        if (menu.classList.contains('open')) closeMenu(); else openMenu();
+    });
+    menuClose.addEventListener('click', closeMenu);
+    menuBackdrop.addEventListener('click', closeMenu);
+
+    function upd(i){
+        cur=i;
+        document.querySelectorAll('.nav-dot').forEach(function(d,j){d.className='nav-dot'+(j===i?' active':'')});
+        document.querySelectorAll('.nav-menu-item').forEach(function(it){
+            if (parseInt(it.getAttribute('data-index'))===i) it.classList.add('active');
+            else it.classList.remove('active');
+        });
+        ctr.textContent=(i+1).toString().padStart(2,'0')+' / '+t.toString().padStart(2,'0');
+        var ehPage = document.getElementById('ehPageNum');
+        if (ehPage) ehPage.textContent = i.toString().padStart(2, '0');
+    }
+    function go(i){if(i<0||i>=t)return;cards[i].scrollIntoView({behavior:'smooth',inline:'start'});upd(i)}
+    prev.addEventListener('click',function(){go(cur-1)});next.addEventListener('click',function(){go(cur+1)});
+    var st;c.addEventListener('scroll',function(){clearTimeout(st);st=setTimeout(function(){var idx=Math.round(c.scrollLeft/window.innerWidth);if(idx!==cur)upd(idx)},100)});
+    document.addEventListener('keydown',function(e){
+        if(e.key==='Escape' && menu.classList.contains('open')){closeMenu();return;}
+        if(menu.classList.contains('open'))return;
+        if(e.key==='ArrowRight'||e.key==='ArrowDown'){e.preventDefault();go(cur+1)}
+        else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();go(cur-1)}
+    });
+    upd(0);
+})();
+</script>
+<div class="fs-control" role="group" aria-label="Text size">
+  <button id="fsDown" title="Smaller text" style="font-size:11px">A</button>
+  <button id="fsReset" title="Reset text size" style="font-size:13px">A</button>
+  <button id="fsUp" title="Larger text" style="font-size:16px">A</button>
+</div>
+<script>
+(function(){
+  var min=0.85,max=1.30,step=0.10,fs=1;
+  try{var s=localStorage.getItem('tsfs'); if(s){var p=parseFloat(s); if(!isNaN(p))fs=Math.min(max,Math.max(min,p));}}catch(e){}
+  function apply(){document.documentElement.style.setProperty('--fs',fs.toFixed(2));try{localStorage.setItem('tsfs',fs);}catch(e){}}
+  function set(v){fs=Math.min(max,Math.max(min,Math.round(v*100)/100));apply();}
+  document.getElementById('fsUp').addEventListener('click',function(){set(fs+step);});
+  document.getElementById('fsDown').addEventListener('click',function(){set(fs-step);});
+  document.getElementById('fsReset').addEventListener('click',function(){set(1);});
+  apply();
+})();
+</script>
+</body>
+</html>

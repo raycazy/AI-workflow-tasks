@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tech-shoppen.dk · Homepage redesign (top 4 sektioner) · EcomHouse</title>
+<style>
+@font-face { font-family: 'Poppins'; src: url('../mockups/_assets/32bae43b-poppins_n5.ad5b4b72b59a00358afc706450c864c3c8323842.woff2') format('woff2'); font-weight: 500 800; font-style: normal; }
+@font-face { font-family: 'Montserrat'; src: url('../mockups/_assets/567cbfb2-montserrat_n4.81949fa0ac9fd2021e16436151e8eaa539321637.woff2') format('woff2'); font-weight: 400; font-style: normal; }
+@font-face { font-family: 'Montserrat'; src: url('../mockups/_assets/7e3838d3-montserrat_n7.3c434e22befd5c18a6b4afadb1e3d77c128c7939.woff2') format('woff2'); font-weight: 600 700; font-style: normal; }
+
+:root {
+  --ink: #16181c;
+  --body: #33363c;
+  --muted: #5c6066;
+  --line: #e6e4df;
+  --sky: #eef3f8;
+  --accent: #d97706;
+  --accent-ink: #8a4b04;
+  --r: 12px;
+  --disp: 'Poppins', sans-serif;
+  --text: 'Montserrat', sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--text); font-size: 16px; line-height: 1.6; color: var(--body); background: #fff; }
+img { max-width: 100%; display: block; }
+h1, h2, h3 { font-family: var(--disp); font-weight: 600; color: var(--ink); line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance; }
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: none; border-radius: var(--r); font-family: var(--disp); font-weight: 600; font-size: 16px; cursor: pointer; padding: 16px 28px; }
+.btn-ink { background: var(--ink); color: #fff; }
+.btn-ink:hover { background: #000; }
+.btn-line { background: #fff; color: var(--ink); border: 2px solid var(--ink); }
+
+/* utility + header */
+.util { background: var(--ink); color: #fff; font-size: 12px; }
+.util .wrap { display: flex; justify-content: center; gap: 32px; padding: 8px 20px; }
+.util span { display: flex; align-items: center; gap: 7px; white-space: nowrap; }
+.util svg { stroke: #fff; }
+header.site { border-bottom: 1px solid var(--line); background: #fff; }
+header.site .wrap { display: flex; align-items: center; gap: 28px; padding: 16px 20px; }
+.logo { font-family: var(--disp); font-weight: 600; font-size: 18px; letter-spacing: 0.14em; color: var(--ink); }
+nav.main { display: flex; gap: 24px; font-size: 14px; font-weight: 600; color: var(--ink); margin-left: auto; }
+.hicons { display: flex; gap: 18px; }
+.hicons svg { stroke: var(--ink); }
+.burger { display: none; } 
+@media (max-width: 859px) { nav.main { display: none; } header.site .wrap { justify-content: space-between; } .burger { display: block; } }
+
+/* ===== 1. hero ===== */
+.hero { background: var(--sky); overflow: hidden; }
+.herogrid { display: grid; gap: 0; }
+@media (min-width: 860px) { .herogrid { grid-template-columns: 5fr 6fr; align-items: center; min-height: 560px; } }
+.hero .copy { padding: 48px 20px; max-width: 560px; margin: 0 auto; }
+@media (min-width: 860px) { .hero .copy { padding: 64px 24px 64px 40px; margin: 0; justify-self: end; } }
+.hero h1 { font-size: clamp(32px, 4.6vw, 54px); margin-bottom: 16px; }
+.hero .sub { font-size: 18px; max-width: 42ch; margin-bottom: 28px; }
+.hero .ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 22px; }
+.hero .proof { font-size: 14px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+.hero .proof svg { stroke: var(--ink); flex: none; }
+.hero .photo { height: 100%; min-height: 320px; }
+.hero .photo img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ===== 2. categories ===== */
+.cats { padding: 72px 0 8px; }
+.cats h2 { font-size: clamp(24px, 3vw, 34px); margin-bottom: 6px; }
+.cats .lead { margin-bottom: 28px; max-width: 56ch; }
+.catgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (min-width: 860px) { .catgrid { grid-template-columns: repeat(4, 1fr); } }
+.cat { position: relative; border-radius: var(--r); overflow: hidden; background: #f6f5f2; border: 1px solid var(--line); }
+.cat img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.cat .lbl { position: absolute; left: 10px; right: 10px; bottom: 10px; background: #fff; border-radius: 8px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.cat .lbl strong { font-family: var(--disp); font-weight: 600; font-size: 14px; color: var(--ink); }
+.cat .lbl svg { stroke: var(--ink); flex: none; }
+
+/* ===== 3. bestsellers ===== */
+.best { padding: 72px 0; }
+.besthead { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 28px; }
+.best h2 { font-size: clamp(24px, 3vw, 34px); }
+.best .all { font-size: 14px; font-weight: 700; color: var(--ink); text-decoration: underline; white-space: nowrap; }
+.prodgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (min-width: 860px) { .prodgrid { grid-template-columns: repeat(4, 1fr); gap: 18px; } }
+.prod { border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; background: #fff; display: flex; flex-direction: column; }
+.prod .imgbox { position: relative; background: #f6f5f2; }
+.prod .imgbox img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+.prod .save { position: absolute; top: 10px; left: 10px; background: var(--accent-ink); color: #fff; font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
+.prod .inf { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+.prod .inf strong { font-family: var(--disp); font-weight: 600; font-size: 16px; color: var(--ink); line-height: 1.3; }
+.prod .inf .use { font-size: 14px; color: var(--muted); flex: 1; }
+.prod .pr { display: flex; align-items: baseline; gap: 8px; margin-top: 6px; flex-wrap: wrap; }
+.prod .pr b, .prod .pr s { white-space: nowrap; }
+.prod .pr b { font-family: var(--disp); font-weight: 600; font-size: 18px; color: var(--ink); }
+.prod .pr s { font-size: 14px; color: var(--muted); }
+
+/* ===== 4. trust band ===== */
+.trust { background: var(--ink); color: #e8e8e6; padding: 72px 0; }
+.trustgrid { display: grid; gap: 40px; }
+@media (min-width: 860px) { .trustgrid { grid-template-columns: 6fr 5fr; gap: 72px; align-items: center; } }
+.trust blockquote { font-family: var(--disp); font-weight: 500; font-size: clamp(20px, 2.6vw, 28px); color: #fff; line-height: 1.4; letter-spacing: -0.01em; }
+.trust cite { display: block; font-family: var(--text); font-style: normal; font-size: 14px; color: #b8bbc0; margin-top: 16px; }
+.trust cite a { text-decoration: underline; }
+.facts { list-style: none; display: grid; gap: 18px; }
+.facts li { display: flex; gap: 14px; align-items: flex-start; font-size: 16px; }
+.facts svg { stroke: #ffc46b; flex: none; margin-top: 3px; }
+.facts strong { color: #fff; }
+
+footer.site { border-top: 1px solid var(--line); padding: 24px 0; font-size: 14px; color: var(--muted); }
+footer.site .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+.eh-tag { position: fixed; left: 12px; bottom: 12px; z-index: 70; background: #111; color: #F7D007; font: 600 12px/1 var(--disp); letter-spacing: 1px; padding: 8px 12px; border-radius: 6px; border: 1px solid #F7D007; }
+@media (max-width: 859px) { .util .wrap { gap: 16px; } .util span:nth-child(3) { display: none; } }
+@media (max-width: 480px) { .util span:nth-child(2) { display: none; } }
+</style>
+</head>
+<body>
+
+<div class="util">
+  <div class="wrap">
+    <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="14" height="12" rx="2"/><path d="M15 10h4l3 3v5h-7z"/><circle cx="6" cy="18.5" r="1.6"/><circle cx="18" cy="18.5" r="1.6"/></svg>Levering 1 til 3 hverdage</span>
+    <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>30 dages returret, forl&aelig;nget ved gaver</span>
+    <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Dansk kundeservice, 365 dage om &aring;ret</span>
+  </div>
+</div>
+
+<header class="site">
+  <div class="wrap">
+    <svg class="burger" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16181c" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    <a class="logo" href="#">TECH-SHOPPEN</a>
+    <nav class="main">
+      <a href="#">B&oslash;rn &amp; tryghed</a>
+      <a href="#">Sov &amp; stemning</a>
+      <a href="#">Leg &amp; bev&aelig;gelse</a>
+      <a href="#">Tilbud</a>
+    </nav>
+    <div class="hicons">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l1.5 13h-15z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg>
+    </div>
+  </div>
+</header>
+
+<!-- 1 · HERO -->
+<section class="hero">
+  <div class="herogrid">
+    <div class="copy">
+      <h1>Ro i maven, n&aring;r dit barn g&aring;r selv</h1>
+      <p class="sub">GPS-ure, s&oslash;vntr&aelig;nere og smarte hj&aelig;lpere til familier. Testet af os, elsket af b&oslash;rnene, uden abonnementer.</p>
+      <div class="ctas">
+        <a class="btn btn-ink" href="#">Se KidsBuddy, fra 749 kr</a>
+        <a class="btn btn-line" href="#">Alle produkter</a>
+      </div>
+      <p class="proof">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        +10.000 kunder &middot; e-m&aelig;rket certificeret &middot; Dansk webshop
+      </p>
+    </div>
+    <div class="photo">
+      <img src="../mockups/_assets/a2865166-9_0402a4f8-1812-457a-89ac-ee9a83cd24ad.png" alt="Barn g&aring;r selv hjem ad stien med sit KidsBuddy ur p&aring;">
+    </div>
+  </div>
+</section>
+
+<!-- 2 · CATEGORIES -->
+<section class="cats">
+  <div class="wrap">
+    <h2>Find det, I st&aring;r og mangler</h2>
+    <p class="lead">Fire indgange i stedet for &eacute;n lang liste. S&aring; slipper du for at scrolle forbi 30 produkter.</p>
+    <div class="catgrid">
+      <a class="cat" href="#">
+        <img src="../mockups/_assets/28082981-2_79f6b4cf-31b0-4a59-a200-426e28ca0873.png" alt="KidsBuddy ur spaendes paa et barns haandled">
+        <span class="lbl"><strong>B&oslash;rn &amp; tryghed</strong><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </a>
+      <a class="cat" href="#">
+        <img src="../mockups/_assets/15d3fc61-noomu-product-03.png" alt="Noomu natlampe lyser bloedt paa natbordet">
+        <span class="lbl"><strong>Sov &amp; stemning</strong><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </a>
+      <a class="cat" href="#">
+        <img src="../mockups/_assets/fcab1ed8-glimmt-black-03.png" alt="Barn koerer paa Glimmt loebecykel i haven">
+        <span class="lbl"><strong>Leg &amp; bev&aelig;gelse</strong><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </a>
+      <a class="cat" href="#">
+        <img src="../mockups/_assets/07aaae04-6_fea47a24-67c1-4108-b575-6bf572687c57.png" alt="KidsBuddy urrem skiftes p&aring; h&aring;ndleddet">
+        <span class="lbl"><strong>Tilbeh&oslash;r</strong><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · BESTSELLERS -->
+<section class="best">
+  <div class="wrap">
+    <div class="besthead">
+      <h2>Det familierne k&oslash;ber mest</h2>
+      <a class="all" href="#">Se alle produkter</a>
+    </div>
+    <div class="prodgrid">
+      <a class="prod" href="#">
+        <span class="imgbox"><img src="../mockups/_assets/e44cdd00-kidsbuddy-sort.png" alt="KidsBuddy GPS smartwatch i sort"><span class="save">Spar 25%</span></span>
+        <span class="inf">
+          <strong>KidsBuddy&trade; GPS smartwatch</strong>
+          <span class="use">GPS, opkald og SOS. Uden abonnement.</span>
+          <span class="pr"><b>749,00 kr</b><s>999,00 kr</s></span>
+        </span>
+      </a>
+      <a class="prod" href="#">
+        <span class="imgbox"><img src="../mockups/_assets/d7d1c14e-stjernehimmel-projektor.jpg" alt="Moona stjernehimmel projektor med fjernbetjening"><span class="save">Spar 22%</span></span>
+        <span class="inf">
+          <strong>Moona&trade; Stjernehimmel projektor</strong>
+          <span class="use">21 m&oslash;nstre og indbygget h&oslash;jtaler.</span>
+          <span class="pr"><b>349,00 kr</b><s>449,00 kr</s></span>
+        </span>
+      </a>
+      <a class="prod" href="#">
+        <span class="imgbox"><img src="../mockups/_assets/15d3fc61-noomu-product-03.png" alt="Noomu soevntraener natlampe"><span class="save">Spar 33%</span></span>
+        <span class="inf">
+          <strong>Noomu&trade; S&oslash;vntr&aelig;ner</strong>
+          <span class="use">Natlampe der l&aelig;rer b&oslash;rn at sove.</span>
+          <span class="pr"><b>399,00 kr</b><s>599,00 kr</s></span>
+        </span>
+      </a>
+      <a class="prod" href="#">
+        <span class="imgbox"><img src="../mockups/_assets/e683fd6d-glimmt-black-03.png" alt="Glimmt loebecykel med LED"><span class="save">Spar 33%</span></span>
+        <span class="inf">
+          <strong>Glimmt&trade; L&oslash;becykel med LED</strong>
+          <span class="use">Til b&oslash;rn 3 til 7 &aring;r. Lys i hjulene.</span>
+          <span class="pr"><b>799,00 kr</b><s>1.199,00 kr</s></span>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · TRUST BAND -->
+<section class="trust">
+  <div class="wrap trustgrid">
+    <div>
+      <blockquote>"Det har givet os en k&aelig;mpe ro i maven i hverdagen ... det f&oslash;les bare trygt og smart."</blockquote>
+      <cite>Maiken, KidsBuddy-mor &middot; <a href="#">3,9 p&aring; Trustpilot, 404 anmeldelser</a></cite>
+    </div>
+    <ul class="facts">
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="14" height="12" rx="2"/><path d="M15 10h4l3 3v5h-7z"/><circle cx="6" cy="18.5" r="1.6"/><circle cx="18" cy="18.5" r="1.6"/></svg><span><strong>Afsendt samme dag</strong> ved bestilling f&oslash;r kl. 14. Levering 1 til 3 hverdage.</span></li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg><span><strong>e-m&aelig;rket certificeret</strong> med k&oslash;berbeskyttelse op til 10.000 kr.</span></li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg><span><strong>30 dages returret</strong>, og forl&aelig;nget returret n&aring;r du k&oslash;ber gaver.</span></li>
+    </ul>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <span>SKM Group ApS &middot; CVR 45368580 &middot; Skjern</span>
+    <span>kundeservice@tech-shoppen.dk</span>
+  </div>
+</footer>
+
+<div class="eh-tag">ECOMHOUSE REDESIGN &middot; FORSIDE TOP 4</div>
+
+</body>
+</html>

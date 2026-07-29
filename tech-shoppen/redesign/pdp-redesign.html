@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KidsBuddy™ GPS smartwatch til børn · PDP redesign · EcomHouse</title>
+<style>
+@font-face { font-family: 'Poppins'; src: url('../mockups/_assets/32bae43b-poppins_n5.ad5b4b72b59a00358afc706450c864c3c8323842.woff2') format('woff2'); font-weight: 500 800; font-style: normal; }
+@font-face { font-family: 'Montserrat'; src: url('../mockups/_assets/567cbfb2-montserrat_n4.81949fa0ac9fd2021e16436151e8eaa539321637.woff2') format('woff2'); font-weight: 400; font-style: normal; }
+@font-face { font-family: 'Montserrat'; src: url('../mockups/_assets/7e3838d3-montserrat_n7.3c434e22befd5c18a6b4afadb1e3d77c128c7939.woff2') format('woff2'); font-weight: 600 700; font-style: normal; }
+
+:root {
+  --ink: #16181c;
+  --body: #33363c;
+  --muted: #5c6066;
+  --line: #e6e4df;
+  --paper: #ffffff;
+  --sky: #eef3f8;
+  --accent: #d97706;
+  --accent-ink: #8a4b04;
+  --good: #1a7f4e;
+  --r: 12px;
+  --disp: 'Poppins', sans-serif;
+  --text: 'Montserrat', sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--text); font-size: 16px; line-height: 1.6; color: var(--body); background: var(--paper); }
+img { max-width: 100%; display: block; }
+h1, h2, h3 { font-family: var(--disp); font-weight: 600; color: var(--ink); line-height: 1.15; letter-spacing: -0.02em; text-wrap: balance; }
+a { color: inherit; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; border: none; border-radius: var(--r); font-family: var(--disp); font-weight: 600; font-size: 16px; letter-spacing: 0.02em; cursor: pointer; padding: 17px 24px; }
+.btn-ink { background: var(--ink); color: #fff; }
+.btn-ink:hover { background: #000; }
+.ic { flex: none; }
+
+/* utility bar + header */
+.util { background: var(--ink); color: #fff; font-size: 12px; }
+.util .wrap { display: flex; justify-content: center; gap: 32px; padding: 8px 20px; }
+.util span { display: flex; align-items: center; gap: 7px; white-space: nowrap; }
+.util svg { stroke: #fff; }
+header.site { border-bottom: 1px solid var(--line); background: #fff; position: sticky; top: 0; z-index: 40; }
+header.site .wrap { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; }
+.logo { font-family: var(--disp); font-weight: 600; font-size: 18px; letter-spacing: 0.14em; color: var(--ink); text-decoration: none; }
+.hicons { display: flex; gap: 18px; }
+.hicons svg { stroke: var(--ink); }
+
+/* ===== buy hero ===== */
+.buyhero { padding: 28px 0 56px; }
+.crumb { font-size: 12px; color: var(--muted); padding: 14px 0 6px; }
+.buygrid { display: grid; gap: 40px; }
+@media (min-width: 920px) { .buygrid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 56px; align-items: start; } }
+
+.gallery-main { border-radius: var(--r); overflow: hidden; background: var(--sky); aspect-ratio: 4 / 3; }
+.gallery-main img { width: 100%; height: 100%; object-fit: cover; }
+.thumbs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 10px; }
+.thumbs figure { border-radius: 8px; overflow: hidden; background: #f6f5f2; aspect-ratio: 1; border: 1px solid var(--line); }
+.thumbs img { width: 100%; height: 100%; object-fit: cover; }
+.gallery-cap { font-size: 12px; color: var(--muted); margin-top: 10px; }
+
+.stars { display: inline-flex; gap: 2px; }
+.raterow { display: flex; align-items: center; gap: 10px; font-size: 14px; margin-bottom: 12px; }
+.raterow a { font-weight: 600; color: var(--ink); }
+.buybox h1 { font-size: clamp(26px, 3.2vw, 34px); margin-bottom: 10px; }
+.promise { font-size: 16px; color: var(--body); margin-bottom: 20px; max-width: 42ch; }
+.pricerow { display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px; }
+.price { font-family: var(--disp); font-weight: 600; font-size: 32px; color: var(--ink); }
+.was { font-size: 16px; color: var(--muted); text-decoration: line-through; }
+.savepill { background: var(--accent-ink); color: #fff; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 999px; }
+.noabo { font-size: 14px; color: var(--accent-ink); font-weight: 600; margin-bottom: 22px; }
+.vouch { display: flex; gap: 14px; align-items: center; background: var(--sky); border-radius: var(--r); padding: 14px 16px; margin-bottom: 24px; }
+.vouch img { width: 56px; height: 56px; border-radius: 10px; object-fit: cover; flex: none; }
+.vouch .q { font-size: 14px; color: var(--ink); line-height: 1.5; }
+.vouch .n { font-size: 12px; color: var(--muted); margin-top: 6px; display: flex; align-items: center; gap: 6px; }
+.vouch .n svg { stroke: var(--good); flex: none; }
+
+.optlabel { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 10px; }
+.colors { display: flex; gap: 12px; margin-bottom: 24px; }
+.colors figure { width: 64px; cursor: pointer; text-align: center; }
+.colors .cimg { border: 2px solid var(--line); border-radius: var(--r); padding: 6px; background: #fff; }
+.colors figure.on .cimg { border-color: var(--ink); }
+.colors figcaption { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+.choice { border: 2px solid var(--line); border-radius: var(--r); padding: 16px; display: flex; gap: 12px; align-items: flex-start; background: #fff; cursor: pointer; }
+.choice + .choice { margin-top: 12px; }
+.choice.on { border-color: var(--ink); }
+.radio { width: 20px; height: 20px; border: 2px solid #b9bcc1; border-radius: 50%; flex: none; margin-top: 2px; }
+.choice.on .radio { border-color: var(--ink); background: radial-gradient(circle, var(--ink) 0 45%, transparent 50%); }
+.choice .t { flex: 1; }
+.choice .t p { font-size: 14px; color: var(--muted); }
+.choice .t strong { font-family: var(--disp); font-weight: 600; font-size: 16px; color: var(--ink); display: block; }
+.choice .p { text-align: right; }
+.choice .p strong { font-family: var(--disp); font-size: 16px; color: var(--ink); display: block; }
+.choice .p span { font-size: 12px; color: var(--muted); text-decoration: line-through; }
+.bundlethumbs { display: flex; gap: 8px; margin-top: 10px; }
+.bundlethumbs img { width: 44px; height: 44px; object-fit: contain; background: #f6f5f2; border-radius: 8px; border: 1px solid var(--line); }
+.addon { display: flex; align-items: center; gap: 12px; border: 2px solid var(--line); border-radius: var(--r); padding: 12px 16px; margin: 12px 0 24px; font-size: 14px; }
+.addon .cb { width: 18px; height: 18px; border: 2px solid #b9bcc1; border-radius: 4px; flex: none; }
+.addon strong { color: var(--ink); }
+.addon .pr { margin-left: auto; font-weight: 700; color: var(--ink); white-space: nowrap; }
+
+.shipnote { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--good); font-weight: 600; margin: 14px 0 18px; }
+.shipnote svg { stroke: var(--good); }
+.trustrow { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 18px; margin-top: 18px; font-size: 14px; color: var(--body); }
+.trustrow span { display: flex; align-items: center; gap: 8px; }
+.trustrow svg { stroke: var(--ink); flex: none; }
+
+/* ===== ro i maven: photo triptych ===== */
+.calm { background: var(--sky); padding: 72px 0; }
+.calm h2 { font-size: clamp(24px, 3vw, 34px); max-width: 22ch; margin-bottom: 8px; }
+.calm .lead { max-width: 52ch; margin-bottom: 36px; }
+.trio { display: grid; gap: 16px; }
+@media (min-width: 760px) { .trio { grid-template-columns: 1fr 1fr 1fr; } }
+.trio figure { border-radius: var(--r); overflow: hidden; background: #fff; border: 1px solid var(--line); }
+.trio img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.trio figcaption { padding: 16px 18px 20px; }
+.trio figcaption strong { font-family: var(--disp); font-weight: 600; font-size: 18px; color: var(--ink); display: block; margin-bottom: 4px; }
+.trio figcaption p { font-size: 14px; }
+
+/* ===== honesty / GPS ===== */
+.honest { padding: 72px 0; }
+.split { display: grid; gap: 36px; align-items: center; }
+@media (min-width: 880px) { .split { grid-template-columns: 5fr 6fr; gap: 64px; } }
+.split .img { border-radius: var(--r); overflow: hidden; border: 1px solid var(--line); }
+.honest h2 { font-size: clamp(24px, 3vw, 32px); margin-bottom: 14px; }
+.hlist { list-style: none; display: grid; gap: 14px; margin: 20px 0; }
+.hlist li { display: flex; gap: 12px; align-items: flex-start; font-size: 16px; }
+.hlist svg { stroke: var(--good); flex: none; margin-top: 4px; }
+.hnote { font-size: 14px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 14px; max-width: 52ch; }
+
+/* ===== comparison ===== */
+.compare { background: var(--ink); color: #e8e8e6; padding: 72px 0; }
+.compare h2 { color: #fff; font-size: clamp(24px, 3vw, 32px); margin-bottom: 6px; }
+.compare .lead { color: #b8bbc0; max-width: 56ch; margin-bottom: 32px; }
+.ctable-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.ctable { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 16px; }
+.ctable th, .ctable td { padding: 14px 16px; text-align: left; border-bottom: 1px solid #33363c; }
+.ctable th { font-family: var(--disp); font-weight: 600; font-size: 14px; }
+.ctable th.kb { color: #fff; background: #23262c; }
+.ctable td.kb { color: #fff; font-weight: 600; background: #23262c; }
+.ctable th.kb { background: #23262c; }
+.ctable td:first-child { color: #b8bbc0; }
+.ctable .total td { font-family: var(--disp); font-size: 18px; border-bottom: none; padding-top: 20px; }
+.ctable .total td.kb { color: #ffc46b; }
+.csrc { font-size: 12px; color: #82868c; margin-top: 16px; }
+
+/* ===== reviews ===== */
+.reviews { padding: 72px 0; }
+.revgrid { display: grid; gap: 40px; }
+@media (min-width: 880px) { .revgrid { grid-template-columns: 5fr 7fr; gap: 64px; } }
+.revscore { font-family: var(--disp); font-weight: 600; font-size: 56px; color: var(--ink); line-height: 1; }
+.revmeta { font-size: 14px; color: var(--muted); margin: 10px 0 20px; }
+.badges { display: flex; gap: 14px; align-items: center; margin-top: 24px; }
+.badges img { height: 52px; width: auto; border-radius: 8px; }
+.quote { border: 1px solid var(--line); border-radius: var(--r); padding: 22px 24px; }
+.quote + .quote { margin-top: 14px; }
+.quote p { font-size: 16px; color: var(--ink); }
+.quote footer { font-size: 14px; color: var(--muted); margin-top: 10px; }
+
+/* ===== FAQ ===== */
+.faq { background: var(--sky); padding: 72px 0; }
+.faq h2 { font-size: clamp(24px, 3vw, 32px); margin-bottom: 28px; }
+.faq details { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 0 22px; }
+.faq details + details { margin-top: 10px; }
+.faq summary { font-family: var(--disp); font-weight: 600; font-size: 16px; color: var(--ink); padding: 18px 0; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+.faq summary::after { content: "+"; font-size: 20px; color: var(--muted); }
+.faq details[open] summary::after { content: "\2212"; }
+.faq details p { padding: 0 0 18px; font-size: 16px; max-width: 68ch; }
+
+/* ===== accessories ===== */
+.acc { padding: 72px 0; }
+.acc h2 { font-size: clamp(22px, 2.6vw, 28px); margin-bottom: 24px; }
+.accgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+.acccard { border: 1px solid var(--line); border-radius: var(--r); padding: 16px; text-align: center; }
+.acccard img { height: 110px; object-fit: contain; margin: 0 auto 12px; }
+.acccard strong { font-family: var(--disp); font-weight: 600; font-size: 14px; color: var(--ink); display: block; }
+.acccard span { font-size: 14px; color: var(--body); }
+
+/* ===== final cta ===== */
+.final { padding: 80px 0 96px; text-align: center; }
+.final h2 { font-size: clamp(26px, 3.4vw, 38px); max-width: 24ch; margin: 0 auto 12px; }
+.final p { max-width: 46ch; margin: 0 auto 28px; }
+.final .btn { max-width: 340px; margin: 0 auto; }
+.final small { display: block; margin-top: 14px; font-size: 14px; color: var(--muted); }
+
+footer.site { border-top: 1px solid var(--line); padding: 24px 0; font-size: 14px; color: var(--muted); }
+footer.site .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+/* sticky mobile ATC */
+.mbar { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-top: 1px solid var(--line); padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); display: flex; gap: 14px; align-items: center; z-index: 60; }
+.mbar .p { font-family: var(--disp); font-weight: 600; font-size: 18px; color: var(--ink); }
+.mbar .btn { padding: 13px 20px; flex: 1; }
+@media (min-width: 920px) { .mbar { display: none; } }
+@media (max-width: 919px) { body { padding-bottom: 76px; } .util .wrap { gap: 16px; } .util span:nth-child(3) { display: none; } }
+@media (max-width: 480px) { .util span:nth-child(2) { display: none; } }
+
+.eh-tag { position: fixed; left: 12px; bottom: calc(84px + env(safe-area-inset-bottom)); z-index: 70; background: #111; color: #F7D007; font: 600 12px/1 var(--disp); letter-spacing: 1px; padding: 8px 12px; border-radius: 6px; border: 1px solid #F7D007; }
+@media (min-width: 920px) { .eh-tag { bottom: 12px; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<div class="util">
+  <div class="wrap">
+    <span><svg class="ic" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="14" height="12" rx="2"/><path d="M15 10h4l3 3v5h-7z"/><circle cx="6" cy="18.5" r="1.6"/><circle cx="18" cy="18.5" r="1.6"/></svg>Bestil f&oslash;r kl. 14: afsendt i dag</span>
+    <span><svg class="ic" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>30 dages returret</span>
+    <span><svg class="ic" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Dansk kundeservice, 365 dage om &aring;ret</span>
+  </div>
+</div>
+
+<header class="site">
+  <div class="wrap">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    <a class="logo" href="#">TECH-SHOPPEN</a>
+    <div class="hicons">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l1.5 13h-15z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg>
+    </div>
+  </div>
+</header>
+
+<section class="buyhero">
+  <div class="wrap">
+    <p class="crumb">Hjem &rsaquo; KidsBuddy&trade; GPS smartwatch til b&oslash;rn</p>
+    <div class="buygrid">
+
+      <div class="gallery">
+        <div class="gallery-main">
+          <img src="../mockups/_assets/e0df064d-4_5eca0c27-74e6-48dc-9feb-95ab87f3e69f.png" alt="To b&oslash;rn f&aring;r et videoopkald p&aring; deres KidsBuddy ure">
+        </div>
+        <div class="thumbs">
+          <figure><img src="../mockups/_assets/e44cdd00-kidsbuddy-sort.png" alt="KidsBuddy i sort"></figure>
+          <figure><img src="../mockups/_assets/b36b06da-1_d3e57bc3-df1e-4caf-ace7-5c9da57072ea.png" alt="Kort med dit barns position"></figure>
+          <figure><img src="../mockups/_assets/4c3a95b8-2_3e8e3428-63b8-4ae4-a161-cdb5b685a617.png" alt="Videoopkald mellem mor og barn"></figure>
+          <figure><img src="../mockups/_assets/c63069a2-5_87910969-573e-47e4-8122-3bb73a037370.png" alt="Barn p&aring; vej hjem fra skole med uret p&aring;"></figure>
+          <figure><img src="../mockups/_assets/07aaae04-6_fea47a24-67c1-4108-b575-6bf572687c57.png" alt="Uret sp&aelig;ndes p&aring; h&aring;ndleddet"></figure>
+        </div>
+        <p class="gallery-cap">Se uret, kortet i appen, videoopkald og SOS i brug.</p>
+      </div>
+
+      <div class="buybox">
+        <div class="raterow">
+          <span class="stars">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#d97706" stroke="#d97706" stroke-width="1"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#d97706" stroke="#d97706" stroke-width="1"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#d97706" stroke="#d97706" stroke-width="1"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#d97706" stroke="#d97706" stroke-width="1"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="1.4"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+          </span>
+          <a href="#anmeldelser">3,9 &middot; +10.000 tilfredse kunder</a>
+        </div>
+        <h1>KidsBuddy&trade; GPS smartwatch til b&oslash;rn</h1>
+        <p class="promise">Ring op, se hvor dit barn er, og v&aelig;r med p&aring; f&oslash;rste skoledag uden at v&aelig;re der. Uden telefon, uden sociale medier.</p>
+        <div class="pricerow">
+          <span class="price">749,00 kr</span>
+          <span class="was">999,00 kr</span>
+          <span class="savepill">Spar 25%</span>
+        </div>
+        <p class="noabo">Ingen abonnement. SIM-kort medf&oslash;lger.</p>
+
+        <div class="vouch">
+          <img src="../mockups/_assets/5a217cb4-1_3a081d06-1dd3-4c61-a38a-36437daaeef8.png" alt="Barn viser sit KidsBuddy ur">
+          <div>
+            <p class="q">"Det har givet os en k&aelig;mpe ro i maven i hverdagen. Det f&oslash;les bare trygt og smart."</p>
+            <p class="n"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Maiken &middot; verificeret anmeldelse p&aring; Trustpilot</p>
+          </div>
+        </div>
+
+        <p class="optlabel">Farve</p>
+        <div class="colors">
+          <figure class="on"><div class="cimg"><img src="../mockups/_assets/e44cdd00-kidsbuddy-sort.png" alt="Sort"></div><figcaption>Sort</figcaption></figure>
+          <figure><div class="cimg"><img src="../mockups/_assets/bb596901-kidsbuddy-lyseblaa.png" alt="Lysebl&aring;"></div><figcaption>Lysebl&aring;</figcaption></figure>
+          <figure><div class="cimg"><img src="../mockups/_assets/a29e942f-kidsbuddy-lyseroed.png" alt="Lyser&oslash;d"></div><figcaption>Lyser&oslash;d</figcaption></figure>
+        </div>
+
+        <p class="optlabel">V&aelig;lg din pakke</p>
+        <div class="choice on">
+          <span class="radio"></span>
+          <span class="t"><strong>1x KidsBuddy&trade;</strong><p>GPS smartwatch til b&oslash;rn</p></span>
+          <span class="p"><strong>749,00 kr</strong><span>999,00 kr</span></span>
+        </div>
+        <div class="choice">
+          <span class="radio"></span>
+          <span class="t"><strong>SuperDeal: ur + garanti + ladekabel</strong>
+            <p>Spar 198 kr mod enkeltk&oslash;b</p>
+            <span class="bundlethumbs">
+              <img src="../mockups/_assets/e44cdd00-kidsbuddy-sort.png" alt="KidsBuddy ur">
+              <img src="../mockups/_assets/110761ff-KnustSkaermGaranti-All.png" alt="Knust sk&aelig;rm garanti">
+              <img src="../mockups/_assets/2a6014a2-WhatsApp_Image_2026-02-10_at_13.33.38.jpg" alt="Magnetisk ladekabel">
+            </span>
+          </span>
+          <span class="p"><strong>999,00 kr</strong><span>1.197,00 kr</span></span>
+        </div>
+        <div class="addon">
+          <span class="cb"></span>
+          <span>Tilf&oslash;j <strong>Knust sk&aelig;rm garanti</strong>: d&aelig;kker alt der sker med sk&aelig;rmen</span>
+          <span class="pr">+249 kr</span>
+        </div>
+
+        <button class="btn btn-ink">
+          <svg class="ic" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l1.5 13h-15z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg>
+          L&aelig;g i kurv
+        </button>
+        <p class="shipnote">
+          <svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          P&aring; lager. Bestil f&oslash;r kl. 14, s&aring; sender vi i dag.
+        </p>
+        <div class="trustrow">
+          <span><svg class="ic" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>e-m&aelig;rket: k&oslash;berbeskyttelse op til 10.000 kr</span>
+          <span><svg class="ic" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>Visa, Mastercard, MobilePay, ViaBill, Klarna</span>
+          <span><svg class="ic" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>30 dages returret, forl&aelig;nget ved gaver</span>
+          <span><svg class="ic" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="14" height="12" rx="2"/><path d="M15 10h4l3 3v5h-7z"/><circle cx="6" cy="18.5" r="1.6"/><circle cx="18" cy="18.5" r="1.6"/></svg>Levering 1 til 3 hverdage</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="calm">
+  <div class="wrap">
+    <h2>Ro i maven, ogs&aring; n&aring;r du ikke er der</h2>
+    <p class="lead">Tre ting uret g&oslash;r hver dag, fortalt med app'ens faktiske sk&aelig;rme.</p>
+    <div class="trio">
+      <figure>
+        <img src="../mockups/_assets/b36b06da-1_d3e57bc3-df1e-4caf-ace7-5c9da57072ea.png" alt="Kortvisning i appen med barnets position">
+        <figcaption><strong>Se hvor dit barn er</strong><p>&Aring;bn appen og se positionen p&aring; kortet. Opret zoner som skole og hjem, og f&aring; besked ved ankomst.</p></figcaption>
+      </figure>
+      <figure>
+        <img src="../mockups/_assets/4c3a95b8-2_3e8e3428-63b8-4ae4-a161-cdb5b685a617.png" alt="Videoopkald mellem foraelder og barn">
+        <figcaption><strong>Ring og videokald</strong><p>Tal sammen direkte p&aring; uret. Kun kontakter du selv har godkendt kan ringe op.</p></figcaption>
+      </figure>
+      <figure>
+        <img src="../mockups/_assets/c63069a2-5_87910969-573e-47e4-8122-3bb73a037370.png" alt="Barn gaar selv hjem fra skole">
+        <figcaption><strong>SOS med &eacute;t tryk</strong><p>Holder dit barn SOS-knappen inde, ringer uret op til dig med det samme.</p></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="honest">
+  <div class="wrap split">
+    <div class="img">
+      <img src="../mockups/_assets/28082981-2_79f6b4cf-31b0-4a59-a200-426e28ca0873.png" alt="Uret saettes paa barnets haandled">
+    </div>
+    <div>
+      <h2>S&aring;dan virker GPS'en, helt &aelig;rligt</h2>
+      <p>Et GPS-ur er ikke magi, og vi vil hellere fort&aelig;lle dig pr&aelig;cist hvad du f&aring;r, end love for meget.</p>
+      <ul class="hlist">
+        <li><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><strong>Udend&oslash;rs:</strong> pr&aelig;cis GPS-position. Rigeligt til at se om dit barn er i skolen, hos en ven eller p&aring; vej hjem.</span></li>
+        <li><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><strong>Indend&oslash;rs:</strong> uret skifter til wifi-position, som er mindre pr&aelig;cis. Det er s&aring;dan al GPS fungerer, ogs&aring; i din egen telefon.</span></li>
+        <li><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span><strong>Appen:</strong> uret styres fra SeTracker2 appen, og vores danske kundeservice hj&aelig;lper dig med ops&aelig;tningen.</span></li>
+      </ul>
+      <p class="hnote">Oplever du problemer med ops&aelig;tningen, hj&aelig;lper vores danske kundeservice dig hele vejen. Og fortryder du, har du 30 dages fuld returret.</p>
+    </div>
+  </div>
+</section>
+
+<section class="compare">
+  <div class="wrap">
+    <h2>749 kr &eacute;n gang. Ikke 99 kr hver m&aring;ned.</h2>
+    <p class="lead">De kendte abonnementsure koster b&aring;de mere i butikken og hver eneste m&aring;ned bagefter. KidsBuddy g&oslash;r det samme arbejde uden l&oslash;bende udgifter.</p>
+    <div class="ctable-scroll"><table class="ctable">
+      <thead>
+        <tr><th></th><th class="kb">KidsBuddy&trade;</th><th>Abonnementsure (fx Xplora)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Pris for uret</td><td class="kb">749 kr</td><td>1.199 til 1.599 kr</td></tr>
+        <tr><td>M&aring;nedligt abonnement</td><td class="kb">0 kr</td><td>99 til 109 kr</td></tr>
+        <tr><td>SIM-kort</td><td class="kb">Medf&oslash;lger</td><td>Bindes til abonnementet</td></tr>
+        <tr><td>GPS, opkald og SOS</td><td class="kb">Ja</td><td>Ja</td></tr>
+        <tr class="total"><td>Pris det f&oslash;rste &aring;r</td><td class="kb">749 kr</td><td>Op til 2.907 kr</td></tr>
+      </tbody>
+    </table></div>
+    <p class="csrc">Priser aflaest p&aring; xplora.dk, juli 2026: XGO3 fra 1.199 kr, X6Play fra 1.599 kr, plus abonnement 99 til 109 kr/md. F&oslash;rste &aring;r: 1.599 kr + 12 x 109 kr.</p>
+  </div>
+</section>
+
+<section class="reviews" id="anmeldelser">
+  <div class="wrap revgrid">
+    <div>
+      <div class="revscore">3,9 / 5</div>
+      <p class="revmeta">404 anmeldelser p&aring; Trustpilot. Vi viser b&aring;de roserne og kritikken, for s&aring;dan er &aelig;rlighed.</p>
+      <p>Det kunderne roser mest: hurtig levering og trygheden i hverdagen. Det vi arbejder p&aring;: hurtigere svar fra kundeservice.</p>
+      <div class="badges">
+        <img src="../mockups/_assets/0b3f01fa-badge-noomu.png" alt="Godkendt af tigerspringer.dk">
+        <img src="../mockups/_assets/86f146b1-genialegaver.dk_-_Arets_gaveide_badge.png" alt="&Aring;rets gaveid&eacute; 2026, genialegaver.dk">
+      </div>
+    </div>
+    <div>
+      <article class="quote">
+        <p>"Vi er simpelthen S&Aring; glade for KidsBuddy GPS-smartwatch til b&oslash;rn! Det har givet os en k&aelig;mpe ro i maven i hverdagen ... det f&oslash;les bare trygt og smart."</p>
+        <footer>Maiken, Trustpilot, juli 2026</footer>
+      </article>
+      <article class="quote">
+        <p>"Gode produkter til super gode priser. Hurtig levering. Vores b&oslash;rn elsker is&aelig;r tegnetablet og stjernehimmellampe."</p>
+        <footer>Christina, Trustpilot, juni 2026</footer>
+      </article>
+      <article class="quote">
+        <p>"K&oslash;bte Kids-buddy uret til min s&oslash;n. Selve produktet var ikke helt som forventet, men tech shoppens support og service var super god!"</p>
+        <footer>Stefan, Trustpilot, juni 2026</footer>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap">
+    <h2>Sp&oslash;rgsm&aring;l fra andre for&aelig;ldre</h2>
+    <details open>
+      <summary>Skal jeg k&oslash;be et SIM-kort?</summary>
+      <p>Nej. Der f&oslash;lger et SIM-kort med i pakken, og der er intet abonnement fra os. Du v&aelig;lger selv taletidsplan hos SIM-udbyderen.</p>
+    </details>
+    <details>
+      <summary>Hvem kan ringe til mit barn?</summary>
+      <p>Kun de kontakter du selv opretter i appen. Uret har ingen sociale medier, ingen browser og ingen fremmede.</p>
+    </details>
+    <details>
+      <summary>Hvad hvis sk&aelig;rmen g&aring;r i stykker?</summary>
+      <p>Med Knust sk&aelig;rm garanti (249 kr ved k&oslash;b, ellers 299 kr inden for 14 dage) d&aelig;kker vi alt der sker med sk&aelig;rmen, uanset hvad.</p>
+    </details>
+    <details>
+      <summary>Hvad hvis det ikke er noget for os?</summary>
+      <p>30 dages returret, og forl&aelig;nget returret hvis uret er en gave. Vores kundeservice svarer p&aring; dansk, 365 dage om &aring;ret.</p>
+    </details>
+  </div>
+</section>
+
+<section class="acc">
+  <div class="wrap">
+    <h2>Tilbeh&oslash;r som andre for&aelig;ldre v&aelig;lger til</h2>
+    <div class="accgrid">
+      <div class="acccard"><img src="../mockups/_assets/110761ff-KnustSkaermGaranti-All.png" alt="Knust skaerm garanti"><strong>Knust sk&aelig;rm garanti</strong><span>299 kr</span></div>
+      <div class="acccard"><img src="../mockups/_assets/urrem-hero.png" alt="Ekstra urrem i tre farver"><strong>Ekstra urrem</strong><span>149 kr</span></div>
+      <div class="acccard"><img src="../mockups/_assets/2a6014a2-WhatsApp_Image_2026-02-10_at_13.33.38.jpg" alt="Magnetisk ladekabel"><strong>Magnetisk ladekabel</strong><span>149 kr</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>F&oslash;rste skridt mod friheden, for jer begge to</h2>
+    <p>Dit barn f&aring;r lov at g&aring; selv. Du f&aring;r vished for, at alt er ok. Fra 749 kr, uden abonnement.</p>
+    <button class="btn btn-ink">L&aelig;g i kurv: 749,00 kr</button>
+    <small>Bestil f&oslash;r kl. 14, s&aring; er uret afsendt i dag.</small>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <span>SKM Group ApS &middot; CVR 45368580 &middot; Skjern</span>
+    <span>kundeservice@tech-shoppen.dk</span>
+  </div>
+</footer>
+
+<div class="mbar">
+  <span class="p">749 kr</span>
+  <button class="btn btn-ink">L&aelig;g i kurv</button>
+</div>
+
+<div class="eh-tag">ECOMHOUSE REDESIGN &middot; KIDSBUDDY PDP</div>
+
+</body>
+</html>
