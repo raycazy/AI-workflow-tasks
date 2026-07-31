@@ -150,8 +150,8 @@
 
   /* timeline */
   .tl{display:flex;flex-direction:column;gap:1.1cqw}
-  .phase{display:grid;grid-template-columns:8cqw 1fr 16cqw;gap:1.6cqw;align-items:center}
-  .phase .wk{background:var(--coral);color:#fff;border-radius:.6cqw;font-family:'JetBrains Mono',monospace;font-size:.92cqw;font-weight:600;letter-spacing:.08em;padding:1cqw .6cqw;text-align:center}
+  .phase{display:grid;grid-template-columns:9.6cqw 1fr 16cqw;gap:1.6cqw;align-items:center}
+  .phase .wk{background:var(--coral);color:#fff;border-radius:.6cqw;font-family:'JetBrains Mono',monospace;font-size:.88cqw;font-weight:600;letter-spacing:.06em;padding:1cqw .5cqw;text-align:center;white-space:nowrap}
   .phase .body h4{font-size:1.32cqw;font-weight:600;color:var(--ink);margin-bottom:.35cqw}
   .phase .body p{font-size:1.02cqw;line-height:1.4}
   .phase .exp{font-family:'JetBrains Mono',monospace;font-size:.92cqw;color:var(--coral-deep);font-weight:500;line-height:1.4}
@@ -160,6 +160,18 @@
   .tlretain p{color:rgba(255,255,255,.82);font-size:1.02cqw}
 
   /* price split */
+  .price3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.8cqw;align-items:stretch}
+  .price3 .pricecard{padding:1.7cqw}
+  .price3 .pricecard .amt{font-size:2.5cqw;margin:.6cqw 0 .15cqw}
+  .price3 .pricecard .amt small{font-size:1.0cqw}
+  .price3 .pricecard .gst{font-size:.9cqw;color:var(--coral-deep);font-weight:600;margin:0 0 .55cqw}
+  .price3 .pricecard .sub{font-size:.95cqw;margin-bottom:.9cqw}
+  .price3 .pricecard tbody td{font-size:.86cqw;padding:.3cqw 0}
+  .price3 .pricecard ul.clean{gap:.8cqw}
+  .price3 .pricecard ul.clean li{font-size:.96cqw;padding-left:1.5cqw}
+  .price3 .pricecard ul.clean li .dot{width:.55cqw;height:.55cqw;top:.38cqw}
+  .price3 .pricecard .callout{padding:.8cqw .95cqw}
+  .price3 .pricecard .callout p{font-size:.92cqw;line-height:1.45}
   .pricecard{border:1px solid var(--line);border-radius:1.2cqw;padding:2cqw;height:100%}
   .pricecard.hero{background:var(--pink);border-color:var(--pink-2)}
   .pricecard .tag{font-family:'JetBrains Mono',monospace;font-size:.86cqw;letter-spacing:.16em;text-transform:uppercase;color:var(--coral-deep);font-weight:600}
@@ -398,6 +410,9 @@
             <div class="row"><div class="n">04</div><div class="t">Benefits + comparison</div><div class="d">Metafield driven, versus generic protein</div></div>
             <div class="row"><div class="n">05</div><div class="t">Reviews + FAQ</div><div class="d">Judge.me photos, FAQ with SEO schema</div></div>
           </div>
+          <div class="callout" style="margin-top:1.4cqw">
+            <p><b>What the CRO redesign covers.</b> UI enhancement, copy enhancement, improved UX flows and recommendations on your offers, all built inside your current brand. It is not a brand refresh: your logo, brand colours, typography and identity stay exactly as they are.</p>
+          </div>
         </div>
         <div>
           <div class="colhead">Site wide, in the new theme</div>
@@ -513,7 +528,7 @@
           <tr class="tot"><td><b>Total</b></td><td class="num" style="text-align:right"><b>48h</b></td><td class="num" style="text-align:right"><b>131h</b></td><td class="num" style="text-align:right"><b>50h</b></td><td class="num" style="text-align:right"><b>229h</b></td><td>Across design, development and PM with QA</td></tr>
         </tbody>
       </table>
-      <div class="foot">PM hours include quality assurance across every workstream. Retainer effort runs separately at roughly 65 to 70 hours a month.</div>
+      <div class="foot">Hours shown are the CRO redesign build (option A). Development only (option B) drops all 48 designer hours and runs at roughly 150 hours. Retainer effort is separate, 65 to 70 hours a month.</div>
     </div>
     <div class="pagenum">12</div>
   </section>
@@ -522,44 +537,63 @@
   <section class="slide reveal">
     <div class="top">
       <div class="eyebrow">Engagement + Investment</div>
-      <h2 style="margin-top:1.8cqw">A redesign project, then a CRO retainer</h2>
+      <h2 style="margin-top:1.8cqw">Two ways to build, then a CRO retainer</h2>
     </div>
-    <div class="pad" style="padding-top:16.5cqw">
-      <div class="cols2" style="gap:2.2cqw;align-items:stretch">
+    <div class="pad" style="padding-top:15.5cqw">
+      <div class="price3">
         <div class="pricecard hero">
-          <div class="tag">A · One time build</div>
+          <div class="tag">A · CRO redesign build</div>
           <div class="amt">₹3.2L <small>to ₹4.2L</small></div>
-          <div style="font-size:1.02cqw;color:var(--coral-deep);font-weight:600;margin:-.1cqw 0 .7cqw">Ex GST · ₹3.8L to ₹5.0L incl. 18% GST</div>
-          <div class="sub">Around 230 team hours. Everything shipped and tested.</div>
+          <div class="gst">Ex GST · ₹3.8L to ₹5.0L incl. 18% GST</div>
+          <div class="sub">Around 230 team hours. Everything designed, shipped and tested.</div>
           <table>
-            <tbody style="font-size:.98cqw">
-              <tr><td style="padding:.46cqw 0">Speed + script cleanup</td><td class="num" style="text-align:right;padding:.46cqw 0"><b>₹40K</b></td></tr>
-              <tr><td style="padding:.46cqw 0">Analytics + tracking setup (GA4, Clarity, GTM, CAPI)</td><td class="num" style="text-align:right;padding:.46cqw 0"><b>₹35K</b></td></tr>
-              <tr><td style="padding:.46cqw 0">Design (UI / UX, bundle builder, PDP)</td><td class="num" style="text-align:right;padding:.46cqw 0"><b>₹80K</b></td></tr>
-              <tr><td style="padding:.46cqw 0">Build your own bundle engine</td><td class="num" style="text-align:right;padding:.46cqw 0"><b>₹90K</b></td></tr>
-              <tr><td style="padding:.46cqw 0">Theme migration + PDP + homepage + mega menu</td><td class="num" style="text-align:right;padding:.46cqw 0"><b>₹1.0L</b></td></tr>
-              <tr><td style="padding:.46cqw 0">Metafield architecture</td><td class="num" style="text-align:right;padding:.46cqw 0"><b>₹40K</b></td></tr>
-              <tr><td style="padding:.46cqw 0">Premium theme license, pass through</td><td class="num" style="text-align:right;padding:.46cqw 0"><b>₹32K</b></td></tr>
-              <tr><td style="padding:.46cqw 0;color:var(--coral-deep)">QA + phased launch</td><td class="num" style="text-align:right;padding:.46cqw 0;color:var(--coral-deep)"><b>Included</b></td></tr>
+            <tbody>
+              <tr><td>Speed + script cleanup</td><td class="num" style="text-align:right"><b>₹40K</b></td></tr>
+              <tr><td>Analytics + tracking (GA4, Clarity, GTM, CAPI)</td><td class="num" style="text-align:right"><b>₹35K</b></td></tr>
+              <tr><td>Design (UI / UX, bundle builder, PDP)</td><td class="num" style="text-align:right"><b>₹80K</b></td></tr>
+              <tr><td>Build your own bundle engine</td><td class="num" style="text-align:right"><b>₹90K</b></td></tr>
+              <tr><td>Theme migration, PDP, homepage, mega menu</td><td class="num" style="text-align:right"><b>₹1.0L</b></td></tr>
+              <tr><td>Metafield architecture</td><td class="num" style="text-align:right"><b>₹40K</b></td></tr>
+              <tr><td>Premium theme license, pass through</td><td class="num" style="text-align:right"><b>₹32K</b></td></tr>
+              <tr><td style="color:var(--coral-deep)">QA + phased launch</td><td class="num" style="text-align:right;color:var(--coral-deep)"><b>Included</b></td></tr>
             </tbody>
           </table>
+          <div class="callout" style="margin-top:1.1cqw;background:#fff"><p>UI enhancement, copy enhancement, improved UX flows and offer recommendations. No brand refresh: logo and typography stay.</p></div>
         </div>
         <div class="pricecard">
-          <div class="tag">B · CRO retainer</div>
+          <div class="tag">B · Development only</div>
+          <div class="amt">₹2.2L <small>to ₹2.9L</small></div>
+          <div class="gst">Ex GST · ₹2.6L to ₹3.4L incl. 18% GST</div>
+          <div class="sub">Around 150 team hours, no design time. Your current design rebuilt on the new theme. Live in 4 to 6 weeks.</div>
+          <table>
+            <tbody>
+              <tr><td>Speed + script cleanup</td><td class="num" style="text-align:right"><b>₹40K</b></td></tr>
+              <tr><td>Analytics + tracking (GA4, Clarity, GTM, CAPI)</td><td class="num" style="text-align:right"><b>₹35K</b></td></tr>
+              <tr><td>Theme rebuild, current design ported as is</td><td class="num" style="text-align:right"><b>₹75K</b></td></tr>
+              <tr><td>Bundle builder on stock theme UI</td><td class="num" style="text-align:right"><b>₹70K</b></td></tr>
+              <tr><td>Metafield architecture</td><td class="num" style="text-align:right"><b>₹40K</b></td></tr>
+              <tr><td>Premium theme license, pass through</td><td class="num" style="text-align:right"><b>₹32K</b></td></tr>
+              <tr><td style="color:var(--coral-deep)">QA + phased launch</td><td class="num" style="text-align:right;color:var(--coral-deep)"><b>Included</b></td></tr>
+            </tbody>
+          </table>
+          <div class="callout" style="margin-top:1.1cqw"><p>No new UI, no copy rewrite, no UX flow changes and no offer strategy. A like for like replica of the current store on a faster, editable theme.</p></div>
+        </div>
+        <div class="pricecard">
+          <div class="tag">C · CRO retainer</div>
           <div class="amt">₹1.2L <small>/ month</small></div>
-          <div style="font-size:1.02cqw;color:var(--coral-deep);font-weight:600;margin:-.1cqw 0 .7cqw">Ex GST · ₹1.42L / month incl. 18% GST</div>
-          <div class="sub">Ongoing, starts month 1. Roughly 65 to 70 team hours a month.</div>
-          <ul class="clean" style="gap:1.15cqw">
+          <div class="gst">Ex GST · ₹1.42L / month incl. 18% GST</div>
+          <div class="sub">Ongoing, starts month 1. Roughly 65 to 70 team hours a month. Runs with option A or option B.</div>
+          <ul class="clean">
             <li><span class="dot"></span>Heavy A/B testing, 2 to 3 live experiments a month</li>
             <li><span class="dot"></span>Landing pages for ad campaigns, 1 to 2 a month</li>
             <li><span class="dot"></span>Website fixes and bug resolution</li>
             <li><span class="dot"></span>Continuous monitoring of funnel, speed and analytics</li>
           </ul>
-          <div class="callout" style="margin-top:1.4cqw;background:var(--pink)"><p>Focused on conversion. No email or lifecycle work in this scope.</p></div>
+          <div class="callout" style="margin-top:1.1cqw;background:var(--pink)"><p>Focused on conversion. No email or lifecycle work in this scope.</p></div>
         </div>
       </div>
     </div>
-    <div class="foot">Indicative India market pricing for July 2026. All figures exclusive of GST; 18% GST applies on invoices. Final figures confirmed on kickoff.</div>
+    <div class="foot">Pick option A or option B, then the retainer. Indicative India pricing, July 2026. All figures ex GST; 18% GST applies on invoices.</div>
     <div class="pagenum">13</div>
   </section>
 
@@ -597,6 +631,7 @@
         <p>The ₹1.2L a month CRO retainer runs from month 1, alongside the redesign and continuing after launch.</p>
       </div>
     </div>
+    <div class="foot">Timeline shown is the CRO redesign build (option A). Development only (option B) skips the design phases and goes live in 4 to 6 weeks.</div>
     <div class="pagenum">14</div>
   </section>
 
