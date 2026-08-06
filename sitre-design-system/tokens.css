@@ -1,0 +1,54 @@
+/* ============================================================
+   sitre brand tokens
+   Source: live extraction of shopsitre.com (computed CSS + theme :root)
+   cross-checked against the Figma redesign (collection node 550-2394).
+   Captured 2026-06-03. Import this and reference var(--brand-*) instead
+   of hardcoding hex. Documents the redesign direction (rounded);
+   the live theme is sharp 0px (see --brand-radius-live).
+   ============================================================ */
+:root {
+  /* Brand */
+  --brand-green:        #2d3d33; /* primary: buttons, footer, hero, save flag (live theme token #323c32) */
+  --brand-green-live:   #323c32; /* exact live theme primary-button/hero token */
+  --brand-olive:        #8a803c; /* accent: BESTSELLER flag, tags, accent text */
+  --brand-beige:        #c9a35c; /* trust beige: review stars, verified trust, editorial accent card */
+  --brand-pink:         #f5d3c8; /* soft pink: Care Club surface, soft promo flags */
+
+  /* Surface */
+  --brand-cream:        #f6f4f1; /* page background */
+  --brand-cream-dark:   #e2dcd2; /* darker cream / dividers */
+  --brand-white:        #ffffff; /* product media, cards */
+  --brand-sand:         #e6ddc9; /* product image placeholder / warm tint */
+
+  /* Text */
+  --brand-ink:          #000000; /* headings + body (live --text) */
+  --brand-ink-soft:     #1a2520; /* near-black ink variant */
+  --brand-secondary:    #333333; /* secondary text (live --text-lighten) */
+  --brand-muted:        #5b6a61; /* captions; AA on white and cream */
+  --brand-hairline:     #f0ede8; /* hairlines / borders */
+
+  /* Accent utility */
+  --brand-rust:         #a35624; /* cart count badge */
+
+  /* System */
+  --brand-success:      #56ad6a;
+  --brand-error:        #d02e2e;
+  --brand-warn:         #ecbd5e;
+
+  /* Type */
+  --brand-font-head:    'Suisse Works', 'Spectral', 'Times New Roman', serif;
+  --brand-font-body:    'Neue Haas Grotesk Display Pro', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --brand-head-tracking: -0.02em;
+  --brand-btn-tracking:  0.05em;
+  --brand-case:         lowercase;
+
+  /* Geometry (redesign = rounded; live theme = sharp) */
+  --brand-radius-btn:   999px;  /* pill buttons */
+  --brand-radius-card:  12px;   /* feature / editorial cards */
+  --brand-radius-media: 4px;    /* product image */
+  --brand-radius-input: 8px;    /* inputs */
+  --brand-radius-badge: 4px;    /* product flags */
+  --brand-radius-live:  0px;    /* current live theme (sharp) */
+  --brand-shadow:       none;   /* flat */
+  --brand-border:       1px solid var(--brand-hairline);
+}
