@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#ffffff">
+<title>SportGym · CRO Program · Results and Q4 2026 Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --display: 'Assistant', system-ui, sans-serif;
+    --body: 'Assistant', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --brand: #8b2c3e;
+    --brand-soft: #ecd4d9;
+    --brand-tint: #fbf5f6;
+    --green: #0a7f56;
+    --green-soft: rgba(10,127,86,.28);
+    --green-tint: rgba(10,127,86,.07);
+    --loss: #b3261e;
+    --loss-soft: rgba(179,38,30,.26);
+    --loss-tint: rgba(179,38,30,.06);
+    --blue: #334fb4;
+  }
+  html[data-theme="light"] {
+    --bg: #eceae6;
+    --slide: #ffffff;
+    --bg-2: #f4f2ef;
+    --bg-3: #f8f7f5;
+    --line: rgba(18,18,18,0.10);
+    --line-strong: rgba(18,18,18,0.20);
+    --ink: #121212;
+    --ink-2: #545454;
+    --ink-3: #8a8a8a;
+    --shadow: 0 18px 50px rgba(18,18,18,0.10);
+    --nav-bg: rgba(255,255,255,.86);
+  }
+  html[data-theme="dark"] {
+    --bg: #16171c;
+    --slide: #1d1f26;
+    --bg-2: #242833;
+    --bg-3: #20222a;
+    --line: rgba(255,255,255,0.10);
+    --line-strong: rgba(255,255,255,0.22);
+    --ink: #f3f1ee;
+    --ink-2: #b4b2ae;
+    --ink-3: #7a7872;
+    --shadow: 0 22px 60px rgba(0,0,0,0.45);
+    --nav-bg: rgba(36,40,51,.84);
+    --brand: #d4788a;
+    --brand-soft: rgba(212,120,138,.30);
+    --brand-tint: rgba(212,120,138,.10);
+    --green: #3ac48c;
+    --green-soft: rgba(58,196,140,.32);
+    --green-tint: rgba(58,196,140,.10);
+    --loss: #e8827a;
+    --loss-soft: rgba(232,130,122,.32);
+    --loss-tint: rgba(232,130,122,.10);
+  }
+
+  *,*::before,*::after { box-sizing: border-box; }
+  html, body {
+    margin: 0; height: 100%; overflow: hidden;
+    background: var(--bg); color: var(--ink);
+    font-family: var(--body);
+    -webkit-font-smoothing: antialiased;
+    transition: background .3s ease, color .3s ease;
+  }
+  body { overscroll-behavior: contain; touch-action: pan-y; }
+
+  .progress { position: fixed; top: 0; left: 0; right: 0; height: 4px; background: transparent; z-index: 60; }
+  .progress i { display: block; height: 100%; width: 0; background: var(--brand); transition: width .45s cubic-bezier(.2,.7,.2,1); }
+
+  .stage { position: fixed; inset: 0; display: grid; place-items: center; padding: 18px; }
+  .deck { width: 100%; height: 100%; max-width: 1400px; max-height: 870px; position: relative; }
+  .slide {
+    position: absolute; inset: 0; border-radius: 20px; overflow: hidden;
+    background: var(--slide); border: 1px solid var(--line); box-shadow: var(--shadow);
+    opacity: 0; pointer-events: none; transform: translateX(40px) scale(.985);
+    transition: opacity .42s ease, transform .55s cubic-bezier(.2,.7,.2,1), background .3s ease, border-color .3s ease;
+    will-change: transform, opacity;
+  }
+  .slide.is-active { opacity: 1; pointer-events: auto; transform: translateX(0) scale(1); }
+  .slide.is-prev { opacity: 0; transform: translateX(-40px) scale(.985); }
+
+  .pad {
+    position: absolute; inset: 0; padding: 44px 52px 92px; overflow-y: auto; overflow-x: hidden;
+    -webkit-overflow-scrolling: touch; display: flex; flex-direction: column; scroll-behavior: smooth;
+    /* "safe" keeps content top aligned instead of clipping when it overflows */
+    justify-content: safe center;
+  }
+  .pad.cover { justify-content: space-between; }
+  .pad::-webkit-scrollbar { width: 8px; }
+  .pad::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 4px; }
+
+  .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--brand); font-weight: 600; }
+  h1 { font-family: var(--display); font-weight: 800; letter-spacing: -0.02em; line-height: 1.04; margin: 0; }
+  h2 { font-family: var(--display); font-weight: 700; letter-spacing: -0.015em; line-height: 1.1; margin: 0; }
+  p { line-height: 1.55; color: var(--ink-2); }
+  a { color: var(--brand); }
+
+  .logo { font-family: var(--display); font-weight: 800; letter-spacing: .04em; font-size: 22px; display: inline-flex; align-items: baseline; gap: 2px; color: var(--ink); }
+  .logo .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--brand); display: inline-block; transform: translateY(-12px); margin-left: 2px; }
+
+  .chip { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; padding: 6px 10px; border-radius: 40px; border: 1px solid var(--line-strong); color: var(--ink-2); white-space: nowrap; }
+  .chip.tid { background: var(--brand); border-color: var(--brand); color: #ffffff; font-weight: 700; letter-spacing: .1em; }
+  html[data-theme="dark"] .chip.tid { color: #201014; }
+  .chip.page { color: var(--ink); }
+  .chip.pillar.a { color: var(--brand); border-color: var(--brand-soft); background: var(--brand-tint); }
+  .chip.pillar.b { color: var(--blue); border-color: rgba(51,79,180,.28); background: rgba(51,79,180,.06); }
+  html[data-theme="dark"] .chip.pillar.b { color: #93a7ee; border-color: rgba(147,167,238,.32); background: rgba(147,167,238,.10); }
+  .chip.pillar.c { color: var(--green); border-color: var(--green-soft); background: var(--green-tint); }
+  .chip.impact { color: var(--ink); border-color: var(--line-strong); }
+  .chip.ease.high { color: var(--green); border-color: var(--green-soft); }
+
+  .card-top { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 18px; }
+  .card-top .spacer { flex: 1; }
+  .card-title { font-family: var(--display); font-weight: 800; font-size: clamp(26px, 3.2vw, 38px); letter-spacing: -0.02em; line-height: 1.06; margin: 0 0 6px; }
+  .card-sub { font-family: var(--mono); font-size: 12px; color: var(--ink-3); letter-spacing: .02em; margin-bottom: 24px; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .col { display: flex; flex-direction: column; gap: 18px; }
+  .block-h { font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--brand); font-weight: 600; margin-bottom: 10px; }
+  .block ul, .block ol { margin: 0; padding-left: 18px; }
+  .block li { line-height: 1.5; color: var(--ink-2); margin-bottom: 8px; font-size: 16px; }
+  .block li b { color: var(--ink); font-weight: 600; }
+
+  .hyp { background: var(--brand-tint); border: 1px solid var(--brand-soft); border-radius: 14px; padding: 16px 18px; }
+  .hyp p { margin: 0; color: var(--ink); font-size: 16px; line-height: 1.55; }
+  .hyp b { color: var(--brand); font-weight: 700; letter-spacing: .02em; }
+
+  .meta-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .meta { background: var(--bg-3); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+  .meta span { display: block; font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 4px; }
+  .meta b { font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.3; }
+
+  .ref { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-size: 14px; font-weight: 600; color: var(--brand); padding: 12px 16px; border: 1px solid var(--brand-soft); background: var(--brand-tint); border-radius: 40px; transition: background .2s ease; }
+  .ref:hover { background: var(--brand-soft); }
+  .ref svg { width: 14px; height: 14px; flex: none; }
+  .ref.plain { color: var(--ink-2); border-color: var(--line-strong); background: var(--bg-3); }
+
+  .cover { justify-content: space-between; padding: 56px 60px; }
+  .cover-top { display: flex; align-items: center; justify-content: space-between; }
+  .cover-mid h1 { font-size: clamp(40px, 6vw, 74px); }
+  .cover-mid .lead { font-size: clamp(16px, 2vw, 20px); color: var(--ink-2); max-width: 680px; margin-top: 18px; line-height: 1.5; }
+  .cover-tag { font-family: var(--mono); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-3); }
+  .cover-foot { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; font-family: var(--mono); font-size: 12px; color: var(--ink-3); letter-spacing: .04em; }
+  .cover-foot .dotsep { width: 4px; height: 4px; border-radius: 50%; background: var(--brand); }
+
+  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 4px 0 0; }
+  .stat { background: var(--bg-3); border: 1px solid var(--line); border-radius: 16px; padding: 20px; }
+  .stat .v { font-family: var(--display); font-weight: 800; font-size: 40px; letter-spacing: -0.02em; color: var(--ink); line-height: 1; }
+  .stat .v.sm { font-size: 32px; }
+  .stat .v.brand { color: var(--brand); }
+  .stat .v.green { color: var(--green); }
+  .stat .v.loss { color: var(--loss); }
+  .stat .k { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin-top: 10px; line-height: 1.5; }
+  .stat-grid.compact .stat { padding: 14px 16px; }
+  .stat-grid.compact .stat .v { font-size: 30px; }
+  .stat-grid.compact .stat .k { margin-top: 6px; }
+  table.flat.tight td { padding: 8px 12px; }
+
+  .wins { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 22px; }
+  .win { border: 1px solid var(--line); border-radius: 16px; padding: 20px 22px; background: var(--slide); }
+  .win.good { border-color: var(--green-soft); background: var(--green-tint); }
+  .win.bad { border-color: var(--loss-soft); background: var(--loss-tint); }
+  .win .wt { font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+  .win .wh { font-size: 18px; font-weight: 700; color: var(--ink); margin: 8px 0 12px; line-height: 1.25; }
+  .win .wm { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .win .wm b { font-family: var(--display); font-weight: 800; font-size: 34px; color: var(--green); letter-spacing: -0.02em; }
+  .win.bad .wm b { color: var(--loss); }
+  .win .wm span { font-size: 14px; color: var(--ink-2); }
+  .win .wl { margin-top: 10px; font-size: 14px; color: var(--ink-2); line-height: 1.5; }
+  .win .wl b { color: var(--ink); font-weight: 600; }
+
+  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 8px; }
+  .pillar-card { border: 1px solid var(--line); border-radius: 16px; padding: 20px; background: var(--bg-3); }
+  .pillar-card .pl { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; margin-bottom: 10px; }
+  .pillar-card.a .pl { color: var(--brand); }
+  .pillar-card.b .pl { color: var(--blue); }
+  html[data-theme="dark"] .pillar-card.b .pl { color: #93a7ee; }
+  .pillar-card.c .pl { color: var(--green); }
+  .pillar-card h3 { margin: 0 0 8px; font-size: 18px; font-weight: 700; color: var(--ink); line-height: 1.25; }
+  .pillar-card p { margin: 0 0 10px; font-size: 14px; }
+  .pillar-card .tests { font-family: var(--mono); font-size: 12px; color: var(--ink-3); letter-spacing: .06em; }
+
+  table.flat { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table.flat th { text-align: left; font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; padding: 10px 12px; border-bottom: 1px solid var(--line-strong); }
+  table.flat td { padding: 10px 12px; border-bottom: 1px solid var(--line); color: var(--ink-2); vertical-align: middle; }
+  table.flat td b { color: var(--ink); font-weight: 600; }
+  table.flat .t-id { font-family: var(--mono); font-weight: 700; color: var(--brand); white-space: nowrap; }
+  .tag-pill { display: inline-block; font-family: var(--mono); font-size: 10px; letter-spacing: .06em; text-transform: uppercase; padding: 4px 8px; border-radius: 40px; border: 1px solid var(--line-strong); white-space: nowrap; }
+  .tag-pill.high { color: var(--green); border-color: var(--green-soft); background: var(--green-tint); }
+  .tag-pill.bad { color: var(--loss); border-color: var(--loss-soft); background: var(--loss-tint); }
+  .tag-pill.live { color: var(--brand); border-color: var(--brand-soft); background: var(--brand-tint); }
+  .tag-pill.med { color: var(--ink-2); }
+
+  .seq { display: flex; flex-direction: column; gap: 12px; margin-top: 4px; }
+  .seq-row { display: grid; grid-template-columns: 108px 1fr; gap: 18px; align-items: start; border: 1px solid var(--line); border-radius: 16px; padding: 14px 18px; background: var(--bg-3); }
+  .seq-row .num { font-family: var(--display); font-weight: 800; font-size: 22px; color: var(--brand); line-height: 1.2; letter-spacing: -0.01em; }
+  .seq-row .num span { display: block; font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; margin-top: 4px; }
+  .seq-row h3 { margin: 0 0 6px; font-size: 16px; font-weight: 700; color: var(--ink); }
+  .seq-row p { margin: 0; font-size: 14px; }
+  .seq-row .ids { font-family: var(--mono); font-size: 12px; color: var(--ink-3); margin-top: 8px; letter-spacing: .05em; line-height: 1.6; }
+  .seq-row.freeze { border-color: var(--loss-soft); background: var(--loss-tint); }
+  .seq-row.freeze .num { color: var(--loss); }
+
+  .note { margin-top: 18px; padding: 14px 16px; font-size: 14px; color: var(--ink-2); border: 1px solid var(--line); border-radius: 12px; background: var(--bg-3); line-height: 1.55; }
+  .note b { color: var(--ink); font-weight: 600; }
+  .note.brand { border-color: var(--brand-soft); background: var(--brand-tint); }
+  .push { margin-top: auto; }
+
+  .section-h { display: flex; align-items: baseline; gap: 14px; margin-bottom: 22px; flex-wrap: wrap; }
+  .section-h h2 { font-size: clamp(24px, 3vw, 34px); }
+
+  .asks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 8px; }
+  .ask { border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; background: var(--bg-3); }
+  .ask .an { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--brand); font-weight: 700; margin-bottom: 8px; }
+  .ask p { margin: 0; font-size: 14px; }
+  .ask p b { color: var(--ink); font-weight: 600; }
+
+  .side-nav { position: fixed; top: 50%; transform: translateY(-50%); z-index: 62; width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; cursor: pointer; background: var(--nav-bg); backdrop-filter: blur(14px); border: 1px solid var(--line-strong); color: var(--ink); box-shadow: var(--shadow); transition: background .2s ease, transform .2s ease, opacity .2s ease; }
+  .side-nav:hover { background: var(--brand); border-color: var(--brand); color: #ffffff; transform: translateY(-50%) scale(1.06); }
+  .side-nav svg { width: 24px; height: 24px; }
+  .side-nav.prev { left: 26px; }
+  .side-nav.next { right: 26px; }
+  .side-nav[disabled] { opacity: .28; pointer-events: none; }
+
+  .swipe-hint { position: fixed; bottom: 82px; left: 50%; transform: translateX(-50%); font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); background: var(--nav-bg); backdrop-filter: blur(14px); padding: 10px 16px; border-radius: 40px; border: 1px solid var(--line-strong); box-shadow: var(--shadow); opacity: 0; pointer-events: none; transition: opacity .4s ease; z-index: 55; }
+  .swipe-hint.show { opacity: 1; }
+
+  .nav { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 6px; background: var(--nav-bg); backdrop-filter: blur(14px); border: 1px solid var(--line); border-radius: 40px; padding: 6px 8px; z-index: 60; box-shadow: var(--shadow); }
+  .nav button { font-family: var(--body); font-size: 14px; font-weight: 600; color: var(--ink); background: transparent; border: none; padding: 8px 14px; border-radius: 30px; cursor: pointer; transition: background .2s ease; }
+  .nav button:hover { background: var(--bg-2); }
+  .nav button[disabled] { opacity: .32; pointer-events: none; }
+  .nav .count { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; color: var(--ink-2); padding: 0 6px; white-space: nowrap; }
+  .nav .count strong { color: var(--brand); }
+  .nav .sep { width: 1px; height: 20px; background: var(--line-strong); }
+  .theme-toggle { display: grid; place-items: center; width: 38px; height: 38px; padding: 0 !important; }
+  .theme-toggle svg { width: 18px; height: 18px; }
+  html[data-theme="dark"] .theme-toggle .sun { display: block; }
+  html[data-theme="dark"] .theme-toggle .moon { display: none; }
+  html[data-theme="light"] .theme-toggle .sun { display: none; }
+  html[data-theme="light"] .theme-toggle .moon { display: block; }
+
+  .index-overlay { position: fixed; inset: 0; background: rgba(18,18,18,.5); backdrop-filter: blur(6px); display: grid; place-items: center; opacity: 0; pointer-events: none; transition: opacity .25s ease; z-index: 80; }
+  .index-overlay.open { opacity: 1; pointer-events: auto; }
+  .index-panel { width: min(640px, 92vw); max-height: 82vh; background: var(--slide); border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--shadow); display: flex; flex-direction: column; overflow: hidden; transform: translateY(10px); transition: transform .25s ease; }
+  .index-overlay.open .index-panel { transform: translateY(0); }
+  .index-head { display: flex; align-items: center; justify-content: space-between; padding: 20px 22px; border-bottom: 1px solid var(--line); }
+  .index-title { font-family: var(--display); font-weight: 700; font-size: 20px; }
+  .index-close { background: transparent; border: none; color: var(--ink-2); cursor: pointer; width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; }
+  .index-close:hover { background: var(--bg-2); }
+  .index-close svg { width: 18px; height: 18px; }
+  .index-list { overflow-y: auto; padding: 10px; }
+  .index-item { display: flex; align-items: center; gap: 14px; width: 100%; text-align: left; background: transparent; border: none; border-radius: 12px; padding: 12px 14px; cursor: pointer; color: var(--ink); transition: background .15s ease; }
+  .index-item:hover, .index-item.focused { background: var(--bg-2); }
+  .index-item.current { background: var(--brand-tint); }
+  .index-item .num { font-family: var(--mono); font-size: 12px; color: var(--brand); font-weight: 700; width: 26px; flex: none; }
+  .index-item .label { flex: 1; font-weight: 600; font-size: 14px; display: flex; flex-direction: column; }
+  .index-item .label span { font-weight: 400; font-size: 12px; color: var(--ink-3); margin-top: 2px; }
+  .index-item .chip { font-family: var(--mono); font-size: 10px; }
+  .index-foot { padding: 12px 22px; border-top: 1px solid var(--line); font-size: 12px; color: var(--ink-3); }
+  .kbd { font-family: var(--mono); background: var(--bg-2); border: 1px solid var(--line); border-radius: 6px; padding: 2px 6px; font-size: 10px; }
+
+  @media (max-width: 900px) {
+    .pad { padding: 32px 24px 88px; }
+    .grid2, .wins, .pillars, .asks { grid-template-columns: 1fr; }
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .cover { padding: 40px 28px; }
+    .meta-row { grid-template-columns: 1fr; }
+    .seq-row { grid-template-columns: 1fr; gap: 8px; }
+    table.flat { font-size: 12px; }
+    table.flat th:nth-child(3), table.flat td:nth-child(3) { display: none; }
+    .side-nav { width: 42px; height: 42px; }
+    .side-nav svg { width: 20px; height: 20px; }
+    .side-nav.prev { left: 8px; }
+    .side-nav.next { right: 8px; }
+    .swipe-hint { bottom: 78px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress"><i id="progress-bar"></i></div>
+
+<div class="stage" id="stage">
+  <div class="deck" id="deck">
+
+    <!-- 1 · COVER -->
+    <section class="slide title-slide is-active cover" data-slide="1">
+      <div class="pad cover">
+        <div class="cover-top">
+          <span class="logo">SPORTGYM<span class="dot"></span></span>
+          <span class="cover-tag">CRO Program · Q4 2026</span>
+        </div>
+        <div class="cover-mid">
+          <div class="eyebrow" style="margin-bottom:18px;">Quarter review and Q4 plan</div>
+          <h1>The pattern works.<br>Q4 is where it pays.</h1>
+          <p class="lead">What we shipped in July and August, the two winners now worth 658.770 kr a month, the two losers that saved us from permanent mistakes, and nine tests built for Black Friday and Christmas.</p>
+        </div>
+        <div class="cover-foot">
+          <span>sportgym.dk</span><span class="dotsep"></span>
+          <span>28 tests mapped</span><span class="dotsep"></span>
+          <span>9 tests proposed for Q4</span><span class="dotsep"></span>
+          <span>Prepared by EcomHouse</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 · WHAT WE SHIPPED -->
+    <section class="slide" data-slide="2">
+      <div class="pad">
+        <div class="section-h"><div class="eyebrow">What we have shipped so far</div></div>
+        <h2 style="max-width:900px;">Twenty eight tests mapped. Fifteen completed. Two reading right now.</h2>
+        <div class="stat-grid compact" style="margin-top:18px;">
+          <div class="stat"><div class="v brand">28</div><div class="k">Tests mapped</div></div>
+          <div class="stat"><div class="v">15</div><div class="k">Completed</div></div>
+          <div class="stat"><div class="v">2</div><div class="k">Live and reading</div></div>
+          <div class="stat"><div class="v">7</div><div class="k">In progress</div></div>
+        </div>
+        <table class="flat tight" style="margin-top:20px;">
+          <thead><tr><th>ID</th><th>Test</th><th>Page</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="t-id">T04</td><td><b>PDP spec highlights</b></td><td>All PDPs</td><td><span class="tag-pill high">Won · shipped</span></td></tr>
+            <tr><td class="t-id">T03</td><td><b>Decision rich collection cards</b></td><td>Collections</td><td><span class="tag-pill high">Won · shipped</span></td></tr>
+            <tr><td class="t-id">T17</td><td><b>PDP buy box redesign</b></td><td>All PDPs</td><td><span class="tag-pill med">Deployed</span></td></tr>
+            <tr><td class="t-id">T25 · T22 · T23</td><td><b>Homepage rebuild: hero, categories, bestsellers</b></td><td>Homepage</td><td><span class="tag-pill med">Deployed</span></td></tr>
+            <tr><td class="t-id">T24 · T21</td><td><b>Trust strip and Trustpilot under the hero</b></td><td>Homepage</td><td><span class="tag-pill med">Deployed</span></td></tr>
+            <tr><td class="t-id">T20 · T19</td><td><b>Judge.me reviews on PDP and cards</b></td><td>PDP · PLP</td><td><span class="tag-pill med">Deployed</span></td></tr>
+            <tr><td class="t-id">T26</td><td><b>Meta Pixel and CAPI verification</b></td><td>Tracking</td><td><span class="tag-pill med">Deployed</span></td></tr>
+            <tr><td class="t-id">T01</td><td><b>Title and reviews above the image</b></td><td>PDP mobile</td><td><span class="tag-pill live">Live · day 16</span></td></tr>
+            <tr><td class="t-id">T02</td><td><b>Announcement bar v2</b></td><td>Sitewide</td><td><span class="tag-pill live">Live · day 18</span></td></tr>
+            <tr><td class="t-id">T08</td><td><b>Sticky announcement bar with value props</b></td><td>Sitewide</td><td><span class="tag-pill bad">Lost · reverted</span></td></tr>
+            <tr><td class="t-id">T05</td><td><b>Cart drawer redesign</b></td><td>Cart</td><td><span class="tag-pill bad">Lost · reverted</span></td></tr>
+          </tbody>
+        </table>
+        <div class="note" style="margin-top:14px;">Source: the SportGym CRO programme board, read 24 August 2026. Nine further tests sit in planning, development or ready to launch.</div>
+      </div>
+    </section>
+
+    <!-- 3 · THE WINNERS -->
+    <section class="slide" data-slide="3">
+      <div class="pad">
+        <div class="section-h"><div class="eyebrow">Results</div></div>
+        <h2 style="max-width:880px;">Two winners. 658.770 kr of new revenue, every month.</h2>
+        <div class="stat-grid" style="margin-top:20px;">
+          <div class="stat"><div class="v green">+25,9%</div><div class="k">T04 · PDP conversion rate</div></div>
+          <div class="stat"><div class="v green">+17,2%</div><div class="k">T03 · collection conversion rate</div></div>
+          <div class="stat"><div class="v green sm">658.770</div><div class="k">kr per month, combined</div></div>
+          <div class="stat"><div class="v">4</div><div class="k">Tests read to a verdict</div></div>
+        </div>
+        <div class="wins">
+          <div class="win good">
+            <div class="wt">T04 · PDP spec highlights</div>
+            <div class="wh">Four specs, in a scannable row, under the price</div>
+            <div class="wm"><b>+25,93%</b><span>conversion rate · 3,29% to 4,14%</span></div>
+            <div class="wl"><b>+382.852 kr per month.</b> Motor, top speed, maximum user weight and design pulled out of the description and placed at the point of decision. Now live on every product page.</div>
+          </div>
+          <div class="win good">
+            <div class="wt">T03 · Decision rich collection cards</div>
+            <div class="wh">The deciding attributes, printed on the card</div>
+            <div class="wm"><b>+17,15%</b><span>conversion rate · 8,33% to 9,76%</span></div>
+            <div class="wl"><b>+275.918 kr per month.</b> Category specific attributes added to product cards so shoppers can shortlist without opening a page. Now live on løbebånd, trampoliner, isbad and smart home gym.</div>
+          </div>
+        </div>
+        <div class="note brand"><b>At this run rate the two winners alone carry roughly 1,98 million kr through October, November and December,</b> before a single Q4 test lands and before any Q4 traffic increase. Arithmetic: 658.770 kr multiplied by three months.</div>
+      </div>
+    </section>
+
+    <!-- 4 · THE LOSERS -->
+    <section class="slide" data-slide="4">
+      <div class="pad">
+        <div class="section-h"><div class="eyebrow">The other half of the result</div></div>
+        <h2 style="max-width:880px;">Two tests lost. Both were cheap, and both taught us the same thing.</h2>
+        <p style="max-width:900px;margin:14px 0 2px;font-size:16px;">These are the results that make the programme worth running. Each of these was a change SportGym might reasonably have shipped permanently. Two short test windows caught both.</p>
+        <div class="wins">
+          <div class="win bad">
+            <div class="wt">T08 · Sticky announcement bar with three value props</div>
+            <div class="wh">Taking the viewport costs more than the message adds</div>
+            <div class="wm"><b>50,46%</b><span>drop in conversion rate · true effect between 11% and 73%</span></div>
+            <div class="wl">Mobile was hit hardest: conversion 4,80% to 2,12%, cart abandonment 38,24% to 55,00%. Product page visits were unchanged, so the damage began <b>after</b> visitors reached the product. A permanent header took the screen the decision needed.</div>
+          </div>
+          <div class="win bad">
+            <div class="wt">T05 · Cart drawer redesign</div>
+            <div class="wh">Never ask a customer to make the same decision twice</div>
+            <div class="wm"><b>51%</b><span>drop in tracked add to cart · 37 to 14 users</span></div>
+            <div class="wl">The recommendation carousel offered a 20 kg and a 24 kg kettlebell to a shopper who had just chosen 16 kg. Those are substitutes, not accessories. The drawer reopened a decision the customer had already closed.</div>
+          </div>
+        </div>
+        <div class="note">Both tests ran on short windows and small budgets. Two weeks of testing prevented two permanent site changes, each of which would have cost real revenue every month for as long as it stayed live.</div>
+      </div>
+    </section>
+
+    <!-- 5 · WHAT THE QUARTER PROVED -->
+    <section class="slide" data-slide="5">
+      <div class="pad">
+        <div class="section-h"><div class="eyebrow">What the quarter proved</div></div>
+        <h2 style="font-size:clamp(26px,3.4vw,40px);max-width:900px;">Every result this quarter says the same thing about this buyer.</h2>
+        <p style="margin-top:18px;max-width:920px;font-size:18px;color:var(--ink);">
+          Both winners <b style="color:var(--brand)">put a deciding fact where the decision happens.</b> Specs under the price. Attributes on the card. Both losers <b style="color:var(--brand)">took something away from that moment:</b> the sticky bar took the viewport, the cart drawer took back the decision. SportGym sells considered purchases from 2.495 kr to 69.900 kr. This buyer is comparing, and they convert when the comparison is easy and the decision stays made.
+        </p>
+        <div class="pillars" style="margin-top:22px;">
+          <div class="pillar-card a">
+            <div class="pl">Pillar A</div>
+            <h3>Finish the pattern that won</h3>
+            <p>The winning move is only partly rolled out. The biggest collections still make shoppers do the comparison by hand.</p>
+            <div class="tests">Q01 · Q02 · Q03</div>
+          </div>
+          <div class="pillar-card b">
+            <div class="pl">Pillar B</div>
+            <h3>Make the big decision easy</h3>
+            <p>Q4 carries the largest baskets of the year. Guided selling, comparison and monthly pricing are built for exactly that.</p>
+            <div class="tests">Q04 · Q05 · Q06</div>
+          </div>
+          <div class="pillar-card c">
+            <div class="pl">Pillar C</div>
+            <h3>Own the Q4 calendar</h3>
+            <p>Black Friday and Christmas ask different questions of the site than July did. We answer them before the traffic arrives.</p>
+            <div class="tests">Q07 · Q08 · Q09</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 · WHY Q4 IS DIFFERENT -->
+    <section class="slide" data-slide="6">
+      <div class="pad">
+        <div class="section-h"><div class="eyebrow">Why Q4 is different</div></div>
+        <h2 style="max-width:900px;">Q4 is the quarter where one point of conversion is worth the most.</h2>
+        <div class="grid2" style="margin-top:22px;">
+          <div class="col">
+            <div class="block">
+              <div class="block-h">What changes</div>
+              <ul>
+                <li><b>Black Friday falls on 27 November,</b> Cyber Monday on 30 November. That week concentrates the year's highest intent traffic into five days.</li>
+                <li><b>Christmas turns the biggest category into a gift category.</b> Trampolines and PlayBase already carry around 52% of product sales, and both are bought for someone else in December.</li>
+                <li><b>Baskets get bigger.</b> The catalogue reaches 69.900 kr, and 9 of the 13 treadmills sit above 5.000 kr.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col">
+            <div class="block">
+              <div class="block-h">What is still unfinished</div>
+              <ul>
+                <li><b>The filters do not match the attributes that sell.</b> 131 trampolines filter on størrelse, højde and form. 13 treadmills filter on nothing but stock and price. Verified live, 24 August.</li>
+                <li><b>No monthly payment option appears anywhere on a product page.</b> We checked the TR600i page for ViaBill, Klarna, Anyday and delbetaling and found none of them.</li>
+                <li><b>Stock and delivery timing never reach the product card,</b> even though the product page already promises delivery in 1 to 2 working days and pickup in Aarhus within the hour.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="note brand"><b>The constraint that shapes the plan:</b> nothing new should ship between 20 November and 1 December. Every change Q4 needs must be built, tested and read before that window opens, which makes October the decisive month and September the build month.</div>
+      </div>
+    </section>
+
+    <!-- 7 · Q4 AT A GLANCE -->
+    <section class="slide" data-slide="7">
+      <div class="pad">
+        <div class="section-h"><div class="eyebrow">Q4 2026 at a glance</div></div>
+        <h2 style="max-width:860px;margin-bottom:18px;">Nine tests, across three pillars, sequenced around Black Friday.</h2>
+        <div class="stat-grid">
+          <div class="stat"><div class="v brand">9</div><div class="k">New tests proposed</div></div>
+          <div class="stat"><div class="v">3</div><div class="k">Strategic pillars</div></div>
+          <div class="stat"><div class="v sm">27 NOV</div><div class="k">Black Friday 2026</div></div>
+          <div class="stat"><div class="v green">3,44%</div><div class="k">Current sitewide conversion baseline</div></div>
+        </div>
+        <table class="flat" style="margin-top:24px;">
+          <thead><tr><th>ID</th><th>Test</th><th>Page</th><th>Impact</th><th>Ease</th></tr></thead>
+          <tbody>
+            <tr><td class="t-id">Q01</td><td><b>Filter on the attributes that already sell</b></td><td>PLP</td><td><span class="tag-pill high">High</span></td><td><span class="tag-pill med">Med</span></td></tr>
+            <tr><td class="t-id">Q02</td><td><b>The "Bedst til" line</b></td><td>PDP · PLP</td><td><span class="tag-pill med">Med</span></td><td><span class="tag-pill high">High</span></td></tr>
+            <tr><td class="t-id">Q03</td><td><b>Stock and delivery on the product card</b></td><td>PLP</td><td><span class="tag-pill high">High</span></td><td><span class="tag-pill high">High</span></td></tr>
+            <tr><td class="t-id">Q04</td><td><b>"Find dit løbebånd" guided selling</b></td><td>PLP · Home</td><td><span class="tag-pill high">High</span></td><td><span class="tag-pill med">Med</span></td></tr>
+            <tr><td class="t-id">Q05</td><td><b>Comparison table and PDP FAQ</b></td><td>PDP</td><td><span class="tag-pill med">Med</span></td><td><span class="tag-pill med">Med</span></td></tr>
+            <tr><td class="t-id">Q06</td><td><b>Monthly payment as a co primary price</b></td><td>PDP · PLP</td><td><span class="tag-pill high">High</span></td><td><span class="tag-pill med">Med</span></td></tr>
+            <tr><td class="t-id">Q07</td><td><b>Black Friday price confidence</b></td><td>Sitewide</td><td><span class="tag-pill high">High</span></td><td><span class="tag-pill high">High</span></td></tr>
+            <tr><td class="t-id">Q08</td><td><b>Christmas gift mode</b></td><td>Sitewide</td><td><span class="tag-pill high">High</span></td><td><span class="tag-pill med">Med</span></td></tr>
+            <tr><td class="t-id">Q09</td><td><b>"Komplet dit setup" accessory cross sell</b></td><td>PDP</td><td><span class="tag-pill med">Med</span></td><td><span class="tag-pill med">Med</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 8 · Q01 -->
+    <section class="slide" data-slide="8">
+      <div class="pad">
+        <div class="card-top">
+          <span class="chip tid">Q01</span>
+          <span class="chip page">Collection pages</span>
+          <span class="chip pillar a">Pillar A · Finish the pattern</span>
+          <span class="spacer"></span>
+          <span class="chip impact">Impact High</span>
+          <span class="chip">Ease Medium</span>
+        </div>
+        <h2 class="card-title">Filter on the attributes that already sell</h2>
+        <div class="card-sub">SPG | A/B | PLP | Filtre på trampoliner og løbebånd</div>
+        <div class="grid2">
+          <div class="col">
+            <div class="block">
+              <div class="block-h">Observation</div>
+              <ul>
+                <li>T03 proved which attributes decide the purchase, and those attributes now sit on every card. <b>Not one of them can be filtered on.</b></li>
+                <li><b>Løbebånd:</b> 13 models from 2.495 kr to 69.900 kr, filtered only by Tilgængelighed and Pris. Motor, maks. brugervægt, tophastighed and sammenklappelig are printed on every card and filterable on none of them.</li>
+                <li><b>Trampoliner:</b> 131 products, filtered by størrelse, højde and form. All three are dimensions. Montering, maks. testvægt and bedst til, which the cards themselves treat as decisive, are missing.</li>
+              </ul>
+            </div>
+            <div class="hyp">
+              <div class="block-h">Hypothesis</div>
+              <p><b>IF</b> shoppers can filter by the same attributes the cards already use to sell, <b>WE EXPECT</b> a higher collection to product click through rate and a higher collection conversion rate, <b>BECAUSE</b> T03 already proved that surfacing a decision attribute earlier lifts collection conversion by 17,15%, and a filter is that same information turned into a shortcut.</p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="block">
+              <div class="block-h">What we are testing</div>
+              <ol>
+                <li>Løbebånd: add motor, maks. brugervægt, tophastighed and sammenklappelig to the existing two filters.</li>
+                <li>Trampoliner: add montering (fritstående, delvist nedgravet, nedgravet), maks. testvægt and bedst til alongside the existing three.</li>
+                <li>Applied filters shown as removable chips with live result counts.</li>
+              </ol>
+            </div>
+            <div class="meta-row">
+              <div class="meta"><span>Primary metric</span><b>Collection conversion rate</b></div>
+              <div class="meta"><span>Secondary</span><b>Collection to PDP rate, filter usage</b></div>
+              <div class="meta"><span>Device</span><b>All devices</b></div>
+              <div class="meta"><span>Tracked via</span><b>Intelligems</b></div>
+            </div>
+            <a class="ref plain" href="https://sportgym.dk/collections/lobebaend" target="_blank" rel="noopener">Evidence: 13 løbebånd, two filters <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9 · Q02 -->
+    <section class="slide" data-slide="9">
+      <div class="pad">
+        <div class="card-top">
+          <span class="chip tid">Q02</span>
+          <span class="chip page">PDP · Collection</span>
+          <span class="chip pillar a">Pillar A · Finish the pattern</span>
+          <span class="spacer"></span>
+          <span class="chip impact">Impact Medium</span>
+          <span class="chip ease high">Ease High · fastest win</span>
+        </div>
+        <h2 class="card-title">The "Bedst til" line</h2>
+        <div class="card-sub">SPG | A/B | PDP + PLP | Who this model is actually for</div>
+        <div class="grid2">
+          <div class="col">
+            <div class="block">
+              <div class="block-h">Observation</div>
+              <ul>
+                <li>Spec highlights won by <b>25,93%</b>, and every attribute it shows is a number: motor, tophastighed, maks. brugervægt, design.</li>
+                <li>Numbers tell a shopper what a machine <b>does</b>. They do not tell them whether it is the right one <b>for them</b>.</li>
+                <li>One category already does this. Trampoline cards carry <b>"BEDST TIL: Hyppig brug &amp; højere hop"</b>, and it is the only attribute on the site written in the customer's own language.</li>
+              </ul>
+            </div>
+            <div class="hyp">
+              <div class="block-h">Hypothesis</div>
+              <p><b>IF</b> we add one plain language "Bedst til" line to every product card and to the PDP spec row, <b>WE EXPECT</b> a higher add to cart rate and a higher collection to product click through rate, <b>BECAUSE</b> both winning tests worked by removing a step of comparison, and the last step a shopper still has to take alone is translating specifications into a decision about themselves.</p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="block">
+              <div class="block-h">What we are testing</div>
+              <ol>
+                <li>"Bedst til" added as a further attribute, written per model rather than per category.</li>
+                <li>On the product page it sits directly beneath the existing spec row.</li>
+                <li>Variant B pairs it with an honest "Ikke til" line, which is the strongest form of the same signal.</li>
+              </ol>
+            </div>
+            <div class="meta-row">
+              <div class="meta"><span>Primary metric</span><b>PDP to add to cart rate</b></div>
+              <div class="meta"><span>Secondary</span><b>Collection to PDP click through</b></div>
+              <div class="meta"><span>Device</span><b>All devices</b></div>
+              <div class="meta"><span>Tracked via</span><b>Intelligems</b></div>
+            </div>
+            <a class="ref plain" href="https://sportgym.dk/collections/trampoliner" target="_blank" rel="noopener">Evidence: the one category that already does it <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 · Q03 -->
+    <section class="slide" data-slide="10">
+      <div class="pad">
+        <div class="card-top">
+          <span class="chip tid">Q03</span>
+          <span class="chip page">Collection pages</span>
+          <span class="chip pillar a">Pillar A · Finish the pattern</span>
+          <span class="spacer"></span>
+          <span class="chip impact">Impact High</span>
+          <span class="chip ease high">Ease High</span>
+        </div>
+        <h2 class="card-title">Stock and delivery on the product card</h2>
+        <div class="card-sub">SPG | A/B | PLP | På lager og leveringstid, før klikket</div>
+        <div class="grid2">
+          <div class="col">
+            <div class="block">
+              <div class="block-h">Observation</div>
+              <ul>
+                <li>The product page already promises <b>"På lager, 1-2 hverdages levering"</b> and <b>"Klar til afhentning i dag, typisk inden for 1 time"</b> in Risskov. Both verified live on 24 August.</li>
+                <li>None of that reaches the collection card. A shopper comparing 131 trampolines cannot see which of them will arrive in time.</li>
+                <li>In December, arrival date stops being a detail and becomes a purchase criterion.</li>
+              </ul>
+            </div>
+            <div class="hyp">
+              <div class="block-h">Hypothesis</div>
+              <p><b>IF</b> stock status and delivery timing appear on the product card, <b>WE EXPECT</b> more qualified product page visits and a higher collection conversion rate, <b>BECAUSE</b> a shopper buying a gift filters on arrival date before they filter on features, and SportGym's own warehouse is a genuine advantage that the card currently hides.</p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="block">
+              <div class="block-h">What we are testing</div>
+              <ol>
+                <li>"På lager · levering 1-2 hverdage" on every in stock card.</li>
+                <li>"Kan afhentes i Aarhus i dag" where local pickup applies.</li>
+                <li>From late November, an explicit "Fremme inden jul" marker driven by the carrier cutoff date.</li>
+              </ol>
+            </div>
+            <div class="meta-row">
+              <div class="meta"><span>Primary metric</span><b>Collection conversion rate</b></div>
+              <div class="meta"><span>Secondary</span><b>Collection to PDP rate</b></div>
+              <div class="meta"><span>Device</span><b>All devices</b></div>
+              <div class="meta"><span>Note</span><b>Extends T16, currently in planning</b></div>
+            </div>
+            <a class="ref plain" href="https://sportgym.dk/products/virtufit-tr600i-lobeband" target="_blank" rel="noopener">Evidence: the promise the PDP already makes <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 · Q04 -->
+    <section class="slide" data-slide="11">
+      <div class="pad">
+        <div class="card-top">
+          <span class="chip tid">Q04</span>
+          <span class="chip page">Collection · Homepage</span>
+          <span class="chip pillar b">Pillar B · The big decision</span>
+          <span class="spacer"></span>
+          <span class="chip impact">Impact High</span>
+          <span class="chip">Ease Medium</span>
+        </div>
+        <h2 class="card-title">"Find dit løbebånd" guided selling</h2>
+        <div class="card-sub">SPG | A/B | PLP + Home | Four questions, a shortlist, a reason for each</div>
+        <div class="grid2">
+          <div class="col">
+            <div class="block">
+              <div class="block-h">Observation</div>
+              <ul>
+                <li>Thirteen treadmills from <b>2.495 kr to 69.900 kr</b>, a 28 times price spread, and the only way to choose is to open product pages one at a time and hold them in your head.</li>
+                <li>The collection page already promises the help: <b>"Hos SportGym hjælper vi dig med at finde det løbebånd, der passer præcist til dine behov."</b> Nothing on the page delivers it.</li>
+                <li>The same problem sits across 131 trampolines, at higher volume.</li>
+              </ul>
+            </div>
+            <div class="hyp">
+              <div class="block-h">Hypothesis</div>
+              <p><b>IF</b> a four question quiz returns a shortlist of two or three models with one reason for each, <b>WE EXPECT</b> a higher collection to product click through rate and a higher conversion rate on those sessions, <b>BECAUSE</b> the promise of expert guidance is already made in the copy, and the quiz is the first place the site actually keeps it.</p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="block">
+              <div class="block-h">What we are testing</div>
+              <ol>
+                <li>Four questions: use case (gang, motion, løb, pro), budget, maks. brugervægt, plads og foldbarhed.</li>
+                <li>A ranked shortlist of two to three models, each with a single sentence explaining the match.</li>
+                <li>Entry points at the top of the collection and from the homepage kondition tile.</li>
+              </ol>
+            </div>
+            <div class="meta-row">
+              <div class="meta"><span>Primary metric</span><b>Collection to PDP click through</b></div>
+              <div class="meta"><span>Secondary</span><b>Quiz completion, quiz to ATC</b></div>
+              <div class="meta"><span>Device</span><b>All devices</b></div>
+              <div class="meta"><span>Note</span><b>Was T10, rescoped for Q4</b></div>
+            </div>
+            <a class="ref" href="https://www.nordictrack.com/treadmills" target="_blank" rel="noopener">Reference: NordicTrack treadmill quiz <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12 · Q05 -->
+    <section class="slide" data-slide="12">
+      <div class="pad">
+        <div class="card-top">
+          <span class="chip tid">Q05</span>
+          <span class="chip page">Product pages</span>
+          <span class="chip pillar b">Pillar B · The big decision</span>
+          <span class="spacer"></span>
+          <span class="chip impact">Impact Medium</span>
+          <span class="chip">Ease Medium</span>
+        </div>
+        <h2 class="card-title">Comparison table and PDP FAQ</h2>
+        <div class="card-sub">SPG | A/B | PDP | This model, the tier above, the tier below</div>
+        <div class="grid2">
+          <div class="col">
+            <div class="block">
+              <div class="block-h">Observation</div>
+              <ul>
+                <li>The <b>TR900i costs 12.900 kr and the TR600i costs 13.900 kr.</b> The cheaper one has the larger motor. Nothing on either page explains why, so the shopper is left to work it out or leave.</li>
+                <li>The collection page carries a FAQ. The product page does not, so warranty, assembly, bulky item returns and delivery go unanswered at the moment of decision.</li>
+                <li>The comparison is happening anyway, across browser tabs. The site that hosts it keeps the session.</li>
+              </ul>
+            </div>
+            <div class="hyp">
+              <div class="block-h">Hypothesis</div>
+              <p><b>IF</b> each product page carries a three column comparison against the tier above and below, plus a five entry FAQ, <b>WE EXPECT</b> a higher add to cart rate on models above 8.000 kr, <b>BECAUSE</b> the two questions blocking a considered purchase are "is this the right one" and "what happens if it is not", and neither is currently answered on the page where the decision is made.</p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="block">
+              <div class="block-h">What we are testing</div>
+              <ol>
+                <li>A three column, eight row table: this model, tier up, tier down, with differences highlighted.</li>
+                <li>A five entry FAQ under the description: garanti, montering, retur af store varer, delbetaling, levering.</li>
+                <li>Priority rollout to every model above 8.000 kr.</li>
+              </ol>
+            </div>
+            <div class="meta-row">
+              <div class="meta"><span>Primary metric</span><b>PDP to add to cart rate</b></div>
+              <div class="meta"><span>Secondary</span><b>Scroll depth, FAQ engagement</b></div>
+              <div class="meta"><span>Device</span><b>All devices</b></div>
+              <div class="meta"><span>Note</span><b>Was T18, rescoped for Q4</b></div>
+            </div>
+            <a class="ref" href="https://www.nordictrack.com/treadmills" target="_blank" rel="noopener">Reference: NordicTrack comparison table <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13 · Q06 -->
+    <section class="slide" data-slide="13">
+      <div class="pad">
+        <div class="card-top">
+          <span class="chip tid">Q06</span>
+          <span class="chip page">PDP · Collection</span>
+          <span class="chip pillar b">Pillar B · The big decision</span>
+          <span class="spacer"></span>
+          <span class="chip impact">Impact High</span>
+          <span class="chip">Ease Medium</span>
+        </div>
+        <h2 class="card-title">Monthly payment as a co primary price</h2>
+        <div class="card-sub">SPG | A/B | PDP + PLP | Fra X kr/md, beside the total</div>
+        <div class="grid2">
+          <div class="col">
+            <div class="block">
+              <div class="block-h">Observation</div>
+              <ul>
+                <li><b>There is no financing option anywhere on the product page.</b> We checked the TR600i page on 24 August for ViaBill, Klarna, Anyday and delbetaling. None of them appear.</li>
+                <li>Pay later is a default expectation in Denmark above roughly 2.000 kr, and <b>9 of the 13 treadmills sit above 5.000 kr.</b></li>
+                <li>A 69.900 kr sticker price is a wall. The same product expressed as a monthly figure is a decision.</li>
+              </ul>
+            </div>
+            <div class="hyp">
+              <div class="block-h">Hypothesis</div>
+              <p><b>IF</b> a monthly figure sits beside the total price on every product above 1.500 kr and on the matching collection cards, <b>WE EXPECT</b> a higher add to cart rate on the higher priced half of the catalogue, <b>BECAUSE</b> monthly framing lowers perceived cost at exactly the point in the year when SportGym's baskets are largest.</p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="block">
+              <div class="block-h">What we are testing</div>
+              <ol>
+                <li>First confirm the account status. T15 is marked deployed on the board but nothing is live on the page.</li>
+                <li>Price block: total price, with the monthly figure directly beneath it as a co primary anchor.</li>
+                <li>Collection cards show "fra X kr/md" on models above 5.000 kr.</li>
+              </ol>
+            </div>
+            <div class="meta-row">
+              <div class="meta"><span>Primary metric</span><b>PDP to add to cart rate</b></div>
+              <div class="meta"><span>Secondary</span><b>Site conversion rate, AOV</b></div>
+              <div class="meta"><span>Device</span><b>All devices</b></div>
+              <div class="meta"><span>Blocker</span><b>Needs account confirmation from SportGym</b></div>
+            </div>
+            <a class="ref" href="https://www.klarna.com/dk/" target="_blank" rel="noopener">Reference: Klarna Denmark instalments <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14 · Q07 -->
+    <section class="slide" data-slide="14">
+      <div class="pad">
+        <div class="card-top">
+          <span class="chip tid">Q07</span>
+          <span class="chip page">Sitewide</span>
+          <span class="chip pillar c">Pillar C · The Q4 calendar</span>
+          <span class="spacer"></span>
+          <span class="chip impact">Impact High</span>
+          <span class="chip ease high">Ease High · must read by mid November</span>
+        </div>
+        <h2 class="card-title">Black Friday price confidence</h2>
+        <div class="card-sub">SPG | A/B | Sitewide | Prisgaranti instead of countdown</div>
+        <div class="grid2">
+          <div class="col">
+            <div class="block">
+              <div class="block-h">Observation</div>
+              <ul>
+                <li>SportGym already runs <b>Prisgaranti, "Vi matcher prisen"</b>, in the announcement bar and in the buy box trust row. Verified live, 24 August.</li>
+                <li>Most of the catalogue already shows a "Vejl. pris" strike through, and several cards carry an explicit <b>"SPAR 3.000 kr"</b> badge. In Black Friday week every competitor will look the same.</li>
+                <li><b>T08 proved that adding permanent promotional furniture to this site halves conversion.</b> Black Friday week is the most expensive possible week to learn that a second time.</li>
+              </ul>
+            </div>
+            <div class="hyp">
+              <div class="block-h">Hypothesis</div>
+              <p><b>IF</b> Black Friday leads with price guarantee and a stated saving rather than countdown urgency, <b>WE EXPECT</b> conversion to hold or rise through the week, <b>BECAUSE</b> the one promotional element this site has already tested badly was the one that occupied the screen, and a price match promise is the single claim a competitor's discount cannot undercut.</p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="block">
+              <div class="block-h">What we are testing</div>
+              <ol>
+                <li>A consistent saving amount badge on card and product page, using the numbers already in the catalogue.</li>
+                <li>Prisgaranti raised into the price block rather than sitting in the trust row.</li>
+                <li>No sticky bar, no countdown, no new viewport furniture. That constraint is part of the test.</li>
+              </ol>
+            </div>
+            <div class="meta-row">
+              <div class="meta"><span>Primary metric</span><b>Sitewide conversion rate</b></div>
+              <div class="meta"><span>Secondary</span><b>Add to cart rate, AOV</b></div>
+              <div class="meta"><span>Window</span><b>Runs and reads 2 to 16 November</b></div>
+              <div class="meta"><span>Device</span><b>All devices</b></div>
+            </div>
+            <a class="ref plain" href="https://sportgym.dk/products/virtufit-tr600i-lobeband" target="_blank" rel="noopener">Evidence: Prisgaranti already in the trust row <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 15 · Q08 -->
+    <section class="slide" data-slide="15">
+      <div class="pad">
+        <div class="card-top">
+          <span class="chip tid">Q08</span>
+          <span class="chip page">Sitewide · Category</span>
+          <span class="chip pillar c">Pillar C · The Q4 calendar</span>
+          <span class="spacer"></span>
+          <span class="chip impact">Impact High</span>
+          <span class="chip">Ease Medium</span>
+        </div>
+        <h2 class="card-title">Christmas gift mode</h2>
+        <div class="card-sub">SPG | A/B | Sitewide | Fremme inden jul, og byt indtil marts</div>
+        <div class="grid2">
+          <div class="col">
+            <div class="block">
+              <div class="block-h">Observation</div>
+              <ul>
+                <li>Trampolines and PlayBase carry around <b>52% of product sales</b>, and in December both are bought for someone else.</li>
+                <li>A gift buyer has three questions a self buyer does not: <b>will it arrive in time, can the recipient return it, and is it the right size for them.</b> None of the three is currently answered in gift terms.</li>
+                <li><b>365 dages returret</b> answers the second question better than almost any competitor, and it currently sits as a small item in a trust row.</li>
+              </ul>
+            </div>
+            <div class="hyp">
+              <div class="block-h">Hypothesis</div>
+              <p><b>IF</b> the site publishes a dated Christmas delivery promise, opens a gift oriented route into the biggest categories, and reframes the 365 day return for gift giving, <b>WE EXPECT</b> a higher conversion rate on December traffic, <b>BECAUSE</b> the objections a gift buyer carries are different from the ones the site was built to answer, and the strongest answer SportGym already owns is currently the quietest thing on the page.</p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="block">
+              <div class="block-h">What we are testing</div>
+              <ol>
+                <li>A dated promise: "Bestil inden [dato], og den er fremme inden jul", taken from the carrier cutoff and shown sitewide.</li>
+                <li>A gift route: "Gaver til hele familien", with size and age guidance across trampoliner and aktiv leg.</li>
+                <li>365 dages returret restated in gift language, for example "Byt indtil marts".</li>
+              </ol>
+            </div>
+            <div class="meta-row">
+              <div class="meta"><span>Primary metric</span><b>December conversion rate</b></div>
+              <div class="meta"><span>Secondary</span><b>CVR on trampoliner and aktiv leg</b></div>
+              <div class="meta"><span>Window</span><b>Live 1 December</b></div>
+              <div class="meta"><span>Blocker</span><b>Needs the carrier cutoff date from the warehouse</b></div>
+            </div>
+            <a class="ref plain" href="https://sportgym.dk/collections/trampoliner" target="_blank" rel="noopener">Evidence: 131 trampolines, the December gift aisle <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 16 · Q09 -->
+    <section class="slide" data-slide="16">
+      <div class="pad">
+        <div class="card-top">
+          <span class="chip tid">Q09</span>
+          <span class="chip page">Product pages</span>
+          <span class="chip pillar c">Pillar C · The Q4 calendar</span>
+          <span class="spacer"></span>
+          <span class="chip impact">Impact Medium</span>
+          <span class="chip">Ease Medium</span>
+        </div>
+        <h2 class="card-title">"Komplet dit setup" accessory cross sell</h2>
+        <div class="card-sub">SPG | A/B | PDP | Complete the decision, never reopen it</div>
+        <div class="grid2">
+          <div class="col">
+            <div class="block">
+              <div class="block-h">Observation</div>
+              <ul>
+                <li>The TR600i page already offers one accessory, an <b>underlagsmåtte at 595 kr</b>, under "Købes ofte sammen med". It is the right idea, stopped at a single item.</li>
+                <li><b>T05 failed for a specific reason:</b> the cart recommended a 20 kg and 24 kg kettlebell to a customer who had just chosen 16 kg. Accessories complete a decision. Alternatives reopen it.</li>
+                <li>Q4 baskets are the largest of the year, and every accessory attached at the product page is margin that costs no new traffic.</li>
+              </ul>
+            </div>
+            <div class="hyp">
+              <div class="block-h">Hypothesis</div>
+              <p><b>IF</b> the product page offers a curated set of genuinely complementary accessories and never an alternative model, <b>WE EXPECT</b> a higher average order value and more items per order with no reduction in add to cart, <b>BECAUSE</b> the cart test showed the damage comes from substitution rather than from recommendation itself.</p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="block">
+              <div class="block-h">What we are testing</div>
+              <ol>
+                <li>Rebuild the module as "Komplet dit setup" with three to five curated accessories per category.</li>
+                <li>A strict rule enforced in the code: nothing from the same category as the product being viewed.</li>
+                <li>Add to cart directly from the module, with no navigation away from the page.</li>
+              </ol>
+            </div>
+            <div class="meta-row">
+              <div class="meta"><span>Primary metric</span><b>Average order value</b></div>
+              <div class="meta"><span>Secondary</span><b>Items per order, attach rate</b></div>
+              <div class="meta"><span>Guardrail</span><b>Add to cart rate must not fall</b></div>
+              <div class="meta"><span>Note</span><b>Was T06, redesigned around the T05 lesson</b></div>
+            </div>
+            <a class="ref plain" href="https://sportgym.dk/products/virtufit-tr600i-lobeband" target="_blank" rel="noopener">Evidence: one accessory under "Købes ofte sammen med" <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 17 · SEQUENCING -->
+    <section class="slide" data-slide="17">
+      <div class="pad">
+        <div class="section-h"><div class="eyebrow">Sequencing</div></div>
+        <h2 style="margin-bottom:16px;">Structure first, Black Friday second, gifts last.</h2>
+        <div class="seq">
+          <div class="seq-row">
+            <div class="num">September<span>Build</span></div>
+            <div>
+              <h3>Read the two live tests and build ahead</h3>
+              <p>T01 and T02 report early in the month. Development starts on the quiz and the filter facets, both of which need lead time. Financing account status gets confirmed so Q06 is not blocked in October.</p>
+              <div class="ids">T01 read · T02 read · Q04 build · Q01 build · Q06 unblock</div>
+            </div>
+          </div>
+          <div class="seq-row">
+            <div class="num">October<span>The decisive month</span></div>
+            <div>
+              <h3>Ship the structural tests while traffic is still cheap</h3>
+              <p>Three tests that read quickly and make every later visitor convert better. Whatever wins here is live and compounding through Black Friday and Christmas rather than being tested during them.</p>
+              <div class="ids">Q01 filters · Q03 stock on card · Q06 monthly price · Q02 rolls out behind them</div>
+            </div>
+          </div>
+          <div class="seq-row">
+            <div class="num">November<span>Peak</span></div>
+            <div>
+              <h3>Win Black Friday, then stop touching the site</h3>
+              <p>Q07 runs from 2 November and reads before the week itself. Q04 goes live early so the quiz is proven before peak traffic rather than during it.</p>
+              <div class="ids">Q07 runs 2 to 16 Nov · Q04 live from week one · Black Friday 27 Nov · Cyber Monday 30 Nov</div>
+            </div>
+          </div>
+          <div class="seq-row freeze">
+            <div class="num">20 Nov<span>to 1 Dec · freeze</span></div>
+            <div>
+              <h3>Nothing new ships in this window</h3>
+              <p>The most valuable trading period of the year, and the worst possible time to introduce an untested change. T08 cost half the conversion rate on an ordinary week.</p>
+              <div class="ids">Monitoring only · no new code · no new experiments</div>
+            </div>
+          </div>
+          <div class="seq-row">
+            <div class="num">December<span>Gifts and baskets</span></div>
+            <div>
+              <h3>Gift mode from day one, then basket size</h3>
+              <p>Q08 goes live on 1 December with the delivery cutoff already published. Q09 accessories run alongside it. Q05 comparison reads through the quieter second half of the month.</p>
+              <div class="ids">Q08 gift mode · Q09 accessories · Q05 comparison and FAQ</div>
+            </div>
+          </div>
+        </div>
+        <div class="note" style="margin-top:12px;"><b>Dependency worth flagging:</b> if the T02 announcement bar variant wins in September, its four message layout becomes the Q4 baseline rather than a test, and Q07 builds on top of it instead of alongside it.</div>
+      </div>
+    </section>
+
+    <!-- 18 · WHAT TO EXPECT -->
+    <section class="slide" data-slide="18">
+      <div class="pad">
+        <div class="section-h"><div class="eyebrow">What to expect</div></div>
+        <h2 style="max-width:900px;">Banked, and what the same rate would add.</h2>
+        <div class="wins" style="margin-top:20px;">
+          <div class="win good">
+            <div class="wt">Banked, already running</div>
+            <div class="wh">The two winners keep paying whether or not we test again</div>
+            <div class="wm"><b>1,98 mio. kr</b><span>across October, November and December</span></div>
+            <div class="wl">658.770 kr a month, multiplied by three months. This is arithmetic on results already measured, and it excludes any increase in Q4 traffic.</div>
+          </div>
+          <div class="win">
+            <div class="wt">Modelled, not forecast</div>
+            <div class="wh">If Q4 repeats the rate this quarter set</div>
+            <div class="wm"><b>+988.000 kr</b><span>added monthly run rate</span></div>
+            <div class="wl">Four tests read to a verdict this quarter and two of them won. Six of the nine Q4 tests will read inside the quarter. At the same rate that is three winners, and at this quarter's average winner of 329.385 kr a month, three winners add roughly 988.000 kr. <b>Modelled from the programme's own results. It is a scenario, not a promise.</b></div>
+          </div>
+        </div>
+        <div class="section-h" style="margin:26px 0 12px;"><div class="eyebrow">What we need from SportGym</div></div>
+        <div class="asks">
+          <div class="ask">
+            <div class="an">By 15 September</div>
+            <p><b>ViaBill or Klarna account status.</b> T15 is marked deployed but nothing is live on the page. Q06 cannot be built until we know whether the account exists.</p>
+          </div>
+          <div class="ask">
+            <div class="an">By 1 October</div>
+            <p><b>The Christmas delivery cutoff date</b> from the warehouse and the carrier, so Q03 and Q08 can both publish a date rather than a vague promise.</p>
+          </div>
+          <div class="ask">
+            <div class="an">By 1 November</div>
+            <p><b>Sign off on the code freeze</b> from 20 November to 1 December, agreed across marketing, development and the agency side.</p>
+          </div>
+          <div class="ask">
+            <div class="an">Ongoing</div>
+            <p><b>Category input on accessories.</b> Q09 needs your product knowledge on what genuinely completes each setup, because the wrong list is what made T05 lose.</p>
+          </div>
+        </div>
+        <div class="note brand push"><b>The short version.</b> One quarter turned a site with no testing programme into one with two proven winners worth 658.770 kr a month and two expensive mistakes caught before they shipped. We know what this buyer responds to. Q4 is where we apply it to the traffic that matters most.</div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<button class="side-nav prev" id="prev-big" aria-label="Previous slide" title="Previous (arrow left)">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+</button>
+<button class="side-nav next" id="next-big" aria-label="Next slide" title="Next (arrow right)">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+</button>
+
+<div class="swipe-hint" id="swipe-hint">Use the arrows, swipe, or the arrow keys</div>
+
+<div class="nav" role="navigation" aria-label="Slide navigation">
+  <button class="theme-toggle" id="index-btn" aria-label="Slide index" title="Slide index (press i)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <div class="sep"></div>
+  <button id="prev" aria-label="Previous slide">Prev</button>
+  <div class="count">SLIDE <strong id="cur">1</strong> / <strong id="total">18</strong></div>
+  <button id="next" aria-label="Next slide">Next</button>
+  <div class="sep"></div>
+  <button class="theme-toggle" id="theme" aria-label="Toggle theme">
+    <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
+</div>
+
+<div class="index-overlay" id="index-overlay" aria-hidden="true">
+  <div class="index-panel">
+    <div class="index-head">
+      <div>
+        <div class="eyebrow">Slide index</div>
+        <div class="index-title">Jump to a slide</div>
+      </div>
+      <button class="index-close" id="index-close" aria-label="Close index">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="index-list" id="index-list"></div>
+    <div class="index-foot">
+      <span class="kbd">up down</span> navigate · <span class="kbd">Enter</span> jump · <span class="kbd">Esc</span> close · <span class="kbd">1-9</span> direct jump
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const total = slides.length;
+  let idx = 0;
+  let isAnimating = false;
+
+  const $cur = document.getElementById('cur');
+  const $total = document.getElementById('total');
+  const $prev = document.getElementById('prev');
+  const $next = document.getElementById('next');
+  const $bar = document.getElementById('progress-bar');
+  const $theme = document.getElementById('theme');
+  const $stage = document.getElementById('stage');
+  const $hint = document.getElementById('swipe-hint');
+  const $prevBig = document.getElementById('prev-big');
+  const $nextBig = document.getElementById('next-big');
+
+  $total.textContent = total;
+
+  function updateEnds(){
+    const atStart = idx === 0, atEnd = idx === total - 1;
+    $prevBig.disabled = atStart; $nextBig.disabled = atEnd;
+    $prev.disabled = atStart; $next.disabled = atEnd;
+  }
+
+  function go(n){
+    const next = Math.max(0, Math.min(total - 1, n));
+    if (next === idx || isAnimating) return;
+    isAnimating = true;
+    slides[idx].classList.remove('is-active');
+    slides[idx].classList.add('is-prev');
+    slides[next].classList.remove('is-prev');
+    slides[next].classList.add('is-active');
+    const pad = slides[next].querySelector('.pad');
+    if (pad) pad.scrollTop = 0;
+    idx = next;
+    $cur.textContent = idx + 1;
+    $bar.style.width = (((idx + 1) / total) * 100) + '%';
+    updateEnds();
+    try { const url = new URL(window.location.href); url.hash = String(idx + 1); history.replaceState(null, '', url); } catch(e){}
+    setTimeout(() => { isAnimating = false; }, 420);
+  }
+
+  $prev.addEventListener('click', (e) => { e.stopPropagation(); go(idx - 1); });
+  $next.addEventListener('click', (e) => { e.stopPropagation(); go(idx + 1); });
+  $prevBig.addEventListener('click', (e) => { e.stopPropagation(); go(idx - 1); });
+  $nextBig.addEventListener('click', (e) => { e.stopPropagation(); go(idx + 1); });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.target.closest('input, textarea, [contenteditable="true"]')) return;
+    if (['ArrowRight','PageDown'].includes(e.key) || (e.key === ' ' && !e.shiftKey)) { e.preventDefault(); go(idx + 1); }
+    else if (['ArrowLeft','PageUp'].includes(e.key) || (e.key === ' ' && e.shiftKey)) { e.preventDefault(); go(idx - 1); }
+    else if (e.key === 'Home') { e.preventDefault(); go(0); }
+    else if (e.key === 'End') { e.preventDefault(); go(total - 1); }
+    else if (e.key >= '1' && e.key <= '9') { go(parseInt(e.key) - 1); }
+  });
+
+  let pStart = null, pMoved = false;
+  $stage.addEventListener('pointerdown', (e) => {
+    if (e.target.closest('button, a, .nav, input, select, textarea')) return;
+    pStart = { x: e.clientX, y: e.clientY, t: Date.now() }; pMoved = false;
+  }, { passive: true });
+  $stage.addEventListener('pointermove', (e) => {
+    if (!pStart) return;
+    if (Math.abs(e.clientX - pStart.x) > 8 || Math.abs(e.clientY - pStart.y) > 8) pMoved = true;
+  }, { passive: true });
+  function endPointer(e){
+    if (!pStart) return;
+    const dx = e.clientX - pStart.x, dy = e.clientY - pStart.y;
+    const adx = Math.abs(dx), ady = Math.abs(dy), dt = Date.now() - pStart.t;
+    pStart = null;
+    if (adx > 60 && adx > ady * 1.3 && dt < 800) { if (dx < 0) go(idx + 1); else go(idx - 1); return; }
+    if (!pMoved) {
+      const rect = $stage.getBoundingClientRect(); const x = e.clientX - rect.left;
+      if (x < rect.width * 0.12) go(idx - 1); else if (x > rect.width * 0.88) go(idx + 1);
+    }
+  }
+  $stage.addEventListener('pointerup', endPointer);
+  $stage.addEventListener('pointercancel', () => { pStart = null; });
+
+  let wheelLock = false, wheelAccum = 0, wheelTimer = null;
+  $stage.addEventListener('wheel', (e) => {
+    const adx = Math.abs(e.deltaX), ady = Math.abs(e.deltaY);
+    if (adx <= ady) return;
+    if (wheelLock) return;
+    wheelAccum += e.deltaX;
+    clearTimeout(wheelTimer);
+    wheelTimer = setTimeout(() => { wheelAccum = 0; }, 250);
+    if (wheelAccum > 80) { wheelLock = true; wheelAccum = 0; go(idx + 1); setTimeout(() => { wheelLock = false; }, 500); }
+    else if (wheelAccum < -80) { wheelLock = true; wheelAccum = 0; go(idx - 1); setTimeout(() => { wheelLock = false; }, 500); }
+  }, { passive: true });
+
+  function applyTheme(t){
+    document.documentElement.setAttribute('data-theme', t);
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', t === 'dark' ? '#16171c' : '#ffffff');
+    try { localStorage.setItem('sportgym-q4-deck-theme', t); } catch(e){}
+  }
+  let savedTheme = null;
+  try { savedTheme = localStorage.getItem('sportgym-q4-deck-theme'); } catch(e){}
+  if (savedTheme === 'light' || savedTheme === 'dark') applyTheme(savedTheme);
+  else if (window.matchMedia('(prefers-color-scheme: dark)').matches) applyTheme('dark');
+  $theme.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const cur = document.documentElement.getAttribute('data-theme') || 'light';
+    applyTheme(cur === 'dark' ? 'light' : 'dark');
+  });
+
+  const slideMeta = [
+    { n: 1,  label: 'Cover', sub: 'Results and Q4 2026 plan', chip: 'Intro' },
+    { n: 2,  label: 'What we have shipped', sub: '28 tests mapped, 15 completed', chip: 'Recap' },
+    { n: 3,  label: 'The two winners', sub: '658.770 kr per month', chip: 'Results' },
+    { n: 4,  label: 'The two losers', sub: 'What they cost, what they taught', chip: 'Results' },
+    { n: 5,  label: 'What the quarter proved', sub: 'The lesson and three pillars', chip: 'Lesson' },
+    { n: 6,  label: 'Why Q4 is different', sub: 'Stakes, gaps and the freeze', chip: 'Context' },
+    { n: 7,  label: 'Q4 at a glance', sub: '9 tests across 3 pillars', chip: 'Overview' },
+    { n: 8,  label: 'Q01 Filters and facets', sub: 'Filter on what already sells', chip: 'Pillar A' },
+    { n: 9,  label: 'Q02 The Bedst til line', sub: 'Specs in the buyer language', chip: 'Pillar A' },
+    { n: 10, label: 'Q03 Stock on the card', sub: 'Delivery date before the click', chip: 'Pillar A' },
+    { n: 11, label: 'Q04 Guided selling', sub: 'Find dit lobeband quiz', chip: 'Pillar B' },
+    { n: 12, label: 'Q05 Comparison and FAQ', sub: 'Tier up, tier down', chip: 'Pillar B' },
+    { n: 13, label: 'Q06 Monthly payment', sub: 'Fra X kr per month', chip: 'Pillar B' },
+    { n: 14, label: 'Q07 Black Friday', sub: 'Price confidence, no countdown', chip: 'Pillar C' },
+    { n: 15, label: 'Q08 Christmas gift mode', sub: 'Cutoff date and gift returns', chip: 'Pillar C' },
+    { n: 16, label: 'Q09 Accessory cross sell', sub: 'Complete, never substitute', chip: 'Pillar C' },
+    { n: 17, label: 'Sequencing', sub: 'September to December', chip: 'Roadmap' },
+    { n: 18, label: 'What to expect', sub: 'Banked, modelled, and the asks', chip: 'Close' },
+  ];
+  const $indexBtn = document.getElementById('index-btn');
+  const $indexOverlay = document.getElementById('index-overlay');
+  const $indexClose = document.getElementById('index-close');
+  const $indexList = document.getElementById('index-list');
+  let indexFocus = 0;
+
+  function buildIndex() {
+    $indexList.innerHTML = '';
+    slideMeta.forEach((m, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'index-item' + (i === idx ? ' current' : '');
+      btn.dataset.slide = m.n;
+      btn.innerHTML = `<span class="num">${String(m.n).padStart(2,'0')}</span><span class="label">${m.label}<span>${m.sub}</span></span><span class="chip">${m.chip}</span>`;
+      btn.addEventListener('click', () => { go(m.n - 1); closeIndex(); });
+      $indexList.appendChild(btn);
+    });
+  }
+  function openIndex() { buildIndex(); indexFocus = idx; updateIndexFocus(); $indexOverlay.classList.add('open'); $indexOverlay.setAttribute('aria-hidden', 'false'); }
+  function closeIndex() { $indexOverlay.classList.remove('open'); $indexOverlay.setAttribute('aria-hidden', 'true'); }
+  function toggleIndex() { $indexOverlay.classList.contains('open') ? closeIndex() : openIndex(); }
+  function updateIndexFocus() {
+    const items = $indexList.querySelectorAll('.index-item');
+    items.forEach((el, i) => el.classList.toggle('focused', i === indexFocus));
+    const el = items[indexFocus]; if (el) el.scrollIntoView({ block: 'nearest' });
+  }
+  $indexBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleIndex(); });
+  $indexClose.addEventListener('click', (e) => { e.stopPropagation(); closeIndex(); });
+  $indexOverlay.addEventListener('click', (e) => { if (e.target === $indexOverlay) closeIndex(); });
+
+  window.addEventListener('keydown', (e) => {
+    const open = $indexOverlay.classList.contains('open');
+    if (open) {
+      if (e.key === 'Escape') { e.preventDefault(); closeIndex(); }
+      else if (e.key === 'ArrowDown') { e.preventDefault(); indexFocus = Math.min(slideMeta.length - 1, indexFocus + 1); updateIndexFocus(); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); indexFocus = Math.max(0, indexFocus - 1); updateIndexFocus(); }
+      else if (e.key === 'Enter') { e.preventDefault(); go(indexFocus); closeIndex(); }
+    } else {
+      if (e.key === 'i' || e.key === 'I') {
+        if (e.target.closest('input, textarea, [contenteditable="true"]')) return;
+        e.preventDefault(); openIndex();
+      }
+    }
+  });
+
+  const hash = parseInt((window.location.hash || '').replace('#',''), 10);
+  if (hash && hash >= 1 && hash <= total) {
+    slides.forEach(s => { s.classList.remove('is-active'); s.classList.add('is-prev'); });
+    slides[hash - 1].classList.remove('is-prev');
+    slides[hash - 1].classList.add('is-active');
+    idx = hash - 1; $cur.textContent = idx + 1; $bar.style.width = (((idx + 1) / total) * 100) + '%';
+  } else { $bar.style.width = (1 / total * 100) + '%'; }
+  updateEnds();
+
+  $hint.classList.add('show'); setTimeout(() => $hint.classList.remove('show'), 4000);
+})();
+</script>
+</body>
+</html>
