@@ -203,7 +203,7 @@
   .tag-pill.med { color: var(--ink-2); }
 
   .seq { display: flex; flex-direction: column; gap: 12px; margin-top: 4px; }
-  .seq-row { display: grid; grid-template-columns: 108px 1fr; gap: 18px; align-items: start; border: 1px solid var(--line); border-radius: 16px; padding: 12px 18px; background: var(--bg-3); }
+  .seq-row { display: grid; grid-template-columns: 108px 1fr; gap: 18px; align-items: start; border: 1px solid var(--line); border-radius: 16px; padding: 10px 18px; background: var(--bg-3); }
   .seq-row .num { font-family: var(--display); font-weight: 800; font-size: 22px; color: var(--brand); line-height: 1.2; letter-spacing: -0.01em; }
   .seq-row .num span { display: block; font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; margin-top: 4px; }
   .seq-row h3 { margin: 0 0 6px; font-size: 16px; font-weight: 700; color: var(--ink); }
@@ -447,7 +447,7 @@
               <div class="block-h">What changes</div>
               <ul>
                 <li><b>Black Friday falls on 27 November,</b> Cyber Monday on 30 November. That week concentrates the year's highest intent traffic into five days.</li>
-                <li><b>Christmas turns the biggest category into a gift category.</b> Trampolines and PlayBase already carry around 52% of product sales, and both are bought for someone else in December.</li>
+                <li><b>The catalogue is seasonal, and Q4 flips it.</b> The board puts trampolines and PlayBase at roughly 52% of product sales, but that is a July reading, listed alongside SUP and ice baths as summer categories. Those are outdoor products in a Danish winter.</li>
                 <li><b>Baskets get bigger.</b> The catalogue reaches 69.900 kr, and 9 of the 13 treadmills sit above 5.000 kr.</li>
               </ul>
             </div>
@@ -856,32 +856,32 @@
             <div class="block">
               <div class="block-h">Observation</div>
               <ul>
-                <li>Trampolines and PlayBase carry around <b>52% of product sales</b>, and in December both are bought for someone else.</li>
+                <li><b>We do not yet know which categories carry December for SportGym.</b> The programme started in July, so every category reading we hold is a summer reading. The 52% for trampolines and PlayBase comes from a slide about summer merchandising, listed next to SUP and ice baths.</li>
                 <li>A gift buyer has three questions a self buyer does not: <b>will it arrive in time, can the recipient return it, and is it the right size for them.</b> None of the three is currently answered in gift terms.</li>
                 <li><b>365 dages returret</b> answers the second question better than almost any competitor, and it currently sits as a small item in a trust row.</li>
               </ul>
             </div>
             <div class="hyp">
               <div class="block-h">Hypothesis</div>
-              <p><b>IF</b> the site publishes a dated Christmas delivery promise, opens a gift oriented route into the biggest categories, and reframes the 365 day return for gift giving, <b>WE EXPECT</b> a higher conversion rate on December traffic, <b>BECAUSE</b> the objections a gift buyer carries are different from the ones the site was built to answer, and the strongest answer SportGym already owns is currently the quietest thing on the page.</p>
+              <p><b>IF</b> the site publishes a dated Christmas delivery promise and reframes the 365 day return for gift giving, on whichever categories last December actually sold, <b>WE EXPECT</b> a higher conversion rate on December traffic, <b>BECAUSE</b> the objections a gift buyer carries are different from the ones the site was built to answer, and the strongest answer SportGym already owns is currently the quietest thing on the page.</p>
             </div>
           </div>
           <div class="col">
             <div class="block">
               <div class="block-h">What we are testing</div>
               <ol>
+                <li><b>First, a category read.</b> Pull last October to December from GA4 and Shopify and let the data name the gift categories. An outdoor trampoline in a Danish December is not a safe assumption to design around.</li>
                 <li>A dated promise: "Bestil inden [dato], og den er fremme inden jul", taken from the carrier cutoff and shown sitewide.</li>
-                <li>A gift route: "Gaver til hele familien", with size and age guidance across trampoliner and aktiv leg.</li>
-                <li>365 dages returret restated in gift language, for example "Byt indtil marts".</li>
+                <li>365 dages returret restated in gift language, for example "Byt indtil marts", on the categories the read selects.</li>
               </ol>
             </div>
             <div class="meta-row">
               <div class="meta"><span>Primary metric</span><b>December conversion rate</b></div>
-              <div class="meta"><span>Secondary</span><b>CVR on trampoliner and aktiv leg</b></div>
-              <div class="meta"><span>Window</span><b>Live 1 December</b></div>
+              <div class="meta"><span>Secondary</span><b>CVR on the categories the read selects</b></div>
+              <div class="meta"><span>Window</span><b>Read in October, live 1 December</b></div>
               <div class="meta"><span>Blocker</span><b>Needs the carrier cutoff date from the warehouse</b></div>
             </div>
-            <a class="ref plain" href="https://sportgym.dk/collections/trampoliner" target="_blank" rel="noopener">Evidence: 131 trampolines, the December gift aisle <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            <a class="ref plain" href="https://client.ecomhouse.dk/boards/share/8181379d-8c1a-42e6-8705-7254ea4d379f" target="_blank" rel="noopener">Source: T11, the summer merchandising observation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
           </div>
         </div>
       </div>
@@ -954,8 +954,8 @@
             <div class="num">October<span>The decisive month</span></div>
             <div>
               <h3>Ship the structural tests while traffic is still cheap</h3>
-              <p>Three tests that read quickly and make every later visitor convert better. Whatever wins here is live and compounding through Black Friday and Christmas rather than being tested during them.</p>
-              <div class="ids">Q01 filters · Q03 stock on card · Q06 monthly price · Q02 rolls out behind them</div>
+              <p>Three tests that read quickly and make every later visitor convert better. Whatever wins here is live and compounding through Black Friday and Christmas rather than being tested during them. October also carries the Q4 category read that Q08 depends on.</p>
+              <div class="ids">Q01 filters · Q03 stock on card · Q06 monthly price · Q4 category read for Q08</div>
             </div>
           </div>
           <div class="seq-row">
