@@ -164,6 +164,10 @@
   table.flat.tight td { padding: 8px 12px; }
 
   .wins { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 22px; }
+  .wins.tri { grid-template-columns: repeat(3, 1fr); }
+  .wins.tri .win { padding: 18px; }
+  .wins.tri .wm b { font-size: 28px; }
+  .wins.tri .wh { font-size: 16px; }
   .win { border: 1px solid var(--line); border-radius: 16px; padding: 20px 22px; background: var(--slide); }
   .win.good { border-color: var(--green-soft); background: var(--green-tint); }
   .win.bad { border-color: var(--loss-soft); background: var(--loss-tint); }
@@ -199,7 +203,7 @@
   .tag-pill.med { color: var(--ink-2); }
 
   .seq { display: flex; flex-direction: column; gap: 12px; margin-top: 4px; }
-  .seq-row { display: grid; grid-template-columns: 108px 1fr; gap: 18px; align-items: start; border: 1px solid var(--line); border-radius: 16px; padding: 14px 18px; background: var(--bg-3); }
+  .seq-row { display: grid; grid-template-columns: 108px 1fr; gap: 18px; align-items: start; border: 1px solid var(--line); border-radius: 16px; padding: 12px 18px; background: var(--bg-3); }
   .seq-row .num { font-family: var(--display); font-weight: 800; font-size: 22px; color: var(--brand); line-height: 1.2; letter-spacing: -0.01em; }
   .seq-row .num span { display: block; font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; margin-top: 4px; }
   .seq-row h3 { margin: 0 0 6px; font-size: 16px; font-weight: 700; color: var(--ink); }
@@ -300,11 +304,11 @@
         <div class="cover-mid">
           <div class="eyebrow" style="margin-bottom:18px;">Quarter review and Q4 plan</div>
           <h1>The pattern works.<br>Q4 is where it pays.</h1>
-          <p class="lead">What we shipped in July and August, the two winners now worth 658.770 kr a month, the two losers that saved us from permanent mistakes, and nine tests built for Black Friday and Christmas.</p>
+          <p class="lead">What we shipped in July and August, the three winners now worth 1.134.118 kr a month, the two losers that saved us from permanent mistakes, and nine tests built for Black Friday and Christmas.</p>
         </div>
         <div class="cover-foot">
           <span>sportgym.dk</span><span class="dotsep"></span>
-          <span>28 tests mapped</span><span class="dotsep"></span>
+          <span>29 tests mapped</span><span class="dotsep"></span>
           <span>9 tests proposed for Q4</span><span class="dotsep"></span>
           <span>Prepared by EcomHouse</span>
         </div>
@@ -315,26 +319,26 @@
     <section class="slide" data-slide="2">
       <div class="pad">
         <div class="section-h"><div class="eyebrow">What we have shipped so far</div></div>
-        <h2 style="max-width:900px;">Twenty eight tests mapped. Fifteen completed. Two reading right now.</h2>
+        <h2 style="max-width:900px;">Twenty nine tests mapped. Eighteen completed. One still reading.</h2>
         <div class="stat-grid compact" style="margin-top:18px;">
-          <div class="stat"><div class="v brand">28</div><div class="k">Tests mapped</div></div>
-          <div class="stat"><div class="v">15</div><div class="k">Completed</div></div>
-          <div class="stat"><div class="v">2</div><div class="k">Live and reading</div></div>
-          <div class="stat"><div class="v">7</div><div class="k">In progress</div></div>
+          <div class="stat"><div class="v brand">29</div><div class="k">Tests mapped</div></div>
+          <div class="stat"><div class="v">18</div><div class="k">Completed</div></div>
+          <div class="stat"><div class="v">1</div><div class="k">Live and reading</div></div>
+          <div class="stat"><div class="v">5</div><div class="k">In progress</div></div>
         </div>
         <table class="flat tight" style="margin-top:20px;">
           <thead><tr><th>ID</th><th>Test</th><th>Page</th><th>Status</th></tr></thead>
           <tbody>
+            <tr><td class="t-id">T01</td><td><b>Title and reviews above the image</b></td><td>PDP mobile</td><td><span class="tag-pill high">Won · deploy pending</span></td></tr>
             <tr><td class="t-id">T04</td><td><b>PDP spec highlights</b></td><td>All PDPs</td><td><span class="tag-pill high">Won · shipped</span></td></tr>
             <tr><td class="t-id">T03</td><td><b>Decision rich collection cards</b></td><td>Collections</td><td><span class="tag-pill high">Won · shipped</span></td></tr>
-            <tr><td class="t-id">T17</td><td><b>PDP buy box redesign</b></td><td>All PDPs</td><td><span class="tag-pill med">Deployed</span></td></tr>
-            <tr><td class="t-id">T25 · T22 · T23</td><td><b>Homepage rebuild: hero, categories, bestsellers</b></td><td>Homepage</td><td><span class="tag-pill med">Deployed</span></td></tr>
-            <tr><td class="t-id">T24 · T21</td><td><b>Trust strip and Trustpilot under the hero</b></td><td>Homepage</td><td><span class="tag-pill med">Deployed</span></td></tr>
-            <tr><td class="t-id">T20 · T19</td><td><b>Judge.me reviews on PDP and cards</b></td><td>PDP · PLP</td><td><span class="tag-pill med">Deployed</span></td></tr>
-            <tr><td class="t-id">T26</td><td><b>Meta Pixel and CAPI verification</b></td><td>Tracking</td><td><span class="tag-pill med">Deployed</span></td></tr>
-            <tr><td class="t-id">T01</td><td><b>Title and reviews above the image</b></td><td>PDP mobile</td><td><span class="tag-pill live">Live · day 16</span></td></tr>
-            <tr><td class="t-id">T02</td><td><b>Announcement bar v2</b></td><td>Sitewide</td><td><span class="tag-pill live">Live · day 18</span></td></tr>
-            <tr><td class="t-id">T08</td><td><b>Sticky announcement bar with value props</b></td><td>Sitewide</td><td><span class="tag-pill bad">Lost · reverted</span></td></tr>
+            <tr><td class="t-id">T21</td><td><b>PDP buy box redesign</b></td><td>All PDPs</td><td><span class="tag-pill med">Deployed</span></td></tr>
+            <tr><td class="t-id">T28 · T26 · T25</td><td><b>Homepage rebuild: hero, categories, bestsellers</b></td><td>Homepage</td><td><span class="tag-pill med">Deployed</span></td></tr>
+            <tr><td class="t-id">T27 · T24</td><td><b>Trust strip and Trustpilot under the hero</b></td><td>Homepage</td><td><span class="tag-pill med">Deployed</span></td></tr>
+            <tr><td class="t-id">T23 · T22</td><td><b>Judge.me reviews on PDP and cards</b></td><td>PDP · PLP</td><td><span class="tag-pill med">Deployed</span></td></tr>
+            <tr><td class="t-id">T29</td><td><b>Meta Pixel and CAPI verification</b></td><td>Tracking</td><td><span class="tag-pill med">Deployed</span></td></tr>
+            <tr><td class="t-id">T02</td><td><b>Announcement bar v2</b></td><td>Sitewide</td><td><span class="tag-pill live">Live · reading</span></td></tr>
+            <tr><td class="t-id">T16</td><td><b>Sticky announcement bar with value props</b></td><td>Sitewide</td><td><span class="tag-pill bad">Lost · reverted</span></td></tr>
             <tr><td class="t-id">T05</td><td><b>Cart drawer redesign</b></td><td>Cart</td><td><span class="tag-pill bad">Lost · reverted</span></td></tr>
           </tbody>
         </table>
@@ -346,28 +350,34 @@
     <section class="slide" data-slide="3">
       <div class="pad">
         <div class="section-h"><div class="eyebrow">Results</div></div>
-        <h2 style="max-width:880px;">Two winners. 658.770 kr of new revenue, every month.</h2>
+        <h2 style="max-width:880px;">Three winners. 1.134.118 kr of new revenue, every month.</h2>
         <div class="stat-grid" style="margin-top:20px;">
+          <div class="stat"><div class="v green">+27,4%</div><div class="k">T01 · mobile PDP add to cart</div></div>
           <div class="stat"><div class="v green">+25,9%</div><div class="k">T04 · PDP conversion rate</div></div>
           <div class="stat"><div class="v green">+17,2%</div><div class="k">T03 · collection conversion rate</div></div>
-          <div class="stat"><div class="v green sm">658.770</div><div class="k">kr per month, combined</div></div>
-          <div class="stat"><div class="v">4</div><div class="k">Tests read to a verdict</div></div>
+          <div class="stat"><div class="v green sm">1.134.118</div><div class="k">kr per month, combined</div></div>
         </div>
-        <div class="wins">
+        <div class="wins tri">
+          <div class="win good">
+            <div class="wt">T01 · Title and reviews above the image</div>
+            <div class="wh">Identity and social proof before the photo, on mobile</div>
+            <div class="wm"><b>+27,42%</b><span>add to cart · 3,61% to 4,59%</span></div>
+            <div class="wl"><b>+475.348 kr per month.</b> Product name and star rating moved above the gallery, with compact thumbnails. The biggest single winner of the quarter. Ready to deploy to Shopify.</div>
+          </div>
           <div class="win good">
             <div class="wt">T04 · PDP spec highlights</div>
-            <div class="wh">Four specs, in a scannable row, under the price</div>
+            <div class="wh">Four specs, scannable, under the price</div>
             <div class="wm"><b>+25,93%</b><span>conversion rate · 3,29% to 4,14%</span></div>
-            <div class="wl"><b>+382.852 kr per month.</b> Motor, top speed, maximum user weight and design pulled out of the description and placed at the point of decision. Now live on every product page.</div>
+            <div class="wl"><b>+382.852 kr per month.</b> Motor, top speed, maximum user weight and design pulled out of the description and placed at the point of decision. Live on every product page.</div>
           </div>
           <div class="win good">
             <div class="wt">T03 · Decision rich collection cards</div>
             <div class="wh">The deciding attributes, printed on the card</div>
             <div class="wm"><b>+17,15%</b><span>conversion rate · 8,33% to 9,76%</span></div>
-            <div class="wl"><b>+275.918 kr per month.</b> Category specific attributes added to product cards so shoppers can shortlist without opening a page. Now live on løbebånd, trampoliner, isbad and smart home gym.</div>
+            <div class="wl"><b>+275.918 kr per month.</b> Category specific attributes on product cards so shoppers can shortlist without opening a page. Live on løbebånd, trampoliner, isbad and smart home gym.</div>
           </div>
         </div>
-        <div class="note brand"><b>At this run rate the two winners alone carry roughly 1,98 million kr through October, November and December,</b> before a single Q4 test lands and before any Q4 traffic increase. Arithmetic: 658.770 kr multiplied by three months.</div>
+        <div class="note brand"><b>Five tests have read to a verdict and three of them won. At this run rate the three winners alone carry roughly 3,40 million kr through October, November and December,</b> before a single Q4 test lands and before any Q4 traffic increase. Arithmetic: 1.134.118 kr multiplied by three months.</div>
       </div>
     </section>
 
@@ -379,7 +389,7 @@
         <p style="max-width:900px;margin:14px 0 2px;font-size:16px;">These are the results that make the programme worth running. Each of these was a change SportGym might reasonably have shipped permanently. Two short test windows caught both.</p>
         <div class="wins">
           <div class="win bad">
-            <div class="wt">T08 · Sticky announcement bar with three value props</div>
+            <div class="wt">T16 · Sticky announcement bar with three value props</div>
             <div class="wh">Taking the viewport costs more than the message adds</div>
             <div class="wm"><b>50,46%</b><span>drop in conversion rate · true effect between 11% and 73%</span></div>
             <div class="wl">Mobile was hit hardest: conversion 4,80% to 2,12%, cart abandonment 38,24% to 55,00%. Product page visits were unchanged, so the damage began <b>after</b> visitors reached the product. A permanent header took the screen the decision needed.</div>
@@ -401,7 +411,7 @@
         <div class="section-h"><div class="eyebrow">What the quarter proved</div></div>
         <h2 style="font-size:clamp(26px,3.4vw,40px);max-width:900px;">Every result this quarter says the same thing about this buyer.</h2>
         <p style="margin-top:18px;max-width:920px;font-size:18px;color:var(--ink);">
-          Both winners <b style="color:var(--brand)">put a deciding fact where the decision happens.</b> Specs under the price. Attributes on the card. Both losers <b style="color:var(--brand)">took something away from that moment:</b> the sticky bar took the viewport, the cart drawer took back the decision. SportGym sells considered purchases from 2.495 kr to 69.900 kr. This buyer is comparing, and they convert when the comparison is easy and the decision stays made.
+          All three winners <b style="color:var(--brand)">put a deciding fact where the decision happens.</b> Specs under the price. Attributes on the card. Product name and star rating above the photo on mobile. Both losers <b style="color:var(--brand)">took something away from that moment:</b> the sticky bar took the viewport, the cart drawer took back the decision. SportGym sells considered purchases from 2.495 kr to 69.900 kr. This buyer is comparing, and they convert when the comparison is easy and the decision stays made.
         </p>
         <div class="pillars" style="margin-top:22px;">
           <div class="pillar-card a">
@@ -624,7 +634,7 @@
               <div class="meta"><span>Primary metric</span><b>Collection conversion rate</b></div>
               <div class="meta"><span>Secondary</span><b>Collection to PDP rate</b></div>
               <div class="meta"><span>Device</span><b>All devices</b></div>
-              <div class="meta"><span>Note</span><b>Extends T16, currently in planning</b></div>
+              <div class="meta"><span>Note</span><b>Extends T08, now in development</b></div>
             </div>
             <a class="ref plain" href="https://sportgym.dk/products/virtufit-tr600i-lobeband" target="_blank" rel="noopener">Evidence: the promise the PDP already makes <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
           </div>
@@ -762,7 +772,7 @@
             <div class="block">
               <div class="block-h">What we are testing</div>
               <ol>
-                <li>First confirm the account status. T15 is marked deployed on the board but nothing is live on the page.</li>
+                <li>First confirm the account status. T19 is marked deployed on the board but nothing is live on the page.</li>
                 <li>Price block: total price, with the monthly figure directly beneath it as a co primary anchor.</li>
                 <li>Collection cards show "fra X kr/md" on models above 5.000 kr.</li>
               </ol>
@@ -799,7 +809,7 @@
               <ul>
                 <li>SportGym already runs <b>Prisgaranti, "Vi matcher prisen"</b>, in the announcement bar and in the buy box trust row. Verified live, 24 August.</li>
                 <li>Most of the catalogue already shows a "Vejl. pris" strike through, and several cards carry an explicit <b>"SPAR 3.000 kr"</b> badge. In Black Friday week every competitor will look the same.</li>
-                <li><b>T08 proved that adding permanent promotional furniture to this site halves conversion.</b> Black Friday week is the most expensive possible week to learn that a second time.</li>
+                <li><b>T16 proved that adding permanent promotional furniture to this site halves conversion.</b> Black Friday week is the most expensive possible week to learn that a second time.</li>
               </ul>
             </div>
             <div class="hyp">
@@ -935,9 +945,9 @@
           <div class="seq-row">
             <div class="num">September<span>Build</span></div>
             <div>
-              <h3>Read the two live tests and build ahead</h3>
-              <p>T01 and T02 report early in the month. Development starts on the quiz and the filter facets, both of which need lead time. Financing account status gets confirmed so Q06 is not blocked in October.</p>
-              <div class="ids">T01 read · T02 read · Q04 build · Q01 build · Q06 unblock</div>
+              <h3>Bank the T01 win and build ahead</h3>
+              <p>T01's winning variant goes to Shopify as a permanent change, which is 475.348 kr a month that stops depending on a running test. T02 is the last test still reading. Build starts on the quiz and the filter facets.</p>
+              <div class="ids">T01 deploy · T02 read · Q04 build · Q01 build · Q06 unblock</div>
             </div>
           </div>
           <div class="seq-row">
@@ -960,7 +970,7 @@
             <div class="num">20 Nov<span>to 1 Dec · freeze</span></div>
             <div>
               <h3>Nothing new ships in this window</h3>
-              <p>The most valuable trading period of the year, and the worst possible time to introduce an untested change. T08 cost half the conversion rate on an ordinary week.</p>
+              <p>The most valuable trading period of the year, and the worst possible time to introduce an untested change. T16 cost half the conversion rate on an ordinary week.</p>
               <div class="ids">Monitoring only · no new code · no new experiments</div>
             </div>
           </div>
@@ -985,22 +995,22 @@
         <div class="wins" style="margin-top:20px;">
           <div class="win good">
             <div class="wt">Banked, already running</div>
-            <div class="wh">The two winners keep paying whether or not we test again</div>
-            <div class="wm"><b>1,98 mio. kr</b><span>across October, November and December</span></div>
-            <div class="wl">658.770 kr a month, multiplied by three months. This is arithmetic on results already measured, and it excludes any increase in Q4 traffic.</div>
+            <div class="wh">The three winners keep paying whether or not we test again</div>
+            <div class="wm"><b>3,40 mio. kr</b><span>across October, November and December</span></div>
+            <div class="wl">1.134.118 kr a month, multiplied by three months. This is arithmetic on results already measured, and it excludes any increase in Q4 traffic. T01 needs deploying to Shopify to hold its share of it.</div>
           </div>
           <div class="win">
             <div class="wt">Modelled, not forecast</div>
             <div class="wh">If Q4 repeats the rate this quarter set</div>
-            <div class="wm"><b>+988.000 kr</b><span>added monthly run rate</span></div>
-            <div class="wl">Four tests read to a verdict this quarter and two of them won. Six of the nine Q4 tests will read inside the quarter. At the same rate that is three winners, and at this quarter's average winner of 329.385 kr a month, three winners add roughly 988.000 kr. <b>Modelled from the programme's own results. It is a scenario, not a promise.</b></div>
+            <div class="wm"><b>1,13 to 1,51 mio. kr</b><span>added monthly run rate</span></div>
+            <div class="wl">Five tests read to a verdict this quarter and three of them won. Six of the nine Q4 tests will read inside the quarter. At the same rate that is three to four winners, and at this quarter's average winner of 378.039 kr a month, that adds roughly 1,13 to 1,51 million kr. <b>Modelled from the programme's own results. It is a scenario, not a promise.</b></div>
           </div>
         </div>
         <div class="section-h" style="margin:26px 0 12px;"><div class="eyebrow">What we need from SportGym</div></div>
         <div class="asks">
           <div class="ask">
             <div class="an">By 15 September</div>
-            <p><b>ViaBill or Klarna account status.</b> T15 is marked deployed but nothing is live on the page. Q06 cannot be built until we know whether the account exists.</p>
+            <p><b>ViaBill or Klarna account status.</b> T19 is marked deployed but nothing is live on the page. Q06 cannot be built until we know whether the account exists.</p>
           </div>
           <div class="ask">
             <div class="an">By 1 October</div>
@@ -1015,7 +1025,7 @@
             <p><b>Category input on accessories.</b> Q09 needs your product knowledge on what genuinely completes each setup, because the wrong list is what made T05 lose.</p>
           </div>
         </div>
-        <div class="note brand push"><b>The short version.</b> One quarter turned a site with no testing programme into one with two proven winners worth 658.770 kr a month and two expensive mistakes caught before they shipped. We know what this buyer responds to. Q4 is where we apply it to the traffic that matters most.</div>
+        <div class="note brand push"><b>The short version.</b> One quarter turned a site with no testing programme into one with three proven winners worth 1.134.118 kr a month and two expensive mistakes caught before they shipped. We know what this buyer responds to. Q4 is where we apply it to the traffic that matters most.</div>
       </div>
     </section>
 
@@ -1174,8 +1184,8 @@
 
   const slideMeta = [
     { n: 1,  label: 'Cover', sub: 'Results and Q4 2026 plan', chip: 'Intro' },
-    { n: 2,  label: 'What we have shipped', sub: '28 tests mapped, 15 completed', chip: 'Recap' },
-    { n: 3,  label: 'The two winners', sub: '658.770 kr per month', chip: 'Results' },
+    { n: 2,  label: 'What we have shipped', sub: '29 tests mapped, 18 completed', chip: 'Recap' },
+    { n: 3,  label: 'The three winners', sub: '1.134.118 kr per month', chip: 'Results' },
     { n: 4,  label: 'The two losers', sub: 'What they cost, what they taught', chip: 'Results' },
     { n: 5,  label: 'What the quarter proved', sub: 'The lesson and three pillars', chip: 'Lesson' },
     { n: 6,  label: 'Why Q4 is different', sub: 'Stakes, gaps and the freeze', chip: 'Context' },
