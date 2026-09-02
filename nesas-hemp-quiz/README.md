@@ -125,9 +125,11 @@ Every number on screen is verified. Nothing is invented.
 | Oil subscribe and save $99.99 | 2026 Nesa's Hemp CRO audit |
 | Product photography and lifestyle shots | Shopify CDN, `curl -sI` verified 200 before use |
 
-### One number needs the client to confirm it
+### Two things need the client to confirm them
 
-**The powder subscribe and save price ($74.99) is a placeholder.** There is no published subscription price for the powder anywhere we can verify. It is flagged in a code comment in `index.html`. Confirm it before this goes near a build.
+**1. The powder subscribe and save price ($74.99) is a placeholder.** There is no published subscription price for the powder anywhere we can verify. It is flagged in a code comment in `index.html`. Confirm it before this goes near a build.
+
+**2. The lifestyle photography shows a 500MG bottle in the old cream label.** That is true of the brand's own published assets, including `nesa-pdp-oil-dropper-outdoors.jpg` and `nesa-pdp-bottle-inhand.jpg` in the live theme, so the quiz is no worse than the rest of the site. It is still a mismatch: the only live variant is 1000mg in the current green label, and the product card on the recommendation screen uses that correct shot. If there is a newer lifestyle shoot with the current bottle, swap the interstitial and rail images for it.
 
 ---
 
@@ -214,6 +216,7 @@ outputs/nesas-hemp/quiz/
     nesa-wordmark.svg     real brand wordmark
     oil-1000mg.png        Shopify CDN product shot
     powder-b17.jpg        Shopify CDN product shot
+    ritual-drops.jpg      theme asset nesa-pdp-oil-dropper-outdoors, square crop
     rail-outdoor.jpg      brand lifestyle photography
     rail-field.jpg
     rail-ritual.jpg
