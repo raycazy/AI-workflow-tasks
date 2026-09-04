@@ -402,12 +402,8 @@ button{font:inherit;color:inherit;cursor:pointer}
 /* ============================================================
    INTERSTITIALS
    ============================================================ */
-.card{
-  border:1px solid var(--line);
-  border-radius:14px;
-  overflow:hidden;
-  background:var(--bg);
-}
+/* The image stands on its own, no frame. Radius 20 matches the buy box
+   gallery stage. */
 .figure{
   position:relative;
   aspect-ratio:16/10;
@@ -1290,16 +1286,13 @@ function viewInterstitial(key){
         <p class="kicker">One bottle, one month</p>
         <h2 class="display" style="font-size:clamp(32px,4.4vw,46px);margin-top:10px">Sixty servings, and we count them honestly</h2>
         <p class="q__hint">A single dropper is half a serving. Two of those a day is roughly a month, and a month is about how long our own customers say it takes before they notice anything worth reporting.</p>
-        <div class="card" style="margin:32px 0 0">
-          <div class="figure" style="background-image:url('assets/rail-outdoor.jpg')">
-            <div class="figure__veil"></div>
-            <div class="figure__stat">
-              <span class="big">4.9</span>
-              <p class="cap">across 328 reviews on our own store</p>
-            </div>
+        <div class="figure" style="background-image:url('assets/rail-outdoor.jpg');margin:32px 0 0">
+          <div class="figure__veil"></div>
+          <div class="figure__stat">
+            <span class="big">4.9</span>
+            <p class="cap">across 328 reviews on our own store</p>
           </div>
         </div>
-        <p class="footnote">On site reviews are collected and displayed by Nesa's Hemp. We have no third party review profile yet, and we would rather say so than imply one.</p>
         <div class="actions"><button class="cta" data-next>Next</button></div>
       </div>`);
   }
@@ -1328,13 +1321,11 @@ function viewInterstitial(key){
       <p class="kicker">How it is taken</p>
       <h2 class="display" style="font-size:clamp(32px,4.4vw,46px);margin-top:10px">The routine is the whole product</h2>
       <p class="q__hint">Half a dropper, held under the tongue for two minutes, twice a day. Morning and evening, at the same two moments you already have.</p>
-      <div class="card" style="margin:32px 0 0">
-        <div class="figure figure--square" style="background-image:url('assets/ritual-drops.jpg')">
-          <div class="figure__veil"></div>
-          <div class="figure__stat">
-            <span class="big">2 min</span>
-            <p class="cap">under the tongue, twice a day, for about 30 days per bottle</p>
-          </div>
+      <div class="figure figure--square" style="background-image:url('assets/ritual-drops.jpg');margin:32px 0 0">
+        <div class="figure__veil"></div>
+        <div class="figure__stat">
+          <span class="big">2 min</span>
+          <p class="cap">under the tongue, twice a day, for about 30 days per bottle</p>
         </div>
       </div>
       <div class="actions"><button class="cta" data-next>Next</button></div>
