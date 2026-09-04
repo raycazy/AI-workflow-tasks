@@ -30,7 +30,7 @@ Thesis was studied screen by screen with a scripted browser walk before anything
 | Thesis pattern | Our version | Why |
 |---|---|---|
 | Compliance interstitial before question one | Kept | The single most useful thing Thesis does. It is also the exact guardrail the Nesa's brand guide demands. |
-| Single select advances on its own | Kept | Removes one tap per question across twelve questions. |
+| Single select advances on its own | Kept | Removes one tap per question across the whole set. |
 | "Why we ask" note under the options | Kept, rewritten | Thesis cites external studies. We explain **our own** reasoning instead, because we will not cite research we have not read. |
 | Mid quiz proof interstitials | Kept, three of them | They break up a long form and carry proof at the moment attention dips. |
 | "AVG 47%" population comparison on results | **Dropped** | Nesa's holds no population data set. Inventing an average to make a bar look worse is a fabricated statistic. |
@@ -44,7 +44,7 @@ Thesis was studied screen by screen with a scripted browser walk before anything
 
 | # | Screen | Notes |
 |---|---|---|
-| 01 | Intro | Headline, 3 min, 12 questions, 7 certification marks |
+| 01 | Intro | Headline, 3 min, 11 questions, 7 certification marks |
 | 02 | Compliance notice | Not medical advice, no diagnosis questions, doctor referral for medication and pregnancy |
 | 03 | Q1 age | 5 options |
 | 04 | Q2 primary goal | 5 options, drives the largest scoring weight |
@@ -53,22 +53,23 @@ Thesis was studied screen by screen with a scripted browser walk before anything
 | 07 | Q4 what the day asks of your body | Why we ask |
 | 08 | Q5 training frequency | |
 | 09 | Q6 sleep pattern | Why we ask |
-| 10 | Q7 when you notice it most | Why we ask, drives dose timing |
-| 11 | Q8 diet in a normal week | |
-| 12 | Interstitial: three ingredients, fourteen lab tests | Includes the sunflower seed oil correction |
-| 13 | Q9 previous hemp or CBD experience | |
-| 14 | Q10 what made it fall short | **Conditional**, shows only after "felt nothing" or "used to" |
-| 15 | Q11 preferred format | Drives the oil against powder split |
-| 16 | Q12 caffeine | |
-| 17 | Q13 routine consistency | Why we ask |
-| 18 | Interstitial: the routine is the whole product | |
-| 19 | First name | |
-| 20 | Email | Marketing consent stated plainly |
-| 21 | Calculating | Counts up 14, 7, 60, then advances after 2.6s |
-| 22 | Results scorecard | 5 dimensions, expandable rows |
-| 23 | Recommendation | Products, plan selector, protocol, certifications, FDA disclaimer |
+| 10 | Q7 diet in a normal week | |
+| 11 | Interstitial: three ingredients, fourteen lab tests | Includes the sunflower seed oil correction |
+| 12 | Q8 previous hemp or CBD experience | |
+| 13 | Q8 follow up, what made it fall short | **Conditional**, shows only after "felt nothing" or "used to" |
+| 14 | Q9 preferred format | Drives the oil against powder split |
+| 15 | Q10 caffeine | |
+| 16 | Q11 routine consistency | Why we ask |
+| 17 | Interstitial: the routine is the whole product | |
+| 18 | First name | |
+| 19 | Email | Marketing consent stated plainly |
+| 20 | Calculating | Counts up 14, 7, 60, then advances after 2.6s |
+| 21 | Results scorecard | 5 dimensions, expandable rows |
+| 22 | Recommendation | Products, plan selector, protocol, certifications, FDA disclaimer |
 
-Twelve base questions plus one conditional. The counter in the stage header recalculates when the conditional question is skipped.
+Eleven base questions plus one conditional follow up. The counter in the stage header recalculates when the conditional question is skipped.
+
+A twelfth question, "when in the day do you notice it most", was cut on 2026-09-05 at the client's request. It fed only the wording of the morning and evening protocol lines, so removing it cost no scoring and no recommendation logic.
 
 ---
 
@@ -105,7 +106,7 @@ Then:
 - else `oil >= powder` gives **The foundation** (oil only)
 - else **The nutrition base** (powder only)
 
-The protocol text on the recommendation screen varies on **format**, **when you notice it most**, **sleep pattern**, **routine consistency**, and **previous experience**. Five inputs, so two people who buy the same bottle still get a different routine.
+The protocol text on the recommendation screen varies on **format**, **sleep pattern**, **routine consistency** and **previous experience**. Four inputs, so two people who buy the same bottle still get a different routine.
 
 ---
 

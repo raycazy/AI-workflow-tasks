@@ -988,17 +988,6 @@ const QUESTIONS = [
     ]
   },
   {
-    id:"timing", section:"days",
-    head:"When in the day do you notice it most?",
-    why:"This sets where your two servings land. We move them toward the hours that matter to you rather than raising the amount.",
-    options:[
-      {v:"morning",t:"First thing in the morning"},
-      {v:"afternoon",t:"The afternoon dip"},
-      {v:"evening",t:"In the evening, once I stop"},
-      {v:"even",t:"It is fairly even through the day"}
-    ]
-  },
-  {
     id:"diet", section:"days",
     head:"In a normal week, what does most of your food look like?",
     options:[
@@ -1180,10 +1169,10 @@ function viewIntro(){
   const f = frag(`
     <div>
       <h1 class="display intro__display">Find the ritual that fits your day</h1>
-      <p class="intro__sub">Twelve questions about how you move, sleep and eat. We match you to the product, the dose and the cadence that suit your week, then explain why.</p>
+      <p class="intro__sub">Eleven questions about how you move, sleep and eat. We match you to the product, the dose and the cadence that suit your week, then explain why.</p>
       <div class="intro__meta">
         <span class="pill">3 min</span>
-        <span class="pill">12 questions</span>
+        <span class="pill">11 questions</span>
       </div>
       <div class="actions"><button class="cta" data-next>Start with the basics</button></div>
       <div class="certs">
@@ -1581,15 +1570,9 @@ function protocolLines(){
     ? "One scoop blended into a smoothie, coffee or oats."
     : "Half a dropper under the tongue, held for two minutes before you swallow.";
 
-  if(a.timing === "morning"){
-    lines.push(`<b>On waking.</b> ${first} You told us the mornings are where you feel it, so this one goes before anything else, not after breakfast.`);
-  } else if(a.timing === "afternoon"){
-    lines.push(`<b>Mid morning.</b> ${first} Pushing the first serving later than breakfast puts it closer to the afternoon you are trying to hold together.`);
-  } else {
-    lines.push(`<b>Morning.</b> ${first} Take it before your first coffee, at the same point in the routine every day.`);
-  }
+  lines.push(`<b>Morning.</b> ${first} Take it before your first coffee, at the same point in the routine every day.`);
 
-  if(a.timing === "evening" || a.sleep === "falling" || a.sleep === "waking"){
+  if(a.sleep === "falling" || a.sleep === "waking"){
     lines.push("<b>Evening.</b> The second half dropper about two hours before bed, not at bedtime. Earlier suits a night you struggle with more than a larger dose does.");
   } else {
     lines.push("<b>Evening.</b> The second half dropper with dinner, so the two servings sit roughly twelve hours apart.");
