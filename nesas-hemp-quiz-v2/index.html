@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nesa's Hemp: Find your ritual quiz, version 2 (Thesis layout)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   NESA'S HEMP: "Find your ritual" quiz, VERSION 2
+   Same questions as v1. Layout and motion modelled on
+   takethesis.com/pages/quiz, measured in a scripted browser
+   rather than eyeballed. Branding is the theme's own.
+
+   Measured from Thesis (1440 viewport):
+     content column      610px, centred, top anchored at y=151
+     step group          display:flex column, gap 48px
+     step enter          opacity 0 to 1, translateY(-192px) to 0,
+                         500ms, ease, animation-fill-mode none
+     progress track      7px, full width, bg #F5F5F5
+     progress fill       full width, translateX(-(100 - pct)%),
+                         500ms cubic-bezier(.4,0,.2,1)
+     option              610x48, radius 4px, 1px border, centred label,
+                         18px, transparent fill
+     primary action      640x64, pinned near the viewport bottom
+     body                #FAFAFA
+
+   Brand tokens are the theme's (theme-boring-cro), not Thesis's.
+   ============================================================ */
+
+:root{
+  --bg:#FFFFFF;
+  --ink:#172620;
+  --forest:#344C32;
+  --accent:#2F6B3F;
+  --soft:#4E6459;
+  --line:#DCD6CA;
+  --tint-warm:#F6F1E8;
+  --track:#F2F2F0;
+  --yellow:#FFDD00;
+  --grey:#82958C;
+  --mint:#95CFA5;
+
+  --col:610px;
+  --z-base:0; --z-chrome:10; --z-tools:30;
+
+  --display:"Anton",Impact,sans-serif;
+  --body:"Nunito",ui-sans-serif,-apple-system,sans-serif;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:16px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit;cursor:pointer}
+
+/* Anton ships one weight. Never let the browser synthesise a bold. */
+.display{
+  font-family:var(--display);
+  font-weight:400;
+  text-transform:uppercase;
+  letter-spacing:-.005em;
+  line-height:1.08;
+  margin:0;
+  color:var(--ink);
+  text-wrap:balance;
+}
+.kicker{
+  font-family:var(--body);
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  font-size:14px;
+  line-height:1.6;
+  color:var(--soft);
+  margin:0;
+}
+.label{
+  font-family:var(--body);
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  font-size:12px;
+  line-height:1.6;
+  color:var(--soft);
+}
+
+/* ============================================================
+   CHROME: announce, header, progress
+   ============================================================ */
+.announce{
+  flex:none;
+  height:40px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--ink);
+  color:#fff;
+  font-weight:800;
+  font-size:12px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  text-align:center;
+  padding:0 16px;
+}
+
+.topbar{
+  flex:none;
+  position:relative;
+  height:72px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 40px;
+  background:var(--bg);
+}
+.back{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  border:0;
+  background:none;
+  padding:8px 0;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  font-size:12px;
+  color:var(--soft);
+  position:relative;
+}
+.back::before{content:"";position:absolute;inset:-12px}
+.back:hover{color:var(--ink)}
+.back[hidden]{visibility:hidden}
+.mark{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+}
+.mark img{width:104px}
+.pct{
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  font-size:12px;
+  color:var(--soft);
+  min-width:72px;
+  text-align:right;
+}
+
+/* Progress: a full width bar slid left, not a width animation, so the
+   browser composites it instead of laying it out 60 times a second. */
+.track{
+  flex:none;
+  position:relative;
+  height:7px;
+  width:100%;
+  overflow:hidden;
+  background:var(--track);
+}
+.track__fill{
+  position:absolute;
+  inset:0;
+  background:var(--ink);
+  transform:translateX(-100%);
+  transition:transform 500ms cubic-bezier(.4,0,.2,1);
+}
+
+/* ============================================================
+   STAGE
+   Content is anchored to the top, the primary action is pinned
+   near the bottom. That split is the thing that makes the Thesis
+   flow feel like one screen rather than a scrolling form.
+   ============================================================ */
+.stage{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  padding:40px 20px 0;
+}
+.stage--scroll{padding-bottom:64px}
+/* Flex items shrink by default. Without this the content column squashes
+   on a tall screen and its image overruns the pinned action. */
+.col{width:100%;max-width:var(--col);margin:0 auto;flex-shrink:0}
+
+.step{
+  display:flex;
+  flex-direction:column;
+  gap:48px;
+}
+/* Measured from Thesis: opacity 0 to 1 with a 192px drop, 500ms, ease.
+   fill-mode none is deliberate. The resting state is fully visible, so
+   if the animation never runs the content is still there. A reveal must
+   never gate visibility. */
+@keyframes enter{
+  from{opacity:0;transform:translateY(-192px)}
+  to{opacity:1;transform:none}
+}
+.step--animate{animation:enter 500ms ease}
+
+.actions{
+  width:100%;
+  max-width:640px;
+  margin:48px auto 0;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.actions--pinned{margin-top:auto;padding-top:48px;padding-bottom:40px}
+
+.legal{
+  flex:none;
+  margin:0;
+  padding:14px 20px;
+  text-align:center;
+  font-size:12px;
+  line-height:1.5;
+  color:var(--grey);
+}
+.legal a{color:var(--grey)}
+
+/* ============================================================
+   QUESTIONS
+   ============================================================ */
+.q__head{
+  font-family:var(--body);
+  font-weight:800;
+  font-size:clamp(24px,3.4vw,32px);
+  line-height:1.26;
+  letter-spacing:-.01em;
+  margin:0;
+  color:var(--ink);
+  text-wrap:balance;
+}
+.q__hint{
+  margin:12px 0 0;
+  font-size:16px;
+  line-height:1.56;
+  color:var(--soft);
+}
+
+.options{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+
+/* Thesis geometry, Nesa's ink. Label centred, fill transparent. */
+.opt{
+  position:relative;
+  width:100%;
+  min-height:48px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:12px 24px;
+  text-align:center;
+  background:transparent;
+  border:1px solid var(--ink);
+  border-radius:4px;
+  font-family:var(--body);
+  font-weight:600;
+  font-size:18px;
+  line-height:1.3;
+  color:var(--ink);
+  overflow:hidden;
+  transition:background-color 160ms ease,color 160ms ease;
+}
+.opt:hover{background:var(--tint-warm)}
+.opt:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.opt[aria-pressed="true"]{background:var(--ink);color:#fff}
+.opt__tick{
+  flex:none;
+  width:18px;height:18px;
+  fill:none;
+  stroke:var(--grey);
+  stroke-width:2.6;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.opt[aria-pressed="true"] .opt__tick{stroke:var(--mint)}
+
+.why{max-width:56ch}
+.why p{margin:10px 0 0;font-size:16px;line-height:1.56;color:var(--soft)}
+
+/* ---------- Primary action: the theme's ink pill ---------- */
+.cta{
+  width:100%;
+  min-height:64px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:0 40px;
+  border:0;
+  border-radius:999px;
+  background:var(--ink);
+  color:#fff;
+  font-family:var(--display);
+  font-weight:400;
+  text-transform:uppercase;
+  letter-spacing:.6px;
+  font-size:20px;
+  line-height:1;
+  transition:transform 160ms cubic-bezier(.23,1,.32,1);
+}
+.cta:hover{transform:translateY(-2px)}
+.cta:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.cta[disabled]{opacity:.5;cursor:not-allowed;transform:none}
+.cta--quiet{
+  background:transparent;
+  color:var(--ink);
+  border:2px solid var(--line);
+  font-size:18px;
+  min-height:56px;
+}
+.cta--quiet:hover{border-color:var(--ink)}
+
+/* ============================================================
+   INTRO
+   ============================================================ */
+.intro__display{font-size:clamp(36px,5.2vw,56px)}
+.intro__sub{margin:20px 0 0;font-size:18px;line-height:1.62;color:var(--soft)}
+.intro__meta{margin:24px 0 0;display:flex;flex-wrap:wrap;gap:12px}
+.pill{
+  display:inline-flex;
+  align-items:center;
+  height:40px;
+  padding:0 18px;
+  border:2px solid var(--line);
+  border-radius:999px;
+  font-family:var(--display);
+  font-weight:400;
+  text-transform:uppercase;
+  letter-spacing:.6px;
+  font-size:14px;
+  color:var(--ink);
+}
+.certs__row{
+  margin:14px 0 0;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+}
+.certs__row img{height:40px;width:auto}
+.certs{text-align:center}
+
+/* ============================================================
+   INTERSTITIALS
+   ============================================================ */
+.figure{
+  position:relative;
+  aspect-ratio:16/10;
+  background-size:cover;
+  background-position:center;
+  background-color:var(--tint-warm);
+  border-radius:20px;
+  overflow:hidden;
+}
+/* Capped so a portrait source does not push the action off a laptop screen. */
+.figure--square{aspect-ratio:1/1;max-height:min(44vh,460px)}
+.figure__veil{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(23,38,32,0) 0%,rgba(23,38,32,.18) 42%,rgba(23,38,32,.72) 68%,rgba(23,38,32,.94) 100%);
+}
+.figure__stat{position:absolute;left:28px;right:28px;bottom:24px;color:#fff}
+.figure__stat .big{
+  font-family:var(--display);
+  font-weight:400;
+  font-size:clamp(44px,6.4vw,64px);
+  line-height:1;
+  display:block;
+}
+.figure__stat .cap{margin:8px 0 0;font-size:16px;line-height:1.5;max-width:34ch}
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.stat{background:var(--tint-warm);border:1px solid var(--line);border-radius:14px;padding:22px 18px}
+.stat b{display:block;font-family:var(--display);font-weight:400;font-size:36px;line-height:1;color:var(--ink)}
+.stat span{display:block;margin:10px 0 0;font-size:14px;line-height:1.44;color:var(--soft)}
+
+.honest{padding:22px;border:1px solid var(--line);border-radius:14px;background:var(--tint-warm)}
+.honest p{margin:10px 0 0;font-size:16px;line-height:1.56;color:var(--ink)}
+.footnote{margin:0;font-size:12px;line-height:1.6;color:var(--grey)}
+
+/* ============================================================
+   INPUTS
+   ============================================================ */
+.field input{
+  width:100%;
+  min-height:60px;
+  padding:16px 22px;
+  background:var(--bg);
+  border:2px solid var(--line);
+  border-radius:999px;
+  font-family:var(--body);
+  font-weight:600;
+  font-size:16px;
+  color:var(--ink);
+  text-align:center;
+}
+.field input::placeholder{color:var(--grey);opacity:1}
+.field input:focus{outline:0;border-color:var(--ink)}
+.consent{margin:16px 0 0;font-size:14px;line-height:1.56;color:var(--soft)}
+
+/* ============================================================
+   CALCULATING
+   ============================================================ */
+.calc__list{display:flex;flex-direction:column;gap:28px}
+.calc__row b{
+  font-family:var(--display);
+  font-weight:400;
+  font-size:clamp(40px,6vw,60px);
+  line-height:1;
+  color:var(--ink);
+  display:block;
+}
+.calc__row span{display:block;margin:8px 0 0;font-size:16px;line-height:1.5;color:var(--soft)}
+
+/* ============================================================
+   RESULTS
+   ============================================================ */
+.score{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--bg)}
+.score__row{
+  display:block;width:100%;text-align:left;padding:20px;
+  background:none;border:0;border-top:1px solid var(--line);
+}
+.score__row:first-child{border-top:0}
+.score__row:hover{background:var(--tint-warm)}
+.score__head{display:flex;align-items:center;gap:16px}
+.score__name{flex:0 0 130px;font-weight:700;font-size:16px;color:var(--ink)}
+.score__bar{display:block;flex:1;height:8px;border-radius:999px;background:var(--line);overflow:hidden}
+.score__fill{display:block;height:100%;width:0;background:var(--forest);border-radius:999px;transition:width 720ms cubic-bezier(.22,.61,.36,1)}
+.score__tag{
+  flex:none;font-weight:800;text-transform:uppercase;letter-spacing:.84px;
+  font-size:12px;line-height:25px;height:25px;padding:0 8px;border-radius:5px;color:var(--grey);
+}
+.score__tag--focus{background:var(--yellow);color:var(--ink)}
+.score__note{margin:14px 0 0 146px;font-size:16px;line-height:1.56;color:var(--soft)}
+.score__note[hidden]{display:none}
+
+/* ============================================================
+   RECOMMENDATION
+   ============================================================ */
+.rec__head{font-size:clamp(32px,4.4vw,46px);margin:10px 0 0}
+.rec__lede{margin:20px 0 0;font-size:18px;line-height:1.62;color:var(--soft)}
+.buy{border:1px solid var(--line);border-radius:14px;background:var(--bg);overflow:hidden;text-align:left}
+.buy__item{display:flex;gap:20px;align-items:center;padding:20px;border-top:1px solid var(--line)}
+.buy__item:first-child{border-top:0}
+.buy__item img{width:96px;height:96px;object-fit:cover;border-radius:6px;flex:none;background:var(--tint-warm)}
+.buy__copy{flex:1;min-width:0}
+.buy__copy h4{margin:0;font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:20px;line-height:1.2;color:var(--ink)}
+.buy__copy p{margin:6px 0 0;font-size:14px;line-height:1.42;color:var(--soft)}
+.buy__price{flex:none;font-family:var(--display);font-weight:400;font-size:20px;color:var(--ink)}
+.nocaps{text-transform:none}
+
+.plans{display:flex;flex-direction:column;gap:15px;padding:20px;border-top:1px solid var(--line)}
+.plan{
+  position:relative;display:flex;align-items:center;gap:15px;padding:18px 20px;
+  border:1px solid var(--line);border-radius:14px;background:var(--bg);text-align:left;
+  transition:border-color 160ms ease,box-shadow 160ms ease;
+}
+.plan[aria-pressed="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.plan__radio{flex:none;width:20px;height:20px;border:1px solid var(--grey);border-radius:50%;display:grid;place-items:center}
+.plan[aria-pressed="true"] .plan__radio{border-color:var(--ink)}
+.plan[aria-pressed="true"] .plan__radio::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--ink)}
+.plan__copy{flex:1;min-width:0}
+.plan__copy b{display:block;font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:18px;line-height:1.32;color:var(--ink)}
+.plan__copy span{display:block;font-size:14px;line-height:1.42;color:var(--soft);margin:2px 0 0}
+.plan__cost{flex:none;text-align:right;font-family:var(--display);font-weight:400;font-size:20px;color:var(--ink)}
+.plan__save{
+  position:absolute;left:20px;bottom:100%;margin-bottom:-12px;height:25px;padding:0 8px;
+  border-radius:5px;background:var(--yellow);color:var(--ink);font-weight:800;font-size:14px;
+  line-height:25px;letter-spacing:.84px;text-transform:uppercase;
+}
+.plan--saver{margin-top:20px}
+
+.protocol{text-align:left}
+.protocol ol{margin:16px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:16px}
+.protocol li{position:relative;padding:0 0 0 37px;font-size:16px;line-height:1.56;color:var(--soft)}
+.protocol li::before{content:"";position:absolute;left:0;top:5px;width:18px;height:18px;border-radius:50%;background:var(--forest)}
+.protocol li::after{content:"";position:absolute;left:6px;top:11px;width:6px;height:6px;border-radius:50%;background:var(--mint)}
+.protocol li b{font-weight:800;color:var(--ink)}
+.disclaimer{font-size:12px;line-height:1.66;color:var(--grey)}
+
+/* ============================================================
+   PROTOTYPE REVIEW TOOLBAR (mockup only)
+   ============================================================ */
+.tools{position:fixed;right:16px;bottom:16px;z-index:var(--z-tools);font-weight:800;text-transform:uppercase;letter-spacing:.12em;font-size:12px}
+.tools__toggle{display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border:0;border-radius:999px;background:var(--ink);color:#fff}
+.tools__panel{
+  display:none;margin:8px 0 0;width:272px;max-height:60vh;overflow:auto;padding:12px;
+  border:1px solid var(--line);border-radius:14px;background:var(--bg);box-shadow:0 14px 30px rgba(23,38,32,.12);
+}
+.tools__panel[data-open="true"]{display:block}
+.tools__panel button{
+  display:block;width:100%;text-align:left;padding:8px 10px;border:0;border-radius:6px;background:none;
+  color:var(--soft);font-family:var(--body);font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:12px;
+}
+.tools__panel button:hover{background:var(--tint-warm);color:var(--ink)}
+.tools__panel button[data-current="true"]{color:var(--ink);background:var(--yellow)}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:760px){
+  .topbar{height:60px;padding:0 20px}
+  .mark img{width:88px}
+  .pct{min-width:52px}
+  .stage{padding:28px 20px 0}
+  .step{gap:32px}
+  .actions{margin-top:32px}
+  .actions--pinned{padding-bottom:24px}
+  .stats{grid-template-columns:1fr}
+  .score__name{flex-basis:92px;font-size:14px}
+  .score__note{margin-left:0}
+  .buy__item{flex-wrap:wrap}
+  .buy__price{width:100%}
+  .intro__display,.rec__head{font-size:28px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .step--animate{animation:none}
+  *{transition-duration:1ms !important}
+}
+</style>
+</head>
+<body>
+
+<div class="announce">Subscribe and save $35 on every bottle</div>
+
+<header class="topbar">
+  <button class="back" id="backBtn" hidden>
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M7.5 1.5 3 6l4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Back
+  </button>
+  <span class="mark"><img src="assets/nesa-wordmark.svg" alt="Nesa's Hemp"></span>
+  <span class="pct" id="pct">0%</span>
+</header>
+
+<div class="track"><span class="track__fill" id="trackFill"></span></div>
+
+<main class="stage" id="stage">
+  <div class="col"><div class="step" id="panel"></div></div>
+  <div class="col actions" id="actionsSlot"></div>
+</main>
+
+<p class="legal">We use your answers to personalise your recommendation and nothing else. <a href="#">Learn more</a></p>
+
+<div class="tools">
+  <div class="tools__panel" id="toolsPanel"></div>
+  <button class="tools__toggle" id="toolsToggle">
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1.5 3h9M1.5 6h9M1.5 9h9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+    Screens
+  </button>
+</div>
+
+<script>
+/* ============================================================
+   SHARED DATA AND LOGIC
+   Injected at build time from the v1 prototype by build.mjs.
+   Do not edit here: edit ../quiz/index.html and rebuild, or the
+   two versions will drift.
+   ============================================================ */
+const PRODUCTS = {
+  oil: {
+    name: "Certified Organic CBDa Hemp Extract",
+    meta: "1000mg, 1 FL OZ (30ml), 60 servings",
+    price: 134.99,
+    // Verified subscribe and save price from the 2026 CRO audit.
+    sub: 99.99,
+    img: "assets/oil-1000mg.png"
+  },
+  powder: {
+    name: "Certified Organic Full Spectrum Nutrition Powder with B17",
+    meta: "1 lb pouch, blends into food or a drink",
+    price: 89.99,
+    // PLACEHOLDER: no published subscribe price exists for the powder.
+    // Confirm with the client before this ships. See README.md.
+    sub: 74.99,
+    img: "assets/powder-b17.jpg"
+  }
+};;
+
+const QUESTIONS = [
+  {
+    id:"age", section:"basics",
+    head:"How old are you?",
+    options:[
+      {v:"18-25",t:"18 to 25"},
+      {v:"26-34",t:"26 to 34"},
+      {v:"35-44",t:"35 to 44"},
+      {v:"45-60",t:"45 to 60"},
+      {v:"60+",t:"Over 60"}
+    ]
+  },
+  {
+    id:"goal", section:"basics",
+    head:"What brought you to Nesa's today?",
+    options:[
+      {v:"comfort",t:"Ease the everyday aches"},
+      {v:"sleep",t:"Sleep through the night"},
+      {v:"recovery",t:"Recover faster after training"},
+      {v:"stress",t:"Steady my everyday stress"},
+      {v:"nutrition",t:"Fill the gaps in what I eat"}
+    ]
+  },
+  { interstitial:"proof", section:"basics" },
+  {
+    id:"areas", section:"days", multi:true, grid:true,
+    head:"Which of these would you like to support?",
+    hint:"Pick as many as apply.",
+    options:[
+      {v:"comfort",t:"Everyday comfort"},
+      {v:"sleep",t:"Deeper sleep"},
+      {v:"recovery",t:"Recovery after effort"},
+      {v:"mood",t:"A steady mood"},
+      {v:"nutrition",t:"Daily nutrition"},
+      {v:"focus",t:"Focus through the afternoon"}
+    ]
+  },
+  {
+    id:"day", section:"days",
+    head:"What does a normal day ask of your body?",
+    why:"Load changes what your routine has to hold up against. A day spent seated and a day spent lifting need different timing, not different promises.",
+    options:[
+      {v:"desk",t:"Mostly seated, at a desk"},
+      {v:"feet",t:"On my feet most of the day"},
+      {v:"physical",t:"Physical work or heavy lifting"},
+      {v:"varies",t:"It changes week to week"}
+    ]
+  },
+  {
+    id:"training", section:"days",
+    head:"How often do you train or move on purpose?",
+    options:[
+      {v:"rare",t:"Rarely"},
+      {v:"1-2",t:"Once or twice a week"},
+      {v:"3-4",t:"Three or four times a week"},
+      {v:"5+",t:"Five or more times a week"}
+    ]
+  },
+  {
+    id:"sleep", section:"days",
+    head:"How do you sleep on a normal night?",
+    why:"Sleep is where we place the second serving. If you wake in the night, we move your evening dose earlier rather than raising the amount.",
+    options:[
+      {v:"through",t:"I sleep straight through"},
+      {v:"waking",t:"I wake once or twice"},
+      {v:"falling",t:"I struggle to fall asleep"},
+      {v:"varies",t:"It changes night to night"}
+    ]
+  },
+  {
+    id:"diet", section:"days",
+    head:"In a normal week, what does most of your food look like?",
+    options:[
+      {v:"whole",t:"Home cooked, plenty of plants"},
+      {v:"mixed",t:"A mix of home cooked and takeout"},
+      {v:"quick",t:"Mostly quick and convenient"},
+      {v:"skipping",t:"I skip meals more often than I should"}
+    ]
+  },
+  { interstitial:"purity", section:"days" },
+  {
+    id:"experience", section:"ritual",
+    head:"Have you taken hemp or CBD before?",
+    options:[
+      {v:"never",t:"Never"},
+      {v:"nothing",t:"I tried it and felt nothing"},
+      {v:"current",t:"I take something now"},
+      {v:"lapsed",t:"I used to, then stopped"}
+    ]
+  },
+  {
+    id:"shortfall", section:"ritual",
+    showIf:(a)=>a.experience==="nothing"||a.experience==="lapsed",
+    head:"What made it fall short?",
+    why:"Most hemp that disappoints was either underdosed or taken inconsistently. Knowing which one it was changes what we suggest.",
+    options:[
+      {v:"noeffect",t:"I never felt a difference"},
+      {v:"taste",t:"The taste"},
+      {v:"price",t:"The price"},
+      {v:"consistency",t:"I could not stay consistent"}
+    ]
+  },
+  {
+    id:"format", section:"ritual",
+    head:"How would you rather take it every day?",
+    options:[
+      {v:"drops",t:"Drops under the tongue"},
+      {v:"blend",t:"Blended into food or a drink"},
+      {v:"either",t:"Either works for me"}
+    ]
+  },
+  {
+    id:"caffeine", section:"ritual",
+    head:"How much caffeine is in a normal day?",
+    options:[
+      {v:"none",t:"None"},
+      {v:"one",t:"One cup"},
+      {v:"two-three",t:"Two or three cups"},
+      {v:"four+",t:"Four or more"}
+    ]
+  },
+  {
+    id:"consistency", section:"ritual",
+    head:"How consistent are you with a daily routine?",
+    why:"One bottle holds 60 servings, which is about 30 days at half a dropper twice daily. If your honest answer is hit or miss, we send a smaller commitment first.",
+    options:[
+      {v:"never-miss",t:"I never miss"},
+      {v:"most-days",t:"Most days"},
+      {v:"hit-miss",t:"Hit or miss"},
+      {v:"forget",t:"I forget unless it is in front of me"}
+    ]
+  },
+  { interstitial:"ritual", section:"ritual" }
+]
+
+function scores(){
+  const a = state.answers;
+  const areas = Array.isArray(a.areas) ? a.areas : [];
+  const has = (x) => areas.includes(x);
+  const clamp = (n) => Math.max(8, Math.min(96, Math.round(n)));
+
+  let comfort = 78;
+  if(a.goal === "comfort") comfort -= 24;
+  if(has("comfort")) comfort -= 12;
+  if(a.day === "physical") comfort -= 14;
+  if(a.day === "feet") comfort -= 8;
+  if(a.age === "45-60") comfort -= 6;
+  if(a.age === "60+") comfort -= 10;
+
+  let sleep = 80;
+  if(a.goal === "sleep") sleep -= 24;
+  if(has("sleep")) sleep -= 12;
+  if(a.sleep === "waking") sleep -= 16;
+  if(a.sleep === "falling") sleep -= 22;
+  if(a.sleep === "varies") sleep -= 12;
+  if(a.caffeine === "two-three") sleep -= 6;
+  if(a.caffeine === "four+") sleep -= 14;
+
+  let recovery = 76;
+  if(a.goal === "recovery") recovery -= 22;
+  if(has("recovery")) recovery -= 12;
+  if(a.training === "5+") recovery -= 14;
+  if(a.training === "3-4") recovery -= 8;
+  if(a.training === "rare") recovery -= 6;
+  if(a.day === "physical") recovery -= 10;
+
+  let stress = 78;
+  if(a.goal === "stress") stress -= 24;
+  if(has("mood")) stress -= 10;
+  if(has("focus")) stress -= 8;
+  if(a.caffeine === "four+") stress -= 14;
+  if(a.caffeine === "two-three") stress -= 6;
+  if(a.sleep === "falling") stress -= 10;
+
+  let nutrition = 82;
+  if(a.goal === "nutrition") nutrition -= 24;
+  if(has("nutrition")) nutrition -= 12;
+  if(a.diet === "mixed") nutrition -= 10;
+  if(a.diet === "quick") nutrition -= 24;
+  if(a.diet === "skipping") nutrition -= 30;
+
+  return [
+    {key:"comfort",   name:"Everyday comfort", value:clamp(comfort),
+     note:"Drawn from your goal, the areas you picked, and what a normal day asks of your body."},
+    {key:"sleep",     name:"Sleep",            value:clamp(sleep),
+     note:"Drawn from how you sleep on a normal night and how much caffeine sits in your day."},
+    {key:"recovery",  name:"Recovery",         value:clamp(recovery),
+     note:"Drawn from how often you train and how physical your working day is."},
+    {key:"stress",    name:"Stress load",      value:clamp(stress),
+     note:"Drawn from your goal, your caffeine intake, and how easily you fall asleep."},
+    {key:"nutrition", name:"Daily nutrition",  value:clamp(nutrition),
+     note:"Drawn from what most of your food looks like in a normal week."}
+  ];
+}
+
+function recommendation(){
+  const a = state.answers;
+  const areas = Array.isArray(a.areas) ? a.areas : [];
+  let oil = 0, powder = 0;
+
+  if(["comfort","sleep","recovery","stress"].includes(a.goal)) oil += 3;
+  if(a.goal === "nutrition") powder += 3;
+
+  areas.forEach(v => {
+    if(["comfort","sleep","recovery","mood"].includes(v)) oil += 1;
+    if(["nutrition","focus"].includes(v)) powder += 1;
+  });
+
+  if(a.diet === "quick") powder += 2;
+  if(a.diet === "skipping") powder += 3;
+  if(a.diet === "mixed") powder += 1;
+
+  if(a.format === "drops") oil += 2;
+  if(a.format === "blend") powder += 2;
+  if(a.format === "either"){ oil += 1; powder += 1; }
+
+  if(oil >= 4 && powder >= 4){
+    return {
+      key:"ritual",
+      title:"The daily ritual",
+      display:"The daily ritual", em:"oil and powder together",
+      items:["oil","powder"],
+      lede:"Your answers pull in two directions at once, so we would run both. The extract carries the routine, the powder covers what your week is not giving you."
+    };
+  }
+  if(oil >= powder){
+    return {
+      key:"foundation",
+      title:"The foundation",
+      display:"The foundation", em:"one bottle, thirty days",
+      items:["oil"],
+      lede:"One bottle, twice a day, for a month. This is where almost everyone should start, and adding a second product before you know how the first feels is just guessing more expensively."
+    };
+  }
+  return {
+    key:"nutrition",
+    title:"The nutrition base",
+    display:"The nutrition base", em:"one scoop, every morning",
+    items:["powder"],
+    lede:"Your answers point at what your food is missing more than at anything else. The powder blends into what you already drink, which is the version of this you will actually keep doing."
+  };
+}
+
+function protocolLines(){
+  const a = state.answers;
+  const lines = [];
+
+  const first = a.format === "blend"
+    ? "One scoop blended into a smoothie, coffee or oats."
+    : "Half a dropper under the tongue, held for two minutes before you swallow.";
+
+  lines.push(`<b>Morning.</b> ${first} Take it before your first coffee, at the same point in the routine every day.`);
+
+  if(a.sleep === "falling" || a.sleep === "waking"){
+    lines.push("<b>Evening.</b> The second half dropper about two hours before bed, not at bedtime. Earlier suits a night you struggle with more than a larger dose does.");
+  } else {
+    lines.push("<b>Evening.</b> The second half dropper with dinner, so the two servings sit roughly twelve hours apart.");
+  }
+
+  if(a.consistency === "hit-miss" || a.consistency === "forget"){
+    lines.push("<b>Because consistency is your honest weak point.</b> Keep the bottle beside the kettle or the toothbrush, not in a cupboard. We will send two reminders in the first fortnight and then stop.");
+  } else {
+    lines.push("<b>Give it thirty days.</b> One bottle is about a month. Judge it at the end of the bottle, not in the first week.");
+  }
+
+  if(a.experience === "nothing"){
+    lines.push("<b>You told us hemp did nothing for you before.</b> Check what you took: most retail CBD is a fraction of this strength. If thirty days here still does nothing, ask us for a refund rather than a second bottle.");
+  }
+  return lines;
+}
+
+/* ============================================================
+   V2 VIEW LAYER
+   ============================================================ */
+const SCREENS = [
+  {type:"intro", title:"Intro"},
+  {type:"consent", title:"Compliance notice"},
+  ...QUESTIONS.map(q => q.interstitial
+    ? {type:"interstitial", key:q.interstitial, title:"Interstitial: "+q.interstitial}
+    : {type:"question", id:q.id, title:"Q: "+q.head.replace(/\?$/,"")}),
+  {type:"name", title:"First name"},
+  {type:"email", title:"Email"},
+  {type:"calculating", title:"Calculating"},
+  {type:"results", title:"Results scorecard"},
+  {type:"recommendation", title:"Recommendation"}
+];
+
+const state = { i:0, answers:{}, name:"", email:"", plan:"subscribe" };
+let lastStepKey = null;
+const el = (id) => document.getElementById(id);
+const panel = el("panel");
+const actionsSlot = el("actionsSlot");
+
+function questionById(id){ return QUESTIONS.find(q => q.id === id); }
+function isVisible(s){
+  if(s.type !== "question") return true;
+  const q = questionById(s.id);
+  return !q.showIf || q.showIf(state.answers);
+}
+function visibleScreens(){ return SCREENS.filter(isVisible); }
+function totalQuestions(){ return visibleScreens().filter(s => s.type === "question").length; }
+function answeredIndex(id){
+  const qs = visibleScreens().filter(s => s.type === "question");
+  return qs.findIndex(s => s.id === id) + 1;
+}
+
+function go(delta){
+  const list = visibleScreens();
+  state.i = Math.max(0, Math.min(list.length - 1, state.i + delta));
+  render();
+  window.scrollTo({top:0, behavior:"instant"});
+}
+function jumpTo(i){ state.i = i; render(); }
+
+function frag(html){
+  const t = document.createElement("template");
+  t.innerHTML = html.trim();
+  return t.content;
+}
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+function render(){
+  const list = visibleScreens();
+  state.i = Math.min(state.i, list.length - 1);
+  const screen = list[state.i];
+
+  const pct = Math.round((state.i / (list.length - 1)) * 100);
+  const done = screen.type === "results" || screen.type === "recommendation";
+  const shown = done ? 100 : pct;
+  el("trackFill").style.transform = `translateX(${shown - 100}%)`;
+  el("pct").textContent = done ? "Done" : shown + "%";
+  el("backBtn").hidden = state.i === 0;
+
+  panel.innerHTML = "";
+  actionsSlot.innerHTML = "";
+
+  const view = viewFor(screen);
+  panel.appendChild(view.content);
+
+  // The action is pinned to the bottom of the stage on every screen that
+  // fits one, which is what gives Thesis its one screen feel. The
+  // recommendation scrolls, so its buttons stay inline instead.
+  const pinned = !view.inline;
+  actionsSlot.className = "col actions" + (pinned ? " actions--pinned" : "");
+  el("stage").classList.toggle("stage--scroll", !pinned);
+  if(view.action) actionsSlot.appendChild(view.action);
+
+  // Animate on a step CHANGE only. A multi select toggle and a plan switch
+  // both re-render in place, and replaying a 500ms slide because someone
+  // ticked a checkbox would be wrong.
+  const key = state.i + ":" + screen.type + ":" + (screen.id || screen.key || "");
+  if(key !== lastStepKey){
+    lastStepKey = key;
+    panel.classList.remove("step--animate");
+    void panel.offsetWidth;
+    panel.classList.add("step--animate");
+  }
+
+  buildTools();
+}
+
+function ctaButton(label, opts = {}){
+  const b = document.createElement("button");
+  b.className = "cta" + (opts.quiet ? " cta--quiet" : "");
+  b.type = "button";
+  b.textContent = label;
+  if(opts.disabled) b.disabled = true;
+  if(opts.id) b.id = opts.id;
+  b.addEventListener("click", opts.onClick || (() => go(1)));
+  return b;
+}
+
+function viewFor(screen){
+  switch(screen.type){
+    case "intro": return viewIntro();
+    case "consent": return viewConsent();
+    case "question": return viewQuestion(questionById(screen.id));
+    case "interstitial": return viewInterstitial(screen.key);
+    case "name": return viewName();
+    case "email": return viewEmail();
+    case "calculating": return viewCalculating();
+    case "results": return viewResults();
+    case "recommendation": return viewRecommendation();
+  }
+}
+
+/* ---------- Intro ---------- */
+function viewIntro(){
+  const content = frag(`
+    <div>
+      <h1 class="display intro__display">Find the ritual that fits your day</h1>
+      <p class="intro__sub">Eleven questions about how you move, sleep and eat. We match you to the product, the dose and the cadence that suit your week, then explain why.</p>
+      <div class="intro__meta">
+        <span class="pill">3 min</span>
+        <span class="pill">11 questions</span>
+      </div>
+    </div>
+    <div class="certs">
+      <p class="label">Certified on every batch</p>
+      <div class="certs__row">
+        <img src="assets/certs/usda-organic.png" alt="USDA Organic">
+        <img src="assets/certs/mosa.png" alt="MOSA Certified Organic">
+        <img src="assets/certs/kosher.png" alt="Kosher, Kosher Supervisors of Wisconsin">
+        <img src="assets/certs/gmo-free.png" alt="GMO Free">
+        <img src="assets/certs/vegan.png" alt="Vegan">
+        <img src="assets/certs/raw-food.png" alt="Raw Food">
+        <img src="assets/certs/tested-safe.png" alt="Tested Safe Certified Hemp Extract">
+      </div>
+    </div>`);
+  return { content, action: ctaButton("Start with the basics") };
+}
+
+/* ---------- Compliance ---------- */
+function viewConsent(){
+  const content = frag(`
+    <div>
+      <h2 class="q__head">Before we start</h2>
+      <p class="q__hint">This quiz gives a wellness recommendation based on your answers. It is not medical advice, and it is not intended to diagnose, treat, cure or prevent any disease.</p>
+      <p class="q__hint">We do not ask about diagnoses or medications. If you take prescription medication or you are pregnant, speak with your doctor before adding any hemp product.</p>
+      <p class="q__hint">By continuing you agree to our <a href="#" style="color:var(--ink)">Terms</a> and <a href="#" style="color:var(--ink)">Privacy Policy</a>.</p>
+    </div>`);
+  return { content, action: ctaButton("I understand") };
+}
+
+/* ---------- Question ---------- */
+function viewQuestion(q){
+  const selected = state.answers[q.id];
+  const content = document.createDocumentFragment();
+
+  const head = document.createElement("div");
+  head.innerHTML = `<h2 class="q__head">${q.head}</h2>${q.hint ? `<p class="q__hint">${q.hint}</p>` : ""}`;
+  content.appendChild(head);
+
+  const list = document.createElement("div");
+  list.className = "options";
+  q.options.forEach(o => {
+    const on = q.multi ? (Array.isArray(selected) && selected.includes(o.v)) : selected === o.v;
+    const b = document.createElement("button");
+    b.className = "opt";
+    b.type = "button";
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    b.innerHTML = (q.multi
+      ? `<svg class="opt__tick" viewBox="0 0 18 18" aria-hidden="true"><path d="M3.5 9.5 7 13l7.5-8"/></svg>`
+      : "") + `<span>${o.t}</span>`;
+    b.addEventListener("click", () => {
+      if(q.multi){
+        const cur = Array.isArray(state.answers[q.id]) ? [...state.answers[q.id]] : [];
+        const at = cur.indexOf(o.v);
+        if(at > -1) cur.splice(at,1); else cur.push(o.v);
+        state.answers[q.id] = cur;
+        render();
+      } else {
+        state.answers[q.id] = o.v;
+        b.setAttribute("aria-pressed","true");
+        // Hold the selected state long enough to read, then advance.
+        // Thesis waits about 1.25s here, which is a server round trip
+        // rather than a design decision, so we do not copy the stall.
+        setTimeout(() => go(1), 420);
+      }
+    });
+    list.appendChild(b);
+  });
+  content.appendChild(list);
+
+  if(q.why){
+    content.appendChild(frag(`<div class="why"><p class="label">Why we ask</p><p>${q.why}</p></div>`));
+  }
+
+  const picked = q.multi && Array.isArray(selected) && selected.length > 0;
+  return { content, action: q.multi ? ctaButton("Next", { disabled: !picked }) : null };
+}
+
+/* ---------- Interstitials ---------- */
+function viewInterstitial(key){
+  if(key === "proof"){
+    return {
+      content: frag(`
+        <div>
+          <p class="kicker">One bottle, one month</p>
+          <h2 class="display" style="font-size:clamp(28px,4vw,42px);margin-top:10px">Sixty servings, and we count them honestly</h2>
+          <p class="q__hint">A single dropper is half a serving. Two of those a day is roughly a month, and a month is about how long our own customers say it takes before they notice anything worth reporting.</p>
+        </div>
+        <div class="figure" style="background-image:url('assets/rail-outdoor.jpg')">
+          <div class="figure__veil"></div>
+          <div class="figure__stat"><span class="big">4.9</span><p class="cap">across 328 reviews on our own store</p></div>
+        </div>`),
+      action: ctaButton("Next")
+    };
+  }
+  if(key === "purity"){
+    return {
+      content: frag(`
+        <div>
+          <p class="kicker">What is actually in it</p>
+          <h2 class="display" style="font-size:clamp(28px,4vw,42px);margin-top:10px">Three ingredients, fourteen lab tests</h2>
+          <p class="q__hint">Organic hemp seeds, organic hemp, organic sunflower seeds. That is the whole label.</p>
+        </div>
+        <div class="stats">
+          <div class="stat"><b>14</b><span>third party lab tests on every batch, from potency to heavy metals</span></div>
+          <div class="stat"><b>7</b><span>certifications carried on the bottle, including USDA Organic and Kosher</span></div>
+          <div class="stat"><b>3</b><span>ingredients, with a QR code on each batch that opens its own results</span></div>
+        </div>
+        <div class="honest">
+          <p class="label">One thing we should clear up</p>
+          <p>You will see sunflower seed oil on our label. It is the carrier that makes the extract absorbable and stable. It is not filler, and calling the bottle "nothing but hemp" was never quite right of us.</p>
+        </div>`),
+      action: ctaButton("Next")
+    };
+  }
+  return {
+    content: frag(`
+      <div>
+        <p class="kicker">How it is taken</p>
+        <h2 class="display" style="font-size:clamp(28px,4vw,42px);margin-top:10px">The routine is the whole product</h2>
+        <p class="q__hint">Half a dropper, held under the tongue for two minutes, twice a day. Morning and evening, at the same two moments you already have.</p>
+      </div>
+      <div class="figure figure--square" style="background-image:url('assets/ritual-drops.jpg')">
+        <div class="figure__veil"></div>
+        <div class="figure__stat"><span class="big">2 min</span><p class="cap">under the tongue, twice a day, for about 30 days per bottle</p></div>
+      </div>`),
+    action: ctaButton("Next")
+  };
+}
+
+/* ---------- Name and email ---------- */
+function viewName(){
+  const content = frag(`
+    <div>
+      <h2 class="q__head">What is your first name?</h2>
+      <p class="q__hint">So we know what to call you.</p>
+      <div class="field" style="margin-top:32px"><input id="nameInput" type="text" placeholder="First name" autocomplete="given-name" value="${escapeHtml(state.name)}"></div>
+    </div>`);
+  const action = ctaButton("Next", { id:"nameNext", disabled: !state.name });
+  setTimeout(() => {
+    const input = el("nameInput"), btn = el("nameNext");
+    if(!input) return;
+    input.addEventListener("input", () => { state.name = input.value.trim(); btn.disabled = !state.name; });
+    input.addEventListener("keydown", (e) => { if(e.key === "Enter" && state.name) go(1); });
+    input.focus();
+  }, 0);
+  return { content, action };
+}
+
+function viewEmail(){
+  const content = frag(`
+    <div>
+      <h2 class="q__head">Where should we send your result?</h2>
+      <p class="q__hint">Only so you can come back to it. We never sell or share your address.</p>
+      <div class="field" style="margin-top:32px"><input id="emailInput" type="email" placeholder="you@example.com" autocomplete="email" value="${escapeHtml(state.email)}"></div>
+      <p class="consent">By entering your email you agree to receive marketing email from Nesa's Hemp. You can unsubscribe from any message.</p>
+    </div>`);
+  const ok = (v) => /.+@.+\..+/.test(v);
+  const action = ctaButton("See my result", { id:"emailNext", disabled: !ok(state.email) });
+  setTimeout(() => {
+    const input = el("emailInput"), btn = el("emailNext");
+    if(!input) return;
+    input.addEventListener("input", () => { state.email = input.value.trim(); btn.disabled = !ok(state.email); });
+    input.addEventListener("keydown", (e) => { if(e.key === "Enter" && ok(state.email)) go(1); });
+    input.focus();
+  }, 0);
+  return { content, action };
+}
+
+/* ---------- Calculating ---------- */
+function viewCalculating(){
+  const content = frag(`
+    <div>
+      <h2 class="display" style="font-size:clamp(26px,3.6vw,38px)">Matching your answers to the label</h2>
+    </div>
+    <div class="calc__list">
+      <div class="calc__row"><b data-count="14">0</b><span>lab tests run on the batch we would ship you</span></div>
+      <div class="calc__row"><b data-count="7">0</b><span>certifications your bottle has to keep</span></div>
+      <div class="calc__row"><b data-count="60">0</b><span>servings, which is roughly one month of the routine</span></div>
+    </div>`);
+  setTimeout(() => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.querySelectorAll("[data-count]").forEach((node, idx) => {
+      const target = parseInt(node.dataset.count, 10);
+      if(reduce){ node.textContent = target; return; }
+      let v = 0;
+      const stepMs = 900 / target;
+      setTimeout(() => {
+        const t = setInterval(() => { v += 1; node.textContent = v; if(v >= target) clearInterval(t); }, stepMs);
+      }, idx * 300);
+    });
+    setTimeout(() => go(1), 2600);
+  }, 0);
+  return { content, action: null };
+}
+
+/* ---------- Results ---------- */
+function viewResults(){
+  const rows = scores();
+  const focus = rows.filter(r => r.value < 60).sort((x,y) => x.value - y.value);
+  const lead = focus[0] || rows.slice().sort((x,y) => x.value - y.value)[0];
+
+  const content = document.createDocumentFragment();
+  content.appendChild(frag(`
+    <div>
+      <p class="kicker">Your profile</p>
+      <h2 class="display" style="font-size:clamp(28px,4vw,42px);margin-top:10px">${escapeHtml(state.name || "Here")}, your routine starts here</h2>
+      <p class="rec__lede">Your answers point first at <strong>${lead.name.toLowerCase()}</strong>. This is a profile built from what you told us, not a measurement of anything in your body.</p>
+    </div>`));
+
+  const card = document.createElement("div");
+  card.className = "score";
+  rows.forEach(r => {
+    const isFocus = r.value < 60;
+    const row = document.createElement("button");
+    row.className = "score__row";
+    row.type = "button";
+    row.setAttribute("aria-expanded","false");
+    row.innerHTML = `
+      <div class="score__head">
+        <span class="score__name">${r.name}</span>
+        <span class="score__bar"><span class="score__fill" data-w="${r.value}"></span></span>
+        <span class="score__tag ${isFocus ? "score__tag--focus" : ""}">${isFocus ? "Focus" : "Steady"}</span>
+      </div>
+      <p class="score__note" hidden>${r.note}</p>`;
+    row.addEventListener("click", () => {
+      const note = row.querySelector(".score__note");
+      const open = !note.hidden;
+      note.hidden = open;
+      row.setAttribute("aria-expanded", String(!open));
+    });
+    card.appendChild(row);
+  });
+  content.appendChild(card);
+  content.appendChild(frag(`<p class="footnote">Scores describe your own answers. They are not a diagnosis and they are not compared against any population average, because we do not hold one.</p>`));
+
+  setTimeout(() => {
+    document.querySelectorAll(".score__fill").forEach((f, i) => {
+      setTimeout(() => { f.style.width = f.dataset.w + "%"; }, 420 + i * 90);
+    });
+  }, 0);
+
+  return { content, action: ctaButton("See what we recommend") };
+}
+
+/* ---------- Recommendation ---------- */
+function viewRecommendation(){
+  const rec = recommendation();
+  const items = rec.items.map(k => PRODUCTS[k]);
+  const total = items.reduce((s,p) => s + p.price, 0);
+  const sub = Math.round(items.reduce((s,p) => s + p.sub, 0) * 100) / 100;
+
+  const content = document.createDocumentFragment();
+  content.appendChild(frag(`
+    <div>
+      <p class="kicker">${rec.em}</p>
+      <h2 class="display rec__head">${rec.display}</h2>
+      <p class="rec__lede">${rec.lede}</p>
+    </div>`));
+
+  const buy = document.createElement("div");
+  buy.className = "buy";
+  items.forEach(p => {
+    buy.appendChild(frag(`
+      <div class="buy__item">
+        <img src="${p.img}" alt="${p.name}">
+        <div class="buy__copy"><h4>${p.name.replace("CBDa", '<span class="nocaps">CBDa</span>')}</h4><p>${p.meta}</p></div>
+        <div class="buy__price">$${p.price.toFixed(2)}</div>
+      </div>`));
+  });
+  const plans = document.createElement("div");
+  plans.className = "plans";
+  [
+    {v:"subscribe", label:"Deliver every 30 days", note:"Change or cancel from your account at any time", cost:sub, save:true},
+    {v:"once", label:"One time order", note:"No subscription, no reminders", cost:total, save:false}
+  ].forEach(pl => {
+    const b = document.createElement("button");
+    b.className = "plan" + (pl.save ? " plan--saver" : "");
+    b.type = "button";
+    b.setAttribute("aria-pressed", state.plan === pl.v ? "true" : "false");
+    b.innerHTML = `
+      ${pl.save ? `<span class="plan__save">Save $${(total - sub).toFixed(2)}</span>` : ""}
+      <span class="plan__radio"></span>
+      <span class="plan__copy"><b>${pl.label}</b><span>${pl.note}</span></span>
+      <span class="plan__cost">$${pl.cost.toFixed(2)}</span>`;
+    b.addEventListener("click", () => { state.plan = pl.v; render(); });
+    plans.appendChild(b);
+  });
+  buy.appendChild(plans);
+  content.appendChild(buy);
+
+  const cart = document.createElement("div");
+  cart.className = "actions";
+  cart.style.margin = "0";
+  cart.appendChild(ctaButton("Add to cart", { onClick: () => {} }));
+  content.appendChild(cart);
+
+  content.appendChild(frag(`
+    <div class="protocol">
+      <p class="label">Your protocol</p>
+      <ol>${protocolLines().map(l => `<li>${l}</li>`).join("")}</ol>
+    </div>`));
+
+  content.appendChild(frag(`
+    <div class="certs">
+      <div class="certs__row">
+        <img src="assets/certs/usda-organic.png" alt="USDA Organic">
+        <img src="assets/certs/mosa.png" alt="MOSA Certified Organic">
+        <img src="assets/certs/kosher.png" alt="Kosher, Kosher Supervisors of Wisconsin">
+        <img src="assets/certs/gmo-free.png" alt="GMO Free">
+        <img src="assets/certs/vegan.png" alt="Vegan">
+        <img src="assets/certs/raw-food.png" alt="Raw Food">
+        <img src="assets/certs/tested-safe.png" alt="Tested Safe Certified Hemp Extract">
+      </div>
+      <p class="footnote" style="margin-top:14px">Every batch ships with a QR code that opens its own 14 test panel, covering potency, pesticides, heavy metals, mycotoxins, residual solvents and microbiology.</p>
+    </div>`));
+
+  const restart = document.createElement("div");
+  restart.className = "actions";
+  restart.style.margin = "0";
+  restart.appendChild(ctaButton("Start the quiz again", { quiet:true, onClick: () => {
+    state.i = 0; state.answers = {}; state.name = ""; state.email = ""; state.plan = "subscribe";
+    render();
+  }}));
+  content.appendChild(restart);
+
+  content.appendChild(frag(`<p class="disclaimer">These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure or prevent any disease. Hemp extract contains less than the 0.3% federal THC limit. If you take prescription medication or you are pregnant or nursing, speak with your doctor first.</p>`));
+
+  return { content, action: null, inline: true };
+}
+
+/* ---------- Wiring ---------- */
+el("backBtn").addEventListener("click", () => go(-1));
+
+function buildTools(){
+  const p = el("toolsPanel");
+  const open = p.dataset.open === "true";
+  const list = visibleScreens();
+  p.innerHTML = list.map((s,i) =>
+    `<button data-jump="${i}" data-current="${i === state.i}">${String(i+1).padStart(2,"0")} &nbsp; ${s.title}</button>`
+  ).join("");
+  p.dataset.open = open ? "true" : "false";
+  p.querySelectorAll("[data-jump]").forEach(b => b.addEventListener("click", () => jumpTo(parseInt(b.dataset.jump, 10))));
+}
+el("toolsToggle").addEventListener("click", () => {
+  const p = el("toolsPanel");
+  p.dataset.open = p.dataset.open === "true" ? "false" : "true";
+});
+
+render();
+</script>
+</body>
+</html>

@@ -1,6 +1,7 @@
 # Nesa's Hemp: "Find your ritual" quiz
 
 **Live:** https://raycazy.github.io/AI-workflow-tasks/nesas-hemp-quiz/
+**Version 2**, the same questions in a Thesis style centred layout: https://raycazy.github.io/AI-workflow-tasks/nesas-hemp-quiz-v2/ (spec in `../quiz-v2/README.md`). v2 is generated from this file, so questions and scoring are edited here and only here.
 **Deliverable:** design prototype only. No Shopify build, no theme code, no app.
 **Reference brief:** takethesis.com/pages/quiz
 **Open:** the live link, or `index.html` locally. The floating **Screens** button lists every screen so you can jump straight to any of them.
