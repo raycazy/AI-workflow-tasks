@@ -37,6 +37,7 @@
   --accent:#2F6B3F;
   --soft:#4E6459;
   --line:#DCD6CA;
+  --line-2:#E7E3DB;
   --tint-warm:#F6F1E8;
   --track:#F2F2F0;
   --yellow:#FFDD00;
@@ -189,6 +190,20 @@ button{font:inherit;color:inherit;cursor:pointer}
   display:flex;
   flex-direction:column;
   padding:40px 20px 0;
+  /* The column is centred, so its contents are too. Option labels were
+     already centred, which left the headings and the certification row
+     disagreeing with each other. */
+  text-align:center;
+}
+/* Structured content stays left aligned. Centring a data row, a priced
+   line item or a numbered protocol makes it harder to scan, not more
+   elegant. */
+.score,.buy,.plans,.protocol,.why{text-align:left}
+/* Centred prose needs its measure held in, or the eye loses the start of
+   each line. */
+.intro__sub,.q__hint,.rec__lede,.consent,.footnote,.disclaimer{
+  max-width:52ch;
+  margin-inline:auto;
 }
 .stage--scroll{padding-bottom:64px}
 /* Flex items shrink by default. Without this the content column squashes
@@ -264,7 +279,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .opt{
   position:relative;
   width:100%;
-  min-height:48px;
+  min-height:56px;
   display:inline-flex;
   align-items:center;
   justify-content:center;
@@ -284,7 +299,46 @@ button{font:inherit;color:inherit;cursor:pointer}
 }
 .opt:hover{background:var(--tint-warm)}
 .opt:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-.opt[aria-pressed="true"]{background:var(--ink);color:#fff}
+
+/* ---- The answer share reveal ----
+   After a single select tap, every option fills to the share of people who
+   chose it and the picked one gains a tick. This is what Thesis pauses for
+   between the tap and the next question.
+   The numbers are PLACEHOLDER until the quiz has real responses. See README. */
+.opt__bar{
+  position:absolute;
+  left:0;top:0;bottom:0;
+  width:0;
+  background:var(--line-2);
+  transition:width 520ms cubic-bezier(.22,.61,.36,1);
+}
+.opt.is-revealed .opt__bar{width:var(--share,0%)}
+.opt__pct{
+  position:absolute;
+  left:22px;
+  font-weight:700;
+  font-size:16px;
+  color:var(--ink);
+  opacity:0;
+  transition:opacity 240ms ease 160ms;
+}
+.opt.is-revealed .opt__pct{opacity:1}
+.opt__label{position:relative;display:inline-flex;align-items:center;gap:8px}
+.opt__check{
+  width:0;
+  height:18px;
+  overflow:hidden;
+  fill:none;
+  stroke:var(--ink);
+  stroke-width:2.4;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  transition:width 200ms cubic-bezier(.22,.61,.36,1);
+}
+.opt.is-chosen .opt__check{width:18px}
+
+/* Multi select keeps a persistent filled state instead, because several
+   answers stay selected and a share bar would not read as a choice. */
 .opt__tick{
   flex:none;
   width:18px;height:18px;
@@ -294,7 +348,8 @@ button{font:inherit;color:inherit;cursor:pointer}
   stroke-linecap:round;
   stroke-linejoin:round;
 }
-.opt[aria-pressed="true"] .opt__tick{stroke:var(--mint)}
+.opt[aria-pressed="true"]:not(.is-revealed){background:var(--ink);color:#fff}
+.opt[aria-pressed="true"]:not(.is-revealed) .opt__tick{stroke:var(--mint)}
 
 .why{max-width:56ch}
 .why p{margin:10px 0 0;font-size:16px;line-height:1.56;color:var(--soft)}
@@ -337,7 +392,8 @@ button{font:inherit;color:inherit;cursor:pointer}
    ============================================================ */
 .intro__display{font-size:clamp(36px,5.2vw,56px)}
 .intro__sub{margin:20px 0 0;font-size:18px;line-height:1.62;color:var(--soft)}
-.intro__meta{margin:24px 0 0;display:flex;flex-wrap:wrap;gap:12px}
+/* A flex container ignores text-align, so the pills need centring of their own. */
+.intro__meta{margin:24px 0 0;display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
 .pill{
   display:inline-flex;
   align-items:center;
@@ -889,6 +945,38 @@ const SCREENS = [
 
 const state = { i:0, answers:{}, name:"", email:"", plan:"subscribe" };
 let lastStepKey = null;
+
+/* ============================================================
+   PLACEHOLDER ANSWER SHARES
+
+   !!! THESE NUMBERS ARE NOT REAL. !!!
+
+   They exist so the reveal pattern can be reviewed. Nesa's has never run
+   this quiz, so no distribution exists yet. Before launch either wire
+   these to the real response counts or ship with SHOW_SHARES = false,
+   because a made up "58% of people chose this" is a fabricated statistic
+   and it is the kind that gets noticed.
+
+   Each question sums to 100.
+   ============================================================ */
+const SHOW_SHARES = true;
+const PLACEHOLDER_SHARE = {
+  age:        { "18-25":9,  "26-34":18, "35-44":24, "45-60":31, "60+":18 },
+  goal:       { comfort:38, sleep:24, recovery:14, stress:16, nutrition:8 },
+  day:        { desk:41, feet:27, physical:19, varies:13 },
+  training:   { rare:22, "1-2":34, "3-4":29, "5+":15 },
+  sleep:      { through:21, waking:36, falling:28, varies:15 },
+  diet:       { whole:24, mixed:43, quick:22, skipping:11 },
+  experience: { never:34, nothing:27, current:23, lapsed:16 },
+  shortfall:  { noeffect:46, taste:17, price:22, consistency:15 },
+  format:     { drops:52, blend:19, either:29 },
+  caffeine:   { none:12, one:31, "two-three":41, "four+":16 },
+  consistency:{ "never-miss":18, "most-days":39, "hit-miss":31, forget:12 }
+};
+function shareFor(qid, value){
+  const q = PLACEHOLDER_SHARE[qid];
+  return q && q[value] != null ? q[value] : null;
+}
 const el = (id) => document.getElementById(id);
 const panel = el("panel");
 const actionsSlot = el("actionsSlot");
@@ -1037,15 +1125,26 @@ function viewQuestion(q){
 
   const list = document.createElement("div");
   list.className = "options";
+  let locked = false;
+
   q.options.forEach(o => {
     const on = q.multi ? (Array.isArray(selected) && selected.includes(o.v)) : selected === o.v;
+    const share = q.multi ? null : shareFor(q.id, o.v);
     const b = document.createElement("button");
     b.className = "opt";
     b.type = "button";
+    b.dataset.value = o.v;
+    if(share != null) b.style.setProperty("--share", share + "%");
     b.setAttribute("aria-pressed", on ? "true" : "false");
-    b.innerHTML = (q.multi
-      ? `<svg class="opt__tick" viewBox="0 0 18 18" aria-hidden="true"><path d="M3.5 9.5 7 13l7.5-8"/></svg>`
-      : "") + `<span>${o.t}</span>`;
+    b.innerHTML =
+      (share != null ? `<span class="opt__bar"></span><span class="opt__pct">${share}%</span>` : "") +
+      `<span class="opt__label">` +
+        (q.multi
+          ? `<svg class="opt__tick" viewBox="0 0 18 18" aria-hidden="true"><path d="M3.5 9.5 7 13l7.5-8"/></svg>`
+          : `<svg class="opt__check" viewBox="0 0 18 18" aria-hidden="true"><path d="M3.5 9.5 7 13l7.5-8"/></svg>`) +
+        `<span>${o.t}</span>` +
+      `</span>`;
+
     b.addEventListener("click", () => {
       if(q.multi){
         const cur = Array.isArray(state.answers[q.id]) ? [...state.answers[q.id]] : [];
@@ -1053,12 +1152,23 @@ function viewQuestion(q){
         if(at > -1) cur.splice(at,1); else cur.push(o.v);
         state.answers[q.id] = cur;
         render();
+        return;
+      }
+      if(locked) return;
+      locked = true;
+      state.answers[q.id] = o.v;
+      b.setAttribute("aria-pressed","true");
+
+      const canReveal = SHOW_SHARES && shareFor(q.id, o.v) != null;
+      if(canReveal){
+        // Fill every option to its share and tick the one they picked.
+        // The pause after this is the point of the screen, not a stall.
+        list.querySelectorAll(".opt").forEach(node => {
+          node.classList.add("is-revealed");
+          if(node === b) node.classList.add("is-chosen");
+        });
+        setTimeout(() => go(1), 1250);
       } else {
-        state.answers[q.id] = o.v;
-        b.setAttribute("aria-pressed","true");
-        // Hold the selected state long enough to read, then advance.
-        // Thesis waits about 1.25s here, which is a server round trip
-        // rather than a design decision, so we do not copy the stall.
         setTimeout(() => go(1), 420);
       }
     });

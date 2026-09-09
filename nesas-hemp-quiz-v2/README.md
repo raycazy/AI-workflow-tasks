@@ -37,7 +37,8 @@ The Thesis quiz was instrumented in a scripted browser: transition and animation
 | Step enter | opacity 0 to 1, `translateY(-192px)` to 0, 500ms, `ease`, `fill-mode: none` | same |
 | Progress track | 7px, full width | same |
 | Progress fill | full width, moved by `translateX`, 500ms `cubic-bezier(.4,0,.2,1)` | same |
-| Option | 610x48, radius 4px, 1px border, label centred, 18px, transparent fill | same geometry, `#172620` border |
+| Option | 610x48, radius 4px, 1px border, label centred, 18px, transparent fill | same, 56px tall to hold the share row, `#172620` border |
+| Answer share reveal | bar fills to the share, percentage at the left, tick on the chosen answer, then a 1.25s hold | same, on placeholder data (see below) |
 | Primary action | 640x64, pinned near the viewport bottom | same box, the theme's 999px ink pill |
 | Page ground | `#FAFAFA` | `#FFFFFF`, the theme's own |
 
@@ -53,9 +54,24 @@ The progress bar moving by `translateX` rather than `width` is worth keeping: a 
  +240ms    -41px  op 0.79      -32px  op 0.83
 ```
 
-### The one thing not copied
+### The answer share reveal, and why the 1.25s pause exists
 
-Thesis waits about **1.25 seconds** between a single select tap and the next question. That is a server round trip while the answer is persisted, not a design decision, so v2 holds the selected state for **420ms** instead: long enough to see the tap register, short enough that eleven questions do not feel like a queue.
+Tap a single select answer and every option fills to the share of people who chose it, the percentage fades in on the left, and the answer you picked gains a tick. Then the quiz advances.
+
+That reveal is the reason Thesis pauses for about **1.25 seconds** after a tap. It is not a server round trip, which is what an earlier read of this suggested. v2 matches the pause, because the pause is the point: it is the only moment in the flow where the person gets something back for answering.
+
+Mechanics: a bar absolutely positioned inside the option animates `width` 0 to the share over 520ms, the percentage fades in on a 160ms delay, and the tick expands from 0 to 18px. Multi select keeps a plain filled state instead, because several answers stay chosen at once and a share bar would not read as a choice.
+
+### The numbers are placeholders and must not ship as they are
+
+`PLACEHOLDER_SHARE` in `template.html` is **invented data**. Nesa's has never run this quiz, so no distribution exists. Every question sums to 100 and the figures are plausible, which is exactly what makes them dangerous: "38% of people chose this" is a factual claim about real customers, and inventing one is a fabricated statistic of the same kind we refused to copy from Thesis's population averages.
+
+Before launch, one of these two:
+
+1. Wire the shares to real response counts, and hide the reveal until a question has enough answers to be worth showing. A few hundred per question is a reasonable floor.
+2. Ship with `SHOW_SHARES = false`. The flag is at the top of the script and turning it off falls back cleanly to the 420ms hold with no bars and no percentages.
+
+Nothing else in the quiz depends on these numbers. They are display only.
 
 ### Why the fade is safe here
 
