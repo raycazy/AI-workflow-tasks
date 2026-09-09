@@ -260,7 +260,9 @@ button{font:inherit;color:inherit;cursor:pointer}
   text-wrap:balance;
 }
 .q__hint{
-  margin:12px 0 0;
+  /* auto inline margins, not 0. This shorthand sits after the measure rule
+     near the top and a bare 0 resets the centring that rule applies. */
+  margin:12px auto 0;
   font-size:16px;
   line-height:1.56;
   color:var(--soft);
@@ -391,7 +393,7 @@ button{font:inherit;color:inherit;cursor:pointer}
    INTRO
    ============================================================ */
 .intro__display{font-size:clamp(36px,5.2vw,56px)}
-.intro__sub{margin:20px 0 0;font-size:18px;line-height:1.62;color:var(--soft)}
+.intro__sub{margin:20px auto 0;font-size:18px;line-height:1.62;color:var(--soft)}
 /* A flex container ignores text-align, so the pills need centring of their own. */
 .intro__meta{margin:24px 0 0;display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
 .pill{
@@ -455,7 +457,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 
 .honest{padding:22px;border:1px solid var(--line);border-radius:14px;background:var(--tint-warm)}
 .honest p{margin:10px 0 0;font-size:16px;line-height:1.56;color:var(--ink)}
-.footnote{margin:0;font-size:12px;line-height:1.6;color:var(--grey)}
+.footnote{margin:0 auto;font-size:12px;line-height:1.6;color:var(--grey)}
 
 /* ============================================================
    INPUTS
@@ -475,7 +477,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 }
 .field input::placeholder{color:var(--grey);opacity:1}
 .field input:focus{outline:0;border-color:var(--ink)}
-.consent{margin:16px 0 0;font-size:14px;line-height:1.56;color:var(--soft)}
+.consent{margin:16px auto 0;font-size:14px;line-height:1.56;color:var(--soft)}
 
 /* ============================================================
    CALCULATING
@@ -517,7 +519,7 @@ button{font:inherit;color:inherit;cursor:pointer}
    RECOMMENDATION
    ============================================================ */
 .rec__head{font-size:clamp(32px,4.4vw,46px);margin:10px 0 0}
-.rec__lede{margin:20px 0 0;font-size:18px;line-height:1.62;color:var(--soft)}
+.rec__lede{margin:20px auto 0;font-size:18px;line-height:1.62;color:var(--soft)}
 .buy{border:1px solid var(--line);border-radius:14px;background:var(--bg);overflow:hidden;text-align:left}
 .buy__item{display:flex;gap:20px;align-items:center;padding:20px;border-top:1px solid var(--line)}
 .buy__item:first-child{border-top:0}
