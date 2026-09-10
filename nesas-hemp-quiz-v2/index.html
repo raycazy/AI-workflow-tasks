@@ -209,6 +209,8 @@ button{font:inherit;color:inherit;cursor:pointer}
 /* Flex items shrink by default. Without this the content column squashes
    on a tall screen and its image overruns the pinned action. */
 .col{width:100%;max-width:var(--col);margin:0 auto;flex-shrink:0}
+/* The recommendation is a PDP, so it gets a product page width, not a quiz column. */
+.col--wide{max-width:1080px}
 
 .step{
   display:flex;
@@ -496,41 +498,102 @@ button{font:inherit;color:inherit;cursor:pointer}
 /* ============================================================
    RESULTS
    ============================================================ */
-.score{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--bg)}
+/* The Thesis scorecard is an accordion, not a list of bars. Each row opens
+   to explain the dimension and name the questions that fed it, which is the
+   only place the quiz shows its working. */
+.score{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--bg);text-align:left}
 .score__row{
-  display:block;width:100%;text-align:left;padding:20px;
+  display:block;width:100%;text-align:left;padding:24px 20px;
   background:none;border:0;border-top:1px solid var(--line);
 }
 .score__row:first-child{border-top:0}
 .score__row:hover{background:var(--tint-warm)}
-.score__head{display:flex;align-items:center;gap:16px}
-.score__name{flex:0 0 130px;font-weight:700;font-size:16px;color:var(--ink)}
-.score__bar{display:block;flex:1;height:8px;border-radius:999px;background:var(--line);overflow:hidden}
-.score__fill{display:block;height:100%;width:0;background:var(--forest);border-radius:999px;transition:width 720ms cubic-bezier(.22,.61,.36,1)}
-.score__tag{
-  flex:none;font-weight:800;text-transform:uppercase;letter-spacing:.84px;
-  font-size:12px;line-height:25px;height:25px;padding:0 8px;border-radius:5px;color:var(--grey);
+.score__head{display:flex;align-items:center;gap:12px}
+.score__name{flex:0 0 116px;font-weight:700;font-size:16px;line-height:1.3;color:var(--ink)}
+
+/* Scale: a track, the fill, and tick marks that drop to the axis labels. */
+.score__scale{flex:1;min-width:0;position:relative}
+.score__bar{
+  display:block;height:10px;border-radius:2px;background:var(--track);overflow:hidden;
 }
-.score__tag--focus{background:var(--yellow);color:var(--ink)}
-.score__note{margin:14px 0 0 146px;font-size:16px;line-height:1.56;color:var(--soft)}
-.score__note[hidden]{display:none}
+.score__fill{
+  display:block;height:100%;width:0;background:var(--line-2);
+  transition:width 720ms cubic-bezier(.22,.61,.36,1);
+}
+.score__ticks{position:absolute;left:0;right:0;top:-6px;height:22px;pointer-events:none}
+.score__tick{position:absolute;top:0;width:1px;height:22px;background:var(--line)}
+.score__axis{
+  display:none;position:relative;height:16px;margin:8px 0 0;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:12px;letter-spacing:.06em;color:var(--grey);text-transform:uppercase;
+}
+.score__axis span{position:absolute;top:0;white-space:nowrap}
+.score__pct{flex:none;font-weight:700;font-size:16px;color:var(--ink);min-width:44px;text-align:right}
+.score__chev{
+  flex:none;width:16px;height:16px;fill:none;stroke:var(--grey);stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round;
+  transition:transform 200ms cubic-bezier(.22,.61,.36,1);
+}
+.score__row[aria-expanded="true"] .score__chev{transform:rotate(90deg)}
+.score__row[aria-expanded="true"] .score__axis{display:block}
+.score__body{margin:22px 0 0 128px}
+.score__body[hidden]{display:none}
+.score__body p{margin:0;font-size:18px;line-height:1.5;color:var(--ink)}
+.score__body p b{font-weight:800}
+.score__qs{margin:24px 0 0}
+.score__qs h4{margin:0;font-size:14px;font-weight:800;line-height:1.4;color:var(--ink)}
+.score__qs ul{margin:10px 0 0;padding:0 0 0 20px;display:flex;flex-direction:column;gap:8px}
+.score__qs li{font-size:14px;line-height:1.5;color:var(--soft)}
+@media (max-width:760px){
+  .score__name{flex-basis:84px;font-size:14px}
+  .score__body{margin-left:0}
+  .score__body p{font-size:16px}
+}
 
 /* ============================================================
    RECOMMENDATION
    ============================================================ */
-.rec__head{font-size:clamp(32px,4.4vw,46px);margin:10px 0 0}
-.rec__lede{margin:20px auto 0;font-size:18px;line-height:1.62;color:var(--soft)}
-.buy{border:1px solid var(--line);border-radius:14px;background:var(--bg);overflow:hidden;text-align:left}
-.buy__item{display:flex;gap:20px;align-items:center;padding:20px;border-top:1px solid var(--line)}
-.buy__item:first-child{border-top:0}
-.buy__item img{width:96px;height:96px;object-fit:cover;border-radius:6px;flex:none;background:var(--tint-warm)}
-.buy__copy{flex:1;min-width:0}
-.buy__copy h4{margin:0;font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:20px;line-height:1.2;color:var(--ink)}
-.buy__copy p{margin:6px 0 0;font-size:14px;line-height:1.42;color:var(--soft)}
-.buy__price{flex:none;font-family:var(--display);font-weight:400;font-size:20px;color:var(--ink)}
+/* Thesis hands off to a real PDP after the results. This screen is that
+   PDP: gallery left, buy box right, and the only quiz-shaped thing left is
+   the personalised line above the product name. */
+.pdp{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:clamp(32px,5vw,72px);
+  align-items:start;
+  text-align:left;
+  width:100%;
+}
+.pdp__media{
+  position:relative;aspect-ratio:1/1;border-radius:20px;overflow:hidden;
+  background:var(--tint-warm);
+}
+.pdp__media img{width:100%;height:100%;object-fit:cover}
+.pdp__seal{
+  position:absolute;top:14px;right:15px;width:96px;height:96px;border-radius:50%;
+  background:var(--yellow);color:var(--ink);display:grid;place-items:center;text-align:center;
+  font-weight:800;font-size:12px;line-height:1.25;letter-spacing:.04em;text-transform:uppercase;padding:8px;
+}
+.pdp__buy{min-width:0}
+/* Everything under the PDP is prose and badges, so it keeps a readable
+   measure instead of running the full product page width. */
+.rec__below{max-width:720px;margin:0 auto;width:100%;display:flex;flex-direction:column;gap:48px}
+.rec__kicker{margin:0 0 10px;font-weight:800;font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.rec__head{font-size:clamp(30px,3.6vw,44px);margin:0;text-align:left}
+.rec__rating{display:flex;align-items:center;gap:8px;margin:14px 0 0;font-size:14px;color:var(--soft)}
+.rec__stars{display:flex;gap:2px}
+.rec__stars svg{width:14px;height:14px;fill:#FDA800}
+.rec__lede{margin:16px 0 0;font-size:16px;line-height:1.6;color:var(--soft);max-width:none}
+.rec__includes{margin:16px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.rec__includes li{display:flex;gap:10px;align-items:center;font-size:14px;line-height:1.5;color:var(--ink)}
+.rec__includes svg{flex:none;width:14px;height:14px;fill:none;stroke:var(--accent);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.rec__guarantee{
+  margin:16px 0 0;text-align:center;font-weight:800;font-size:12px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--soft);
+}
 .nocaps{text-transform:none}
 
-.plans{display:flex;flex-direction:column;gap:15px;padding:20px;border-top:1px solid var(--line)}
+.plans{display:flex;flex-direction:column;gap:15px;margin:22px 0 0}
 .plan{
   position:relative;display:flex;align-items:center;gap:15px;padding:18px 20px;
   border:1px solid var(--line);border-radius:14px;background:var(--bg);text-align:left;
@@ -544,12 +607,24 @@ button{font:inherit;color:inherit;cursor:pointer}
 .plan__copy b{display:block;font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:18px;line-height:1.32;color:var(--ink)}
 .plan__copy span{display:block;font-size:14px;line-height:1.42;color:var(--soft);margin:2px 0 0}
 .plan__cost{flex:none;text-align:right;font-family:var(--display);font-weight:400;font-size:20px;color:var(--ink)}
+.plan__was{
+  display:block;font-family:var(--display);font-size:16px;color:var(--grey);
+  text-decoration:line-through;line-height:1.2;
+}
+.plan__off{display:block;margin:2px 0 0;font-weight:800;font-size:12px;letter-spacing:.04em;color:var(--accent)}
 .plan__save{
   position:absolute;left:20px;bottom:100%;margin-bottom:-12px;height:25px;padding:0 8px;
   border-radius:5px;background:var(--yellow);color:var(--ink);font-weight:800;font-size:14px;
   line-height:25px;letter-spacing:.84px;text-transform:uppercase;
 }
+/* The supply tier tab, sitting on the card's top right edge */
+.plan__badge{
+  position:absolute;right:-1px;bottom:100%;margin-bottom:-1px;height:26px;padding:0 10px;
+  background:var(--ink);color:#fff;font-weight:800;font-size:12px;line-height:26px;
+  letter-spacing:.84px;text-transform:uppercase;border-radius:10px 10px 0 0;
+}
 .plan--saver{margin-top:20px}
+.plan--badged{margin-top:26px}
 
 .protocol{text-align:left}
 .protocol ol{margin:16px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:16px}
@@ -590,8 +665,8 @@ button{font:inherit;color:inherit;cursor:pointer}
   .stats{grid-template-columns:1fr}
   .score__name{flex-basis:92px;font-size:14px}
   .score__note{margin-left:0}
-  .buy__item{flex-wrap:wrap}
-  .buy__price{width:100%}
+  .pdp{grid-template-columns:minmax(0,1fr);gap:28px}
+  .pdp__seal{width:76px;height:76px;font-size:12px}
   .intro__display,.rec__head{font-size:28px}
 }
 
@@ -1031,6 +1106,9 @@ function render(){
   const view = viewFor(screen);
   panel.appendChild(view.content);
 
+  // The recommendation is a product page, so it takes a product page width.
+  panel.parentElement.className = "col" + (view.wide ? " col--wide" : "");
+
   // The action is pinned to the bottom of the stage on every screen that
   // fits one, which is what gives Thesis its one screen feel. The
   // recommendation scrolls, so its buttons stay inline instead.
@@ -1304,7 +1382,41 @@ function viewCalculating(){
   return { content, action: null };
 }
 
-/* ---------- Results ---------- */
+/* ---------- Results ----------
+   The Thesis scorecard, rebuilt: an accordion where each row carries a
+   WEAK to OPTIMAL scale, and opens to explain the dimension and name the
+   questions that actually fed it. */
+const SCORE_META = {
+  comfort:{
+    blurb:"means the aches you have stopped mentioning. The routine is aimed here first, at a steady daily dose rather than a bigger one, because everyday comfort responds to consistency more than to strength.",
+    qs:["What brought you to Nesa’s today?","Which of these would you like to support?","What does a normal day ask of your body?","How old are you?"]
+  },
+  sleep:{
+    blurb:"is where we place the second serving of the day. If you wake in the night we move that dose earlier rather than raising the amount, and we look at what caffeine is doing to the back half of your day.",
+    qs:["How do you sleep on a normal night?","How much caffeine is in a normal day?","What brought you to Nesa’s today?","Which of these would you like to support?"]
+  },
+  recovery:{
+    blurb:"is what your week asks of your body and how much of it you get back. Training load and a physical working day pull in the same direction here, and both change the timing we suggest.",
+    qs:["How often do you train or move on purpose?","What does a normal day ask of your body?","What brought you to Nesa’s today?","Which of these would you like to support?"]
+  },
+  stress:{
+    blurb:"is the load your nervous system carries before anything is added to it. Caffeine and a difficult night compound each other, so we read them together rather than one at a time.",
+    qs:["What brought you to Nesa’s today?","How much caffeine is in a normal day?","How do you sleep on a normal night?","Which of these would you like to support?"]
+  },
+  nutrition:{
+    blurb:"is the gap between what a normal week feeds you and what it does not. This is the one dimension where the powder does more than the oil, and it is the reason the two products exist.",
+    qs:["In a normal week, what does most of your food look like?","What brought you to Nesa’s today?","Which of these would you like to support?"]
+  }
+};
+
+/* !!! PLACEHOLDER, LIKE PLACEHOLDER_SHARE ABOVE. !!!
+   The AVG marker is a claim about real customers. Nesa's has never run this
+   quiz, so there is no average. Wire it to real data or set SHOW_AVG=false,
+   which drops the marker and leaves the WEAK to OPTIMAL scale, which is only
+   an axis and claims nothing. */
+const SHOW_AVG = true;
+const PLACEHOLDER_AVG = { comfort:61, sleep:54, recovery:58, stress:57, nutrition:63 };
+
 function viewResults(){
   const rows = scores();
   const focus = rows.filter(r => r.value < 60).sort((x,y) => x.value - y.value);
@@ -1314,35 +1426,57 @@ function viewResults(){
   content.appendChild(frag(`
     <div>
       <p class="kicker">Your profile</p>
-      <h2 class="display" style="font-size:clamp(28px,4vw,42px);margin-top:10px">${escapeHtml(state.name || "Here")}, your routine starts here</h2>
-      <p class="rec__lede">Your answers point first at <strong>${lead.name.toLowerCase()}</strong>. This is a profile built from what you told us, not a measurement of anything in your body.</p>
+      <h2 class="display" style="font-size:clamp(28px,4vw,42px);margin-top:10px">${state.name ? escapeHtml(state.name) + ", here are your results" : "Here are your results"}</h2>
+      <p class="rec__lede" style="text-align:center;max-width:52ch;margin-inline:auto">Based on your answers, your routine is aimed first at <strong>${lead.name.toLowerCase()}</strong>. Open any row to see what it means and which questions moved it.</p>
     </div>`));
 
   const card = document.createElement("div");
   card.className = "score";
-  rows.forEach(r => {
-    const isFocus = r.value < 60;
+
+  rows.forEach((r, idx) => {
+    const meta = SCORE_META[r.key] || { blurb:"", qs:[] };
+    const avg = SHOW_AVG ? PLACEHOLDER_AVG[r.key] : null;
+    const open = idx === 0;
     const row = document.createElement("button");
     row.className = "score__row";
     row.type = "button";
-    row.setAttribute("aria-expanded","false");
+    row.setAttribute("aria-expanded", open ? "true" : "false");
     row.innerHTML = `
       <div class="score__head">
         <span class="score__name">${r.name}</span>
-        <span class="score__bar"><span class="score__fill" data-w="${r.value}"></span></span>
-        <span class="score__tag ${isFocus ? "score__tag--focus" : ""}">${isFocus ? "Focus" : "Steady"}</span>
+        <span class="score__scale">
+          <span class="score__bar"><span class="score__fill" data-w="${r.value}"></span></span>
+          <span class="score__ticks">
+            <span class="score__tick" style="left:0"></span>
+            ${avg != null ? `<span class="score__tick" style="left:${avg}%"></span>` : ""}
+            <span class="score__tick" style="right:0"></span>
+          </span>
+          <span class="score__axis">
+            <span style="left:0">Weak</span>
+            ${avg != null ? `<span style="left:${avg}%;transform:translateX(-50%)">Avg ${avg}%</span>` : ""}
+            <span style="right:0">Optimal</span>
+          </span>
+        </span>
+        <span class="score__pct">${r.value}%</span>
+        <svg class="score__chev" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>
       </div>
-      <p class="score__note" hidden>${r.note}</p>`;
+      <div class="score__body" ${open ? "" : "hidden"}>
+        <p><b>${r.name}</b> ${meta.blurb}</p>
+        <div class="score__qs">
+          <h4>Key questions that influence this score</h4>
+          <ul>${meta.qs.map(q => `<li>${q}</li>`).join("")}</ul>
+        </div>
+      </div>`;
     row.addEventListener("click", () => {
-      const note = row.querySelector(".score__note");
-      const open = !note.hidden;
-      note.hidden = open;
-      row.setAttribute("aria-expanded", String(!open));
+      const body = row.querySelector(".score__body");
+      const isOpen = !body.hidden;
+      body.hidden = isOpen;
+      row.setAttribute("aria-expanded", String(!isOpen));
     });
     card.appendChild(row);
   });
   content.appendChild(card);
-  content.appendChild(frag(`<p class="footnote">Scores describe your own answers. They are not a diagnosis and they are not compared against any population average, because we do not hold one.</p>`));
+  content.appendChild(frag(`<p class="footnote">Scores describe your own answers. They are not a diagnosis, and the scale is a guide rather than a measurement of anything in your body.</p>`));
 
   setTimeout(() => {
     document.querySelectorAll(".score__fill").forEach((f, i) => {
@@ -1350,68 +1484,95 @@ function viewResults(){
     });
   }, 0);
 
-  return { content, action: ctaButton("See what we recommend") };
+  return { content, action: ctaButton("See your recommendation") };
 }
 
-/* ---------- Recommendation ---------- */
+/* ---------- Recommendation ----------
+   Thesis ends by handing the person to a real PDP. This is that page:
+   gallery left, buy box right, supply tiers, and one personalised line
+   above the product name so the quiz is still visible in the result. */
 function viewRecommendation(){
   const rec = recommendation();
   const items = rec.items.map(k => PRODUCTS[k]);
   const total = items.reduce((s,p) => s + p.price, 0);
   const sub = Math.round(items.reduce((s,p) => s + p.sub, 0) * 100) / 100;
+  const lead = items[0];
+  const first = (state.name || "").trim();
 
   const content = document.createDocumentFragment();
-  content.appendChild(frag(`
-    <div>
-      <p class="kicker">${rec.em}</p>
-      <h2 class="display rec__head">${rec.display}</h2>
-      <p class="rec__lede">${rec.lede}</p>
+  const pdp = document.createElement("div");
+  pdp.className = "pdp";
+
+  pdp.appendChild(frag(`
+    <div class="pdp__media">
+      <img src="${lead.img}" alt="${lead.name}">
+      <span class="pdp__seal">Save<br>$${(total - sub).toFixed(0)}</span>
     </div>`));
 
-  const buy = document.createElement("div");
-  buy.className = "buy";
-  items.forEach(p => {
-    buy.appendChild(frag(`
-      <div class="buy__item">
-        <img src="${p.img}" alt="${p.name}">
-        <div class="buy__copy"><h4>${p.name.replace("CBDa", '<span class="nocaps">CBDa</span>')}</h4><p>${p.meta}</p></div>
-        <div class="buy__price">$${p.price.toFixed(2)}</div>
-      </div>`));
-  });
+  const buyCol = document.createElement("div");
+  buyCol.className = "pdp__buy";
+  buyCol.appendChild(frag(`
+    <p class="rec__kicker">${first ? escapeHtml(first) + "’s match" : "Your match"} · ${rec.em}</p>
+    <h2 class="display rec__head">${rec.display}</h2>
+    <div class="rec__rating">
+      <span class="rec__stars">
+        ${Array(5).fill('<svg viewBox="0 0 16 16"><path d="M8 1l2.1 4.3 4.7.7-3.4 3.3.8 4.7L8 11.8 3.8 14l.8-4.7L1.2 6l4.7-.7z"/></svg>').join("")}
+      </span>
+      <span>4.9 stars (328 reviews on our own store)</span>
+    </div>
+    <p class="rec__lede">${rec.lede}</p>
+    <ul class="rec__includes">
+      ${items.map(p => `<li><svg viewBox="0 0 14 14"><path d="M2.5 7.5L5.5 10.5l6-7"/></svg><span>${p.name.replace("CBDa", '<span class="nocaps">CBDa</span>')}, ${p.meta}</span></li>`).join("")}
+      <li><svg viewBox="0 0 14 14"><path d="M2.5 7.5L5.5 10.5l6-7"/></svg><span>A dosing card with your own protocol, printed for the fridge</span></li>
+      <li><svg viewBox="0 0 14 14"><path d="M2.5 7.5L5.5 10.5l6-7"/></svg><span>Free US shipping on every subscription order</span></li>
+    </ul>`));
+
   const plans = document.createElement("div");
   plans.className = "plans";
   [
-    {v:"subscribe", label:"Deliver every 30 days", note:"Change or cancel from your account at any time", cost:sub, save:true},
-    {v:"once", label:"One time order", note:"No subscription, no reminders", cost:total, save:false}
+    {v:"subscribe", label:"Deliver every 30 days", note:"Change or cancel from your account at any time", cost:sub, was:total, save:true, badge:"Most chosen"},
+    {v:"once", label:"One time order", note:"No subscription, no reminders", cost:total, was:null, save:false, badge:null}
   ].forEach(pl => {
+    const off = pl.was ? Math.round((1 - pl.cost / pl.was) * 100) : 0;
     const b = document.createElement("button");
-    b.className = "plan" + (pl.save ? " plan--saver" : "");
+    b.className = "plan" + (pl.save ? " plan--saver" : "") + (pl.badge ? " plan--badged" : "");
     b.type = "button";
     b.setAttribute("aria-pressed", state.plan === pl.v ? "true" : "false");
     b.innerHTML = `
       ${pl.save ? `<span class="plan__save">Save $${(total - sub).toFixed(2)}</span>` : ""}
+      ${pl.badge ? `<span class="plan__badge">${pl.badge}</span>` : ""}
       <span class="plan__radio"></span>
       <span class="plan__copy"><b>${pl.label}</b><span>${pl.note}</span></span>
-      <span class="plan__cost">$${pl.cost.toFixed(2)}</span>`;
+      <span class="plan__cost">
+        ${pl.was ? `<span class="plan__was">$${pl.was.toFixed(2)}</span>` : ""}
+        $${pl.cost.toFixed(2)}
+        ${pl.was ? `<span class="plan__off">${off}% off</span>` : ""}
+      </span>`;
     b.addEventListener("click", () => { state.plan = pl.v; render(); });
     plans.appendChild(b);
   });
-  buy.appendChild(plans);
-  content.appendChild(buy);
+  buyCol.appendChild(plans);
 
   const cart = document.createElement("div");
   cart.className = "actions";
-  cart.style.margin = "0";
+  cart.style.margin = "22px 0 0";
   cart.appendChild(ctaButton("Add to cart", { onClick: () => {} }));
-  content.appendChild(cart);
+  buyCol.appendChild(cart);
+  buyCol.appendChild(frag(`<p class="rec__guarantee">30 day money back guarantee · Ships free on subscription</p>`));
+  pdp.appendChild(buyCol);
+  content.appendChild(pdp);
 
-  content.appendChild(frag(`
+  const below = document.createElement("div");
+  below.className = "rec__below";
+  content.appendChild(below);
+
+  below.appendChild(frag(`
     <div class="protocol">
-      <p class="label">Your protocol</p>
+      <p class="label">${first ? escapeHtml(first) + "’s protocol" : "Your protocol"}</p>
       <ol>${protocolLines().map(l => `<li>${l}</li>`).join("")}</ol>
     </div>`));
 
-  content.appendChild(frag(`
+  below.appendChild(frag(`
     <div class="certs">
       <div class="certs__row">
         <img src="assets/certs/usda-organic.png" alt="USDA Organic">
@@ -1427,18 +1588,17 @@ function viewRecommendation(){
 
   const restart = document.createElement("div");
   restart.className = "actions";
-  restart.style.margin = "0";
+  restart.style.margin = "0 auto";
   restart.appendChild(ctaButton("Start the quiz again", { quiet:true, onClick: () => {
     state.i = 0; state.answers = {}; state.name = ""; state.email = ""; state.plan = "subscribe";
     render();
   }}));
-  content.appendChild(restart);
+  below.appendChild(restart);
 
-  content.appendChild(frag(`<p class="disclaimer">These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure or prevent any disease. Hemp extract contains less than the 0.3% federal THC limit. If you take prescription medication or you are pregnant or nursing, speak with your doctor first.</p>`));
+  below.appendChild(frag(`<p class="disclaimer">These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure or prevent any disease. Hemp extract contains less than the 0.3% federal THC limit. If you take prescription medication or you are pregnant or nursing, speak with your doctor first.</p>`));
 
-  return { content, action: null, inline: true };
+  return { content, action: null, inline: true, wide: true };
 }
-
 /* ---------- Wiring ---------- */
 el("backBtn").addEventListener("click", () => go(-1));
 
