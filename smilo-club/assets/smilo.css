@@ -78,7 +78,7 @@ p,li,dd,td{ text-wrap:pretty; }
 @media (max-width:600px){ h2{ font-size:32px; } }
 
 /* Price state and plan visibility (review toggles; Liquid conditionals in the theme) */
-html[data-pris="a"] .if-b, html[data-pris="b"] .if-a{ display:none !important; }
+html:not([data-free="1"]) .if-free, html[data-free="1"] .if-paid, html[data-save="0"] .if-save{ display:none !important; }
 body[data-plan="enkelt"] .if-klub, body:not([data-plan="enkelt"]) .if-enkelt{ display:none !important; }
 [data-cart][data-state="klub"] [data-show]:not([data-show~="klub"]),
 [data-cart][data-state="engang"] [data-show]:not([data-show~="engang"]),
@@ -921,3 +921,10 @@ html.has-drawer{ overflow:hidden; }
 .papstate__lead{ font-size:22px; line-height:1.5; }
 @media (max-width:1100px){ .papstate__grid{ grid-template-columns:1fr; gap:28px; } .papstate .notin{ grid-column:auto; } }
 @media (max-width:600px){ .papstate__lead{ font-size:18px; } }
+
+/* Club card tab: the saving in percent, computed from the two live prices (rounded down).
+   Smaller than the price, no struck former price. */
+.plan--klub{ position:relative; }
+.plan__tab{ position:absolute; top:-12px; left:16px; display:block; height:24px; line-height:24px !important; padding:0 10px; border-radius:var(--r-pill); background:var(--ink); color:var(--yellow); font-size:12px; font-weight:700; line-height:1; white-space:nowrap; }
+.plans{ padding-top:6px; }
+.plan--klub .plan__pick{ padding-top:22px; }

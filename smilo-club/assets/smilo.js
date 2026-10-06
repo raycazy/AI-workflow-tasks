@@ -1,29 +1,27 @@
 /* Smilo Club theme script, v2 (2026-10-05)
-   Behaviour that maps to theme JS: price state for review, mobile menu, announcement
+   Behaviour that maps to theme JS: price model, mobile menu, announcement
    ticker, plan picker, gallery pager, sticky buy column, sticky add to cart, cart drawer
    (focus trap, inert background, Escape) and cart states.
-   Review routes: produkt.html#kurv, #kurv-engang, #kurv-tom; kurv.html, #engang, #tom;
-   add ?pris=b to any page for price state B. */
+   Review routes: produkt.html#kurv, #kurv-engang, #kurv-tom; kurv.html, #engang, #tom. */
 (() => {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
   const root = document.documentElement;
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- Price model (sample values from the copy deck; selling plan prices in the theme) ---------- */
-  const STATES = {
-    a: { pris_klub: 399, pris_enkelt: 399, fragt_klub: 39, fragt_enkelt: 39 },
-    b: { pris_klub: 349, pris_enkelt: 399, fragt_klub: 0, fragt_enkelt: 39 },
-  };
-  const state = root.dataset.pris === 'b' ? 'b' : 'a';
-  const p = STATES[state];
+  /* ---------- Price model (sample values; selling plan prices in the theme) ----------
+     One rendered state since 2026-10-07 (user: "Subscription should be 50% off"):
+     Klubben 199 kr. on every pack, one pack 399 kr. Every number below is computed from these. */
+  const p = { pris_klub: 199, pris_enkelt: 399, fragt_klub: 39, fragt_enkelt: 39 };
   const dec = (n) => n.toFixed(2).replace('.', ',');
+  const spar = p.pris_enkelt - p.pris_klub;
   const V = {
     pris_klub: p.pris_klub,
     pris_enkelt: p.pris_enkelt,
     pr_beh_klub: dec(p.pris_klub / 14),
     pr_beh_enkelt: dec(p.pris_enkelt / 14),
-    spar: p.pris_enkelt - p.pris_klub,
+    spar,
+    spar_pct: Math.floor((spar / p.pris_enkelt) * 100), // from the two live prices, rounded down
     fragt_enkelt: p.fragt_enkelt,
     fragt_klub_txt: p.fragt_klub ? `${p.fragt_klub} kr.` : 'Gratis',
     fragt_saetning: p.fragt_klub ? `Fragt ${p.fragt_klub} kr. pr. pakke.` : 'Fri fragt.',
@@ -31,12 +29,9 @@
     total_enkelt: p.pris_enkelt + p.fragt_enkelt,
   };
   $$('[data-v]').forEach((el) => { if (V[el.dataset.v] !== undefined) el.textContent = V[el.dataset.v]; });
-  if (state === 'b') {
-    $$('a[href]').forEach((a) => {
-      const h = a.getAttribute('href');
-      if (/^(index|produkt|kurv)\.html/.test(h)) a.setAttribute('href', h.replace(/^([\w]+\.html)/, '$1?pris=b'));
-    });
-  }
+  /* Conditional lines follow the values: .if-save only with a saving, .if-free only with free club shipping */
+  root.dataset.save = spar > 0 ? '1' : '0';
+  root.dataset.free = p.fragt_klub === 0 ? '1' : '0';
 
   /* ---------- Mobile menu ---------- */
   const menuBtn = $('.menu-btn');
