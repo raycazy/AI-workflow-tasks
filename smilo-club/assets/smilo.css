@@ -413,6 +413,12 @@ body[data-plan="enkelt"] .if-klub, body:not([data-plan="enkelt"]) .if-enkelt{ di
 .pin[data-side="l"] span{ right:calc(var(--len) + 8px); }
 .pin[data-side="l"]::after{ right:7px; }
 @media (max-width:1100px){ .anno{ --W:440px; } .pin span{ font-size:12px; padding:6px 10px; } }
+/* 1101 to 1360: the stage sizes from the space left after the label columns, and sits off centre so the
+   longer right hand labels stay inside the content width (was a fixed 600px stage that overflowed). */
+@media (min-width:1101px) and (max-width:1360px){
+  .anno{ --wrap:min(100vw - 2 * var(--gutter), var(--maxw)); --W:clamp(400px, calc(var(--wrap) - 640px), 600px); justify-items:start; }
+  .anno__stage{ margin-left:calc((var(--wrap) - var(--W) - 640px) / 2 + 280px); }
+}
 @media (max-width:900px){
   .anno{ display:block; }
   .anno__stage{ width:100%; }
@@ -428,8 +434,6 @@ body[data-plan="enkelt"] .if-klub, body:not([data-plan="enkelt"]) .if-enkelt{ di
 }
 
 /* ---------- Section: Fra behandling 1 til pakke 2 (PDP 6) ---------- */
-.journey__head{ display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:64px; align-items:end; }
-.journey__text{ display:grid; gap:12px; font-size:18px; color:var(--soft-ink); max-width:600px; }
 @media (max-width:600px){
   .journey__text{ font-size:16px; }
 }
@@ -714,13 +718,6 @@ html.has-drawer{ overflow:hidden; }
 
 /* PDP 5 on Powder Blue */
 
-/* PDP 6: two objects, no connector graphic */
-.journey__row{ display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:48px; }
-.journey__obj .tile{ aspect-ratio:4/3; }
-.journey__obj p{ margin-top:14px; font-size:20px; font-weight:700; }
-.journey__obj p span{ margin-left:10px; font-weight:500; color:var(--muted); }
-@media (max-width:1100px){ .journey__head{ grid-template-columns:1fr; gap:20px; } }
-@media (max-width:600px){ .journey__row{ gap:12px; margin-top:28px; } .journey__obj p{ font-size:16px; } .journey__obj p span{ display:block; margin-left:0; font-size:14px; } }
 
 /* PDP 10: image beside the questions */
 .faq__img{ width:100%; aspect-ratio:4/3; margin-top:12px; }
@@ -760,10 +757,6 @@ html.has-drawer{ overflow:hidden; }
 .remove{ min-width:44px; justify-content:center; }
 /* PDP 8: product image beside the documentation table */
 .dokimg{ aspect-ratio:4/3; align-self:start; }
-/* PDP 6: plain gap label between the two packs */
-.journey__row{ grid-template-columns:minmax(0,1fr) 120px minmax(0,1fr); align-items:center; }
-.journey__gap{ display:grid; justify-items:center; gap:6px; margin-top:-36px; font-size:14px; font-weight:700; color:var(--ink); }
-@media (max-width:600px){ .journey__row{ grid-template-columns:minmax(0,1fr) 64px minmax(0,1fr); gap:8px; } .journey__gap{ font-size:12px; text-align:center; } }
 /* Cart switch row: thumbnail beside the heading keeps the row short */
 .switch__img{ width:56px; height:56px; }
 .switch__top{ grid-template-columns:56px minmax(0,1fr); }
@@ -838,9 +831,6 @@ html.has-drawer{ overflow:hidden; }
 .crop-sink{ overflow:hidden; }
 .crop-sink img{ object-position:37% 74%; transform:scale(1.9); transform-origin:37% 74%; } /* the carton is small in the scene */
 @media (max-width:600px){ .hero__media img{ object-position:50% 16%; } }
-/* scene-mailer-table is shown at inset size only (render note): Pakke 2 sits smaller than Pakke 1 */
-.journey__obj--inset{ max-width:300px; justify-self:start; }
-@media (max-width:600px){ .journey__obj--inset{ max-width:none; } }
 
 /* ==========================================================================
    v2.4 (design review v3, blind test round 2)
@@ -889,9 +879,6 @@ html.has-drawer{ overflow:hidden; }
 /* Comparison header: both column heads on one baseline */
 .compare__head{ align-items:flex-end; }
 
-/* PDP 6: captions bottom aligned */
-.journey__row{ align-items:end; }
-.journey__gap{ margin-top:0; align-self:center; }
 
 /* Desktop drawer: payment marks move into the body, so the pinned footer is totals and the button only */
 .drawer__wallets{ display:none; }
@@ -928,3 +915,74 @@ html.has-drawer{ overflow:hidden; }
 .plan__tab{ position:absolute; top:-12px; left:16px; display:block; height:24px; line-height:24px !important; padding:0 10px; border-radius:var(--r-pill); background:var(--ink); color:var(--yellow); font-size:12px; font-weight:700; line-height:1; white-space:nowrap; }
 .plans{ padding-top:6px; }
 .plan--klub .plan__pick{ padding-top:22px; }
+
+/* ---------- Section: Fra behandling 1 til pakke 2 (PDP 6), one continuous rail ----------
+   Rows (desktop): card / caption / cadence bracket / rail / segment label.
+   Columns are half cards either side of each node, so the course starts at node 1 and the bracket runs node to node.
+   390: the same rail, vertical, near the left edge, cards to its right; the bracket runs beside the rail. */
+.route__head{ max-width:640px; }
+.route__lead{ margin-top:16px; font-size:18px; line-height:1.5; color:var(--soft-ink); }
+.rail{ --half:200px; --ink-w:2px; display:grid; grid-template-columns:var(--half) var(--half) 1fr 2.6fr var(--half) var(--half) 1fr; grid-template-rows:auto auto auto 28px auto; margin-top:56px; }
+.rail > li{ display:grid; grid-template-columns:subgrid; grid-template-rows:subgrid; grid-row:1 / 6; }
+.rail__node--1{ grid-column:1 / 3; }
+.rail__course{ grid-column:2 / 4; }
+.rail__gap{ grid-column:4 / 6; }
+.rail__node--2{ grid-column:5 / 7; }
+.rail__span{ grid-column:2 / 6; }
+.rail__tail{ grid-column:6 / 8; }
+.rail__card{ grid-column:1 / -1; grid-row:1; aspect-ratio:4/3; border-radius:var(--r-card); overflow:hidden; background:var(--ww); box-shadow:0 0 0 1px var(--line-strong); }
+.rail__card img{ width:100%; height:100%; object-fit:cover; }
+.rail__label{ grid-column:1 / -1; grid-row:2; justify-self:center; margin-top:12px; font-size:20px; font-weight:700; }
+.rail__dot{ grid-column:1 / -1; grid-row:4; justify-self:center; align-self:center; position:relative; z-index:1; width:16px; height:16px; border-radius:50%; background:var(--ink); box-shadow:0 0 0 4px var(--panel); }
+.rail__node--1::before{ content:""; grid-column:1; grid-row:4; align-self:center; height:var(--ink-w); background:var(--ink); }
+/* the cadence: a thin bracket from dot to dot, the label centred on it */
+.rail__spantext{ grid-column:1 / -1; grid-row:3; align-self:end; position:relative; display:flex; justify-content:center; margin-top:20px; padding-bottom:12px; font-size:18px; font-weight:700; background:linear-gradient(var(--ink), var(--ink)) left bottom / 100% 1.5px no-repeat, linear-gradient(var(--ink), var(--ink)) left bottom / 1.5px 10px no-repeat, linear-gradient(var(--ink), var(--ink)) right bottom / 1.5px 10px no-repeat; }
+/* the course: 14 equal cells on a Smilo Yellow segment with an Ink outline */
+.rail__bar{ grid-column:1 / -1; grid-row:4; align-self:center; display:grid; grid-template-columns:repeat(14, 1fr); gap:2px; height:14px; padding:2px; border-radius:var(--r-pill); background:var(--ink); }
+.rail__bar > span{ display:block; background:var(--yellow); transform-origin:0 50%; transition:transform 220ms var(--ease-out); }
+.rail__bar > span:first-child{ border-radius:var(--r-pill) 0 0 var(--r-pill); }
+.rail__bar > span:last-child{ border-radius:0 var(--r-pill) var(--r-pill) 0; }
+.rail__text{ grid-column:1 / -1; grid-row:5; justify-self:center; margin-top:16px; font-size:14px; font-weight:600; white-space:nowrap; }
+.rail__dash{ grid-column:1 / -1; grid-row:4; align-self:center; height:0; border-top:var(--ink-w) dashed var(--ink); }
+.rail__tail::before{ content:""; grid-column:1 / -1; grid-row:4; align-self:center; height:var(--ink-w); background:linear-gradient(to right, var(--ink), rgba(32,32,30,0)); }
+/* Fill once on enter (smilo.js adds .is-filled); the default render shows the cells filled */
+html.js-ticks [data-ticks]:not(.is-filled) > span{ transform:scaleX(0.05); }
+@media (prefers-reduced-motion: reduce){ html.js-ticks [data-ticks]:not(.is-filled) > span{ transform:none; } }
+@media (max-width:1360px) and (min-width:1101px){ .rail{ --half:170px; } }
+@media (max-width:1100px) and (min-width:601px){ .rail{ --half:clamp(110px, 13vw, 150px); } .rail__label{ font-size:18px; } .rail__spantext{ font-size:16px; } }
+@media (max-width:600px){
+  .route__lead{ font-size:16px; }
+  /* vertical: a 56px rail column (bracket at x 12, rail at x 40), content to the right */
+  .rail{ --x:40px; --tail:40px; --cap:36px; --card-h:calc((100vw - 2 * var(--gutter) - 56px) * 0.75); display:block; position:relative; margin-top:24px; }
+  .route__lead{ margin-top:12px; }
+  .rail > li{ display:grid; grid-template-columns:56px minmax(0,1fr); grid-template-rows:none; position:relative; }
+  .rail__node{ grid-template-areas:"rail card" "rail label"; }
+  .rail__card{ grid-area:card; }
+  .rail__label{ grid-area:label; justify-self:start; height:var(--cap); margin:0; padding-top:8px; font-size:18px; line-height:1.3; }
+  .rail__dot{ grid-area:rail; grid-row:1; justify-self:start; margin-left:calc(var(--x) - 7px); }
+  .rail__node--1::before{ content:""; position:absolute; left:calc(var(--x) - 1px); top:calc(var(--card-h) / 2); bottom:0; width:var(--ink-w); height:auto; align-self:stretch; background:var(--ink); }
+  .rail__node--2::before{ content:""; position:absolute; left:calc(var(--x) - 1px); top:0; bottom:0; width:var(--ink-w); background:var(--ink); }
+  .rail__course{ align-items:center; padding-block:8px; }
+  .rail__course::before{ content:""; position:absolute; left:calc(var(--x) - 1px); top:0; bottom:0; width:var(--ink-w); background:var(--ink); }
+  .rail__bar{ grid-column:1; grid-row:1; justify-self:start; margin-left:calc(var(--x) - 7px); position:relative; grid-template-columns:none; grid-template-rows:repeat(14, 1fr); width:14px; height:112px; }
+  .rail__bar > span{ transform-origin:50% 0; }
+  .rail__bar > span:first-child{ border-radius:var(--r-pill) var(--r-pill) 0 0; }
+  .rail__bar > span:last-child{ border-radius:0 0 var(--r-pill) var(--r-pill); }
+  html.js-ticks [data-ticks]:not(.is-filled) > span{ transform:scaleY(0.05); }
+  .rail__text{ grid-column:2; grid-row:1; justify-self:start; margin-top:0; }
+  .rail__gap{ height:80px; }
+  .rail__dash{ grid-column:1; grid-row:1; justify-self:start; align-self:stretch; margin-left:calc(var(--x) - 1px); width:0; height:auto; border-top:0; border-left:var(--ink-w) dashed var(--ink); }
+  .rail__tail{ height:var(--tail); }
+  .rail__tail::before{ position:absolute; left:calc(var(--x) - 1px); top:0; bottom:0; width:var(--ink-w); height:auto; align-self:stretch; background:linear-gradient(to bottom, var(--ink), rgba(32,32,30,0)); }
+  /* the cadence bracket beside the rail, from dot 1 to dot 2, label set along it */
+  .rail > .rail__span{ position:absolute; left:0; width:24px; top:calc(var(--card-h) / 2); bottom:calc(var(--tail) + var(--cap) + var(--card-h) / 2); display:block; }
+  .rail__spantext{ position:absolute; inset:0; align-self:stretch; justify-self:stretch; margin:0; padding:0; display:flex; align-items:center; justify-content:center; font-size:14px; background:linear-gradient(var(--ink), var(--ink)) 11px 0 / 1.5px 100% no-repeat, linear-gradient(var(--ink), var(--ink)) 11px 0 / 10px 1.5px no-repeat, linear-gradient(var(--ink), var(--ink)) 11px 100% / 10px 1.5px no-repeat; }
+  .rail__spantext span{ writing-mode:vertical-rl; transform:rotate(180deg); white-space:nowrap; padding-block:8px; background:var(--panel); }
+}
+/* HP documentation at 601 to 1100: two columns of minmax(0,1fr) so a cell never grows past its track, and the
+   certificate number steps down so it fits the narrower cell (it overflowed at 601). */
+@media (max-width:1100px) and (min-width:601px){
+  .docs__grid{ grid-template-columns:repeat(2, minmax(0,1fr)); }
+  .gmpno, .doccol .gmpno{ font-size:40px; }
+}
+@media (max-width:760px) and (min-width:601px){ .gmpno, .doccol .gmpno{ font-size:32px; } }

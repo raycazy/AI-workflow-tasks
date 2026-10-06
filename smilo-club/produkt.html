@@ -273,33 +273,40 @@
     </div>
   </section>
 
-  <!-- PDP 6. Section: Fra behandling 1 til pakke 2 [timeline of objects: the course, the gap, the mailer]. -->
-  <section class="section journey" id="kuren-og-klubben" data-section="course-and-club" aria-labelledby="journey-title">
+  <!-- PDP 6. Section: Fra behandling 1 til pakke 2 [one continuous rail on Panel]. Pakke 1, the course as 14 cells,
+       the ~90 day gap, Pakke 2, then the rail runs on (the routine repeats). Deck v2.5 strings; no label per treatment. -->
+  <section class="section band--panel route" id="kuren-og-klubben" data-section="course-and-club" aria-labelledby="journey-title">
     <div class="wrap">
-      <div class="journey__head">
+      <div class="route__head">
         <h2 id="journey-title">Fra behandling 1 til pakke 2</h2>
-        <div class="journey__text">
-          <!-- Course sentence cut (copy check m5): it repeated the first FAQ answer on the same page. -->
-          <p>Klubben sender den næste pakke, og du kører kuren igen fra behandling 1.</p>
-          <!-- [HVIS {{skip_pause}}] Datoen kan du flytte under Min konto. -->
-        </div>
+        <p class="route__lead">Klubben sender den næste pakke, og du kører kuren igen fra behandling 1.</p>
+        <!-- [HVIS {{skip_pause}}] Datoen kan du flytte under Min konto. -->
       </div>
-      <ol class="journey__row">
-        <li class="journey__obj">
-          <figure class="tile"><img src="assets/img/pdp-02-warm.webp" alt="Æske med Smilo Club tandblegningsstrips" width="1600" height="1600" loading="lazy"></figure>
-          <p>Pakke 1</p>
+      <ol class="rail">
+        <li class="rail__node rail__node--1">
+          <figure class="rail__card"><img src="assets/img/pdp-02-warm-4x3.webp" alt="Æske med Smilo Club tandblegningsstrips" width="1600" height="1200" loading="lazy"></figure>
+          <p class="rail__label">Pakke 1</p>
+          <span class="rail__dot" aria-hidden="true"></span>
         </li>
-        <li class="journey__gap"><svg class="i i--24" aria-hidden="true"><use href="#i-arrow"/></svg><span>ca. 90 dage</span></li>
-        <li class="journey__obj journey__obj--inset">
-          <figure class="tile"><img src="assets/img/scene-mailer-table.webp" alt="Forsendelsesæske med en ny pakke Smilo Club" width="1600" height="1200" loading="lazy"></figure>
-          <p>Pakke 2</p>
+        <li class="rail__course">
+          <span class="rail__bar" aria-hidden="true" data-ticks><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>
+          <p class="rail__text">Behandling 1 til 14</p>
         </li>
+        <li class="rail__gap" aria-hidden="true"><span class="rail__dash"></span></li>
+        <li class="rail__node rail__node--2">
+          <figure class="rail__card"><img src="assets/img/scene-mailer-table.webp" alt="Forsendelsesæske med en ny pakke Smilo Club" width="1600" height="1200" loading="lazy"></figure>
+          <p class="rail__label">Pakke 2</p>
+          <span class="rail__dot" aria-hidden="true"></span>
+        </li>
+        <!-- The cadence spans pack to pack (counted from Pakke 1), not from treatment 14 -->
+        <li class="rail__span"><p class="rail__spantext"><span>ca. 90 dage</span></p></li>
+        <li class="rail__tail" aria-hidden="true"></li>
       </ol>
     </div>
   </section>
 
   <!-- PDP 7. Section: Sammenligning [ledger, same component as HP 7]. -->
-  <section class="section band--panel cmp" data-section="comparison" aria-labelledby="cmp-title">
+  <section class="section cmp" data-section="comparison" aria-labelledby="cmp-title">
     <div class="wrap">
       <h2 id="cmp-title" class="cmp__title">Tandblegning i Danmark</h2>
       <!-- Snippet: comparison table (HP 7, PDP 7). Two sourced columns, facts only.

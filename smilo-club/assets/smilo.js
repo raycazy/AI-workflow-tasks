@@ -225,6 +225,22 @@
     sdots.forEach((d, j) => d.addEventListener('click', () => strack.scrollTo({ left: j * step(), behavior: reduce ? 'auto' : 'smooth' })));
   });
 
+  /* ---------- Course rail: the 14 cells fill once when the track comes into view ----------
+     Default render shows them filled; the start state is set only when JS runs and motion is allowed. */
+  const tickRows = $$('[data-ticks]');
+  if (tickRows.length && !reduce && 'IntersectionObserver' in window) {
+    root.classList.add('js-ticks');
+    const tio = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        tio.unobserve(en.target);
+        Array.from(en.target.children).forEach((t, i) => { t.style.transitionDelay = `${i * 40}ms`; });
+        en.target.classList.add('is-filled');
+      });
+    }, { threshold: 0.6 });
+    tickRows.forEach((r) => tio.observe(r));
+  }
+
   /* ---------- How to animations: play once, then replay on demand (WCAG 2.2.2) ----------
      Each animation plays once (3s) the first time its card comes into view, 380ms after the
      previous one started (all six stop within 5s), and rests on its last frame. Tap, click, hover, focus or "Afspil igen"
