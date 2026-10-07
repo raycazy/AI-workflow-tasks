@@ -371,40 +371,6 @@ body[data-plan="enkelt"] .if-klub, body:not([data-plan="enkelt"]) .if-enkelt{ di
   .buy{ padding-top:20px; }
 }
 
-/* ---------- Section: Hvad er der i æsken (PDP 4, annotated still life) ----------
-   The render sits centred on a fixed width stage; each pin is a dot on the product
-   with a dashed leader that runs out past the image edge to a label in the margin.
-   --fx/--fy are the dot position as fractions of the stage. */
-.box h2{ margin-bottom:24px; }
-.anno{ --W:600px; display:grid; justify-items:center; }
-.anno__stage{ position:relative; width:var(--W); }
-.anno__img{ width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:var(--r-card); }
-.pin{ position:absolute; left:calc(var(--fx) * 100%); top:calc(var(--fy) * 100%); width:14px; height:14px; margin:-7px 0 0 -7px; border-radius:50%; background:var(--ink); box-shadow:0 0 0 4px rgba(250,249,245,0.9); }
-.pin[data-side="r"]{ --len:calc(var(--W) * (1 - var(--fx)) + 40px); }
-.pin[data-side="l"]{ --len:calc(var(--W) * var(--fx) + 40px); }
-.pin span{ position:absolute; top:50%; transform:translateY(-50%); white-space:nowrap; padding:8px 14px; background:var(--ww); border:1px solid var(--ink); border-radius:var(--r-control); font-size:14px; font-weight:600; line-height:1.3; }
-.pin::after{ content:""; position:absolute; top:6px; width:var(--len); border-top:1px dashed var(--ink); }
-.pin[data-side="r"] span{ left:calc(var(--len) + 8px); }
-.pin[data-side="r"]::after{ left:7px; }
-.pin[data-side="l"] span{ right:calc(var(--len) + 8px); }
-.pin[data-side="l"]::after{ right:7px; }
-@media (max-width:1100px){ .anno{ --W:440px; } .pin span{ font-size:12px; padding:6px 10px; } }
-/* 1101 to 1360: the stage sizes from the space left after the label columns, and sits off centre so the
-   longer right hand labels stay inside the content width (was a fixed 600px stage that overflowed). */
-@media (min-width:1101px) and (max-width:1360px){
-  .anno{ --wrap:min(100vw - 2 * var(--gutter), var(--maxw)); --W:clamp(400px, calc(var(--wrap) - 640px), 600px); justify-items:start; }
-  .anno__stage{ margin-left:calc((var(--wrap) - var(--W) - 640px) / 2 + 280px); }
-}
-@media (max-width:900px){
-  .anno{ display:block; }
-  .anno__stage{ width:100%; }
-  .anno__labels{ display:grid; grid-template-columns:1fr 1fr; gap:0 24px; margin-top:24px; }
-  .pin{ position:static; width:auto; height:auto; margin:0; border-radius:0; background:none; box-shadow:none; padding:12px 0; border-top:1px solid var(--line-strong); }
-  .pin::after{ display:none; }
-  .pin span{ position:static; transform:none; white-space:normal; padding:0; border:0; background:none; font-size:16px; display:block; }
-}
-@media (max-width:600px){ .anno__labels{ grid-template-columns:1fr; } }
-
 /* ---------- Section: Sådan gør du (PDP 5) ---------- */
 @media (max-width:1100px){
 }
@@ -1285,3 +1251,31 @@ html.js-ticks [data-ticks]:not(.is-filled) > span{ transform:scaleX(0.05); }
 /* Trustpilot at 390: cards size to their own text */
 @media (max-width:600px){ .tpband__cards{ align-items:flex-start; } }
 @media (max-width:600px){ .reviews__list:not(.is-open) > li:nth-child(n+4){ display:none; } }
+
+/* ---------- Section: Hvad er der i æsken (PDP 4): numbered pins on the photo, numbered legend ---------- */
+.box h2{ margin-bottom:32px; }
+.inbox{ display:grid; grid-template-columns:minmax(0,58fr) minmax(0,42fr); gap:56px; align-items:center; }
+.inbox__photo{ position:relative; margin:0; border-radius:var(--r-card); overflow:hidden; }
+.inbox__photo img{ display:block; width:100%; aspect-ratio:4/3; object-fit:cover; }
+.inbox__pins{ position:absolute; inset:0; margin:0; padding:0; list-style:none; }
+.hot{ position:absolute; left:calc(var(--x) * 100%); top:calc(var(--y) * 100%); display:grid; place-items:center; width:28px; height:28px; margin:-14px 0 0 -14px; border-radius:50%; background:var(--yellow); box-shadow:0 0 0 1.5px var(--ink), 0 2px 8px rgba(32,32,30,0.18); font-size:14px; font-weight:700; line-height:1; color:var(--ink); transition:transform 160ms var(--ease-out); }
+.legend{ display:grid; gap:0; margin:0; padding:0; list-style:none; border-top:1px solid var(--line-strong); }
+.legend__item{ display:grid; grid-template-columns:28px minmax(0,1fr); gap:16px; align-items:center; min-height:56px; padding-block:10px; border-bottom:1px solid var(--line-strong); font-size:18px; line-height:1.4; cursor:default; }
+.legend__no{ display:grid; place-items:center; width:28px; height:28px; border-radius:50%; background:var(--yellow); box-shadow:0 0 0 1.5px var(--ink); font-size:14px; font-weight:700; }
+.legend__item:focus-visible{ outline:2px solid var(--ink); outline-offset:2px; }
+/* linked highlight: pin and line (smilo.js sets .is-on) */
+.hot.is-on{ transform:scale(1.25); background:var(--ink); color:var(--yellow); }
+.legend__item.is-on .legend__no{ background:var(--ink); color:var(--yellow); }
+.legend__item.is-on{ text-shadow:0 0 0.6px var(--ink); }
+@media (prefers-reduced-motion: reduce){ .hot{ transition:none; } }
+@media (max-width:1100px){ .inbox{ gap:32px; } .legend__item{ font-size:16px; } }
+@media (max-width:720px){ .inbox{ grid-template-columns:minmax(0,1fr); gap:24px; } }
+@media (max-width:600px){
+  .box h2{ margin-bottom:20px; }
+  .inbox__photo{ margin-inline:calc(-1 * var(--gutter)); border-radius:0; }
+  .hot{ width:24px; height:24px; margin:-12px 0 0 -12px; font-size:12px; }
+  .legend__item{ font-size:16px; min-height:48px; gap:12px; }
+}
+.inbox__photo img{ aspect-ratio:4/3; }
+.legend__facts{ display:grid; gap:4px; margin:16px 0 0; padding:0 0 0 44px; list-style:none; font-size:16px; color:var(--soft-ink); }
+@media (max-width:600px){ .legend__facts{ padding-left:40px; } }

@@ -281,6 +281,17 @@
     });
   }
 
+  /* ---------- In the box: hover a legend line to highlight its pin, and hover or tap a pin for its line (no tab stops: the pins are decorative and the list is the content) ---------- */
+  $$('.inbox').forEach((box) => {
+    const set = (n) => $$('[data-hot]', box).forEach((el) => el.classList.toggle('is-on', el.dataset.hot === n));
+    $$('[data-hot]', box).forEach((el) => {
+      el.addEventListener('mouseenter', () => set(el.dataset.hot));
+      el.addEventListener('mouseleave', () => set(null));
+      el.addEventListener('focus', () => set(el.dataset.hot));
+      el.addEventListener('blur', () => set(null));
+    });
+  });
+
   /* ---------- UGC rail arrows: scroll by one tile; disabled at the ends, hidden when nothing overflows ---------- */
   $$('[data-rail]').forEach((rail) => {
     const sec = rail.closest('section');

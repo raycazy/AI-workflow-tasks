@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/smilo.css?v=cfb6a97b">
+<link rel="stylesheet" href="assets/smilo.css?v=734b58ca">
 <link rel="stylesheet" href="assets/howto.css?v=098bf597">
 </head>
 <body data-page="produkt">
@@ -212,20 +212,32 @@
     </div>
   </section>
 
-  <!-- PDP 4. Section: Hvad er der i æsken [annotated still life, labels on leader lines]. -->
+  <!-- PDP 4. Section: Hvad er der i æsken [split: photo with numbered pins, numbered legend]. Labels are deck strings.
+       Without JS it reads as a numbered photo and a numbered list; with JS, hover or focus links a pin and its line. -->
   <section class="section box" data-section="in-the-box" aria-labelledby="box-title">
     <div class="wrap">
       <h2 id="box-title">Hvad er der i æsken</h2>
-      <div class="anno">
-        <div class="anno__stage">
-          <img class="anno__img" src="assets/img/scene-flatlay.webp" alt="Æsken åbnet med poserne trukket frem" width="1600" height="1600" loading="lazy">
-          <ul class="anno__labels">
-            <li class="pin" style="--fx:0.10;--fy:0.62" data-side="l"><span>Æske ca. 66 × 17 × 116 mm</span></li>
-            <li class="pin" style="--fx:0.47;--fy:0.345" data-side="r"><span>1,6 g pr. påføring</span></li>
-            <li class="pin" style="--fx:0.69;--fy:0.425" data-side="r"><span>Hver strip bruges én gang</span></li>
-            <li class="pin" style="--fx:0.66;--fy:0.49" data-side="r"><span>14 lange strips til de øverste tænder</span></li>
-            <li class="pin" style="--fx:0.595;--fy:0.555" data-side="r"><span>14 korte strips til de nederste tænder</span></li>
-            <li class="pin" style="--fx:0.645;--fy:0.622" data-side="r"><span>Én behandling: én af hver</span></li>
+      <div class="inbox">
+        <figure class="inbox__photo">
+          <img src="assets/img/scene-flatlay-4x3.webp" alt="Æsken åbnet med poserne trukket frem" width="1120" height="840" loading="lazy">
+          <ol class="inbox__pins">
+            <li class="hot" style="--x:0.285;--y:0.73" data-hot="1" aria-hidden="true">1</li>
+            <li class="hot" style="--x:0.821;--y:0.493" data-hot="2" aria-hidden="true">2</li>
+            <li class="hot" style="--x:0.911;--y:0.603" data-hot="3" aria-hidden="true">3</li>
+            <li class="hot" style="--x:0.571;--y:0.724" data-hot="4" aria-hidden="true">4</li>
+          </ol>
+        </figure>
+        <div class="inbox__side">
+          <ol class="legend" aria-label="Hvad er der i æsken">
+          <li class="legend__item" data-hot="1"><span class="legend__no" aria-hidden="true">1</span><span>Æske ca. 66 × 17 × 116 mm</span></li>
+          <li class="legend__item" data-hot="2"><span class="legend__no" aria-hidden="true">2</span><span>14 lange strips til de øverste tænder</span></li>
+          <li class="legend__item" data-hot="3"><span class="legend__no" aria-hidden="true">3</span><span>14 korte strips til de nederste tænder</span></li>
+          <li class="legend__item" data-hot="4"><span class="legend__no" aria-hidden="true">4</span><span>Én behandling: én af hver</span></li>
+          </ol>
+          <!-- Usage facts: no object to point at, so no pin and no number (review inbox M1) -->
+          <ul class="legend__facts">
+            <li>Hver strip bruges én gang</li>
+            <li>1,6 g pr. påføring</li>
           </ul>
         </div>
       </div>
@@ -659,6 +671,6 @@
   </div>
 </aside>
 <p id="toast" class="toast" role="status" aria-live="polite"></p>
-<script src="assets/smilo.js?v=e857b160" defer></script>
+<script src="assets/smilo.js?v=af4a67ca" defer></script>
 </body>
 </html>
