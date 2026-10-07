@@ -983,10 +983,6 @@ html.js-ticks [data-ticks]:not(.is-filled) > span{ transform:scaleX(0.05); }
 .vs__us.vs__head{ border-radius:var(--r-card) 0 0 0; }
 .vs__them.vs__head{ border-radius:0 var(--r-card) 0 0; }
 .vs__img{ display:block; width:100%; height:240px; object-fit:cover; object-position:50% 60%; border-radius:var(--r-card) 0 0 0; }
-.vs__chair{ display:block; width:100%; height:240px; padding:40px 32px 24px; fill:none; stroke:var(--ink); stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; }
-.vs__chair *{ vector-effect:non-scaling-stroke; }
-.vs__chair .f{ fill:var(--ww); }
-.band--panel .vs__chair .f{ fill:var(--panel); }
 .vs__name{ display:block; padding:20px 32px 0; }
 .vs__us .vs__name{ text-align:right; font-size:28px; font-weight:700; letter-spacing:-0.02em; color:var(--ink); }
 .vs__them .vs__name{ font-size:22px; font-weight:600; color:var(--soft-ink); }
@@ -996,8 +992,6 @@ html.js-ticks [data-ticks]:not(.is-filled) > span{ transform:scaleX(0.05); }
   .vs__us{ width:41%; } .vs__spine{ width:18%; } .vs__them{ width:41%; }
   .vs__table tbody .vs__us{ font-size:18px; }
   .vs__table tbody .vs__them{ font-size:16px; }
-  .vs__img, .vs__chair{ height:180px; }
-  .vs__chair{ padding:28px 20px 16px; }
   .vs__name{ padding:16px 20px 0; }
   .vs__us .vs__name{ font-size:24px; }
   .vs__them .vs__name{ font-size:20px; }
@@ -1010,7 +1004,6 @@ html.js-ticks [data-ticks]:not(.is-filled) > span{ transform:scaleX(0.05); }
   .vs__table thead .vs__spine{ display:none; }
   .vs__table .vs__head{ padding:0 0 12px; }
   .vs__us.vs__head .vs__img{ height:96px; border-radius:var(--r-control); }
-  .vs__chair{ height:96px; padding:12px 16px; border-radius:var(--r-control); background:var(--them); }
   .vs__name{ padding:8px 0 0; }
   .vs__us .vs__name{ font-size:18px; }
   .vs__them .vs__name{ font-size:16px; }
@@ -1104,7 +1097,7 @@ html.js-ticks [data-ticks]:not(.is-filled) > span{ transform:scaleX(0.05); }
 .rcard__verified{ display:inline-flex; align-items:center; gap:4px; color:var(--soft-ink); }
 .rcard__plan{ justify-self:start; padding:4px 10px; border-radius:var(--r-pill); background:var(--ww); font-size:12px; font-weight:600; }
 .reviews__more{ margin-top:24px; }
-@media (max-width:1100px){ .reviews__grid{ grid-template-columns:1fr; gap:32px; } .reviews__sum{ position:static; } }
+@media (max-width:1100px){ .reviews__grid{ grid-template-columns:minmax(0,1fr); gap:32px; } .reviews__sum{ position:static; } }
 @media (max-width:768px){ .reviews__list{ grid-template-columns:1fr; } }
 @media (max-width:600px){ .reviews__head{ margin-bottom:24px; } .reviews__avg b{ font-size:48px; } .rcard{ padding:20px; } .reviews__more{ width:100%; } .reviews__tools{ align-items:stretch; } }
 
@@ -1151,7 +1144,144 @@ html.js-ticks [data-ticks]:not(.is-filled) > span{ transform:scaleX(0.05); }
 }
 .ugc__zoom{ transform:scale(1.6); } /* repeat tiles: a closer crop of the same photo */
 /* 390: three review cards first; "Vis flere anmeldelser" reveals the rest */
-@media (max-width:600px){ .reviews__list:not(.is-open) > li:nth-child(n+4){ display:none; } }
 /* Trustpilot cards at 601 to 900: grid items may shrink below their content, and the chip wraps under the stars */
 .tpband__cards > li{ min-width:0; }
 .snip__top{ flex-wrap:wrap; }
+
+
+/* ==========================================================================
+   v2.8 batch (design review sections v4, copy check reviews and UGC, user requests)
+   ========================================================================== */
+
+/* Comparison: centred section, legible spine, Smilo column raised as the lead, quiet dentist head */
+@media (min-width:601px){
+  .vs__title{ text-align:center; }
+  .vs__source{ text-align:center; }
+}
+.vs{ padding-block:24px; }
+.vs__table tbody .vs__spine{ font-size:16px; font-weight:600; color:var(--ink); }
+/* the yellow column runs 24px above the header and below the last row */
+.vs__table{ position:relative; }
+.vs__us.vs__head{ position:relative; }
+.vs__us.vs__head::before{ content:""; position:absolute; left:0; right:0; top:-24px; height:24px; background:var(--yellow); border-radius:var(--r-card) var(--r-card) 0 0; }
+.vs__table tbody tr:last-child .vs__us{ position:relative; border-radius:0; }
+.vs__table tbody tr:last-child .vs__us::after{ content:""; position:absolute; left:0; right:0; bottom:-24px; height:24px; background:var(--yellow); border-radius:0 0 var(--r-card) var(--r-card); }
+.vs__img{ border-radius:0; object-position:50% 70%; }
+.vs__us.vs__head{ border-radius:0; }
+.vs__them.vs__head{ vertical-align:bottom; padding-bottom:24px; }
+.vs__icon{ display:grid; place-items:center; width:64px; height:64px; margin:0 0 0 32px; border-radius:var(--r-card); background:var(--ww); }
+.band--panel .vs__icon{ background:var(--panel); }
+.vs__icon .i{ width:32px; height:32px; stroke-width:1.75; }
+.vs__them .vs__name{ font-size:28px; font-weight:700; letter-spacing:-0.02em; color:var(--ink); }
+@media (max-width:1100px){ .vs__icon{ margin-left:20px; width:56px; height:56px; } .vs__them .vs__name{ font-size:24px; } }
+@media (max-width:600px){
+  .vs{ padding-block:0; }
+  .vs__us.vs__head::before, .vs__table tbody tr:last-child .vs__us::after{ display:none; }
+  .vs__icon{ margin:0; width:100%; height:96px; border-radius:var(--r-control); background:var(--them); }
+  .band--panel .vs__icon{ background:var(--ww); }
+  .vs__them .vs__name{ font-size:18px; }
+  .vs__table tbody .vs__spine{ font-size:14px; }
+  /* keep Smilo's yellow at 390: a full tint behind the Smilo value */
+  .vs__table tbody .vs__us{ padding:8px 10px; border-radius:var(--r-control) !important; background:var(--yellow); align-self:start; }
+}
+
+/* How to: numeral column sizes to its digit, text starts 16px after it, first line on the numeral's cap height */
+.hstep__body{ grid-template-columns:auto minmax(0,1fr); column-gap:16px; align-items:start; }
+.hstep__no{ line-height:1; margin-top:-2px; }
+.hstep__body p{ padding-top:4px; }
+@media (max-width:600px){ .hstep__body{ column-gap:12px; } .hstep__body p{ padding-top:2px; } }
+
+/* UGC captions: stronger scrim for 4.5:1 on light plates */
+.ugc__tile::after{ inset:35% 0 0; background:linear-gradient(to bottom, rgba(32,32,30,0), rgba(32,32,30,0.72)); }
+
+/* Trustpilot band at 390: compact (chip inline with the H2, score and count on one row, tighter cards) */
+.tpband__value{ align-items:baseline; }
+.tpband__count{ font-size:14px; color:var(--soft-ink); }
+.snip__who{ align-items:center; }
+@media (max-width:600px){
+  .tpband{ padding-block:32px; }
+  .tpband__grid{ gap:16px; }
+  .tpband__h h2{ font-size:20px; }
+  .tpband__value b{ font-size:24px; }
+  .tpband__value .stars{ --size:18px; }
+  .snip{ padding:16px; gap:8px; }
+  .snip__body{ font-size:14px; }
+}
+
+/* PDP reviews: four cards before "Vis flere", tighter, cards size to their content */
+.reviews .section, .reviews{ padding-block:80px; }
+.reviews__head{ margin-bottom:28px; }
+.reviews__grid{ gap:48px; }
+.reviews__list{ align-items:start; }
+.reviews__list > li{ display:block; }
+.reviews__list:not(.is-open) > li:nth-child(n+5){ display:none; }
+.reviews__list > li[hidden]{ display:none !important; }
+.rcard{ padding:20px; gap:8px; }
+.rcard__body{ font-size:14px; }
+.rcard__title{ font-size:16px; }
+.reviews__more[hidden]{ display:none; }
+@media (max-width:600px){
+  .reviews{ padding-block:56px; }
+  .reviews__filters{ flex-wrap:nowrap; overflow-x:auto; margin-inline:calc(-1 * var(--gutter)); padding-inline:var(--gutter); scroll-padding-inline:var(--gutter); scrollbar-width:none; }
+  .reviews__filters::-webkit-scrollbar{ display:none; }
+  .fchip{ flex:none; }
+}
+
+/* PDP fold: rating line and documentation link on one row at desktop; no eyebrow; tighter top */
+.buy__eyebrow{ display:none; }
+.buy__toprow{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:0 16px; }
+.buy__toprow .starline{ margin:0; }
+.buy__toprow .proof{ margin:0; }
+.ex-chip--sm{ height:20px; padding:0 8px; font-size:12px; }
+@media (min-width:901px){
+  .buy__title{ margin-top:2px; }
+  .gallery__track{ gap:6px; }
+}
+@media (max-width:600px){
+  .gallery__nav{ padding-top:6px; }
+  .pdp__grid{ gap:0; }
+  .buy{ padding-top:8px; }
+  .buy__toprow{ gap:0 12px; }
+  .starline{ flex-wrap:nowrap; gap:8px; }
+  .starline .stars{ --size:14px; }
+  .starline__link{ white-space:nowrap; font-size:12px; }
+  .buy__toprow .proof{ min-height:44px; }
+}
+.ugc__arrows[hidden]{ display:none; }
+.ugc__arrow:disabled{ opacity:0.35; cursor:default; }
+.reviews__empty{ grid-column:1 / -1; font-size:16px; color:var(--soft-ink); }
+/* Desktop fold: a 32px rating row and doc row with 44px hit areas, the two claim lines as one block, tighter plan cards */
+@media (min-width:901px){
+  .pdp{ padding-top:4px; }
+  .buy__toprow{ row-gap:0; }
+  /* 44px tap boxes that take 32px of layout: 6px padding top and bottom, pulled back by negative margins */
+  .starline__link, .buy__toprow .proof{ min-height:44px; padding-block:6px; margin-block:-6px; }
+  .buy__title{ margin-top:4px; }
+  .buy .ceiling{ margin-top:12px; padding-block:8px; }
+  .buy .ceiling li{ padding-block:2px; }
+  .buy .ceiling li + li{ border-top:0; }
+  .buy .plans{ margin-top:12px; gap:8px; }
+  .buy .plan__pick{ padding:12px 16px; }
+  .buy .plan--klub .plan__pick{ padding-top:18px; }
+  .buy .plan__body{ gap:6px; padding-bottom:12px; }
+  .buy .disclosure{ line-height:1.45; }
+  .btn--buy{ margin-top:12px; }
+}
+.reviews__main{ min-width:0; }
+.vs__source{ margin-top:40px; }
+.vs__img{ height:200px; }
+@media (max-width:1100px){ .vs__img{ height:160px; } }
+@media (max-width:600px){
+  .vs__source{ margin-top:20px; }
+  .vs__us.vs__head .vs__img{ height:96px; }
+  .vs__table tbody tr:last-child .vs__us{ padding:8px 10px; }
+}
+.vs__img{ object-position:50% 12%; }
+/* UGC: four tiles fill the content width on desktop (no overflow, so no arrows) */
+@media (min-width:901px){
+  .ugc__rail{ padding-inline:max(var(--gutter), calc((100vw - var(--maxw)) / 2)); }
+  .ugc__tile{ flex:1 1 0; min-width:0; }
+}
+/* Trustpilot at 390: cards size to their own text */
+@media (max-width:600px){ .tpband__cards{ align-items:flex-start; } }
+@media (max-width:600px){ .reviews__list:not(.is-open) > li:nth-child(n+4){ display:none; } }

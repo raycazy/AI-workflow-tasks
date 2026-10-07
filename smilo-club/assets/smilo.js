@@ -281,23 +281,51 @@
     });
   }
 
-  /* ---------- Reviews: "Vis flere anmeldelser" reveals the cards hidden at 390 (Judge.me loads more in the theme) ---------- */
-  $$('.reviews__more').forEach((b) => b.addEventListener('click', () => {
-    const list = $('.reviews__list', b.closest('.reviews__main'));
-    if (list) list.classList.add('is-open');
-  }));
-
-  /* ---------- UGC rail arrows: scroll by one tile ---------- */
+  /* ---------- UGC rail arrows: scroll by one tile; disabled at the ends, hidden when nothing overflows ---------- */
   $$('[data-rail]').forEach((rail) => {
     const sec = rail.closest('section');
+    const prev = $('[data-rail-prev]', sec), next = $('[data-rail-next]', sec), wrap = $('.ugc__arrows', sec);
     const by = (d) => {
       const t = rail.firstElementChild;
       const step = t ? t.getBoundingClientRect().width + 16 : 280;
       rail.scrollBy({ left: d * step, behavior: reduce ? 'auto' : 'smooth' });
     };
-    $$('[data-rail-prev]', sec).forEach((b) => b.addEventListener('click', () => by(-1)));
-    $$('[data-rail-next]', sec).forEach((b) => b.addEventListener('click', () => by(1)));
+    const sync = () => {
+      const max = rail.scrollWidth - rail.clientWidth;
+      if (wrap) wrap.hidden = max <= 2;
+      if (prev) prev.disabled = rail.scrollLeft <= 2;
+      if (next) next.disabled = rail.scrollLeft >= max - 2;
+    };
+    if (prev) prev.addEventListener('click', () => by(-1));
+    if (next) next.addEventListener('click', () => by(1));
+    rail.addEventListener('scroll', () => requestAnimationFrame(sync), { passive: true });
+    window.addEventListener('resize', sync);
+    sync();
   });
+
+  /* ---------- Reviews: filter chips filter the sample cards; "Vis flere" reveals the rest ---------- */
+  const revList = $('[data-reviews]');
+  if (revList) {
+    const items = Array.from(revList.children);
+    const more = $('.reviews__more');
+    let open = false;
+    const apply = (f) => {
+      const match = (li) => f === 'Alle' || (f === 'Med billeder' && li.dataset.photo === '1') || (f === '5 stjerner' && li.dataset.stars === '5') || (f === '4 stjerner' && li.dataset.stars === '4') || (f === '3 stjerner og derunder' && Number(li.dataset.stars) <= 3);
+      const shown = items.filter(match);
+      items.forEach((li) => { li.hidden = !match(li); });
+      revList.classList.toggle('is-open', open || f !== 'Alle');
+      const limit = window.innerWidth <= 600 ? 3 : 4; // deck v2.9: 4 cards before the button, 3 at 390
+      if (more) more.hidden = open || f !== 'Alle' || shown.length <= limit;
+      const empty = $('.reviews__empty');
+      if (empty) empty.hidden = shown.length > 0;
+    };
+    $$('[data-filters] .fchip').forEach((b) => b.addEventListener('click', () => {
+      $$('[data-filters] .fchip').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      apply(b.textContent.trim());
+    }));
+    if (more) more.addEventListener('click', () => { open = true; apply('Alle'); });
+    apply('Alle');
+  }
 
   /* ---------- Cart page: sticky checkout row on narrow screens ---------- */
   const cbar = $('[data-checkout-bar]');
