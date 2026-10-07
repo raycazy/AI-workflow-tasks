@@ -381,27 +381,7 @@ body[data-plan="enkelt"] .if-klub, body:not([data-plan="enkelt"]) .if-enkelt{ di
 }
 
 /* ---------- Section: documentation table (PDP 8) ---------- */
-.doktable{ margin-top:112px; }
-.doktable__head{ display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:64px; align-items:end; margin-bottom:40px; }
-.doktable__head p{ font-size:18px; color:var(--soft-ink); }
-.dtable{ width:100%; font-size:16px; line-height:1.5; }
-.dtable th, .dtable td{ text-align:left; vertical-align:top; padding:20px 24px 20px 0; }
-.dtable thead th{ font-size:14px; font-weight:600; color:var(--muted); padding-block:0 14px; border-bottom:1px solid var(--ink); }
-.dtable tbody th{ width:30%; font-weight:700; }
-.dtable tbody td:nth-child(2){ width:24%; font-weight:600; }
-.dtable tbody td{ color:var(--soft-ink); }
-.dtable tbody tr > *{ border-bottom:1px solid var(--line-strong); }
-@media (max-width:1100px){ .doktable__head{ grid-template-columns:1fr; gap:16px; } }
 @media (max-width:600px){
-  .doktable{ margin-top:72px; }
-  .doktable__head p{ font-size:16px; }
-  .dtable, .dtable tbody, .dtable tr, .dtable th, .dtable td{ display:block; width:auto !important; }
-  .dtable thead{ display:none; }
-  .dtable tbody tr{ padding-block:16px; border-bottom:1px solid var(--line-strong); }
-  .dtable tbody tr > *{ border-bottom:0; padding:0; }
-  .dtable tbody td{ margin-top:6px; font-size:14px; }
-  .dtable tbody td::before{ content:attr(data-label) ": "; font-weight:600; color:var(--ink); }
-  .dtable__gmp td:last-child::before{ display:block; }
 }
 
 /* ---------- Snippet: sticky add to cart (PDP 11) ---------- */
@@ -545,10 +525,6 @@ html.has-drawer{ overflow:hidden; }
 .band--powder{ background:var(--powder); }
 
 /* Hero facts (HP 3 folded into the hero, one line of type) */
-.hero__facts{ display:flex; flex-wrap:wrap; gap:8px 0; margin-top:48px; font-size:16px; font-weight:600; }
-.hero__facts li{ position:relative; padding-inline:20px; }
-.hero__facts li:first-child{ padding-left:0; }
-.hero__facts li + li::before{ content:""; position:absolute; left:0; top:4px; bottom:4px; width:1px; background:var(--ink); opacity:0.35; }
 @media (max-width:600px){
   .hero__media{ order:1; }
   .hero__media img{ aspect-ratio:39/34; object-position:50% 58%; }
@@ -556,8 +532,6 @@ html.has-drawer{ overflow:hidden; }
   .hero__title{ font-size:36px; order:1; }
   .hero__cta{ order:2; margin-top:16px; }
   .hero__sub{ order:3; margin-top:20px; }
-  .hero__facts{ order:4; margin-top:20px; font-size:14px; }
-  .hero__facts li{ padding-inline:12px; }
 }
 
 /* PDP facts line (replaces the outlined icon chips) */
@@ -609,38 +583,10 @@ html.has-drawer{ overflow:hidden; }
 @media (max-width:600px){ .cmp__title{ margin-bottom:24px; } }
 
 /* HP 8, PDP 8: Hvorfor PAP as a statement on yellow */
-.papstate{ background:var(--yellow); }
-.papstate__h2{ font-size:28px; }
-.statement{ margin-top:20px; font-size:80px; font-weight:700; line-height:1.0; letter-spacing:-0.03em; max-width:1080px; text-wrap:balance; }
-.papstate__grid{ display:grid; grid-template-columns:minmax(0,320px) minmax(0,1fr) minmax(0,1fr); gap:48px; margin-top:64px; align-items:start; }
-.papstate__img{ aspect-ratio:1/1; max-width:400px; background:var(--ww); }
-.papstate__lead{ font-size:20px; line-height:1.55; }
-.papstate .notin{ margin-top:0; }
-.papstate .notin li{ padding-block:14px; border-top:1px solid rgba(32,32,30,0.25); }
-.papstate .notin li:first-child{ padding-top:0; border-top:0; }
-.papstate .notin span{ color:var(--on-ground); }
-@media (max-width:1100px){ .statement{ font-size:56px; } .papstate__grid{ grid-template-columns:240px 1fr; } .papstate .notin{ grid-column:1 / -1; } }
 @media (max-width:600px){
-  .papstate__h2{ font-size:22px; }
-  .statement{ font-size:40px; line-height:1.04; }
-  .papstate__grid{ grid-template-columns:1fr; gap:28px; margin-top:32px; }
-  .papstate__img{ max-width:100%; }
-  .papstate__lead{ font-size:18px; }
 }
 
 /* HP 9: documentation as three ruled columns (no cards) */
-.docs__grid{ display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:48px; margin-top:56px; }
-.doccol{ display:grid; gap:14px; align-content:start; padding-top:24px; border-top:1.5px solid var(--ink); }
-.doccol h3{ font-size:20px; letter-spacing:-0.01em; line-height:1.25; }
-.doccol p{ color:var(--soft-ink); }
-.by{ padding-top:14px; border-top:1px solid var(--line-strong); font-weight:600; color:var(--ink) !important; }
-.by span{ display:block; font-size:12px; font-weight:500; color:var(--muted); }
-.gmpno, .doccol .gmpno{ font-size:56px; font-weight:700; letter-spacing:-0.02em; line-height:1; color:var(--ink); font-variant-numeric:tabular-nums; }
-.testlist li{ padding-block:12px; border-bottom:1px solid var(--line-strong); color:var(--soft-ink); }
-.testlist li:first-child{ padding-top:0; }
-.doccol .ulink{ justify-self:start; }
-@media (max-width:1100px){ .docs__grid{ grid-template-columns:1fr 1fr; } .doccol:last-child{ grid-column:1 / -1; } }
-@media (max-width:600px){ .docs__grid{ grid-template-columns:1fr; gap:32px; margin-top:32px; } .gmpno, .doccol .gmpno{ font-size:44px; } }
 
 /* HP 10, PDP 9: Hvem står bag, the last row of the documentation band */
 .who{ display:grid; grid-template-columns:200px minmax(0,1fr) minmax(0,1fr); gap:48px; align-items:center; margin-top:80px; padding-top:48px; border-top:1px solid var(--line-strong); }
@@ -654,8 +600,6 @@ html.has-drawer{ overflow:hidden; }
 @media (max-width:600px){ .who{ grid-template-columns:96px minmax(0,1fr); margin-top:56px; padding-top:32px; } .who__h2{ font-size:24px; } .who__name{ font-size:22px; margin-top:8px; } }
 
 /* PDP 8: our own document cover beside the five row table */
-.doktable__grid{ display:grid; grid-template-columns:minmax(0,4fr) minmax(0,8fr); gap:64px; align-items:start; margin-top:56px; }
-@media (max-width:1100px){ .doktable__grid{ grid-template-columns:1fr; gap:32px; } }
 
 /* PDP 5 on Powder Blue */
 
@@ -688,12 +632,7 @@ html.has-drawer{ overflow:hidden; }
 .gallery__dots button{ width:44px; height:44px; }
 .gallery__dots button::before{ left:18px; top:19px; }
 .mobile-nav a{ min-height:44px; }
-.gmpno--row, .dtable .gmpno--row{ display:block; font-size:32px; line-height:1.1; padding-bottom:6px; }
-@media (max-width:600px){ .gmpno--row, .dtable .gmpno--row{ font-size:28px; } }
 @media (max-width:600px){
-  .hero__facts, .factline{ display:grid; gap:4px; }
-  .hero__facts li, .factline li{ padding-inline:0; }
-  .hero__facts li + li::before, .factline li + li::before{ display:none; }
 }
 .remove{ min-width:44px; justify-content:center; }
 /* PDP 8: product image beside the documentation table */
@@ -785,12 +724,10 @@ html.has-drawer{ overflow:hidden; }
 .hero__title{ max-width:760px; }
 .hero__sub{ max-width:540px; }
 .hero__micro{ color:var(--ink); }
-.hero__facts{ margin-top:auto; padding-top:32px; }
 @media (max-width:1100px){ .hero__title{ max-width:520px; } }
 @media (max-width:600px){
   .hero__media{ position:static; }
   .hero__copy{ min-height:0; padding-block:20px 32px; }
-  .hero__facts{ margin-top:20px; padding-top:0; }
   /* Feather the bottom of the plate (under shelf shadow) into Smilo Yellow: no hard seam */
   .hero__media img{ -webkit-mask-image:linear-gradient(to bottom, #000 78%, transparent 100%); mask-image:linear-gradient(to bottom, #000 78%, transparent 100%); }
 }
@@ -806,13 +743,8 @@ html.has-drawer{ overflow:hidden; }
 .slide--white{ background:var(--ww); }
 
 /* PDP documentation: the table on a paper sheet (paper at radius 0) */
-.doktable__sheet{ margin-top:48px; padding:40px; background:var(--ww); box-shadow:0 1px 0 var(--line-strong), 0 12px 32px rgba(32,32,30,0.06); }
-@media (max-width:600px){ .doktable__sheet{ padding:20px 16px; margin-top:32px; } }
 
 /* HP documentation: each document as a paper sheet at radius 0 */
-.docs__grid{ gap:24px; }
-.doccol{ padding:28px; border-top:0; background:var(--ww); box-shadow:0 1px 0 var(--line-strong), 0 12px 32px rgba(32,32,30,0.06); }
-@media (max-width:600px){ .doccol{ padding:20px; } }
 
 /* PDP questions: full width, no image */
 .faq--wide .faq__grid{ grid-template-columns:minmax(0,4fr) minmax(0,8fr); }
@@ -844,10 +776,6 @@ html.has-drawer{ overflow:hidden; }
   .drawer .totals__grand{ padding-top:4px; font-size:16px; }
 }
 /* Hvorfor PAP is type led now (no image): two columns under the statement */
-.papstate__grid{ grid-template-columns:minmax(0,5fr) minmax(0,6fr); gap:64px; max-width:1080px; }
-.papstate__lead{ font-size:22px; line-height:1.5; }
-@media (max-width:1100px){ .papstate__grid{ grid-template-columns:1fr; gap:28px; } .papstate .notin{ grid-column:auto; } }
-@media (max-width:600px){ .papstate__lead{ font-size:18px; } }
 
 /* Club card tab: the saving in percent, computed from the two live prices (rounded down).
    Smaller than the price, no struck former price. */
@@ -922,10 +850,7 @@ html.js-ticks [data-ticks]:not(.is-filled) > span{ transform:scaleX(0.05); }
 /* HP documentation at 601 to 1100: two columns of minmax(0,1fr) so a cell never grows past its track, and the
    certificate number steps down so it fits the narrower cell (it overflowed at 601). */
 @media (max-width:1100px) and (min-width:601px){
-  .docs__grid{ grid-template-columns:repeat(2, minmax(0,1fr)); }
-  .gmpno, .doccol .gmpno{ font-size:40px; }
 }
-@media (max-width:760px) and (min-width:601px){ .gmpno, .doccol .gmpno{ font-size:32px; } }
 
 /* ---------- Snippet: comparison (HP 7, PDP 7), mirrored versus layout ----------
    Three columns: Smilo panel (yellow), a narrow spine with the row labels, the dentist panel (neutral).
@@ -1279,3 +1204,103 @@ html.js-ticks [data-ticks]:not(.is-filled) > span{ transform:scaleX(0.05); }
 .inbox__photo img{ aspect-ratio:4/3; }
 .legend__facts{ display:grid; gap:4px; margin:16px 0 0; padding:0 0 0 44px; list-style:none; font-size:16px; color:var(--soft-ink); }
 @media (max-width:600px){ .legend__facts{ padding-left:40px; } }
+
+/* ---------- Section: Hvorfor PAP (HP 8, PDP 8): split on yellow, image bleeds to the right edge ---------- */
+.papsplit{ position:relative; background:var(--yellow); overflow:hidden; }
+.papsplit__grid{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+.papsplit__copy{ padding-right:64px; }
+.papsplit__h2{ font-size:64px; line-height:1.02; letter-spacing:-0.03em; }
+.papsplit__claim{ margin-top:16px; font-size:24px; font-weight:600; line-height:1.3; letter-spacing:-0.01em; }
+.papsplit__lead{ margin-top:20px; font-size:18px; line-height:1.55; max-width:540px; }
+.notrows{ margin-top:32px; padding:0; list-style:none; border-top:1px solid rgba(32,32,30,0.25); }
+.notrows li{ display:grid; grid-template-columns:24px minmax(0,1fr); gap:16px; align-items:start; padding-block:18px; border-bottom:1px solid rgba(32,32,30,0.25); }
+.notrows__ico{ width:24px; height:24px; margin-top:0; stroke-width:1.75; }
+.notrows b{ display:block; font-size:18px; font-weight:700; line-height:1.35; }
+.notrows span{ display:block; margin-top:4px; font-size:16px; line-height:1.5; color:var(--on-ground); }
+.papsplit__media{ position:absolute; top:0; right:0; bottom:0; width:50%; display:block; }
+.papsplit__media img{ width:100%; height:100%; object-fit:cover; }
+@media (max-width:1100px){ .papsplit__h2{ font-size:48px; } .papsplit__claim{ font-size:22px; } .papsplit__copy{ padding-right:40px; } }
+@media (max-width:900px){
+  .papsplit{ padding-bottom:0; }
+  .papsplit__grid{ grid-template-columns:minmax(0,1fr); }
+  .papsplit__copy{ padding-right:0; }
+  .papsplit__media{ position:static; width:100%; margin-top:40px; }
+  .papsplit__media img{ height:auto; aspect-ratio:4/3; }
+}
+@media (max-width:600px){ .papsplit__h2{ font-size:40px; } .papsplit__claim{ font-size:20px; } .papsplit__lead{ font-size:16px; } .notrows b{ font-size:16px; } .notrows span{ font-size:14px; } .papsplit__media{ margin-top:32px; } }
+
+/* ---------- Snippet: documentation bento (HP 9, PDP 8): unequal tiles on the Panel band ---------- */
+.bento{ display:grid; grid-template-columns:minmax(0,5fr) minmax(0,4fr); grid-template-rows:auto auto; gap:16px; margin-top:48px; }
+.bento__tile{ display:grid; gap:12px; align-content:start; padding:32px; border-radius:var(--r-card); background:var(--ww); }
+.band--panel .bento__tile{ background:var(--ww); }
+.bento__cpsr{ grid-row:1 / 3; align-content:space-between; gap:24px; padding:40px; }
+.bento__icon{ width:48px; height:48px; fill:none; stroke:var(--ink); stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; }
+.bento__tile h3{ font-size:22px; line-height:1.25; letter-spacing:-0.01em; }
+.bento__cpsr h3{ font-size:32px; line-height:1.15; letter-spacing:-0.02em; max-width:460px; }
+.bento__by{ display:grid; gap:2px; font-size:16px; font-weight:600; }
+.bento__by span{ font-size:12px; font-weight:500; color:var(--muted); }
+.bento__detail{ font-size:16px; line-height:1.55; color:var(--soft-ink); }
+.bento__cpsr .bento__detail{ font-size:18px; max-width:520px; }
+.bento__gmp{ grid-template-columns:minmax(0,1fr) auto; align-items:end; }
+.bento__gmp h3, .bento__gmp .bento__no{ grid-column:1 / -1; }
+.bento__no{ font-size:40px; font-weight:700; letter-spacing:-0.02em; line-height:1; font-variant-numeric:tabular-nums; }
+.bento__list{ display:grid; gap:0; margin:0; padding:0; list-style:none; }
+.bento__list li{ display:grid; grid-template-columns:20px minmax(0,1fr); gap:12px; align-items:start; padding-block:12px; border-top:1px solid var(--line); font-size:16px; line-height:1.45; }
+.bento__list li:first-child{ border-top:0; padding-top:4px; }
+.bento__list .i{ margin-top:2px; stroke-width:2; }
+.bento__list small{ display:block; margin-top:2px; font-size:14px; color:var(--soft-ink); }
+.bento__more{ margin-top:20px; }
+@media (max-width:1100px){ .bento__cpsr h3{ font-size:28px; } .bento__tile{ padding:28px; } .bento__cpsr{ padding:32px; } }
+@media (max-width:900px){ .bento{ grid-template-columns:minmax(0,1fr); } .bento__cpsr{ grid-row:auto; gap:16px; } }
+@media (max-width:600px){ .bento{ margin-top:28px; gap:12px; } .bento__tile, .bento__cpsr{ padding:20px; } .bento__cpsr h3{ font-size:24px; } .bento__icon{ width:40px; height:40px; } .bento__no{ font-size:32px; } .bento__cpsr .bento__detail{ font-size:16px; } }
+/* Hero without the fact strip: ends just under the shelf (the photo keeps its top, the bottom wall is cropped) */
+@media (min-width:601px){
+  .hero{ min-height:min(680px, calc(100vh - var(--header-h) - var(--bar-h))); }
+  .hero__media img{ object-position:60% 0%; }
+  .hero__copy{ padding-block:64px 48px; }
+}
+/* pap-yellow: its yellow is a touch lighter than the band, so the edge facing the copy fades into it (no seam) */
+.papsplit__media img{ -webkit-mask-image:linear-gradient(to right, transparent 0, #000 9%); mask-image:linear-gradient(to right, transparent 0, #000 9%); }
+@media (max-width:900px){ .papsplit__media img{ -webkit-mask-image:linear-gradient(to bottom, transparent 0, #000 16%); mask-image:linear-gradient(to bottom, transparent 0, #000 16%); } }
+
+/* ==========================================================================
+   Review pap-docs-hero fixes
+   ========================================================================== */
+/* Hero: the stacked phone layout (image first, then copy) runs up to 960px, so copy never prints over the carton */
+@media (max-width:960px){
+  .hero{ display:flex; flex-direction:column; min-height:0; }
+  .hero__media{ position:static; order:1; display:block; }
+  .hero__media img{ position:static; width:100%; height:auto; aspect-ratio:6/5; object-position:50% 3%; -webkit-mask-image:none; mask-image:none; }
+  .hero__copy{ order:2; display:flex; flex-direction:column; min-height:0; padding-block:28px 40px; }
+  .hero__title{ order:1; font-size:48px; max-width:640px; }
+  .hero__cta{ order:2; margin-top:20px; }
+  .hero__sub{ order:3; margin-top:20px; max-width:560px; }
+  .hero__cta .btn{ min-width:280px; }
+}
+@media (min-width:601px) and (max-width:960px){ .hero__media img{ aspect-ratio:16/9; object-position:50% 30%; } }
+@media (max-width:600px){ .hero__title{ font-size:36px; } .hero__cta .btn{ width:100%; min-width:0; } .hero__copy{ padding-block:20px 32px; } }
+/* Hero 961 to 1200: keep the 48px H1 so line 2 clears the carton */
+@media (min-width:961px) and (max-width:1200px){ .hero__title{ font-size:48px; max-width:480px; } .hero__sub{ font-size:18px; max-width:420px; } }
+@media (min-width:1201px) and (max-width:1360px){ .hero__title{ font-size:56px; max-width:680px; } }
+
+/* Hvorfor PAP image: crops lead with the strip card and the sachet band */
+.papsplit__media img{ object-position:50% 50%; }
+
+/* Documentation bento: no icons; title and "Udført af" form the top block, the detail sits at the bottom */
+.bento__cpsr{ align-content:space-between; gap:32px; }
+.bento__top{ display:grid; gap:14px; }
+.bento__gmp{ grid-template-columns:minmax(0,1fr); align-items:start; }
+.bento__gmp .bento__no{ margin-top:4px; }
+/* Header 901 to 1100: tighter nav so the icons stay inside the viewport (overflowed at 961) */
+@media (min-width:901px) and (max-width:1100px){ .site-header__inner{ gap:24px; } .nav{ gap:20px; font-size:14px; } }
+/* PDP 901 to 1100: the one word title was wider than the buy column at 960; size it to fit */
+.pdp__buy{ min-width:0; }
+@media (min-width:901px) and (max-width:1100px){ .buy__title{ font-size:32px; } }
+/* Bento: CPSR and GMP side by side, the tests tile spans the full row below with its list in columns (no empty tall tile) */
+.bento{ grid-template-rows:auto; }
+.bento__cpsr{ grid-row:auto; align-content:start; gap:20px; }
+.bento__tests{ grid-column:1 / -1; }
+@media (min-width:901px){
+  .bento__list{ grid-template-columns:repeat(3, minmax(0,1fr)); column-gap:32px; }
+  .bento__list li, .bento__list li:first-child{ border-top:0; padding-top:4px; }
+}

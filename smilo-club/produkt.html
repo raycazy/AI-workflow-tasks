@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/smilo.css?v=734b58ca">
+<link rel="stylesheet" href="assets/smilo.css?v=ab4471ce">
 <link rel="stylesheet" href="assets/howto.css?v=098bf597">
 </head>
 <body data-page="produkt">
@@ -39,6 +39,8 @@
   <symbol id="i-left" viewBox="0 0 24 24"><path d="M15 6l-6 6l6 6"/></symbol>
   <symbol id="i-right" viewBox="0 0 24 24"><path d="M9 6l6 6l-6 6"/></symbol>
   <symbol id="i-calendar" viewBox="0 0 24 24"><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z"/><path d="M16 3v4"/><path d="M8 3v4"/><path d="M4 11h16"/><path d="M8 15h2v2h-2z"/></symbol>
+  <symbol id="i-file-cert" viewBox="0 0 24 24"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M5 8v-3a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5"/><path d="M3 14a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"/><path d="M4.5 17l-1.5 5l3 -1.5l3 1.5l-1.5 -5"/></symbol>
+  <symbol id="i-circle-x" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M10 10l4 4m0 -4l-4 4"/></symbol>
   <!-- Brand glyphs -->
   <symbol id="g-carton" viewBox="0 0 32 32"><path d="M9 7.5h11.5v20h-11.5z"/><path d="M20.5 7.5l3 -2.5v20l-3 2.5"/><path d="M9 7.5l3 -2.5h11.5"/><path d="M12.6 16.2a3 3 0 0 0 4.3 0"/></symbol>
   <symbol id="g-strip" viewBox="0 0 32 32"><rect x="4" y="11" width="24" height="10" rx="5"/><path d="M10 16h12" stroke-dasharray="2 3"/></symbol>
@@ -452,21 +454,25 @@
   </section>
 
   <!-- PDP 8. Section: Hvorfor PAP [statement on yellow, shared with HP]. -->
-  <!-- Section: Hvorfor PAP [statement on yellow]. Ceiling line 2 is the statement; the mechanism, the "not in" rows and the sachet sit under it.
-     Type led: the sachet render sits in the PDP gallery and the HP Start kuren thumbnails instead. -->
-<section class="section papstate" id="hvorfor-pap" data-section="why-pap" aria-labelledby="pap-title">
-  <div class="wrap">
-    <h2 id="pap-title" class="papstate__h2">Hvorfor PAP</h2>
-    <p class="statement">Skånsom mod emaljen, uden brintoverilte</p>
-    <div class="papstate__grid">
-      <p class="papstate__lead">Blegemidlet i Smilo Club er PAP (phthalimidoperoxycaproic acid). Det bleger ved oxidation, og det tager tid, så en kur er 14 behandlinger.</p>
-      <ul class="notin">
-        <li><b>Ingen brintoverilte, ingen carbamidperoxid</b><span>I EU må tandblegning til privat brug højst indeholde eller frigive 0,1 procent brintoverilte. Vi har valgt PAP i stedet.</span></li>
-        <li><b>Intet blåt eller lilla pigment</b><span>Pigmentet hedder covarine, og det er ikke i formlen.</span></li>
+  <!-- Section: Hvorfor PAP [split on yellow: copy left, product close up bleeding to the right edge]. Shared by HP and PDP.
+     Deck strings re-ranked (PM): the topic is the H2, the ceiling line is one claim line under it. Image: crops of pap-yellow (concept render) that lead with the strip card and the sachet band. -->
+<section class="section papsplit" id="hvorfor-pap" data-section="why-pap" aria-labelledby="pap-title">
+  <div class="wrap papsplit__grid">
+    <div class="papsplit__copy">
+      <h2 id="pap-title" class="papsplit__h2">Hvorfor PAP</h2>
+      <p class="papsplit__claim">Skånsom mod emaljen, uden brintoverilte</p>
+      <p class="papsplit__lead">Blegemidlet i Smilo Club er PAP (phthalimidoperoxycaproic acid). Det bleger ved oxidation, og det tager tid, så en kur er 14 behandlinger.</p>
+      <ul class="notrows">
+        <li><svg class="notrows__ico i" aria-hidden="true"><use href="#i-circle-x"/></svg><div><b>Ingen brintoverilte, ingen carbamidperoxid</b><span>I EU må tandblegning til privat brug højst indeholde eller frigive 0,1 procent brintoverilte. Vi har valgt PAP i stedet.</span></div></li>
+        <li><svg class="notrows__ico i" aria-hidden="true"><use href="#i-circle-x"/></svg><div><b>Intet blåt eller lilla pigment</b><span>Pigmentet hedder covarine, og det er ikke i formlen.</span></div></li>
         <!-- [HVIS {{inci_bekraeftet}}] Hydroxyapatit, men ikke i nanoform / Hydroxyapatitten i formlen er ikke i nanoform. -->
       </ul>
     </div>
   </div>
+  <picture class="papsplit__media">
+    <source media="(max-width: 900px)" srcset="assets/img/pap-yellow-lead-4x3.webp">
+    <img src="assets/img/pap-yellow-lead.webp" alt="En pose med strips trukket halvt ud" width="1200" height="1072" loading="lazy">
+  </picture>
 </section>
 
   <!-- PDP 8 (documentation) and PDP 9 (Hvem står bag) [Panel band: our own document cover beside the five row table, company row under it]. -->
@@ -476,19 +482,33 @@
         <h2 id="dok-title">Dokumentation</h2>
         <p>Alle kosmetiske produkter i EU skal have en sikkerhedsvurdering og være produceret efter GMP. Her er dokumenterne bag Smilo Club, og hvem der har lavet dem.</p>
       </div>
-      <div class="doktable__sheet">
-        <!-- No image beside the table (review v3 M2): the table runs full width on a paper sheet. -->
-        <table class="dtable">
-          <thead><tr><th scope="col">Dokument</th><th scope="col">Udført af</th><th scope="col">Detaljer</th></tr></thead>
-          <tbody>
-            <tr><th scope="row">Sikkerhedsvurdering (CPSR), fire rapporter</th><td data-label="Udført af">Centre Testing International</td><td data-label="Detaljer">Del B er underskrevet af Dr. Jikuai Chen, DABT og ERT, certificeret af EUROTOX og optaget i Swedish Register of Toxicology</td></tr>
-            <tr class="dtable__gmp"><th scope="row">GMP efter ISO 22716</th><td data-label="Udført af">Intertek</td><td data-label="Detaljer"><span class="gmpno gmpno--row" aria-hidden="true">SZ2312B8</span><span class="sr-only">Certifikat SZ2312B8. </span>Dækker tandblegningsstrips</td></tr>
-            <tr><th scope="row">Mikrobiologi og tungmetaller</th><td data-label="Udført af">Bureau Veritas</td><td data-label="Detaljer">Tredjepart</td></tr>
-            <tr><th scope="row">Tungmetaller i emballagen</th><td data-label="Udført af">Guangdong KEYS</td><td data-label="Detaljer">Tredjepart</td></tr>
-            <tr><th scope="row">Stabilitet</th><td data-label="Udført af">Centre Testing International</td><td data-label="Detaljer">Stabilitetstest over 12 uger, hvor indholdet af PAP blev målt undervejs</td></tr>
-          </tbody>
-        </table>
-      </div>
+      <!-- Snippet: documentation bento (HP 9, PDP 8). Unequal tiles on the Panel band; deck strings only.
+     No lab logos, no cover graphic (brief 04, earlier rulings). -->
+<div class="bento">
+  <article class="bento__tile bento__cpsr">
+    <div class="bento__top">
+      <h3>Sikkerhedsvurdering (CPSR), fire rapporter</h3>
+      <p class="bento__by"><span>Udført af</span>Centre Testing International</p>
+    </div>
+    <p class="bento__detail">Del B er underskrevet af Dr. Jikuai Chen, DABT og ERT, certificeret af EUROTOX og optaget i Swedish Register of Toxicology</p>
+  </article>
+  <article class="bento__tile bento__gmp">
+    <div class="bento__top">
+      <h3>GMP efter ISO 22716</h3>
+      <p class="bento__by"><span>Udført af</span>Intertek</p>
+    </div>
+    <p class="bento__no" aria-hidden="true">SZ2312B8</p>
+    <p class="bento__detail"><span class="sr-only">Certifikat SZ2312B8. </span>Dækker tandblegningsstrips</p>
+  </article>
+  <article class="bento__tile bento__tests">
+    <h3>Test fra eksterne laboratorier</h3>
+    <ul class="bento__list">
+      <li><svg class="i i--20" aria-hidden="true"><use href="#i-check"/></svg><span>Mikrobiologi og tungmetaller: Bureau Veritas</span></li>
+      <li><svg class="i i--20" aria-hidden="true"><use href="#i-check"/></svg><span>Tungmetaller i emballagen: Guangdong KEYS</span></li>
+      <li><svg class="i i--20" aria-hidden="true"><use href="#i-check"/></svg><span>Stabilitet: Centre Testing International<small>Stabilitetstest over 12 uger, hvor indholdet af PAP blev målt undervejs</small></span></li>
+    </ul>
+  </article>
+</div>
       <!-- Hvem står bag (HP 10, PDP 9), fallback version: no stock portrait, no address until supplied.
      CVR renders here and in the footer only, once confirmed. [HVIS P5 and a named quote are supplied] {{navn}}, {{rolle}}: "{{citat}}" -->
 <div class="who" aria-labelledby="who-title">
