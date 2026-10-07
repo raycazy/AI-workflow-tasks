@@ -246,32 +246,8 @@ body[data-plan="enkelt"] .if-klub, body:not([data-plan="enkelt"]) .if-enkelt{ di
 }
 
 /* ---------- Snippet: comparison (HP 7, PDP 7) ---------- */
-.compare__table{ width:100%; table-layout:fixed; font-size:16px; }
-.compare__table th, .compare__table td{ padding:18px 20px; text-align:left; vertical-align:top; line-height:1.45; }
-.compare__table tbody th{ width:22%; font-weight:600; font-size:14px; color:var(--muted); padding-left:0; }
-.compare__table tbody tr + tr > *{ border-top:1px solid var(--line-strong); }
-.compare__table thead th{ vertical-align:bottom; font-size:18px; font-weight:700; padding-bottom:20px; }
-.compare__table thead td{ width:22%; }
-.compare__table thead tr > *{ border-bottom:1.5px solid var(--ink); }
-.compare__table tbody .compare__us{ font-weight:700; color:var(--ink); }
-.compare__table tbody td{ color:var(--soft-ink); }
-.compare__head{ display:flex; align-items:center; gap:12px; }
-.compare__head img{ width:56px; height:56px; border-radius:var(--r-control); background:var(--yellow); object-fit:cover; }
-.compare__source{ margin-top:20px; font-size:14px; color:var(--muted); }
 
 @media (max-width:600px){
-  .compare__table, .compare__table thead, .compare__table tbody{ display:block; }
-  .compare__table tr{ display:grid; grid-template-columns:1fr 1fr; }
-  .compare__table thead td{ display:none; }
-  .compare__table tbody th{ grid-column:1 / -1; width:auto; padding:16px 0 8px; }
-  .compare__table tbody tr + tr > *{ border-top:0; }
-  .compare__table tbody tr + tr > th{ border-top:1px solid var(--line-strong); }
-  .compare__table th, .compare__table td{ padding:12px 14px; font-size:14px; }
-  .compare__table thead th{ font-size:16px; }
-  .compare__head{ flex-direction:column; align-items:flex-start; gap:8px; }
-  .compare__head img{ width:44px; height:44px; }
-  .compare__table tbody td{ padding:0 14px 14px 0; }
-  .compare__table thead th{ padding:0 14px 8px 0; }
 }
 
 /* ---------- Section: Hvorfor PAP (HP 8, PDP 8) ---------- */
@@ -663,8 +639,7 @@ html.has-drawer{ overflow:hidden; }
 }
 
 /* HP 7, PDP 7: comparison, heading above a plain ledger */
-.cmp__title{ margin-bottom:40px; }
-.compare{ max-width:1080px; }
+.cmp__title{ margin-bottom:48px; }
 @media (max-width:600px){ .cmp__title{ margin-bottom:24px; } }
 
 /* HP 8, PDP 8: Hvorfor PAP as a statement on yellow */
@@ -877,7 +852,6 @@ html.has-drawer{ overflow:hidden; }
 .faq--wide .faq__grid{ grid-template-columns:minmax(0,4fr) minmax(0,8fr); }
 
 /* Comparison header: both column heads on one baseline */
-.compare__head{ align-items:flex-end; }
 
 
 /* Desktop drawer: payment marks move into the body, so the pinned footer is totals and the button only */
@@ -986,3 +960,198 @@ html.js-ticks [data-ticks]:not(.is-filled) > span{ transform:scaleX(0.05); }
   .gmpno, .doccol .gmpno{ font-size:40px; }
 }
 @media (max-width:760px) and (min-width:601px){ .gmpno, .doccol .gmpno{ font-size:32px; } }
+
+/* ---------- Snippet: comparison (HP 7, PDP 7), mirrored versus layout ----------
+   Three columns: Smilo panel (yellow), a narrow spine with the row labels, the dentist panel (neutral).
+   One table, so every fact sits on the same row across all three columns. */
+.vs{ --line:rgba(32,32,30,0.16); --them:var(--panel); max-width:1120px; margin-inline:auto; }
+.band--panel .vs{ --them:var(--ww); }
+.vs__table{ width:100%; table-layout:fixed; border-collapse:separate; border-spacing:0; }
+.vs__us{ width:42%; } .vs__spine{ width:16%; } .vs__them{ width:42%; }
+.vs__table th, .vs__table td{ padding:22px 32px; vertical-align:middle; line-height:1.4; }
+.vs__table tbody > tr > *{ border-top:1px solid var(--line); }
+.vs__us{ background:var(--yellow); text-align:right; }
+.vs__them{ background:var(--them); text-align:left; }
+.vs__table tbody .vs__us{ font-size:20px; font-weight:700; color:var(--ink); }
+.vs__table tbody .vs__them{ font-size:18px; font-weight:400; color:var(--soft-ink); }
+.vs__table tbody .vs__spine{ padding-inline:12px; text-align:center; font-size:14px; font-weight:600; color:var(--muted); }
+.vs__table tbody tr:last-child .vs__us{ border-radius:0 0 0 var(--r-card); padding-bottom:32px; }
+.vs__table tbody tr:last-child .vs__them{ border-radius:0 0 var(--r-card) 0; padding-bottom:32px; }
+.vs__table tbody tr:last-child .vs__spine{ padding-bottom:32px; }
+/* heads: the product on yellow, the clinic as a line drawing */
+.vs__table .vs__head{ padding:0 0 24px; vertical-align:bottom; }
+.vs__us.vs__head{ border-radius:var(--r-card) 0 0 0; }
+.vs__them.vs__head{ border-radius:0 var(--r-card) 0 0; }
+.vs__img{ display:block; width:100%; height:240px; object-fit:cover; object-position:50% 60%; border-radius:var(--r-card) 0 0 0; }
+.vs__chair{ display:block; width:100%; height:240px; padding:40px 32px 24px; fill:none; stroke:var(--ink); stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; }
+.vs__chair *{ vector-effect:non-scaling-stroke; }
+.vs__chair .f{ fill:var(--ww); }
+.band--panel .vs__chair .f{ fill:var(--panel); }
+.vs__name{ display:block; padding:20px 32px 0; }
+.vs__us .vs__name{ text-align:right; font-size:28px; font-weight:700; letter-spacing:-0.02em; color:var(--ink); }
+.vs__them .vs__name{ font-size:22px; font-weight:600; color:var(--soft-ink); }
+.vs__source{ margin-top:20px; font-size:14px; color:var(--muted); }
+@media (max-width:1100px){
+  .vs__table th, .vs__table td{ padding:18px 20px; }
+  .vs__us{ width:41%; } .vs__spine{ width:18%; } .vs__them{ width:41%; }
+  .vs__table tbody .vs__us{ font-size:18px; }
+  .vs__table tbody .vs__them{ font-size:16px; }
+  .vs__img, .vs__chair{ height:180px; }
+  .vs__chair{ padding:28px 20px 16px; }
+  .vs__name{ padding:16px 20px 0; }
+  .vs__us .vs__name{ font-size:24px; }
+  .vs__them .vs__name{ font-size:20px; }
+}
+/* 390: two compact column heads, then each row as its label over the two values side by side. One container. */
+@media (max-width:600px){
+  .vs__table, .vs__table thead, .vs__table tbody, .vs__table tr{ display:block; }
+  .vs__table tr{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); column-gap:16px; }
+  .vs__table th, .vs__table td{ display:block; width:auto; padding:0; border-radius:0 !important; text-align:left; background:none; }
+  .vs__table thead .vs__spine{ display:none; }
+  .vs__table .vs__head{ padding:0 0 12px; }
+  .vs__us.vs__head .vs__img{ height:96px; border-radius:var(--r-control); }
+  .vs__chair{ height:96px; padding:12px 16px; border-radius:var(--r-control); background:var(--them); }
+  .vs__name{ padding:8px 0 0; }
+  .vs__us .vs__name{ font-size:18px; }
+  .vs__them .vs__name{ font-size:16px; }
+  .vs__table tbody tr{ padding:14px 0; border-top:1px solid var(--line); row-gap:6px; }
+  .vs__table tbody > tr > *{ border-top:0; }
+  .vs__table tbody .vs__spine{ grid-column:1 / -1; order:-1; text-align:left; padding:0; font-size:12px; }
+  .vs__table tbody .vs__us{ font-size:16px; }
+  .vs__table tbody .vs__them{ font-size:14px; }
+  .vs__table tbody tr:last-child .vs__us, .vs__table tbody tr:last-child .vs__them, .vs__table tbody tr:last-child .vs__spine{ padding-bottom:0; }
+  .vs__us .vs__name{ text-align:left; }
+}
+
+/* ==========================================================================
+   Reviews and UGC (SAMPLE content until launch; every block carries an "Eksempel" chip)
+   ========================================================================== */
+.ex-chip{ display:inline-flex; align-items:center; height:24px; padding:0 10px; border:1px solid var(--line-strong); border-radius:var(--r-pill); background:var(--ww); color:var(--ink); font-size:12px; font-weight:600; line-height:1; white-space:nowrap; }
+
+/* Stars: an outline row with a filled row clipped to the score */
+.stars{ --size:18px; position:relative; display:inline-block; width:calc(var(--size) * 5 + 8px); height:var(--size); flex:none; }
+.stars__base, .stars__fill{ position:absolute; inset:0; display:flex; gap:2px; }
+.stars__fill{ clip-path:inset(0 calc((1 - var(--score)) * 100%) 0 0); }
+.stars svg{ width:var(--size); height:var(--size); stroke:var(--ink); stroke-width:1.5; stroke-linejoin:round; }
+.stars__base svg{ fill:none; }
+.stars__fill svg{ fill:var(--ink); }
+
+/* PDP star line under the title */
+.starline{ display:flex; flex-wrap:wrap; align-items:center; gap:4px 10px; font-size:14px; }
+.starline__link{ display:inline-flex; align-items:center; min-height:44px; font-weight:600; text-decoration:underline; text-underline-offset:4px; text-decoration-thickness:1px; }
+.starline + .proof{ margin-top:0; }
+
+/* HP Trustpilot band */
+.tpband{ padding-block:56px; background:var(--ww); box-shadow:inset 0 -1px 0 var(--line); }
+.tpband__grid{ display:grid; grid-template-columns:minmax(0,4fr) minmax(0,8fr); gap:24px 48px; align-items:center; }
+.tpband__score{ display:grid; gap:8px; justify-items:start; }
+.tpband__h{ display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; }
+.tpband__h h2{ font-size:24px; letter-spacing:-0.01em; }
+.tpband__value{ display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; margin-top:4px; }
+.tpband__value b{ font-size:32px; font-weight:700; letter-spacing:-0.02em; line-height:1.1; }
+.tpband__method{ grid-column:1 / -1; font-size:12px; color:var(--muted); }
+.tpband__value .stars{ --size:22px; }
+.tpband__count{ font-size:14px; color:var(--soft-ink); }
+.tpband__cards{ display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:16px; }
+.tpband__cards > li{ display:flex; }
+.snip{ display:grid; gap:10px; align-content:start; width:100%; padding:20px; border-radius:var(--r-card); background:var(--panel); }
+.snip__top{ display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.snip__body{ font-size:16px; line-height:1.55; color:var(--ink); }
+.snip__who{ display:flex; flex-wrap:wrap; gap:2px 8px; font-size:12px; color:var(--muted); }
+.snip__who b{ color:var(--ink); font-weight:600; }
+@media (max-width:1100px){ .tpband__grid{ grid-template-columns:1fr; gap:24px; } }
+@media (max-width:600px){
+  .tpband{ padding-block:40px; }
+  .tpband__cards{ display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; margin-inline:calc(-1 * var(--gutter)); padding-inline:var(--gutter); scroll-padding-inline:var(--gutter); scrollbar-width:none; }
+  .tpband__cards::-webkit-scrollbar{ display:none; }
+  .tpband__cards > li{ flex:0 0 82%; scroll-snap-align:start; }
+  .tpband__method{ grid-column:auto; }
+}
+
+/* PDP reviews (Judge.me) */
+.reviews__head{ display:flex; flex-wrap:wrap; align-items:center; gap:12px 20px; margin-bottom:40px; }
+.reviews__grid{ display:grid; grid-template-columns:minmax(0,4fr) minmax(0,8fr); gap:64px; align-items:start; }
+.reviews__sum{ display:grid; gap:12px; justify-items:start; position:sticky; top:calc(var(--header-h) + 32px); }
+.reviews__avg{ display:flex; align-items:baseline; gap:8px; }
+.reviews__avg b{ font-size:64px; font-weight:700; letter-spacing:-0.03em; line-height:1; }
+.reviews__avg span{ font-size:16px; color:var(--soft-ink); }
+.reviews__sum .stars{ --size:22px; }
+.reviews__count{ font-size:14px; color:var(--soft-ink); }
+.dist{ display:grid; gap:6px; width:100%; max-width:340px; margin-top:8px; }
+.dist li{ display:grid; grid-template-columns:80px minmax(0,1fr) 44px; align-items:center; gap:10px; font-size:14px; }
+.dist__bar{ height:8px; border-radius:var(--r-pill); background:var(--line); overflow:hidden; }
+.dist__bar span{ display:block; height:100%; width:var(--w); border-radius:var(--r-pill); background:var(--ink); }
+.dist__c{ text-align:right; color:var(--soft-ink); }
+.reviews__method{ margin-top:8px; font-size:12px; line-height:1.5; color:var(--muted); max-width:340px; }
+.reviews__tools{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px 16px; margin-bottom:24px; }
+.reviews__filters{ display:flex; flex-wrap:wrap; gap:8px; }
+.fchip{ display:inline-flex; align-items:center; min-height:44px; padding:0 16px; border:1px solid var(--line-strong); border-radius:var(--r-pill); font-size:14px; font-weight:600; }
+.fchip[aria-pressed="true"]{ background:var(--ink); color:var(--ww); border-color:var(--ink); }
+.reviews__sort{ display:inline-flex; align-items:center; gap:10px; font-size:14px; font-weight:600; }
+.reviews__select{ position:relative; display:inline-flex; }
+.reviews__sort select{ appearance:none; height:44px; padding:0 40px 0 16px; border:1px solid var(--line-strong); border-radius:var(--r-control); background:var(--ww); font-size:14px; font-weight:600; }
+.reviews__select .i{ position:absolute; right:14px; top:14px; pointer-events:none; }
+.reviews__list{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:16px; }
+.reviews__list > li{ display:flex; }
+.rcard{ width:100%; display:grid; gap:10px; align-content:start; padding:24px; border-radius:var(--r-card); background:var(--panel); }
+.rcard__top{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.rcard__date{ font-size:12px; color:var(--muted); }
+.rcard__title{ font-size:18px; font-weight:700; line-height:1.35; }
+.rcard__body{ font-size:16px; line-height:1.55; color:var(--soft-ink); }
+.rcard__photos{ display:flex; gap:8px; }
+.rcard__photos img{ width:72px; height:96px; object-fit:cover; border-radius:var(--r-control); }
+.rcard__who{ display:flex; flex-wrap:wrap; align-items:center; gap:4px 12px; margin-top:4px; font-size:14px; }
+.rcard__verified{ display:inline-flex; align-items:center; gap:4px; color:var(--soft-ink); }
+.rcard__plan{ justify-self:start; padding:4px 10px; border-radius:var(--r-pill); background:var(--ww); font-size:12px; font-weight:600; }
+.reviews__more{ margin-top:24px; }
+@media (max-width:1100px){ .reviews__grid{ grid-template-columns:1fr; gap:32px; } .reviews__sum{ position:static; } }
+@media (max-width:768px){ .reviews__list{ grid-template-columns:1fr; } }
+@media (max-width:600px){ .reviews__head{ margin-bottom:24px; } .reviews__avg b{ font-size:48px; } .rcard{ padding:20px; } .reviews__more{ width:100%; } .reviews__tools{ align-items:stretch; } }
+
+/* HP UGC rail: 9:16 tiles, handle and caption on a soft scrim */
+.ugc__head{ display:flex; flex-wrap:wrap; align-items:flex-end; gap:16px 24px; margin-bottom:32px; }
+.ugc__titles{ margin-right:auto; }
+.ugc__h{ display:flex; flex-wrap:wrap; align-items:center; gap:8px 16px; }
+.ugc__chip{ position:absolute; top:16px; left:16px; z-index:1; }
+.ugc--short{ margin-top:80px; }
+.ugc--short h3{ font-size:28px; letter-spacing:-0.02em; }
+.ugc--short .ugc__rail{ padding-inline:0; scroll-padding-inline:0; }
+.ugc--short .ugc__tile{ flex-basis:calc((100% - 48px) / 4); min-width:200px; }
+.ugc__intro{ margin-top:12px; font-size:18px; color:var(--soft-ink); max-width:560px; }
+.ugc__arrows{ display:flex; gap:8px; }
+.ugc__arrow{ border:1px solid var(--line-strong); border-radius:var(--r-pill); }
+.ugc__rail{ display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; scroll-padding-inline:max(var(--gutter), calc((100vw - var(--maxw)) / 2)); padding-inline:max(var(--gutter), calc((100vw - var(--maxw)) / 2)); scrollbar-width:none; }
+.ugc__rail::-webkit-scrollbar{ display:none; }
+.ugc__tile{ position:relative; flex:0 0 260px; aspect-ratio:9/16; border-radius:var(--r-card); overflow:hidden; scroll-snap-align:start; background:var(--panel); }
+.ugc__tile img{ width:100%; height:100%; object-fit:cover; }
+.ugc__tile::after{ content:""; position:absolute; inset:45% 0 0; background:linear-gradient(to bottom, rgba(32,32,30,0), rgba(32,32,30,0.62)); }
+.ugc__cap{ position:absolute; left:16px; right:16px; bottom:16px; z-index:1; display:grid; gap:2px; color:var(--ww); font-size:14px; line-height:1.4; }
+.ugc__cap b{ font-size:14px; }
+.ugc__play{ position:absolute; top:16px; right:16px; z-index:1; display:grid; place-items:center; width:44px; height:44px; border-radius:50%; background:var(--ww); }
+.ugc__play svg{ width:18px; height:18px; fill:var(--ink); margin-left:2px; }
+@media (max-width:600px){
+  .ugc__head{ margin-bottom:24px; }
+  .ugc__arrows{ display:none; }
+  .ugc__intro{ font-size:16px; }
+  .ugc__tile, .ugc--short .ugc__tile{ flex-basis:62%; min-width:0; }
+  .ugc--short{ margin-top:56px; }
+  .ugc--short .ugc__rail{ margin-inline:calc(-1 * var(--gutter)); padding-inline:var(--gutter); scroll-padding-inline:var(--gutter); }
+  .ugc__rail{ gap:12px; }
+}
+/* Buy box with the rating line: tighter top so the CTA stays above the fold at 1440x900 */
+@media (min-width:901px){
+  .pdp{ padding-top:8px; }
+  .buy .starline{ margin-top:-6px; }
+  .buy .proof{ margin-top:-8px; }
+  .buy__eyebrow{ margin-top:4px; }
+  .factline{ margin-top:10px; }
+  .buy .ceiling{ margin-top:14px; }
+  .buy .ceiling li{ padding-block:9px; }
+  .buy .plans{ margin-top:14px; }
+}
+.ugc__zoom{ transform:scale(1.6); } /* repeat tiles: a closer crop of the same photo */
+/* 390: three review cards first; "Vis flere anmeldelser" reveals the rest */
+@media (max-width:600px){ .reviews__list:not(.is-open) > li:nth-child(n+4){ display:none; } }
+/* Trustpilot cards at 601 to 900: grid items may shrink below their content, and the chip wraps under the stars */
+.tpband__cards > li{ min-width:0; }
+.snip__top{ flex-wrap:wrap; }

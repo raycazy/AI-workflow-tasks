@@ -33,6 +33,11 @@
   <symbol id="i-repeat" viewBox="0 0 24 24"><path d="M4 12v-3a3 3 0 0 1 3 -3h13m-3 -3l3 3l-3 3"/><path d="M20 12v3a3 3 0 0 1 -3 3h-13m3 3l-3 -3l3 -3"/></symbol>
   <symbol id="i-alert" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"/><path d="M12 8v4"/><path d="M12 16h.01"/></symbol>
   <symbol id="i-replay" viewBox="0 0 24 24"><path d="M19.95 11a8 8 0 1 0 -.5 4m.5 5v-5h-5"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.6l2.83 5.74l6.33 .92l-4.58 4.46l1.08 6.3l-5.66 -2.98l-5.66 2.98l1.08 -6.3l-4.58 -4.46l6.33 -.92z"/></symbol>
+  <symbol id="i-verified" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18a9 9 0 0 0 0 -18z"/><path d="M8.5 12.2l2.3 2.3l4.7 -4.8"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11 -6.5z"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="M15 6l-6 6l6 6"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M9 6l6 6l-6 6"/></symbol>
   <!-- Brand glyphs -->
   <symbol id="g-carton" viewBox="0 0 32 32"><path d="M9 7.5h11.5v20h-11.5z"/><path d="M20.5 7.5l3 -2.5v20l-3 2.5"/><path d="M9 7.5l3 -2.5h11.5"/><path d="M12.6 16.2a3 3 0 0 0 4.3 0"/></symbol>
   <symbol id="g-strip" viewBox="0 0 32 32"><rect x="4" y="11" width="24" height="10" rx="5"/><path d="M10 16h12" stroke-dasharray="2 3"/></symbol>
@@ -108,7 +113,8 @@
       <!-- 4.1 Buy box -->
       <div class="pdp__buy" data-buy-col>
         <form class="buy" id="buy" data-buy action="#" novalidate>
-          <!-- Slot reserved above the proof line for a future rating or a documented endorsement. Not rendered. -->
+          <!-- Rating line in the reserved slot (deck RV1). SAMPLE until launch: Judge.me product rating. -->
+          <p class="starline"><span class="stars" style="--score:0.96" role="img" aria-label="4,8 ud af 5 stjerner"><span class="stars__base"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span><span class="stars__fill"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></span><a href="#anmeldelser" class="starline__link">4,8 ud af 5 (214 anmeldelser)</a><span class="ex-chip">Eksempel</span></p>
           <a class="proof" href="#dokumentation"><svg class="i i--20" aria-hidden="true"><use href="#i-file"/></svg><span>Se dokumentationen bag Smilo Club</span></a>
           <p class="buy__eyebrow">Smilo Club</p>
           <h1 class="buy__title">Tandblegningsstrips</h1>
@@ -273,6 +279,125 @@
     </div>
   </section>
 
+  <!-- Reviews (SAMPLE) -->
+  <!-- Section: reviews (PDP, deck RV3, RV4, RV5). SAMPLE content, labelled "Eksempel"; never live.
+     At launch the Judge.me widget renders real data. Six cards sorted by "Nyeste", two with photos; a short UGC rail closes the section. -->
+<section class="section reviews" id="anmeldelser" data-section="reviews" aria-labelledby="rev-title">
+  <div class="wrap">
+    <div class="reviews__head">
+      <h2 id="rev-title">Anmeldelser</h2>
+      <span class="ex-chip">Eksempel</span>
+    </div>
+    <div class="reviews__grid">
+      <aside class="reviews__sum">
+        <p class="reviews__avg"><b>4,8</b><span>ud af 5</span></p>
+        <span class="stars" style="--score:0.96" role="img" aria-label="4,8 ud af 5 stjerner"><span class="stars__base"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span><span class="stars__fill"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></span>
+        <p class="reviews__count">Baseret på 214 anmeldelser</p>
+        <ul class="dist">
+          <li><span class="dist__n">5 stjerner</span><span class="dist__bar"><span style="--w:84%"></span></span><span class="dist__c">84 %</span></li>
+          <li><span class="dist__n">4 stjerner</span><span class="dist__bar"><span style="--w:11%"></span></span><span class="dist__c">11 %</span></li>
+          <li><span class="dist__n">3 stjerner</span><span class="dist__bar"><span style="--w:3%"></span></span><span class="dist__c">3 %</span></li>
+          <li><span class="dist__n">2 stjerner</span><span class="dist__bar"><span style="--w:1%"></span></span><span class="dist__c">1 %</span></li>
+          <li><span class="dist__n">1 stjerne</span><span class="dist__bar"><span style="--w:1%"></span></span><span class="dist__c">1 %</span></li>
+        </ul>
+        <p class="reviews__method">Vi viser anmeldelser fra verificerede køb. Alle anmeldelser offentliggøres, også de negative.</p>
+        <a class="ulink" href="#">Skriv en anmeldelse</a>
+      </aside>
+      <div class="reviews__main">
+        <div class="reviews__tools">
+          <div class="reviews__filters" role="group" aria-label="Filtrer anmeldelser">
+            <button type="button" class="fchip" aria-pressed="true">Alle</button><button type="button" class="fchip" aria-pressed="false">Med billeder</button><button type="button" class="fchip" aria-pressed="false">5 stjerner</button><button type="button" class="fchip" aria-pressed="false">4 stjerner</button>
+          </div>
+          <label class="reviews__sort"><span class="reviews__sortlabel">Sortér efter:</span><span class="reviews__select"><select><option>Nyeste</option><option>Højeste bedømmelse</option><option>Laveste bedømmelse</option></select><svg class="i i--16" aria-hidden="true"><use href="#i-chevron"/></svg></span></label>
+        </div>
+        <ul class="reviews__list">
+      <li><article class="rcard" aria-label="Eksempel på anmeldelse">
+          <div class="rcard__top"><span class="stars" style="--score:1.00" role="img" aria-label="5 ud af 5 stjerner"><span class="stars__base"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span><span class="stars__fill"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></span><p class="rcard__date">for 4 dage siden</p></div>
+          <p class="rcard__title">Pakke 2 kom, som den skulle</p>
+          <p class="rcard__body">Næste pakke kom efter de 90 dage, uden at jeg skulle bestille noget. Jeg er gået i gang med kuren igen fra behandling 1.</p>
+          <ul class="rcard__photos"><li><img src="assets/img/ugc-mailer-sm.webp" alt="En åben forsendelsesæske med en pakke Smilo Club tandblegningsstrips på en dørmåtte" width="540" height="960" loading="lazy"></li></ul>
+          <p class="rcard__who"><b>Louise H.</b><span class="rcard__verified"><svg class="i i--16" aria-hidden="true"><use href="#i-verified"/></svg>Verificeret køb</span><span class="ex-chip">Eksempel</span></p>
+          <p class="rcard__plan">Købt: Klubben</p>
+        </article></li>
+      <li><article class="rcard" aria-label="Eksempel på anmeldelse">
+          <div class="rcard__top"><span class="stars" style="--score:1.00" role="img" aria-label="5 ud af 5 stjerner"><span class="stars__base"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span><span class="stars__fill"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></span><p class="rcard__date">for 5 dage siden</p></div>
+          <p class="rcard__title">Godt at kunne se dokumentationen</p>
+          <p class="rcard__body">Jeg ville have noget uden brintoverilte og ville vide, hvad der er i stedet. Her står der, at blegemidlet er PAP, og hvem der har lavet sikkerhedsvurderingen. Det gjorde det lettere at vælge.</p>
+          <p class="rcard__who"><b>Camilla R.</b><span class="rcard__verified"><svg class="i i--16" aria-hidden="true"><use href="#i-verified"/></svg>Verificeret køb</span><span class="ex-chip">Eksempel</span></p>
+          <p class="rcard__plan">Købt: Klubben</p>
+        </article></li>
+      <li><article class="rcard" aria-label="Eksempel på anmeldelse">
+          <div class="rcard__top"><span class="stars" style="--score:0.80" role="img" aria-label="4 ud af 5 stjerner"><span class="stars__base"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span><span class="stars__fill"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></span><p class="rcard__date">for 2 uger siden</p></div>
+          <p class="rcard__title">Tør tænderne først</p>
+          <p class="rcard__body">Første gang gled den nederste strip lidt, fordi jeg ikke havde tørret tænderne ordentligt. Det står i trin 1, men jeg sprang det over. Nu tørrer jeg dem med et håndklæde først, og så bliver de siddende.</p>
+          <p class="rcard__who"><b>Sofie K.</b><span class="rcard__verified"><svg class="i i--16" aria-hidden="true"><use href="#i-verified"/></svg>Verificeret køb</span><span class="ex-chip">Eksempel</span></p>
+          <p class="rcard__plan">Købt: Klubben</p>
+        </article></li>
+      <li><article class="rcard" aria-label="Eksempel på anmeldelse">
+          <div class="rcard__top"><span class="stars" style="--score:1.00" role="img" aria-label="5 ud af 5 stjerner"><span class="stars__base"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span><span class="stars__fill"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></span><p class="rcard__date">for 3 uger siden</p></div>
+          <p class="rcard__title">Synligt hvidere efter hele kuren</p>
+          <p class="rcard__body">Jeg tog et billede i dagslys før første behandling og et efter den sidste, samme sted ved vinduet. Tænderne er synligt hvidere efter de 14 behandlinger. Det kræver lidt tålmodighed, og nu venter jeg på næste pakke.</p>
+          <p class="rcard__who"><b>Mette L.</b><span class="rcard__verified"><svg class="i i--16" aria-hidden="true"><use href="#i-verified"/></svg>Verificeret køb</span><span class="ex-chip">Eksempel</span></p>
+          <p class="rcard__plan">Købt: Klubben</p>
+        </article></li>
+      <li><article class="rcard" aria-label="Eksempel på anmeldelse">
+          <div class="rcard__top"><span class="stars" style="--score:1.00" role="img" aria-label="5 ud af 5 stjerner"><span class="stars__base"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span><span class="stars__fill"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></span><p class="rcard__date">for en måned siden</p></div>
+          <p class="rcard__title">Passer ind i aftenrutinen</p>
+          <p class="rcard__body">Jeg sætter dem på, mens jeg smører madpakker, og tager dem af igen, når køkkenet er ryddet. De er tørre at tage op af posen, og smagen lægger jeg ikke mærke til.</p>
+          <ul class="rcard__photos"><li><img src="assets/img/ugc-sink-sm.webp" alt="Æske med Smilo Club tandblegningsstrips på kanten af en håndvask ved siden af et tandbørstekrus og en sæbedispenser" width="540" height="960" loading="lazy"></li></ul>
+          <p class="rcard__who"><b>Jonas P.</b><span class="rcard__verified"><svg class="i i--16" aria-hidden="true"><use href="#i-verified"/></svg>Verificeret køb</span><span class="ex-chip">Eksempel</span></p>
+          <p class="rcard__plan">Købt: Én pakke</p>
+        </article></li>
+      <li><article class="rcard" aria-label="Eksempel på anmeldelse">
+          <div class="rcard__top"><span class="stars" style="--score:0.80" role="img" aria-label="4 ud af 5 stjerner"><span class="stars__base"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span><span class="stars__fill"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></span><p class="rcard__date">for en måned siden</p></div>
+          <p class="rcard__title">Husk de 30 minutter</p>
+          <p class="rcard__body">De er nemme at sætte på, lang til overmunden og kort til undermunden. Jeg glemte tiden et par gange, så nu sætter jeg en alarm på telefonen. Jeg kan se forskel efter hele kuren.</p>
+          <p class="rcard__who"><b>Anders M.</b><span class="rcard__verified"><svg class="i i--16" aria-hidden="true"><use href="#i-verified"/></svg>Verificeret køb</span><span class="ex-chip">Eksempel</span></p>
+          <p class="rcard__plan">Købt: Én pakke</p>
+        </article></li>
+        </ul>
+        <button type="button" class="btn btn--outline reviews__more">Vis flere anmeldelser</button>
+      </div>
+    </div>
+    <!-- Short UGC rail under the reviews (PDP, deck RV5) -->
+<div class="ugc ugc--short" aria-labelledby="ugc-title-pdp">
+  <div class="ugc__head">
+    <div class="ugc__titles">
+      <div class="ugc__h"><h3 id="ugc-title-pdp">Smilo Club derhjemme</h3><span class="ex-chip">Eksempel</span></div>
+      <p class="ugc__intro">Billeder, som kunder har delt med os. Del dit med #smiloclub.</p>
+    </div>
+      <div class="ugc__arrows">
+        <button type="button" class="icon-btn ugc__arrow" data-rail-prev aria-label="Forrige"><svg class="i"><use href="#i-left"/></svg></button>
+        <button type="button" class="icon-btn ugc__arrow" data-rail-next aria-label="Næste"><svg class="i"><use href="#i-right"/></svg></button>
+      </div>
+  </div>
+  <ul class="ugc__rail" data-rail>
+      <li class="ugc__tile">
+        <img src="assets/img/ugc-shelf.webp" alt="Æske med Smilo Club tandblegningsstrips på en åben badeværelseshylde mellem flasker, vatrondeller og en plante" width="1080" height="1920" loading="lazy">
+        <span class="ugc__chip"><span class="ex-chip">Eksempel</span></span>
+        <p class="ugc__cap"><b>Ida B.</b><span>Aftenrutinen er klar</span></p>
+      </li>
+      <li class="ugc__tile">
+        <img src="assets/img/ugc-sink.webp" alt="Æske med Smilo Club tandblegningsstrips på kanten af en håndvask ved siden af et tandbørstekrus og en sæbedispenser" width="1080" height="1920" loading="lazy">
+        <span class="ugc__chip"><span class="ex-chip">Eksempel</span></span>
+        <span class="ugc__play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
+        <p class="ugc__cap"><b>Oliver S.</b><span>30 minutter og en kop te</span></p>
+      </li>
+      <li class="ugc__tile">
+        <img src="assets/img/ugc-bag.webp" alt="Æske med Smilo Club tandblegningsstrips ved en åben toilettaske på en seng" width="1080" height="1920" loading="lazy">
+        <span class="ugc__chip"><span class="ex-chip">Eksempel</span></span>
+        <p class="ugc__cap"><b>Emil V.</b><span>Behandling 1 af 14</span></p>
+      </li>
+      <li class="ugc__tile">
+        <img src="assets/img/ugc-mailer.webp" alt="En åben forsendelsesæske med en pakke Smilo Club tandblegningsstrips på en dørmåtte" width="1080" height="1920" loading="lazy">
+        <span class="ugc__chip"><span class="ex-chip">Eksempel</span></span>
+        <p class="ugc__cap"><b>Freja J.</b><span>Pakke 2 er landet</span></p>
+      </li>
+  </ul>
+</div>
+  </div>
+</section>
+
   <!-- PDP 6. Section: Fra behandling 1 til pakke 2 [one continuous rail on Panel]. Pakke 1, the course as 14 cells,
        the ~90 day gap, Pakke 2, then the rail runs on (the routine repeats). Deck v2.5 strings; no label per treatment. -->
   <section class="section band--panel route" id="kuren-og-klubben" data-section="course-and-club" aria-labelledby="journey-title">
@@ -309,26 +434,43 @@
   <section class="section cmp" data-section="comparison" aria-labelledby="cmp-title">
     <div class="wrap">
       <h2 id="cmp-title" class="cmp__title">Tandblegning i Danmark</h2>
-      <!-- Snippet: comparison table (HP 7, PDP 7). Two sourced columns, facts only.
-     No result, speed, sensitivity, legality, documentation or price row (copy deck v2.1). -->
-<div class="compare">
-  <table class="compare__table">
+      <!-- Snippet: comparison (HP 7, PDP 7), mirrored versus layout (deck v2.6). Two sourced columns, facts only.
+     Smilo panel on yellow with the product; the dentist panel on a neutral ground with a line drawing (no people, no teeth).
+     Row labels sit in the centre spine; each fact reads straight across. No ticks, crosses or better/worse marks.
+     No result, speed, sensitivity, legality, documentation or price row (copy deck v2.1, v2.6). Built for up to 6 rows. -->
+<div class="vs">
+  <table class="vs__table">
     <caption class="sr-only">Sammenligning af Smilo Club og blegning hos tandlægen</caption>
     <thead>
       <tr>
-        <td></td>
-        <th scope="col" class="compare__us"><span class="compare__head"><img src="assets/img/cart-thumb.webp" alt="" width="400" height="400" loading="lazy"><span>Smilo Club</span></span></th>
-        <th scope="col"><span class="compare__head compare__head--plain"><span>Blegning hos tandlægen</span></span></th>
+        <th scope="col" class="vs__us vs__head"><img class="vs__img" src="assets/img/compare-shelf.webp" alt="" width="1200" height="900" loading="lazy"><span class="vs__name">Smilo Club</span></th>
+        <td class="vs__spine" aria-hidden="true"></td>
+        <th scope="col" class="vs__them vs__head">
+          <svg class="vs__chair" viewBox="0 0 200 140" aria-hidden="true" focusable="false">
+            <path d="M16 128H184"/>
+            <path class="f" d="M80 128V104h20v24"/>
+            <path d="M68 128H112"/>
+            <rect class="f" x="54" y="90" width="84" height="14" rx="7"/>
+            <path class="f" d="M60 92L36 54a6 6 0 0 1 3 -8l4 -2a6 6 0 0 1 8 3l22 41z"/>
+            <rect class="f" x="24" y="30" width="24" height="12" rx="6" transform="rotate(-28 36 36)"/>
+            <path class="f" d="M134 92l26 18a5 5 0 0 1 1 7l-1 1a5 5 0 0 1 -7 1l-27 -19z"/>
+            <path d="M74 80H112M104 80v10"/>
+            <path d="M168 128V24H120"/>
+            <path class="f" d="M104 24a16 10 0 0 0 32 0z"/>
+          </svg>
+          <span class="vs__name">Hos tandlægen</span>
+        </th>
       </tr>
     </thead>
     <tbody>
-      <tr><th scope="row">Blegemiddel</th><td class="compare__us">PAP</td><td>Brintoverilte eller carbamidperoxid</td></tr>
-      <tr><th scope="row">Hvem bleger</th><td class="compare__us">Du selv, efter brugsanvisningen</td><td>Tandlægen, eller under tandlægens direkte opsyn</td></tr>
-      <tr><th scope="row">Hvor</th><td class="compare__us">Hjemme</td><td>Hos tandlægen. Resten af produktet kan du få med hjem</td></tr>
-      <tr><th scope="row">Tid pr. behandling</th><td class="compare__us">30 minutter</td><td>Aftales med tandlægen</td></tr>
+      <tr><td class="vs__us">PAP</td><th scope="row" class="vs__spine">Blegemiddel</th><td class="vs__them">Brintoverilte eller carbamidperoxid</td></tr>
+      <tr><td class="vs__us">Du selv, efter brugsanvisningen</td><th scope="row" class="vs__spine">Hvem bleger</th><td class="vs__them">Tandlægen, eller under tandlægens direkte opsyn</td></tr>
+      <tr><td class="vs__us">Hjemme</td><th scope="row" class="vs__spine">Hvor</th><td class="vs__them">På klinikken. Resten af produktet kan du få med hjem</td></tr>
+      <tr><td class="vs__us">30 minutter</td><th scope="row" class="vs__spine">Tid pr. behandling</th><td class="vs__them">Aftales med tandlægen</td></tr>
+      <tr><td class="vs__us">Bestil online</td><th scope="row" class="vs__spine">Sådan starter du</th><td class="vs__them">Book en tid</td></tr>
     </tbody>
   </table>
-  <p class="compare__source">Kilde: Miljøstyrelsen og Styrelsen for Patientsikkerhed, Information om reglerne for tandblegeprodukter.</p>
+  <p class="vs__source">Kilde: Miljøstyrelsen og Styrelsen for Patientsikkerhed, Information om reglerne for tandblegeprodukter.</p>
 </div>
     </div>
   </section>

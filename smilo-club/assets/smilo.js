@@ -281,6 +281,24 @@
     });
   }
 
+  /* ---------- Reviews: "Vis flere anmeldelser" reveals the cards hidden at 390 (Judge.me loads more in the theme) ---------- */
+  $$('.reviews__more').forEach((b) => b.addEventListener('click', () => {
+    const list = $('.reviews__list', b.closest('.reviews__main'));
+    if (list) list.classList.add('is-open');
+  }));
+
+  /* ---------- UGC rail arrows: scroll by one tile ---------- */
+  $$('[data-rail]').forEach((rail) => {
+    const sec = rail.closest('section');
+    const by = (d) => {
+      const t = rail.firstElementChild;
+      const step = t ? t.getBoundingClientRect().width + 16 : 280;
+      rail.scrollBy({ left: d * step, behavior: reduce ? 'auto' : 'smooth' });
+    };
+    $$('[data-rail-prev]', sec).forEach((b) => b.addEventListener('click', () => by(-1)));
+    $$('[data-rail-next]', sec).forEach((b) => b.addEventListener('click', () => by(1)));
+  });
+
   /* ---------- Cart page: sticky checkout row on narrow screens ---------- */
   const cbar = $('[data-checkout-bar]');
   const ccta = $('#cart-cta');
