@@ -589,15 +589,6 @@ html.has-drawer{ overflow:hidden; }
 /* HP 9: documentation as three ruled columns (no cards) */
 
 /* HP 10, PDP 9: Hvem står bag, the last row of the documentation band */
-.who{ display:grid; grid-template-columns:200px minmax(0,1fr) minmax(0,1fr); gap:48px; align-items:center; margin-top:80px; padding-top:48px; border-top:1px solid var(--line-strong); }
-.who__img{ aspect-ratio:1/1; background:var(--ww); }
-.who__h2{ font-size:32px; }
-.who__name{ margin-top:16px; font-size:28px; font-weight:700; letter-spacing:-0.02em; }
-.who__cvr{ font-size:16px; color:var(--muted); font-variant-numeric:tabular-nums; }
-.who__ask{ display:grid; gap:16px; justify-items:start; }
-.who__ask p{ font-size:18px; }
-@media (max-width:900px){ .who{ grid-template-columns:140px minmax(0,1fr); gap:24px 28px; } .who__ask{ grid-column:1 / -1; } }
-@media (max-width:600px){ .who{ grid-template-columns:96px minmax(0,1fr); margin-top:56px; padding-top:32px; } .who__h2{ font-size:24px; } .who__name{ font-size:22px; margin-top:8px; } }
 
 /* PDP 8: our own document cover beside the five row table */
 
@@ -1304,3 +1295,169 @@ html.js-ticks [data-ticks]:not(.is-filled) > span{ transform:scaleX(0.05); }
   .bento__list{ grid-template-columns:repeat(3, minmax(0,1fr)); column-gap:32px; }
   .bento__list li, .bento__list li:first-child{ border-top:0; padding-top:4px; }
 }
+
+
+/* ==========================================================================
+   v2.11 round: cart next steps, switch block, PDP price line, FAQ groups,
+   company row, announcement rotation, closing band, rhythm pass
+   ========================================================================== */
+
+/* Announcement: one line at a time, rotating; 44px bar with a pause control */
+.announce{ --bar-h:44px; position:relative; height:var(--bar-h); display:flex; align-items:center; justify-content:center; padding-inline:52px; }
+.announce__view{ height:var(--bar-h); overflow:hidden; }
+.announce__track{ display:block; height:auto; transition:transform 280ms var(--ease-out); }
+.announce__track p{ display:flex; align-items:center; justify-content:center; height:var(--bar-h); white-space:nowrap; text-align:center; }
+.announce__toggle{ position:absolute; right:max(var(--gutter), calc((100vw - var(--maxw)) / 2)); top:0; display:grid; place-items:center; width:44px; height:44px; color:var(--ink); }
+.announce__toggle[hidden]{ display:none; }
+@media (max-width:600px){ .announce{ padding-inline:44px; font-size:12px; } .announce__track{ flex-direction:column; } .announce__track p{ white-space:normal; line-height:1.3; } .announce__toggle{ right:0; } }
+@media (prefers-reduced-motion: reduce){ .announce__track{ transition:none; } }
+
+/* Cart: what happens next */
+.cnext{ display:grid; gap:12px; }
+.cnext__h{ font-size:14px; font-weight:700; }
+.cnext__steps{ margin:0; padding:0; list-style:none; counter-reset:cn; display:grid; gap:10px; }
+.cnext__steps li{ counter-increment:cn; display:grid; grid-template-columns:24px minmax(0,1fr); gap:2px 12px; font-size:14px; line-height:1.45; }
+.cnext__steps li::before{ content:counter(cn); grid-row:1 / 3; display:grid; place-items:center; width:24px; height:24px; border-radius:50%; background:var(--yellow); box-shadow:0 0 0 1.5px var(--ink); font-size:12px; font-weight:700; }
+.cnext__steps b{ font-weight:600; }
+.cnext__steps span{ color:var(--soft-ink); }
+.cnext__info{ font-size:14px; color:var(--muted); padding-left:36px; }
+.cnext--one{ font-size:14px; color:var(--soft-ink); }
+.drawer .cnext{ padding:14px 0 4px; border-top:1px solid var(--line); }
+.cartpage__next{ grid-column:2; padding:24px 32px; }
+.cartpage__next .cnext__h{ font-size:16px; }
+@media (max-width:900px){ .cartpage__next{ grid-column:auto; padding:0; } }
+
+/* Cart: the switch to Klubben as a stronger block */
+.switch{ position:relative; gap:12px; padding:22px 18px 18px; border-radius:var(--r-card); background:var(--yellow-tint); box-shadow:inset 0 0 0 1.5px var(--ink); }
+.switch__tab{ position:absolute; top:-12px; left:16px; display:block; height:24px; line-height:24px; padding:0 10px; border-radius:var(--r-pill); background:var(--ink); color:var(--yellow); font-size:12px; font-weight:700; white-space:nowrap; }
+.switch__top{ grid-template-columns:56px minmax(0,1fr); align-items:start; }
+.switch__title{ font-size:16px; }
+.switch__text{ margin-top:2px; }
+.switch__save{ display:inline-flex; justify-self:start; padding:4px 10px; border-radius:var(--r-control); background:var(--yellow); font-size:14px; font-weight:600; }
+.drawer .switch{ padding:20px 14px 14px; }
+
+/* Drawer: documentation line under checkout, kept on one short line */
+.drawer__doc{ display:flex; align-items:center; justify-content:center; gap:6px; font-size:12px; }
+.drawer__doc .ulink{ min-height:32px; text-decoration-thickness:1px; }
+@media (max-width:600px){ .drawer__doc{ display:none; } .drawer__trust .cart-trust__seller{ font-size:12px; } }
+
+/* PDP: price on the first mobile screen */
+.buy__pricem{ display:none; }
+@media (max-width:600px){ .buy__pricem{ display:block; margin-top:2px; font-size:16px; } .buy__pricem b{ font-size:20px; font-weight:700; } }
+
+/* FAQ: intro, contact card with hands photo, three labelled groups */
+.faqx__grid{ display:grid; grid-template-columns:minmax(0,4fr) minmax(0,7fr); gap:72px; align-items:start; }
+.faqx__side{ display:grid; gap:20px; justify-items:start; position:sticky; top:calc(var(--header-h) + 32px); }
+.faqx__intro{ font-size:18px; color:var(--soft-ink); max-width:380px; }
+.faqx__contact{ display:grid; grid-template-columns:120px minmax(0,1fr); gap:20px; align-items:center; width:100%; max-width:420px; margin-top:8px; }
+.faqx__contact img{ width:120px; aspect-ratio:4/5; object-fit:cover; border-radius:var(--r-card); }
+.faqx__contact-body{ display:grid; gap:12px; justify-items:start; font-size:16px; }
+.faqx__groups{ display:grid; gap:40px; }
+.faqg__label{ margin-bottom:4px; font-size:14px; font-weight:700; color:var(--muted); letter-spacing:0; }
+@media (max-width:1100px){ .faqx__grid{ grid-template-columns:minmax(0,1fr); gap:32px; } .faqx__side{ position:static; } }
+@media (max-width:600px){ .faqx__intro{ font-size:16px; } .faqx__contact{ grid-template-columns:88px minmax(0,1fr); gap:16px; } .faqx__contact img{ width:88px; } .faqx__groups{ gap:28px; } }
+
+/* Company: one compact row closing the documentation band */
+.whorow{ display:grid; grid-template-columns:auto auto minmax(0,1fr) auto; gap:8px 24px; align-items:center; margin-top:40px; padding-top:28px; border-top:1px solid var(--line-strong); }
+.whorow__label{ font-size:14px; font-weight:700; color:var(--muted); letter-spacing:0; }
+.whorow__name{ font-size:20px; font-weight:700; letter-spacing:-0.01em; }
+.whorow__line{ font-size:16px; color:var(--soft-ink); }
+@media (max-width:900px){ .whorow{ grid-template-columns:minmax(0,1fr) auto; } .whorow__label{ grid-column:1 / -1; } .whorow__line{ grid-column:1 / -1; grid-row:3; } .whorow__btn{ grid-column:2; grid-row:2; } }
+@media (max-width:600px){ .whorow{ grid-template-columns:minmax(0,1fr); } .whorow__btn{ grid-column:auto; grid-row:auto; justify-self:start; } .whorow__line{ grid-row:auto; } }
+
+/* Closing band: hands photo, no mask needed on a scene */
+.closing__img{ -webkit-mask-image:none; mask-image:none; }
+
+/* Rhythm pass: documents as square paper, quotes and reviews without containers, spacing by content */
+.bento__tile, .band--panel .bento__tile{ border-radius:0; box-shadow:0 1px 0 var(--line-strong), 0 14px 32px rgba(32,32,30,0.07); }
+.snip{ padding:4px 0 0; border-radius:0; background:none; box-shadow:none; border-top:1.5px solid var(--ink); padding-top:18px; }
+.rcard{ padding:20px 0; border-radius:0; background:none; border-top:1px solid var(--line-strong); }
+.reviews__list{ gap:0 40px; }
+.tpband{ padding-block:48px 40px; }
+.papsplit{ padding-block:120px; }
+.faqx{ padding-block:112px; }
+.startkur{ padding-block:80px 96px; }
+@media (max-width:600px){ .papsplit{ padding-block:64px 0; } .faqx{ padding-block:64px; } .startkur{ padding-block:48px 56px; } .tpband{ padding-block:32px; } .rcard{ padding:16px 0; } }
+/* v2.11 copy shapes */
+.cnext__steps li{ grid-template-columns:24px minmax(0,1fr); align-items:start; }
+.cnext__steps li::before{ grid-row:auto; }
+.cnext__steps span{ padding-top:2px; color:var(--ink); }
+.drawer .cnext__info{ display:none; }
+.whorow{ grid-template-columns:auto minmax(0,1fr); gap:6px 24px; }
+.whorow__name{ font-size:20px; letter-spacing:-0.01em; }
+.whorow .ulink--inline{ display:inline; min-height:0; padding-block:12px; }
+@media (max-width:900px){ .whorow, .whorow__line{ grid-template-columns:minmax(0,1fr); grid-column:auto; grid-row:auto; } }
+.faqx__contact-h{ font-weight:700; }
+.faqx__contact-body{ gap:6px; }
+.faqx__contact-body .btn{ margin-top:8px; }
+@media (max-width:600px){ .buy__pricem{ display:flex; flex-wrap:wrap; gap:0 16px; align-items:baseline; } .buy__pricem > span:last-child{ font-size:14px; color:var(--soft-ink); } }
+/* Drawer doc line: 44px tap box in 32px of layout */
+.drawer__doc .ulink{ min-height:44px; padding-block:6px; margin-block:-6px; }
+/* 390 first screen: stars, name and price before the documentation link, so the price clears the sticky bar */
+@media (max-width:600px){
+  .buy__toprow{ display:contents; }
+  .buy > *:not(.buy__toprow):not(.buy__title):not(.buy__pricem){ order:2; }
+  .buy__toprow .proof{ order:1; margin-top:4px; }
+  .buy__title{ margin-top:0; }
+}
+.switch__save{ display:inline-block; }
+.cartpage__next{ grid-column:auto; padding:8px 0 0; }
+.cartpage__next .cnext{ padding:24px; border-radius:0; background:var(--panel); }
+@media (max-width:600px){ .cartpage__next .cnext{ padding:20px 16px; margin-inline:calc(-1 * var(--gutter)); } }
+
+/* v2.11 fix: one pack block carries the heading; drawer switch tab clears the stepper */
+.cnext--one{ display:grid; gap:8px; }
+.drawer .switch{ margin-top:12px; }
+@media (max-width:600px){ .drawer .switch{ margin-top:8px; padding-top:16px; } }
+.cnext--one > p:not(.cnext__h){ font-size:14px; line-height:1.5; color:var(--soft-ink); }
+
+/* ==========================================================================
+   v2.12 round (design review v2.11 + copy check v2.11)
+   ========================================================================== */
+
+/* C1. Closing band: a real two column grid (copy, photo), stacked up to 960px. No overlap at any width. */
+.closing__grid{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,46%); min-height:640px; align-items:stretch; }
+.closing__copy{ align-self:center; max-width:none; padding-block:96px; padding-left:max(var(--gutter), calc((100vw - var(--maxw)) / 2)); padding-right:48px; }
+.closing__copy h2, .closing__copy p{ max-width:520px; }
+.closing__media{ position:relative; min-height:100%; margin:0; }
+.closing__img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 50%; -webkit-mask-image:none; mask-image:none; }
+@media (max-width:1100px){ .closing__img{ width:100%; } .closing__copy{ padding-right:32px; } }
+@media (max-width:960px){
+  .closing__grid{ grid-template-columns:minmax(0,1fr); min-height:0; }
+  .closing__copy{ padding:64px var(--gutter) 48px; }
+  .closing__media{ min-height:0; }
+  .closing__img{ position:static; display:block; height:auto; aspect-ratio:4/3; }
+}
+@media (max-width:600px){ .closing__copy{ padding:48px var(--gutter) 32px; } .closing__img{ aspect-ratio:1/1; } }
+
+/* M1. One pack cart: "Skift til Klubben" is the outline button at content width; "Gå til kassen" stays the only filled button */
+.switch__btn{ justify-self:start; min-height:48px; padding-inline:28px; background:transparent; }
+.switch__btn:hover{ background:var(--ink); color:var(--ww); }
+
+/* M2. Drawer: footer holds totals and the CTA only; seller line, wallets and documentation scroll with the content */
+.drawer__wallets{ display:none; }
+.drawer__wallets-m{ display:block; }
+.drawer__trust{ display:grid; gap:8px; justify-items:start; }
+.drawer__trust .drawer__doc{ display:flex; justify-content:flex-start; margin-top:4px; }
+.drawer__foot{ transition:box-shadow 160ms var(--ease-out); }
+.drawer.has-more .drawer__foot{ box-shadow:0 -1px 0 var(--line), 0 -12px 16px -10px rgba(32,32,30,.22); }
+.drawer .switch__save{ display:none; }
+@media (max-width:600px){ .drawer__body{ padding-top:16px; } }
+
+/* Announcement: the pause button's focus ring sits inside the bar, so overflow never clips it */
+.announce__toggle:focus-visible{ outline-offset:-4px; }
+
+/* FAQ: questions first, contact card after them in the DOM; on desktop the card sits in the left column */
+.faqx__grid{ grid-template-columns:minmax(0,4fr) minmax(0,7fr); grid-template-areas:"side groups" "aside groups"; grid-template-rows:auto 1fr; row-gap:32px; }
+.faqx__side{ grid-area:side; position:static; }
+.faqx__groups{ grid-area:groups; }
+.faqx__aside{ grid-area:aside; display:grid; gap:20px; justify-items:start; align-content:start; }
+.faqx__aside .faqx__contact{ margin-top:0; }
+@media (max-width:1100px){ .faqx__grid{ grid-template-columns:minmax(0,1fr); grid-template-areas:"side" "groups" "aside"; grid-template-rows:auto; } .faqx__aside{ margin-top:8px; } }
+
+/* Company row: name only; the contact prompt lives in the FAQ card */
+.whorow{ grid-template-columns:minmax(0,1fr); }
+@media (max-width:600px){ .drawer .switch__img{ display:none; } .drawer .switch__top{ grid-template-columns:minmax(0,1fr); } .drawer__body{ padding-top:12px; } }
+/* Narrow phones (360): step dots and the PDP star row fit without page overflow */
+@media (max-width:380px){ .howto__dots button{ width:40px; } .howto__dots button::before{ left:16px; } .buy .starline{ font-size:12px; gap:4px 8px; } }
+@media (max-width:380px){ .buy .starline{ flex-wrap:wrap; row-gap:0; } }

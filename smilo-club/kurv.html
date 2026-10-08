@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/smilo.css?v=ab4471ce">
+<link rel="stylesheet" href="assets/smilo.css?v=ce473319">
 <link rel="stylesheet" href="assets/howto.css?v=098bf597">
 <meta name="robots" content="noindex">
 </head>
@@ -42,6 +42,8 @@
   <symbol id="i-calendar" viewBox="0 0 24 24"><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z"/><path d="M16 3v4"/><path d="M8 3v4"/><path d="M4 11h16"/><path d="M8 15h2v2h-2z"/></symbol>
   <symbol id="i-file-cert" viewBox="0 0 24 24"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M5 8v-3a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5"/><path d="M3 14a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"/><path d="M4.5 17l-1.5 5l3 -1.5l3 1.5l-1.5 -5"/></symbol>
   <symbol id="i-circle-x" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M10 10l4 4m0 -4l-4 4"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14"/><path d="M16 5v14"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M12 9h.01"/><path d="M11 12h1v4h1"/></symbol>
   <!-- Brand glyphs -->
   <symbol id="g-carton" viewBox="0 0 32 32"><path d="M9 7.5h11.5v20h-11.5z"/><path d="M20.5 7.5l3 -2.5v20l-3 2.5"/><path d="M9 7.5l3 -2.5h11.5"/><path d="M12.6 16.2a3 3 0 0 0 4.3 0"/></symbol>
   <symbol id="g-strip" viewBox="0 0 32 32"><rect x="4" y="11" width="24" height="10" rx="5"/><path d="M10 16h12" stroke-dasharray="2 3"/></symbol>
@@ -51,11 +53,16 @@
 <a class="skip" href="#main">Gå til indholdet</a>
 
 <!-- Section: announcement (two lines; both on desktop, rotating on mobile) -->
-<div class="announce" data-section="announcement">
-  <div class="announce__track" data-ticker>
-    <!-- One line (review v3 / blind test): the hero states the 90 day cadence, so the bar carries delivery only. -->
-    <p>Leveringstiden er 1 til 3 hverdage.</p><!-- [HVIS {{fragt_klub}} = 0] Fri fragt med Klubben. (gated, deck v2.4) -->
+<div class="announce" data-section="announcement" role="region" aria-label="Nyheder" data-announce>
+  <div class="announce__view">
+    <div class="announce__track" data-ticker aria-live="off">
+      <p>Ny pakke hver 90. dag. Opsig online under Min konto.</p>
+      <p>Klubben er et løbende abonnement: spar 50&nbsp;% i forhold til enkeltkøb.</p>
+      <p>Leveringstiden er 1 til 3 hverdage.</p>
+    </div>
   </div>
+  <!-- Auto advance every 5s; pauses on hover and focus; a pause button (WCAG 2.2.2); reduced motion shows line 1 only -->
+  <button class="announce__toggle" type="button" data-ticker-toggle aria-pressed="false" aria-label="Sæt beskederne på pause" data-label-pause="Sæt beskederne på pause" data-label-play="Vis beskederne igen"><svg class="i i--16" aria-hidden="true"><use href="#i-pause"/></svg></button>
 </div>
 
 <!-- Section: header -->
@@ -101,7 +108,8 @@
       </div>
       <div class="cartpage__grid">
         <div class="cartpage__lines">
-          <!-- Snippet: cart line item (C3) and the switch row (C4). One line, two states.
+          <!-- The next pack date shows once, in "Det sker nu" (C5b), not on the line (deck v2.11).
+     Snippet: cart line item (C3) and the switch row (C4). One line, two states.
      The plan select maps to the line's selling plan; the Klubben line repeats the PDP disclosure word for word. -->
 <article class="line" data-show="klub engang">
   <div class="line__top">
@@ -121,7 +129,6 @@
   </div>
   <div class="line__terms" data-show="klub">
     <p class="disclosure">Løbende abonnement: <b><span data-v="pris_klub">199</span> kr.</b> i dag og derefter <b><span data-v="pris_klub">199</span> kr.</b> for hver ny pakke, som sendes hver 90. dag, indtil du opsiger. <span data-v="fragt_saetning">Fragt 39 kr. pr. pakke.</span> Ingen binding. Du opsiger online under Min konto.</p>
-    <p class="line__next"><svg class="i i--16" aria-hidden="true"><use href="#i-repeat"/></svg>Næste pakke sendes ca. 3. januar 2027.</p>
   </div>
   <div class="line__bottom">
     <div class="qty__ctrl" role="group" aria-label="Antal"><button type="button" data-step="-" aria-label="Én mindre"><svg class="i i--16"><use href="#i-minus"/></svg></button><output aria-live="polite">1</output><button type="button" data-step="+" aria-label="Én mere"><svg class="i i--16"><use href="#i-plus"/></svg></button></div>
@@ -131,16 +138,30 @@
 
 <!-- C4: only on a one pack line. Never pre ticked, never switched automatically. -->
 <div class="switch" data-show="engang">
-  <!-- Order: heading, row text, saving, terms, then the button. Nobody commits before the terms are visible. -->
+  <!-- Order: saving, heading, row text, terms, then the button. Nobody commits before the terms are visible. -->
+  <span class="switch__tab if-save">Spar <span data-v="spar_pct">50</span>&nbsp;%</span>
   <div class="switch__top">
     <img class="switch__img" src="assets/img/pdp-05-four-packs.webp" alt="Fire æsker Smilo Club på en hylde, den første åben" width="1600" height="1200" loading="lazy">
-    <h3 class="switch__title">Vil du have næste pakke automatisk?</h3>
+    <div>
+      <h3 class="switch__title">Vil du have næste pakke automatisk?</h3>
+      <p class="switch__text">Med Klubben sendes en ny pakke hver 90. dag.</p>
+    </div>
   </div>
-  <p class="switch__text">Med Klubben sendes en ny pakke hver 90. dag.</p>
   <p class="switch__save if-save">Spar <span data-v="spar">200</span> kr. pr. pakke i forhold til enkeltkøb</p>
   <p class="disclosure">Løbende abonnement: <b><span data-v="pris_klub">199</span> kr.</b> i dag og derefter <b><span data-v="pris_klub">199</span> kr.</b> for hver ny pakke, som sendes hver 90. dag, indtil du opsiger. <span data-v="fragt_saetning">Fragt 39 kr. pr. pakke.</span> Ingen binding. Du opsiger online under Min konto.</p>
-  <button class="btn btn--outline btn--block" type="button" data-switch-klub>Skift til Klubben</button>
+  <button class="btn btn--outline switch__btn" type="button" data-switch-klub>Skift til Klubben</button>
 </div>
+          <div class="cartpage__next" data-show="klub engang"><!-- Snippet: after your order (C5b, deck v2.12). Club orders only: three steps.
+     The cancel line is hidden everywhere (deck v2.12): the terms sentence and the repeat line carry it.
+     One pack carts show no block: its only line repeated the C2 delivery bar (copy check v2.11 m1). -->
+<div class="cnext" data-show="klub">
+  <p class="cnext__h">Efter din bestilling</p>
+  <ol class="cnext__steps">
+    <li><span>Vi sender din første pakke.</span></li>
+    <li><span>Du bruger de 14 behandlinger i pakken.</span></li>
+    <li><span>Næste pakke sendes ca. 3. januar 2027.</span></li>
+  </ol>
+</div></div>
           <!-- Snippet: empty cart (C7) -->
 <div class="cart-empty" data-show="tom">
   <p class="cart-empty__lead">Der er ikke noget i kurven endnu.</p>
@@ -231,6 +252,6 @@
   </div>
 </footer>
 <p id="toast" class="toast" role="status" aria-live="polite"></p>
-<script src="assets/smilo.js?v=af4a67ca" defer></script>
+<script src="assets/smilo.js?v=4f72590f" defer></script>
 </body>
 </html>

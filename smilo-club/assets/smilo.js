@@ -45,15 +45,36 @@
     });
   }
 
-  /* ---------- Announcement: two lines rotate on narrow screens (transform only) ---------- */
-  const ticker = $('[data-ticker]');
-  if (ticker && $$('p', ticker).length > 1 && !reduce) {
-    let i = 0;
-    setInterval(() => {
-      if (window.innerWidth > 600) { ticker.style.transform = ''; return; }
-      i = 1 - i;
-      ticker.style.transform = `translateY(${i * -50}%)`;
-    }, 4500);
+  /* ---------- Announcement: lines rotate every 5s (transform only), pause on hover, focus or the pause button;
+     reduced motion shows the first line and no rotation (WCAG 2.2.2) ---------- */
+  const ann = $('[data-announce]');
+  if (ann) {
+    const track = $('[data-ticker]', ann);
+    const lines = $$('p', track);
+    const toggle = $('[data-ticker-toggle]', ann);
+    let i = 0, paused = false, hover = false, timer = null;
+    const show = (k) => {
+      i = k;
+      track.style.transform = `translateY(${-100 * i / lines.length}%)`;
+      lines.forEach((l, j) => l.setAttribute('aria-hidden', String(j !== i)));
+    };
+    show(0);
+    if (reduce || lines.length < 2) {
+      if (toggle) toggle.hidden = true;
+    } else {
+      const tick = () => { if (!paused && !hover) show((i + 1) % lines.length); };
+      timer = setInterval(tick, 5000);
+      ann.addEventListener('mouseenter', () => { hover = true; });
+      ann.addEventListener('mouseleave', () => { hover = false; });
+      ann.addEventListener('focusin', () => { hover = true; });
+      ann.addEventListener('focusout', () => { hover = false; });
+      if (toggle) toggle.addEventListener('click', () => {
+        paused = !paused;
+        toggle.setAttribute('aria-pressed', String(paused));
+        toggle.setAttribute('aria-label', paused ? toggle.dataset.labelPlay : toggle.dataset.labelPause);
+        $('use', toggle).setAttribute('href', paused ? '#i-play' : '#i-pause');
+      });
+    }
   }
 
   /* ---------- Cart state: klub | engang | tom ---------- */
@@ -118,6 +139,10 @@
     });
     $$('[data-cart-open]').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); openDrawer(drawer.dataset.state || 'tom'); }));
   }
+  /* Scroll cue: the pinned footer casts a shadow while drawer content continues below it */
+  const dBody = drawer && $('.drawer__body', drawer);
+  const cue = () => { if (!dBody) return; drawer.classList.toggle('has-more', dBody.scrollHeight - dBody.clientHeight - dBody.scrollTop > 4); };
+  if (dBody) { dBody.addEventListener('scroll', cue, { passive: true }); window.addEventListener('resize', cue); new MutationObserver(() => requestAnimationFrame(cue)).observe(drawer, { attributes: true, attributeFilter: ['class', 'data-state'] }); }
   $$('[data-remove]').forEach((b) => b.addEventListener('click', () => setCartState('tom')));
   $$('[data-plan-select]').forEach((sel) => sel.addEventListener('change', () => setCartState(sel.value)));
   $$('[data-switch-klub]').forEach((b) => b.addEventListener('click', () => { setCartState('klub'); toast('Du er skiftet til Klubben.'); }));
