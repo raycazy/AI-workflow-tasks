@@ -11,7 +11,8 @@
 <link rel="stylesheet" href="./assets/hga.css">
 <script type="importmap">{
   "imports": {
-    "hga": "./assets/hga-6faf1b38.js",
+    "hga": "./assets/hga-site.js",
+    "hga/slab_sway_controller": "./assets/slab_sway_controller.js",
     "three": "./assets/three-slab-97b99b70.js",
     "@hotwired/stimulus": "./assets/stimulus.min-4b1e420e.js",
     "hybrid_grading/controllers/copy_link_controller": "./assets/hybrid_grading/controllers/copy_link_controller-6deef36d.js",
@@ -65,25 +66,19 @@
 
       <div class="pick" role="radiogroup" aria-label="Choose your housing">
         <button class="tile" type="button" role="radio" aria-checked="true" data-pick="glass">
-          <span class="tl">
-            <img src="./assets/hybrid_grading/hga-glass-828ebfd2.svg" alt="HGA Glass" width="80" height="13">
-            <span class="gb"><small>Pre sale</small><b>$200</b></span>
-          </span>
-          <span class="tf"><span><s>$600</s> at open</span><em>Save $400</em></span>
-          <span class="tk" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></span>
+          <span class="t-top"><img src="./assets/hybrid_grading/hga-glass-828ebfd2.svg" alt="HGA Glass" width="80" height="13"><i class="t-radio" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></i></span>
+          <span class="t-price"><b>$200</b><s>$600</s></span>
+          <span class="t-save">Save $400 a card</span>
         </button>
         <button class="tile" type="button" role="radio" aria-checked="false" data-pick="poly" tabindex="-1">
-          <span class="tl">
-            <img src="./assets/hybrid_grading/hga-poly-69885480.svg" alt="HGA Poly" width="72" height="13">
-            <span class="gb"><small>Pre sale</small><b>$50</b></span>
-          </span>
-          <span class="tf"><span><s>$200</s> at open</span><em>Save $150</em></span>
-          <span class="tk" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></span>
+          <span class="t-top"><img src="./assets/hybrid_grading/hga-poly-69885480.svg" alt="HGA Poly" width="72" height="13"><i class="t-radio" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></i></span>
+          <span class="t-price"><b>$50</b><s>$200</s></span>
+          <span class="t-save">Save $150 a card</span>
         </button>
       </div>
 
       <div class="hero-cta" data-sbar-after>
-        <a class="btn lg" href="pass.html?h=glass" data-hero-cta>Prepay <span data-hero-cta-name>HGA Glass</span><span class="price" data-hero-cta-price>$200</span></a>
+        <a class="btn lg" href="pass.html?h=glass" data-hero-cta>Prepay <span data-hero-cta-name>HGA Glass</span><span class="price" data-hero-cta-price>$200</span><svg class="ico"><use href="#i-arrow"/></svg></a>
         <a class="btn ghost inv lg" href="#remind">Remind me later</a>
       </div>
 
@@ -109,7 +104,8 @@
           data-hybrid-grading--slab-label-back-value="./slabs/ohtani/label/back.webp"
           data-hybrid-grading--slab-card-corner-radius-value="0.0"
           data-hybrid-grading--slab-direction-value="left"
-          data-hybrid-grading--slab-spin-value="false">
+          data-hybrid-grading--slab-spin-value="false"
+          data-hybrid-grading--slab-sway-value="true">
           <img src="./slabs/ohtani/720.webp" alt="HGA Glass slab: Shohei Ohtani, graded 10" width="720" height="1207">
           <canvas aria-hidden="true" data-hybrid-grading--slab-target="canvas" data-action="webglcontextlost->hybrid-grading--slab#lose webglcontextrestored->hybrid-grading--slab#restore"></canvas>
           <div class="hint" aria-hidden="true"><svg class="ico" style="width:22px;height:14px"><use href="#i-drag"/></svg>Drag to turn it over</div>
@@ -128,7 +124,8 @@
           data-hybrid-grading--slab-label-back-value="./slabs/judge/label/back.webp"
           data-hybrid-grading--slab-card-corner-radius-value="0.0"
           data-hybrid-grading--slab-direction-value="left"
-          data-hybrid-grading--slab-spin-value="false">
+          data-hybrid-grading--slab-spin-value="false"
+          data-hybrid-grading--slab-sway-value="true">
           <img src="./slabs/judge/720.webp" alt="HGA Poly slab: Aaron Judge, graded 10" width="720" height="1198">
           <canvas aria-hidden="true" data-hybrid-grading--slab-target="canvas" data-action="webglcontextlost->hybrid-grading--slab#lose webglcontextrestored->hybrid-grading--slab#restore"></canvas>
           <div class="hint" aria-hidden="true"><svg class="ico" style="width:22px;height:14px"><use href="#i-drag"/></svg>Drag to turn it over</div>

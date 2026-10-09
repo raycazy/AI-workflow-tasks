@@ -11,7 +11,8 @@
 <link rel="stylesheet" href="./assets/hga.css">
 <script type="importmap">{
   "imports": {
-    "hga": "./assets/hga-6faf1b38.js",
+    "hga": "./assets/hga-site.js",
+    "hga/slab_sway_controller": "./assets/slab_sway_controller.js",
     "three": "./assets/three-slab-97b99b70.js",
     "@hotwired/stimulus": "./assets/stimulus.min-4b1e420e.js",
     "hybrid_grading/controllers/copy_link_controller": "./assets/hybrid_grading/controllers/copy_link_controller-6deef36d.js",
@@ -78,7 +79,8 @@
                 data-hybrid-grading--slab-label-back-value="./slabs/ohtani/label/back.webp"
                 data-hybrid-grading--slab-card-corner-radius-value="0.0"
                 data-hybrid-grading--slab-direction-value="left"
-                data-hybrid-grading--slab-spin-value="false">
+                data-hybrid-grading--slab-spin-value="false"
+          data-hybrid-grading--slab-sway-value="true">
                 <img src="./slabs/ohtani/720.webp" alt="HGA Glass slab: Shohei Ohtani, graded 10" width="720" height="1207">
                 <canvas aria-hidden="true" data-hybrid-grading--slab-target="canvas" data-action="webglcontextlost->hybrid-grading--slab#lose webglcontextrestored->hybrid-grading--slab#restore"></canvas>
                 <div class="hint" aria-hidden="true"><svg class="ico" style="width:22px;height:14px"><use href="#i-drag"/></svg>Drag to see the back</div>
@@ -97,7 +99,8 @@
                 data-hybrid-grading--slab-label-back-value="./slabs/judge/label/back.webp"
                 data-hybrid-grading--slab-card-corner-radius-value="0.0"
                 data-hybrid-grading--slab-direction-value="left"
-                data-hybrid-grading--slab-spin-value="false">
+                data-hybrid-grading--slab-spin-value="false"
+          data-hybrid-grading--slab-sway-value="true">
                 <img src="./slabs/judge/720.webp" alt="HGA Poly slab: Aaron Judge, graded 10" width="720" height="1198">
                 <canvas aria-hidden="true" data-hybrid-grading--slab-target="canvas" data-action="webglcontextlost->hybrid-grading--slab#lose webglcontextrestored->hybrid-grading--slab#restore"></canvas>
                 <div class="hint" aria-hidden="true"><svg class="ico" style="width:22px;height:14px"><use href="#i-drag"/></svg>Drag to see the back</div>
@@ -105,18 +108,18 @@
             </div>
           </div>
           <div role="tabpanel" id="gp2" aria-labelledby="gt2" class="gal-p gal-label" hidden>
-            <p class="mono">The label, front and back</p>
-            <img src="./slabs/ohtani/label/front.webp" alt="Front of the label: card grade 10, cert number, card details" width="620" height="250" loading="lazy">
-            <img src="./slabs/ohtani/label/back.webp" alt="Back of the label: four subgrades and the NFT chip" width="620" height="250" loading="lazy">
+            <div class="gl-row"><span class="mono">Front</span><img src="./slabs/ohtani/label/front.webp" alt="Front of the label: card grade 10, cert number, card details" width="620" height="250" loading="lazy"></div>
+            <div class="gl-row"><span class="mono">Back</span><img src="./slabs/ohtani/label/back.webp" alt="Back of the label: four subgrades and the NFT chip" width="620" height="250" loading="lazy"></div>
             <p class="cap">Four subgrades on the back of every label. Tap the chip with your phone to open the permanent record.</p>
           </div>
           <div role="tabpanel" id="gp3" aria-labelledby="gt3" class="gal-p gal-report" hidden>
+            <figure class="gr-card"><img src="./slabs/ohtani/card/front.webp" alt="Front scan of the card with its one finding marked" width="633" height="886" loading="lazy"><span class="gr-pin" aria-hidden="true">1</span><figcaption class="mono">Front scan &middot; on arrival</figcaption></figure>
             <div class="rep-card">
               <div class="rc-h"><span class="mono">Cert HGA&#8203;2026&#8203;0000412</span><span class="pill">Verified</span></div>
               <div class="rc-g"><b>10</b><span>Gem Mint<small>Shohei Ohtani &middot; 2025 Topps Finest</small></span></div>
               <div class="rc-s"><span>Centering<b>10</b></span><span>Corners<b>10</b></span><span>Edges<b>10</b></span><span>Surface<b>9.5</b></span></div>
-              <p class="rc-f"><i>1</i>Print line &middot; front, upper right background &middot; <em>Trace</em></p>
-              <a class="tlink" href="report.html" style="margin-top:18px">Open the full sample report <svg class="ico"><use href="#i-arrow"/></svg></a>
+              <p class="rc-f"><i>1</i>Print line &middot; front, upper right &middot; <em>Trace</em></p>
+              <a class="tlink" href="report.html" style="margin-top:16px">Open the full sample report <svg class="ico"><use href="#i-arrow"/></svg></a>
             </div>
           </div>
           <div role="tabpanel" id="gp4" aria-labelledby="gt4" class="gal-p gal-photo" hidden>
@@ -127,11 +130,11 @@
           </div>
         </div>
         <div class="gal-thumbs" role="tablist" aria-label="Product views">
-          <button role="tab" id="gt1" aria-controls="gp1" aria-selected="true"><img src="./slabs/ohtani/360.webp" alt="" width="360" height="603"><span>3D slab</span></button>
-          <button role="tab" id="gt2" aria-controls="gp2" aria-selected="false" tabindex="-1"><img src="./slabs/ohtani/label/back.webp" alt="" width="620" height="250" class="wide"><span>The label</span></button>
-          <button role="tab" id="gt3" aria-controls="gp3" aria-selected="false" tabindex="-1"><svg class="ico"><use href="#i-file"/></svg><span>Grade Report</span></button>
-          <button role="tab" id="gt4" aria-controls="gp4" aria-selected="false" tabindex="-1" class="ph"><img src="./assets/gen/display-shelf.webp" alt="" width="1376" height="768"><span>On display</span></button>
-          <button role="tab" id="gt5" aria-controls="gp5" aria-selected="false" tabindex="-1" class="ph"><img src="./assets/gen/chip-tap.webp" alt="" width="1200" height="896"><span>Tap the chip</span></button>
+          <button role="tab" id="gt1" aria-controls="gp1" aria-selected="true" class="th th-slab"><img src="./slabs/ohtani/360.webp" alt="" width="360" height="603"><span>3D slab</span></button>
+          <button role="tab" id="gt2" aria-controls="gp2" aria-selected="false" tabindex="-1" class="th th-label"><img src="./slabs/ohtani/label/back.webp" alt="" width="620" height="250"><span>The label</span></button>
+          <button role="tab" id="gt3" aria-controls="gp3" aria-selected="false" tabindex="-1" class="th"><img src="./assets/gen/macro-surface.webp" alt="" width="800" height="800"><i class="th-pin" aria-hidden="true">1</i><span>Grade report</span></button>
+          <button role="tab" id="gt4" aria-controls="gp4" aria-selected="false" tabindex="-1" class="th"><img src="./assets/gen/display-shelf.webp" alt="" width="1376" height="768"><span>On display</span></button>
+          <button role="tab" id="gt5" aria-controls="gp5" aria-selected="false" tabindex="-1" class="th"><img src="./assets/gen/chip-tap.webp" alt="" width="1200" height="896"><span>Tap the chip</span></button>
         </div>
       </div>
 
