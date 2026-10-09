@@ -1953,3 +1953,11 @@ body{font-size:16px}
 .bx-ha,.bx-a{box-shadow:none}
 .path{border-top-color:var(--ink-line-2)}
 @media (max-width:860px){.path{border-left-color:var(--ink-line-2)}}
+
+/* ---------- countdown pill (replaces the mono caps line) ---------- */
+.buy-cd{display:inline-flex;align-items:center;gap:10px;padding:8px 14px 8px 12px;border-radius:999px;background:#FFF1F1;border:1px solid #F6D5D6;font-family:var(--sans);font-size:13.5px;font-weight:500;letter-spacing:0;text-transform:none;color:var(--text-2);line-height:1.3}
+.buy-cd b{color:var(--red-2);font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--red);flex:none;box-shadow:0 0 0 0 rgba(230,36,41,.45);animation:livedot 1.8s ease-out infinite}
+@keyframes livedot{70%{box-shadow:0 0 0 7px rgba(230,36,41,0)}100%{box-shadow:0 0 0 0 rgba(230,36,41,0)}}
+.shop-head{align-items:center}
+@media (max-width:600px){.shop-head .buy-cd{font-size:12.5px;letter-spacing:0;padding:7px 12px}}
