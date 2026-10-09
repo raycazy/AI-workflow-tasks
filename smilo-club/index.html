@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/smilo.css?v=a747f112">
+<link rel="stylesheet" href="assets/smilo.css?v=dc1a5d1b">
 <link rel="stylesheet" href="assets/howto.css?v=098bf597">
 </head>
 <body data-page="index">
@@ -169,7 +169,13 @@
     <div class="plan__body">
       <!-- Saving line cut from the club card (deck v2.4, PM ruling): the "Spar 50 %" tab carries it; the kr. saving shows in the switch row and the cart. -->
       <!-- [HVIS {{skip_pause}}] tick: Spring en pakke over eller flyt datoen under Min konto. [ELLERS HVIS {{paamindelse}}] En mail, før hver pakke sendes. [ELLERS] no tick -->
-      <p class="disclosure">Løbende abonnement: <b><span data-v="pris_klub">199</span> kr.</b> i dag og derefter <b><span data-v="pris_klub">199</span> kr.</b> for hver ny pakke, som sendes hver 90. dag, indtil du opsiger. <span data-v="fragt_saetning">Fragt 39 kr. pr. pakke.</span> Ingen binding. Du opsiger online under Min konto.</p>
+      <!-- Snippet: compact disclosure (deck v3.1), Klubben card on PDP 2 and HP Start kuren only. Same tokens as the full sentence
+     (tok-pris, tok-fragt, tok-binding, tok-opsig), so the facts cannot diverge. Cart line and switch row keep the full sentence. -->
+<div class="disclosure disclosure--lines">
+  <p>Løbende abonnement: <b><span data-v="pris_klub">199</span> kr.</b> i dag og derefter <b><span data-v="pris_klub">199</span> kr.</b> for en ny pakke hver 90. dag.</p>
+  <p><span data-v="fragt_saetning">Fragt 39 kr. pr. pakke.</span></p>
+  <p>Ingen binding. Du opsiger online under Min konto.</p>
+</div>
       <p><a class="ulink plan__terms" href="#">Læs abonnementsvilkårene</a></p>
     </div>
   </div>

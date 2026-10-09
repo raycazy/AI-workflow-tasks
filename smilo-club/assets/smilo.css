@@ -1491,3 +1491,11 @@ html.js-ticks [data-ticks]:not(.is-filled) > span{ transform:scaleX(0.05); }
   .cmp__title{ margin-bottom:24px; }
 }
 .drawer__trust .cart-trust__seller{ font-size:14px; }
+
+/* v3.1: compact disclosure in the Klubben card (three plain lines, same tokens as the full sentence) */
+.disclosure--lines{ display:grid; gap:2px; font-size:14px; line-height:1.45; font-weight:400; color:var(--soft-ink); }
+.disclosure--lines b{ font-weight:600; color:var(--ink); }
+/* Terms link: 44px hit area without 44px of layout height, so the shorter card keeps the PDP CTA in the fold */
+.plan__terms{ display:inline-flex; align-items:center; min-height:44px; padding-block:12px; margin-block:-12px; }
+/* PDP facts row on mobile: gap only, so no divider ever leads a wrapped line (design review m5) */
+@media (max-width:600px){ .factline{ gap:6px 20px; } .factline li{ padding-inline:0; } .factline li + li::before{ display:none; } }
