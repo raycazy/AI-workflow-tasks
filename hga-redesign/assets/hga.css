@@ -1973,3 +1973,29 @@ body{font-size:16px}
 .spin-slab:not(.is-drawn) img{animation:fauxsway 6.5s ease-in-out infinite;transform-origin:50% 50%;will-change:transform}
 @keyframes fauxsway{0%,100%{transform:rotateY(-13deg) translateY(0)}25%{transform:rotateY(0) translateY(-6px)}50%{transform:rotateY(13deg) translateY(0)}75%{transform:rotateY(0) translateY(-6px)}}
 @media (max-width:900px){.rep-art{min-width:0}.rep-card{width:auto;max-width:100%;margin:-40px 12px 0}.rc-s{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* ---------- buy box hierarchy + icon system (2026-10-09) ---------- */
+.ico{stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ico-box{border-radius:10px;background:var(--red);border:0;color:#fff}
+.on-ink .ico-box,.sec.ink .ico-box{background:var(--red);border:0}
+.hero-trust .ico,.buy-trust .ico,.offer-notes .ico,.cart-assure .ico,.facts3 .ico,.co-assure .ico,.strip .ico{color:var(--red)}
+.buy-top.eb{display:block;color:var(--text-2);letter-spacing:.08em}
+.buy-top.eb::before{display:none}
+.buy-top.eb b{color:var(--red-2);font-variant-numeric:tabular-nums}
+.buy-acts{display:grid;grid-template-columns:1fr;gap:10px;justify-items:center}
+.buy-alt{font-size:14px;color:var(--text-2);display:inline-flex;align-items:center;gap:6px;padding:6px 8px;text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--line-2)}
+.buy-alt:hover{color:var(--ink);text-decoration-color:var(--red)}
+.buy-alt .ico{width:14px;height:14px}
+.stepper,.stepper.big,.l-ctrl .stepper{border-radius:10px;overflow:hidden}
+.quick{gap:8px}
+.quick button{border-radius:10px;min-width:52px}
+.quick button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.qnote{display:block}
+.buy-cd{display:none}
+.live-dot{display:none}
+
+.gal-thumbs{grid-template-columns:repeat(6,minmax(0,1fr))}
+@media (max-width:560px){.gal-thumbs{grid-template-columns:repeat(6,minmax(0,1fr));gap:5px}}
+#upclose .bento{margin-top:0}
+/* quantity row wraps on narrow screens */
+@media (max-width:560px){.qrow,.bbox .qrow{flex-wrap:wrap}.quick{flex-basis:100%}.quick button{min-width:0;flex:1}}
