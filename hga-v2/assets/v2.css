@@ -420,3 +420,50 @@ html[data-theme="dark"] .theme-btn{color:#fff}
 html[data-theme="dark"] .theme-btn .moon{display:none}
 html[data-theme="dark"] .theme-btn .sun{display:block}
 @media (max-width:420px){.theme-btn{width:38px;height:38px}}
+
+/* =====================================================================
+   v2.1 type refinement: calmer scale. Condensed caps only for the hero
+   and big numerals; section heads in Barlow, sentence case, tight.
+   ===================================================================== */
+.h1{font-family:var(--disp);font-weight:700;font-size:clamp(46px,5.4vw,78px);line-height:.94;letter-spacing:0;text-transform:uppercase}
+.v2hero .h1{font-size:clamp(46px,5.4vw,78px);max-width:11em}
+.v2hero .h1 .red{display:inline}
+.h2,.sec-head .h2,.endcta .h2,.bbox h3,.asked h3{font-family:var(--sans);font-weight:700;font-style:normal;text-transform:none;letter-spacing:-.025em;line-height:1.04}
+.h2,.sec-head .h2{font-size:clamp(32px,3.6vw,50px);max-width:16em}
+.endcta .h2{font-size:clamp(36px,4.2vw,58px)}
+.bbox h3{font-size:24px;letter-spacing:-.02em}
+.asked h3{font-size:22px}
+.pl h3{font-family:var(--disp);font-weight:700;font-size:28px;letter-spacing:0}
+.rc b{font-family:var(--sans);font-weight:700;text-transform:none;font-size:20px;letter-spacing:-.01em}
+.buy-h1,.rp-title,.ty-hero .h1,.phero .h1{font-family:var(--disp);font-weight:700;letter-spacing:0}
+.buy-h1{font-size:clamp(30px,3vw,42px)}
+.phero .h1{font-size:clamp(44px,5.4vw,76px)}
+.gbox-art .black{font-family:var(--sans);font-weight:700;text-transform:none;font-size:clamp(28px,3.2vw,44px);letter-spacing:-.02em}
+.sec-head.split{align-items:start}
+.sec-head.split .lede{padding-top:6px}
+.stat b span{font-size:inherit;color:inherit}
+.stat b{font-weight:700;font-size:clamp(40px,4vw,56px)}
+.hero-trust{font-size:14.5px}
+/* hero: tighter, chips clear of the label */
+.v2hero .wrap{min-height:0;padding-block:clamp(36px,5vw,64px) clamp(28px,3vw,44px)}
+.v2hero .lede{margin-top:16px;font-size:17px}
+.v2hero .pick{margin-top:22px}
+.v2stage .stage-in{width:min(62%,330px)}
+.spec.a{right:-8px;top:2%}
+.spec.b{left:-8px;bottom:10%}
+.spec .k{font-size:10.5px}
+.ticker span{font-size:13px}
+/* dark: text that was inheriting ink */
+html[data-theme="dark"] .buy-trust b,html[data-theme="dark"] .hero-trust b,html[data-theme="dark"] .offer-notes b,html[data-theme="dark"] .cart-assure b,html[data-theme="dark"] .facts3 b,html[data-theme="dark"] .co-assure li,html[data-theme="dark"] .bx-a b,html[data-theme="dark"] .gbox-list li b{color:#fff}
+html[data-theme="dark"] .buy-trust li,html[data-theme="dark"] .buy-trust span{color:var(--text-2)}
+html[data-theme="dark"] .costs-pop summary .pm{border-color:var(--line-2)}
+html[data-theme="dark"] .costs-pop summary .pm::before,html[data-theme="dark"] .costs-pop summary .pm::after{background:#fff}
+html[data-theme="dark"] .costs-pop summary,html[data-theme="dark"] .costs-pop p{color:var(--text-2)}
+html[data-theme="dark"] .costs-pop p b{color:#fff}
+html[data-theme="dark"] .ho-d,html[data-theme="dark"] .qnote{color:var(--muted)}
+html[data-theme="dark"] .ho-p b,html[data-theme="dark"] .buy-price>b,html[data-theme="dark"] .buy-sub{color:#fff}
+html[data-theme="dark"] .buy-sub{color:var(--text-2)}
+html[data-theme="dark"] .buy-top.eb{color:var(--text-2)}
+html[data-theme="dark"] .buy-alt{color:var(--text-2);text-decoration-color:var(--line-2)}
+html[data-theme="dark"] .ho-wm{filter:none}
+html[data-theme="dark"] .hopt .ho-wm{filter:none}
