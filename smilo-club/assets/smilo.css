@@ -1461,3 +1461,33 @@ html.js-ticks [data-ticks]:not(.is-filled) > span{ transform:scaleX(0.05); }
 /* Narrow phones (360): step dots and the PDP star row fit without page overflow */
 @media (max-width:380px){ .howto__dots button{ width:40px; } .howto__dots button::before{ left:16px; } .buy .starline{ font-size:12px; gap:4px 8px; } }
 @media (max-width:380px){ .buy .starline{ flex-wrap:wrap; row-gap:0; } }
+
+/* ==========================================================================
+   v3.0 cut pass ("too much text"): tighter comparison, tighter sections
+   ========================================================================== */
+/* Comparison: short cells, so a narrower table, shorter header and tighter rows */
+.vs{ max-width:880px; }
+.vs__us{ width:39%; } .vs__spine{ width:22%; } .vs__them{ width:39%; }
+.vs__table th, .vs__table td{ padding:16px 28px; }
+.vs__img{ height:168px; }
+.vs__name{ padding:16px 28px 0; }
+.vs__table .vs__head{ padding:0 0 18px; }
+.vs__them.vs__head{ padding-bottom:18px; }
+@media (min-width:601px){
+  .vs__icon{ width:56px; height:56px; margin-left:28px; }
+  .vs__table tbody tr:last-child .vs__us, .vs__table tbody tr:last-child .vs__them, .vs__table tbody tr:last-child .vs__spine{ padding-bottom:24px; }
+}
+.vs__us.vs__head::before{ top:-16px; height:16px; }
+.vs__table tbody tr:last-child .vs__us::after{ bottom:-16px; height:16px; }
+.cmp__title{ margin-bottom:40px; }
+@media (min-width:601px) and (max-width:1100px){ .vs__table th, .vs__table td{ padding:14px 20px; } .vs__name{ padding:14px 20px 0; } .vs__icon{ margin-left:20px; } }
+@media (max-width:600px){
+  .vs__table th, .vs__table td{ padding:0; }
+  .vs__name{ padding:8px 0 0; }
+  .vs__table tbody tr{ padding:12px 0; align-items:center; row-gap:8px; }
+  .vs__table tbody tr:last-child .vs__them, .vs__table tbody tr:last-child .vs__spine{ padding-bottom:0; }
+  .vs__table tbody .vs__us{ align-self:center; }
+  .vs__table tbody .vs__them{ align-self:center; }
+  .cmp__title{ margin-bottom:24px; }
+}
+.drawer__trust .cart-trust__seller{ font-size:14px; }

@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/smilo.css?v=ce473319">
+<link rel="stylesheet" href="assets/smilo.css?v=a747f112">
 <link rel="stylesheet" href="assets/howto.css?v=098bf597">
 </head>
 <body data-page="produkt">
@@ -57,7 +57,7 @@
     <div class="announce__track" data-ticker aria-live="off">
       <p>Ny pakke hver 90. dag. Opsig online under Min konto.</p>
       <p>Klubben er et løbende abonnement: spar 50&nbsp;% i forhold til enkeltkøb.</p>
-      <p>Leveringstiden er 1 til 3 hverdage.</p>
+      <p>Levering på 1 til 3 hverdage.</p>
     </div>
   </div>
   <!-- Auto advance every 5s; pauses on hover and focus; a pause button (WCAG 2.2.2); reduced motion shows line 1 only -->
@@ -169,14 +169,13 @@
     <label class="plan__pick">
       <input type="radio" name="plan" value="enkelt" data-selling-plan="">
       <span class="plan__radio" aria-hidden="true"></span>
-      <span class="plan__name"><b>Køb én pakke</b><span>Én kur med 14 behandlinger. Intet abonnement.</span></span>
+      <span class="plan__name"><b>Køb én pakke</b><span>Intet abonnement.</span></span>
       <span class="plan__price"><span class="plan__amt"><b><span data-v="pris_enkelt">399</span> kr.</b></span><span class="plan__per"><span data-v="pr_beh_enkelt">28,50</span> kr. pr. behandling</span></span>
     </label>
   </div>
 </fieldset>
 
 <button class="btn btn--block btn--buy" type="submit" id="buy-cta"><span><span class="if-klub">Læg Klubben i kurven · <span data-v="pris_klub">199</span> kr.</span><span class="if-enkelt">Læg i kurven · <span data-v="pris_enkelt">399</span> kr.</span></span></button>
-<p class="buy__direction if-enkelt">Vi anbefaler at køre kuren igen hver tredje måned.</p>
 
 <ul class="ticks">
   <li><svg class="i i--20" aria-hidden="true"><use href="#i-check"/></svg>Sendes fra Danmark</li>
@@ -189,34 +188,15 @@
 
           <div class="acc acc--buy">
             <details>
-              <summary>Dokumentation<svg class="i i--20" aria-hidden="true"><use href="#i-plus"/></svg></summary>
-              <ul class="acc__list">
-                <li>Sikkerhedsvurdering (CPSR), fire rapporter: Centre Testing International</li>
-                <li>GMP efter ISO 22716: Intertek</li>
-                <li>Mikrobiologi og tungmetaller: Bureau Veritas</li>
-                <li>Tungmetaller i emballagen: Guangdong KEYS</li>
-                <li>Stabilitetstest over 12 uger: Centre Testing International</li>
-              </ul>
-              <p><a class="ulink" href="#dokumentation">Se hele oversigten</a></p>
-            </details>
-            <details>
               <summary>Levering og returret<svg class="i i--20" aria-hidden="true"><use href="#i-plus"/></svg></summary>
               <p>Leveringstiden er 1 til 3 hverdage.</p>
               <p>Fragt 39 kr. pr. pakke.</p><!-- [HVIS {{fragt_klub}} = 0] Fri fragt med Klubben. Fragt på én pakke: 39 kr. (gated, deck v2.4) -->
               <p>Du kan fortryde købet inden for 14 dage efter, at du har modtaget pakken. I Klubben regnes de 14 dage fra din første pakke. Brug Fortryd aftale nederst på siden.</p>
               <!-- [HVIS {{hygiejne_undtagelse}}] Er forseglingen brudt, kan pakken af hygiejniske grunde ikke returneres. -->
-              <p>Er der fejl ved en pakke, så <a class="ulink ulink--inline" href="#">skriv til os</a>.</p>
+              <p>Fejl ved en pakke? <a class="ulink ulink--inline" href="#">Skriv til os</a>.</p>
               <p>Klubben opsiger du online under Min konto.</p>
             </details>
-            <details>
-              <summary>Ingredienser<svg class="i i--20" aria-hidden="true"><use href="#i-plus"/></svg></summary>
-              <!-- [HVIS {{inci_bekraeftet}}] the INCI list exactly as in our own CPSR -->
-              <p class="acc__label">Ikke i Smilo Club</p>
-              <ul class="acc__list">
-                <li>Brintoverilte og carbamidperoxid</li>
-                <li>Blåt eller lilla pigment (covarine)</li>
-              </ul>
-            </details>
+            <!-- Ingredienser accordion removed (deck v3.0). [HVIS {{inci_bekraeftet}}] restore it with the INCI list exactly as in our own CPSR. -->
           </div>
         </form>
       </div>
@@ -340,7 +320,7 @@
       <li data-stars="5" data-photo="1"><article class="rcard" aria-label="Eksempel på anmeldelse">
           <div class="rcard__top"><span class="stars" style="--score:1.00" role="img" aria-label="5 ud af 5 stjerner"><span class="stars__base"><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span><span class="stars__fill"><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span></span><p class="rcard__date">for 4 dage siden</p></div>
           <p class="rcard__title">Pakke 2 kom, som den skulle</p>
-          <p class="rcard__body">Næste pakke kom efter de 90 dage, uden at jeg skulle bestille noget. Jeg er gået i gang med kuren igen fra behandling 1.</p>
+          <p class="rcard__body">Næste pakke kom efter de 90 dage, uden at jeg skulle bestille noget.</p>
           <ul class="rcard__photos"><li><img src="assets/img/ugc-mailer-sm.webp" alt="En åben forsendelsesæske med en pakke Smilo Club tandblegningsstrips på en dørmåtte" width="540" height="960" loading="lazy"></li></ul>
           <p class="rcard__who"><span class="ex-chip">Eksempel</span><b>Louise H.</b><span class="rcard__verified"><svg class="i i--16" aria-hidden="true"><use href="#i-verified"/></svg>Verificeret køb</span></p>
           <p class="rcard__plan">Købt: Klubben</p>
@@ -348,28 +328,28 @@
       <li data-stars="5" data-photo="0"><article class="rcard" aria-label="Eksempel på anmeldelse">
           <div class="rcard__top"><span class="stars" style="--score:1.00" role="img" aria-label="5 ud af 5 stjerner"><span class="stars__base"><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span><span class="stars__fill"><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span></span><p class="rcard__date">for 5 dage siden</p></div>
           <p class="rcard__title">Kunne læse om det, før jeg købte</p>
-          <p class="rcard__body">Jeg ville have noget uden brintoverilte. Det er PAP i stedet, og jeg kunne læse om det på siden, før jeg købte.</p>
+          <p class="rcard__body">Jeg ville have noget uden brintoverilte, og her kunne jeg læse om PAP, før jeg købte.</p>
           <p class="rcard__who"><span class="ex-chip">Eksempel</span><b>Camilla R.</b><span class="rcard__verified"><svg class="i i--16" aria-hidden="true"><use href="#i-verified"/></svg>Verificeret køb</span></p>
           <p class="rcard__plan">Købt: Klubben</p>
         </article></li>
       <li data-stars="4" data-photo="0"><article class="rcard" aria-label="Eksempel på anmeldelse">
           <div class="rcard__top"><span class="stars" style="--score:0.80" role="img" aria-label="4 ud af 5 stjerner"><span class="stars__base"><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span><span class="stars__fill"><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span></span><p class="rcard__date">for 2 uger siden</p></div>
           <p class="rcard__title">Tør tænderne først</p>
-          <p class="rcard__body">Første gang gled den nederste strip lidt, fordi jeg ikke havde tørret tænderne ordentligt. Det står i trin 1, men jeg sprang det over. Nu tørrer jeg dem med et håndklæde først, og så bliver de siddende.</p>
+          <p class="rcard__body">Første gang gled stripen, fordi jeg ikke havde tørret tænderne. Nu tørrer jeg dem først, og så bliver de siddende.</p>
           <p class="rcard__who"><span class="ex-chip">Eksempel</span><b>Sofie K.</b><span class="rcard__verified"><svg class="i i--16" aria-hidden="true"><use href="#i-verified"/></svg>Verificeret køb</span></p>
           <p class="rcard__plan">Købt: Klubben</p>
         </article></li>
       <li data-stars="5" data-photo="0"><article class="rcard" aria-label="Eksempel på anmeldelse">
           <div class="rcard__top"><span class="stars" style="--score:1.00" role="img" aria-label="5 ud af 5 stjerner"><span class="stars__base"><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span><span class="stars__fill"><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span></span><p class="rcard__date">for 3 uger siden</p></div>
           <p class="rcard__title">Det kræver lidt tålmodighed</p>
-          <p class="rcard__body">Jeg tog et billede før første gang og et efter den sidste, samme sted ved vinduet. Tænderne er synligt hvidere efter de 14 behandlinger. Det kræver lidt tålmodighed, og nu venter jeg på næste pakke.</p>
+          <p class="rcard__body">Tænderne er synligt hvidere efter de 14 behandlinger. Det kræver lidt tålmodighed.</p>
           <p class="rcard__who"><span class="ex-chip">Eksempel</span><b>Mette L.</b><span class="rcard__verified"><svg class="i i--16" aria-hidden="true"><use href="#i-verified"/></svg>Verificeret køb</span></p>
           <p class="rcard__plan">Købt: Klubben</p>
         </article></li>
       <li data-stars="5" data-photo="1"><article class="rcard" aria-label="Eksempel på anmeldelse">
           <div class="rcard__top"><span class="stars" style="--score:1.00" role="img" aria-label="5 ud af 5 stjerner"><span class="stars__base"><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span><span class="stars__fill"><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span></span><p class="rcard__date">for en måned siden</p></div>
           <p class="rcard__title">Passer ind i aftenrutinen</p>
-          <p class="rcard__body">Jeg sætter dem på, mens jeg smører madpakker, og tager dem af igen, når køkkenet er ryddet. De er tørre at tage op af posen.</p>
+          <p class="rcard__body">Jeg sætter dem på, mens jeg smører madpakker, og tager dem af, når køkkenet er ryddet.</p>
           <ul class="rcard__photos"><li><img src="assets/img/ugc-sink-sm.webp" alt="Æske med Smilo Club tandblegningsstrips på kanten af en håndvask ved siden af et tandbørstekrus og en sæbedispenser" width="540" height="960" loading="lazy"></li></ul>
           <p class="rcard__who"><span class="ex-chip">Eksempel</span><b>Jonas P.</b><span class="rcard__verified"><svg class="i i--16" aria-hidden="true"><use href="#i-verified"/></svg>Verificeret køb</span></p>
           <p class="rcard__plan">Købt: Én pakke</p>
@@ -377,14 +357,14 @@
       <li data-stars="4" data-photo="0"><article class="rcard" aria-label="Eksempel på anmeldelse">
           <div class="rcard__top"><span class="stars" style="--score:0.80" role="img" aria-label="4 ud af 5 stjerner"><span class="stars__base"><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span><span class="stars__fill"><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span></span><p class="rcard__date">for en måned siden</p></div>
           <p class="rcard__title">Husk de 30 minutter</p>
-          <p class="rcard__body">De er nemme at sætte på, lang til overmunden og kort til undermunden. Jeg glemte tiden et par gange, så nu sætter jeg en alarm på telefonen.</p>
+          <p class="rcard__body">Nemme at sætte på, men jeg glemte tiden et par gange. Nu sætter jeg en alarm.</p>
           <p class="rcard__who"><span class="ex-chip">Eksempel</span><b>Anders M.</b><span class="rcard__verified"><svg class="i i--16" aria-hidden="true"><use href="#i-verified"/></svg>Verificeret køb</span></p>
           <p class="rcard__plan">Købt: Én pakke</p>
         </article></li>
       <li data-stars="3" data-photo="0"><article class="rcard" aria-label="Eksempel på anmeldelse">
           <div class="rcard__top"><span class="stars" style="--score:0.60" role="img" aria-label="3 ud af 5 stjerner"><span class="stars__base"><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span><span class="stars__fill"><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-star"/></svg></span></span><p class="rcard__date">for 6 uger siden</p></div>
           <p class="rcard__title">Lidt fumlet i starten</p>
-          <p class="rcard__body">De første par gange var det fumlet at få den korte strip på plads, og jeg måtte prøve igen. 30 minutter er også lang tid om morgenen, så nu tager jeg dem om aftenen. Tre stjerner, indtil jeg har brugt en hel pakke.</p>
+          <p class="rcard__body">Fumlet at få den korte strip på plads de første gange, og 30 minutter er lang tid om morgenen.</p>
           <p class="rcard__who"><span class="ex-chip">Eksempel</span><b>Signe W.</b><span class="rcard__verified"><svg class="i i--16" aria-hidden="true"><use href="#i-verified"/></svg>Verificeret køb</span></p>
           <p class="rcard__plan">Købt: Én pakke</p>
         </article></li>
@@ -402,7 +382,6 @@
     <div class="wrap">
       <div class="route__head">
         <h2 id="journey-title">Fra behandling 1 til pakke 2</h2>
-        <p class="route__lead">Klubben sender den næste pakke, og du kører kuren igen fra behandling 1.</p>
         <!-- [HVIS {{skip_pause}}] Datoen kan du flytte under Min konto. -->
       </div>
       <ol class="rail">
@@ -431,7 +410,7 @@
   <!-- PDP 7. Section: Sammenligning [ledger, same component as HP 7]. -->
   <section class="section cmp" data-section="comparison" aria-labelledby="cmp-title">
     <div class="wrap">
-      <h2 id="cmp-title" class="cmp__title vs__title">Tandblegning i Danmark</h2>
+      <h2 id="cmp-title" class="cmp__title vs__title">Hjemme eller hos tandlægen</h2>
       <!-- Snippet: comparison (HP 7, PDP 7), mirrored versus layout (deck v2.6). Two sourced columns, facts only.
      Smilo panel on yellow with the product; the dentist panel on a neutral ground with a line drawing (no people, no teeth).
      Row labels sit in the centre spine; each fact reads straight across. No ticks, crosses or better/worse marks.
@@ -451,13 +430,13 @@
     </thead>
     <tbody>
       <tr><td class="vs__us">PAP</td><th scope="row" class="vs__spine">Blegemiddel</th><td class="vs__them">Brintoverilte eller carbamidperoxid</td></tr>
-      <tr><td class="vs__us">Du selv, efter brugsanvisningen</td><th scope="row" class="vs__spine">Hvem bleger</th><td class="vs__them">Tandlægen, eller under tandlægens direkte opsyn</td></tr>
-      <tr><td class="vs__us">Hjemme</td><th scope="row" class="vs__spine">Hvor</th><td class="vs__them">På klinikken, og resten af produktet kan du få med hjem</td></tr>
-      <tr><td class="vs__us">30 minutter</td><th scope="row" class="vs__spine">Tid pr. behandling</th><td class="vs__them">Aftales med tandlægen</td></tr>
+      <tr><td class="vs__us">Du selv</td><th scope="row" class="vs__spine">Hvem bleger</th><td class="vs__them">Tandlægen</td></tr>
+      <tr><td class="vs__us">Hjemme</td><th scope="row" class="vs__spine">Hvor</th><td class="vs__them">På klinikken</td></tr>
+      <tr><td class="vs__us">30 minutter</td><th scope="row" class="vs__spine">Tid pr. behandling</th><td class="vs__them">Aftales</td></tr>
       <tr><td class="vs__us">Bestil online</td><th scope="row" class="vs__spine">Sådan starter du</th><td class="vs__them">Book en tid</td></tr>
     </tbody>
   </table>
-  <p class="vs__source">Kilde for tandlægens blegemiddel, hvem der bleger, og hvor: Miljøstyrelsen og Styrelsen for Patientsikkerhed, Information om reglerne for tandblegeprodukter.</p>
+  <p class="vs__source">Kilde for tandlægens blegemiddel, hvem og hvor: Miljøstyrelsen og Styrelsen for Patientsikkerhed, Information om reglerne for tandblegeprodukter.</p>
 </div>
     </div>
   </section>
@@ -470,10 +449,10 @@
     <div class="papsplit__copy">
       <h2 id="pap-title" class="papsplit__h2">Hvorfor PAP</h2>
       <p class="papsplit__claim">Skånsom mod emaljen, uden brintoverilte</p>
-      <p class="papsplit__lead">Blegemidlet i Smilo Club er PAP (phthalimidoperoxycaproic acid). Det bleger ved oxidation, og det tager tid, så en kur er 14 behandlinger.</p>
+      <p class="papsplit__lead">PAP (phthalimidoperoxycaproic acid) bleger ved oxidation over en kur på 14 behandlinger.</p>
       <ul class="notrows">
-        <li><svg class="notrows__ico i" aria-hidden="true"><use href="#i-info"/></svg><div><b>Reglerne i EU</b><span>I EU må tandblegning til privat brug højst indeholde eller frigive 0,1 procent brintoverilte. Smilo Club bruger PAP i stedet og indeholder ingen carbamidperoxid.</span></div></li>
-        <li><svg class="notrows__ico i" aria-hidden="true"><use href="#i-circle-x"/></svg><div><b>Intet blåt eller lilla pigment</b><span>Pigmentet hedder covarine, og det er ikke i formlen.</span></div></li>
+        <li><svg class="notrows__ico i" aria-hidden="true"><use href="#i-info"/></svg><div><b>Reglerne i EU</b><span>I EU må tandblegning til privat brug højst indeholde eller frigive 0,1 procent brintoverilte. Smilo Club har ingen carbamidperoxid.</span></div></li>
+        <li><svg class="notrows__ico i" aria-hidden="true"><use href="#i-circle-x"/></svg><div><b>Intet blåt eller lilla pigment (covarine)</b></div></li>
         <!-- [HVIS {{inci_bekraeftet}}] Hydroxyapatit, men ikke i nanoform / Hydroxyapatitten i formlen er ikke i nanoform. -->
       </ul>
     </div>
@@ -489,7 +468,7 @@
     <div class="wrap">
       <div class="docs__head">
         <h2 id="dok-title">Dokumentation</h2>
-        <p>Alle kosmetiske produkter i EU skal have en sikkerhedsvurdering og være produceret efter GMP. Her er dokumenterne bag Smilo Club, og hvem der har lavet dem.</p>
+        <p>Alle kosmetiske produkter i EU skal have en sikkerhedsvurdering og være produceret efter GMP.</p>
       </div>
       <!-- Snippet: documentation bento (HP 9, PDP 8). Unequal tiles on the Panel band; deck strings only.
      No lab logos, no cover graphic (brief 04, earlier rulings). -->
@@ -499,22 +478,22 @@
       <h3>Sikkerhedsvurdering (CPSR), fire rapporter</h3>
       <p class="bento__by"><span>Udført af</span>Centre Testing International</p>
     </div>
-    <p class="bento__detail">Del B er underskrevet af Dr. Jikuai Chen, DABT og ERT, certificeret af EUROTOX og optaget i Swedish Register of Toxicology</p>
+    <p class="bento__detail">Del B underskrevet af toksikolog Dr. Jikuai Chen, DABT og ERT</p>
   </article>
   <article class="bento__tile bento__gmp">
     <div class="bento__top">
       <h3>GMP efter ISO 22716</h3>
       <p class="bento__by"><span>Udført af</span>Intertek</p>
     </div>
-    <p class="bento__no" aria-hidden="true">SZ2312B8</p>
-    <p class="bento__detail"><span class="sr-only">Certifikat SZ2312B8. </span>Dækker tandblegningsstrips</p>
+    <p class="bento__no">SZ2312B8</p>
+    <p class="bento__detail">Dækker tandblegningsstrips</p>
   </article>
   <article class="bento__tile bento__tests">
     <h3>Test fra eksterne laboratorier</h3>
     <ul class="bento__list">
       <li><svg class="i i--20" aria-hidden="true"><use href="#i-check"/></svg><span>Mikrobiologi og tungmetaller: Bureau Veritas</span></li>
       <li><svg class="i i--20" aria-hidden="true"><use href="#i-check"/></svg><span>Tungmetaller i emballagen: Guangdong KEYS</span></li>
-      <li><svg class="i i--20" aria-hidden="true"><use href="#i-check"/></svg><span>Stabilitet: Centre Testing International<small>Stabilitetstest over 12 uger, hvor indholdet af PAP blev målt undervejs</small></span></li>
+      <li><svg class="i i--20" aria-hidden="true"><use href="#i-check"/></svg><span>Stabilitet: Centre Testing International<small>12 uger, PAP målt undervejs</small></span></li>
     </ul>
   </article>
 </div>
@@ -528,17 +507,15 @@
     <div class="wrap faqx__grid">
       <div class="faqx__side">
         <h2 id="faq-title">Spørgsmål</h2>
-        <p class="faqx__intro">Svar om kuren, brugen og Klubben.</p>
       </div>
       <div class="faqx__groups">
         <div class="faqg">
           <h3 class="faqg__label">Kuren</h3>
           <div class="acc">
-            <details><summary>Hvornår kan jeg se en forskel?<svg class="i i--20" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Efter 14 behandlinger, når kuren er færdig. Tag et billede i dagslys før behandling 1 og et efter behandling 14, samme sted og i samme lys, og sammenlign de to.</p></details>
-            <details><summary>Hvor meget hvidere bliver tænderne?<svg class="i i--20" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Vi har ikke målt resultatet i nuancer, og tænder er forskellige, så vi sætter ikke et tal på.</p></details>
-            <details><summary>Hvad gør jeg, hvis de ikke sidder fast?<svg class="i i--20" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Tør tænderne grundigt før brug, og fold kanten om bag tænderne, når stripen er trykket fast. Det er trin 1 og 3 i brugsanvisningen.</p></details>
-            <details><summary>Hvad dækker en strip?<svg class="i i--20" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Den klæbende side dækker tændernes forside, og kanten foldes om bag tænderne. Den lange strip er til de øverste tænder og den korte til de nederste.</p></details>
-            <details><summary>Hvor længe holder en pakke?<svg class="i i--20" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>En pakke er én kur: 14 behandlinger, og hver strip bruges én gang.</p></details>
+            <details><summary>Hvornår kan jeg se en forskel?<svg class="i i--20" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Efter 14 behandlinger, når kuren er færdig.</p></details>
+            <details><summary>Hvor meget hvidere bliver tænderne?<svg class="i i--20" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Vi har ikke målt det i nuancer, så vi sætter ikke et tal på.</p></details>
+            <details><summary>Hvad gør jeg, hvis de ikke sidder fast?<svg class="i i--20" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Tør tænderne grundigt før brug, og fold kanten om bag tænderne (trin 1 og 3).</p></details>
+            <details><summary>Hvad dækker en strip?<svg class="i i--20" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Den klæbende side dækker tændernes forside, og kanten foldes om bag tænderne.</p></details>
           </div>
         </div>
         <div class="faqg">
@@ -546,15 +523,13 @@
           <div class="acc">
             <details><summary>Kan jeg få isninger?<svg class="i i--20" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Det kan ske, for tænder er forskellige. Må ikke bruges på irriteret eller beskadiget mundslimhinde. Stop brugen ved irritation eller hævelse. Er du i tvivl om dine tænder eller dit tandkød, så tal med din tandlæge, før du starter.</p></details>
             <details><summary>Fra hvilken alder?<svg class="i i--20" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Fra 12 år. Opbevares utilgængeligt for børn.</p></details>
-            <details><summary>Hvad er der i?<svg class="i i--20" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Blegemidlet er PAP. Under Hvorfor PAP står det, der ikke er i.</p></details>
           </div>
         </div>
         <div class="faqg">
           <h3 class="faqg__label">Klubben og køb</h3>
           <div class="acc">
-            <details><summary>Hvorfor en ny pakke hver 90. dag?<svg class="i i--20" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Fordi vi anbefaler at køre kuren igen hver tredje måned, og Klubben sender pakken, så du ikke skal huske det. Vil du hellere selv bestemme, kan du købe én pakke ad gangen.</p></details>
+            <details><summary>Hvorfor en ny pakke hver 90. dag?<svg class="i i--20" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Vi anbefaler at køre kuren igen hver tredje måned.</p></details>
             <details><summary>Hvordan opsiger jeg Klubben?<svg class="i i--20" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Online under Min konto. Du behøver ikke skrive eller ringe til os.</p></details>
-            <details><summary>Hvem står bag Smilo Club?<svg class="i i--20" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Smilo Club står bag. Du når os via linket Skriv til os.</p></details>
             <!-- [HVIS {{pris_laast}}] Stiger prisen for de næste pakker? Nej. Hver pakke i Klubben koster {{pris_klub}} kr., så længe du er med. -->
           </div>
         </div>
@@ -564,7 +539,6 @@
           <img src="assets/img/hand-strip-4x5.webp" alt="En hånd holder en tandblegningsstrip" width="1200" height="1500" loading="lazy">
           <div class="faqx__contact-body">
             <p class="faqx__contact-h">Har du et andet spørgsmål?</p>
-            <p>Send os en besked, så svarer vi dig.</p>
             <a class="btn btn--outline" href="#">Skriv til os</a>
           </div>
         </div>
@@ -640,7 +614,7 @@
     <button class="drawer__close" type="button" data-drawer-close aria-label="Luk kurven"><svg class="i i--20" aria-hidden="true"><use href="#i-x"/></svg><span>Luk</span></button>
   </div>
   <!-- Snippet: benefit line (C2). Static, never a meter: one SKU, so a threshold would push a second pack against the club. -->
-<p class="cart-benefit" data-show="klub engang"><svg class="i i--20" aria-hidden="true"><use href="#i-truck"/></svg><span>Sendes fra Danmark, og leveringstiden er 1 til 3 hverdage.</span><!-- [HVIS {{fragt_klub}} = 0, Klubben lines] Fri fragt med Klubben. (gated, deck v2.4) --></p>
+<p class="cart-benefit" data-show="klub engang"><svg class="i i--20" aria-hidden="true"><use href="#i-truck"/></svg><span>Sendes fra Danmark. Levering på 1 til 3 hverdage.</span><!-- [HVIS {{fragt_klub}} = 0, Klubben lines] Fri fragt med Klubben. (gated, deck v2.4) --></p>
   <div class="drawer__body">
     <!-- The next pack date shows once, in "Det sker nu" (C5b), not on the line (deck v2.11).
      Snippet: cart line item (C3) and the switch row (C4). One line, two states.
@@ -678,7 +652,6 @@
     <img class="switch__img" src="assets/img/pdp-05-four-packs.webp" alt="Fire æsker Smilo Club på en hylde, den første åben" width="1600" height="1200" loading="lazy">
     <div>
       <h3 class="switch__title">Vil du have næste pakke automatisk?</h3>
-      <p class="switch__text">Med Klubben sendes en ny pakke hver 90. dag.</p>
     </div>
   </div>
   <p class="switch__save if-save">Spar <span data-v="spar">200</span> kr. pr. pakke i forhold til enkeltkøb</p>
@@ -692,7 +665,6 @@
   <p class="cnext__h">Efter din bestilling</p>
   <ol class="cnext__steps">
     <li><span>Vi sender din første pakke.</span></li>
-    <li><span>Du bruger de 14 behandlinger i pakken.</span></li>
     <li><span>Næste pakke sendes ca. 3. januar 2027.</span></li>
   </ol>
 </div>

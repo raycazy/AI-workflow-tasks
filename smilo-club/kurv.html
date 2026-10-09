@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/smilo.css?v=ce473319">
+<link rel="stylesheet" href="assets/smilo.css?v=a747f112">
 <link rel="stylesheet" href="assets/howto.css?v=098bf597">
 <meta name="robots" content="noindex">
 </head>
@@ -58,7 +58,7 @@
     <div class="announce__track" data-ticker aria-live="off">
       <p>Ny pakke hver 90. dag. Opsig online under Min konto.</p>
       <p>Klubben er et løbende abonnement: spar 50&nbsp;% i forhold til enkeltkøb.</p>
-      <p>Leveringstiden er 1 til 3 hverdage.</p>
+      <p>Levering på 1 til 3 hverdage.</p>
     </div>
   </div>
   <!-- Auto advance every 5s; pauses on hover and focus; a pause button (WCAG 2.2.2); reduced motion shows line 1 only -->
@@ -104,7 +104,7 @@
       <div class="cartpage__head">
         <h1>Din kurv <span data-show="klub engang">(<span data-cart-antal>1</span>)</span></h1>
         <!-- Snippet: benefit line (C2). Static, never a meter: one SKU, so a threshold would push a second pack against the club. -->
-<p class="cart-benefit" data-show="klub engang"><svg class="i i--20" aria-hidden="true"><use href="#i-truck"/></svg><span>Sendes fra Danmark, og leveringstiden er 1 til 3 hverdage.</span><!-- [HVIS {{fragt_klub}} = 0, Klubben lines] Fri fragt med Klubben. (gated, deck v2.4) --></p>
+<p class="cart-benefit" data-show="klub engang"><svg class="i i--20" aria-hidden="true"><use href="#i-truck"/></svg><span>Sendes fra Danmark. Levering på 1 til 3 hverdage.</span><!-- [HVIS {{fragt_klub}} = 0, Klubben lines] Fri fragt med Klubben. (gated, deck v2.4) --></p>
       </div>
       <div class="cartpage__grid">
         <div class="cartpage__lines">
@@ -144,21 +144,19 @@
     <img class="switch__img" src="assets/img/pdp-05-four-packs.webp" alt="Fire æsker Smilo Club på en hylde, den første åben" width="1600" height="1200" loading="lazy">
     <div>
       <h3 class="switch__title">Vil du have næste pakke automatisk?</h3>
-      <p class="switch__text">Med Klubben sendes en ny pakke hver 90. dag.</p>
     </div>
   </div>
   <p class="switch__save if-save">Spar <span data-v="spar">200</span> kr. pr. pakke i forhold til enkeltkøb</p>
   <p class="disclosure">Løbende abonnement: <b><span data-v="pris_klub">199</span> kr.</b> i dag og derefter <b><span data-v="pris_klub">199</span> kr.</b> for hver ny pakke, som sendes hver 90. dag, indtil du opsiger. <span data-v="fragt_saetning">Fragt 39 kr. pr. pakke.</span> Ingen binding. Du opsiger online under Min konto.</p>
   <button class="btn btn--outline switch__btn" type="button" data-switch-klub>Skift til Klubben</button>
 </div>
-          <div class="cartpage__next" data-show="klub engang"><!-- Snippet: after your order (C5b, deck v2.12). Club orders only: three steps.
+          <div class="cartpage__next" data-show="klub"><!-- Snippet: after your order (C5b, deck v2.12). Club orders only: three steps.
      The cancel line is hidden everywhere (deck v2.12): the terms sentence and the repeat line carry it.
      One pack carts show no block: its only line repeated the C2 delivery bar (copy check v2.11 m1). -->
 <div class="cnext" data-show="klub">
   <p class="cnext__h">Efter din bestilling</p>
   <ol class="cnext__steps">
     <li><span>Vi sender din første pakke.</span></li>
-    <li><span>Du bruger de 14 behandlinger i pakken.</span></li>
     <li><span>Næste pakke sendes ca. 3. januar 2027.</span></li>
   </ol>
 </div></div>
