@@ -273,6 +273,10 @@
       });
     }, { rootMargin: "-40% 0px -55% 0px" });
     Object.keys(map).forEach(function (id) { so2.observe(document.getElementById(id)); });
+    var firstSec = document.getElementById(Object.keys(map)[0]);
+    window.addEventListener("scroll", function () {
+      if (firstSec && window.scrollY + window.innerHeight * .4 < firstSec.offsetTop) links.forEach(function (a) { a.classList.remove("on"); });
+    }, { passive: true });
   }
 
   // ---------- FAQ library: search plus categories ----------
