@@ -158,7 +158,7 @@
 
   // ---------- pre sale state: reads "opens Nov 1" until the sale starts ----------
   if (Date.now() < new Date("2026-11-01T00:00:00-07:00").getTime()) {
-    $$("[data-ps-label]").forEach(function (e) { e.textContent = "Pre sale opens Nov 1"; });
+    $$("[data-ps-label]").forEach(function (e) { e.textContent = "Founder's launch opens Nov 1"; });
   }
 
   // ---------- countdowns ----------
