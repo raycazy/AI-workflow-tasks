@@ -999,3 +999,11 @@ html[data-theme="dark"] .h2-sub,.sys .h2-sub,.on-ink .h2-sub{color:#fff}
 html[data-theme="dark"] .guar2-mech li{background:var(--surface);border-color:var(--line)}
 @media (max-width:900px){.guar2{grid-template-columns:1fr}}
 @media (max-width:480px){.gdays{gap:3px}.gdays i{font-size:8.5px;border-radius:3px}.gdays i.late{font-size:7.5px}.g-seal{width:76px}.g-seal b{font-size:30px}}
+/* guarantee grids must be allowed to shrink */
+.guar2{grid-template-columns:minmax(0,1fr) minmax(0,.92fr)}
+.gclock{min-width:0}
+.gdays{grid-template-columns:repeat(18,minmax(0,1fr))}
+.gdays i{min-width:0;overflow:hidden}
+.guar2-mech li b{min-width:0}
+@media (max-width:900px){.guar2{grid-template-columns:minmax(0,1fr)}}
+.gclock{overflow:hidden}
