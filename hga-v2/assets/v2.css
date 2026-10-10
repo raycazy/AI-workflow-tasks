@@ -1143,3 +1143,28 @@ html[data-theme="dark"] .j-kick,html[data-theme="dark"] .j-strong{color:var(--te
 .j-av{order:0;flex:none}
 .j-pics{grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch}
 .j-pics img,.j-pics img:last-child{aspect-ratio:4/5;object-fit:cover;height:100%}
+/* A benefits: open cards on desktop, accordion on mobile (matches the B/C/D mobile list) */
+.j-ben li{gap:12px}
+.j-ben .j-h4 button{all:unset;display:flex;flex-direction:column;align-items:flex-start;gap:12px;width:100%;cursor:default;font:inherit;color:inherit}
+.j-ben .j-h4 button:focus-visible{outline:2px solid var(--red);outline-offset:4px;border-radius:8px}
+.j-chev{display:none}
+@media (max-width:900px){
+  .j-ben{grid-template-columns:minmax(0,1fr);gap:8px}
+  .j-ben li{padding:0;gap:0;overflow:hidden;background:var(--surface)}
+  .j-ben .j-h4 button{flex-direction:row;align-items:center;gap:14px;padding:14px;cursor:pointer}
+  .j-ben .j-h4 button>span:not(.ico-box){flex:1;min-width:0}
+  .j-ben .ico-box{background:var(--surface-2,#efece6);color:var(--text-2);border:1px solid var(--line);transition:.15s}
+  .j-ben li.on .ico-box{background:var(--red);color:#fff;border-color:var(--red)}
+  .j-ben li:not(.on) .j-h4{color:var(--text-2)}
+  .j-chev{display:block;width:18px;height:18px;flex:none;color:var(--muted);transform:rotate(90deg);transition:transform .15s}
+  .j-ben li.on .j-chev{transform:rotate(-90deg);color:var(--red)}
+  .j-ben p{display:none;padding:0 14px 16px 72px}
+  .j-ben li.on p{display:block}
+}
+html[data-theme="dark"] .j-ben .ico-box{border-color:var(--line)}
+@media (max-width:900px){html[data-theme="dark"] .j-ben .ico-box{background:var(--surface-2);color:var(--text-2)}html[data-theme="dark"] .j-ben li.on .ico-box{background:var(--red);color:#fff}}
+.j-ben .ico-box{width:44px;height:44px;flex:none}
+.j-ben .j-h4 button{box-sizing:border-box}
+
+.j-chev{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@media (max-width:900px){.j-chev{width:22px;height:22px;transform:none}.j-ben li.on .j-chev{transform:rotate(180deg)}}

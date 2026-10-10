@@ -44,6 +44,20 @@
     });
   });
 
+
+  // ---------- variation A benefits: accordion below 900px, open grid above ----------
+  $$("[data-acc]").forEach(function (root) {
+    var items = $$("li", root), mq = window.matchMedia("(max-width:900px)");
+    items.forEach(function (li) {
+      var b = $("button", li);
+      b.addEventListener("click", function () {
+        if (!mq.matches) return;
+        var open = !li.classList.contains("on");
+        items.forEach(function (x) { x.classList.remove("on"); $("button", x).setAttribute("aria-expanded", "false"); });
+        if (open) { li.classList.add("on"); b.setAttribute("aria-expanded", "true"); }
+      });
+    });
+  });
   // ---------- glass box toggle ----------
   $$("[data-gbox]").forEach(function (box) {
     var btns = $$("[data-mode]", box);
