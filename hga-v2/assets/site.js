@@ -6,7 +6,7 @@
 
   var CHECKOUT = "https://rc1.ucollect.com/grading/credits/new";
   var PRESALE_END = "2027-02-01T00:00:00-07:00";
-  var PRICES = { poly: { now: 50, open: 200, name: "HGA Poly" }, glass: { now: 200, open: 600, name: "HGA Glass" } };
+  var PRICES = { poly: { now: 29, open: 116, name: "HGA Poly" }, glass: { now: 200, open: 800, name: "HGA Glass" } };
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
@@ -34,7 +34,7 @@
     },
     dealer: {
       eb: "For dealers and bulk submitters",
-      a: "Grade 100 cards", b: "at $50 a card.",
+      a: "Grade 100 cards", b: "at $29 a card.",
       lede: "Prepay up to 100 passes per housing per order, with no limit on orders. Passes never expire, transfer to any account, and book around your releases and shows.",
       housing: "poly", glass: "ohtani", poly: "judge"
     },
@@ -117,7 +117,7 @@
     var count = qty.poly + qty.glass;
     var now = qty.poly * PRICES.poly.now + qty.glass * PRICES.glass.now;
     var open = qty.poly * PRICES.poly.open + qty.glass * PRICES.glass.open;
-    $$("[data-sum-count]").forEach(function (e) { e.textContent = count + (count === 1 ? " pass" : " passes"); });
+    $$("[data-sum-count]").forEach(function (e) { e.textContent = count + (count === 1 ? " slot" : " slots"); });
     $$("[data-sum-now]").forEach(function (e) { e.textContent = money(now); });
     $$("[data-sum-open]").forEach(function (e) { e.textContent = money(open); });
     $$("[data-sum-save]").forEach(function (e) { e.textContent = money(open - now); });

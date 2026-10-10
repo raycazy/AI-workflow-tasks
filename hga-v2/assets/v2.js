@@ -16,6 +16,15 @@
     });
   });
 
+  // ---------- rationale notes (variation D) ----------
+  $$("[data-why-toggle]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var off = document.documentElement.classList.toggle("why-off");
+      b.textContent = off ? "Show rationale" : "Hide rationale";
+      b.setAttribute("aria-pressed", String(!off));
+    });
+  });
+
   // ---------- glass box toggle ----------
   $$("[data-gbox]").forEach(function (box) {
     var btns = $$("[data-mode]", box);

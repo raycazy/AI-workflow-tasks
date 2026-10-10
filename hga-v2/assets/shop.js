@@ -6,8 +6,8 @@
   "use strict";
 
   var PRICES = {
-    poly: { now: 50, open: 200, name: "HGA Poly" },
-    glass: { now: 200, open: 600, name: "HGA Glass" }
+    poly: { now: 29, open: 116, name: "HGA Poly" },
+    glass: { now: 200, open: 800, name: "HGA Glass" }
   };
   var KEY = "hga_cart", ORDER = "hga_last_order";
   var $ = function (s, r) { return (r || document).querySelector(s); };
@@ -55,7 +55,7 @@
       $$('[data-line-open="' + h + '"]', r).forEach(function (e) { e.textContent = money(c[h] * PRICES[h].open); });
       $$('[data-xsell="' + h + '"]', r).forEach(function (e) { e.hidden = !(c[h] === 0 && t.count > 0); });
     });
-    $$("[data-c-count]", r).forEach(function (e) { e.textContent = t.count + (t.count === 1 ? " pass" : " passes"); });
+    $$("[data-c-count]", r).forEach(function (e) { e.textContent = t.count + (t.count === 1 ? " slot" : " slots"); });
     $$("[data-c-sub]", r).forEach(function (e) { e.textContent = money(t.open); });
     $$("[data-c-save]", r).forEach(function (e) { e.textContent = "-" + money(t.save); });
     $$("[data-c-save-plain]", r).forEach(function (e) { e.textContent = money(t.save); });
@@ -94,7 +94,7 @@
       set("[data-pdp-save]", money(p.open - p.now));
       set("[data-pdp-pct]", Math.round((1 - p.now / p.open) * 100) + "%");
       var qi = $("[data-pdp-qty]"); if (qi && document.activeElement !== qi) qi.value = st.q;
-      set("[data-pdp-count]", st.q + (st.q === 1 ? " pass" : " passes"));
+      set("[data-pdp-count]", st.q + (st.q === 1 ? " slot" : " slots"));
       set("[data-pdp-total]", money(st.q * p.now));
       set("[data-pdp-total-open]", money(st.q * p.open));
       set("[data-pdp-total-save]", money(st.q * (p.open - p.now)));
@@ -113,7 +113,7 @@
       b.addEventListener("click", function () {
         add(st.h, st.q);
         if (toast) {
-          set("[data-added-what]", st.q + " × " + PRICES[st.h].name + " pass" + (st.q === 1 ? "" : "es"));
+          set("[data-added-what]", st.q + " × " + PRICES[st.h].name + " slot" + (st.q === 1 ? "" : "s"));
           toast.hidden = false;
           requestAnimationFrame(function () { toast.classList.add("show"); });
           clearTimeout(toast._t);
