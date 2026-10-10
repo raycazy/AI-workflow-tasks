@@ -84,7 +84,10 @@
     $$("[data-count]").forEach(function (el) { el.textContent = el.dataset.count; });
     return;
   }
+  document.documentElement.classList.add("gsap-on");
   gsap.registerPlugin(ScrollTrigger);
+  window.addEventListener("load", function () { ScrollTrigger.refresh(); });
+  setTimeout(function () { ScrollTrigger.refresh(); }, 2500);
 
   // hero: stagger in
   var heroBits = $$(".v2hero .eb, .v2hero .h1, .v2hero .lede, .v2hero .pick, .v2hero .hero-cta, .v2hero .hero-trust");
