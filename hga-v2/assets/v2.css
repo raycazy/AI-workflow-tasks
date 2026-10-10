@@ -889,3 +889,16 @@ html[data-theme="dark"] .cmp2-card.new li p{color:#3F3B37}
 html[data-theme="dark"] .hero-alt.dark{color:rgba(255,255,255,.75)}
 .lx-lede{max-width:40em;color:rgba(255,255,255,.75)}
 @media (max-width:900px){.demo{grid-template-columns:1fr}}
+/* hero buy box: ink text on the white card */
+.hero-bbox,.hero-bbox .ho-p b,.hero-bbox .stepper,.hero-bbox .quick button,.hero-bbox .bh h3{color:var(--ink)}
+.hero-bbox .eb{color:var(--muted)}
+.hero-bbox .eb b{color:var(--red-text)}
+html[data-theme="dark"] .hero-bbox,html[data-theme="dark"] .hero-bbox .ho-p b,html[data-theme="dark"] .hero-bbox .bh h3{color:var(--text)}
+html[data-theme="dark"] .hero-bbox .stepper,html[data-theme="dark"] .hero-bbox .quick button{color:#fff}
+/* no mono: data and codes set in Barlow with tabular numerals */
+:root{--code:"Barlow","Helvetica Neue",Arial,sans-serif}
+.code,.rc-h .mono,.rp-meta .mono,.rp-dl dt,.ps-body .mono,.rc-s span,.rp-subs span,.tbl th,.tbl td.g,.spec span,.rp-chain .mono,.lr .z,.lr .v.sm,.hchip .v,.pl .n,.rc .n,.usp .proof,.pl .data,.cu-n,.asked .q .who,.rc-f,.ps-body .mono{font-family:var(--sans);font-weight:600;letter-spacing:.02em;font-variant-numeric:tabular-nums;text-transform:none}
+.pl .n,.rc .n{text-transform:uppercase;letter-spacing:.06em;font-size:11px}
+.hchip .v{font-weight:600}
+.tbl th{text-transform:uppercase;letter-spacing:.06em}
+.cu-n{letter-spacing:.14em}
