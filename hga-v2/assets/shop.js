@@ -56,6 +56,7 @@
       $$('[data-xsell="' + h + '"]', r).forEach(function (e) { e.hidden = !(c[h] === 0 && t.count > 0); });
     });
     $$("[data-c-count]", r).forEach(function (e) { e.textContent = t.count + (t.count === 1 ? " slot" : " slots"); });
+    $$("[data-c-verb]", r).forEach(function (e) { e.textContent = t.count === 1 ? "is" : "are"; });
     $$("[data-c-sub]", r).forEach(function (e) { e.textContent = money(t.open); });
     $$("[data-c-save]", r).forEach(function (e) { e.textContent = "-" + money(t.save); });
     $$("[data-c-save-plain]", r).forEach(function (e) { e.textContent = money(t.save); });
@@ -135,6 +136,11 @@
     pdpRender();
   }
 
+
+  // ---------- claim buttons (variation A): add one slot and open the cart ----------
+  $$("[data-claim]").forEach(function (b) {
+    b.addEventListener("click", function () { add(b.dataset.claim === "poly" ? "poly" : "glass", 1); location.href = "cart.html"; });
+  });
   // ---------- cart page + checkout summary controls ----------
   $$("[data-cart-step]").forEach(function (b) {
     b.addEventListener("click", function () {
