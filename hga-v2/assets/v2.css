@@ -1168,3 +1168,26 @@ html[data-theme="dark"] .j-ben .ico-box{border-color:var(--line)}
 
 .j-chev{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 @media (max-width:900px){.j-chev{width:22px;height:22px;transform:none}.j-ben li.on .j-chev{transform:rotate(180deg)}}
+
+/* Behind The Glass: centered stack, then a full width auto scrolling card carousel */
+.j-stack{text-align:center;max-width:860px;margin-inline:auto;display:grid;justify-items:center}
+.j-stack .h2{max-width:20em}
+.j-stack .j-title{margin-top:10px}
+.j-stack .eb{justify-self:center}
+.j-stack .j-lead,.j-stack .lede{margin-inline:auto;margin-top:16px;max-width:44em}
+.j-stack-2{margin-top:clamp(36px,5vw,56px)}
+.sys .j-stack .h3{color:#fff}
+.jmarq{position:relative;overflow:hidden;margin-top:clamp(32px,4.5vw,56px);padding-block:10px 6px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.jmarq-track{display:flex;width:max-content;animation:jmarq 60s linear infinite;will-change:transform}
+.jmarq:hover .jmarq-track,.jmarq:focus-within .jmarq-track{animation-play-state:paused}
+.jmarq-set{list-style:none;margin:0;padding:0 clamp(16px,2vw,28px) 0 0;display:flex;gap:clamp(16px,2vw,28px)}
+.jmarq figure{margin:0;width:clamp(124px,12.5vw,176px);display:grid;justify-items:center;gap:12px;text-align:center}
+.jmarq img,.ph-slab{width:100%;height:auto;aspect-ratio:360/601;filter:drop-shadow(0 22px 30px rgba(0,0,0,.55));transition:transform .25s}
+.jmarq li:hover img,.jmarq li:hover .ph-slab{transform:translateY(-6px)}
+.jmarq figcaption{font-size:14px;font-weight:600;color:rgba(255,255,255,.82);letter-spacing:.01em}
+@keyframes jmarq{to{transform:translateX(-50%)}}
+.ph-slab{display:grid;grid-template-rows:auto 1fr;gap:6%;padding:7%;border-radius:9px;background:linear-gradient(180deg,#2a2a2a,#151515);border:2px solid rgba(255,255,255,.28);box-shadow:inset 0 0 0 3px #0a0a0a}
+.ph-band{display:block;padding:7% 8%;border-radius:3px;background:var(--red);color:#fff;font-weight:800;font-size:clamp(10px,1vw,13px);letter-spacing:.04em;text-align:left;font-style:italic}
+.ph-win{display:grid;place-items:center;border-radius:3px;background:linear-gradient(160deg,var(--c1),var(--c2));color:rgba(255,255,255,.92);font-weight:800;font-size:clamp(11px,1vw,13px);letter-spacing:.04em}
+html[data-theme="light"] .sys .jmarq figcaption{color:rgba(255,255,255,.82)}
+@media (prefers-reduced-motion:reduce){.jmarq-track{animation:none}.jmarq{overflow-x:auto;-webkit-mask-image:none;mask-image:none}.jmarq-set[aria-hidden]{display:none}}
