@@ -93,7 +93,7 @@
       set("[data-pdp-open]", money(p.open));
       set("[data-pdp-save]", money(p.open - p.now));
       set("[data-pdp-pct]", Math.round((1 - p.now / p.open) * 100) + "%");
-      var qi = $("[data-pdp-qty]"); if (qi && document.activeElement !== qi) qi.value = st.q;
+      $$("[data-pdp-qty]").forEach(function (i) { if (document.activeElement !== i) i.value = st.q; });
       set("[data-pdp-count]", st.q + (st.q === 1 ? " slot" : " slots"));
       set("[data-pdp-total]", money(st.q * p.now));
       set("[data-pdp-total-open]", money(st.q * p.open));
