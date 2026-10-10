@@ -902,3 +902,64 @@ html[data-theme="dark"] .hero-bbox .stepper,html[data-theme="dark"] .hero-bbox .
 .hchip .v{font-weight:600}
 .tbl th{text-transform:uppercase;letter-spacing:.06em}
 .cu-n{letter-spacing:.14em}
+
+/* ---------- benefits v2: one description at a time ---------- */
+.ben2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,3vw,40px);align-items:stretch}
+.ben2-stage{position:relative;border-radius:var(--r-lg);overflow:hidden;background:#0E0E0E;min-height:520px;isolation:isolate;box-shadow:var(--shadow-l)}
+.ben2-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:opacity .35s}
+.ben2-stage img.fade{opacity:0}
+.ben2-stage::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(14,14,14,0) 35%,rgba(14,14,14,.9) 100%)}
+.ben2-cap{position:absolute;left:0;right:0;bottom:0;padding:clamp(20px,3vw,32px);color:#fff}
+.ben2-n{display:block;font-size:12px;font-weight:600;letter-spacing:.1em;color:rgba(255,255,255,.6);margin-bottom:8px}
+.ben2-cap b{display:block;font-size:clamp(22px,2.2vw,30px);font-weight:800;letter-spacing:-.025em;line-height:1.08}
+.ben2-cap p{margin-top:10px;font-size:16px;line-height:1.5;color:rgba(255,255,255,.82);max-width:34em}
+.ben2-list{display:grid;gap:6px;align-content:center}
+.ben2-list li{list-style:none}
+.ben2-list button{width:100%;display:grid;grid-template-columns:40px 1fr 18px;gap:14px;align-items:center;text-align:left;padding:10px 14px;border-radius:var(--r-sm);border:1px solid transparent;color:var(--text-2);transition:.15s}
+.ben2-list button .ico-box{width:40px;height:40px;background:var(--surface-2);color:var(--text-2);border:1px solid var(--line)}
+.ben2-list .ben2-t{font-size:16px;font-weight:600;letter-spacing:-.01em;line-height:1.25}
+.ben2-list .chev{width:18px;height:18px;opacity:0;transform:translateX(-4px);transition:.15s;color:var(--red)}
+.ben2-list button:hover{background:var(--surface);border-color:var(--line);color:var(--text)}
+.ben2-list li.on button{background:var(--surface);border-color:var(--ink);color:var(--text);box-shadow:var(--shadow-s)}
+.ben2-list li.on .ico-box{background:var(--red);color:#fff;border-color:var(--red)}
+.ben2-list li.on .chev{opacity:1;transform:none}
+.ben2-m{display:none}
+@media (max-width:900px){
+  .ben2{grid-template-columns:1fr}
+  .ben2-stage{display:none}
+  .ben2-list{gap:8px}
+  .ben2-list li{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);overflow:hidden}
+  .ben2-list button{border:0;padding:14px}
+  .ben2-list li.on button{box-shadow:none;border:0}
+  .ben2-list .chev{transform:rotate(90deg);opacity:1;color:var(--muted)}
+  .ben2-list li.on .chev{transform:rotate(-90deg);color:var(--red)}
+  .ben2-list li.on .ben2-m{display:block;padding:0 14px 16px 68px;font-size:14.5px;color:var(--text-2);line-height:1.5}
+}
+html[data-theme="dark"] .ben2-list button:hover,html[data-theme="dark"] .ben2-list li.on button{background:var(--surface);border-color:var(--line-2);color:#fff}
+html[data-theme="dark"] .ben2-list .ico-box{background:var(--surface-2);border-color:var(--line);color:var(--text-2)}
+html[data-theme="dark"] .ben2-list li.on .ico-box{background:var(--red);color:#fff}
+html[data-theme="dark"] .ben2-list li{background:var(--surface);border-color:var(--line)}
+/* rhythm: tighter section padding, no vertical centering of text columns */
+.sec{padding-block:clamp(44px,6vw,76px)}
+.rail{padding-bottom:6px}
+.rail-nav{margin-top:10px}
+.split{align-items:start}
+.split .shot,.split .gbox-art,.split .reveal,.split .clubu{align-self:center}
+/* icon system: slab shaped icons in the red tiles */
+.ico-box .ico,.bt .ico-box .ico,.usp .ico-box .ico,.feat .ico-box .ico,.ben .ico-box .ico,.aud .ico-box .ico,.cmp2-card.new .ck .ico{width:24px;height:24px;stroke-width:1.5}
+.cmp2-card.new .ck .ico{width:18px;height:18px;stroke-width:2.6}
+.hero-trust .ico,.buy-trust .ico,.sh-proof .ico,.lx-trust .ico,.co-assure .ico,.cart-assure .ico,.offer-notes .ico,.gbox-list .ico,.feat .ico,.ticker .ico,.strip .ico{stroke-width:1.6}
+.hero-trust .ico,.buy-trust .ico{width:20px;height:20px}
+.ben2-list .ico-box .ico{width:22px;height:22px}
+/* hero height */
+.v2hero .wrap{padding-block:clamp(28px,4vw,48px) clamp(20px,3vw,36px)}
+.v2hero .h1,.h1{font-size:clamp(36px,4.1vw,58px)}
+.v2hero .lede{margin-top:12px}
+.v2hero .pick{margin-top:18px}
+.v2hero .hero-cta{margin-top:14px}
+.v2hero .hero-trust{margin-top:16px}
+.v2stage{padding:8px 0 44px}
+.v2stage .stage-in{width:min(58%,300px)}
+.hchip.b{bottom:8%}
+.feat .ico-box,.usp .ico-box{width:46px;height:46px}
+.feat .ico-box .ico,.usp .ico-box .ico{width:26px;height:26px}

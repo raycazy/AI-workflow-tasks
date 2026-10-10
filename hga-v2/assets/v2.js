@@ -25,6 +25,25 @@
     });
   });
 
+  // ---------- benefits: one description at a time ----------
+  $$("[data-ben]").forEach(function (root) {
+    var items = $$("li", root), img = $("[data-ben-img]", root), n = $("[data-ben-n]", root), t = $("[data-ben-t]", root), pp = $("[data-ben-p]", root);
+    var pad = function (i) { return (i < 9 ? "0" : "") + (i + 1); };
+    items.forEach(function (li, i) {
+      var b = $("button", li);
+      b.addEventListener("click", function () {
+        var already = li.classList.contains("on");
+        items.forEach(function (x) { x.classList.remove("on"); $("button", x).setAttribute("aria-pressed", "false"); });
+        if (already && window.innerWidth <= 900) return;
+        li.classList.add("on"); b.setAttribute("aria-pressed", "true");
+        if (img) { img.classList.add("fade"); setTimeout(function () { img.src = b.dataset.img; img.alt = b.dataset.alt || ""; img.classList.remove("fade"); }, 180); }
+        if (n) n.textContent = pad(i) + " / " + pad(items.length - 1).replace(/^0/, "");
+        if (t) t.textContent = $(".ben2-t", b).textContent;
+        if (pp) pp.textContent = $(".ben2-m", li).textContent;
+      });
+    });
+  });
+
   // ---------- glass box toggle ----------
   $$("[data-gbox]").forEach(function (box) {
     var btns = $$("[data-mode]", box);
