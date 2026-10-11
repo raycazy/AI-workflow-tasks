@@ -6,8 +6,8 @@
   "use strict";
 
   var PRICES = {
-    poly: { now: 50, open: 200, name: "HGA Poly" },
-    glass: { now: 200, open: 600, name: "HGA Glass" }
+    poly: { now: 29, open: 116, name: "HGA Poly" },
+    glass: { now: 200, open: 800, name: "HGA Glass" }
   };
   var KEY = "hga_cart", ORDER = "hga_last_order";
   var $ = function (s, r) { return (r || document).querySelector(s); };

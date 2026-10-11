@@ -35,7 +35,7 @@
     dealer: {
       eb: "For dealers and bulk submitters",
       a: "Grade 100 cards", b: "at $29 a card.",
-      lede: "Prepay up to 100 passes per housing per order, with no limit on orders. Passes never expire, transfer to any account, and book around your releases and shows.",
+      lede: "Prepay up to 100 passes per housing per order, with no limit on orders. Passes never expire, stay on your account, and book around your releases and shows.",
       housing: "poly", glass: "ohtani", poly: "judge"
     },
     tcg: {
@@ -85,7 +85,7 @@
     $$("[data-hero-cta]").forEach(function (a) { a.href = "pass.html?h=" + h; });
     $$("[data-hero-cta-price]").forEach(function (e) { e.textContent = money(PRICES[h].now); });
     $$("[data-sbar-name]").forEach(function (e) { e.textContent = PRICES[h].name + " · " + money(PRICES[h].now) + " a card"; });
-    $$("[data-sbar-sub]").forEach(function (e) { e.textContent = money(PRICES[h].open) + " at open · save " + money(PRICES[h].open - PRICES[h].now); });
+    $$("[data-sbar-sub]").forEach(function (e) { e.textContent = money(PRICES[h].open) + " at launch · save " + money(PRICES[h].open - PRICES[h].now); });
     if (!builderTouched) setQty({ poly: h === "poly" ? 1 : 0, glass: h === "glass" ? 1 : 0 });
   }
 

@@ -6,7 +6,7 @@
 
   var CHECKOUT = "https://rc1.ucollect.com/grading/credits/new";
   var PRESALE_END = "2027-02-01T00:00:00-07:00";
-  var PRICES = { poly: { now: 50, open: 200, name: "HGA Poly" }, glass: { now: 200, open: 600, name: "HGA Glass" } };
+  var PRICES = { poly: { now: 29, open: 116, name: "HGA Poly" }, glass: { now: 200, open: 800, name: "HGA Glass" } };
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
@@ -34,8 +34,8 @@
     },
     dealer: {
       eb: "For dealers and bulk submitters",
-      a: "Grade 100 cards", b: "at $50 a card.",
-      lede: "Prepay up to 100 passes per housing per order, with no limit on orders. Passes never expire, transfer to any account, and book around your releases and shows.",
+      a: "Grade 100 cards", b: "at $29 a card.",
+      lede: "Prepay up to 100 passes per housing per order, with no limit on orders. Passes never expire, stay on your account, and book around your releases and shows.",
       housing: "poly", glass: "ohtani", poly: "judge"
     },
     tcg: {
@@ -85,7 +85,7 @@
     $$("[data-hero-cta]").forEach(function (a) { a.href = "pass.html?h=" + h; });
     $$("[data-hero-cta-price]").forEach(function (e) { e.textContent = money(PRICES[h].now); });
     $$("[data-sbar-name]").forEach(function (e) { e.textContent = PRICES[h].name + " · " + money(PRICES[h].now) + " a card"; });
-    $$("[data-sbar-sub]").forEach(function (e) { e.textContent = money(PRICES[h].open) + " at open · save " + money(PRICES[h].open - PRICES[h].now); });
+    $$("[data-sbar-sub]").forEach(function (e) { e.textContent = money(PRICES[h].open) + " at launch · save " + money(PRICES[h].open - PRICES[h].now); });
     if (!builderTouched) setQty({ poly: h === "poly" ? 1 : 0, glass: h === "glass" ? 1 : 0 });
   }
 
