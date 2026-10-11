@@ -1212,3 +1212,16 @@ html[data-theme="light"] .sys .jmarq figcaption{color:rgba(255,255,255,.82)}
 .jmarq-4 .jmarq-track{animation:jmarq4 30s linear infinite}
 @keyframes jmarq4{to{transform:translateX(-25%)}}
 @media (prefers-reduced-motion:reduce){.jmarq-4 .jmarq-track{animation:none}}
+/* A: in-page section navigation */
+.hnav-anchors a{white-space:nowrap}
+.hnav-anchors a[aria-current="location"]{color:var(--ink);font-weight:700}
+.hnav-anchors a[aria-current="location"]::after{transform:translateX(-50%) scale(1)}
+html[data-theme="dark"] .hnav-anchors a[aria-current="location"]{color:#fff}
+@media (max-width:1340px){.hdr-anchors .brand .co{display:none}.hnav-anchors a{padding-inline:9px}}
+@media (max-width:1180px){
+  .hdr-anchors .menu-btn{display:inline-flex}
+  .hnav-anchors{position:fixed;inset:calc(var(--hdr)) 0 auto 0;flex-direction:column;gap:0;background:var(--paper);border-bottom:1px solid var(--line);padding:8px clamp(16px,4.5vw,48px) 20px;transform:translateY(-8px);opacity:0;visibility:hidden;transition:.2s;box-shadow:0 24px 40px rgba(0,0,0,.08)}
+  .hnav-anchors.open{transform:none;opacity:1;visibility:visible}
+  .hnav-anchors a{padding:16px 0;border-bottom:1px solid var(--line);font-size:15px}
+  .hnav-anchors a::after{display:none}
+}
