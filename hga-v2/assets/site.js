@@ -328,3 +328,23 @@
   // ---------- outbound checkout links ----------
   $$("[data-checkout]").forEach(function (a) { a.href = CHECKOUT; });
 })();
+
+/* Each design version is an independent experience. The version a visitor lands on is
+   remembered for the session, and shared pages (PDP, cart, checkout, FAQ...) link back to it. */
+(function () {
+  var V = ["index.html", "shop.html", "luxe.html", "cro.html"];
+  var here = location.pathname.split("/").pop() || "index.html";
+  if (here === "variations.html") return;
+  var home = "index.html";
+  try {
+    if (V.indexOf(here) >= 0) sessionStorage.setItem("hga_home", here);
+    home = sessionStorage.getItem("hga_home") || "index.html";
+  } catch (e) {}
+  if (V.indexOf(here) >= 0) return;
+  Array.prototype.forEach.call(document.querySelectorAll('a[href^="index.html"]'), function (a) {
+    var hash = a.getAttribute("href").slice("index.html".length);
+    var ids = { "index.html": ["hero", "how", "offer", "faq"], "shop.html": ["hero", "how", "faq"], "luxe.html": ["hero", "offer", "faq"], "cro.html": ["hero", "how", "offer", "faq"] }[home];
+    if (hash && ids.indexOf(hash.slice(1)) < 0) hash = ids.indexOf("offer") >= 0 ? "#offer" : "#hero";
+    a.setAttribute("href", home + hash);
+  });
+})();
