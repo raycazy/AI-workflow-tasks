@@ -1208,3 +1208,7 @@ html[data-theme="light"] .sys .jmarq figcaption{color:rgba(255,255,255,.82)}
 /* A: show Joshua's casing exactly where shared styles would uppercase it */
 .j-asis,.j-price small{text-transform:none!important;letter-spacing:.01em}
 .j-price small{font-size:14px}
+/* A: six card carousel, four copies, moves one copy per loop */
+.jmarq-4 .jmarq-track{animation:jmarq4 30s linear infinite}
+@keyframes jmarq4{to{transform:translateX(-25%)}}
+@media (prefers-reduced-motion:reduce){.jmarq-4 .jmarq-track{animation:none}}
