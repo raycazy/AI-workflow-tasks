@@ -1278,3 +1278,15 @@ html[data-theme="dark"] .buy-inc b{color:#fff}
 .fq-tbl th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-2)}
 .faq .a p + p{margin-top:8px}
 @media (max-width:480px){.fq-tbl{font-size:13px}.fq-tbl th,.fq-tbl td{padding:8px 6px}}
+/* price slashes (Dylan, 2026-10-13) */
+.yc-price,.j-price,.fc-price{position:relative}
+.yc-price,.j-price{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:12px;row-gap:4px}
+.j-price small,.yc-price small{flex-basis:100%}
+.fc-price{grid-template-columns:auto 1fr;align-items:baseline;column-gap:12px}
+.fc-price small,.fc-price em{grid-column:1/-1}
+.was{font-size:18px;font-weight:600;color:rgba(255,255,255,.62);white-space:nowrap}
+.was s{font-size:22px;font-weight:700;color:rgba(255,255,255,.75);text-decoration-thickness:2px;text-decoration-color:var(--red)}
+.was-l{font-size:13px;font-weight:500}
+.save-tag{display:inline-block;padding:3px 8px;border-radius:4px;background:var(--red);color:#fff;font-size:12.5px;font-weight:700;letter-spacing:.02em;white-space:nowrap}
+.fc-price .save-tag{justify-self:start;grid-column:1/-1}
+.btn .price s{opacity:.7;margin-left:4px;text-decoration-thickness:2px}
