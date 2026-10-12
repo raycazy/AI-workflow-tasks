@@ -6,7 +6,7 @@
 
   var CHECKOUT = "https://rc1.ucollect.com/grading/credits/new";
   var PRESALE_END = "2027-02-01T00:00:00-07:00";
-  var PRICES = { poly: { now: 29, open: 116, name: "HGA Poly" }, glass: { now: 200, open: 800, name: "HGA Glass" } };
+  var PRICES = { poly: { now: 29, open: 150, name: "HGA Poly" }, glass: { now: 200, open: 600, name: "HGA Glass" } };
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
@@ -23,7 +23,7 @@
     promo: {
       eb: "Pre sale · Nov 1, 2026 to Jan 31, 2027",
       a: "Our fastest grade", b: "at our lowest price.",
-      lede: "Prepay 15 business day grading now, up to 75% under the launch price. Four subgrades, the Grade Report and the case included. Book your grading day from Feb 1.",
+      lede: "Prepay 15 business day grading now, up to 81% under the launch price. Four subgrades, the Grade Report and the case included. Book your grading day from Feb 1.",
       housing: "glass", glass: "ohtani", poly: "judge"
     },
     collector: {
