@@ -63,3 +63,6 @@ The last block of `assets/hga.css` holds the modern layer: rounded surfaces, pil
 
 ## Brand notes
 Brand tokens are unchanged from HGA's stylesheet, with two accessibility adjustments: muted text is darkened to `#6E6964` (5:1 contrast), and small red labels on light backgrounds use `#C81F24`. The meeting transcript is in `_notes/`.
+
+
+**2026-10-12: Trevor rules applied to every page** (script `../_trevor_fixes.py`, rerunnable): Poly $29 and Glass $200 pre-launch, launch $116 and $800 (75% off, derived, still to confirm); $1 credit per late day, not a refund; RFID chip and blockchain, never NFT or NFC; pre-launch purchases cannot be transferred or gifted (v1 checkout gift step removed); Flawless earns the Flawless Gold Label in Poly or Glass (no free move to Glass); no "patented" or "first to slab" claims; Club U is "additional benefits", not member pricing.

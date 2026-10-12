@@ -21,15 +21,15 @@
   };
   var VARIANTS = {
     promo: {
-      eb: "Pre sale · Nov 1, 2026 to Jan 31, 2027",
+      eb: "Presale · Nov 1, 2026 to Jan 31, 2027",
       a: "Our fastest grade", b: "at our lowest price.",
       lede: "Prepay 15 business day grading now, up to 75% under the launch price. Four subgrades, the Grade Report and the case included. Book your grading day from Feb 1.",
       housing: "glass", glass: "ohtani", poly: "judge"
     },
     collector: {
-      eb: "For collectors · Pre sale price",
+      eb: "For collectors · Presale price",
       a: "Every grade,", b: "explained.",
-      lede: "The grader that shows its work. Every defect located and rated, four subgrades on every label, your cards unboxed on camera. Lock in the pre sale price now.",
+      lede: "The grader that shows its work. Every defect located and rated, four subgrades on every label, your cards unboxed on camera. Lock in the presale price now.",
       housing: "glass", glass: "ohtani", poly: "judge"
     },
     dealer: {
@@ -41,7 +41,7 @@
     tcg: {
       eb: "Pokémon and every TCG",
       a: "Your Pokémon,", b: "graded in the open.",
-      lede: "Every TCG and every card size, graded blind to a standard published in full. Four subgrades on every label, at no extra cost. Lock in the pre sale price now.",
+      lede: "Every TCG and every card size, graded blind to a standard published in full. Four subgrades on every label, at no extra cost. Lock in the presale price now.",
       housing: "glass", glass: "gengar", poly: "gengar"
     }
   };
@@ -156,7 +156,7 @@
   if (hero) applyVariant(variantKey); else setQty(qty);
   if (builderTouched) setQty(qty);
 
-  // ---------- pre sale state: reads "opens Nov 1" until the sale starts ----------
+  // ---------- presale state: reads "opens Nov 1" until the sale starts ----------
   if (Date.now() < new Date("2026-11-01T00:00:00-07:00").getTime()) {
     $$("[data-ps-label]").forEach(function (e) { e.textContent = "Founder's launch opens Nov 1"; });
   }
@@ -332,7 +332,7 @@
 /* Each design version is an independent experience. The version a visitor lands on is
    remembered for the session, and shared pages (PDP, cart, checkout, FAQ...) link back to it. */
 (function () {
-  var V = ["index.html", "shop.html", "luxe.html", "cro.html"];
+  var V = ["index.html", "shop.html", "luxe.html", "cro.html", "best.html"];
   var here = location.pathname.split("/").pop() || "index.html";
   if (here === "variations.html") return;
   var home = "index.html";
@@ -343,7 +343,7 @@
   if (V.indexOf(here) >= 0) return;
   Array.prototype.forEach.call(document.querySelectorAll('a[href^="index.html"]'), function (a) {
     var hash = a.getAttribute("href").slice("index.html".length);
-    var ids = { "index.html": ["hero", "how", "offer", "faq"], "shop.html": ["hero", "how", "faq"], "luxe.html": ["hero", "offer", "faq"], "cro.html": ["hero", "how", "offer", "faq"] }[home];
+    var ids = { "index.html": ["hero", "how", "offer", "faq"], "shop.html": ["hero", "how", "faq"], "luxe.html": ["hero", "how", "offer", "faq"], "cro.html": ["hero", "how", "offer", "faq"], "best.html": ["hero", "how", "offer", "faq"] }[home];
     if (hash && ids.indexOf(hash.slice(1)) < 0) hash = ids.indexOf("offer") >= 0 ? "#offer" : "#hero";
     a.setAttribute("href", home + hash);
   });

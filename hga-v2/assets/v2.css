@@ -1225,3 +1225,50 @@ html[data-theme="dark"] .hnav-anchors a[aria-current="location"]{color:#fff}
   .hnav-anchors a{padding:16px 0;border-bottom:1px solid var(--line);font-size:15px}
   .hnav-anchors a::after{display:none}
 }
+
+/* ===== Round 3 (Dylan): presale dates, risk reversal, Glass up front ===== */
+.presale{background:#0B0A0A;color:#fff;border-block:1px solid rgba(255,255,255,.08)}
+.presale .wrap{padding-block:clamp(22px,3vw,34px)}
+.ps-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.ps-steps li{padding:18px 20px;border-radius:var(--r);border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);display:grid;gap:6px;align-content:start}
+.ps-steps li.now{border-color:rgba(230,36,41,.6);background:linear-gradient(180deg,rgba(230,36,41,.18),rgba(230,36,41,.05))}
+.ps-k{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.ps-steps li.now .ps-k{color:#FF8A8C}
+.ps-k b{color:#fff}
+.ps-t{font-size:clamp(19px,1.7vw,24px);font-weight:800;letter-spacing:-.02em;line-height:1.15}
+.ps-steps p{font-size:14.5px;line-height:1.5;color:rgba(255,255,255,.72)}
+@media (max-width:760px){.ps-steps{grid-template-columns:minmax(0,1fr)}}
+.cta-note{margin-top:10px;font-size:13.5px;font-style:italic;line-height:1.45;color:var(--text-2);max-width:40em}
+.cta-note.on-ink,.sys .cta-note,.lxhero .cta-note,.v2hero .cta-note,.endcta .cta-note,.j-hero .cta-note,html[data-theme="dark"] .cta-note{color:rgba(255,255,255,.66)}
+.lxhero .cta-note{margin-inline:auto;text-align:center}
+.j-center + .cta-note,.j-cta .cta-note{text-align:center;margin-inline:auto}
+.offer-rr{text-align:center;margin-inline:auto;color:#fff}
+.offer-inc{max-width:44em;margin:14px auto 0;text-align:center;font-size:15px;line-height:1.55;color:rgba(255,255,255,.72)}
+.offer-inc b{color:#fff}
+.fb-r .cta-note{color:rgba(255,255,255,.66)}
+.guar2-vs{margin-top:12px;font-weight:700;font-size:clamp(16px,1.3vw,18px);color:var(--ink)}
+html[data-theme="dark"] .guar2-vs{color:#fff}
+#shelf{padding-block:clamp(28px,4vw,56px)}
+.sbar .t span{white-space:normal}
+/* A: risk reversal and inclusions lines */
+.j-cta{flex-direction:column;align-items:center}
+.j-rr{margin-top:12px;font-size:clamp(19px,1.9vw,26px);font-weight:800;letter-spacing:-.015em;line-height:1.25;color:var(--red)}
+.sys .j-rr{color:#FF6B6E}
+.j-inc{max-width:46em;margin:14px auto 0;text-align:center;font-size:15.5px;line-height:1.55;color:var(--text-2)}
+.sys .j-inc{color:rgba(255,255,255,.72)}
+.sys .j-inc b{color:#fff}
+.j-first .cta-note,.endcta .cta-note{color:rgba(255,255,255,.66)}
+.j-first .cta-note{margin-inline:auto}
+.buy-inc{margin-top:12px;font-size:14px;line-height:1.5;color:var(--text-2)}
+.buy-inc b{color:var(--ink)}
+html[data-theme="dark"] .buy-inc b{color:#fff}
+@media (max-width:600px){.eb[data-cd]{display:block;line-height:1.6}.eb[data-cd]::before{display:inline-block;vertical-align:middle;margin-right:8px}.eb[data-cd] b{white-space:nowrap}}
+/* QA round 3 fixes */
+@media (min-width:981px){.sbar{display:block}}
+.sbar .btn{white-space:nowrap}
+.sbar .t span{font-family:var(--sans);text-transform:none;letter-spacing:0;font-size:12.5px;color:rgba(255,255,255,.72)}
+.sbar .sb-long{font-style:normal}
+@media (max-width:420px){.sbar .sb-long{display:none}.sbar .t b{font-size:13px}}
+.ps-h{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:12px}
+.ho-tag{border-radius:4px!important;font-size:11px!important}
+.yc-h{align-items:start}

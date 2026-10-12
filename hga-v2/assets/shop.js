@@ -259,7 +259,7 @@
     // a calendar reminder for the day booking opens
     var ics = $("[data-ics]");
     if (ics) {
-      var body = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//HGA//Pre sale//EN", "BEGIN:VEVENT",
+      var body = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//HGA//Presale//EN", "BEGIN:VEVENT",
         "UID:hga-calendar-opens-2027@hybridgrading.com", "DTSTAMP:20261101T000000Z",
         "DTSTART;VALUE=DATE:20270201", "DTEND;VALUE=DATE:20270202",
         "SUMMARY:HGA grading calendar opens: reserve your grading day",
