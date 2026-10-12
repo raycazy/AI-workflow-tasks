@@ -307,3 +307,17 @@
     addEventListener("keydown", (e) => { if (e.key === "Escape" && !modal.hidden) close(); });
   }
 })();
+
+/* ---------- Pre-sale countdown to Feb 1, 2027 (go live) ---------- */
+(function () {
+  var els = document.querySelectorAll("[data-ps-cd]");
+  if (!els.length) return;
+  var end = new Date("2027-02-01T00:00:00-07:00").getTime();
+  var pad = function (n) { return (n < 10 ? "0" : "") + n; };
+  var tick = function () {
+    var ms = Math.max(0, end - Date.now()), m = Math.floor(ms / 60000);
+    var t = Math.floor(m / 1440) + "d " + pad(Math.floor(m / 60) % 24) + "h " + pad(m % 60) + "m";
+    els.forEach(function (e) { e.textContent = t; });
+  };
+  tick(); setInterval(tick, 30000);
+})();
