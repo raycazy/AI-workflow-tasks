@@ -1158,3 +1158,44 @@ p { margin: 0 0 1em; }
 .ps-steps p { margin: 0; color: var(--ink-2); font-size: 15px; line-height: 1.5; }
 @media (max-width: 820px) { .ps-steps { grid-template-columns: minmax(0, 1fr); } .ps-steps li { padding: 18px 20px; } }
 .presale .ps-k b { display: inline; font-family: var(--f-mono); font-size: inherit; line-height: inherit; letter-spacing: inherit; font-weight: 700; color: #fff; background: none; -webkit-text-fill-color: #fff; }
+
+/* ============================================================
+   HGA GRADING CALENDAR (2026-10-13)
+   ============================================================ */
+.gcal { padding: var(--section) 0; }
+.gcal-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+.gcal-copy .h-lg { margin-top: 14px; }
+.gcal-copy .lead { margin-top: 18px; }
+.gcal-strong { margin: 16px 0 0; font-family: var(--f-head); font-weight: 700; font-size: clamp(17px, 1.4vw, 20px); color: #fff; }
+.gcal-pts { list-style: none; margin: 24px 0 0; padding: 0; display: grid; gap: 12px; }
+.gcal-pts li { display: flex; gap: 12px; align-items: flex-start; color: var(--ink-2); font-size: 15.5px; line-height: 1.5; }
+.gcal-pts svg { flex: none; width: 20px; height: 20px; margin-top: 2px; stroke: var(--accent-2); fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.gcal-line { margin: 24px 0 0; font-family: var(--f-head); font-weight: 700; font-size: clamp(18px, 1.6vw, 22px); color: var(--accent-2); }
+.gcal-card { padding: clamp(20px, 2.4vw, 28px); border-radius: var(--r-xl); border: 1px solid var(--line-2); background: linear-gradient(180deg, var(--surface-2), var(--surface)); box-shadow: 0 30px 80px -30px rgba(230,36,41,.35); }
+.gcal-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 16px; }
+.gcal-top .mono { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.gcal-top b { font-family: var(--f-head); font-size: 18px; color: #fff; }
+.gcal-wd, .gcal-days { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+.gcal-wd li { text-align: center; font-size: 11px; color: var(--muted); padding-bottom: 6px; }
+.gcal-days li { aspect-ratio: 1; display: grid; place-items: center; border-radius: 10px; font-family: var(--f-head); font-weight: 600; font-size: 14px; }
+.gcal-days .open { background: var(--glass-2); border: 1px solid var(--line-2); color: #fff; }
+.gcal-days .full { background: transparent; border: 1px dashed var(--line); color: var(--muted); text-decoration: line-through; text-decoration-color: rgba(230,36,41,.7); }
+.gcal-days .off { color: rgba(255,255,255,.22); }
+.gcal-days .me { background: var(--accent); color: #fff; box-shadow: 0 0 0 3px var(--accent-dim), 0 10px 24px -8px rgba(230,36,41,.7); }
+.gcal-legend { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 16px; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.gcal-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.gcal-legend i { width: 12px; height: 12px; border-radius: 4px; }
+.lg-open { background: var(--glass-2); border: 1px solid var(--line-2); }
+.lg-full { border: 1px dashed var(--line-2); }
+.lg-me { background: var(--accent); }
+.gcal-ticket { margin-top: 18px; padding: 14px 16px; border-radius: var(--r-md); border: 1px solid rgba(230,36,41,.45); background: rgba(230,36,41,.08); display: grid; gap: 2px; }
+.gcal-ticket .mono { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-2); }
+.gcal-ticket b { font-family: var(--f-head); font-size: 18px; color: #fff; }
+.gcal-ok { display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; font-size: 13.5px; color: var(--ink-2); }
+.gcal-ok svg { width: 16px; height: 16px; stroke: var(--accent-2); fill: none; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+@media (max-width: 900px) { .gcal-grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 420px) { .gcal-days, .gcal-wd { gap: 4px; } .gcal-days li { font-size: 12.5px; border-radius: 8px; } }
+/* one-liners */
+.plans-cal { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 14px auto 0; font-family: var(--f-head); font-weight: 600; color: #fff; text-align: center; }
+.plans-cal svg { flex: none; width: 18px; height: 18px; stroke: var(--accent-2); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.g-plan { margin: 12px 0 0; font-family: var(--f-head); font-weight: 700; color: #fff; }
