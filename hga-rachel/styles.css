@@ -1230,3 +1230,9 @@ p { margin: 0 0 1em; }
   .problem-intro .old-tracker .ot-foot { font-size: 9px; }
   .problem-intro .old-tracker .ot-bar { margin: 10px 0 6px; }
 }
+
+/* 2026-10-14: no decorative dash before eyebrow labels; stats strip sits in the 1 Million section */
+.eyebrow::before { display: none; }
+.eyebrow { gap: 0; }
+.proof-stats { margin: 0 auto clamp(40px, 5vw, 64px); padding: clamp(22px, 3vw, 32px) 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); text-align: left; }
+.proof-stats .stat:first-child { border-left: 0; }
