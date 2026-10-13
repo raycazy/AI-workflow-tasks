@@ -1290,3 +1290,46 @@ html[data-theme="dark"] .buy-inc b{color:#fff}
 .save-tag{display:inline-block;padding:3px 8px;border-radius:4px;background:var(--red);color:#fff;font-size:12.5px;font-weight:700;letter-spacing:.02em;white-space:nowrap}
 .fc-price .save-tag{justify-self:start;grid-column:1/-1}
 .btn .price s{opacity:.7;margin-left:4px;text-decoration-thickness:2px}
+
+/* ===== HGA Grading Calendar (2026-10-13) ===== */
+.gcal-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:clamp(32px,5vw,72px);align-items:center}
+#calendar .h2{margin-top:12px}
+.gcal-strong{margin-top:16px;font-size:clamp(17px,1.4vw,20px);font-weight:700;color:#fff;line-height:1.35}
+.gcal-pts{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:12px}
+.gcal-pts li{display:flex;gap:12px;align-items:flex-start;color:rgba(255,255,255,.75);font-size:15.5px;line-height:1.5}
+.gcal-pts .ico{flex:none;width:20px;height:20px;margin-top:2px;color:#FF6B6E}
+.gcal-line{margin-top:22px;font-size:clamp(18px,1.6vw,22px);font-weight:800;letter-spacing:-.01em;color:#FF6B6E}
+.gcal-card{padding:clamp(20px,2.4vw,28px);border-radius:var(--r-lg);border:1px solid rgba(255,255,255,.14);background:linear-gradient(180deg,#1C1B1B,#121111);box-shadow:0 30px 80px -30px rgba(230,36,41,.4)}
+.gcal-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:16px}
+.gcal-top span{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.gcal-top b{font-size:18px;font-weight:800;color:#fff}
+.gcal-wd,.gcal-days{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.gcal-wd li{text-align:center;font-size:11px;font-weight:600;color:rgba(255,255,255,.45);padding-bottom:6px}
+.gcal-days li{aspect-ratio:1;display:grid;place-items:center;border-radius:10px;font-weight:700;font-size:14px}
+.gcal-days .open{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);color:#fff}
+.gcal-days .full{border:1px dashed rgba(255,255,255,.14);color:rgba(255,255,255,.4);text-decoration:line-through;text-decoration-color:rgba(230,36,41,.75)}
+.gcal-days .off{color:rgba(255,255,255,.2)}
+.gcal-days .me{background:var(--red);color:#fff;box-shadow:0 0 0 3px rgba(230,36,41,.25),0 10px 24px -8px rgba(230,36,41,.7)}
+.gcal-legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:16px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.gcal-legend span{display:inline-flex;align-items:center;gap:6px}
+.gcal-legend i{width:12px;height:12px;border-radius:4px}
+.lg-open{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16)}
+.lg-full{border:1px dashed rgba(255,255,255,.3)}
+.lg-me{background:var(--red)}
+.gcal-ticket{margin-top:18px;padding:14px 16px;border-radius:var(--r);border:1px solid rgba(230,36,41,.45);background:rgba(230,36,41,.09);display:grid;gap:2px}
+.gcal-ticket span{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#FF6B6E}
+.gcal-ticket b{font-size:18px;font-weight:800;color:#fff}
+.gcal-ticket em{display:inline-flex;align-items:center;gap:6px;margin-top:4px;font-style:normal;font-size:13.5px;color:rgba(255,255,255,.75)}
+.gcal-ticket em .ico{width:16px;height:16px;color:#FF6B6E}
+@media (max-width:900px){.gcal-grid{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:420px){.gcal-days,.gcal-wd{gap:4px}.gcal-days li{font-size:12.5px;border-radius:8px}}
+.plans-cal{display:flex;align-items:center;justify-content:center;gap:8px;margin:14px auto 0;font-weight:700;color:#fff;text-align:center}
+.plans-cal .ico{flex:none;width:18px;height:18px;color:#FF6B6E}
+@media (max-width:1320px){.hdr-anchors .brand .co{display:none}}
+@media (max-width:1260px){
+  .hdr-anchors .menu-btn{display:inline-flex}
+  .hnav-anchors{position:fixed;inset:calc(var(--hdr)) 0 auto 0;flex-direction:column;gap:0;background:var(--paper);border-bottom:1px solid var(--line);padding:8px clamp(16px,4.5vw,48px) 20px;transform:translateY(-8px);opacity:0;visibility:hidden;transition:.2s;box-shadow:0 24px 40px rgba(0,0,0,.08)}
+  .hnav-anchors.open{transform:none;opacity:1;visibility:visible}
+  .hnav-anchors a{padding:16px 0;border-bottom:1px solid var(--line);font-size:15px}
+  .hnav-anchors a::after{display:none}
+}
