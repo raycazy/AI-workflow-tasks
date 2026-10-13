@@ -322,7 +322,7 @@
   tick(); setInterval(tick, 30000);
 })();
 
-/* Site nav vs page nav: mobile menu, cart count, "On this page" bar (shows after the first screen) with the current section marked */
+/* Site nav: mobile menu (closes on link, Escape, outside click or scroll) and cart count */
 (function () {
   var nav = document.getElementById("nav");
   var site = document.getElementById("siteNav");
@@ -355,30 +355,9 @@
   syncCart();
   addEventListener("pageshow", syncCart);
 
-  var bar = document.getElementById("pageNav");
-  if (!nav || !bar) return;
-  var wrap = bar.querySelector(".pagenav-links");
-  var links = Array.prototype.slice.call(bar.querySelectorAll("a"));
-  var secs = links.map(function (a) { return document.querySelector(a.getAttribute("href")); });
-  var current = null, lastY = scrollY;
-  var tick = function () {
-    var show = scrollY > innerHeight * 0.75;
-    nav.classList.toggle("show-page", show);
+  var lastY = scrollY;
+
+  if (nav && site) addEventListener("scroll", function () {
     if (Math.abs(scrollY - lastY) > 10) { lastY = scrollY; closeMenu(); }
-    var line = 150, idx = -1;
-    secs.forEach(function (s, i) { if (s && s.getBoundingClientRect().top <= line) idx = i; });
-    var a = links[idx] || null;
-    if (a === current) return;
-    if (current) { current.classList.remove("on"); current.removeAttribute("aria-current"); }
-    current = a;
-    if (a) {
-      a.classList.add("on");
-      a.setAttribute("aria-current", "location");
-      var l = a.offsetLeft - wrap.offsetLeft, r = l + a.offsetWidth;
-      if (l < wrap.scrollLeft || r > wrap.scrollLeft + wrap.clientWidth) wrap.scrollTo({ left: l - 24, behavior: "smooth" });
-    }
-  };
-  addEventListener("scroll", tick, { passive: true });
-  addEventListener("resize", function () { lastY = scrollY; tick(); });
-  tick();
+  }, { passive: true });
 })();

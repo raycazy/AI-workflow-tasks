@@ -1239,11 +1239,9 @@ p { margin: 0 0 1em; }
 .proof + .how { padding-top: 0; }
 
 /* =========================================================
-   SITE NAV vs PAGE NAV
-   Top row = website pages. The "On this page" bar under it
-   holds section links and only appears once the hero is passed.
+   SITE NAV: website pages, cart and mobile menu
    ========================================================= */
-html { scroll-padding-top: 132px; }
+html { scroll-padding-top: 88px; }
 .nav-actions { display: flex; align-items: center; gap: 12px; }
 .nav-links a[aria-current="page"] { color: #fff; }
 .nav-cart, .nav-menu { position: relative; width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--line-2); color: #fff; font-size: 18px; transition: border-color .2s, background .2s; }
@@ -1252,16 +1250,6 @@ html { scroll-padding-top: 132px; }
 .nav-menu { display: none; }
 .nav-links .nav-links-cta { display: none; }
 
-.pagenav { position: absolute; left: 0; right: 0; top: 100%; background: var(--bg); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); opacity: 0; transform: translateY(-6px); pointer-events: none; visibility: hidden; transition: opacity .3s, transform .3s var(--ease), visibility 0s linear .3s; }
-.nav.show-page .pagenav { opacity: 1; transform: none; pointer-events: auto; visibility: visible; transition: opacity .3s, transform .3s var(--ease), visibility 0s; }
-.pagenav-inner { display: flex; align-items: center; gap: 28px; height: 46px; }
-.pagenav-links { flex: 1; min-width: 0; display: flex; gap: 26px; overflow-x: auto; scrollbar-width: none; height: 100%; align-items: stretch; }
-.pagenav-links::-webkit-scrollbar { display: none; }
-.pagenav-links a { flex: none; display: flex; align-items: center; font-size: 13px; font-weight: 500; color: var(--ink-2); border-bottom: 2px solid transparent; border-top: 2px solid transparent; transition: color .2s, border-color .2s; white-space: nowrap; }
-.pagenav-links a:first-child { margin-left: auto; }
-.pagenav-links a:last-child { margin-right: auto; }
-.pagenav-links a:hover { color: #fff; }
-.pagenav-links a.on { color: #fff; border-bottom-color: var(--accent); }
 
 @media (max-width: 1100px) {
   .nav-menu { display: grid; }
@@ -1272,8 +1260,6 @@ html { scroll-padding-top: 132px; }
   .nav-links .nav-links-cta { display: flex; margin: 12px 24px 0; padding: 15px 24px; justify-content: center; }
 }
 @media (max-width: 640px) {
-  html { scroll-padding-top: 120px; }
+  html { scroll-padding-top: 76px; }
   .nav-cta { display: none; }
-  .pagenav-inner { height: 44px; }
-  .pagenav-links { gap: 22px; -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); padding-right: 32px; }
 }
