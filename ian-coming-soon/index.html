@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IAN | Upgrade your everyday™</title>
+<meta name="description" content="IAN is coming soon. Join the list to hear when it arrives.">
+<!-- Preview build: keep it out of search until the real host is decided. Remove for the live page. -->
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F4F2E8">
+<meta property="og:title" content="IAN | Upgrade your everyday™">
+<meta property="og:description" content="IAN is coming soon. Join the list to hear when it arrives.">
+<link rel="icon" type="image/png" href="images/ian-wordmark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Stand in faces until the brand fonts are licensed for web: Instrument Serif for Atelier Fleur, Hanken Grotesk for Breul Grotesk A and Elza. -->
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;600&family=Instrument+Serif&display=swap" rel="stylesheet">
+<link rel="preload" as="image" type="image/webp" href="images/ian-bag-1204.webp" imagesrcset="images/ian-bag-602.webp 602w, images/ian-bag-1204.webp 1204w" imagesizes="(min-width: 1024px) 602px, 60vw">
+<style>
+  :root {
+    --canvas: #F4F2E8;
+    --floor: #E8DEC0;      /* camel 200 #E0D0A6 at 60% over the canvas, as in Figma */
+    --ink: #151310;
+    --muted: #665F56;
+    --crimson: #E51D24;
+    --red-600: #B51720;
+    --ivory: #FFFEF8;
+    --success: #256B4A;
+    --serif: "Instrument Serif", "Times New Roman", Georgia, serif;
+    --sans: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+    --g: clamp(16px, 4.1vw, 40px);   /* side gutter, 16 at 390 */
+    --u: min(1vw, 5px);              /* stacked layout unit, 3.9px at 390 */
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { background: var(--canvas); -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--canvas);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  img, svg { display: block; }
+  [hidden] { display: none !important; }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0;
+  }
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+  /* ---------- Page frame (stacked: phones and tablets) ---------- */
+  .page { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; overflow-x: clip; }
+  .site-header { padding: 8px var(--g); }
+  .site-header img { width: 46px; height: auto; margin-top: 0.5px; }
+
+  .hero { position: relative; padding: 48px var(--g) 20px; }   /* header 44 + 24, then the tagline 24 lower, as in Figma */
+  .tagline {
+    margin: 0;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: calc(var(--u) * 18.46);   /* 72px at 390 */
+    line-height: 0.98;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .nowrap { white-space: nowrap; }
+  /* The mark: real U+2122 at half the tagline size, top on the cap line, never on its own line. */
+  .tm { font-size: 0.5em; position: relative; top: -0.72em; margin-left: 0.07em; line-height: 0; letter-spacing: 0; }
+
+  .stage { position: relative; height: calc(var(--u) * 68.72); }   /* 268px at 390: tagline end to floor bottom */
+  .label {
+    position: relative; z-index: 2;
+    margin: 0; padding-top: 18px;
+    font: 600 12px/1.32 var(--sans);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--red-600);
+  }
+  .floor {
+    position: absolute; z-index: 0;
+    left: calc(var(--g) * -1); right: calc(var(--g) * -1); bottom: 0;
+    height: 16px; background: var(--floor);
+  }
+  .bag {
+    position: absolute; z-index: 1;
+    top: calc(var(--u) * 0.75);
+    right: calc(var(--u) * 0.95 - var(--g));
+    width: calc(var(--u) * 60.03);       /* 234px at 390 */
+    height: auto;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* ---------- Signup / Editorial ---------- */
+  .signup { position: relative; z-index: 2; margin-top: 16px; display: flex; flex-direction: column; gap: 8px; max-width: 456px; }
+  .countdown, .countdown-alt {
+    font-family: var(--serif);
+    font-size: 24px;
+    line-height: 1.24;
+    color: var(--ink);
+  }
+  .countdown { display: flex; flex-direction: column; align-items: flex-start; }
+  .cd-row { display: flex; align-items: baseline; gap: 8px; white-space: nowrap; }
+  .cd-days { display: contents; }
+  .fig {
+    display: inline-block;
+    width: 28px;
+    text-align: right;
+    font-family: var(--sans);
+    font-weight: 300;
+    font-variant-numeric: tabular-nums;
+    color: var(--crimson);
+  }
+  .countdown-alt { margin: 0; }
+
+  .signup-form { display: flex; flex-direction: column; gap: 8px; margin: 0; }
+  .form-row { display: flex; align-items: stretch; width: 100%; }
+  .field {
+    position: relative;
+    flex: 1 1 0;
+    min-width: 0;
+    height: 56px;
+    margin: 0;
+    padding: 0 12px 0 16px;
+    border: 1px solid var(--ink);
+    border-radius: 0;
+    background: var(--ivory);
+    color: var(--ink);
+    font: 400 16px/1.5 var(--sans);
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .field::placeholder { color: var(--muted); opacity: 1; }
+  .field:focus { outline: none; }
+  .field:focus-visible, .field:focus { outline: 2px solid var(--red-600); outline-offset: 2px; z-index: 1; }
+  .field.is-error { border-color: var(--red-600); box-shadow: inset 0 0 0 1px var(--red-600); }
+  .field.is-success { border-color: var(--success); box-shadow: inset 0 0 0 1px var(--success); }
+  .field.is-success:focus { outline-color: var(--success); }
+  .btn {
+    flex: 0 0 auto;
+    display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+    height: 56px;
+    min-width: 44px;
+    margin: 0;
+    padding: 0 16px;
+    border: 0;
+    border-radius: 0;
+    background: var(--crimson);
+    color: var(--ivory);
+    font: 600 14px/1.14 var(--sans);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    transition: background-color 160ms ease-out;
+  }
+  .btn:hover { background: var(--red-600); }
+  .btn svg { width: 20px; height: 20px; display: none; }
+
+  .status { display: flex; align-items: flex-start; gap: 8px; padding-top: 2px; font: 400 14px/1.5 var(--sans); color: var(--ink); }
+  /* Kept rendered (not display:none) so the live region is in the accessibility tree from page load; the negative margin cancels the flex gap while it is empty. */
+  .status:empty { padding: 0; margin-top: -8px; }
+  .status svg { width: 16px; height: 16px; flex: 0 0 16px; margin-top: 3px; }
+  .status.is-error { color: var(--red-600); }
+
+  .consent {
+    margin: 0;
+    font: 400 12px/1.5 var(--sans);
+    letter-spacing: 0.002em;
+    color: var(--muted);
+  }
+  .consent a:hover, .site-footer a:hover { color: var(--ink); }
+
+  /* ---------- Footer ---------- */
+  .site-footer { margin-top: auto; padding: 0 var(--g) 8px; color: var(--muted); }
+  .fda { margin: 0; font: 400 12px/1.5 var(--sans); letter-spacing: 0.002em; }
+  .footer-links { display: flex; flex-wrap: wrap; align-items: center; column-gap: 24px; margin: 0; padding: 0; list-style: none; }
+  .footer-links li, .footer-links a { display: flex; align-items: center; min-height: 44px; font: 400 12px/1.5 var(--sans); letter-spacing: 0.002em; }
+  /* 44px wide tap area without moving the text: 6px padding each side, cancelled by negative margin. */
+  .footer-links a { justify-content: center; min-width: 44px; padding: 0 6px; margin: 0 -6px; }
+
+  /* ---------- Desktop: copy left, bag right on the sand floor ---------- */
+  @media (min-width: 1024px) {
+    :root {
+      --g: max(72px, (100% - 1440px) / 2 + 72px);
+      --bag-w: min(41.8vw, 66.9vh, 602px);              /* 602px at 1440x900, the Figma size, and never larger */
+      --tag: clamp(72px, min(11.1vw, (100vh - 565px) * 0.5423), 160px);   /* 160px at 1440x900; shrinks on short screens so the form, a message line and the footer stay in view */
+      /* Copy is top anchored and the 35px message line (12 gap + 23 line) is reserved above the floor,
+         so an error or success message never moves the tagline, the bag or the floor and never adds scroll.
+         74px at 1440x900 puts the label at y 138 (Figma 155; the 17px is the reserve). */
+      --hero-pt: max(16px, 100vh - 531px - var(--tag) * 1.844);
+    }
+    .page { position: relative; }
+    .site-header { position: relative; z-index: 2; padding: 16px var(--g); }
+    .site-header img { width: 52px; }
+
+    .hero {
+      flex: 1 0 auto;
+      display: flex; flex-direction: column; justify-content: flex-start;
+      padding: var(--hero-pt) var(--g) 8px;
+    }
+    .tagline {
+      position: relative; z-index: 2;
+      max-width: 720px;
+      font-size: var(--tag);
+      line-height: 0.96;
+      letter-spacing: -0.02em;
+      /* CSS half leading sits 0.04em lower than Figma's 88% box; trim so label and countdown keep the Figma gaps. */
+      margin: calc(24px - 0.04em) 0 calc(41px - 0.036em);
+    }
+    .stage { display: contents; }
+    .label { order: -1; padding-top: 0; }
+    .tm { margin-left: 0.1em; }
+    .floor { display: none; }
+    .bag {
+      top: auto;
+      bottom: 0;
+      right: calc(max(0px, (100% - 1440px) / 2) + var(--bag-w) * 0.0297);
+      width: var(--bag-w);
+      transform: translateY(9.86%);   /* the bag body stands 6px into the floor; the shadow runs onto it */
+    }
+
+    .signup { margin-top: 0; gap: 12px; width: 456px; max-width: 100%; }
+    .countdown { font-size: 32px; line-height: 1.16; padding-bottom: 13px; }
+    .countdown-alt { font-size: 32px; line-height: 1.16; padding-bottom: 12px; }
+    .fig { width: 36px; }
+    .signup-form { gap: 12px; }
+    .status:empty { margin-top: -12px; }
+    .field { padding-left: 24px; font-size: 18px; }
+    .btn { padding: 0 32px; }
+    .btn svg { display: block; }
+
+    .site-footer { position: relative; z-index: 0; margin-top: 0; padding: 70px var(--g) 8px; background: var(--floor); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="site-header">
+    <img src="images/ian-wordmark.png" alt="IAN" width="52" height="31">
+  </header>
+
+  <main class="hero">
+    <h1 class="tagline">Upgrade your<br> <span class="nowrap">everyday<span class="tm">™</span></span></h1>
+
+    <div class="stage">
+      <p class="label">Coming soon</p>
+      <div class="floor" aria-hidden="true"></div>
+      <img class="bag"
+           src="images/ian-bag-1204.webp"
+           srcset="images/ian-bag-602.webp 602w, images/ian-bag-1204.webp 1204w"
+           sizes="(min-width: 1024px) 602px, 60vw"
+           width="602" height="727"
+           alt="The IAN pouch: a cream bag printed with Upgrade your everyday and a large red IAN"
+           fetchpriority="high" decoding="async">
+    </div>
+
+    <div class="signup">
+      <!-- Countdown to 2026-12-22 00:00 America/New_York (05:00 UTC). Screen readers get the static date; the ticking figures are hidden from them. -->
+      <p class="sr-only" id="arrival-text">Arriving December 22, 2026.</p>
+      <div class="countdown" aria-hidden="true" data-countdown>
+        <span class="cd-row">
+          <span>Arriving in</span>
+          <span class="cd-days" data-days-group><span class="fig" data-d>69</span><span data-dw>days,</span></span>
+          <span class="fig" data-h>14</span><span data-hw>hours,</span>
+        </span>
+        <span class="cd-row">
+          <span class="fig" data-m>32</span><span data-mw>minutes and</span>
+          <span class="fig" data-s>08</span><span data-sw>seconds.</span>
+        </span>
+      </div>
+      <p class="countdown-alt" aria-hidden="true" data-countdown-alt hidden>Arriving December 22.</p>
+      <noscript><style>[data-countdown]{display:none!important}[data-countdown-alt]{display:block!important}[data-signup]{display:none!important}</style></noscript>
+      <script>
+        (function () {
+          var TARGET = Date.UTC(2026, 11, 22, 5, 0, 0); // 2026-12-22T00:00:00 America/New_York
+          var root = document.querySelector('[data-countdown]');
+          var alt = document.querySelector('[data-countdown-alt]');
+          var sr = document.getElementById('arrival-text');
+          var q = function (s) { return root.querySelector(s); };
+          var el = { d: q('[data-d]'), dw: q('[data-dw]'), dg: q('[data-days-group]'), h: q('[data-h]'), hw: q('[data-hw]'), m: q('[data-m]'), mw: q('[data-mw]'), s: q('[data-s]'), sw: q('[data-sw]') };
+          var pad = function (n) { return n < 10 ? '0' + n : String(n); };
+          var set = function (node, text) { if (node.textContent !== text) node.textContent = text; };
+          var timer = null;
+          function render() {
+            var ms = TARGET - Date.now();
+            if (ms <= 0) {
+              root.hidden = true;
+              alt.textContent = 'Arriving today.';
+              alt.hidden = false;
+              sr.textContent = 'Arriving today.';
+              return false;
+            }
+            var t = Math.floor(ms / 1000);
+            var d = Math.floor(t / 86400), h = Math.floor((t % 86400) / 3600), m = Math.floor((t % 3600) / 60), s = t % 60;
+            el.dg.hidden = d === 0; // last 24 hours: drop the days
+            set(el.d, String(d)); el.d.style.width = d < 10 ? 'auto' : ''; /* no gap once days drop to one digit */ set(el.dw, d === 1 ? 'day,' : 'days,');
+            set(el.h, pad(h)); set(el.hw, h === 1 ? 'hour,' : 'hours,');
+            set(el.m, pad(m)); set(el.mw, m === 1 ? 'minute and' : 'minutes and');
+            set(el.s, pad(s)); set(el.sw, s === 1 ? 'second.' : 'seconds.');
+            return ms;
+          }
+          function tick() {
+            var ms = render();
+            if (ms === false) return;
+            timer = setTimeout(tick, (ms % 1000) + 20); // wake just after the next whole second
+          }
+          tick();
+          document.addEventListener('visibilitychange', function () {
+            if (document.visibilityState === 'visible') { clearTimeout(timer); tick(); }
+          });
+        })();
+      </script>
+
+      <form class="signup-form" action="#" method="post" novalidate data-signup>
+        <div class="form-row">
+          <label class="sr-only" for="email">Email</label>
+          <input class="field" id="email" name="email" type="email"
+                 autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false"
+                 placeholder="Your email" required disabled
+                 aria-describedby="signup-status signup-consent">
+          <button class="btn" type="submit" data-submit disabled>
+            Join the list
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false"><path d="M4.167 10h11.666M10.833 15l5-5M10.833 5l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <div class="status" id="signup-status" role="status" aria-live="polite"></div>
+        <!-- Privacy Policy: href="#" until the client supplies the policy URL. -->
+        <p class="consent" id="signup-consent">By joining, you agree to receive emails from IAN. Unsubscribe at any time. <a href="#">Privacy&nbsp;Policy</a></p>
+      </form>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p class="fda">These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.</p>
+    <!-- Privacy Policy and Terms: href="#" until the client supplies the URLs. -->
+    <ul class="footer-links">
+      <li>© 2026 IAN</li>
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="#">Terms</a></li>
+    </ul>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var form = document.querySelector('[data-signup]');
+    if (!form) return;
+    var input = form.querySelector('#email');
+    var button = form.querySelector('[data-submit]');
+    var status = form.querySelector('#signup-status');
+    // The field and button ship disabled so nothing can be posted without JS; enable them now.
+    input.disabled = false;
+    button.disabled = false;
+    var EMAIL_RE = /^[^\s@]+@[^\s@.]+(\.[^\s@.]+)*\.[A-Za-z]{2,}$/;
+    var ICON_ALERT = '<svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M8 2a6 6 0 1 0 0 12A6 6 0 0 0 8 2ZM8 5.333V8M8 10.667h.007" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    var ICON_CHECK = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18ZM9 12l2 2 4-4" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+    var pending = null;
+    function show(kind, text) {
+      // Empty the live region first, then fill it on the next tick, so a repeated message is announced again.
+      clearTimeout(pending);
+      status.className = 'status is-' + kind;
+      status.textContent = '';
+      pending = setTimeout(function () {
+        status.innerHTML = (kind === 'error' ? ICON_ALERT : ICON_CHECK) + '<span></span>';
+        status.querySelector('span').textContent = text;
+      }, 60);
+    }
+    function clearError() {
+      if (!input.classList.contains('is-error')) return;
+      input.classList.remove('is-error');
+      input.removeAttribute('aria-invalid');
+      clearTimeout(pending);
+      status.className = 'status';
+      status.textContent = '';
+    }
+
+    input.addEventListener('input', clearError);
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (input.readOnly) return;
+      var value = input.value.trim();
+      if (!value || !EMAIL_RE.test(value)) {
+        input.classList.add('is-error');
+        input.setAttribute('aria-invalid', 'true');
+        show('error', value ? 'That email doesn’t look quite right. Try it once more.' : 'We’ll need your email for this.');
+        input.focus();
+        return;
+      }
+
+      /*
+       * ESP HOOK. This preview sends nothing anywhere: no request leaves the page.
+       * When the email tool is chosen (Klaviyo, Shopify customer form, other), post `value`
+       * here, await the reply, and only then call showSuccess(). On a failed request show the
+       * "Error server" message from the Signup / Editorial component instead. Handle the
+       * "already on the list" reply the same way (Error already state).
+       */
+      showSuccess(value);
+    });
+
+    function showSuccess(value) {
+      input.value = value;
+      input.readOnly = true;
+      input.classList.remove('is-error');
+      input.classList.add('is-success');
+      input.removeAttribute('aria-invalid');
+      button.hidden = true;
+      show('success', 'You’re on the list.');
+      input.focus();
+    }
+  })();
+</script>
+</body>
+</html>
