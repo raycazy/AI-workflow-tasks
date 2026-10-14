@@ -332,7 +332,7 @@
 /* Each design version is an independent experience. The version a visitor lands on is
    remembered for the session, and shared pages (PDP, cart, checkout, FAQ...) link back to it. */
 (function () {
-  var V = ["index.html", "home-b.html", "home-c.html"];
+  var V = ["index.html", "home-b.html", "home-c.html", "home-d.html"];
   var here = location.pathname.split("/").pop() || "index.html";
   if (here === "variations.html") return;
   var home = "index.html";
@@ -343,7 +343,7 @@
   if (V.indexOf(here) >= 0) return;
   Array.prototype.forEach.call(document.querySelectorAll('a[href^="index.html"]'), function (a) {
     var hash = a.getAttribute("href").slice("index.html".length);
-    var ids = { "index.html": ["hero", "why", "how", "offer"], "home-b.html": ["hero", "why", "how"], "home-c.html": ["hero", "why", "how", "offer"] }[home];
+    var ids = { "index.html": ["hero", "why", "how", "offer"], "home-b.html": ["hero", "why", "how"], "home-c.html": ["hero", "why", "how", "offer"], "home-d.html": ["hero", "why", "how", "offer"] }[home];
     if (hash && ids.indexOf(hash.slice(1)) < 0) hash = ids.indexOf("offer") >= 0 ? "#offer" : "#hero";
     a.setAttribute("href", home + hash);
   });
