@@ -238,43 +238,6 @@
   </div>
 </section>
 
-<section class="sec cal" id="turnaround" aria-labelledby="cal-title">
-  <div class="wrap">
-    <div class="cal-grid">
-      <div class="cal-copy">
-        <p class="label reveal"><i class="dot"></i> The 30 day turnaround</p>
-        <h2 id="cal-title" class="h2 h2-sm reveal">A date. <span class="red wipe">Not an estimate.</span></h2>
-        <p class="lead reveal">Your 30 day turnaround is planned around the grading date you book, so you know when to expect your grade before your card leaves home.</p>
-        <p class="cal-strong reveal">We don't hope we hit a turnaround. We plan for it before your card ships.</p>
-        <ul class="checks">
-          <li class="reveal"><svg><use href="#i-cal"/></svg>You choose your grading date</li>
-          <li class="reveal"><svg><use href="#i-truck"/></svg>Send your cards before your date</li>
-          <li class="reveal"><svg><use href="#i-clock"/></svg>Back within 30 days, Poly and Glass</li>
-        </ul>
-      </div>
-      <div class="gc gc-clock clock-lg reveal" role="img" aria-label="Grading clock: day 1 is your grading date, your grade is back by day 30">
-        <div class="clock-top">
-          <div><p class="gc-k">Grading clock</p><b class="clock-title">One date. One deadline.</b></div>
-          <span class="clock-badge"><b>30</b><small>Days</small></span>
-        </div>
-        <div class="clock-bar" id="clockBar2" aria-hidden="true"></div>
-        <div class="clock-labels"><span><b>Day 1</b> Your grading date</span><span><b>Day 30</b> Your grade</span></div>
-        <div class="clock-foot"><span class="crow-ico"><svg><use href="#i-eye"/></svg></span><div><b>Follow every step</b><span>From delivery to your grade, with no guessing in between.</span></div></div>
-      </div>
-    </div>
-  </div>
-  <script>
-    (function () {
-      var bar = document.getElementById("clockBar2"), reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-      for (var d = 1; d <= 30; d++) { var i = document.createElement("i"); if (d === 30) i.className = "end"; bar.appendChild(i); }
-      var fill = function () { bar.querySelectorAll("i").forEach(function (c, k) { setTimeout(function () { c.classList.add("on"); }, reduce ? 0 : 250 + k * 45); }); };
-      if (reduce || !("IntersectionObserver" in window)) return fill();
-      var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { fill(); io.disconnect(); } }, { threshold: 0.3 });
-      io.observe(bar);
-    })();
-  </script>
-</section>
-
 <section class="sec how" id="how" aria-labelledby="how-title">
   <div class="wrap">
     <div class="sec-head center reveal">
