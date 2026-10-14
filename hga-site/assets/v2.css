@@ -2331,3 +2331,18 @@ html[data-theme="dark"] .buy-inc b{color:#fff}
 .pr-ph-yg{font-size:15px;white-space:nowrap}
 .hc2-rv .hc-qs{min-height:64px}
 .ps-k [data-cd-text]{white-space:nowrap}
+
+/* slim review strip under pricing */
+.rv-strip{padding-block:0 clamp(44px,5vw,72px)}
+.rvs-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
+.rvs-h{margin:0;font-family:var(--lab);font-weight:600;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.rvs-win{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.rvs-win:focus-visible{outline:2px solid #fff;outline-offset:4px}
+.rvs-track{display:flex;width:max-content;animation:hmrvx 60s linear infinite}
+.rvs-win:hover .rvs-track,.rv-strip.paused .rvs-track{animation-play-state:paused}
+.rvs-set{list-style:none;margin:0;padding:0 14px 0 0;display:flex;gap:14px}
+.rvs-set li{display:flex;align-items:baseline;gap:14px;flex:none;padding:16px 22px;border:1px solid rgba(255,255,255,.1);border-radius:var(--r);background:#141212}
+.rvs-set blockquote{margin:0;font-size:16px;font-weight:600;color:#fff;white-space:nowrap}
+.rvs-set cite{font-style:normal;font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#FF6B6E;white-space:nowrap}
+@media (max-width:720px){.rvs-set li{flex-direction:column;gap:6px;width:270px}.rvs-set blockquote{white-space:normal;font-size:15px}}
+@media (prefers-reduced-motion:reduce){.rvs-track{animation:none}.rvs-win{overflow-x:auto}.rvs-set[aria-hidden]{display:none}.rv-strip .hm-rv-pause{display:none}}
