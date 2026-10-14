@@ -8,11 +8,11 @@
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#0E0E0E">
 <link rel="preload" href="./assets/fonts/bc-800.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="./assets/hga.css?v=3107fc21">
-<link rel="stylesheet" href="./assets/v2.css?v=3107fc21">
+<link rel="stylesheet" href="./assets/hga.css?v=120cc147">
+<link rel="stylesheet" href="./assets/v2.css?v=120cc147">
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script defer src="./assets/v2.js?v=3107fc21"></script>
+<script defer src="./assets/v2.js?v=120cc147"></script>
 <script type="importmap">{
   "imports": {
     "hga": "./assets/hga-site.js",
@@ -29,8 +29,8 @@
     "hybrid_grading/slab_scene": "./assets/hybrid_grading/slab_scene-355f9d5d.js"
   }
 }</script>
-<script defer src="./assets/site.js?v=3107fc21"></script>
-<script defer src="./assets/shop.js?v=3107fc21"></script>
+<script defer src="./assets/site.js?v=120cc147"></script>
+<script defer src="./assets/shop.js?v=120cc147"></script>
 <script type="module">import "hga"</script>
 </head>
 <body class="hm-page">
@@ -68,7 +68,7 @@
     <div class="hc2-text">
       <p class="eb"><span><span data-ps-label>Presale is live</span> &middot; up to 80% off launch pricing</span></p>
       <h1 class="h1" id="hc-title"><span>We know grading sucks.</span> <span class="red">But not anymore.</span></h1>
-      <p class="hc2-lede">Meet the industry's first aerospace glass card housing, with RFID. Built for every size, from a single card to a full deck.</p>
+      <p class="hc2-lede">Meet the industry’s first aerospace-engineered glass card housing with RFID. Built to change how your cards are protected, graded, and tracked.</p>
       <div class="hc2-buy">
         <a class="btn lg hm-cta" href="shop.html?h=glass#hero">Claim your Glass slot <span class="price">$200 <s>$600</s></span></a>
         <a class="hero-alt" href="shop.html?h=poly#hero">Or HGA Poly at $29 <s>$150</s> <svg class="ico"><use href="#i-arrow"/></svg></a>
@@ -78,10 +78,9 @@
         <li><svg class="ico" aria-hidden="true"><use href="#i-chip"/></svg>RFID in every slab</li>
         <li><svg class="ico" aria-hidden="true"><use href="#i-file"/></svg>Four subgrades, free</li>
       </ul>
-      <aside class="hc-rv hc2-rv" aria-labelledby="hc-rv-h" data-hc-rv>
-        <div class="hc2-rv-top"><p id="hc-rv-h">Collector reviews</p><button class="hm-rv-pause" type="button" aria-pressed="false" aria-label="Pause reviews" data-rv-pause><svg class="ico i-pa" aria-hidden="true"><use href="#i-pause"/></svg><svg class="ico i-pl" aria-hidden="true"><use href="#i-play"/></svg><svg class="ico i-nx" aria-hidden="true"><use href="#i-arrow"/></svg></button></div>
+      <aside class="hc-rv hc2-rv" aria-label="Collector reviews" data-hc-rv>
         <div class="hc-qs" aria-live="off"><figure class="hc-q on"><blockquote>"The glass housing is the first slab I'd rather display than store."</blockquote><figcaption><img class="rvs-av" src="./assets/people/men-32.jpg" alt="" width="128" height="128" loading="lazy"><b>Ryan G.</b><span class="hc2-stars" aria-hidden="true">Collector</span></figcaption></figure><figure class="hc-q"><blockquote>"A real grading date beats refreshing a status page for months."</blockquote><figcaption><img class="rvs-av" src="./assets/people/men-41.jpg" alt="" width="128" height="128" loading="lazy"><b>Chris M.</b><span class="hc2-stars" aria-hidden="true">Collector</span></figcaption></figure><figure class="hc-q"><blockquote>"Four subgrades on the label, so I can see exactly why it got the grade it did."</blockquote><figcaption><img class="rvs-av" src="./assets/people/women-12.jpg" alt="" width="128" height="128" loading="lazy"><b>Danielle R.</b><span class="hc2-stars" aria-hidden="true">Collector</span></figcaption></figure><figure class="hc-q"><blockquote>"Finally somewhere that grades my booklets the right way."</blockquote><figcaption><img class="rvs-av" src="./assets/people/women-44.jpg" alt="" width="128" height="128" loading="lazy"><b>Taylor B.</b><span class="hc2-stars" aria-hidden="true">Collector</span></figcaption></figure><figure class="hc-q"><blockquote>"An RFID chip tied to the certificate is a big deal when I go to sell."</blockquote><figcaption><img class="rvs-av" src="./assets/people/men-75.jpg" alt="" width="128" height="128" loading="lazy"><b>Marcus T.</b><span class="hc2-stars" aria-hidden="true">Collector</span></figcaption></figure><figure class="hc-q"><blockquote>"Thirty days from a date I pick. That alone gets me in."</blockquote><figcaption><img class="rvs-av" src="./assets/people/women-68.jpg" alt="" width="128" height="128" loading="lazy"><b>Sam L.</b><span class="hc2-stars" aria-hidden="true">Collector</span></figcaption></figure></div>
-        <div class="hc2-qdots" aria-hidden="true"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+        <div class="hc2-qdots" aria-hidden="true" title="Reviews"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
       </aside>
     </div>
 
@@ -368,15 +367,14 @@
   });
   // One collector quote at a time beside the claim button; the button stops and restarts the rotation.
   document.querySelectorAll("[data-hc-rv]").forEach(function (box) {
-    var qs = box.querySelectorAll(".hc-q"), i = 0, btn = box.querySelector("[data-rv-pause]");
-    var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches, paused = reduce, t;
-    var qd = box.querySelectorAll(".hc2-qdots i");
-    function go() { qs[i].classList.remove("on"); if (qd[i]) qd[i].classList.remove("on"); i = (i + 1) % qs.length; qs[i].classList.add("on"); if (qd[i]) qd[i].classList.add("on"); }
-    function run() { clearInterval(t); if (!paused) t = setInterval(go, 4500); }
-    if (reduce) { btn.classList.add("is-next"); btn.setAttribute("aria-label", "Next review"); btn.removeAttribute("aria-pressed"); btn.addEventListener("click", go); return; }
-    btn.addEventListener("click", function () {
-      paused = !paused; btn.setAttribute("aria-pressed", paused ? "true" : "false"); btn.setAttribute("aria-label", paused ? "Play reviews" : "Pause reviews"); run();
-    });
+    var qs = box.querySelectorAll(".hc-q"), qd = box.querySelectorAll(".hc2-qdots i"), i = 0, t, hold = false;
+    var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function show(n) { qs[i].classList.remove("on"); if (qd[i]) qd[i].classList.remove("on"); i = (n + qs.length) % qs.length; qs[i].classList.add("on"); if (qd[i]) qd[i].classList.add("on"); }
+    function run() { clearInterval(t); if (!reduce && !hold) t = setInterval(function () { show(i + 1); }, 4500); }
+    // hover or focus pauses; the dots step through the quotes
+    box.addEventListener("mouseenter", function () { hold = true; run(); });
+    box.addEventListener("mouseleave", function () { hold = false; run(); });
+    qd.forEach(function (d, k) { d.addEventListener("click", function () { show(k); run(); }); });
     run();
   });
 </script>
