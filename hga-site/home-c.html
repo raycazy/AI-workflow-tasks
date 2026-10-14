@@ -8,11 +8,11 @@
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#0E0E0E">
 <link rel="preload" href="./assets/fonts/bc-800.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="./assets/hga.css?v=3baff4b6">
-<link rel="stylesheet" href="./assets/v2.css?v=3baff4b6">
+<link rel="stylesheet" href="./assets/hga.css?v=6368ada8">
+<link rel="stylesheet" href="./assets/v2.css?v=6368ada8">
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script defer src="./assets/v2.js?v=3baff4b6"></script>
+<script defer src="./assets/v2.js?v=6368ada8"></script>
 <script type="importmap">{
   "imports": {
     "hga": "./assets/hga-site.js",
@@ -29,8 +29,8 @@
     "hybrid_grading/slab_scene": "./assets/hybrid_grading/slab_scene-355f9d5d.js"
   }
 }</script>
-<script defer src="./assets/site.js?v=3baff4b6"></script>
-<script defer src="./assets/shop.js?v=3baff4b6"></script>
+<script defer src="./assets/site.js?v=6368ada8"></script>
+<script defer src="./assets/shop.js?v=6368ada8"></script>
 <script type="module">import "hga"</script>
 </head>
 <body class="hm-page">
@@ -60,59 +60,56 @@
   </div>
 </header>
 <main id="main">
-<!-- HOMEPAGE VERSION C: size showcase hero. Same brief as version A (Trevor call 2026-10-14). One stage plays through every size,
-     single (the rotating Glass slab) to deck, each larger than the last; the size names below grow left to right. A collector quote rotates next to the claim button.
-     Then other graders vs HGA in one table, the calendar, the offer. Collector quotes are DRAFTS until real collectors own them.
-     The drawn housings are stand ins for the size photos from JD's media folder. -->
-<section class="hc-hero" id="hero" aria-labelledby="hc-title">
-  <img class="hm-bg" src="./assets/gen/hero-pedestal.webp" alt="" aria-hidden="true" width="1376" height="768">
-  <div class="wrap hc-split">
-    <div class="hc-text">
+<!-- HOMEPAGE VERSION C: morphing housing hero. Same brief as version A (Trevor call 2026-10-14). Text on the left; on the right one
+     glass housing resizes through every size, single to deck (after Rachel Tomi's hga-homepage hero). A collector quote rotates under the claim button.
+     Then other graders vs HGA in one table, the calendar, the offer. Collector quotes are DRAFTS until real collectors own them. -->
+<section class="hc2" id="hero" aria-labelledby="hc-title">
+  <div class="wrap hc2-grid">
+    <div class="hc2-text">
       <p class="eb"><span><span data-ps-label>Presale is live</span> &middot; up to 80% off launch pricing</span></p>
       <h1 class="h1" id="hc-title"><span>We know grading sucks.</span> <span class="red">But not anymore.</span></h1>
-      <img class="hm-wm" src="./assets/hybrid_grading/hga-glass-828ebfd2.svg" alt="HGA Glass" width="120" height="20">
-      <p class="hm-name">The industry's first aerospace glass housing, with RFID.</p>
-      <p class="hm-price"><b>$200</b> <s>$600</s> <span>a card, presale</span></p>
-      <a class="btn lg hm-cta" href="shop.html?h=glass#hero">Claim your Glass slot <svg class="ico"><use href="#i-arrow"/></svg></a>
-      <a class="hero-alt" href="shop.html?h=poly#hero">Or HGA Poly at $29 <s>$150</s> <svg class="ico"><use href="#i-arrow"/></svg></a>
-      <aside class="hc-rv" aria-labelledby="hc-rv-h" data-hc-rv>
-        <div class="hm-rv-top"><p class="hm-rv-h" id="hc-rv-h">Collector reviews</p><button class="hm-rv-pause" type="button" aria-pressed="false" data-rv-pause>Pause</button></div>
-        <p class="hm-draft">Draft quotes, owners being confirmed</p>
+      <p class="hc2-lede">Meet the industry's first aerospace glass card housing, with RFID. Built for every size, from a single card to a full deck.</p>
+      <div class="hc2-buy">
+        <a class="btn lg hm-cta" href="shop.html?h=glass#hero">Claim your Glass slot <span class="price">$200 <s>$600</s></span></a>
+        <a class="hero-alt" href="shop.html?h=poly#hero">Or HGA Poly at $29 <s>$150</s> <svg class="ico"><use href="#i-arrow"/></svg></a>
+      </div>
+      <ul class="hc2-pts">
+        <li><svg class="ico" aria-hidden="true"><use href="#i-calendar"/></svg>Book your date, back in 30 days</li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-chip"/></svg>RFID in every slab</li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-file"/></svg>Four subgrades, free</li>
+      </ul>
+      <aside class="hc-rv hc2-rv" aria-labelledby="hc-rv-h" data-hc-rv>
+        <div class="hc2-rv-top"><p id="hc-rv-h">Collector reviews <span class="hm-draft">Draft quotes, owners being confirmed</span></p><button class="hm-rv-pause" type="button" aria-pressed="false" data-rv-pause>Pause</button></div>
         <div class="hc-qs" aria-live="off"><figure class="hc-q on"><blockquote>"The glass housing is the first slab I'd rather display than store."</blockquote><figcaption>Ryan G.</figcaption></figure><figure class="hc-q"><blockquote>"A real grading date beats refreshing a status page for months."</blockquote><figcaption>Chris M.</figcaption></figure><figure class="hc-q"><blockquote>"Four subgrades on the label, so I can see exactly why it got the grade it did."</blockquote><figcaption>Danielle R.</figcaption></figure><figure class="hc-q"><blockquote>"Finally somewhere that grades my booklets the right way."</blockquote><figcaption>Alex P.</figcaption></figure><figure class="hc-q"><blockquote>"An RFID chip tied to the certificate is a big deal when I go to sell."</blockquote><figcaption>Marcus T.</figcaption></figure><figure class="hc-q"><blockquote>"Thirty days from a date I pick. That alone gets me in."</blockquote><figcaption>Jordan K.</figcaption></figure></div>
       </aside>
     </div>
-    <div class="hc-visual">
-    <div class="hc-show" data-sizes aria-label="Every size, single to deck. Select to see the next size." role="group" tabindex="0">
-    <ol class="hc-slides">
-      <li class="hc-sl hc-sl-1 on" data-sl>
-        <div class="stage-in">
-          <div class="spin-slab" role="img" aria-label="HGA Glass slab: Shohei Ohtani, graded 10"
-            data-controller="hybrid-grading--slab"
-            data-action="pointerdown->hybrid-grading--slab#grab pointermove->hybrid-grading--slab#drag pointerup->hybrid-grading--slab#drop pointercancel->hybrid-grading--slab#drop keydown->hybrid-grading--slab#nudge"
-            data-hybrid-grading--slab-model-value="./assets/hga/glass-c2f02c4d.glb"
-            data-hybrid-grading--slab-case-front-value="./assets/hga/glass_front-f7fd82f9.webp"
-            data-hybrid-grading--slab-case-back-value="./assets/hga/glass_back-d8c9ac8c.webp"
-            data-hybrid-grading--slab-card-front-value="./slabs/ohtani/card/front.webp"
-            data-hybrid-grading--slab-card-back-value="./slabs/ohtani/card/back.webp"
-            data-hybrid-grading--slab-label-front-value="./slabs/ohtani/label/front.webp"
-            data-hybrid-grading--slab-label-back-value="./slabs/ohtani/label/back.webp"
-            data-hybrid-grading--slab-card-corner-radius-value="0.0"
-            data-hybrid-grading--slab-direction-value="left"
-            data-hybrid-grading--slab-spin-value="true"
-            data-hybrid-grading--slab-sway-value="false">
-            <img src="./slabs/ohtani/720.webp" alt="HGA Glass slab: Shohei Ohtani, graded 10" width="720" height="1207">
-            <canvas aria-hidden="true" data-hybrid-grading--slab-target="canvas" data-action="webglcontextlost->hybrid-grading--slab#lose webglcontextrestored->hybrid-grading--slab#restore"></canvas>
-            <div class="hint" aria-hidden="true"><svg class="ico" style="width:22px;height:14px"><use href="#i-drag"/></svg>Drag to turn it over</div>
+
+    <!-- Morphing glass housing, after Rachel Tomi's hga-homepage hero: one housing resizes from single to deck.
+         Every format holds the same size card; housings widen with panels and the deck gets deeper. -->
+    <div class="hc2-stage" data-hc2 tabindex="0" role="group" aria-roledescription="Rotating product view" aria-label="The HGA Glass housing in every size, single to deck. Drag to turn it; select it to see the next size.">
+      <span class="hc2-beam" aria-hidden="true"><i class="hc2-dust"></i></span>
+      <span class="hc2-pool" aria-hidden="true"></span>
+      <span class="hc2-ped" aria-hidden="true"></span>
+      <span class="hc2-wm" data-wm aria-hidden="true">Single</span>
+      <div class="hc2-rig" data-rig>
+        <div class="hc2-slab" data-slab data-format="single">
+          <div class="hc2-face hc2-front">
+            <span class="hc2-screw s1"></span><span class="hc2-screw s2"></span><span class="hc2-screw s3"></span><span class="hc2-screw s4"></span>
+            <div class="hc2-label">
+              <img src="./assets/hybrid_grading/hga-2700a46b.svg" alt="" class="hc2-label-logo" width="91" height="22">
+              <span class="hc2-label-meta"><b data-lt>Shohei Ohtani</b><small data-ls>2025 Topps Finest</small></span>
+              <span class="hc2-label-grade"><small>Card Grade</small><b>10</b></span>
+            </div>
+            <div class="hc2-bay" data-bay></div>
+            <span class="hc2-sheen" aria-hidden="true"></span>
+            <span class="hc2-scan" aria-hidden="true"></span>
           </div>
+          <div class="hc2-face hc2-back"><img src="./assets/hybrid_grading/hga-2700a46b.svg" alt="" width="91" height="22"><span>RFID</span></div>
+          <div class="hc2-face hc2-side l"></div><div class="hc2-face hc2-side r"></div>
+          <div class="hc2-face hc2-side t"></div><div class="hc2-face hc2-side b"></div>
         </div>
-      </li>
-      <li class="hc-sl sz-2" data-sl aria-hidden="true"><span class="sz-shape"><i><img src="./assets/gen/panels/p2.webp" alt="" width="152" height="234" loading="lazy"></i><i><img src="./assets/gen/panels/p3.webp" alt="" width="152" height="234" loading="lazy"></i></span></li>
-      <li class="hc-sl sz-3" data-sl aria-hidden="true"><span class="sz-shape"><i><img src="./assets/gen/panels/p3.webp" alt="" width="152" height="234" loading="lazy"></i><i><img src="./assets/gen/panels/p4.webp" alt="" width="152" height="234" loading="lazy"></i><i><img src="./assets/gen/panels/p5.webp" alt="" width="152" height="234" loading="lazy"></i></span></li>
-      <li class="hc-sl sz-5" data-sl aria-hidden="true"><span class="sz-shape"><i><img src="./assets/gen/panels/p1.webp" alt="" width="152" height="234" loading="lazy"></i><i><img src="./assets/gen/panels/p2.webp" alt="" width="152" height="234" loading="lazy"></i><i><img src="./assets/gen/panels/p3.webp" alt="" width="152" height="234" loading="lazy"></i><i><img src="./assets/gen/panels/p4.webp" alt="" width="152" height="234" loading="lazy"></i><i><img src="./assets/gen/panels/p5.webp" alt="" width="152" height="234" loading="lazy"></i></span></li>
-      <li class="hc-sl sz-d" data-sl aria-hidden="true"><span class="sz-shape"><i><img src="./assets/gen/panels/gengar.webp" alt="" width="152" height="234" loading="lazy"></i></span></li>
-    </ol>
-    <p class="hc-cap c1" data-cap aria-live="polite">Single</p>
-    </div>
+      </div>
+      <p class="sr" aria-live="polite" data-sr>Single</p>
     </div>
   </div>
 </section>
@@ -131,6 +128,22 @@
       <figure><img src="./assets/gen/chip-tap.webp" alt="A phone beside an HGA Glass slab with an RFID chip" width="1200" height="896" loading="lazy"><figcaption>RFID in every slab</figcaption></figure>
       <figure><img src="./assets/gen/lab-loupe.webp" alt="A grader inspecting a card under a loupe" width="1200" height="896" loading="lazy"><figcaption>Graded blind</figcaption></figure>
     </div>
+  </div>
+</section>
+
+<section class="sec hm-proc" id="process" aria-labelledby="hm-proc-title">
+  <div class="wrap">
+    <div class="hm-proc-head">
+      <p class="eb">How HGA works</p>
+      <h2 class="h2" id="hm-proc-title">See your card. See the process. <span class="red">See the proof.</span></h2>
+    </div>
+    <ol class="hm-proc-list">
+      <li><span class="hm-proc-n">01</span><svg class="ico" aria-hidden="true"><use href="#i-box"/></svg><b>Receive it</b><p>Once your card arrives at HGA, it's checked in and documented.</p></li>
+      <li><span class="hm-proc-n">02</span><svg class="ico" aria-hidden="true"><use href="#i-eye"/></svg><b>Inspect it</b><p>Your card is inspected, scanned and identified, so its condition and identity are on record from the start.</p></li>
+      <li><span class="hm-proc-n">03</span><svg class="ico" aria-hidden="true"><use href="#i-target"/></svg><b>Grade it</b><p>Software measures centering from high resolution images. Human graders judge corners, edges and surface.</p></li>
+      <li><span class="hm-proc-n">04</span><svg class="ico" aria-hidden="true"><use href="#i-shield"/></svg><b>Protect it</b><p>Sealed in your choice of Poly or aerospace Glass, with an RFID chip and blockchain certification.</p></li>
+      <li><span class="hm-proc-n">05</span><svg class="ico" aria-hidden="true"><use href="#i-award"/></svg><b>Reveal it</b><p>Your final grade, four subgrades and full report, back within 30 days of your grading date.</p></li>
+    </ol>
   </div>
 </section>
 
@@ -187,26 +200,91 @@
     <p class="hm-fine">Presale pricing ends Jan 31. Both include RFID, a full grading report and four subgrades. <a href="faq.html">All questions</a> &middot; <a href="about.html">Where we've been</a></p>
   </div>
 </section>
+
+<section class="sec hm-faq" id="hm-faq" aria-labelledby="hm-faq-title">
+  <div class="wrap hm-faq-grid">
+    <div class="hm-faq-head">
+      <p class="eb">FAQ</p>
+      <h2 class="h2" id="hm-faq-title">Before you <span class="red">claim.</span></h2>
+      <p class="lede">Quick answers to what collectors ask most.</p>
+      <a class="hero-alt" href="faq.html">See all questions <svg class="ico"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="hm-faq-list">
+      <details><summary>When can I book my grading date?</summary><p>Booking opens January 18, 2027. We email you an invite to book, and the calendar shows the next available grading date. Grading begins February 1, 2027.</p></details>
+      <details><summary>When do I send my cards?</summary><p>Any time before your booked grading date. Your confirmation page tells you when.</p></details>
+      <details><summary>What's the turnaround?</summary><p>Every presale grade, Poly and Glass, is back within 30 days of your grading date.</p></details>
+      <details><summary>What if an earlier date opens up?</summary><p>Choose "move me up automatically" when you book, and we'll move you to an earlier date if one opens.</p></details>
+      <details><summary>Does the presale cover booklets and decks?</summary><p>Presale slots cover standard size cards. Booklets, folds and decks are booked separately.</p></details>
+      <details><summary>Can I transfer my presale slot?</summary><p>No. Presale purchases can't be transferred.</p></details>
+      <details><summary>What if I need a card graded sooner?</summary><p>Standard grading is available to buy separately.</p></details>
+    </div>
+  </div>
+</section>
 <script>
-  // Size showcase: one housing at a time, single to deck, with the size name under it growing as the sizes do.
-  // Click (or Enter) shows the next size; hover or focus pauses; reduced motion means no autoplay.
-  document.querySelectorAll("[data-sizes]").forEach(function (box) {
-    var sl = box.querySelectorAll("[data-sl]"), cap = box.querySelector("[data-cap]"), i = 0, t;
-    var NAMES = ["Single", "Booklet", "Trifold", "Five fold", "Deck"];
-    var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches, hold = false;
-    function show(n) {
-      i = (n + sl.length) % sl.length;
-      sl.forEach(function (x, k) { x.classList.toggle("on", k === i); x.setAttribute("aria-hidden", k === i ? "false" : "true"); });
-      cap.textContent = NAMES[i]; cap.className = "hc-cap c" + (i + 1);
+  // Morphing housing (after Rachel Tomi's hga-homepage hero). Auto plays single to deck; drag turns it;
+  // click or Enter shows the next size; hover or focus pauses; reduced motion means a still housing.
+  document.querySelectorAll("[data-hc2]").forEach(function (stage) {
+    var rig = stage.querySelector("[data-rig]"), slab = stage.querySelector("[data-slab]"), bay = stage.querySelector("[data-bay]");
+    var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var C = "./assets/cards-rt/";
+    var F = [
+      { id: "single",   name: "Single",    w: 250,  h: 412, d: 20,  amp: 24, cards: ["ohtani"], title: "Shohei Ohtani", sub: "2025 Topps Finest" },
+      { id: "booklet",  name: "Booklet",   w: 474,  h: 412, d: 22,  amp: 20, cards: ["gengar", "alakazam"], title: "Booklet", sub: "2 panels, graded as one card" },
+      { id: "trifold",  name: "Trifold",   w: 698,  h: 412, d: 24,  amp: 16, cards: ["jenkins", "white", "ohtani"], title: "Trifold", sub: "3 panels, graded as one card" },
+      { id: "fivefold", name: "Five fold", w: 1146, h: 412, d: 26,  amp: 11, cards: ["meowth", "gengar", "alakazam", "jenkins", "white"], title: "Five fold", sub: "5 panels, graded as one card" },
+      { id: "deck",     name: "Deck",      w: 250,  h: 412, d: 170, amp: 34, cards: ["meowth"], title: "Deck", sub: "A full deck" }
+    ];
+    F.forEach(function (f, i) {
+      var set = document.createElement("div");
+      set.className = "hc2-set" + (i === 0 ? " on" : "");
+      set.innerHTML = f.cards.map(function (c) { return '<img src="' + C + c + '.jpg" alt="" decoding="async"' + (i ? ' loading="lazy"' : "") + ">"; }).join("");
+      bay.appendChild(set);
+    });
+    var sets = bay.querySelectorAll(".hc2-set"), cur = 0, auto = null, hold = false, inView = true;
+    function fit() {
+      var f = F[cur], sw = stage.clientWidth, sh = stage.clientHeight;
+      var s = Math.min(1.1, (sh * 0.7) / f.h, (sw * 0.86) / f.w);
+      rig.style.setProperty("--s", s.toFixed(3));
     }
-    function run() { clearInterval(t); if (!reduce && !hold) t = setInterval(function () { show(i + 1); }, 2800); }
-    box.addEventListener("click", function () { show(i + 1); run(); });
-    box.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); show(i + 1); run(); } });
-    box.addEventListener("mouseenter", function () { hold = true; run(); });
-    box.addEventListener("mouseleave", function () { hold = false; run(); });
-    box.addEventListener("focusin", function () { hold = true; run(); });
-    box.addEventListener("focusout", function () { hold = false; run(); });
-    run();
+    function scan() { if (reduce) return; slab.classList.remove("scan"); void slab.offsetWidth; slab.classList.add("scan"); }
+    function show(i) {
+      cur = (i + F.length) % F.length;
+      var f = F[cur];
+      slab.style.setProperty("--hw", f.w + "px"); slab.style.setProperty("--hh", f.h + "px"); slab.style.setProperty("--hd", f.d + "px");
+      slab.dataset.format = f.id;
+      stage.style.setProperty("--hk", cur);
+      sets.forEach(function (el, j) { el.classList.toggle("on", j === cur); });
+      stage.querySelector("[data-lt]").textContent = f.title;
+      stage.querySelector("[data-ls]").textContent = f.sub;
+      stage.querySelector("[data-wm]").textContent = f.name;
+      stage.querySelector("[data-sr]").textContent = f.name;
+      fit(); scan();
+    }
+    function run() { clearInterval(auto); auto = null; if (!reduce && !hold) auto = setInterval(function () { if (inView && !document.hidden) show(cur + 1); }, 3400); }
+    var drag = 0, dragging = false, lastX = 0, moved = 0, running = false, t0 = performance.now();
+    function frame(now) {
+      var t = (now - t0) / 1000, f = F[cur];
+      if (!dragging) drag *= 0.94;
+      var ry = (reduce ? -18 : f.amp * Math.sin(t * 0.55)) + drag;
+      var rx = reduce ? -6 : -6 + 3 * Math.sin(t * 0.4);
+      slab.style.transform = "rotateX(" + rx.toFixed(2) + "deg) rotateY(" + ry.toFixed(2) + "deg)";
+      slab.style.setProperty("--sx", ((ry / 40) * 70).toFixed(1) + "%");
+      if (inView) requestAnimationFrame(frame); else running = false;
+    }
+    function go() { if (!running) { running = true; requestAnimationFrame(frame); } }
+    stage.addEventListener("pointerdown", function (e) { dragging = true; moved = 0; lastX = e.clientX; stage.classList.add("dragging"); stage.setPointerCapture(e.pointerId); });
+    stage.addEventListener("pointermove", function (e) { if (!dragging) return; var dx = e.clientX - lastX; moved += Math.abs(dx); drag += dx * 0.45; lastX = e.clientX; });
+    function end() { if (!dragging) return; dragging = false; stage.classList.remove("dragging"); }
+    stage.addEventListener("pointerup", function () { var tap = moved < 6; end(); if (tap) { show(cur + 1); run(); } });
+    stage.addEventListener("pointercancel", end);
+    stage.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); show(cur + 1); run(); } });
+    stage.addEventListener("mouseenter", function () { hold = true; run(); });
+    stage.addEventListener("mouseleave", function () { hold = false; run(); });
+    stage.addEventListener("focusin", function () { hold = true; run(); });
+    stage.addEventListener("focusout", function () { hold = false; run(); });
+    new IntersectionObserver(function (es) { inView = es[0].isIntersecting; if (inView) go(); }).observe(stage);
+    addEventListener("resize", fit);
+    show(0); go(); run();
   });
   // One collector quote at a time beside the claim button; the button stops and restarts the rotation.
   document.querySelectorAll("[data-hc-rv]").forEach(function (box) {
