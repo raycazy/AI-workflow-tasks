@@ -2346,3 +2346,12 @@ html[data-theme="dark"] .buy-inc b{color:#fff}
 .rvs-set cite{font-style:normal;font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#FF6B6E;white-space:nowrap}
 @media (max-width:720px){.rvs-set li{flex-direction:column;gap:6px;width:270px}.rvs-set blockquote{white-space:normal;font-size:15px}}
 @media (prefers-reduced-motion:reduce){.rvs-track{animation:none}.rvs-win{overflow-x:auto}.rvs-set[aria-hidden]{display:none}.rv-strip .hm-rv-pause{display:none}}
+/* review strip: centred heading, initials avatars (swap for real photos once collectors approve) */
+.rvs-top{justify-content:center;position:relative}
+.rvs-top .hm-rv-pause{position:absolute;right:clamp(16px,4.5vw,48px);top:50%;transform:translateY(-50%)}
+.rvs-h{font-size:13px;color:rgba(255,255,255,.75)}
+.rvs-set li{align-items:center;gap:14px;padding:14px 22px 14px 14px}
+.rvs-av{flex:none;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#E62429,#7a1216);color:#fff;font-family:var(--disp);font-weight:800;font-size:16px;letter-spacing:.02em;box-shadow:0 0 0 2px rgba(255,255,255,.12)}
+.rvs-body{display:flex;align-items:baseline;gap:14px}
+@media (max-width:720px){.rvs-set li{flex-direction:row;align-items:flex-start;width:290px}.rvs-body{flex-direction:column;gap:6px}.rvs-top .hm-rv-pause{width:32px;height:32px}}
+.rvs-h{font-family:var(--disp);font-weight:800;font-size:clamp(24px,2.2vw,32px);letter-spacing:.01em;color:#fff}.rvs-top{margin-bottom:20px}
