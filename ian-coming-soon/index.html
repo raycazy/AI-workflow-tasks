@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>IAN | Upgrade your everyday™</title>
-<meta name="description" content="IAN is coming soon. Join the list to hear when it arrives.">
+<meta name="description" content="IAN is coming soon. Join the waitlist to hear when it arrives.">
 <!-- Preview build: keep it out of search until the real host is decided. Remove for the live page. -->
 <meta name="robots" content="noindex">
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#F4F2E8">
 <meta property="og:title" content="IAN | Upgrade your everyday™">
-<meta property="og:description" content="IAN is coming soon. Join the list to hear when it arrives.">
+<meta property="og:description" content="IAN is coming soon. Join the waitlist to hear when it arrives.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tryian.co/">
 <meta property="og:site_name" content="IAN">
@@ -230,7 +230,7 @@
       transform: translateY(9.86%);   /* the bag body stands 6px into the floor; the shadow runs onto it */
     }
 
-    .signup { margin-top: 0; gap: 12px; width: 456px; max-width: 100%; }
+    .signup { margin-top: 0; gap: 12px; width: 496px; max-width: 100%; }   /* 496: field stays ~256 beside the longer "Join the waitlist" button */
     .timer { column-gap: 24px; padding-bottom: 13px; }
     .ta-col { gap: 8px; }
     .rf { font-size: 48px; }
@@ -350,7 +350,7 @@
                  placeholder="Your email" required disabled
                  aria-describedby="signup-status signup-consent">
           <button class="btn" type="submit" data-submit disabled>
-            Join the list
+            Join the waitlist
             <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false"><path d="M4.167 10h11.666M10.833 15l5-5M10.833 5l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
@@ -437,7 +437,7 @@
       input.classList.add('is-success');
       input.removeAttribute('aria-invalid');
       button.hidden = true;
-      show('success', 'You’re on the list.');
+      show('success', 'You’re on the waitlist.');
       input.focus();
     }
   })();
