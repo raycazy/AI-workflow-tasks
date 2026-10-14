@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/smilo.css?v=5fbfa1c4">
+<link rel="stylesheet" href="assets/smilo.css?v=4681e3aa">
 <link rel="stylesheet" href="assets/howto.css?v=098bf597">
 </head>
 <body data-page="index">
@@ -42,6 +42,7 @@
   <symbol id="i-file-cert" viewBox="0 0 24 24"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M5 8v-3a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5"/><path d="M3 14a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"/><path d="M4.5 17l-1.5 5l3 -1.5l3 1.5l-1.5 -5"/></symbol>
   <symbol id="i-circle-x" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M10 10l4 4m0 -4l-4 4"/></symbol>
   <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14"/><path d="M16 5v14"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><path d="M5 7h1a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2"/><path d="M9 13a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"/></symbol>
   <symbol id="i-info" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M12 9h.01"/><path d="M11 12h1v4h1"/></symbol>
   <!-- Brand glyphs -->
   <symbol id="g-carton" viewBox="0 0 32 32"><path d="M9 7.5h11.5v20h-11.5z"/><path d="M20.5 7.5l3 -2.5v20l-3 2.5"/><path d="M9 7.5l3 -2.5h11.5"/><path d="M12.6 16.2a3 3 0 0 0 4.3 0"/></symbol>
@@ -142,7 +143,7 @@
       <div class="startkur__media">
         <figure class="tile tile--yellow startkur__main"><img src="assets/img/pdp-01-front.webp" alt="Æske med Smilo Club tandblegningsstrips på gul baggrund" width="1600" height="1600" loading="lazy"></figure>
         <figure class="tile startkur__thumb"><img src="assets/img/scene-flatlay.webp" alt="Æsken åbnet med poserne trukket frem" width="1600" height="1600" loading="lazy"></figure>
-        <figure class="tile startkur__thumb"><img src="assets/img/r5-sachet-macro.webp" alt="En pose med strips trukket halvt ud" width="800" height="800" loading="lazy"></figure>
+        <figure class="tile startkur__thumb startkur__thumb--person"><img src="assets/img/person-bathroom-4x5.webp" alt="Kvinde i profil ser ned på en æske Smilo Club på badeværelset" width="1200" height="1500" loading="lazy"></figure>
       </div>
       <form class="buy buy--compact" id="buy" data-buy action="#" novalidate>
         <h2 class="buy__h2">Start kuren</h2>
@@ -252,6 +253,34 @@
 </div>
     </div>
   </section>
+
+  <!-- v3.2 Before and after: a ready slot after the six steps (the result follows the method). -->
+  <!-- Snippet: before and after (deck v3.2). A ready slot: each frame is a data-media slot that shows the
+     designed empty frame until our own test photos exist (build: a media slot per frame; theme: an image setting).
+     Powder Blue ground (the frames are for mouth photos), no tooth drawing, no difference between the two frames, no slider.
+     The method line renders only when both photos are present (smilo.js). -->
+<section class="section ba" data-section="before-after" aria-labelledby="ba-title">
+  <div class="wrap ba__grid">
+    <div class="ba__copy">
+      <h2 id="ba-title">Før og efter</h2>
+      <p class="ba__note" data-ba-empty>Her kommer billeder fra vores egen test af den første produktion.</p>
+      <p class="ba__method" data-ba-method hidden>Samme kamera, samme lys, ikke retoucheret.</p>
+    </div>
+    <div class="ba__frames" data-ba>
+      <figure class="ba__frame" data-media="ba-foer"><div class="ba__media"><span class="media__empty" role="img" aria-label="Billede før første behandling kommer her"></span><figcaption class="ba__label">Før</figcaption></div></figure>
+      <figure class="ba__frame" data-media="ba-efter"><div class="ba__media"><span class="media__empty" role="img" aria-label="Billede efter behandling 14 kommer her"></span><figcaption class="ba__label">Efter behandling 14</figcaption></div></figure>
+    </div>
+  </div>
+</section>
+<!-- Dentist quote (deck v3.2 DT): a hidden slot inside an inert template, so nothing renders. Fields are the deck labels.
+     [HVIS a named, signed endorsement is documented] move the card out of the template and fill it word for word from the statement.
+     Banned dentist phrases: see deck section DT. -->
+<template data-slot="dentist-quote">
+  <figure class="dentist">
+    <blockquote class="dentist__quote"><p>Citat</p></blockquote>
+    <figcaption class="dentist__by"><b>Navn</b><span>Titel, Klinik</span></figcaption>
+  </figure>
+</template>
 
   <!-- HP 6. Section: Klubhylden, the signature [full bleed image band, edge to edge].
        The shelf spans the page; the mailer (pack 2) sits framed over its lower edge; the perks run in a row under it. -->
@@ -458,14 +487,14 @@
 
   <!-- HP 12. Section: closing band [full bleed yellow, product cropped by the edge]. -->
   <section class="closing" data-section="closing" aria-labelledby="close-title">
-    <!-- Closing band (deck v2.11 copy): two column grid, copy then the hand-shelf photo; stacks up to 960px. -->
+    <!-- Closing band (deck v2.11 copy): two column grid, copy then the person-sofa photo (v3.2 concept image); stacks up to 960px. -->
     <div class="closing__grid">
       <div class="closing__copy">
         <h2 id="close-title">Klar til den første kur?</h2>
         <p><b><span data-v="pris_klub">199</span> kr. pr. pakke.</b> Løbende abonnement, som du opsiger online.</p>
         <a class="btn btn--lg" href="#start-kuren">Start kuren</a>
       </div>
-      <div class="closing__media"><img class="closing__img" src="assets/img/hand-shelf-4x5.webp" alt="En hånd rækker ud efter en æske Smilo Club tandblegningsstrips på en badeværelseshylde" width="1200" height="1500" loading="lazy"></div>
+      <div class="closing__media"><img class="closing__img" src="assets/img/person-sofa.webp" alt="Person læser i sofaen, med en æske Smilo Club og en kop te på sidebordet" width="1200" height="1500" loading="lazy"></div>
     </div>
   </section>
 
@@ -605,6 +634,6 @@
   </div>
 </aside>
 <p id="toast" class="toast" role="status" aria-live="polite"></p>
-<script src="assets/smilo.js?v=4f72590f" defer></script>
+<script src="assets/smilo.js?v=fa4fa629" defer></script>
 </body>
 </html>

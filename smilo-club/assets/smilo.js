@@ -381,4 +381,44 @@
     window.addEventListener('hashchange', onScroll);
     onScroll();
   }
+  /* ---------- v3.2 Buy box clips: loop only while in view, one toggle pauses all, tap opens a larger player ---------- */
+  const clips = $('[data-clips]');
+  if (clips) {
+    const vids = $$('video', clips);
+    const tg = $('[data-clips-toggle]', clips);
+    let paused = false, inView = false;
+    const sync = () => { const run = inView && !paused && !reduce; vids.forEach((v) => { if (run) v.play().catch(() => {}); else v.pause(); }); };
+    if (reduce) tg.hidden = true;
+    tg.addEventListener('click', () => {
+      paused = !paused;
+      tg.setAttribute('aria-pressed', String(paused));
+      $('use', tg).setAttribute('href', paused ? '#i-play' : '#i-pause');
+      sync();
+    });
+    if ('IntersectionObserver' in window) new IntersectionObserver((e) => { inView = e[0].isIntersecting; sync(); }, { threshold: 0.5 }).observe($('[data-clips-row]', clips));
+    const lb = $('[data-cliplb]');
+    if (lb && lb.showModal) {
+      const lv = $('[data-cliplb-video]', lb), lc = $('[data-cliplb-cap]', lb);
+      const close = () => { lv.pause(); if (lb.open) lb.close(); };
+      $$('[data-clip]', clips).forEach((b) => b.addEventListener('click', () => {
+        const v = $('video', b);
+        lv.poster = v.poster; lv.src = $('source', v).src;
+        lc.textContent = $('.clip__cap', b).textContent;
+        lv.setAttribute('aria-label', b.getAttribute('aria-label'));
+        lb.showModal();
+        if (!reduce && !paused) lv.play().catch(() => {});
+      }));
+      $('[data-cliplb-close]', lb).addEventListener('click', close);
+      lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+      lb.addEventListener('close', () => lv.pause());
+    }
+  }
+
+  /* ---------- v3.2 Before and after: the method line renders only when both real photos are in ---------- */
+  $$('[data-ba]').forEach((ba) => {
+    const sec = ba.closest('section'), full = $$('.ba__media img', ba).length === 2;
+    const m = $('[data-ba-method]', sec), n = $('[data-ba-empty]', sec);
+    if (m) m.hidden = !full;
+    if (n) n.hidden = full;
+  });
 })();
