@@ -2008,3 +2008,10 @@ html[data-theme="dark"] .buy-inc b{color:#fff}
 @media (max-width:1100px){.hm-proc-list{grid-template-columns:repeat(3,minmax(0,1fr))}.hm-proc-list::before{display:none}}
 @media (max-width:720px){.hm-proc-list{grid-template-columns:1fr 1fr}.hm-proc-list li:last-child{grid-column:1 / -1}.hm-faq-grid{grid-template-columns:1fr}.hm-faq-head{position:static}}
 @media (max-width:420px){.hm-proc-list{grid-template-columns:1fr}}
+/* review rotation control: round icon button (pause / play; next arrow when motion is reduced) */
+.hm-rv-pause{flex:none;width:36px;height:36px;padding:0;display:grid;place-items:center;border-radius:50%;color:#fff}
+.hm-rv-pause .ico{width:15px;height:15px;stroke-width:2.2}
+.hm-rv-pause .i-pl{fill:currentColor;stroke:none;margin-left:2px}
+.hm-rv-pause .i-pl,.hm-rv-pause .i-nx,.hm-rv-pause[aria-pressed="true"] .i-pa,.hm-rv-pause.is-next .i-pa{display:none}
+.hm-rv-pause[aria-pressed="true"] .i-pl,.hm-rv-pause.is-next .i-nx{display:block}
+.hm-rv-pause:focus-visible{outline:2px solid #fff;outline-offset:2px}
