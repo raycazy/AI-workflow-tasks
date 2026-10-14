@@ -3,6 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+  /* Timer preview: ?timer=a | b | c shows one of the three directions (timer-directions.md). No query keeps the approved sentence. */
+  (function () { var m = /[?&]timer=([abc])(?:&|$)/i.exec(location.search); if (m) document.documentElement.setAttribute('data-timer', m[1].toLowerCase()); })();
+</script>
 <title>IAN | Upgrade your everyday™</title>
 <meta name="description" content="IAN is coming soon. Join the list to hear when it arrives.">
 <!-- Preview build: keep it out of search until the real host is decided. Remove for the live page. -->
@@ -183,16 +187,52 @@
   /* 44px wide tap area without moving the text: 6px padding each side, cancelled by negative margin. */
   .footer-links a { justify-content: center; min-width: 44px; padding: 0 6px; margin: 0 -6px; }
 
+  /* ---------- Timer directions (preview only, ?timer=a|b|c) ---------- */
+  :root { --line: #C9C0B3; --ease-out: cubic-bezier(0.23, 1, 0.32, 1); }
+  .timer-v { display: none; }
+  html[data-timer] .countdown { display: none; }
+  html[data-timer="a"] .timer-a, html[data-timer="b"] .timer-b, html[data-timer="c"] .timer-c { display: block; }
+  /* Rolling figure: each digit sits in a 1ch cell (tabular figures, so every digit is the same width) clipped with
+     clip-path, which clips the paint without changing the cell's baseline. The old digit slides up and out, the new
+     one slides up from below; transform only. */
+  .rf { display: inline-flex; font-family: var(--sans); font-weight: 300; font-variant-numeric: tabular-nums; color: var(--ink); white-space: nowrap; }
+  .dc { position: relative; display: inline-block; width: 1ch; line-height: 1.1; clip-path: inset(0); }
+  .dv { display: block; text-align: center; }
+  .dv.out { position: absolute; left: 0; top: 0; width: 100%; }
+  .cap { display: block; font: 600 12px/1.32 var(--sans); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+  .cap .full { display: none; }
+
+  /* A: pack ledger. Caps label over the figure, 1px rules between columns. */
+  html[data-timer="a"] .timer-a { display: flex; align-items: stretch; column-gap: 16px; }
+  .ta-col { display: flex; flex-direction: column; gap: 4px; }
+  .ta-col .rf { font-size: 32px; }
+  .ta-rule { flex: 0 0 1px; width: 1px; background: var(--line); }
+
+  /* B: clock figures. One line of figures, crimson colons at 0.8 size, labels under each figure. */
+  html[data-timer="b"] .timer-b { display: grid; grid-template-columns: repeat(7, auto); justify-content: start; column-gap: 8px; row-gap: 4px; }
+  .timer-b .rf { font-size: 40px; align-self: baseline; }
+  .tb-colon { align-self: baseline; font: 300 32px/1 var(--sans); color: var(--crimson); position: relative; top: -0.16em; }
+  .timer-b .cap { grid-row: 2; }
+
+  /* C: the sentence, refined. Ink figures at 1.25x the words, a 1px progress line under it. */
+  .timer-c .cd-row { gap: 8px; }
+  .timer-c .rf { font-size: 30px; }
+  .timer-c .rf.days1 { min-width: 0; }
+  .tc-rows { display: flex; flex-direction: column; align-items: flex-start; font-family: var(--serif); font-size: 24px; line-height: 1.1; color: var(--ink); }
+  .tc-progress { position: relative; display: block; height: 1px; margin-top: 8px; background: var(--line); overflow: hidden; }
+  .tc-elapsed { position: absolute; inset: 0; background: var(--crimson); transform-origin: 0 50%; transform: scaleX(0); }
+
   /* ---------- Desktop: copy left, bag right on the sand floor ---------- */
   @media (min-width: 1024px) {
     :root {
       --g: max(72px, (100% - 1440px) / 2 + 72px);
       --bag-w: min(41.8vw, 66.9vh, 602px);              /* 602px at 1440x900, the Figma size, and never larger */
-      --tag: clamp(72px, min(11.1vw, (100vh - 565px) * 0.5423), 160px);   /* 160px at 1440x900; shrinks on short screens so the form, a message line and the footer stay in view */
+      --tag: clamp(72px, min(11.1vw, (100vh - 565px - var(--cd-extra)) * 0.5423), 160px);   /* 160px at 1440x900; shrinks on short screens so the form, a message line and the footer stay in view */
       /* Copy is top anchored and the 35px message line (12 gap + 23 line) is reserved above the floor,
          so an error or success message never moves the tagline, the bag or the floor and never adds scroll.
          74px at 1440x900 puts the label at y 138 (Figma 155; the 17px is the reserve). */
-      --hero-pt: max(16px, 100vh - 531px - var(--tag) * 1.844);
+      --hero-pt: max(16px, 100vh - 531px - var(--cd-extra) - var(--tag) * 1.844);
+      --cd-extra: 0px;   /* timer height beyond the approved sentence (87px), so each preview variant keeps the same fold */
     }
     .page { position: relative; }
     .site-header { position: relative; z-index: 2; padding: 16px var(--g); }
@@ -235,6 +275,23 @@
     .btn svg { display: block; }
 
     .site-footer { position: relative; z-index: 0; margin-top: 0; padding: 70px var(--g) 8px; background: var(--floor); }
+
+    /* Measured timer heights 90 / 103 / 114 vs the sentence's 87: lift the copy by the difference so the fold holds. */
+    html[data-timer="a"] { --cd-extra: 3px; }
+    html[data-timer="b"] { --cd-extra: 16px; }
+    html[data-timer="c"] { --cd-extra: 27px; }
+    .cap .full { display: inline; }
+    .cap .short { display: none; }
+    .timer-v { padding-bottom: 13px; }
+    html[data-timer="a"] .timer-a { column-gap: 24px; }
+    .ta-col { gap: 8px; }
+    .ta-col .rf { font-size: 48px; }
+    .timer-b { column-gap: 12px; row-gap: 6px; }
+    .timer-b .rf { font-size: 64px; }
+    .tb-colon { font-size: 52px; }
+    .tc-rows { font-size: 32px; }
+    .timer-c .rf { font-size: 40px; }
+    .tc-progress { margin-top: 12px; }
   }
 </style>
 </head>
@@ -273,6 +330,26 @@
           <span class="fig" data-s>08</span><span data-sw>seconds.</span>
         </span>
       </div>
+      <!-- Timer A, pack ledger (?timer=a). Preview only. -->
+      <div class="timer-v timer-a" aria-hidden="true" data-tv="a">
+        <div class="ta-col"><span class="cap"><span class="full">Days</span><span class="short">Days</span></span><span class="rf" data-u="d"><span class="dc"><span class="dv">6</span></span><span class="dc"><span class="dv">9</span></span></span></div><span class="ta-rule"></span>
+        <div class="ta-col"><span class="cap"><span class="full">Hours</span><span class="short">Hrs</span></span><span class="rf" data-u="h"><span class="dc"><span class="dv">1</span></span><span class="dc"><span class="dv">4</span></span></span></div><span class="ta-rule"></span>
+        <div class="ta-col"><span class="cap"><span class="full">Minutes</span><span class="short">Min</span></span><span class="rf" data-u="m"><span class="dc"><span class="dv">3</span></span><span class="dc"><span class="dv">2</span></span></span></div><span class="ta-rule"></span>
+        <div class="ta-col"><span class="cap"><span class="full">Seconds</span><span class="short">Sec</span></span><span class="rf" data-u="s"><span class="dc"><span class="dv">0</span></span><span class="dc"><span class="dv">8</span></span></span></div>
+      </div>
+      <!-- Timer B, clock figures (?timer=b). Preview only. -->
+      <div class="timer-v timer-b" aria-hidden="true" data-tv="b">
+        <span class="rf" data-u="d"><span class="dc"><span class="dv">6</span></span><span class="dc"><span class="dv">9</span></span></span><span class="tb-colon">:</span><span class="rf" data-u="h"><span class="dc"><span class="dv">1</span></span><span class="dc"><span class="dv">4</span></span></span><span class="tb-colon">:</span><span class="rf" data-u="m"><span class="dc"><span class="dv">3</span></span><span class="dc"><span class="dv">2</span></span></span><span class="tb-colon">:</span><span class="rf" data-u="s"><span class="dc"><span class="dv">0</span></span><span class="dc"><span class="dv">8</span></span></span>
+        <span class="cap" style="grid-column:1"><span class="full">Days</span><span class="short">Days</span></span><span class="cap" style="grid-column:3"><span class="full">Hours</span><span class="short">Hrs</span></span><span class="cap" style="grid-column:5"><span class="full">Minutes</span><span class="short">Min</span></span><span class="cap" style="grid-column:7"><span class="full">Seconds</span><span class="short">Sec</span></span>
+      </div>
+      <!-- Timer C, the sentence refined (?timer=c). Preview only. -->
+      <div class="timer-v timer-c" aria-hidden="true" data-tv="c">
+        <span class="tc-rows">
+          <span class="cd-row"><span>Arriving in</span><span class="cd-days" data-days-group><span class="rf" data-u="d"><span class="dc"><span class="dv">6</span></span><span class="dc"><span class="dv">9</span></span></span><span data-w="d">days,</span></span><span class="rf" data-u="h"><span class="dc"><span class="dv">1</span></span><span class="dc"><span class="dv">4</span></span></span><span data-w="h">hours,</span></span>
+          <span class="cd-row"><span class="rf" data-u="m"><span class="dc"><span class="dv">3</span></span><span class="dc"><span class="dv">2</span></span></span><span data-w="m">minutes and</span><span class="rf" data-u="s"><span class="dc"><span class="dv">0</span></span><span class="dc"><span class="dv">8</span></span></span><span data-w="s">seconds.</span></span>
+        </span>
+        <span class="tc-progress"><span class="tc-elapsed" data-progress></span></span>
+      </div>
       <p class="countdown-alt" aria-hidden="true" data-countdown-alt hidden>Arriving December 22.</p>
       <noscript><style>[data-countdown]{display:none!important}[data-countdown-alt]{display:block!important}[data-signup]{display:none!important}</style></noscript>
       <script>
@@ -286,10 +363,54 @@
           var pad = function (n) { return n < 10 ? '0' + n : String(n); };
           var set = function (node, text) { if (node.textContent !== text) node.textContent = text; };
           var timer = null;
+
+          /* Preview timers (?timer=a|b|c). */
+          var START = Date.UTC(2026, 9, 14, 4, 0, 0); // 2026-10-14T00:00:00 America/New_York, start of the C progress line
+          var variant = document.documentElement.getAttribute('data-timer');
+          var vroot = variant && document.querySelector('[data-tv="' + variant + '"]');
+          var reduce = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: true };
+          var firstPaint = true;
+          function digit(ch) { var v = document.createElement('span'); v.className = 'dv'; v.textContent = ch; return v; }
+          function roll(cell, ch, animate) {
+            var cur = cell.querySelector('.dv:not(.out)');
+            if (cur && cur.textContent === ch) return;
+            var next = digit(ch);
+            if (!animate || !cur || !cell.animate) { cell.replaceChildren(next); return; }
+            cell.querySelectorAll('.dv.out').forEach(function (n) { n.remove(); });
+            cur.classList.add('out');
+            cell.appendChild(next);
+            var o = { duration: 240, easing: 'cubic-bezier(0.23, 1, 0.32, 1)' };
+            cur.animate([{ transform: 'translateY(0)' }, { transform: 'translateY(-100%)' }], { duration: o.duration, easing: o.easing, fill: 'forwards' })
+              .onfinish = function () { cur.remove(); };
+            next.animate([{ transform: 'translateY(100%)' }, { transform: 'translateY(0)' }], o);
+          }
+          function setFigure(slot, str, animate) {
+            var cellsNow = slot.children;
+            if (cellsNow.length !== str.length) { // digit count changed (days 10 to 9): rebuild without motion
+              slot.replaceChildren.apply(slot, str.split('').map(function (c) { var dc = document.createElement('span'); dc.className = 'dc'; dc.appendChild(digit(c)); return dc; }));
+              return;
+            }
+            for (var i = 0; i < str.length; i++) roll(cellsNow[i], str[i], animate);
+          }
+          function renderVariant(d, h, m, s) {
+            if (!vroot) return;
+            var animate = !firstPaint && !reduce.matches && document.visibilityState === 'visible';
+            var vals = { d: String(d), h: pad(h), m: pad(m), s: pad(s) };
+            vroot.querySelectorAll('[data-u]').forEach(function (slot) { setFigure(slot, vals[slot.getAttribute('data-u')], animate); });
+            if (variant === 'c') {
+              var dg = vroot.querySelector('[data-days-group]'); if (dg) dg.hidden = d === 0;
+              var words = { d: d === 1 ? 'day,' : 'days,', h: h === 1 ? 'hour,' : 'hours,', m: m === 1 ? 'minute and' : 'minutes and', s: s === 1 ? 'second.' : 'seconds.' };
+              vroot.querySelectorAll('[data-w]').forEach(function (w) { set(w, words[w.getAttribute('data-w')]); });
+              var f = Math.min(1, Math.max(0, (Date.now() - START) / (TARGET - START)));
+              var bar = vroot.querySelector('[data-progress]'); if (bar) bar.style.transform = 'scaleX(' + f.toFixed(5) + ')';
+            }
+          }
+
           function render() {
             var ms = TARGET - Date.now();
             if (ms <= 0) {
               root.hidden = true;
+              if (vroot) vroot.hidden = true;
               alt.textContent = 'Arriving today.';
               alt.hidden = false;
               sr.textContent = 'Arriving today.';
@@ -302,6 +423,8 @@
             set(el.h, pad(h)); set(el.hw, h === 1 ? 'hour,' : 'hours,');
             set(el.m, pad(m)); set(el.mw, m === 1 ? 'minute and' : 'minutes and');
             set(el.s, pad(s)); set(el.sw, s === 1 ? 'second.' : 'seconds.');
+            renderVariant(d, h, m, s);
+            firstPaint = false;
             return ms;
           }
           function tick() {
