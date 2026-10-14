@@ -32,3 +32,43 @@ svg.ck{width:14px;height:14px;vertical-align:-2px;color:#3ccf7a}
   .hero-head>.label{font-size:10.5px;letter-spacing:.1em}
   .hero-pts{gap:8px 18px;font-size:13.5px}
 }
+
+/* why: C's grading today vs HGA comparison, in Rachel's card language */
+.cmp{display:grid;gap:10px;max-width:1040px;margin:0 auto}
+.cmp-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1.15fr);align-items:center;gap:0;border-radius:var(--r);background:var(--ink-2);border:1px solid var(--line);overflow:hidden}
+.cmp-row>*{margin:0;padding:16px 20px;display:flex;align-items:center;gap:10px}
+.cmp-q{font-weight:700;color:var(--text)}
+.cmp-no{color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(230,36,41,.6)}
+.cmp-no .pain-x{flex:none;transform:scale(.8)}
+.cmp-yes{align-self:stretch;color:var(--text);font-weight:600;background:radial-gradient(ellipse 90% 140% at 0 50%,rgba(230,36,41,.14),transparent 75%);border-left:1px solid rgba(230,36,41,.3)}
+.cmp-yes svg{flex:none;width:18px;height:18px;color:var(--red-text)}
+.cmp-head{background:none;border:0}
+.cmp-head>span{padding:6px 20px;font-family:var(--lab);font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.cmp-hga img{height:16px;width:auto}
+.answers-ph{margin-top:clamp(20px,3vw,32px)}
+.answers-ph .ans-vis{aspect-ratio:4/3;padding:0;overflow:hidden}
+.answers-ph .ans-vis img{width:100%;height:100%;object-fit:cover;max-height:none}
+.answers-ph h3{margin-bottom:0}
+@media (max-width:760px){.cmp-row{grid-template-columns:1fr}.cmp-yes{border-left:0;border-top:1px solid rgba(230,36,41,.3)}.cmp-head{display:none}.cmp-row>*{padding:12px 16px}}
+
+/* calendar: C's steps beside the booking calendar */
+.vsteps{list-style:none;margin:0;padding:0 0 0 22px;display:grid;gap:22px;position:relative;align-self:center}
+.vsteps::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:2px;border-radius:2px;background:linear-gradient(180deg,var(--red),rgba(230,36,41,.15))}
+.vsteps li{position:relative}
+.vsteps li::before{content:"";position:absolute;left:-22px;top:3px;width:14px;height:14px;border-radius:50%;background:var(--red);box-shadow:0 0 0 4px rgba(230,36,41,.2),0 0 14px rgba(230,36,41,.6)}
+.vsteps .kicker{margin:0}
+.vsteps h3{margin:6px 0 4px;font-size:clamp(19px,1.6vw,22px);font-weight:800}
+.vsteps p:last-child{margin:0;color:var(--text-2);font-size:15.5px;line-height:1.5}
+#calendar .fine b{color:var(--text)}
+
+/* 30 day turnaround: Rachel's grading clock, full size */
+.gc.clock-lg{position:relative;inset:auto;width:auto;max-width:560px;justify-self:end;padding:clamp(22px,2.6vw,32px);border-radius:24px}
+.clock-lg .gc-k{font-size:11px}
+.clock-lg .clock-title{font-size:clamp(20px,1.9vw,26px)}
+.clock-lg .clock-badge{width:clamp(76px,7vw,96px);height:clamp(76px,7vw,96px)}
+.clock-lg .clock-badge b{font-size:clamp(30px,3vw,42px)}
+.clock-lg .clock-bar{height:34px;gap:4px;margin-top:20px}
+.clock-lg .clock-labels{font-size:13px;margin-top:12px}
+.clock-lg .clock-foot{margin-top:18px}
+@media (max-width:860px){.gc.clock-lg{justify-self:stretch;max-width:none}}
+.answers-ph .ans-vis{display:block;height:auto;background:none}.answers-ph .ans-vis img{display:block;width:100%!important;height:100%!important;max-width:none!important;object-fit:cover;border-radius:12px;transform:none!important;position:static!important;filter:none}
