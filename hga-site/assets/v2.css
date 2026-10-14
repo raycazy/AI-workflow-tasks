@@ -2355,3 +2355,33 @@ html[data-theme="dark"] .buy-inc b{color:#fff}
 .rvs-body{display:flex;align-items:baseline;gap:14px}
 @media (max-width:720px){.rvs-set li{flex-direction:row;align-items:flex-start;width:290px}.rvs-body{flex-direction:column;gap:6px}.rvs-top .hm-rv-pause{width:32px;height:32px}}
 .rvs-h{font-family:var(--disp);font-weight:800;font-size:clamp(24px,2.2vw,32px);letter-spacing:.01em;color:#fff}.rvs-top{margin-bottom:20px}
+/* version C hero: labelled size dots under the pedestal */
+.hc2-vis{min-width:0;display:grid}
+.hc2-dots{display:flex;justify-content:center;gap:clamp(6px,1.2vw,14px);margin-top:-6px;position:relative;z-index:2}
+.hc2-dot{display:grid;justify-items:center;gap:7px;padding:6px 8px;background:none;border:0;cursor:pointer;color:rgba(255,255,255,.5);font:inherit;transition:color .2s}
+.hc2-dot i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.28);transition:background .25s,transform .25s,box-shadow .25s}
+.hc2-dot span{font-family:var(--lab);font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+.hc2-dot:hover{color:#fff}
+.hc2-dot.on{color:#fff}
+.hc2-dot.on i{background:var(--red);transform:scale(1.35);box-shadow:0 0 12px rgba(230,36,41,.8)}
+.hc2-dot:focus-visible{outline:2px solid #fff;outline-offset:2px;border-radius:6px}
+@media (max-width:900px){.hc2-vis{order:1;width:100%}.hc2-stage{order:0}}
+@media (max-width:720px){.hc2-dots{gap:2px;margin-top:-4px}.hc2-dot{padding:4px 5px;gap:5px}.hc2-dot span{font-size:10px;letter-spacing:.06em}}
+/* C hero: size dots only */
+.hc2-dot{padding:8px 6px}
+.hc2-dots{gap:4px;margin-top:-2px}
+/* C hero review: a visible card */
+.hc2-rv{position:relative;margin-top:14px;padding:18px 20px 16px;border:1px solid rgba(255,255,255,.14);border-top:0;border-radius:var(--r-lg);background:linear-gradient(180deg,rgba(230,36,41,.10),rgba(20,18,18,.85) 60%);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 24px 50px -30px rgba(230,36,41,.55);max-width:540px}
+.hc2-rv{border:1px solid rgba(230,36,41,.35)}
+.hc2-rv::before{content:"\201C";position:absolute;right:66px;top:-6px;font-family:Georgia,serif;font-size:96px;line-height:1;color:rgba(230,36,41,.35);pointer-events:none}
+.hc2-rv-top p{color:#FF6B6E}
+.hc2-rv .hc-qs{min-height:108px}
+.hc2-rv .hc-q blockquote{font-size:clamp(17px,1.4vw,20px);font-weight:600;line-height:1.4}
+.hc2-rv .hc-q figcaption{display:flex;align-items:center;gap:10px;margin-top:12px}
+.hc2-rv .hc-q figcaption b{color:#fff;font-size:14px}
+.hc2-rv .rvs-av{width:34px;height:34px;font-size:13px}
+.hc2-stars{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45)}
+.hc2-qdots{display:flex;gap:6px;margin-top:4px}
+.hc2-qdots i{width:6px;height:6px;border-radius:3px;background:rgba(255,255,255,.22);transition:width .3s,background .3s}
+.hc2-qdots i.on{width:18px;background:var(--red)}
+@media (max-width:900px){.hc2-rv{margin-inline:auto}}
