@@ -72,3 +72,36 @@ svg.ck{width:14px;height:14px;vertical-align:-2px;color:#3ccf7a}
 .clock-lg .clock-foot{margin-top:18px}
 @media (max-width:860px){.gc.clock-lg{justify-self:stretch;max-width:none}}
 .answers-ph .ans-vis{display:block;height:auto;background:none}.answers-ph .ans-vis img{display:block;width:100%!important;height:100%!important;max-width:none!important;object-fit:cover;border-radius:12px;transform:none!important;position:static!important;filter:none}
+
+/* hero: a review card on each side of the stage (one on phones) */
+.gc-rv{width:300px}
+.gc-rv-l{left:0;right:auto;top:14%;bottom:auto}
+.gc-rv-r{right:0;left:auto;bottom:8%;top:auto}
+.gc-rv blockquote{margin:0 0 12px;font-size:15px;line-height:1.45;color:var(--text);transition:opacity .4s}
+.gc-rv figcaption{transition:opacity .4s}
+.gc-rv figcaption span{font-weight:700;color:var(--text)}
+.gc-rv.fade blockquote,.gc-rv.fade figcaption{opacity:0}
+@media (max-width:860px){
+  .gc-rv-l{display:none}
+  .gc-rv-r{position:relative;left:auto;right:auto;top:auto;bottom:auto;width:min(340px,calc(100% - 28px));justify-self:center;margin-top:-26px}
+}
+
+/* How HGA works, horizontal scroll (desktop, motion allowed). JS adds .hx-on and sets the section height. */
+.how.hx-on{padding:0;overflow:clip;--navh:66px;--sw:min(1000px,74vw)}
+.how.hx-on>.wrap{position:sticky;top:var(--navh);height:calc(100vh - var(--navh));max-width:none;padding:0;display:flex;flex-direction:column;justify-content:center;gap:clamp(16px,2.6vh,32px)}
+.how.hx-on .sec-head{margin:0 auto;padding:0 24px}
+.how.hx-on .flow{display:none}
+.how.hx-on .timeline{display:flex;width:max-content;max-width:none;margin:0;padding:64px calc((100vw - var(--sw)) / 2) 0;will-change:transform}
+.how.hx-on .tl-rail{left:calc((100vw - var(--sw)) / 2);right:calc((100vw - var(--sw)) / 2);top:26px;bottom:auto;width:auto;height:2px;transform:none}
+.how.hx-on .tl-fill{width:calc(var(--hxp,0) * 100%);height:100%}
+.how.hx-on .tl-fill::after{bottom:auto;top:50%;left:auto;right:-7px;transform:translateY(-50%)}
+.how.hx-on .tl-step{flex:0 0 var(--sw);grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(28px,3.5vw,56px);padding:0 clamp(32px,4vw,64px) 0 0;align-items:center}
+.how.hx-on .tl-step .tl-copy{order:1!important;text-align:left!important;padding-top:24px}
+.how.hx-on .tl-step .tl-visual{order:2!important}
+.how.hx-on .tl-num{left:0;top:-38px;transform:none}
+.how.hx-on .tl-visual{max-height:calc(100vh - var(--navh) - 290px);display:flex;align-items:center;justify-content:center}
+.how.hx-on .tl-visual>*{max-height:100%}
+.how.hx-on .rphone{height:min(470px,calc(100vh - var(--navh) - 300px));width:auto;aspect-ratio:9/19}
+.how.hx-on .tl-step{opacity:.35;transition:opacity .5s}
+.how.hx-on .tl-step.hx-act{opacity:1}
+.how.hx-on .tl-step.hx-act .tl-num{background:var(--red);color:#fff;box-shadow:0 0 0 6px rgba(230,36,41,.15),0 0 30px rgba(230,36,41,.55)}

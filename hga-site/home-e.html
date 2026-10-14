@@ -109,33 +109,36 @@
         </div>
       </div>
 
-      <div class="gc-rail">
-      <div class="gc gc-clock intro" style="--i:8" id="clockCard">
-        <div class="clock-top">
-          <div><p class="gc-k">Grading clock</p><b class="clock-title">One date. One deadline.</b></div>
-          <span class="clock-badge"><b>30</b><small>Days</small></span>
-        </div>
-        <div class="clock-bar" id="clockBar" aria-hidden="true"></div>
-        <div class="clock-labels"><span><b>Day 1</b> Grading date</span><span><b>Day 30</b> Your grade</span></div>
-        <div class="clock-foot"><span class="crow-ico"><svg><use href="#i-eye"/></svg></span><div><b>Follow every step</b><span>No guessing in between.</span></div></div>
-      </div>
-
-      <div class="gc gc-date intro" style="--i:7">
-        <p class="gc-k">Your grading date</p>
-        <b class="gc-big">Tue, Feb 9, 2027</b>
-        <span class="gc-ok"><svg><use href="#i-check"/></svg> Grading capacity reserved</span>
-      </div>
-
-      <figure class="gc gc-review hero-quote intro" style="--i:8" aria-live="polite">
-        <blockquote id="heroQuote">&ldquo;The glass housing is the first slab I'd rather display than store.&rdquo;</blockquote>
-        <figcaption><img class="gc-av" src="rt/assets/people/men-32.jpg" alt="" width="128" height="128" loading="lazy" /><span id="heroQuoteBy">Ryan G.</span></figcaption>
+      <!-- Two rotating collector reviews, one each side of the stage (one on phones). DRAFT quotes, placeholder portraits. -->
+      <figure class="gc gc-review gc-rv gc-rv-l intro" style="--i:7" data-rv="0">
+        <blockquote>&ldquo;A real grading date beats refreshing a status page for months.&rdquo;</blockquote>
+        <figcaption><img class="gc-av" src="rt/assets/people/men-41.jpg" alt="" width="128" height="128" loading="lazy" /><span>Chris M.</span></figcaption>
       </figure>
-      </div>
-
-      <div class="gc gc-chip gc-rfid intro" style="--i:9">
-        <span class="gc-ico"><span class="rf-rings"><i></i><i></i></span><svg><use href="#i-rfid"/></svg></span>
-        <span><b>RFID verified</b><small>Tap to see the card's record</small></span>
-      </div>
+      <figure class="gc gc-review gc-rv gc-rv-r intro" style="--i:8" data-rv="1">
+        <blockquote>&ldquo;The glass housing is the first slab I'd rather display than store.&rdquo;</blockquote>
+        <figcaption><img class="gc-av" src="rt/assets/people/men-32.jpg" alt="" width="128" height="128" loading="lazy" /><span>Ryan G.</span></figcaption>
+      </figure>
+      <script>
+        (function () {
+          var Q = [["The glass housing is the first slab I'd rather display than store.", "Ryan G.", "rt/assets/people/men-32.jpg"], ["A real grading date beats refreshing a status page for months.", "Chris M.", "rt/assets/people/men-41.jpg"], ["Four subgrades on the label, so I can see exactly why it got the grade it did.", "Danielle R.", "rt/assets/people/women-12.jpg"], ["Finally somewhere that grades my booklets the right way.", "Taylor B.", "rt/assets/people/women-44.jpg"], ["An RFID chip tied to the certificate is a big deal when I go to sell.", "Marcus T.", "rt/assets/people/men-75.jpg"], ["Thirty days from a date I pick. That alone gets me in.", "Sam L.", "rt/assets/people/women-68.jpg"]];
+          var cards = document.querySelectorAll("[data-rv]"), k = [1, 0];
+          if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+          setInterval(function () {
+            if (document.hidden) return;
+            cards.forEach(function (c, n) {
+              if (!c.offsetParent) return;
+              c.classList.add("fade");
+              setTimeout(function () {
+                k[n] = (k[n] + 2) % Q.length;
+                c.querySelector("blockquote").textContent = "“" + Q[k[n]][0] + "”";
+                c.querySelector("figcaption span").textContent = Q[k[n]][1];
+                c.querySelector("img").src = Q[k[n]][2];
+                c.classList.remove("fade");
+              }, 420);
+            });
+          }, 5200);
+        })();
+      </script>
     </div>
   </div>
 </section>
@@ -318,6 +321,35 @@
 
     <p class="flow reveal" aria-label="Receive it, inspect it, grade it, protect it, reveal it"><span><small>01</small>Receive it</span><i>→</i><span><small>02</small>Inspect it</span><i>→</i><span><small>03</small>Grade it</span><i>→</i><span><small>04</small>Protect it</span><i>→</i><span class="flow-end"><small>05</small>Reveal it</span></p>
   </div>
+<script>
+  /* How HGA works: on desktop the section pins and scrolling down moves the steps across, left to right. */
+  (function () {
+    var sec = document.getElementById("how"), stick = sec.querySelector(".wrap"), track = document.getElementById("timeline");
+    var steps = track.querySelectorAll(".tl-step"), mq = matchMedia("(min-width: 901px)");
+    var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches, travel = 0;
+    function layout() {
+      var on = mq.matches && !reduce;
+      sec.classList.toggle("hx-on", on);
+      if (!on) { sec.style.height = ""; track.style.transform = ""; return; }
+      travel = Math.max(0, track.scrollWidth - innerWidth);
+      sec.style.height = (stick.offsetHeight + travel) + "px";
+      tick();
+    }
+    function tick() {
+      if (!sec.classList.contains("hx-on")) return;
+      var r = sec.getBoundingClientRect(), span = sec.offsetHeight - stick.offsetHeight;
+      var p = span > 0 ? Math.min(1, Math.max(0, (parseFloat(getComputedStyle(stick).top) - r.top) / span)) : 0;
+      track.style.transform = "translate3d(" + (-p * travel).toFixed(1) + "px,0,0)";
+      track.style.setProperty("--hxp", p.toFixed(4));
+      var mid = innerWidth * 0.62;
+      steps.forEach(function (st) { var on = st.getBoundingClientRect().left < mid; st.classList.toggle("hx-act", on); st.classList.toggle("active", on); });
+    }
+    addEventListener("scroll", function () { requestAnimationFrame(tick); }, { passive: true });
+    addEventListener("resize", layout);
+    addEventListener("load", layout);
+    layout();
+  })();
+</script>
 </section>
 
 <section class="sec offer" id="offer" aria-labelledby="offer-title">
