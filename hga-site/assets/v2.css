@@ -1346,7 +1346,7 @@ html[data-theme="dark"] .buy-inc b{color:#fff}
 .hm-head{text-align:center;display:grid;justify-items:center;gap:14px}
 .hm-head .eb{color:rgba(255,255,255,.7)}
 .hm-hero .h1{font-size:clamp(44px,4.5vw,64px);max-width:none}
-@media (max-width:1100px){.hm-hero .h1 .red{display:block}}
+@media (max-width:1100px){.hm-hero .h1{font-size:min(64px,8.4vw)}.hm-hero .h1>span{display:block;white-space:nowrap}}
 .hm-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr) minmax(0,1fr);gap:clamp(20px,3vw,48px);align-items:center;margin-top:clamp(18px,2.4vw,32px)}
 .hm-buy{display:grid;justify-items:start;gap:12px}
 .hm-wm{height:20px;width:auto}
@@ -1446,8 +1446,7 @@ html[data-theme="dark"] .buy-inc b{color:#fff}
 @media (max-width:720px){
   .hm-row{grid-template-columns:1fr}
   .hm-head .eb{font-size:11px}
-  .hm-hero .h1{font-size:clamp(40px,11.5vw,52px)}
-  .hm-row{gap:14px;margin-top:14px}
+  .hm-row{gap:30px;margin-top:30px}
   .hm-stage{grid-column:auto;grid-row:auto;order:-1}
   .hm-stage .stage-in{width:min(42%,170px)}
   .hm-stage .spin-slab .hint{display:none}
@@ -1468,7 +1467,7 @@ html[data-theme="dark"] .buy-inc b{color:#fff}
 }
 @media (prefers-reduced-motion:reduce){.hm-rv-track{animation:none}.hm-rv-set[aria-hidden]{display:none}.hm-rv-win{overflow:auto}.hm-rv-pause{display:none}}
 @media (min-width:1101px) and (max-height:820px){.hm-stage .stage-in{width:210px}.hm-rv-win{height:300px}}
-@media (max-width:720px) and (max-height:740px){.hm-head .eb{display:none}.hm-hero .h1{font-size:36px}.hm-stage .stage-in{width:110px}.hm-name{font-size:20px}.hm-price b{font-size:32px}}
+@media (max-width:720px) and (max-height:740px){.hm-head .eb{display:none}.hm-row{gap:18px;margin-top:18px}.hm-stage .stage-in{width:110px}.hm-name{font-size:20px}.hm-price b{font-size:32px}}
 @media (max-width:380px){.hm-sz{gap:6px;justify-content:center}.sz-1{--h:28px}.sz-2{--h:33px}.sz-3{--h:38px}.sz-5{--h:43px}.sz-d{--h:48px}.sz-5 .sz-shape i{width:calc(var(--h) * .3)}.sz-1 b,.sz-2 b{font-size:10px}.sz-3 b{font-size:11px}.sz-5 b{font-size:12px}.sz-d b{font-size:14px}}
 .hm-page .hdr .cta{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.45);box-shadow:none}
 .hm-page .hdr .cta:hover{border-color:#fff}
