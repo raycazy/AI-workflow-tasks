@@ -8,11 +8,11 @@
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#0E0E0E">
 <link rel="preload" href="./assets/fonts/bc-800.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="./assets/hga.css?v=e234b344">
-<link rel="stylesheet" href="./assets/v2.css?v=e234b344">
+<link rel="stylesheet" href="./assets/hga.css?v=42ebbe1f">
+<link rel="stylesheet" href="./assets/v2.css?v=42ebbe1f">
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script defer src="./assets/v2.js?v=e234b344"></script>
+<script defer src="./assets/v2.js?v=42ebbe1f"></script>
 <script type="importmap">{
   "imports": {
     "hga": "./assets/hga-site.js",
@@ -29,8 +29,8 @@
     "hybrid_grading/slab_scene": "./assets/hybrid_grading/slab_scene-355f9d5d.js"
   }
 }</script>
-<script defer src="./assets/site.js?v=e234b344"></script>
-<script defer src="./assets/shop.js?v=e234b344"></script>
+<script defer src="./assets/site.js?v=42ebbe1f"></script>
+<script defer src="./assets/shop.js?v=42ebbe1f"></script>
 <script type="module">import "hga"</script>
 </head>
 <body class="hm-page">
@@ -155,9 +155,28 @@
   <div class="wrap">
     <h2 class="h2" id="hm-pain-title">Why grading sucks today.</h2>
     <ol class="hm-pain-list">
-      <li><b>You don't know why your card got its grade.</b><span>A number comes back. The reasons don't.</span></li>
-      <li><b>Your grade depends on the grader's day.</b><span>The same card can get a different grade on a different day.</span></li>
-      <li><b>You don't know when you'll get it back.</b><span>Months of status pages and dates that keep moving.</span></li>
+      <li>
+        <div class="pv pv-why" aria-hidden="true">
+          <div class="pv-label"><span class="pv-l1"></span><span class="pv-l2"></span><b>8</b></div>
+          <p class="pv-q"><span>Centering</span><i>?</i><span>Corners</span><i>?</i><span>Edges</span><i>?</i><span>Surface</span><i>?</i></p>
+        </div>
+        <b>You don't know why your card got its grade.</b><span>A number comes back. The reasons don't.</span>
+      </li>
+      <li>
+        <div class="pv pv-day" aria-hidden="true">
+          <div class="pv-mini"><em>Monday</em><div class="pv-label"><span class="pv-l1"></span><span class="pv-l2"></span><b>9</b></div></div>
+          <div class="pv-mini"><em>Thursday</em><div class="pv-label"><span class="pv-l1"></span><span class="pv-l2"></span><b>8</b></div></div>
+        </div>
+        <b>Your grade depends on the grader's day.</b><span>The same card can get a different grade on a different day.</span>
+      </li>
+      <li>
+        <div class="pv pv-wait" aria-hidden="true">
+          <p class="pv-st"><span>Order status</span><b>In grading</b></p>
+          <div class="pv-bar"><i></i></div>
+          <p class="pv-eta"><span>Week 11</span><s>Est. 6 weeks</s><em>Est. TBD</em></p>
+        </div>
+        <b>You don't know when you'll get it back.</b><span>Months of status pages and dates that keep moving.</span>
+      </li>
     </ol>
   </div>
 </section>
@@ -165,16 +184,42 @@
 <section class="sec hm-why" id="why" aria-labelledby="hm-why-title">
   <div class="wrap">
     <h2 class="h2" id="hm-why-title">This is why grading <span class="red">won't suck anymore.</span></h2>
-    <div class="hm-feats">
-      <article class="hm-feat hm-feat-glass">
-        <img src="./slabs/items/17683/glass/360.webp" alt="A card in an HGA Glass slab" width="360" height="603" loading="lazy">
-        <div><h3>Aerospace glass housing</h3><p>The industry's first. Built to show off your best cards.</p></div>
+    <div class="hm-bento">
+      <article class="bt-tile bt-glass">
+        <img src="./assets/gen/glass-card.webp" alt="Gloved hands holding a card in an HGA Glass housing" width="1200" height="896" loading="lazy">
+        <div class="bt-copy"><h3>Aerospace glass housing</h3><p>The industry's first. Built to show off your best cards.</p></div>
       </article>
-      <article class="hm-feat"><svg class="ico"><use href="#i-calendar"/></svg><h3>A date on the calendar</h3><p>You book the day we grade your cards. Every presale grade, Poly and Glass, is back within 30 days.</p></article>
-      <article class="hm-feat"><svg class="ico"><use href="#i-chip"/></svg><h3>RFID in every slab</h3><p>Each slab carries an RFID chip tied to its certificate on the blockchain.</p></article>
-      <article class="hm-feat"><svg class="ico"><use href="#i-file"/></svg><h3>Every grade explained</h3><p>A full grading report and four subgrades on every label, at no extra cost.</p></article>
-      <article class="hm-feat"><svg class="ico"><use href="#i-eyeoff"/></svg><h3>One standard, graded blind</h3><p>Graders never see whose card it is. Software measures centering, trained graders grade the rest.</p></article>
+      <article class="bt-tile bt-rfid">
+        <img src="./assets/gen/chip-tap.webp" alt="A phone beside an HGA Glass slab with an RFID chip" width="1200" height="896" loading="lazy">
+        <div class="bt-copy"><h3>RFID in every slab</h3><p>Each slab carries an RFID chip tied to its certificate on the blockchain.</p></div>
+      </article>
+      <article class="bt-tile bt-ui bt-cal">
+        <div class="bt-mock" aria-hidden="true">
+          <p class="mk-h"><span>Your grading date</span><b>Feb 9</b></p>
+          <ol class="mk-week"><li class="full">1</li><li class="full">2</li><li class="full">3</li><li class="open">8</li><li class="me">9</li><li class="open">11</li><li class="open">12</li></ol>
+        </div>
+        <div class="bt-copy"><h3>A date on the calendar</h3><p>You book the day we grade your cards. Back within 30 days.</p></div>
+      </article>
+      <article class="bt-tile bt-ui bt-report">
+        <div class="bt-mock" aria-hidden="true">
+          <p class="mk-h"><span>Grade report</span><b>9.5</b></p>
+          <ul class="mk-subs"><li><span>Centering</span><i style="--v:.95"></i><b>9.5</b></li><li><span>Corners</span><i style="--v:1"></i><b>10</b></li><li><span>Edges</span><i style="--v:.9"></i><b>9</b></li><li><span>Surface</span><i style="--v:.95"></i><b>9.5</b></li></ul>
+        </div>
+        <div class="bt-copy"><h3>Every grade explained</h3><p>A full report and four subgrades on every label, at no extra cost.</p></div>
+      </article>
+      <article class="bt-tile bt-blind">
+        <img src="./assets/gen/lab-loupe.webp" alt="A grader inspecting a card under a loupe" width="1200" height="896" loading="lazy">
+        <div class="bt-copy"><h3>One standard, graded blind</h3><p>Graders never see whose card it is. Software measures centering, trained graders grade the rest.</p></div>
+      </article>
     </div>
+  </div>
+</section>
+
+<section class="hm-band" aria-labelledby="hm-band-title">
+  <img src="./assets/gen/display-shelf.webp" alt="Four cards in HGA Glass slabs on a lit display shelf" width="1376" height="768" loading="lazy">
+  <div class="wrap">
+    <h2 class="h2" id="hm-band-title">Made to be <span class="red">shown off.</span></h2>
+    <p>Your best cards belong on the shelf, not in a box.</p>
     <div class="hm-cta-row">
       <a class="btn lg" href="shop.html?h=glass#hero">Claim your Glass slot <span class="price">$200 <s>$600</s></span></a>
       <a class="hero-alt" href="shop.html?h=poly#hero">Or HGA Poly at $29 <svg class="ico"><use href="#i-arrow"/></svg></a>
@@ -188,14 +233,22 @@
       <h2 class="h2" id="hm-cal-title">Your grading date. <span class="red">Booked, not guessed.</span></h2>
       <p class="lede">The HGA Grading Calendar gives you a real date. You pick the day, we grade on it.</p>
     </div>
-    <ol class="hm-steps">
-      <li><span class="hm-when">Nov 23</span><b>Presale opens</b><p>Claim your slots at up to 80% off launch pricing.</p></li>
-      <li><span class="hm-when">Jan 18</span><b>The calendar opens</b><p>We email you to book. Pick the next available day, reserve your slots, and your credits apply automatically.</p></li>
-      <li><span class="hm-when">Any day before</span><b>Send your cards</b><p>Ship any time before the date you booked. Your confirmation page tells you exactly when.</p></li>
-      <li><span class="hm-when">From Feb 1</span><b>Grading starts</b><p>Every presale grade is back within 30 days of your grading date.</p></li>
-    </ol>
+    <div class="hm-cal-grid">
+      <ol class="hm-steps">
+        <li><span class="hm-when">Nov 23</span><div><b>Presale opens</b><p>Claim your slots at up to 80% off launch pricing.</p></div></li>
+        <li><span class="hm-when">Jan 18</span><div><b>The calendar opens</b><p>We email you to book. Pick the next available day, reserve your slots, and your credits apply automatically.</p></div></li>
+        <li><span class="hm-when">Any day before</span><div><b>Send your cards</b><p>Ship any time before the date you booked. Your confirmation page tells you exactly when.</p></div></li>
+        <li><span class="hm-when">From Feb 1</span><div><b>Grading starts</b><p>Every presale grade is back within 30 days of your grading date.</p></div></li>
+      </ol>
+      <div class="gcal-card hm-gcal" role="img" aria-label="Example booking on the HGA Grading Calendar: full days are closed, February 9 is booked, and move me up is switched on">
+        <div class="gcal-top"><span>HGA Grading Calendar</span><b>February 2027</b></div>
+        <ul class="gcal-wd" aria-hidden="true"><li>M</li><li>T</li><li>W</li><li>T</li><li>F</li><li>S</li><li>S</li></ul>
+        <ol class="gcal-days" aria-hidden="true"><li class="full">1</li><li class="full">2</li><li class="full">3</li><li class="full">4</li><li class="full">5</li><li class="off">6</li><li class="off">7</li><li class="full">8</li><li class="me">9</li><li class="open">10</li><li class="open">11</li><li class="open">12</li><li class="off">13</li><li class="off">14</li><li class="open">15</li><li class="open">16</li><li class="open">17</li><li class="open">18</li><li class="open">19</li><li class="off">20</li><li class="off">21</li><li class="open">22</li><li class="open">23</li><li class="open">24</li><li class="open">25</li><li class="open">26</li><li class="off">27</li><li class="off">28</li></ol>
+        <div class="hm-toggle" aria-hidden="true"><span><b>Move me up</b>If an earlier date opens, move me automatically</span><i class="on"></i></div>
+        <div class="gcal-ticket"><span>Booked</span><b>Tue, Feb 9, 2027 &middot; 3 Glass, 2 Poly</b><em><svg class="ico"><use href="#i-check"/></svg>Send your cards any time before Feb 9</em></div>
+      </div>
+    </div>
     <ul class="hm-cal-notes">
-      <li><svg class="ico"><use href="#i-refresh"/></svg><span><b>Move me up.</b> Tick it when you book and if an earlier date opens, we move you up automatically.</span></li>
       <li><svg class="ico"><use href="#i-users"/></svg><span><b>Dates filling up?</b> We're adding capacity. Need a card graded sooner? Buy a standard grade separately.</span></li>
     </ul>
   </div>
