@@ -8,11 +8,11 @@
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#0E0E0E">
 <link rel="preload" href="./assets/fonts/bc-800.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="./assets/hga.css?v=67cc9b17">
-<link rel="stylesheet" href="./assets/v2.css?v=67cc9b17">
+<link rel="stylesheet" href="./assets/hga.css?v=643f363f">
+<link rel="stylesheet" href="./assets/v2.css?v=643f363f">
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script defer src="./assets/v2.js?v=67cc9b17"></script>
+<script defer src="./assets/v2.js?v=643f363f"></script>
 <script type="importmap">{
   "imports": {
     "hga": "./assets/hga-site.js",
@@ -29,8 +29,8 @@
     "hybrid_grading/slab_scene": "./assets/hybrid_grading/slab_scene-355f9d5d.js"
   }
 }</script>
-<script defer src="./assets/site.js?v=67cc9b17"></script>
-<script defer src="./assets/shop.js?v=67cc9b17"></script>
+<script defer src="./assets/site.js?v=643f363f"></script>
+<script defer src="./assets/shop.js?v=643f363f"></script>
 <script type="module">import "hga"</script>
 </head>
 <body class="hm-page">
@@ -239,6 +239,42 @@
       <li><svg class="ico"><use href="#i-users"/></svg><span><b>Dates filling up?</b> We're adding capacity. Need a card graded sooner? Buy a standard grade separately.</span></li>
     </ul>
   </div>
+</section>
+
+<section class="sec hm-clock" id="turnaround" aria-labelledby="hm-clock-title">
+  <div class="wrap hm-clock-grid">
+    <div class="hm-clock-copy">
+      <p class="eb">The 30 day turnaround</p>
+      <h2 class="h2" id="hm-clock-title">A date. <span class="red">Not an estimate.</span></h2>
+      <p class="lede">Your 30 day turnaround is planned around the grading date you book, so you know when to expect your grade before your card leaves home.</p>
+      <p class="hm-clock-strong">We don't hope we hit a turnaround. We plan for it before your card ships.</p>
+      <ul class="hm-clock-rows">
+        <li><span class="ck-ico"><svg class="ico" aria-hidden="true"><use href="#i-calendar"/></svg></span><b>You choose your grading date</b></li>
+        <li><span class="ck-ico"><svg class="ico" aria-hidden="true"><use href="#i-truck"/></svg></span><b>Send your cards before your date</b></li>
+        <li><span class="ck-ico"><svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg></span><b>Back within 30 days, Poly and Glass</b></li>
+      </ul>
+    </div>
+    <div class="hm-clock-card" data-clock role="img" aria-label="Grading clock: day 1 is your grading date, your grade is back by day 30">
+      <div class="ck-top">
+        <div><p class="ck-kicker">Grading clock</p><b class="ck-title">One date. One deadline.</b></div>
+        <span class="ck-badge"><b>30</b><small>Days</small></span>
+      </div>
+      <div class="ck-bar" data-clock-bar aria-hidden="true"></div>
+      <div class="ck-labels" aria-hidden="true"><span><b>Day 1</b> Your grading date</span><span><b>Day 30</b> Your grade</span></div>
+      <div class="ck-foot"><span class="ck-ico"><svg class="ico" aria-hidden="true"><use href="#i-eye"/></svg></span><div><b>Follow every step</b><span>From delivery to your grade, with no guessing in between.</span></div></div>
+    </div>
+  </div>
+  <script>
+    document.querySelectorAll("[data-clock]").forEach(function (card) {
+      var bar = card.querySelector("[data-clock-bar]"), reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      for (var d = 1; d <= 30; d++) { var i = document.createElement("i"); if (d === 30) i.className = "end"; bar.appendChild(i); }
+      var cells = bar.querySelectorAll("i");
+      function fill() { cells.forEach(function (c, k) { setTimeout(function () { c.classList.add("on"); }, reduce ? 0 : 250 + k * 45); }); }
+      if (reduce || !("IntersectionObserver" in window)) return fill();
+      var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { fill(); io.disconnect(); } }, { threshold: 0.3 });
+      io.observe(card);
+    });
+  </script>
 </section>
 
 <section class="hm-band" aria-labelledby="hm-band-title">
