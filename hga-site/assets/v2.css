@@ -1856,3 +1856,24 @@ html[data-theme="dark"] .buy-inc b{color:#fff}
 @media (max-width:380px){.hc-visual .hc-show{--st:165px}}
 @media (min-width:901px) and (max-height:820px){.hc-visual .hc-show{--st:min(24vw,34vh)}}
 @media (min-width:901px){.hc-hero .hm-bg{left:auto;right:-12%;width:80%;-webkit-mask-image:linear-gradient(90deg,transparent,#000 30%);mask-image:linear-gradient(90deg,transparent,#000 30%)}}
+/* version C: no tabs, bigger showcase, one caption that grows with the size */
+.hc-visual .hc-show{--st:clamp(300px,31vw,460px);cursor:pointer;gap:14px;border-radius:var(--r-lg)}
+.hc-visual .hc-show:focus-visible{outline:2px solid rgba(255,255,255,.6);outline-offset:8px}
+.hc-cap{margin:0;font-family:var(--disp);font-weight:800;text-transform:uppercase;line-height:1;color:#fff;letter-spacing:.01em;animation:hcin .5s ease both}
+.hc-cap.c1{font-size:18px}.hc-cap.c2{font-size:22px}.hc-cap.c3{font-size:27px}.hc-cap.c4{font-size:32px}.hc-cap.c5{font-size:38px}
+.hc-cap.c1,.hc-cap.c2,.hc-cap.c3,.hc-cap.c4,.hc-cap.c5{animation-name:hcin}
+@media (max-width:1100px){.hc-visual .hc-show{--st:clamp(240px,31vw,340px)}}
+@media (min-width:901px) and (max-height:820px){.hc-visual .hc-show{--st:min(31vw,46vh)}}
+@media (max-width:900px){.hc-visual .hc-show{--st:min(58vw,330px)}}
+@media (max-width:720px){.hc-visual .hc-show{--st:225px}.hc-cap.c1{font-size:14px}.hc-cap.c2{font-size:16px}.hc-cap.c3{font-size:19px}.hc-cap.c4{font-size:22px}.hc-cap.c5{font-size:26px}}
+@media (max-width:720px) and (max-height:700px){.hc-visual .hc-show{--st:175px}}
+@media (max-width:380px){.hc-visual .hc-show{--st:185px}}
+@media (prefers-reduced-motion:reduce){.hc-cap{animation:none}}
+.hc-split{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
+.hc-text .h1{font-size:clamp(40px,4.1vw,60px)}
+.hc-visual .hc-sl.sz-5 .sz-shape i{width:calc(var(--h) * .24)}
+@media (max-width:900px){.hc-split{grid-template-columns:1fr}.hc-text .h1{font-size:min(64px,8.4vw)}}
+.hc-text .h1{font-size:clamp(40px,3.9vw,56px)}
+@media (min-width:1101px){.hc-visual .hc-show{--st:clamp(300px,31vw,420px)}}
+@media (min-width:1101px) and (max-height:820px){.hc-visual .hc-show{--st:min(31vw,46vh)}}
+@media (max-width:900px){.hc-text .h1{font-size:min(64px,8.4vw)}}

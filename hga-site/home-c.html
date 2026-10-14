@@ -8,11 +8,11 @@
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#0E0E0E">
 <link rel="preload" href="./assets/fonts/bc-800.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="./assets/hga.css?v=6c3cfbdc">
-<link rel="stylesheet" href="./assets/v2.css?v=6c3cfbdc">
+<link rel="stylesheet" href="./assets/hga.css?v=02e100c0">
+<link rel="stylesheet" href="./assets/v2.css?v=02e100c0">
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script defer src="./assets/v2.js?v=6c3cfbdc"></script>
+<script defer src="./assets/v2.js?v=02e100c0"></script>
 <script type="importmap">{
   "imports": {
     "hga": "./assets/hga-site.js",
@@ -29,8 +29,8 @@
     "hybrid_grading/slab_scene": "./assets/hybrid_grading/slab_scene-355f9d5d.js"
   }
 }</script>
-<script defer src="./assets/site.js?v=6c3cfbdc"></script>
-<script defer src="./assets/shop.js?v=6c3cfbdc"></script>
+<script defer src="./assets/site.js?v=02e100c0"></script>
+<script defer src="./assets/shop.js?v=02e100c0"></script>
 <script type="module">import "hga"</script>
 </head>
 <body class="hm-page">
@@ -82,7 +82,7 @@
       </aside>
     </div>
     <div class="hc-visual">
-    <div class="hc-show" data-sizes aria-label="Every size, single to deck" role="group">
+    <div class="hc-show" data-sizes aria-label="Every size, single to deck. Select to see the next size." role="group" tabindex="0">
     <ol class="hc-slides">
       <li class="hc-sl hc-sl-1 on" data-sl>
         <div class="stage-in">
@@ -111,7 +111,7 @@
       <li class="hc-sl sz-5" data-sl aria-hidden="true"><span class="sz-shape"><i><img src="./assets/gen/panels/p1.webp" alt="" width="152" height="234" loading="lazy"></i><i><img src="./assets/gen/panels/p2.webp" alt="" width="152" height="234" loading="lazy"></i><i><img src="./assets/gen/panels/p3.webp" alt="" width="152" height="234" loading="lazy"></i><i><img src="./assets/gen/panels/p4.webp" alt="" width="152" height="234" loading="lazy"></i><i><img src="./assets/gen/panels/p5.webp" alt="" width="152" height="234" loading="lazy"></i></span></li>
       <li class="hc-sl sz-d" data-sl aria-hidden="true"><span class="sz-shape"><i><img src="./assets/gen/panels/gengar.webp" alt="" width="152" height="234" loading="lazy"></i></span></li>
     </ol>
-    <div class="hc-tabs"><button type="button" class="hc-tab t1 on" aria-pressed="true" data-tab="0"><b>Single</b><i aria-hidden="true"></i></button><button type="button" class="hc-tab t2" aria-pressed="false" data-tab="1"><b>Booklet</b><i aria-hidden="true"></i></button><button type="button" class="hc-tab t3" aria-pressed="false" data-tab="2"><b>Trifold</b><i aria-hidden="true"></i></button><button type="button" class="hc-tab t4" aria-pressed="false" data-tab="3"><b>Five fold</b><i aria-hidden="true"></i></button><button type="button" class="hc-tab t5" aria-pressed="false" data-tab="4"><b>Deck</b><i aria-hidden="true"></i></button></div>
+    <p class="hc-cap c1" data-cap aria-live="polite">Single</p>
     </div>
     </div>
   </div>
@@ -188,22 +188,24 @@
   </div>
 </section>
 <script>
-  // Size showcase: one housing at a time, single to deck. Names below jump to a size; hover or focus pauses.
+  // Size showcase: one housing at a time, single to deck, with the size name under it growing as the sizes do.
+  // Click (or Enter) shows the next size; hover or focus pauses; reduced motion means no autoplay.
   document.querySelectorAll("[data-sizes]").forEach(function (box) {
-    var sl = box.querySelectorAll("[data-sl]"), tabs = box.querySelectorAll("[data-tab]"), i = 0, t;
+    var sl = box.querySelectorAll("[data-sl]"), cap = box.querySelector("[data-cap]"), i = 0, t;
+    var NAMES = ["Single", "Booklet", "Trifold", "Five fold", "Deck"];
     var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches, hold = false;
     function show(n) {
       i = (n + sl.length) % sl.length;
       sl.forEach(function (x, k) { x.classList.toggle("on", k === i); x.setAttribute("aria-hidden", k === i ? "false" : "true"); });
-      tabs.forEach(function (x, k) { var on = k === i; x.classList.remove("on"); x.setAttribute("aria-pressed", on ? "true" : "false"); if (on) { void x.offsetWidth; x.classList.add("on"); } });
+      cap.textContent = NAMES[i]; cap.className = "hc-cap c" + (i + 1);
     }
     function run() { clearInterval(t); if (!reduce && !hold) t = setInterval(function () { show(i + 1); }, 2800); }
-    tabs.forEach(function (b, k) { b.addEventListener("click", function () { show(k); run(); }); });
-    box.addEventListener("mouseenter", function () { hold = true; box.classList.add("held"); run(); });
-    box.addEventListener("mouseleave", function () { hold = false; box.classList.remove("held"); show(i); run(); });
-    box.addEventListener("focusin", function () { hold = true; box.classList.add("held"); run(); });
-    box.addEventListener("focusout", function () { hold = false; box.classList.remove("held"); run(); });
-    if (reduce) box.classList.add("held");
+    box.addEventListener("click", function () { show(i + 1); run(); });
+    box.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); show(i + 1); run(); } });
+    box.addEventListener("mouseenter", function () { hold = true; run(); });
+    box.addEventListener("mouseleave", function () { hold = false; run(); });
+    box.addEventListener("focusin", function () { hold = true; run(); });
+    box.addEventListener("focusout", function () { hold = false; run(); });
     run();
   });
   // One collector quote at a time beside the claim button; the button stops and restarts the rotation.
