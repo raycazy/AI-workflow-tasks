@@ -21,7 +21,7 @@
   };
   var VARIANTS = {
     promo: {
-      eb: "Presale · Nov 1, 2026 to Jan 31, 2027",
+      eb: "Presale · Nov 23, 2026 to Jan 31, 2027",
       a: "Our fastest grade", b: "at our lowest price.",
       lede: "Prepay 15 business day grading now, up to 81% under the launch price. Four subgrades, the Grade Report and the case included. Book your grading day from Feb 1.",
       housing: "glass", glass: "ohtani", poly: "judge"

@@ -8,11 +8,11 @@
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#0E0E0E">
 <link rel="preload" href="./assets/fonts/bc-800.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="./assets/hga.css?v=72ff0ed8">
-<link rel="stylesheet" href="./assets/v2.css?v=72ff0ed8">
+<link rel="stylesheet" href="./assets/hga.css?v=d665a294">
+<link rel="stylesheet" href="./assets/v2.css?v=d665a294">
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script defer src="./assets/v2.js?v=72ff0ed8"></script>
+<script defer src="./assets/v2.js?v=d665a294"></script>
 <script type="importmap">{
   "imports": {
     "hga": "./assets/hga-site.js",
@@ -29,8 +29,8 @@
     "hybrid_grading/slab_scene": "./assets/hybrid_grading/slab_scene-355f9d5d.js"
   }
 }</script>
-<script defer src="./assets/site.js?v=72ff0ed8"></script>
-<script defer src="./assets/shop.js?v=72ff0ed8"></script>
+<script defer src="./assets/site.js?v=d665a294"></script>
+<script defer src="./assets/shop.js?v=d665a294"></script>
 <script type="module">import "hga"</script>
 </head>
 <body>
@@ -157,7 +157,6 @@
     <div class="hm-rvs-head">
       <h2 class="h2" id="hm-rvs-title">Collector <span class="red">reviews.</span></h2>
       <p class="lede">What collectors say about HGA Glass and HGA Poly.</p>
-      <p class="hm-draft">Draft quotes, owners being confirmed</p>
     </div>
     <div class="rv-wrap" data-rvc>
       <button type="button" class="rv-arrow rv-prev" aria-label="Previous reviews" data-rv-prev><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
@@ -175,6 +174,13 @@
       w.querySelector("[data-rv-prev]").addEventListener("click", function () { go(Math.round(tr.scrollLeft / step()) - 1); });
       w.querySelector("[data-rv-next]").addEventListener("click", function () { var i = Math.round(tr.scrollLeft / step()) + 1; go(tr.scrollLeft + tr.clientWidth >= tr.scrollWidth - 4 ? 0 : i); });
       dots.forEach(function (d) { d.addEventListener("click", function () { go(+d.dataset.dot); }); });
+      // rvAuto: advance every 5s; pause on hover, focus or touch; off for reduced motion
+      var t = null, hold = false, reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      function nxt() { var i = Math.round(tr.scrollLeft / step()) + 1; go(tr.scrollLeft + tr.clientWidth >= tr.scrollWidth - 4 ? 0 : i); }
+      function run() { clearInterval(t); if (!reduce && !hold) t = setInterval(nxt, 5000); }
+      ["mouseenter", "focusin", "touchstart"].forEach(function (ev) { w.addEventListener(ev, function () { hold = true; run(); }, { passive: true }); });
+      ["mouseleave", "focusout"].forEach(function (ev) { w.addEventListener(ev, function () { hold = false; run(); }); });
+      new IntersectionObserver(function (es) { if (es[0].isIntersecting) run(); else clearInterval(t); }).observe(w);
       tr.addEventListener("scroll", function () {
         var i = Math.round(tr.scrollLeft / step()); if (tr.scrollLeft + tr.clientWidth >= tr.scrollWidth - 4) i = cards.length - 1;
         dots.forEach(function (d, k) { d.classList.toggle("on", k === i); });
@@ -186,8 +192,8 @@
   <div class="wrap">
     <p class="ps-h">How the presale works</p>
     <ol class="ps-steps">
-      <li class="now"><span class="ps-k">Nov 1, 2026 to Jan 31, 2027 &middot; ends in <b data-cd-text>113d 00h 00m</b></span><b class="ps-t">The presale</b><p>Lock in Poly at $29 or Glass at $200 a card. Nothing to ship yet.</p></li>
-      <li><span class="ps-k">February 1, 2027</span><b class="ps-t">HGA goes live</b><p>Book your day on the HGA Grading Calendar and send your cards in.</p></li>
+      <li class="now"><span class="ps-k">Nov 23, 2026 to Jan 31, 2027 &middot; ends in <b data-cd-text>113d 00h 00m</b></span><b class="ps-t">The presale</b><p>Lock in Poly at $29 or Glass at $200 a card. Nothing to ship yet.</p></li>
+      <li><span class="ps-k">February 1, 2027</span><b class="ps-t">HGA goes live</b><p>Grading starts. Book your date on the HGA Grading Calendar from Jan 18 and send your cards before it.</p></li>
       <li><span class="ps-k">After February 1</span><b class="ps-t">Presale pricing is gone</b><p>This pricing is no longer available once we go live.</p></li>
     </ol>
   </div>

@@ -2298,3 +2298,36 @@ html[data-theme="dark"] .buy-inc b{color:#fff}
 .rv-q blockquote{margin:0}
 .rv-q cite{margin:18px 0 0;padding-bottom:0}
 @media (max-width:560px){.rv-card{min-height:240px}}
+
+/* how HGA works: open step has a red border all round (no one sided bar) */
+.pr-step.on{border-color:var(--red);box-shadow:0 0 0 1px var(--red),0 18px 40px -24px rgba(230,36,41,.6)}
+.pr-bar{display:none}
+
+/* step 05: phone reveal (after Rachel Tomi's "see everything" phone) */
+.pr-fig-phone{display:grid;place-items:center;background:radial-gradient(ellipse 60% 70% at 50% 55%,rgba(230,36,41,.28),transparent 70%),#0b0808}
+.pr-fig-phone::after{display:none}
+.pr-phone{position:relative;height:88%;aspect-ratio:9/19;border-radius:38px;padding:9px;background:linear-gradient(145deg,#2b2b2b,#0e0e0e);box-shadow:0 0 0 1px rgba(255,255,255,.15),0 40px 80px -30px rgba(230,36,41,.45),0 30px 60px rgba(0,0,0,.8)}
+.pr-ph-notch{position:absolute;left:50%;top:17px;width:30%;height:18px;border-radius:12px;background:#000;transform:translateX(-50%);z-index:3}
+.pr-ph-screen{position:relative;height:100%;border-radius:30px;overflow:hidden;background:radial-gradient(circle at 50% 55%,rgba(230,36,41,.25),transparent 60%),#090606;display:flex;flex-direction:column;align-items:center;padding:44px 14px 22px;text-align:center}
+.pr-ph-top{margin:0;font-family:var(--lab);font-weight:600;font-size:9px;letter-spacing:.2em;color:rgba(255,255,255,.5)}
+.pr-ph-yg{margin:10px 0 0;font-family:var(--disp);font-weight:800;font-size:17px;letter-spacing:.06em;text-transform:uppercase;color:#fff}
+.pr-ph-stage{flex:1;width:100%;display:grid;place-items:center;perspective:900px}
+.pr-ph-card{position:relative;width:62%;aspect-ratio:63/88;transform-style:preserve-3d}
+.pr-ph-card>*{position:absolute;inset:0;width:100%;height:100%;border-radius:7px;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.pr-ph-front{object-fit:cover;box-shadow:0 0 36px rgba(230,36,41,.45)}
+.pr-ph-back{transform:rotateY(180deg);background:linear-gradient(135deg,#241414,#080505);border:1px solid rgba(230,36,41,.5);display:grid;place-items:center}
+.pr-ph-back img{width:60%;height:auto;opacity:.9}
+.pr-ph-grade{opacity:0}
+.pr-ph-grade b{display:block;font-family:var(--disp);font-weight:800;font-size:64px;line-height:1;color:var(--red);text-shadow:0 0 36px rgba(230,36,41,.8)}
+.pr-ph-grade span{font-family:var(--lab);font-weight:600;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#fff}
+.pr-fig-phone.on .pr-ph-card{animation:prSpin 4.2s cubic-bezier(.2,.7,.2,1) both}
+.pr-fig-phone.on .pr-ph-grade{animation:prGrade 4.2s cubic-bezier(.2,.7,.2,1) both}
+@keyframes prSpin{0%{transform:rotateY(0)}55%,100%{transform:rotateY(720deg)}}
+@keyframes prGrade{0%,50%{opacity:0;transform:scale(2);filter:blur(10px)}66%,100%{opacity:1;transform:none;filter:none}}
+.held .pr-fig-phone.on .pr-ph-card,.held .pr-fig-phone.on .pr-ph-grade{animation-iteration-count:1}
+@media (max-width:720px){.pr-phone{height:84%}.pr-ph-grade b{font-size:52px}.pr-ph-yg{font-size:15px}}
+@media (prefers-reduced-motion:reduce){.pr-fig-phone.on .pr-ph-card{animation:none}.pr-ph-grade,.pr-fig-phone.on .pr-ph-grade{animation:none;opacity:1}}
+.pr-vis{clip-path:inset(0 round var(--r-lg));isolation:isolate}
+.pr-ph-yg{font-size:15px;white-space:nowrap}
+.hc2-rv .hc-qs{min-height:64px}
+.ps-k [data-cd-text]{white-space:nowrap}
