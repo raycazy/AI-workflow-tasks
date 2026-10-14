@@ -1499,3 +1499,8 @@ html.js-ticks [data-ticks]:not(.is-filled) > span{ transform:scaleX(0.05); }
 .plan__terms{ display:inline-flex; align-items:center; min-height:44px; padding-block:12px; margin-block:-12px; }
 /* PDP facts row on mobile: gap only, so no divider ever leads a wrapped line (design review m5) */
 @media (max-width:600px){ .factline{ gap:6px 20px; } .factline li{ padding-inline:0; } .factline li + li::before{ display:none; } }
+
+/* Hero copy centred vertically on desktop (user 2026-10-14: "center"); the fact strip that pinned it to the top is gone */
+@media (min-width:961px){
+  .hero__copy{ justify-content:center; padding-block:48px; }
+}
