@@ -1,0 +1,34 @@
+/* Version E additions on top of Rachel Tomi's styles.css (home-e.html) */
+.hero-pts{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 26px;font-size:14.5px;color:var(--text-2)}
+.hero-pts li{display:flex;align-items:center;gap:8px}
+.hero-pts svg{width:18px;height:18px;color:var(--red)}
+.gc-review figcaption{display:flex;align-items:center;gap:10px}
+img.gc-av{flex:0 0 30px;width:30px;height:30px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 1px rgba(255,255,255,.2)}
+#heroQuoteBy{font-weight:700;color:var(--text)}
+
+.ps-e{padding:clamp(36px,4.5vw,56px) 0;border-top:1px solid var(--line)}
+.ps-cards{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.ps-card{padding:22px 24px;border-radius:var(--r);background:var(--ink-2);border:1px solid var(--line)}
+.ps-card.now{border-color:rgba(230,36,41,.55);background:radial-gradient(ellipse 90% 120% at 0 0,rgba(230,36,41,.16),transparent 70%),var(--ink-2)}
+.ps-card .kicker{margin:0}
+.ps-card .kicker b{color:var(--text)}
+.ps-card h3{margin:8px 0 6px;font-size:clamp(20px,1.7vw,24px);font-weight:800;letter-spacing:-.01em}
+.ps-card p:last-child{margin:0;color:var(--text-2);font-size:15px;line-height:1.5}
+@media (max-width:860px){.ps-cards{grid-template-columns:1fr}}
+
+.reviews-e{padding:clamp(28px,3vw,40px) 0 clamp(56px,6vw,88px)}
+.rv figcaption{justify-content:flex-start}
+img.rv-av{flex:0 0 34px;width:34px;height:34px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 1px rgba(255,255,255,.2)}
+.rv figcaption b{color:var(--text)}
+.faq-all{margin-top:16px}
+.faq-all a{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--text);text-decoration:underline;text-underline-offset:5px;text-decoration-color:rgba(255,255,255,.3)}
+.faq-all svg{width:16px;height:16px}
+.fine a{color:var(--text);text-decoration:underline;text-underline-offset:3px}
+svg.ck{width:14px;height:14px;vertical-align:-2px;color:#3ccf7a}
+.nav-links a{white-space:nowrap}
+@media (max-width:720px){
+  #hero-title .line{display:block;white-space:nowrap}
+  #hero-title{font-size:min(var(--fs-h1),9.4vw)}
+  .hero-head>.label{font-size:10.5px;letter-spacing:.1em}
+  .hero-pts{gap:8px 18px;font-size:13.5px}
+}
