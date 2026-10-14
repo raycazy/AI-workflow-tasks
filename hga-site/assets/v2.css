@@ -1740,3 +1740,59 @@ html[data-theme="dark"] .buy-inc b{color:#fff}
 .hb-opt:focus-visible{outline:2px solid #fff;outline-offset:2px}
 @media (max-width:380px){.hb-sizes .hm-sz{gap:6px}.hb-sizes .sz-1{--h:24px}.hb-sizes .sz-2{--h:28px}.hb-sizes .sz-3{--h:32px}.hb-sizes .sz-5{--h:36px}.hb-sizes .sz-d{--h:42px}.hb-sizes .sz-1 b,.hb-sizes .sz-2 b{font-size:9px}.hb-sizes .sz-3 b{font-size:10px}.hb-sizes .sz-5 b{font-size:11px}.hb-sizes .sz-d b{font-size:13px}.hb-sizes .sz-shape{padding:2px;padding-top:calc(var(--h) * .2);gap:2px}}
 @media (min-width:721px) and (max-height:720px){.hc-hero .hm-head .eb{display:none}.hc-line{margin-top:10px}}
+
+/* version C: size showcase, one housing at a time, single to deck */
+.hc-show{margin-top:clamp(12px,1.6vw,22px);display:grid;justify-items:center;gap:clamp(14px,1.6vw,22px)}
+.hc-slides{list-style:none;margin:0;padding:0;position:relative;width:100%;height:clamp(240px,27vw,370px)}
+.hc-sl{position:absolute;left:50%;bottom:0;transform:translateX(-50%) scale(.9);opacity:0;transition:opacity .55s ease,transform .7s cubic-bezier(.2,.7,.2,1);pointer-events:none}
+.hc-sl.on{opacity:1;transform:translateX(-50%) scale(1);pointer-events:auto}
+.hc-sl-1 .stage-in{width:clamp(140px,13vw,200px)}
+.hc-sl-1 .spin-slab img{filter:drop-shadow(0 40px 40px rgba(0,0,0,.8))}
+.hc-sl-1 .spin-slab .hint{display:none}
+.hc-sl .sz-shape{gap:6px;padding:8px;padding-top:calc(var(--h) * .2);border-radius:12px;box-shadow:inset 0 0 0 2px rgba(0,0,0,.6),0 40px 60px -20px rgba(0,0,0,.8)}
+.hc-sl .sz-shape::before{left:8px;right:8px;top:8px;border-radius:4px}
+.hc-sl.sz-2{--h:clamp(170px,19vw,265px)}
+.hc-sl.sz-3{--h:clamp(185px,21vw,290px)}
+.hc-sl.sz-5{--h:clamp(195px,22.5vw,315px)}
+.hc-sl.sz-d{--h:clamp(215px,25vw,350px)}
+.hc-sl.sz-2 .sz-shape i{width:calc(var(--h) * .42)}
+.hc-sl.sz-3 .sz-shape i{width:calc(var(--h) * .36)}
+.hc-sl.sz-5 .sz-shape i{width:calc(var(--h) * .27)}
+.hc-sl.sz-d .sz-shape i{width:calc(var(--h) * .6)}
+.hc-sl.sz-d .sz-shape{box-shadow:inset 0 0 0 2px rgba(0,0,0,.6),7px 7px 0 -1px rgba(255,255,255,.18),14px 14px 0 -2px rgba(255,255,255,.1),0 40px 60px -20px rgba(0,0,0,.8)}
+.hc-tabs{display:flex;align-items:flex-end;justify-content:center;gap:clamp(14px,2.6vw,40px)}
+.hc-tab{position:relative;background:none;border:0;padding:0 0 10px;cursor:pointer;color:rgba(255,255,255,.4);transition:color .3s}
+.hc-tab b{font-family:var(--disp);font-weight:800;text-transform:uppercase;line-height:1;letter-spacing:.01em}
+.hc-tab.t1 b{font-size:14px}.hc-tab.t2 b{font-size:18px}.hc-tab.t3 b{font-size:22px}.hc-tab.t4 b{font-size:27px}.hc-tab.t5 b{font-size:32px}
+.hc-tab:hover,.hc-tab.on{color:#fff}
+.hc-tab i{position:absolute;left:0;right:0;bottom:0;height:3px;border-radius:2px;background:rgba(255,255,255,.12);overflow:hidden}
+.hc-tab i::after{content:"";position:absolute;inset:0;background:var(--red);transform:scaleX(0);transform-origin:left}
+.hc-tab.on i::after{animation:hcbar 2.8s linear forwards}
+.hc-show.held .hc-tab.on i::after{animation:none;transform:scaleX(1)}
+.hc-tab:focus-visible{outline:2px solid #fff;outline-offset:4px;border-radius:4px}
+@keyframes hcbar{to{transform:scaleX(1)}}
+@media (max-width:720px){
+  .hc-slides{height:230px}
+  .hc-sl-1 .stage-in{width:128px}
+  .hc-sl.sz-2{--h:150px}.hc-sl.sz-3{--h:160px}.hc-sl.sz-5{--h:170px}.hc-sl.sz-d{--h:190px}
+  .hc-sl.sz-5 .sz-shape i{width:calc(var(--h) * .22)}
+  .hc-sl .sz-shape{gap:3px;padding:5px;padding-top:calc(var(--h) * .2)}
+  .hc-sl .sz-shape::before{left:5px;right:5px;top:5px}
+  .hc-tabs{gap:12px}
+  .hc-tab.t1 b{font-size:11px}.hc-tab.t2 b{font-size:13px}.hc-tab.t3 b{font-size:15px}.hc-tab.t4 b{font-size:17px}.hc-tab.t5 b{font-size:20px}
+}
+@media (max-width:380px){.hc-tabs{gap:8px}.hc-tab.t1 b{font-size:10px}.hc-tab.t2 b{font-size:11px}.hc-tab.t3 b{font-size:13px}.hc-tab.t4 b{font-size:14px}.hc-tab.t5 b{font-size:17px}.hc-slides{height:200px}.hc-sl-1 .stage-in{width:110px}.hc-sl.sz-2{--h:130px}.hc-sl.sz-3{--h:140px}.hc-sl.sz-5{--h:150px}.hc-sl.sz-d{--h:165px}}
+@media (min-width:721px) and (max-height:820px){.hc-slides{height:min(27vw,300px)}.hc-sl-1 .stage-in{width:min(13vw,165px)}}
+@media (prefers-reduced-motion:reduce){.hc-sl{transition:none}.hc-tab.on i::after{animation:none;transform:scaleX(1)}}
+/* showcase sizing: everything scales off one stage height, so each size is taller and wider than the last */
+.hc-show{--st:clamp(230px,23vw,340px)}
+.hc-slides{height:var(--st)}
+.hc-sl-1 .stage-in{width:calc(var(--st) * .5)}
+.hc-sl.sz-2{--h:calc(var(--st) * .87)}
+.hc-sl.sz-3{--h:calc(var(--st) * .9)}
+.hc-sl.sz-5{--h:calc(var(--st) * .93)}
+.hc-sl.sz-d{--h:calc(var(--st) * .96)}
+@media (min-width:721px) and (max-height:820px){.hc-show{--st:min(23vw,30vh)}.hc-slides{height:var(--st)}.hc-sl-1 .stage-in{width:calc(var(--st) * .5)}}
+@media (max-width:720px){.hc-show{--st:205px}.hc-sl.sz-5 .sz-shape i{width:calc(var(--h) * .21)}}
+@media (max-width:720px) and (max-height:700px){.hc-show{--st:165px}.hc-hero .hm-head .eb{display:none}}
+@media (max-width:380px){.hc-show{--st:170px}.hc-sl.sz-5 .sz-shape i{width:calc(var(--h) * .19)}}
