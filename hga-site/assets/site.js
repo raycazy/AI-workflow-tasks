@@ -156,9 +156,9 @@
   if (hero) applyVariant(variantKey); else setQty(qty);
   if (builderTouched) setQty(qty);
 
-  // ---------- presale state: reads "opens Nov 1" until the sale starts ----------
-  if (Date.now() < new Date("2026-11-01T00:00:00-07:00").getTime()) {
-    $$("[data-ps-label]").forEach(function (e) { e.textContent = "Pre sale opens Nov 1"; });
+  // ---------- presale state: reads "opens Nov 23" until the sale starts (launch moved to Mon Nov 23, call with Trevor 2026-10-14) ----------
+  if (Date.now() < new Date("2026-11-23T00:00:00-07:00").getTime()) {
+    $$("[data-ps-label]").forEach(function (e) { e.textContent = "Pre sale opens Nov 23"; });
   }
 
   // ---------- countdowns ----------
