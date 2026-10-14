@@ -109,10 +109,33 @@
         </div>
       </div>
 
+      <div class="gc-rail">
+      <div class="gc gc-clock intro" style="--i:8" id="clockCard">
+        <div class="clock-top">
+          <div><p class="gc-k">Grading clock</p><b class="clock-title">One date. One deadline.</b></div>
+          <span class="clock-badge"><b>30</b><small>Days</small></span>
+        </div>
+        <div class="clock-bar" id="clockBar" aria-hidden="true"></div>
+        <div class="clock-labels"><span><b>Day 1</b> Grading date</span><span><b>Day 30</b> Your grade</span></div>
+        <div class="clock-foot"><span class="crow-ico"><svg><use href="#i-eye"/></svg></span><div><b>Follow every step</b><span>No guessing in between.</span></div></div>
+      </div>
+
+      <div class="gc gc-date intro" style="--i:7">
+        <p class="gc-k">Your grading date</p>
+        <b class="gc-big">Tue, Feb 9, 2027</b>
+        <span class="gc-ok"><svg><use href="#i-check"/></svg> Grading capacity reserved</span>
+      </div>
+
       <figure class="gc gc-review hero-quote intro" style="--i:8" aria-live="polite">
         <blockquote id="heroQuote">&ldquo;The glass housing is the first slab I'd rather display than store.&rdquo;</blockquote>
         <figcaption><img class="gc-av" src="rt/assets/people/men-32.jpg" alt="" width="128" height="128" loading="lazy" /><span id="heroQuoteBy">Ryan G.</span></figcaption>
       </figure>
+      </div>
+
+      <div class="gc gc-chip gc-rfid intro" style="--i:9">
+        <span class="gc-ico"><span class="rf-rings"><i></i><i></i></span><svg><use href="#i-rfid"/></svg></span>
+        <span><b>RFID verified</b><small>Tap to see the card's record</small></span>
+      </div>
     </div>
   </div>
 </section>
@@ -133,14 +156,38 @@
     <div class="sec-head center reveal">
       <h2 id="why-title" class="h2">This is why grading <span class="red wipe">won't suck anymore.</span></h2>
     </div>
-    <div class="cmp" role="table" aria-label="Grading today compared with HGA">
-      <div class="cmp-row cmp-head" role="row"><span></span><span>Grading today</span><span class="cmp-hga"><img src="rt/assets/brand/hga.svg" alt="HGA" width="64" height="16" /></span></div>
-      <div class="cmp-row reveal" style="--d:0"><p class="cmp-q">Why your card got its grade</p><p class="cmp-no"><span class="pain-x"><svg><use href="#i-x"/></svg></span>A number, no reasons</p><p class="cmp-yes"><svg><use href="#i-check"/></svg>Full report and four subgrades, free</p></div><div class="cmp-row reveal" style="--d:1"><p class="cmp-q">Who decides</p><p class="cmp-no"><span class="pain-x"><svg><use href="#i-x"/></svg></span>Depends on the grader's day</p><p class="cmp-yes"><svg><use href="#i-check"/></svg>One standard, graded blind</p></div><div class="cmp-row reveal" style="--d:2"><p class="cmp-q">When it comes back</p><p class="cmp-no"><span class="pain-x"><svg><use href="#i-x"/></svg></span>Estimates that keep moving</p><p class="cmp-yes"><svg><use href="#i-check"/></svg>A date you book, back within 30 days</p></div><div class="cmp-row reveal" style="--d:0"><p class="cmp-q">The housing</p><p class="cmp-no"><span class="pain-x"><svg><use href="#i-x"/></svg></span>Plastic</p><p class="cmp-yes"><svg><use href="#i-check"/></svg>Aerospace glass, or Poly</p></div><div class="cmp-row reveal" style="--d:1"><p class="cmp-q">Proof it's real</p><p class="cmp-no"><span class="pain-x"><svg><use href="#i-x"/></svg></span>A printed label</p><p class="cmp-yes"><svg><use href="#i-check"/></svg>RFID chip tied to a blockchain certificate</p></div><div class="cmp-row reveal" style="--d:2"><p class="cmp-q">Booklets, trifolds, five folds, decks</p><p class="cmp-no"><span class="pain-x"><svg><use href="#i-x"/></svg></span>Hard to find</p><p class="cmp-yes"><svg><use href="#i-check"/></svg>Every size, single to deck</p></div>
+
+    <ul class="pains" aria-label="The problem with grading today">
+      <li class="pain reveal"><span class="pain-x"><svg><use href="#i-x"/></svg></span><div><p>You don't know why your card got its grade.</p><span class="pain-d">A number comes back. The reasons don't.</span></div></li>
+      <li class="pain reveal" style="--d:1"><span class="pain-x"><svg><use href="#i-x"/></svg></span><div><p>Your grade depends on the grader's day.</p><span class="pain-d">The same card can get a different grade on a different day.</span></div></li>
+      <li class="pain reveal" style="--d:2"><span class="pain-x"><svg><use href="#i-x"/></svg></span><div><p>You don't know when you'll get it back.</p><span class="pain-d">Months of status pages and dates that keep moving.</span></div></li>
+    </ul>
+
+    <p class="pivot reveal"><span>Three things nobody else has.</span></p>
+
+    <div class="answers">
+      <article class="answer reveal">
+        <div class="ans-vis vis-glass" aria-hidden="true"><img src="rt/assets/slabs/glass-ohtani.webp" alt="" width="720" height="1207" loading="lazy" /></div>
+        <h3>Aerospace glass housing</h3>
+        <p>The industry's first. Built to show off your best cards.</p>
+      </article>
+      <article class="answer reveal" style="--d:1">
+        <div class="ans-vis vis-cal" aria-hidden="true">
+          <div class="mini-cal"><i></i><i></i><i class="x"></i><i class="x"></i><i></i><i class="w"></i><i class="w"></i><i></i><i class="me"></i><i></i><i class="x"></i><i></i><i class="w"></i><i class="w"></i></div>
+        </div>
+        <h3>The grading calendar</h3>
+        <p>You book the day we grade your cards. Back within 30 days.</p>
+      </article>
+      <article class="answer reveal" style="--d:2">
+        <div class="ans-vis vis-rfid" aria-hidden="true"><img src="rt/assets/photos/rfid-verified.jpg" alt="" width="988" height="626" loading="lazy" /></div>
+        <h3>RFID in every slab</h3>
+        <p>Each slab carries an RFID chip tied to its certificate on the blockchain.</p>
+      </article>
     </div>
-    <div class="answers answers-ph">
-      <article class="answer reveal"><div class="ans-vis" aria-hidden="true"><img src="rt/assets/photos/glass-card.webp" alt="" width="1200" height="896" loading="lazy" /></div><h3>Aerospace glass</h3></article>
-      <article class="answer reveal" style="--d:1"><div class="ans-vis" aria-hidden="true"><img src="rt/assets/photos/chip-tap.webp" alt="" width="1200" height="896" loading="lazy" /></div><h3>RFID in every slab</h3></article>
-      <article class="answer reveal" style="--d:2"><div class="ans-vis" aria-hidden="true"><img src="rt/assets/photos/lab-loupe.webp" alt="" width="1200" height="896" loading="lazy" /></div><h3>Graded blind</h3></article>
+
+    <div class="sec-cta reveal">
+      <a href="shop.html?h=glass#hero" class="btn btn-lg btn-shine">Claim your Glass slot <svg><use href="#i-arrow"/></svg></a>
+      <span>Presale pricing ends Jan 31, 2027</span>
     </div>
   </div>
 </section>
