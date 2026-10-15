@@ -164,7 +164,10 @@
     transition: background-color 160ms ease-out;
   }
   .btn:hover { background: var(--red-600); }
+  .btn[aria-busy="true"] { cursor: progress; }
   .btn svg { width: 20px; height: 20px; display: none; }
+  /* Honeypot: off screen but rendered (not display:none, which some bots skip). Out of flow, so the form gap is untouched. */
+  .hp { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
 
   .status { display: flex; align-items: flex-start; gap: 8px; padding-top: 2px; font: 400 14px/1.5 var(--sans); color: var(--ink); }
   /* Kept rendered (not display:none) so the live region is in the accessibility tree from page load; the negative margin cancels the flex gap while it is empty. */
@@ -354,6 +357,10 @@
             <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false"><path d="M4.167 10h11.666M10.833 15l5-5M10.833 5l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
+        <div class="hp" aria-hidden="true">
+          <label for="ian-hp-field">Leave this empty</label>
+          <input id="ian-hp-field" name="ian_hp_field" type="text" tabindex="-1" autocomplete="off" value="">
+        </div>
         <div class="status" id="signup-status" role="status" aria-live="polite"></div>
         <!-- Privacy Policy: href="#" until the client supplies the policy URL. -->
         <p class="consent" id="signup-consent">By joining, you agree to receive emails from IAN. Unsubscribe at any time. <a href="#">Privacy&nbsp;Policy</a></p>
@@ -398,7 +405,7 @@
       }, 60);
     }
     function clearError() {
-      if (!input.classList.contains('is-error')) return;
+      if (!input.classList.contains('is-error') && !status.classList.contains('is-error')) return;
       input.classList.remove('is-error');
       input.removeAttribute('aria-invalid');
       clearTimeout(pending);
@@ -408,27 +415,81 @@
 
     input.addEventListener('input', clearError);
 
+    var honeypot = form.querySelector('#ian-hp-field');
+    // Preview hosts have no backend. Everything else posts for real, so a visitor on tryian.co., www,
+    // a translate proxy or a cache never gets a success that saved nothing.
+    var PREVIEW_HOSTS = ['raycazy.github.io', 'localhost', '127.0.0.1'];
+    var host = location.hostname.replace(/\.$/, '').toLowerCase();
+    var IS_PREVIEW = location.protocol === 'file:' || PREVIEW_HOSTS.indexOf(host) !== -1;
+    var sending = false;
+
+    function invalidEmail(value) {
+      input.classList.add('is-error');
+      input.setAttribute('aria-invalid', 'true');
+      show('error', value ? 'That email doesn’t look quite right. Try it once more.' : 'We’ll need your email for this.');
+      input.focus();
+    }
+    function setBusy(on) {
+      sending = on;
+      button.disabled = on;
+      if (on) button.setAttribute('aria-busy', 'true'); else button.removeAttribute('aria-busy');
+    }
+    // A browser that autofills the hidden field is a person, not a bot: send it empty.
+    function honeypotValue() {
+      if (!honeypot || !honeypot.value) return '';
+      var auto = false;
+      try { auto = honeypot.matches(':autofill'); } catch (err) { /* selector unsupported */ }
+      try { auto = auto || honeypot.matches(':-webkit-autofill'); } catch (err) { /* selector unsupported */ }
+      return auto ? '' : honeypot.value;
+    }
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      if (input.readOnly) return;
+      if (input.readOnly || sending) return;
       var value = input.value.trim();
-      if (!value || !EMAIL_RE.test(value)) {
-        input.classList.add('is-error');
-        input.setAttribute('aria-invalid', 'true');
-        show('error', value ? 'That email doesn’t look quite right. Try it once more.' : 'We’ll need your email for this.');
-        input.focus();
-        return;
-      }
+      if (!value || !EMAIL_RE.test(value)) { invalidEmail(value); return; }
 
       /*
-       * ESP HOOK. This preview sends nothing anywhere: no request leaves the page.
-       * When the email tool is chosen (Klaviyo, Shopify customer form, other), post `value`
-       * here, await the reply, and only then call showSuccess(). On a failed request show the
-       * "Error server" message from the Signup / Editorial component instead. Handle the
-       * "already on the list" reply the same way (Error already state).
+       * ESP HOOK: posts to /api/waitlist (server/waitlist.mjs behind nginx), which appends the email
+       * to the IAN Waitlist Google Sheet. Replies: 200 shows the success state (new and already listed
+       * emails get the same answer), 400 is the invalid email error, 429 and 503 ask the visitor to wait
+       * a minute, anything else is the server error line. The honeypot goes out under the server's
+       * field name, `company`.
+       *
+       * PREVIEW MODE: only the hosts in PREVIEW_HOSTS and file: keep the old client only success and
+       * send nothing anywhere (the GitHub preview has no backend).
        */
-      showSuccess(value);
+      if (IS_PREVIEW) { showSuccess(value); return; }
+
+      var wasOnButton = document.activeElement === button;
+      setBusy(true);
+      var controller = typeof AbortController === 'function' ? new AbortController() : null;
+      var timeout = setTimeout(function () { if (controller) controller.abort(); }, 10000);
+
+      fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: value, company: honeypotValue(), ref: document.referrer }),
+        signal: controller ? controller.signal : undefined
+      }).then(function (res) {
+        clearTimeout(timeout);
+        setBusy(false);
+        if (res.ok) { showSuccess(value); return; }
+        if (res.status === 400) { invalidEmail(value); return; }
+        if (res.status === 429 || res.status === 503) { serverError(wasOnButton, 'Too many tries. Please wait a minute and try again.'); return; }
+        serverError(wasOnButton);
+      }).catch(function () {
+        // Network failure or the 10 s timeout.
+        clearTimeout(timeout);
+        setBusy(false);
+        serverError(wasOnButton);
+      });
     });
+
+    function serverError(wasOnButton, text) {
+      show('error', text || 'Something went wrong. Please try again.');
+      if (wasOnButton) button.focus(); else input.focus();
+    }
 
     function showSuccess(value) {
       input.value = value;
