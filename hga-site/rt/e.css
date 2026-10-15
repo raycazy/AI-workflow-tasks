@@ -136,3 +136,7 @@ svg.ck{width:14px;height:14px;vertical-align:-2px;color:#3ccf7a}
 .how.hx-on .tl-visual>.ui-card{width:100%;max-width:520px}
 .how.hx-on .rphone{height:min(400px,calc(100vh - var(--navh) - 430px))}
 .how.hx-on .ui-scan img,.how.hx-on .ui-center img,.how.hx-on .ui-nfc img{max-height:calc(100vh - var(--navh) - 480px);width:auto}
+/* how it works: steps start at the page content edge (same left as the logo) */
+.how.hx-on{--ed:max(clamp(16px,3.5vw,40px),calc((100vw - 1280px) / 2 + 40px))}
+.how.hx-on .timeline{padding-left:var(--ed);padding-right:var(--ed)}
+.how.hx-on .tl-rail{left:var(--ed);right:var(--ed)}
