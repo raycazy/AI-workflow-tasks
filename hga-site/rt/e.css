@@ -106,3 +106,33 @@ svg.ck{width:14px;height:14px;vertical-align:-2px;color:#3ccf7a}
 .how.hx-on .tl-step.hx-act{opacity:1}
 .how.hx-on .tl-step.hx-act .tl-num{background:var(--red);color:#fff;box-shadow:0 0 0 6px rgba(230,36,41,.15),0 0 30px rgba(230,36,41,.55)}
 .how.hx-on .tl-rail{top:52px}.how.hx-on .tl-num{z-index:2}
+
+/* why: grading today vs HGA as two facing panels */
+.vs2{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:18px;align-items:stretch;max-width:1080px;margin:0 auto}
+.vs2-col{border-radius:var(--r);padding:clamp(20px,2.4vw,30px)}
+.vs2-old{border:1px dashed var(--line-2)}
+.vs2-new{border:1px solid rgba(230,36,41,.55);background:radial-gradient(ellipse 80% 60% at 50% 0,rgba(230,36,41,.16),transparent 70%),var(--ink-2);box-shadow:0 40px 80px -40px rgba(230,36,41,.55)}
+.vs2-h{margin:0 0 8px;font-family:var(--lab);font-weight:600;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);min-height:20px;display:flex;align-items:center}
+.vs2-h img{height:18px;width:auto}
+.vs2-row{padding:14px 0;border-top:1px solid var(--line);min-height:76px}
+.vs2-k{display:block;font-family:var(--lab);font-weight:600;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.vs2-row p{margin:6px 0 0;display:flex;align-items:center;gap:12px;font-size:16px}
+.vs2-old p{color:var(--muted)}
+.vs2-old s{text-decoration-color:rgba(230,36,41,.7);text-decoration-thickness:2px}
+.vs2-old .pain-x{flex:0 0 26px;height:26px}
+.vs2-new p{color:var(--text);font-weight:700}
+.vs2-new .vs2-k{color:var(--red-text)}
+.vs2-ok{flex:0 0 26px;height:26px;display:grid;place-items:center;border-radius:50%;background:var(--red);box-shadow:0 0 14px rgba(230,36,41,.5)}
+.vs2-ok svg{width:14px;height:14px;color:#fff}
+.vs2-mid{align-self:center;width:46px;height:46px;display:grid;place-items:center;border-radius:50%;border:1px solid var(--line-2);background:var(--paper);font-family:var(--lab);font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-2)}
+@media (max-width:860px){.vs2{grid-template-columns:1fr}.vs2-mid{justify-self:center;margin:-8px 0}}
+
+/* how it works, horizontal: text on top, image below */
+.how.hx-on{--sw:min(620px,46vw)}
+.how.hx-on .tl-step{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr);gap:18px;align-items:start;padding-right:clamp(40px,5vw,80px)}
+.how.hx-on .tl-step .tl-copy{padding-top:12px}
+.how.hx-on .tl-copy h3{margin-bottom:6px}
+.how.hx-on .tl-visual{justify-content:flex-start;max-height:calc(100vh - var(--navh) - 420px)}
+.how.hx-on .tl-visual>.ui-card{width:100%;max-width:520px}
+.how.hx-on .rphone{height:min(400px,calc(100vh - var(--navh) - 430px))}
+.how.hx-on .ui-scan img,.how.hx-on .ui-center img,.how.hx-on .ui-nfc img{max-height:calc(100vh - var(--navh) - 480px);width:auto}
