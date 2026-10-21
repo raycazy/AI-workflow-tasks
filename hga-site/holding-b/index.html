@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>HGA | Hybrid Grading Approach</title>
+<meta name="description" content="Something innovative and unique is coming soon from HGA.">
+<meta name="theme-color" content="#0B0A0A">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HGA | Hybrid Grading Approach">
+<meta property="og:description" content="Something innovative and unique is coming soon from HGA.">
+<meta property="og:image" content="./assets/og-1200x630.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="HGA | Hybrid Grading Approach">
+<meta name="twitter:description" content="Something innovative and unique is coming soon from HGA.">
+<meta name="twitter:image" content="./assets/og-1200x630.png">
+<!-- At go live: make og:image and twitter:image absolute URLs on the final domain, and swap the favicon for the G-star icon from the brand kit. -->
+<link rel="icon" href="./assets/hga.svg" type="image/svg+xml">
+<link rel="preload" href="./assets/fonts/bc-800.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Barlow Condensed";font-weight:800;font-display:swap;src:url("assets/fonts/bc-800.woff2") format("woff2")}
+@font-face{font-family:"Barlow Condensed";font-weight:800;font-style:italic;font-display:swap;src:url("assets/fonts/bc-800i.woff2") format("woff2")}
+@font-face{font-family:"Barlow Semi Condensed";font-weight:600;font-display:swap;src:url("assets/fonts/bsc-600.woff2") format("woff2")}
+@font-face{font-family:"Barlow";font-weight:400;font-display:swap;src:url("assets/fonts/b-400.woff2") format("woff2")}
+@font-face{font-family:"Barlow";font-weight:600;font-display:swap;src:url("assets/fonts/b-600.woff2") format("woff2")}
+@font-face{font-family:"Barlow";font-weight:700;font-display:swap;src:url("assets/fonts/b-700.woff2") format("woff2")}
+:root{--red:#E62429;--red-2:#99161C;--red-text:#FF4A4F;--paper:#0B0A0A;--ink-2:#141212;--line:rgba(255,255,255,.1);--line-2:rgba(255,255,255,.22);--text:#F6F4F0;--text-2:#CFC9C2;--muted:#9A948E;
+  --sans:"Barlow","Helvetica Neue",Arial,sans-serif;--disp:"Barlow Condensed","Arial Narrow",sans-serif;--lab:"Barlow Semi Condensed","Barlow",sans-serif;--ease:cubic-bezier(.2,.7,.2,1)}
+*{box-sizing:border-box}
+html{color-scheme:dark}
+body{margin:0;min-height:100vh;background:var(--paper);color:var(--text);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;display:flex;flex-direction:column}
+a{color:inherit}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{width:100%;max-width:1180px;margin:0 auto;padding-inline:clamp(16px,4.5vw,48px)}
+
+/* the stage: dark house, red glow from the back wall, two spotlights swing in and lock on the logo */
+.stage{position:relative;isolation:isolate;overflow:hidden;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(56px,9vh,110px) 0 clamp(40px,6vh,72px)}
+.stage::before{content:"";position:absolute;inset:0;z-index:-3;background:radial-gradient(ellipse 60% 45% at 50% 34%,rgba(230,36,41,.34),rgba(230,36,41,.08) 45%,transparent 72%),linear-gradient(180deg,#0f0a0a,#050404 70%)}
+.stage::after{content:"";position:absolute;left:0;right:0;bottom:0;height:40%;z-index:-2;background:radial-gradient(ellipse 50% 60% at 50% 100%,rgba(230,36,41,.14),transparent 70%)}
+.beam{position:absolute;top:-12%;width:44vw;max-width:560px;height:78vh;z-index:-1;pointer-events:none;filter:blur(14px);mix-blend-mode:screen;transform-origin:50% 0;opacity:.9}
+.beam::before{content:"";position:absolute;inset:0;clip-path:polygon(46% 0,54% 0,100% 100%,0 100%);background:linear-gradient(180deg,rgba(255,240,235,.42),rgba(255,230,225,.12) 55%,rgba(255,230,225,0) 92%)}
+.beam.l{left:2%;transform:rotate(-24deg);animation:swingL 2.6s var(--ease) .2s both}
+.beam.r{right:2%;transform:rotate(24deg);animation:swingR 2.6s var(--ease) .35s both}
+@keyframes swingL{0%{transform:rotate(-58deg);opacity:0}25%{opacity:.9}70%{transform:rotate(-18deg)}100%{transform:rotate(-24deg)}}
+@keyframes swingR{0%{transform:rotate(58deg);opacity:0}25%{opacity:.9}70%{transform:rotate(18deg)}100%{transform:rotate(24deg)}}
+.logo{display:block;width:min(420px,72vw);height:auto;filter:drop-shadow(0 0 38px rgba(230,36,41,.45));animation:lockOn 1.6s var(--ease) 1.4s both}
+@keyframes lockOn{0%{filter:drop-shadow(0 0 0 rgba(230,36,41,0)) brightness(.82)}60%{filter:drop-shadow(0 0 60px rgba(255,200,190,.65)) brightness(1.15)}100%{filter:drop-shadow(0 0 38px rgba(230,36,41,.45)) brightness(1)}}
+.h1{margin:clamp(26px,4vh,40px) 0 0;font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:clamp(34px,5vw,64px);line-height:.95;letter-spacing:-.005em;max-width:14em}
+.h1 em{font-style:normal;color:var(--red)}
+
+/* mystery card */
+.mystery{margin-top:clamp(28px,4vh,44px);display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(18px,3vw,32px);align-items:center;text-align:left;max-width:560px;padding:clamp(16px,2.4vw,22px);border-radius:20px;border:1px solid var(--line);background:rgba(20,18,18,.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.slab{width:clamp(108px,14vw,138px);aspect-ratio:63/105;padding:7%;border-radius:12px;background:linear-gradient(160deg,#1d1d1d,#090909 60%,#141414);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18),0 24px 40px rgba(0,0,0,.6);display:grid;grid-template-rows:auto 1fr;gap:7%;position:relative}
+.slab::after{content:"";position:absolute;inset:0;border-radius:12px;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.12) 46%,transparent 58%);pointer-events:none}
+.slab-label{display:flex;justify-content:space-between;align-items:center;gap:4px;padding:6% 7%;border-radius:4px;background:linear-gradient(180deg,#ED2B30,#D51F24);box-shadow:0 0 0 2px #D9EEF0}
+.slab-label img{height:8px;width:auto;min-width:0}
+.slab-label{min-width:0}
+.slab-label span{display:grid;justify-items:center;line-height:1;padding:1px 3px;flex:none;border:1px solid #fff;border-radius:2px;font-family:var(--lab);font-weight:600;font-size:7px;letter-spacing:.06em;text-transform:uppercase;color:#fff}
+.slab-label b{font-family:var(--disp);font-size:13px}
+.slab-win{border-radius:4px;display:grid;place-items:center;background:repeating-linear-gradient(-45deg,#1c1213 0 7px,#251516 7px 14px);box-shadow:inset 0 0 0 1px rgba(230,36,41,.35)}
+.slab-win b{font-family:var(--disp);font-weight:800;font-size:clamp(48px,6vw,62px);line-height:1;color:var(--red);text-shadow:0 0 24px rgba(230,36,41,.6)}
+.mystery-k{margin:0;font-family:var(--lab);font-weight:600;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--red-text)}
+.mystery-t{margin:6px 0 0;font-size:clamp(18px,1.7vw,21px);font-weight:700;line-height:1.3}
+.mystery-s{margin:6px 0 0;font-size:15px;color:var(--text-2)}
+
+/* signup */
+.signup{width:100%;max-width:560px;margin-top:22px;text-align:left}
+.row{display:flex;gap:10px}
+.row input{flex:1;min-width:0;height:56px;padding:0 18px;border-radius:10px;border:2px solid #000;outline:1px solid var(--line-2);background:#fff;color:#0E0E0E;font:inherit;font-size:16px}
+.row input::placeholder{color:#7A7575}
+.row input:focus{outline:2px solid var(--red);outline-offset:1px}
+.row button{flex:none;height:56px;padding:0 26px;border:0;border-radius:10px;background:var(--red);color:#fff;font:700 15px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;cursor:pointer;box-shadow:0 10px 26px rgba(230,36,41,.3);transition:background .2s}
+.row button:hover{background:var(--red-2)}
+.row button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.msg{min-height:22px;margin:8px 0 0;font-size:14px;font-weight:600;color:var(--red-text)}
+.signup.ok .msg{color:#3ccf7a}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.fine{margin:10px 0 0;font-size:13px;line-height:1.55;color:var(--muted)}
+.fine a{color:var(--text-2);text-decoration:underline;text-underline-offset:3px}
+
+/* footer */
+.foot{border-top:1px solid var(--line);padding:22px 0 calc(22px + env(safe-area-inset-bottom))}
+.foot .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px}
+.social{display:flex;gap:10px;list-style:none;margin:0;padding:0}
+.social a{width:40px;height:40px;display:grid;place-items:center;border-radius:50%;border:1px solid var(--line-2);color:var(--text);transition:border-color .2s,background .2s}
+.social a:hover{border-color:#fff;background:rgba(255,255,255,.06)}
+.social a:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.social svg{width:18px;height:18px;fill:currentColor}
+.legal{margin:0;font-size:13px;color:var(--muted)}
+.legal a{color:var(--text-2);text-decoration:underline;text-underline-offset:3px}
+
+@media (max-width:560px){
+  .mystery{gap:14px;padding:14px}
+  .slab{width:84px}
+  .mystery-t{font-size:16px}
+  .mystery-s{font-size:14px}
+  .row{flex-direction:column}
+  .row input{flex:none;width:100%}
+  .row button{width:100%}
+  .foot .wrap{justify-content:center;text-align:center}
+}
+@media (max-height:780px){.stage{padding-top:32px;padding-bottom:28px}.logo{width:min(300px,62vw)}.h1{margin-top:18px;font-size:clamp(30px,4vw,48px)}.mystery{margin-top:20px}.signup{margin-top:16px}}
+@media (max-width:560px) and (max-height:700px){.logo{width:min(220px,58vw)}.h1{font-size:28px}.slab{width:70px}.mystery-t{font-size:15px}}
+@media (max-width:380px){.slab-label span{font-size:6px}.slab-label b{font-size:11px}}
+/* reduced motion: lights already up, logo fully visible on first paint */
+@media (prefers-reduced-motion:reduce){.beam,.logo{animation:none}}
+</style>
+</head>
+<body>
+<main class="stage" id="main">
+  <span class="beam l" aria-hidden="true"></span>
+  <span class="beam r" aria-hidden="true"></span>
+  <div class="wrap" style="display:flex;flex-direction:column;align-items:center">
+    <h1 class="sr">HGA, Hybrid Grading Approach</h1>
+    <img class="logo" src="./assets/hga-hybrid-grading-approach.svg" alt="HGA, Hybrid Grading Approach" width="420" height="129">
+    <p class="h1">Something innovative and unique <em>is coming soon.</em></p>
+
+    <div class="mystery">
+      <div class="slab" role="img" aria-label="A sealed HGA slab, grade and card hidden">
+        <div class="slab-label"><img src="./assets/hga.svg" alt="" width="40" height="10"><span>Grade<b>??</b></span></div>
+        <div class="slab-win"><b>?</b></div>
+      </div>
+      <div>
+        <p class="mystery-k">Mystery card</p>
+        <p class="mystery-t">An HGA graded card valued up to $4,999 is up for grabs.</p>
+        <p class="mystery-s">Details are coming by email.</p>
+      </div>
+    </div>
+
+    <!-- Email interest list, not a sweepstakes entry. Replace this form with the Klaviyo embedded form
+         (source HGA_presale_hype_site, main HGA list, one confirmation email, bot protection, no CAPTCHA),
+         or set data-endpoint to a Klaviyo subscribe endpoint. Styled to spec: 2px black border, red button, 56px tall. -->
+    <form class="signup" data-signup data-endpoint="" novalidate>
+      <input type="hidden" name="$source" value="HGA_presale_hype_site">
+      <label class="hp" aria-hidden="true">Leave this empty<input type="text" name="company" tabindex="-1" autocomplete="off"></label>
+      <label class="sr" for="email">Email address</label>
+      <div class="row">
+        <input id="email" type="email" name="email" autocomplete="email" inputmode="email" placeholder="Email address" required aria-describedby="signup-msg">
+        <button type="submit">Sign me up</button>
+      </div>
+      <p class="msg" id="signup-msg" aria-live="polite"></p>
+      <p class="fine">Giveaway details and official rules coming soon. By signing up you confirm you're 18 or older and agree to receive email from HGA. Unsubscribe any time. We never sell your information. <a href="/privacy">Privacy Policy</a></p>
+    </form>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <ul class="social" aria-label="HGA on social media">
+      <li><a href="https://www.facebook.com/HybridGradingApproach/" data-track="social_facebook" aria-label="HGA on Facebook" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5h1.6V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H8v3h2.5V21z"/></svg></a></li>
+      <li><a href="https://www.instagram.com/hybridgradingapproach" data-track="social_instagram" aria-label="HGA on Instagram" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7.3a4.7 4.7 0 100 9.4 4.7 4.7 0 000-9.4zm0 7.7a3 3 0 110-6 3 3 0 010 6zm6-7.9a1.1 1.1 0 11-2.2 0 1.1 1.1 0 012.2 0zM21 8.2c-.1-1.5-.4-2.8-1.5-3.9S17.1 2.9 15.7 2.8C14.2 2.7 9.8 2.7 8.3 2.8 6.9 2.9 5.6 3.2 4.5 4.3S3 6.7 3 8.2c-.1 1.5-.1 6 0 7.5.1 1.5.4 2.8 1.5 3.9s2.4 1.4 3.8 1.5c1.5.1 5.9.1 7.4 0 1.5-.1 2.8-.4 3.8-1.5 1.1-1.1 1.4-2.4 1.5-3.9.1-1.5.1-6 0-7.5zm-1.9 9.1c-.3.8-.9 1.4-1.7 1.7-1.2.5-3.9.4-5.4.4s-4.2.1-5.4-.4c-.8-.3-1.4-.9-1.7-1.7-.5-1.2-.4-3.9-.4-5.3s-.1-4.2.4-5.3c.3-.8.9-1.4 1.7-1.7 1.2-.5 3.9-.4 5.4-.4s4.2-.1 5.4.4c.8.3 1.4.9 1.7 1.7.5 1.2.4 3.9.4 5.3s.1 4.2-.4 5.3z"/></svg></a></li>
+      <li><a href="https://www.youtube.com/@hybridgradingapproach2743" data-track="social_youtube" aria-label="HGA on YouTube" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 7.2a2.5 2.5 0 00-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 002.4 7.2 26 26 0 002 12a26 26 0 00.4 4.8 2.5 2.5 0 001.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 001.8-1.8A26 26 0 0022 12a26 26 0 00-.4-4.8zM10 15V9l5.2 3z"/></svg></a></li>
+      <li><a href="https://www.tiktok.com/@hybridgrading" data-track="social_tiktok" aria-label="HGA on TikTok" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 5.8A4.3 4.3 0 0115.5 3h-3.1v12.4a2.6 2.6 0 01-2.6 2.5 2.6 2.6 0 01-2.6-2.6 2.6 2.6 0 013.4-2.5V9.7a5.7 5.7 0 00-.8-.1 5.7 5.7 0 00-5.7 5.7A5.7 5.7 0 009.8 21a5.7 5.7 0 005.7-5.7V9a7.4 7.4 0 004.3 1.4V7.3a4.3 4.3 0 01-3.2-1.5z"/></svg></a></li>
+    </ul>
+    <p class="legal">&copy; 2026 HGA &middot; Hybrid Grading Approach &middot; Chandler, Arizona &middot; <a href="/privacy">Privacy Policy</a></p>
+  </div>
+</footer>
+
+<script>
+  // Analytics hooks: pushes to dataLayer only if a tag manager is installed later (no scripts load here).
+  window.dataLayer = window.dataLayer || [];
+  var track = function (e, extra) { var o = { event: e }; for (var k in extra || {}) o[k] = extra[k]; window.dataLayer.push(o); };
+  document.querySelectorAll("[data-track]").forEach(function (a) { a.addEventListener("click", function () { track("social_click", { network: a.dataset.track.replace("social_", "") }); }); });
+
+  // Signup: one field, one button. Posts to data-endpoint when set; until then it only confirms on the page.
+  document.querySelectorAll("[data-signup]").forEach(function (f) {
+    var input = f.querySelector("#email"), msg = f.querySelector(".msg"), hp = f.querySelector('[name="company"]');
+    f.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (hp.value) return;
+      if (!input.checkValidity()) { f.classList.remove("ok"); msg.textContent = "Enter a valid email address, like name@example.com."; input.setAttribute("aria-invalid", "true"); input.focus(); return; }
+      input.removeAttribute("aria-invalid");
+      var done = function () { f.classList.add("ok"); msg.textContent = "You're signed up. Watch your inbox for the details."; input.value = ""; track("signup_submitted", { source: "HGA_presale_hype_site" }); };
+      var url = f.dataset.endpoint;
+      if (!url) return done();
+      fetch(url, { method: "POST", body: new FormData(f) }).then(done, function () { msg.textContent = "Something went wrong. Please try again."; });
+    });
+  });
+</script>
+</body>
+</html>
