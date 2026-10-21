@@ -117,7 +117,7 @@
     var count = qty.poly + qty.glass;
     var now = qty.poly * PRICES.poly.now + qty.glass * PRICES.glass.now;
     var open = qty.poly * PRICES.poly.open + qty.glass * PRICES.glass.open;
-    $$("[data-sum-count]").forEach(function (e) { e.textContent = count + (count === 1 ? " slot" : " slots"); });
+    $$("[data-sum-count]").forEach(function (e) { e.textContent = count + (count === 1 ? " pass" : " passes"); });
     $$("[data-sum-now]").forEach(function (e) { e.textContent = money(now); });
     $$("[data-sum-open]").forEach(function (e) { e.textContent = money(open); });
     $$("[data-sum-save]").forEach(function (e) { e.textContent = money(open - now); });
