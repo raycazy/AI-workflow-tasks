@@ -47,14 +47,15 @@ a{color:inherit}
 @keyframes swingR{0%{transform:rotate(58deg);opacity:0}25%{opacity:.9}70%{transform:rotate(18deg)}100%{transform:rotate(24deg)}}
 .logo{display:block;width:min(420px,72vw);height:auto;filter:drop-shadow(0 0 38px rgba(230,36,41,.45));animation:lockOn 1.6s var(--ease) 1.4s both}
 @keyframes lockOn{0%{filter:drop-shadow(0 0 0 rgba(230,36,41,0)) brightness(.82)}60%{filter:drop-shadow(0 0 60px rgba(255,200,190,.65)) brightness(1.15)}100%{filter:drop-shadow(0 0 38px rgba(230,36,41,.45)) brightness(1)}}
-.h1{margin:clamp(26px,4vh,40px) 0 0;font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:clamp(34px,5vw,64px);line-height:.95;letter-spacing:-.005em;max-width:14em}
-.h1 em{font-style:normal;color:var(--red)}
+.h1{margin:clamp(26px,4vh,40px) 0 0;font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:clamp(34px,5vw,64px);line-height:.95;letter-spacing:-.005em;max-width:none}
+.h1 em{display:block;font-style:normal;color:var(--red)}
 
 /* mystery card */
 .mystery{margin-top:clamp(28px,4vh,44px);display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(10px,2vw,22px);align-items:center;text-align:left;max-width:560px;padding:clamp(16px,2.4vw,22px);border-radius:20px;border:1px solid var(--line);background:rgba(20,18,18,.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 /* 3D mystery slab: six faces with depth, idle sway, drag to turn, sheen follows the angle, tap to spin */
 .m3d{--w:150px;--h:250px;--d:16px;position:relative;width:calc(var(--w) + 40px);height:calc(var(--h) + 40px);perspective:900px;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none;border-radius:14px;outline:none}
-.m3d:focus-visible{box-shadow:0 0 0 2px #fff}
+.m3d:focus{outline:none}
+.m3d:focus-visible{box-shadow:0 0 0 2px rgba(230,36,41,.8)}
 .m3d.dragging{cursor:grabbing}
 .m3d-rig{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);transform-style:preserve-3d;animation:m3dFloat 5s ease-in-out infinite}
 @keyframes m3dFloat{50%{transform:translate(-50%,calc(-50% - 8px))}}
