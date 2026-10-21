@@ -88,3 +88,22 @@ a.g-path,a.g-path *,a.g-poly-row,a.g-poly-row *,a.g-story{text-decoration:none}
 .hm-plan .g-plan-h{font-size:clamp(24px,2.6vw,36px);line-height:1;letter-spacing:-.005em;color:#fff}
 .g-glass-plan>div{min-width:0}
 @media (max-width:720px){.g-glass-plan{grid-template-columns:1fr;justify-items:center;text-align:center}.g-glass-plan>img{width:130px}.g-glass-plan>div{justify-items:center}.g-ticks{justify-items:start;text-align:left}.hm-plan .g-plan-h{font-size:24px}}
+
+/* new site pages */
+.g-page-hero{padding-top:clamp(56px,7vw,96px)}
+.g-page-hero .h1{font-size:clamp(44px,5.4vw,80px);max-width:14em}
+.g-page-hero .lede{margin-top:16px;max-width:36em;color:rgba(255,255,255,.75)}
+.g-cat-grid .g-path{cursor:default}
+.g-cat-grid .g-path:hover{transform:none;border-color:rgba(255,255,255,.1)}
+.g-sizes{margin:clamp(20px,3vw,32px) 0 6px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.g-sizes div{display:grid;gap:4px;padding:18px;border-radius:var(--r);border:1px solid rgba(255,255,255,.1);background:#141212}
+.g-sizes b{font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:22px;color:#fff}
+.g-sizes span{font-size:14px;color:rgba(255,255,255,.65)}
+.g-steps{list-style:none;margin:clamp(24px,3vw,40px) 0 0;padding:0 0 0 26px;display:grid;gap:26px;position:relative;max-width:820px}
+.g-steps::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:linear-gradient(180deg,var(--red),rgba(230,36,41,.15))}
+.g-steps li{position:relative}
+.g-steps li::before{content:"";position:absolute;left:-26px;top:3px;width:16px;height:16px;border-radius:50%;background:var(--red);box-shadow:0 0 0 4px rgba(230,36,41,.2),0 0 14px rgba(230,36,41,.6)}
+.g-step-when{font-family:var(--lab);font-weight:600;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:#FF6B6E}
+.g-steps b{display:block;margin:6px 0 4px;font-size:clamp(20px,1.8vw,24px);color:#fff}
+.g-steps p{margin:0;color:rgba(255,255,255,.72);font-size:16px;line-height:1.55;max-width:40em}
+@media (max-width:860px){.g-sizes{grid-template-columns:1fr 1fr}}
