@@ -1,0 +1,482 @@
+/* Evident general LP (Metabolism Booster). Colours, radii, shadows and type
+   come from tokens.css (byte identical copy of brand-guides/evident/tokens.css).
+   No hex values in this file. Pack colours never appear in CSS. */
+@import url("tokens.css?v=136372ce");
+
+:root {
+  /* spacing scale (4pt) */
+  --s4: 4px; --s8: 8px; --s12: 12px; --s16: 16px; --s24: 24px;
+  --s32: 32px; --s48: 48px; --s64: 64px; --s96: 96px;
+  --gutter: 24px;
+  --sec-pad: 48px;      /* white sections, each side: 96 between two */
+  --band-pad: 96px;     /* tinted bands */
+  --split-gap: 96px;    /* reason splits: two equal columns on the container grid */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --z-header: 10;
+  --z-sticky: 20;
+  --bar-shadow-up: 0 -4px 18px color-mix(in srgb, var(--brand-navy) 10%, transparent);
+  --grad-footer: linear-gradient(var(--brand-white) 0%, var(--brand-mint) 100%);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+:where(h1, h2, h3, p, ul, ol, figure) { margin: 0; }
+:where(ul) { padding: 0; list-style: none; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--brand-white);
+  color: var(--brand-ink);
+  font-family: var(--brand-font);
+  font-size: 16px;
+  line-height: 24px;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+strong { font-weight: 700; }
+.pic { display: contents; }
+/* the picture box is dissolved, so its <source> would become a zero width flex item that takes a gap */
+source { display: none; }
+
+/* sections are flex columns centred on the page (no margin:auto) */
+section, header, footer { display: flex; flex-direction: column; align-items: center; width: 100%; }
+.wrap { width: 100%; max-width: calc(var(--brand-container) + 2 * var(--gutter)); padding-inline: var(--gutter); }
+
+/* ------------------------------------------------------------ buttons (live kit) */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 54px; padding: 16px 48px;
+  border-radius: var(--brand-radius-pill);
+  font-family: var(--brand-font); font-weight: var(--brand-btn-weight);
+  font-size: 16px; line-height: 20px;
+  letter-spacing: var(--brand-btn-tracking); text-transform: var(--brand-btn-transform);
+  text-decoration: none; white-space: nowrap;
+  transition: background-color 125ms ease-in-out, box-shadow 125ms ease-in-out, transform 120ms var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-label { display: inline-flex; align-items: center; gap: 8px; }
+.arrow { flex: none; }
+.btn:active { transform: scale(0.97); }
+.btn-primary { background: var(--brand-navy); color: var(--brand-white); }
+.btn-primary:hover { background: var(--brand-btn-hover); }
+.btn-lime { background: var(--brand-lime); color: var(--brand-navy); }
+.btn-lime:hover { box-shadow: var(--brand-shadow-pill), inset 0 0 0 1px var(--brand-navy); }
+.btn-hero { font-size: 20px; line-height: 24px; padding: 16px 40px; }
+.btn-sm { min-height: 44px; padding: 12px 24px; font-size: 14px; line-height: 20px; }
+.btn-full { width: 100%; }
+.btn:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px solid var(--brand-navy); outline-offset: 3px; }
+.study .btn:focus-visible, .study a:focus-visible { outline-color: var(--brand-white); }
+
+.fn { color: inherit; text-decoration: none; }
+.fn:hover { text-decoration: underline; }
+
+.ic { flex: none; }
+.cta-row { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.assure { display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 14px; line-height: 20px; }
+.assure li { display: flex; align-items: center; gap: 8px; }
+
+.rating { display: flex; align-items: center; gap: 12px; font-size: 14px; line-height: 20px; letter-spacing: 0.28px; }
+.stars { display: inline-flex; gap: 2px; color: var(--brand-coral); }
+.star { display: block; width: 16px; height: 15px; }
+
+/* ------------------------------------------------------------ announcement + header */
+.announce { background: var(--brand-lime); }
+.announce-link {
+  display: flex; align-items: center; justify-content: center; width: 100%;
+  min-height: 40px; padding: 8px 16px;
+  font-size: 14px; line-height: 20px; font-weight: 700; text-align: center; text-decoration: none;
+}
+.announce-link:hover { text-decoration: underline; }
+.site-header { background: var(--brand-white); box-shadow: var(--brand-shadow-header); position: relative; z-index: var(--z-header); }
+.header-inner { display: flex; align-items: center; justify-content: center; min-height: 72px; position: relative; }
+.logo { display: flex; }
+.logo img { width: 134px; }
+.header-cta { position: absolute; right: var(--gutter); }
+
+/* ------------------------------------------------------------ hero */
+.hero {
+  position: relative; overflow: hidden; justify-content: center;
+  min-height: max(600px, calc(100svh - 112px), 48vw);
+  max-height: 66.6vw;
+}
+.hero-media { position: absolute; inset: 0; display: flex; }
+.hero-media img { width: 100%; height: 100%; object-fit: cover; object-position: 62% 0%; }
+/* lifts the copy off the faucet and plants on the left of the kitchen render */
+.hero-scrim {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg,
+    color-mix(in srgb, var(--brand-white) 80%, transparent) 0%,
+    color-mix(in srgb, var(--brand-white) 62%, transparent) 36%,
+    color-mix(in srgb, var(--brand-white) 0%, transparent) 54%);
+}
+/* character video loops (main.js sets the src unless reduced motion): layered over the
+   still and faded in only once playing, so a slow, blocked or failed video leaves the still */
+.vid { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; pointer-events: none; transition: opacity 400ms var(--ease-out); }
+.vid.is-on { opacity: 1; }
+.split-media, .panel-media { position: relative; }
+.split-media .vid { border-radius: var(--brand-radius-card); }
+/* 9:16 clips in 2:3 frames: crops keep her face and the pack in frame (and the corner mark out) */
+.vid-r1 { object-position: 50% 65%; }
+.vid-r2 { object-position: 50% 25%; } /* full clip width shows; the source itself cuts the "t" of the wordmark */
+.vid-r3 { object-position: 50% 5%; }
+.vid-r4 { object-position: 50% 20%; }
+.vid-r5 { object-position: 50% 10%; }
+.vid-r6 { object-position: 50% 30%; }
+.hero-vid { object-position: 62% 0%; }
+.hero-vid-m { display: none; }
+@media (max-width: 767px) {
+  .hero-vid-d { display: none; }
+  .hero-vid-m { display: block; object-position: 50% 10%; }
+}
+.hero-wrap { position: relative; display: flex; align-items: center; flex: 1 0 auto; padding-block: var(--s48); }
+.hero-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; max-width: 580px; }
+.hero-h { font-size: 48px; line-height: 60px; font-weight: 500; letter-spacing: -0.01em; text-wrap: balance; }
+.hero-sub { font-size: 18px; line-height: 28px; max-width: 520px; text-wrap: pretty; }
+.hero .cta-row { padding-top: 8px; }
+
+/* ------------------------------------------------------------ trust band */
+.trust { background: var(--brand-mint-section); padding-block: var(--s24); }
+.trust-list { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px 32px; }
+.trust-item { display: flex; align-items: center; gap: 12px; font-size: 16px; line-height: 24px; font-weight: 600; }
+.ti-ic { display: flex; flex: none; width: 24px; height: 24px; align-items: center; justify-content: center; }
+
+/* ------------------------------------------------------------ reasons: shared */
+.block { padding-block: var(--sec-pad); }
+.reason-h { font-size: 44px; line-height: 52px; font-weight: 600; letter-spacing: -0.01em; text-wrap: balance; }
+.sec-h { font-size: 44px; line-height: 52px; font-weight: 600; letter-spacing: -0.01em; text-wrap: balance; }
+.lead { font-size: 18px; line-height: 28px; text-wrap: pretty; }
+
+.split-inner { display: flex; align-items: center; gap: var(--split-gap); }
+.split.flip .split-inner { flex-direction: row-reverse; }
+/* the image fills its half of the grid at its full 2:3 frame (the source ratio, nothing cropped) */
+.split-media { flex: 1 1 0; min-width: 0; }
+.split-media img { width: 100%; aspect-ratio: 2 / 3; object-fit: cover; border-radius: var(--brand-radius-card); }
+.split-copy { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 24px; }
+.split-copy .cta-row { padding-top: 8px; }
+
+/* reason 1 ingredient rows (the deck body, one sentence per row) */
+.ingr-list { display: flex; flex-direction: column; gap: 16px; }
+.ingr { display: flex; align-items: flex-start; gap: 16px; font-size: 18px; line-height: 28px; }
+.ingr p { text-wrap: pretty; }
+.ingr strong { font-weight: 600; }
+
+/* ------------------------------------------------------------ reason 3: ledger */
+.ledger-inner { display: flex; align-items: center; justify-content: space-between; gap: var(--s64); }
+.ledger-media { flex: 0 0 400px; }
+.ledger-copy { flex: 1 1 0; min-width: 0; max-width: 760px; display: flex; flex-direction: column; gap: 24px; }
+.ledger-copy .cta-row { padding-top: 8px; }
+.cmp-title { font-size: 24px; line-height: 32px; font-weight: 700; padding-top: 8px; }
+.cmp {
+  display: flex; flex-direction: column; gap: 1px; padding: 1px;
+  background: var(--brand-line); border-radius: var(--brand-radius-card); overflow: clip;
+}
+.cmp-row { display: flex; gap: 1px; }
+.cmp-label, .cmp-cell {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--brand-white); padding: 12px 16px;
+  font-size: 16px; line-height: 24px;
+}
+.cmp-label { flex: 0 0 176px; font-weight: 600; }
+.cmp-cell { flex: 1 1 0; min-width: 0; }
+.cmp-ev { background: var(--brand-lavender); font-weight: 600; }
+.cmp-head .cmp-cell, .cmp-head .cmp-label { padding-block: 16px; }
+.cmp-col { font-weight: 700; }
+.cmp-head .cmp-ev .cmp-col { display: inline-flex; background: var(--brand-navy); color: var(--brand-white); padding: 4px 16px; border-radius: var(--brand-radius-pill); }
+.mk { display: flex; flex: none; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; }
+.mk-yes { background: var(--brand-navy); color: var(--brand-white); }
+.ic-mk { width: 14px; height: 14px; stroke-width: 2.25; }
+
+/* ------------------------------------------------------------ reason 4: the one navy panel */
+.panel {
+  display: flex; align-items: stretch; width: 100%;
+  background: var(--brand-navy); color: var(--brand-white);
+  border-radius: var(--brand-radius-card); overflow: hidden;
+}
+/* the image never stretches, so R4 always shows its full 2:3 frame */
+.panel-media { flex: 0 0 calc((100% - var(--split-gap)) / 2); display: flex; align-self: flex-start; }
+.panel-media img { width: 100%; aspect-ratio: 2 / 3; object-fit: cover; }
+.panel-copy { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 24px; padding: var(--s32) var(--s64); }
+.study-data { align-self: stretch; display: flex; flex-direction: column; gap: 24px; padding-top: 8px; }
+.stat-block { display: flex; flex-direction: column; gap: 8px; }
+/* both numbers sit on one baseline; each label runs under its number */
+.stats { display: flex; flex-wrap: wrap; align-items: baseline; gap: 16px 64px; }
+.stat { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+.stat-n { font-size: 120px; line-height: 112px; font-weight: 700; letter-spacing: -0.03em; }
+.stat-u { font-size: 24px; line-height: 32px; font-weight: 600; }
+.stat-cap { font-size: 14px; line-height: 20px; }
+
+/* comparison: two bars per measure, to scale within the measure. The H2OSlim bar
+   fills the track (row width minus the label slot); placebo is 1/12 (lbs) and
+   1/5 (inches, drawn at its 1 inch upper bound). */
+.bars { display: flex; flex-direction: column; gap: 16px; --lab-w: 252px; }
+.bars-legend { display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 14px; line-height: 20px; font-weight: 600; }
+.lg { display: inline-flex; align-items: center; gap: 8px; }
+.sw { display: block; flex: none; }
+.bar-group { display: flex; flex-direction: column; gap: 8px; }
+.bar-row { display: flex; align-items: center; gap: 12px; }
+.bar { display: block; flex: none; height: 24px; width: calc((100% - var(--lab-w)) * var(--r, 1)); border-radius: 4px; transform-origin: left center; }
+.bar-lbs-pl { --r: 0.0833; }
+.bar-in-pl { --r: 0.2; }
+.bar-h2o rect, .sw-h2o rect { fill: var(--brand-lime); }
+.bar-pl rect, .sw-pl rect { fill: color-mix(in srgb, var(--brand-white) 40%, transparent); }
+.bar-lab { font-size: 16px; line-height: 24px; font-weight: 600; }
+.bar-lab-pl { font-weight: 500; }
+.study-meta { font-size: 14px; line-height: 20px; color: color-mix(in srgb, var(--brand-white) 70%, transparent); }
+/* grow once on first view; main.js arms this only when the bars start below the fold and motion is allowed */
+.bars[data-armed] .bar { transform: scaleX(0); }
+.bars[data-armed][data-in] .bar { transform: none; transition: transform 280ms var(--ease-out); }
+.bars[data-armed][data-in] .bar-pl { transition-delay: 60ms; }
+.study .panel-copy .cta-row { padding-top: 8px; }
+
+/* ------------------------------------------------------------ reviews rail (mint = proof) */
+.reviews { background: var(--brand-mint-section); padding-block: var(--band-pad); overflow: clip; }
+.reviews-inner { display: flex; flex-direction: column; gap: var(--s48); }
+.reviews-head { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.rail { display: flex; align-items: flex-start; gap: 24px; }
+.review {
+  flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 16px;
+  background: var(--brand-white); border-radius: var(--brand-radius-card);
+  box-shadow: var(--brand-shadow-card); padding: 32px 24px;
+}
+.review-q { flex: 0 0 auto; font-size: 16px; line-height: 26px; text-wrap: pretty; }
+.review[data-featured] { flex-grow: 1.6; gap: 24px; padding: 40px 32px; }
+.review[data-featured] .review-q { font-size: 22px; line-height: 34px; font-weight: 500; letter-spacing: -0.005em; }
+.reviews-note { font-size: 14px; line-height: 20px; }
+.review-by { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; font-size: 14px; line-height: 20px; }
+.vb { display: inline-flex; align-items: center; gap: 6px; }
+.verified { flex: none; color: var(--brand-navy); }
+.verified .vk { stroke: var(--brand-white); }
+
+/* ------------------------------------------------------------ reason 6: offer (pastel = the product) */
+.offer { background: var(--brand-grad-hero); padding-block: var(--band-pad); }
+.offer-card {
+  width: 100%; display: flex; flex-direction: column; gap: 24px;
+  background: var(--brand-white); border-radius: var(--brand-radius-card);
+  box-shadow: var(--brand-shadow-panel); padding: var(--s32);
+}
+.offer-h { font-size: 28px; line-height: 36px; font-weight: 700; }
+.vs { display: flex; flex-direction: column; gap: 16px; }
+.vs-row { display: flex; align-items: flex-start; gap: 12px; }
+.vs-item { flex: 1 1 0; min-width: 0; font-size: 16px; line-height: 24px; font-weight: 500; }
+.vs-val { flex: 0 0 auto; display: flex; flex-direction: column; align-items: flex-end; text-align: right; font-size: 16px; line-height: 24px; }
+.vs-price { display: flex; align-items: baseline; gap: 8px; white-space: nowrap; }
+.vs-val s { font-weight: 400; }
+.vs-val strong { font-weight: 700; }
+.vs-row:first-child .vs-price strong { font-size: 20px; line-height: 24px; }
+.free { text-transform: uppercase; letter-spacing: 0.48px; }
+.v-note { font-size: 14px; line-height: 20px; }
+.buy { display: flex; flex-direction: column; gap: 12px; }
+.plan { font-size: 14px; line-height: 20px; text-align: center; }
+.guarantee { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; line-height: 24px; font-weight: 600; }
+
+/* ------------------------------------------------------------ FAQ */
+.faq { overflow: clip; }
+.faq-inner { display: flex; align-items: flex-start; gap: var(--s96); }
+.faq-h { flex: 0 0 360px; }
+.faq-list { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 1px; padding-block: 1px; background: var(--brand-line); }
+.faq-row { display: flex; flex-direction: column; background: var(--brand-white); }
+.faq-q {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 24px 0; cursor: pointer; list-style: none;
+  font-size: 18px; line-height: 28px; font-weight: 600;
+}
+.faq-q::-webkit-details-marker { display: none; }
+.chev { flex: none; transition: transform 200ms var(--ease-out); }
+.faq-row[open] .chev { transform: rotate(180deg); }
+.faq-a { padding: 0 48px 24px 0; }
+.faq-a p { font-size: 16px; line-height: 26px; text-wrap: pretty; }
+
+/* ------------------------------------------------------------ closing statement */
+.closing-inner { display: flex; align-items: center; justify-content: space-between; gap: var(--s48); }
+.closing-line { font-size: 40px; line-height: 48px; font-weight: 600; letter-spacing: -0.01em; max-width: 760px; text-wrap: balance; }
+
+/* ------------------------------------------------------------ footnotes + footer */
+.notes { padding-block: var(--s48) var(--s24); }
+.notes-inner { display: flex; flex-direction: column; gap: 12px; }
+.note { max-width: 960px; font-size: 12px; line-height: 18px; color: var(--brand-muted); }
+.site-footer { background: var(--grad-footer); padding-block: var(--s24) var(--s48); }
+.footer-inner { display: flex; flex-direction: column; gap: var(--s48); }
+.foot-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; }
+.foot-links { display: flex; flex-wrap: wrap; gap: 8px 32px; font-size: 14px; line-height: 20px; }
+.foot-links a { display: inline-flex; min-height: 32px; align-items: center; text-decoration: none; }
+.foot-links a:hover { text-decoration: underline; }
+.foot-social { display: flex; gap: 8px; }
+.foot-social a { display: flex; width: 44px; height: 44px; align-items: center; justify-content: center; }
+.foot-word { display: block; width: 100%; height: auto; color: var(--brand-navy); }
+.copyright { font-size: 14px; line-height: 20px; }
+
+/* ------------------------------------------------------------ sticky bar (desktop: slim top bar) */
+.sticky {
+  position: fixed; left: 0; right: 0; top: 0; z-index: var(--z-sticky);
+  background: var(--brand-white); box-shadow: var(--brand-shadow-header);
+  visibility: hidden; transform: translateY(-100%);
+  transition: transform 240ms var(--ease-out), visibility 0s linear 240ms;
+}
+.sticky[data-show] { visibility: visible; transform: none; transition: transform 240ms var(--ease-out), visibility 0s; }
+.sticky-inner {
+  position: relative; display: flex; align-items: center; gap: 24px;
+  width: 100%; max-width: calc(var(--brand-container) + 2 * var(--gutter));
+  min-height: 64px; padding: 8px var(--gutter);
+}
+.sticky-cut { display: none; }
+.sticky-logo { width: 96px; }
+.sticky-line { flex: 1 1 0; min-width: 0; text-align: right; font-size: 16px; line-height: 24px; font-weight: 600; }
+.sticky-line strong { font-weight: 700; }
+.sticky .btn { min-height: 44px; padding: 12px 32px; font-size: 14px; line-height: 20px; }
+
+#reason-1, #offer, #reason-3, [id^="fn-"] { scroll-margin-top: 80px; }
+
+/* ------------------------------------------------------------ narrow desktop */
+@media (max-width: 1279px) {
+  :root { --split-gap: 64px; }
+  /* the render is width bound here, so the pack starts at 47vw: keep the copy left of it */
+  .hero-copy { max-width: calc(44vw - 24px); }
+  .hero-h { font-size: 40px; line-height: 50px; }
+  .ledger-media { flex-basis: 320px; }
+  /* 32 top and bottom so the 2:3 image, not the copy, sets the panel height (full frame at 1024) */
+  .panel-copy { padding: var(--s32) var(--s48); }
+  .stat-n { font-size: 96px; line-height: 92px; }
+  .study .reason-h { font-size: 36px; line-height: 44px; }
+  .study .lead { font-size: 16px; line-height: 24px; }
+}
+
+/* ------------------------------------------------------------ stacked hero (tablet and phone) */
+@media (max-width: 1023px) {
+  .hero { min-height: 0; max-height: none; background: var(--brand-grad-hero); }
+  .hero-media { position: relative; order: 2; width: 100%; }
+  .hero-media img { height: auto; }
+  .hero-wrap { order: 1; padding-block: var(--s32); }
+  .hero-copy { max-width: 640px; }
+  .hero-scrim { display: none; }
+}
+
+/* ------------------------------------------------------------ phone and small tablet */
+@media (max-width: 900px) {
+  :root { --gutter: 16px; --sec-pad: 32px; --band-pad: 64px; }
+
+  .btn { font-size: 14px; line-height: 18px; min-height: 50px; padding: 16px 36px; }
+  .btn.btn-hero { font-size: 16px; line-height: 20px; padding: 16px 40px; }
+  /* every in page CTA is full width on a phone (header and sticky buttons keep their own width) */
+  .cta-row { align-self: stretch; align-items: stretch; }
+  .cta-row .btn, .closing .btn { width: 100%; }
+
+  .header-inner { min-height: 64px; }
+  .logo img { width: 112px; }
+  .btn.header-cta { min-height: 44px; padding: 12px 16px; font-size: 12px; line-height: 16px; }
+
+  .hero-h { font-size: 40px; line-height: 50px; }
+  .hero-sub { font-size: 16px; line-height: 24px; }
+  .hero-copy { gap: 16px; }
+
+  .trust { padding-block: var(--s24); }
+  .trust-list { gap: 16px; }
+  .trust-item { flex: 1 1 calc(50% - 8px); font-size: 14px; line-height: 20px; gap: 8px; }
+
+  /* reasons: image on top, full bleed, then the copy (Mars Men order) */
+  .reason { padding-top: 0; padding-bottom: var(--s64); }
+  .split-inner, .split.flip .split-inner, .ledger-inner { flex-direction: column; align-items: stretch; gap: 0; padding-inline: 0; }
+  .split-media, .ledger-media { flex: 0 0 auto; width: 100%; }
+  .split-media img, .split-media .vid { border-radius: 0; }
+  .split-copy, .ledger-copy { max-width: none; padding: var(--s32) var(--gutter) 0; gap: 16px; }
+  .reason-h, .sec-h { font-size: 28px; line-height: 36px; }
+  .lead, .ingr { font-size: 16px; line-height: 24px; }
+  .ingr-list { gap: 12px; }
+  .ingr { gap: 12px; }
+  .ic-ingr { width: 24px; height: 24px; }
+
+  /* comparison: each row label on its own line above the three values; the
+     column heads stay pinned while the table scrolls; check marks sit inline */
+  .cmp-title { font-size: 20px; line-height: 28px; }
+  .cmp-row { flex-wrap: wrap; }
+  /* pinned head: the table's own line colour shows through the 1px gaps; the head
+     cells carry the grid hairline under them so it stays visible while pinned */
+  .cmp-head { position: sticky; top: 0; z-index: 1; }
+  .cmp-head .cmp-cell { box-shadow: 0 1px 0 var(--brand-line); }
+  .cmp-label { flex: 1 0 100%; padding: 8px 12px; font-size: 14px; line-height: 20px; }
+  .cmp-head .cmp-corner { display: none; }
+  .cmp-cell { align-items: center; gap: 6px; padding: 12px 10px; font-size: 14px; line-height: 20px; }
+  .cmp-head .cmp-cell { padding-block: 12px; }
+  .cmp-head .cmp-ev .cmp-col { padding: 2px 12px; }
+  .mk { width: 20px; height: 20px; }
+  .ic-mk { width: 12px; height: 12px; }
+
+  /* study: full bleed navy band, image on top */
+  .study { padding-block: 0; }
+  .study .wrap { padding-inline: 0; }
+  .panel { flex-direction: column; border-radius: 0; }
+  .panel-media { flex: 0 0 auto; width: 100%; }
+  .panel-copy { padding: var(--s32) var(--gutter) var(--s64); gap: 16px; }
+  /* phone order: headline, stats, bars, meta, body, CTA */
+  .study .reason-h { font-size: 28px; line-height: 36px; }
+  .study-body { order: 3; }
+  .study .cta-row { order: 4; }
+  .study-data { padding-top: 8px; gap: 20px; }
+  .bars { --lab-w: 132px; }
+  .bar-lab { font-size: 14px; line-height: 20px; }
+  .stats { flex-wrap: nowrap; gap: 24px; }
+  .stat { flex: 1 1 0; min-width: 0; }
+  .stat-n { font-size: 80px; line-height: 80px; }
+  .stat-u { font-size: 18px; line-height: 24px; }
+
+  /* reviews: horizontal rail that bleeds to the screen edges */
+  .reviews-inner { padding-inline: 0; gap: var(--s32); }
+  .reviews-head { padding-inline: var(--gutter); gap: 12px; }
+  .rail {
+    overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter);
+    padding: 0 var(--gutter) var(--s8); gap: 16px; scrollbar-width: none;
+  }
+  .rail::-webkit-scrollbar { display: none; }
+  .review { flex: 0 0 280px; scroll-snap-align: start; padding: 24px 20px; }
+  .review[data-featured] { flex: 0 0 320px; gap: 16px; padding: 24px 20px; }
+  .review[data-featured] .review-q { font-size: 18px; line-height: 28px; }
+  .reviews-note { padding-inline: var(--gutter); }
+
+  /* offer: on a phone the buy box is the page, so the card dissolves */
+  .offer { padding-top: 0; padding-bottom: var(--s64); }
+  .offer-card { background: none; box-shadow: none; border-radius: 0; padding: var(--s16) 0 0; gap: 16px; }
+  .offer-h { font-size: 24px; line-height: 32px; }
+  /* short rows keep the value on the right; the long first row puts it under its label */
+  .vs-item { font-size: 16px; line-height: 24px; }
+  .vs-row:first-child { flex-wrap: wrap; row-gap: 4px; }
+  .vs-row:first-child .vs-item { flex: 1 1 calc(100% - 36px); }
+  .vs-row:first-child .vs-val { flex: 1 0 100%; align-items: flex-start; text-align: left; padding-left: 36px; }
+  .guarantee { font-size: 14px; line-height: 20px; }
+
+  .faq-inner { flex-direction: column; align-items: stretch; gap: var(--s16); }
+  .faq-h { flex: 0 0 auto; }
+  .faq-q { padding: 20px 0; font-size: 16px; line-height: 24px; }
+  .faq-a { padding: 0 24px 20px 0; }
+
+  .closing { padding-block: var(--s64); }
+  .closing-inner { flex-direction: column; align-items: flex-start; gap: var(--s24); }
+  .closing-line { font-size: 28px; line-height: 36px; }
+
+  .site-footer { padding-bottom: calc(var(--s48) + 80px); }
+  .foot-top { flex-direction: column; align-items: flex-start; }
+  .foot-links { gap: 4px 24px; }
+
+  /* sticky bar: bottom of the screen with the waving cutout */
+  .sticky { top: auto; bottom: 0; transform: translateY(100%); box-shadow: var(--bar-shadow-up); }
+  .sticky-inner { min-height: 72px; gap: 8px; padding: 8px var(--gutter) calc(8px + env(safe-area-inset-bottom)) 96px; }
+  .sticky-cut { display: block; position: absolute; left: 2px; bottom: 0; width: auto; height: 76px; }
+  .sticky-logo { display: none; }
+  .sticky-line { text-align: left; font-size: 14px; line-height: 18px; font-weight: 400; }
+  .sticky-line strong { font-weight: 600; }
+  .sticky .btn { flex: none; padding: 12px 14px; font-size: 14px; line-height: 18px; }
+
+  #reason-1, #offer, #reason-3, [id^="fn-"] { scroll-margin-top: 16px; }
+}
+
+/* ------------------------------------------------------------ small phones (360 to 389) */
+@media (max-width: 389px) {
+  .logo img { width: 96px; }
+  .btn.header-cta { padding: 12px; }
+  /* keeps the sticky line at two lines: "Metabolism Booster," then "$27 a month" */
+  .sticky-inner { padding-left: 78px; }
+  .sticky-cut { left: 0; height: 60px; }
+  .sticky .btn { padding: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0s !important; transition-delay: 0s !important; animation: none !important; }
+}

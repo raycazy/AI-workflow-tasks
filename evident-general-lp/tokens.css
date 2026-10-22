@@ -1,0 +1,98 @@
+/* ============================================================================
+   Evident Wellness design tokens (machine-readable source of truth)
+   Source: live extraction of evidentwellness.co, 2026-10-21 (computed CSS,
+   theme :root vars --color-1 to --color-9, pixel samples of packs and logo).
+   Companion: design-system.html (human reference) + tokens.json (same values).
+
+   USAGE: import this at the top of any Evident deliverable so colours, type
+   and geometry come from ONE place. Do not hardcode hex values in the design.
+     <link rel="stylesheet" href="/brand-guides/evident/tokens.css">
+   or paste the :root block into a Liquid/React theme.
+
+   RULE: these are the brand's REAL values (navy type, pastel trio, full pill
+   uppercase buttons, rounded soft shadow cards, square 0px inputs). One
+   family only: Work Sans. Interstate Light Condensed is marquee only on the
+   live theme, licence unknown, and is deliberately left out.
+   ============================================================================ */
+:root {
+  /* Brand */
+  --brand-navy:          #273A55;  /* theme --color-1: all text, headings, primary button, logo, icon strokes, strong borders */
+  --brand-navy-deep:     #1E2D3D;  /* custom PDP sections only: ingredient spotlight button, a few H2s */
+  --brand-lime:          #DEFF3F;  /* theme --color-2: announcement bar, lime button, badges, footer gradient end */
+  --brand-mint:          #C7FFF7;  /* UI mint: gradient stop on heroes, stats, comparison grounds */
+  --brand-lavender:      #D9DFFF;  /* theme --color-7: tinted panels, comparison column, gradient stop */
+  --brand-coral:         #FC5E55;  /* theme --color-5: coral button, primary button hover, review stars */
+  --brand-coral-icon:    #FF4E4C;  /* SVG fills: hero stars, guarantee check mark */
+  --brand-coral-text:    #E85C4D;  /* small coral text on PDP feature cards (3.5:1 on white, large text only) */
+
+  /* Pack colours (pixel medians of the printed packs; for product context, not UI fills) */
+  --brand-pack-mint:     #C3F5EE;  /* Metabolism Booster pack body */
+  --brand-pack-lavender: #DBE0F7;  /* Skin Rejuvenation pack body */
+  --brand-pack-lime:     #DBFC42;  /* Ageless Energy pack body */
+
+  /* Surface */
+  --brand-white:         #FFFFFF;  /* theme --color-4: inner page ground, cards, header bar */
+  --brand-ground:        #F9F5F3;  /* theme --color-6: home page ground; matches the packshot studio ground */
+  --brand-mint-section:  #C8EDE8;  /* solid mint section and icon wells (PDP icon columns) */
+  --brand-panel:         #F5F5F5;  /* theme --color-9: buy box quote panel */
+  --brand-callout:       #EEEEEE;  /* theme --color-3: buy box offer callout (body bg, never a page ground) */
+  --brand-lime-pale:     #FBFFEA;  /* pale lime callout fill (PDP) */
+  --brand-lime-panel:    #D4F001;  /* lime comparison panel (PDP) */
+
+  /* Text and lines */
+  --brand-ink:           #273A55;  /* body and headings are the same navy */
+  --brand-muted:         #60666C;  /* small outline button text, captions (5.9:1 on white) */
+  --brand-line:          #E8E8E8;  /* theme --color-8: buy box outline, row dividers */
+  --brand-line-strong:   #273A55;  /* header bottom border, outline buttons, inputs, footer top rule */
+
+  /* Gradients (computed background-image) */
+  --brand-grad-hero:     linear-gradient(#C7FFF7 0%, #D9DFFF 100%);
+  --brand-grad-marquee:  linear-gradient(90deg, #DBEF9F 0%, #D9DFFF 51.44%, #C7FFF7 87.75%);
+  --brand-grad-belief:   linear-gradient(#FFFFFF 0%, #C7FFF7 33.17%, #D9DFFF 68.75%, #FFFFFF 100%);
+  --brand-grad-footer:   linear-gradient(transparent 0%, #DEFF3F 66.35%);
+  --brand-grad-metabolism: linear-gradient(135deg, #BAF0E6, #37B79F);
+  --brand-grad-skin:     linear-gradient(135deg, #DEE4FF, #6C7ABB);
+  --brand-grad-ageless:  linear-gradient(135deg, #E6FF6D, #829429);
+
+  /* Type */
+  --brand-font:          'Work Sans', sans-serif;
+  --brand-weights:       400 500 600 700 800;  /* plus italic 400 and 500 */
+  --brand-size-base:     15px;     /* root font size; modular ratio 1.2 */
+  --brand-type-ratio:    1.2;
+
+  /* Geometry */
+  --brand-radius-pill:   100px;    /* every button */
+  --brand-radius-chip:   999px;    /* price pill, hero benefit pills */
+  --brand-radius-card:   16px;     /* product card, buy box container */
+  --brand-radius-media:  12px;     /* media inside cards, buy box inner panels, callouts */
+  --brand-radius-image:  10px;     /* gallery images, review and UGC tiles */
+  --brand-radius-feature: 20px;    /* PDP feature cards */
+  --brand-radius-panel:  24px;     /* PDP comparison panels */
+  --brand-radius-hero-panel: 48px; /* large photo panel ("What to Expect") */
+  --brand-radius-badge:  6px;      /* shipping badge */
+  --brand-radius-input:  0px;      /* form inputs and textareas are square */
+
+  /* Shadow */
+  --brand-shadow-card:   0 4px 18px rgba(39,58,85,0.08);
+  --brand-shadow-feature: 0 4px 24px rgba(26,25,25,0.06);
+  --brand-shadow-panel:  0 10px 30px rgba(26,25,25,0.08);
+  --brand-shadow-pill:   0 2px 8px rgba(0,0,0,0.08);
+  --brand-shadow-header: 0 4px 4px rgba(0,0,0,0.05);
+
+  /* Buttons */
+  --brand-btn-transform: uppercase;
+  --brand-btn-tracking:  0.48px;
+  --brand-btn-weight:    700;
+  --brand-btn-size:      16px;     /* 13.33px on mobile */
+  --brand-btn-pad:       16px 24px;
+  --brand-btn-hover:     #FC5E55;  /* navy primary turns coral on hover, 0.125s ease-in-out */
+
+  /* Inputs */
+  --brand-input-border:  1px solid #273A55;
+  --brand-input-pad:     10.67px 16px;
+  --brand-input-size:    15px;
+
+  /* Layout */
+  --brand-container:     1272px;
+  --brand-header-height: 108px;    /* 37px lime announcement + 73px nav (mobile 98 / 63) */
+}
