@@ -51,7 +51,7 @@ a{color:inherit}
 .h1 em{display:block;font-style:normal;color:var(--red)}
 
 /* mystery card */
-.mystery{margin-top:clamp(28px,4vh,44px);display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(10px,2vw,22px);align-items:center;text-align:left;max-width:560px;padding:clamp(16px,2.4vw,22px);border-radius:20px;border:1px solid var(--line);background:rgba(20,18,18,.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.mystery{margin-top:clamp(28px,4vh,44px);max-width:600px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(10px,2vw,22px);align-items:center;text-align:left;max-width:560px;padding:clamp(16px,2.4vw,22px);border-radius:20px;border:1px solid var(--line);background:rgba(20,18,18,.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 /* 3D mystery slab: six faces with depth, idle sway, drag to turn, sheen follows the angle, tap to spin */
 .m3d{--w:150px;--h:210px;--d:5px;position:relative;width:calc(var(--w) + 40px);height:calc(var(--h) + 40px);perspective:900px;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none;border-radius:14px;outline:none}
 .m3d:focus{outline:none}
@@ -85,7 +85,7 @@ a{color:inherit}
 .m3d-shadow{position:absolute;left:50%;top:calc(var(--h) / 2 + 14px);width:calc(var(--w) * 1.05);height:24px;transform:translateX(-50%) rotateX(80deg);background:radial-gradient(ellipse,rgba(0,0,0,.8),transparent 70%);filter:blur(6px)}
 .mystery-k{margin:0;font-family:var(--lab);font-weight:600;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--red-text)}
 .mystery-t{margin:6px 0 0;font-size:clamp(18px,1.7vw,21px);font-weight:700;line-height:1.3}
-.mystery-s{margin:6px 0 0;font-size:15px;color:var(--text-2)}
+.mystery-s{margin:8px 0 0;font-size:14.5px;line-height:1.5;color:var(--text-2)}
 
 /* signup */
 .signup{width:100%;max-width:560px;margin-top:22px;text-align:left}
@@ -126,7 +126,8 @@ a{color:inherit}
 }
 @media (max-height:780px){.stage{padding-top:32px;padding-bottom:28px}.logo{width:min(300px,62vw)}.h1{margin-top:18px;font-size:clamp(30px,4vw,48px)}.mystery{margin-top:20px}.signup{margin-top:16px}}
 @media (max-width:560px) and (max-height:700px){.logo{width:min(220px,58vw)}.h1{font-size:28px}.m3d{--w:80px;--h:112px}.m3d-win b{font-size:42px}.mystery-t{font-size:15px}}
-@media (max-width:380px){/* reduced motion: lights already up, logo fully visible on first paint */
+@media (max-width:380px){@media (max-width:380px) and (max-height:700px){.stage{padding-top:20px}.logo{width:170px}.h1{margin-top:12px;font-size:25px}.mystery{margin-top:14px;padding:12px}.mystery-k{font-size:11px}.mystery-t{font-size:14px}.mystery-s{font-size:12.5px;line-height:1.4}.signup{margin-top:12px}}
+/* reduced motion: lights already up, logo fully visible on first paint */
 @media (prefers-reduced-motion:reduce){.beam,.logo,.m3d-rig,.m3d-win b,.m3d-scan{animation:none}.m3d-scan{display:none}}
 </style>
 </head>
@@ -157,9 +158,9 @@ a{color:inherit}
         </div>
       </div>
       <div>
-        <p class="mystery-k">Mystery card giveaway</p>
-        <p class="mystery-t">An HGA graded card valued up to $4,999 is up for grabs.</p>
-        <p class="mystery-s">Details are coming by email.</p>
+        <p class="mystery-k">Mystery card giveaway: coming soon</p>
+        <p class="mystery-t">We&rsquo;re giving away one HGA graded card worth up to $4,999.</p>
+        <p class="mystery-s">Sign up to get the official rules and entry details when it opens. Signing up isn&rsquo;t an entry. No purchase necessary to enter or win.</p>
       </div>
     </div>
 
@@ -175,7 +176,7 @@ a{color:inherit}
         <button type="submit">Sign me up</button>
       </div>
       <p class="msg" id="signup-msg" aria-live="polite"></p>
-      <p class="fine">Giveaway details and official rules coming soon. By signing up you confirm you're 18 or older and agree to receive email from HGA. Unsubscribe any time. We never sell your information. <a href="/privacy">Privacy Policy</a></p>
+      <p class="fine">By signing up you confirm you're 18 or older and agree to receive email from HGA. Unsubscribe any time. We never sell your information. <a href="/privacy">Privacy Policy</a></p>
     </form>
   </div>
 </main>
