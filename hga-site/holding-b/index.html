@@ -102,6 +102,20 @@ a{color:inherit}
 .fine{margin:10px 0 0;font-size:13px;line-height:1.55;color:var(--muted)}
 .fine a{color:var(--text-2);text-decoration:underline;text-underline-offset:3px}
 
+
+/* Klaviyo embedded form QVjYCi restyled to the page (spec: 2px black border, red button, 56px tall) */
+.klaviyo-form-QVjYCi form{padding:0!important;margin:0!important;background:transparent!important;max-width:none!important}
+.klaviyo-form-QVjYCi form > div{padding:0!important}
+.klaviyo-form-QVjYCi [data-testid="form-row"]{gap:10px!important}
+.klaviyo-form-QVjYCi input[type="email"]{height:56px!important;border:2px solid #000!important;outline:1px solid var(--line-2)!important;border-radius:10px!important;background:#fff!important;color:#0E0E0E!important;font-family:var(--sans)!important;font-size:16px!important;padding:0 18px!important;box-sizing:border-box!important}
+.klaviyo-form-QVjYCi input[type="email"]:focus{outline:2px solid var(--red)!important;outline-offset:1px}
+.klaviyo-form-QVjYCi button{height:56px!important;min-height:56px!important;border-radius:10px!important;background:var(--red)!important;color:#fff!important;font-family:var(--sans)!important;font-weight:700!important;font-size:15px!important;letter-spacing:.08em!important;text-transform:uppercase!important;padding:0 26px!important;box-shadow:0 10px 26px rgba(230,36,41,.3)!important;cursor:pointer}
+.klaviyo-form-QVjYCi button:hover{background:var(--red-2)!important}
+.klaviyo-form-QVjYCi * {font-family:var(--sans)}
+.klaviyo-form-QVjYCi div:has(> div > input[type="email"]),.klaviyo-form-QVjYCi div:has(> button){padding:0!important}
+.klaviyo-form-QVjYCi input[type="email"]::placeholder{font-family:var(--sans)!important;color:#7A7575!important}
+.signup .fine{margin-top:12px}
+
 /* footer */
 .foot{border-top:1px solid var(--line);padding:22px 0 calc(22px + env(safe-area-inset-bottom))}
 .foot .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px}
@@ -130,6 +144,12 @@ a{color:inherit}
 /* reduced motion: lights already up, logo fully visible on first paint */
 @media (prefers-reduced-motion:reduce){.beam,.logo,.m3d-rig,.m3d-win b,.m3d-scan{animation:none}.m3d-scan{display:none}}
 </style>
+<!-- Klaviyo onsite script (HGA account XfpWAX): loads the embedded signup form and Active on Site tracking -->
+<script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/XfpWAX/klaviyo.js?company_id=XfpWAX"></script>
+<script type="text/javascript">
+//Initialize Klaviyo object on page load
+!function(){if(!window.klaviyo){window._klOnsite=window._klOnsite||[];try{window.klaviyo=new Proxy({},{get:function(n,i){return"push"===i?function(){var n;(n=window._klOnsite).push.apply(n,arguments)}:function(){for(var n=arguments.length,o=new Array(n),w=0;w<n;w++)o[w]=arguments[w];var t="function"==typeof o[o.length-1]?o.pop():void 0,e=new Promise((function(n){window._klOnsite.push([i].concat(o,[function(i){t&&t(i),n(i)}]))}));return e}}})}catch(n){window.klaviyo=window.klaviyo||[],window.klaviyo.push=function(){var n;(n=window._klOnsite).push.apply(n,arguments)}}}}();
+</script>
 </head>
 <body>
 <main class="stage" id="main">
@@ -164,20 +184,11 @@ a{color:inherit}
       </div>
     </div>
 
-    <!-- Email interest list, not a sweepstakes entry. Replace this form with the Klaviyo embedded form
-         (source HGA_presale_hype_site, main HGA list, one confirmation email, bot protection, no CAPTCHA),
-         or set data-endpoint to a Klaviyo subscribe endpoint. Styled to spec: 2px black border, red button, 56px tall. -->
-    <form class="signup" data-signup data-endpoint="" novalidate>
-      <input type="hidden" name="$source" value="HGA_presale_hype_site">
-      <label class="hp" aria-hidden="true">Leave this empty<input type="text" name="company" tabindex="-1" autocomplete="off"></label>
-      <label class="sr" for="email">Email address</label>
-      <div class="row">
-        <input id="email" type="email" name="email" autocomplete="email" inputmode="email" placeholder="Email address" required aria-describedby="signup-msg">
-        <button type="submit">Sign me up</button>
-      </div>
-      <p class="msg" id="signup-msg" aria-live="polite"></p>
+    <!-- Klaviyo embedded signup form QVjYCi. Set the source HGA_presale_hype_site and the main HGA list in Klaviyo's form settings. -->
+    <div class="signup">
+      <div class="klaviyo-form-QVjYCi"></div>
       <p class="fine">By signing up, you confirm you&rsquo;re 18 or older and agree to get marketing emails from HGA. Unsubscribe anytime. Signing up isn&rsquo;t a giveaway entry. <a href="/privacy">Privacy policy</a>.</p>
-    </form>
+    </div>
   </div>
 </main>
 
@@ -225,19 +236,9 @@ a{color:inherit}
     go();
   });
 
-  // Signup: one field, one button. Posts to data-endpoint when set; until then it only confirms on the page.
-  document.querySelectorAll("[data-signup]").forEach(function (f) {
-    var input = f.querySelector("#email"), msg = f.querySelector(".msg"), hp = f.querySelector('[name="company"]');
-    f.addEventListener("submit", function (e) {
-      e.preventDefault();
-      if (hp.value) return;
-      if (!input.checkValidity()) { f.classList.remove("ok"); msg.textContent = "Enter a valid email address, like name@example.com."; input.setAttribute("aria-invalid", "true"); input.focus(); return; }
-      input.removeAttribute("aria-invalid");
-      var done = function () { f.classList.add("ok"); msg.textContent = "You're signed up. Watch your inbox for the details."; input.value = ""; track("signup_submitted", { source: "HGA_presale_hype_site" }); };
-      var url = f.dataset.endpoint;
-      if (!url) return done();
-      fetch(url, { method: "POST", body: new FormData(f) }).then(done, function () { msg.textContent = "Something went wrong. Please try again."; });
-    });
+  // Klaviyo form events: count signups once the embedded form submits.
+  window.addEventListener("klaviyoForms", function (e) {
+    if (e.detail && e.detail.type === "submit" && e.detail.formId === "QVjYCi") track("signup_submitted", { source: "HGA_presale_hype_site" });
   });
 </script>
 </body>
