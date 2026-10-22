@@ -46,8 +46,23 @@
      JS, with reduced motion, on a load error or when autoplay is blocked the still
      is what shows. The src (and the poster, so lazy stills stay lazy) is set only
      when motion is allowed: the hero clip for the current breakpoint at once, the
-     reason clips once they come within one viewport. A clip fades in on "playing". */
+     reason clips once they come within half a viewport. A clip fades in on "playing".
+     Playback follows what is on screen: every clip plays only while it intersects
+     the viewport (no margin) and pauses as soon as it leaves. */
   var vids = Array.prototype.slice.call(document.querySelectorAll("video.vid"));
+
+  function playVid(v) {
+    var p = v.play();
+    if (p && p.catch) p.catch(function () { /* autoplay refused: the still stays */ });
+  }
+
+  /* on screen as far as the play observer knows: reason clips wait for its first
+     report, the hero (on screen at load) counts as visible until it reports */
+  function wantsPlay(v) {
+    if (reduceMotion.matches) return false;
+    if (v.__mq && !v.__mq.matches) return false;
+    return v.hasAttribute("data-lazy") ? v.__inView === true : v.__inView !== false;
+  }
 
   function loadVid(v) {
     if (v.hasAttribute("data-loaded")) return;
@@ -61,8 +76,7 @@
     if (last) last.addEventListener("error", function () { v.remove(); });
     v.addEventListener("playing", function () { v.classList.add("is-on"); });
     v.load();
-    var p = v.play();
-    if (p && p.catch) p.catch(function () { /* autoplay refused: the still stays */ });
+    if (wantsPlay(v)) playVid(v);
   }
 
   function stopVid(v) {
@@ -71,14 +85,31 @@
   }
 
   if (vids.length && !reduceMotion.matches) {
-    /* hero: one clip per breakpoint; load the matching one, pause the hidden one */
+    var hasIO = "IntersectionObserver" in window;
+
+    /* playback: play while on screen, pause as soon as a clip leaves (hero and reasons) */
+    if (hasIO) {
+      var pio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          var v = en.target;
+          v.__inView = en.isIntersecting;
+          if (!v.hasAttribute("data-loaded")) return;
+          if (wantsPlay(v)) { if (v.paused) playVid(v); }
+          else if (!v.paused) v.pause();
+        });
+      });
+      vids.forEach(function (v) { pio.observe(v); });
+    }
+
+    /* hero: one clip per breakpoint; load the matching one at once, pause the hidden one */
     vids.filter(function (v) { return v.hasAttribute("data-media"); }).forEach(function (v) {
       var mq = window.matchMedia(v.getAttribute("data-media"));
+      v.__mq = mq;
       function sync() {
         if (reduceMotion.matches) return;
         if (mq.matches) {
-          if (v.hasAttribute("data-loaded")) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
-          else loadVid(v);
+          if (!v.hasAttribute("data-loaded")) loadVid(v);
+          else if (v.paused && wantsPlay(v)) playVid(v);
         } else if (v.hasAttribute("data-loaded")) {
           v.pause();
         }
@@ -87,23 +118,17 @@
       sync();
     });
 
-    /* reasons: start loading within one viewport, pause while off screen */
+    /* reasons: load once a clip comes within half a viewport (loading only) */
     var lazy = vids.filter(function (v) { return v.hasAttribute("data-lazy"); });
-    if ("IntersectionObserver" in window) {
-      var vio = new IntersectionObserver(function (entries) {
+    if (hasIO) {
+      var lio = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) {
-          var v = en.target;
-          if (en.isIntersecting) {
-            if (!v.hasAttribute("data-loaded")) loadVid(v);
-            else if (v.paused && !reduceMotion.matches) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
-          } else if (v.hasAttribute("data-loaded") && !v.paused) {
-            v.pause();
-          }
+          if (en.isIntersecting) { loadVid(en.target); lio.unobserve(en.target); }
         });
-      }, { rootMargin: "100% 0px" });
-      lazy.forEach(function (v) { vio.observe(v); });
+      }, { rootMargin: "50% 0px" });
+      lazy.forEach(function (v) { lio.observe(v); });
     } else {
-      lazy.forEach(loadVid);
+      lazy.forEach(function (v) { v.__inView = true; loadVid(v); });
     }
   }
 

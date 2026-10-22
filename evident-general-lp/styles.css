@@ -65,6 +65,14 @@ section, header, footer { display: flex; flex-direction: column; align-items: ce
 .btn-full { width: 100%; }
 .btn:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px solid var(--brand-navy); outline-offset: 3px; }
 .study .btn:focus-visible, .study a:focus-visible { outline-color: var(--brand-white); }
+/* rings that would be cut off: the offer link fills its bar (the page top and the header cover an
+   outside ring), the next FAQ row paints over an outside ring, and the review rail is a Tab stop on
+   phones because it scrolls (Chromium's thin default ring otherwise). The FAQ ring stays outside the
+   row and is lifted over the next one: an inset ring would cross the first letter and the chevron,
+   because the question has no side padding. */
+.announce-link:focus-visible { outline-offset: -4px; }
+.faq-q:focus-visible { position: relative; z-index: 1; }
+.rail:focus-visible { outline: 2px solid var(--brand-navy); outline-offset: -2px; }
 
 .fn { color: inherit; text-decoration: none; }
 .fn:hover { text-decoration: underline; }
@@ -333,7 +341,11 @@ section, header, footer { display: flex; flex-direction: column; align-items: ce
 .sticky-line strong { font-weight: 700; }
 .sticky .btn { min-height: 44px; padding: 12px 32px; font-size: 14px; line-height: 20px; }
 
-#reason-1, #offer, #reason-3, [id^="fn-"] { scroll-margin-top: 80px; }
+/* the slim top sticky bar (64 px) from 901 px: focus and anchor jumps stop 80 px below the top
+   (this padding replaces the anchors' former 80 px scroll-margin, so jumps land where they did) */
+@media (min-width: 901px) {
+  html { scroll-padding-top: 80px; }
+}
 
 /* ------------------------------------------------------------ narrow desktop */
 @media (max-width: 1279px) {
@@ -347,6 +359,10 @@ section, header, footer { display: flex; flex-direction: column; align-items: ce
   .stat-n { font-size: 96px; line-height: 92px; }
   .study .reason-h { font-size: 36px; line-height: 44px; }
   .study .lead { font-size: 16px; line-height: 24px; }
+}
+@media (min-width: 1024px) and (max-width: 1279px) {
+  /* her left hand reaches in to about 42 to 45 percent of the width here: the subhead stops at 40 */
+  .hero-sub { max-width: calc(40vw - 24px); }
 }
 
 /* ------------------------------------------------------------ stacked hero (tablet and phone) */
@@ -372,8 +388,19 @@ section, header, footer { display: flex; flex-direction: column; align-items: ce
   .cta-row { align-self: stretch; align-items: stretch; }
   .cta-row .btn, .closing .btn { width: 100%; }
 
+  /* the sticky bar sits at the bottom: keyboard focus scrolls a control clear of it */
+  html { scroll-padding-bottom: 104px; }
+
   .header-inner { min-height: 64px; }
+  .logo { min-height: 44px; align-items: center; }
   .logo img { width: 112px; }
+  .announce-link { min-height: 44px; }
+  /* footnote marks: a 44 px hit area centred on the mark; the glyph and the line do not move */
+  .fn { position: relative; }
+  .fn::after { content: ""; position: absolute; left: 50%; top: 50%; width: 44px; height: 44px; transform: translate(-50%, -50%); }
+  /* a pair of marks splits the space: the first mark's area runs left from its right edge, the second's right from its left edge */
+  .fn:has(+ .fn)::after { left: auto; right: 0; transform: translateY(-50%); }
+  .fn + .fn::after { left: 0; transform: translateY(-50%); }
   .btn.header-cta { min-height: 44px; padding: 12px 16px; font-size: 12px; line-height: 16px; }
 
   .hero-h { font-size: 40px; line-height: 50px; }
@@ -468,12 +495,16 @@ section, header, footer { display: flex; flex-direction: column; align-items: ce
   .footer-inner { gap: 64px; }
   .foot-top { flex-direction: column; gap: 48px; }
   .foot-brand { flex: none; }
-  .foot-nav { flex-direction: column; gap: 32px; }
+  /* links are 44 px tall (20 px line plus 12 px above and below), so the text pitch is 44;
+     the outer padding is pulled back so the groups start, end and sit 32 px apart as before */
+  .foot-nav { flex-direction: column; gap: 8px; margin-block: -12px; }
   .foot-col:nth-child(n) { flex: none; }
+  .foot-col { gap: 0; }
+  .foot-col a { display: block; width: fit-content; min-width: 44px; padding-block: 12px; }
   /* legal line stays one row; below 390 each item wraps inside itself, as on the live mobile footer */
   .foot-legal { flex-wrap: nowrap; justify-content: space-between; gap: 16px; }
   .foot-legal li { min-width: 0; }
-  .foot-legal a { white-space: normal; }
+  .foot-legal a { white-space: normal; display: inline-block; padding-block: 12px; margin-block: -12px; }
 
   /* sticky bar: bottom of the screen with the waving cutout */
   .sticky { top: auto; bottom: 0; transform: translateY(100%); box-shadow: var(--bar-shadow-up); }
