@@ -22,6 +22,14 @@ body { background: var(--dk-ground); color: var(--dk-text); }
 .announce a:focus-visible,
 .offer-card .btn:focus-visible, .offer-card a:focus-visible,
 .study .btn:focus-visible, .study a:focus-visible { outline-color: var(--brand-navy); }
+/* the offer link fills the bar, so a ring outside it is cut off (page top, header): draw it inside */
+.announce-link:focus-visible { outline-offset: -4px; }
+/* the review rail scrolls on phones, so Chromium makes it a Tab stop with its thin default ring:
+   same white 2 px ring, drawn inside because the rail runs edge to edge */
+.rail:focus-visible { outline: 2px solid var(--dk-text); outline-offset: -2px; }
+
+/* ------------------------------------------------------------ announcement: navy type on lime, as on the light page */
+.announce { color: var(--brand-navy); }
 
 /* ------------------------------------------------------------ buttons: every primary CTA is the lime pill */
 .btn-primary { background: var(--brand-lime); color: var(--brand-navy); }
@@ -93,6 +101,8 @@ body { background: var(--dk-ground); color: var(--dk-text); }
 
 /* ------------------------------------------------------------ phones */
 @media (max-width: 900px) {
+  /* the sticky bar sits at the bottom on phones: keyboard focus scrolls a link clear of it */
+  html { scroll-padding-bottom: 104px; }
   .logo-word { width: 102px; }
   /* light mode dissolves the offer card into its pastel band; here it stays the white card */
   .offer-card { background: var(--brand-white); border-radius: var(--brand-radius-card); padding: var(--s24) var(--s16); }
