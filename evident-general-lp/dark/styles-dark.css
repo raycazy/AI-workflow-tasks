@@ -1,0 +1,105 @@
+/* Evident general LP, dark version. Loaded after ../styles.css; overrides colour
+   only (plus the white offer card on phones and the wordmark size). Site tokens
+   only (../tokens.css, imported by styles.css). No hex values in this file.
+   Ground navy deep, surfaces navy, type white, secondary type white at 72 percent,
+   hairlines white at 12 percent. Lime: buy and primary buttons, check marks, study
+   bars, announcement bar. Mint: the two hook words in the hero headline. Coral:
+   stars only. The study panel and the offer card stay white: the two light islands. */
+
+:root {
+  --dk-ground: var(--brand-navy-deep);
+  --dk-surface: var(--brand-navy);
+  --dk-text: var(--brand-white);
+  --dk-text-2: color-mix(in srgb, var(--brand-white) 72%, transparent);
+  --dk-line: color-mix(in srgb, var(--brand-white) 12%, transparent);
+  --ink-2: color-mix(in srgb, var(--brand-navy) 72%, transparent);   /* secondary type on the white islands */
+}
+
+body { background: var(--dk-ground); color: var(--dk-text); }
+
+/* ------------------------------------------------------------ focus: white 2 px on navy, navy on the light islands */
+.btn:focus-visible, a:focus-visible, summary:focus-visible { outline-color: var(--dk-text); }
+.announce a:focus-visible,
+.offer-card .btn:focus-visible, .offer-card a:focus-visible,
+.study .btn:focus-visible, .study a:focus-visible { outline-color: var(--brand-navy); }
+
+/* ------------------------------------------------------------ buttons: every primary CTA is the lime pill */
+.btn-primary { background: var(--brand-lime); color: var(--brand-navy); }
+.btn-primary:hover { background: var(--brand-lime); box-shadow: var(--brand-shadow-pill), inset 0 0 0 1px var(--brand-navy); }
+
+/* ------------------------------------------------------------ header: navy bar, white wordmark (footer SVG) */
+.site-header { background: var(--dk-surface); }
+.logo-word { display: block; width: 122px; height: auto; color: var(--dk-text); }
+.sticky-logo { width: 87px; height: auto; color: var(--dk-text); }
+
+/* ------------------------------------------------------------ hero */
+.rating { color: var(--dk-text-2); }
+.hero-h strong { color: var(--brand-mint); }
+/* desktop: the clip stays full bleed; a navy deep scrim holds AA behind the copy on the bright kitchen half */
+.hero-scrim {
+  background: linear-gradient(90deg,
+    color-mix(in srgb, var(--brand-navy-deep) 92%, transparent) 0%,
+    color-mix(in srgb, var(--brand-navy-deep) 86%, transparent) 40%,
+    color-mix(in srgb, var(--brand-navy-deep) 64%, transparent) 50%,
+    color-mix(in srgb, var(--brand-navy-deep) 0%, transparent) 64%);
+}
+.assure { color: var(--dk-text-2); }
+
+/* ------------------------------------------------------------ trust band */
+.trust { background: var(--dk-surface); }
+
+/* ------------------------------------------------------------ reason 3 table: Evident column on navy, the rest on the ground */
+.cmp { background: var(--dk-line); }
+.cmp-label, .cmp-cell { background: var(--dk-ground); color: var(--dk-text-2); }
+.cmp-label { color: var(--dk-text); }
+.cmp-ev { background: var(--dk-surface); color: var(--dk-text); }
+.cmp-head .cmp-ev .cmp-col { background: var(--brand-white); color: var(--brand-navy); }
+.mk-yes { background: var(--brand-lime); color: var(--brand-navy); }
+
+/* ------------------------------------------------------------ reason 4: the panel inverts (white, navy type) */
+.panel { background: var(--brand-white); color: var(--brand-navy); }
+.study-meta { color: var(--ink-2); }
+.bar-h2o rect, .sw-h2o rect { fill: var(--brand-lime); }
+.bar-pl rect, .sw-pl rect { fill: color-mix(in srgb, var(--brand-navy) 40%, transparent); }
+/* lime and navy at 40 percent are pale on white: a navy keyline (2 px stroke, 1 px inside the clip) holds 3:1 */
+.bar rect, .sw rect { stroke: var(--brand-navy); stroke-width: 2px; }
+
+/* ------------------------------------------------------------ reviews */
+.reviews { background: var(--dk-ground); }
+.review { background: var(--dk-surface); box-shadow: none; }
+.review-by, .reviews-note { color: var(--dk-text-2); }
+.review-by strong { color: var(--dk-text); }
+.verified { color: var(--dk-text); }
+.verified .vk { stroke: var(--brand-navy); }
+
+/* ------------------------------------------------------------ offer: dark ground, the card stays white */
+.offer { background: var(--dk-ground); }
+.offer-card { color: var(--brand-navy); }
+
+/* ------------------------------------------------------------ FAQ */
+.faq-list { background: var(--dk-line); }
+.faq-row { background: var(--dk-ground); }
+.faq-a p { color: var(--dk-text-2); }
+
+/* ------------------------------------------------------------ footnotes */
+.note { color: var(--dk-text-2); }
+
+/* ------------------------------------------------------------ footer: navy deep to navy, white type */
+.site-footer { background: linear-gradient(var(--brand-navy-deep) 0%, var(--brand-navy) 66.35%); }
+.foot-word { color: var(--dk-text); }
+
+/* ------------------------------------------------------------ sticky bar */
+.sticky { background: var(--dk-surface); }
+
+/* ------------------------------------------------------------ phones */
+@media (max-width: 900px) {
+  .logo-word { width: 102px; }
+  /* light mode dissolves the offer card into its pastel band; here it stays the white card */
+  .offer-card { background: var(--brand-white); border-radius: var(--brand-radius-card); padding: var(--s24) var(--s16); }
+}
+@media (max-width: 1023px) {
+  .hero { background: var(--dk-ground); }
+}
+@media (max-width: 389px) {
+  .logo-word { width: 87px; }
+}
