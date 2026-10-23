@@ -7,10 +7,12 @@
   /* spacing scale (4pt) */
   --s4: 4px; --s8: 8px; --s12: 12px; --s16: 16px; --s24: 24px;
   --s32: 32px; --s48: 48px; --s64: 64px; --s96: 96px;
-  --gutter: 24px;
-  --sec-pad: 48px;      /* white sections, each side: 96 between two */
+  /* matched to the client's benefits LP (refs/benefits-lp-census.md): 1272 px container with
+     16 px sides (1240 px of content), rows padded 54 px top and bottom, 64 px column gap */
+  --gutter: 16px;
+  --sec-pad: 54px;      /* white sections, each side: 108 between two */
   --band-pad: 96px;     /* tinted bands */
-  --split-gap: 96px;    /* reason splits: two equal columns on the container grid */
+  --split-gap: 64px;    /* reason splits: two equal 588 px columns on the 1240 px grid */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --z-header: 10;
   --z-sticky: 20;
@@ -39,7 +41,7 @@ source { display: none; }
 
 /* sections are flex columns centred on the page (no margin:auto) */
 section, header, footer { display: flex; flex-direction: column; align-items: center; width: 100%; }
-.wrap { width: 100%; max-width: calc(var(--brand-container) + 2 * var(--gutter)); padding-inline: var(--gutter); }
+.wrap { width: 100%; max-width: var(--brand-container); padding-inline: var(--gutter); }
 
 /* ------------------------------------------------------------ buttons (live kit) */
 .btn {
@@ -60,7 +62,7 @@ section, header, footer { display: flex; flex-direction: column; align-items: ce
 .btn-primary:hover { background: var(--brand-btn-hover); }
 .btn-lime { background: var(--brand-lime); color: var(--brand-navy); }
 .btn-lime:hover { box-shadow: var(--brand-shadow-pill), inset 0 0 0 1px var(--brand-navy); }
-.btn-hero { font-size: 20px; line-height: 24px; padding: 16px 40px; }
+.btn-hero { min-height: 52px; font-size: 16px; line-height: 20px; padding: 16px 32px; }
 .btn-sm { min-height: 44px; padding: 12px 24px; font-size: 14px; line-height: 20px; }
 .btn-full { width: 100%; }
 .btn:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px solid var(--brand-navy); outline-offset: 3px; }
@@ -79,7 +81,7 @@ section, header, footer { display: flex; flex-direction: column; align-items: ce
 
 .ic { flex: none; }
 .cta-row { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
-.assure { display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 14px; line-height: 20px; }
+.assure { display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 14px; line-height: 20px; font-weight: 600; }
 .assure li { display: flex; align-items: center; gap: 8px; }
 
 .rating { display: flex; align-items: center; gap: 12px; font-size: 14px; line-height: 20px; letter-spacing: 0.28px; }
@@ -90,20 +92,20 @@ section, header, footer { display: flex; flex-direction: column; align-items: ce
 .announce { background: var(--brand-lime); }
 .announce-link {
   display: flex; align-items: center; justify-content: center; width: 100%;
-  min-height: 40px; padding: 8px 16px;
-  font-size: 14px; line-height: 20px; font-weight: 700; text-align: center; text-decoration: none;
+  min-height: 52px; padding: 8px 16px;
+  font-size: 12px; line-height: 16px; font-weight: 700; text-align: center; text-decoration: none;
 }
 .announce-link:hover { text-decoration: underline; }
 .site-header { background: var(--brand-white); box-shadow: var(--brand-shadow-header); position: relative; z-index: var(--z-header); }
 /* 1024 and up: wordmark at the left edge of the grid, the one CTA at the right (live desktop header) */
-.header-inner { display: flex; align-items: center; justify-content: space-between; min-height: 72px; position: relative; }
+.header-inner { display: flex; align-items: center; justify-content: space-between; min-height: 70px; position: relative; }
 .logo { display: flex; }
-.logo img { width: 134px; }
+.logo img { width: 120px; }
 
 /* ------------------------------------------------------------ hero */
 .hero {
   position: relative; overflow: hidden; justify-content: center;
-  min-height: max(600px, calc(100svh - 112px), 48vw);
+  min-height: max(600px, calc(100svh - 122px), 48vw);
   max-height: 66.6vw;
 }
 .hero-media { position: absolute; inset: 0; display: flex; }
@@ -135,9 +137,12 @@ section, header, footer { display: flex; flex-direction: column; align-items: ce
   .hero-vid-d { display: none; }
   .hero-vid-m { display: block; object-position: 50% 10%; }
 }
-.hero-wrap { position: relative; display: flex; align-items: center; flex: 1 0 auto; padding-block: var(--s48); }
+.hero-wrap { position: relative; display: flex; align-items: center; flex: 1 0 auto; padding-block: var(--sec-pad); }
 .hero-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; max-width: 580px; }
-.hero-h { font-size: 48px; line-height: 60px; font-weight: 500; letter-spacing: -0.01em; text-wrap: balance; }
+.hero-h { font-size: 56px; line-height: 64px; font-weight: 700; letter-spacing: normal; text-wrap: balance; }
+.hero-h strong { font-weight: 800; }
+/* at 56 px the second line would reach the pack's top corner in the clip (about 45 percent of the width): 540 px measure */
+.hero-h { max-width: 540px; }
 .hero-sub { font-size: 18px; line-height: 28px; max-width: 520px; text-wrap: pretty; }
 .hero .cta-row { padding-top: 8px; }
 
@@ -149,8 +154,8 @@ section, header, footer { display: flex; flex-direction: column; align-items: ce
 
 /* ------------------------------------------------------------ reasons: shared */
 .block { padding-block: var(--sec-pad); }
-.reason-h { font-size: 44px; line-height: 52px; font-weight: 600; letter-spacing: -0.01em; text-wrap: balance; }
-.sec-h { font-size: 44px; line-height: 52px; font-weight: 600; letter-spacing: -0.01em; text-wrap: balance; }
+.reason-h { font-size: 40px; line-height: 46px; font-weight: 700; letter-spacing: normal; max-width: 520px; text-wrap: balance; }
+.sec-h { font-size: 40px; line-height: 46px; font-weight: 700; letter-spacing: normal; text-wrap: balance; }
 .lead { font-size: 18px; line-height: 28px; text-wrap: pretty; }
 
 .split-inner { display: flex; align-items: center; gap: var(--split-gap); }
@@ -158,8 +163,10 @@ section, header, footer { display: flex; flex-direction: column; align-items: ce
 /* the image fills its half of the grid at its full 2:3 frame (the source ratio, nothing cropped) */
 .split-media { flex: 1 1 0; min-width: 0; }
 .split-media img { width: 100%; aspect-ratio: 2 / 3; object-fit: cover; border-radius: var(--brand-radius-card); }
-.split-copy { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 24px; }
+.split-copy { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
 .split-copy .cta-row { padding-top: 8px; }
+/* the LP's text column: heading and body run 520 px wide (the image column keeps its 588) */
+.split-copy > :not(.cta-row) { max-width: 520px; }
 
 /* reason 1 ingredient rows (the deck body, one sentence per row) */
 .ingr-list { display: flex; flex-direction: column; gap: 16px; }
@@ -295,7 +302,7 @@ section, header, footer { display: flex; flex-direction: column; align-items: ce
 
 /* ------------------------------------------------------------ closing statement */
 .closing-inner { display: flex; align-items: center; justify-content: space-between; gap: var(--s48); }
-.closing-line { font-size: 40px; line-height: 48px; font-weight: 600; letter-spacing: -0.01em; max-width: 760px; text-wrap: balance; }
+.closing-line { font-size: 48px; line-height: 52px; font-weight: 600; letter-spacing: normal; max-width: 760px; text-wrap: balance; }
 
 /* ------------------------------------------------------------ footnotes + footer */
 .notes { padding-block: var(--s48) var(--s24); }
@@ -332,7 +339,7 @@ section, header, footer { display: flex; flex-direction: column; align-items: ce
 .sticky[data-show] { visibility: visible; transform: none; transition: transform 240ms var(--ease-out), visibility 0s; }
 .sticky-inner {
   position: relative; display: flex; align-items: center; gap: 24px;
-  width: 100%; max-width: calc(var(--brand-container) + 2 * var(--gutter));
+  width: 100%; max-width: var(--brand-container);
   min-height: 64px; padding: 8px var(--gutter);
 }
 .sticky-cut { display: none; }
@@ -352,13 +359,15 @@ section, header, footer { display: flex; flex-direction: column; align-items: ce
   :root { --split-gap: 64px; }
   /* the render is width bound here, so the pack starts at 47vw: keep the copy left of it */
   .hero-copy { max-width: calc(44vw - 24px); }
-  .hero-h { font-size: 40px; line-height: 50px; }
+  .hero-h { font-size: 48px; line-height: 56px; }
+  .reason-h, .study .reason-h { font-size: 34px; line-height: 40px; }
+  .sec-h { font-size: 34px; line-height: 40px; }
+  .closing-line { font-size: 40px; line-height: 46px; }
+  .lead, .ingr, .hero-sub { font-size: 16px; line-height: 24px; }
   .ledger-media { flex-basis: 320px; }
   /* 32 top and bottom so the 2:3 image, not the copy, sets the panel height (full frame at 1024) */
   .panel-copy { padding: var(--s32) var(--s48); }
   .stat-n { font-size: 96px; line-height: 92px; }
-  .study .reason-h { font-size: 36px; line-height: 44px; }
-  .study .lead { font-size: 16px; line-height: 24px; }
 }
 @media (min-width: 1024px) and (max-width: 1279px) {
   /* her left hand reaches in to about 42 to 45 percent of the width here: the subhead stops at 40 */
@@ -372,6 +381,7 @@ section, header, footer { display: flex; flex-direction: column; align-items: ce
   .hero-media img { height: auto; }
   .hero-wrap { order: 1; padding-block: var(--s32); }
   .hero-copy { max-width: 640px; }
+  .hero-h { font-size: 40px; line-height: 46px; }
   .hero-scrim { display: none; }
   /* below 1024: wordmark centred, CTA at the right (live mobile header) */
   .header-inner { justify-content: center; }
@@ -380,7 +390,7 @@ section, header, footer { display: flex; flex-direction: column; align-items: ce
 
 /* ------------------------------------------------------------ phone and small tablet */
 @media (max-width: 900px) {
-  :root { --gutter: 16px; --sec-pad: 32px; --band-pad: 64px; }
+  :root { --gutter: 16px; --sec-pad: 36px; --band-pad: 64px; }
 
   .btn { font-size: 14px; line-height: 18px; min-height: 50px; padding: 16px 36px; }
   .btn.btn-hero { font-size: 16px; line-height: 20px; padding: 16px 40px; }
@@ -391,10 +401,10 @@ section, header, footer { display: flex; flex-direction: column; align-items: ce
   /* the sticky bar sits at the bottom: keyboard focus scrolls a control clear of it */
   html { scroll-padding-bottom: 104px; }
 
-  .header-inner { min-height: 64px; }
+  .header-inner { min-height: 58px; }
   .logo { min-height: 44px; align-items: center; }
-  .logo img { width: 112px; }
-  .announce-link { min-height: 44px; }
+  .logo img { width: 100px; }
+  .announce-link { min-height: 46px; }
   /* footnote marks: a 44 px hit area centred on the mark; the glyph and the line do not move */
   .fn { position: relative; }
   .fn::after { content: ""; position: absolute; left: 50%; top: 50%; width: 44px; height: 44px; transform: translate(-50%, -50%); }
@@ -403,7 +413,7 @@ section, header, footer { display: flex; flex-direction: column; align-items: ce
   .fn + .fn::after { left: 0; transform: translateY(-50%); }
   .btn.header-cta { min-height: 44px; padding: 12px 16px; font-size: 12px; line-height: 16px; }
 
-  .hero-h { font-size: 40px; line-height: 50px; }
+  .hero-h { font-size: 32px; line-height: 36px; }
   .hero-sub { font-size: 16px; line-height: 24px; }
   .hero-copy { gap: 16px; }
 
@@ -412,12 +422,13 @@ section, header, footer { display: flex; flex-direction: column; align-items: ce
   .trust-item { flex: 1 1 calc(50% - 8px); font-size: 14px; line-height: 20px; gap: 8px; }
 
   /* reasons: image on top, full bleed, then the copy (Mars Men order) */
-  .reason { padding-top: 0; padding-bottom: var(--s64); }
+  /* the image sits flush on top, so the row's bottom carries both sides of the LP's 36 px padding */
+  .reason { padding-top: 0; padding-bottom: calc(2 * var(--sec-pad)); }
   .split-inner, .split.flip .split-inner, .ledger-inner { flex-direction: column; align-items: stretch; gap: 0; padding-inline: 0; }
   .split-media, .ledger-media { flex: 0 0 auto; width: 100%; }
   .split-media img, .split-media .vid { border-radius: 0; }
   .split-copy, .ledger-copy { max-width: none; padding: var(--s32) var(--gutter) 0; gap: 16px; }
-  .reason-h, .sec-h { font-size: 28px; line-height: 36px; }
+  .reason-h, .sec-h { font-size: 28px; line-height: 32px; max-width: none; }
   .lead, .ingr { font-size: 16px; line-height: 24px; }
   .ingr-list { gap: 12px; }
   .ingr { gap: 12px; }
@@ -446,7 +457,7 @@ section, header, footer { display: flex; flex-direction: column; align-items: ce
   .panel-media { flex: 0 0 auto; width: 100%; }
   .panel-copy { padding: var(--s32) var(--gutter) var(--s64); gap: 16px; }
   /* phone order: headline, stats, bars, meta, body, CTA */
-  .study .reason-h { font-size: 28px; line-height: 36px; }
+  .study .reason-h { font-size: 28px; line-height: 32px; }
   .study-body { order: 3; }
   .study .cta-row { order: 4; }
   .study-data { padding-top: 8px; gap: 20px; }
@@ -488,7 +499,7 @@ section, header, footer { display: flex; flex-direction: column; align-items: ce
 
   .closing { padding-block: var(--s64); }
   .closing-inner { flex-direction: column; align-items: flex-start; gap: var(--s24); }
-  .closing-line { font-size: 28px; line-height: 36px; }
+  .closing-line { font-size: 32px; line-height: 36px; }
 
   /* footer: one column as on the live mobile footer; bottom padding clears the sticky bar */
   .site-footer { padding-block: var(--s48) calc(var(--s32) + 80px); }
