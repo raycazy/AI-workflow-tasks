@@ -1,0 +1,80 @@
+/* Evident general LP, Ryze layout version (2026-10-24).
+   Structure and sizes from shop.ryzesuperfoods.com/p/night-owls-6-reasons-scratch-listicle (refs/ryze/ryze-structure.json):
+   832 px content column; hero copy 500 beside a 500 x 538 portrait clip; reasons with 420 px media left and 364 px copy
+   right on every row (48 px gap), heading above the media on phones; text links after each reason; offer band;
+   white sticky bar with a guarantee line. Colours, type and radius are Evident tokens (tokens.css via styles.css).
+   Accent: --brand-coral-text (#E85C4D) on large type only (3.2:1 on the cream ground). */
+
+body { background: var(--brand-ground); }
+.site-header { background: var(--brand-ground); box-shadow: none; }
+
+/* ------------------------------------------------------------ hero */
+.rz-hero { padding: 48px 0 64px; }
+.rz-hero-inner { max-width: 1072px; display: grid; grid-template-columns: minmax(0, 500px) minmax(0, 500px); justify-content: center; align-items: center; gap: 40px; }
+.rz-hero-copy { display: flex; flex-direction: column; gap: 20px; }
+.rz-h1 { font-size: 48px; line-height: 52px; font-weight: 700; text-transform: uppercase; letter-spacing: normal; }
+.rz-accent, .rz-num { color: var(--brand-coral-text); }
+.rz-quote { padding: 14px 20px; border-radius: 8px; background: var(--brand-lavender); font-size: 16px; line-height: 24px; }
+.rz-summary { padding: 20px 24px; border: 2px solid var(--brand-coral-text); border-radius: var(--brand-radius-card); background: var(--brand-white); display: flex; flex-direction: column; gap: 8px; }
+.rz-summary-h { font-size: 20px; line-height: 24px; font-weight: 700; text-transform: uppercase; color: var(--brand-coral-text); }
+.rz-summary p { font-size: 16px; line-height: 24px; }
+.rz-hero-media { position: relative; margin: 0; aspect-ratio: 500 / 538; overflow: hidden; border-radius: var(--brand-radius-card); }
+.rz-hero-media img, .rz-hero-media .vid { width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; }
+
+/* ------------------------------------------------------------ reasons: media left, copy right, every row */
+.rz-reason { padding: 32px 0; }
+.rz-row {
+  max-width: 864px; display: grid; justify-content: center; column-gap: 48px; row-gap: 16px;
+  grid-template-columns: minmax(0, 420px) minmax(0, 364px);
+  grid-template-areas: "media head" "media copy";
+  grid-template-rows: auto 1fr;
+}
+.rz-h2 { grid-area: head; align-self: end; font-size: 40px; line-height: 44px; font-weight: 700; text-transform: uppercase; letter-spacing: normal; }
+.rz-media { grid-area: media; position: relative; margin: 0; overflow: hidden; border-radius: var(--brand-radius-card); align-self: center; }
+.rz-media img { display: block; width: 100%; aspect-ratio: 9 / 10; object-fit: cover; }
+.rz-copy { grid-area: copy; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+.rz-body { font-size: 16px; line-height: 24px; }
+.rz-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--brand-coral-text); font-size: 18px; line-height: 24px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.rz-link:hover { color: var(--brand-navy); }
+.rz-link-ic { flex: none; }
+
+/* 9:10 windows per clip (face and pouch in frame on the first, middle and last frames; corner marks out) */
+.rz-media-1 .vid { object-position: 50% 52%; } .rz-media-1 img { object-position: 50% 45%; }
+.rz-media-2 .vid { object-position: 50% 40%; } .rz-media-2 img { object-position: 50% 60%; }
+.rz-media-3 .vid { object-position: 50% 30%; } .rz-media-3 img { object-position: 50% 30%; }
+.rz-media-4 .vid { object-position: 50% 28%; } .rz-media-4 img { object-position: 50% 30%; }
+.rz-media-5 .vid { object-position: 50% 25%; } .rz-media-5 img { object-position: 50% 36%; }
+.rz-media-6 .vid { object-position: 50% 15%; } .rz-media-6 img { object-position: 50% 39%; }
+
+/* ------------------------------------------------------------ offer band (where Ryze has its discount card) */
+.rz-offer { margin-top: 48px; padding: 72px 0; background: linear-gradient(180deg, var(--brand-navy) 0%, var(--brand-navy-deep) 100%); color: var(--brand-white); }
+.rz-offer-inner { max-width: 560px; display: flex; flex-direction: column; align-items: stretch; gap: 12px; text-align: center; }
+.rz-offer-h { font-size: 48px; line-height: 56px; font-weight: 700; text-transform: uppercase; }
+.rz-offer-sub { font-size: 20px; line-height: 28px; margin-bottom: 20px; }
+.rz-offer .offer-card { color: var(--brand-navy); text-align: left; }
+
+/* ------------------------------------------------------------ sticky: Ryze's white bar, the client pill, a guarantee line */
+.sticky { background: var(--brand-white); box-shadow: var(--bar-shadow-up); top: auto; bottom: 0; transform: translateY(100%); }
+.sticky-inner { flex-direction: column; align-items: center; min-height: 0; padding: 8px var(--gutter) 8px; gap: 4px; }
+.rz-sticky-note { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; line-height: 18px; }
+.rz-sticky-note svg { color: var(--brand-coral-text); }
+
+/* ------------------------------------------------------------ phones */
+@media (max-width: 900px) {
+  .rz-hero { padding: 24px 0 32px; }
+  .rz-hero-inner { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .rz-hero-copy { display: contents; }
+  .rating { order: 1; } .rz-h1 { order: 2; } .rz-quote { order: 3; } .rz-hero-media { order: 4; } .rz-summary { order: 5; }
+  .rz-h1 { font-size: 36px; line-height: 40px; }
+  .rz-hero-media { aspect-ratio: 350 / 377; }
+  .rz-reason { padding: 24px 0; }
+  .rz-row { grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "media" "copy"; grid-template-rows: auto; row-gap: 20px; }
+  .rz-h2 { font-size: 32px; line-height: 36px; }
+  .rz-offer-h { font-size: 36px; line-height: 40px; }
+  .sticky .sticky-cta { width: 100%; }
+  /* the main page flattens the offer card on phones; on the dark band it stays a white card */
+  .rz-offer .offer-card { background: var(--brand-white); border-radius: var(--brand-radius-card); padding: 20px 16px; box-shadow: var(--brand-shadow-card); }
+}
+@media (min-width: 901px) {
+  html { scroll-padding-top: 24px; scroll-padding-bottom: 120px; }
+}
