@@ -24,15 +24,15 @@ body { background: var(--brand-ground); }
 /* ------------------------------------------------------------ reasons: media left, copy right, every row */
 .rz-reason { padding: 32px 0; }
 .rz-row {
-  max-width: 864px; display: grid; justify-content: center; column-gap: 48px; row-gap: 16px;
-  grid-template-columns: minmax(0, 420px) minmax(0, 364px);
+  max-width: 1072px; display: grid; justify-content: center; column-gap: 48px; row-gap: 16px;
+  grid-template-columns: minmax(0, 440px) minmax(0, 552px);   /* widened 2026-10-24 (user): same 1040 px width as the hero, headings on fewer lines */
   grid-template-areas: "media head" "media copy";
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto auto;   /* the image's extra height splits between both rows: heading and copy sit centred beside it */
 }
 .rz-h2 { grid-area: head; align-self: end; font-size: 40px; line-height: 44px; font-weight: 700; text-transform: uppercase; letter-spacing: normal; }
 .rz-media { grid-area: media; position: relative; margin: 0; overflow: hidden; border-radius: var(--brand-radius-card); align-self: center; }
 .rz-media img { display: block; width: 100%; aspect-ratio: 9 / 10; object-fit: cover; }
-.rz-copy { grid-area: copy; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+.rz-copy { grid-area: copy; align-self: start; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
 .rz-body { font-size: 16px; line-height: 24px; }
 .rz-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--brand-coral-text); font-size: 18px; line-height: 24px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
 .rz-link:hover { color: var(--brand-navy); }
