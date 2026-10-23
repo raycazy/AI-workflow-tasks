@@ -155,6 +155,11 @@ section, header, footer { display: flex; flex-direction: column; align-items: ce
 /* ------------------------------------------------------------ reasons: shared */
 .block { padding-block: var(--sec-pad); }
 .reason-h { font-size: 40px; line-height: 46px; font-weight: 700; letter-spacing: normal; max-width: 520px; text-wrap: balance; }
+/* reason number above the heading, as the benefits LP's p.mbr__number: 24 / 28.8 w600 navy, 4 px to the heading,
+   the same at every width (28.8 rounded to 28). It sits inside the H2, hidden from screen readers, which read the
+   visually hidden "Reason N:" instead, so each reason keeps one heading */
+.reason-n { display: block; font-size: 24px; line-height: 28px; font-weight: 600; letter-spacing: normal; margin-bottom: 4px; }
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
 .sec-h { font-size: 40px; line-height: 46px; font-weight: 700; letter-spacing: normal; text-wrap: balance; }
 .lead { font-size: 18px; line-height: 28px; text-wrap: pretty; }
 
@@ -541,4 +546,69 @@ section, header, footer { display: flex; flex-direction: column; align-items: ce
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: 0s !important; transition-delay: 0s !important; animation: none !important; }
+}
+
+/* ------------------------------------------------------------ reason media size (desktop only, 1024 px and up)
+   User at 1440: "reason 3 video is small", "lot white space", "reduce video height a bit".
+   Every reason frame is one width (460 px from 1280, at most 416 px and 40 percent of the grid below), so her
+   scale is the same in all six. Reasons 1, 2, 5 and 6 are 9:10 frames (460 x 511 at 1440), and the
+   image and copy pair is centred on the grid with the gap between them, so the copy stays beside
+   the frame. Reason 3 runs the full height of its copy and table; reason 4 runs the full height of
+   the navy panel (panel height = frame height at every desktop width). Below 1024 nothing here applies. */
+@media (min-width: 1024px) {
+  :root { --media-w: min(460px, 40%); }
+
+  .split-inner { justify-content: center; }
+  .split-media { flex: 0 0 var(--media-w); }
+  .split-media img { aspect-ratio: 9 / 10; }
+  .split-copy { flex: 0 1 520px; }
+
+  /* reason 3: same width as the other frames, as tall as the copy and table beside it */
+  .ledger-media { flex: 0 0 var(--media-w); align-self: stretch; overflow: hidden; border-radius: var(--brand-radius-card); }
+  .ledger-media img { height: 100%; aspect-ratio: auto; }
+  .ledger-copy { max-width: none; }
+
+  /* reason 4: the frame takes the panel's height; the headline runs on one line from 1280 */
+  .panel-media { flex: 0 0 var(--media-w); align-self: stretch; overflow: hidden; }
+  .panel-media img { height: 100%; aspect-ratio: auto; object-position: 60% 50%; }
+  .study .reason-h { max-width: none; }
+
+  /* the r3 and r4 clips carry a generator mark centred 122 px from the bottom right corner of the
+     720 x 1280 source. Their frames are taller than 9:10, so each clip plays in a box at least
+     720:1130 wide (rows 0 to 1130 only, the mark stays out) that is never narrower than the frame;
+     a frame taller than that trims the sides instead: evenly for r3 (stick left, pack right),
+     from the left for r4 (the pack is at the right edge) */
+  .ledger-media .vid, .panel-media .vid {
+    inset: 0 auto auto 50%; width: auto; height: 100%; min-width: 100%;
+    aspect-ratio: 720 / 1130; transform: translateX(-50%); object-position: 50% 0%;
+  }
+  .panel-media .vid { left: auto; right: 0; transform: none; }
+
+  /* 9:16 clips in 9:10 frames show 800 of their 1280 rows: each window keeps her face and the
+     pack's wordmark in frame on the first, middle and last frame (the ponytail tip is trimmed,
+     the r2 mark stays out) */
+  .vid-r1 { object-position: 50% 52%; }  /* rows 250 to 1050 */
+  .vid-r2 { object-position: 50% 40%; }  /* rows 190 to 990 */
+  .vid-r5 { object-position: 50% 25%; }  /* rows 120 to 920 */
+  .vid-r6 { object-position: 50% 33%; }  /* rows 160 to 960 */
+
+  /* the still under each clip (shown until it plays, and alone with reduced motion) uses a
+     window that puts her eyes at the height they have in the clip's first frame */
+  #reason-1 .split-media img { object-position: 50% 45%; }
+  #reason-2 .split-media img { object-position: 50% 60%; }
+  #reason-5 .split-media img { object-position: 50% 36%; }
+  #offer .split-media img { object-position: 50% 39%; }
+}
+@media (min-width: 1024px) and (max-width: 1279px) {
+  /* the type steps down below 1280, so the copy is shorter: frames up to 416 px wide (462 tall)
+     keep the white beside the shortest copy near 120 px; at 1024 the 40 percent cap (397) applies */
+  :root { --media-w: min(416px, 40%); }
+  /* the table is narrower here: 14 px cells, a 140 px label column and 16 px between the blocks
+     keep the copy short enough that the reason 3 frame trims little from the clip's sides */
+  #reason-3 .cmp-label, #reason-3 .cmp-cell { font-size: 14px; line-height: 20px; padding: 12px; }
+  #reason-3 .cmp-label { flex-basis: 140px; }
+  .ledger-copy { gap: 16px; }
+}
+@media (min-width: 1280px) {
+  .split-inner { gap: 96px; }
 }
