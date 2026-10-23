@@ -146,7 +146,7 @@
   var bar = document.getElementById("sticky");
   var heroCta = document.querySelector(".hero-cta");
   var faq = document.getElementById("faq");
-  var buy = document.getElementById("buy") || document.querySelector(".btn-buy");  /* hidden while the whole buy box is on screen */
+  var buy = document.querySelector('[id*="product_buy_box"]') || document.getElementById("buy") || document.querySelector(".btn-buy");  /* hidden while the buy box is on screen (on Shopify: the store\'s own buy box section) */
   if (!bar || !heroCta) return;
 
   function inView(el) {
@@ -191,10 +191,10 @@
 
 /* Buy box gallery: arrows and thumbnails switch the main image (2026-10-24). */
 (function () {
-  var box = document.querySelector(".bb-gallery");
+  var box = document.querySelector(".cbb-gallery");
   if (!box) return;
-  var slides = Array.prototype.slice.call(box.querySelectorAll(".bb-slide"));
-  var thumbs = Array.prototype.slice.call(box.querySelectorAll(".bb-thumb"));
+  var slides = Array.prototype.slice.call(box.querySelectorAll(".cbb-slide"));
+  var thumbs = Array.prototype.slice.call(box.querySelectorAll(".cbb-thumb"));
   var cur = 0;
   function show(i) {
     cur = (i + slides.length) % slides.length;
