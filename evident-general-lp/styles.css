@@ -693,3 +693,74 @@ section, header, footer { display: flex; flex-direction: column; align-items: ce
   .mm-label { letter-spacing: 0; }
   .mm-cell, .mm-head .mm-cell { font-size: 12px; line-height: 16px; }
 }
+
+/* ------------------------------------------------------------ reason 6 as the Mars Men guarantee section (2026-10-24)
+   centred: seal, heading, body, full width CTA, then the clip */
+.guarantee-sec { background: var(--brand-grad-hero); padding-block: var(--band-pad); }
+.gx-inner { max-width: 640px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center; }
+.seal { width: 132px; height: 132px; color: var(--brand-navy); }
+.seal-t { font: 700 14px/1 "Work Sans", sans-serif; letter-spacing: 0.06em; fill: currentColor; }
+.seal-in { fill: var(--brand-lime); }
+.seal-chk { stroke: var(--brand-navy); }
+.gx-h { max-width: none; text-wrap: balance; }
+.gx-cta { align-self: stretch; align-items: stretch; }
+.gx-cta .btn { width: 100%; }
+.gx-media { position: relative; margin: 8px 0 0; width: 100%; max-width: 460px; overflow: hidden; border-radius: var(--brand-radius-card); }
+.gx-media img { display: block; width: 100%; aspect-ratio: 9 / 10; object-fit: cover; object-position: 50% 39%; }
+.gx-media .vid-r6 { object-position: 50% 15%; }
+
+/* ------------------------------------------------------------ buy box, Mars Men anatomy (2026-10-24)
+   gallery with arrows and thumbs; review quote; nutrition label; title with accent; checklist; big price with
+   the struck price; full width CTA; trust icons; terms */
+.buybox { padding-block: var(--band-pad); }
+.bb-inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 520px); gap: 56px; align-items: start; }
+.bb-gallery { display: flex; flex-direction: column; gap: 12px; position: sticky; top: 104px; }
+.bb-main { position: relative; overflow: hidden; border-radius: var(--brand-radius-card); background: var(--brand-white); }
+.bb-slide { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; }
+.bb-slide[hidden] { display: none; }
+.bb-nav { flex: none; width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--brand-navy); background: var(--brand-white); color: var(--brand-navy); cursor: pointer; }
+.bb-strip { display: flex; align-items: center; gap: 8px; }
+.bb-strip .bb-thumbs { flex: 1 1 0; min-width: 0; }
+.bb-thumbs { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+.bb-thumb { padding: 0; border: 2px solid transparent; border-radius: 10px; overflow: hidden; background: none; cursor: pointer; }
+.bb-thumb img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; }
+.bb-thumb[aria-current="true"] { border-color: var(--brand-navy); }
+.bb-panel { display: flex; flex-direction: column; gap: 20px; }
+.bb-quote { margin: 0; padding: 16px 20px; border-radius: var(--brand-radius-card); background: var(--brand-white); box-shadow: var(--brand-shadow-card); display: flex; flex-direction: column; gap: 10px; }
+.bb-quote blockquote { margin: 0; font-size: 16px; line-height: 24px; font-weight: 500; }
+.bb-quote figcaption { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 14px; line-height: 20px; }
+.bb-quote .stars { color: var(--brand-coral-icon); display: inline-flex; gap: 2px; }
+.bb-quote .star { width: 16px; height: 16px; }
+.bb-facts { border: 1px solid var(--brand-navy); border-radius: var(--brand-radius-pill); background: var(--brand-white); }
+.bb-facts summary { list-style: none; cursor: pointer; text-align: center; padding: 12px 16px; min-height: 48px; font-size: 16px; line-height: 24px; font-weight: 600; }
+.bb-facts summary::-webkit-details-marker { display: none; }
+.bb-facts[open] { border-radius: var(--brand-radius-card); }
+.bb-facts img { display: block; width: 100%; max-width: 420px; height: auto; margin: 0 auto 16px; }
+.bb-title { font-size: 40px; line-height: 46px; font-weight: 700; }
+.bb-accent { color: var(--brand-coral-text); }
+.bb-desc { font-size: 18px; line-height: 28px; }
+.bb-list { display: flex; flex-direction: column; gap: 10px; }
+.bb-list li { display: flex; align-items: center; gap: 10px; font-size: 18px; line-height: 24px; font-weight: 500; }
+.bb-chk { flex: none; color: var(--brand-coral-icon); }
+.bb-price { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; padding-top: 8px; }
+.bb-now { display: flex; align-items: baseline; gap: 12px; }
+.bb-now strong { font-size: 56px; line-height: 56px; font-weight: 700; }
+.bb-now s { font-size: 28px; line-height: 32px; color: color-mix(in srgb, var(--brand-navy) 55%, var(--brand-white)); }
+.bb-tag { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; text-align: right; }
+.bb-tag span { font-size: 20px; line-height: 24px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--brand-coral-text); text-decoration: underline; text-underline-offset: 4px; }
+.bb-tag small { font-size: 12px; line-height: 16px; text-transform: uppercase; letter-spacing: 0.04em; }
+.btn.bb-cta { width: 100%; min-height: 60px; font-size: 18px; line-height: 22px; }
+.bb-trust { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; text-align: center; }
+.bb-trust li { display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 14px; line-height: 18px; }
+.bb-trust .ic { color: var(--brand-coral-icon); }
+.bb-terms { font-size: 14px; line-height: 20px; text-align: center; color: color-mix(in srgb, var(--brand-navy) 75%, var(--brand-white)); }
+@media (max-width: 900px) {
+  .bb-inner { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .bb-gallery { position: static; }
+  .bb-title { font-size: 32px; line-height: 36px; }
+  .bb-desc, .bb-list li { font-size: 16px; line-height: 24px; }
+  .bb-now strong { font-size: 48px; line-height: 48px; }
+  .bb-now s { font-size: 24px; line-height: 28px; }
+  .bb-price { flex-wrap: wrap; }
+  .seal { width: 112px; height: 112px; }
+}

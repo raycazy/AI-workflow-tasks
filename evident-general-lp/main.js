@@ -146,7 +146,7 @@
   var bar = document.getElementById("sticky");
   var heroCta = document.querySelector(".hero-cta");
   var faq = document.getElementById("faq");
-  var buy = document.querySelector(".btn-buy");
+  var buy = document.getElementById("buy") || document.querySelector(".btn-buy");  /* hidden while the whole buy box is on screen */
   if (!bar || !heroCta) return;
 
   function inView(el) {
@@ -187,4 +187,22 @@
   });
 
   update();
+})();
+
+/* Buy box gallery: arrows and thumbnails switch the main image (2026-10-24). */
+(function () {
+  var box = document.querySelector(".bb-gallery");
+  if (!box) return;
+  var slides = Array.prototype.slice.call(box.querySelectorAll(".bb-slide"));
+  var thumbs = Array.prototype.slice.call(box.querySelectorAll(".bb-thumb"));
+  var cur = 0;
+  function show(i) {
+    cur = (i + slides.length) % slides.length;
+    slides.forEach(function (s, k) { s.hidden = k !== cur; });
+    thumbs.forEach(function (t, k) { if (k === cur) t.setAttribute("aria-current", "true"); else t.removeAttribute("aria-current"); });
+  }
+  thumbs.forEach(function (t, k) { t.addEventListener("click", function () { show(k); }); });
+  var prev = box.querySelector(".bb-prev"), next = box.querySelector(".bb-next");
+  if (prev) prev.addEventListener("click", function () { show(cur - 1); });
+  if (next) next.addEventListener("click", function () { show(cur + 1); });
 })();
