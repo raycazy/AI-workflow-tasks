@@ -162,3 +162,23 @@ a.g-path,a.g-path *,a.g-poly-row,a.g-poly-row *,a.g-story{text-decoration:none}
 .g-glass .h2{max-width:20em;margin-inline:auto}
 @media (max-width:860px){.g-listen-grid{grid-template-columns:1fr}}
 .g-listen-no{display:flex;flex-direction:column;justify-content:center}.g-listen-no li{font-size:19px}
+
+/* housing picker, glass first: Glass featured, Poly a slim secondary row (2026-10-23) */
+.hopts .hopt-glass{padding:18px 20px;grid-template-columns:96px 1fr;border-color:rgba(230,36,41,.6);background:radial-gradient(ellipse 80% 100% at 0 50%,rgba(230,36,41,.16),transparent 70%),#141212}
+.hopts .hopt-glass .ho-img{height:auto}
+.hopts .hopt-glass .ho-img img{width:100%;height:auto}
+.hopts .hopt-glass .ho-wm{height:20px;width:auto}
+.hopts .hopt-glass .ho-d{font-size:15px;color:rgba(255,255,255,.8)}
+.hopts .hopt-glass .ho-p b{font-size:34px}
+.hopts .hopt-glass .ho-tag{background:var(--red)!important;color:#fff!important}
+.hopts .hopt-poly{grid-template-columns:28px 1fr;padding:9px 14px;min-height:0;opacity:.82;background:transparent}
+.hopts .hopt-poly:hover,.hopts .hopt-poly.on{opacity:1}
+.hopts .hopt-poly .ho-img{height:40px}
+.hopts .hopt-poly .ho-img img{height:40px;width:auto}
+.hopts .hopt-poly .ho-txt{display:flex;align-items:center;flex-wrap:wrap;gap:4px 10px}
+.hopts .hopt-poly .ho-or{order:-1;font-size:13px;color:rgba(255,255,255,.6)}
+.hopts .hopt-poly .ho-wm{height:12px;width:auto}
+.hopts .hopt-poly .ho-p b{font-size:16px}
+.hopts .hopt-poly .ho-p s{font-size:12px}
+.hopts .hopt-poly::after{width:16px!important;height:16px!important;bottom:auto!important;top:50%!important;transform:translateY(-50%)}
+.sh-opts{grid-template-columns:1fr!important}
