@@ -39,7 +39,6 @@ body { background: var(--dk-ground); color: var(--dk-text); }
 /* ------------------------------------------------------------ header: navy bar, white wordmark (footer SVG) */
 .site-header { background: var(--dk-surface); }
 .logo-word { display: block; width: 110px; height: auto; color: var(--dk-text); }  /* same glyph width as the 120 px PNG */
-.sticky-logo { width: 87px; height: auto; color: var(--dk-text); }
 
 /* ------------------------------------------------------------ hero */
 .rating { color: var(--dk-text-2); }
@@ -98,7 +97,10 @@ body { background: var(--dk-ground); color: var(--dk-text); }
 .foot-word { color: var(--dk-text); }
 
 /* ------------------------------------------------------------ sticky bar */
-.sticky { background: var(--dk-surface); }
+/* the sticky bar stays the client LP's lime band with the navy pill, as the announcement bar stays lime */
+.sticky .sticky-cta, .sticky .sticky-cta:hover { background: var(--brand-navy); color: var(--brand-white); box-shadow: none; }
+.sticky .sticky-cta:hover { background: var(--brand-btn-hover); }
+.sticky .sticky-cta:focus-visible { outline-color: var(--brand-navy); }
 
 /* ------------------------------------------------------------ phones */
 @media (max-width: 900px) {

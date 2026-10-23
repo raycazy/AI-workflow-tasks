@@ -17,6 +17,8 @@
   --z-header: 10;
   --z-sticky: 20;
   --bar-shadow-up: 0 -4px 18px color-mix(in srgb, var(--brand-navy) 10%, transparent);
+  /* "Limited Time Offer" badge fill on the client's benefits LP (.mbsb__badge, measured 2026-10-23) */
+  --offer-badge: rgb(255 200 51);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -97,8 +99,8 @@ section, header, footer { display: flex; flex-direction: column; align-items: ce
 }
 .announce-link:hover { text-decoration: underline; }
 .site-header { background: var(--brand-white); box-shadow: var(--brand-shadow-header); position: relative; z-index: var(--z-header); }
-/* 1024 and up: wordmark at the left edge of the grid, the one CTA at the right (live desktop header) */
-.header-inner { display: flex; align-items: center; justify-content: space-between; min-height: 70px; position: relative; }
+/* centred wordmark, no CTA, at every width (user 2026-10-23: as the client's benefits LP) */
+.header-inner { display: flex; align-items: center; justify-content: center; min-height: 70px; position: relative; }
 .logo { display: flex; }
 .logo img { width: 120px; }
 
@@ -334,29 +336,35 @@ section, header, footer { display: flex; flex-direction: column; align-items: ce
 .foot-legal { display: flex; flex-wrap: wrap; gap: 8px 48px; font-size: 14px; line-height: 20px; }
 .foot-fda { font-size: 14px; line-height: 20px; }
 
-/* ------------------------------------------------------------ sticky bar (desktop: slim top bar) */
+/* ------------------------------------------------------------ sticky bar: the client LP's offer pill
+   (refs/benefits-sticky.json): desktop, an 84 px lime band fixed to the top with one centred navy pill,
+   "Limited Time Offer" badge on its top edge and the struck reference price inside; phone, the same
+   band fixed to the bottom with a full width pill */
 .sticky {
   position: fixed; left: 0; right: 0; top: 0; z-index: var(--z-sticky);
-  background: var(--brand-white); box-shadow: var(--brand-shadow-header);
+  background: var(--brand-lime);
   visibility: hidden; transform: translateY(-100%);
   transition: transform 240ms var(--ease-out), visibility 0s linear 240ms;
 }
 .sticky[data-show] { visibility: visible; transform: none; transition: transform 240ms var(--ease-out), visibility 0s; }
 .sticky-inner {
-  position: relative; display: flex; align-items: center; gap: 24px;
-  width: 100%; max-width: var(--brand-container);
-  min-height: 64px; padding: 8px var(--gutter);
+  display: flex; justify-content: center; align-items: center;
+  width: 100%; max-width: var(--brand-container); margin-inline: auto;
+  min-height: 84px; padding: 14px var(--gutter);
 }
-.sticky-cut { display: none; }
-.sticky-logo { width: 96px; }
-.sticky-line { flex: 1 1 0; min-width: 0; text-align: right; font-size: 16px; line-height: 24px; font-weight: 600; }
-.sticky-line strong { font-weight: 700; }
-.sticky .btn { min-height: 44px; padding: 12px 32px; font-size: 14px; line-height: 20px; }
+.sticky-wrap { position: relative; padding-top: 10px; }
+.sticky-badge {
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 1;
+  padding: 2px 10px; border-radius: 999px;
+  background: var(--offer-badge); color: var(--brand-navy);
+  font-size: 12px; line-height: 16px; font-weight: 600; white-space: nowrap;
+}
+.sticky .sticky-cta { min-height: 48px; padding: 14px 40px; gap: 8px; font-size: 16px; line-height: 20px; }
+.sticky-was { font-weight: 400; color: color-mix(in srgb, var(--brand-white) 68%, var(--brand-navy)); }
 
-/* the slim top sticky bar (64 px) from 901 px: focus and anchor jumps stop 80 px below the top
-   (this padding replaces the anchors' former 80 px scroll-margin, so jumps land where they did) */
+/* the 84 px top sticky bar from 901 px: focus and anchor jumps stop 100 px below the top */
 @media (min-width: 901px) {
-  html { scroll-padding-top: 80px; }
+  html { scroll-padding-top: 100px; }
 }
 
 /* ------------------------------------------------------------ narrow desktop */
@@ -388,9 +396,6 @@ section, header, footer { display: flex; flex-direction: column; align-items: ce
   .hero-copy { max-width: 640px; }
   .hero-h { font-size: 40px; line-height: 46px; }
   .hero-scrim { display: none; }
-  /* below 1024: wordmark centred, CTA at the right (live mobile header) */
-  .header-inner { justify-content: center; }
-  .header-cta { position: absolute; right: var(--gutter); }
 }
 
 /* ------------------------------------------------------------ phone and small tablet */
@@ -416,7 +421,6 @@ section, header, footer { display: flex; flex-direction: column; align-items: ce
   /* a pair of marks splits the space: the first mark's area runs left from its right edge, the second's right from its left edge */
   .fn:has(+ .fn)::after { left: auto; right: 0; transform: translateY(-50%); }
   .fn + .fn::after { left: 0; transform: translateY(-50%); }
-  .btn.header-cta { min-height: 44px; padding: 12px 16px; font-size: 12px; line-height: 16px; }
 
   .hero-h { font-size: 32px; line-height: 36px; }
   .hero-sub { font-size: 16px; line-height: 24px; }
@@ -522,14 +526,12 @@ section, header, footer { display: flex; flex-direction: column; align-items: ce
   .foot-legal li { min-width: 0; }
   .foot-legal a { white-space: normal; display: inline-block; padding-block: 12px; margin-block: -12px; }
 
-  /* sticky bar: bottom of the screen with the waving cutout */
+  /* sticky bar: bottom of the screen, full width pill (client LP mobile) */
   .sticky { top: auto; bottom: 0; transform: translateY(100%); box-shadow: var(--bar-shadow-up); }
-  .sticky-inner { min-height: 72px; gap: 8px; padding: 8px var(--gutter) calc(8px + env(safe-area-inset-bottom)) 96px; }
-  .sticky-cut { display: block; position: absolute; left: 2px; bottom: 0; width: auto; height: 76px; }
-  .sticky-logo { display: none; }
-  .sticky-line { text-align: left; font-size: 14px; line-height: 18px; font-weight: 400; }
-  .sticky-line strong { font-weight: 600; }
-  .sticky .btn { flex: none; padding: 12px 14px; font-size: 14px; line-height: 18px; }
+  .sticky-inner { min-height: 84px; padding: 12px var(--gutter) calc(12px + env(safe-area-inset-bottom)); }
+  .sticky-wrap { width: 100%; }
+  .sticky-badge { font-size: 14px; line-height: 18px; padding: 2px 12px; }
+  .sticky .sticky-cta { width: 100%; min-height: 50px; padding: 14px 16px; font-size: 18px; line-height: 22px; }
 
   #reason-1, #offer, #reason-3, [id^="fn-"] { scroll-margin-top: 16px; }
 }
@@ -537,11 +539,7 @@ section, header, footer { display: flex; flex-direction: column; align-items: ce
 /* ------------------------------------------------------------ small phones (360 to 389) */
 @media (max-width: 389px) {
   .logo img { width: 96px; }
-  .btn.header-cta { padding: 12px; }
-  /* keeps the sticky line at two lines: "Metabolism Booster," then "$27 a month" */
-  .sticky-inner { padding-left: 78px; }
-  .sticky-cut { left: 0; height: 60px; }
-  .sticky .btn { padding: 12px; }
+  .sticky .sticky-cta { font-size: 16px; line-height: 20px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
