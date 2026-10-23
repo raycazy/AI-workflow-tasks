@@ -116,3 +116,14 @@ body { background: var(--dk-ground); color: var(--dk-text); }
 @media (max-width: 389px) {
   .logo-word { width: 87px; }
 }
+
+/* ------------------------------------------------------------ comparison (Mars Men format): the Evident card turns to the
+   site's mint to lavender gradient with navy type; rows sit on the page ground with light hairlines */
+.mm { background: var(--dk-line); --mm-ic-fg: var(--dk-ground); }
+.mm-row { background: var(--dk-ground); }
+.mm-label { color: var(--dk-text-2); }
+.mm-cell { color: var(--dk-text); }
+.mm-card { background: linear-gradient(180deg, var(--brand-mint) 0%, var(--brand-lavender) 100%); box-shadow: none; }
+.mm-ev, .mm-logo { color: var(--brand-navy); }
+.mm-ic { color: var(--dk-text-2); }
+.mm-ev .mm-ic { color: var(--brand-navy); --mm-ic-fg: var(--brand-lime); }
