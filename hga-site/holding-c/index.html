@@ -1,0 +1,279 @@
+<!doctype html>
+<!-- Coming soon page, version C (Dylan 2026-10-27: minimize the giveaway box; the announcement front and center; show the giveaway differently). Built from holding B. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>HGA | Hybrid Grading Approach</title>
+<meta name="description" content="Something innovative and unique is coming to grading on November 23.">
+<meta name="theme-color" content="#0B0A0A">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HGA | Hybrid Grading Approach">
+<meta property="og:description" content="Something innovative and unique is coming to grading on November 23.">
+<meta property="og:image" content="./assets/og-1200x630.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="HGA | Hybrid Grading Approach">
+<meta name="twitter:description" content="Something innovative and unique is coming to grading on November 23.">
+<meta name="twitter:image" content="./assets/og-1200x630.png">
+<!-- At go live: make og:image and twitter:image absolute URLs on the final domain, and swap the favicon for the G-star icon from the brand kit. -->
+<link rel="icon" href="./assets/hga.svg" type="image/svg+xml">
+<link rel="preload" href="./assets/fonts/bc-800.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Barlow Condensed";font-weight:800;font-display:swap;src:url("assets/fonts/bc-800.woff2") format("woff2")}
+@font-face{font-family:"Barlow Condensed";font-weight:800;font-style:italic;font-display:swap;src:url("assets/fonts/bc-800i.woff2") format("woff2")}
+@font-face{font-family:"Barlow Semi Condensed";font-weight:600;font-display:swap;src:url("assets/fonts/bsc-600.woff2") format("woff2")}
+@font-face{font-family:"Barlow";font-weight:400;font-display:swap;src:url("assets/fonts/b-400.woff2") format("woff2")}
+@font-face{font-family:"Barlow";font-weight:600;font-display:swap;src:url("assets/fonts/b-600.woff2") format("woff2")}
+@font-face{font-family:"Barlow";font-weight:700;font-display:swap;src:url("assets/fonts/b-700.woff2") format("woff2")}
+:root{--red:#E62429;--red-2:#99161C;--red-text:#FF4A4F;--paper:#0B0A0A;--ink-2:#141212;--line:rgba(255,255,255,.1);--line-2:rgba(255,255,255,.22);--text:#F6F4F0;--text-2:#CFC9C2;--muted:#9A948E;
+  --sans:"Barlow","Helvetica Neue",Arial,sans-serif;--disp:"Barlow Condensed","Arial Narrow",sans-serif;--lab:"Barlow Semi Condensed","Barlow",sans-serif;--ease:cubic-bezier(.2,.7,.2,1)}
+*{box-sizing:border-box}
+html{color-scheme:dark}
+body{margin:0;min-height:100vh;background:var(--paper);color:var(--text);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;display:flex;flex-direction:column}
+a{color:inherit}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{width:100%;max-width:1180px;margin:0 auto;padding-inline:clamp(16px,4.5vw,48px)}
+
+/* the stage: dark house, red glow from the back wall, two spotlights swing in and lock on the logo */
+.stage{position:relative;isolation:isolate;overflow:hidden;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(56px,9vh,110px) 0 clamp(40px,6vh,72px)}
+.stage::before{content:"";position:absolute;inset:0;z-index:-3;background:radial-gradient(ellipse 60% 45% at 50% 34%,rgba(230,36,41,.34),rgba(230,36,41,.08) 45%,transparent 72%),linear-gradient(180deg,#0f0a0a,#050404 70%)}
+.stage::after{content:"";position:absolute;left:0;right:0;bottom:0;height:40%;z-index:-2;background:radial-gradient(ellipse 50% 60% at 50% 100%,rgba(230,36,41,.14),transparent 70%)}
+.beam{position:absolute;top:-12%;width:44vw;max-width:560px;height:78vh;z-index:-1;pointer-events:none;filter:blur(14px);mix-blend-mode:screen;transform-origin:50% 0;opacity:.9}
+.beam::before{content:"";position:absolute;inset:0;clip-path:polygon(46% 0,54% 0,100% 100%,0 100%);background:linear-gradient(180deg,rgba(255,240,235,.42),rgba(255,230,225,.12) 55%,rgba(255,230,225,0) 92%)}
+.beam.l{left:2%;transform:rotate(-24deg);animation:swingL 2.6s var(--ease) .2s both}
+.beam.r{right:2%;transform:rotate(24deg);animation:swingR 2.6s var(--ease) .35s both}
+@keyframes swingL{0%{transform:rotate(-58deg);opacity:0}25%{opacity:.9}70%{transform:rotate(-18deg)}100%{transform:rotate(-24deg)}}
+@keyframes swingR{0%{transform:rotate(58deg);opacity:0}25%{opacity:.9}70%{transform:rotate(18deg)}100%{transform:rotate(24deg)}}
+.logo{display:block;width:min(340px,66vw);height:auto;filter:drop-shadow(0 0 38px rgba(230,36,41,.45));animation:lockOn 1.6s var(--ease) 1.4s both}
+@keyframes lockOn{0%{filter:drop-shadow(0 0 0 rgba(230,36,41,0)) brightness(.82)}60%{filter:drop-shadow(0 0 60px rgba(255,200,190,.65)) brightness(1.15)}100%{filter:drop-shadow(0 0 38px rgba(230,36,41,.45)) brightness(1)}}
+.h1{margin:clamp(26px,4vh,40px) 0 0;font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:clamp(32px,4.6vw,60px);line-height:.95;letter-spacing:-.005em;max-width:15em}
+@media (min-width:561px){.h1 .ln,.ann-l .ln{display:block}}
+.h1 em{display:block;font-style:normal;color:var(--red);font-size:1.18em;margin-top:.06em}
+
+/* mystery card */
+.mystery{margin-top:clamp(22px,3.4vh,36px);max-width:600px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(10px,2vw,22px);align-items:center;text-align:left;max-width:560px;padding:clamp(16px,2.4vw,22px);border-radius:20px;border:1px solid var(--line);background:rgba(20,18,18,.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+/* 3D mystery slab: six faces with depth, idle sway, drag to turn, sheen follows the angle, tap to spin */
+.m3d{--w:150px;--h:210px;--d:5px;position:relative;width:calc(var(--w) + 40px);height:calc(var(--h) + 40px);perspective:900px;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none;border-radius:14px;outline:none}
+.m3d:focus{outline:none}
+.m3d:focus-visible{box-shadow:0 0 0 2px rgba(230,36,41,.8)}
+.m3d.dragging{cursor:grabbing}
+.m3d-rig{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);transform-style:preserve-3d;animation:m3dFloat 5s ease-in-out infinite}
+@keyframes m3dFloat{50%{transform:translate(-50%,calc(-50% - 8px))}}
+.m3d-slab{position:relative;width:var(--w);height:var(--h);transform-style:preserve-3d;will-change:transform}
+.m3d-face{position:absolute;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.m3d-front,.m3d-back{inset:0;border-radius:10px}
+.m3d-front{transform:translateZ(calc(var(--d) / 2));padding:7px;background:linear-gradient(160deg,#2a1214,#120809 60%,#1d0d0e);box-shadow:inset 0 0 0 1px rgba(230,36,41,.45),0 0 40px rgba(230,36,41,.25);overflow:hidden}
+.m3d-back{transform:rotateY(180deg) translateZ(calc(var(--d) / 2));display:grid;place-content:center;justify-items:center;gap:6px;background:repeating-linear-gradient(45deg,#1a0c0d 0 8px,#220f10 8px 16px);box-shadow:inset 0 0 0 1px rgba(230,36,41,.4)}
+.m3d-back b{font-family:var(--disp);font-weight:800;font-size:64px;line-height:1;color:var(--red);text-shadow:0 0 24px rgba(230,36,41,.6)}
+.m3d-back small{font-family:var(--lab);font-weight:600;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.m3d-side{background:linear-gradient(90deg,#3a1517,#1a0a0b)}
+.m3d-side.l,.m3d-side.r{width:var(--d);height:var(--h);left:calc(50% - var(--d) / 2);top:0;border-radius:4px}
+.m3d-side.l{transform:rotateY(-90deg) translateZ(calc(var(--w) / 2))}
+.m3d-side.r{transform:rotateY(90deg) translateZ(calc(var(--w) / 2))}
+.m3d-side.t,.m3d-side.b{width:var(--w);height:var(--d);top:calc(50% - var(--d) / 2);left:0;border-radius:4px;background:linear-gradient(180deg,#262626,#0c0c0c 40%,#1e1e1e)}
+.m3d-side.t{transform:rotateX(90deg) translateZ(calc(var(--h) / 2))}
+.m3d-side.b{transform:rotateX(-90deg) translateZ(calc(var(--h) / 2))}
+.m3d-win{position:absolute;inset:7px;overflow:hidden;border-radius:6px;display:grid;place-items:center;background:radial-gradient(ellipse 70% 60% at 50% 45%,rgba(230,36,41,.22),transparent 70%),repeating-linear-gradient(-45deg,#1c1213 0 7px,#251516 7px 14px);box-shadow:inset 0 0 0 1px rgba(230,36,41,.35)}
+.m3d-win b{font-family:var(--disp);font-weight:800;font-size:clamp(64px,7vw,84px);line-height:1;color:var(--red);text-shadow:0 0 26px rgba(230,36,41,.65);animation:m3dPulse 2.4s ease-in-out infinite}
+@keyframes m3dPulse{50%{text-shadow:0 0 44px rgba(230,36,41,.95)}}
+.m3d-scan{position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,transparent,rgba(255,74,79,.95),transparent);box-shadow:0 0 16px 3px rgba(230,36,41,.45);animation:m3dScan 3.2s cubic-bezier(.2,.7,.2,1) infinite}
+@keyframes m3dScan{0%{top:0;opacity:0}12%{opacity:1}70%{opacity:1}85%,100%{top:100%;opacity:0}}
+.m3d-seal{position:absolute;z-index:4;left:50%;top:14px;transform:translateX(-50%) rotate(-4deg);padding:3px 10px;border:1.5px solid rgba(255,255,255,.85);border-radius:3px;font-family:var(--lab);font-weight:600;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:#fff;background:rgba(230,36,41,.85)}
+.m3d-grade{position:absolute;z-index:4;left:0;right:0;bottom:14px;text-align:center;font-family:var(--lab);font-weight:600;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.65)}
+.m3d-grade b{color:#fff;font-size:12px;letter-spacing:.08em}
+.m3d-sheen{position:absolute;inset:0;pointer-events:none;z-index:3;background:linear-gradient(115deg,transparent 32%,rgba(255,255,255,.18) 44%,rgba(255,255,255,.05) 50%,transparent 60%);transform:translateX(var(--sx,0%));mix-blend-mode:screen}
+.m3d-shadow{position:absolute;left:50%;top:calc(var(--h) / 2 + 14px);width:calc(var(--w) * 1.05);height:24px;transform:translateX(-50%) rotateX(80deg);background:radial-gradient(ellipse,rgba(0,0,0,.8),transparent 70%);filter:blur(6px)}
+.mystery-k{margin:0;font-family:var(--lab);font-weight:600;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--red-text)}
+.mystery-t{margin:6px 0 0;font-size:clamp(18px,1.7vw,21px);font-weight:700;line-height:1.3}
+.mystery-s{margin:8px 0 0;font-size:14.5px;line-height:1.5;color:var(--text-2)}
+
+/* signup */
+.signup{width:100%;max-width:440px;margin-top:18px;text-align:left}
+.row{display:flex;gap:10px}
+.row input{flex:1;min-width:0;height:46px;padding:0 18px;border-radius:10px;border:2px solid #000;outline:1px solid var(--line-2);background:#fff;color:#0E0E0E;font:inherit;font-size:16px}
+.row input::placeholder{color:#7A7575}
+.row input:focus{outline:2px solid var(--red);outline-offset:1px}
+.row button{flex:none;height:46px;padding:0 18px;border:0;border-radius:10px;background:var(--red);color:#fff;font:700 13px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;cursor:pointer;box-shadow:0 10px 26px rgba(230,36,41,.3);transition:background .2s}
+.row button:hover{background:var(--red-2)}
+.row button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.msg{min-height:22px;margin:8px 0 0;font-size:14px;font-weight:600;color:var(--red-text)}
+.signup.ok .msg{color:#3ccf7a}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.fine{margin:10px 0 0;font-size:12px;line-height:1.55;color:var(--muted)}
+.fine a{color:var(--text-2);text-decoration:underline;text-underline-offset:3px}
+
+
+/* Klaviyo embedded form QVjYCi restyled to the page (spec: 2px black border, red button; 46px tall) */
+.klaviyo-form-QVjYCi form{padding:0!important;margin:0!important;background:transparent!important;max-width:none!important}
+.klaviyo-form-QVjYCi form > div{padding:0!important}
+/* Klaviyo gives the form a 120px min height with centered content: collapse it to the row */
+.klaviyo-form-QVjYCi form > div{min-height:0!important;justify-content:flex-start!important}
+.klaviyo-form-QVjYCi div:has(> [data-testid="form-row"]){min-height:0!important;justify-content:flex-start!important}
+.klaviyo-form-QVjYCi [data-testid="form-row"]{gap:10px!important}
+.klaviyo-form-QVjYCi input[type="email"]{height:46px!important;border:2px solid #000!important;outline:1px solid var(--line-2)!important;border-radius:10px!important;background:#fff!important;color:#0E0E0E!important;font-family:var(--sans)!important;font-size:16px!important;padding:0 14px!important;box-sizing:border-box!important}
+.klaviyo-form-QVjYCi input[type="email"]:focus{outline:2px solid var(--red)!important;outline-offset:1px}
+.klaviyo-form-QVjYCi button{height:46px!important;min-height:46px!important;border-radius:10px!important;background:var(--red)!important;color:#fff!important;font-family:var(--sans)!important;font-weight:700!important;font-size:13px!important;letter-spacing:.08em!important;text-transform:uppercase!important;padding:0 18px!important;box-shadow:0 8px 20px rgba(230,36,41,.26)!important;cursor:pointer}
+.klaviyo-form-QVjYCi button:hover{background:var(--red-2)!important}
+.klaviyo-form-QVjYCi * {font-family:var(--sans)}
+.klaviyo-form-QVjYCi input[type="email"],.klaviyo-form-QVjYCi button{border-radius:8px!important}
+.klaviyo-form-QVjYCi div:has(> div > input[type="email"]),.klaviyo-form-QVjYCi div:has(> button){padding:0!important}
+.klaviyo-form-QVjYCi input[type="email"]::placeholder{font-family:var(--sans)!important;color:#7A7575!important}
+.signup .fine{margin-top:12px}
+
+/* version C: the announcement is the page; the giveaway is a slim ticket under the form */
+.stage{padding:clamp(36px,6vh,72px) 0 clamp(28px,5vh,56px)}
+.logo{width:min(220px,48vw)}
+.ann-eb{margin:clamp(22px,3.6vh,36px) 0 0;display:inline-flex;align-items:center;gap:10px;padding:7px 14px;border-radius:999px;border:1px solid rgba(230,36,41,.45);background:rgba(230,36,41,.08);font-family:var(--lab);font-weight:600;font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--text)}
+.ann-eb i{width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 0 0 rgba(230,36,41,.7);animation:annPulse 2s ease-out infinite}
+@keyframes annPulse{70%{box-shadow:0 0 0 10px rgba(230,36,41,0)}100%{box-shadow:0 0 0 0 rgba(230,36,41,0)}}
+.ann-l{margin:clamp(16px,2.6vh,24px) 0 0;font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:clamp(28px,3.6vw,50px);line-height:.98;letter-spacing:.005em;color:var(--text)}
+.ann-date{margin:clamp(6px,1.2vh,12px) 0 0;font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:clamp(64px,11.5vw,176px);line-height:.86;letter-spacing:-.01em;color:var(--red);text-shadow:0 0 60px rgba(230,36,41,.45),0 0 140px rgba(230,36,41,.25);animation:annIn 1.4s var(--ease) 1s both}
+.ann-date span{color:var(--red)}
+@keyframes annIn{0%{opacity:0;transform:translateY(14px) scale(.97);filter:blur(6px)}100%{opacity:1;transform:none;filter:none}}
+.stage .signup{margin-top:clamp(22px,3.6vh,36px)}
+.gw{margin-top:clamp(18px,3vh,28px);width:100%;max-width:520px;display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;text-align:left;border-radius:14px;border:1px solid var(--line);background:rgba(20,18,18,.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.gw-cardwrap{position:relative;width:84px;height:104px;border-right:1px dashed var(--line-2)}
+.gw-cardwrap .m3d{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.38)}
+.gw-copy{padding:12px 16px}
+.gw-k{margin:0;font-family:var(--lab);font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--red-text)}
+.gw-t{margin:3px 0 0;font-size:14.5px;font-weight:700;line-height:1.35}
+.gw-s{margin:3px 0 0;font-size:12px;line-height:1.45;color:var(--muted)}
+
+/* footer */
+.foot{border-top:1px solid var(--line);padding:22px 0 calc(22px + env(safe-area-inset-bottom))}
+.foot .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px}
+.social{display:flex;gap:10px;list-style:none;margin:0;padding:0}
+.social a{width:40px;height:40px;display:grid;place-items:center;border-radius:50%;border:1px solid var(--line-2);color:var(--text);transition:border-color .2s,background .2s}
+.social a:hover{border-color:#fff;background:rgba(255,255,255,.06)}
+.social a:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.social svg{width:18px;height:18px;fill:currentColor}
+.legal{margin:0;font-size:13px;color:var(--muted)}
+.legal a{color:var(--text-2);text-decoration:underline;text-underline-offset:3px}
+
+@media (max-width:560px){
+  .ann-l .ln{display:inline}
+  .gw-cardwrap{width:70px;height:96px}
+  .gw-cardwrap .m3d{transform:translate(-50%,-50%) scale(.32)}
+  .gw-copy{padding:10px 12px}
+  .gw-t{font-size:13.5px}
+  .mystery{gap:14px;padding:14px}
+  .m3d{--w:96px;--h:160px;--d:12px}
+  .m3d-win b{font-size:52px}
+    .mystery-t{font-size:16px}
+  .mystery-s{font-size:14px}
+  .row{flex-direction:column}
+  .row input{flex:none;width:100%}
+  .row button{width:100%}
+  .foot .wrap{justify-content:center;text-align:center}
+}
+@media (max-height:780px){.stage{padding-top:32px;padding-bottom:28px}.logo{width:min(300px,62vw)}.h1{margin-top:18px;font-size:clamp(30px,4vw,48px)}.mystery{margin-top:20px}.signup{margin-top:16px}}
+@media (max-width:560px) and (max-height:700px){.logo{width:min(220px,58vw)}.h1{font-size:28px}.m3d{--w:80px;--h:112px}.m3d-win b{font-size:42px}.mystery-t{font-size:15px}}
+@media (max-width:380px){@media (max-width:380px) and (max-height:700px){.stage{padding-top:20px}.logo{width:170px}.h1{margin-top:12px;font-size:25px}.mystery{margin-top:14px;padding:12px}.mystery-k{font-size:11px}.mystery-t{font-size:14px}.mystery-s{font-size:12.5px;line-height:1.4}.signup{margin-top:12px}}
+/* reduced motion: lights already up, logo fully visible on first paint */
+@media (prefers-reduced-motion:reduce){.ann-date,.ann-eb i{animation:none}.beam,.logo,.m3d-rig,.m3d-win b,.m3d-scan{animation:none}.m3d-scan{display:none}}
+</style>
+<!-- Klaviyo onsite script (HGA account XfpWAX): loads the embedded signup form and Active on Site tracking -->
+<script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/XfpWAX/klaviyo.js?company_id=XfpWAX"></script>
+<script type="text/javascript">
+//Initialize Klaviyo object on page load
+!function(){if(!window.klaviyo){window._klOnsite=window._klOnsite||[];try{window.klaviyo=new Proxy({},{get:function(n,i){return"push"===i?function(){var n;(n=window._klOnsite).push.apply(n,arguments)}:function(){for(var n=arguments.length,o=new Array(n),w=0;w<n;w++)o[w]=arguments[w];var t="function"==typeof o[o.length-1]?o.pop():void 0,e=new Promise((function(n){window._klOnsite.push([i].concat(o,[function(i){t&&t(i),n(i)}]))}));return e}}})}catch(n){window.klaviyo=window.klaviyo||[],window.klaviyo.push=function(){var n;(n=window._klOnsite).push.apply(n,arguments)}}}}();
+</script>
+</head>
+<body>
+<main class="stage" id="main">
+  <span class="beam l" aria-hidden="true"></span>
+  <span class="beam r" aria-hidden="true"></span>
+  <div class="wrap" style="display:flex;flex-direction:column;align-items:center">
+    <h1 class="sr">HGA, Hybrid Grading Approach: something innovative and unique is coming to grading on November 23.</h1>
+    <img class="logo" src="./assets/hga-hybrid-grading-approach.svg" alt="HGA, Hybrid Grading Approach" width="420" height="129">
+    <p class="ann-eb"><i aria-hidden="true"></i>Mark your calendar</p>
+    <p class="ann-l" aria-hidden="true"><span class="ln">Something innovative and unique</span> <span class="ln">is coming to grading</span></p>
+    <p class="ann-date" aria-hidden="true"><time datetime="2026-11-23">November 23<span>.</span></time></p>
+
+    <!-- Klaviyo embedded signup form QVjYCi. Set the source HGA_presale_hype_site and the main HGA list in Klaviyo's form settings. -->
+    <div class="signup">
+      <div class="klaviyo-form-QVjYCi"></div>
+      <p class="fine">By signing up, you confirm you&rsquo;re 18 or older and agree to get marketing emails from HGA. Unsubscribe anytime. Signing up isn&rsquo;t a giveaway entry. <a href="/privacy">Privacy policy</a>.</p>
+    </div>
+
+    <aside class="gw" aria-label="Mystery card giveaway">
+      <div class="gw-cardwrap">
+        <div class="m3d" data-m3d tabindex="0" role="img" aria-label="A sealed mystery card, grade and card hidden. Drag to turn it, or press Enter to spin it.">
+          <div class="m3d-rig" data-rig>
+            <div class="m3d-slab" data-slab>
+              <div class="m3d-face m3d-front">
+                <span class="m3d-seal" aria-hidden="true">Sealed</span>
+                <div class="m3d-win"><b>?</b><i class="m3d-scan"></i></div>
+                <span class="m3d-grade" aria-hidden="true">Grade <b>??</b></span>
+                <span class="m3d-sheen"></span>
+              </div>
+              <div class="m3d-face m3d-back"><b>?</b><small>Mystery card</small></div>
+              <div class="m3d-face m3d-side l"></div><div class="m3d-face m3d-side r"></div>
+              <div class="m3d-face m3d-side t"></div><div class="m3d-face m3d-side b"></div>
+            </div>
+            <span class="m3d-shadow"></span>
+          </div>
+        </div>
+      </div>
+      <div class="gw-copy">
+        <p class="gw-k">Mystery card giveaway: coming soon</p>
+        <p class="gw-t">We&rsquo;re giving away one HGA graded card worth up to $4,999.</p>
+        <p class="gw-s">Sign up to get the official rules and entry details when it opens. Signing up isn&rsquo;t an entry. No purchase necessary to enter or win.</p>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <ul class="social" aria-label="HGA on social media">
+      <li><a href="https://www.facebook.com/HybridGradingApproach/" data-track="social_facebook" aria-label="HGA on Facebook" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5h1.6V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H8v3h2.5V21z"/></svg></a></li>
+      <li><a href="https://www.instagram.com/hybridgradingapproach" data-track="social_instagram" aria-label="HGA on Instagram" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7.3a4.7 4.7 0 100 9.4 4.7 4.7 0 000-9.4zm0 7.7a3 3 0 110-6 3 3 0 010 6zm6-7.9a1.1 1.1 0 11-2.2 0 1.1 1.1 0 012.2 0zM21 8.2c-.1-1.5-.4-2.8-1.5-3.9S17.1 2.9 15.7 2.8C14.2 2.7 9.8 2.7 8.3 2.8 6.9 2.9 5.6 3.2 4.5 4.3S3 6.7 3 8.2c-.1 1.5-.1 6 0 7.5.1 1.5.4 2.8 1.5 3.9s2.4 1.4 3.8 1.5c1.5.1 5.9.1 7.4 0 1.5-.1 2.8-.4 3.8-1.5 1.1-1.1 1.4-2.4 1.5-3.9.1-1.5.1-6 0-7.5zm-1.9 9.1c-.3.8-.9 1.4-1.7 1.7-1.2.5-3.9.4-5.4.4s-4.2.1-5.4-.4c-.8-.3-1.4-.9-1.7-1.7-.5-1.2-.4-3.9-.4-5.3s-.1-4.2.4-5.3c.3-.8.9-1.4 1.7-1.7 1.2-.5 3.9-.4 5.4-.4s4.2-.1 5.4.4c.8.3 1.4.9 1.7 1.7.5 1.2.4 3.9.4 5.3s.1 4.2-.4 5.3z"/></svg></a></li>
+      <li><a href="https://www.youtube.com/@hybridgradingapproach2743" data-track="social_youtube" aria-label="HGA on YouTube" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 7.2a2.5 2.5 0 00-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 002.4 7.2 26 26 0 002 12a26 26 0 00.4 4.8 2.5 2.5 0 001.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 001.8-1.8A26 26 0 0022 12a26 26 0 00-.4-4.8zM10 15V9l5.2 3z"/></svg></a></li>
+      <li><a href="https://www.tiktok.com/@hybridgrading" data-track="social_tiktok" aria-label="HGA on TikTok" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 5.8A4.3 4.3 0 0115.5 3h-3.1v12.4a2.6 2.6 0 01-2.6 2.5 2.6 2.6 0 01-2.6-2.6 2.6 2.6 0 013.4-2.5V9.7a5.7 5.7 0 00-.8-.1 5.7 5.7 0 00-5.7 5.7A5.7 5.7 0 009.8 21a5.7 5.7 0 005.7-5.7V9a7.4 7.4 0 004.3 1.4V7.3a4.3 4.3 0 01-3.2-1.5z"/></svg></a></li>
+    </ul>
+    <p class="legal">&copy; 2026 HGA &middot; Hybrid Grading Approach &middot; Chandler, Arizona &middot; <a href="/privacy">Privacy Policy</a></p>
+  </div>
+</footer>
+
+<script>
+  // Analytics hooks: pushes to dataLayer only if a tag manager is installed later (no scripts load here).
+  window.dataLayer = window.dataLayer || [];
+  var track = function (e, extra) { var o = { event: e }; for (var k in extra || {}) o[k] = extra[k]; window.dataLayer.push(o); };
+  document.querySelectorAll("[data-track]").forEach(function (a) { a.addEventListener("click", function () { track("social_click", { network: a.dataset.track.replace("social_", "") }); }); });
+
+  // 3D mystery slab: gentle sway; drag turns it and eases back; tap or Enter spins it once; paused off screen.
+  document.querySelectorAll("[data-m3d]").forEach(function (st) {
+    var slab = st.querySelector("[data-slab]"), reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var drag = 0, spin = 0, dragging = false, lastX = 0, moved = 0, inView = true, running = false, t0 = performance.now();
+    function frame(now) {
+      var t = (now - t0) / 1000;
+      if (!dragging) drag *= 0.93;
+      if (spin > 0) spin = Math.max(0, spin - Math.max(4, spin * 0.06));
+      var ry = (reduce ? -20 : 24 * Math.sin(t * 0.6)) + drag + spin;
+      var rx = reduce ? -6 : -6 + 3 * Math.sin(t * 0.45);
+      slab.style.transform = "rotateX(" + rx.toFixed(2) + "deg) rotateY(" + ry.toFixed(2) + "deg)";
+      slab.style.setProperty("--sx", ((((ry % 360) + 540) % 360 - 180) / 40 * 70).toFixed(1) + "%");
+      if (inView && (!reduce || dragging || drag > 0.1 || spin > 0)) requestAnimationFrame(frame); else running = false;
+    }
+    function go() { if (!running) { running = true; requestAnimationFrame(frame); } }
+    function spinOnce() { spin = 360; go(); }
+    st.addEventListener("pointerdown", function (e) { dragging = true; moved = 0; lastX = e.clientX; st.classList.add("dragging"); st.setPointerCapture(e.pointerId); go(); });
+    st.addEventListener("pointermove", function (e) { if (!dragging) return; var dx = e.clientX - lastX; moved += Math.abs(dx); drag += dx * 0.5; lastX = e.clientX; });
+    function end() { if (!dragging) return; dragging = false; st.classList.remove("dragging"); }
+    st.addEventListener("pointerup", function () { var tap = moved < 6; end(); if (tap) spinOnce(); });
+    st.addEventListener("pointercancel", end);
+    st.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); spinOnce(); } });
+    new IntersectionObserver(function (es) { inView = es[0].isIntersecting; if (inView) go(); }).observe(st);
+    go();
+  });
+
+  // Klaviyo form events: count signups once the embedded form submits.
+  window.addEventListener("klaviyoForms", function (e) {
+    if (e.detail && e.detail.type === "submit" && e.detail.formId === "QVjYCi") track("signup_submitted", { source: "HGA_presale_hype_site" });
+  });
+</script>
+</body>
+</html>
