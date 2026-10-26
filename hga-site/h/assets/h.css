@@ -1,0 +1,52 @@
+/* Version H (hga-site/h/): spinning slab hero, six reasons, six things to know. On top of G's styles. */
+.h-vis{display:flex;flex-direction:column;align-items:center}
+.h-stage{position:relative;width:100%;display:grid;justify-items:center;padding:6px 0 0}
+.h-beam{position:absolute;left:50%;top:-40px;width:min(520px,90%);height:115%;transform:translateX(-50%);pointer-events:none;filter:blur(16px);opacity:.85;background:linear-gradient(180deg,rgba(255,240,235,.26),rgba(255,230,225,.06) 60%,transparent 92%);clip-path:polygon(42% 0,58% 0,100% 100%,0 100%);z-index:0}
+.h-slab{position:relative;z-index:1;width:min(300px,62%)}
+.h-slab .spin-slab{cursor:grab}
+.h-slab .spin-slab:active{cursor:grabbing}
+.h-slab .spin-slab img{filter:drop-shadow(0 50px 50px rgba(0,0,0,.85))}
+.h-slab .spin-slab .hint{display:none}
+.h-ped{position:relative;z-index:0;width:min(380px,80%);height:44px;margin-top:-18px;border-radius:50%;background:radial-gradient(ellipse at 50% 35%,#2b2b2b,#0c0c0c 72%);box-shadow:inset 0 2px 0 rgba(255,255,255,.18),0 30px 60px rgba(0,0,0,.7)}
+.h-ped::after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:0 -1px 0 rgba(230,36,41,.55)}
+.h-hint{margin:14px 0 0;display:inline-flex;align-items:center;gap:8px;font-family:var(--lab);font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.h-hint .ico{width:22px;height:14px}
+
+/* six reasons + proof cards */
+.h-reasons-lede{max-width:40em;margin-top:6px;color:rgba(255,255,255,.75)}
+.h-reasons{margin:clamp(24px,3vw,40px) 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.h-reason{position:relative;padding:22px 22px 24px;border-radius:var(--r);border:1px solid rgba(255,255,255,.1);background:#141212;display:grid;gap:8px;align-content:start;transition:border-color .3s,transform .4s}
+.h-reason:hover{border-color:rgba(230,36,41,.55);transform:translateY(-3px)}
+.h-rn{font-family:var(--disp);font-weight:800;font-size:15px;letter-spacing:.06em;color:#FF6B6E}
+.h-ri{position:absolute;top:18px;right:18px;width:34px;height:34px;color:var(--red);stroke-width:1.4}
+.h-reason h3,.h-six h3{margin:0;font-size:19px;line-height:1.25}
+.h-reason p,.h-six p{margin:0;font-size:15px;line-height:1.55;color:rgba(255,255,255,.7)}
+.h-proofs{margin-top:14px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.h-proof{display:grid;grid-template-columns:96px 1fr;gap:16px;align-items:center;padding:14px;border-radius:var(--r);border:1px solid rgba(230,36,41,.35);background:radial-gradient(ellipse 90% 100% at 0 50%,rgba(230,36,41,.12),transparent 70%),#141212;color:#fff;text-decoration:none;transition:border-color .3s}
+.h-proof:hover{border-color:rgba(230,36,41,.8)}
+.h-proof figure{margin:0;aspect-ratio:1;border-radius:10px;overflow:hidden;background:#0c0b0b}
+.h-proof img{width:100%;height:100%;object-fit:cover}
+.h-proof b{font-size:16px}
+.h-proof p{margin:4px 0 8px;font-size:13.5px;line-height:1.45;color:rgba(255,255,255,.68)}
+.h-proof span{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:#FF6B6E}
+.h-proof span .ico{width:14px;height:14px}
+
+/* six things to know */
+.h-six .h2{font-size:clamp(36px,4.4vw,60px)}
+.h-six-grid{margin-top:clamp(24px,3vw,40px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid rgba(255,255,255,.1)}
+.h-six-grid article{padding:24px 24px 26px 0;border-bottom:1px solid rgba(255,255,255,.1);display:grid;gap:8px;align-content:start}
+.h-six-grid article:not(:nth-child(3n+1)){padding-left:24px;border-left:1px solid rgba(255,255,255,.1)}
+.h-six-grid b{color:#fff}
+.h-six .h-six-cta{margin-top:clamp(32px,4vw,48px);justify-content:center;display:flex}
+.h-proof:nth-child(2) img{object-position:40% 50%}
+
+@media (max-width:1100px){.h-proofs{grid-template-columns:1fr}.h-proof{grid-template-columns:80px 1fr}}
+@media (max-width:860px){
+  .h-reasons{grid-template-columns:1fr 1fr}
+  .h-six-grid{grid-template-columns:1fr 1fr}
+  .h-six-grid article,.h-six-grid article:not(:nth-child(3n+1)){padding:20px 18px;border-left:0}
+  .h-six-grid article:nth-child(2n){border-left:1px solid rgba(255,255,255,.1)}
+  .h-slab{width:min(220px,52vw)}
+}
+@media (max-width:560px){.h-reasons,.h-six-grid{grid-template-columns:1fr}.h-six-grid article:nth-child(2n){border-left:0}.h-slab{width:min(170px,44vw)}.h-hint{margin-top:10px}}
+@media (max-width:720px) and (max-height:740px){.h-slab{width:120px}.h-ped{height:30px}}
