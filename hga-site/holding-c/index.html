@@ -128,14 +128,14 @@ a{color:inherit}
    the giveaway is one quiet line under the form */
 .stage{padding:clamp(32px,5vh,64px) 0 clamp(24px,4vh,48px)}
 .logo{width:min(190px,44vw);animation:none;filter:drop-shadow(0 0 24px rgba(230,36,41,.35))}
-.tz{--sh:clamp(150px,25vh,240px);position:relative;isolation:isolate;margin-top:clamp(8px,1.6vh,16px);padding:calc(var(--sh) - 26px) 0 clamp(14px,3vh,28px);width:100%;display:grid;justify-items:center}
-/* the slab sits above the words, never behind them: its lower part fades out into the tag so all text is on plain dark */
+.tz{--sh:clamp(150px,25vh,240px);position:relative;isolation:isolate;margin-top:clamp(8px,1.6vh,16px);padding:calc(var(--sh) - 4px) 0 clamp(14px,3vh,28px);width:100%;display:grid;justify-items:center}
+/* the slab sits above the words, never behind them: its lower part fades out so all text is on plain dark */
 .tz-slab{position:absolute;z-index:-1;left:50%;top:0;width:auto;height:var(--sh);transform:translateX(-50%);opacity:.95;filter:blur(2.5px) saturate(.9) brightness(.9);-webkit-mask-image:linear-gradient(180deg,#000 50%,transparent 96%);mask-image:linear-gradient(180deg,#000 50%,transparent 96%);animation:tzBreathe 7s ease-in-out infinite;pointer-events:none;user-select:none;-webkit-user-drag:none}
 @keyframes tzBreathe{50%{opacity:.75;filter:blur(6px) saturate(.8) brightness(.85);transform:translateX(-50%) scale(1.03)}}
 .ann-eb{margin:0;display:inline-flex;align-items:center;gap:10px;padding:7px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(10,8,8,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);font-family:var(--lab);font-weight:600;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-2)}
 .ann-eb i{width:8px;height:8px;border-radius:50%;background:var(--red);animation:annPulse 2s ease-out infinite}
 @keyframes annPulse{0%{box-shadow:0 0 0 0 rgba(230,36,41,.7)}70%,100%{box-shadow:0 0 0 10px rgba(230,36,41,0)}}
-.ann{margin:clamp(16px,2.6vh,24px) 0 0;font-family:var(--disp);font-weight:800;text-transform:uppercase;line-height:.9;text-shadow:0 4px 30px rgba(0,0,0,.6)}
+.ann{margin:0;font-family:var(--disp);font-weight:800;text-transform:uppercase;line-height:.9;text-shadow:0 4px 30px rgba(0,0,0,.6)}
 .ann-l{display:block;text-wrap:balance;font-size:clamp(26px,3.6vw,50px);letter-spacing:.01em;color:var(--text)}
 .ann-date{display:block;margin-top:.08em;font-size:clamp(50px,min(11vw,15vh),150px);letter-spacing:-.01em;color:var(--red);text-shadow:0 0 60px rgba(230,36,41,.45),0 0 140px rgba(230,36,41,.22);animation:annIn 1.4s var(--ease) .9s both}
 @keyframes annIn{0%{opacity:0;transform:translateY(14px) scale(.97);filter:blur(8px)}100%{opacity:1;transform:none;filter:none}}
@@ -197,7 +197,6 @@ a{color:inherit}
     <img class="logo" src="./assets/hga-hybrid-grading-approach.svg" alt="HGA, Hybrid Grading Approach" width="420" height="129">
     <div class="tz">
       <img class="tz-slab" src="./assets/teaser-slab.webp" alt="" width="420" height="622" aria-hidden="true">
-      <p class="ann-eb"><i aria-hidden="true"></i>Under wraps until launch</p>
       <h1 class="ann"><span class="ann-l"><span class="ln">Something innovative and unique</span> <span class="ln">is coming to grading</span></span> <span class="ann-date"><time datetime="2026-11-23">November 23rd</time>.</span></h1>
     </div>
     <p class="ann-sub"><b>The future of grading changes.</b> Be the first to see it.</p>
