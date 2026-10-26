@@ -1,21 +1,23 @@
 <!doctype html>
-<!-- Coming soon page, version C (Dylan 2026-10-27: minimize the giveaway box; the announcement front and center; show the giveaway differently). Built from holding B. -->
+<!-- Coming soon page, version C (Dylan 2026-10-27): lead with the November 23 launch; mysterious, teaser style; the slab shown only blurred
+     (teaser-slab.webp is blurred at build time so the real design never ships); the giveaway only as a secondary reason to sign up;
+     the whole page centered on "the future of grading changes November 23rd". Built from holding B. -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>HGA | Hybrid Grading Approach</title>
-<meta name="description" content="Something innovative and unique is coming to grading on November 23.">
+<meta name="description" content="The future of grading changes November 23rd.">
 <meta name="theme-color" content="#0B0A0A">
 <meta property="og:type" content="website">
 <meta property="og:title" content="HGA | Hybrid Grading Approach">
-<meta property="og:description" content="Something innovative and unique is coming to grading on November 23.">
+<meta property="og:description" content="The future of grading changes November 23rd.">
 <meta property="og:image" content="./assets/og-1200x630.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="HGA | Hybrid Grading Approach">
-<meta name="twitter:description" content="Something innovative and unique is coming to grading on November 23.">
+<meta name="twitter:description" content="The future of grading changes November 23rd.">
 <meta name="twitter:image" content="./assets/og-1200x630.png">
 <!-- At go live: make og:image and twitter:image absolute URLs on the final domain, and swap the favicon for the G-star icon from the brand kit. -->
 <link rel="icon" href="./assets/hga.svg" type="image/svg+xml">
@@ -122,24 +124,26 @@ a{color:inherit}
 .klaviyo-form-QVjYCi input[type="email"]::placeholder{font-family:var(--sans)!important;color:#7A7575!important}
 .signup .fine{margin-top:12px}
 
-/* version C: the announcement is the page; the giveaway is a slim ticket under the form */
-.stage{padding:clamp(36px,6vh,72px) 0 clamp(28px,5vh,56px)}
-.logo{width:min(220px,48vw)}
-.ann-eb{margin:clamp(22px,3.6vh,36px) 0 0;display:inline-flex;align-items:center;gap:10px;padding:7px 14px;border-radius:999px;border:1px solid rgba(230,36,41,.45);background:rgba(230,36,41,.08);font-family:var(--lab);font-weight:600;font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--text)}
-.ann-eb i{width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 0 0 rgba(230,36,41,.7);animation:annPulse 2s ease-out infinite}
-@keyframes annPulse{70%{box-shadow:0 0 0 10px rgba(230,36,41,0)}100%{box-shadow:0 0 0 0 rgba(230,36,41,0)}}
-.ann-l{margin:clamp(16px,2.6vh,24px) 0 0;font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:clamp(28px,3.6vw,50px);line-height:.98;letter-spacing:.005em;color:var(--text)}
-.ann-date{margin:clamp(6px,1.2vh,12px) 0 0;font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:clamp(64px,11.5vw,176px);line-height:.86;letter-spacing:-.01em;color:var(--red);text-shadow:0 0 60px rgba(230,36,41,.45),0 0 140px rgba(230,36,41,.25);animation:annIn 1.4s var(--ease) 1s both}
-.ann-date span{color:var(--red)}
-@keyframes annIn{0%{opacity:0;transform:translateY(14px) scale(.97);filter:blur(6px)}100%{opacity:1;transform:none;filter:none}}
-.stage .signup{margin-top:clamp(22px,3.6vh,36px)}
-.gw{margin-top:clamp(18px,3vh,28px);width:100%;max-width:520px;display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;text-align:left;border-radius:14px;border:1px solid var(--line);background:rgba(20,18,18,.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-.gw-cardwrap{position:relative;width:84px;height:104px;border-right:1px dashed var(--line-2)}
-.gw-cardwrap .m3d{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.38)}
-.gw-copy{padding:12px 16px}
-.gw-k{margin:0;font-family:var(--lab);font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--red-text)}
-.gw-t{margin:3px 0 0;font-size:14.5px;font-weight:700;line-height:1.35}
-.gw-s{margin:3px 0 0;font-size:12px;line-height:1.45;color:var(--muted)}
+/* version C: one message, "the future of grading changes November 23rd"; a blurred slab under the lights behind it;
+   the giveaway is one quiet line under the form */
+.stage{padding:clamp(32px,5vh,64px) 0 clamp(24px,4vh,48px)}
+.logo{width:min(190px,44vw);animation:none;filter:drop-shadow(0 0 24px rgba(230,36,41,.35))}
+.tz{position:relative;isolation:isolate;margin-top:clamp(18px,3vh,30px);padding:clamp(70px,13vh,130px) 0 clamp(20px,4vh,40px);width:100%;display:grid;justify-items:center}
+.tz-slab{position:absolute;z-index:-1;left:50%;top:-4%;width:auto;height:112%;max-height:600px;transform:translateX(-50%);opacity:.95;filter:blur(3px) saturate(.9) brightness(.85);-webkit-mask-image:radial-gradient(ellipse 60% 58% at 50% 46%,#000 62%,transparent 92%);mask-image:radial-gradient(ellipse 60% 58% at 50% 46%,#000 62%,transparent 92%);animation:tzBreathe 7s ease-in-out infinite;pointer-events:none;user-select:none;-webkit-user-drag:none}
+@keyframes tzBreathe{50%{opacity:.75;filter:blur(7px) saturate(.8) brightness(.8);transform:translateX(-50%) scale(1.02)}}
+.ann-eb{margin:0;display:inline-flex;align-items:center;gap:10px;padding:7px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(10,8,8,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);font-family:var(--lab);font-weight:600;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-2)}
+.ann-eb i{width:8px;height:8px;border-radius:50%;background:var(--red);animation:annPulse 2s ease-out infinite}
+@keyframes annPulse{0%{box-shadow:0 0 0 0 rgba(230,36,41,.7)}70%,100%{box-shadow:0 0 0 10px rgba(230,36,41,0)}}
+.ann{margin:clamp(16px,2.6vh,24px) 0 0;font-family:var(--disp);font-weight:800;text-transform:uppercase;line-height:.9;text-shadow:0 4px 30px rgba(0,0,0,.6)}
+.ann-l{display:block;text-wrap:balance;font-size:clamp(28px,4vw,56px);letter-spacing:.01em;color:var(--text)}
+.ann-date{display:block;margin-top:.08em;font-size:clamp(52px,min(11vw,18vh),164px);letter-spacing:-.01em;color:var(--red);text-shadow:0 0 60px rgba(230,36,41,.45),0 0 140px rgba(230,36,41,.22);animation:annIn 1.4s var(--ease) .9s both}
+@keyframes annIn{0%{opacity:0;transform:translateY(14px) scale(.97);filter:blur(8px)}100%{opacity:1;transform:none;filter:none}}
+.ann-sub{margin:clamp(14px,2.4vh,22px) 0 0;font-size:clamp(16px,1.4vw,19px);color:var(--text-2)}
+.stage .signup{margin-top:14px}
+.gw-line{margin:clamp(16px,2.6vh,24px) 0 0;width:100%;max-width:440px;display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;align-items:start;text-align:left;font-size:13px;line-height:1.5;color:var(--text-2)}
+.gw-line b{color:var(--text);font-weight:700}
+.gw-line small{display:block;margin-top:3px;font-size:11.5px;color:var(--muted)}
+.gw-q{width:28px;height:38px;display:grid;place-items:center;border-radius:5px;border:1px solid rgba(230,36,41,.55);background:repeating-linear-gradient(-45deg,#1c1213 0 5px,#251516 5px 10px);font-family:var(--disp);font-weight:800;font-size:20px;color:var(--red);text-shadow:0 0 12px rgba(230,36,41,.7)}
 
 /* footer */
 .foot{border-top:1px solid var(--line);padding:22px 0 calc(22px + env(safe-area-inset-bottom))}
@@ -153,11 +157,7 @@ a{color:inherit}
 .legal a{color:var(--text-2);text-decoration:underline;text-underline-offset:3px}
 
 @media (max-width:560px){
-  .ann-l .ln{display:inline}
-  .gw-cardwrap{width:70px;height:96px}
-  .gw-cardwrap .m3d{transform:translate(-50%,-50%) scale(.32)}
-  .gw-copy{padding:10px 12px}
-  .gw-t{font-size:13.5px}
+  .tz{padding-top:clamp(60px,10vh,100px)}
   .mystery{gap:14px;padding:14px}
   .m3d{--w:96px;--h:160px;--d:12px}
   .m3d-win b{font-size:52px}
@@ -170,9 +170,13 @@ a{color:inherit}
 }
 @media (max-height:780px){.stage{padding-top:32px;padding-bottom:28px}.logo{width:min(300px,62vw)}.h1{margin-top:18px;font-size:clamp(30px,4vw,48px)}.mystery{margin-top:20px}.signup{margin-top:16px}}
 @media (max-width:560px) and (max-height:700px){.logo{width:min(220px,58vw)}.h1{font-size:28px}.m3d{--w:80px;--h:112px}.m3d-win b{font-size:42px}.mystery-t{font-size:15px}}
-@media (max-width:380px){@media (max-width:380px) and (max-height:700px){.stage{padding-top:20px}.logo{width:170px}.h1{margin-top:12px;font-size:25px}.mystery{margin-top:14px;padding:12px}.mystery-k{font-size:11px}.mystery-t{font-size:14px}.mystery-s{font-size:12.5px;line-height:1.4}.signup{margin-top:12px}}
+@media (max-width:380px) and (max-height:700px){.stage{padding-top:20px}.logo{width:170px}.h1{margin-top:12px;font-size:25px}.mystery{margin-top:14px;padding:12px}.mystery-k{font-size:11px}.mystery-t{font-size:14px}.mystery-s{font-size:12.5px;line-height:1.4}.signup{margin-top:12px}}
+/* version C sizes win over holding B's short screen rules */
+.stage .logo{width:min(190px,44vw)}
+@media (max-height:780px){.stage .logo{width:150px}.tz{margin-top:12px;padding-top:clamp(40px,8vh,64px);padding-bottom:12px}.ann-sub{margin-top:10px}.gw-line{margin-top:14px}}
+@media (max-height:700px) and (max-width:560px){.ann-eb{font-size:10.5px;padding:5px 11px}.ann-l{font-size:24px}.gw-line small{font-size:11px}}
 /* reduced motion: lights already up, logo fully visible on first paint */
-@media (prefers-reduced-motion:reduce){.ann-date,.ann-eb i{animation:none}.beam,.logo,.m3d-rig,.m3d-win b,.m3d-scan{animation:none}.m3d-scan{display:none}}
+@media (prefers-reduced-motion:reduce){.ann-date,.ann-eb i,.tz-slab{animation:none}.beam,.logo,.m3d-rig,.m3d-win b,.m3d-scan{animation:none}.m3d-scan{display:none}}
 </style>
 <!-- Klaviyo onsite script (HGA account XfpWAX): loads the embedded signup form and Active on Site tracking -->
 <script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/XfpWAX/klaviyo.js?company_id=XfpWAX"></script>
@@ -186,11 +190,13 @@ a{color:inherit}
   <span class="beam l" aria-hidden="true"></span>
   <span class="beam r" aria-hidden="true"></span>
   <div class="wrap" style="display:flex;flex-direction:column;align-items:center">
-    <h1 class="sr">HGA, Hybrid Grading Approach: something innovative and unique is coming to grading on November 23.</h1>
     <img class="logo" src="./assets/hga-hybrid-grading-approach.svg" alt="HGA, Hybrid Grading Approach" width="420" height="129">
-    <p class="ann-eb"><i aria-hidden="true"></i>Mark your calendar</p>
-    <p class="ann-l" aria-hidden="true"><span class="ln">Something innovative and unique</span> <span class="ln">is coming to grading</span></p>
-    <p class="ann-date" aria-hidden="true"><time datetime="2026-11-23">November 23<span>.</span></time></p>
+    <div class="tz">
+      <img class="tz-slab" src="./assets/teaser-slab.webp" alt="" width="420" height="622" aria-hidden="true">
+      <p class="ann-eb"><i aria-hidden="true"></i>Under wraps until launch</p>
+      <h1 class="ann"><span class="ann-l">The future of grading changes</span> <span class="ann-date"><time datetime="2026-11-23">November 23rd</time>.</span></h1>
+    </div>
+    <p class="ann-sub">Be the first to see it.</p>
 
     <!-- Klaviyo embedded signup form QVjYCi. Set the source HGA_presale_hype_site and the main HGA list in Klaviyo's form settings. -->
     <div class="signup">
@@ -198,31 +204,7 @@ a{color:inherit}
       <p class="fine">By signing up, you confirm you&rsquo;re 18 or older and agree to get marketing emails from HGA. Unsubscribe anytime. Signing up isn&rsquo;t a giveaway entry. <a href="/privacy">Privacy policy</a>.</p>
     </div>
 
-    <aside class="gw" aria-label="Mystery card giveaway">
-      <div class="gw-cardwrap">
-        <div class="m3d" data-m3d tabindex="0" role="img" aria-label="A sealed mystery card, grade and card hidden. Drag to turn it, or press Enter to spin it.">
-          <div class="m3d-rig" data-rig>
-            <div class="m3d-slab" data-slab>
-              <div class="m3d-face m3d-front">
-                <span class="m3d-seal" aria-hidden="true">Sealed</span>
-                <div class="m3d-win"><b>?</b><i class="m3d-scan"></i></div>
-                <span class="m3d-grade" aria-hidden="true">Grade <b>??</b></span>
-                <span class="m3d-sheen"></span>
-              </div>
-              <div class="m3d-face m3d-back"><b>?</b><small>Mystery card</small></div>
-              <div class="m3d-face m3d-side l"></div><div class="m3d-face m3d-side r"></div>
-              <div class="m3d-face m3d-side t"></div><div class="m3d-face m3d-side b"></div>
-            </div>
-            <span class="m3d-shadow"></span>
-          </div>
-        </div>
-      </div>
-      <div class="gw-copy">
-        <p class="gw-k">Mystery card giveaway: coming soon</p>
-        <p class="gw-t">We&rsquo;re giving away one HGA graded card worth up to $4,999.</p>
-        <p class="gw-s">Sign up to get the official rules and entry details when it opens. Signing up isn&rsquo;t an entry. No purchase necessary to enter or win.</p>
-      </div>
-    </aside>
+    <p class="gw-line"><span class="gw-q" aria-hidden="true">?</span><span><b>Mystery card giveaway: coming soon.</b> We&rsquo;re giving away one HGA graded card worth up to $4,999. <small>Sign up to get the official rules and entry details when it opens. Signing up isn&rsquo;t an entry. No purchase necessary to enter or win.</small></span></p>
   </div>
 </main>
 
@@ -244,31 +226,6 @@ a{color:inherit}
   var track = function (e, extra) { var o = { event: e }; for (var k in extra || {}) o[k] = extra[k]; window.dataLayer.push(o); };
   document.querySelectorAll("[data-track]").forEach(function (a) { a.addEventListener("click", function () { track("social_click", { network: a.dataset.track.replace("social_", "") }); }); });
 
-  // 3D mystery slab: gentle sway; drag turns it and eases back; tap or Enter spins it once; paused off screen.
-  document.querySelectorAll("[data-m3d]").forEach(function (st) {
-    var slab = st.querySelector("[data-slab]"), reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var drag = 0, spin = 0, dragging = false, lastX = 0, moved = 0, inView = true, running = false, t0 = performance.now();
-    function frame(now) {
-      var t = (now - t0) / 1000;
-      if (!dragging) drag *= 0.93;
-      if (spin > 0) spin = Math.max(0, spin - Math.max(4, spin * 0.06));
-      var ry = (reduce ? -20 : 24 * Math.sin(t * 0.6)) + drag + spin;
-      var rx = reduce ? -6 : -6 + 3 * Math.sin(t * 0.45);
-      slab.style.transform = "rotateX(" + rx.toFixed(2) + "deg) rotateY(" + ry.toFixed(2) + "deg)";
-      slab.style.setProperty("--sx", ((((ry % 360) + 540) % 360 - 180) / 40 * 70).toFixed(1) + "%");
-      if (inView && (!reduce || dragging || drag > 0.1 || spin > 0)) requestAnimationFrame(frame); else running = false;
-    }
-    function go() { if (!running) { running = true; requestAnimationFrame(frame); } }
-    function spinOnce() { spin = 360; go(); }
-    st.addEventListener("pointerdown", function (e) { dragging = true; moved = 0; lastX = e.clientX; st.classList.add("dragging"); st.setPointerCapture(e.pointerId); go(); });
-    st.addEventListener("pointermove", function (e) { if (!dragging) return; var dx = e.clientX - lastX; moved += Math.abs(dx); drag += dx * 0.5; lastX = e.clientX; });
-    function end() { if (!dragging) return; dragging = false; st.classList.remove("dragging"); }
-    st.addEventListener("pointerup", function () { var tap = moved < 6; end(); if (tap) spinOnce(); });
-    st.addEventListener("pointercancel", end);
-    st.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); spinOnce(); } });
-    new IntersectionObserver(function (es) { inView = es[0].isIntersecting; if (inView) go(); }).observe(st);
-    go();
-  });
 
   // Klaviyo form events: count signups once the embedded form submits.
   window.addEventListener("klaviyoForms", function (e) {
