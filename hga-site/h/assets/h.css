@@ -196,3 +196,29 @@
   .h-fx-tab{padding:15px 16px}
 }
 @media (prefers-reduced-motion:reduce){.h-fx-fig,.h-fx-fig img,.h-fx-panel,.h-fx-chev{transition:none}.h-fx-fig img{transform:none}}
+
+/* mobile hero, take 2 (Bhaskar 2026-10-26: lay it out better): the slab alone and centered, then the sizes as one
+   slim strip under it (animated housing left, caption right), instead of two squeezed blocks side by side */
+@media (max-width:860px){
+  .h-stage{display:grid;justify-items:center;gap:0}
+  .h-main{width:min(210px,48vw);margin:0}
+  .h-main .h-ped{width:120%}
+  .h-sizes{position:static;width:min(360px,100%);margin-top:16px;display:grid;grid-template-columns:136px minmax(0,1fr);align-items:center;gap:14px;padding:6px 14px 6px 6px;border-radius:14px}
+  .h-sizes .hc2-stage.h-mini{height:88px!important}
+  .h-mini .hc2-rig{top:61%}
+  .h-mini .hc2-wm{left:5px;top:5px;padding:2px 5px;font-size:8.5px!important;letter-spacing:.12em}
+  .h-sizes-cap{margin:0}
+  .h-sizes-cap b{font-size:14px}.h-sizes-cap span{font-size:12px}
+}
+@media (max-width:560px){
+  .h-main{width:min(158px,41vw)}
+  .h-main .h-ped{height:32px;margin-top:-14px}
+  .h-hint{display:none}
+  .h-sizes{margin-top:12px}
+}
+@media (max-width:720px) and (max-height:740px){
+  .h-main{width:112px}
+  .h-sizes{margin-top:10px;grid-template-columns:110px minmax(0,1fr)}
+  .h-sizes .hc2-stage.h-mini{height:62px!important}
+  .h-sizes-cap span{display:block}
+}
