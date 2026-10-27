@@ -199,6 +199,24 @@ a{color:inherit}
 .stage .logo{width:min(190px,44vw)}
 @media (max-height:780px){.stage .logo{width:150px}.tz{--sh:clamp(110px,21vh,160px);padding-bottom:12px}.ann-sub{margin-top:10px}.gw-line{margin-top:14px}}
 @media (max-height:700px) and (max-width:560px){.ann-eb{font-size:10.5px;padding:5px 11px}.ann-l{font-size:24px}.gw-line small{font-size:11px}}
+/* mobile, Dylan 2026-10-27 ("too busy, give the top half more presence"): the announcement owns the first screen.
+   Bigger blurred slab, the date on two huge lines, more air; form and giveaway follow, the page may scroll. */
+@media (max-width:560px){
+  .stage{justify-content:flex-start;padding-top:26px;padding-bottom:36px}
+  .stage .logo{width:min(150px,40vw)}
+  .tz{--sh:min(54vw,250px);margin-top:4px;padding-top:calc(var(--sh) - 8px);padding-bottom:0}
+  .ann-l{font-size:clamp(19px,5.8vw,25px);line-height:1.04}
+  .ann-date{margin-top:.14em;font-size:clamp(60px,22vw,104px);line-height:.84}
+  .ann-date .d-m,.ann-date .d-d{display:block}
+  .ann-sub{margin-top:24px;font-size:17px;line-height:1.45}
+  .stage .signup{margin-top:16px}
+  .gw-line{margin-top:28px;padding-top:22px;border-top:1px solid var(--line);font-size:13.5px}
+  .gw-line small{font-size:12px}
+}
+@media (max-width:560px) and (max-height:700px){
+  .tz{--sh:min(42vw,170px)}
+  .ann-date{font-size:clamp(56px,19vw,90px)}
+}
 /* reduced motion: lights already up, logo fully visible on first paint */
 @media (prefers-reduced-motion:reduce){.ann-date,.ann-eb i,.tz-slab{animation:none}.beam,.logo,.m3d-rig,.m3d-win b,.m3d-scan{animation:none}.m3d-scan{display:none}}
 </style>
@@ -217,7 +235,7 @@ a{color:inherit}
     <img class="logo" src="./assets/hga-hybrid-grading-approach.svg" alt="HGA, Hybrid Grading Approach" width="420" height="129">
     <div class="tz">
       <img class="tz-slab" src="./assets/teaser-slab.webp" alt="" width="420" height="622" aria-hidden="true">
-      <h1 class="ann"><span class="ann-l"><span class="ln">Something innovative and unique</span> <span class="ln">is coming to grading</span></span> <span class="ann-date"><time datetime="2026-11-23">November 23rd</time>.</span></h1>
+      <h1 class="ann"><span class="ann-l"><span class="ln">Something innovative and unique</span> <span class="ln">is coming to grading</span></span> <span class="ann-date"><time datetime="2026-11-23"><span class="d-m">November</span> <span class="d-d">23rd.</span></time></span></h1>
     </div>
     <p class="ann-sub"><b>The future of grading changes.</b> Be the first to see it.</p>
 
