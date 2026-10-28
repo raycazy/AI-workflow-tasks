@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js" data-theme="dark">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sports Card Grading in Aerospace Glass | HGA Pre-Launch</title>
+<meta name="description" content="Get your prized sports cards graded and protected in aerospace glass + metal slabs, starting at $200 a card. Lock in HGA pre-launch pricing.">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0E0E0E">
+<link rel="preload" href="./assets/fonts/bc-800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="./assets/hga.css?v=8811966f">
+<link rel="stylesheet" href="./assets/v2.css?v=8811966f">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script defer src="./assets/v2.js?v=8811966f"></script>
+<script type="importmap">{
+  "imports": {
+    "hga": "./assets/hga-site.js",
+    "hga/slab_sway_controller": "./assets/slab_sway_controller.js",
+    "three": "./assets/three-slab-97b99b70.js",
+    "@hotwired/stimulus": "./assets/stimulus.min-4b1e420e.js",
+    "hybrid_grading/controllers/copy_link_controller": "./assets/hybrid_grading/controllers/copy_link_controller-6deef36d.js",
+    "hybrid_grading/controllers/countdown_controller": "./assets/hybrid_grading/controllers/countdown_controller-68c7d13c.js",
+    "hybrid_grading/controllers/housing_controller": "./assets/hybrid_grading/controllers/housing_controller-71a99bf9.js",
+    "hybrid_grading/controllers/menu_controller": "./assets/hybrid_grading/controllers/menu_controller-832d42c0.js",
+    "hybrid_grading/controllers/slab_controller": "./assets/hybrid_grading/controllers/slab_controller-a517c922.js",
+    "hybrid_grading/countdown": "./assets/hybrid_grading/countdown-6826bc8f.js",
+    "hybrid_grading/slab_faces": "./assets/hybrid_grading/slab_faces-857cf745.js",
+    "hybrid_grading/slab_scene": "./assets/hybrid_grading/slab_scene-355f9d5d.js"
+  }
+}</script>
+<script defer src="./assets/site.js?v=8811966f"></script>
+<script type="module">import "hga"</script>
+<style>
+.v2-built{margin:56px 0 20px;font-size:clamp(26px,3vw,38px)}
+.hc-pics figcaption .v2-sub{display:block;font-weight:400;font-size:15px;line-height:1.45;opacity:.75;margin-top:6px;text-transform:none;letter-spacing:0}
+.hc-pics figure figcaption{background:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.9) 30%);padding-top:40px}
+.v2-cta{margin-top:32px;text-align:center}
+.v2-unused{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:12px 40px;margin:36px 0 0;padding:20px 0 0;border-top:1px solid rgba(255,255,255,.1)}
+.v2-unused li{display:flex;gap:10px;align-items:baseline}
+.v2-unused b{color:#e5322d;font-size:20px}
+.v2-unused span{opacity:.8}
+.v2-c{text-align:center;margin-left:auto;margin-right:auto}
+.v2-late .lede{max-width:620px;margin-top:14px}
+.v2-late .eb{display:flex;justify-content:center}
+.v2-steps{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin:48px 0 0;padding:0;position:relative}
+.v2-steps::before{content:"";position:absolute;left:0;right:0;top:6px;height:2px;background:linear-gradient(90deg,#e5322d,rgba(229,50,45,.25))}
+.v2-steps li{position:relative;padding-top:30px}
+.v2-steps li::before{content:"";position:absolute;top:0;left:0;width:14px;height:14px;border-radius:50%;background:#e5322d;box-shadow:0 0 0 5px rgba(229,50,45,.18)}
+.v2-k{display:block;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#ff4a44;margin-bottom:8px}
+.v2-steps b{display:block;font-size:19px;margin-bottom:6px}
+.v2-steps p{opacity:.72;font-size:15.5px;line-height:1.5;margin:0}
+.v2-note{margin-top:36px;opacity:.75}
+.rv-strip{padding-top:8px}
+@media (max-width:860px){
+  .v2-late .eb{font-size:11px}
+  .v2-steps{grid-template-columns:1fr;gap:0;margin-top:32px;max-width:520px;margin-left:auto;margin-right:auto}
+  .v2-steps::before{left:6px;right:auto;top:8px;bottom:8px;width:2px;height:auto;background:linear-gradient(180deg,#e5322d,rgba(229,50,45,.2))}
+  .v2-steps li{padding:0 0 26px 34px}
+  .v2-steps li:last-child{padding-bottom:0}
+  .v2-steps li::before{top:3px;width:14px;height:14px;box-shadow:0 0 0 4px #0b0a0a,0 0 0 6px rgba(229,50,45,.25)}
+  .v2-k{font-size:12px;margin-bottom:4px}
+  .v2-steps b{font-size:17px;margin-bottom:4px}
+  .v2-steps p{font-size:15px}
+  .v2-note{margin-top:28px;font-size:15px}
+}
+.pf{--pf-ink2:#141212;--pf-line:rgba(255,255,255,.1);--pf-line2:rgba(255,255,255,.2);--pf-red:#E62429;--pf-red2:#99161C;--pf-redt:#FF4A4F;--pf-text2:#C9C4BD;--pf-muted:#9A948E;--pf-ease:cubic-bezier(.2,.7,.2,1)}
+.pf svg{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.pf-lede{margin-top:14px;max-width:640px}
+.pf-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px;align-items:stretch}
+.pf-report,.pf-verify{border-radius:16px;border:1px solid var(--pf-line);background:var(--pf-ink2);padding:clamp(20px,2.6vw,32px)}
+.pf-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding-bottom:18px;border-bottom:1px solid var(--pf-line)}
+.pf-kicker{font-weight:600;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--pf-muted);margin:0}
+.pf-card{display:block;font-weight:700;font-size:17px;margin-top:4px}
+.pf-final{display:flex;flex-direction:column;align-items:center;padding:8px 14px;border-radius:10px;background:var(--pf-red);box-shadow:0 10px 30px rgba(230,36,41,.35);min-width:86px;color:#fff}
+.pf-final small{font-weight:600;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase}
+.pf-final b{font-weight:800;font-size:38px;line-height:1;font-variant-numeric:tabular-nums}
+.pf-subs{display:grid;gap:6px;margin:18px 0}
+.pf-sg{display:grid;grid-template-columns:100px 1fr 44px;align-items:center;gap:14px;padding:10px 12px;border-radius:10px;text-align:left;font:inherit;color:inherit;background:none;border:0;cursor:pointer;transition:background .25s,box-shadow .25s}
+.pf-sg:hover{background:rgba(255,255,255,.04)}
+.pf-sg.on{background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px var(--pf-line2)}
+.pf-sg span{font-weight:600;font-size:15px;color:var(--pf-text2)}
+.pf-sg i{position:relative;height:6px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden}
+.pf-sg i::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--pf-red2),var(--pf-red));border-radius:inherit;transform:scaleX(0);transform-origin:left;transition:transform 1.2s var(--pf-ease)}
+.pf-report.in .pf-sg i::after{transform:scaleX(var(--v))}
+.pf-report.in .pf-sg:nth-child(2) i::after{transition-delay:.12s}.pf-report.in .pf-sg:nth-child(3) i::after{transition-delay:.24s}.pf-report.in .pf-sg:nth-child(4) i::after{transition-delay:.36s}
+.pf-sg b{font-weight:800;font-size:18px;text-align:right}
+.pf-note{padding:14px 16px;border-radius:10px;background:rgba(230,36,41,.07);box-shadow:inset 0 0 0 1px rgba(230,36,41,.25)}
+.pf-who{font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--pf-redt)}
+.pf-note p{font-size:15px;color:var(--pf-text2);margin:4px 0 0}
+.pf-note.flash{animation:pfflash .5s var(--pf-ease)}
+@keyframes pfflash{from{opacity:.3;transform:translateY(4px)}}
+.pf-hint{margin-top:10px;font-size:13px;color:var(--pf-muted)}
+.pf-verify{display:flex;flex-direction:column;gap:20px}
+.pf-stage{position:relative;height:300px;display:grid;place-items:center;border-radius:10px;background:radial-gradient(circle at 40% 50%,rgba(160,186,206,.12),transparent 65%);overflow:hidden}
+.pf-slab{height:250px;width:auto;max-width:none;filter:drop-shadow(0 20px 30px rgba(0,0,0,.7));transform:translateX(-28%) rotate(-4deg)}
+.pf-rings{position:absolute;left:50%;top:42%;width:0;height:0}
+.pf-rings i{position:absolute;left:-40px;top:-40px;width:80px;height:80px;border-radius:50%;border:2px solid rgba(255,74,79,.6);opacity:0}
+.pf-verify.in .pf-rings i{animation:pfring 2.6s var(--pf-ease) infinite}
+.pf-verify.in .pf-rings i:nth-child(2){animation-delay:.5s}.pf-verify.in .pf-rings i:nth-child(3){animation-delay:1s}
+@keyframes pfring{0%{transform:scale(.4);opacity:.9}100%{transform:scale(2.2);opacity:0}}
+.pf-phone{position:absolute;right:8%;top:50%;width:170px;height:250px;padding:8px;border-radius:26px;background:#050505;box-shadow:0 0 0 1px rgba(255,255,255,.18),0 30px 50px rgba(0,0,0,.6);transform:translate(40px,-50%) rotate(6deg);opacity:0;transition:transform 1s var(--pf-ease) .3s,opacity .8s .3s}
+.pf-verify.in .pf-phone{transform:translate(0,-50%) rotate(6deg);opacity:1;animation:pftap 4s ease-in-out 1.6s infinite}
+@keyframes pftap{0%,100%{transform:translate(0,-50%) rotate(6deg)}45%,55%{transform:translate(-18px,-50%) rotate(3deg)}}
+.pf-phone-in{height:100%;border-radius:19px;background:linear-gradient(180deg,#161212,#0b0a0a);padding:16px 12px;display:flex;flex-direction:column;gap:6px}
+.pf-chip{align-self:flex-start;display:inline-flex;align-items:center;gap:5px;font-weight:600;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--pf-redt);padding:3px 7px;border-radius:6px;background:rgba(230,36,41,.14)}
+.pf-phone-in b{font-weight:800;font-size:18px;margin-top:8px}
+.pf-phone-in small{font-size:11.5px;color:var(--pf-muted);margin-bottom:8px}
+.pf-ok{display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;color:var(--pf-text2);padding:7px 8px;border-radius:8px;background:rgba(255,255,255,.05)}
+.pf-ok svg{color:#6fdc8c}
+.pf-list{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.pf-list li{display:flex;gap:12px}
+.pf-list svg{font-size:20px;color:var(--pf-redt);margin-top:2px}
+.pf-list b{display:block;font-weight:700;font-size:16.5px}
+.pf-list span{font-size:14.5px;color:var(--pf-muted)}
+@media (max-width:1100px){.pf-grid{grid-template-columns:1fr;max-width:680px;margin-left:auto;margin-right:auto}}
+@media (max-width:860px){.pf-sg{grid-template-columns:82px 1fr 36px;gap:10px}.pf-stage{height:260px}.pf-slab{height:200px;transform:translateX(-46%) rotate(-4deg)}.pf-phone{width:136px;height:206px;right:4%}.pf-phone-in{padding:12px 9px;gap:5px;overflow:hidden}.pf-phone-in b{font-size:15px;margin-top:4px}.pf-phone-in small{display:none}.pf-ok{font-size:10.5px;padding:6px 7px}}
+@media (prefers-reduced-motion:reduce){.pf *{animation:none!important;transition-duration:.001ms!important}.pf-phone{opacity:1!important;transform:translate(0,-50%) rotate(6deg)!important}}
+/* hero points: one row across the hero on desktop, an aligned 2 by 2 grid on mobile */
+.v2-pts-wide{display:none}
+@media (min-width:901px){
+  .v2-pts-col{display:none}
+  .v2-pts-wide{display:flex;flex-wrap:nowrap;justify-content:space-between;gap:24px;grid-column:1/-1;margin-top:28px;padding-top:22px;border-top:1px solid rgba(255,255,255,.08);font-size:15px}
+  .v2-pts-wide li{white-space:nowrap}
+}
+@media (max-width:900px){
+  .v2-pts-col{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;max-width:460px;margin:22px auto 0;font-size:13.5px;text-align:left}
+  .v2-pts-col li{display:flex;align-items:center;gap:10px;padding:12px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);line-height:1.3;color:rgba(255,255,255,.88);min-height:58px}
+  .v2-pts-col .ico{width:22px;height:22px}
+}
+.hm-page .hdr .cta{background:#e5322d;border-color:#e5322d;color:#fff}
+.hm-page .hdr .cta:hover{background:#ff4a44;border-color:#ff4a44}
+.hm-cal .v2-cta{margin-top:40px}
+@media (max-width:900px){
+  .hc-pics{grid-template-columns:1fr 1fr!important}
+  .hc-pics figure:last-child{display:block!important;grid-column:1/-1;aspect-ratio:2/1}
+}
+@media (max-width:600px){
+  .hc-pics{grid-template-columns:1fr!important}
+  .hc-pics figure,.hc-pics figure:last-child{aspect-ratio:16/10;grid-column:auto}
+}
+/* comparison table: one continuous grid, HGA column as a single highlighted panel */
+#why .hc-tbl-wrap{max-width:1000px;overflow:visible}
+#why table.hc-tbl{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:0;font-size:15.5px}
+#why .hc-tbl col.c1{width:30%}#why .hc-tbl col.c2{width:32%}#why .hc-tbl col.c3{width:38%}
+#why .hc-tbl th,#why .hc-tbl td{margin:0;padding:18px 22px;border:0;border-bottom:1px solid rgba(255,255,255,.08);vertical-align:middle;text-align:left;line-height:1.35}
+#why .hc-tbl thead th,#why .hc-tbl thead td{padding:18px 22px 16px;border-bottom:1px solid rgba(255,255,255,.14);vertical-align:bottom;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+#why .hc-tbl thead .hga{background:rgba(230,36,41,.16);border-radius:16px 16px 0 0;border-bottom-color:rgba(230,36,41,.35)}
+#why .hc-tbl thead .hga img{height:18px;width:auto;display:block}
+#why .hc-tbl tbody th{font-weight:700;color:#fff;font-size:15.5px}
+#why .hc-tbl td.no{color:rgba(255,255,255,.55)}
+#why .hc-tbl td.yes{color:#fff;font-weight:600;background:rgba(230,36,41,.08);border-bottom-color:rgba(230,36,41,.18)}
+#why .hc-tbl tbody tr:last-child th,#why .hc-tbl tbody tr:last-child td{border-bottom:0}
+#why .hc-tbl tbody tr:last-child td.yes{border-radius:0 0 16px 16px}
+#why .hc-tbl td .ico{display:inline-block;width:16px;height:16px;margin-right:10px;vertical-align:-2px}
+#why .hc-tbl td.no .ico{color:rgba(255,255,255,.3)}
+#why .hc-tbl td.yes .ico{color:#ff6b6e}
+@media (max-width:760px){
+  #why .hc-tbl-wrap{margin-top:28px}
+  #why .hc-tbl{display:block;width:100%;border:1px solid rgba(255,255,255,.1);border-radius:14px;overflow:hidden;font-size:14.5px}
+  #why .hc-tbl colgroup{display:none}
+  #why .hc-tbl thead,#why .hc-tbl tbody{display:block}
+  #why .hc-tbl thead tr,#why .hc-tbl tbody tr{display:grid;grid-template-columns:1fr 1fr;margin:0}
+  #why .hc-tbl thead td{display:none}
+  #why .hc-tbl thead th{padding:14px 14px 12px;border:0;border-bottom:1px solid rgba(255,255,255,.12);font-size:11px;letter-spacing:.12em;vertical-align:middle;border-radius:0}
+  #why .hc-tbl thead th.hga{background:rgba(230,36,41,.16);border-bottom-color:rgba(230,36,41,.35)}
+  #why .hc-tbl thead th.hga img{height:15px}
+  #why .hc-tbl tbody th{grid-column:1/-1;display:block;padding:14px 14px 4px;border:0;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);background:linear-gradient(90deg,transparent 50%,rgba(230,36,41,.08) 50%)}
+  #why .hc-tbl td{display:block;padding:6px 14px 16px;border:0;border-bottom:1px solid rgba(255,255,255,.08);line-height:1.4;border-radius:0;font-size:14.5px}
+  #why .hc-tbl td::before{display:none}
+  #why .hc-tbl td.no{color:rgba(255,255,255,.55);font-weight:400}
+  #why .hc-tbl td.yes{color:#fff;font-weight:600;background:rgba(230,36,41,.08);border-bottom-color:rgba(230,36,41,.15)}
+  #why .hc-tbl tbody tr:last-child td{border-bottom:0}
+  #why .hc-tbl tbody tr:last-child td.yes{border-radius:0}
+  #why .hc-tbl td .ico{display:none}
+}
+}
+}
+</style>
+<link rel="stylesheet" href="./assets/g.css">
+<link rel="stylesheet" href="./assets/h.css">
+</head>
+<body class="hm-page lp-page">
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none"><symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol><symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6"/></symbol><symbol id="i-clock" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><circle cx="12" cy="14.2" r="3.4"/><path d="M12 12.3v2l1.4 1"/></symbol><symbol id="i-layers" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><rect x="8.2" y="10.2" width="3.3" height="3.3" rx=".6"/><rect x="12.5" y="10.2" width="3.3" height="3.3" rx=".6"/><rect x="8.2" y="14.5" width="3.3" height="3.3" rx=".6"/><rect x="12.5" y="14.5" width="3.3" height="3.3" rx=".6"/></symbol><symbol id="i-file" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><path d="M8.5 11h7M8.5 14h7M8.5 17h4"/></symbol><symbol id="i-camera" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><rect x="8" y="12.2" width="8" height="5.6" rx="1"/><circle cx="12" cy="15" r="1.5"/><path d="M10.3 12.2l.8-1.4h1.8l.8 1.4"/></symbol><symbol id="i-video" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><rect x="7.8" y="11.6" width="6.2" height="5" rx="1"/><path d="M14 13.2l3-1.4v4.6l-3-1.4"/></symbol><symbol id="i-eyeoff" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><path d="M8.3 14.2s1.5-2.6 3.7-2.6 3.7 2.6 3.7 2.6-1.5 2.6-3.7 2.6-3.7-2.6-3.7-2.6z"/><path d="M8.5 18l7-7.6"/></symbol><symbol id="i-chip" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><rect x="9.4" y="11.6" width="5.2" height="5.2" rx="1"/><path d="M9.4 13.2H8M9.4 15.2H8M14.6 13.2H16M14.6 15.2H16M11 11.6v-1.4M13 11.6v-1.4M11 16.8v1.4M13 16.8v1.4"/></symbol><symbol id="i-shield" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><path d="M12 10l3.4 1.4v2.6c0 2-1.4 3.5-3.4 4.4-2-.9-3.4-2.4-3.4-4.4v-2.6L12 10z"/><path d="M10.5 14.2l1 1 2.1-2.1"/></symbol><symbol id="i-box" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><rect x="8.3" y="10.4" width="7.4" height="8.2" rx="1"/><rect x="10" y="12.2" width="4" height="4.6" rx=".6"/></symbol><symbol id="i-calendar" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><rect x="8" y="11.2" width="8" height="7" rx="1"/><path d="M8 13.7h8M10.2 9.8v2.4M13.8 9.8v2.4"/></symbol><symbol id="i-truck" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><path d="M7.8 12h5.4v4.4H7.8zM13.2 13.6h2l1.4 1.5v1.3h-3.4z"/><circle cx="9.7" cy="17.6" r=".9"/><circle cx="14.6" cy="17.6" r=".9"/></symbol><symbol id="i-gift" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><rect x="8" y="12.4" width="8" height="2.2"/><path d="M9 14.6v3.8h6v-3.8M12 12.4v6M12 12.4c-.8-.6-2.6-.7-2.6-1.8S11.2 9.9 12 12.4zM12 12.4c.8-.6 2.6-.7 2.6-1.8S12.8 9.9 12 12.4z"/></symbol><symbol id="i-repeat" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><path d="M8.5 12.2h5.5l-1.6-1.6M15.5 16h-5.5l1.6 1.6"/></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></symbol><symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol><symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol><symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol><symbol id="i-award" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><path d="M12 10.3l1.15 2.25 2.5.35-1.8 1.75.45 2.5L12 15.95l-2.3 1.2.45-2.5-1.8-1.75 2.5-.35z"/></symbol><symbol id="i-pen" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><path d="M8.3 16.2c.9-3 1.9-3 2.4 0s1.5 0 2-3 1.6-1.6 2.6 1.2M8.3 18.3h7.4"/></symbol><symbol id="i-size" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><path d="M8 11.3V9.8h1.5M16 11.3V9.8h-1.5M8 16.9v1.5h1.5M16 16.9v1.5h-1.5"/><rect x="10.4" y="12" width="3.2" height="4.2" rx=".6"/></symbol><symbol id="i-target" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><circle cx="12" cy="14.2" r="3.2"/><circle cx="12" cy="14.2" r=".9" fill="currentColor" stroke="none"/><path d="M12 9.8v1.6M12 17v1.6M7.6 14.2h1.6M14.8 14.2h1.6"/></symbol><symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 018 0v2.5"/><circle cx="12" cy="15.5" r="1.2"/></symbol><symbol id="i-card" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><rect x="8.4" y="10.6" width="7.2" height="3" rx=".5" fill="currentColor" stroke="none"/><path d="M8.4 16h7.2M8.4 18.2h4"/></symbol><symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol><symbol id="i-mail" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><rect x="8" y="11.4" width="8" height="6" rx="1"/><path d="M8.3 12.2l3.7 2.6 3.7-2.6"/></symbol><symbol id="i-phone" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><rect x="9" y="10" width="6" height="8.6" rx="1.2"/><path d="M11 17h2"/></symbol><symbol id="i-image" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><rect x="8" y="10.8" width="8" height="7.4" rx="1"/><circle cx="10.3" cy="13" r=".9"/><path d="M16 16.2l-2.4-2.4-4 4"/></symbol><symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10-6.5z"/></symbol><symbol id="i-pause" viewBox="0 0 24 24"><path d="M8.5 5.5v13M15.5 5.5v13"/></symbol><symbol id="i-eye" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><path d="M8 14.2s1.6-2.6 4-2.6 4 2.6 4 2.6-1.6 2.6-4 2.6-4-2.6-4-2.6z"/><circle cx="12" cy="14.2" r="1.3" fill="currentColor" stroke="none"/></symbol><symbol id="i-database" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><ellipse cx="12" cy="11.6" rx="3.5" ry="1.3"/><path d="M8.5 11.6v5c0 .7 1.6 1.3 3.5 1.3s3.5-.6 3.5-1.3v-5"/></symbol><symbol id="i-users" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><circle cx="10.2" cy="12.4" r="1.5"/><circle cx="14.4" cy="12.8" r="1.1"/><path d="M7.6 18.2a2.6 2.6 0 015.2 0M13 18.2a1.9 1.9 0 013.4 0"/></symbol><symbol id="i-refresh" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><path d="M15.5 14.2a3.5 3.5 0 01-6.2 2.2M8.5 14.2a3.5 3.5 0 016.2-2.2M8.5 11.2v2.4h2.4M15.5 17.2v-2.4h-2.4"/></symbol><symbol id="i-dollar" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><path d="M12 9.8v8.6M14 12.3c0-.8-.9-1.4-2-1.4s-2 .6-2 1.4c0 1.9 4 .9 4 2.8 0 .9-.9 1.5-2 1.5s-2-.6-2-1.4"/></symbol><symbol id="i-map" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><path d="M12 18.4s3-2.8 3-5.4a3 3 0 10-6 0c0 2.6 3 5.4 3 5.4z"/><circle cx="12" cy="13" r="1"/></symbol><symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 019.5 4a8.5 8.5 0 1010.5 10.5z"/></symbol><symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></symbol><symbol id="i-drag" viewBox="0 0 24 24"><path d="M2 12h20M6 8l-4 4 4 4M18 8l4 4-4 4"/></symbol><symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6.5a3 3 0 016 0V8"/></symbol><symbol id="i-apple" viewBox="0 0 24 24"><path d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.8-3.5.8-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2-1.1 2.8-2.3.9-1.3 1.2-2.5 1.3-2.6-.1 0-2.5-.9-2.5-3.6zM14.2 5.6c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.5 2.7-1.3z" fill="currentColor" stroke="none"/></symbol><symbol id="i-slab" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="4" rx=".8" fill="currentColor" stroke="none"/><rect x="7.5" y="10.5" width="9" height="8.5" rx=".8"/></symbol><symbol id="i-loupe" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><circle cx="11.2" cy="13.2" r="2.6"/><path d="M13.1 15.1l2.4 2.4"/></symbol><symbol id="i-ruler" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><rect x="8" y="12.8" width="8" height="3.2" rx=".5"/><path d="M10 12.8v1.3M12 12.8v2M14 12.8v1.3"/></symbol><symbol id="i-corner" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><path d="M8.5 18.2v-4.2a3 3 0 013-3h4"/></symbol><symbol id="i-sparkle" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><path d="M12 10l.9 2.4 2.4.9-2.4.9-.9 2.4-.9-2.4-2.4-.9 2.4-.9z"/></symbol></svg>
+<header class="hdr lp-hdr">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="HGA, Hybrid Grading Approach, powered by UCollect"><img src="./assets/hybrid_grading/hga-2700a46b.svg" alt="HGA" width="91" height="22">
+      <span class="h-uc-tag"><span>Powered by</span><img class="uc-mark" src="./assets/ucollect.svg" alt="UCollect" width="118" height="22"></span>
+    </a>
+    <div class="acct"><a class="lp-uc-link" href="ucollect.html">UCollect</a><a class="btn cta" href="shop.html?h=glass#hero">Secure My Pricing</a></div>
+  </div>
+</header>
+<main id="main">
+
+<section class="lp-hero" id="top" aria-labelledby="lp-title">
+  <div class="wrap lp-hero-grid">
+    <div class="lp-hero-copy">
+      <p class="lp-kicker">FROM THEIR FIRST ROOKIE CARD TO THEIR FAVORITE ALL-TIME PLAYER&hellip;</p>
+      <h1 class="h1" id="lp-title">Get Your Prized Sports Cards Graded &amp; Protected <span class="red">&ndash; Minus The Guesswork</span></h1>
+      <p class="lede">Finally get your prized rookie autos, vintage grails, and rare parallels professionally graded and protected In Aerospace Glass + Metal Slabs &mdash; <b>starting at just $200 per card.</b></p>
+      <ul class="lp-checks">
+        <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Aerospace-Engineered Glass + Metal Housing</li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Choose Your Grading Date</li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Detailed Grading Reports</li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Software-Assisted Card Inspection</li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>RFID-Enabled Digital Verification</li>
+      </ul>
+      <p class="lp-lock">Lock in exclusive pre-launch pricing before HGA reopens!</p>
+      <div class="lp-cta-row"><a class="btn lg" href="shop.html?h=glass#hero">Secure My Pre-Launch Pricing <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a><span class="lp-price-note"><b>$200</b> a card <s>$600</s></span></div>
+    </div>
+    <div class="lp-hero-vis" aria-label="Sports cards in HGA Glass slabs">
+      <span class="lp-beam" aria-hidden="true"></span>
+      <figure class="gslab side l"><img class="gs-card" src="./assets/cards/russell.jpg" alt="Vintage Bill Russell card in an HGA Glass slab" loading="lazy"><img class="gs-case" src="./assets/hga/glass_front-f7fd82f9.webp" alt="" aria-hidden="true" loading="lazy"><span class="gs-label" aria-hidden="true"><img src="./assets/hybrid_grading/hga-2700a46b.svg" alt=""><span class="gs-meta"><b>Bill Russell</b><small>Boston Celtics &middot; Vintage</small></span><span class="gs-grade"><small>Card Grade</small><b>7</b></span></span><i class="gs-sheen" aria-hidden="true"></i></figure>
+      <div class="lp-center"><div class="spin-slab lp-spin" role="img" aria-label="HGA Glass slab: Shohei Ohtani, graded 10. Drag to spin it." tabindex="0"
+            data-controller="hybrid-grading--slab"
+            data-action="pointerdown->hybrid-grading--slab#grab pointermove->hybrid-grading--slab#drag pointerup->hybrid-grading--slab#drop pointercancel->hybrid-grading--slab#drop keydown->hybrid-grading--slab#nudge"
+            data-hybrid-grading--slab-model-value="./assets/hga/glass-c2f02c4d.glb"
+            data-hybrid-grading--slab-case-front-value="./assets/hga/glass_front-f7fd82f9.webp"
+            data-hybrid-grading--slab-case-back-value="./assets/hga/glass_back-d8c9ac8c.webp"
+            data-hybrid-grading--slab-card-front-value="./slabs/ohtani/card/front.webp"
+            data-hybrid-grading--slab-card-back-value="./slabs/ohtani/card/back.webp"
+            data-hybrid-grading--slab-label-front-value="./slabs/ohtani/label/front.webp"
+            data-hybrid-grading--slab-label-back-value="./slabs/ohtani/label/back.webp"
+            data-hybrid-grading--slab-card-corner-radius-value="0.0"
+            data-hybrid-grading--slab-direction-value="left"
+            data-hybrid-grading--slab-spin-value="true"
+            data-hybrid-grading--slab-sway-value="false">
+            <img src="./slabs/ohtani/720.webp" alt="HGA Glass slab: Shohei Ohtani, graded 10" width="720" height="1207">
+            <canvas aria-hidden="true" data-hybrid-grading--slab-target="canvas" data-action="webglcontextlost->hybrid-grading--slab#lose webglcontextrestored->hybrid-grading--slab#restore"></canvas>
+          </div></div>
+      <figure class="gslab side r"><img class="gs-card" src="./assets/cards/cobb-red.jpg" alt="Vintage Ty Cobb card in an HGA Glass slab" loading="lazy"><img class="gs-case" src="./assets/hga/glass_front-f7fd82f9.webp" alt="" aria-hidden="true" loading="lazy"><span class="gs-label" aria-hidden="true"><img src="./assets/hybrid_grading/hga-2700a46b.svg" alt=""><span class="gs-meta"><b>Ty Cobb</b><small>Detroit &middot; Vintage</small></span><span class="gs-grade"><small>Card Grade</small><b>6</b></span></span><i class="gs-sheen" aria-hidden="true"></i></figure>
+      <span class="lp-ped" aria-hidden="true"></span>
+      <p class="lp-drag" aria-hidden="true"><svg class="ico"><use href="#i-drag"/></svg>Drag to spin</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec lp-intro" aria-labelledby="lp-intro-title">
+  <div class="wrap lp-two">
+    <div>
+      <p class="eb">HGA Glass</p>
+      <h2 class="h2" id="lp-intro-title">Introducing: <span class="red">Premium Aerospace Glass + Metal Housing</span></h2>
+      <p class="lp-em">We decided to do something that&rsquo;s never been done before in the history of the hobby.</p>
+      <p class="lede">Our <b>aerospace engineered glass + metal slabs</b> combine sophisticated engineering, luxury craftsmanship, and stunning presentation to establish a new standard in card protection.</p>
+      <p class="lp-legend">Because legendary cards deserve a legendary showcase.</p>
+      <ul class="lp-spec" aria-label="HGA Glass">
+        <li><b>Scratch-resistant</b><span>glass</span></li>
+        <li><b>Vacuum-like</b><span>seal</span></li>
+        <li><b>Any size</b><span>fits every card</span></li>
+        <li><b>Magnetic</b><span>stacks for display</span></li>
+      </ul>
+    </div>
+    <figure class="lp-photo"><img src="./assets/gen/glass-card.webp" alt="An HGA aerospace engineered glass and metal slab held up to the light" loading="lazy"><figcaption>Hold it up to the light: nothing between you and the card.</figcaption></figure>
+  </div>
+</section>
+
+<section class="sec lp-players" aria-labelledby="lp-players-title">
+  <div class="wrap">
+    <h2 class="h2 lp-center-h" id="lp-players-title">Protect The Players. <span class="red">Preserve The Moments.</span></h2>
+    <ul class="lp-trio">
+      <li><figure class="gslab rendered "><img src="./assets/slabs/glass-jenkins.webp" alt="Walker Jenkins 1st Bowman rookie in an HGA Glass slab" loading="lazy"><i class="gs-sheen" aria-hidden="true"></i></figure><p>That <b>rookie card</b> you pulled before he became a superstar&hellip;</p></li>
+      <li><figure class="gslab "><img class="gs-card" src="./assets/cards-rt/white.jpg" alt="Owen White autographed card in an HGA Glass slab" loading="lazy"><img class="gs-case" src="./assets/hga/glass_front-f7fd82f9.webp" alt="" aria-hidden="true" loading="lazy"><span class="gs-label" aria-hidden="true"><img src="./assets/hybrid_grading/hga-2700a46b.svg" alt=""><span class="gs-meta"><b>Owen White</b><small>Topps Inception &middot; Auto 21/25</small></span><span class="gs-grade"><small>Card Grade</small><b>10</b></span></span><i class="gs-sheen" aria-hidden="true"></i></figure><p>That <b>autographed card</b> you've kept in your PC for years&hellip;</p></li>
+      <li><figure class="gslab "><img class="gs-card" src="./assets/cards/wagner.jpg" alt="Vintage Honus Wagner card in an HGA Glass slab" loading="lazy"><img class="gs-case" src="./assets/hga/glass_front-f7fd82f9.webp" alt="" aria-hidden="true" loading="lazy"><span class="gs-label" aria-hidden="true"><img src="./assets/hybrid_grading/hga-2700a46b.svg" alt=""><span class="gs-meta"><b>Honus Wagner</b><small>Pittsburgh &middot; Vintage</small></span><span class="gs-grade"><small>Card Grade</small><b>4</b></span></span><i class="gs-sheen" aria-hidden="true"></i></figure><p>That <b>vintage grail</b> you've spent a lifetime chasing&hellip;</p></li>
+    </ul>
+    <p class="lp-tribute">Your collection is more than cardboard. It's a tribute to the players, legendary moments, and memories that made you fall in love with the hobby.</p>
+    <div class="lp-but">
+      <p class="lp-but-k">But&hellip;</p>
+      <h3 class="h2">The More Valuable A Card Becomes&hellip; <span class="red">The more Important It Is To Understand Exactly What You're Protecting.</span></h3>
+      <p class="lede">That's why HGA is bringing collectors a more connected grading experience &ndash; designed to help you inspect, grade, protect, and verify your favorite cards.</p>
+    </div>
+    <p class="lp-now">Now With HGA You Can:</p>
+    <ol class="lp-can">
+      <li class="lead"><span class="lp-can-n">01</span><div><b>Protect Your Collection With Aerospace Glass:</b><p>Protect your grails with premium Aerospace-Engineered Glass + Metal housing.</p><p class="lp-never">This has NEVER been done before in the history of the industry!</p></div></li>
+      <li><span class="lp-can-n">02</span><div><b>Inspect With Greater Confidence:</b><p>Benefit from software-assisted inspection designed to help identify potential card alterations.</p></div></li>
+      <li><span class="lp-can-n">03</span><div><b>Understand Your Grade:</b><p>See all four subgrades and a detailed grading report.</p></div></li>
+      <li><span class="lp-can-n">04</span><div><b>Verify Your Cards:</b><p>Access connected digital grading and verification records through UCollect.</p></div></li>
+    </ol>
+    <p class="lp-cta-c"><a class="btn lg" href="shop.html?h=glass#hero">Secure My Pre-Launch Pricing <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+  </div>
+</section>
+
+<section class="sec lp-risk" aria-labelledby="lp-risk-title">
+  <div class="wrap lp-two lp-risk-grid">
+    <div class="lp-scan-col">
+      <figure class="lp-scan" aria-hidden="true">
+        <img src="./assets/cards/cobb.jpg" alt="" loading="lazy">
+        <i class="lp-scan-line"></i>
+        <span class="mk tl"></span><span class="mk tr"></span><span class="mk bl"></span><span class="mk br"></span>
+        <span class="lp-tag t1">Edges &middot; measured</span><span class="lp-tag t2">Corners &middot; 8 checked</span><span class="lp-tag t3">Surface &middot; imaged</span>
+      </figure>
+      <p class="lp-trust">Your collection deserves more than blind trust. It deserves a grading experience built around inspection, information, and verification.</p>
+    </div>
+    <div>
+      <h2 class="h2" id="lp-risk-title">What If Your Prized Sports Cards <span class="red">Aren't What They Seem?</span></h2>
+      <p class="lede">From vintage legends to modern rookie cards, appearances can be deceiving.</p>
+      <p class="lp-small-k">Some of the biggest concerns facing sports collectors include:</p>
+      <ul class="lp-risks">
+        <li><svg class="ico" aria-hidden="true"><use href="#i-x"/></svg><div><b>Trimmed Edges &amp; Altered Corners</b><p>Cards may be cut or modified to make their condition appear better than it really is.</p></div></li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-x"/></svg><div><b>Recolored Parallels &amp; Manipulated Details</b><p>A common card can be altered to resemble a rarer, more desirable version.</p></div></li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-x"/></svg><div><b>Counterfeit Cards &amp; Swapped Slabs</b><p>A convincing holder or certification label doesn't always tell the full story.</p></div></li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-x"/></svg><div><b>Unexplained Or Inconsistent Grades</b><p>When collectors can't see how a grade was determined, they're left with questions about the result.</p></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sec lp-more" aria-labelledby="lp-more-title">
+  <div class="wrap">
+    <h2 class="h2 lp-center-h" id="lp-more-title">More Than A Grade. <span class="red">Greater Confidence In Every Card.</span></h2>
+    <p class="lede lp-center-p">HGA combines software-assisted inspection, documented grading, protective casing, and connected verification to give collectors more information about their submissions.</p>
+    <div class="h-fx" data-fx><div class="h-fx-media" aria-hidden="true"><div class="h-fx-segs"><span class="h-fx-seg"><i></i></span><span class="h-fx-seg"><i></i></span><span class="h-fx-seg"><i></i></span><span class="h-fx-seg"><i></i></span><span class="h-fx-seg"><i></i></span><span class="h-fx-seg"><i></i></span></div><span class="h-fx-count"><b data-fx-n>01</b> / 06</span><figure class="h-fx-fig on"><img src="./assets/gen/centering.webp" alt="" loading="lazy" decoding="async"><figcaption><svg class="ico" aria-hidden="true"><use href="#i-loupe"/></svg>Software-Assisted Inspection</figcaption></figure><figure class="h-fx-fig"><img src="./assets/gen/grader-bench.webp" alt="" loading="lazy" decoding="async"><figcaption><svg class="ico" aria-hidden="true"><use href="#i-eyeoff"/></svg>Blind Grading</figcaption></figure><figure class="h-fx-fig"><img src="./assets/gen/macro-corner.webp" alt="" loading="lazy" decoding="async"><figcaption><svg class="ico" aria-hidden="true"><use href="#i-file"/></svg>Detailed Reports & Four Subgrades</figcaption></figure><figure class="h-fx-fig"><img src="./assets/gen/chip-tap.webp" alt="" loading="lazy" decoding="async"><figcaption><svg class="ico" aria-hidden="true"><use href="#i-chip"/></svg>RFID-Enabled Verification</figcaption></figure><figure class="h-fx-fig fit"><img src="./assets/gen/lp-housings.webp" alt="" loading="lazy" decoding="async"><figcaption><svg class="ico" aria-hidden="true"><use href="#i-slab"/></svg>Protective Glass + Metal Or Poly Housing</figcaption></figure><figure class="h-fx-fig"><img src="./assets/gen/unboxing-still.webp" alt="" loading="lazy" decoding="async"><figcaption><svg class="ico" aria-hidden="true"><use href="#i-sparkle"/></svg>And much more!</figcaption></figure></div><ol class="h-fx-list"><li class="h-fx-item on"><button type="button" class="h-fx-tab" id="fx-t0" aria-controls="fx-p0" aria-expanded="true"><span class="h-fx-num">01</span><span class="h-fx-t">Software-Assisted Inspection</span><svg class="h-fx-chev" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 8l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="h-fx-panel" id="fx-p0" role="region" aria-labelledby="fx-t0"><div><img class="h-fx-pimg" src="./assets/gen/centering.webp" alt="" loading="lazy" decoding="async"><p>HGA's inspection process is designed to help graders identify potential signs of trimming and other card alterations.</p></div></div></li><li class="h-fx-item"><button type="button" class="h-fx-tab" id="fx-t1" aria-controls="fx-p1" aria-expanded="false"><span class="h-fx-num">02</span><span class="h-fx-t">Blind Grading</span><svg class="h-fx-chev" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 8l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="h-fx-panel" id="fx-p1" role="region" aria-labelledby="fx-t1"><div><img class="h-fx-pimg" src="./assets/gen/grader-bench.webp" alt="" loading="lazy" decoding="async"><p>HGA's planned blind-grading process is designed to reduce opportunities for identity-based favoritism and keep attention on the card itself.</p></div></div></li><li class="h-fx-item"><button type="button" class="h-fx-tab" id="fx-t2" aria-controls="fx-p2" aria-expanded="false"><span class="h-fx-num">03</span><span class="h-fx-t">Detailed Reports & Four Subgrades</span><svg class="h-fx-chev" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 8l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="h-fx-panel" id="fx-p2" role="region" aria-labelledby="fx-t2"><div><img class="h-fx-pimg" src="./assets/gen/macro-corner.webp" alt="" loading="lazy" decoding="async"><p>See how your card performed in centering, corners, edges, and surface — with a report explaining the grading results.</p></div></div></li><li class="h-fx-item"><button type="button" class="h-fx-tab" id="fx-t3" aria-controls="fx-p3" aria-expanded="false"><span class="h-fx-num">04</span><span class="h-fx-t">RFID-Enabled Verification</span><svg class="h-fx-chev" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 8l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="h-fx-panel" id="fx-p3" role="region" aria-labelledby="fx-t3"><div><img class="h-fx-pimg" src="./assets/gen/chip-tap.webp" alt="" loading="lazy" decoding="async"><p>HGA's protective casing includes an RFID chip that connects your graded card to its digital verification information through UCollect.</p></div></div></li><li class="h-fx-item"><button type="button" class="h-fx-tab" id="fx-t4" aria-controls="fx-p4" aria-expanded="false"><span class="h-fx-num">05</span><span class="h-fx-t">Protective Glass + Metal Or Poly Housing</span><svg class="h-fx-chev" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 8l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="h-fx-panel" id="fx-p4" role="region" aria-labelledby="fx-t4"><div><img class="h-fx-pimg fit" src="./assets/gen/lp-housings.webp" alt="" loading="lazy" decoding="async"><p>Choose the casing that fits your collection, with designs intended to make unauthorized opening or tampering more difficult.</p></div></div></li><li class="h-fx-item"><button type="button" class="h-fx-tab" id="fx-t5" aria-controls="fx-p5" aria-expanded="false"><span class="h-fx-num">06</span><span class="h-fx-t">And much more!</span><svg class="h-fx-chev" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 8l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="h-fx-panel" id="fx-p5" role="region" aria-labelledby="fx-t5"><div><img class="h-fx-pimg" src="./assets/gen/unboxing-still.webp" alt="" loading="lazy" decoding="async"><p>A grading date you book, every step tracked live in your portal, 60+ card sizes, and the Reveal when your slab is ready.</p></div></div></li></ol></div>
+  </div>
+</section>
+
+<section class="sec lp-sports" aria-labelledby="lp-sports-title">
+  <div class="wrap">
+    <h2 class="h2 lp-center-h" id="lp-sports-title">Your Collection. <span class="red">Your Way.</span></h2>
+    <p class="lede lp-center-p">From baseball and basketball to football, hockey, UFC and soccer, HGA is built for sports collectors with different passions.</p>
+    <ul class="lp-sport-row"><li><figure class="gslab mini" role="img" aria-label="Baseball card in an HGA Glass slab"><span class="gs-card gs-art" style="--c1:#c8102e;--c2:#1b2a52"><i class="gs-art-rays" aria-hidden="true"></i><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="24"/><path d="M19 13c7 9 7 29 0 38M45 13c-7 9-7 29 0 38"/></svg><b>Baseball</b></span><img class="gs-case" src="./assets/hga/glass_front-f7fd82f9.webp" alt="" aria-hidden="true" loading="lazy"><span class="gs-label" aria-hidden="true"><img src="./assets/hybrid_grading/hga-2700a46b.svg" alt=""><span class="gs-meta"><b>Baseball</b><small>HGA Glass</small></span><span class="gs-grade"><small>Card Grade</small><b>10</b></span></span><i class="gs-sheen" aria-hidden="true"></i></figure><span>Baseball Card</span></li><li><figure class="gslab mini" role="img" aria-label="Basketball card in an HGA Glass slab"><span class="gs-card gs-art" style="--c1:#e8742c;--c2:#3a1c0b"><i class="gs-art-rays" aria-hidden="true"></i><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="24"/><path d="M32 8v48M8 32h48M15 15c9 9 9 25 0 34M49 15c-9 9-9 25 0 34"/></svg><b>Basketball</b></span><img class="gs-case" src="./assets/hga/glass_front-f7fd82f9.webp" alt="" aria-hidden="true" loading="lazy"><span class="gs-label" aria-hidden="true"><img src="./assets/hybrid_grading/hga-2700a46b.svg" alt=""><span class="gs-meta"><b>Basketball</b><small>HGA Glass</small></span><span class="gs-grade"><small>Card Grade</small><b>10</b></span></span><i class="gs-sheen" aria-hidden="true"></i></figure><span>Basketball Card</span></li><li><figure class="gslab mini" role="img" aria-label="Football card in an HGA Glass slab"><span class="gs-card gs-art" style="--c1:#e05a1a;--c2:#14233d"><i class="gs-art-rays" aria-hidden="true"></i><svg viewBox="0 0 64 64" aria-hidden="true"><ellipse cx="32" cy="32" rx="26" ry="15" transform="rotate(-35 32 32)"/><path d="M24 40l16-16M27 31l6 6M31 27l6 6M35 23l6 6"/></svg><b>Football</b></span><img class="gs-case" src="./assets/hga/glass_front-f7fd82f9.webp" alt="" aria-hidden="true" loading="lazy"><span class="gs-label" aria-hidden="true"><img src="./assets/hybrid_grading/hga-2700a46b.svg" alt=""><span class="gs-meta"><b>Football</b><small>HGA Glass</small></span><span class="gs-grade"><small>Card Grade</small><b>10</b></span></span><i class="gs-sheen" aria-hidden="true"></i></figure><span>Football Card</span></li><li><figure class="gslab mini" role="img" aria-label="Hockey card in an HGA Glass slab"><span class="gs-card gs-art" style="--c1:#2fa36b;--c2:#0d2a22"><i class="gs-art-rays" aria-hidden="true"></i><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M20 8l14 36h16"/><ellipse cx="22" cy="50" rx="9" ry="4"/></svg><b>Hockey</b></span><img class="gs-case" src="./assets/hga/glass_front-f7fd82f9.webp" alt="" aria-hidden="true" loading="lazy"><span class="gs-label" aria-hidden="true"><img src="./assets/hybrid_grading/hga-2700a46b.svg" alt=""><span class="gs-meta"><b>Hockey</b><small>HGA Glass</small></span><span class="gs-grade"><small>Card Grade</small><b>10</b></span></span><i class="gs-sheen" aria-hidden="true"></i></figure><span>Hockey Card</span></li><li><figure class="gslab mini" role="img" aria-label="UFC card in an HGA Glass slab"><span class="gs-card gs-art" style="--c1:#c9a24a;--c2:#141212"><i class="gs-art-rays" aria-hidden="true"></i><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M18 30v-8a6 6 0 0 1 6-6h14a8 8 0 0 1 8 8v12a10 10 0 0 1-10 10H26a8 8 0 0 1-8-8z"/><path d="M18 30h10a4 4 0 0 1 0 8h-4M22 46v8h18v-8"/></svg><b>UFC</b></span><img class="gs-case" src="./assets/hga/glass_front-f7fd82f9.webp" alt="" aria-hidden="true" loading="lazy"><span class="gs-label" aria-hidden="true"><img src="./assets/hybrid_grading/hga-2700a46b.svg" alt=""><span class="gs-meta"><b>UFC</b><small>HGA Glass</small></span><span class="gs-grade"><small>Card Grade</small><b>10</b></span></span><i class="gs-sheen" aria-hidden="true"></i></figure><span>UFC Card</span></li><li><figure class="gslab mini" role="img" aria-label="Soccer card in an HGA Glass slab"><span class="gs-card gs-art" style="--c1:#4aa3df;--c2:#0e2234"><i class="gs-art-rays" aria-hidden="true"></i><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="24"/><path d="M32 22l9 6-3 10h-12l-3-10zM32 22V10M41 28l11-4M38 38l7 10M26 38l-7 10M23 28l-11-4"/></svg><b>Soccer</b></span><img class="gs-case" src="./assets/hga/glass_front-f7fd82f9.webp" alt="" aria-hidden="true" loading="lazy"><span class="gs-label" aria-hidden="true"><img src="./assets/hybrid_grading/hga-2700a46b.svg" alt=""><span class="gs-meta"><b>Soccer</b><small>HGA Glass</small></span><span class="gs-grade"><small>Card Grade</small><b>10</b></span></span><i class="gs-sheen" aria-hidden="true"></i></figure><span>Soccer Card</span></li></ul>
+  </div>
+</section>
+
+<section class="sec lp-journey" aria-labelledby="lp-journey-title">
+  <div class="wrap">
+    <h2 class="h2 lp-center-h" id="lp-journey-title">And every eligible submission follows the same straightforward <span class="red">five-step grading journey.</span></h2>
+    <p class="lp-arrows">Receive It &rarr; Inspect It &rarr; Grade It &rarr; Protect It &rarr; Reveal It.</p>
+    <div class="lp-demo" data-demo-steps>
+      <div class="lp-demo-screen"><figure class="lp-step on" data-step-fig="0"><img src="./assets/gen/arrival-box.webp" alt="" loading="lazy"><figcaption><b>Step 01 &middot; Receive It</b>Your box is logged and photographed the moment it arrives.</figcaption></figure><figure class="lp-step" data-step-fig="1"><img src="./assets/gen/lab-loupe.webp" alt="" loading="lazy"><figcaption><b>Step 02 &middot; Inspect It</b>Every card is imaged and checked for trimming and other alterations.</figcaption></figure><figure class="lp-step" data-step-fig="2"><img src="./assets/gen/macro-edge.webp" alt="" loading="lazy"><figcaption><b>Step 03 &middot; Grade It</b>Graded blind: centering, corners, edges and surface, each with its own subgrade.</figcaption></figure><figure class="lp-step" data-step-fig="3"><img src="./assets/hybrid_grading/sealed-slab-preview-grade-masked-5979bd64.webp" alt="" loading="lazy"><figcaption><b>Step 04 &middot; Protect It</b>Sealed in aerospace engineered glass + metal, with the chip in the label.</figcaption></figure><figure class="lp-step" data-step-fig="4"><img src="./slabs/ohtani/720.webp" alt="" loading="lazy"><figcaption><b>Step 05 &middot; Reveal It</b>Turn your slab over live and see the grade, the subgrades and the full report.</figcaption></figure><span class="lp-demo-bar"><i data-demo-bar></i></span><span class="lp-demo-live"><i></i>Demo</span></div>
+      <ol class="lp-demo-nav"><li><button type="button" data-step="0" aria-current="step"><span>01</span>Receive It</button></li><li><button type="button" data-step="1"><span>02</span>Inspect It</button></li><li><button type="button" data-step="2"><span>03</span>Grade It</button></li><li><button type="button" data-step="3"><span>04</span>Protect It</button></li><li><button type="button" data-step="4"><span>05</span>Reveal It</button></li></ol>
+    </div>
+  </div>
+</section>
+
+<section class="sec lp-sched" aria-labelledby="lp-sched-title">
+  <div class="wrap lp-two">
+    <div>
+      <h2 class="h2" id="lp-sched-title">Your Schedule. <span class="red">Your Choice.</span></h2>
+      <p class="lp-em">No more sending your prized cards away without knowing when they'll be graded.</p>
+      <p class="lede">HGA&rsquo;s <b>Priority Grading Calendar</b> lets you select an available grading date, ship your cards ahead of time, and watch them get graded.</p>
+      <p class="lede">It's a more transparent grading experience that puts YOU in control of your submission.</p>
+      <p class="lp-cta-l"><a class="btn lg" href="shop.html?h=glass#hero">Secure My Pre-Launch Pricing <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+    </div>
+    <div class="lp-cal" aria-label="HGA Priority Grading Calendar, preview"><div class="lp-cal-top"><div><small>HGA Priority Grading Calendar</small><b>February 2027</b></div><span class="lp-cal-chip">2 cards &middot; HGA Glass</span></div><ol class="lp-cal-dow" aria-hidden="true"><li>Mon</li><li>Tue</li><li>Wed</li><li>Thu</li><li>Fri</li><li>Sat</li><li>Sun</li></ol><ol class="lp-cal-grid"><li class="cal-open"><b>1</b><span>Open</span></li><li class="cal-open"><b>2</b><span>Open</span></li><li class="cal-full"><b>3</b><span>Full</span></li><li class="cal-full"><b>4</b><span>Full</span></li><li class="cal-open"><b>5</b><span>Open</span></li><li class="cal-off"><b>6</b><span></span></li><li class="cal-off"><b>7</b><span></span></li><li class="cal-open"><b>8</b><span>Open</span></li><li class="cal-open"><b>9</b><span>Open</span></li><li class="cal-full"><b>10</b><span>Full</span></li><li class="cal-full"><b>11</b><span>Full</span></li><li class="cal-mine"><b>12</b><span>Your day</span></li><li class="cal-off"><b>13</b><span></span></li><li class="cal-off"><b>14</b><span></span></li><li class="cal-open"><b>15</b><span>Open</span></li><li class="cal-open"><b>16</b><span>Open</span></li><li class="cal-full"><b>17</b><span>Full</span></li><li class="cal-open"><b>18</b><span>Open</span></li><li class="cal-open"><b>19</b><span>Open</span></li><li class="cal-off"><b>20</b><span></span></li><li class="cal-off"><b>21</b><span></span></li><li class="cal-open"><b>22</b><span>Open</span></li><li class="cal-open"><b>23</b><span>Open</span></li><li class="cal-full"><b>24</b><span>Full</span></li><li class="cal-open"><b>25</b><span>Open</span></li><li class="cal-open"><b>26</b><span>Open</span></li><li class="cal-off"><b>27</b><span></span></li><li class="cal-off"><b>28</b><span></span></li></ol><div class="lp-cal-foot"><span><i class="k-open"></i>Open</span><span><i class="k-full"></i>Full</span><span><i class="k-mine"></i>Your day</span><b class="lp-cal-pick">Feb 12 booked: ship any time before it</b></div></div>
+  </div>
+</section>
+
+<section class="sec lp-price" id="pricing" aria-labelledby="lp-price-title">
+  <div class="wrap">
+    <h2 class="h2 lp-center-h" id="lp-price-title">Choose The Protection <span class="red">Your Cards Deserve.</span></h2>
+    <p class="lede lp-center-p">Whether you're grading your everyday favorites or protecting your most prized collectibles, secure your passes at special launch pricing before the offer ends.</p>
+    <div class="lp-offer">
+      <div class="lp-offer-vis"><figure class="gslab rendered big"><img src="./assets/slabs/glass-ohtani.webp" alt="Shohei Ohtani card in an HGA Glass slab" loading="lazy"><i class="gs-sheen" aria-hidden="true"></i></figure></div>
+      <div class="lp-offer-copy">
+        <p class="lp-offer-k">GLASS</p>
+        <h3 class="h2">Your Best Cards Deserve More Than Plastic.</h3>
+        <p class="lede">Turn your most prized cards into display-worthy showpieces with <b>premium aerospace engineered glass + metal housing.</b> Perfect for rare pulls, autographs, and grail cards you want to preserve, admire, and proudly show off.</p>
+        <div class="lp-offer-price"><small>Pre-Launch Price:</small><b>$200</b><span>a card &middot; <s>$600</s> at launch</span></div>
+        <a class="btn lg" href="shop.html?h=glass#hero">Claim Your Glass <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="lp-poly" href="shop.html?h=poly#hero">
+          <img src="./assets/slabs/poly-gwynn.webp" alt="" loading="lazy">
+          <span><small>Or try Poly</small><b>Professional Grading. Unbeatable Launch Value.</b><em>Get your favorite cards professionally graded, protected, and verified &ndash; without breaking the bank. Perfect for growing your collection, grading in volume, or getting your inventory back on the market faster.</em></span>
+          <strong>$29<small>a card</small></strong>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lp-final" aria-labelledby="lp-final-title">
+  <div class="wrap">
+    <h2 class="h2" id="lp-final-title">Your Favorite Cards Deserve <span class="red">The Ultimate Collector Experience.</span></h2>
+    <p class="lede"><b>Give your prized cards the grading, protection, and recognition they deserve &mdash; with exclusive HGA pre-launch pricing starting at just $29 per card.</b></p>
+    <p class="lede">Secure your pricing today and get ready to showcase your collection like never before.</p>
+    <a class="btn lg" href="shop.html?h=glass#hero">Secure My Pre-Launch Pricing <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+  </div>
+</section>
+
+<section class="sec lp-faq" aria-labelledby="lp-faq-title">
+  <div class="wrap uc-faq-wrap">
+    <h2 class="h2 lp-center-h" id="lp-faq-title">Frequently Asked <span class="red">Questions</span></h2>
+    <details open><summary>Can HGA detect trimmed or altered sports cards?</summary><p>HGA's software-assisted inspection is designed to help identify potential alterations, including trimming. Detection is not guaranteed, and suspicious cards may require additional review.</p></details>
+    <details><summary>Does HGA authenticate autographs?</summary><p>HGA does not authenticate signatures added to cards after manufacture. Collectors should not interpret a card grade as authentication of an aftermarket autograph.</p></details>
+    <details><summary>How does HGA help protect against slab tampering?</summary><p>HGA uses protective casing and RFID-enabled verification to provide physical and digital safeguards. These features are not a guarantee against all counterfeiting or tampering.</p></details>
+    <details><summary>What is blind grading?</summary><p>HGA's proposed blind-grading process is designed to limit the influence of submitter identity during grading.</p></details>
+    <details><summary>What comes with each grade?</summary><p>Four subgrades, a detailed grading report, protective casing, RFID technology, and access to the grading calendar. Poly and Glass + Metal are separate casing options at different prices.</p></details>
+  </div>
+</section>
+
+</main>
+<footer class="foot lp-foot">
+  <div class="wrap">
+    <div class="h-uc-band">
+      <div class="h-uc-band-l">
+        <p class="h-uc-by"><span>HGA powered by</span><img class="uc-mark" src="./assets/ucollect.svg" alt="UCollect" width="118" height="22"></p>
+        <p class="h-uc-line">HGA is powered by UCollect. UCollect brings buying, selling and grading under one roof, and it&rsquo;s changing how collectors trust what they own.</p>
+      </div>
+      <a class="btn ghost h-uc-more" href="ucollect.html">Meet UCollect <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    <p class="lp-legal">&copy; 2026 HGA &middot; Hybrid Grading Approach &middot; A UCollect company &middot; Chandler, Arizona &middot; <a href="faq.html">FAQ</a> &middot; <a href="#">Privacy</a></p>
+  </div>
+</footer>
+<div class="lp-sticky" data-lp-sticky><span><b>HGA Glass</b> $200 a card <s>$600</s></span><a class="btn" href="shop.html?h=glass#hero">Secure My Pricing</a></div>
+<script>
+  // Five step demo: advances on its own while in view, any step can be picked.
+  document.querySelectorAll("[data-demo-steps]").forEach(function (box) {
+    var btns = box.querySelectorAll("[data-step]"), figs = box.querySelectorAll("[data-step-fig]"), bar = box.querySelector("[data-demo-bar]");
+    var cur = 0, t = null, inView = false, picked = false, D = 3800, reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function show(i) {
+      cur = i;
+      btns.forEach(function (b, k) { if (k === i) b.setAttribute("aria-current", "step"); else b.removeAttribute("aria-current"); });
+      figs.forEach(function (f, k) { f.classList.toggle("on", k === i); });
+      bar.style.transition = "none"; bar.style.width = "0"; void bar.offsetWidth;
+      if (!picked && !reduce && inView) { bar.style.transition = "width " + D + "ms linear"; bar.style.width = "100%"; } else bar.style.width = ((i + 1) / btns.length * 100) + "%";
+    }
+    function run() { clearTimeout(t); if (!picked && !reduce && inView) t = setTimeout(function () { show((cur + 1) % btns.length); run(); }, D); }
+    btns.forEach(function (b, k) { b.addEventListener("click", function () { picked = true; clearTimeout(t); show(k); }); });
+    new IntersectionObserver(function (es) { inView = es[0].isIntersecting; if (inView) { show(cur); run(); } else clearTimeout(t); }, { threshold: 0.35 }).observe(box);
+  });
+  // Sticky claim bar on phones: shows once the hero is scrolled past, hides while the pricing block or final CTA is on screen.
+  (function () {
+    var bar = document.querySelector("[data-lp-sticky]"), hero = document.querySelector(".lp-hero"), price = document.getElementById("pricing"), fin = document.querySelector(".lp-final");
+    if (!bar) return;
+    var on = function (el) { var r = el.getBoundingClientRect(); return r.top < innerHeight && r.bottom > 0; };
+    var upd = function () { bar.classList.toggle("show", hero.getBoundingClientRect().bottom < 0 && !on(price) && !on(fin)); };
+    addEventListener("scroll", upd, { passive: true }); addEventListener("resize", upd); upd();
+  })();
+</script>
+<script>
+  // Why HGA explorer: one point open at a time; the photo and the progress bar follow it.
+  document.querySelectorAll("[data-fx]").forEach(function (fx) {
+    var items = fx.querySelectorAll(".h-fx-item"), figs = fx.querySelectorAll(".h-fx-fig"), segs = fx.querySelectorAll(".h-fx-seg"), num = fx.querySelector("[data-fx-n]");
+    var cur = 0, t = null, hold = false, picked = false, inView = false, D = 6000;
+    var desk = matchMedia("(min-width: 861px)"), reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function show(i) {
+      cur = i;
+      items.forEach(function (el, k) { var on = k === i; el.classList.toggle("on", on); el.querySelector(".h-fx-tab").setAttribute("aria-expanded", on ? "true" : "false"); });
+      figs.forEach(function (el, k) { el.classList.toggle("on", k === i); });
+      segs.forEach(function (el, k) { el.classList.toggle("done", k < i); el.classList.toggle("on", k === i); var b = el.firstChild; b.style.animation = "none"; void b.offsetWidth; b.style.animation = ""; });
+      num.textContent = "0" + (i + 1);
+    }
+    function run() {
+      clearTimeout(t);
+      var auto = !picked && !hold && inView && desk.matches && !reduce;
+      fx.classList.toggle("run", auto);
+      if (auto) t = setTimeout(function () { show((cur + 1) % items.length); run(); }, D);
+    }
+    items.forEach(function (el, k) {
+      el.querySelector(".h-fx-tab").addEventListener("click", function () {
+        picked = true;
+        if (k === cur && !desk.matches) { el.classList.toggle("on"); this.setAttribute("aria-expanded", el.classList.contains("on") ? "true" : "false"); }
+        else show(k);
+        run();
+      });
+    });
+    fx.addEventListener("mouseenter", function () { hold = true; run(); });
+    fx.addEventListener("mouseleave", function () { hold = false; if (!picked) show(cur); run(); });
+    fx.addEventListener("focusin", function () { hold = true; run(); });
+    fx.addEventListener("focusout", function () { hold = false; run(); });
+    new IntersectionObserver(function (es) { var was = inView; inView = es[0].isIntersecting; if (inView && !was && !picked) show(cur); run(); }, { threshold: 0.35 }).observe(fx);
+    desk.addEventListener("change", run);
+    show(0);
+  });
+</script>
+</body>
+</html>
