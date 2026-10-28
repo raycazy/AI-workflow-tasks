@@ -114,7 +114,7 @@
       b.addEventListener("click", function () {
         add(st.h, st.q);
         if (toast) {
-          set("[data-added-what]", st.q + " × " + PRICES[st.h].name + " pass" + (st.q === 1 ? "" : "es"));
+          set("[data-added-what]", st.q + " × " + PRICES[st.h].name);
           toast.hidden = false;
           requestAnimationFrame(function () { toast.classList.add("show"); });
           clearTimeout(toast._t);
