@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>HGA landing page wireframe and brief</title>
+<style>
+:root{--ink:#1b1b1b;--mid:#6b6b6b;--line:#cfcfcf;--fill:#ececec;--fill2:#f6f6f6;--red:#c8102e;--paper:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 "Helvetica Neue",Arial,sans-serif}
+.wf-wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+.wf-head{padding:40px 0 28px;border-bottom:2px solid var(--ink)}
+.wf-head h1{margin:0 0 6px;font-size:30px;line-height:1.1}
+.wf-head p{margin:0;color:var(--mid)}
+.wf-key{margin:18px 0 0;padding:14px 16px;border:2px solid var(--ink);font-weight:700}
+.wf-flow{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.wf-flow li{display:flex;align-items:center;gap:6px;font-size:13px}
+.wf-flow li+li::before{content:"→";color:var(--mid)}
+.wf-flow a{color:var(--ink);text-decoration:none;border:1px solid var(--line);padding:3px 8px;border-radius:4px}
+.wf-flow a:hover{border-color:var(--ink)}
+.wf-intro{display:grid;grid-template-columns:1fr 1fr;gap:32px;padding:28px 0;border-bottom:1px solid var(--line)}
+.wf-intro h2{margin:0 0 10px;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--mid)}
+.wf-obj{list-style:none;margin:0;padding:0;counter-reset:o}
+.wf-obj li{counter-increment:o;display:grid;grid-template-columns:28px 1fr;gap:8px;padding:8px 0;border-top:1px solid var(--line);font-size:14px}
+.wf-obj li::before{content:counter(o,decimal-leading-zero);color:var(--red);font-weight:700}
+.wf-obj span{display:block;grid-column:2;color:var(--mid);font-size:12.5px}
+.wf-rules{margin:0;padding-left:18px;font-size:13.5px}
+.wf-rules li{margin:0 0 6px}
+.wf-sec{display:grid;grid-template-columns:40px minmax(0,1fr) 300px;gap:24px;padding:36px 0;border-bottom:1px solid var(--line);scroll-margin-top:16px}
+.wf-num{font-size:30px;font-weight:700;color:var(--red);line-height:1}
+.wf-frame{border:2px solid var(--ink);padding:22px;display:grid;gap:12px;background:var(--paper);min-width:0}
+.wf-frame *,.wf-two > div{min-width:0}
+.wf-brief h3{margin:0 0 8px;font-size:16px}
+.wf-brief dl{margin:0;font-size:13px}
+.wf-brief dt{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-top:10px}
+.wf-brief dd{margin:2px 0 0}
+.wf-box{position:relative;border:1px dashed var(--mid);background:var(--fill2);display:grid;place-items:center;text-align:center;padding:14px;color:var(--mid);font-size:13px;min-height:72px}
+.wf-box::before,.wf-box::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top right,transparent calc(50% - .5px),var(--line),transparent calc(50% + .5px))}
+.wf-box::after{background:linear-gradient(to top left,transparent calc(50% - .5px),var(--line),transparent calc(50% + .5px))}
+.wf-box span{position:relative;background:var(--fill2);padding:4px 8px}
+.wf-slab{background:var(--fill)}
+.wf-line{height:20px;background:var(--fill);border-radius:3px;display:flex;align-items:center;padding:0 8px;font-size:12px;color:var(--mid);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.wf-line span{overflow:hidden;text-overflow:ellipsis}
+.wf-h1{height:38px;background:#d9d9d9;font-size:14px;font-weight:700;color:var(--ink)}
+.wf-h2{height:32px;background:#d9d9d9;font-size:14px;font-weight:700;color:var(--ink)}
+.wf-h3{height:26px;background:#dedede;font-weight:700;color:var(--ink)}
+.wf-chip{display:inline-flex;height:24px;border:1px solid var(--line);background:var(--paper);margin:2px 6px 2px 0;width:auto!important}
+.wf-micro{height:18px;background:transparent;border:1px dotted var(--mid)}
+.wf-btn{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 22px;background:var(--ink);color:#fff;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;border-radius:4px;width:max-content}
+.wf-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.wf-two{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center}
+.wf-two > div:not(.wf-box){display:grid;gap:10px;align-content:start}
+.wf-three{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.wf-center{display:grid;justify-items:center;gap:12px;text-align:center}
+.wf-tl{display:grid;gap:8px}
+.wf-tlrow{min-height:64px;justify-items:start;text-align:left}
+.wf-q{min-height:72px;margin-bottom:8px;justify-items:start;text-align:left}
+.wf-bar{height:28px;background:#d9d9d9;justify-content:center}
+.wf-sticky{background:#d9d9d9}
+.wf-poly{border-style:dotted}
+.wf-tail{padding:32px 0 60px;display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.wf-tail h2{margin:0 0 10px;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--mid)}
+.wf-tail ul{margin:0;padding-left:18px;font-size:13.5px}
+.wf-tail li{margin:0 0 6px}
+@media (max-width:900px){.wf-line:not(.wf-chip){width:100%!important}.wf-row{flex-direction:column;align-items:flex-start}.wf-frame{padding:14px}.wf-sec{grid-template-columns:32px 1fr}.wf-brief{grid-column:2}.wf-intro,.wf-tail,.wf-two,.wf-three{grid-template-columns:1fr}.wf-flip > div:first-child{order:2}}
+@media print{.wf-sec{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wf-wrap">
+  <header class="wf-head">
+    <h1>HGA landing page: wireframe and brief</h1>
+    <p>Low fidelity. Grey blocks are layout, not design; the finished look is on the example page. Each block says what goes in it and how much copy fits.</p>
+    <p class="wf-key">The one message: HGA Glass, $200 per standard size card until Jan 31 ($600 at launch, save $400). Graded blind on the day you choose. Lost or damaged, replaced or paid out.</p>
+    <ol class="wf-flow"><li><a href="#wf-bar">Promo bar</a></li><li><a href="#wf-hero">Hero</a></li><li><a href="#wf-proof">Proof strip</a></li><li><a href="#wf-benefits">Three benefits, each with proof</a></li><li><a href="#wf-how">How it works</a></li><li><a href="#wf-compare">Comparison</a></li><li><a href="#wf-offer">The offer and risk reversal</a></li><li><a href="#wf-faq">FAQ, open</a></li><li><a href="#wf-final">Final CTA</a></li></ol>
+  </header>
+  <div class="wf-intro">
+    <div><h2>Objections, in the order the page answers them</h2><ol class="wf-obj"><li><b>Will HGA still be around? Will I be left with orphan slabs?</b><span>Proof strip, FAQ 1</span></li><li><b>$200 is a lot for a case. Does it feel premium?</b><span>Hero visual, Benefit 1, Comparison</span></li><li><b>Will glass scratch or crack like my plastic slabs scuffed?</b><span>Benefit 1, FAQ 2</span></li><li><b>Will my card be gone for months?</b><span>Benefit 3, How it works, FAQ 3</span></li><li><b>What exactly do I get for $200?</b><span>Benefit 2, The offer</span></li><li><b>What if they lose or damage it?</b><span>Hero microcopy, The offer, Final CTA</span></li><li><b>UCollect owns HGA. Can that tilt my grade?</b><span>FAQ 4</span></li><li><b>All sales final. What am I locked into?</b><span>Offer microcopy, FAQ 3</span></li><li><b>Does $200 cover my booklet or my $15,000 card?</b><span>FAQ 5</span></li></ol></div>
+    <div><h2>Rules for the copy</h2><ul class="wf-rules"><li>Locked, do not rewrite: the hero headline and sub (Dylan's ad lines, verbatim), the button text Claim Your Glass, prices, dates, the approved claims. Everything else on this page is example copy: rewrite it within the budget.</li><li>One message on every section: $200 per standard size card until Jan 31, $600 at launch, save $400; graded blind on the day you choose; lost or damaged, replaced or paid out.</li><li>Every section answers one objection from the list. If a section answers none, cut it.</li><li>Headers alone must carry the argument. Most visitors read only headers and buttons. H2s: 6 words.</li><li>One button text everywhere: Claim Your Glass. The microcopy under it changes to answer the fear at that point. Never write guarantee; state the promise: replaced or paid out.</li><li>Glass first. Poly appears once, as a text link in the offer block.</li><li>Real urgency only: the Jan 31 deadline and the $600 launch price. No timers, no stock counters.</li><li>Approved Glass claims: aerospace glass in a metal frame (the client's own phrase), resists scratches, seals like a vacuum, fits every card size, stacks with magnets, the only grader in glass. Not allowed: UV protection, resale value, made in USA, any other grader by name, up to 80% off (true for Poly only). Impact resistance is unconfirmed until the product team signs it off.</li><li>Confirmed in HGA's content pack and safe to state: graded blind to a published standard, then audited; four subgrades and the Grade Report; the chip in the label (RFID: write scan, never tap, never NFC or NFT); lost or damaged in our care, replaced or paid out; the grading calendar opens Jan 18 and grading starts Feb 1.</li><li>Pricing scope: $200 is per standard size card. Booklets, folds and decks are booked separately at $10 per fold. Cards over $10,000 carry a 2% insurance and handling charge, paid at booking. Say it in the FAQ at least.</li><li>Call what they buy a pass. Never write the housing name and pass together. No guaranteed turnaround, clock, due date, 15 business days or $1 a day credit. Never promise when the card comes back; the buyer picks the grading day.</li><li>Reviews: only real collectors, first name plus last initial, before and after, no grader names. Until then the slots stay empty.</li><li>House style: no em dashes, no en dashes, no hyphenated compound modifiers, no strings of three or more fragments. Write UCollect with a capital U and C on this site. Never: patented, Club U, custom labels, glass box, black box, marketplace.</li><li>Links out: the product page and the privacy policy. No links to the website.</li></ul></div>
+  </div>
+  <section class="wf-sec" id="wf-bar">
+  <div class="wf-num">0</div>
+  <div class="wf-frame"><div class="wf-line wf-bar" style="width:100%"><span>Promo bar: HGA Glass $200 a card until Jan 31. $600 at launch. Save $400.</span></div></div>
+  <aside class="wf-brief"><h3>Promo bar</h3><dl><dt>Does</dt><dd>Sets the offer context in one line before anything else.</dd><dt>Answers</dt><dd>Is there a deal?</dd><dt>Feeling</dt><dd>Anticipation</dd><dt>Copy budget</dt><dd>One line, 12 words or fewer. Price now, price later, deadline.</dd></dl></aside>
+</section>
+<section class="wf-sec" id="wf-hero">
+  <div class="wf-num">1</div>
+  <div class="wf-frame"><div class="wf-two">
+      <div>
+        <div class="wf-line " style="width:40%"><span>Eyebrow, 5 words</span></div>
+        <div class="wf-line wf-h1" style="width:95%"><span>Headline, 10 words: the emotion the visitor already feels</span></div>
+        <div class="wf-line wf-h1" style="width:70%"><span>Headline continues</span></div>
+        <div class="wf-line " style="width:100%"><span>Sub, 30 words: the card they will never sell</span></div>
+        <div class="wf-line " style="width:85%"><span>Sub continues</span></div>
+        <div class="wf-line wf-chip" style="width:45%"><span>Chip 1, 4 words</span></div><div class="wf-line wf-chip" style="width:40%"><span>Chip 2, 4 words</span></div><div class="wf-line wf-chip" style="width:42%"><span>Chip 3, 4 words</span></div>
+        <div class="wf-row"><div class="wf-btn">Claim Your Glass</div><div class="wf-line " style="width:52%"><span>$200 a card until Jan 31. $600 at launch. Save $400.</span></div></div>
+        <div class="wf-line wf-micro" style="width:90%"><span>Microcopy, 14 words: the biggest fear at this point (lost or damaged, replaced or paid out)</span></div>
+      </div>
+      <div class="wf-box wf-slab" style="min-height:420px"><span>The Glass slab, the same visual as the ad. 3D, front facing. On phones it sits above the headline.</span></div>
+    </div></div>
+  <aside class="wf-brief"><h3>Hero</h3><dl><dt>Does</dt><dd>Mirrors the ad: same headline idea, same visual, same offer. Names the emotion the visitor already feels, then the price and one button. Microcopy under the button kills the biggest fear at that moment.</dd><dt>Answers</dt><dd>Is this what I clicked for? What does it cost?</dd><dt>Feeling</dt><dd>Pride, longing (the card you will never sell)</dd><dt>Copy budget</dt><dd>Eyebrow 5 words. Headline 10 words. Sub 30 words. Three chips, 4 words each. Button: Claim Your Glass. Microcopy 14 words.</dd></dl></aside>
+</section>
+<section class="wf-sec" id="wf-proof">
+  <div class="wf-num">2</div>
+  <div class="wf-frame"><div class="wf-three"><div class="wf-box " style="min-height:110px"><span>Fact 1: who owns HGA (label 4 words, line 12)</span></div><div class="wf-box " style="min-height:110px"><span>Fact 2: the standard is public</span></div><div class="wf-box " style="min-height:110px"><span>Fact 3: graded blind, then audited</span></div></div>
+    <div class="wf-line wf-micro" style="width:60%"><span>Later: star rating and review count, once real reviews exist</span></div></div>
+  <aside class="wf-brief"><h3>Proof strip</h3><dl><dt>Does</dt><dd>Answers the first objection before the scroll: who stands behind HGA now. Specific facts, no adjectives. Reviews go here once real ones exist.</dd><dt>Answers</dt><dd>Will HGA still be around?</dd><dt>Feeling</dt><dd>Reassurance</dd><dt>Copy budget</dt><dd>Three facts: label 4 words, line 12 words. Later: star rating plus review count.</dd></dl></aside>
+</section>
+<section class="wf-sec" id="wf-benefits">
+  <div class="wf-num">3</div>
+  <div class="wf-frame"><div class="wf-line wf-h2" style="width:60%"><span>H2, 6 words: Three things $200 buys</span></div>
+    <div class="wf-two wf-ben"><div class="wf-box " style="min-height:260px"><span>Proof visual 1: the glass in hand (photo), caption 10 words</span></div><div><div class="wf-line " style="width:10%"><span>01</span></div><div class="wf-line wf-h3" style="width:80%"><span>Benefit header, 6 words: the case</span></div><div class="wf-line " style="width:100%"><span>Body, 35 words</span></div><div class="wf-line " style="width:90%"><span>Body continues</span></div><div class="wf-line wf-micro" style="width:85%"><span>Review, when real: first name and last initial, before and after</span></div></div></div>
+    <div class="wf-two wf-ben wf-flip"><div><div class="wf-line " style="width:10%"><span>02</span></div><div class="wf-line wf-h3" style="width:80%"><span>Benefit header, 6 words: the grade explained</span></div><div class="wf-line " style="width:100%"><span>Body, 35 words</span></div><div class="wf-line " style="width:90%"><span>Body continues</span></div><div class="wf-line wf-micro" style="width:85%"><span>Review, when real</span></div></div><div class="wf-box " style="min-height:260px"><span>Proof visual 2: the Grade Report card (grade, subgrades, one finding, the chip)</span></div></div>
+    <div class="wf-two wf-ben"><div class="wf-box " style="min-height:260px"><span>Proof visual 3: the grading calendar card (homepage component)</span></div><div><div class="wf-line " style="width:10%"><span>03</span></div><div class="wf-line wf-h3" style="width:80%"><span>Benefit header, 6 words: you pick the day</span></div><div class="wf-line " style="width:100%"><span>Body, 35 words</span></div><div class="wf-line " style="width:90%"><span>Body continues</span></div><div class="wf-line wf-micro" style="width:85%"><span>Review, when real</span></div></div></div></div>
+  <aside class="wf-brief"><h3>Three benefits, each with proof</h3><dl><dt>Does</dt><dd>What the $200 buys, one benefit at a time, each with its own visual proof and a slot for one real review. Headers alone must tell the story to a skimmer.</dd><dt>Answers</dt><dd>Does each claim hold up?</dd><dt>Feeling</dt><dd>Desire, then relief</dd><dt>Copy budget</dt><dd>Per benefit: header 6 words, body 35 words, proof caption 10 words, one review slot (first name plus last initial, before and after).</dd></dl></aside>
+</section>
+<section class="wf-sec" id="wf-how">
+  <div class="wf-num">4</div>
+  <div class="wf-frame"><div class="wf-line wf-h2" style="width:55%"><span>H2, 6 words: Three steps. Three dates.</span></div><div class="wf-line " style="width:40%"><span>Lede, 10 words</span></div>
+    <div class="wf-tl"><div class="wf-box wf-tlrow" style="min-height:64px"><span>Now to Jan 31 | Step title 4 words | body 18 words</span></div><div class="wf-box wf-tlrow" style="min-height:64px"><span>From Jan 18 | Step title | body</span></div><div class="wf-box wf-tlrow" style="min-height:64px"><span>After your grading day | The Reveal | body</span></div></div>
+    <div class="wf-line wf-micro" style="width:80%"><span>Capacity note: dates filling up, we are adding capacity (homepage component)</span></div></div>
+  <aside class="wf-brief"><h3>How it works</h3><dl><dt>Does</dt><dd>Three steps with real dates. Makes the wait feel short and the process feel safe. The dates are the urgency; no timers.</dd><dt>Answers</dt><dd>Will my card be gone for months? How do I even do this?</dd><dt>Feeling</dt><dd>Control</dd><dt>Copy budget</dt><dd>Step title 4 words, body 18 words, one date each.</dd></dl></aside>
+</section>
+<section class="wf-sec" id="wf-compare">
+  <div class="wf-num">5</div>
+  <div class="wf-frame"><div class="wf-line wf-h2" style="width:65%"><span>H2, 6 words: Your plastic slab, and what replaces it</span></div>
+    <div class="wf-box wf-table" style="min-height:300px"><span>Comparison table, homepage component (hc-tbl): 5 rows, row label | the plastic slab (cross) | HGA Glass (check, red column). Cells 6 words. Approved claims only, no grader named.</span></div></div>
+  <aside class="wf-brief"><h3>Comparison</h3><dl><dt>Does</dt><dd>Glass against the plastic slab the visitor already owns. Never a named competitor. Five rows at most.</dd><dt>Answers</dt><dd>Why this over what I use?</dd><dt>Feeling</dt><dd>Pride</dd><dt>Copy budget</dt><dd>Five rows, cells 6 words. Only claims on the approved list.</dd></dl></aside>
+</section>
+<section class="wf-sec" id="wf-offer">
+  <div class="wf-num">6</div>
+  <div class="wf-frame"><div class="wf-line wf-h2" style="width:55%"><span>H2: Claim Your Glass. Save $400.</span></div>
+    <div class="wf-two wf-offer"><div class="wf-box wf-slab" style="min-height:300px"><span>Glass slab image</span></div><div><div class="wf-line " style="width:30%"><span>HGA Glass wordmark</span></div><div class="wf-line wf-h3" style="width:60%"><span>Plan line, 6 words</span></div><div class="wf-line wf-h3" style="width:55%"><span>$200, $600 struck, a card, presale</span></div><div class="wf-line " style="width:70%"><span>Tick 1: the housing</span></div><div class="wf-line " style="width:75%"><span>Tick 2: subgrades, report, chip</span></div><div class="wf-line " style="width:72%"><span>Tick 3: your grading day, from Jan 18</span></div><div class="wf-line " style="width:78%"><span>Tick 4: the promise, replaced or paid out</span></div><div class="wf-btn">Claim Your Glass</div><div class="wf-line wf-micro" style="width:85%"><span>Microcopy, 12 words: passes stay on your account, sales final</span></div></div></div>
+    <div class="wf-box wf-poly" style="min-height:70px"><span>Poly row (homepage component): Grading everyday cards too? HGA Poly $29, same grading, same report, same chip. Text link only.</span></div>
+    <div class="wf-line wf-micro" style="width:60%"><span>Fine print: presale ends Jan 31, $200 is per standard size card</span></div></div>
+  <aside class="wf-brief"><h3>The offer and risk reversal</h3><dl><dt>Does</dt><dd>The decision block, built from the homepage offer card: what is included, the price, the promise (replaced or paid out), the deadline, one button. Poly is the quiet row under it.</dd><dt>Answers</dt><dd>What do I get? What if it goes wrong? Why now?</dd><dt>Feeling</dt><dd>Confidence</dd><dt>Copy budget</dt><dd>Four included items, 8 words each, the promise (replaced or paid out) as the last one. Microcopy 12 words. Poly row 30 words.</dd></dl></aside>
+</section>
+<section class="wf-sec" id="wf-faq">
+  <div class="wf-num">7</div>
+  <div class="wf-frame"><div class="wf-two wf-faq"><div><div class="wf-line " style="width:30%"><span>Eyebrow</span></div><div class="wf-line wf-h2" style="width:90%"><span>H2, 6 words: The honest terms, in plain words</span></div><div class="wf-line " style="width:80%"><span>Lede, 12 words</span></div></div>
+    <div><div class="wf-box wf-q" style="min-height:72px"><span>01 Question, 10 words | Answer, 45 words, visible (no accordion)</span></div><div class="wf-box wf-q" style="min-height:72px"><span>02 Question, 10 words | Answer, 45 words, visible (no accordion)</span></div><div class="wf-box wf-q" style="min-height:72px"><span>03 Question, 10 words | Answer, 45 words, visible (no accordion)</span></div><div class="wf-box wf-q" style="min-height:72px"><span>04 Question, 10 words | Answer, 45 words, visible (no accordion)</span></div><div class="wf-box wf-q" style="min-height:72px"><span>05 Question, 10 words | Answer, 45 words, visible (no accordion)</span></div></div></div></div>
+  <aside class="wf-brief"><h3>FAQ, open</h3><dl><dt>Does</dt><dd>Five questions in objection order, answers visible. The honest terms live here: all sales final, standard size pricing, the $10,000 insurance charge.</dd><dt>Answers</dt><dd>What about my edge case?</dd><dt>Feeling</dt><dd>Trust</dd><dt>Copy budget</dt><dd>Five questions, 10 words. Answers 45 words.</dd></dl></aside>
+</section>
+<section class="wf-sec" id="wf-final">
+  <div class="wf-num">8</div>
+  <div class="wf-frame"><div class="wf-center"><div class="wf-line wf-h2" style="width:40%"><span>H2, 6 words: Give it glass.</span></div><div class="wf-line " style="width:60%"><span>Sub, 20 words, with the deadline</span></div><div class="wf-btn">Claim Your Glass</div><div class="wf-line wf-micro" style="width:50%"><span>Microcopy, 14 words, the promise</span></div></div></div>
+  <aside class="wf-brief"><h3>Final CTA</h3><dl><dt>Does</dt><dd>For the reader who absorbed the argument: short, confident, with the deadline. Not a copy of the hero.</dd><dt>Answers</dt><dd>Why now?</dd><dt>Feeling</dt><dd>Resolve</dd><dt>Copy budget</dt><dd>Headline 6 words. Sub 20 words. Button and microcopy as the hero. Section H2s everywhere: 6 words, and the H2 alone must answer the section's objection.</dd></dl></aside>
+</section>
+<section class="wf-sec"><div class="wf-num">+</div><div class="wf-frame"><div class="wf-box wf-sticky" style="min-height:56px"><span>Phones only: sticky bar in the thumb zone once the hero scrolls away. HGA Glass $200 a card. Save $400. | Claim Your Glass. Hidden while the offer block or the final CTA is on screen.</span></div></div><aside class="wf-brief"><h3>Sticky bar</h3><dl><dt>Does</dt><dd>Keeps the one action in reach on phones.</dd><dt>Answers</dt><dd>How do I buy when I am ready?</dd></dl></aside></section>
+  <div class="wf-tail">
+    <div><h2>Why the current pages are too long</h2><ul><li>Eleven sections against eight here. The booklet diagram, the six card category row, the five step demo and the calendar each repeat a point another section already made, so they flatten the value built before them.</li><li>The hero carries five or six checkmarks and a product led headline. A visitor cannot name the offer in two seconds.</li><li>The price first appears in section nine. Here it is in the promo bar, the hero, the offer block and the final CTA.</li><li>The same button text repeats seven times with nothing under it. Here the button stays the same and the microcopy under it changes to answer the fear at that point.</li><li>No section answers the first objection (will HGA still exist?) or states the risk reversal.</li></ul></div>
+    <div><h2>Open items before any of this goes live</h2><ul><li>Impact resistance and cracking: unconfirmed. No line about it until the product team signs it off.</li><li>The Oct 21 notes record a 30 day turnaround line from Trevor; HGA's later content pack removed every turnaround promise. The page follows the pack. Confirm which stands.</li><li>The payout basis for "replaced or paid out" (declared value?) is not stated anywhere.</li><li>Price scope: $200 per standard size card, $10 per fold for booklets, 2% over $10,000. Confirm these are current.</li><li>Reviews: none exist yet. The three benefits and the proof strip each have room for one real collector quote.</li></ul></div>
+  </div>
+</div>
+</body>
+</html>
