@@ -276,7 +276,13 @@
         </div>
       </li>
       <li>
-        <div class="lp-cal" aria-label="HGA Priority Grading Calendar, preview"><div class="lp-cal-top"><div><small>HGA Priority Grading Calendar</small><b>February 2027</b></div><span class="lp-cal-chip">2 cards &middot; HGA Glass</span></div><ol class="lp-cal-dow" aria-hidden="true"><li>Mon</li><li>Tue</li><li>Wed</li><li>Thu</li><li>Fri</li><li>Sat</li><li>Sun</li></ol><ol class="lp-cal-grid"><li class="cal-open"><b>1</b><span>Open</span></li><li class="cal-open"><b>2</b><span>Open</span></li><li class="cal-full"><b>3</b><span>Full</span></li><li class="cal-full"><b>4</b><span>Full</span></li><li class="cal-open"><b>5</b><span>Open</span></li><li class="cal-off"><b>6</b><span></span></li><li class="cal-off"><b>7</b><span></span></li><li class="cal-open"><b>8</b><span>Open</span></li><li class="cal-open"><b>9</b><span>Open</span></li><li class="cal-full"><b>10</b><span>Full</span></li><li class="cal-full"><b>11</b><span>Full</span></li><li class="cal-mine"><b>12</b><span>Your day</span></li><li class="cal-off"><b>13</b><span></span></li><li class="cal-off"><b>14</b><span></span></li><li class="cal-open"><b>15</b><span>Open</span></li><li class="cal-open"><b>16</b><span>Open</span></li><li class="cal-full"><b>17</b><span>Full</span></li><li class="cal-open"><b>18</b><span>Open</span></li><li class="cal-open"><b>19</b><span>Open</span></li><li class="cal-off"><b>20</b><span></span></li><li class="cal-off"><b>21</b><span></span></li><li class="cal-open"><b>22</b><span>Open</span></li><li class="cal-open"><b>23</b><span>Open</span></li><li class="cal-full"><b>24</b><span>Full</span></li><li class="cal-open"><b>25</b><span>Open</span></li><li class="cal-open"><b>26</b><span>Open</span></li><li class="cal-off"><b>27</b><span></span></li><li class="cal-off"><b>28</b><span></span></li></ol><div class="lp-cal-foot"><span><i class="k-open"></i>Open</span><span><i class="k-full"></i>Full</span><span><i class="k-mine"></i>Your day</span><b class="lp-cal-pick">Feb 12 booked: ship any time before it</b></div></div>
+        <div class="gcal-card hm-gcal" role="img" aria-label="Example booking on the HGA Grading Calendar: full days are closed, February 9 is booked, and move me up is switched on">
+          <div class="gcal-top"><span>HGA Grading Calendar</span><b>February 2027</b></div>
+          <ul class="gcal-wd" aria-hidden="true"><li>M</li><li>T</li><li>W</li><li>T</li><li>F</li><li>S</li><li>S</li></ul>
+          <ol class="gcal-days" aria-hidden="true"><li class="full">1</li><li class="full">2</li><li class="full">3</li><li class="full">4</li><li class="full">5</li><li class="off">6</li><li class="off">7</li><li class="full">8</li><li class="me">9</li><li class="open">10</li><li class="open">11</li><li class="open">12</li><li class="off">13</li><li class="off">14</li><li class="open">15</li><li class="open">16</li><li class="open">17</li><li class="open">18</li><li class="open">19</li><li class="off">20</li><li class="off">21</li><li class="open">22</li><li class="open">23</li><li class="open">24</li><li class="open">25</li><li class="open">26</li><li class="off">27</li><li class="off">28</li></ol>
+          <div class="hm-toggle" aria-hidden="true"><span><b>Move me up</b>If an earlier date opens, move me automatically</span><i class="on"></i></div>
+          <div class="gcal-ticket"><span>Booked</span><b>Tue, Feb 9, 2027 &middot; 2 Glass</b><em><svg class="ico"><use href="#i-check"/></svg>Send your cards any time before Feb 9</em></div>
+        </div>
         <div>
           <span class="tp-n">03</span>
           <h3>You pick the grading day</h3>
@@ -287,15 +293,20 @@
   </div>
 </section>
 
-<section class="sec tp-how" aria-labelledby="tp-how-title">
-  
+<section class="sec hm-cal tp-how" aria-labelledby="tp-how-title">
   <div class="wrap">
-    <h2 class="h2 lp-center-h" id="tp-how-title">Three steps. <span class="red">Three dates.</span></h2>
-    <ol class="tp-steps">
-      <li><span>Now to Jan 31</span><b>Claim Your Glass</b><p>$200 a card during the presale, $600 once HGA opens. Each one is a pass on your account, ready to book.</p></li>
-      <li><span>From Jan 18</span><b>Book and ship</b><p>Pick any open day on the grading calendar, then send your cards any time before it.</p></li>
-      <li><span>After your grading day</span><b>The Reveal</b><p>Turn the slab over live in your portal. See the grade, the subgrades and the full Grade Report.</p></li>
+    <div class="hm-cal-head">
+      <h2 class="h2" id="tp-how-title">Three steps. <span class="red">Three dates.</span></h2>
+      <p class="lede">You pick the day. We grade on it.</p>
+    </div>
+    <ol class="hm-steps">
+      <li><span class="hm-when">Now to Jan 31</span><div><b>Claim Your Glass</b><p>$200 a card during the presale, $600 once HGA opens. Each one is a pass on your account, ready to book.</p></div></li>
+      <li><span class="hm-when">From Jan 18</span><div><b>Book and ship</b><p>Pick any open day on the grading calendar, then send your cards any time before it.</p></div></li>
+      <li><span class="hm-when">After your grading day</span><div><b>The Reveal</b><p>Turn the slab over live in your portal. See the grade, the subgrades and the full Grade Report.</p></div></li>
     </ol>
+    <ul class="hm-cal-notes">
+      <li><svg class="ico"><use href="#i-users"/></svg><span><b>Dates filling up?</b> We're adding capacity. Need a card graded sooner? Buy a standard grade separately.</span></li>
+    </ul>
   </div>
 </section>
 
@@ -303,36 +314,40 @@
   
   <div class="wrap">
     <h2 class="h2 lp-center-h" id="tp-cmp-title">Your plastic slab, <span class="red">and what replaces it.</span></h2>
-    <div class="gt tp-gt" role="table" aria-label="A plastic slab compared with HGA Glass">
-      <div class="gt-row gt-head" role="row"><span role="columnheader"><span class="sr">Feature</span></span><span role="columnheader">The plastic slab</span><span role="columnheader" class="gt-g"><em>HGA</em>HGA Glass</span></div>
-      <div class="gt-row" role="row"><span role="rowheader">Case</span><span role="cell">Molded plastic</span><span role="cell" class="gt-g">Aerospace glass and metal</span></div>
-      <div class="gt-row" role="row"><span role="rowheader">On the shelf</span><span role="cell">Shows scuffs</span><span role="cell" class="gt-g">Resists scratches</span></div>
-      <div class="gt-row" role="row"><span role="rowheader">Seal</span><span role="cell">Snapped or welded</span><span role="cell" class="gt-g">Sealed like a vacuum</span></div>
-      <div class="gt-row" role="row"><span role="rowheader">Sizes</span><span role="cell">Mostly standard sizes</span><span role="cell" class="gt-g">Every size, stacks with magnets</span></div>
-      <div class="gt-row" role="row"><span role="rowheader">Behind the grade</span><span role="cell">A grade, no written findings</span><span role="cell" class="gt-g">Four subgrades, a report, a chip</span></div>
+    <div class="hc-tbl-wrap">
+      <table class="hc-tbl"><caption class="sr">The plastic slab compared with HGA Glass</caption><colgroup><col class="c1"><col class="c2"><col class="c3"></colgroup>
+        <thead><tr><td></td><th scope="col">The plastic slab</th><th scope="col" class="hga"><img src="./assets/hybrid_grading/hga-glass-828ebfd2.svg" alt="HGA Glass" width="80" height="13"></th></tr></thead>
+        <tbody><tr><th scope="row">Case</th><td class="no" data-l="The plastic slab"><svg class="ico" aria-hidden="true"><use href="#i-x"/></svg>Molded plastic</td><td class="yes" data-l="HGA Glass"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Aerospace glass and metal</td></tr><tr><th scope="row">On the shelf</th><td class="no" data-l="The plastic slab"><svg class="ico" aria-hidden="true"><use href="#i-x"/></svg>Shows scuffs</td><td class="yes" data-l="HGA Glass"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Resists scratches</td></tr><tr><th scope="row">Seal</th><td class="no" data-l="The plastic slab"><svg class="ico" aria-hidden="true"><use href="#i-x"/></svg>Snapped or welded</td><td class="yes" data-l="HGA Glass"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Sealed like a vacuum</td></tr><tr><th scope="row">Sizes</th><td class="no" data-l="The plastic slab"><svg class="ico" aria-hidden="true"><use href="#i-x"/></svg>Mostly standard sizes</td><td class="yes" data-l="HGA Glass"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Every size, stacks with magnets</td></tr><tr><th scope="row">Behind the grade</th><td class="no" data-l="The plastic slab"><svg class="ico" aria-hidden="true"><use href="#i-x"/></svg>A grade, no written findings</td><td class="yes" data-l="HGA Glass"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Four subgrades, a report, a chip</td></tr></tbody>
+      </table>
     </div>
   </div>
 </section>
 
-<section class="sec tp-offer" id="offer" aria-labelledby="tp-offer-title">
-  
-  <div class="wrap tp-offer-grid">
-    <div class="tp-offer-vis"><figure class="gslab rendered big"><img src="./assets/slabs/glass-ohtani.webp" alt="Shohei Ohtani in an HGA Glass slab" loading="lazy"><i class="gs-sheen" aria-hidden="true"></i></figure></div>
-    <div class="tp-offer-copy">
-      <p class="eb">The presale offer</p>
-      <h2 class="h2" id="tp-offer-title">HGA Glass. <span class="red">$200 a card until Jan 31.</span></h2>
-      <ul class="tp-incl">
-        <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Aerospace glass and metal housing</li><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Four subgrades on the label</li><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>The full Grade Report</li>
-        <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>A chip in the label, tied to the record</li><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Your grading day, booked by you</li><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Every step shown in your portal</li>
-      </ul>
-      <div class="tp-promise"><svg class="ico" aria-hidden="true"><use href="#i-shield"/></svg><p><b>Lost or damaged in our care, we replace it or pay it out.</b> Every step is photographed or filmed and shown in your portal.</p></div>
-      <div class="lp-cta-row tp-cta-row">
+<section class="sec hm-offer g-offer tp-offer" id="offer" aria-labelledby="tp-offer-title">
+  <div class="wrap">
+    <h2 class="h2" id="tp-offer-title">Claim Your Glass. <span class="red">Save $400.</span></h2>
+    <article class="hm-plan glass g-glass-plan">
+      <img src="./slabs/ohtani/360.webp" alt="HGA Glass slab" width="360" height="603" loading="lazy">
+      <div>
+        <img class="hm-wm" src="./assets/hybrid_grading/hga-glass-828ebfd2.svg" alt="HGA Glass" width="96" height="16">
+        <p class="g-plan-h">The only grader in glass.</p>
+        <p class="hm-price"><b>$200</b> <s>$600</s> <span>a card, presale</span></p>
+        <ul class="g-ticks">
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Aerospace glass and metal housing</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Four subgrades, the full Grade Report, a chip in the label</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Your grading day, booked by you from Jan 18</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Lost or damaged in our care, replaced or paid out</li>
+        </ul>
         <a class="btn lg" href="shop.html?h=glass#hero">Claim Your Glass <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        <span class="lp-price-note"><b>$200</b> a card until Jan 31. $600 at launch. <em>Save $400.</em></span>
+        <p class="tp-micro">Your passes stay on your account until you book. Presale sales are final.</p>
       </div>
-      <p class="tp-micro">Your passes stay on your account until you book. Presale sales are final.</p>
-      <p class="tp-poly">Grading everyday cards too? <a href="shop.html?h=poly#hero">HGA Poly, $29 a card <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
-    </div>
+    </article>
+    <a class="g-poly-row" href="shop.html?h=poly#hero">
+      <img src="./slabs/items/13966/clear_case/360.webp" alt="" width="360" height="599" loading="lazy">
+      <span><b>Grading everyday cards too?</b> HGA Poly is $29 a card during presale (launch $150), with the same grading, the same report and the same chip in the label.</span>
+      <span class="g-poly-go">Claim Your Poly <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+    </a>
+    <p class="hm-fine">Presale pricing ends Jan 31. $200 is per standard size card.</p>
   </div>
 </section>
 
