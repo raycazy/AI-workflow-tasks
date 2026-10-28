@@ -1,5 +1,5 @@
 /* Version I (hga-site/i/): on top of h.css. */
-.i-listen{max-width:40em;margin:0 auto clamp(20px,3vw,32px)}
+.i-listen{max-width:40em;margin:12px auto clamp(20px,3vw,32px);text-wrap:balance}
 .i-listen b{color:#fff}
 /* how it works: timeline first, the grading calendar under it, the dates promise, then the CTA */
 .i-stack .hm-cal-grid{grid-template-columns:minmax(0,1fr);justify-items:stretch;gap:clamp(28px,4vw,48px)}
@@ -8,4 +8,10 @@
 .i-dates{max-width:1100px;margin:clamp(28px,4vw,48px) auto 0}
 .i-dates .h-dates-card{padding:clamp(22px,3vw,40px)}
 .i-dates .h2{font-size:clamp(28px,3.2vw,44px)}
-.track-record-nohead .h-track-grid{margin-top:0}
+#track-record .h-track-grid{margin-top:0}
+.i-track-eb{margin:0 0 14px;justify-content:center}
+#track-record{padding-top:clamp(44px,5.5vw,76px)}.i-dates{margin:clamp(24px,3vw,40px) auto}
+.i-dates .h2{text-align:left;margin:0 0 14px}
+.i-stack .hm-cal-notes,.i-stack .i-dates{max-width:900px;margin-inline:auto}
+.i-stack .hm-cal-head .h2{margin-bottom:0}
+@media (max-width:860px){.i-dates .h2{text-align:center}}
