@@ -692,3 +692,113 @@
 /* very small phones: logo lockup, claim button, cart and menu on one line */
 @media (max-width:380px){.hdr .wrap{gap:0 8px}.h-uc-tag > span{font-size:6.5px;letter-spacing:.1em}.h-uc-tag .uc-mark{height:9px}.hdr .brand img{height:15px}.hdr .btn.cta{padding:0 9px;font-size:10px;letter-spacing:.02em}.hdr .acct{gap:4px}.hdr .cart-link,.hdr .menu-btn{width:36px;height:36px}}
 @media (max-width:340px){.h-uc-tag > span{display:none}}
+
+/* ===== Glass Lander LP (h/lp-glass.html), on top of the sports LP styles ===== */
+.gl-center{text-align:center;margin-inline:auto}
+.gl-hero{padding-top:clamp(32px,4vw,64px);background:radial-gradient(ellipse 50% 60% at 50% 45%,rgba(230,36,41,.2),transparent 70%)}
+.gl-hero .lp-kicker{text-align:center}
+.gl-hero .h1{max-width:16ch;font-size:clamp(38px,5vw,72px)}
+.gl-intro{display:block;font-size:.5em;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:.2em}
+.gl-vis{margin:clamp(12px,2vw,24px) auto 0;max-width:780px}
+.gl-sub{margin:clamp(18px,2.4vw,28px) auto 0;max-width:28ch;font-family:var(--disp);font-weight:800;font-size:clamp(24px,2.6vw,36px);line-height:1.1;text-wrap:balance;color:#fff}
+.gl-pills{list-style:none;margin:22px auto 0;padding:0;max-width:980px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.gl-pills li{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(18,16,16,.8);font-size:14px;color:rgba(255,255,255,.88)}
+.gl-pills .ico{width:16px;height:16px;color:#FF6B6E}
+.gl-buy{margin-top:26px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:16px 28px}
+.gl-price{margin:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.gl-price small{width:100%;font-family:var(--lab);font-weight:600;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.gl-price b{font-family:var(--disp);font-weight:800;font-size:clamp(52px,5vw,72px);line-height:.9;color:#fff}
+.gl-price span{color:rgba(255,255,255,.6)}
+.gl-buy .gl-price{text-align:left}
+.gl-icons{margin:clamp(30px,4vw,48px) 0 0;text-align:center;font-family:var(--disp);font-weight:800;font-size:clamp(28px,3.4vw,48px);line-height:1.05;color:#fff}
+.gl-reveal{max-width:820px;margin:clamp(28px,4vw,44px) auto 0;padding:clamp(26px,4vw,44px);border-radius:24px;border:1px solid rgba(255,255,255,.12);background:radial-gradient(ellipse 70% 100% at 50% 0,rgba(230,36,41,.14),transparent 70%),#121010;text-align:center}
+.gl-reveal .lede{margin:14px auto 0;max-width:36em}
+.gl-big{margin:4px 0 0;font-family:var(--disp);font-weight:800;font-size:clamp(28px,3.2vw,44px);line-height:1.05;color:#FF6B6E;text-wrap:balance}
+.gl-era{margin:18px 0 0;font-weight:700;font-size:17px;color:#fff}
+.gl-ben-grid{list-style:none;margin:clamp(28px,4vw,44px) 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.gl-ben-grid li{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);border-radius:20px;border:1px solid rgba(255,255,255,.1);background:#121010;overflow:hidden;transition:border-color .3s}
+.gl-ben-grid li:hover{border-color:rgba(230,36,41,.5)}
+.gl-ben-grid figure{margin:0;min-height:100%}
+.gl-ben-grid figure img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+.gl-ben-grid li:hover figure img{transform:scale(1.05)}
+.gl-ben-grid div{padding:clamp(18px,2.4vw,26px);display:grid;gap:8px;align-content:center}
+.gl-ben-grid b{display:flex;gap:8px;align-items:flex-start;font-size:17px;line-height:1.3;color:#fff}
+.gl-ben-grid b .ico{flex:none;width:18px;height:18px;margin-top:2px;color:#FF6B6E}
+.gl-ben-grid p{margin:0;font-size:15px;line-height:1.55;color:rgba(255,255,255,.72)}
+/* anatomy diagram */
+.gl-anat-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,300px) minmax(0,1fr);gap:clamp(12px,2vw,28px);align-items:center;max-width:1040px;margin:0 auto}
+.ga-slab .gslab{width:100%;filter:drop-shadow(0 40px 50px rgba(0,0,0,.7)) drop-shadow(0 0 60px rgba(230,36,41,.18))}
+.ga-list{list-style:none;margin:0;padding:0;display:grid;gap:clamp(28px,5vw,70px)}
+.ga-c{position:relative;display:flex;align-items:center;gap:12px}
+.ga-c span{padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:#121010;font-weight:700;font-size:15px;line-height:1.3;color:#fff}
+.ga-c i{flex:1;height:1px;min-width:24px;background:linear-gradient(90deg,rgba(255,255,255,.35),rgba(230,36,41,.8));position:relative}
+.ga-c i::after{content:"";position:absolute;right:-4px;top:-4px;width:9px;height:9px;border-radius:50%;background:var(--red);box-shadow:0 0 12px rgba(230,36,41,.8)}
+.ga-l{justify-content:flex-end;text-align:right}
+.ga-r{flex-direction:row-reverse;text-align:left}
+.ga-r i{background:linear-gradient(270deg,rgba(255,255,255,.35),rgba(230,36,41,.8))}
+.ga-r i::after{right:auto;left:-4px}
+.ga-list .ga-c:nth-child(1) i{transform:rotate(var(--t1,7deg))}.ga-list .ga-c:nth-child(3) i{transform:rotate(var(--t3,-7deg))}
+.ga-list.r .ga-c:nth-child(1) i{--t1:-7deg}.ga-list.r .ga-c:nth-child(3) i{--t3:7deg}
+.gl-anat-copy{max-width:760px;margin:clamp(32px,4vw,48px) auto 0;text-align:center}
+.gl-rule{display:block;width:80px;height:3px;margin:0 auto 22px;border-radius:3px;background:var(--red)}
+.gl-anat-copy .h2{margin:0 0 14px}
+/* comparison table */
+.gt{max-width:1040px;margin:clamp(28px,4vw,44px) auto 0;border-radius:20px;border:1px solid rgba(255,255,255,.1);background:#121010;overflow:hidden}
+.gt-row{display:grid;grid-template-columns:minmax(0,1.15fr) repeat(3,minmax(0,1fr));border-top:1px solid rgba(255,255,255,.07)}
+.gt-row > span{padding:15px 18px;font-size:15px;line-height:1.4;color:rgba(255,255,255,.72);display:flex;align-items:center}
+.gt-row > span:first-child{font-weight:700;color:#fff}
+.gt-head{border-top:0}
+.gt-head > span{padding-top:20px;padding-bottom:18px;font-family:var(--lab);font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6);align-items:flex-end}
+.gt-row > .gt-g{background:linear-gradient(180deg,rgba(230,36,41,.14),rgba(230,36,41,.08));color:#fff;font-weight:700;box-shadow:inset 1px 0 0 rgba(230,36,41,.45),inset -1px 0 0 rgba(230,36,41,.45)}
+.gt-head > .gt-g{flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:6px;color:#fff;box-shadow:inset 1px 0 0 rgba(230,36,41,.45),inset -1px 0 0 rgba(230,36,41,.45),inset 0 3px 0 var(--red)}
+.gt-g em{font-style:normal;padding:3px 8px;border-radius:999px;background:var(--red);font-size:10px;letter-spacing:.12em;color:#fff}
+.gt-row:last-child > span{font-family:var(--disp);font-weight:800;font-size:22px}
+.gt-row:last-child > span:first-child{font-family:var(--sans);font-size:15px}
+.gt-yn{display:inline-flex;align-items:center;gap:6px;font-weight:700}
+.gt-yn .ico{width:16px;height:16px}
+.gt-yn.yes .ico{color:#3ccf7a}.gt-yn.no{color:rgba(255,255,255,.45)}.gt-yn.no .ico{color:rgba(255,255,255,.35)}
+/* final */
+.gl-final{padding:clamp(56px,7vw,104px) 0;border-top:1px solid rgba(255,255,255,.08);background:radial-gradient(ellipse 50% 80% at 30% 50%,rgba(230,36,41,.18),transparent 70%)}
+.gl-final-grid{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:clamp(28px,5vw,72px);align-items:center;max-width:1040px}
+.gl-final-vis .gslab{width:min(280px,90%);margin:0 auto}
+.gl-final .h2{margin:0 0 14px}
+.gl-final .lede{margin:0 0 12px}
+.gl-final .gl-price{margin:22px 0 18px}
+@media (max-width:960px){
+  .gl-ben-grid{grid-template-columns:1fr}
+  .gl-anat-grid{grid-template-columns:minmax(0,1fr) minmax(0,200px) minmax(0,1fr)}
+  .ga-c span{font-size:13.5px;padding:10px 12px}
+  .gl-final-grid{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .gl-anat-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .ga-slab{grid-column:1/-1;grid-row:1;width:min(220px,62%);margin:0 auto 8px}
+  .ga-list{gap:10px}
+  .ga-c i{display:none}
+  .ga-l,.ga-r{justify-content:flex-start;text-align:left}
+  .ga-c span{width:100%}
+  .gl-ben-grid li{grid-template-columns:1fr}
+  .gl-ben-grid figure img{aspect-ratio:16/9}
+  .gt-row{grid-template-columns:minmax(0,1.1fr) repeat(3,minmax(0,1fr))}
+  .gt-row > span{padding:12px 8px;font-size:12.5px}
+  .gt-head > span{font-size:9.5px;letter-spacing:.08em;padding-inline:8px}
+  .gt-g em{font-size:8px;padding:2px 6px}
+  .gt-row:last-child > span{font-size:17px}
+  .gt-row:last-child > span:first-child{font-size:12.5px}
+  .gt-yn .ico{display:none}
+  .gl-pills li{font-size:13px;padding:8px 12px}
+  .gl-buy{flex-direction:column}
+  .gl-buy .gl-price{text-align:center;justify-content:center}
+}
+/* glass LP fixes: centered hero headline, price next to the button, straight anatomy lines that reach the slab */
+.gl-hero .h1{margin-inline:auto;text-align:center}
+.gl-buy .gl-price{flex:none;width:auto}
+.gl-buy .gl-price small{width:100%}
+@media (min-width:641px){
+  .gl-anat-grid{gap:0}
+  .ga-list .ga-c i,.ga-list.r .ga-c i{transform:none}
+  .ga-l{padding-right:6px}.ga-r{padding-left:6px}
+}
+.gl-buy .gl-price{display:grid;grid-template-columns:auto auto;align-items:baseline;column-gap:10px}
+.gl-buy .gl-price small{grid-column:1/-1;width:auto}
+@media (min-width:641px){.ga-list .ga-c i{transform:none!important}}
