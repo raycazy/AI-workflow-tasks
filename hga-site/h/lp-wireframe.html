@@ -10,7 +10,7 @@
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 "Helvetica Neue",Arial,sans-serif}
 .wf-wrap{max-width:1240px;margin:0 auto;padding:0 24px}
-.wf-wrap{padding-top:28px}
+.wf-wrap{padding-top:28px;padding-bottom:60px}
 .wf-key{margin:0;padding:14px 16px;border:2px solid var(--ink);font-weight:700}
 .wf-flow{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
 .wf-flow li{display:flex;align-items:center;gap:6px;font-size:13px}
@@ -25,8 +25,10 @@ body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 "Helvetica 
 .wf-obj span{display:block;grid-column:2;color:var(--mid);font-size:12.5px}
 .wf-rules{margin:0;padding-left:18px;font-size:13.5px}
 .wf-rules li{margin:0 0 6px}
-.wf-sec{margin:0 0 28px;border:2px solid var(--ink);scroll-margin-top:16px}
-.wf-brief{display:grid;grid-template-columns:220px 1fr;gap:16px 28px;align-items:start;padding:16px 22px;background:var(--fill);border-bottom:2px solid var(--ink)}
+.wf-page{border:2px solid var(--ink)}
+.wf-sec{margin:0;border-top:1px solid var(--line);scroll-margin-top:16px}
+.wf-sec:first-child{border-top:0}
+.wf-brief{display:grid;grid-template-columns:220px 1fr;gap:12px 28px;align-items:start;padding:12px 22px;background:var(--fill2);border-bottom:1px dashed var(--line)}
 .wf-brief-id{display:flex;align-items:baseline;gap:10px}
 .wf-brief-id b{font-size:28px;line-height:1;color:var(--red)}
 .wf-brief h3{margin:0;font-size:17px;line-height:1.2}
@@ -34,7 +36,7 @@ body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 "Helvetica 
 .wf-brief dl:has(> div:only-child){grid-template-columns:1fr}
 .wf-brief dt{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin:0 0 3px}
 .wf-brief dd{margin:0}
-.wf-frame{padding:22px;display:grid;gap:12px;background:var(--paper);min-width:0}
+.wf-frame{padding:28px 22px 36px;display:grid;gap:12px;background:var(--paper);min-width:0}
 .wf-frame *,.wf-two > div{min-width:0}
 .wf-box{position:relative;border:1px dashed var(--mid);background:var(--fill2);display:grid;place-items:center;text-align:center;padding:14px;color:var(--mid);font-size:13px;min-height:72px}
 .wf-box::before,.wf-box::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top right,transparent calc(50% - .5px),var(--line),transparent calc(50% + .5px))}
@@ -68,7 +70,7 @@ body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 "Helvetica 
 </style>
 </head>
 <body>
-<div class="wf-wrap">
+<div class="wf-wrap"><div class="wf-page">
   <section class="wf-sec wf-head">
     <div class="wf-brief"><div class="wf-brief-id"><b>&#9633;</b><h3>HGA landing page: wireframe and brief</h3></div><dl><div><dt>How to read this</dt><dd>Low fidelity. Grey blocks are layout, not design; the finished look is on the example page. Each section starts with its brief: what it does, which objection it answers, the feeling it should leave, and how much copy fits. Then the layout of that section, block by block.</dd></div></dl></div>
     <div class="wf-frame">
@@ -147,6 +149,6 @@ body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 "Helvetica 
       <div><h2>Open items before any of this goes live</h2><ul><li>Impact resistance and cracking: unconfirmed. No line about it until the product team signs it off.</li><li>The Oct 21 notes record a 30 day turnaround line from Trevor; HGA's later content pack removed every turnaround promise. The page follows the pack. Confirm which stands.</li><li>The payout basis for "replaced or paid out" (declared value?) is not stated anywhere.</li><li>Price scope: $200 per standard size card, $10 per fold for booklets, 2% over $10,000. Confirm these are current.</li><li>Reviews: none exist yet. The three benefits and the proof strip each have room for one real collector quote.</li></ul></div>
     </div></div>
   </section>
-</div>
+</div></div>
 </body>
 </html>
