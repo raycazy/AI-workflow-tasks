@@ -945,3 +945,15 @@
   .tp-slot::before{width:44px;height:44px}
 }
 @media (max-width:640px){.tp-hero .tp-chips{display:none}.tp-hero .tp-cta-row{margin-top:18px}}
+/* template FAQ: editorial, no accordion */
+.tp-faq2-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,5vw,80px);align-items:start}
+.tp-faq2-head{position:sticky;top:90px}
+.tp-faq2-head .h2{margin:0 0 12px}
+.tp-faq2-head .lede{margin:0;max-width:22em}
+.tp-faq2-list{list-style:none;margin:0;padding:0}
+.tp-faq2-list li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:16px;padding:26px 0;border-top:1px solid rgba(255,255,255,.12)}
+.tp-faq2-list li:last-child{border-bottom:1px solid rgba(255,255,255,.12)}
+.tp-faq2-n{font-family:var(--disp);font-weight:800;font-size:26px;line-height:1;color:#FF6B6E;padding-top:4px}
+.tp-faq2-list h3{margin:0 0 8px;font-size:clamp(20px,2vw,26px);line-height:1.2}
+.tp-faq2-list p{margin:0;font-size:16px;line-height:1.6;color:rgba(255,255,255,.75)}
+@media (max-width:860px){.tp-faq2-grid{grid-template-columns:1fr}.tp-faq2-head{position:static}.tp-faq2-list li{grid-template-columns:40px minmax(0,1fr);gap:12px;padding:20px 0}.tp-faq2-n{font-size:22px}}
