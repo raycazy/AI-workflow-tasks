@@ -368,13 +368,24 @@
   </div>
 </section>
 
-<section class="lp-final tp-final" aria-labelledby="tp-final-title">
-  
+<section class="g-final tp-final" aria-labelledby="tp-final-title">
   <div class="wrap">
+    <div class="tp-final-stage" aria-hidden="true">
+      <span class="lp-beam" aria-hidden="true"></span>
+      <figure class="gslab rendered "><img src="./assets/slabs/glass-ohtani.webp" alt="" loading="lazy"><i class="gs-sheen" aria-hidden="true"></i></figure>
+      <span class="lp-ped" aria-hidden="true"></span>
+    </div>
+    <p class="eb tp-final-eb">Presale pricing ends Jan 31</p>
     <h2 class="h2" id="tp-final-title">Give it <span class="red">glass.</span></h2>
-    <p class="lede">The card you will never sell, preserved in glass, ready to hand down. $200 a card until Jan 31. $600 after.</p>
+    <p class="lede">The card you will never sell, preserved in glass, ready to hand down.</p>
+    <p class="tp-final-price"><b>$200</b><span>a card until Jan 31. <s>$600</s> at launch. <em>Save $400.</em></span></p>
     <a class="btn lg" href="shop.html?h=glass#hero">Claim Your Glass <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
     <p class="tp-micro">Lost or damaged in our care? We replace it or pay it out.</p>
+    <ul class="tp-final-re">
+      <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Graded blind on the day you choose</li>
+      <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Four subgrades and the full Grade Report</li>
+      <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>The only grader in glass</li>
+    </ul>
   </div>
 </section>
 
@@ -388,7 +399,7 @@
 <script>
   // Sticky claim bar on phones: after the hero, hidden while the offer block or final CTA is on screen.
   (function () {
-    var bar = document.querySelector("[data-lp-sticky]"), hero = document.querySelector(".lp-hero"), offer = document.getElementById("offer"), fin = document.querySelector(".lp-final");
+    var bar = document.querySelector("[data-lp-sticky]"), hero = document.querySelector(".lp-hero"), offer = document.getElementById("offer"), fin = document.querySelector(".tp-final");
     if (!bar) return;
     var on = function (el) { var r = el.getBoundingClientRect(); return r.top < innerHeight && r.bottom > 0; };
     var upd = function () { bar.classList.toggle("show", hero.getBoundingClientRect().bottom < 0 && !on(offer) && !on(fin)); };
