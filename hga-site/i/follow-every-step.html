@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Follow every step | HGA</title>
+<meta name="description" content="Live, from delivery to grade. Five departments, fourteen steps, five moments on camera, then the Reveal.">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0E0E0E">
+<link rel="preload" href="./assets/fonts/bc-800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="./assets/hga.css?v=80e4d4a7">
+<link rel="stylesheet" href="./assets/v2.css?v=80e4d4a7">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script defer src="./assets/v2.js?v=80e4d4a7"></script>
+<script defer src="./assets/site.js?v=80e4d4a7"></script>
+<link rel="stylesheet" href="./assets/g.css">
+<link rel="stylesheet" href="./assets/h.css">
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none"><symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol><symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6"/></symbol><symbol id="i-clock" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><circle cx="12" cy="14.2" r="3.4"/><path d="M12 12.3v2l1.4 1"/></symbol><symbol id="i-layers" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><rect x="8.2" y="10.2" width="3.3" height="3.3" rx=".6"/><rect x="12.5" y="10.2" width="3.3" height="3.3" rx=".6"/><rect x="8.2" y="14.5" width="3.3" height="3.3" rx=".6"/><rect x="12.5" y="14.5" width="3.3" height="3.3" rx=".6"/></symbol><symbol id="i-file" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><path d="M8.5 11h7M8.5 14h7M8.5 17h4"/></symbol><symbol id="i-camera" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><rect x="8" y="12.2" width="8" height="5.6" rx="1"/><circle cx="12" cy="15" r="1.5"/><path d="M10.3 12.2l.8-1.4h1.8l.8 1.4"/></symbol><symbol id="i-video" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><rect x="7.8" y="11.6" width="6.2" height="5" rx="1"/><path d="M14 13.2l3-1.4v4.6l-3-1.4"/></symbol><symbol id="i-eyeoff" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><path d="M8.3 14.2s1.5-2.6 3.7-2.6 3.7 2.6 3.7 2.6-1.5 2.6-3.7 2.6-3.7-2.6-3.7-2.6z"/><path d="M8.5 18l7-7.6"/></symbol><symbol id="i-chip" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><rect x="9.4" y="11.6" width="5.2" height="5.2" rx="1"/><path d="M9.4 13.2H8M9.4 15.2H8M14.6 13.2H16M14.6 15.2H16M11 11.6v-1.4M13 11.6v-1.4M11 16.8v1.4M13 16.8v1.4"/></symbol><symbol id="i-shield" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><path d="M12 10l3.4 1.4v2.6c0 2-1.4 3.5-3.4 4.4-2-.9-3.4-2.4-3.4-4.4v-2.6L12 10z"/><path d="M10.5 14.2l1 1 2.1-2.1"/></symbol><symbol id="i-box" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><rect x="8.3" y="10.4" width="7.4" height="8.2" rx="1"/><rect x="10" y="12.2" width="4" height="4.6" rx=".6"/></symbol><symbol id="i-calendar" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><rect x="8" y="11.2" width="8" height="7" rx="1"/><path d="M8 13.7h8M10.2 9.8v2.4M13.8 9.8v2.4"/></symbol><symbol id="i-truck" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><path d="M7.8 12h5.4v4.4H7.8zM13.2 13.6h2l1.4 1.5v1.3h-3.4z"/><circle cx="9.7" cy="17.6" r=".9"/><circle cx="14.6" cy="17.6" r=".9"/></symbol><symbol id="i-gift" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><rect x="8" y="12.4" width="8" height="2.2"/><path d="M9 14.6v3.8h6v-3.8M12 12.4v6M12 12.4c-.8-.6-2.6-.7-2.6-1.8S11.2 9.9 12 12.4zM12 12.4c.8-.6 2.6-.7 2.6-1.8S12.8 9.9 12 12.4z"/></symbol><symbol id="i-repeat" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><path d="M8.5 12.2h5.5l-1.6-1.6M15.5 16h-5.5l1.6 1.6"/></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></symbol><symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol><symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol><symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol><symbol id="i-award" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><path d="M12 10.3l1.15 2.25 2.5.35-1.8 1.75.45 2.5L12 15.95l-2.3 1.2.45-2.5-1.8-1.75 2.5-.35z"/></symbol><symbol id="i-pen" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><path d="M8.3 16.2c.9-3 1.9-3 2.4 0s1.5 0 2-3 1.6-1.6 2.6 1.2M8.3 18.3h7.4"/></symbol><symbol id="i-size" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><path d="M8 11.3V9.8h1.5M16 11.3V9.8h-1.5M8 16.9v1.5h1.5M16 16.9v1.5h-1.5"/><rect x="10.4" y="12" width="3.2" height="4.2" rx=".6"/></symbol><symbol id="i-target" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><circle cx="12" cy="14.2" r="3.2"/><circle cx="12" cy="14.2" r=".9" fill="currentColor" stroke="none"/><path d="M12 9.8v1.6M12 17v1.6M7.6 14.2h1.6M14.8 14.2h1.6"/></symbol><symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 018 0v2.5"/><circle cx="12" cy="15.5" r="1.2"/></symbol><symbol id="i-card" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><rect x="8.4" y="10.6" width="7.2" height="3" rx=".5" fill="currentColor" stroke="none"/><path d="M8.4 16h7.2M8.4 18.2h4"/></symbol><symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol><symbol id="i-mail" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><rect x="8" y="11.4" width="8" height="6" rx="1"/><path d="M8.3 12.2l3.7 2.6 3.7-2.6"/></symbol><symbol id="i-phone" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><rect x="9" y="10" width="6" height="8.6" rx="1.2"/><path d="M11 17h2"/></symbol><symbol id="i-image" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><rect x="8" y="10.8" width="8" height="7.4" rx="1"/><circle cx="10.3" cy="13" r=".9"/><path d="M16 16.2l-2.4-2.4-4 4"/></symbol><symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10-6.5z"/></symbol><symbol id="i-pause" viewBox="0 0 24 24"><path d="M8.5 5.5v13M15.5 5.5v13"/></symbol><symbol id="i-eye" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><path d="M8 14.2s1.6-2.6 4-2.6 4 2.6 4 2.6-1.6 2.6-4 2.6-4-2.6-4-2.6z"/><circle cx="12" cy="14.2" r="1.3" fill="currentColor" stroke="none"/></symbol><symbol id="i-database" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><ellipse cx="12" cy="11.6" rx="3.5" ry="1.3"/><path d="M8.5 11.6v5c0 .7 1.6 1.3 3.5 1.3s3.5-.6 3.5-1.3v-5"/></symbol><symbol id="i-users" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><circle cx="10.2" cy="12.4" r="1.5"/><circle cx="14.4" cy="12.8" r="1.1"/><path d="M7.6 18.2a2.6 2.6 0 015.2 0M13 18.2a1.9 1.9 0 013.4 0"/></symbol><symbol id="i-refresh" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><path d="M15.5 14.2a3.5 3.5 0 01-6.2 2.2M8.5 14.2a3.5 3.5 0 016.2-2.2M8.5 11.2v2.4h2.4M15.5 17.2v-2.4h-2.4"/></symbol><symbol id="i-dollar" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><path d="M12 9.8v8.6M14 12.3c0-.8-.9-1.4-2-1.4s-2 .6-2 1.4c0 1.9 4 .9 4 2.8 0 .9-.9 1.5-2 1.5s-2-.6-2-1.4"/></symbol><symbol id="i-map" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><path d="M12 18.4s3-2.8 3-5.4a3 3 0 10-6 0c0 2.6 3 5.4 3 5.4z"/><circle cx="12" cy="13" r="1"/></symbol><symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 019.5 4a8.5 8.5 0 1010.5 10.5z"/></symbol><symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></symbol><symbol id="i-drag" viewBox="0 0 24 24"><path d="M2 12h20M6 8l-4 4 4 4M18 8l4 4-4 4"/></symbol><symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6.5a3 3 0 016 0V8"/></symbol><symbol id="i-apple" viewBox="0 0 24 24"><path d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.8-3.5.8-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2-1.1 2.8-2.3.9-1.3 1.2-2.5 1.3-2.6-.1 0-2.5-.9-2.5-3.6zM14.2 5.6c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.5 2.7-1.3z" fill="currentColor" stroke="none"/></symbol><symbol id="i-slab" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="4" rx=".8" fill="currentColor" stroke="none"/><rect x="7.5" y="10.5" width="9" height="8.5" rx=".8"/></symbol><symbol id="i-loupe" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><circle cx="11.2" cy="13.2" r="2.6"/><path d="M13.1 15.1l2.4 2.4"/></symbol><symbol id="i-ruler" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><rect x="8" y="12.8" width="8" height="3.2" rx=".5"/><path d="M10 12.8v1.3M12 12.8v2M14 12.8v1.3"/></symbol><symbol id="i-corner" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><path d="M8.5 18.2v-4.2a3 3 0 013-3h4"/></symbol><symbol id="i-sparkle" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="7.5" y="5" width="9" height="2.6" rx=".6" fill="currentColor" stroke="none"/><path d="M12 10l.9 2.4 2.4.9-2.4.9-.9 2.4-.9-2.4-2.4-.9 2.4-.9z"/></symbol></svg>
+<a class="sr" href="#main">Skip to content</a>
+<div class="abar" data-cd>
+  <div class="wrap">
+    <i class="dot" aria-hidden="true"></i>
+    <b class="live" data-ps-label>Pre sale is live</b>
+    <span class="hide-s">Poly $29 &middot; Glass $200 a card</span>
+    <span>Offer ends in <b data-cd-text>113d 00h 00m</b></span>
+    <a href="shop.html#hero">Claim Your Pass</a>
+  </div>
+</div>
+<header class="hdr">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="HGA, Hybrid Grading Approach, powered by UCollect, home">
+      <img src="./assets/hybrid_grading/hga-2700a46b.svg" alt="HGA" width="91" height="22">
+      <span class="h-uc-tag"><span>Powered by</span><img class="uc-mark" src="./assets/ucollect.svg" alt="UCollect" width="118" height="22"></span>
+    </a>
+    <nav class="hnav" id="hnav" aria-label="Site"><a href="shop.html">Presale</a><a href="grading-standards.html">Grading Standards</a><a href="pop.html">Pop Report</a><a href="legacy.html">Legacy HGA</a><a href="about.html">About</a><a href="ucollect.html">UCollect</a><a href="faq.html">FAQ</a></nav>
+    <div class="acct">
+      <a class="btn cta" href="shop.html#hero">Claim Your Pass</a>
+      <button class="menu-btn" type="button" data-menu aria-controls="hnav" aria-expanded="false" aria-label="Menu"><svg class="ico"><use href="#i-menu"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<section class="sec fe-hero" id="top-portal" aria-labelledby="fe-title">
+  <div class="wrap fe-hero-grid">
+    <div class="fe-hero-copy">
+      <p class="eb">Your portal</p>
+      <h1 class="h1" id="fe-title">Live, from delivery <span class="red">to grade.</span></h1>
+      <p class="lede">Your box on arrival, the unboxing on video, every card imaged, the finished slab, then the Reveal. Fourteen steps, every one written to your card&rsquo;s record the moment it finishes.</p>
+      <div class="fe-acts">
+        <a class="btn lg" href="shop.html?h=glass#hero">Claim Your Glass <svg class="ico"><use href="#i-arrow"/></svg></a>
+        <a class="hero-alt" href="#steps">See every step <svg class="ico"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+    <div class="fe-mock" role="img" aria-label="Portal example: a card at step 6 of 13, graded blind, grade hidden until the Reveal">
+      <p class="fe-mock-top"><span>My cards &middot; 1 of 3</span><span class="fe-live"><i></i>Live</span></p>
+      <div class="fe-card-row">
+        <img src="./slabs/ohtani/card/front.webp" alt="" width="633" height="887">
+        <div><small>2025 Topps Finest &middot; Headliners #HL-1</small><b>Shohei Ohtani &middot; Superfractor 1/1</b><span>HGA Glass</span></div>
+      </div>
+      <p class="fe-mock-sub"><span>Delivered Sep 2</span><b>Step 6 of 13 &middot; Grading</b></p>
+      <div class="fe-prog"><i style="--p:.46"></i></div>
+      <ul class="fe-depts">
+        <li class="done"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>Intake &amp; Imaging</span><em>Done &middot; 3 of 3</em></li>
+        <li class="done"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>ID &amp; Authentication</span><em>Done &middot; 2 of 2</em></li>
+        <li class="now"><i class="fe-dot"></i><span>Grading</span><em>In progress</em>
+          <ol>
+            <li class="done"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>Centering measured</span><small>Both sides &middot; shown in your report</small></li>
+            <li class="now"><i class="fe-dot"></i><span>Graded blind</span><small>Grade hidden until the Reveal</small></li>
+            <li><i class="fe-ring"></i><span>Audited &amp; released</span><small>Senior grader &middot; cert assigned</small></li>
+          </ol>
+        </li>
+        <li><i class="fe-ring"></i><span>Encapsulation</span><em>Next</em></li>
+        <li><i class="fe-ring"></i><span>Fulfillment</span><em>Then the Reveal</em></li>
+      </ul>
+      <p class="fe-chips"><span>Box photo</span><span>Unboxing video</span><span>Card images</span></p>
+    </div>
+  </div>
+</section>
+
+<section class="sec fe-process" id="steps" aria-labelledby="fe-steps-title">
+  <div class="wrap">
+    <p class="eb g-center">Our process</p>
+    <h2 class="h2 g-center" id="fe-steps-title">Five departments. Fourteen steps. <span class="red">Nothing skips ahead.</span></h2>
+    <p class="lede g-center fe-lede">Each step writes one event to your card&rsquo;s record, and your portal reads that record. You see what happened, when, and the photo, video or images that go with it.</p>
+    <div class="fe-depts-grid" data-fe-grid><div class="fe-dept"><p class="fe-dept-h"><b>Intake &amp; Imaging</b><span>box &rarr; card</span></p><ol><li class="fe-step" data-fe-step><span class="fe-n">0</span><div><b>Order placed</b><p>List each card and pick its housing. Pay, then ship; your tracking link sits in the portal.</p><span class="fe-ev">Receipt</span></div></li><li class="fe-step" data-fe-step><span class="fe-n">1</span><div><b>Received &amp; unboxed</b><p>Your box is scanned and photographed on arrival. Opened on camera against your list, every card barcoded.</p><span class="fe-ev">Photo &middot; Video</span></div></li><li class="fe-step" data-fe-step><span class="fe-n">2</span><div><b>Imaged</b><p>High resolution scans of the front and back. Every later step uses these images.</p><span class="fe-ev">Images</span></div></li></ol></div><div class="fe-dept"><p class="fe-dept-h"><b>ID &amp; Authentication</b><span>card</span></p><ol><li class="fe-step" data-fe-step><span class="fe-n">3</span><div><b>Identified</b><p>Matched to the database and confirmed by a person.</p><span class="fe-ev">Status</span></div></li><li class="fe-step" data-fe-step><span class="fe-n">4</span><div><b>Authenticated</b><p>Measured, UV, magnified, signature checked. Must pass every test. The case size that fits is selected.</p><span class="fe-ev">Status</span></div></li></ol></div><div class="fe-dept"><p class="fe-dept-h"><b>Grading</b><span>card</span></p><ol><li class="fe-step" data-fe-step><span class="fe-n">5</span><div><b>Centering measured</b><p>Borders measured on both sides. The published scale sets the centering grade.</p><span class="fe-ev">Status &middot; in the report</span></div></li><li class="fe-step fe-hidden" data-fe-step><span class="fe-n">6</span><div><b>Graded blind</b><p>Every defect marked on the images by a grader who never knows whose card it is.</p><span class="fe-ev">Status &middot; grade hidden</span></div></li><li class="fe-step fe-hidden" data-fe-step><span class="fe-n">7</span><div><b>Audited &amp; released</b><p>A senior grader inspects blind and releases the grade. Cert assigned. Grade hidden until the Reveal.</p><span class="fe-ev">Status &middot; grade hidden</span></div></li></ol></div><div class="fe-dept"><p class="fe-dept-h"><b>Encapsulation</b><span>card &rarr; slab</span></p><ol><li class="fe-step" data-fe-step><span class="fe-n">8</span><div><b>Sealed</b><p>Label printed, card sealed in the housing you chose. The chip in the label is written to the record.</p><span class="fe-ev">Status</span></div></li><li class="fe-step" data-fe-step><span class="fe-n">9</span><div><b>Quality checked</b><p>Five checks on the sealed slab. A fail goes back to encapsulation.</p><span class="fe-ev">Status</span></div></li><li class="fe-step" data-fe-step><span class="fe-n">10</span><div><b>Slab imaged</b><p>The finished slab, front and back, grade masked.</p><span class="fe-ev">Images</span></div></li></ol></div><div class="fe-dept"><p class="fe-dept-h"><b>Fulfillment</b><span>submission</span></p><ol><li class="fe-step" data-fe-step><span class="fe-n">11</span><div><b>Ready</b><p>Every card in your submission is in. A second person counts it. You are notified.</p><span class="fe-ev">Status &middot; notified</span></div></li><li class="fe-step" data-fe-step><span class="fe-n">12</span><div><b>The Reveal</b><p>Turn each slab over live. Then decide, per card: ship home, list, or vault. 7 days.</p><span class="fe-ev">Live</span></div></li><li class="fe-step" data-fe-step><span class="fe-n">13</span><div><b>Dispatched</b><p>Ship home cards are packed and tracked. List and vault cards stay with us, in your record.</p><span class="fe-ev">Tracking</span></div></li></ol></div></div>
+    <p class="fe-legend"><span><i class="fe-key"></i>HGA step</span><span><i class="fe-key you"></i>Your step</span><span><i class="fe-key hid"></i>Grade hidden from step 6 until the Reveal, so every customer sees it the same way</span></p>
+  </div>
+</section>
+
+<section class="sec fe-moments" id="moments" aria-labelledby="fe-mom-title">
+  <div class="wrap">
+    <p class="eb g-center">What you see, when</p>
+    <h2 class="h2 g-center" id="fe-mom-title">Five moments, <span class="red">on camera.</span></h2>
+    <p class="lede g-center fe-lede">Status at every step. Photos and video at the moments that matter.</p>
+    <div class="fe-mom-grid"><article class="fe-mom"><figure><img src="./assets/gen/arrival-box.webp" alt="An HGA box photographed on arrival" loading="lazy"></figure><div><span class="fe-mom-n">01</span><b>Your box, on arrival</b><p>Photographed as delivered, condition recorded.</p><span class="fe-ev">Photo &middot; step 1</span></div></article><article class="fe-mom"><figure><img src="./assets/gen/unboxing-still.webp" alt="A card lifted out of its box on camera" loading="lazy"></figure><div><span class="fe-mom-n">02</span><b>The unboxing</b><p>Opened on camera against your list. Every card barcoded.</p><span class="fe-ev">Video &middot; step 1</span></div></article><article class="fe-mom"><figure><img src="./assets/gen/lab-loupe.webp" alt="A card under inspection" loading="lazy"></figure><div><span class="fe-mom-n">03</span><b>Every card, imaged</b><p>High resolution front and back, the images your report is built on.</p><span class="fe-ev">Images &middot; step 2</span></div></article><article class="fe-mom"><figure><img src="./assets/hybrid_grading/sealed-slab-preview-grade-masked-5979bd64.webp" alt="A sealed slab with the grade masked" loading="lazy"></figure><div><span class="fe-mom-n">04</span><b>The finished slab</b><p>Front and back, sealed, grade masked.</p><span class="fe-ev">Images &middot; step 10</span></div></article><article class="fe-mom"><figure><img src="./slabs/ohtani/720.webp" alt="A revealed HGA Glass slab, graded 10" loading="lazy"></figure><div><span class="fe-mom-n">05</span><b>The Reveal</b><p>Turn each slab over live. Grade, subgrades and the full Grade Report.</p><span class="fe-ev">Live &middot; step 12</span></div></article></div>
+  </div>
+</section>
+
+<section class="sec fe-portal" id="portal" aria-labelledby="fe-portal-title">
+  <div class="wrap">
+    <p class="eb">Your portal</p>
+    <h2 class="h2" id="fe-portal-title">One place for every card <span class="red">you&rsquo;ve ever sent us.</span></h2>
+    <p class="lede fe-lede-l">Every card, every step, every image, every report. From the first order to the Reveal and after.</p>
+    <div class="fe-browser" role="img" aria-label="Portal example: My cards, three cards at different steps">
+      <p class="fe-url"><i></i><i></i><i></i><span>hybridgrading.com/my-cards</span></p>
+      <p class="fe-tabs"><b>My cards</b><span>Orders</span><span>Reports</span><span>Support</span><span class="fe-acct">Account</span></p>
+      <div class="fe-table">
+        <p class="fe-th"><span>Card</span><span>Department</span><span>Last event</span><span></span></p>
+        <div class="fe-tr"><span><b>Shohei Ohtani &middot; Superfractor 1/1</b><small>2025 Topps Finest Headliners #HL-1 &middot; HGA Glass</small></span><span><b>Grading</b><small>Step 6 &middot; Graded blind</small></span><span><b>Centering measured</b><small>Sep 9 &middot; both sides</small></span><span><em>Open</em></span></div>
+        <div class="fe-tr"><span><b>Rayquaza GX</b><small>Pok&eacute;mon &middot; HGA Glass</small></span><span><b>Ready</b><small>Step 12 &middot; The Reveal</small></span><span><b>Ready for your Reveal</b><small>Sep 22 &middot; 1 card</small></span><span><em class="hot">Reveal</em></span></div>
+        <div class="fe-tr"><span><b>Meowth ex</b><small>Pok&eacute;mon &middot; HGA Glass &middot; 10</small></span><span><b>Vaulted</b><small>Step 13 &middot; Dispatched</small></span><span><b>In your vault</b><small>Sep 18 &middot; cert HGA-2026-0000388</small></span><span><em>Report</em></span></div>
+      </div>
+    </div>
+    <div class="fe-three">
+      <div><span class="fe-mom-n">01</span><b>Every image and video</b><p>Your box on arrival, the unboxing video with a timecode for every card, the front and back scans, the finished slab.</p></div>
+      <div><span class="fe-mom-n">02</span><b>Every report and cert</b><p>The full Grade Report for every card, with its cert and its permanent record. Shareable by link, verifiable by chip.</p></div>
+      <div><span class="fe-mom-n">03</span><b>Every decision, in one place</b><p>Ship home, list, or vault, per card, from the Reveal. Exceptions and support on the same card.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec fe-exc" id="exceptions" aria-labelledby="fe-live-title">
+  <div class="wrap">
+    <p class="eb g-center">If something comes up</p>
+    <h2 class="h2 g-center" id="fe-live-title">You see it <span class="red">live.</span></h2>
+    <div class="fe-two">
+      <article>
+        <b class="fe-two-h">Exceptions, the moment they open</b>
+        <p>A card not on your list, a case size to confirm, a value to declare: it opens in your portal the moment it is found, with what it is and who is on it. You answer from the portal.</p>
+        <div class="fe-note"><p class="fe-note-top"><span class="fe-open">Open &middot; 2h</span></p><b>Extra card in your box</b><p>One card not on your list, held on camera. Pick a housing to add it, or we return it with your order.</p></div>
+      </article>
+      <article>
+        <b class="fe-two-h">Support, tied to the card</b>
+        <p>Every question starts from the card or the order in your portal, so support sees exactly what you see. Notifications in the portal by default; email and SMS for delivery, Reveal ready, exceptions and shipment are yours to turn on.</p>
+        <div class="fe-note"><p class="fe-note-top"><span>From the Grade Report</span></p><b>Ask about a grade</b><p>Open the finding, ask the question. The reply lands on the same card.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec fe-chip" id="verify" aria-labelledby="fe-chip-title">
+  <div class="wrap fe-chip-grid">
+    <figure class="fe-label"><img src="./assets/hybrid_grading/hga-glass-label-detail-34a7be85.webp" alt="The HGA label as sealed, with the chip inside" loading="lazy"><figcaption><span class="fe-tap"><i></i><i></i><i></i></span>Tap to verify &middot; front label, as sealed</figcaption></figure>
+    <div>
+      <p class="eb">The chip in every label</p>
+      <h2 class="h2" id="fe-chip-title">Tap the label, <span class="red">open the record.</span></h2>
+      <ul class="fe-chip-pts">
+        <li><span class="fe-n">08</span><div><b>Written at sealing</b><p>The chip in the label is written to the record at step 8. Label, record and card verified at step 9; final images at step 10.</p></div></li>
+        <li><span class="fe-n"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><div><b>Can&rsquo;t be swapped</b><p>A swapped label or case won&rsquo;t match its permanent record.</p></div></li>
+        <li><span class="fe-n"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><div><b>Verify before you buy</b><p>A matching cert number does not by itself prove a slab. Tap the chip in the label to open the record, compare the card in front of you with the images, and buy from sellers you trust.</p></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sec hl-reveal" id="reveal" aria-labelledby="hl-reveal-title">
+  <div class="wrap hl-reveal-grid">
+    <div class="hl-reveal-copy">
+      <p class="eb">Step 12 &middot; The Reveal</p>
+      <h2 class="h2" id="hl-reveal-title">Turn each slab <span class="red">over live.</span></h2>
+      <p class="lede">Grades are shown at the Reveal, not before. You see the sealed slab first, grade masked. Turn it over live, see the grade, the subgrades and the full Grade Report. Then decide, within 7 days.</p>
+      <div class="hl-decide" role="group" aria-label="Decide">
+        <button type="button" data-decide>Ship home</button><button type="button" data-decide>List</button><button type="button" data-decide>Vault</button>
+      </div>
+      <p class="hl-fine">Per card. No decision in 7 days and every card ships back to you.</p>
+    </div>
+    <div class="hl-stage" data-reveal>
+      <div class="hl-flip">
+        <div class="hl-face hl-back" aria-hidden="true">
+          <img class="hl-case" src="./assets/hga/glass_back-d8c9ac8c.webp" alt="" width="1000" height="1676">
+          <span class="hl-mask"><b>Sealed</b><small>Grade masked until the Reveal</small></span>
+          <img class="hl-cardback" src="./slabs/ohtani/card/back.webp" alt="" width="633" height="887">
+        </div>
+        <div class="hl-face hl-front"><img src="./slabs/ohtani/720.webp" alt="Shohei Ohtani in an HGA Glass slab, graded 10" width="720" height="1207"></div>
+      </div>
+      <div class="hl-grade" aria-live="polite"><b>10</b><span>Gem Mint</span></div>
+      <ul class="hl-subs" aria-label="Subgrades"><li><span>Centering</span><b>10</b></li><li><span>Corners</span><b>10</b></li><li><span>Edges</span><b>10</b></li><li><span>Surface</span><b>9.5</b></li></ul>
+      <button class="btn lg hl-go" type="button" data-reveal-btn>Reveal the grade</button>
+    </div>
+  </div>
+</section>
+
+<section class="g-final" aria-labelledby="fe-final-title">
+  <div class="wrap">
+    <h2 class="h2" id="fe-final-title">Follow your cards <span class="red">through every step.</span></h2>
+    <p class="lede">A live tracker from delivery to the Reveal, with the moments that matter on camera. Support built in.</p>
+    <a class="btn lg" href="shop.html?h=glass#hero">Claim Your Glass <svg class="ico"><use href="#i-arrow"/></svg></a>
+    <a class="g-story" href="report.html">See a Grade Report <svg class="ico"><use href="#i-arrow"/></svg></a>
+  </div>
+</section>
+<script>
+  // steps light up in order as the process grid scrolls in; the Reveal flips on click
+  (function () {
+    var grid = document.querySelector("[data-fe-grid]"), steps = grid.querySelectorAll("[data-fe-step]");
+    var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var light = function () { steps.forEach(function (s, k) { setTimeout(function () { s.classList.add("in"); }, reduce ? 0 : k * 110); }); };
+    if (reduce || !("IntersectionObserver" in window)) light();
+    else { var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { light(); io.disconnect(); } }, { threshold: .15 }); io.observe(grid); }
+    document.querySelectorAll("[data-reveal]").forEach(function (st) {
+      var btn = st.querySelector("[data-reveal-btn]");
+      btn.addEventListener("click", function () { var on = !st.classList.contains("shown"); st.classList.toggle("shown", on); btn.textContent = on ? "Replay the Reveal" : "Reveal the grade"; });
+    });
+    document.querySelectorAll("[data-decide]").forEach(function (b, k, all) {
+      b.setAttribute("aria-pressed", "false");
+      b.addEventListener("click", function () { all.forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); }); });
+    });
+  })();
+</script>
+</main>
+<footer class="foot" data-sbar-stop>
+  <div class="wrap">
+    <div class="h-uc-band">
+      <div class="h-uc-band-l">
+        <p class="h-uc-by"><span>HGA powered by</span><img class="uc-mark" src="./assets/ucollect.svg" alt="UCollect" width="118" height="22"></p>
+        <p class="h-uc-line">HGA is powered by UCollect. UCollect brings buying, selling and grading under one roof, and it&rsquo;s changing how collectors trust what they own.</p>
+      </div>
+      <a class="btn ghost h-uc-more" href="ucollect.html">Meet UCollect <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="top">
+      <div class="lockup">
+        <img src="./assets/hybrid_grading/hga-hybrid-grading-approach-104fc1af.svg" alt="HGA, Hybrid Grading Approach" width="180" height="55">
+        <p>Graded anonymously to a published standard, with every grade explained and every card housed. All sports and all TCG.</p>
+        <div class="marks">
+          <img src="./assets/hybrid_grading/hga-poly-69885480.svg" alt="HGA Poly" width="72" height="13">
+          <img src="./assets/hybrid_grading/hga-glass-828ebfd2.svg" alt="HGA Glass" width="80" height="13">
+        </div>
+      </div>
+      <div>
+        <h4>Presale</h4>
+        <ul>
+          <li><a href="pass.html">Grading pass</a></li>
+          <li><a href="cart.html">Cart</a></li>
+          <li><a href="follow-every-step.html">How it works</a></li>
+          <li><a href="shop.html#hero">Every possible cost</a></li>
+          <li><a href="faq.html#presale">Presale questions</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Grading</h4>
+        <ul>
+          <li><a href="grading-standards.html">Grading standards</a></li>
+          <li><a href="what-we-grade.html">What we grade</a></li>
+          <li><a href="submitting.html">Submitting and turnaround</a></li>
+          <li><a href="grading-standards.html#scale">The grading scale</a></li>
+          <li><a href="grading-standards.html#housings">HGA Poly and HGA Glass</a></li>
+          <li><a href="report.html">Sample Grade Report</a></li>
+          <li><a href="pop.html">Pop Report</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About HGA</a></li>
+          <li><a href="ucollect.html">About UCollect</a></li>
+          <li><a href="legacy.html">Legacy HGA</a></li>
+          <li><a href="legacy.html#lookup">Cert lookup</a></li>
+          <li><a href="faq.html">All questions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="bottom">
+      <span>&copy; 2026 HGA &middot; Hybrid Grading Approach &middot; A UCollect company &middot; Chandler, Arizona</span>
+      <span><a href="#">Presale terms</a> &middot; <a href="#">Terms</a> &middot; <a href="#">Privacy</a></span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
