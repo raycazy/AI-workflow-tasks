@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  HGA (Hybrid Grading Approach) design system.
+  Source: version I preview build of the HGA site (hga-site/i), computed CSS read with Playwright on 2026-10-30.
+  Rule: document, do not reinvent. Every value here is a measured value from the build, not an idealised one.
+  Companion files: tokens.css and tokens.json in the same folder (same values, machine readable).
+  Workflow: docs/workflows/brand-design-system.md
+-->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HGA Design System</title>
+<link rel="icon" href="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/hga-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- The site self hosts Barlow (400 to 800) and Barlow Semi Condensed (600) as woff2. Google Fonts serves the same families here. -->
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Barlow+Semi+Condensed:wght@600&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     BRAND TOKENS. Measured on the version I build, 2026-10-30.
+     Same values as tokens.css (--brand-*) in this folder.
+     ============================================================ */
+  :root {
+    /* Brand */
+    --ds-accent:        #E62429;                 /* --red: primary button, selection, booked day, HGA column tint */
+    --ds-accent-deep:   #99161C;                 /* --red-2: button hover */
+    --ds-accent-soft:   #FF6B6E;                 /* kickers, table ticks, inline icons, calendar ticket label */
+    --ds-accent-text:   #FF4A4F;                 /* --red-text: red type on dark, risk list icons */
+    --ds-success:       #3CCF7A;                 /* "No upcharge" tier, benefit ticks */
+    --ds-gold-a:        #F5E6B3;                 /* Flawless gradient only */
+    --ds-gold-b:        #C9A24A;
+    --ds-gold-c:        #8C6D39;
+    /* Surface (dark theme only) */
+    --ds-bg:            #0B0A0A;                 /* --paper: page background */
+    --ds-ink:           #0E0E0E;                 /* --ink: announcement bar */
+    --ds-card:          #141212;                 /* --ink-2: cards, tiers, tickets */
+    --ds-surface:       #151212;                 /* --surface: tier radios, inputs on pass */
+    --ds-surface-2:     #1C1818;                 /* --surface-2: form inputs (dark override) */
+    --ds-surface-3:     #1B1818;                 /* --ink-3 */
+    /* Text */
+    --ds-text:          #F6F4F0;                 /* --text: headings, body on dark */
+    --ds-text-2:        #CFC9C2;                 /* --text-2: nav links */
+    --ds-text-72:       rgba(255,255,255,.72);   /* --ink-text: body paragraphs */
+    --ds-text-55:       rgba(255,255,255,.55);   /* labels, hints, "no" column */
+    --ds-muted:         #9A948E;                 /* --muted: eyebrows, captions */
+    --ds-line:          rgba(255,255,255,.12);   /* --ink-line: card borders */
+    --ds-line-2:        rgba(255,255,255,.22);   /* --ink-line-2: input borders */
+    /* Type */
+    --ds-font-body:     "Barlow","Helvetica Neue",Arial,sans-serif;              /* --sans and --disp both resolve to Barlow */
+    --ds-font-lab:      "Barlow Semi Condensed","Barlow",sans-serif;            /* --lab: kickers, hints, size tags */
+    /* Geometry */
+    --ds-radius-sm:     10px;                    /* --r-sm: buttons, pills, calendar days, icon squares */
+    --ds-radius:        14px;                    /* --r: cards, tiers, list rows, tickets */
+    --ds-radius-lg:     22px;                    /* --r-lg: calendar card, split cards */
+    --ds-shadow-btn:    0 10px 26px rgba(230,36,41,.22);
+    --ds-shadow-card:   0 24px 48px rgba(0,0,0,.55);
+    --ds-shadow-glow:   0 30px 80px -30px rgba(230,36,41,.4);
+    --ds-btn-tracking:  .04em;
+    --ds-btn-transform: uppercase;
+    /* Documentation chrome only (not brand values) */
+    --ds-doc-radius:    6px;
+    --ds-maxw:          1040px;
+  }
+
+  /* ============================================================
+     PAGE CHROME. Dark, because the brand is dark only.
+     ============================================================ */
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: var(--ds-font-body); font-size: 16px; line-height: 1.6; color: var(--ds-text-72); background: var(--ds-bg); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+  h1, h2, h3, h4 { font-family: var(--ds-font-body); color: var(--ds-text); margin: 0 0 .4em; }
+  a { color: var(--ds-text); }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .82em; background: var(--ds-card); border: 1px solid var(--ds-line); padding: .1em .4em; border-radius: 4px; color: var(--ds-text); }
+  img { max-width: 100%; }
+  ::selection { background: var(--ds-accent); color: #fff; }
+  :focus-visible { outline: 2px solid var(--ds-accent); outline-offset: 3px; }
+
+  .ds-layout { display: flex; align-items: flex-start; }
+  .ds-nav { position: sticky; top: 0; height: 100vh; width: 248px; flex: 0 0 248px; background: var(--ds-card); padding: 28px 20px; overflow-y: auto; border-right: 1px solid var(--ds-line); }
+  .ds-nav .brandmark { display: flex; align-items: center; gap: 10px; margin: 4px 12px 26px; }
+  .ds-nav .brandmark img { height: 18px; width: auto; }
+  .ds-nav .brandmark span { font-family: var(--ds-font-lab); font-weight: 600; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ds-text-55); }
+  .ds-nav a { display: block; padding: 7px 12px; margin: 1px 0; border-radius: var(--ds-doc-radius); font-size: 14px; font-weight: 500; color: var(--ds-text-2); text-decoration: none; transition: background .15s, color .15s; }
+  .ds-nav a:hover { background: rgba(255,255,255,.06); color: #fff; }
+  .ds-nav a.active { background: var(--ds-text); color: var(--ds-ink); }
+  .ds-nav .nav-label { font-family: var(--ds-font-lab); font-size: 10.5px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--ds-muted); margin: 22px 12px 6px; }
+
+  .ds-main { flex: 1 1 auto; min-width: 0; }
+  .ds-section { padding: 84px clamp(16px, 6vw, 88px); border-bottom: 1px solid var(--ds-line); }
+  .ds-section.alt { background: #0D0C0C; }
+  .ds-inner { max-width: var(--ds-maxw); margin: 0 auto; }
+  .eyebrow { font-family: var(--ds-font-lab); font-weight: 600; font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: var(--ds-accent-soft); margin-bottom: 14px; }
+  .ds-section h2 { font-weight: 800; font-size: clamp(32px, 4vw, 48px); line-height: 1; letter-spacing: -.03em; }
+  .ds-section > .ds-inner > p.lead { font-size: 18px; max-width: 64ch; color: var(--ds-text-72); }
+  .muted { color: var(--ds-muted); }
+  .note { margin: 18px 0 0; padding: 14px 16px; border-radius: var(--ds-radius-sm); border: 1px solid var(--ds-line); background: var(--ds-card); font-size: 14px; color: var(--ds-text-72); }
+  .note b { color: var(--ds-text); }
+  .lbl { font-size: 12px; color: var(--ds-muted); font-family: ui-monospace, Menlo, monospace; margin: 26px 0 8px; }
+  .lbl:first-of-type { margin-top: 8px; }
+
+  /* Cover */
+  .ds-cover { padding: clamp(44px, 7vw, 92px) clamp(16px, 6vw, 88px) 72px; }
+  .cover-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(28px, 5vw, 60px); align-items: center; }
+  .cover-lockup { display: flex; align-items: center; gap: 18px; margin-bottom: 30px; }
+  .cover-lockup img { height: 26px; width: auto; }
+  .cover-lockup .pb { display: flex; align-items: center; gap: 8px; padding-left: 18px; border-left: 1px solid var(--ds-line-2); font-family: var(--ds-font-lab); font-weight: 600; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--ds-text-55); }
+  .cover-lockup .pb img { height: 14px; }
+  .ds-cover h1 { font-weight: 800; font-size: clamp(40px, 5.4vw, 72px); line-height: 1; letter-spacing: -.035em; }
+  .ds-cover h1 b { color: var(--ds-accent-soft); font-weight: 800; }
+  .ds-cover .lead { font-size: 19px; color: var(--ds-text-72); max-width: 56ch; }
+  .ds-cover .meta { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 30px; font-size: 13px; }
+  .ds-cover .meta span { color: var(--ds-muted); }
+  .ds-cover .meta b { color: var(--ds-text); font-weight: 700; }
+  .cover-visual { border-radius: var(--ds-radius-lg); overflow: hidden; aspect-ratio: 4/5; background: var(--ds-card); border: 1px solid var(--ds-line); box-shadow: var(--ds-shadow-card); }
+  .cover-visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* Essence */
+  .is-not { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 26px; }
+  .is-not .card { border: 1px solid var(--ds-line); border-radius: var(--ds-radius); padding: 22px 24px; background: var(--ds-card); }
+  .is-not .card.is { border-color: rgba(230,36,41,.45); background: radial-gradient(ellipse 80% 120% at 0 0, rgba(230,36,41,.16), transparent 70%), var(--ds-card); }
+  .is-not h4 { font-family: var(--ds-font-lab); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 12px; color: var(--ds-text-55); }
+  .is-not .is h4 { color: var(--ds-accent-soft); }
+  .is-not ul { margin: 0; padding-left: 18px; }
+  .is-not li { margin: 7px 0; font-size: 15px; color: var(--ds-text-72); }
+  .is-not li b { color: var(--ds-text); }
+
+  /* Color */
+  .swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; margin-top: 8px; }
+  .swatch { border: 1px solid var(--ds-line); border-radius: var(--ds-radius-sm); overflow: hidden; background: var(--ds-card); }
+  .swatch .chip { height: 92px; border-bottom: 1px solid var(--ds-line); }
+  .swatch .meta { padding: 12px 14px; }
+  .swatch .name { font-weight: 700; font-size: 14px; color: var(--ds-text); }
+  .swatch .hex { font-family: ui-monospace, Menlo, monospace; font-size: 12px; color: var(--ds-text-2); margin: 2px 0 4px; }
+  .swatch .use { font-size: 12px; color: var(--ds-muted); line-height: 1.45; }
+  .group-label { margin-top: 30px; font-family: var(--ds-font-lab); font-weight: 600; font-size: 12px; color: var(--ds-text-55); letter-spacing: .14em; text-transform: uppercase; }
+
+  /* Type */
+  .font-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 30px; }
+  .font-card { border: 1px solid var(--ds-line); border-radius: var(--ds-radius); padding: 24px; background: var(--ds-card); }
+  .font-card .big { font-size: 64px; line-height: 1; margin-bottom: 12px; color: var(--ds-text); letter-spacing: -.03em; }
+  .font-card .nm { font-weight: 700; font-size: 16px; color: var(--ds-text); }
+  .font-card .row { font-size: 13.5px; color: var(--ds-muted); margin-top: 8px; line-height: 1.5; }
+  .type-row { padding: 18px 0; border-bottom: 1px solid var(--ds-line); display: grid; grid-template-columns: 180px 1fr; gap: 24px; align-items: baseline; }
+  .type-row:last-child { border-bottom: 0; }
+  .type-row .tag { font-size: 12px; color: var(--ds-muted); font-family: ui-monospace, Menlo, monospace; line-height: 1.5; }
+  .sp-h1 { font-weight: 800; font-size: 56px; line-height: 1; letter-spacing: -.035em; color: #fff; }
+  .sp-h2 { font-weight: 800; font-size: 48px; line-height: 1; letter-spacing: -.03em; color: var(--ds-text); }
+  .sp-h3 { font-weight: 700; font-size: 22px; line-height: 1.25; color: #fff; }
+  .sp-lede { font-size: 19px; line-height: 1.5; color: rgba(255,255,255,.78); }
+  .sp-body { font-size: 17px; line-height: 1.55; color: var(--ds-text-72); }
+  .sp-small { font-size: 14px; line-height: 1.5; color: var(--ds-text-72); }
+  .sp-kick { font-family: var(--ds-font-lab); font-weight: 600; font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: var(--ds-accent-soft); }
+  .sp-eb { font-weight: 600; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.7); }
+  .sp-lab { font-family: var(--ds-font-lab); font-weight: 600; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ds-text-55); }
+  .sp-th { font-weight: 600; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.5); }
+  .sp-stat { font-weight: 800; font-size: 29px; line-height: 1.05; color: var(--ds-success); }
+
+  /* Logo */
+  .logo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .logo-cell { margin: 0; border: 1px solid var(--ds-line); border-radius: var(--ds-radius); padding: 34px 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; min-height: 150px; background: var(--ds-card); }
+  .logo-cell.on-page { background: var(--ds-bg); }
+  .logo-cell img { max-width: 78%; max-height: 44px; height: auto; }
+  .logo-cell figcaption { font-family: var(--ds-font-lab); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ds-muted); text-align: center; }
+  .logo-note { margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .do, .dont { border: 1px solid var(--ds-line); border-radius: var(--ds-radius); padding: 18px 20px; background: var(--ds-card); font-size: 14.5px; color: var(--ds-text-72); }
+  .do .h, .dont .h { font-family: var(--ds-font-lab); font-weight: 600; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 8px; }
+  .do .h { color: var(--ds-success); }
+  .dont .h { color: var(--ds-accent-text); }
+  .do ul, .dont ul { margin: 0; padding-left: 18px; }
+  .do li, .dont li { margin: 5px 0; }
+  .pb-lockup { display: inline-flex; align-items: center; gap: 10px; }
+  .pb-lockup img { height: 22px; }
+  .pb-lockup span { font-family: var(--ds-font-lab); font-weight: 600; font-size: 8px; letter-spacing: .16em; text-transform: uppercase; color: var(--ds-text-55); display: grid; gap: 3px; padding-left: 12px; border-left: 1px solid var(--ds-line-2); }
+  .pb-lockup span img { height: 11px; }
+
+  /* Buttons (real anatomy from the build) */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; min-height: 52px; padding: 14px 30px; font-family: var(--ds-font-body); font-weight: 700; font-size: 15px; line-height: 1; letter-spacing: var(--ds-btn-tracking); text-transform: var(--ds-btn-transform); color: #fff; background: var(--ds-accent); border: 1px solid var(--ds-accent); border-radius: var(--ds-radius-sm); box-shadow: var(--ds-shadow-btn); text-decoration: none; white-space: nowrap; transition: background .15s, border-color .15s, color .15s, transform .15s; }
+  .btn:hover { background: var(--ds-accent-deep); border-color: var(--ds-accent-deep); }
+  .btn:active { transform: translateY(1px); }
+  .btn .ico { width: 16px; height: 16px; }
+  .btn.ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,.35); box-shadow: none; }
+  .btn.ghost:hover { background: #fff; color: var(--ds-ink); border-color: #fff; }
+  .btn.lg { min-height: 56px; font-size: 15px; }
+  .btn.cta { min-height: 0; padding: 10px 16px; font-size: 12px; }
+  .btn.block { width: 100%; }
+  .btn .price { padding-left: 12px; margin-left: 2px; border-left: 1px solid rgba(255,255,255,.4); letter-spacing: 0; }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin: 0 0 8px; }
+  .tlink { font-weight: 600; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; color: #fff; text-decoration: none; background: linear-gradient(var(--ds-accent), var(--ds-accent)) 0 100%/100% 1.5px no-repeat; padding-bottom: 4px; }
+
+  /* Forms */
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  label.fld { display: block; font-size: 13px; font-weight: 600; color: var(--ds-text); margin-bottom: 7px; }
+  .input, select.input, textarea.input { width: 100%; height: 50px; padding: 0 14px; font-family: var(--ds-font-body); font-size: 15px; color: #fff; background: var(--ds-surface-2); border: 1px solid var(--ds-line-2); border-radius: 0; }
+  textarea.input { height: auto; padding: 12px 14px; }
+  .input::placeholder { color: var(--ds-text-55); }
+  .input:focus { outline: none; border-color: var(--ds-accent); box-shadow: 0 0 0 3px rgba(230,36,41,.12); }
+  .input.invalid { border-color: var(--ds-accent); box-shadow: 0 0 0 3px rgba(230,36,41,.12); }
+  .err { color: var(--ds-accent-text); font-size: 13px; font-weight: 500; margin: 6px 0 0; }
+  .t-radios { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px; }
+  .t-radio { display: grid; gap: 6px; padding: 18px 20px; border-radius: var(--ds-radius); border: 1px solid rgba(255,255,255,.1); background: var(--ds-surface); cursor: pointer; }
+  .t-radio.on { border-color: #fff; box-shadow: inset 0 0 0 1px #fff; }
+  .t-radio .k { font-family: var(--ds-font-lab); font-weight: 600; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--ds-text-55); }
+  .t-radio b { font-size: 19px; color: #fff; }
+  .t-radio p { margin: 0; font-size: 13.5px; color: rgba(255,255,255,.72); }
+  .check-row { display: flex; align-items: center; gap: 10px; margin: 10px 0; font-size: 15px; color: var(--ds-text-72); }
+  .check-row input { accent-color: var(--ds-accent); width: 18px; height: 18px; }
+
+  /* Labels, pills, tags */
+  .badge-row { display: flex; flex-wrap: wrap; gap: 18px 26px; align-items: center; }
+  .eb { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.7); }
+  .eb::before { content: ""; width: 8px; height: 8px; border-radius: 2px; transform: rotate(45deg); background: var(--ds-accent); }
+  .lp-kicker { font-family: var(--ds-font-lab); font-weight: 600; font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: var(--ds-accent-soft); }
+  .pill { display: inline-flex; align-items: center; gap: 8px; font-family: var(--ds-font-lab); font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; padding: 6px 12px; border: 1px solid var(--ds-line-2); background: var(--ds-surface); color: var(--ds-text-2); border-radius: 999px; }
+  .pill.red { background: var(--ds-accent); border-color: var(--ds-accent); color: #fff; }
+  .pill.dark { background: var(--ds-ink); border-color: var(--ds-ink); color: #fff; }
+  .pill.gold { background: linear-gradient(135deg, var(--ds-gold-a) 0%, var(--ds-gold-b) 45%, var(--ds-gold-c) 100%); border-color: transparent; color: #1a1200; }
+  .size-tag { font-family: var(--ds-font-lab); font-weight: 600; font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.85); background: rgba(0,0,0,.55); padding: 3px 7px; border-radius: 6px; }
+  .hint { font-family: var(--ds-font-lab); font-weight: 600; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ds-text-55); }
+  .abar { display: flex; justify-content: center; align-items: center; gap: 16px; height: 36px; padding: 0 16px; background: var(--ds-ink); color: #fff; font-weight: 600; font-size: 12px; letter-spacing: .04em; text-transform: uppercase; border-radius: var(--ds-doc-radius); }
+  .abar a { color: #fff; }
+  .abar .dot { opacity: .5; }
+
+  /* Icons */
+  .ico { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+  .icon-row { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; }
+  .icon-row figure { margin: 0; display: grid; gap: 8px; justify-items: center; width: 72px; }
+  .icon-row .ico { width: 26px; height: 26px; color: var(--ds-text); }
+  .icon-row figcaption { font-family: ui-monospace, Menlo, monospace; font-size: 10.5px; color: var(--ds-muted); }
+  .ico-variants { display: flex; flex-wrap: wrap; gap: 22px 34px; align-items: center; margin-top: 8px; }
+  .ico-variants figure { margin: 0; display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--ds-text-72); }
+  .ico-inline { color: var(--ds-accent-soft); }
+  .ico-circle { width: 30px; height: 30px; padding: 7px; border-radius: 50%; }
+  .ico-circle.ok { background: rgba(60,207,122,.15); color: var(--ds-success); }
+  .ico-circle.risk { background: rgba(230,36,41,.15); color: var(--ds-accent-text); }
+  .ico-square { width: 38px; height: 38px; padding: 9px; border-radius: 10px; background: var(--ds-accent); color: #fff; stroke-width: 1.7; box-shadow: 0 8px 20px -6px rgba(230,36,41,.7); }
+
+  /* Comparison table (hc-tbl, verbatim rules from h.css) */
+  .hc-tbl-wrap { margin: 8px auto 0; overflow-x: auto; }
+  .hc-tbl { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 15.5px; color: var(--ds-text); }
+  .hc-tbl th, .hc-tbl td { padding: 16px 18px; border-bottom: 1px solid rgba(255,255,255,.1); text-align: left; vertical-align: middle; }
+  .hc-tbl thead th { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.5); }
+  .hc-tbl thead .hga { background: rgba(230,36,41,.12); border-radius: var(--ds-radius) var(--ds-radius) 0 0; }
+  .hc-tbl thead .hga img { height: 17px; width: auto; display: block; }
+  .hc-tbl tbody th { font-weight: 700; color: #fff; width: 30%; }
+  .hc-tbl td .ico { width: 18px; height: 18px; margin-right: 10px; vertical-align: -3px; display: inline-block; }
+  .hc-tbl td.no { color: rgba(255,255,255,.55); }
+  .hc-tbl td.no .ico { color: rgba(255,255,255,.35); }
+  .hc-tbl td.yes { color: #fff; font-weight: 600; background: rgba(230,36,41,.07); }
+  .hc-tbl td.yes .ico { color: var(--ds-accent-soft); }
+  .hc-tbl tbody tr:last-child td.yes { border-radius: 0 0 var(--ds-radius) var(--ds-radius); }
+
+  /* Fee tiers (i-fv) */
+  .tiers { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .tier { padding: 20px; border-radius: var(--ds-radius); border: 1px solid var(--ds-line); background: var(--ds-card); display: grid; gap: 6px; align-content: start; }
+  .tier.free { border-color: rgba(60,207,122,.45); }
+  .tier .k { font-family: var(--ds-font-lab); font-weight: 600; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--ds-text-55); }
+  .tier b { font-weight: 800; font-size: 29px; line-height: 1.05; color: #fff; }
+  .tier.free b { color: var(--ds-success); }
+  .tier p { margin: 4px 0 0; font-size: 13.5px; line-height: 1.5; color: var(--ds-text-72); }
+  .tier.glass { border-color: rgba(230,36,41,.55); background: radial-gradient(ellipse 80% 120% at 0 0, rgba(230,36,41,.16), transparent 70%), #141111; }
+
+  /* Benefit and risk list (lp-risks) */
+  .lp-risks { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .lp-risks li { display: grid; grid-template-columns: 34px minmax(0,1fr); gap: 14px; align-items: center; padding: 16px 18px; border-radius: var(--ds-radius); border: 1px solid rgba(255,255,255,.1); background: #121010; }
+  .lp-risks .ico { width: 30px; height: 30px; padding: 7px; border-radius: 50%; background: rgba(230,36,41,.15); color: var(--ds-accent-text); }
+  .lp-risks.ok .ico { background: rgba(60,207,122,.15); color: var(--ds-success); }
+  .lp-risks b { font-size: 17px; color: #fff; display: block; }
+  .lp-risks p { margin: 4px 0 0; font-size: 15px; line-height: 1.5; color: rgba(255,255,255,.72); }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+
+  /* Calendar card (gcal) */
+  .gcal-card { max-width: 440px; padding: 24px; border-radius: var(--ds-radius-lg); border: 1px solid rgba(255,255,255,.14); background: linear-gradient(180deg, #1C1B1B, #121111); box-shadow: var(--ds-shadow-glow); }
+  .gcal-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 16px; }
+  .gcal-top span { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.5); }
+  .gcal-top b { font-size: 18px; font-weight: 800; color: #fff; }
+  .gcal-wd, .gcal-days { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(7, minmax(0,1fr)); gap: 6px; }
+  .gcal-wd li { text-align: center; font-size: 11px; font-weight: 600; color: rgba(255,255,255,.45); padding-bottom: 6px; }
+  .gcal-days li { aspect-ratio: 1; display: grid; place-items: center; border-radius: 10px; font-weight: 700; font-size: 14px; color: #fff; }
+  .gcal-days .open { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.16); }
+  .gcal-days .full { border: 1px dashed rgba(255,255,255,.14); color: rgba(255,255,255,.4); text-decoration: line-through; text-decoration-color: rgba(230,36,41,.75); }
+  .gcal-days .off { color: rgba(255,255,255,.2); }
+  .gcal-days .me { background: var(--ds-accent); box-shadow: 0 0 0 3px rgba(230,36,41,.25), 0 10px 24px -8px rgba(230,36,41,.7); }
+  .gcal-ticket { margin-top: 18px; padding: 14px 16px; border-radius: var(--ds-radius); border: 1px solid rgba(230,36,41,.45); background: rgba(230,36,41,.09); display: grid; gap: 2px; }
+  .gcal-ticket span { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--ds-accent-soft); }
+  .gcal-ticket b { font-size: 18px; font-weight: 800; color: #fff; }
+  .gcal-ticket em { display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; font-style: normal; font-size: 13.5px; color: rgba(255,255,255,.75); }
+  .gcal-ticket .ico { width: 14px; height: 14px; color: var(--ds-accent-soft); }
+
+  /* Slab card (gslab) */
+  .gslab { position: relative; margin: 0; width: min(220px, 82%); filter: drop-shadow(0 28px 36px rgba(0,0,0,.6)); }
+  .gslab img { display: block; width: 100%; height: auto; }
+  .gs-sheen { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.16) 45%, rgba(255,255,255,.04) 52%, transparent 60%); background-size: 250% 100%; background-position: 100% 0; transition: background-position 1.2s ease; }
+  .gslab:hover .gs-sheen { background-position: -40% 0; }
+  .slab-row { display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-end; }
+  .slab-row figure { display: grid; gap: 10px; justify-items: center; }
+  .slab-row figcaption { font-family: var(--ds-font-lab); font-weight: 600; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ds-muted); }
+  .comp-block { margin-top: 34px; }
+  .comp-block h3 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+  .comp-block .where { font-size: 13px; color: var(--ds-muted); margin: 0 0 16px; }
+  .comp-block .where code { font-size: 12px; }
+
+  /* Geometry */
+  .token-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; }
+  .token-card { border: 1px solid var(--ds-line); border-radius: var(--ds-radius-sm); padding: 16px; background: var(--ds-card); }
+  .radius-demo { height: 64px; background: var(--ds-surface-2); border: 1px solid var(--ds-line-2); }
+  .elev-demo { height: 64px; background: var(--ds-card); border: 1px solid var(--ds-line); border-radius: var(--ds-radius); }
+  .token-card .tk { font-family: ui-monospace, Menlo, monospace; font-size: 12px; color: var(--ds-text); margin-top: 12px; }
+  .token-card .tv { font-size: 12px; color: var(--ds-muted); line-height: 1.45; }
+
+  /* Imagery */
+  .img-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; }
+  .img-grid figure { margin: 0; border-radius: var(--ds-radius); overflow: hidden; background: var(--ds-card); border: 1px solid var(--ds-line); display: grid; grid-template-rows: 1fr auto; }
+  .img-grid .ph { aspect-ratio: 4/5; overflow: hidden; }
+  .img-grid img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .img-grid figcaption { padding: 10px 12px; font-size: 12px; color: var(--ds-muted); line-height: 1.45; }
+  .img-grid figcaption b { display: block; color: var(--ds-text-2); font-weight: 600; }
+  .img-grid .ph.contain img { object-fit: contain; padding: 14px; }
+
+  /* Voice */
+  .voice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .voice-grid .col { border: 1px solid var(--ds-line); border-radius: var(--ds-radius); padding: 22px 24px; background: var(--ds-card); }
+  .voice-grid ul { margin: 0; padding-left: 18px; }
+  .voice-grid li { margin: 8px 0; font-size: 15px; color: var(--ds-text-72); }
+  .voice-grid li b { color: var(--ds-text); }
+  .voice-grid .h { font-family: var(--ds-font-lab); font-weight: 600; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ds-accent-soft); margin-bottom: 10px; }
+  .quotes { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin: 8px 0 30px; }
+  .quotes blockquote { margin: 0; padding: 18px 20px; border-radius: var(--ds-radius); border: 1px solid var(--ds-line); background: var(--ds-card); font-size: 16px; line-height: 1.45; color: var(--ds-text); }
+  .quotes blockquote.big { font-weight: 800; font-size: 26px; line-height: 1.05; letter-spacing: -.02em; }
+  .quotes cite { display: block; margin-top: 10px; font-style: normal; font-size: 12px; color: var(--ds-muted); font-family: ui-monospace, Menlo, monospace; }
+
+  /* Footer */
+  .ds-footer { background: #000; color: rgba(255,255,255,.7); padding: 40px clamp(16px,6vw,88px); border-top: 1px solid rgba(255,255,255,.1); font-size: 14px; }
+  .ds-footer .ds-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; align-items: center; }
+  .ds-footer a { color: #fff; }
+  .ds-footer strong { color: #fff; }
+
+  /* Mobile */
+  .ds-menu-btn { display: none; }
+  @media (max-width: 860px) {
+    .ds-nav { position: fixed; transform: translateX(-100%); z-index: 40; transition: transform .25s; width: 260px; flex-basis: 260px; box-shadow: var(--ds-shadow-card); }
+    .ds-nav.open { transform: translateX(0); }
+    .ds-menu-btn { display: inline-flex; position: fixed; top: 14px; right: 14px; z-index: 50; background: var(--ds-text); color: var(--ds-ink); border: 0; border-radius: var(--ds-radius-sm); padding: 11px 16px; font-family: var(--ds-font-body); font-weight: 700; font-size: 12px; letter-spacing: .04em; text-transform: uppercase; cursor: pointer; }
+    .ds-section { padding: 60px 16px; }
+    .form-grid, .voice-grid, .is-not, .logo-note, .font-cards, .cover-grid, .two, .tiers, .t-radios { grid-template-columns: 1fr; }
+    .cover-visual { aspect-ratio: 16/11; max-height: 380px; }
+    .type-row { grid-template-columns: 1fr; gap: 6px; }
+    .sp-h1 { font-size: 40px; }
+    .sp-h2 { font-size: 36px; }
+    .hc-tbl { font-size: 14px; }
+    .hc-tbl th, .hc-tbl td { padding: 12px 10px; }
+    .hc-tbl td .ico { display: none; }
+    .cover-lockup { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol><symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6"/></symbol><symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 6.5V12l3.5 2"/></g></symbol><symbol id="i-layers" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 2.5 7.5 12 12.5l9.5-5z"/><path d="m2.5 12 9.5 5 9.5-5M2.5 16.5l9.5 5 9.5-5"/></g></symbol><symbol id="i-file" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2.5H6.5a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V8z"/><path d="M14 2.5V8h5.5M8.5 12.5h7M8.5 16h7M8.5 9h2.5"/></g></symbol><symbol id="i-camera" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 18.5a2 2 0 0 1-2 2h-15a2 2 0 0 1-2-2v-10a2 2 0 0 1 2-2h3.2l1.8-2.5h5l1.8 2.5h3.2a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="3.6"/></g></symbol><symbol id="i-video" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="13.5" height="12" rx="2"/><path d="m16 10 5.5-3v10L16 14"/></g></symbol><symbol id="i-eyeoff" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17.9 17.9A10 10 0 0 1 12 20C5 20 1.5 12 1.5 12a18 18 0 0 1 4.9-5.9M9.9 4.3A9 9 0 0 1 12 4c7 0 10.5 8 10.5 8a18 18 0 0 1-2.2 3.2m-6.2-1.1a3 3 0 1 1-4.2-4.2"/><path d="m2 2 20 20"/></g></symbol><symbol id="i-chip" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></g></symbol><symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.5s8-3.5 8-10V5.5l-8-3-8 3v6c0 6.5 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></g></symbol><symbol id="i-box" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.7z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></g></symbol><symbol id="i-calendar" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="17" rx="2"/><path d="M16 2.5v4M8 2.5v4M3 10.5h18"/><path d="M8 14.5h2M11 14.5h2M14 14.5h2M8 18h2M11 18h2"/></g></symbol><symbol id="i-truck" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 4.5H15v12H1.5zM15 9h4.5l3 3v4.5H15z"/><circle cx="5.5" cy="18.5" r="2"/><circle cx="18.5" cy="18.5" r="2"/></g></symbol><symbol id="i-gift" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v9.5H4V12M2 7.5h20V12H2zM12 21.5V7.5"/><path d="M12 7.5H7.5a2.5 2.5 0 0 1 0-5C11 2.5 12 7.5 12 7.5zM12 7.5h4.5a2.5 2.5 0 0 0 0-5C13 2.5 12 7.5 12 7.5z"/></g></symbol><symbol id="i-repeat" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></g></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></symbol><symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol><symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol><symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol><symbol id="i-award" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="6"/><path d="m8.5 13.5-1.5 8 5-3 5 3-1.5-8"/></g></symbol><symbol id="i-pen" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></g></symbol><symbol id="i-size" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/><rect x="8.5" y="7.5" width="7" height="9" rx="1"/></g></symbol><symbol id="i-target" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><circle cx="12" cy="12" r="5.5"/><circle cx="12" cy="12" r="1.5"/></g></symbol><symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 018 0v2.5"/><circle cx="12" cy="15.5" r="1.2"/></symbol><symbol id="i-card" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></g></symbol><symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol><symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4.5" width="20" height="15" rx="2"/><path d="m2 7.5 10 6.5 10-6.5"/></g></symbol><symbol id="i-phone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="2" width="13" height="20" rx="2.5"/><path d="M11 18.5h2"/></g></symbol><symbol id="i-image" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></g></symbol><symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10-6.5z"/></symbol><symbol id="i-pause" viewBox="0 0 24 24"><path d="M8.5 5.5v13M15.5 5.5v13"/></symbol><symbol id="i-eye" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 12S5 4.5 12 4.5 22.5 12 22.5 12 19 19.5 12 19.5 1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3.2"/></g></symbol><symbol id="i-database" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5.5" rx="8.5" ry="3"/><path d="M20.5 12c0 1.7-3.8 3-8.5 3s-8.5-1.3-8.5-3"/><path d="M3.5 5.5v13c0 1.7 3.8 3 8.5 3s8.5-1.3 8.5-3v-13"/></g></symbol><symbol id="i-users" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 21v-2a4 4 0 0 0-4-4h-7a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22.5 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></g></symbol><symbol id="i-refresh" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4v6h-6M2 20v-6h6"/><path d="M3.5 9a9 9 0 0 1 14.9-3.4L22 10M2 14l3.6 3.4A9 9 0 0 0 20.5 15"/></g></symbol><symbol id="i-dollar" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1.5v21"/><path d="M17 5.5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></g></symbol><symbol id="i-map" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 6v16l7-4 7 4 7-4V2l-7 4-7-4z"/><path d="M8.5 2v16M15.5 6v16"/></g></symbol><symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 019.5 4a8.5 8.5 0 1010.5 10.5z"/></symbol><symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></symbol><symbol id="i-drag" viewBox="0 0 24 24"><path d="M2 12h20M6 8l-4 4 4 4M18 8l4 4-4 4"/></symbol><symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6.5a3 3 0 016 0V8"/></symbol><symbol id="i-apple" viewBox="0 0 24 24"><path d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.8-3.5.8-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2-1.1 2.8-2.3.9-1.3 1.2-2.5 1.3-2.6-.1 0-2.5-.9-2.5-3.6zM14.2 5.6c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.5 2.7-1.3z" fill="currentColor" stroke="none"/></symbol><symbol id="i-slab" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><rect x="7.5" y="4.5" width="9" height="3" rx=".6" fill="currentColor" stroke="none"/><rect x="8" y="10.5" width="8" height="8.5" rx="1"/></g></symbol><symbol id="i-loupe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7.5"/><path d="m21 21-4.6-4.6M11 8v6M8 11h6"/></g></symbol><symbol id="i-ruler" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m21.3 8.7-6-6L2.7 15.3l6 6z"/><path d="m14 6 2 2M11 9l2 2M8 12l2 2"/></g></symbol><symbol id="i-corner" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8a5 5 0 0 1 5-5h13"/><path d="M8 21v-8a5 5 0 0 1 5-5h8"/></g></symbol><symbol id="i-sparkle" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.2z"/><path d="M19.5 2.5v3M18 4h3"/></g></symbol></svg>
+
+<button class="ds-menu-btn" id="menuBtn">Sections</button>
+
+<div class="ds-layout">
+
+  <aside class="ds-nav" id="dsNav">
+    <div class="brandmark">
+      <img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/hybrid_grading/hga-2700a46b.svg" alt="HGA">
+      <span>Design system</span>
+    </div>
+    <div class="nav-label">Foundations</div>
+    <a href="#cover">Overview</a>
+    <a href="#essence">Brand essence</a>
+    <a href="#color">Color</a>
+    <a href="#type">Typography</a>
+    <a href="#logo">Logo</a>
+    <div class="nav-label">Components</div>
+    <a href="#buttons">Buttons</a>
+    <a href="#forms">Forms</a>
+    <a href="#badges">Labels &amp; pills</a>
+    <a href="#modules">Page modules</a>
+    <div class="nav-label">System</div>
+    <a href="#tokens">Geometry &amp; icons</a>
+    <a href="#imagery">Imagery</a>
+    <a href="#voice">Voice</a>
+  </aside>
+
+  <main class="ds-main">
+
+    <!-- COVER -->
+    <header class="ds-section ds-cover" id="cover">
+      <div class="ds-inner">
+        <div class="cover-grid">
+          <div>
+            <div class="cover-lockup">
+              <img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/hybrid_grading/hga-hybrid-grading-approach-104fc1af.svg" alt="HGA, Hybrid Grading Approach">
+              <span class="pb">Powered by <img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/ucollect.svg" alt="UCollect"></span>
+            </div>
+            <h1>The <b>HGA</b> design system.</h1>
+            <p class="lead">Dark, exact, and built around the slab. Every color, type style and component on this page is measured from the version I build of the HGA site, so new pages, emails and landers stay consistent with what is shipping.</p>
+            <div class="meta">
+              <span>Source: <b>version I preview build</b></span>
+              <span>Captured: <b>2026-10-30</b></span>
+              <span>Method: <b>computed CSS, Playwright</b></span>
+            </div>
+          </div>
+          <div class="cover-visual">
+            <img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/glass-in-hand.webp" alt="HGA Glass slab held in hand">
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ESSENCE -->
+    <section class="ds-section alt" id="essence">
+      <div class="ds-inner">
+        <div class="eyebrow">Brand essence</div>
+        <h2>The future of card grading is here.</h2>
+        <p class="lead">HGA grades blind to a published standard, explains every grade with four subgrades, books a grading date instead of promising a turnaround, and houses the card in metal and glass. Glass carries the positive story (preserve it, display it, pass it down). Transparency carries the relief story (no more guessing where the card is or why it got its grade).</p>
+        <div class="is-not">
+          <div class="card is">
+            <h4>It is</h4>
+            <ul>
+              <li><b>Dark and low key.</b> Near black pages, white type, one red.</li>
+              <li><b>Glass first.</b> Poly is available but quieter.</li>
+              <li><b>Exact.</b> Never a superlative without the mechanism behind it.</li>
+              <li><b>Hobby fluent.</b> Pull, PC, raw, slab, grail, booklet.</li>
+              <li><b>Empowering.</b> "The moment you've been waiting for."</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>It is not</h4>
+            <ul>
+              <li><b>Light themed.</b> The old Paper and Poppins look is retired.</li>
+              <li><b>Promising dates.</b> No business day counts, no guaranteed clock.</li>
+              <li><b>Crypto flavoured.</b> No NFT, NFC or blockchain language. Say RFID.</li>
+              <li><b>Marketplace talk.</b> No UCollect marketplace, Club U or custom labels.</li>
+              <li><b>Loud.</b> No emoji, no exclamation stacks, no shouting headlines.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLOR -->
+    <section class="ds-section" id="color">
+      <div class="ds-inner">
+        <div class="eyebrow">Color</div>
+        <h2>Palette</h2>
+        <p class="lead">One red, two tints of it for type on dark, a green reserved for "free" and "yes", and a stack of near blacks. White is used at four opacities rather than as a set of greys. Gold exists only for the Flawless grade.</p>
+
+        <div class="group-label">Brand</div>
+        <div class="swatch-grid">
+          <div class="swatch"><div class="chip" style="background:#E62429"></div><div class="meta"><div class="name">Red</div><div class="hex">#E62429</div><div class="use">Primary button, booked calendar day, selection, eyebrow marker, HGA column tint at 7 to 12%</div></div></div>
+          <div class="swatch"><div class="chip" style="background:#99161C"></div><div class="meta"><div class="name">Red deep</div><div class="hex">#99161C</div><div class="use">Button hover only</div></div></div>
+          <div class="swatch"><div class="chip" style="background:#FF6B6E"></div><div class="meta"><div class="name">Coral</div><div class="hex">#FF6B6E</div><div class="use">Kickers, table ticks, inline icons, ticket labels. Red type that stays readable on black</div></div></div>
+          <div class="swatch"><div class="chip" style="background:#FF4A4F"></div><div class="meta"><div class="name">Red text</div><div class="hex">#FF4A4F</div><div class="use">Error text, risk list icons</div></div></div>
+          <div class="swatch"><div class="chip" style="background:#3CCF7A"></div><div class="meta"><div class="name">Green</div><div class="hex">#3CCF7A</div><div class="use">"No upcharge" tier, benefit ticks. Never decorative</div></div></div>
+          <div class="swatch"><div class="chip" style="background:linear-gradient(135deg,#F5E6B3 0%,#C9A24A 45%,#8C6D39 100%)"></div><div class="meta"><div class="name">Flawless gold</div><div class="hex">#F5E6B3 / #C9A24A / #8C6D39</div><div class="use">Gradient for the HGA Flawless grade only (grading standards page)</div></div></div>
+        </div>
+
+        <div class="group-label">Surface</div>
+        <div class="swatch-grid">
+          <div class="swatch"><div class="chip" style="background:#0B0A0A"></div><div class="meta"><div class="name">Page</div><div class="hex">#0B0A0A</div><div class="use">Body background on every page</div></div></div>
+          <div class="swatch"><div class="chip" style="background:#0E0E0E"></div><div class="meta"><div class="name">Ink</div><div class="hex">#0E0E0E</div><div class="use">Announcement bar, dark pills, text on white buttons</div></div></div>
+          <div class="swatch"><div class="chip" style="background:#141212"></div><div class="meta"><div class="name">Card</div><div class="hex">#141212</div><div class="use">Cards, fee tiers, tickets, question rows</div></div></div>
+          <div class="swatch"><div class="chip" style="background:#151212"></div><div class="meta"><div class="name">Surface</div><div class="hex">#151212</div><div class="use">Tier radios and inputs on the pass page</div></div></div>
+          <div class="swatch"><div class="chip" style="background:#1C1818"></div><div class="meta"><div class="name">Surface 2</div><div class="hex">#1C1818</div><div class="use">Form inputs, pricing cards</div></div></div>
+          <div class="swatch"><div class="chip" style="background:#000000"></div><div class="meta"><div class="name">Footer</div><div class="hex">#000000</div><div class="use">Site footer with a 10% white top rule</div></div></div>
+        </div>
+
+        <div class="group-label">Text and lines</div>
+        <div class="swatch-grid">
+          <div class="swatch"><div class="chip" style="background:#F6F4F0"></div><div class="meta"><div class="name">Text</div><div class="hex">#F6F4F0</div><div class="use">Headings and body default. Pure #FFFFFF appears on h1, h3 and bold emphasis</div></div></div>
+          <div class="swatch"><div class="chip" style="background:#CFC9C2"></div><div class="meta"><div class="name">Text 2</div><div class="hex">#CFC9C2</div><div class="use">Header nav links, pill text</div></div></div>
+          <div class="swatch"><div class="chip" style="background:rgba(255,255,255,.72)"></div><div class="meta"><div class="name">White 72%</div><div class="hex">rgba(255,255,255,.72)</div><div class="use">Body paragraphs under headings (also .74 and .78 in places)</div></div></div>
+          <div class="swatch"><div class="chip" style="background:rgba(255,255,255,.55)"></div><div class="meta"><div class="name">White 55%</div><div class="hex">rgba(255,255,255,.55)</div><div class="use">Labels, hints, the "grading today" column, table heads at .5</div></div></div>
+          <div class="swatch"><div class="chip" style="background:#9A948E"></div><div class="meta"><div class="name">Muted</div><div class="hex">#9A948E</div><div class="use">Eyebrows on sections, captions</div></div></div>
+          <div class="swatch"><div class="chip" style="background:#0B0A0A;border-bottom:0;display:grid;align-content:center;gap:14px;padding:0 24px"><span style="display:block;border-top:1px solid rgba(255,255,255,.12)"></span><span style="display:block;border-top:1px solid rgba(255,255,255,.22)"></span></div><div class="meta"><div class="name">Lines</div><div class="hex">white .12 / .22</div><div class="use">.12 on card borders and rules, .22 on inputs and the powered by divider, .35 on ghost buttons</div></div></div>
+        </div>
+
+        <div class="note"><b>Drift to clean up.</b> The root tokens are the six surfaces above, but h.css also hardcodes #121010 (26 times), #141111 (5), #0D0C0C (7) and #0B0A0A for the same roles. Treat #141212 and #0B0A0A as canonical and fold the near duplicates into them when the stylesheet is consolidated for the app.</div>
+      </div>
+    </section>
+
+    <!-- TYPOGRAPHY -->
+    <section class="ds-section alt" id="type">
+      <div class="ds-inner">
+        <div class="eyebrow">Typography</div>
+        <h2>Type</h2>
+        <p class="lead">Two faces from one family. Barlow does headings and body, Barlow Semi Condensed does the small uppercase labels. Headings are heavy, tight and sentence case. Nothing is italic.</p>
+        <div class="font-cards">
+          <div class="font-card"><div class="big" style="font-weight:800">Aa</div><div class="nm">Barlow</div><div class="row">400 body, 600 nav and eyebrows, 700 buttons and h3, 800 h1 and h2. Headings track at minus .03 to .035em, line height .9 to 1.</div></div>
+          <div class="font-card"><div class="big" style="font-family:var(--ds-font-lab);font-weight:600;letter-spacing:.06em">Aa</div><div class="nm">Barlow Semi Condensed</div><div class="row">600 only. Kickers, hints, size tags, tier labels. Always uppercase with .14 to .18em tracking.</div></div>
+        </div>
+        <div class="type-row"><div class="tag">h1 / 56px / 800<br>tracking -.035em</div><div class="sp-h1">The future of card grading is here.</div></div>
+        <div class="type-row"><div class="tag">h2 / clamp 36 to 60px / 800<br>tracking -.03em</div><div class="sp-h2">Six things to know.</div></div>
+        <div class="type-row"><div class="tag">h3 / 22px / 700</div><div class="sp-h3">Built for the cards you'll keep for good.</div></div>
+        <div class="type-row"><div class="tag">lede / 19px / 400<br>white .78</div><div class="sp-lede">Meet the only metal and glass housing in the hobby, with a grading date you book and a record you can tap open.</div></div>
+        <div class="type-row"><div class="tag">body / 17px / 400<br>line height 1.55, white .72</div><div class="sp-body">Software assists centering only. Human graders judge corners, edges and surface, blind to the submitter, against a standard we publish.</div></div>
+        <div class="type-row"><div class="tag">small / 14px / 400</div><div class="sp-small">Cards over $10,000 carry a 2% insurance and handling charge, paid at booking.</div></div>
+        <div class="type-row"><div class="tag">stat / 29px / 800</div><div class="sp-stat">No upcharge</div></div>
+        <div class="type-row"><div class="tag">kicker / 13px / 600<br>Semi Condensed, .18em, coral</div><div class="sp-kick">The chip in every label</div></div>
+        <div class="type-row"><div class="tag">eyebrow / 12px / 600<br>Barlow, .08em, white .7</div><div class="sp-eb">Pre sale opens Nov 23</div></div>
+        <div class="type-row"><div class="tag">label / 12px / 600<br>Semi Condensed, .14em, white .55</div><div class="sp-lab">Drag to spin</div></div>
+        <div class="type-row"><div class="tag">table head / 12px / 600<br>.1em, white .5</div><div class="sp-th">Grading today</div></div>
+        <div class="note"><b>Loaded but unused.</b> The build also ships Barlow Condensed 700/800 and JetBrains Mono 500/600 as woff2, and the handoff README still lists Barlow Condensed as the display face. On version I the display variable resolves to Barlow and no element renders either face. Drop the five files, or keep them only if the app's report page brings JetBrains Mono back for codes.</div>
+      </div>
+    </section>
+
+    <!-- LOGO -->
+    <section class="ds-section" id="logo">
+      <div class="ds-inner">
+        <div class="eyebrow">Logo</div>
+        <h2>Logo usage</h2>
+        <p class="lead">Four white SVG lockups from the client plus the UCollect mark. The site is dark only, so the logos are only ever white. The header pairs the HGA wordmark with a small "Powered by UCollect" tag.</p>
+        <div class="logo-grid">
+          <figure class="logo-cell on-page"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/hybrid_grading/hga-2700a46b.svg" alt="HGA wordmark"><figcaption>HGA wordmark. Header, table head, footer</figcaption></figure>
+          <figure class="logo-cell on-page"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/hybrid_grading/hga-hybrid-grading-approach-104fc1af.svg" alt="HGA Hybrid Grading Approach lockup" style="max-height:60px"><figcaption>Full lockup. Covers, documents, footer</figcaption></figure>
+          <figure class="logo-cell on-page"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/hybrid_grading/hga-glass-828ebfd2.svg" alt="HGA Glass"><figcaption>HGA Glass. Product name mark</figcaption></figure>
+          <figure class="logo-cell on-page"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/hybrid_grading/hga-poly-69885480.svg" alt="HGA Poly"><figcaption>HGA Poly. Product name mark</figcaption></figure>
+          <figure class="logo-cell on-page"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/ucollect.svg" alt="UCollect"><figcaption>UCollect. Parent brand, blue #7B9BB3 is theirs, not ours</figcaption></figure>
+          <figure class="logo-cell on-page">
+            <span class="pb-lockup"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/hybrid_grading/hga-2700a46b.svg" alt="HGA"><span>Powered by <img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/ucollect.svg" alt="UCollect"></span></span>
+            <figcaption>Header lockup. 22px wordmark, 13px UCollect, 1px white .22 divider</figcaption>
+          </figure>
+        </div>
+        <p class="muted" style="font-size:12.5px;margin:14px 0 0;">Files: assets/hybrid_grading/hga-*.svg and assets/ucollect.svg in the site repo. All fills are #FFFFFF. The viewBox widths are 1000 (HGA, lockup, Glass) and 903 (Poly), so size by height.</p>
+        <div class="logo-note">
+          <div class="do"><div class="h">Do</div><ul><li>Use white on the page black, card black or a photo with a dark area behind the mark.</li><li>Pair with "Powered by UCollect" in the header and footer.</li><li>Use the Glass and Poly marks as product names in pricing and tier cards.</li><li>If a light surface is unavoidable (print, email on white), apply <code>filter: invert(1)</code> to the whole mark.</li></ul></div>
+          <div class="dont"><div class="h">Do not</div><ul><li>Recolor the mark red or grey, or add a glow or shadow to it.</li><li>Write "Glass pass" or "Poly pass". The housing name stands alone: "Claim Your Glass", "1 × HGA Glass".</li><li>Set the UCollect mark larger than the HGA mark on HGA pages.</li><li>Place the marks on red fills.</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUTTONS -->
+    <section class="ds-section alt" id="buttons">
+      <div class="ds-inner">
+        <div class="eyebrow">Components</div>
+        <h2>Buttons</h2>
+        <p class="lead">One red button with a soft red shadow, one ghost. Barlow 700, uppercase, 15px with .04em tracking, 14px by 30px padding, 52px minimum height, 10px corners. Labels are only ever "Claim Your Glass" or "Claim Your Poly"; the site wide header and bar use "Claim Your Pass".</p>
+        <p class="lbl">Variants</p>
+        <div class="btn-row">
+          <a class="btn" href="#buttons">Claim Your Glass</a>
+          <a class="btn" href="#buttons">Claim Your Glass <span class="price">$200</span></a>
+          <a class="btn ghost" href="#buttons">Meet UCollect</a>
+          <a class="btn" href="#buttons">Claim Your Pass <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+        <p class="lbl">Sizes</p>
+        <div class="btn-row">
+          <a class="btn cta" href="#buttons">Claim Your Pass</a>
+          <a class="btn" href="#buttons">Claim Your Glass</a>
+          <a class="btn lg" href="#buttons">Claim my $200 HGA Glass</a>
+        </div>
+        <p class="lbl">Text link</p>
+        <div class="btn-row">
+          <a class="tlink" href="#buttons">Prefer Poly? $29 a card</a>
+        </div>
+        <div class="note"><b>Anatomy.</b> Shadow <code>0 10px 26px rgba(230,36,41,.22)</code> on the red button only; ghost has none. Hover darkens to #99161C. Active nudges down 1px. The header CTA is the compact variant: 12px type, 10px by 16px padding, no minimum height. Focus is the global ring: 2px red outline, 3px offset. Ghost hover fills white with ink text. On phones under 480px the label wraps and the padding drops to 18px.</div>
+      </div>
+    </section>
+
+    <!-- FORMS -->
+    <section class="ds-section" id="forms">
+      <div class="ds-inner">
+        <div class="eyebrow">Components</div>
+        <h2>Form elements</h2>
+        <p class="lead">Inputs are the one square element in the system: 50px tall, no radius, dark surface with a 22% white border. Tier choices on the pass page are card radios with a white ring when selected.</p>
+        <div class="form-grid">
+          <div><label class="fld" for="f-email">Email address</label><input class="input" id="f-email" type="email" placeholder="you@example.com"></div>
+          <div><label class="fld" for="f-size">Card size</label><select class="input" id="f-size"><option>Standard</option><option>Booklet</option><option>Trifold</option><option>Five fold</option><option>Deck</option></select></div>
+          <div><label class="fld" for="f-bad">Cert number</label><input class="input invalid" id="f-bad" type="text" value="HGA-00"><p class="err">Enter the full certificate number from the label.</p></div>
+          <div><label class="fld" for="f-notes">Notes for the grader</label><textarea class="input" id="f-notes" rows="2" placeholder="Optional"></textarea></div>
+        </div>
+        <p class="lbl">Tier radios (pass page)</p>
+        <div class="t-radios">
+          <label class="t-radio on"><span class="k">HGA Glass</span><b>$200 per card</b><p>Metal and glass. A display piece for the cards you keep.</p></label>
+          <label class="t-radio"><span class="k">Or choose</span><b>HGA Poly, $29</b><p>The same grade, the same record, in a polymer case.</p></label>
+        </div>
+        <div style="margin-top:16px">
+          <label class="check-row"><input type="checkbox" checked> Move me up automatically if an earlier date opens</label>
+        </div>
+        <div class="note"><b>Check before the app build.</b> The input focus rule in hga.css still comes from the light theme (ink border, 8% ink ring), so on dark it is nearly invisible. The red border and 12% red ring shown on the invalid field is the measured error state; use the same geometry in red for focus until the stylesheet is fixed.</div>
+      </div>
+    </section>
+
+    <!-- LABELS -->
+    <section class="ds-section alt" id="badges">
+      <div class="ds-inner">
+        <div class="eyebrow">Components</div>
+        <h2>Labels &amp; pills</h2>
+        <p class="lead">Small uppercase text does most of the signposting. Three distinct voices: the Barlow eyebrow with a rotated red square, the Semi Condensed coral kicker above section headings, and the quiet Semi Condensed label for hints and tags.</p>
+        <p class="lbl">Eyebrow, kicker, label</p>
+        <div class="badge-row">
+          <span class="eb">Pre sale opens Nov 23</span>
+          <span class="lp-kicker">Never before seen in the hobby</span>
+          <span class="hint">Drag to spin</span>
+        </div>
+        <p class="lbl">Pills (grading standards, pass, legacy pages)</p>
+        <div class="badge-row">
+          <span class="pill">Pre sale</span>
+          <span class="pill red">Glass only</span>
+          <span class="pill dark">Legacy HGA</span>
+          <span class="pill gold">HGA Flawless</span>
+        </div>
+        <p class="lbl">Size tag (hero sizes card)</p>
+        <div class="badge-row">
+          <span class="size-tag">Booklet</span>
+          <span class="size-tag">Trifold</span>
+          <span class="size-tag">Deck</span>
+        </div>
+        <p class="lbl">Announcement bar</p>
+        <div class="abar">Pre sale opens Nov 23 <span class="dot">·</span> Poly $29 <span class="dot">·</span> Glass $200 <span class="dot">·</span> <a href="#badges">Claim Your Pass</a></div>
+        <div class="note"><b>Measured.</b> Eyebrow: Barlow 600, 12px, .08em, white .7 (muted #9A948E when it sits above a section heading). Kicker: Semi Condensed 600, 13px, .18em, #FF6B6E. Label: Semi Condensed 600, 12px, .14em, white .55. Pill: Semi Condensed 600, 11px, .06em, 6px by 12px padding, 22% white border on #151212. Size tag: 10.5px, 6px corners, black at 55%. Bar: #0E0E0E, 36px tall, Barlow 600, 12px, .04em.</div>
+      </div>
+    </section>
+
+    <!-- PAGE MODULES -->
+    <section class="ds-section" id="modules">
+      <div class="ds-inner">
+        <div class="eyebrow">Components</div>
+        <h2>Page modules</h2>
+        <p class="lead">The blocks the homepage and the thirteen persona landers are built from. New pages should reuse these rather than invent variants: that is the rule the team agreed for HGA templates.</p>
+
+        <div class="comp-block">
+          <h3>Comparison table</h3>
+          <p class="where">Class <code>hc-tbl</code>. Homepage "Here's How We Changed Grading", Glass vs Poly, every lander. Keep the row set and the two column count; the HGA column carries the red tint and the wordmark.</p>
+          <div class="hc-tbl-wrap">
+            <table class="hc-tbl">
+              <thead><tr><td></td><th scope="col">Grading today</th><th scope="col" class="hga"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/hybrid_grading/hga-2700a46b.svg" alt="HGA" width="70" height="17"></th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Why your card got its grade</th><td class="no"><svg class="ico" aria-hidden="true"><use href="#i-x"/></svg>A number, no reasons</td><td class="yes"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Full report and four subgrades, free</td></tr>
+                <tr><th scope="row">Who decides</th><td class="no"><svg class="ico" aria-hidden="true"><use href="#i-x"/></svg>Depends on the grader's day</td><td class="yes"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>One standard, graded blind</td></tr>
+                <tr><th scope="row">When it comes back</th><td class="no"><svg class="ico" aria-hidden="true"><use href="#i-x"/></svg>Estimates that keep moving</td><td class="yes"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>A grading date you book</td></tr>
+                <tr><th scope="row">Proof it's real</th><td class="no"><svg class="ico" aria-hidden="true"><use href="#i-x"/></svg>A printed label</td><td class="yes"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>An RFID chip in the label: tap, open the record</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="comp-block two">
+          <div>
+            <h3>Fee tiers</h3>
+            <p class="where">Class <code>i-fv-tier</code> and <code>i-fv-plan</code>. 14px corners, #141212, 12% border. Green border and green stat for the free tier; red border and red radial wash for the Glass plan.</p>
+            <div class="tiers">
+              <div class="tier free"><span class="k">Card value under $10,000</span><b>No upcharge</b><p>The presale price is the whole price.</p></div>
+              <div class="tier"><span class="k">$10,000 and above</span><b>2% insurance and handling</b><p>Paid at booking.</p></div>
+              <div class="tier glass"><span class="k">HGA Glass</span><b>$200</b><p>Launch price $600. Save $400.</p></div>
+              <div class="tier"><span class="k">HGA Poly</span><b>$29</b><p>Launch price $150. Up to 80% off.</p></div>
+            </div>
+          </div>
+          <div>
+            <h3>Benefit and risk rows</h3>
+            <p class="where">Class <code>lp-risks</code>. 34px icon column, 14px corners, #121010. Red circle for risks and pain, green circle (<code>lpi-ok</code>) for benefits.</p>
+            <ul class="lp-risks ok" style="margin-bottom:12px">
+              <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><div><b>Preserve Your Grails For Generations</b></div></li>
+              <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><div><b>Showcase Every Detail In Stunning Clarity</b></div></li>
+            </ul>
+            <ul class="lp-risks">
+              <li><svg class="ico" aria-hidden="true"><use href="#i-eyeoff"/></svg><div><b>Not knowing where your card is</b><p>Weeks with no update and no one to ask.</p></div></li>
+              <li><svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg><div><b>Estimates that keep moving</b><p>A turnaround that changes every time you check.</p></div></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="comp-block two">
+          <div>
+            <h3>Calendar card</h3>
+            <p class="where">Class <code>gcal-card</code>. 22px corners, vertical gradient #1C1B1B to #121111, 14% border, red glow shadow. Booked day is solid red with a 3px red ring. Full days are dashed and struck through in red.</p>
+            <div class="gcal-card">
+              <div class="gcal-top"><span>HGA Grading Calendar</span><b>February 2027</b></div>
+              <ul class="gcal-wd" aria-hidden="true"><li>M</li><li>T</li><li>W</li><li>T</li><li>F</li><li>S</li><li>S</li></ul>
+              <ol class="gcal-days" aria-hidden="true"><li class="full">1</li><li class="full">2</li><li class="full">3</li><li class="full">4</li><li class="full">5</li><li class="off">6</li><li class="off">7</li><li class="full">8</li><li class="me">9</li><li class="open">10</li><li class="open">11</li><li class="open">12</li><li class="off">13</li><li class="off">14</li><li class="open">15</li><li class="open">16</li><li class="open">17</li><li class="open">18</li><li class="open">19</li><li class="off">20</li><li class="off">21</li></ol>
+              <div class="gcal-ticket"><span>Booked</span><b>Tue, Feb 9, 2027 · 2 Glass</b><em><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Send your cards any time before Feb 9</em></div>
+            </div>
+          </div>
+          <div>
+            <h3>Slab card</h3>
+            <p class="where">Class <code>gslab</code>. A rendered slab with a soft black drop shadow and a diagonal sheen that sweeps on hover. Used in trios on the sports and TCG landers and in the "first five" fan.</p>
+            <div class="slab-row">
+              <figure><div class="gslab"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/glass-ohtani-headliners.webp" alt="Shohei Ohtani graded 10 in HGA Glass"><i class="gs-sheen" aria-hidden="true"></i></div><figcaption>Glass, composite render</figcaption></figure>
+              <figure><div class="gslab" style="width:min(170px,70%)"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/poly-tigers-auto.webp" alt="Poly slab with autograph card"><i class="gs-sheen" aria-hidden="true"></i></div><figcaption>Poly, composite render</figcaption></figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GEOMETRY + ICONS -->
+    <section class="ds-section alt" id="tokens">
+      <div class="ds-inner">
+        <div class="eyebrow">System</div>
+        <h2>Geometry &amp; icons</h2>
+        <p class="lead">Three corner radii, three shadows, one icon style. Borders are always 1px and always a white tint; nothing uses a grey border or a one sided accent stripe.</p>
+        <p class="lbl">Corners</p>
+        <div class="token-grid">
+          <div class="token-card"><div class="radius-demo" style="border-radius:10px"></div><div class="tk">10px (r-sm)</div><div class="tv">Buttons, header CTA, pills (standards page), calendar days, red icon squares</div></div>
+          <div class="token-card"><div class="radius-demo" style="border-radius:14px"></div><div class="tk">14px (r)</div><div class="tv">Cards, fee tiers, list rows, tickets, tier radios, table corner cells</div></div>
+          <div class="token-card"><div class="radius-demo" style="border-radius:22px"></div><div class="tk">22px (r-lg)</div><div class="tv">Calendar card, split cards, the six things deck</div></div>
+          <div class="token-card"><div class="radius-demo" style="border-radius:0"></div><div class="tk">0px</div><div class="tv">Form inputs only</div></div>
+          <div class="token-card"><div class="radius-demo" style="border-radius:50%"></div><div class="tk">50%</div><div class="tv">Icon circles in benefit and risk rows</div></div>
+        </div>
+        <p class="lbl">Elevation</p>
+        <div class="token-grid">
+          <div class="token-card"><div class="elev-demo" style="box-shadow:var(--ds-shadow-btn);background:#E62429;border-color:#E62429;border-radius:10px"></div><div class="tk">Button</div><div class="tv">0 10px 26px rgba(230,36,41,.22)</div></div>
+          <div class="token-card"><div class="elev-demo" style="box-shadow:var(--ds-shadow-card)"></div><div class="tk">Floating card</div><div class="tv">0 24px 48px rgba(0,0,0,.55). Hero sizes card</div></div>
+          <div class="token-card"><div class="elev-demo" style="box-shadow:var(--ds-shadow-glow);border-radius:22px"></div><div class="tk">Red glow</div><div class="tv">0 30px 80px -30px rgba(230,36,41,.4). Calendar card</div></div>
+          <div class="token-card"><div class="elev-demo" style="border:0;background:none;display:grid;place-items:center"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/slabs/items/5425/glass/720.webp" alt="" style="height:64px;width:auto;filter:drop-shadow(0 14px 18px rgba(0,0,0,.6))"></div><div class="tk">Slab</div><div class="tv">drop-shadow(0 28px 36px rgba(0,0,0,.6))</div></div>
+        </div>
+        <div class="note"><b>Off scale values in the build.</b> 12px on lander question rows, 16px on the hero sizes card and the table header corners (h.css uses the literal where g.css uses var(--r)), 6px on size tags, 999px on the old pill rule in hga.css. Snap the first two to 14px when consolidating.</div>
+        <p class="lbl">Icon style</p>
+        <div class="icon-row">
+          <figure><svg class="ico" aria-hidden="true"><use href="#i-calendar"/></svg><figcaption>calendar</figcaption></figure>
+          <figure><svg class="ico" aria-hidden="true"><use href="#i-eye"/></svg><figcaption>eye</figcaption></figure>
+          <figure><svg class="ico" aria-hidden="true"><use href="#i-chip"/></svg><figcaption>chip</figcaption></figure>
+          <figure><svg class="ico" aria-hidden="true"><use href="#i-shield"/></svg><figcaption>shield</figcaption></figure>
+          <figure><svg class="ico" aria-hidden="true"><use href="#i-loupe"/></svg><figcaption>loupe</figcaption></figure>
+          <figure><svg class="ico" aria-hidden="true"><use href="#i-slab"/></svg><figcaption>slab</figcaption></figure>
+          <figure><svg class="ico" aria-hidden="true"><use href="#i-card"/></svg><figcaption>card</figcaption></figure>
+          <figure><svg class="ico" aria-hidden="true"><use href="#i-size"/></svg><figcaption>size</figcaption></figure>
+          <figure><svg class="ico" aria-hidden="true"><use href="#i-layers"/></svg><figcaption>layers</figcaption></figure>
+          <figure><svg class="ico" aria-hidden="true"><use href="#i-lock"/></svg><figcaption>lock</figcaption></figure>
+          <figure><svg class="ico" aria-hidden="true"><use href="#i-truck"/></svg><figcaption>truck</figcaption></figure>
+          <figure><svg class="ico" aria-hidden="true"><use href="#i-box"/></svg><figcaption>box</figcaption></figure>
+          <figure><svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg><figcaption>clock</figcaption></figure>
+          <figure><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><figcaption>check</figcaption></figure>
+          <figure><svg class="ico" aria-hidden="true"><use href="#i-x"/></svg><figcaption>x</figcaption></figure>
+          <figure><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg><figcaption>arrow</figcaption></figure>
+        </div>
+        <p class="lbl">Icon containers</p>
+        <div class="ico-variants">
+          <figure><svg class="ico ico-inline" aria-hidden="true"><use href="#i-check"/></svg><span>Inline, 16 to 18px, coral</span></figure>
+          <figure><svg class="ico ico-circle ok" aria-hidden="true"><use href="#i-check"/></svg><span>30px circle, green 15% fill</span></figure>
+          <figure><svg class="ico ico-circle risk" aria-hidden="true"><use href="#i-eyeoff"/></svg><span>30px circle, red 15% fill</span></figure>
+          <figure><svg class="ico ico-square" aria-hidden="true"><use href="#i-calendar"/></svg><span>38px square, red, 10px corners, glow</span></figure>
+        </div>
+        <div class="note"><b>Icons are one inline SVG sprite</b> at the top of every page, 24 unit viewBox, no fill, currentColor stroke at 2, round caps and joins. Reference with <code>&lt;svg class="ico"&gt;&lt;use href="#i-calendar"/&gt;&lt;/svg&gt;</code>. Plain glyphs only: the earlier set that drew every symbol inside a slab outline was retired on 2026-10-29. No emoji anywhere.</div>
+      </div>
+    </section>
+
+    <!-- IMAGERY -->
+    <section class="ds-section" id="imagery">
+      <div class="ds-inner">
+        <div class="eyebrow">System</div>
+        <h2>Imagery</h2>
+        <p class="lead">Dark, low key, the slab lit from one side with a red or warm rim. Three sources, and the page must be honest about which is which.</p>
+        <div class="group-label">Real assets</div>
+        <div class="img-grid">
+          <figure><div class="ph contain"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/slabs/items/17683/glass/720.webp" alt="HGA Glass slab render"></div><figcaption><b>Glass slab render</b>From the client's 3D viewer. Ohtani, Judge and Gengar are 3D ready; six more as stills.</figcaption></figure>
+          <figure><div class="ph contain"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/slabs/items/13966/clear_case/720.webp" alt="HGA Poly slab render"></div><figcaption><b>Poly slab render</b>Static render used on the Poly first landers.</figcaption></figure>
+          <figure><div class="ph contain"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/hga/glass_front-f7fd82f9.webp" alt="HGA Glass case front texture"></div><figcaption><b>Case and label textures</b>Red label, white bordered grade box, pale cyan holographic edge. Reused as a UI motif.</figcaption></figure>
+        </div>
+        <div class="group-label">Composites (real renders on generated backplates)</div>
+        <div class="img-grid">
+          <figure><div class="ph"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/glass-in-hand.webp" alt="Glass slab in hand"></div><figcaption><b>Glass in hand</b>Hero and cover use. Ohtani Glass render on a generated hand.</figcaption></figure>
+          <figure><div class="ph"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/glass-booklet-dark.webp" alt="Glass booklet slab"></div><figcaption><b>Booklet in Glass</b>Six things deck, sizes section.</figcaption></figure>
+          <figure><div class="ph"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/bench-inspect.webp" alt="Grader inspecting a card"></div><figcaption><b>Bench series</b>Arrival, sleeve, imaging, inspect, software. Process sections.</figcaption></figure>
+          <figure><div class="ph"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/glass-witt-gold.webp" alt="Glass slab with gold card"></div><figcaption><b>Glass, gold card</b>Lander trios.</figcaption></figure>
+        </div>
+        <div class="group-label">Generated (placeholders until the shoot)</div>
+        <div class="img-grid">
+          <figure><div class="ph"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/gen/glass-card.webp" alt="Gloved hands holding a Glass slab"></div><figcaption><b>Gloved hands</b>Glass lander. Labelled "Sample" where it appears.</figcaption></figure>
+          <figure><div class="ph"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/gen/display-shelf.webp" alt="Slabs on a display shelf"></div><figcaption><b>Display shelf</b>Collector story sections.</figcaption></figure>
+          <figure><div class="ph"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/gen/chip-tap.webp" alt="Phone tapping a slab label"></div><figcaption><b>Chip tap</b>Transparency sections.</figcaption></figure>
+          <figure><div class="ph"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/gen/macro-corner.webp" alt="Macro of a card corner"></div><figcaption><b>Macro set</b>Corner, edge, surface. Grading standards.</figcaption></figure>
+        </div>
+        <div class="note"><b>Direction for the real shoot.</b> Black or charcoal sweep, one key light raking across the glass, a red or warm rim on the metal edge, slab at a slight angle so the label and the holographic edge both read. Macro of corners and edges through the glass. Hands, shelves and stadium scenes should replace the generated set one for one; the CRM media library holds DSC03361 to DSC03435 Glass photos plus PHOTOS and RENDERS folders that have not been exported yet.</div>
+      </div>
+    </section>
+
+    <!-- VOICE -->
+    <section class="ds-section alt" id="voice">
+      <div class="ds-inner">
+        <div class="eyebrow">System</div>
+        <h2>Voice &amp; copy</h2>
+        <p class="lead">Calm, exact, transparent. The client's house rules: never a superlative without the mechanism behind it, never a number we would not publish, never a promise before it is deliverable. Headlines are short sentences with a full stop. Lines below are verbatim from the build.</p>
+        <div class="quotes">
+          <blockquote class="big">The future of card grading is here.<cite>homepage h1</cite></blockquote>
+          <blockquote class="big">Claim Your Glass. Save $400.<cite>offer h2</cite></blockquote>
+          <blockquote class="big">Every slab carries its own record.<cite>chip section h2</cite></blockquote>
+          <blockquote>"Four subgrades on the label, so I can see exactly why it got the grade it did."<cite>Danielle R., reviews strip</cite></blockquote>
+          <blockquote>"My best cards finally look like they belong on a shelf."<cite>Chris M., reviews strip</cite></blockquote>
+          <blockquote>"Finally something better than plastic."<cite>Ryan G., reviews strip</cite></blockquote>
+        </div>
+        <div class="voice-grid">
+          <div class="col">
+            <div class="h">Say</div>
+            <ul>
+              <li><b>Pass</b>, never slot. "Claim Your Glass", "your presale pass".</li>
+              <li><b>Glass</b> and <b>Poly</b> stand alone as housing names. "1 × HGA Glass", not "Glass pass".</li>
+              <li><b>RFID</b>, "the chip in the label", "tap, open the record".</li>
+              <li><b>A grading date you book.</b> Cards back within 30 days of that date.</li>
+              <li><b>Save $400</b> for Glass. <b>Up to 80% off</b> is true for Poly only.</li>
+              <li><b>Pre sale</b> as two words. Reviews as first name plus last initial.</li>
+              <li>Hobby language: pull, PC, raw, slab, grail, booklet, penny sleeve, toploader.</li>
+            </ul>
+          </div>
+          <div class="col">
+            <div class="h">Never</div>
+            <ul>
+              <li>Turnaround promises: 15 or 30 business days, "guaranteed", a daily late credit.</li>
+              <li>NFT, NFC, blockchain, "patented", UV protection, impact resistant.</li>
+              <li>UCollect marketplace, Club U, custom labels, resale value claims.</li>
+              <li>"Glass box", "black box", "slot".</li>
+              <li>Em dashes, en dashes or hyphenated compounds in our own copy. Joshua's approved copy keeps its punctuation as written.</li>
+              <li>Exclamation stacks, three word fragment chains, anticipating objections.</li>
+              <li>Emoji, in copy or as icons.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="ds-footer">
+      <div class="ds-inner">
+        <div>
+          <strong>HGA Design System</strong>
+          <div>Measured from the version I preview build on 2026-10-30. Companion files: tokens.css and tokens.json.</div>
+        </div>
+        <div>Built by Yamu Media. <a href="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/index.html">View the build</a></div>
+      </div>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+  var btn = document.getElementById('menuBtn');
+  var nav = document.getElementById('dsNav');
+  btn.addEventListener('click', function(){ nav.classList.toggle('open'); });
+  nav.addEventListener('click', function(e){ if(e.target.tagName === 'A') nav.classList.remove('open'); });
+  var links = [].slice.call(document.querySelectorAll('.ds-nav a'));
+  var map = {};
+  links.forEach(function(a){ var id = a.getAttribute('href').slice(1); map[id] = a; });
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){
+        links.forEach(function(a){ a.classList.remove('active'); });
+        if(map[en.target.id]) map[en.target.id].classList.add('active');
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  document.querySelectorAll('.ds-section, .ds-cover').forEach(function(s){ if(s.id) obs.observe(s); });
+</script>
+
+</body>
+</html>
