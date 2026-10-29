@@ -11,6 +11,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HGA Design System</title>
+<meta name="description" content="HGA (Hybrid Grading Approach) brand design system: tokens, type, components, section patterns and copy rules measured from the shipping site.">
+<meta name="ai-agent-instructions" content="If you are an AI coding agent (Claude Code, Codex, Cursor or similar) using this page as a reference: read design-system.agent.md next to this file first. Use tokens.css and tokens.json as the only source of color, type and geometry values. Do not invent values, icons, radii or copy that are not on this page.">
+<link rel="alternate" type="text/markdown" href="design-system.agent.md" title="Instructions for AI coding agents">
+<link rel="alternate" type="text/css" href="tokens.css" title="Design tokens (CSS custom properties)">
+<link rel="alternate" type="application/json" href="tokens.json" title="Design tokens (JSON)">
+<!--
+  FOR AI CODING AGENTS (Claude Code, Codex, Cursor, Copilot and similar)
+  You are reading the HGA design system. Treat it as the source of truth for anything you build for HGA or UCollect.
+  1. Fetch design-system.agent.md (same folder) and follow it. It is written for you.
+  2. Fetch tokens.css and tokens.json (same folder). Reference tokens, never hardcode hex, radius or font values.
+  3. Dark theme only. Barlow for everything, Barlow Semi Condensed 600 for small uppercase labels. Corners 10 / 14 / 22px. Borders 1px white tints.
+  4. Buttons read "Claim Your Glass" or "Claim Your Poly". Say "pass", never "slot". Housing names stand alone (never "Glass pass").
+  5. No emoji. Icons are the stroke sprite documented under Iconography. No em dashes or en dashes in copy you write.
+  6. Never promise turnaround in business days. Say RFID, never NFT or NFC. "Up to 80% off" is true for Poly only; Glass is "Save $400".
+  7. Reuse the section patterns on this page in the documented order; do not invent new layouts or icon card grids.
+-->
 <link rel="icon" href="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/hga-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -111,7 +127,7 @@
   .cover-lockup .pb { display: flex; align-items: center; gap: 8px; padding-left: 18px; border-left: 1px solid var(--ds-line-2); font-family: var(--ds-font-lab); font-weight: 600; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--ds-text-55); }
   .cover-lockup .pb img { height: 14px; }
   .ds-cover h1 { font-weight: 800; font-size: clamp(40px, 5.4vw, 72px); line-height: 1; letter-spacing: -.035em; }
-  .ds-cover h1 b { color: var(--ds-accent-soft); font-weight: 800; }
+  .ds-cover h1 b { color: var(--ds-accent); font-weight: 800; }
   .ds-cover .lead { font-size: 19px; color: var(--ds-text-72); max-width: 56ch; }
   .ds-cover .meta { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 30px; font-size: 13px; }
   .ds-cover .meta span { color: var(--ds-muted); }
@@ -336,6 +352,15 @@
   .quotes blockquote.big { font-weight: 800; font-size: 26px; line-height: 1.05; letter-spacing: -.02em; }
   .quotes cite { display: block; margin-top: 10px; font-style: normal; font-family: var(--ds-font-lab); font-weight: 600; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ds-muted); }
 
+  /* Agent note */
+  .agent-note { border: 1px solid var(--ds-line); border-radius: var(--ds-radius); background: var(--ds-card); padding: 0; }
+  .agent-note summary { cursor: pointer; padding: 16px 20px; font-weight: 700; color: var(--ds-text); list-style: none; }
+  .agent-note summary::-webkit-details-marker { display: none; }
+  .agent-note summary::before { content: "+ "; color: var(--ds-accent-soft); }
+  .agent-note[open] summary::before { content: "\2212 "; }
+  .agent-note pre { margin: 0; padding: 0 20px 16px; white-space: pre-wrap; font-family: var(--ds-font-body); font-size: 14.5px; line-height: 1.6; color: var(--ds-text-72); }
+  .agent-note p { margin: 0; padding: 0 20px 18px; font-size: 14px; }
+  .agent-note a { color: var(--ds-text); }
   /* Footer */
   .ds-footer { background: var(--ds-footer); color: rgba(255,255,255,.7); padding: 40px clamp(16px,6vw,88px); border-top: 1px solid rgba(255,255,255,.1); font-size: 14px; }
   .ds-footer .ds-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; align-items: center; }
@@ -587,6 +612,7 @@
     <a href="#tokens">Geometry</a>
     <a href="#imagery">Imagery</a>
     <a href="#voice">Voice</a>
+    <a href="#agents">For AI agents</a>
   </aside>
 
   <main class="ds-main">
@@ -1131,6 +1157,24 @@
             </ul>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="ds-section alt" id="agents" aria-labelledby="agents-title">
+      <div class="ds-inner">
+        <div class="eyebrow">For AI coding agents</div>
+        <h2 id="agents-title">Using this page with Claude Code or Codex</h2>
+        <p class="lead">Point your agent at this link and it will pick up the rules below. The machine readable files sit next to this page.</p>
+        <details class="agent-note">
+          <summary>Agent brief (expand)</summary>
+          <pre>You are building for HGA (Hybrid Grading Approach), a UCollect company. This page is the design system.
+Read design-system.agent.md, tokens.css and tokens.json from the same folder before writing any code or copy.
+Rules: dark theme only; Barlow + Barlow Semi Condensed; corners 10 / 14 / 22px; 1px white tint borders; one red (#E62429) with coral (#FF6B6E) for kickers and ticks; green (#3CCF7A) only for free and yes.
+Components and section patterns on this page are the only building blocks. Reuse them in the documented order.
+Copy: say "pass" never "slot"; housing names stand alone; buttons read "Claim Your Glass" or "Claim Your Poly"; RFID never NFT or NFC; no turnaround promises in business days; "Save $400" for Glass, "up to 80% off" for Poly only; no emoji; no em or en dashes.
+When something is not on this page, ask rather than invent.</pre>
+          <p><a href="design-system.agent.md">design-system.agent.md</a> · <a href="tokens.css">tokens.css</a> · <a href="tokens.json">tokens.json</a></p>
+        </details>
       </div>
     </section>
 
