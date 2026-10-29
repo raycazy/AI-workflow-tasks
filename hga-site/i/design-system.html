@@ -342,6 +342,186 @@
   .ds-footer a { color: #fff; }
   .ds-footer strong { color: #fff; }
 
+  /* Iconography */
+  .ico-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 10px; }
+  .ico-grid figure { margin: 0; display: grid; gap: 8px; justify-items: center; padding: 16px 8px 12px; border: 1px solid var(--ds-line); border-radius: var(--ds-radius-sm); background: var(--ds-card); }
+  .ico-grid .ico { width: 24px; height: 24px; color: var(--ds-text); }
+  .ico-grid figcaption { font-family: var(--ds-font-lab); font-weight: 600; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ds-muted); text-align: center; }
+  .ico-sizes { display: flex; flex-wrap: wrap; gap: 26px; align-items: flex-end; }
+  .ico-sizes figure { margin: 0; display: grid; gap: 8px; justify-items: center; }
+  .ico-sizes figcaption { font-family: var(--ds-font-lab); font-weight: 600; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ds-muted); }
+  .ico-sizes .s16 { width: 16px; height: 16px; color: var(--ds-accent-soft); }
+  .ico-sizes .s18 { width: 18px; height: 18px; color: var(--ds-accent-soft); stroke-width: 2.2; }
+  .ico-sizes .s20 { width: 20px; height: 20px; color: var(--ds-accent); stroke-width: 1.6; }
+  .ico-sizes .s24 { width: 24px; height: 24px; color: var(--ds-text); }
+  .ico-ctx { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; }
+  .ico-ctx figure { margin: 0; padding: 16px 18px; border: 1px solid var(--ds-line); border-radius: var(--ds-radius); background: var(--ds-card); display: grid; gap: 10px; }
+  .ico-ctx figcaption { font-size: 12.5px; color: var(--ds-muted); }
+  .ico-ctx .demo { display: flex; align-items: center; gap: 10px; color: var(--ds-text); font-size: 15px; }
+  .ico-ctx .demo b { color: #fff; }
+
+  /* Section patterns */
+  .sx { margin-top: 30px; }
+  .sx h3 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+  .sx .meta { font-size: 13px; color: var(--ds-muted); margin: 0 0 14px; line-height: 1.55; }
+  .sx .meta b { color: var(--ds-text-2); font-weight: 600; }
+  .sx .meta code { font-size: 12px; }
+  .frame { border: 1px solid var(--ds-line); border-radius: var(--ds-radius-lg); background: var(--ds-bg); overflow: hidden; padding: clamp(28px, 4vw, 56px) clamp(20px, 3vw, 44px); }
+  .frame.tight { padding: 0; }
+  .frame .h2 { font-weight: 800; font-size: clamp(30px, 3.6vw, 48px); line-height: 1; letter-spacing: -.03em; color: var(--ds-text); margin: 0; }
+  .frame .h2 .red { color: var(--ds-accent); }
+  .frame .lede { font-size: clamp(16px, 1.3vw, 19px); line-height: 1.5; color: rgba(255,255,255,.78); margin: 0; }
+  .frame .eb { margin: 0; }
+  .frame .red { color: var(--ds-accent); }
+  .frame .center { text-align: center; }
+  .frame .center .h2 { margin-inline: auto; }
+  .frame .center .lede { margin-inline: auto; max-width: 48em; }
+  .frame .arrow { width: 16px; height: 16px; }
+  .hero-alt { display: inline-flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 600; color: rgba(255,255,255,.75); text-decoration: underline; text-underline-offset: 5px; text-decoration-color: rgba(255,255,255,.3); padding: 4px 8px; }
+  .hero-alt .ico { width: 14px; height: 14px; }
+  /* hero */
+  .hc2-grid { display: grid; grid-template-columns: minmax(0,.88fr) minmax(0,1.12fr); gap: clamp(20px, 3vw, 48px); align-items: center; }
+  .hc2-text { display: grid; justify-items: start; gap: 16px; min-width: 0; }
+  .hc2-text .h1 { font-weight: 800; font-size: clamp(34px, 3.4vw, 50px); line-height: 1; letter-spacing: -.035em; color: #fff; margin: 0; }
+  .hc2-text .h1 .red { color: var(--ds-accent); }
+  .hc2-buy { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; margin-top: 4px; }
+  .hc2-pts { list-style: none; margin: 2px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 14px; color: rgba(255,255,255,.75); }
+  .hc2-pts li { display: flex; align-items: center; gap: 8px; }
+  .hc2-pts .ico { width: 20px; height: 20px; color: var(--ds-accent); stroke-width: 1.6; }
+  .h-vis { position: relative; display: grid; place-items: center; min-height: 320px; }
+  .h-vis::before { content: ""; position: absolute; inset: 10% 20% 0; background: radial-gradient(ellipse 60% 60% at 50% 60%, rgba(230,36,41,.22), transparent 70%); }
+  .h-vis .gslab { width: min(230px, 60%); position: relative; }
+  .h-vis .hint { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); display: inline-flex; gap: 6px; align-items: center; }
+  .h-vis .hint .ico { width: 14px; height: 14px; }
+  /* reviews strip */
+  .rvs-set { list-style: none; margin: 0; padding: 0; display: flex; gap: 14px; overflow: hidden; }
+  .rvs-set li { display: flex; align-items: baseline; gap: 14px; flex: none; padding: 16px 22px; border: 1px solid rgba(255,255,255,.1); border-radius: var(--ds-radius); background: var(--ds-card); }
+  .rvs-set blockquote { margin: 0; font-size: 16px; font-weight: 600; color: #fff; white-space: nowrap; }
+  .rvs-set cite { font-style: normal; font-size: 13px; color: var(--ds-text-55); white-space: nowrap; }
+  /* story */
+  .lp-two { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
+  .lp-copy { display: grid; gap: 16px; justify-items: start; }
+  .lp-copy p.body { margin: 0; font-size: 17px; line-height: 1.6; color: rgba(255,255,255,.74); }
+  .lp-photo { position: relative; margin: 0; border-radius: var(--ds-radius-lg); overflow: hidden; border: 1px solid rgba(255,255,255,.12); }
+  .lp-photo img { display: block; width: 100%; aspect-ratio: 4/3.4; object-fit: cover; }
+  .lp-photo figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 22px 18px; background: linear-gradient(180deg, transparent, rgba(0,0,0,.8)); font-weight: 600; color: #fff; }
+  /* pillars */
+  .g-pillars { margin-top: clamp(24px, 3vw, 40px); display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: clamp(12px, 1.6vw, 18px); }
+  .g-pillar { position: relative; margin: 0; border-radius: var(--ds-radius-lg); overflow: hidden; border: 1px solid rgba(255,255,255,.1); aspect-ratio: 4/5; display: flex; align-items: flex-end; background: var(--ds-card); }
+  .g-pillar > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .g-pillar > div { position: relative; padding: 22px; background: linear-gradient(180deg, transparent, rgba(0,0,0,.85)); width: 100%; display: grid; gap: 6px; }
+  .g-pillar-k { font-family: var(--ds-font-lab); font-weight: 600; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--ds-accent-soft); }
+  .g-pillar h3 { margin: 0; font-size: 20px; font-weight: 700; line-height: 1.2; color: #fff; }
+  .cta-row { display: flex; justify-content: center; margin-top: clamp(24px, 3vw, 36px); }
+  /* offer */
+  .hm-plan { max-width: 920px; margin: clamp(24px, 3vw, 36px) auto 0; display: grid; grid-template-columns: minmax(0,.7fr) minmax(0,1.3fr); gap: clamp(20px, 3vw, 40px); align-items: center; padding: clamp(20px, 3vw, 36px); border-radius: var(--ds-radius-lg); border: 1px solid rgba(230,36,41,.55); background: radial-gradient(ellipse 80% 120% at 0 0, rgba(230,36,41,.16), transparent 70%), #141111; }
+  .hm-plan > img { width: min(100%, 220px); height: auto; justify-self: center; filter: var(--ds-shadow-slab); }
+  .hm-plan > div { display: grid; gap: 12px; justify-items: start; }
+  .hm-plan .mark { height: 20px; width: auto; }
+  .g-plan-h { margin: 0; font-weight: 800; font-size: clamp(22px, 2.4vw, 32px); line-height: 1; letter-spacing: -.01em; color: #fff; }
+  .hm-price { margin: 0; display: flex; align-items: baseline; gap: 10px; color: rgba(255,255,255,.7); }
+  .hm-price b { font-weight: 800; font-size: 44px; line-height: 1; color: #fff; letter-spacing: -.02em; }
+  .hm-price s { font-size: 20px; color: rgba(255,255,255,.45); }
+  .g-ticks { list-style: none; margin: 4px 0 6px; padding: 0; display: grid; gap: 7px; font-size: 15px; color: rgba(255,255,255,.75); }
+  .g-ticks li { display: flex; align-items: center; gap: 10px; }
+  .g-ticks .ico { width: 18px; height: 18px; color: var(--ds-accent-soft); stroke-width: 2.2; }
+  .g-poly-row { max-width: 900px; margin: 14px auto 0; display: flex; align-items: center; gap: 16px; padding: 14px 20px; border-radius: var(--ds-radius); border: 1px solid rgba(255,255,255,.12); background: var(--ds-card); color: rgba(255,255,255,.72); font-size: 15px; text-decoration: none; }
+  .g-poly-row > img { width: 30px; height: auto; flex: none; }
+  .g-poly-row b { color: #fff; }
+  .g-poly-go { margin-left: auto; flex: none; display: inline-flex; align-items: center; gap: 8px; font-weight: 700; color: #fff; }
+  .g-poly-go .ico { width: 16px; height: 16px; color: var(--ds-accent-soft); }
+  .hm-fine { margin: 18px auto 0; text-align: center; font-size: 14px; color: rgba(255,255,255,.6); }
+  /* calendar section */
+  .cal-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,.9fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
+  .cal-grid > div:first-child { display: grid; gap: 18px; justify-items: start; }
+  .cal-grid .gcal-card { max-width: none; }
+  /* process */
+  .proc-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.05fr); gap: clamp(24px, 4.5vw, 72px); align-items: center; }
+  .proc-grid > div:first-child { display: grid; gap: 14px; }
+  .pr-list { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 4px; }
+  .pr-step { position: relative; display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: start; padding: 16px 16px 18px; border: 1px solid transparent; border-radius: var(--ds-radius); color: #fff; }
+  .pr-step.on { background: var(--ds-card); border-color: rgba(255,255,255,.1); }
+  .pr-n { font-weight: 800; font-size: 24px; line-height: 1; color: rgba(255,255,255,.3); }
+  .pr-step.on .pr-n { color: var(--ds-accent); }
+  .pr-t { display: grid; gap: 4px; }
+  .pr-t b { font-size: 19px; line-height: 1.2; color: rgba(255,255,255,.62); }
+  .pr-step.on .pr-t b { color: #fff; }
+  .pr-t span { font-size: 14.5px; line-height: 1.5; color: rgba(255,255,255,.7); }
+  .pr-step .pr-t span { display: none; }
+  .pr-step.on .pr-t span { display: block; }
+  .pr-bar { position: absolute; left: 16px; right: 16px; bottom: 0; height: 2px; background: rgba(255,255,255,.06); }
+  .pr-bar::after { content: ""; position: absolute; inset: 0; background: var(--ds-accent); transform: scaleX(.42); transform-origin: left; }
+  .proc-photo { border-radius: var(--ds-radius-lg); overflow: hidden; border: 1px solid var(--ds-line); aspect-ratio: 4/3.2; }
+  .proc-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  /* faq */
+  .faq-grid { display: grid; grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); gap: clamp(24px, 5vw, 72px); align-items: start; }
+  .faq-grid > div:first-child { display: grid; gap: 14px; justify-items: start; }
+  .faq-list details { border-top: 1px solid rgba(255,255,255,.1); }
+  .faq-list details:last-child { border-bottom: 1px solid rgba(255,255,255,.1); }
+  .faq-list summary { cursor: pointer; list-style: none; padding: 18px 0; font-size: 17px; font-weight: 700; color: #fff; display: flex; justify-content: space-between; gap: 16px; }
+  .faq-list summary::-webkit-details-marker { display: none; }
+  .faq-list summary::after { content: "+"; color: var(--ds-accent-soft); font-weight: 400; font-size: 22px; line-height: 1; }
+  .faq-list details[open] summary::after { content: "\2212"; }
+  .faq-list p { margin: 0 0 18px; font-size: 15.5px; line-height: 1.55; color: rgba(255,255,255,.72); max-width: 60ch; }
+  /* final */
+  .g-final { text-align: center; display: grid; justify-items: center; gap: 16px; padding: clamp(40px, 6vw, 80px) clamp(20px, 3vw, 44px); background: radial-gradient(ellipse 60% 70% at 50% 100%, rgba(230,36,41,.2), transparent 70%), var(--ds-bg); }
+  .g-final .h2 { max-width: 15em; }
+  /* header + sticky */
+  .hdr-demo { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 20px; height: 65px; background: rgba(11,10,10,.78); border-bottom: 1px solid rgba(255,255,255,.1); }
+  .hdr-demo .pb-lockup img:first-child { height: 22px; }
+  .hdr-demo nav { display: flex; gap: 4px; }
+  .hdr-demo nav a { padding: 8px 12px; font-weight: 600; font-size: 14px; letter-spacing: .03em; color: var(--ds-text-2); text-decoration: none; }
+  .sticky-demo { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 16px; background: rgba(10,8,8,.94); border-top: 1px solid rgba(255,255,255,.12); }
+  .sticky-demo .t { display: grid; gap: 2px; }
+  .sticky-demo .t b { font-size: 15px; color: #fff; }
+  .sticky-demo .t span { font-size: 12.5px; color: var(--ds-text-55); }
+
+  /* Banners */
+  .bn-stack { display: grid; gap: 14px; }
+  .bn { position: relative; overflow: hidden; border-radius: var(--ds-radius-lg); border: 1px solid rgba(255,255,255,.12); background: var(--ds-card); }
+  .bn-promo { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: clamp(20px, 3vw, 40px); align-items: center; padding: clamp(22px, 3vw, 36px) clamp(22px, 3vw, 40px); background: radial-gradient(ellipse 70% 120% at 100% 50%, rgba(230,36,41,.22), transparent 60%), var(--ds-card); }
+  .bn-promo .copy { display: grid; gap: 12px; justify-items: start; }
+  .bn-promo .h { margin: 0; font-weight: 800; font-size: clamp(26px, 3vw, 40px); line-height: 1; letter-spacing: -.03em; color: #fff; }
+  .bn-promo .h .red { color: var(--ds-accent); }
+  .bn-promo .sub { margin: 0; font-size: 15.5px; color: rgba(255,255,255,.74); max-width: 44ch; }
+  .bn-promo .slab { width: clamp(90px, 12vw, 150px); height: auto; filter: var(--ds-shadow-slab); }
+  .bn-date { display: grid; grid-template-columns: auto minmax(0,1fr) auto; gap: clamp(18px, 3vw, 40px); align-items: center; padding: 22px clamp(22px, 3vw, 40px); border-color: rgba(230,36,41,.45); background: rgba(230,36,41,.08); }
+  .bn-date .big { font-weight: 800; font-size: clamp(34px, 4vw, 56px); line-height: .95; letter-spacing: -.03em; color: var(--ds-accent); }
+  .bn-date .big small { display: block; font-family: var(--ds-font-lab); font-weight: 600; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--ds-accent-soft); margin-bottom: 8px; }
+  .bn-date .mid { display: grid; gap: 6px; }
+  .bn-date .mid b { font-size: 20px; color: #fff; }
+  .bn-date .mid span { font-size: 14.5px; color: rgba(255,255,255,.72); }
+  .bn-split { display: grid; grid-template-columns: 1fr 1fr; }
+  .bn-split > div { padding: clamp(22px, 3vw, 32px); display: grid; gap: 10px; justify-items: start; align-content: start; }
+  .bn-split > div + div { border-left: 1px solid rgba(255,255,255,.1); }
+  .bn-split .mark { height: 18px; width: auto; }
+  .bn-split .price { font-weight: 800; font-size: 34px; line-height: 1; color: #fff; letter-spacing: -.02em; }
+  .bn-split .price s { font-size: 16px; color: rgba(255,255,255,.45); margin-left: 8px; letter-spacing: 0; }
+  .bn-split p { margin: 0; font-size: 14.5px; color: rgba(255,255,255,.72); }
+  .bn-split .glass { background: radial-gradient(ellipse 80% 120% at 0 0, rgba(230,36,41,.16), transparent 70%), #141111; }
+  .ad-grid { display: grid; grid-template-columns: 1.9fr 1fr .56fr; gap: 14px; align-items: start; }
+  .ad { container-type: inline-size; position: relative; overflow: hidden; border-radius: var(--ds-radius-sm); border: 1px solid rgba(255,255,255,.12); background: radial-gradient(ellipse 70% 60% at 50% 100%, rgba(230,36,41,.25), transparent 70%), #0B0A0A; color: #fff; display: grid; }
+  .ad.land { aspect-ratio: 1200/628; grid-template-columns: 1fr auto; align-items: center; padding: 7%; gap: 5%; }
+  .ad.sq { aspect-ratio: 1; padding: 7%; grid-template-rows: auto 1fr auto; }
+  .ad.story { aspect-ratio: 1080/1920; padding: 16% 9%; grid-template-rows: auto 1fr auto; }
+  .ad .k { font-family: var(--ds-font-lab); font-weight: 600; font-size: 2.6cqw; letter-spacing: .16em; text-transform: uppercase; color: var(--ds-accent-soft); }
+  .ad.sq .k, .ad.story .k { font-size: 4.2cqw; }
+  .ad .h { margin: .6cqw 0 0; font-weight: 800; font-size: 6.4cqw; line-height: .95; letter-spacing: -.03em; }
+  .ad.sq .h { font-size: 11cqw; }
+  .ad.story .h { font-size: 14cqw; }
+  .ad .h .red { color: var(--ds-accent); }
+  .ad .p { margin: 1.6cqw 0 0; font-size: 2.8cqw; color: rgba(255,255,255,.75); }
+  .ad.sq .p, .ad.story .p { font-size: 4.6cqw; }
+  .ad .cta { display: inline-flex; align-items: center; justify-content: center; margin-top: 2.6cqw; padding: 1.6cqw 3cqw; border-radius: 1.2cqw; background: var(--ds-accent); color: #fff; font-weight: 700; font-size: 2.4cqw; letter-spacing: .04em; text-transform: uppercase; }
+  .ad.sq .cta, .ad.story .cta { font-size: 4cqw; padding: 2.8cqw 5cqw; border-radius: 2cqw; justify-self: start; }
+  .ad .slab { height: 46cqw; width: auto; filter: drop-shadow(0 2cqw 3cqw rgba(0,0,0,.6)); }
+  .ad.sq .slab { height: 54cqw; justify-self: center; align-self: center; }
+  .ad.story .slab { height: 74cqw; justify-self: center; align-self: center; }
+  .ad .logos { display: flex; align-items: center; gap: 2cqw; }
+  .ad .logos img { height: 3.4cqw; width: auto; }
+  .ad.sq .logos img, .ad.story .logos img { height: 5.5cqw; }
+  .ad-cap { font-family: var(--ds-font-lab); font-weight: 600; font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ds-muted); margin-top: 8px; }
+
   /* Mobile */
   .ds-menu-btn { display: none; }
   @media (max-width: 860px) {
@@ -354,7 +534,17 @@
     .btn, .btn.lg { white-space: normal; text-align: center; line-height: 1.25; padding-inline: 18px; }
     .ds-menu-btn { display: inline-flex; position: fixed; top: 14px; right: 14px; z-index: 50; background: var(--ds-text); color: var(--ds-ink); border: 0; border-radius: var(--ds-radius-sm); padding: 11px 16px; font-family: var(--ds-font-body); font-weight: 700; font-size: 12px; letter-spacing: .04em; text-transform: uppercase; cursor: pointer; }
     .ds-section { padding: 60px 16px; }
-    .form-grid, .voice-grid, .is-not, .logo-note, .font-cards, .cover-grid, .two, .tiers, .t-radios { grid-template-columns: 1fr; }
+    .form-grid, .voice-grid, .is-not, .logo-note, .font-cards, .cover-grid, .two, .tiers, .t-radios, .hc2-grid, .lp-two, .g-pillars, .hm-plan, .cal-grid, .proc-grid, .faq-grid, .bn-split, .bn-promo { grid-template-columns: 1fr; }
+    .ad-grid { grid-template-columns: 1fr 1fr; }
+    .ad.story { grid-column: 1 / -1; max-width: 220px; margin: 0 auto; width: 100%; }
+    .bn-date { grid-template-columns: 1fr; }
+    .bn-promo .slab { display: none; }
+    .hdr-demo nav { display: none; }
+    .rvs-set { flex-wrap: wrap; }
+    .rvs-set li, .rvs-set blockquote { white-space: normal; flex: 1 1 100%; }
+    .frame { border-radius: var(--ds-radius); }
+    .g-pillar { aspect-ratio: 16/10; }
+    .bn-split > div + div { border-left: 0; border-top: 1px solid rgba(255,255,255,.1); }
     .cover-visual { aspect-ratio: 16/11; max-height: 380px; }
     .type-row { grid-template-columns: 1fr; gap: 6px; }
     .sp-h1 { font-size: 40px; }
@@ -385,13 +575,16 @@
     <a href="#color">Color</a>
     <a href="#type">Typography</a>
     <a href="#logo">Logo</a>
+    <a href="#iconography">Iconography</a>
     <div class="nav-label">Components</div>
     <a href="#buttons">Buttons</a>
     <a href="#forms">Forms</a>
     <a href="#badges">Labels &amp; tags</a>
     <a href="#modules">Page modules</a>
+    <a href="#sections">Section patterns</a>
+    <a href="#banners">Banners</a>
     <div class="nav-label">System</div>
-    <a href="#tokens">Geometry &amp; icons</a>
+    <a href="#tokens">Geometry</a>
     <a href="#imagery">Imagery</a>
     <a href="#voice">Voice</a>
   </aside>
@@ -544,8 +737,43 @@
       </div>
     </section>
 
+
+    <!-- ICONOGRAPHY -->
+    <section class="ds-section alt" id="iconography">
+      <div class="ds-inner">
+        <div class="eyebrow">Iconography</div>
+        <h2>Icons</h2>
+        <p class="lead">One inline SVG sprite on every page: 47 plain stroke glyphs on a 24 unit grid, no fills, currentColor at stroke 2 with round caps and joins. The symbol takes its color from the text around it, so the same glyph is coral inline, white in a list and red inside a square.</p>
+        <p class="lbl">The full set (47)</p>
+        <div class="ico-grid"><figure><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><figcaption>check</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg><figcaption>arrow</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg><figcaption>clock</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-layers"/></svg><figcaption>layers</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-file"/></svg><figcaption>file</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-camera"/></svg><figcaption>camera</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-video"/></svg><figcaption>video</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-eyeoff"/></svg><figcaption>eyeoff</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-chip"/></svg><figcaption>chip</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-shield"/></svg><figcaption>shield</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-box"/></svg><figcaption>box</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-calendar"/></svg><figcaption>calendar</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-truck"/></svg><figcaption>truck</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-gift"/></svg><figcaption>gift</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-repeat"/></svg><figcaption>repeat</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-search"/></svg><figcaption>search</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-menu"/></svg><figcaption>menu</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg><figcaption>plus</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-minus"/></svg><figcaption>minus</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-award"/></svg><figcaption>award</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-pen"/></svg><figcaption>pen</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-size"/></svg><figcaption>size</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-target"/></svg><figcaption>target</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-lock"/></svg><figcaption>lock</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-card"/></svg><figcaption>card</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-x"/></svg><figcaption>x</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg><figcaption>mail</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg><figcaption>phone</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-image"/></svg><figcaption>image</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-play"/></svg><figcaption>play</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-pause"/></svg><figcaption>pause</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-eye"/></svg><figcaption>eye</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-database"/></svg><figcaption>database</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-users"/></svg><figcaption>users</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-refresh"/></svg><figcaption>refresh</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-dollar"/></svg><figcaption>dollar</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-map"/></svg><figcaption>map</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-moon"/></svg><figcaption>moon</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-sun"/></svg><figcaption>sun</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-drag"/></svg><figcaption>drag</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-bag"/></svg><figcaption>bag</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-apple"/></svg><figcaption>apple</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-slab"/></svg><figcaption>slab</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-loupe"/></svg><figcaption>loupe</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-ruler"/></svg><figcaption>ruler</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-corner"/></svg><figcaption>corner</figcaption></figure><figure><svg class="ico" aria-hidden="true"><use href="#i-sparkle"/></svg><figcaption>sparkle</figcaption></figure></div>
+        
+        <p class="lbl">Sizes</p>
+        <div class="ico-sizes">
+          <figure><svg class="ico s16" aria-hidden="true"><use href="#i-check"/></svg><figcaption>16 inline</figcaption></figure>
+          <figure><svg class="ico s18" aria-hidden="true"><use href="#i-check"/></svg><figcaption>18 ticks</figcaption></figure>
+          <figure><svg class="ico s20" aria-hidden="true"><use href="#i-calendar"/></svg><figcaption>20 hero points</figcaption></figure>
+          <figure><svg class="ico s24" aria-hidden="true"><use href="#i-calendar"/></svg><figcaption>24 nav</figcaption></figure>
+          <figure><svg class="ico ico-circle ok" aria-hidden="true"><use href="#i-check"/></svg><figcaption>30 circle</figcaption></figure>
+          <figure><svg class="ico ico-square" aria-hidden="true"><use href="#i-calendar"/></svg><figcaption>38 square</figcaption></figure>
+        </div>
+        <p class="lbl">In context</p>
+        <div class="ico-ctx">
+          <figure><div class="demo"><svg class="ico ico-inline" aria-hidden="true"><use href="#i-check"/></svg><span>Four free subgrades</span></div><figcaption>Tick list in the offer card and hero points. Coral, 18px, stroke 2.2.</figcaption></figure>
+          <figure><div class="demo"><svg class="ico s20" style="color:#E62429;stroke-width:1.6" aria-hidden="true"><use href="#i-calendar"/></svg><span>Book the exact date for grading</span></div><figcaption>Hero points. Red, 20px, stroke 1.6.</figcaption></figure>
+          <figure><div class="demo"><svg class="ico ico-circle ok" aria-hidden="true"><use href="#i-check"/></svg><b>Preserve Your Grails</b></div><figcaption>Benefit rows. 30px circle, green 15% fill.</figcaption></figure>
+          <figure><div class="demo"><svg class="ico ico-circle risk" aria-hidden="true"><use href="#i-eyeoff"/></svg><b>Not knowing where your card is</b></div><figcaption>Risk rows. 30px circle, red 15% fill.</figcaption></figure>
+          <figure><div class="demo"><svg class="ico ico-square" aria-hidden="true"><use href="#i-chip"/></svg><b>The chip in every label</b></div><figcaption>Six things and feature leads. 38px red square, 10px corners, glow.</figcaption></figure>
+          <figure><div class="demo"><a class="btn cta" href="#iconography">Claim Your Pass <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a></div><figcaption>Arrow inside buttons, 16px, inherits white.</figcaption></figure>
+        </div>
+        <div class="logo-note">
+          <div class="do"><div class="h">Do</div><ul><li>Reference the sprite: <code>&lt;svg class="ico"&gt;&lt;use href="#i-chip"/&gt;&lt;/svg&gt;</code>. Add new symbols to the sprite, not as inline paths.</li><li>Keep stroke 2 at 16 to 24px. Go to 1.6 at 20px in the hero points, 1.7 inside the red square.</li><li>Pair one icon with one short line. The icon names the idea, the text explains it.</li><li>Use check for yes and x for no; the table and the comparison copy depend on that pairing.</li></ul></div>
+          <div class="dont"><div class="h">Do not</div><ul><li>Use emoji, filled icon sets, or two line weights on one page.</li><li>Draw icons inside a slab outline or any container other than the three above.</li><li>Build grids of icon + title + text cards. Feature sections are image led.</li><li>Recolor to grey. Icons are coral, red, green or white.</li></ul></div>
+        </div>
+      </div>
+    </section>
+
     <!-- BUTTONS -->
-    <section class="ds-section alt" id="buttons">
+    <section class="ds-section" id="buttons">
       <div class="ds-inner">
         <div class="eyebrow">Components</div>
         <h2>Buttons</h2>
@@ -572,7 +800,7 @@
     </section>
 
     <!-- FORMS -->
-    <section class="ds-section" id="forms">
+    <section class="ds-section alt" id="forms">
       <div class="ds-inner">
         <div class="eyebrow">Components</div>
         <h2>Form elements</h2>
@@ -596,7 +824,7 @@
     </section>
 
     <!-- LABELS -->
-    <section class="ds-section alt" id="badges">
+    <section class="ds-section" id="badges">
       <div class="ds-inner">
         <div class="eyebrow">Components</div>
         <h2>Labels &amp; tags</h2>
@@ -625,7 +853,7 @@
     </section>
 
     <!-- PAGE MODULES -->
-    <section class="ds-section" id="modules">
+    <section class="ds-section alt" id="modules">
       <div class="ds-inner">
         <div class="eyebrow">Components</div>
         <h2>Page modules</h2>
@@ -695,12 +923,94 @@
       </div>
     </section>
 
-    <!-- GEOMETRY + ICONS -->
+
+    <!-- SECTION PATTERNS -->
+    <section class="ds-section" id="sections">
+      <div class="ds-inner">
+        <div class="eyebrow">Components</div>
+        <h2>Section patterns</h2>
+        <p class="lead">How the modules combine into the sections that ship on the homepage and the landers. Each pattern below is built only from the components on this page. A new page is a new order of these patterns with new copy, not a new layout.</p>
+
+        <div class="sx"><h3>Header and announcement bar</h3><p class="meta"><b>Made of:</b> announcement bar, HGA wordmark with the powered by tag, nav links, compact CTA. <b>Use:</b> every page. Landers drop the nav and keep only the lockup and one button.</p>
+          <div class="frame tight"><div class="abar" style="border-radius:0">Pre sale opens Nov 23 <span class="dot">·</span> Poly $29 <span class="dot">·</span> Glass $200 <span class="dot">·</span> <a href="#sections">Claim Your Pass</a></div>
+            <div class="hdr-demo"><span class="pb-lockup"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/hybrid_grading/hga-2700a46b.svg" alt="HGA"><span>Powered by <img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/ucollect.svg" alt="UCollect"></span></span><nav><a href="#sections">Presale</a><a href="#sections">Grading Standards</a><a href="#sections">Pop Report</a><a href="#sections">UCollect</a></nav><a class="btn cta" href="#sections">Claim Your Pass</a></div></div></div>
+
+        <div class="sx"><h3>Hero</h3><p class="meta"><b>Made of:</b> eyebrow, h1 with one red phrase, lede, primary button plus text link, four icon points, slab on a red lit stage with the drag hint. <b>Use:</b> top of every page. Landers swap only the copy and, for TCG, the slab.</p>
+          <div class="frame"><div class="hc2-grid"><div class="hc2-text"><p class="eb">Presale is live</p><h1 class="h1">The future of card grading <span class="red">is here.</span></h1><p class="lede">Meet the only metal and glass housing in the hobby, tooled to every card size, with a grading date you book.</p><div class="hc2-buy"><a class="btn lg" href="#sections">Claim Your Glass <svg class="ico arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a><a class="hero-alt" href="#sections">or HGA Poly, $29 a card <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a></div><ul class="hc2-pts"><li><svg class="ico" aria-hidden="true"><use href="#i-calendar"/></svg>Book the exact date for grading</li><li><svg class="ico" aria-hidden="true"><use href="#i-chip"/></svg>A chip in every label</li><li><svg class="ico" aria-hidden="true"><use href="#i-award"/></svg>Four free subgrades</li><li><svg class="ico" aria-hidden="true"><use href="#i-eye"/></svg>Live, from delivery to grade</li></ul></div>
+            <div class="h-vis"><div class="gslab"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/glass-ohtani-headliners.webp" alt="HGA Glass slab"><i class="gs-sheen" aria-hidden="true"></i></div><p class="hint"><svg class="ico" aria-hidden="true"><use href="#i-drag"/></svg>Drag to spin</p></div></div></div></div>
+
+        <div class="sx"><h3>Reviews strip</h3><p class="meta"><b>Made of:</b> card rows with a bold quote and first name plus initial, scrolling slowly, paused on hover. <b>Use:</b> directly under the hero on every page. Owners of the quotes are still to be confirmed by the client.</p>
+          <div class="frame" style="padding-block:28px"><ul class="rvs-set"><li><blockquote>"Finally something better than plastic."</blockquote><cite>Ryan G.</cite></li><li><blockquote>"My best cards finally look like they belong on a shelf."</blockquote><cite>Chris M.</cite></li><li><blockquote>"Four subgrades on the label."</blockquote><cite>Danielle R.</cite></li></ul></div></div>
+
+        <div class="sx"><h3>Story, two columns</h3><p class="meta"><b>Made of:</b> kicker, h2, one paragraph, benefit or risk rows, button, sticky photo with a caption gradient. Flip the columns on alternate sections. <b>Use:</b> the persona section on every lander (<code>lp-two</code>).</p>
+          <div class="frame"><div class="lp-two"><div class="lp-copy"><p class="lp-kicker">HGA Glass</p><h2 class="h2">Built for the cards you'll keep for good.</h2><p class="body">Metal and glass instead of plastic, so the card you pass down looks the way it did the day you pulled it.</p><ul class="lp-risks ok"><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><div><b>Preserve Your Grails For Generations</b></div></li><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><div><b>Showcase Every Detail In Stunning Clarity</b></div></li></ul><a class="btn lg" href="#sections">Claim Your Glass <svg class="ico arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></div><figure class="lp-photo"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/glass-booklet-hands.webp" alt="Glass booklet slab in hands"><figcaption>Every size, single to deck.</figcaption></figure></div></div></div>
+
+        <div class="sx"><h3>Three pillars</h3><p class="meta"><b>Made of:</b> centered eyebrow, h2, lede, three image led cards with a label and a short h3, one centered button. <b>Use:</b> the Glass section on the homepage. Image led, never icon cards.</p>
+          <div class="frame"><div class="center" style="display:grid;gap:14px;justify-items:center"><p class="eb">HGA Glass</p><h2 class="h2">Now you can protect your cards with <span class="red">glass and metal.</span></h2></div>
+            <div class="g-pillars"><figure class="g-pillar"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/glass-ohtani-dark.webp" alt=""><div><span class="g-pillar-k">Metal and glass</span><h3>The only housing of its kind in the hobby.</h3></div></figure><figure class="g-pillar"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/glass-booklet-dark.webp" alt=""><div><span class="g-pillar-k">Every size</span><h3>Tooled to every card size, single to deck.</h3></div></figure><figure class="g-pillar"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/glass-witt-dark.webp" alt=""><div><span class="g-pillar-k">Pass it down</span><h3>Built for the cards you'll keep for good.</h3></div></figure></div>
+            <div class="cta-row"><a class="btn lg" href="#sections">Claim Your Glass <svg class="ico arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></div></div></div>
+
+        <div class="sx"><h3>Comparison</h3><p class="meta"><b>Made of:</b> centered h2, the comparison table, one centered button. <b>Use:</b> "Here's How We Changed Grading" on the homepage and the why section on every lander. The table itself is documented under Page modules.</p></div>
+
+        <div class="sx"><h3>Calendar</h3><p class="meta"><b>Made of:</b> h2 with a red phrase, lede, button on the left; the calendar card on the right. Stacks on phones. <b>Use:</b> the dates story, always above the offer.</p>
+          <div class="frame"><div class="cal-grid"><div><h2 class="h2">Always on time and <span class="red">on your terms.</span></h2><p class="lede">The HGA Grading Calendar gives you a real date. You pick the day, we grade on it.</p><a class="btn lg" href="#sections">Claim Your Pass <svg class="ico arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+            <div class="gcal-card"><div class="gcal-top"><span>HGA Grading Calendar</span><b>February 2027</b></div><ul class="gcal-wd" aria-hidden="true"><li>M</li><li>T</li><li>W</li><li>T</li><li>F</li><li>S</li><li>S</li></ul><ol class="gcal-days" aria-hidden="true"><li class="full">1</li><li class="full">2</li><li class="full">3</li><li class="full">4</li><li class="full">5</li><li class="off">6</li><li class="off">7</li><li class="full">8</li><li class="me">9</li><li class="open">10</li><li class="open">11</li><li class="open">12</li><li class="off">13</li><li class="off">14</li></ol><div class="gcal-ticket"><span>Booked</span><b>Tue, Feb 9, 2027 · 2 Glass</b><em><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Send your cards any time before Feb 9</em></div></div></div></div></div>
+
+        <div class="sx"><h3>Offer</h3><p class="meta"><b>Made of:</b> h2 with the saving in red, the Glass plan card (slab, product mark, line, price with strike, three ticks, button), the Poly row, fine print. <b>Use:</b> once per page, after the proof sections. Poly first pages flip the plan and the row.</p>
+          <div class="frame"><div class="center"><h2 class="h2">Claim Your Glass. <span class="red">Save $400.</span></h2></div>
+            <article class="hm-plan"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/slabs/items/5425/glass/720.webp" alt="HGA Glass slab"><div><img class="mark" src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/hybrid_grading/hga-glass-828ebfd2.svg" alt="HGA Glass"><p class="g-plan-h">The only metal and glass housing in the hobby.</p><p class="hm-price"><b>$200</b> <s>$600</s> <span>a card, presale</span></p><ul class="g-ticks"><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Four subgrades and a full grading report</li><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Book your date from Jan 18, 2027</li><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Live in your portal, from delivery to the Reveal</li></ul><a class="btn lg" href="#sections">Claim Your Glass <svg class="ico arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></div></article>
+            <a class="g-poly-row" href="#sections"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/slabs/items/13966/clear_case/720.webp" alt=""><span><b>Prefer Poly?</b> HGA Poly is $29 a card during presale (launch $150), with the same grade and the same record.</span><span class="g-poly-go">Claim Your Poly <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+            <p class="hm-fine">Presale pricing ends Jan 31. Presale passes cover standard size cards.</p></div></div>
+
+        <div class="sx"><h3>Process steps</h3><p class="meta"><b>Made of:</b> eyebrow, h2, a numbered step list where the active step opens and carries a red progress bar; photo on the right. <b>Use:</b> the portal story. Explanatory, so it sits below the offer.</p>
+          <div class="frame"><div class="proc-grid"><div><p class="eb">Your portal</p><h2 class="h2">Live, from delivery <span class="red">to grade.</span></h2><ol class="pr-list"><li class="pr-step on"><span class="pr-n">01</span><span class="pr-t"><b>Received</b><span>Your box is scanned and photographed on arrival.</span></span><i class="pr-bar" aria-hidden="true"></i></li><li class="pr-step"><span class="pr-n">02</span><span class="pr-t"><b>Unboxed on camera</b></span></li><li class="pr-step"><span class="pr-n">03</span><span class="pr-t"><b>Imaged and identified</b></span></li><li class="pr-step"><span class="pr-n">04</span><span class="pr-t"><b>Graded blind</b></span></li></ol></div><div class="proc-photo"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/bench-arrival.webp" alt="Cards arriving at the grading bench"></div></div></div></div>
+
+        <div class="sx"><h3>FAQ</h3><p class="meta"><b>Made of:</b> eyebrow, h2, lede and a text link on the left; a hairline list of questions on the right, answers open on demand. <b>Use:</b> last content section before the final CTA. No boxed accordions.</p>
+          <div class="frame"><div class="faq-grid"><div><p class="eb">FAQ</p><h2 class="h2">Before you <span class="red">claim.</span></h2><p class="lede">Quick answers to what collectors ask most.</p><a class="hero-alt" href="#sections">See all questions <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+            <div class="faq-list"><details open><summary>When can I book my grading date?</summary><p>Booking opens January 18, 2027. We email you an invite to book, and the calendar shows the next available day.</p></details><details><summary>When do I send my cards?</summary><p>Any time before your booked grading date.</p></details><details><summary>Does the presale cover booklets and decks?</summary><p>Presale passes cover standard size cards. Booklets, folds and decks are booked separately.</p></details></div></div></div></div>
+
+        <div class="sx"><h3>Final CTA</h3><p class="meta"><b>Made of:</b> centered h2 ending in red, lede, large button, text link, a red glow rising from the bottom edge. <b>Use:</b> the last section on every page.</p>
+          <div class="frame tight"><div class="g-final"><h2 class="h2">Are you ready for the most transparent grading experience <span class="red">in the hobby?</span></h2><p class="lede">Lock in your presale pricing today.</p><a class="btn lg" href="#sections">Claim Your Glass <svg class="ico arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a><a class="hero-alt" href="#sections">Where we've been <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a></div></div></div>
+
+        <div class="sx"><h3>Sticky bar</h3><p class="meta"><b>Made of:</b> product line and price on the left, compact button on the right, on a 94% black bar with a hairline. <b>Use:</b> landers only, appears after the hero scrolls out.</p>
+          <div class="frame tight"><div class="sticky-demo"><div class="t"><b>HGA Glass, $200 a card</b><span>Presale pricing ends Jan 31</span></div><a class="btn cta" href="#sections">Claim Your Glass</a></div></div></div>
+      </div>
+    </section>
+
+    <!-- BANNERS -->
+    <section class="ds-section alt" id="banners">
+      <div class="ds-inner">
+        <div class="eyebrow">Components</div>
+        <h2>Banners</h2>
+        <p class="lead">Promotional surfaces built from the same tokens: the site bar, in page banners for the presale, and ad formats for paid and social. Dark ground, one red phrase, one slab, one button.</p>
+        <p class="lbl">Announcement bar variants</p>
+        <div class="bn-stack">
+          <div class="abar">Pre sale opens Nov 23 <span class="dot">·</span> Poly $29 <span class="dot">·</span> Glass $200 <span class="dot">·</span> <a href="#banners">Claim Your Pass</a></div>
+          <div class="abar" style="background:var(--ds-accent)">Presale is live <span class="dot">·</span> Glass $200, save $400 <span class="dot">·</span> <a href="#banners">Claim Your Glass</a></div>
+          <div class="abar" style="background:var(--ds-card);border:1px solid var(--ds-line)">Booking opens Jan 18 <span class="dot">·</span> Presale pricing ends Jan 31 <span class="dot">·</span> <a href="#banners">Book your date</a></div>
+        </div>
+        <p class="lbl">In page promo</p>
+        <div class="bn-stack">
+          <div class="bn bn-promo"><div class="copy"><p class="lp-kicker">Presale</p><h3 class="h">Claim Your Glass. <span class="red">Save $400.</span></h3><p class="sub">$200 a card during presale, $600 at launch. Book your grading date from Jan 18, 2027.</p><a class="btn" href="#banners">Claim Your Glass <svg class="ico arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></div><img class="slab" src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/slabs/items/5425/glass/720.webp" alt="HGA Glass slab"></div>
+          <div class="bn bn-date"><div class="big"><small>Presale opens</small>Nov 23</div><div class="mid"><b>Something innovative and unique is coming to grading.</b><span>Metal and glass housing, a grading date you book, four free subgrades and a chip in every label.</span></div><a class="btn" href="#banners">Claim Your Pass</a></div>
+          <div class="bn bn-split"><div class="glass"><img class="mark" src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/hybrid_grading/hga-glass-828ebfd2.svg" alt="HGA Glass"><div class="price">$200 <s>$600</s></div><p>The only metal and glass housing in the hobby. Save $400 during presale.</p><a class="btn" href="#banners">Claim Your Glass</a></div><div><img class="mark" src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/hybrid_grading/hga-poly-69885480.svg" alt="HGA Poly"><div class="price">$29 <s>$150</s></div><p>The same grade and the same record in a polymer case. Up to 80% off.</p><a class="btn ghost" href="#banners">Claim Your Poly</a></div></div>
+        </div>
+        <p class="lbl">Ad formats</p>
+        <div class="ad-grid">
+          <div><div class="ad land"><div><div class="k">Presale is live</div><h3 class="h">The future of card grading <span class="red">is here.</span></h3><p class="p">Glass $200 a card. Save $400 until Jan 31.</p><span class="cta">Claim Your Glass</span></div><img class="slab" src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/glass-ohtani-headliners.webp" alt=""></div><p class="ad-cap">1200 × 628 landscape</p></div>
+          <div><div class="ad sq"><div class="logos"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/hybrid_grading/hga-2700a46b.svg" alt="HGA"></div><img class="slab" src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/slabs/items/5425/glass/720.webp" alt=""><div><div class="k">Save $400</div><h3 class="h">Glass. <span class="red">$200.</span></h3><span class="cta">Claim Your Glass</span></div></div><p class="ad-cap">1080 × 1080 square</p></div>
+          <div><div class="ad story"><div class="logos"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/hybrid_grading/hga-2700a46b.svg" alt="HGA"></div><img class="slab" src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/glass-ohtani-headliners.webp" alt=""><div><div class="k">Presale</div><h3 class="h">Book your <span class="red">date.</span></h3><p class="p">Glass $200. Poly $29.</p><span class="cta">Claim Your Pass</span></div></div><p class="ad-cap">1080 × 1920 story</p></div>
+        </div>
+        <div class="note"><b>Rules.</b> Red type is the headline's last phrase or the price, never the whole line. One slab per banner, lit from below with the red radial. Wordmark white, top left, with UCollect only on the landscape format. Copy comes from the approved lines on this page; no new claims, no countdown unless the launch time is confirmed. Export ads at 2x from these frames.</div>
+      </div>
+    </section>
+
+    <!-- GEOMETRY -->
     <section class="ds-section alt" id="tokens">
       <div class="ds-inner">
         <div class="eyebrow">System</div>
-        <h2>Geometry &amp; icons</h2>
-        <p class="lead">Three corner radii, three shadows, one icon style. Borders are always 1px and always a white tint; nothing uses a grey border or a one sided accent stripe.</p>
+        <h2>Geometry</h2>
+        <p class="lead">Three corner radii and three shadows. Borders are always 1px and always a white tint; nothing uses a grey border or a one sided accent stripe.</p>
         <p class="lbl">Corners</p>
         <div class="token-grid">
           <div class="token-card"><div class="radius-demo" style="border-radius:10px"></div><div class="tk">10px (r-sm)</div><div class="tv">Buttons, header CTA, pills (standards page), calendar days, red icon squares</div></div>
@@ -717,33 +1027,6 @@
           <div class="token-card"><div class="elev-demo" style="border:0;background:none;display:grid;place-items:center"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/slabs/items/5425/glass/720.webp" alt="" style="height:64px;width:auto;filter:drop-shadow(0 14px 18px rgba(0,0,0,.6))"></div><div class="tk">Slab</div><div class="tv">drop-shadow(0 28px 36px rgba(0,0,0,.6))</div></div>
         </div>
         <div class="note"><b>Off scale values in the build.</b> 12px on lander question rows, 16px on the hero sizes card and the table header corners (h.css uses the literal where g.css uses var(--r)), 6px on size tags. The 999px pill rule in hga.css is overridden to 10px by v2.css, so it can be deleted. Snap the first two to 14px when consolidating.</div>
-        <p class="lbl">Icon style</p>
-        <div class="icon-row">
-          <figure><svg class="ico" aria-hidden="true"><use href="#i-calendar"/></svg><figcaption>calendar</figcaption></figure>
-          <figure><svg class="ico" aria-hidden="true"><use href="#i-eye"/></svg><figcaption>eye</figcaption></figure>
-          <figure><svg class="ico" aria-hidden="true"><use href="#i-chip"/></svg><figcaption>chip</figcaption></figure>
-          <figure><svg class="ico" aria-hidden="true"><use href="#i-shield"/></svg><figcaption>shield</figcaption></figure>
-          <figure><svg class="ico" aria-hidden="true"><use href="#i-loupe"/></svg><figcaption>loupe</figcaption></figure>
-          <figure><svg class="ico" aria-hidden="true"><use href="#i-slab"/></svg><figcaption>slab</figcaption></figure>
-          <figure><svg class="ico" aria-hidden="true"><use href="#i-card"/></svg><figcaption>card</figcaption></figure>
-          <figure><svg class="ico" aria-hidden="true"><use href="#i-size"/></svg><figcaption>size</figcaption></figure>
-          <figure><svg class="ico" aria-hidden="true"><use href="#i-layers"/></svg><figcaption>layers</figcaption></figure>
-          <figure><svg class="ico" aria-hidden="true"><use href="#i-lock"/></svg><figcaption>lock</figcaption></figure>
-          <figure><svg class="ico" aria-hidden="true"><use href="#i-truck"/></svg><figcaption>truck</figcaption></figure>
-          <figure><svg class="ico" aria-hidden="true"><use href="#i-box"/></svg><figcaption>box</figcaption></figure>
-          <figure><svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg><figcaption>clock</figcaption></figure>
-          <figure><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><figcaption>check</figcaption></figure>
-          <figure><svg class="ico" aria-hidden="true"><use href="#i-x"/></svg><figcaption>x</figcaption></figure>
-          <figure><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg><figcaption>arrow</figcaption></figure>
-        </div>
-        <p class="lbl">Icon containers</p>
-        <div class="ico-variants">
-          <figure><svg class="ico ico-inline" aria-hidden="true"><use href="#i-check"/></svg><span>Inline, 16 to 18px, coral</span></figure>
-          <figure><svg class="ico ico-circle ok" aria-hidden="true"><use href="#i-check"/></svg><span>30px circle, green 15% fill</span></figure>
-          <figure><svg class="ico ico-circle risk" aria-hidden="true"><use href="#i-eyeoff"/></svg><span>30px circle, red 15% fill</span></figure>
-          <figure><svg class="ico ico-square" aria-hidden="true"><use href="#i-calendar"/></svg><span>38px square, red, 10px corners, glow</span></figure>
-        </div>
-        <div class="note"><b>Icons are one inline SVG sprite</b> at the top of every page, 24 unit viewBox, no fill, currentColor stroke at 2, round caps and joins. Reference with <code>&lt;svg class="ico"&gt;&lt;use href="#i-calendar"/&gt;&lt;/svg&gt;</code>. Plain glyphs only: the earlier set that drew every symbol inside a slab outline was retired on 2026-10-29. No emoji anywhere.</div>
       </div>
     </section>
 
