@@ -352,6 +352,87 @@
   .quotes blockquote.big { font-weight: 800; font-size: 26px; line-height: 1.05; letter-spacing: -.02em; }
   .quotes cite { display: block; margin-top: 10px; font-style: normal; font-family: var(--ds-font-lab); font-weight: 600; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ds-muted); }
 
+
+  /* Buy box */
+  .bb { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+  .bb-col { display: grid; gap: 14px; }
+  .hopts { display: grid; gap: 10px; }
+  .hopt { position: relative; display: grid; gap: 16px; align-items: center; border: 1px solid var(--ds-line-2); background: var(--ds-surface); border-radius: var(--ds-radius); cursor: pointer; }
+  .hopt-glass { grid-template-columns: 96px 1fr; padding: 18px 20px; border-color: rgba(230,36,41,.6); background: radial-gradient(ellipse 80% 100% at 0 50%, rgba(230,36,41,.16), transparent 70%), var(--ds-card); }
+  .hopt.on { border-color: #fff; box-shadow: inset 0 0 0 1px #fff; }
+  .hopt img.slab { width: 100%; height: auto; filter: drop-shadow(0 18px 22px rgba(0,0,0,.6)); }
+  .ho-txt { display: grid; gap: 6px; padding-right: 60px; }
+  .ho-wm { height: 20px; width: auto; }
+  .ho-d { font-size: 15px; line-height: 1.4; color: rgba(255,255,255,.8); }
+  .ho-p b { font-weight: 800; font-size: 34px; letter-spacing: -.02em; color: #fff; }
+  .ho-p s { font-size: 14px; color: var(--ds-text-35, rgba(255,255,255,.35)); margin-left: 6px; }
+  .ho-tag { position: absolute; left: 20px; bottom: 16px; font-family: var(--ds-font-lab); font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 6px 10px; background: var(--ds-accent); color: #fff; }
+  .hopt::after { content: ""; position: absolute; right: 16px; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--ds-line-2); background: var(--ds-surface-2); }
+  .hopt-glass::after { bottom: 16px; top: auto; background: #fff; box-shadow: inset 0 0 0 4px var(--ds-accent); }
+  .hopt-poly { grid-template-columns: 28px 1fr; padding: 9px 14px; opacity: .82; background: transparent; }
+  .hopt-poly::after { top: 50%; transform: translateY(-50%); width: 16px; height: 16px; }
+  .hopt-poly .ho-txt { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 10px; padding-right: 40px; }
+  .hopt-poly .ho-or { font-size: 13px; color: rgba(255,255,255,.6); }
+  .hopt-poly .ho-wm { height: 12px; }
+  .hopt-poly .ho-p b { font-size: 16px; }
+  .hopt-poly .ho-p s { font-size: 12px; }
+  .hopt-poly img.slab { height: 40px; width: auto; }
+  .buy-inc { margin: 0; font-size: 15px; color: var(--ds-text-72); }
+  .buy-inc b { color: #fff; }
+  .qrow { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .stepper { display: flex; border: 1px solid var(--ds-line-2); border-radius: var(--ds-radius-sm); overflow: hidden; }
+  .stepper button, .stepper span { width: 52px; height: 52px; display: grid; place-items: center; color: #fff; background: transparent; border: 0; font-weight: 700; font-size: 20px; }
+  .stepper span { width: 72px; border-inline: 1px solid var(--ds-line-2); }
+  .quick { display: flex; gap: 10px; }
+  .quick b { width: 52px; height: 52px; display: grid; place-items: center; border: 1px solid var(--ds-line-2); border-radius: var(--ds-radius-sm); font-weight: 700; color: #fff; }
+  .buy-total { background: #000; color: #fff; padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; gap: 12px; border-radius: var(--ds-radius); }
+  .buy-total .k { display: block; font-family: var(--ds-font-lab); font-size: 10.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.55); }
+  .buy-total b.t { font-weight: 800; font-size: 34px; letter-spacing: -.02em; line-height: 1; }
+  .buy-total p { margin: 0; font-size: 13.5px; color: rgba(255,255,255,.75); text-align: right; max-width: 22em; }
+  .buy-alt { text-align: center; }
+  .buy-trust { list-style: none; margin: 0; padding: 18px 0 0; border-top: 1px solid var(--ds-line); display: grid; gap: 12px; }
+  .buy-trust li { display: flex; gap: 12px; font-size: 15px; color: var(--ds-text-72); align-items: flex-start; }
+  .buy-trust .ico { width: 20px; height: 20px; color: var(--ds-accent); flex: none; margin-top: 2px; }
+  .buy-trust b { color: #fff; }
+  .ref { margin: 0; border-radius: var(--ds-radius); overflow: hidden; border: 1px solid var(--ds-line); background: var(--ds-card); }
+  .ref img { display: block; width: 100%; height: auto; }
+  .ref figcaption { padding: 10px 14px; font-size: 12.5px; color: var(--ds-muted); }
+  /* Materials */
+  .mat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .mat { border: 1px solid var(--ds-line); border-radius: var(--ds-radius); background: var(--ds-card); overflow: hidden; display: grid; grid-template-rows: 220px auto; }
+  .mat .demo { position: relative; display: grid; place-items: center; background: var(--ds-bg); overflow: hidden; }
+  .mat .meta { padding: 14px 16px; }
+  .mat .meta b { display: block; color: #fff; font-size: 15px; margin-bottom: 4px; }
+  .mat .meta span { font-size: 12.5px; color: var(--ds-muted); line-height: 1.5; display: block; }
+  .mat .meta code { font-size: 11.5px; }
+  .hc-frame { position: relative; width: 150px; height: 190px; border-radius: 14px; background: linear-gradient(160deg, #1d1d1d 0%, #0a0a0a 55%, #141414 100%); box-shadow: inset 0 0 0 1px rgba(255,255,255,.16), inset 0 1px 0 rgba(255,255,255,.22), 0 30px 40px rgba(0,0,0,.6); padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+  .hc-screw { position: absolute; width: 8px; height: 8px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #f0f0f0, #8a8a8a 60%, #444); box-shadow: 0 0 0 1px rgba(0,0,0,.5); }
+  .hc-screw.s1 { top: 5px; left: 5px; } .hc-screw.s2 { top: 5px; right: 5px; } .hc-screw.s3 { bottom: 5px; left: 5px; } .hc-screw.s4 { bottom: 5px; right: 5px; }
+  .hc-label { height: 40px; border-radius: 5px; background: linear-gradient(180deg, #ED2B30, #D51F24); box-shadow: 0 0 0 3px #D9EEF0, 0 0 0 4px rgba(0,0,0,.4); display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 8px; padding: 0 8px; margin: 3px; }
+  .hc-label img { height: 11px; width: auto; }
+  .hc-label i { font-style: normal; display: grid; justify-items: center; padding: 2px 5px; border: 1.5px solid #fff; border-radius: 3px; color: #fff; font-weight: 800; font-size: 12px; line-height: 1; }
+  .hc-label i small { font-size: 5px; font-weight: 600; letter-spacing: .04em; }
+  .hc-bay { flex: 1; border-radius: 6px; background: #0b0b0b; box-shadow: inset 0 0 0 1px rgba(255,255,255,.12); }
+  .sheen-box { position: relative; width: 150px; height: 190px; border-radius: 14px; background: #121010; box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); overflow: hidden; }
+  .sheen-box::after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.16) 45%, rgba(255,255,255,.04) 52%, transparent 60%); background-size: 250% 100%; background-position: 100% 0; transition: background-position 1.2s ease; }
+  .mat:hover .sheen-box::after { background-position: -40% 0; }
+  .stage-demo { position: relative; width: 100%; height: 100%; display: grid; place-items: end center; padding-bottom: 18px; }
+  .stage-demo .beam { position: absolute; left: 50%; top: -20px; width: 70%; height: 110%; transform: translateX(-50%); filter: blur(16px); opacity: .85; background: linear-gradient(180deg, rgba(255,240,235,.26), rgba(255,230,225,.06) 60%, transparent 92%); clip-path: polygon(42% 0, 58% 0, 100% 100%, 0 100%); }
+  .stage-demo .ped { position: relative; width: 60%; height: 30px; border-radius: 50%; background: radial-gradient(ellipse at 50% 35%, #2b2b2b, #0c0c0c 72%); box-shadow: inset 0 2px 0 rgba(255,255,255,.18), 0 30px 60px rgba(0,0,0,.7); }
+  .stage-demo .ped::after { content: ""; position: absolute; inset: 0; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); }
+  .stage-demo img { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); height: 150px; width: auto; filter: drop-shadow(0 40px 46px rgba(0,0,0,.65)); }
+  .wash-demo { width: 100%; height: 100%; background: radial-gradient(ellipse 70% 70% at 50% 55%, rgba(230,36,41,.16), transparent 70%), #0d0c0c; }
+  .map-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .map-row figure { margin: 0; border: 1px solid var(--ds-line); border-radius: var(--ds-radius); overflow: hidden; background: var(--ds-card); }
+  .map-row img { width: 100%; height: 220px; object-fit: contain; display: block; background: #0b0a0a; padding: 12px; }
+  .map-row figcaption { padding: 10px 14px; font-size: 12.5px; color: var(--ds-muted); }
+  /* 3D */
+  .d3 { display: grid; grid-template-columns: 1.1fr .9fr; gap: 24px; align-items: start; }
+  .d3 .ref img { aspect-ratio: 4/3.2; object-fit: cover; }
+  .spec { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .spec li { display: grid; grid-template-columns: 150px 1fr; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--ds-line); font-size: 14px; color: var(--ds-text-72); }
+  .spec li b { font-family: var(--ds-font-lab); font-weight: 600; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ds-text-55); padding-top: 3px; }
+  @media (max-width: 860px) { .bb, .mat-grid, .map-row, .d3 { grid-template-columns: 1fr; } .spec li { grid-template-columns: 1fr; gap: 4px; } }
   /* Agent note */
   .agent-note { border: 1px solid var(--ds-line); border-radius: var(--ds-radius); background: var(--ds-card); padding: 0; }
   .agent-note summary { cursor: pointer; padding: 16px 20px; font-weight: 700; color: var(--ds-text); list-style: none; }
@@ -606,8 +687,11 @@
     <a href="#forms">Forms</a>
     <a href="#badges">Labels &amp; tags</a>
     <a href="#modules">Page modules</a>
+    <a href="#buybox">Buy box</a>
     <a href="#sections">Section patterns</a>
     <a href="#banners">Banners</a>
+    <a href="#materials">Materials &amp; surfaces</a>
+    <a href="#motion">3D &amp; motion</a>
     <div class="nav-label">System</div>
     <a href="#tokens">Geometry</a>
     <a href="#imagery">Imagery</a>
@@ -950,6 +1034,40 @@
     </section>
 
 
+
+    <!-- BUY BOX -->
+    <section class="ds-section" id="buybox">
+      <div class="ds-inner">
+        <div class="eyebrow">Components</div>
+        <h2>Buy box</h2>
+        <p class="lead">The shop page buy box is where the Glass first rule becomes visible. Glass is the card: slab render, product mark, line, price with strike, a red Recommended tag, and the white ring when selected. Poly is a quiet row underneath at 82% opacity: "Or choose", small mark, small price, no fill, no tag. The two are never equal cards.</p>
+        <div class="bb">
+          <div class="bb-col">
+            <div class="hopts">
+              <label class="hopt hopt-glass on"><img class="slab" src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/slabs/items/5425/glass/720.webp" alt="HGA Glass slab"><span class="ho-txt"><img class="ho-wm" src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/hybrid_grading/hga-glass-828ebfd2.svg" alt="HGA Glass"><span class="ho-d">The only metal and glass housing in the hobby. A display piece, not a plastic slab.</span><span class="ho-p"><b>$200</b><s>$600</s></span></span><span class="ho-tag">Recommended</span></label>
+              <label class="hopt hopt-poly"><img class="slab" src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/slabs/items/13966/clear_case/720.webp" alt="HGA Poly slab"><span class="ho-txt"><span class="ho-or">Or choose</span><img class="ho-wm" src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/hybrid_grading/hga-poly-69885480.svg" alt="HGA Poly"><span class="ho-p"><b>$29</b><s>$150</s></span></span></label>
+            </div>
+            <p class="buy-inc"><b>Each grade includes:</b> four subgrades, RFID chip, glass or poly housing, grading report, choose your pass on the calendar.</p>
+            <div class="qrow"><div class="stepper"><button type="button" aria-label="One fewer"><svg class="ico" aria-hidden="true"><use href="#i-minus"/></svg></button><span>1</span><button type="button" aria-label="One more"><svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></button></div><div class="quick"><b>5</b><b>10</b><b>25</b><b>100</b></div></div>
+            <div class="buy-total"><div><span class="k">1 pass</span><b class="t">$200</b></div><p>Save $400 a card on Glass vs launch pricing</p></div>
+            <a class="btn lg block" href="#buybox">Claim my $200 HGA Glass <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <div class="buy-alt"><a class="tlink" href="#buybox" style="text-transform:none;letter-spacing:0;font-weight:600">Or buy now and skip the cart</a></div>
+            <ul class="buy-trust">
+              <li><svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg><span><b>A real date.</b> Your cards are graded on the date you book.</span></li>
+              <li><svg class="ico" aria-hidden="true"><use href="#i-dollar"/></svg><span><b>No card value upcharge</b> under $10,000. Above that, a 2% insurance and handling fee applies.</span></li>
+              <li><svg class="ico" aria-hidden="true"><use href="#i-calendar"/></svg><span><b>Book your grading date</b> from Jan 18. You reserve your spot before your card ships.</span></li>
+              <li><svg class="ico" aria-hidden="true"><use href="#i-lock"/></svg><span>Stripe, Apple Pay, Google Pay. All sales final; prelaunch purchases cannot be transferred.</span></li>
+            </ul>
+          </div>
+          <div class="bb-col">
+            <figure class="ref"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/ds/ref-buybox.webp" alt="Shop page buy box as built"><figcaption>As built on the shop page: 3D slab on the left (drag to turn it over), proof rows under it, the buy box on the right.</figcaption></figure>
+            <div class="note"><b>Hierarchy rules.</b> Glass is selected by default and carries the only tag. Poly sits under it as a single line at 82% opacity, with "Or choose" before the mark; it brightens to 100% on hover or when selected. Prices always show the strike (launch price) next to the presale price. One quantity stepper with quick picks 5, 10, 25, 100. The total bar is pure black with the pass count in a small label and the total at 34px; the save line sits right. One block button, then the "skip the cart" text link, then the trust list with red icons. On Poly first landers the roles flip: Poly becomes the card and Glass the quiet row.</div>
+            <div class="note"><b>Measured.</b> Glass option: 96px slab column, 18px by 20px padding, red .6 border and red radial wash, selected ring 1px white plus 1px inset. Poly row: 28px slab column, 9px by 14px padding, 12px mark, 16px price. Stepper 52px cells, 72px input, 20px bold. Quick picks 52px square. Total bar 18px by 20px. Trust icons 20px red.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- SECTION PATTERNS -->
     <section class="ds-section" id="sections">
       <div class="ds-inner">
@@ -1031,8 +1149,76 @@
       </div>
     </section>
 
+
+    <!-- MATERIALS -->
+    <section class="ds-section" id="materials">
+      <div class="ds-inner">
+        <div class="eyebrow">System</div>
+        <h2>Materials &amp; surfaces</h2>
+        <p class="lead">The product is metal and glass, and the UI borrows exactly three material cues from it: the machined metal frame with four screws, the red label with its pale cyan holographic edge, and a glass sheen that sweeps on hover. Everything else stays flat. No frosted glass panels, no blur, no chrome.</p>
+        <div class="mat-grid">
+          <div class="mat"><div class="demo"><div class="hc-frame"><i class="hc-screw s1"></i><i class="hc-screw s2"></i><i class="hc-screw s3"></i><i class="hc-screw s4"></i><div class="hc-label"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/hybrid_grading/hga-2700a46b.svg" alt="HGA"><i><small>Card Grade</small>10</i></div><div class="hc-bay"></div></div></div><div class="meta"><b>Metal frame</b><span>Front face <code>linear-gradient(160deg,#1d1d1d 0%,#0a0a0a 55%,#141414 100%)</code> with an inset 1px white .16 edge and a 1px white .22 top highlight. 14px corners. Four 8px screws at 5px insets: <code>radial-gradient(circle at 35% 35%,#f0f0f0,#8a8a8a 60%,#444)</code>. Sides are a dark metal gradient; deck housings show striped page edges.</span></div></div>
+          <div class="mat"><div class="demo" style="background:#0b0a0a"><div class="hc-label" style="width:150px;height:46px"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/hybrid_grading/hga-2700a46b.svg" alt="HGA"><i><small>Card Grade</small>10</i></div></div><div class="meta"><b>Red label with holographic edge</b><span>Label fill <code>linear-gradient(180deg,#ED2B30,#D51F24)</code>, 5px corners, ringed by 3px <code>#D9EEF0</code> (the holographic edge) and 4px black .4. Grade box: 1.5px white border, 3px corners, "Card Grade" at 5px over the grade. The cyan ring belongs to the label only; never reuse it on UI.</span></div></div>
+          <div class="mat"><div class="demo"><div class="sheen-box"></div></div><div class="meta"><b>Glass sheen (hover)</b><span>A diagonal white band, <code>linear-gradient(115deg,transparent 35%,rgba(255,255,255,.16) 45%,rgba(255,255,255,.04) 52%,transparent 60%)</code>, sized 250% and swept from 100% to -40% over 1.2s on hover. Used on slab cards and the morphing housing. This is the only "glass" effect in the system.</span></div></div>
+          <div class="mat"><div class="demo"><div class="stage-demo"><span class="beam"></span><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/slabs/items/5425/glass/720.webp" alt="Slab on the stage"><span class="ped"></span></div></div><div class="meta"><b>Stage light and pedestal</b><span>Hero stage: a warm beam from above (<code>rgba(255,240,235,.26)</code> to transparent, trapezoid clip, 16px blur, 85% opacity) and an elliptical pedestal (<code>radial-gradient(ellipse at 50% 35%,#2b2b2b,#0c0c0c 72%)</code>, inset top highlight .18, shadow 0 30px 60px .7). The slab carries <code>drop-shadow(0 50px 50px rgba(0,0,0,.85))</code>.</span></div></div>
+          <div class="mat"><div class="demo"><div class="wash-demo"></div></div><div class="meta"><b>Red stage wash</b><span><code>radial-gradient(ellipse 70% 70% at 50% 55%,rgba(230,36,41,.16),transparent 70%)</code> over #0d0c0c. Behind the sizes card, the housing stage and every slab on a dark card. Never stronger than .22, never on text.</span></div></div>
+          <div class="mat"><div class="demo"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/ds/ref-gslab-sheen.webp" alt="Slab card with sheen" style="height:200px;width:auto"></div><div class="meta"><b>Slab card at rest</b><span>Real render or composite, slab drop shadow, sheen layer on top. The card art never gets a frame drawn around it; the housing is the frame.</span></div></div>
+        </div>
+        <p class="lbl">Material maps used by the 3D housings</p>
+        <div class="map-row">
+          <figure><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/hga/case_front-74bafdda.webp" alt="Poly case front texture"><figcaption>Poly case, front. assets/hga/case_front.webp</figcaption></figure>
+          <figure><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/hga/glass_front-f7fd82f9.webp" alt="Glass case front texture"><figcaption>Glass housing, front. assets/hga/glass_front.webp</figcaption></figure>
+          <figure><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/hga/glass_back-d8c9ac8c.webp" alt="Glass case back texture"><figcaption>Glass housing, back. assets/hga/glass_back.webp</figcaption></figure>
+        </div>
+        <div class="note"><b>Rules.</b> Metal gradient for frames, never flat grey. The label is always red with the cyan ring and the white grade box; never a flat red rectangle. Sheen only on things that are glass. No glassmorphism (backdrop blur panels) anywhere except the 78% black header. Red light comes from below or behind the slab, never from the side.</div>
+      </div>
+    </section>
+
+    <!-- 3D AND MOTION -->
+    <section class="ds-section alt" id="motion">
+      <div class="ds-inner">
+        <div class="eyebrow">System</div>
+        <h2>3D &amp; motion</h2>
+        <p class="lead">Two 3D systems ship. The hero and the shop page use a three.js viewer with the client's housing models and real card and label textures. The sizes sections use a CSS 3D housing that morphs between single, booklet, trifold, five fold and deck. Everything else moves with CSS only.</p>
+        <div class="d3">
+          <figure class="ref"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/ds/ref-hero-3d.webp" alt="Three.js slab mid spin on the hero stage"><figcaption>Hero: the three.js Glass slab mid spin, with the beam, pedestal and the sizes card beside it.</figcaption></figure>
+          <div>
+            <h3 style="font-size:20px;margin-bottom:10px">Spin slab (three.js)</h3>
+            <ul class="spec">
+              <li><b>Controller</b><span>Stimulus <code>hybrid-grading--slab</code> on <code>.spin-slab</code>; drag to spin, pointer and touch, tabindex for keyboard.</span></li>
+              <li><b>Models</b><span><code>assets/hga/glass.glb</code> (Glass) and <code>assets/hga/clear_case.glb</code> (Poly), 160KB each.</span></li>
+              <li><b>Per slab data</b><span>case front and back, card front and back, label front and back as webp textures, plus card corner radius. Ohtani (Glass), Judge (Poly) and Gengar (TCG) are prepared.</span></li>
+              <li><b>Fallback</b><span>A static webp render shows first with a slow sway (<code>fauxsway 6.5s</code>); the canvas fades in over .5s once drawn (<code>.is-drawn</code>).</span></li>
+              <li><b>Hint</b><span>"Drag to spin" pulses under the slab until the first touch, then hides once turned.</span></li>
+              <li><b>Shadow</b><span><code>drop-shadow(0 50px 50px rgba(0,0,0,.85))</code> on the hero, 0 40px 46px .65 on inner stages.</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="d3" style="margin-top:28px">
+          <figure class="ref"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/ds/ref-sizes-stage.webp" alt="CSS 3D booklet housing"><figcaption>Sizes section: the CSS 3D housing in its booklet format, screws, label and bay drawn with CSS.</figcaption></figure>
+          <div>
+            <h3 style="font-size:20px;margin-bottom:10px">Morphing housing (CSS 3D)</h3>
+            <ul class="spec">
+              <li><b>Stage</b><span><code>.hc2-stage</code>, perspective 1700px (900px in the small hero card), 22px corners, red wash background, grab cursor.</span></li>
+              <li><b>Rig</b><span>Six faces with <code>preserve-3d</code>: front, back, left, right, top, bottom. Size is driven by <code>--hw</code>, <code>--hh</code>, <code>--hd</code> custom properties.</span></li>
+              <li><b>Morph</b><span>Formats single, booklet, trifold, fivefold, deck. The housing widens with panels and the deck gets deeper; each change eases over .9s <code>cubic-bezier(.2,.7,.2,1)</code>.</span></li>
+              <li><b>Detail</b><span>Screws, label, grade box and the card bay are real DOM so the label text updates per format. Deck sides show striped page edges.</span></li>
+              <li><b>Input</b><span>Drag to rotate, tap or select to advance to the next format; a watermark names the current format.</span></li>
+            </ul>
+          </div>
+        </div>
+        <p class="lbl">Motion rules</p>
+        <ul class="spec">
+          <li><b>Easing</b><span>UI transitions .15s linear (hover), .3s ease (reveals), .9s <code>cubic-bezier(.2,.7,.2,1)</code> for 3D and size changes, 1.2s ease for the sheen.</span></li>
+          <li><b>What moves</b><span>Slabs (spin, sway, sheen), the housing morph, progress bars in the process steps, the review strip scroll (pauses on hover), the calendar day pulse. Text and layout never animate.</span></li>
+          <li><b>Reduced motion</b><span><code>prefers-reduced-motion: reduce</code> disables every animation and transition site wide; the static render stays, the canvas never draws.</span></li>
+          <li><b>Performance</b><span>One WebGL canvas per page. On the shop page the Poly slab viewer is created hidden and swapped in when Poly is selected.</span></li>
+        </ul>
+      </div>
+    </section>
+
     <!-- GEOMETRY -->
-    <section class="ds-section alt" id="tokens">
+    <section class="ds-section" id="tokens">
       <div class="ds-inner">
         <div class="eyebrow">System</div>
         <h2>Geometry</h2>
@@ -1057,7 +1243,7 @@
     </section>
 
     <!-- IMAGERY -->
-    <section class="ds-section" id="imagery">
+    <section class="ds-section alt" id="imagery">
       <div class="ds-inner">
         <div class="eyebrow">System</div>
         <h2>Imagery</h2>
@@ -1118,7 +1304,7 @@
     </section>
 
     <!-- VOICE -->
-    <section class="ds-section alt" id="voice">
+    <section class="ds-section" id="voice">
       <div class="ds-inner">
         <div class="eyebrow">System</div>
         <h2>Voice &amp; copy</h2>

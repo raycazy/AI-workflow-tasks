@@ -24,11 +24,18 @@ You are reading this because you were pointed at the HGA design system page (des
 
 ## Components and patterns
 
-Use only the components on the page: Button (Primary and Ghost; Default, Large, Compact), Pill, Eyebrow, Kicker, Label, Size tag, Text link, Announcement bar, Input, Field error, Tier radio, Benefit row, Review card, Process step, FAQ item, Fee tier, Comparison table, Calendar card and day, Offer plan, Poly row, Slab card, Pillar card, Header, Sticky bar.
+Use only the components on the page: Button (Primary and Ghost; Default, Large, Compact), Pill, Eyebrow, Kicker, Label, Size tag, Text link, Announcement bar, Input, Field error, Tier radio, Benefit row, Review card, Process step, FAQ item, Fee tier, Comparison table, Calendar card and day, Offer plan, Poly row, Slab card, Pillar card, Header, Sticky bar, Housing option (Glass card and Poly row), Stepper with quick picks, Buy total.
 
 A page is an ordered set of the documented section patterns: header and bar, hero, reviews strip, story, three pillars, comparison, calendar, offer, process steps, FAQ, final CTA, sticky bar. Explanatory sections (chip, process, sizes) sit below the offer; new and important sections sit above it. Do not design a new layout when a pattern exists.
 
 Landing pages for a persona change only the hero copy and one or two story sections. Everything else stays shared.
+
+## Buy box, materials and 3D
+
+- Buy box hierarchy: Glass is the card (slab, mark, line, price with strike, red Recommended tag, white ring when selected). Poly is a quiet row under it at 82% opacity with "Or choose", a small mark and a small price. Never two equal cards. One stepper with quick picks 5, 10, 25, 100, one black total bar, one block button ("Claim my $200 HGA Glass"), a "skip the cart" text link, then the trust list with red icons. Poly first landers flip the roles.
+- Materials: metal frames use the 160deg gradient #1d1d1d to #0a0a0a to #141414 with four 8px screws; the label is red (#ED2B30 to #D51F24) with a 3px #D9EEF0 holographic ring and a white grade box; the glass sheen is a diagonal white band swept on hover. No frosted glass, no backdrop blur panels except the header, no chrome. Red light comes from below or behind the slab.
+- 3D: the hero and shop page use the three.js spin slab (glass.glb and clear_case.glb with per slab card and label textures, static render fallback, drag to spin). Sizes sections use the CSS 3D morphing housing. Do not add other 3D or WebGL. Respect prefers-reduced-motion: every animation off.
+- Motion: .15s hover, .3s reveals, .9s cubic-bezier(.2,.7,.2,1) for 3D and size changes, 1.2s sheen. Text and layout never animate.
 
 ## Copy rules
 
