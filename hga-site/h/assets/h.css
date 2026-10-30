@@ -975,3 +975,16 @@
 .tp-faq2-list p{margin:0;font-size:16px;line-height:1.6;color:rgba(255,255,255,.75)}
 @media (max-width:860px){.tp-faq2-grid{grid-template-columns:1fr}.tp-faq2-head{position:static}.tp-faq2-list li{grid-template-columns:40px minmax(0,1fr);gap:12px;padding:20px 0}.tp-faq2-n{font-size:22px}}
 .tp-how .hm-steps{max-width:820px;margin-inline:auto}.tp-how .hm-cal-notes{max-width:820px;margin-inline:auto}.tp-offer .tp-micro{margin-top:12px}.tp-ben-list .hm-gcal{max-width:480px;margin:0 auto}
+
+/* PDP card size picker (Dylan's pricing, 2026-10-30): standard, booklet, trifold, oversized on request */
+.szs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:14px 0 4px}
+.szb{display:grid;gap:4px;padding:10px 10px 9px;border:1px solid rgba(255,255,255,.14);border-radius:var(--r-sm);background:#141212;color:#fff;font:inherit;text-align:left;cursor:pointer;transition:border-color .2s,background .2s}
+.szb b{font-size:13.5px;line-height:1.2}
+.szb span{font-family:var(--lab);font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.szb:hover{border-color:rgba(255,255,255,.35)}
+.szb.on{border-color:#fff;box-shadow:inset 0 0 0 1px #fff}
+.szb.on span{color:#FF6B6E}
+.szb:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.sz-note{margin:6px 0 10px;font-size:14px;line-height:1.5;color:rgba(255,255,255,.72)}
+[data-pdp-add][disabled],[data-pdp-buy][disabled]{opacity:.45;cursor:not-allowed;box-shadow:none}
+@media (max-width:560px){.szs{grid-template-columns:1fr 1fr}}
