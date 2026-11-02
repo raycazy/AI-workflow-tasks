@@ -1097,3 +1097,38 @@
 [data-bo-add][disabled],[data-bo-buy][disabled]{opacity:.45;cursor:not-allowed;box-shadow:none}
 @media (max-width:380px){.bo .hopt-poly .ho-or{display:none}.boc-body{padding:0 12px 14px}.boc-body .hopt-glass .ho-d{display:none}}
 @media (max-width:380px){.bo-c .boc-body .hopt .ho-tag{font-size:9.5px!important;padding:3px 6px!important;letter-spacing:.03em!important}}
+/* buy box option D: count, sizes, housing; fees disclosed in an accordion (client meeting 2026-11-02) */
+.bod-hint{margin:0 0 10px;font-size:13.5px;line-height:1.45;color:rgba(255,255,255,.68)}
+.bod-rows{margin:0 0 12px;border:1px solid rgba(255,255,255,.14);border-radius:var(--r-sm);background:#0f0d0d;overflow:hidden}
+.bod-rows .bob-row{border-top:1px solid rgba(255,255,255,.08)}
+.bod-rows .bob-row:first-child{border-top:0}
+.bod-rows .bob-n span{font-size:12.5px}
+.bo-d .boc-body .hopts{margin-top:0}
+.bo-d .boc-body .bod-hint:last-child{margin:10px 0 0}
+.bo-d .boc-body .qrow{margin-top:0}
+.ho-for{display:block;margin-top:2px;font-family:var(--lab);font-weight:600;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.ho-p s[hidden]{display:none}
+.bo-fees{margin-top:12px;border:1px solid rgba(255,255,255,.14);border-radius:var(--r-sm);background:#0f0d0d}
+.bo-fees summary{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:44px;padding:10px 14px;font-size:14px;font-weight:700;list-style:none;cursor:pointer}
+.bo-fees summary::-webkit-details-marker{display:none}
+.bo-fees summary::after{content:"+";font-size:20px;line-height:1;color:#FF6B6E}
+.bo-fees[open] summary::after{content:"\2212"}
+.bo-fees ul{margin:0;padding:0 14px 4px;list-style:none;display:grid;gap:8px}
+.bo-fees li{font-size:13.5px;line-height:1.5;color:rgba(255,255,255,.75)}
+.bo-fees li b{color:#fff}
+.bo-fees p{margin:0;padding:8px 14px 14px;font-size:13px;line-height:1.5;color:rgba(255,255,255,.6)}
+.bo-d .buy-acts{margin-top:14px}
+@media (max-width:380px){.bod-rows .bob-n span{display:none}.bo-d .boc-body .hopt-glass .ho-d{display:none}}
+/* option D review fixes 2026-11-02 */
+.nw{white-space:nowrap}
+.bo-fees summary::after{content:none}
+.bo-fees-i{display:inline-grid;place-items:center;width:24px;height:24px;flex:none}
+.bo-fees-i .ico{width:16px;height:16px;color:#FF6B6E}
+.bo-fees-i .i-close,.bo-fees[open] .bo-fees-i .i-open{display:none}
+.bo-fees[open] .bo-fees-i .i-close{display:block}
+.bo-d .bo-fees{margin-top:14px}
+.bo-d .stepper button:focus-visible,.bo-d .boc-edit:focus-visible,.bo-d .boc-next:focus-visible,.bo-fees summary:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.bo-d .stepper button:disabled{opacity:.35;cursor:default}
+@media (max-width:380px){.bod-rows .bob-row{gap:8px;padding:10px}.bod-rows .bob-row .stepper button,.bod-rows .bob-row .stepper input{width:40px}.bo-d .boc-sum{white-space:normal}}
+.bo-fees summary::after,.bo-fees[open] summary::after{content:none}
+@media (max-width:380px){.bo-d .buy-acts [data-bo-hname]{display:none}}

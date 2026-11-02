@@ -196,8 +196,113 @@
     ctl.render();
   }
 
+  // ---------- D: how many cards, then sizes, then housing (client meeting 2026-11-02) ----------
+  function flow(root) {
+    var SIZES = T.order.filter(function (s) { return !quoted(s); });
+    var st = { n: 1, h: "glass", sz: {} };
+    SIZES.forEach(function (s) { st.sz[s] = 0; });
+    st.sz.std = 1;
+    var steps = $$("[data-bo-stepn]", root);
+    function others() { var o = 0; SIZES.forEach(function (s) { if (s !== "std") o += st.sz[s]; }); return o; }
+    // the counters always add up to the card count: std takes whatever the booklet rows leave
+    // lowering the count takes cards from Standard first, then from the booklet rows last to first, one at a time
+    function setCount(n) {
+      st.n = clamp(n, 1);
+      while (others() > st.n) { var rows = SIZES.filter(function (s) { return s !== "std" && st.sz[s] > 0; }); st.sz[rows[rows.length - 1]] -= 1; }
+      st.sz.std = st.n - others();
+    }
+    // a booklet row takes its cards from Standard first and only grows the order once Standard is empty; lowering it
+    // gives the cards back to Standard. Editing Standard itself changes the order size.
+    function setSize(s, q) {
+      q = clamp(q, 0);
+      if (s === "std") { st.sz.std = q; st.n = Math.max(1, q + others()); st.sz.std = st.n - others(); return; }
+      var d = q - st.sz[s];
+      st.sz[s] = q;
+      if (d > 0) { var take = Math.min(d, st.sz.std); st.sz.std -= take; st.n += d - take; }
+      else st.sz.std -= d;
+    }
+    function totals(h) {
+      var c = C.read(), now = 0, open = 0, known = true;
+      SIZES.forEach(function (s) { var v = C.vid(h, s); c[v] = (c[v] || 0) + st.sz[s]; });
+      SIZES.forEach(function (s) {
+        if (!st.sz[s]) return;
+        var v = C.vid(h, s), p = C.price(v), u = C.unit(v, c);
+        now += st.sz[s] * u;
+        if (p.open && u === p.now) open += st.sz[s] * p.open; else known = false;
+      });
+      return { now: now, open: known ? open : 0 };
+    }
+    function mix() {
+      return SIZES.filter(function (s) { return st.sz[s] > 0; }).map(function (s) { return st.sz[s] + " " + TY[s].short; }).join(" · ");
+    }
+    function open(n) {
+      steps.forEach(function (s) { s.classList.toggle("open", s.dataset.boStepn === String(n)); });
+      var body = $('[data-bo-stepn="' + n + '"] .boc-body', root), f = null;
+      ["input:checked", "button.on", "input[type=number]", "button", "input", "a"].some(function (s) { f = body && body.querySelector(s); return !!f; });
+      if (f) f.focus({ preventScroll: true });
+    }
+    function render() {
+      var cards = st.n + (st.n === 1 ? " card" : " cards");
+      $$("[data-bo-q]", root).forEach(function (i) { if (document.activeElement !== i) i.value = st.n; });
+      $$("[data-bo-quick]", root).forEach(function (x) { x.setAttribute("aria-pressed", String(Number(x.dataset.boQuick) === st.n)); });
+      SIZES.forEach(function (s) {
+        $$('[data-bo-sq="' + s + '"]', root).forEach(function (i) { if (document.activeElement !== i) i.value = st.sz[s]; });
+        $$('[data-bo-srow="' + s + '"]', root).forEach(function (r) { r.classList.toggle("has", st.sz[s] > 0); });
+      });
+      $$("[data-bo-szhint]", root).forEach(function (e) {
+        e.textContent = others() === 0 ? (st.n === 1 ? "Your card is standard size. Booklet or trifold? Change it below." : "All " + st.n + " cards are standard size. Booklet or trifold? Change it below.")
+          : st.sz.std === 0 ? mix() + ". Raise Standard to add more cards." : "Standard covers the rest of your " + cards + ".";
+      });
+      $$("[data-bo-step]", root).forEach(function (x) { x.disabled = Number(x.dataset.boStep) < 0 && st.n <= 1; });
+      SIZES.forEach(function (s) { $$('[data-bo-sstep="' + s + '"][data-d="-1"]', root).forEach(function (x) { x.disabled = st.sz[s] <= 0; }); });
+      $$("[data-bo-h]", root).forEach(function (r) { r.checked = r.value === st.h; r.closest(".hopt").classList.toggle("on", r.checked); });
+      ["glass", "poly"].forEach(function (h) {
+        var t = totals(h);
+        set('[data-bo-hnow="' + h + '"]', money(t.now));
+        $$('[data-bo-hopen="' + h + '"]', root).forEach(function (e) { e.textContent = t.open ? money(t.open) : ""; e.hidden = !t.open; });
+      });
+      var tg = totals("glass"), tp = totals("poly"), sizesUsed = SIZES.filter(function (s) { return st.sz[s] > 0; });
+      set("[data-bo-hfor]", "for " + cards + (tg.now === tp.now ? " · same price in Glass or Poly" : sizesUsed.length === 1 ? " · " + money(C.price(C.vid(st.h, sizesUsed[0])).now) + " a card" : ""));
+      var t = totals(st.h);
+      set("[data-bo-hname]", hname(st.h));
+      set("[data-bo-count]", cards + " · " + mix());
+      set("[data-bo-total]", money(t.now));
+      set("[data-bo-total2]", money(t.now));
+      set("[data-bo-line]", t.open > t.now ? "Save " + money(t.open - t.now) + " vs launch pricing" : "Presale price through " + T.presale_ends + ".");
+      set('[data-bo-sum="1"]', cards);
+      set('[data-bo-sum="2"]', mix());
+      set('[data-bo-sum="3"]', hname(st.h));
+      gallery(st.h);
+    }
+    $$("[data-bo-step]", root).forEach(function (x) { x.addEventListener("click", function () { setCount(st.n + Number(x.dataset.boStep)); render(); }); });
+    $$("[data-bo-quick]", root).forEach(function (x) { x.addEventListener("click", function () { setCount(Number(x.dataset.boQuick)); render(); }); });
+    $$("[data-bo-q]", root).forEach(function (i) {
+      i.addEventListener("input", function () { setCount(i.value); render(); });
+      i.addEventListener("blur", function () { i.value = st.n; });
+    });
+    $$("[data-bo-sstep]", root).forEach(function (x) { x.addEventListener("click", function () { var s = x.dataset.boSstep; setSize(s, st.sz[s] + Number(x.dataset.d)); render(); }); });
+    $$("[data-bo-sq]", root).forEach(function (i) {
+      i.addEventListener("input", function () { setSize(i.dataset.boSq, i.value); render(); });
+      i.addEventListener("blur", function () { i.value = st.sz[i.dataset.boSq]; });
+    });
+    $$("[data-bo-h]", root).forEach(function (r) { r.addEventListener("change", function () { st.h = r.value; render(); }); });
+    $$("[data-bo-next]", root).forEach(function (x) { x.addEventListener("click", function () { open(x.dataset.boNext); var s = $('[data-bo-stepn="' + x.dataset.boNext + '"] .boc-hd', root); if (s) s.scrollIntoView({ block: "nearest", behavior: "smooth" }); }); });
+    $$("[data-bo-edit]", root).forEach(function (x) { x.addEventListener("click", function () { open(x.dataset.boEdit); }); });
+    var buy = function (go) {
+      var n = 0;
+      SIZES.forEach(function (s) { if (st.sz[s] > 0) { C.add(C.vid(st.h, s), st.sz[s]); n += st.sz[s]; } });
+      if (!n) return;
+      if (go) { location.href = "checkout.html"; return; }
+      toast(n + " × " + hname(st.h) + (others() ? " (" + mix() + ")" : ""));
+    };
+    $$("[data-bo-add]", root).forEach(function (x) { x.addEventListener("click", function () { buy(false); }); });
+    $$("[data-bo-buy]", root).forEach(function (x) { x.addEventListener("click", function () { buy(true); }); });
+    render();
+  }
+
   var root = $("[data-bo]", page);
   if (kind === "a") single(root);
   else if (kind === "b") builder(root);
   else if (kind === "c") guided(root);
+  else if (kind === "d") flow(root);
 })();
