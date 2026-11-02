@@ -2,39 +2,30 @@
 // checkout and thank you. Kept in localStorage per viewer; the page still
 // works (in memory) when storage is blocked. Payments are not wired: placing
 // an order stores a demo order and opens the thank you page.
-// 2026-10-31 (HGA_PreSale_Pricing): the cart holds variants, housing x card type.
-// Ids: glass, poly (standard cards, the old shape), glass-oversized, poly-oversized,
-// glass-booklet1 to glass-booklet5, poly-booklet1 to poly-booklet5 (the number is the fold count).
+// 2026-10-30 (Dylan's pricing text): the cart holds variants, housing x card size.
+// Ids: glass, poly (standard cards, the old shape), glass-booklet, poly-booklet, glass-trifold, poly-trifold.
+// Oversized is priced on request (quote) and cannot be added. Prices come from the table below.
 (function () {
   "use strict";
 
   // ===== PRICE TABLE: written by the build from _tools/hga_pricing.json. Edit prices there (or here in a handoff copy). =====
-  var TABLE = {"presale_ends":"Jan 31","max_folds":5,"value_fee":{"threshold":10000,"pct":2.5},"bulk":{"poly":{"min":5,"now":null}},"housings":{"glass":{"name":"HGA Glass","includes":["Four subgrades and a full grading report","RFID chip in the label","Metal and glass housing","Your grading date on the calendar"]},"poly":{"name":"HGA Poly","includes":["Four subgrades and a full grading report","Digital record on your UCollect account","Protective poly housing","Your grading date on the calendar"]}},"types":{"std":{"name":"Standard card","note":"Standard size trading cards.","glass":{"now":200,"open":600,"days":30},"poly":{"now":29,"open":150,"days":60}},"oversized":{"name":"Oversized card","note":"Emanate, Cleat, Jumbo and other cards larger than standard size.","glass":{"now":600,"open":null,"days":30},"poly":{"now":90,"open":null,"days":30}},"booklet":{"name":"Booklet","note":"Folding booklet cards, priced by the number of folds.","glass":{"base":200,"fold":100,"open":null,"days":60},"poly":{"base":30,"fold":15,"open":null,"days":60}}}};
+  var TABLE = {"presale_ends":"Jan 31","value_fee":{"threshold":10000,"pct":2.5},"bulk":{"poly":{"min":5,"now":null}},"housings":{"glass":{"name":"HGA Glass","includes":["Four subgrades and a full grading report","RFID chip in the label","Metal and glass housing","Your grading date on the calendar"]},"poly":{"name":"HGA Poly","includes":["Four subgrades and a full grading report","Digital record on your UCollect account","Protective poly housing","Your grading date on the calendar"]}},"order":["std","booklet","trifold","oversized"],"types":{"std":{"name":"Standard card","short":"Standard","note":"Standard size trading cards.","glass":{"now":200,"open":600,"days":30},"poly":{"now":29,"open":150,"days":30}},"booklet":{"name":"Booklet","short":"Booklet","note":"Booklet cards that open once, two panels.","glass":{"now":200,"open":null,"days":30},"poly":{"now":200,"open":null,"days":30}},"trifold":{"name":"Trifold booklet","short":"Trifold","note":"Booklet cards that open twice, three panels.","glass":{"now":300,"open":null,"days":30},"poly":{"now":300,"open":null,"days":30}},"oversized":{"name":"Oversized card","short":"Oversized","note":"Cards larger than standard size are priced on request once we see the card.","quote":true}}};
   // ===========================================================================================================================
 
   var PRICES = {
     poly: { now: TABLE.types.std.poly.now, open: TABLE.types.std.poly.open, name: TABLE.housings.poly.name },
     glass: { now: TABLE.types.std.glass.now, open: TABLE.types.std.glass.open, name: TABLE.housings.glass.name }
   };
-  var SIZES = TABLE.types, MAXF = TABLE.max_folds, BULK = TABLE.bulk || {};
-  var HOUSINGS = ["glass", "poly"], SIZE_IDS = ["std", "oversized", "booklet"];
+  var SIZES = TABLE.types, BULK = TABLE.bulk || {};
+  var HOUSINGS = ["glass", "poly"], SIZE_IDS = TABLE.order;
+  var BUY = SIZE_IDS.filter(function (s) { return !SIZES[s].quote; });  // oversized is quoted, not sold online
   var VARIANTS = [];
-  HOUSINGS.forEach(function (h) {
-    VARIANTS.push(h, h + "-oversized");
-    for (var f = 1; f <= MAXF; f++) VARIANTS.push(h + "-booklet" + f);
-  });
-  function vid(h, s, f) { return s === "std" ? h : s === "booklet" ? h + "-booklet" + (f || 1) : h + "-" + s; }
-  function split(v) {
-    var p = v.split("-"), m = /^booklet(\d)$/.exec(p[1] || "");
-    return { h: p[0], s: m ? "booklet" : (p[1] || "std"), f: m ? Number(m[1]) : 0 };
-  }
-  function folds(f) { return f + (f === 1 ? " fold" : " folds"); }
+  HOUSINGS.forEach(function (h) { BUY.forEach(function (s) { VARIANTS.push(vid(h, s)); }); });
+  function vid(h, s) { return s === "std" ? h : h + "-" + s; }
+  function split(v) { var p = v.split("-"); return { h: p[0], s: p[1] || "std" }; }
   function price(v) {
     var x = split(v), sz = SIZES[x.s], pr = sz[x.h];
-    var now = x.s === "booklet" ? pr.base + pr.fold * x.f : pr.now;
-    var open = pr.open === null || pr.open === undefined ? null : (x.s === "booklet" ? pr.open + (pr.open_fold || 0) * x.f : pr.open);
-    var size = x.s === "booklet" ? sz.name + ", " + folds(x.f) : sz.name;
-    return { now: now, open: open, days: pr.days, name: PRICES[x.h].name + (x.s === "std" ? "" : " · " + size), housing: PRICES[x.h].name, size: size, h: x.h, s: x.s, f: x.f };
+    return { now: pr.now, open: pr.open === undefined ? null : pr.open, days: pr.days, name: PRICES[x.h].name + (x.s === "std" ? "" : " · " + sz.name), housing: PRICES[x.h].name, size: sz.name, h: x.h, s: x.s };
   }
   // the unit price in a given cart: Poly bulk pricing (when set) applies to standard Poly cards at the minimum count
   function unit(v, c) {
@@ -50,8 +41,8 @@
   var empty = function () { var c = {}; VARIANTS.forEach(function (v) { c[v] = 0; }); return c; };
   var mem = empty();
 
-  // older carts: booklet = one fold, trifold = two folds
-  var OLD = { "glass-booklet": "glass-booklet1", "poly-booklet": "poly-booklet1", "glass-trifold": "glass-booklet2", "poly-trifold": "poly-booklet2" };
+  // carts saved by the Oct 31 preview (fold counts): one fold reads as a booklet, more as a trifold
+  var OLD = { "glass-booklet1": "glass-booklet", "poly-booklet1": "poly-booklet", "glass-booklet2": "glass-trifold", "poly-booklet2": "poly-trifold" };
   function norm(c) {
     var o = empty();
     VARIANTS.forEach(function (v) { o[v] = clamp(c && c[v]); });
@@ -89,7 +80,7 @@
   function unitHtml(u, p) { return "<b>" + money(u) + "</b> a card" + (p.open === null || u !== p.now ? "" : " <s>" + money(p.open) + "</s>"); }
   function meta(p) { return p.size + " · grading date from " + p.days + " business days out"; }
 
-  // ---------- rows for the oversized and booklet variants: cloned from the housing's standard row ----------
+  // ---------- rows for the booklet and trifold variants: cloned from the housing's standard row ----------
   function cloneRows(scope) {
     var r = scope || document;
     HOUSINGS.forEach(function (h) {
@@ -172,29 +163,26 @@
   var pdp = $("[data-pdp]");
   if (pdp) {
     var params = new URLSearchParams(location.search);
-    var pf = clamp(params.get("folds"));
-    var st = { h: params.get("h") === "poly" ? "poly" : "glass", s: SIZE_IDS.indexOf(params.get("size")) >= 0 ? params.get("size") : "std", f: pf >= 1 && pf <= MAXF ? pf : 1, q: 1 };
-    if (!$("[data-pdp-size]")) { st.s = "std"; st.f = 1; }  // pages without the picker (pass.html) sell standard cards
-    var cur = function () { return price(vid(st.h, st.s, st.f)); };
+    var st = { h: params.get("h") === "poly" ? "poly" : "glass", s: SIZE_IDS.indexOf(params.get("size")) >= 0 ? params.get("size") : "std", q: 1 };
+    if (!$("[data-pdp-size]")) st.s = "std";  // pages without the picker (pass.html) sell standard cards
+    var quoted = function () { return !!SIZES[st.s].quote; };
+    var cur = function () { return price(vid(st.h, quoted() ? "std" : st.s)); };
     var pdpRender = function () {
-      var p = cur(), qc = read(), b = BULK[st.h];
-      qc[vid(st.h, st.s, st.f)] += st.q;  // bulk counts what is already in the cart
-      var u = unit(vid(st.h, st.s, st.f), qc), strike = p.open !== null && u === p.now;
+      var quote = quoted(), p = cur(), qc = read(), b = BULK[st.h];
+      qc[vid(st.h, p.s)] += st.q;  // bulk counts what is already in the cart
+      var u = unit(vid(st.h, p.s), qc), strike = p.open !== null && u === p.now;
       $$("[data-pdp-pick]").forEach(function (r) { r.checked = r.value === st.h; r.closest(".hopt").classList.toggle("on", r.checked); });
       HOUSINGS.forEach(function (h) {
-        var hp = price(vid(h, st.s, st.f));
+        var hp = price(vid(h, p.s));
         $$('[data-ho-now="' + h + '"]').forEach(function (e) { e.textContent = money(hp.now); });
         $$('[data-ho-open="' + h + '"]').forEach(function (e) { e.textContent = hp.open === null ? "" : money(hp.open); e.hidden = hp.open === null; });
       });
       $$("[data-pdp-size]").forEach(function (x) { var on = x.dataset.pdpSize === st.s; x.classList.toggle("on", on); x.setAttribute("aria-checked", String(on)); });
-      $$("[data-sz-price]").forEach(function (e) { var s = e.dataset.szPrice; e.textContent = (s === "booklet" ? "From " : "") + money(price(vid(st.h, s, 1)).now); });
+      $$("[data-sz-price]").forEach(function (e) { var s = e.dataset.szPrice; e.textContent = SIZES[s].quote ? "On request" : money(price(vid(st.h, s)).now); });
       $$("[data-sz-note]").forEach(function (e) { e.textContent = SIZES[st.s].note; });
-      $$("[data-pdp-folds]").forEach(function (e) { e.hidden = st.s !== "booklet"; });
-      $$("[data-pdp-fold]").forEach(function (x) {
-        var f = Number(x.dataset.pdpFold), on = f === st.f;
-        x.classList.toggle("on", on); x.setAttribute("aria-checked", String(on));
-        $$("[data-fold-price]", x).forEach(function (e) { e.textContent = money(price(vid(st.h, "booklet", f)).now); });
-      });
+      $$("[data-pdp-quote]").forEach(function (e) { e.hidden = !quote; });
+      $$("[data-pdp-days-line]").forEach(function (e) { e.hidden = quote; });
+      $$("[data-pdp-add],[data-pdp-buy]").forEach(function (x) { x.disabled = quote; x.setAttribute("aria-disabled", String(quote)); });
       $$("[data-pdp-days]").forEach(function (e) { e.textContent = p.days + " business days"; });
       $$("[data-slab]", pdp).forEach(function (s) { s.hidden = s.dataset.slab !== st.h; });
       $$("[data-pdp-only]").forEach(function (e) { e.hidden = e.dataset.pdpOnly !== st.h; });
@@ -203,38 +191,46 @@
         e.hidden = !on;
         if (on) e.textContent = b.min + " or more " + p.housing.replace("HGA ", "") + " cards: " + money(b.now) + " a card";
       });
-      set("[data-pdp-name]", p.name);
+      set("[data-pdp-name]", quote ? p.housing + " · " + SIZES[st.s].name : p.name);
       set("[data-pdp-hname]", p.housing);
-      set("[data-pdp-price]", money(p.now));
+      if (quote) {
+        set("[data-pdp-price]", "");
+        set("[data-pdp-count]", "Oversized card");
+        set("[data-pdp-total]", "On request");
+        $$("[data-pdp-saveline]").forEach(function (e) { e.textContent = "Priced once we see the card."; });
+        $$("[data-pdp-bulk]").forEach(function (e) { e.hidden = true; });
+      }
+      if (!quote) set("[data-pdp-price]", money(p.now));
       set("[data-pdp-open]", p.open === null ? "" : money(p.open));
       set("[data-pdp-save]", p.open === null ? "" : money(p.open - p.now));
       set("[data-pdp-pct]", p.open === null ? "" : Math.round((1 - p.now / p.open) * 100) + "%");
       $$("[data-pdp-qty]").forEach(function (i) { if (document.activeElement !== i) i.value = st.q; });
-      set("[data-pdp-count]", st.q + (st.q === 1 ? " pass" : " passes") + (st.s === "std" ? "" : " · " + p.size));
-      set("[data-pdp-total]", money(st.q * u));
+      if (!quote) {
+        set("[data-pdp-count]", st.q + (st.q === 1 ? " pass" : " passes") + (st.s === "std" ? "" : " · " + p.size));
+        set("[data-pdp-total]", money(st.q * u));
+      }
       set("[data-pdp-total-open]", strike ? money(st.q * p.open) : "");
       set("[data-pdp-total-save]", strike ? money(st.q * (p.open - p.now)) : "");
-      $$("[data-pdp-saveline]").forEach(function (e) {
+      if (!quote) $$("[data-pdp-saveline]").forEach(function (e) {
         e.textContent = u !== p.now ? "Bulk price applied: " + money(u) + " a card at " + b.min + " or more"
           : strike ? "Save " + money(p.open - p.now) + " a card on " + p.housing.replace("HGA ", "") + " vs launch pricing"
           : "Presale price through " + TABLE.presale_ends + ".";
       });
       $$("[data-pdp-quick]").forEach(function (x) { x.setAttribute("aria-pressed", String(Number(x.dataset.pdpQuick) === st.q)); });
       // one tab stop per radio group (the checked button); arrows move inside
-      $$("[data-pdp-size],[data-pdp-fold]").forEach(function (x) { x.tabIndex = x.getAttribute("aria-checked") === "true" ? 0 : -1; });
+      $$("[data-pdp-size]").forEach(function (x) { x.tabIndex = x.getAttribute("aria-checked") === "true" ? 0 : -1; });
       // the address keeps the choice, so a reload or a shared link opens the same variant
       if ($("[data-pdp-size]") && window.history && history.replaceState) {
         var u = new URLSearchParams(location.search);
         u.set("h", st.h); u.set("size", st.s);
-        if (st.s === "booklet") u.set("folds", st.f); else u.delete("folds");
+        u.delete("folds");
         try { history.replaceState(history.state, "", location.pathname + "?" + u.toString() + location.hash); } catch (e) {}
       }
     };
     $$("[data-pdp-pick]").forEach(function (r) { r.addEventListener("change", function () { st.h = r.value; pdpRender(); }); });
     $$("[data-pdp-size]").forEach(function (x) { x.addEventListener("click", function () { st.s = x.dataset.pdpSize; pdpRender(); }); });
-    $$("[data-pdp-fold]").forEach(function (x) { x.addEventListener("click", function () { st.f = Number(x.dataset.pdpFold); pdpRender(); }); });
-    // arrow keys move within the card type and fold radio groups
-    $$(".szs,.folds").forEach(function (g) {
+    // arrow keys move within the card type radio group
+    $$(".szs").forEach(function (g) {
       g.addEventListener("keydown", function (e) {
         if (["ArrowRight", "ArrowDown", "ArrowLeft", "ArrowUp", "Home", "End"].indexOf(e.key) < 0) return;
         var bs = $$("[role=radio]", g), i = bs.indexOf(document.activeElement);
@@ -251,7 +247,6 @@
         e.preventDefault();
         st.h = q.get("h") === "poly" ? "poly" : "glass";
         st.s = SIZE_IDS.indexOf(q.get("size")) >= 0 ? q.get("size") : "std";
-        st.f = 1;
         pdpRender();
         var top = $(".sh-buy") || pdp;
         top.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -267,7 +262,7 @@
     var toast = $("[data-added]");
     $$("[data-pdp-add]").forEach(function (x) {
       x.addEventListener("click", function () {
-        add(vid(st.h, st.s, st.f), st.q);
+        if (quoted()) return; add(vid(st.h, st.s), st.q);
         if (toast) {
           set("[data-added-what]", st.q + " × " + PRICES[st.h].name);
           set("[data-added-what]", st.q + " × " + cur().name);
@@ -279,7 +274,7 @@
       });
     });
     $$("[data-added-close]").forEach(function (x) { x.addEventListener("click", function () { toast.classList.remove("show"); }); });
-    $$("[data-pdp-buy]").forEach(function (x) { x.addEventListener("click", function () { add(vid(st.h, st.s, st.f), st.q); location.href = "checkout.html"; }); });
+    $$("[data-pdp-buy]").forEach(function (x) { x.addEventListener("click", function () { if (quoted()) return; add(vid(st.h, st.s), st.q); location.href = "checkout.html"; }); });
 
     // sticky add to cart once the buy box button leaves the screen
     var bar = $("[data-pdp-bar]"), anchor = $("[data-pdp-anchor]"), stop = $("[data-pdp-stop]");
