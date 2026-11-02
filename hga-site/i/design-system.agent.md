@@ -53,7 +53,7 @@ Landing pages for a persona change only the hero copy and one or two story secti
 
 ## Logos
 
-White SVG marks only, on dark surfaces: HGA wordmark, full Hybrid Grading Approach lockup, HGA Glass, HGA Poly, and the UCollect mark. The header pairs the wordmark with a "Powered by UCollect" tag. Never recolor the marks, never set the UCollect mark larger than the HGA mark on HGA pages, never place them on red fills. UCollect blue #7B9BB3 belongs to the UCollect mark only.
+White SVG marks only, on dark surfaces: the HGA logo (hga-logo-ed39811e.svg, one mark for header, footer, table heads and labels; the older wordmark and Hybrid Grading Approach lockup are retired), HGA Glass, HGA Poly, and the UCollect mark. The header pairs the wordmark with a "Powered by UCollect" tag. Never recolor the marks, never set the UCollect mark larger than the HGA mark on HGA pages, never place them on red fills. UCollect blue #7B9BB3 belongs to the UCollect mark only.
 
 ## When you deliver
 
