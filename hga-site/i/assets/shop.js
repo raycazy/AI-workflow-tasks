@@ -182,7 +182,8 @@
       $$("[data-sz-note]").forEach(function (e) { e.textContent = SIZES[st.s].note; });
       $$("[data-pdp-quote]").forEach(function (e) { e.hidden = !quote; });
       $$("[data-pdp-days-line]").forEach(function (e) { e.hidden = quote; });
-      $$("[data-pdp-add],[data-pdp-buy]").forEach(function (x) { x.disabled = quote; x.setAttribute("aria-disabled", String(quote)); });
+      $$("[data-pdp-add],[data-pdp-buy]").forEach(function (x) { x.disabled = quote; x.setAttribute("aria-disabled", String(quote)); x.hidden = quote; });
+      $$("[data-pdp-quote-cta]").forEach(function (x) { x.hidden = !quote; });
       $$("[data-pdp-days]").forEach(function (e) { e.textContent = p.days + " business days"; });
       $$("[data-slab]", pdp).forEach(function (s) { s.hidden = s.dataset.slab !== st.h; });
       $$("[data-pdp-only]").forEach(function (e) { e.hidden = e.dataset.pdpOnly !== st.h; });
@@ -426,6 +427,8 @@
   });
 
   window.HGA_PRICES = PRICES; window.HGA_SIZES = SIZES; window.HGA_PRICING = TABLE;
+  // used by the buy box design options (shop-a/b/c.html, assets/buybox-options.js)
+  window.HGA_CART = { add: add, read: read, write: write, price: price, unit: unit, vid: vid, money: money, variants: VARIANTS, bulk: BULK };
   badge(false);
   render();
 })();
