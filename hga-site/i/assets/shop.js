@@ -164,7 +164,7 @@
   if (pdp) {
     var params = new URLSearchParams(location.search);
     var st = { h: params.get("h") === "poly" ? "poly" : "glass", s: SIZE_IDS.indexOf(params.get("size")) >= 0 ? params.get("size") : "std", q: 1 };
-    if (!$("[data-pdp-size]")) st.s = "std";  // pages without the picker (pass.html) sell standard cards
+    if (!$("[data-pdp-size]")) st.s = "std";  // pages without the picker sell standard cards
     var quoted = function () { return !!SIZES[st.s].quote; };
     var cur = function () { return price(vid(st.h, quoted() ? "std" : st.s)); };
     var pdpRender = function () {

@@ -82,7 +82,7 @@
     $$("[data-pick]").forEach(function (t) { t.setAttribute("aria-checked", String(t.dataset.pick === h)); t.tabIndex = t.dataset.pick === h ? 0 : -1; });
     $$("[data-slab]", hero || document).forEach(function (s) { s.hidden = s.dataset.slab !== h; });
     $$("[data-hero-cta-name]").forEach(function (e) { e.textContent = PRICES[h].name; });
-    $$("[data-hero-cta]").forEach(function (a) { a.href = "pass.html?h=" + h; });
+    $$("[data-hero-cta]").forEach(function (a) { a.href = "shop.html?h=" + h + "#hero"; });
     $$("[data-hero-cta-price]").forEach(function (e) { e.textContent = money(PRICES[h].now); });
     $$("[data-sbar-name]").forEach(function (e) { e.textContent = PRICES[h].name + " · " + money(PRICES[h].now) + " a card"; });
     $$("[data-sbar-sub]").forEach(function (e) { e.textContent = money(PRICES[h].open) + " at launch · save " + money(PRICES[h].open - PRICES[h].now); });

@@ -179,7 +179,7 @@
 }
 </style>
 <link rel="stylesheet" href="./assets/g.css">
-<link rel="stylesheet" href="./assets/h.css?v=afdea0ac">
+<link rel="stylesheet" href="./assets/h.css?v=279a0edc">
 <link rel="stylesheet" href="./assets/lp-i.css">
 <link rel="stylesheet" href="./assets/lp-glass.css">
 <meta name="robots" content="noindex, nofollow">
@@ -407,7 +407,7 @@
       stage.parentNode.querySelectorAll("[data-hc2-dot]").forEach(function (d, k) { var on = k === cur; d.classList.toggle("on", on); d.setAttribute("aria-pressed", on ? "true" : "false"); });
       fit(); scan();
     }
-    function run() { clearInterval(auto); auto = null; if (!reduce && !hold) auto = setInterval(function () { if (inView && !document.hidden) show(cur + 1); }, 3400); }
+    function run() { clearInterval(auto); auto = null; if (!reduce && !hold && !stage.dataset.hc2Still) auto = setInterval(function () { if (inView && !document.hidden) show(cur + 1); }, 3400); }
     var drag = 0, dragging = false, lastX = 0, moved = 0, running = false, t0 = performance.now();
     function frame(now) {
       var t = (now - t0) / 1000, f = F[cur];
