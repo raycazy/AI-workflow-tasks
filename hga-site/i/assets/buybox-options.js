@@ -203,9 +203,12 @@
     SIZES.forEach(function (s) { st.sz[s] = 0; });
     st.sz.std = 1;
     var steps = $$("[data-bo-stepn]", root);
-    function others() { var o = 0; SIZES.forEach(function (s) { if (s !== "std") o += st.sz[s]; }); return o; }
-    // the counters always add up to the card count: std takes whatever the booklet rows leave
-    // lowering the count takes cards from Standard first, then from the booklet rows last to first, one at a time
+    // a booklet is two cards joined and a trifold three (Bhaskar 2026-11-04), so each booklet row counts W cards
+    // towards the card count: W = 1 + folds. Oversized is one card.
+    function W(s) { return 1 + (TY[s].folds || 0); }
+    function others() { var o = 0; SIZES.forEach(function (s) { if (s !== "std") o += W(s) * st.sz[s]; }); return o; }
+    // the weighted counters always add up to the card count: std takes whatever the booklet rows leave
+    // lowering the count takes cards from Standard first, then removes booklet rows last to first, one unit at a time
     function setCount(n) {
       st.n = clamp(n, 1);
       while (others() > st.n) { var rows = SIZES.filter(function (s) { return s !== "std" && st.sz[s] > 0; }); st.sz[rows[rows.length - 1]] -= 1; }
@@ -216,7 +219,7 @@
     function setSize(s, q) {
       q = clamp(q, 0);
       if (s === "std") { st.sz.std = q; st.n = Math.max(1, q + others()); st.sz.std = st.n - others(); return; }
-      var d = q - st.sz[s];
+      var d = (q - st.sz[s]) * W(s);
       st.sz[s] = q;
       if (d > 0) { var take = Math.min(d, st.sz.std); st.sz.std -= take; st.n += d - take; }
       else st.sz.std -= d;
@@ -250,7 +253,7 @@
         $$('[data-bo-srow="' + s + '"]', root).forEach(function (r) { r.classList.toggle("has", st.sz[s] > 0); });
       });
       $$("[data-bo-szhint]", root).forEach(function (e) {
-        e.textContent = others() === 0 ? (st.n === 1 ? "Your card is standard size. Booklet or trifold? Change it below." : "All " + st.n + " cards are standard size. Booklet or trifold? Change it below.")
+        e.textContent = others() === 0 ? (st.n === 1 ? "Your card is standard size. Booklet or trifold? Change it below; a booklet counts as two cards, a trifold as three." : "All " + st.n + " cards are standard size. Booklet or trifold? Change it below; a booklet counts as two cards, a trifold as three.")
           : st.sz.std === 0 ? mix() + ". Raise Standard to add more cards." : "Standard covers the rest of your " + cards + ".";
       });
       $$("[data-bo-step]", root).forEach(function (x) { x.disabled = Number(x.dataset.boStep) < 0 && st.n <= 1; });
