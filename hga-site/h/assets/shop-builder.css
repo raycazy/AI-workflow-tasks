@@ -138,3 +138,10 @@ button.bd-head:not(:disabled){cursor:pointer}
   .bd-z.has-x .bd-zw{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 }
 @media (prefers-reduced-motion:reduce){.bd-b{animation:none}.bd-s,.bd-h,.bd-st button{transition:none}}
+
+/* Step 3 rows (Dylan 2026-11-04): Option A's row anatomy inside each slab panel: icon, size, price a card, stepper */
+.bd-zg .bob-row{grid-template-columns:28px minmax(0,1fr) auto;padding:10px 0;border-top:1px solid rgba(255,255,255,.1)}
+.bd-zg .bob-row .bd-st{justify-self:end}
+.bd-zg .bob-row .bd-zq{width:auto;min-width:38px;padding-right:12px;font-size:16px}
+.bd-zg .bob-n span{white-space:nowrap}
+@media (max-width:480px){.bd-zg .bob-row{gap:8px}.bd-zg .bob-row .szi{width:24px;height:24px}}

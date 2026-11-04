@@ -25,10 +25,16 @@
   var FOLDS = TABLE.order.filter(function (s) { return T[s].folds && !T[s].quote; }).map(function (s) { return T[s].folds; }).sort();
   var folds = function (f) { var k = null; TABLE.order.forEach(function (s) { if (T[s].folds === f) k = s; }); return k; };
   var hasSize = function (s) { return TABLE.order.indexOf(s) >= 0 && !T[s].quote; };
+  // size icons, the same strokes as the other product page versions (written in by the build)
+  var ICONS = {"std": "<rect x=\"10\" y=\"4\" width=\"12\" height=\"24\" rx=\"1.5\"/><path d=\"M13 8h6\"/>", "booklet": "<rect x=\"4\" y=\"7\" width=\"24\" height=\"18\" rx=\"1.5\"/><path d=\"M16 7v18\"/>", "trifold": "<rect x=\"2\" y=\"8\" width=\"28\" height=\"16\" rx=\"1.5\"/><path d=\"M11.3 8v16M20.7 8v16\"/>", "oversized": "<rect x=\"4\" y=\"2\" width=\"24\" height=\"28\" rx=\"1.5\"/><rect x=\"11\" y=\"9\" width=\"10\" height=\"17\" rx=\"1\" stroke-dasharray=\"2 2\"/>"};
+  var szi = function (s) { return '<svg class="szi" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (ICONS[s] || "") + "</svg>"; };
+  var aCard = function (s, h) { var p = T[s][h]; return money(p.now) + (p.open ? " <s>" + money(p.open) + "</s>" : "") + " a card"; };
+  // one row per booklet size the price table has, always shown (Dylan 2026-11-04: show the booklets as rows with icons, like Option A)
+  var bookRows = function () { return FOLDS.map(function (f) { return { f: f, q: 0 }; }); };
 
   var bdParams = new URLSearchParams(location.search);
   var S = { step: 1, total: 1, glass: bdParams.get("h") === "poly" ? 0 : 1, special: false,
-    over: { glass: 0, poly: 0 }, books: { glass: [{ f: FOLDS[0], q: 0 }], poly: [{ f: FOLDS[0], q: 0 }] } };
+    over: { glass: 0, poly: 0 }, books: { glass: bookRows(), poly: bookRows() } };
   var inH = function (h) { return h === "glass" ? S.glass : S.total - S.glass; };
   // a booklet is two cards joined and a trifold three (Bhaskar 2026-11-04), so a booklet with f folds counts 1 + f cards
   var W = function (f) { return 1 + f; };
@@ -60,13 +66,15 @@
   var fromCart = function () {
     var c = read(), t = totals(c);
     if (!t.count || t.count > MAX) return;
-    S.total = t.count; S.glass = byHousing(c, "glass"); S.step = 3;
+    // the count is in cards (a booklet is two, a trifold three), not in slabs
+    var cards = function (h) { var n = 0; C.variants.forEach(function (v) { if (v !== h && v.indexOf(h + "-") !== 0) return; var sz = v.split("-")[1] || "std"; n += (1 + (T[sz].folds || 0)) * (c[v] || 0); }); return n; };
+    S.glass = cards("glass"); S.total = S.glass + cards("poly"); S.step = 3;
+    if (S.total > MAX) { S.total = t.count; S.glass = byHousing(c, "glass"); }
     HOUSINGS.forEach(function (h) {
       S.over[h] = hasSize("oversized") ? (c[vid(h, "oversized")] || 0) : 0;
-      var list = [];
-      FOLDS.forEach(function (f) { var q = c[vid(h, folds(f))] || 0; if (q) list.push({ f: f, q: q }); });
-      S.books[h] = list.length ? list : [{ f: FOLDS[0], q: 0 }];
-      if (S.over[h] || list.length) S.special = true;
+      S.books[h] = bookRows();
+      S.books[h].forEach(function (b) { b.q = c[vid(h, folds(b.f))] || 0; });
+      if (S.over[h] || bookUnits(h)) S.special = true;
     });
   };
   if (!bdParams.get("h")) fromCart();
@@ -76,22 +84,23 @@
   };
   var sizesHtml = function () {
     return HOUSINGS.filter(function (h) { return inH(h) > 0; }).map(function (h) {
-      var nm = hname(h), room = stdN(h);
-      var rows = '<div class="bd-z"><span class="bd-zn">Standard</span><span class="bd-zp">' + money(T.std[h].now) + '</span><span class="bd-zq" title="The rest of your ' + nm + ' cards">' + room + "</span></div>";
-      if (hasSize("oversized")) rows += '<div class="bd-z"><span class="bd-zn">Oversized</span><span class="bd-zp">' + money(T.oversized[h].now) + "</span>" + mini("over:" + h, S.over[h], room, nm + " oversized card") + "</div>";
-      S.books[h].forEach(function (b, i) {
-        var opts = "";
-        FOLDS.forEach(function (f) {
-          if (f !== b.f && S.books[h].some(function (o) { return o.f === f; })) return;
-          opts += '<option value="' + f + '"' + (f === b.f ? " selected" : "") + ">" + f + (f === 1 ? " fold" : " folds") + "</option>";
-        });
-        var many = S.books[h].length > 1;
-        rows += '<div class="bd-z' + (many ? " has-x" : "") + '"><span class="bd-zn"><span class="bd-zw">Booklet</span><select data-fold="' + h + ":" + i + '" aria-label="' + nm + ' booklet folds">' + opts + "</select>" + (many ? '<button type="button" class="bd-x" data-rm="' + h + ":" + i + '" aria-label="Remove this ' + nm + " booklet with " + b.f + (b.f === 1 ? " fold" : " folds") + '">' + ico("i-x") + "</button>" : "") + '</span><span class="bd-zp">' + money(T[folds(b.f)][h].now) + "</span>" + mini("book:" + h + ":" + i, b.q, room - (W(b.f) - 1), nm + " booklet") + "</div>";
+      var nm = hname(h), room = stdN(h), rows = "";
+      TABLE.order.forEach(function (sz) {
+        if (!hasSize(sz)) return;
+        var ty = T[sz], name = ty.short, ctl;
+        if (sz === "std") ctl = '<span class="bd-zq" title="The rest of your ' + nm + ' cards">' + room + "</span>";
+        else if (sz === "oversized") ctl = mini("over:" + h, S.over[h], room, nm + " oversized card");
+        else {
+          var k = -1; S.books[h].forEach(function (b, n) { if (folds(b.f) === sz) k = n; });
+          if (k < 0) return;
+          var b = S.books[h][k];
+          ctl = mini("book:" + h + ":" + k, b.q, room - (W(b.f) - 1), nm + " " + name.toLowerCase());
+        }
+        var q = sz === "std" ? room : sz === "oversized" ? S.over[h] : S.books[h].filter(function (b) { return folds(b.f) === sz; })[0].q;
+        rows += '<div class="bob-row bd-z' + (q > 0 ? " has" : "") + '">' + szi(sz) + '<div class="bob-n"><b>' + name + "</b><span>" + aCard(sz, h) + "</span></div>" + ctl + "</div>";
       });
-      // stays put once a booklet is in play; goes quiet (not away) when no cards are left to assign
-      if (bookUnits(h) > 0 && S.books[h].length < FOLDS.length) rows += '<button type="button" class="bd-more" data-more="' + h + '"' + (room >= 2 ? "" : " disabled") + ">" + ico("i-plus") + "<span>Add a booklet with different folds</span></button>";
       return '<div class="bd-zg ' + h + '"><p class="bd-zh"><img src="./assets/hybrid_grading/' + (h === "glass" ? "hga-glass-828ebfd2" : "hga-poly-69885480") + '.svg" alt="' + nm + '" width="' + (h === "glass" ? 96 : 88) + '" height="16"><span>' + inH(h) + (inH(h) === 1 ? " card" : " cards") + "</span></p>" + rows + "</div>";
-    }).join("") + '<p class="bd-note">Folds are how many times the booklet opens: one fold is a booklet and counts as two of your cards, two folds a trifold and counts as three. <a href="sizes.html">See every size</a></p>';
+    }).join("") + '<p class="bd-note">Standard is whatever is left. A booklet counts as two of your cards, a trifold as three. <a href="sizes.html">See every size</a></p>';
   };
   var bdRender = function (focus) {
     fit();
