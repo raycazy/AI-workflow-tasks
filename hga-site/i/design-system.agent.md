@@ -41,7 +41,10 @@ Landing pages for a persona change only the hero copy and one or two story secti
 
 - Buttons read "Claim Your Glass" or "Claim Your Poly". The site wide header and bar use "Claim Your Pass". The shop buy box uses "Claim my $200 HGA Glass", the pass page "Add to cart".
 - Say "pass", never "slot". Housing names stand alone: "Claim Your Glass", "1 × HGA Glass". Never "Glass pass" or "Poly pass".
-- Say RFID, "the chip in the label", "tap, open the record". Never NFT or NFC. Do not lead with blockchain.
+- Say RFID, "the chip in the label", "tap, open the record". Never NFT or NFC. Do not lead with blockchain. The chip is in every label, Poly and Glass; nothing differs between them but the housing.
+- The process step is "Authenticate it": cards are imaged in high resolution and authenticated, never "scanned" or "inspected". "Inspect" stays only for how a subgrade is judged.
+- Sizes: singles, oversized, booklets, trifolds, five folds. HGA does not grade decks, so no deck anywhere. "Every size, single to booklet."
+- The Grade Report marks every defect on one image of the card. Never promise a photo per defect.
 - Dates: "a grading date you book", cards back within 30 days of that date. Never a business day count, never "guaranteed", never a daily late credit.
 - Prices: Glass $200 (launch $600), "Save $400". Poly $29 (launch $150), "up to 80% off" is true for Poly only. Cards over $10,000 carry a 2% insurance and handling charge.
 - "Presale" is one word in running copy. The announcement bar and hero eyebrow set "Pre sale opens Nov 23" as written.
