@@ -77,7 +77,9 @@
       if (S.over[h] || bookUnits(h)) S.special = true;
     });
   };
-  if (!bdParams.get("h")) fromCart();
+  // an order already in the cart wins over the link (every CTA and the sticky bar arrive with ?h=, which only picks
+  // the slab for an empty cart; without this a second visit would show 1 card and Claim would wipe the order)
+  fromCart();
   var ico = function (n) { return '<svg class="ico" aria-hidden="true"><use href="#' + n + '"/></svg>'; };
   var mini = function (k, n, room, label) {
     return '<div class="bd-st sm"><button type="button" data-st="' + k + '" data-d="-1" aria-label="One fewer ' + label + '"' + (n <= 0 ? " disabled" : "") + ">" + ico("i-minus") + "</button><output>" + n + '</output><button type="button" data-st="' + k + '" data-d="1" aria-label="One more ' + label + '"' + (room <= 0 ? " disabled" : "") + ">" + ico("i-plus") + "</button></div>";

@@ -31,10 +31,12 @@
 }</script>
 <script defer src="./assets/site.js?v=80e4d4a7"></script>
 <script defer src="./assets/shop.js?v=3b57e80a"></script>
+<script defer src="./assets/buybox-rachel.js?v=00c7731f"></script>
 <script type="module">import "hga"</script>
 <style>.v2-cta-left{margin-top:28px}</style>
 <link rel="stylesheet" href="./assets/g.css">
 <link rel="stylesheet" href="./assets/h.css?v=279a0edc">
+<link rel="stylesheet" href="./assets/shop-builder.css?v=449719c0">
 <!-- share preview and icons: _tools/h_meta.py -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="HGA">
@@ -81,7 +83,7 @@
 </header>
 <main id="main">
 <!-- VARIATION B: E-COMMERCE FIRST. The product and the buy decision sit above the fold, like a premium PDP. The story follows. -->
-<section class="shophero" id="hero" data-pdp aria-labelledby="sh-title">
+<section class="shophero bo-page" id="hero" data-pdp data-bo-page="r" aria-labelledby="sh-title">
   <div class="wrap">
     <div class="sh-grid">
       <div class="sh-gal">
@@ -137,37 +139,49 @@
         <p class="eb">Presale &middot; Nov 23 to Jan 31 &middot; book your date from Jan 18</p>
         <h1 class="h1" id="sh-title">The most transparent card grading experience, ever.</h1>
         <p class="lede">HGA's new system lets you visually track your card's entire grading process, without guesswork or mystery.</p>
-        <div class="hopts sh-opts">
-          <label class="hopt hopt-glass">
-            <input type="radio" name="housing" value="glass" data-pdp-pick checked>
-            <span class="ho-img"><img src="./slabs/items/17683/glass/360.webp" alt="" width="360" height="603"></span>
-            <span class="ho-txt"><img class="ho-wm" src="./assets/hybrid_grading/hga-glass-828ebfd2.svg" alt="HGA Glass" width="96" height="16"><span class="ho-d">The only metal and glass housing in the hobby. A display piece, not a plastic slab.</span><span class="ho-p"><b data-ho-now="glass">$200</b> <s data-ho-open="glass">$600</s></span></span>
-            <span class="ho-tag">Recommended</span>
-          </label>
-          <label class="hopt hopt-poly">
-            <input type="radio" name="housing" value="poly" data-pdp-pick>
-            <span class="ho-img"><img src="./slabs/items/13966/clear_case/360.webp" alt="" width="360" height="598"></span>
-            <span class="ho-txt"><img class="ho-wm" src="./assets/hybrid_grading/hga-poly-69885480.svg" alt="HGA Poly" width="88" height="16"><span class="ho-or">Or choose</span><span class="ho-p"><b data-ho-now="poly">$30</b> <s data-ho-open="poly">$150</s></span></span>
-          </label>
+        <div class="bd" data-builder data-sbar-after>
+          <section class="bd-s" data-s="1" aria-labelledby="bd-t1">
+            <button type="button" class="bd-head" data-go="1"><span class="bd-n" aria-hidden="true"><i>1</i><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><span class="bd-t" id="bd-t1">How many cards are you grading?</span><span class="bd-sum" data-sum="1"></span><span class="bd-edit">Edit</span></button>
+            <div class="bd-b">
+              <div class="bd-count">
+                <div class="bd-st big"><button type="button" data-st="total" data-d="-1" aria-label="One fewer Number of cards"><svg class="ico" aria-hidden="true"><use href="#i-minus"/></svg></button><input type="number" inputmode="numeric" min="1" max="100" value="1" data-in="total" aria-label="Number of cards"><button type="button" data-st="total" data-d="1" aria-label="One more Number of cards"><svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></button></div>
+                <div class="bd-chips" aria-label="Quick quantities"><button type="button" data-q="5">5</button><button type="button" data-q="10">10</button><button type="button" data-q="25">25</button><button type="button" data-q="100">100</button></div>
+              </div>
+              <button type="button" class="btn lg block bd-next" data-go="2">Next <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            </div>
+          </section>
+
+          <section class="bd-s" data-s="2" aria-labelledby="bd-t2">
+            <button type="button" class="bd-head" data-go="2"><span class="bd-n" aria-hidden="true"><i>2</i><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><span class="bd-t" id="bd-t2" data-t2>Glass or Poly?</span><span class="bd-sum" data-sum="2"></span><span class="bd-edit">Edit</span></button>
+            <div class="bd-b">
+              <div class="bd-h glass" data-pick="glass">
+                <img class="bd-img" src="./slabs/items/17683/glass/360.webp" alt="" width="360" height="603">
+                <div class="bd-ht"><img class="bd-wm" src="./assets/hybrid_grading/hga-glass-828ebfd2.svg" alt="HGA Glass" width="96" height="16"><span class="bd-d">The only metal and glass housing in the hobby.</span><span class="bd-p"><b>$200</b> <s>$600</s> <em>30 days</em></span></div>
+                <div class="bd-st"><button type="button" data-st="glass" data-d="-1" aria-label="One fewer Cards in Glass"><svg class="ico" aria-hidden="true"><use href="#i-minus"/></svg></button><input type="number" inputmode="numeric" min="0" max="100" value="0" data-in="glass" aria-label="Cards in Glass"><button type="button" data-st="glass" data-d="1" aria-label="One more Cards in Glass"><svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></button></div><span class="bd-dot" aria-hidden="true"></span>
+              </div>
+              <div class="bd-h poly" data-pick="poly">
+                <img class="bd-img" src="./slabs/items/13966/clear_case/360.webp" alt="" width="360" height="598">
+                <div class="bd-ht"><img class="bd-wm" src="./assets/hybrid_grading/hga-poly-69885480.svg" alt="HGA Poly" width="88" height="16"><span class="bd-p"><b>$30</b> <s>$150</s> <em>60 days</em></span></div>
+                <div class="bd-st"><button type="button" data-st="poly" data-d="-1" aria-label="One fewer Cards in Poly"><svg class="ico" aria-hidden="true"><use href="#i-minus"/></svg></button><input type="number" inputmode="numeric" min="0" max="100" value="0" data-in="poly" aria-label="Cards in Poly"><button type="button" data-st="poly" data-d="1" aria-label="One more Cards in Poly"><svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></button></div><span class="bd-dot" aria-hidden="true"></span>
+              </div>
+              <input class="bd-range" type="range" min="0" max="1" value="1" data-range aria-label="Drag to split your cards between Glass and Poly">
+              <p class="bd-note">Every card includes four subgrades, a full grading report and your grading date on the calendar.</p>
+              <button type="button" class="btn lg block bd-next" data-go="3">Next <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            </div>
+          </section>
+
+          <section class="bd-s" data-s="3" aria-labelledby="bd-t3">
+            <div class="bd-head is-static"><span class="bd-n" aria-hidden="true"><i>3</i></span><span class="bd-t" id="bd-t3">Any booklets or oversized cards?</span></div>
+            <div class="bd-b">
+              <div class="bd-seg" role="radiogroup" aria-labelledby="bd-t3"><button type="button" role="radio" data-special="0" aria-checked="true">No, all standard</button><button type="button" role="radio" data-special="1" aria-checked="false">Yes, some are</button></div>
+              <div class="bd-sizes" data-sizes hidden></div>
+            </div>
+          </section>
+
+          <div class="bd-total" data-total hidden aria-live="polite"><div><span data-t-count>1 pass</span><b data-t-now>$200</b></div><p data-t-save></p></div>
+          <div class="bd-acts" data-acts hidden><button class="btn lg block" type="button" data-claim-all><span data-claim-label>Claim my $200 HGA Glass</span> <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button><button class="buy-alt" type="button" data-buy-now>Or buy now and skip the cart <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button></div>
         </div>
-        <div class="szs" role="radiogroup" aria-label="Card size">
-          <button type="button" class="szb on" role="radio" aria-checked="true" data-pdp-size="std"><svg class="szi" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="10" y="4" width="12" height="24" rx="1.5"/><path d="M13 8h6"/></svg><b>Standard</b><span data-sz-price="std">$200</span></button>
-          <button type="button" class="szb" role="radio" aria-checked="false" data-pdp-size="booklet"><svg class="szi" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="7" width="24" height="18" rx="1.5"/><path d="M16 7v18"/></svg><b>Booklet</b><span data-sz-price="booklet">$300</span></button>
-          <button type="button" class="szb" role="radio" aria-checked="false" data-pdp-size="trifold"><svg class="szi" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="8" width="28" height="16" rx="1.5"/><path d="M11.3 8v16M20.7 8v16"/></svg><b>Trifold</b><span data-sz-price="trifold">$400</span></button>
-          <button type="button" class="szb" role="radio" aria-checked="false" data-pdp-size="oversized"><svg class="szi" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="24" height="28" rx="1.5"/><rect x="11" y="9" width="10" height="17" rx="1" stroke-dasharray="2 2"/></svg><b>Oversized</b><span data-sz-price="oversized">$600</span></button>
-        </div>
-        <p class="sz-note" data-pdp-days-line><span data-sz-note>Standard size trading cards.</span> Earliest grading date: <b data-pdp-days>30 business days</b> after you book.</p>
-        <p class="sz-note" data-pdp-quote hidden>Oversized cards (Emanate, Cleat, Jumbo and other large cards) are $600 in Glass and $90 in Poly.</p>
-        <a class="sz-link" href="sizes.html">Booklet or oversized card? See size pricing <svg class="ico"><use href="#i-arrow"/></svg></a>
-        <p class="buy-inc" data-pdp-only="glass"><b>Each Glass grade includes:</b> four subgrades and a full grading report, RFID chip in the label, metal and glass housing, your grading date on the calendar.</p>
-        <p class="buy-inc" data-pdp-only="poly" hidden><b>Each Poly grade includes:</b> four subgrades and a full grading report, digital record on your UCollect account, protective poly housing, your grading date on the calendar.</p>
-        <div class="qrow">
-          <div class="stepper big"><button type="button" data-pdp-step="-1" aria-label="One fewer"><svg class="ico"><use href="#i-minus"/></svg></button><input type="number" inputmode="numeric" min="1" max="100" value="1" data-pdp-qty aria-label="Number of slots"><button type="button" data-pdp-step="1" aria-label="One more"><svg class="ico"><use href="#i-plus"/></svg></button></div>
-          <div class="quick" aria-label="Quick quantities"><button type="button" data-pdp-quick="5">5</button><button type="button" data-pdp-quick="10">10</button><button type="button" data-pdp-quick="25">25</button><button type="button" data-pdp-quick="100">100</button></div>
-        </div>
-        <p class="sz-bulk" data-pdp-bulk hidden></p>
-        <div class="buy-total"><div><span class="mono" data-pdp-count>1 pass</span><b data-pdp-total>$200</b></div><p data-pdp-saveline>Save $400 a card on Glass vs launch pricing</p></div>
-        <div class="buy-acts" data-pdp-anchor data-sbar-after><button class="btn lg block" type="button" data-pdp-add>Claim my <span data-pdp-price>$200</span> <span data-pdp-hname>HGA Glass</span> <svg class="ico"><use href="#i-arrow"/></svg></button><a class="btn ghost lg block" href="sizes.html" data-pdp-quote-cta hidden>See oversized pricing <svg class="ico"><use href="#i-arrow"/></svg></a><button class="buy-alt" type="button" data-pdp-buy>Or buy now and skip the cart <svg class="ico"><use href="#i-arrow"/></svg></button></div>
+
         <details class="bo-fees">
           <summary>Fees at booking, not today <span class="bo-fees-i"><svg class="ico i-open"><use href="#i-plus"/></svg><svg class="ico i-close"><use href="#i-minus"/></svg></span></summary>
           <ul>
