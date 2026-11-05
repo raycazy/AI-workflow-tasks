@@ -1185,3 +1185,23 @@
 /* phones: v2.css turns the gallery's sticky off with position:static, which also drops the containing block of the
    absolutely positioned "HGA Glass · graded 10" badge, so it landed over the announcement bar (found 2026-11-05) */
 @media (max-width:980px){.sh-gal{position:relative;top:auto}}
+
+/* Label template v1.1 (HGA, Nov 2026) on the CSS slabs: these are schematics of the print label, not the label itself.
+   Logo top left, the subject under it, the Card Grade box top right with the cert under it. The real label is the
+   texture on the three.js slab and the renders (_tools/label_render.py). */
+.hc2-label{grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;align-items:end;gap:0 8px;padding:5px 8px 4px}
+.hc2-label-logo{grid-area:1/1;height:9px;align-self:start;margin-top:1px}
+.hc2-label-meta{grid-area:2/1;line-height:1.1}
+.hc2-label-meta b{font-size:10px}
+.hc2-label-meta small{font-size:7.5px;font-weight:500}
+.hc2-label-grade{grid-area:1/2/3/3;align-self:start;border:0;padding:0;gap:1px}
+.hc2-label-box{display:flex;flex-direction:column;align-items:center;padding:1px 5px 2px;border:1px solid #fff;border-radius:2px;line-height:1}
+.hc2-label-grade b{font-size:15px}
+.hc2-label-grade i{font-style:normal;font-size:6px;font-weight:500;color:#fff;line-height:1;letter-spacing:.02em}
+.gs-label{grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;align-items:end;gap:0 2.5cqw;padding:1.6cqw 3cqw 1.2cqw}
+.gs-label > img{grid-area:1/1;width:13cqw;align-self:start}
+.gs-meta{grid-area:2/1}
+.gs-grade{grid-area:1/2/3/3;align-self:start;border:0;padding:0;gap:.4cqw}
+.gs-box{display:grid;justify-items:center;padding:.8cqw 2cqw 1cqw;border:.6cqw solid #fff;border-radius:.8cqw}
+.gs-grade b{font-size:8cqw}
+.gs-grade i{font-style:normal;font-size:2.2cqw;font-weight:500;line-height:1;letter-spacing:.02em}

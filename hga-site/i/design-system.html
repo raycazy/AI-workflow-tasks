@@ -660,6 +660,18 @@
     .hc-tbl td .ico { display: none; }
     .cover-lockup { flex-wrap: wrap; }
   }
+  /* Slab label (template v1.1) */
+  .lab-tbl { width: 100%; border-collapse: collapse; font-size: 12.5px; margin-top: 10px; }
+  .lab-tbl th, .lab-tbl td { padding: 8px 10px; border-bottom: 1px solid var(--ds-line); text-align: left; vertical-align: top; color: var(--ds-muted); line-height: 1.45; }
+  .lab-tbl th { color: #fff; font-weight: 600; white-space: nowrap; }
+  .lab-tbl thead th { font-family: var(--ds-font-lab); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--ds-text-55); font-weight: 600; }
+  .lab-two { display: grid; grid-template-columns: 3fr 2fr; gap: 24px; margin-top: 22px; }
+  .lab-rules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 22px; margin-top: 22px; font-size: 12.5px; color: var(--ds-muted); line-height: 1.5; }
+  .lab-rules b { color: #fff; }
+  .lab-rules i { font-style: normal; color: var(--ds-accent-soft); font-weight: 700; margin-right: 6px; }
+  .mat .demo.lab { padding: 18px; }
+  .mat .demo.lab img { width: 100%; height: auto; display: block; border-radius: 4px; }
+  @media (max-width: 900px) { .lab-two, .lab-rules { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -691,6 +703,7 @@
     <a href="#sections">Section patterns</a>
     <a href="#banners">Banners</a>
     <a href="#materials">Materials &amp; surfaces</a>
+    <a href="#label">Slab label</a>
     <a href="#motion">3D &amp; motion</a>
     <div class="nav-label">System</div>
     <a href="#tokens">Geometry</a>
@@ -1171,6 +1184,60 @@
           <figure><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/hga/glass_back-d8c9ac8c.webp" alt="Glass case back texture"><figcaption>Glass housing, back. assets/hga/glass_back.webp</figcaption></figure>
         </div>
         <div class="note"><b>Rules.</b> Metal gradient for frames, never flat grey. The label is always red with the cyan ring and the white grade box; never a flat red rectangle. Sheen only on things that are glass. No glassmorphism (backdrop blur panels) anywhere except the 78% black header. Red light comes from below or behind the slab, never from the side.</div>
+      </div>
+    </section>
+
+    <!-- SLAB LABEL -->
+    <section class="ds-section" id="label">
+      <div class="ds-inner">
+        <div class="eyebrow">System</div>
+        <h2>Slab label</h2>
+        <p class="lead">One label carries every card: sports, TCG and non sport. Template v1.1 (HGA, Nov 2026) keeps the current artwork and fixes where the information sits: three lines on the front (Subject, Version, Release), the serial and the card number right aligned under the cert, no team, box outlines at 0.5 pt, and on the back a Cert Number line and a QR code. Every slab the site shows carries it: the three.js textures, the static renders, the UCollect inventory renders and the lander composites. The CSS slabs (the morphing housing, the lander cards) are schematics of it.</p>
+        <div class="mat-grid">
+          <div class="mat"><div class="demo lab"><img src="./assets/label/front-auto.webp" alt="Label front with the Auto Grade box: Wyatt Langford, Auto Grade 9, Card Grade 10"></div><div class="meta"><b>Front, autograph graded</b><span>Auto Grade and Card Grade boxes. Subject on one line (two when it runs past 91.6 pt beside two boxes), Version with the serial right aligned, Release with the card number right aligned. Sample data from the spec.</span></div></div>
+          <div class="mat"><div class="demo lab"><img src="./assets/label/front.webp" alt="Label front without the Auto Grade box: Mickey Mantle, Card Grade 8"></div><div class="meta"><b>Front, no autograph</b><span>The Auto Grade box and its label are removed. Nothing else moves; the Subject gains the width (132.4 pt). Line 2 prints "Base" when there is no subset, so it is never blank.</span></div></div>
+          <div class="mat"><div class="demo lab"><img src="./assets/label/back.webp" alt="Label back: four subgrade boxes, Cert Number, Date Graded and a QR code"></div><div class="meta"><b>Back</b><span>Hologram and the four subgrade boxes unchanged. Cert Number replaces Card Number (which now prints on the front). A 21.07 pt QR square sits bottom right, right edge on the subgrade boxes, bottom edge level with the hologram. The code is a sample until the cert lookup is connected.</span></div></div>
+        </div>
+        <div class="lab-two">
+          <div>
+            <table class="lab-tbl"><thead><tr><th>Element</th><th>Type</th><th>Position (pt from the top left of the 189 × 72 pt label)</th></tr></thead><tbody>
+              <tr><th>Subject</th><td>Brandon Grotesque Bold 9 / 9.5</td><td>Left 8.25, baseline 37.76. A second line goes above on 28.26. Width 91.6 beside two boxes, 132.4 beside one.</td></tr>
+              <tr><th>Version</th><td>Brandon Grotesque Medium 7.5</td><td>Left 8.25, baseline 55.71</td></tr>
+              <tr><th>Release</th><td>Brandon Grotesque Regular 7.5</td><td>Left 8.25, baseline 64.71</td></tr>
+              <tr><th>Serial, card number</th><td>Brandon Grotesque Medium 7.5</td><td>Right edge 180.75, same baselines. 8 pt clear between the text and the number.</td></tr>
+              <tr><th>Grades</th><td>Brandon Grotesque Bold 22</td><td>Unchanged. Centred in the boxes at 121.88 (Auto) and 162.72 (Card), baseline 36.10.</td></tr>
+              <tr><th>Cert, back values</th><td>Brandon Grotesque Medium 7</td><td>Front centred under Card Grade, baseline 47.28. Back values left 110.</td></tr>
+              <tr><th>Subgrades</th><td>Brandon Grotesque Bold 10</td><td>Unchanged. Centred at 110.2 and 168.7, baselines 18.56 and 35.77.</td></tr>
+              <tr><th>Field labels</th><td>Arial Narrow 7</td><td>Unchanged, plus "Cert Number:" at 68.53, baselines 51.39 and 59.88.</td></tr>
+              <tr><th>Box outlines</th><td>White, 0.5 pt (was 0.25)</td><td>Auto Grade 103.85 to 139.91, Card Grade 144.69 to 180.75, both 8.25 to 40.48. Subgrade boxes 68.53 to 122.25 and 127.03 to 180.75, rows 8.25 to 21.97 and 25.47 to 39.18.</td></tr>
+              <tr><th>QR code</th><td>Black on white, 21.07 pt square</td><td>Left 159.68, top 42.68. Quiet zone inside the square.</td></tr>
+            </tbody></table>
+          </div>
+          <div>
+            <table class="lab-tbl"><thead><tr><th>Item</th><th>Value</th></tr></thead><tbody>
+              <tr><th>Label</th><td>189 × 72 pt (2.625 × 1 in)</td></tr>
+              <tr><th>Red field</th><td>C5 M100 Y100 K0</td></tr>
+              <tr><th>Pattern</th><td>C14 M100 Y94 K4, 0.323 pt stroke</td></tr>
+              <tr><th>Type and outlines</th><td>White (knockout)</td></tr>
+              <tr><th>Tracking</th><td>0 on all type</td></tr>
+              <tr><th>Unchanged</th><td>Label size, red field, pattern, holographic border, logo, box positions and sizes, grade and cert type, hologram</td></tr>
+              <tr><th>Files</th><td><a href="./assets/label/HGA-Label-Design-Spec.pdf">HGA-Label-Design-Spec.pdf</a> (this spec, with the fifteen example cards) and <a href="./assets/label/HGA-Label-Template.pdf">HGA-Label-Template.pdf</a> (true size vector, three pages: front with Auto Grade, front without, back). Both open in Illustrator.</td></tr>
+            </tbody></table>
+            <div class="note" style="margin-top:16px"><b>Stand in type.</b> The renders on this page and on the site are set in Jost (for Brandon Grotesque) and Archivo Narrow (for Arial Narrow), because the licensed fonts were not available. Positions and sizes are final; only the typeface needs swapping in the print file. Certs, grades, serials and dates are placeholders.</div>
+          </div>
+        </div>
+        <div class="lab-rules">
+          <div><i>1</i><b>One size per slot.</b> Text never shrinks to fit.</div>
+          <div><i>2</i><b>A dot between fields.</b> Fields on a line are joined by a middle dot ( · ). The slash is kept for serials, card numbers and multi player names.</div>
+          <div><i>3</i><b># means card number.</b> Card numbers always start with #. Serials never do.</div>
+          <div><i>4</i><b>Language only when not English,</b> straight after the manufacturer: 2023 Pokémon Japanese Pokémon Card 151.</div>
+          <div><i>5</i><b>No repeats.</b> "Chrome Sapphire Autographs" in Chrome Sapphire Edition prints as "Autographs".</div>
+          <div><i>6</i><b>Line 2 is never blank.</b> Sports and non sport print the subset or "Base". Card games print the rarity.</div>
+          <div><i>7</i><b>Short forms.</b> A line that runs over prints the short form saved for that card in the database. Nobody shortens text by hand.</div>
+          <div><i>8</i><b>Two or more subjects</b> are joined by a slash in printed order. Three or more: last names only.</div>
+          <div><i>9</i><b>Team does not print.</b> It stays in the grading report.</div>
+        </div>
+        <div class="note" style="margin-top:22px"><b>Open with HGA.</b> The spec prints the Auto Grade box whenever an autograph is graded, while the grading standards page says the autograph grade prints when it is a 10. The spec prints subgrades as whole numbers, while the sample report shows a 9.5; the site keeps the half point until HGA confirms. On the site, cards that were graded 10 across the board stay at 10.</div>
       </div>
     </section>
 

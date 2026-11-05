@@ -37,6 +37,12 @@ Landing pages for a persona change only the hero copy and one or two story secti
 - 3D: the hero and shop page use the three.js spin slab (glass.glb and clear_case.glb with per slab card and label textures, static render fallback, drag to spin). Sizes sections use the CSS 3D morphing housing. Do not add other 3D or WebGL. Respect prefers-reduced-motion: every animation off.
 - Motion: .15s hover, .3s reveals, .9s cubic-bezier(.2,.7,.2,1) for 3D and size changes, 1.2s sheen. Text and layout never animate.
 
+## Slab label (template v1.1)
+
+- One label layout for every card. Front: Subject (Bold 9, left 8.25, baseline 37.76), Version (Medium 7.5, baseline 55.71), Release (Regular 7.5, baseline 64.71); the serial right aligned on the Version line and the #card number on the Release line, right edge 180.75. Card Grade box 144.69 to 180.75, Auto Grade box 103.85 to 139.91 only when an autograph is graded, outlines 0.5 pt, cert centred under Card Grade. Team never prints. Back: four subgrade boxes, Cert Number and Date Graded (month spelled out), a 21.07 pt QR square bottom right.
+- The label on the site is the texture on the three.js slab and the static renders, made by `_tools/label_render.py` from `_tools/label/` and copied by `label_assets.py` each build. Do not draw the print label in CSS; the CSS slab labels (`.hc2-label`, `.gs-label`) are schematics: logo top left, subject under it, grade box top right, cert under the box.
+- Type on the site is a stand in: Jost for Brandon Grotesque, Archivo Narrow for Arial Narrow. The spec and the true size template are in `assets/label/`.
+
 ## Copy rules
 
 - Buttons read "Claim Your Glass" or "Claim Your Poly". The site wide header and bar use "Claim Your Pass". The shop buy box uses "Claim my $200 HGA Glass", the pass page "Add to cart".
