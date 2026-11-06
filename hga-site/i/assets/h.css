@@ -1245,13 +1245,13 @@
 .sh-gal .stage-in{height:520px;display:grid;align-content:center}
 .sh-gal.is-photo .stage-in{display:none!important}
 .sh-gal.is-photo .gal-badge{display:none}
-.sh-photo{margin:0;width:100%;height:520px;display:grid;place-items:center;justify-self:center}
-.sh-photo img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;border-radius:14px;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6))}
-.sh-photo video{display:block;max-width:100%;max-height:100%;border-radius:14px;background:#000}
+.sh-photo{margin:0;width:100%;height:520px;display:flex;align-items:center;justify-content:center;justify-self:center;overflow:hidden}
+.sh-photo img{display:block;width:100%;height:520px;max-width:100%;object-fit:contain;border-radius:14px;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6))}
+.sh-photo video{display:block;width:100%;height:520px;max-width:100%;object-fit:contain;border-radius:14px;background:#000}
 .sh-thumbs{position:relative;z-index:2;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;width:100%;margin-top:22px;padding:0 4px}
 .sh-th{position:relative;width:56px;height:56px;padding:0;border:1px solid rgba(255,255,255,.14);border-radius:10px;background:#141212;overflow:hidden;cursor:pointer;transition:border-color .15s,transform .15s}
 .sh-th img{width:100%;height:100%;object-fit:cover;display:block}
 .sh-th:hover{border-color:rgba(255,255,255,.5)}
 .sh-th.on{border-color:#fff;box-shadow:0 0 0 1px #fff inset}
 .sh-th-badge{position:absolute;left:4px;bottom:4px;padding:2px 5px;border-radius:4px;background:rgba(0,0,0,.72);font-family:var(--lab);font-weight:600;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#fff}
-@media (max-width:980px){.sh-gal .stage-in,.sh-photo{height:360px}.sh-thumbs{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;-webkit-overflow-scrolling:touch}.sh-thumbs::-webkit-scrollbar{display:none}.sh-th{flex:0 0 56px}}
+@media (max-width:980px){.sh-gal .stage-in,.sh-photo,.sh-photo img,.sh-photo video{height:360px}.sh-thumbs{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;-webkit-overflow-scrolling:touch}.sh-thumbs::-webkit-scrollbar{display:none}.sh-th{flex:0 0 56px}}
