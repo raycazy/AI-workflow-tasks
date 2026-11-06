@@ -135,7 +135,6 @@
         <a class="btn lg block" href="checkout.html" data-c-go>Checkout <svg class="ico"><use href="#i-lock"/></svg></a>
         <div class="xpay"><a class="xp paypal" href="checkout.html#express" aria-label="Check out with PayPal"><svg viewBox="0 0 100 26" width="92" height="24" aria-hidden="true"><text x="2" y="20" font-family="Barlow,Arial,sans-serif" font-weight="800" font-style="italic" font-size="22" letter-spacing="-.3"><tspan fill="#003087">Pay</tspan><tspan fill="#009CDE">Pal</tspan></text></svg></a><a class="xp venmo" href="checkout.html#express" aria-label="Check out with Venmo"><b>venmo</b></a></div>
         <!-- Emotion focused collector quotes under the checkout button (Trevor: 4 to 10, scrolling). DRAFT until real collectors own them. -->
-        <div class="co-rv" aria-label="Collector reviews"><p class="co-rv-h">Collector reviews</p><div class="co-rv-win"><div class="co-rv-track"><ul class="co-rv-set"><li><blockquote>"Finally something better than plastic."</blockquote><cite>Ryan G.</cite></li><li><blockquote>"My best cards finally look like they belong on a shelf."</blockquote><cite>Chris M.</cite></li><li><blockquote>"I've waited years for grading that respects the card."</blockquote><cite>Sam L.</cite></li><li><blockquote>"My grail finally looks like a grail."</blockquote><cite>Taylor B.</cite></li><li><blockquote>"Glass is the first slab I would put on my desk."</blockquote><cite>Jordan K.</cite></li><li><blockquote>"This is the slab I show people first."</blockquote><cite>Alex P.</cite></li></ul><ul class="co-rv-set" aria-hidden="true"><li><blockquote>"Finally something better than plastic."</blockquote><cite>Ryan G.</cite></li><li><blockquote>"My best cards finally look like they belong on a shelf."</blockquote><cite>Chris M.</cite></li><li><blockquote>"I've waited years for grading that respects the card."</blockquote><cite>Sam L.</cite></li><li><blockquote>"My grail finally looks like a grail."</blockquote><cite>Taylor B.</cite></li><li><blockquote>"Glass is the first slab I would put on my desk."</blockquote><cite>Jordan K.</cite></li><li><blockquote>"This is the slab I show people first."</blockquote><cite>Alex P.</cite></li></ul></div></div></div>
         <details class="costs-pop">
           <summary><svg class="ico"><use href="#i-dollar"/></svg>Every possible cost<i class="pm"></i></summary>
           <p>Your pass covers grading, the report, subgrades, the case and tracking for any card worth under $10,000. Paid later, when you book your day: <b>shipping</b> both ways, <b>shipping insurance (1% on cards worth more than $500)</b>, and for cards worth over $10,000 only, <b>a 2.5% fee on the value over $10,000</b>.</p>
@@ -144,43 +143,6 @@
       </aside>
     </div>
   </div>
-</section>
-
-<section class="sec hm-rvs" id="reviews" aria-labelledby="hm-rvs-title">
-  <div class="wrap">
-    <div class="hm-rvs-head">
-      <h2 class="h2" id="hm-rvs-title">Collector <span class="red">reviews.</span></h2>
-      <p class="lede">What collectors say about HGA Glass and HGA Poly.</p>
-    </div>
-    <div class="rv-wrap" data-rvc>
-      <button type="button" class="rv-arrow rv-prev" aria-label="Previous reviews" data-rv-prev><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
-      <ul class="rv-track" data-rv-track tabindex="0" aria-label="Collector reviews, scrollable"><li class="rv-card rv-q"><blockquote>"Finally something better than plastic."</blockquote><cite>Ryan G.</cite></li><li class="rv-card rv-q"><blockquote>"My best cards finally look like they belong on a shelf."</blockquote><cite>Chris M.</cite></li><li class="rv-card rv-q"><blockquote>"Four subgrades on the label, so I can see exactly why it got the grade it did."</blockquote><cite>Danielle R.</cite></li><li class="rv-card rv-q"><blockquote>"The glass housing is the first slab I'd rather display than store."</blockquote><cite>Alex P.</cite></li><li class="rv-card rv-q"><blockquote>"A real grading date beats refreshing a status page for months."</blockquote><cite>Jordan K.</cite></li><li class="rv-card rv-q"><blockquote>"An RFID chip tied to the certificate is a big deal when I go to sell."</blockquote><cite>Marcus T.</cite></li><li class="rv-card rv-q"><blockquote>"Thirty days from a date I pick. That alone gets me in."</blockquote><cite>Sam L.</cite></li><li class="rv-card rv-q"><blockquote>"Finally somewhere that grades my booklets the right way."</blockquote><cite>Taylor B.</cite></li></ul>
-      <button type="button" class="rv-arrow rv-next" aria-label="Next reviews" data-rv-next><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
-    </div>
-    <div class="rv-dots" data-rv-dots><button type="button" class="rv-dot on" aria-label="Go to review 1" data-dot="0"></button><button type="button" class="rv-dot" aria-label="Go to review 2" data-dot="1"></button><button type="button" class="rv-dot" aria-label="Go to review 3" data-dot="2"></button><button type="button" class="rv-dot" aria-label="Go to review 4" data-dot="3"></button><button type="button" class="rv-dot" aria-label="Go to review 5" data-dot="4"></button><button type="button" class="rv-dot" aria-label="Go to review 6" data-dot="5"></button><button type="button" class="rv-dot" aria-label="Go to review 7" data-dot="6"></button><button type="button" class="rv-dot" aria-label="Go to review 8" data-dot="7"></button></div>
-  </div>
-  <script>
-    document.querySelectorAll("[data-rvc]").forEach(function (w) {
-      var tr = w.querySelector("[data-rv-track]"), cards = tr.children, dots = w.parentNode.querySelectorAll("[data-dot]");
-      var step = function () { return cards[1].offsetLeft - cards[0].offsetLeft; };
-      var smooth = matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
-      function go(n) { tr.scrollTo({ left: Math.max(0, n) * step(), behavior: smooth }); }
-      w.querySelector("[data-rv-prev]").addEventListener("click", function () { go(Math.round(tr.scrollLeft / step()) - 1); });
-      w.querySelector("[data-rv-next]").addEventListener("click", function () { var i = Math.round(tr.scrollLeft / step()) + 1; go(tr.scrollLeft + tr.clientWidth >= tr.scrollWidth - 4 ? 0 : i); });
-      dots.forEach(function (d) { d.addEventListener("click", function () { go(+d.dataset.dot); }); });
-      // rvAuto: advance every 5s; pause on hover, focus or touch; off for reduced motion
-      var t = null, hold = false, reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-      function nxt() { var i = Math.round(tr.scrollLeft / step()) + 1; go(tr.scrollLeft + tr.clientWidth >= tr.scrollWidth - 4 ? 0 : i); }
-      function run() { clearInterval(t); if (!reduce && !hold) t = setInterval(nxt, 5000); }
-      ["mouseenter", "focusin", "touchstart"].forEach(function (ev) { w.addEventListener(ev, function () { hold = true; run(); }, { passive: true }); });
-      ["mouseleave", "focusout"].forEach(function (ev) { w.addEventListener(ev, function () { hold = false; run(); }); });
-      new IntersectionObserver(function (es) { if (es[0].isIntersecting) run(); else clearInterval(t); }).observe(w);
-      tr.addEventListener("scroll", function () {
-        var i = Math.round(tr.scrollLeft / step()); if (tr.scrollLeft + tr.clientWidth >= tr.scrollWidth - 4) i = cards.length - 1;
-        dots.forEach(function (d, k) { d.classList.toggle("on", k === i); });
-      }, { passive: true });
-    });
-  </script>
 </section>
 
 <div class="cart-mbar" data-c-full>
