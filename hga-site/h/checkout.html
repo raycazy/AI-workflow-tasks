@@ -15,7 +15,7 @@
 <script defer src="./assets/v2.js?v=80e4d4a7"></script>
 <script defer src="./assets/site.js?v=80e4d4a7"></script>
 <script defer src="./assets/shop.js?v=80ce5da1"></script>
-<link rel="stylesheet" href="./assets/h.css?v=12002309">
+<link rel="stylesheet" href="./assets/h.css?v=432c7799">
 <!-- share preview and icons: _tools/h_meta.py -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="HGA">
@@ -58,16 +58,6 @@
 
       <a class="co-mtotal" href="#order"><span><svg class="ico"><use href="#i-bag"/></svg><span data-c-count>1 pass</span> &middot; saving <b data-c-save-plain>$400</b></span><b data-c-total>$200</b></a>
 
-      <div class="co-express">
-        <p class="mono">Express checkout</p>
-        <div class="xpay big">
-          <button type="button" class="xp apple" data-express="apple"><svg class="ico"><use href="#i-apple"/></svg>Pay</button>
-          <button type="button" class="xp gpay" data-express="google"><b>G</b>Pay</button>
-        </div>
-        <p class="xnote">Express pay confirms the <a href="faq.html#g-presale">presale terms</a>: all sales final and purchases cannot be transferred.</p>
-        <p class="or"><span>or pay with card</span></p>
-      </div>
-
       <fieldset class="co-sec">
         <legend><span class="bn">1</span>Your account</legend>
         <p class="co-help">Your passes live on your HGA account. Already have one? <a href="https://ucollect.com/">Sign in</a>. New here? We'll create it with this email.</p>
@@ -95,8 +85,9 @@
 
       <fieldset class="co-sec">
         <legend><span class="bn">3</span>Payment</legend>
+        <div class="co-accept" aria-label="We accept"><svg class="pm pm-visa" viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="Visa"><rect x=".5" y=".5" width="39" height="25" rx="4" fill="#fff" stroke="rgba(255,255,255,.18)"/><text x="20" y="17.5" text-anchor="middle" font-family="Barlow,Arial,sans-serif" font-weight="800" font-style="italic" font-size="12" fill="#1A1F71" letter-spacing=".2">VISA</text></svg><svg class="pm pm-mastercard" viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="Mastercard"><rect x=".5" y=".5" width="39" height="25" rx="4" fill="#fff" stroke="rgba(255,255,255,.18)"/><circle cx="15.5" cy="13" r="7" fill="#EB001B"/><circle cx="24.5" cy="13" r="7" fill="#F79E1B" fill-opacity=".92"/></svg><svg class="pm pm-amex" viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="American Express"><rect x=".5" y=".5" width="39" height="25" rx="4" fill="#006FCF" stroke="#006FCF"/><text x="20" y="16.6" text-anchor="middle" font-family="Barlow,Arial,sans-serif" font-weight="800" font-size="8.5" fill="#fff" letter-spacing=".4">AMEX</text></svg><svg class="pm pm-discover" viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="Discover"><rect x=".5" y=".5" width="39" height="25" rx="4" fill="#fff" stroke="rgba(255,255,255,.18)"/><text x="17" y="16.4" text-anchor="middle" font-family="Barlow,Arial,sans-serif" font-weight="800" font-size="6.6" fill="#231F20" letter-spacing=".2">DISCOVER</text><circle cx="32.5" cy="13" r="3.6" fill="#F58220"/></svg><svg class="pm pm-paypal" viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="PayPal"><rect x=".5" y=".5" width="39" height="25" rx="4" fill="#fff" stroke="rgba(255,255,255,.18)"/><text x="20" y="17" text-anchor="middle" font-family="Barlow,Arial,sans-serif" font-weight="800" font-style="italic" font-size="9" letter-spacing="-.1"><tspan fill="#003087">Pay</tspan><tspan fill="#009CDE">Pal</tspan></text></svg><svg class="pm pm-venmo" viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="Venmo"><rect x=".5" y=".5" width="39" height="25" rx="4" fill="#008CFF" stroke="#008CFF"/><text x="20" y="17" text-anchor="middle" font-family="Barlow,Arial,sans-serif" font-weight="800" font-size="9.5" fill="#fff" letter-spacing=".1">venmo</text></svg></div>
         <div class="card-box">
-          <div class="f"><label for="co-cc">Card number</label><div class="cc-wrap"><input id="co-cc" data-cc inputmode="numeric" autocomplete="cc-number" placeholder="1234 1234 1234 1234" required><span class="cc-brands" aria-hidden="true"><i>VISA</i><i>MC</i><i>AMEX</i></span></div></div>
+          <div class="f"><label for="co-cc">Card number</label><div class="cc-wrap"><input id="co-cc" data-cc inputmode="numeric" autocomplete="cc-number" placeholder="1234 1234 1234 1234" required><span class="cc-brands" aria-hidden="true"><svg class="pm pm-visa" viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="Visa"><rect x=".5" y=".5" width="39" height="25" rx="4" fill="#fff" stroke="rgba(255,255,255,.18)"/><text x="20" y="17.5" text-anchor="middle" font-family="Barlow,Arial,sans-serif" font-weight="800" font-style="italic" font-size="12" fill="#1A1F71" letter-spacing=".2">VISA</text></svg><svg class="pm pm-mastercard" viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="Mastercard"><rect x=".5" y=".5" width="39" height="25" rx="4" fill="#fff" stroke="rgba(255,255,255,.18)"/><circle cx="15.5" cy="13" r="7" fill="#EB001B"/><circle cx="24.5" cy="13" r="7" fill="#F79E1B" fill-opacity=".92"/></svg><svg class="pm pm-amex" viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="American Express"><rect x=".5" y=".5" width="39" height="25" rx="4" fill="#006FCF" stroke="#006FCF"/><text x="20" y="16.6" text-anchor="middle" font-family="Barlow,Arial,sans-serif" font-weight="800" font-size="8.5" fill="#fff" letter-spacing=".4">AMEX</text></svg><svg class="pm pm-discover" viewBox="0 0 40 26" width="40" height="26" role="img" aria-label="Discover"><rect x=".5" y=".5" width="39" height="25" rx="4" fill="#fff" stroke="rgba(255,255,255,.18)"/><text x="17" y="16.4" text-anchor="middle" font-family="Barlow,Arial,sans-serif" font-weight="800" font-size="6.6" fill="#231F20" letter-spacing=".2">DISCOVER</text><circle cx="32.5" cy="13" r="3.6" fill="#F58220"/></svg></span></div></div>
           <div class="f-row two">
             <div class="f"><label for="co-exp">Expiry</label><input id="co-exp" data-exp inputmode="numeric" autocomplete="cc-exp" placeholder="MM / YY" required></div>
             <div class="f"><label for="co-cvc">Security code</label><input id="co-cvc" inputmode="numeric" autocomplete="cc-csc" placeholder="CVC" maxlength="4" required></div>
@@ -110,6 +101,7 @@
         <label class="chk"><input type="checkbox" required><span>I understand these are prepaid grading passes. All sales are final and pre-launch purchases cannot be transferred. I agree to the <a href="faq.html#g-presale">presale terms</a>.</span></label>
         <button class="btn lg block" type="submit"><svg class="ico"><use href="#i-lock"/></svg>Pay <span data-c-total>$200</span> + tax</button>
         <p class="fine">Sales tax is added from your billing address and shown on your receipt. Charged when you book, not today: shipping both ways, shipping insurance (1% on cards worth more than $500) and 2.5% on card value over $10,000.</p>
+        <ul class="co-trust"><li><svg class="ico"><use href="#i-lock"/></svg><span><b>Secure checkout.</b> Your connection is encrypted (SSL).</span></li><li><svg class="ico"><use href="#i-shield"/></svg><span><b>Card details never stored.</b> Payments are processed by Stripe.</span></li><li><svg class="ico"><use href="#i-check"/></svg><span><b>Passes on your account</b> the moment you pay, with a receipt by email.</span></li></ul>
       </div>
     </form>
 
@@ -132,8 +124,9 @@
         <div class="sl total"><span>Total before tax</span><b data-c-total>$200</b></div>
         <div class="co-saved"><svg class="ico"><use href="#i-award"/></svg><p>You're saving <b data-c-save-plain>$400</b> against launch pricing.</p></div>
         <ul class="co-assure">
+          <li><svg class="ico"><use href="#i-lock"/></svg>Secure, encrypted checkout</li>
           <li><svg class="ico"><use href="#i-clock"/></svg>Graded on the date you book, live in your portal</li>
-          <li><svg class="ico"><use href="#i-lock"/></svg>Pre-launch purchases cannot be transferred</li>
+          <li><svg class="ico"><use href="#i-repeat"/></svg>Pre-launch purchases cannot be transferred</li>
           <li><svg class="ico"><use href="#i-shield"/></svg>Lost or damaged in our care: replaced or paid out</li>
         </ul>
       </div>
