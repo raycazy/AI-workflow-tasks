@@ -85,7 +85,7 @@
     $$("[data-hero-cta]").forEach(function (a) { a.href = "shop.html?h=" + h + "#hero"; });
     $$("[data-hero-cta-price]").forEach(function (e) { e.textContent = money(PRICES[h].now); });
     $$("[data-sbar-name]").forEach(function (e) { e.textContent = PRICES[h].name + " · " + money(PRICES[h].now) + " a card"; });
-    $$("[data-sbar-sub]").forEach(function (e) { e.textContent = money(PRICES[h].open) + " at launch · save " + money(PRICES[h].open - PRICES[h].now); });
+    $$("[data-sbar-sub]").forEach(function (e) { e.textContent = money(PRICES[h].open) + " at launch"; });
     if (!builderTouched) setQty({ poly: h === "poly" ? 1 : 0, glass: h === "glass" ? 1 : 0 });
   }
 

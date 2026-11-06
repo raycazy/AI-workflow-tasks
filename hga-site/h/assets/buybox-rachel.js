@@ -36,8 +36,9 @@
   var S = { step: 1, total: 1, glass: bdParams.get("h") === "poly" ? 0 : 1, special: false,
     over: { glass: 0, poly: 0 }, books: { glass: bookRows(), poly: bookRows() } };
   var inH = function (h) { return h === "glass" ? S.glass : S.total - S.glass; };
-  // a booklet is two cards joined and a trifold three (Bhaskar 2026-11-04), so a booklet with f folds counts 1 + f cards
-  var W = function (f) { return 1 + f; };
+  // every unit counts as one card, booklet, trifold or oversized alike (UCollect call 2026-11-06; until then a booklet
+  // counted as two cards and a trifold as three). W stays as a hook in case that changes again.
+  var W = function (f) { return 1; };
   var bookN = function (h) { return S.books[h].reduce(function (n, b) { return n + W(b.f) * b.q; }, 0); };
   var bookUnits = function (h) { return S.books[h].reduce(function (n, b) { return n + b.q; }, 0); };
   var stdN = function (h) { return inH(h) - (S.special ? S.over[h] + bookN(h) : 0); };
@@ -66,8 +67,8 @@
   var fromCart = function () {
     var c = read(), t = totals(c);
     if (!t.count || t.count > MAX) return;
-    // the count is in cards (a booklet is two, a trifold three), not in slabs
-    var cards = function (h) { var n = 0; C.variants.forEach(function (v) { if (v !== h && v.indexOf(h + "-") !== 0) return; var sz = v.split("-")[1] || "std"; n += (1 + (T[sz].folds || 0)) * (c[v] || 0); }); return n; };
+    // every unit is one card
+    var cards = function (h) { var n = 0; C.variants.forEach(function (v) { if (v !== h && v.indexOf(h + "-") !== 0) return; n += c[v] || 0; }); return n; };
     S.glass = cards("glass"); S.total = S.glass + cards("poly"); S.step = 3;
     if (S.total > MAX) { S.total = t.count; S.glass = byHousing(c, "glass"); }
     HOUSINGS.forEach(function (h) {
@@ -89,7 +90,7 @@
       var nm = hname(h), room = stdN(h), rows = "";
       TABLE.order.forEach(function (sz) {
         if (!hasSize(sz)) return;
-        var ty = T[sz], name = ty.short, ctl;
+        var ty = T[sz], name = sz === "std" ? "Standard size" : ty.short, ctl;
         if (sz === "std") ctl = '<span class="bd-zq" title="The rest of your ' + nm + ' cards">' + room + "</span>";
         else if (sz === "oversized") ctl = mini("over:" + h, S.over[h], room, nm + " oversized card");
         else {
@@ -102,7 +103,18 @@
         rows += '<div class="bob-row bd-z' + (q > 0 ? " has" : "") + '">' + szi(sz) + '<div class="bob-n"><b>' + name + "</b><span>" + aCard(sz, h) + "</span></div>" + ctl + "</div>";
       });
       return '<div class="bd-zg ' + h + '"><p class="bd-zh"><img src="./assets/hybrid_grading/' + (h === "glass" ? "hga-glass-828ebfd2" : "hga-poly-69885480") + '.svg" alt="' + nm + '" width="' + (h === "glass" ? 96 : 88) + '" height="16"><span>' + inH(h) + (inH(h) === 1 ? " card" : " cards") + "</span></p>" + rows + "</div>";
-    }).join("") + '<p class="bd-note">Standard is whatever is left. A booklet counts as two of your cards, a trifold as three. <a href="sizes.html">See every size</a></p>';
+    }).join("") + '<p class="bd-note">Standard size is whatever is left. Each booklet, trifold or oversized card counts as one card. <a href="sizes.html" target="_blank" rel="noopener">See every size</a></p>';
+  };
+  var sizesSummary = function () {
+    var parts = [];
+    HOUSINGS.forEach(function (h) {
+      if (inH(h) <= 0) return;
+      var nm = hname(h).replace("HGA ", "");
+      S.books[h].forEach(function (b) { if (b.q) parts.push(b.q + " × " + T[folds(b.f)].short.toLowerCase() + " in " + nm); });
+      if (S.over[h]) parts.push(S.over[h] + " × oversized in " + nm);
+    });
+    var txt = parts.length ? parts.join(", ") + ". The rest are standard size." : "No booklets or oversized cards picked yet.";
+    return '<div class="bd-zsum"><span>' + txt + '</span><button type="button" class="bd-zedit" data-sizes-open>' + (parts.length ? "Edit sizes" : "Pick sizes") + ' ' + ico("i-arrow") + '</button></div>';
   };
   var bdRender = function (focus) {
     fit();
@@ -138,14 +150,14 @@
     var r = $("[data-range]", bd); r.max = S.total; r.value = g; r.hidden = one; r.style.setProperty("--p", (g / S.total * 100) + "%");
     $$("[data-special]", bd).forEach(function (x) { x.setAttribute("aria-checked", String((x.dataset.special === "1") === S.special)); });
     var box = $("[data-sizes]", bd); box.hidden = !S.special;
-    if (S.special) box.innerHTML = sizesHtml();
+    if (S.special) box.innerHTML = sizesSummary();
+    var dlg = $("[data-sizes-dlg]", bd);
+    if (dlg && dlg.open) { $("[data-dlg-body]", dlg).innerHTML = sizesHtml(); if (!S.special) closeSizes(); }
     var tot = $("[data-total]", bd), acts = $("[data-acts]", bd);
     tot.hidden = S.step < 2; acts.hidden = S.step < 3;
     set("[data-t-count]", S.total + (one ? " card" : " cards") + (g && p ? " · " + g + " Glass, " + p + " Poly" : g ? " · Glass" : " · Poly"));
     set("[data-t-now]", money(t.now));
-    set("[data-t-save]", t.save > 0 ? "Save " + money(t.save) + " vs launch pricing" : "Presale price through " + TABLE.presale_ends + ".");
-    var solo = one && !S.special;
-    set("[data-claim-label]", solo ? "Claim my " + money(t.now) + " " + hname(g ? "glass" : "poly") : "Claim my " + S.total + (one ? " card" : " cards") + " · " + money(t.now));
+    set("[data-claim-label]", (one ? "Claim Your Pass" : "Claim Your Passes") + " · " + money(t.now));
     // the slab on the left follows the housing in play
     var showH = g > 0 ? "glass" : "poly";
     $$("[data-slab]").forEach(function (e) { e.hidden = e.dataset.slab !== showH; });
@@ -169,7 +181,10 @@
     if (!t) return;
     if (t.hasAttribute("data-go")) { goTo(Number(t.dataset.go)); return; }
     if (t.hasAttribute("data-q")) { setTotal(Number(t.dataset.q)); bdRender(); return; }
-    if (t.hasAttribute("data-special")) { S.special = t.dataset.special === "1"; bdRender(); return; }
+    if (t.hasAttribute("data-special")) { S.special = t.dataset.special === "1"; bdRender(); if (S.special) openSizes(); return; }
+    if (t.hasAttribute("data-sizes-open")) { openSizes(); return; }
+    if (t.hasAttribute("data-sizes-close")) { closeSizes(); return; }
+    if (t.hasAttribute("data-info")) { toggleTip(t.dataset.info); return; }
     if (t.hasAttribute("data-more")) {
       var mh = t.dataset.more, list = S.books[mh], nf = null;
       FOLDS.forEach(function (f) { if (nf === null && !list.some(function (o) { return o.f === f; })) nf = f; });
@@ -226,6 +241,31 @@
   });
   // the buy box describes the whole order, so it replaces the cart rather than adding to it
   $("[data-claim-all]", bd).addEventListener("click", function () { write(toCart()); location.href = "cart.html"; });
-  $("[data-buy-now]", bd).addEventListener("click", function () { write(toCart()); location.href = "checkout.html"; });
+  // the sizes popup: the page behind does not scroll; Done or Escape closes it
+  var openSizes = function () {
+    var dlg = $("[data-sizes-dlg]", bd); if (!dlg) return;
+    $("[data-dlg-body]", dlg).innerHTML = sizesHtml();
+    if (typeof dlg.showModal === "function") { if (!dlg.open) dlg.showModal(); } else dlg.setAttribute("open", "");
+    document.documentElement.classList.add("bd-noscroll");
+    var first = $("[data-sizes-close]", dlg); if (first) first.focus({ preventScroll: true });
+  };
+  var closeSizes = function () {
+    var dlg = $("[data-sizes-dlg]", bd); if (!dlg) return;
+    if (dlg.open && typeof dlg.close === "function") dlg.close(); else dlg.removeAttribute("open");
+    document.documentElement.classList.remove("bd-noscroll");
+    bdRender(); var ed = $("[data-sizes-open]", bd); if (ed) ed.focus({ preventScroll: true });
+  };
+  var dlgEl = $("[data-sizes-dlg]", bd);
+  if (dlgEl) {
+    dlgEl.addEventListener("cancel", function (e) { e.preventDefault(); closeSizes(); });
+    dlgEl.addEventListener("click", function (e) { if (e.target === dlgEl) closeSizes(); });
+  }
+  // what each slab gives you: a small popover on the slab card (UCollect call 2026-11-06)
+  var toggleTip = function (h) {
+    $$("[data-tip]", bd).forEach(function (t) { var on = t.dataset.tip === h && !t.classList.contains("open"); t.classList.toggle("open", on); t.hidden = !on; });
+    $$("[data-info]", bd).forEach(function (b) { b.setAttribute("aria-expanded", String(b.dataset.info === h && !$('[data-tip="' + h + '"]', bd).hidden)); });
+  };
+  document.addEventListener("click", function (e) { if (!e.target.closest || e.target.closest("[data-tip],[data-info]")) return; $$("[data-tip]", bd).forEach(function (t) { t.classList.remove("open"); t.hidden = true; }); $$("[data-info]", bd).forEach(function (b) { b.setAttribute("aria-expanded", "false"); }); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") { $$("[data-tip]", bd).forEach(function (t) { t.classList.remove("open"); t.hidden = true; }); $$("[data-info]", bd).forEach(function (b) { b.setAttribute("aria-expanded", "false"); }); } });
   bdRender();
 })();
