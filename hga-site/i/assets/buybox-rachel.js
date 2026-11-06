@@ -103,18 +103,7 @@
         rows += '<div class="bob-row bd-z' + (q > 0 ? " has" : "") + '">' + szi(sz) + '<div class="bob-n"><b>' + name + "</b><span>" + aCard(sz, h) + "</span></div>" + ctl + "</div>";
       });
       return '<div class="bd-zg ' + h + '"><p class="bd-zh"><img src="./assets/hybrid_grading/' + (h === "glass" ? "hga-glass-828ebfd2" : "hga-poly-69885480") + '.svg" alt="' + nm + '" width="' + (h === "glass" ? 96 : 88) + '" height="16"><span>' + inH(h) + (inH(h) === 1 ? " card" : " cards") + "</span></p>" + rows + "</div>";
-    }).join("") + '<p class="bd-note">Standard size is whatever is left. Each booklet, trifold or oversized card counts as one card. <a href="sizes.html" target="_blank" rel="noopener">See every size</a></p>';
-  };
-  var sizesSummary = function () {
-    var parts = [];
-    HOUSINGS.forEach(function (h) {
-      if (inH(h) <= 0) return;
-      var nm = hname(h).replace("HGA ", "");
-      S.books[h].forEach(function (b) { if (b.q) parts.push(b.q + " × " + T[folds(b.f)].short.toLowerCase() + " in " + nm); });
-      if (S.over[h]) parts.push(S.over[h] + " × oversized in " + nm);
-    });
-    var txt = parts.length ? parts.join(", ") + ". The rest are standard size." : "No booklets or oversized cards picked yet.";
-    return '<div class="bd-zsum"><span>' + txt + '</span><button type="button" class="bd-zedit" data-sizes-open>' + (parts.length ? "Edit sizes" : "Pick sizes") + ' ' + ico("i-arrow") + '</button></div>';
+    }).join("") + '<p class="bd-note">Standard size is whatever is left. Each booklet, trifold or oversized card counts as one card. <button type="button" class="bd-link" data-sizes-open>See every size</button></p>';
   };
   var bdRender = function (focus) {
     fit();
@@ -150,9 +139,7 @@
     var r = $("[data-range]", bd); r.max = S.total; r.value = g; r.hidden = one; r.style.setProperty("--p", (g / S.total * 100) + "%");
     $$("[data-special]", bd).forEach(function (x) { x.setAttribute("aria-checked", String((x.dataset.special === "1") === S.special)); });
     var box = $("[data-sizes]", bd); box.hidden = !S.special;
-    if (S.special) box.innerHTML = sizesSummary();
-    var dlg = $("[data-sizes-dlg]", bd);
-    if (dlg && dlg.open) { $("[data-dlg-body]", dlg).innerHTML = sizesHtml(); if (!S.special) closeSizes(); }
+    if (S.special) box.innerHTML = sizesHtml();
     var tot = $("[data-total]", bd), acts = $("[data-acts]", bd);
     tot.hidden = S.step < 2; acts.hidden = S.step < 3;
     set("[data-t-count]", S.total + (one ? " card" : " cards") + (g && p ? " · " + g + " Glass, " + p + " Poly" : g ? " · Glass" : " · Poly"));
@@ -181,7 +168,7 @@
     if (!t) return;
     if (t.hasAttribute("data-go")) { goTo(Number(t.dataset.go)); return; }
     if (t.hasAttribute("data-q")) { setTotal(Number(t.dataset.q)); bdRender(); return; }
-    if (t.hasAttribute("data-special")) { S.special = t.dataset.special === "1"; bdRender(); if (S.special) openSizes(); return; }
+    if (t.hasAttribute("data-special")) { S.special = t.dataset.special === "1"; bdRender(); return; }
     if (t.hasAttribute("data-sizes-open")) { openSizes(); return; }
     if (t.hasAttribute("data-sizes-close")) { closeSizes(); return; }
     if (t.hasAttribute("data-info")) { toggleTip(t.dataset.info); return; }
@@ -241,10 +228,19 @@
   });
   // the buy box describes the whole order, so it replaces the cart rather than adding to it
   $("[data-claim-all]", bd).addEventListener("click", function () { write(toCart()); location.href = "cart.html"; });
-  // the sizes popup: the page behind does not scroll; Done or Escape closes it
+  // "See every size": the size chart in a popup (UCollect call 2026-11-06), never a new page; the page behind does not
+  // scroll; Done, Escape or the backdrop closes it
+  var sizeChartHtml = function () {
+    return TABLE.order.filter(hasSize).map(function (sz) {
+      var ty = T[sz], g = ty.glass, p = ty.poly;
+      return '<div class="bd-sz">' + szi(sz) + '<div class="bd-sz-t"><b>' + (sz === "std" ? "Standard size" : ty.name) + '</b><span>' + ty.note + '</span></div>' +
+        '<div class="bd-sz-p"><span><i>Glass</i><b>' + money(g.now) + '</b>' + (g.open ? '<s>' + money(g.open) + '</s>' : '') + '<em>from ' + g.days + ' business days</em></span>' +
+        '<span><i>Poly</i><b>' + money(p.now) + '</b>' + (p.open ? '<s>' + money(p.open) + '</s>' : '') + '<em>from ' + p.days + ' business days</em></span></div></div>';
+    }).join("") + '<p class="bd-note">Prices are a card, in the presale. Every unit counts as one card, whatever its size. If no case exists for your card yet, we make one at no extra fee.</p>';
+  };
   var openSizes = function () {
     var dlg = $("[data-sizes-dlg]", bd); if (!dlg) return;
-    $("[data-dlg-body]", dlg).innerHTML = sizesHtml();
+    $("[data-dlg-body]", dlg).innerHTML = sizeChartHtml();
     if (typeof dlg.showModal === "function") { if (!dlg.open) dlg.showModal(); } else dlg.setAttribute("open", "");
     document.documentElement.classList.add("bd-noscroll");
     var first = $("[data-sizes-close]", dlg); if (first) first.focus({ preventScroll: true });
@@ -253,7 +249,7 @@
     var dlg = $("[data-sizes-dlg]", bd); if (!dlg) return;
     if (dlg.open && typeof dlg.close === "function") dlg.close(); else dlg.removeAttribute("open");
     document.documentElement.classList.remove("bd-noscroll");
-    bdRender(); var ed = $("[data-sizes-open]", bd); if (ed) ed.focus({ preventScroll: true });
+    var ed = $("[data-sizes-open]", bd); if (ed) ed.focus({ preventScroll: true });
   };
   var dlgEl = $("[data-sizes-dlg]", bd);
   if (dlgEl) {
