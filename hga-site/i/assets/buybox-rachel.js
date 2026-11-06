@@ -257,14 +257,20 @@
     dlgEl.addEventListener("click", function (e) { if (e.target === dlgEl) closeSizes(); });
   }
   // what each slab gives you: a small popover on the slab card (UCollect call 2026-11-06)
+  var placeTip = function (h) {
+    var tip = $('[data-tip="' + h + '"]', bd), btn = $('[data-info="' + h + '"]', bd); if (!tip || !btn) return;
+    var body = tip.offsetParent || tip.parentNode, b = btn.getBoundingClientRect(), r = body.getBoundingClientRect();
+    tip.style.top = (b.bottom - r.top + 10) + "px"; tip.style.setProperty("--ax", (b.left - r.left + b.width / 2 - 7) + "px");
+  };
   var toggleTip = function (h) {
     $$("[data-tip]", bd).forEach(function (t) { var on = t.dataset.tip === h && !t.classList.contains("open"); t.classList.toggle("open", on); t.hidden = !on; });
     $$("[data-info]", bd).forEach(function (b) { b.setAttribute("aria-expanded", String(b.dataset.info === h && !$('[data-tip="' + h + '"]', bd).hidden)); });
+    placeTip(h);
   };
   // with a mouse the popover opens on hover (Dylan 2026-11-07); on touch screens the tap stays
   if (window.matchMedia && matchMedia("(hover: hover) and (pointer: fine)").matches) {
     var hoverTimer = null;
-    var showTip = function (h) { $$("[data-tip]", bd).forEach(function (t) { var on = t.dataset.tip === h; t.classList.toggle("open", on); t.hidden = !on; }); $$("[data-info]", bd).forEach(function (b) { b.setAttribute("aria-expanded", String(b.dataset.info === h)); }); };
+    var showTip = function (h) { $$("[data-tip]", bd).forEach(function (t) { var on = t.dataset.tip === h; t.classList.toggle("open", on); t.hidden = !on; }); $$("[data-info]", bd).forEach(function (b) { b.setAttribute("aria-expanded", String(b.dataset.info === h)); }); placeTip(h); };
     var hideTip = function () { hoverTimer = setTimeout(function () { $$("[data-tip]", bd).forEach(function (t) { t.classList.remove("open"); t.hidden = true; }); $$("[data-info]", bd).forEach(function (b) { b.setAttribute("aria-expanded", "false"); }); }, 180); };
     $$("[data-info]", bd).forEach(function (b) {
       b.addEventListener("mouseenter", function () { clearTimeout(hoverTimer); showTip(b.dataset.info); });

@@ -159,7 +159,9 @@ button.bd-head:not(:disabled){cursor:pointer}
 .bd-wmrow{display:flex;align-items:center;gap:8px}
 .bd-info{width:20px;height:20px;padding:0;border:1px solid rgba(255,255,255,.4);border-radius:50%;background:none;color:#fff;font:700 11px/1 var(--sans);cursor:pointer;transition:border-color .15s,background .15s}
 .bd-info:hover,.bd-info[aria-expanded="true"]{border-color:#fff;background:rgba(255,255,255,.12)}
-.bd-tip{margin:-4px 0 0;padding:12px 14px;border:1px solid rgba(255,255,255,.18);border-radius:var(--r-sm);background:#0f0d0d;font-size:13.5px;line-height:1.45;color:rgba(255,255,255,.75)}
+.bd-b{position:relative}
+.bd-tip{position:absolute;left:0;right:0;z-index:6;margin:0;padding:12px 14px;border:1px solid rgba(255,255,255,.22);border-radius:var(--r-sm);background:#161313;font-size:13.5px;line-height:1.45;color:rgba(255,255,255,.8);box-shadow:0 18px 40px rgba(0,0,0,.6)}
+.bd-tip::before{content:"";position:absolute;left:var(--ax,40px);top:-7px;border:7px solid transparent;border-top:0;border-bottom-color:#161313;filter:drop-shadow(0 -1px 0 rgba(255,255,255,.22))}
 .bd-tip b{display:block;margin-bottom:6px;color:#fff}
 .bd-tip ul{margin:0;padding:0 0 0 18px;display:grid;gap:4px}
 .bd-zsum{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 14px;padding:12px 14px;border:1px solid rgba(255,255,255,.12);border-radius:var(--r);font-size:14px;color:rgba(255,255,255,.75)}
