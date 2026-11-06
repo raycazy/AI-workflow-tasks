@@ -1206,6 +1206,9 @@
 .gs-grade b{font-size:8cqw}
 .gs-grade i{font-style:normal;font-size:2.2cqw;font-weight:500;line-height:1;letter-spacing:.02em}
 
+/* grading standards sub navigation: tabs centred when they fit (Bhaskar 2026-11-06); phones keep the scroll strip */
+@media (min-width:900px){.subnav .wrap{justify-content:center;padding-right:0;-webkit-mask-image:none;mask-image:none}}
+
 .co-mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .co-m{position:relative;display:grid;gap:8px;padding:12px;border:1px solid rgba(255,255,255,.16);border-radius:var(--r-sm,12px);cursor:pointer;transition:border-color .15s,background .15s}
 .co-m input{position:absolute;opacity:0;pointer-events:none}
