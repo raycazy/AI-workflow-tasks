@@ -1209,6 +1209,16 @@
 /* grading standards sub navigation: tabs centred when they fit (Bhaskar 2026-11-06); phones keep the scroll strip */
 @media (min-width:900px){.subnav .wrap{justify-content:center;padding-right:0;-webkit-mask-image:none;mask-image:none}}
 
+.co-lab{display:flex;align-items:center;gap:8px}
+.co-lab label{margin:0}
+.co-tipwrap{position:relative;display:inline-flex}
+.co-info{width:20px;height:20px;padding:0;border:1px solid rgba(255,255,255,.4);border-radius:50%;background:none;color:#fff;font:700 11px/1 var(--sans);cursor:pointer}
+.co-info:hover,.co-tipwrap.open .co-info{border-color:#fff;background:rgba(255,255,255,.12)}
+.co-tip{display:none;position:absolute;left:50%;bottom:calc(100% + 10px);transform:translateX(-50%);width:min(300px,80vw);padding:10px 12px;border:1px solid rgba(255,255,255,.18);border-radius:10px;background:#1a1717;color:rgba(255,255,255,.85);font-size:13px;line-height:1.45;box-shadow:0 10px 30px rgba(0,0,0,.5);z-index:5}
+.co-tip::after{content:"";position:absolute;left:50%;top:100%;transform:translateX(-50%);border:7px solid transparent;border-top-color:#1a1717}
+.co-tip a{color:#fff}
+@media (hover:hover) and (pointer:fine){.co-tipwrap:hover .co-tip,.co-info:focus-visible + .co-tip{display:block}}
+.co-tipwrap.open .co-tip{display:block}
 .xpay.one{grid-template-columns:1fr}
 .xp.paypal{background:#FFC439;color:#111;border-color:#FFC439;gap:10px;font-weight:600;font-size:15px}
 .xp.paypal:hover{background:#f2b62f}

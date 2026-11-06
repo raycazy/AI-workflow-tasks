@@ -15,7 +15,7 @@
 <script defer src="./assets/v2.js?v=80e4d4a7"></script>
 <script defer src="./assets/site.js?v=80e4d4a7"></script>
 <script defer src="./assets/shop.js?v=80ce5da1"></script>
-<link rel="stylesheet" href="./assets/h.css?v=8cb8f2f1">
+<link rel="stylesheet" href="./assets/h.css?v=df5c564f">
 <!-- share preview and icons: _tools/h_meta.py -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="HGA">
@@ -62,9 +62,8 @@
 
       <fieldset class="co-sec">
         <legend><span class="bn">1</span>Your email</legend>
-        <p class="co-help">Your passes and receipt go to this address. Already have an account? <a href="https://ucollect.com/">Sign in</a>.</p>
         <div class="f-row">
-          <div class="f"><label for="co-email">Email</label><input id="co-email" type="email" autocomplete="email" required placeholder="you@example.com"></div>
+          <div class="f"><span class="co-lab"><label for="co-email">Email</label><span class="co-tipwrap"><button type="button" class="co-info" data-tip-btn aria-label="Why we need your email" aria-expanded="false" aria-describedby="co-email-tip">i</button><span class="co-tip" id="co-email-tip" role="tooltip">We need your email to find or create your HGA account and to send you your passes and receipt. Already have an account? <a href="https://ucollect.com/">Sign in</a>.</span></span></span><input id="co-email" type="email" autocomplete="email" required placeholder="you@example.com"></div>
         </div>
         <label class="chk"><input type="checkbox" checked><span>Email me when my grading calendar opens on Jan 18.</span></label>
       </fieldset>
@@ -132,5 +131,8 @@
 
 </main>
 <footer class="co-foot"><div class="wrap"><span>&copy; 2026 HGA &middot; Hybrid Grading Approach</span><span><a href="faq.html#g-presale">Presale terms</a> &middot; <a href="https://hybridgrading.com/privacy">Privacy</a> &middot; <a href="faq.html">Help</a></span></div></footer>
+<script>(function(){document.querySelectorAll("[data-tip-btn]").forEach(function(b){b.addEventListener("click",function(e){e.preventDefault();var on=!b.parentNode.classList.contains("open");document.querySelectorAll(".co-tipwrap.open").forEach(function(w){w.classList.remove("open");w.querySelector("[data-tip-btn]").setAttribute("aria-expanded","false");});b.parentNode.classList.toggle("open",on);b.setAttribute("aria-expanded",String(on));});});
+document.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".co-tipwrap"))return;document.querySelectorAll(".co-tipwrap.open").forEach(function(w){w.classList.remove("open");w.querySelector("[data-tip-btn]").setAttribute("aria-expanded","false");});});
+document.addEventListener("keydown",function(e){if(e.key==="Escape")document.querySelectorAll(".co-tipwrap.open").forEach(function(w){w.classList.remove("open");});});})();</script>
 </body>
 </html>
