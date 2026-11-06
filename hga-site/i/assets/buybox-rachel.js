@@ -261,6 +261,20 @@
     $$("[data-tip]", bd).forEach(function (t) { var on = t.dataset.tip === h && !t.classList.contains("open"); t.classList.toggle("open", on); t.hidden = !on; });
     $$("[data-info]", bd).forEach(function (b) { b.setAttribute("aria-expanded", String(b.dataset.info === h && !$('[data-tip="' + h + '"]', bd).hidden)); });
   };
+  // with a mouse the popover opens on hover (Dylan 2026-11-07); on touch screens the tap stays
+  if (window.matchMedia && matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    var hoverTimer = null;
+    var showTip = function (h) { $$("[data-tip]", bd).forEach(function (t) { var on = t.dataset.tip === h; t.classList.toggle("open", on); t.hidden = !on; }); $$("[data-info]", bd).forEach(function (b) { b.setAttribute("aria-expanded", String(b.dataset.info === h)); }); };
+    var hideTip = function () { hoverTimer = setTimeout(function () { $$("[data-tip]", bd).forEach(function (t) { t.classList.remove("open"); t.hidden = true; }); $$("[data-info]", bd).forEach(function (b) { b.setAttribute("aria-expanded", "false"); }); }, 180); };
+    $$("[data-info]", bd).forEach(function (b) {
+      b.addEventListener("mouseenter", function () { clearTimeout(hoverTimer); showTip(b.dataset.info); });
+      b.addEventListener("mouseleave", hideTip);
+    });
+    $$("[data-tip]", bd).forEach(function (t) {
+      t.addEventListener("mouseenter", function () { clearTimeout(hoverTimer); });
+      t.addEventListener("mouseleave", hideTip);
+    });
+  }
   document.addEventListener("click", function (e) { if (!e.target.closest || e.target.closest("[data-tip],[data-info]")) return; $$("[data-tip]", bd).forEach(function (t) { t.classList.remove("open"); t.hidden = true; }); $$("[data-info]", bd).forEach(function (b) { b.setAttribute("aria-expanded", "false"); }); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") { $$("[data-tip]", bd).forEach(function (t) { t.classList.remove("open"); t.hidden = true; }); $$("[data-info]", bd).forEach(function (b) { b.setAttribute("aria-expanded", "false"); }); } });
   bdRender();
