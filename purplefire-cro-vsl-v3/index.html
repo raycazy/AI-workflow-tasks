@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Your first split test is on us | PurpleFire</title>
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap">
+<script src="https://fast.wistia.com/player.js" async></script>
+<script src="https://fast.wistia.com/embed/y5hjobcu87.js" async type="module"></script>
+<style>
+/* Tokens: copied from the live v1 stylesheet, see ../tokens.css */
+:root{color-scheme:dark;
+ --paper:#ffffff;--mist:#f4f6f5;--mist2:#e9eeec;--line:#dfe5e3;--ink:#16302f;--ink-soft:#3c5453;--muted:#6b7f7d;
+ --teal:#0f6b66;--teal-deep:#0a4d49;--teal-soft:#e3f1ef;--violet:#6d28d9;--violet-soft:#efe9fb;
+ --green:#1f8a4c;--red:#c9463d;--radius:18px;--shadow:0 10px 30px rgba(22,48,47,.08);
+ --ground:#0b100f;--surface:#141a19;--mint:#9be7c4;--dmuted:#9fb3b0;--orange:#ff6a1a}
+*{box-sizing:border-box}html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ground);font-family:Manrope,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.55;font-size:17px}
+.pf{margin:0;font-family:Manrope,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#fff;background:var(--ground);line-height:1.55;font-size:17px;min-height:100vh}
+h1,h2,h3,.serif{font-family:Fraunces,Georgia,"Times New Roman",serif;font-weight:600;letter-spacing:-.01em;line-height:1.12;margin:0}
+h2{font-size:clamp(28px,3.6vw,42px)}h3{font-size:22px}
+p{margin:0 0 14px}a{color:var(--teal)}img{max-width:100%;display:block}
+button,.btn{font-family:Manrope,system-ui,sans-serif}
+.wrap{width:min(1120px,100% - 32px);margin-inline:auto}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mint);background:rgba(255,255,255,.08);padding:7px 12px;border-radius:999px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--teal);color:#fff;font-weight:800;font-size:17px;padding:16px 26px;border-radius:14px;text-decoration:none;border:0;cursor:pointer;box-shadow:0 8px 20px rgba(15,107,102,.25);transition:transform .15s,background .15s}
+.btn:hover{background:var(--teal-deep);transform:translateY(-1px)}.btn.big{font-size:19px;padding:19px 32px}
+.btn svg{width:18px;height:18px}
+.micro{font-size:14px;color:var(--muted);margin-top:10px}
+.pf section{padding:56px 0}
+.sec-head{max-width:720px;margin-bottom:34px}.sec-head h2{color:#fff}.sec-head p{font-size:18px;color:var(--dmuted)}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:50;background:rgba(11,16,15,.9);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+.top .wrap{display:flex;align-items:center;justify-content:center;height:66px}
+.pflogo{height:30px;width:auto;display:block;filter:brightness(0) invert(1)}footer .pflogo{height:24px}
+
+/* hero with VSL */
+.vhero{padding:36px 0 40px;text-align:center}
+.vhero .wrap{max-width:860px}
+.vhero h1{color:#fff;font-size:clamp(28px,4.6vw,48px);line-height:1.08;margin:16px auto 12px;max-width:820px}
+.vhero h1 em{font-style:italic;font-weight:500;color:var(--mint)}
+.vsub{font-size:clamp(17px,1.8vw,19px);color:#cfd8d6;margin:0 auto 22px;max-width:620px}
+.watch{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--mint);font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin:0 0 12px}
+.watch i{width:8px;height:8px;border-radius:50%;background:var(--orange);display:inline-block;animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.video{position:relative;max-width:880px;margin:0 auto;border-radius:18px;overflow:hidden;background:#000;aspect-ratio:16/9;box-shadow:0 40px 90px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.1)}
+.video wistia-player{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+wistia-player[media-id='y5hjobcu87']:not(:defined){background:center / contain no-repeat url('https://fast.wistia.com/embed/medias/y5hjobcu87/swatch');display:block;filter:blur(5px);padding-top:56.25%}
+.vcover{position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:16px;text-align:center;border:0;width:100%;cursor:pointer;color:#fff;background:var(--ground);font:inherit}
+.vcover::before{content:"";position:absolute;inset:0;background:url(images/vsl-thumbnail.jpg) center/cover no-repeat;filter:brightness(.8);transition:opacity .4s}
+.vcover::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.1) 0%,rgba(0,0,0,.15) 45%,rgba(0,0,0,.6) 100%)}
+.vcover.live{background:transparent}.vcover.live::before{opacity:0}.vcover.live::after{background:linear-gradient(rgba(0,0,0,.05) 0%,rgba(0,0,0,.1) 45%,rgba(0,0,0,.5) 100%)}
+.vcover>*{position:relative;z-index:1}
+.vc-sound{position:absolute!important;top:14px;left:14px;display:none;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:rgba(0,0,0,.6);color:#fff;font:700 13px Manrope,sans-serif}
+.vcover.live .vc-sound{display:inline-flex}
+.vc-play{position:relative;width:96px;height:96px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(0,0,0,.45);transition:transform .15s}
+.vc-play::before{content:"";position:absolute;inset:-10px;border-radius:50%;border:3px solid rgba(255,255,255,.85);animation:vcpulse 1.8s ease-out infinite}
+@keyframes vcpulse{0%{transform:scale(.9);opacity:1}100%{transform:scale(1.35);opacity:0}}
+.vc-play svg{display:block;width:38px;height:38px;margin:0;fill:#fff}
+.vc-label{display:inline-block;padding:9px 18px;border-radius:999px;background:#fff;color:var(--ink);font:800 17px Manrope,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.vcover:hover .vc-play{transform:scale(1.06)}
+.vcover[hidden]{display:none}
+.vcta{margin-top:26px}
+.vcta .btn.big{width:100%;max-width:520px;justify-content:center;background:var(--orange);font-size:20px;padding:20px 28px}
+.vcta .btn.big:hover{background:#ff7d3a}
+.vcta ul{list-style:none;padding:0;margin:20px auto 0;max-width:560px;display:grid;gap:8px;text-align:left}
+.vcta li{display:flex;gap:10px;align-items:flex-start;font-size:16px;font-weight:600;color:#e6eceb}
+.vcta li svg{width:20px;height:20px;color:var(--mint);flex:0 0 auto;margin-top:2px}
+.alt-path{margin:18px 0 0;font-size:15px;color:var(--dmuted)}
+.alt-path a,.final .alt-path a{color:var(--mint);font-weight:700;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(155,231,196,.55);padding:8px 2px}
+.alt-path a:hover{color:#fff;text-decoration-color:#fff}
+
+/* logo strip */
+.logos{padding:34px 0 40px;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08)}
+.logos .cap{text-align:center;font-size:14px;color:var(--dmuted);margin-bottom:22px}.logos .cap b{color:#fff}
+.logo-wall{overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.logo-track{display:flex;gap:44px;align-items:center;width:max-content;animation:marq 70s linear infinite}
+.logo-wall:hover .logo-track{animation-play-state:paused}
+.lg{height:44px;display:grid;place-items:center;flex:0 0 auto;width:auto;padding:0 6px}
+.lg img{max-height:44px;max-width:150px;width:auto;height:auto;filter:grayscale(1) brightness(0) invert(1);opacity:.7;transition:.2s}
+.lg .txt{color:#fff;opacity:.75;font-family:Manrope,system-ui,sans-serif;font-weight:800;font-size:17px;letter-spacing:-.01em;white-space:nowrap}
+@keyframes marq{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.logo-track{animation:none}.watch i,.vc-play::before{animation:none}}
+
+/* quotes */
+.quotes{display:grid;gap:12px;margin-top:22px}
+@media(min-width:800px){.quotes{grid-template-columns:repeat(3,1fr)}}
+.q{background:var(--surface);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:14px}
+.q .mark{font-family:Fraunces,serif;color:var(--mint);font-size:44px;line-height:.6;height:22px}
+.q p{color:#fff;font-size:16px;line-height:1.6;margin:0;font-weight:500;flex:1}
+.q .who{display:flex;align-items:center;gap:12px;color:var(--dmuted);font-size:13px}
+.q .who b{color:#fff;display:block;font-size:14px}
+.q .who img{height:22px;width:auto;max-width:110px;filter:brightness(0) invert(1);opacity:.9}
+.q .who .tx{font-weight:800;color:#fff;letter-spacing:.02em;font-size:15px}
+
+/* result cards */
+.prail{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 16px 18px;scrollbar-width:none}
+.prail::-webkit-scrollbar{display:none}
+.pc{flex:0 0 min(900px,82vw);scroll-snap-align:start;background:#fff;color:var(--ink);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.pc-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.pc-brand{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:20px}
+.ptag{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--violet);background:var(--violet-soft);padding:5px 9px;border-radius:999px;white-space:nowrap}
+.pc-imgs{display:grid;grid-template-columns:2fr 3fr;gap:10px}
+.pc-imgs figure{margin:0;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#1b1f1e;display:flex;flex-direction:column}
+.pc-imgs .pc-rs{background:#f6f8f8}
+.pc-imgs img{width:100%;height:260px;object-fit:contain;display:block}
+.pc-imgs .pc-rs img{object-fit:cover;object-position:top left;padding:6px;background:#fff}
+.pc-imgs figcaption{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:7px 10px;background:#fff;color:var(--muted);border-top:1px solid var(--line)}
+.pc-mets{display:flex;gap:8px}
+.pm{flex:1;background:#eefaf3;border:1px solid #cfeedc;border-radius:12px;padding:10px 12px}
+.pm b{display:block;font-family:Fraunces,serif;font-size:30px;font-weight:600;color:var(--green);line-height:1}
+.pm span{font-size:11px;font-weight:800;color:var(--ink-soft);letter-spacing:.06em;text-transform:uppercase}
+.pc h3{font-size:17px;margin:0}
+.pc-foot{display:flex;gap:14px;font-size:12px;color:var(--muted);font-weight:700;border-top:1px solid var(--line);padding-top:10px}
+.pid{font-family:ui-monospace,Menlo,monospace;font-weight:600}
+@media(max-width:760px){.pc-imgs{grid-template-columns:1fr}.pc-imgs .pc-ba img{height:230px}.pc-imgs .pc-rs img{height:140px}}
+
+/* video testimonials */
+.vrail{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 16px 18px;scrollbar-width:none}
+.vrail::-webkit-scrollbar{display:none}
+.vc{flex:0 0 auto;height:420px;width:calc(420px * var(--a));scroll-snap-align:start;border-radius:16px;overflow:hidden;background:var(--surface);position:relative;border:1px solid rgba(255,255,255,.1)}
+.vc iframe{position:relative;z-index:1;display:block;width:100%;height:100%;border:0}
+.vc-ph{position:absolute;inset:0;display:grid;place-items:center;color:var(--dmuted);font:700 13px Manrope,sans-serif}
+.vc-face{padding:0;cursor:pointer;font:inherit;color:#fff}
+.vc-face img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vc-face .vc-btn{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:var(--teal);display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.4);transition:transform .15s}
+.vc-face .vc-btn svg{width:26px;height:26px;fill:#fff;margin-left:3px}
+.vc-face:hover .vc-btn,.vc-face:focus-visible .vc-btn{transform:scale(1.08)}
+.vc-face:focus-visible{outline:2px solid var(--mint);outline-offset:3px}
+@media(max-width:760px){.vc{height:360px;width:calc(360px * var(--a))}}
+
+/* call steps and founder */
+.what{display:grid;gap:12px;margin-top:22px}
+@media(min-width:800px){.what{grid-template-columns:repeat(3,1fr)}}
+.wt{background:var(--surface);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:22px}
+.wt .n{font-family:Fraunces,serif;color:var(--mint);font-size:14px;letter-spacing:.1em}
+.wt h3{color:#fff;font-size:19px;margin:8px 0 6px}.wt p{color:var(--dmuted);font-size:15px;margin:0}
+.founder{display:grid;gap:18px;margin-top:22px;align-items:center;background:var(--surface);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:22px}
+@media(min-width:800px){.founder{grid-template-columns:200px 1fr}}
+.founder img{width:200px;height:200px;border-radius:18px;object-fit:cover;object-position:center 15%}
+.founder p{color:#cfd8d6;font-size:16px;line-height:1.55}
+.sig{display:flex;flex-direction:column;margin-top:6px}.sig b{font-family:Fraunces,serif;font-size:19px;font-weight:600;color:#fff;display:block}.sig span{font-size:14px;color:var(--dmuted)}
+
+/* footer and sticky */
+footer{padding:36px 0 110px;border-top:1px solid rgba(255,255,255,.08);font-size:13px;background:var(--ground);color:var(--dmuted)}
+footer .wrap{display:grid;gap:14px}footer a{color:#cfd8d6}
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(11,16,15,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(255,255,255,.1);padding:10px 16px calc(10px + env(safe-area-inset-bottom));display:none}
+.sticky .btn{width:100%;justify-content:center;background:var(--orange)}.sticky.on{display:block}
+@media(min-width:761px){.sticky{display:none!important}}
+
+/* Daniel's note, moved up under the hero CTA */
+.note{padding:0 0 44px}
+.note .wrap{max-width:860px}
+.note .founder{margin-top:0}
+.stat{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:clamp(22px,2.4vw,26px);line-height:1.2;color:#fff;margin:0 0 12px;letter-spacing:-.01em}
+.stat b{color:var(--mint);font-weight:600}
+@media(min-width:800px){.note .founder{grid-template-columns:180px 1fr;gap:26px}.note .founder img{width:180px;height:180px}}
+@media(max-width:799px){.founder img{width:120px;height:120px;border-radius:14px}}
+
+/* dollar line: the signature element, larger than the percentages */
+.pc-dollar{display:grid;justify-items:start;gap:6px}
+.pc-dollar .fig{display:flex;align-items:baseline;gap:10px}
+.pc-mets .pm:only-child{flex:0 1 calc(50% - 4px)}
+.pc-dollar b{font-family:Fraunces,Georgia,serif;font-size:48px;font-weight:600;color:var(--green);line-height:1;letter-spacing:-.02em}
+.pc-dollar b.slot-ph{color:#b9dcc7}
+.pc-dollar .u{font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+@media(max-width:760px){.pc-dollar b{font-size:40px}}
+
+/* FAQ: plain accordion in the v1 type, hairlines drawn by the grid gap */
+.faq{max-width:820px;display:grid;gap:1px;background:rgba(255,255,255,.1);margin-top:8px}
+.faq details{background:var(--ground)}
+.faq summary{cursor:pointer;font-weight:700;font-size:18px;line-height:1.4;padding:18px 0;list-style:none;display:flex;justify-content:space-between;align-items:flex-start;gap:16px;color:#fff}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary svg{flex:0 0 22px;width:22px;height:22px;color:var(--mint);margin-top:1px;transition:transform .2s}
+.faq details[open] summary svg{transform:rotate(45deg)}
+.faq summary:focus-visible{outline:2px solid var(--mint);outline-offset:4px;border-radius:4px}
+.faq details p{color:#cfd8d6;font-size:16px;margin:0;padding:0 38px 20px 0;max-width:720px}
+.final{text-align:center;padding-top:20px!important}
+
+/* placeholder chip: a value only Daniel can give */
+/* one whole box per chip: wraps inside its own border, never split across two lines of the sentence */
+.todo{display:inline-block;max-width:100%;vertical-align:middle;border:1.5px dashed var(--mint);color:var(--mint);background:rgba(155,231,196,.07);border-radius:8px;padding:2px 8px;margin:2px 0;font:700 13px/1.45 Manrope,system-ui,sans-serif;letter-spacing:0;text-transform:none;font-style:normal;white-space:normal;text-align:left}
+.pc .todo,.mo .todo{border-color:var(--teal);color:var(--teal);background:var(--teal-soft)}
+
+/* tap options (v1 .opt anatomy) */
+.opts{display:grid;gap:8px;margin-top:8px}
+.opt{display:flex;align-items:center;gap:12px;border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;cursor:pointer;font:600 17px Manrope,system-ui,sans-serif;background:#fff;text-align:left;color:var(--ink);transition:.15s;width:100%}
+.opt:hover,.opt:focus-visible{border-color:var(--teal);background:var(--teal-soft)}
+.opt .dot{width:20px;height:20px;border-radius:50%;border:2px solid var(--line);flex:0 0 20px}
+.opt:hover .dot{border-color:var(--teal)}
+.opt[aria-pressed="true"]{border-color:var(--teal);background:var(--teal-soft)}.opt[aria-pressed="true"] .dot{border:6px solid var(--teal)}
+.btn.ghost{background:#fff!important;color:var(--ink)!important;border:1.5px solid var(--line)}
+.linkbtn{background:none;border:0;padding:8px 0;color:var(--teal);font:700 15px Manrope,system-ui,sans-serif;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+
+/* modals (v1 anatomy) */
+.mo{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;display:none;align-items:flex-start;justify-content:center;padding:16px;overflow:auto}
+.mo.on{display:flex}
+.mo .card{width:100%;max-width:560px;background:#fff;color:var(--ink);border-radius:22px;padding:24px 22px;position:relative;margin:30px 0;box-shadow:var(--shadow)}
+.mo .x{position:absolute;right:12px;top:12px;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:#fff;font-size:20px;line-height:1;cursor:pointer;color:var(--ink)}
+.mo .qhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;padding-right:40px;gap:12px}
+.mo .qhead strong{font-size:18px}.mo .qhead span{font-size:13px;color:var(--muted);font-weight:700;white-space:nowrap}
+.prog{height:4px;background:#e8eeec;border-radius:999px;overflow:hidden;margin:4px 0 18px}.prog i{display:block;height:100%;background:var(--teal);transition:width .25s}
+.pane{display:none}.pane.on{display:block;animation:fin .22s ease}
+@keyframes fin{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+.mo .sub{font-size:15px;color:var(--ink-soft);margin:0 0 12px}
+.fld{display:grid;gap:6px;margin-top:6px}
+.fld label{font-size:20px;font-weight:700;line-height:1.3;margin-bottom:2px;letter-spacing:-.01em}
+.fld .hint{font-size:14px;color:var(--muted);margin:-4px 0 6px;font-weight:500}
+.fld input,.fld select{font:inherit;font-size:18px;padding:16px;border:1.5px solid var(--line);border-radius:12px;width:100%;background:#fff;color:var(--ink)}
+.fld input:focus,.fld select:focus{outline:2px solid var(--teal);border-color:var(--teal)}
+.fld.sm{margin-top:12px}.fld.sm label{font-size:14px;letter-spacing:0;margin:0}.fld.sm .hint{font-size:13px;margin:-2px 0 2px}.fld.sm input,.fld.sm select{font-size:16px;padding:12px 13px;border-radius:11px}
+.fld.bad input,.fld.bad select{border-color:#d9483b;background:#fff8f7}
+.fld .fmsg{display:none;color:#b8392d;font-size:13px;font-weight:600}
+.fld.bad .fmsg{display:block}
+.phone{display:flex;gap:8px}.phone select{max-width:116px;padding-inline:8px}.phone input{flex:1;min-width:0}
+.mo .btn{width:100%;justify-content:center;margin-top:16px;background:var(--ink);color:#fff;font-weight:700;font-size:17px;border-radius:12px;box-shadow:none;padding:17px 22px}
+.mo .btn:hover{background:var(--teal)}
+.mo .micro{margin-top:10px;font-size:13px;text-align:center}
+.back{background:none;border:0;color:var(--muted);font:inherit;font-size:14px;font-weight:700;cursor:pointer;padding:8px 0;margin-top:6px}
+.proto{margin:14px 0 0;font-size:12px;color:var(--muted);text-align:center}
+
+/* calendar mock */
+.tz{font-size:13px;color:var(--muted);font-weight:600;margin:0 0 10px}
+.days{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.day{border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:9px 4px 8px;cursor:pointer;text-align:center;color:var(--ink);font:inherit}
+.day small{display:block;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.day b{display:block;font-family:Fraunces,serif;font-size:21px;font-weight:600;line-height:1.15}
+.day[aria-pressed="true"]{border-color:var(--teal);background:var(--teal-soft)}
+.day[aria-pressed="true"] small{color:var(--teal)}
+.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:12px}
+@media(max-width:480px){.slots{grid-template-columns:repeat(3,1fr)}}
+.slot{border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:11px 4px;font:700 15px Manrope,system-ui,sans-serif;color:var(--ink);cursor:pointer}
+.slot:hover:not(:disabled){border-color:var(--teal)}
+.slot[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.slot:disabled{color:#b3c0be;background:var(--mist);cursor:not-allowed;text-decoration:line-through}
+.contact{display:none;margin-top:16px;padding-top:4px}
+.contact.on{display:block;animation:fin .22s ease}
+.picked{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--teal-soft);color:var(--teal-deep);border-radius:12px;padding:11px 14px;font-size:15px;font-weight:700}
+.picked button{background:none;border:0;color:var(--teal);font:inherit;font-size:14px;text-decoration:underline;cursor:pointer;padding:4px}
+.done-ico{width:52px;height:52px;border-radius:50%;background:var(--teal-soft);color:var(--teal);display:grid;place-items:center;margin:6px 0 14px}
+.done-ico svg{width:26px;height:26px}
+.done h3{font-size:26px;margin:0 0 8px}
+.summary{background:var(--mist);border-radius:14px;padding:14px 16px;font-size:15px;color:var(--ink-soft);margin:12px 0 0;display:grid;gap:4px}
+.summary b{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="pf">
+<header class="top"><div class="wrap">
+  <a href="#top" aria-label="PurpleFire" style="text-decoration:none;margin:0 auto"><img src="images/purplefire-logo.webp" alt="PurpleFire" class="pflogo"></a>
+</div></header>
+
+<section class="vhero" id="top"><div class="wrap">
+  <span class="eyebrow">For Shopify brands doing $150k+ a month</span>
+  <h1>Your first split test is on us. <em>You pay after the first win.</em></h1>
+  <p class="vsub">If it's a fit, it goes live on your store within 7 days.</p>
+  <div class="watch"><i></i>Watch this first. 4 minutes.</div>
+  <div class="video" id="vsl">
+    <wistia-player media-id="y5hjobcu87" autoplay="false" muted seo="false" aspect="1.7777777777777777"></wistia-player>
+    <button class="vcover" id="vcover" type="button" aria-label="Play the 4 minute video with sound">
+      <span class="vc-sound" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="m22 9-6 6M16 9l6 6"/></svg>Sound is off</span>
+      <span class="vc-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 7.5v9l7-4.5z"/></svg></span>
+      <span class="vc-label" id="vclabel">Tap to watch with sound · 4 min</span>
+    </button>
+  </div>
+  <div class="vcta">
+    <a class="btn big" id="cta-hero" href="#book" data-open="mo-book">Get my first test free <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <p class="alt-path"><a href="#email-tests" id="open-async" data-open="mo-async">Rather not call? Email me the 5 tests instead</a></p>
+    <ul>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>See the five tests we'd run first on your store, with the lift each one got on a comparable brand</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Get a prioritized roadmap for your product page, cart and homepage, whether you work with us or not</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>A 15 minute call with no deck and no pitch. If it's a fit, the first test is live within 7 days at our cost</span></li>
+    </ul>
+  </div>
+</div></section>
+
+<section class="note" id="founder-note"><div class="wrap">
+  <div class="founder" id="founder">
+    <img src="images/founder-daniel.jpg" alt="Daniel Chabert" width="200" height="200">
+    <div><p class="stat"><b>298</b> documented winners from <b>1,300</b> tests</p><p>I've run 1,300 split tests on ecom stores and kept a log of every one. 298 of them produced a documented winner. That log is why I can show you what we'd test before you've paid a cent, and why the first test is on us. Most agencies charge from day one while they learn your store. We don't need to learn it.</p><div class="sig"><b>Daniel Chabert</b><span>Founder, PurpleFire</span></div></div>
+  </div>
+</div></section>
+
+<div class="logos"><div class="wrap">
+  <div class="cap">1,300 split tests for <b>100+ ecom brands</b></div>
+  <div class="logo-wall"><div class="logo-track" id="logotrack"></div></div>
+</div></div>
+
+<section id="founders" style="padding-top:36px;padding-bottom:10px">
+ <div class="wrap">
+  <div class="sec-head">
+   <span class="eyebrow">Don't take our word for it</span>
+   <h2 style="margin-top:14px">Three founders on what changed.</h2>
+  </div>
+  <div class="quotes">
+   <div class="q"><div class="mark">&ldquo;</div><p>Before, we were designing in the blind and just following best practices. We never could pinpoint which change really affected conversion. After a few A/B tests on the product pages we doubled our conversion rate. Now it's super clear.</p><div class="who"><img src="images/logos/miamily.webp" alt="Miamily"><span><b>Cecilia</b>Founder, Miamily</span></div></div>
+   <div class="q"><div class="mark">&ldquo;</div><p>Honestly, I wish I had started earlier more than anything else, because the impact he's made is just absolutely incredible. His team is basically a full-service CRO agency and beyond.</p><div class="who"><img src="images/logos/neurogum.webp" alt="Neurogum"><span><b>Kent</b>Cofounder and CEO, Neurogum</span></div></div>
+   <div class="q"><div class="mark">&ldquo;</div><p>Their team has always delivered on time and has been great helping our business drive incremental revenue, which is the number one reason to work with any vendor. If you're considering working with them, give them a shot.</p><div class="who"><span class="tx">Tru Earth</span><span><b>Ryan McKenzie</b>Cofounder, Tru Earth</span></div></div>
+  </div>
+ </div>
+</section>
+
+<section id="proof" style="padding-bottom:40px">
+ <div class="wrap"><div class="sec-head">
+  <span class="eyebrow">Client results through split tests</span>
+  <h2 style="margin-top:14px">Before, after, and the numbers from the testing tool.</h2>
+  <p>Every result below is a real split test on a real client store, control versus variant, with the significance and, where the testing tool reports it, the dollars it added. Swipe through.</p>
+ </div></div>
+ <div class="prail">
+<article class="pc" data-card="js">
+  <div class="pc-top"><div class="pc-brand">Just Strong</div><span class="ptag">Collection</span></div>
+  <div class="pc-imgs"><figure class="pc-ba"><img loading="lazy" src="images/proof/b2_08_ba.webp" alt="Just Strong homepage category tiles before and after"><figcaption>Before / after</figcaption></figure><figure class="pc-rs"><img loading="lazy" src="images/proof/b2_08_rs.webp" alt="Convert results for the Just Strong test"><figcaption>Results, straight from Convert</figcaption></figure></div>
+  <div class="pc-dollar"><span class="fig"><b>+$19,536</b><span class="u">revenue</span></span><span class="todo">Daniel: period, e.g. during the test</span></div>
+  <div class="pc-mets"><div class="pm"><b>+33.33%</b><span>CVR</span></div></div>
+  <h3>Category tiles on the homepage</h3>
+  <div class="pc-foot"><span class="pid">JS-066-ALL-CP-CVR</span><span>97.41% confidence</span></div>
+</article>
+<article class="pc" data-card="gca">
+  <div class="pc-top"><div class="pc-brand">German Car Accessories</div><span class="ptag">Product page</span></div>
+  <div class="pc-imgs"><figure class="pc-ba"><img loading="lazy" src="images/proof/b3_03_ba.webp" alt="German Car Accessories product page before and after"><figcaption>Before / after</figcaption></figure><figure class="pc-rs"><img loading="lazy" src="images/proof/b3_03_rs.webp" alt="Convert results for the German Car Accessories test"><figcaption>Results, straight from Convert</figcaption></figure></div>
+  <div class="pc-dollar"><b class="slot-ph" aria-hidden="true">+$__,___</b><span class="todo">Daniel: $ from Convert</span></div>
+  <div class="pc-mets"><div class="pm"><b>+44.06%</b><span>RPV</span></div><div class="pm"><b>+7.03%</b><span>ATC</span></div></div>
+  <h3>Shipping info above the CTA</h3>
+  <div class="pc-foot"><span class="pid">GCA-031-MD-PDP-CVR</span><span>95.54% confidence</span></div>
+</article>
+<article class="pc" data-card="cvf">
+  <div class="pc-top"><div class="pc-brand">CV Fabrication</div><span class="ptag">Sitewide</span></div>
+  <div class="pc-imgs"><figure class="pc-ba"><img loading="lazy" src="images/proof/b2_02_ba.webp" alt="CV Fabrication exit offer before and after"><figcaption>Before / after</figcaption></figure><figure class="pc-rs"><img loading="lazy" src="images/proof/b2_02_rs.webp" alt="Convert results for the CV Fabrication test"><figcaption>Results, straight from Convert</figcaption></figure></div>
+  <div class="pc-dollar"><b class="slot-ph" aria-hidden="true">+$__,___</b><span class="todo">Daniel: $ from Convert</span></div>
+  <div class="pc-mets"><div class="pm"><b>+59.22%</b><span>RPV</span></div><div class="pm"><b>+27.40%</b><span>CVR</span></div></div>
+  <h3>Exit intent offer vs reassurance</h3>
+  <div class="pc-foot"><span class="pid">CVF-030-ABC-MD-SW-CVR</span><span>94.75% confidence</span></div>
+</article>
+<article class="pc" data-card="bml">
+  <div class="pc-top"><div class="pc-brand">Basic Maintenance Lab</div><span class="ptag">Landing page</span></div>
+  <div class="pc-imgs"><figure class="pc-ba"><img loading="lazy" src="images/proof/b3_01_ba.webp" alt="Basic Maintenance Lab homepage before and after"><figcaption>Before / after</figcaption></figure><figure class="pc-rs"><img loading="lazy" src="images/proof/b3_01_rs.webp" alt="Convert results for the Basic Maintenance Lab test"><figcaption>Results, straight from Convert</figcaption></figure></div>
+  <div class="pc-dollar"><b class="slot-ph" aria-hidden="true">+$__,___</b><span class="todo">Daniel: $ from Convert</span></div>
+  <div class="pc-mets"><div class="pm"><b>+49.29%</b><span>CVR</span></div><div class="pm"><b>+50.89%</b><span>RPV</span></div></div>
+  <h3>Before &amp; after carousel on the homepage</h3>
+  <div class="pc-foot"><span class="pid">BM-004-ALL-AB-HP-CVR</span><span>89.19% confidence</span></div>
+</article>
+<article class="pc" data-card="nb">
+  <div class="pc-top"><div class="pc-brand">Nature's Body</div><span class="ptag">Product page</span></div>
+  <div class="pc-imgs"><figure class="pc-ba"><img loading="lazy" src="images/proof/b3_04_ba.webp" alt="Nature's Body product page before and after"><figcaption>Before / after</figcaption></figure><figure class="pc-rs"><img loading="lazy" src="images/proof/b3_04_rs.webp" alt="Convert results for the Nature's Body test"><figcaption>Results, straight from Convert</figcaption></figure></div>
+  <div class="pc-dollar"><b class="slot-ph" aria-hidden="true">+$__,___</b><span class="todo">Daniel: $ from Convert</span></div>
+  <div class="pc-mets"><div class="pm"><b>+24.81%</b><span>CVR</span></div><div class="pm"><b>+40.29%</b><span>RPV</span></div></div>
+  <h3>New product page template</h3>
+  <div class="pc-foot"><span class="pid">NST-CRO-046-MD-PDP-CVR</span><span>88.99% confidence</span></div>
+</article>
+<article class="pc" data-card="air">
+  <div class="pc-top"><div class="pc-brand">Airback</div><span class="ptag">Home page</span></div>
+  <div class="pc-imgs"><figure class="pc-ba"><img loading="lazy" src="images/proof/b1_04_ba.webp" alt="Airback homepage before and after"><figcaption>Before / after</figcaption></figure><figure class="pc-rs"><img loading="lazy" src="images/proof/b1_04_rs.webp" alt="Convert results for the Airback test"><figcaption>Results, straight from Convert</figcaption></figure></div>
+  <div class="pc-dollar"><b class="slot-ph" aria-hidden="true">+$__,___</b><span class="todo">Daniel: $ from Convert</span></div>
+  <div class="pc-mets"><div class="pm"><b>+47.23%</b><span>RPV</span></div><div class="pm"><b>+36.45%</b><span>CVR</span></div></div>
+  <h3>Reviews, USPs, logo and UGC hero video</h3>
+  <div class="pc-foot"><span class="pid">AIR-016-ALL-HP-CR</span><span>93.57% confidence</span></div>
+</article>
+<article class="pc" data-card="gc">
+  <div class="pc-top"><div class="pc-brand">Goose Creek</div><span class="ptag">Sitewide</span></div>
+  <div class="pc-imgs"><figure class="pc-ba"><img loading="lazy" src="images/proof/b2_05_ba.webp" alt="Goose Creek sticky cart bar before and after"><figcaption>Before / after</figcaption></figure><figure class="pc-rs"><img loading="lazy" src="images/proof/b2_05_rs.webp" alt="Convert results for the Goose Creek test"><figcaption>Results, straight from Convert</figcaption></figure></div>
+  <div class="pc-dollar"><b class="slot-ph" aria-hidden="true">+$__,___</b><span class="todo">Daniel: $ from Convert</span></div>
+  <div class="pc-mets"><div class="pm"><b>+13.39%</b><span>CVR</span></div><div class="pm"><b>+12.87%</b><span>RPV</span></div></div>
+  <h3>Sticky cart bar after scroll</h3>
+  <div class="pc-foot"><span class="pid">GC-025-M-SW-CVR</span><span>99.99% confidence</span></div>
+</article>
+<article class="pc" data-card="tss">
+  <div class="pc-top"><div class="pc-brand">The Secret Stories</div><span class="ptag">Cart</span></div>
+  <div class="pc-imgs"><figure class="pc-ba"><img loading="lazy" src="images/proof/b1_07_ba.webp" alt="The Secret Stories cart page before and after"><figcaption>Before / after</figcaption></figure><figure class="pc-rs"><img loading="lazy" src="images/proof/b1_07_rs.webp" alt="Intelligems results for The Secret Stories test"><figcaption>Results, straight from Intelligems</figcaption></figure></div>
+  <div class="pc-dollar"><b class="slot-ph" aria-hidden="true">+$__,___</b><span class="todo">Daniel: $ from Intelligems</span></div>
+  <div class="pc-mets"><div class="pm"><b>+40.37%</b><span>RPV</span></div><div class="pm"><b>+47.96%</b><span>AOV</span></div></div>
+  <h3>Improved cart page</h3>
+  <div class="pc-foot"><span class="pid">TSS-006-MD-AB-Cart-RPV</span></div>
+</article>
+ </div>
+</section>
+
+<section id="voices" style="padding-top:20px">
+ <div class="wrap"><div class="sec-head">
+  <span class="eyebrow">DTC founders on working with us</span>
+  <h2 style="margin-top:14px">Tru Earth, NeuroGum, Miamily, OptiMonk and more, in their own words.</h2>
+ </div></div>
+ <div class="vrail" id="vrail">
+  <button type="button" class="vc vc-face" data-wid="rvv78v5t0s" style="--a:0.5634" aria-label="Play the Miamily testimonial video"><img src="images/testimonials/rvv78v5t0s.jpg" alt="" loading="lazy"><span class="vc-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button>
+  <button type="button" class="vc vc-face" data-wid="cck7ze23v1" style="--a:1.7778" aria-label="Play the Neurogum testimonial video"><img src="images/testimonials/cck7ze23v1.jpg" alt="" loading="lazy"><span class="vc-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button>
+  <button type="button" class="vc vc-face" data-wid="okrmpn14j8" style="--a:0.7339" aria-label="Play the Forrest Smith testimonial video"><img src="images/testimonials/okrmpn14j8.jpg" alt="" loading="lazy"><span class="vc-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button>
+  <button type="button" class="vc vc-face" data-wid="5mkkzwogpn" style="--a:0.5625" aria-label="Play the Tru Earth testimonial video"><img src="images/testimonials/5mkkzwogpn.jpg" alt="" loading="lazy"><span class="vc-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button>
+  <button type="button" class="vc vc-face" data-wid="ngbz78dzvz" style="--a:0.5625" aria-label="Play the Naya testimonial video"><img src="images/testimonials/ngbz78dzvz.jpg" alt="" loading="lazy"><span class="vc-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button>
+  <button type="button" class="vc vc-face" data-wid="7hvgg9vx7z" style="--a:0.5625" aria-label="Play the Nutrex Hawaii testimonial video"><img src="images/testimonials/7hvgg9vx7z.jpg" alt="" loading="lazy"><span class="vc-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button>
+  <button type="button" class="vc vc-face" data-wid="9h25f29dtt" style="--a:0.5625" aria-label="Play the LoG testimonial video"><img src="images/testimonials/9h25f29dtt.jpg" alt="" loading="lazy"><span class="vc-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button>
+  <button type="button" class="vc vc-face" data-wid="k3ox2fubnz" style="--a:1.7778" aria-label="Play the OptiMonk testimonial video"><img src="images/testimonials/k3ox2fubnz.jpg" alt="" loading="lazy"><span class="vc-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button>
+ </div>
+</section>
+
+<section id="call">
+ <div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">What happens on the 15 minute call</span>
+    <h2 style="margin-top:14px">You leave with the plan. Then you decide.</h2>
+  </div>
+  <div class="what">
+    <div class="wt"><div class="n">01</div><h3>Your store, our log</h3><p>Before the call we match your store against 298 documented winners and pick the five tests we'd run first, by page and expected lift.</p></div>
+    <div class="wt"><div class="n">02</div><h3>15 minutes, live</h3><p>We walk the five tests on your actual pages: what changes, why it wins, what it's worth on your revenue. Ask anything.</p></div>
+    <div class="wt"><div class="n">03</div><h3>Yes, or keep the plan</h3><p>If it's a fit: a Slack channel, access, and your first test live within 7 days at our cost. The first invoice comes after the first winner. If not, the plan is yours.</p></div>
+  </div>
+ </div>
+</section>
+
+<section id="faq" style="padding-top:20px">
+ <div class="wrap">
+  <div class="sec-head" style="margin-bottom:18px">
+    <h2>How paying after the first win works</h2>
+    <p style="margin-top:12px">The short version: we build and run your first test at our cost, and the first invoice comes after the first winner. The details are below.</p>
+  </div>
+  <div class="faq">
+   <details open><summary>What counts as a win?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>A variant that beats your current page on the metric we agree before launch, read straight from the testing tool with the significance shown, the same way as the result cards above. <span class="todo">Daniel: win definition and confidence threshold</span></p></details>
+   <details><summary>What does it cost after the first win?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Nothing until then. After the first winner: <span class="todo">Daniel: price model and range</span>.</p></details>
+   <details><summary>Is there a minimum term or a contract?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p><span class="todo">Daniel: minimum term</span>. Payment terms are set out in the agreement you sign before work starts, so you read them before anything goes live.</p></details>
+   <details><summary>What if nothing wins?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>You don't get an invoice until a test wins. <span class="todo">Daniel: how many tests you run before either side can stop, and what happens then</span>.</p></details>
+   <details><summary>What do you need from my team?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>A Slack channel, access to your store and testing tool, and one person who approves designs. Results move as fast as designs get approved. <span class="todo">Daniel: hours per week you need from them</span></p></details>
+   <details><summary>Do I need my own testing tool?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p><span class="todo">Daniel: which tool you run tests in, and who pays for it</span></p></details>
+   <details><summary>Will it break my theme or slow my site?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p><span class="todo">Daniel: how tests are deployed (testing tool, duplicate theme) and the speed impact</span>. <span class="todo">Daniel: confirm: the live theme is never edited without your go</span></p></details>
+   <details><summary>Who does the work?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>We do: research, design, build, QA and the readout on every test. You approve designs and keep running the store. <span class="todo">Daniel: who on the team, in house or contractors</span></p></details>
+  </div>
+ </div>
+</section>
+
+<section class="final" id="final">
+ <div class="wrap">
+  <a class="btn big" id="cta-final" href="#book" data-open="mo-book">Get my first test free</a>
+  <p class="alt-path"><a href="#email-tests" id="open-async-final" data-open="mo-async">Rather not call? Email me the 5 tests instead</a></p>
+  <p class="micro" style="color:#9fb3b0;margin-top:8px">Shopify, $150k+ a month. Under that, the form points you to something that fits better than a call.</p>
+ </div>
+</section>
+
+<footer><div class="wrap">
+  <img src="images/purplefire-logo.webp" alt="PurpleFire" class="pflogo">
+  <div>PurpleFire ApS. Done for you split testing for ecommerce brands doing $150k a month or more. Copenhagen, Denmark.</div>
+  <div>Results shown are real split tests on client stores as recorded in our test log, lift of the winning variant over control on the stated metric. Dollar figures are the revenue difference reported by the testing tool. Your results depend on your traffic, your product and how quickly designs are approved. Payment terms are set out in the agreement signed before work starts. <span class="todo">Daniel: confirm the dollar figure wording</span></div>
+  <div><a href="https://www.purplefire.io/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy</a> &nbsp;·&nbsp; <a href="mailto:hello@purplefire.io">hello@purplefire.io</a></div>
+</div></footer>
+
+<div class="sticky" id="sticky"><a class="btn" id="cta-sticky" href="#book" data-open="mo-book">Get my first test free</a></div>
+</div>
+
+<!-- Booking modal: store URL, revenue, then the calendar with contact fields inside the booking step -->
+<div class="mo" id="mo-book" role="dialog" aria-modal="true" aria-labelledby="bk-title">
+  <div class="card">
+    <button class="x" type="button" data-close aria-label="Close">&times;</button>
+
+    <div class="pane on" id="bk-p1">
+      <div class="qhead"><strong id="bk-title">About your store</strong><span>1 of 3</span></div>
+      <div class="prog"><i style="width:33%"></i></div>
+      <div class="fld"><label for="bk-store">What's your store's URL?</label><input id="bk-store" autocomplete="url" inputmode="url" placeholder="yourbrand.com"><div class="fmsg"></div></div>
+      <button class="btn" type="button" id="bk-next1">Continue <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <p class="micro">Press Enter to continue</p>
+    </div>
+
+    <div class="pane" id="bk-p2">
+      <div class="qhead"><strong>About your store</strong><span>2 of 3</span></div>
+      <div class="prog"><i style="width:66%"></i></div>
+      <div class="fld"><label id="bk-rev-label">Monthly revenue?</label><div class="hint">Trailing 3 month average. Tap one.</div></div>
+      <div class="opts" id="bk-revenue" role="group" aria-labelledby="bk-rev-label">
+        <button type="button" class="opt" id="rev-under" data-v="Under $150k" data-ny="1" aria-pressed="false"><span class="dot"></span>Under $150k</button>
+        <button type="button" class="opt" id="rev-150" data-v="$150k to $300k" aria-pressed="false"><span class="dot"></span>$150k to $300k</button>
+        <button type="button" class="opt" id="rev-300" data-v="$300k to $600k" aria-pressed="false"><span class="dot"></span>$300k to $600k</button>
+        <button type="button" class="opt" id="rev-600" data-v="$600k+" aria-pressed="false"><span class="dot"></span>$600k or more</button>
+      </div>
+      <button class="back" type="button" data-back="bk-p1">&larr; Back</button>
+    </div>
+
+    <div class="pane" id="bk-cal">
+      <div class="qhead"><strong>Pick a time</strong><span>3 of 3</span></div>
+      <div class="prog"><i style="width:100%"></i></div>
+      <p class="sub" id="bk-cal-sub">15 minutes. We bring the five tests we'd run first on <b id="bk-cal-store">your store</b>.</p>
+      <p class="tz" id="bk-tz">Times in your time zone</p>
+      <div class="days" id="bk-days" role="group" aria-label="Day"></div>
+      <div class="slots" id="bk-slots" role="group" aria-label="Time"></div>
+      <div class="contact" id="bk-contact">
+        <div class="picked"><span id="bk-picked"></span><button type="button" id="bk-change">Change</button></div>
+        <div class="fld sm"><label for="bk-name">Your name</label><input id="bk-name" autocomplete="name"><div class="fmsg"></div></div>
+        <div class="fld sm"><label for="bk-email">Work email</label><div class="hint">We send the invite and the five tests here.</div><input id="bk-email" type="email" autocomplete="email" inputmode="email"><div class="fmsg"></div></div>
+        <div class="fld sm"><label for="bk-phone" id="bk-phone-label">Mobile, so we can text you the calendar invite</label><div class="hint"><span class="todo">Daniel: confirm GHL texts the invite</span></div><div class="phone"><select id="bk-cc" aria-label="Country code"></select><input id="bk-phone" type="tel" autocomplete="tel-national" inputmode="tel" placeholder="Mobile number"></div><div class="fmsg"></div></div>
+        <div class="fld sm"><label for="bk-goal">Anything we should look at first? <span style="color:var(--muted);font-weight:600">(optional)</span></label><select id="bk-goal"><option value="">Skip</option><option>More conversions, same traffic</option><option>Higher average order value</option><option>Both, revenue per visitor</option><option>We tried CRO before and it didn't pay off</option></select></div>
+        <button class="btn" type="button" id="bk-confirm">Confirm my call</button>
+      </div>
+      <button class="back" type="button" data-back="bk-p2">&larr; Back</button>
+      <p class="proto">Prototype. Nothing you type here is sent or booked.</p>
+    </div>
+
+    <div class="pane done" id="bk-done" aria-live="polite">
+      <div class="done-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div>
+      <h3 id="bk-done-title">You're booked.</h3>
+      <p class="sub" id="bk-done-line"></p>
+      <button class="btn" type="button" data-close>Back to the page</button>
+      <p class="proto">Prototype. Nothing was sent or booked.</p>
+    </div>
+
+    <div class="pane" id="bk-nofit">
+      <div class="qhead"><strong>Not yet, and here's why</strong><span></span></div>
+      <p class="sub">Under $150k a month, split tests can't reach significance inside a month, and we won't take your money to guess.</p>
+      <p class="sub"><b style="color:var(--ink)">What fits better right now:</b> <span class="todo">Daniel: lighter offer or list</span></p>
+      <button class="btn ghost" type="button" id="nf-offer"><span class="todo">Daniel: button label for the lighter offer</span></button>
+      <div id="nf-form" style="margin-top:18px">
+        <p class="sub">Or get one winning test from our log by email <span class="todo">Daniel: how often</span>, so you have a list ready when you cross $150k.</p>
+        <div class="fld sm"><label for="nf-email">Work email</label><input id="nf-email" type="email" autocomplete="email" inputmode="email"><div class="fmsg"></div></div>
+        <button class="btn" type="button" id="nf-submit">Send me the tests</button>
+      </div>
+      <div class="summary" id="nf-done" style="display:none" aria-live="polite"><span><b>You're on the list.</b> The first test arrives <span class="todo">Daniel: when</span>.</span></div>
+      <p class="sub" style="margin-top:16px">Cross $150k and come back, or email <a href="mailto:hello@purplefire.io" style="color:var(--teal);font-weight:700">hello@purplefire.io</a> with a question.</p>
+      <button class="back" type="button" data-back="bk-p2">&larr; Back</button>
+      <p class="proto">Prototype. Nothing you type here is sent.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Async path: the 5 tests by email, no call -->
+<div class="mo" id="mo-async" role="dialog" aria-modal="true" aria-labelledby="as-title">
+  <div class="card">
+    <button class="x" type="button" data-close aria-label="Close">&times;</button>
+    <div class="pane on" id="as-form">
+      <div class="qhead"><strong id="as-title">Get the 5 tests by email</strong><span></span></div>
+      <p class="sub" id="as-sub">No call needed. We record a 5 minute Loom on your store with the five tests we'd run first.</p>
+      <div class="fld sm"><label for="as-store">Store URL</label><input id="as-store" autocomplete="url" inputmode="url" placeholder="yourbrand.com"><div class="fmsg"></div></div>
+      <div class="fld sm"><label for="as-email">Work email</label><input id="as-email" type="email" autocomplete="email" inputmode="email"><div class="fmsg"></div></div>
+      <button class="btn" type="button" id="as-submit">Email me the 5 tests</button>
+      <p class="micro">After you've watched it, we'll ask once if you want a call.</p>
+      <p class="proto"><span class="todo">Daniel: add the revenue question here, or filter by hand before recording the Loom</span></p>
+      <p class="proto">Prototype. Nothing you type here is sent.</p>
+    </div>
+    <div class="pane done" id="as-done" aria-live="polite">
+      <div class="done-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div>
+      <h3>It's on the way.</h3>
+      <p class="sub" id="as-done-line"></p>
+      <p style="margin:4px 0 0"><button class="linkbtn" type="button" id="as-to-book">Rather talk it through now? Pick a time</button></p>
+      <button class="btn" type="button" data-close>Back to the page</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  /* VSL: muted preview, tap to restart with sound (v1 behaviour, no tracking) */
+  var cover=document.getElementById('vcover'),sound=false;
+  var calm=(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)||(navigator.connection&&navigator.connection.saveData);
+  function player(){return document.querySelector('wistia-player[media-id="y5hjobcu87"]')}
+  function ready(fn){
+    if(!(window.customElements&&customElements.whenDefined))return;
+    customElements.whenDefined('wistia-player').then(function(){var p=player();if(!p)return;if(typeof p.whenApiReady==='function')p.whenApiReady().then(function(){fn(p)});else fn(p)});
+  }
+  function play(p){try{var r=p.play();if(r&&r.catch)r.catch(function(){})}catch(e){}}
+  var held=false; /* true while a modal is open: the VSL stays paused */
+  function onScreen(){var r=cover.parentNode.getBoundingClientRect();return r.bottom>r.height*.25&&r.top<innerHeight-r.height*.25}
+  function holdVideo(on){held=on;ready(function(p){try{if(on)p.pause();else if((sound||!calm)&&onScreen())play(p)}catch(e){}})}
+  ready(function(p){
+    p.addEventListener('play',function(){if(held){try{p.pause()}catch(e){}return}if(!sound){try{p.muted=true}catch(e){}cover.classList.add('live')}});
+    if(!calm&&!held){try{p.muted=true}catch(e){}play(p)}
+    if('IntersectionObserver' in window){new IntersectionObserver(function(es){try{if(!es[0].isIntersecting){p.pause();return}if(!held&&(sound||!calm))play(p)}catch(e){}},{threshold:.25}).observe(cover.parentNode)}
+  });
+
+  /* testimonial videos: thumbnail first, the Wistia player loads only on tap */
+  document.getElementById('vrail').addEventListener('click',function(e){var b=e.target.closest('.vc-face');if(!b)return;
+    var box=document.createElement('div');box.className='vc';box.setAttribute('style',b.getAttribute('style'));
+    var f=document.createElement('iframe');f.src='https://fast.wistia.net/embed/iframe/'+b.dataset.wid+'?videoFoam=false&playerColor=0f6b66&autoPlay=true';
+    f.title=b.getAttribute('aria-label').replace(/^Play the /,'');f.allow='autoplay; fullscreen; picture-in-picture';
+    box.appendChild(f);b.replaceWith(box);try{f.focus()}catch(x){}});
+  cover.addEventListener('click',function(){
+    sound=true;cover.hidden=true;
+    ready(function(p){try{p.pause();p.currentTime=0;setTimeout(function(){try{p.muted=false;p.removeAttribute('muted');p.volume=1;play(p)}catch(e){}},32)}catch(e){}});
+  });
+
+  /* logo strip */
+  var B=[["Neurogum","neurogum.webp"],["Vaio","vaio.svg"],["Zipster","zipster.webp"],["Goose Creek","goose-creek.webp"],["Homedics","homedics.svg"],["Kindred Bravely","kindred-bravely.svg"],["Itzy Ritzy","itzy-ritzy.webp"],["Nordic Oil","nordic-oil.webp"],["Nutrex Hawaii","nutrex-hawaii.webp"],["Skin Laundry","skin-laundry.svg"],["Vital Sleep","vital-sleep.webp"],["Miamily","miamily.webp"],["Ripstop by the Roll","ripstop-by-the-roll.webp"],["Upswing Poker"],["Shaktimat","shaktimat.svg"],["Pacific Shaving Co.","pacific-shaving-co.webp"],["Bestself","bestself.webp"],["German Car Accessories"],["Nordic Peace","nordic-peace.webp"]];
+  var h=B.map(function(b){return '<div class="lg" title="'+b[0]+'">'+(b[1]?'<img src="images/logos/'+b[1]+'" alt="'+b[0]+'" loading="lazy">':'<span class="txt">'+b[0]+'</span>')+'</div>'}).join('');
+  var track=document.getElementById('logotrack');track.innerHTML=h+h.replace(/<div class="lg"/g,'<div class="lg" aria-hidden="true"');
+
+  /* sticky CTA on phones once the hero is passed */
+  var sticky=document.getElementById('sticky'),hero=document.querySelector('.vhero');
+  function st(){sticky.classList.toggle('on',hero.getBoundingClientRect().bottom<0)}
+  addEventListener('scroll',st,{passive:true});st();
+
+  /* modal shell */
+  var opener=null,page=document.querySelector('.pf');
+  function openMo(id,from,pane){var m=document.getElementById(id);if(!m)return;if(from!==undefined)opener=from||null;
+    m.classList.add('on');document.body.style.overflow='hidden';page.inert=true;page.setAttribute('aria-hidden','true');holdVideo(true);
+    if(id==='mo-book'&&(m.querySelector('#bk-done.on')||$('nf-done').style.display!=='none'))resetBook();
+    if(id==='mo-async'&&m.querySelector('#as-done.on'))resetAsync();
+    showPane(m,pane||(id==='mo-book'?'bk-p1':'as-form'))}
+  window.__openMo=openMo;
+  function closeMo(m){m.classList.remove('on');if(!document.querySelector('.mo.on')){document.body.style.overflow='';page.inert=false;page.removeAttribute('aria-hidden');holdVideo(false)}if(opener)try{opener.focus({preventScroll:true})}catch(e){}}
+  function shown(el){return el.offsetParent!==null&&!el.disabled}
+  /* first visible control: a field, a tap option, or the selected day; never a hidden field */
+  function focusFirst(p){if(!p)return;setTimeout(function(){var el=[].filter.call(p.querySelectorAll('input,select,.opt,.day[aria-pressed="true"]'),shown)[0]||[].filter.call(p.querySelectorAll('button'),shown)[0];try{if(el)el.focus({preventScroll:true})}catch(e){}},60)}
+  function showPane(m,id){[].forEach.call(m.querySelectorAll('.card > .pane'),function(p){p.classList.toggle('on',p.id===id)});focusFirst(document.getElementById(id))}
+  [].forEach.call(document.querySelectorAll('[data-open]'),function(a){a.addEventListener('click',function(e){e.preventDefault();openMo(a.getAttribute('data-open'),a)})});
+  [].forEach.call(document.querySelectorAll('.mo'),function(m){
+    m.addEventListener('click',function(e){if(e.target===m)closeMo(m)});
+    [].forEach.call(m.querySelectorAll('[data-close]'),function(x){x.addEventListener('click',function(){closeMo(m)})});
+    [].forEach.call(m.querySelectorAll('[data-back]'),function(b){b.addEventListener('click',function(){showPane(m,b.getAttribute('data-back'))})});
+  });
+  document.addEventListener('keydown',function(e){var m=document.querySelector('.mo.on');if(!m)return;
+    if(e.key==='Escape'){closeMo(m);return}
+    if(e.key==='Tab'){var f=[].filter.call(m.querySelectorAll('button,input,select,a[href]'),function(el){return el.offsetParent!==null&&!el.disabled});if(!f.length)return;var a=f[0],z=f[f.length-1];
+      if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}}});
+
+  /* validation (v1 rules) */
+  function host(u){return (u||'').trim().replace(/^https?:\/\//,'').replace(/^www\./,'').replace(/\/.*$/,'')}
+  function emailMsg(v){if(!v)return 'Enter your email.';if(!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(v))return 'That does not look like a real email address.';if(/\.(con|cmo|ocm|comm|coom|cpm|om)$/i.test(v))return 'Check the ending of your email address.';return ''}
+  function mark(el,msg){var w=el.closest('.fld');if(!w)return;w.querySelector('.fmsg').textContent=msg;w.classList.toggle('bad',!!msg);if(msg)el.focus();return !msg}
+  function storeOk(el){return mark(el,/^[^\s]+\.[a-z]{2,}/i.test(host(el.value))?'':'Enter your store address, like yourbrand.com.')}
+  [].forEach.call(document.querySelectorAll('.mo input,.mo select'),function(el){el.addEventListener('input',function(){var w=el.closest('.fld');if(w)w.classList.remove('bad')})});
+
+  /* booking flow */
+  var book=document.getElementById('mo-book'),$=function(id){return document.getElementById(id)};
+  var st8={store:'',revenue:'',day:null,slot:null};
+  function setStore(v){st8.store=host(v);$('bk-cal-store').textContent=st8.store||'your store'}
+  function next1(){if(!storeOk($('bk-store')))return;setStore($('bk-store').value);showPane(book,'bk-p2')}
+  $('bk-next1').addEventListener('click',next1);
+  $('bk-store').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();next1()}});
+  $('bk-revenue').addEventListener('click',function(e){var b=e.target.closest('.opt');if(!b)return;
+    [].forEach.call(this.querySelectorAll('.opt'),function(o){o.setAttribute('aria-pressed',String(o===b))});
+    st8.revenue=b.dataset.v;
+    setTimeout(function(){showPane(book,b.dataset.ny?'bk-nofit':'bk-cal')},150)});
+
+  /* calendar mock: next five weekdays, half hour slots, a few already taken */
+  var tz='';try{tz=(new Intl.DateTimeFormat([], {timeZoneName:'long'}).formatToParts(new Date()).filter(function(x){return x.type==='timeZoneName'})[0]||{}).value||''}catch(e){}
+  if(tz)$('bk-tz').textContent='Times shown in '+tz;
+  var days=[],d=new Date();d.setHours(0,0,0,0);
+  while(days.length<5){d.setDate(d.getDate()+1);if(d.getDay()!==0&&d.getDay()!==6)days.push(new Date(d))}
+  var TIMES=[[9,0],[9,30],[10,30],[11,0],[13,0],[14,30],[15,0],[16,30]];
+  function fmtTime(h,m){var t=new Date(2000,0,1,h,m);try{return t.toLocaleTimeString([], {hour:'numeric',minute:'2-digit'})}catch(e){return h+':'+(m<10?'0':'')+m}}
+  function fmtDay(x,long){try{return x.toLocaleDateString([], long?{weekday:'long',month:'long',day:'numeric'}:{weekday:'short'})}catch(e){return x.toDateString()}}
+  var dayBox=$('bk-days'),slotBox=$('bk-slots');
+  dayBox.innerHTML=days.map(function(x,i){return '<button type="button" class="day" data-i="'+i+'" aria-pressed="false"><small>'+fmtDay(x)+'</small><b>'+x.getDate()+'</b></button>'}).join('');
+  function renderSlots(i){slotBox.innerHTML=TIMES.map(function(t,j){var taken=((i*3+j*5)%7===0);return '<button type="button" class="slot" data-j="'+j+'" aria-pressed="false"'+(taken?' disabled aria-label="'+fmtTime(t[0],t[1])+', taken"':'')+'>'+fmtTime(t[0],t[1])+'</button>'}).join('')}
+  function pickDay(i){st8.day=i;st8.slot=null;[].forEach.call(dayBox.children,function(b){b.setAttribute('aria-pressed',String(+b.dataset.i===i))});renderSlots(i);$('bk-contact').classList.remove('on')}
+  dayBox.addEventListener('click',function(e){var b=e.target.closest('.day');if(b)pickDay(+b.dataset.i)});
+  slotBox.addEventListener('click',function(e){var b=e.target.closest('.slot');if(!b||b.disabled)return;st8.slot=+b.dataset.j;
+    [].forEach.call(slotBox.children,function(s){s.setAttribute('aria-pressed',String(s===b))});
+    var t=TIMES[st8.slot];$('bk-picked').textContent=fmtDay(days[st8.day],true)+', '+fmtTime(t[0],t[1]);
+    $('bk-contact').classList.add('on');setTimeout(function(){try{$('bk-name').focus({preventScroll:true});$('bk-contact').scrollIntoView({block:'nearest',behavior:'smooth'})}catch(x){}},60)});
+  $('bk-change').addEventListener('click',function(){pickDay(st8.day);try{dayBox.querySelector('[aria-pressed="true"]').focus()}catch(e){}});
+  pickDay(0);
+
+  var CC=[['US','1'],['CA','1'],['GB','44'],['AU','61'],['DE','49'],['NL','31'],['DK','45'],['SE','46'],['FR','33'],['ES','34']];
+  var cc=$('bk-cc');cc.innerHTML=CC.map(function(c){return '<option value="'+c[0]+'">'+c[0]+' +'+c[1]+'</option>'}).join('');
+  var loc=((navigator.language||'').split('-')[1]||'').toUpperCase();if(CC.some(function(c){return c[0]===loc}))cc.value=loc;
+
+  $('bk-confirm').addEventListener('click',function(){
+    var name=$('bk-name').value.trim(),email=$('bk-email').value.trim();
+    var okN=mark($('bk-name'),name?'':'Add your name so we can send the invite.');
+    var okE=okN&&mark($('bk-email'),email?emailMsg(email):'Add your work email so we can send the invite.');
+    var digits=$('bk-phone').value.replace(/\D/g,'');
+    var okP=okE&&mark($('bk-phone'),digits.length>=7?'':(digits?'That number looks too short.':'Add your mobile so we can text you the invite.'));
+    if(!okP)return;
+    var t=TIMES[st8.slot];
+    $('bk-done-title').textContent="You're booked, "+name.split(/\s+/)[0]+'.';
+    $('bk-done-line').innerHTML=esc(fmtDay(days[st8.day],true))+' at '+esc(fmtTime(t[0],t[1]))+'. The invite is in your inbox at <b>'+esc(email)+'</b>, and we\'ll text it to your mobile too <span class="todo">Daniel: confirm GHL texts the invite</span>. Before the call we match <b>'+esc(st8.store)+'</b> against our 298 documented winners and bring the five tests we\'d run first.';
+    showPane(book,'bk-done');
+  });
+  function resetBook(){st8={store:'',revenue:'',day:null,slot:null};setStore('');
+    ['bk-store','bk-name','bk-email','bk-phone','nf-email'].forEach(function(id){$(id).value='';var w=$(id).closest('.fld');if(w)w.classList.remove('bad')});$('bk-goal').value='';
+    [].forEach.call(document.querySelectorAll('#bk-revenue .opt'),function(o){o.setAttribute('aria-pressed','false')});
+    $('nf-form').style.display='';$('nf-done').style.display='none';$('bk-done-title').textContent="You're booked.";$('bk-done-line').textContent='';pickDay(0)}
+  function resetAsync(){['as-store','as-email'].forEach(function(id){$(id).value=''});$('as-done-line').textContent=''}
+  $('nf-submit').addEventListener('click',function(){var v=$('nf-email').value.trim();if(!mark($('nf-email'),v?emailMsg(v):'Add your work email so we can send the tests.'))return;$('nf-form').style.display='none';$('nf-done').style.display='grid'});
+
+  /* async path */
+  var asy=$('mo-async');
+  $('as-submit').addEventListener('click',function(){if(!storeOk($('as-store')))return;var v=$('as-email').value.trim();if(!mark($('as-email'),v?emailMsg(v):'Add your work email so we can send the Loom.'))return;
+    $('as-done-line').innerHTML='We\'ll send a 5 minute Loom with the 5 tests for <b>'+esc(host($('as-store').value))+'</b> to <b>'+esc(v)+'</b> <span class="todo">Daniel: within X hours</span>.';
+    showPane(asy,'as-done')});
+  $('as-to-book').addEventListener('click',function(){var s=host($('as-store').value);asy.classList.remove('on');openMo('mo-book',undefined,'bk-p2');$('bk-store').value=s;setStore(s)});
+  [$('as-store'),$('as-email')].forEach(function(el){el.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();$('as-submit').click()}})});
+
+  function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+})();
+</script>
+</body>
+</html>
