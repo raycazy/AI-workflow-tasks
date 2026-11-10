@@ -32,7 +32,7 @@ Landing pages for a persona change only the hero copy and one or two story secti
 
 ## Buy box, materials and 3D
 
-- Buy box: three steps that fold into one line summaries (how many cards; how many in Glass and Poly with two equal slab cards, steppers and a slider; booklets and oversized per slab, inline). Every unit counts as one card. "See every size" opens the size chart in a popup dialog, never a new page. An i button on each slab card opens a benefits popover. One black total bar, one block button ("Claim Your Pass" or "Claim Your Passes" plus the total), no savings line, no skip to checkout link, then the "Every pass includes" panel and the fees accordion. Source: `buybox-rachel.html`, `buybox-rachel.js`, `shop-builder.css`.
+- Buy box: three steps that fold into one line summaries (how many cards; how many in Glass and Poly with two equal slab cards, steppers and a slider; booklets and oversized per slab, inline). Every unit counts as one card. "See every size" opens the size chart in a popup dialog, never a new page. An i button on each slab card opens a benefits popover. One black total bar, one block button naming the housing ("Claim Your Glass", "Claim Your Poly" or "Claim Your Glass and Poly", plus the total), no savings line, no skip to checkout link, then the "Every pass includes" panel and the fees accordion. Source: `buybox-rachel.html`, `buybox-rachel.js`, `shop-builder.css`.
 - Materials: metal frames use the 160deg gradient #1d1d1d to #0a0a0a to #141414 with four 8px screws; the label is red (#ED2B30 to #D51F24) with a 3px #D9EEF0 holographic ring and a white grade box; the glass sheen is a diagonal white band swept on hover. No frosted glass, no backdrop blur panels except the header, no chrome. Red light comes from below or behind the slab.
 - 3D: the hero and shop page use the three.js spin slab (glass.glb and clear_case.glb with per slab card and label textures, static render fallback, drag to spin). Sizes sections use the CSS 3D morphing housing. Do not add other 3D or WebGL. Respect prefers-reduced-motion: every animation off.
 - Motion: .15s hover, .3s reveals, .9s cubic-bezier(.2,.7,.2,1) for 3D and size changes, 1.2s sheen. Text and layout never animate.
@@ -45,7 +45,7 @@ Landing pages for a persona change only the hero copy and one or two story secti
 
 ## Copy rules
 
-- Buttons read "Claim Your Glass" or "Claim Your Poly". The site wide header and bar use "Claim Your Pass". The shop buy box uses "Claim my $200 HGA Glass", the pass page "Add to cart".
+- Buttons read "Claim Your Glass" or "Claim Your Poly". The site wide header, announcement bar and sticky bar use "Claim Your Glass" too (Dylan, Nov 10); never "Claim Your Pass". The shop buy box uses "Claim my $200 HGA Glass", the pass page "Add to cart".
 - Say "pass", never "slot". Housing names stand alone: "Claim Your Glass", "1 × HGA Glass". Never "Glass pass" or "Poly pass".
 - Say RFID, "the chip in the label", "tap, open the record". Never NFT or NFC. Do not lead with blockchain. The chip is in every label, Poly and Glass; nothing differs between them but the housing.
 - The process step is "Authenticate it": cards are imaged in high resolution and authenticated, never "scanned" or "inspected". "Inspect" stays only for how a subgrade is judged.

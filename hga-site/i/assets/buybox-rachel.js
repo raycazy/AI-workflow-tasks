@@ -144,7 +144,8 @@
     tot.hidden = S.step < 2; acts.hidden = S.step < 3;
     set("[data-t-count]", S.total + (one ? " card" : " cards") + (g && p ? " · " + g + " Glass, " + p + " Poly" : g ? " · Glass" : " · Poly"));
     set("[data-t-now]", money(t.now));
-    set("[data-claim-label]", (one ? "Claim Your Pass" : "Claim Your Passes") + " · " + money(t.now));
+    // the button names the housing in the order (Dylan 2026-11-10: "Claim Your Glass", not "Claim Your Pass")
+    set("[data-claim-label]", (g && p ? "Claim Your Glass and Poly" : g ? "Claim Your Glass" : "Claim Your Poly") + " · " + money(t.now));
     // the slab on the left follows the housing in play
     var showH = g > 0 ? "glass" : "poly";
     $$("[data-slab]").forEach(function (e) { e.hidden = e.dataset.slab !== showH; });
