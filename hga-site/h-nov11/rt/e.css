@@ -1,0 +1,107 @@
+/* Version E additions on top of Rachel Tomi's styles.css (home-e.html) */
+.hero-pts{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 26px;font-size:14.5px;color:var(--text-2)}
+.hero-pts li{display:flex;align-items:center;gap:8px}
+.hero-pts svg{width:18px;height:18px;color:var(--red)}
+.gc-review figcaption{display:flex;align-items:center;gap:10px}
+img.gc-av{flex:0 0 30px;width:30px;height:30px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 1px rgba(255,255,255,.2)}
+#heroQuoteBy{font-weight:700;color:var(--text)}
+
+.ps-e{padding:clamp(36px,4.5vw,56px) 0;border-top:1px solid var(--line)}
+.ps-cards{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.ps-card{padding:22px 24px;border-radius:var(--r);background:var(--ink-2);border:1px solid var(--line)}
+.ps-card.now{border-color:rgba(230,36,41,.55);background:radial-gradient(ellipse 90% 120% at 0 0,rgba(230,36,41,.16),transparent 70%),var(--ink-2)}
+.ps-card .kicker{margin:0}
+.ps-card .kicker b{color:var(--text)}
+.ps-card h3{margin:8px 0 6px;font-size:clamp(20px,1.7vw,24px);font-weight:800;letter-spacing:-.01em}
+.ps-card p:last-child{margin:0;color:var(--text-2);font-size:15px;line-height:1.5}
+@media (max-width:860px){.ps-cards{grid-template-columns:1fr}}
+
+.reviews-e{padding:clamp(28px,3vw,40px) 0 clamp(56px,6vw,88px)}
+.rv figcaption{justify-content:flex-start}
+img.rv-av{flex:0 0 34px;width:34px;height:34px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 1px rgba(255,255,255,.2)}
+.rv figcaption b{color:var(--text)}
+.faq-all{margin-top:16px}
+.faq-all a{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--text);text-decoration:underline;text-underline-offset:5px;text-decoration-color:rgba(255,255,255,.3)}
+.faq-all svg{width:16px;height:16px}
+.fine a{color:var(--text);text-decoration:underline;text-underline-offset:3px}
+svg.ck{width:14px;height:14px;vertical-align:-2px;color:#3ccf7a}
+.nav-links a{white-space:nowrap}
+@media (max-width:720px){
+  #hero-title .line{display:block;white-space:nowrap}
+  #hero-title{font-size:min(var(--fs-h1),9.4vw)}
+  .hero-head>.label{font-size:10.5px;letter-spacing:.1em}
+  .hero-pts{gap:8px 18px;font-size:13.5px}
+}
+
+/* why: C's grading today vs HGA comparison, in Rachel's card language */
+.cmp{display:grid;gap:10px;max-width:1040px;margin:0 auto}
+.cmp-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1.15fr);align-items:center;gap:0;border-radius:var(--r);background:var(--ink-2);border:1px solid var(--line);overflow:hidden}
+.cmp-row>*{margin:0;padding:16px 20px;display:flex;align-items:center;gap:10px}
+.cmp-q{font-weight:700;color:var(--text)}
+.cmp-no{color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(230,36,41,.6)}
+.cmp-no .pain-x{flex:none;transform:scale(.8)}
+.cmp-yes{align-self:stretch;color:var(--text);font-weight:600;background:radial-gradient(ellipse 90% 140% at 0 50%,rgba(230,36,41,.14),transparent 75%);border-left:1px solid rgba(230,36,41,.3)}
+.cmp-yes svg{flex:none;width:18px;height:18px;color:var(--red-text)}
+.cmp-head{background:none;border:0}
+.cmp-head>span{padding:6px 20px;font-family:var(--lab);font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.cmp-hga img{height:16px;width:auto}
+.answers-ph{margin-top:clamp(20px,3vw,32px)}
+.answers-ph .ans-vis{aspect-ratio:4/3;padding:0;overflow:hidden}
+.answers-ph .ans-vis img{width:100%;height:100%;object-fit:cover;max-height:none}
+.answers-ph h3{margin-bottom:0}
+@media (max-width:760px){.cmp-row{grid-template-columns:1fr}.cmp-yes{border-left:0;border-top:1px solid rgba(230,36,41,.3)}.cmp-head{display:none}.cmp-row>*{padding:12px 16px}}
+
+/* calendar: C's steps beside the booking calendar */
+.vsteps{list-style:none;margin:0;padding:0 0 0 22px;display:grid;gap:22px;position:relative;align-self:center}
+.vsteps::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:2px;border-radius:2px;background:linear-gradient(180deg,var(--red),rgba(230,36,41,.15))}
+.vsteps li{position:relative}
+.vsteps li::before{content:"";position:absolute;left:-22px;top:3px;width:14px;height:14px;border-radius:50%;background:var(--red);box-shadow:0 0 0 4px rgba(230,36,41,.2),0 0 14px rgba(230,36,41,.6)}
+.vsteps .kicker{margin:0}
+.vsteps h3{margin:6px 0 4px;font-size:clamp(19px,1.6vw,22px);font-weight:800}
+.vsteps p:last-child{margin:0;color:var(--text-2);font-size:15.5px;line-height:1.5}
+#calendar .fine b{color:var(--text)}
+
+/* 30 day turnaround: Rachel's grading clock, full size */
+.gc.clock-lg{position:relative;inset:auto;width:auto;max-width:560px;justify-self:end;padding:clamp(22px,2.6vw,32px);border-radius:24px}
+.clock-lg .gc-k{font-size:11px}
+.clock-lg .clock-title{font-size:clamp(20px,1.9vw,26px)}
+.clock-lg .clock-badge{width:clamp(76px,7vw,96px);height:clamp(76px,7vw,96px)}
+.clock-lg .clock-badge b{font-size:clamp(30px,3vw,42px)}
+.clock-lg .clock-bar{height:34px;gap:4px;margin-top:20px}
+.clock-lg .clock-labels{font-size:13px;margin-top:12px}
+.clock-lg .clock-foot{margin-top:18px}
+@media (max-width:860px){.gc.clock-lg{justify-self:stretch;max-width:none}}
+.answers-ph .ans-vis{display:block;height:auto;background:none}.answers-ph .ans-vis img{display:block;width:100%!important;height:100%!important;max-width:none!important;object-fit:cover;border-radius:12px;transform:none!important;position:static!important;filter:none}
+
+/* hero: a review card on each side of the stage (one on phones) */
+.gc-rv{width:300px}
+.gc-rv-l{left:0;right:auto;top:14%;bottom:auto}
+.gc-rv-r{right:0;left:auto;bottom:8%;top:auto}
+.gc-rv blockquote{margin:0 0 12px;font-size:15px;line-height:1.45;color:var(--text);transition:opacity .4s}
+.gc-rv figcaption{transition:opacity .4s}
+.gc-rv figcaption span{font-weight:700;color:var(--text)}
+.gc-rv.fade blockquote,.gc-rv.fade figcaption{opacity:0}
+@media (max-width:860px){
+  .gc-rv-l{display:none}
+  .gc-rv-r{position:relative;left:auto;right:auto;top:auto;bottom:auto;width:min(340px,calc(100% - 28px));justify-self:center;margin-top:-26px}
+}
+
+/* How HGA works, horizontal scroll (desktop, motion allowed). JS adds .hx-on and sets the section height. */
+.how.hx-on{padding:0;overflow:clip;--navh:66px;--sw:min(1000px,74vw)}
+.how.hx-on>.wrap{position:sticky;top:var(--navh);height:calc(100vh - var(--navh));max-width:none;padding:0;display:flex;flex-direction:column;justify-content:center;gap:clamp(16px,2.6vh,32px)}
+.how.hx-on .sec-head{margin:0 auto;padding:0 24px}
+.how.hx-on .flow{display:none}
+.how.hx-on .timeline{display:flex;width:max-content;max-width:none;margin:0;padding:64px calc((100vw - var(--sw)) / 2) 0;will-change:transform}
+.how.hx-on .tl-rail{left:calc((100vw - var(--sw)) / 2);right:calc((100vw - var(--sw)) / 2);top:26px;bottom:auto;width:auto;height:2px;transform:none}
+.how.hx-on .tl-fill{width:calc(var(--hxp,0) * 100%);height:100%}
+.how.hx-on .tl-fill::after{bottom:auto;top:50%;left:auto;right:-7px;transform:translateY(-50%)}
+.how.hx-on .tl-step{flex:0 0 var(--sw);grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(28px,3.5vw,56px);padding:0 clamp(32px,4vw,64px) 0 0;align-items:center}
+.how.hx-on .tl-step .tl-copy{order:1!important;text-align:left!important;padding-top:24px}
+.how.hx-on .tl-step .tl-visual{order:2!important}
+.how.hx-on .tl-num{left:0;top:-38px;transform:none}
+.how.hx-on .tl-visual{max-height:calc(100vh - var(--navh) - 290px);display:flex;align-items:center;justify-content:center}
+.how.hx-on .tl-visual>*{max-height:100%}
+.how.hx-on .rphone{height:min(470px,calc(100vh - var(--navh) - 300px));width:auto;aspect-ratio:9/19}
+.how.hx-on .tl-step{opacity:.35;transition:opacity .5s}
+.how.hx-on .tl-step.hx-act{opacity:1}
+.how.hx-on .tl-step.hx-act .tl-num{background:var(--red);color:#fff;box-shadow:0 0 0 6px rgba(230,36,41,.15),0 0 30px rgba(230,36,41,.55)}

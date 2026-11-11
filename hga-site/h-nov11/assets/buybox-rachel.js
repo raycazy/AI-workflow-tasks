@@ -1,0 +1,288 @@
+// HGA buy box, Option C: how many cards, then the Glass / Poly split, then booklets and oversized per slab.
+// Rachel's build (racheltomi/hga-presale shop/shop.html, 2026-11-03), ported onto window.HGA_CART / HGA_PRICING so it
+// sells the same variants and writes the same cart as the other product page versions. Markup: _tools/buybox-rachel.html,
+// styles: _tools/shop-builder.css. The box describes the whole order, so Claim replaces the cart instead of adding to it.
+(function () {
+  "use strict";
+  var bd = document.querySelector("[data-builder]");
+  var C = window.HGA_CART, TABLE = window.HGA_PRICING;
+  if (!bd || !C || !TABLE) return;
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var set = function (sel, v) { $$(sel).forEach(function (e) { e.textContent = v; }); };
+  var money = C.money, vid = C.vid, read = C.read, write = C.write, T = TABLE.types;
+  var HOUSINGS = ["glass", "poly"], MAX = 100;
+  var clamp = function (n) { n = parseInt(n, 10); return isNaN(n) ? 0 : Math.max(0, Math.min(MAX, n)); };
+  var hname = function (h) { return TABLE.housings[h].name; };
+  var empty = function () { var c = {}; C.variants.forEach(function (v) { c[v] = 0; }); return c; };
+  var totals = function (c) {
+    var count = 0, now = 0, open = 0;
+    C.variants.forEach(function (v) { var p = C.price(v), u = C.unit(v, c), q = c[v] || 0; count += q; now += q * u; open += q * (p.open === null || p.open === undefined ? u : p.open); });
+    return { count: count, now: now, open: open, save: open - now };
+  };
+  var byHousing = function (c, h) { var n = 0; C.variants.forEach(function (v) { if (v === h || v.indexOf(h + "-") === 0) n += c[v] || 0; }); return n; };
+  // booklet sizes the price table knows, by fold count (booklet = 1 fold, trifold = 2)
+  var FOLDS = TABLE.order.filter(function (s) { return T[s].folds && !T[s].quote; }).map(function (s) { return T[s].folds; }).sort();
+  var folds = function (f) { var k = null; TABLE.order.forEach(function (s) { if (T[s].folds === f) k = s; }); return k; };
+  var hasSize = function (s) { return TABLE.order.indexOf(s) >= 0 && !T[s].quote; };
+  // size icons, the same strokes as the other product page versions (written in by the build)
+  var ICONS = {"std": "<rect x=\"10\" y=\"4\" width=\"12\" height=\"24\" rx=\"1.5\"/><path d=\"M13 8h6\"/>", "booklet": "<rect x=\"4\" y=\"7\" width=\"24\" height=\"18\" rx=\"1.5\"/><path d=\"M16 7v18\"/>", "trifold": "<rect x=\"2\" y=\"8\" width=\"28\" height=\"16\" rx=\"1.5\"/><path d=\"M11.3 8v16M20.7 8v16\"/>", "fourfold": "<rect x=\"1.5\" y=\"9\" width=\"29\" height=\"14\" rx=\"1.5\"/><path d=\"M8.75 9v14M16 9v14M23.25 9v14\"/>", "fivefold": "<rect x=\"1\" y=\"10\" width=\"30\" height=\"12\" rx=\"1.5\"/><path d=\"M7 10v12M13 10v12M19 10v12M25 10v12\"/>", "oversized": "<rect x=\"4\" y=\"2\" width=\"24\" height=\"28\" rx=\"1.5\"/><rect x=\"11\" y=\"9\" width=\"10\" height=\"17\" rx=\"1\" stroke-dasharray=\"2 2\"/>"};
+  var szi = function (s) { return '<svg class="szi" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (ICONS[s] || "") + "</svg>"; };
+  var aCard = function (s, h) { var p = T[s][h]; return money(p.now) + (p.open ? " <s>" + money(p.open) + "</s>" : "") + " a card"; };
+  // one row per booklet size the price table has, always shown (Dylan 2026-11-04: show the booklets as rows with icons, like Option A)
+  var bookRows = function () { return FOLDS.map(function (f) { return { f: f, q: 0 }; }); };
+
+  var bdParams = new URLSearchParams(location.search);
+  var S = { step: 1, total: 1, glass: bdParams.get("h") === "poly" ? 0 : 1, special: false,
+    over: { glass: 0, poly: 0 }, books: { glass: bookRows(), poly: bookRows() } };
+  var inH = function (h) { return h === "glass" ? S.glass : S.total - S.glass; };
+  // every unit counts as one card, booklet, trifold or oversized alike (UCollect call 2026-11-06; until then a booklet
+  // counted as two cards and a trifold as three). W stays as a hook in case that changes again.
+  var W = function (f) { return 1; };
+  var bookN = function (h) { return S.books[h].reduce(function (n, b) { return n + W(b.f) * b.q; }, 0); };
+  var bookUnits = function (h) { return S.books[h].reduce(function (n, b) { return n + b.q; }, 0); };
+  var stdN = function (h) { return inH(h) - (S.special ? S.over[h] + bookN(h) : 0); };
+  // when a housing shrinks, take the cards back from its booklets, then its oversized
+  var fit = function () {
+    S.total = Math.max(1, Math.min(MAX, S.total));
+    S.glass = Math.max(0, Math.min(S.total, S.glass));
+    HOUSINGS.forEach(function (h) {
+      var extra = S.over[h] + bookN(h) - inH(h), i = S.books[h].length - 1;
+      while (extra > 0 && i >= 0) { var b = S.books[h][i]; if (b.q > 0) { b.q -= 1; extra -= W(b.f); } else i--; }
+      if (extra > 0) S.over[h] -= extra;
+    });
+  };
+  var toCart = function () {
+    var c = empty();
+    HOUSINGS.forEach(function (h) {
+      c[vid(h, "std")] = stdN(h);
+      if (S.special) {
+        if (hasSize("oversized")) c[vid(h, "oversized")] = S.over[h];
+        S.books[h].forEach(function (b) { var k = vid(h, folds(b.f)); c[k] = clamp((c[k] || 0) + b.q); });
+      }
+    });
+    return c;
+  };
+  // coming back from the cart: open on what is already in it
+  var fromCart = function () {
+    var c = read(), t = totals(c);
+    if (!t.count || t.count > MAX) return;
+    // every unit is one card
+    var cards = function (h) { var n = 0; C.variants.forEach(function (v) { if (v !== h && v.indexOf(h + "-") !== 0) return; n += c[v] || 0; }); return n; };
+    S.glass = cards("glass"); S.total = S.glass + cards("poly"); S.step = 3;
+    if (S.total > MAX) { S.total = t.count; S.glass = byHousing(c, "glass"); }
+    HOUSINGS.forEach(function (h) {
+      S.over[h] = hasSize("oversized") ? (c[vid(h, "oversized")] || 0) : 0;
+      S.books[h] = bookRows();
+      S.books[h].forEach(function (b) { b.q = c[vid(h, folds(b.f))] || 0; });
+      if (S.over[h] || bookUnits(h)) S.special = true;
+    });
+  };
+  // an order already in the cart wins over the link (every CTA and the sticky bar arrive with ?h=, which only picks
+  // the slab for an empty cart; without this a second visit would show 1 card and Claim would wipe the order)
+  fromCart();
+  var ico = function (n) { return '<svg class="ico" aria-hidden="true"><use href="#' + n + '"/></svg>'; };
+  var mini = function (k, n, room, label) {
+    return '<div class="bd-st sm"><button type="button" data-st="' + k + '" data-d="-1" aria-label="One fewer ' + label + '"' + (n <= 0 ? " disabled" : "") + ">" + ico("i-minus") + "</button><output>" + n + '</output><button type="button" data-st="' + k + '" data-d="1" aria-label="One more ' + label + '"' + (room <= 0 ? " disabled" : "") + ">" + ico("i-plus") + "</button></div>";
+  };
+  var sizesHtml = function () {
+    return HOUSINGS.filter(function (h) { return inH(h) > 0; }).map(function (h) {
+      var nm = hname(h), room = stdN(h), rows = "";
+      TABLE.order.forEach(function (sz) {
+        if (!hasSize(sz)) return;
+        var ty = T[sz], name = sz === "std" ? "Standard size" : ty.short, ctl;
+        if (sz === "std") ctl = '<span class="bd-zq" title="The rest of your ' + nm + ' cards">' + room + "</span>";
+        else if (sz === "oversized") ctl = mini("over:" + h, S.over[h], room, nm + " oversized card");
+        else {
+          var k = -1; S.books[h].forEach(function (b, n) { if (folds(b.f) === sz) k = n; });
+          if (k < 0) return;
+          var b = S.books[h][k];
+          ctl = mini("book:" + h + ":" + k, b.q, room - (W(b.f) - 1), nm + " " + name.toLowerCase());
+        }
+        var q = sz === "std" ? room : sz === "oversized" ? S.over[h] : S.books[h].filter(function (b) { return folds(b.f) === sz; })[0].q;
+        rows += '<div class="bob-row bd-z' + (q > 0 ? " has" : "") + '">' + szi(sz) + '<div class="bob-n"><b>' + name + "</b><span>" + aCard(sz, h) + "</span></div>" + ctl + "</div>";
+      });
+      return '<div class="bd-zg ' + h + '"><p class="bd-zh"><img src="./assets/hybrid_grading/' + (h === "glass" ? "hga-glass-828ebfd2" : "hga-poly-69885480") + '.svg" alt="' + nm + '" width="' + (h === "glass" ? 96 : 88) + '" height="16"><span>' + inH(h) + (inH(h) === 1 ? " card" : " cards") + "</span></p>" + rows + "</div>";
+    }).join("") + '<p class="bd-note">Standard size is whatever is left. Each booklet or oversized card counts as one card. Prices are presale only. <button type="button" class="bd-link" data-sizes-open>See every size</button></p>';
+  };
+  var bdRender = function (focus) {
+    fit();
+    var c = toCart(), t = totals(c), g = S.glass, p = S.total - g, one = S.total === 1;
+    $$("[data-s]", bd).forEach(function (el) {
+      var n = Number(el.dataset.s);
+      el.classList.toggle("on", n === S.step); el.classList.toggle("done", n < S.step); el.classList.toggle("todo", n > S.step);
+      $(".bd-b", el).hidden = n !== S.step;
+      var head = $("button.bd-head", el);
+      if (head) { head.disabled = n >= S.step; if (n < S.step) head.setAttribute("aria-label", "Edit step " + n); else head.removeAttribute("aria-label"); }
+    });
+    $$("[data-in]", bd).forEach(function (i) {
+      var k = i.dataset.in, v = k === "total" ? S.total : k === "glass" ? g : p;
+      if (document.activeElement !== i) i.value = v;
+    });
+    $$("[data-st]", bd).forEach(function (x) {
+      var k = x.dataset.st, d = Number(x.dataset.d);
+      if (k === "total") x.disabled = d < 0 ? S.total <= 1 : S.total >= MAX;
+      if (k === "glass") x.disabled = d < 0 ? g <= 0 : g >= S.total;
+      if (k === "poly") x.disabled = d < 0 ? p <= 0 : p >= S.total;
+    });
+    $$("[data-q]", bd).forEach(function (x) { x.setAttribute("aria-pressed", String(Number(x.dataset.q) === S.total)); });
+    set("[data-sum='1']", S.total + (one ? " card" : " cards"));
+    set("[data-sum='2']", g && p ? g + " Glass, " + p + " Poly" : g ? (one ? "Glass" : "All Glass") : (one ? "Poly" : "All Poly"));
+    set("[data-t2]", one ? "Glass or Poly?" : "How many in Glass, how many in Poly?");
+    // one card is a single tap; more cards get steppers and a slider that always add up to the total
+    bd.classList.toggle("is-one", one);
+    $$("[data-pick]", bd).forEach(function (x) {
+      var on = inH(x.dataset.pick) > 0;
+      x.classList.toggle("sel", on); x.classList.toggle("off", !on);
+      if (one) { x.setAttribute("role", "radio"); x.setAttribute("aria-checked", String(on)); x.tabIndex = 0; } else { x.removeAttribute("role"); x.removeAttribute("aria-checked"); x.removeAttribute("tabindex"); }
+    });
+    var r = $("[data-range]", bd); r.max = S.total; r.value = g; r.hidden = one; r.style.setProperty("--p", (g / S.total * 100) + "%");
+    $$("[data-special]", bd).forEach(function (x) { x.setAttribute("aria-checked", String((x.dataset.special === "1") === S.special)); });
+    var box = $("[data-sizes]", bd); box.hidden = !S.special;
+    if (S.special) box.innerHTML = sizesHtml();
+    var tot = $("[data-total]", bd), acts = $("[data-acts]", bd);
+    tot.hidden = S.step < 2; acts.hidden = S.step < 3;
+    set("[data-t-count]", S.total + (one ? " card" : " cards") + (g && p ? " · " + g + " Glass, " + p + " Poly" : g ? " · Glass" : " · Poly"));
+    set("[data-t-now]", money(t.now));
+    // the button names the housing in the order (Dylan 2026-11-10: "Claim Your Glass", not "Claim Your Pass")
+    set("[data-claim-label]", (g && p ? "Claim Your Glass and Poly" : g ? "Claim Your Glass" : "Claim Your Poly") + " · " + money(t.now));
+    // the slab on the left follows the housing in play
+    var showH = g > 0 ? "glass" : "poly";
+    $$("[data-slab]").forEach(function (e) { e.hidden = e.dataset.slab !== showH; });
+    set("[data-pdp-name]", hname(showH));
+    if (focus) { var f = $(focus, bd); if (f && !f.disabled) f.focus({ preventScroll: true }); }
+  };
+  var goTo = function (n) {
+    S.step = n; bdRender();
+    var el = $('[data-s="' + n + '"]', bd);
+    el.tabIndex = -1; el.focus({ preventScroll: true });
+    if (el.getBoundingClientRect().top < 70) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+  var setTotal = function (n) {
+    // keep the split when the count changes: a housing already at zero stays at zero
+    var wasPoly = S.total - S.glass, n2 = Math.max(1, Math.min(MAX, n));
+    if (S.glass === 0) S.glass = 0; else if (wasPoly === 0) S.glass = n2; else S.glass = Math.min(S.glass, n2);
+    S.total = n2;
+  };
+  bd.addEventListener("click", function (e) {
+    var t = e.target.closest ? e.target.closest("button,[data-pick]") : null;
+    if (!t) return;
+    if (t.hasAttribute("data-go")) { goTo(Number(t.dataset.go)); return; }
+    if (t.hasAttribute("data-q")) { setTotal(Number(t.dataset.q)); bdRender(); return; }
+    if (t.hasAttribute("data-special")) { S.special = t.dataset.special === "1"; bdRender(); return; }
+    if (t.hasAttribute("data-sizes-open")) { openSizes(); return; }
+    if (t.hasAttribute("data-sizes-close")) { closeSizes(); return; }
+    if (t.hasAttribute("data-info")) { toggleTip(t.dataset.info); return; }
+    if (t.hasAttribute("data-more")) {
+      var mh = t.dataset.more, list = S.books[mh], nf = null;
+      FOLDS.forEach(function (f) { if (nf === null && !list.some(function (o) { return o.f === f; })) nf = f; });
+      if (nf === null) return;
+      list.push({ f: nf, q: 1 });
+      bdRender('[data-fold="' + mh + ":" + (list.length - 1) + '"]');
+      return;
+    }
+    if (t.hasAttribute("data-rm")) {
+      var rm = t.dataset.rm.split(":");
+      S.books[rm[0]].splice(Number(rm[1]), 1);
+      bdRender('[data-more="' + rm[0] + '"]');
+      if (document.activeElement === document.body) { var ff = $('[data-fold="' + rm[0] + ':0"]', bd); if (ff) ff.focus({ preventScroll: true }); }
+      return;
+    }
+    if (t.hasAttribute("data-st")) {
+      var k = t.dataset.st, d = Number(t.dataset.d), part = k.split(":");
+      if (k === "total") setTotal(S.total + d);
+      else if (k === "glass") S.glass += d;
+      else if (k === "poly") S.glass -= d;
+      else if (part[0] === "over") S.over[part[1]] = Math.max(0, S.over[part[1]] + d);
+      else if (part[0] === "book") { var b = S.books[part[1]][Number(part[2])]; b.q = Math.max(0, b.q + d); }
+      var dSel = '[data-st="' + k + '"][data-d="' + d + '"]';
+      bdRender(dSel);
+      // a stepper button that just hit its limit is disabled: keep the keyboard on the stepper
+      if (document.activeElement === document.body) { var other = $('[data-st="' + k + '"][data-d="' + (-d) + '"]', bd); if (other && !other.disabled) other.focus({ preventScroll: true }); }
+      return;
+    }
+    if (t.hasAttribute("data-pick") && bd.classList.contains("is-one")) { S.glass = t.dataset.pick === "glass" ? 1 : 0; bdRender(); }
+  });
+  bd.addEventListener("keydown", function (e) {
+    var t = e.target;
+    if (bd.classList.contains("is-one") && t.hasAttribute && t.hasAttribute("data-pick") && (e.key === " " || e.key === "Enter" || e.key.indexOf("Arrow") === 0)) {
+      e.preventDefault();
+      S.glass = e.key.indexOf("Arrow") === 0 ? (S.glass ? 0 : 1) : (t.dataset.pick === "glass" ? 1 : 0);
+      bdRender('[data-pick="' + (S.glass ? "glass" : "poly") + '"]');
+    }
+  });
+  bd.addEventListener("input", function (e) {
+    var i = e.target;
+    if (i.hasAttribute("data-range")) { S.glass = Number(i.value); bdRender(); return; }
+    if (!i.hasAttribute("data-in")) return;
+    if (i.value === "") return;
+    var v = Math.max(0, parseInt(i.value, 10) || 0);
+    if (i.dataset.in === "total") setTotal(v);
+    if (i.dataset.in === "glass") S.glass = v;
+    if (i.dataset.in === "poly") S.glass = S.total - Math.min(v, S.total);
+    bdRender();
+  });
+  bd.addEventListener("change", function (e) {
+    var i = e.target;
+    if (i.hasAttribute("data-in")) { i.blur(); bdRender(); return; }
+    if (i.hasAttribute("data-fold")) { var p = i.dataset.fold.split(":"); S.books[p[0]][Number(p[1])].f = Number(i.value); bdRender('[data-fold="' + i.dataset.fold + '"]'); }
+  });
+  // the buy box describes the whole order, so it replaces the cart rather than adding to it
+  $("[data-claim-all]", bd).addEventListener("click", function () { write(toCart()); location.href = "cart.html"; });
+  // "See every size": the size chart in a popup (UCollect call 2026-11-06), never a new page; the page behind does not
+  // scroll; Done, Escape or the backdrop closes it
+  var sizeChartHtml = function () {
+    return TABLE.order.filter(hasSize).map(function (sz) {
+      var ty = T[sz], g = ty.glass, p = ty.poly;
+      return '<div class="bd-sz">' + szi(sz) + '<div class="bd-sz-t"><b>' + (sz === "std" ? "Standard size" : ty.name) + '</b><span>' + ty.note + '</span></div>' +
+        '<div class="bd-sz-p"><span><i>Glass</i><b>' + money(g.now) + '</b>' + (g.open ? '<s>' + money(g.open) + '</s>' : '') + '<em>' + g.days + ' business day turnaround</em></span>' +
+        '<span><i>Poly</i><b>' + money(p.now) + '</b>' + (p.open ? '<s>' + money(p.open) + '</s>' : '') + '<em>' + p.days + ' business day turnaround</em></span></div></div>';
+    }).join("") + '<p class="bd-note">Presale prices, a card. Every unit counts as one card, whatever its size. If no case exists for your card yet, we make one at no extra fee.</p>';
+  };
+  var openSizes = function () {
+    var dlg = $("[data-sizes-dlg]", bd); if (!dlg) return;
+    $("[data-dlg-body]", dlg).innerHTML = sizeChartHtml();
+    if (typeof dlg.showModal === "function") { if (!dlg.open) dlg.showModal(); } else dlg.setAttribute("open", "");
+    document.documentElement.classList.add("bd-noscroll");
+    var first = $("[data-sizes-close]", dlg); if (first) first.focus({ preventScroll: true });
+  };
+  var closeSizes = function () {
+    var dlg = $("[data-sizes-dlg]", bd); if (!dlg) return;
+    if (dlg.open && typeof dlg.close === "function") dlg.close(); else dlg.removeAttribute("open");
+    document.documentElement.classList.remove("bd-noscroll");
+    var ed = $("[data-sizes-open]", bd); if (ed) ed.focus({ preventScroll: true });
+  };
+  var dlgEl = $("[data-sizes-dlg]", bd);
+  if (dlgEl) {
+    dlgEl.addEventListener("cancel", function (e) { e.preventDefault(); closeSizes(); });
+    dlgEl.addEventListener("click", function (e) { if (e.target === dlgEl) closeSizes(); });
+  }
+  // what each slab gives you: a small popover on the slab card (UCollect call 2026-11-06)
+  var placeTip = function (h) {
+    var tip = $('[data-tip="' + h + '"]', bd), btn = $('[data-info="' + h + '"]', bd); if (!tip || !btn) return;
+    var body = tip.offsetParent || tip.parentNode, b = btn.getBoundingClientRect(), r = body.getBoundingClientRect();
+    tip.style.top = (b.bottom - r.top + 10) + "px"; tip.style.setProperty("--ax", (b.left - r.left + b.width / 2 - 7) + "px");
+  };
+  var toggleTip = function (h) {
+    $$("[data-tip]", bd).forEach(function (t) { var on = t.dataset.tip === h && !t.classList.contains("open"); t.classList.toggle("open", on); t.hidden = !on; });
+    $$("[data-info]", bd).forEach(function (b) { b.setAttribute("aria-expanded", String(b.dataset.info === h && !$('[data-tip="' + h + '"]', bd).hidden)); });
+    placeTip(h);
+  };
+  // with a mouse the popover opens on hover (Dylan 2026-11-07); on touch screens the tap stays
+  if (window.matchMedia && matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    var hoverTimer = null;
+    var showTip = function (h) { $$("[data-tip]", bd).forEach(function (t) { var on = t.dataset.tip === h; t.classList.toggle("open", on); t.hidden = !on; }); $$("[data-info]", bd).forEach(function (b) { b.setAttribute("aria-expanded", String(b.dataset.info === h)); }); placeTip(h); };
+    var hideTip = function () { hoverTimer = setTimeout(function () { $$("[data-tip]", bd).forEach(function (t) { t.classList.remove("open"); t.hidden = true; }); $$("[data-info]", bd).forEach(function (b) { b.setAttribute("aria-expanded", "false"); }); }, 180); };
+    $$("[data-info]", bd).forEach(function (b) {
+      b.addEventListener("mouseenter", function () { clearTimeout(hoverTimer); showTip(b.dataset.info); });
+      b.addEventListener("mouseleave", hideTip);
+    });
+    $$("[data-tip]", bd).forEach(function (t) {
+      t.addEventListener("mouseenter", function () { clearTimeout(hoverTimer); });
+      t.addEventListener("mouseleave", hideTip);
+    });
+  }
+  document.addEventListener("click", function (e) { if (!e.target.closest || e.target.closest("[data-tip],[data-info]")) return; $$("[data-tip]", bd).forEach(function (t) { t.classList.remove("open"); t.hidden = true; }); $$("[data-info]", bd).forEach(function (b) { b.setAttribute("aria-expanded", "false"); }); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") { $$("[data-tip]", bd).forEach(function (t) { t.classList.remove("open"); t.hidden = true; }); $$("[data-info]", bd).forEach(function (b) { b.setAttribute("aria-expanded", "false"); }); } });
+  bdRender();
+})();
