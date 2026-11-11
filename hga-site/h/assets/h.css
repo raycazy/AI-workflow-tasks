@@ -1243,6 +1243,11 @@
    every item so the gallery never grows or shrinks when the picture changes (Bhaskar 2026-11-07). */
 .sh-gal{grid-template-rows:auto auto;row-gap:0}
 .sh-gal .stage-in{height:520px;display:grid;align-content:center}
+/* The 3D slab reaches past its own box while it turns (about 11% of its width, above and below). The stage keeps room
+   for that: the slab sits a little smaller and higher, and the "Drag to spin" hint sits under the slab's reach, clear of
+   the thumbnails (Bhaskar 2026-11-12). The stage height does not change. */
+.sh-gal .stage-in{width:min(54%,272px);padding-bottom:54px}
+.sh-gal .spin-slab .hint{margin-top:calc(11.1% + 10px)}
 .sh-gal.is-photo .stage-in{display:none!important}
 .sh-gal.is-photo .gal-badge{display:none}
 /* the photo stage bleeds to the gallery's edges; it takes each picture's own paper colour (data-bg on its thumbnail) */
@@ -1255,4 +1260,4 @@
 .sh-th:hover{border-color:rgba(255,255,255,.5)}
 .sh-th.on{border-color:#fff;box-shadow:0 0 0 1px #fff inset}
 .sh-th-badge{position:absolute;left:4px;bottom:4px;padding:2px 5px;border-radius:4px;background:rgba(0,0,0,.72);font-family:var(--lab);font-weight:600;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#fff}
-@media (max-width:980px){.sh-gal .stage-in,.sh-photo img,.sh-photo video{height:360px}.sh-photo{--pt:40px;height:calc(360px + 40px)}.sh-thumbs{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;-webkit-overflow-scrolling:touch}.sh-thumbs::-webkit-scrollbar{display:none}.sh-th{flex:0 0 56px}}
+@media (max-width:980px){.sh-gal .stage-in,.sh-photo img,.sh-photo video{height:360px}.sh-gal .stage-in{width:min(54%,260px);padding-bottom:30px}.sh-photo{--pt:40px;height:calc(360px + 40px)}.sh-thumbs{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;-webkit-overflow-scrolling:touch}.sh-thumbs::-webkit-scrollbar{display:none}.sh-th{flex:0 0 56px}}
