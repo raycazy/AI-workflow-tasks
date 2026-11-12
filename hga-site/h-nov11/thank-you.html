@@ -38,6 +38,13 @@
 .ty-grid>div:first-child{grid-area:head}
 .ty-next{grid-area:next}
 .ty-cal{grid-area:cal;align-self:center}
+.ty-order{margin:24px 0 0;display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:1px;border:1px solid rgba(255,255,255,.18);border-radius:var(--r);background:rgba(255,255,255,.18);overflow:hidden}
+.ty-order>div{padding:14px 18px;background:#0d0c0c;min-width:0}
+.ty-order dt{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.ty-order dd{margin:6px 0 0;font-size:20px;font-weight:800;color:#fff;line-height:1.2}
+.ty-order dd.mono{font-size:22px;letter-spacing:.02em}
+.ty-order-mail{font-size:16px!important;font-weight:600!important;overflow-wrap:anywhere}
+@media (max-width:620px){.ty-order{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.ty-order>div:last-child{grid-column:1/-1}}
 .ty-next-lede{margin:22px 0 0;color:rgba(255,255,255,.78);font-size:17px;line-height:1.5}
 .ty-date-steps{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:14px}
 .ty-date-steps li{display:flex;gap:14px;align-items:flex-start;color:rgba(255,255,255,.78);font-size:16px;line-height:1.5}
@@ -103,15 +110,19 @@
       <div class="ty-grid">
         <div>
           <span class="ty-ok"><svg class="ico"><use href="#i-check"/></svg></span>
-          <p class="eb">Order <span data-o-num>HGA-204117</span></p>
           <h1 class="h1">You're in<span data-o-name></span>.<br><span class="red">Choose your grading date.</span></h1>
-          <p class="lede"><b data-c-count>3 cards</b> <span data-c-verb>are</span> on your order, locked at the presale price. A confirmation and receipt are on the way to <b data-o-email>you@example.com</b>.</p>
+          <p class="lede">Your order is confirmed at the presale price. We emailed your receipt and your account login ID and password to <b data-o-email>you@example.com</b>.</p>
+ <dl class="ty-order" aria-label="Your order">
+ <div><dt>Order ID</dt><dd class="mono" data-o-num>HGA-204117</dd></div>
+ <div><dt>Cards</dt><dd data-c-count>3 cards</dd></div>
+ <div><dt>Login and receipt sent to</dt><dd class="ty-order-mail" data-o-email>you@example.com</dd></div>
+ </dl>
         </div>
         <div class="ty-next">
  <p class="ty-next-lede">Grading opens February 22, 2027. Choose any open day. One date covers every card in this order.</p>
  <ol class="ty-date-steps">
  <li data-gd-step="1"><span data-gd-n>1</span><div><b>Choose your grading date.</b> Pick a day on the calendar and confirm it.</div></li>
- <li data-gd-step="2"><span>2</span><div><b>Sign in and submit your cards.</b> You have access to your account with this order. Tell us about each card: the card, its serial number and who is on it.<br><a class="btn ghost inv" data-gd-signin href="https://ucollect.com/">Sign in to my account <svg class="ico"><use href="#i-arrow"/></svg></a></div></li>
+ <li data-gd-step="2"><span>2</span><div><b>Sign in and submit your cards.</b> Your account login ID and password are in your email. Tell us about each card: the card, its serial number and who is on it.<br><a class="btn ghost inv" data-gd-signin href="https://ucollect.com/">Sign in to my account <svg class="ico"><use href="#i-arrow"/></svg></a></div></li>
  </ol>
  </div>
  <div class="gcal-card ty-cal" id="ty-date" data-gd>
@@ -134,7 +145,7 @@
       </div>
       <ol class="next">
         <li data-gd-tl><span class="nd">1</span><div><span class="mono">Today</span><b>Choose your grading date</b><p>Choose any open day from February 22, 2027, in the calendar above. Every card in this order is graded on it.</p></div></li>
-        <li><span class="nd">2</span><div><span class="mono">Next</span><b>Sign in and submit your cards</b><p>You have access to your account with this order. Set a password below, then sign in and tell us about each card: the card, its serial number and who is on it.</p></div></li>
+        <li><span class="nd">2</span><div><span class="mono">Next</span><b>Sign in and submit your cards</b><p>Your account login ID and password are in your email. Sign in and tell us about each card: the card, its serial number and who is on it.</p></div></li>
         <li><span class="nd">3</span><div><span class="mono">Before your date</span><b>Ship your cards to arrive</b><p>Choose and pay for shipping when you book. Send your cards any time before your grading date.</p></div></li>
         <li><span class="nd">4</span><div><span class="mono">While we have them</span><b>Follow every step</b><p>Box photo, unboxing video, high resolution images, live in your portal.</p></div></li>
         <li><span class="nd">5</span><div><span class="mono">After your grading date</span><b>The Reveal</b><p>Turn each slab over live: grade, subgrades, Grade Report. Then decide: ship home, list, or vault, within 7 days.</p></div></li>
@@ -146,13 +157,9 @@
     <div class="wrap ty-3">
       <div class="ty-card">
         <span class="ico-box"><svg class="ico"><use href="#i-lock"/></svg></span>
-        <h3>Secure your account</h3>
-        <p>Set a password so you can sign in, submit your cards and watch them being graded.</p>
-        <form class="field" data-demo style="margin-top:6px">
-          <input type="password" placeholder="Create a password" aria-label="Create a password" autocomplete="new-password" required>
-          <button class="btn dark" type="submit">Save</button>
-          <p class="ok small" data-ok hidden style="flex-basis:100%;margin-top:8px">Password saved.</p>
-        </form>
+        <h3>Your account login</h3>
+ <p>Your login ID and password are in the email we sent to <b data-o-email>you@example.com</b>. Sign in to submit your cards and follow them through grading.</p>
+ <a class="tlink" href="https://ucollect.com/">Sign in to my account <svg class="ico"><use href="#i-arrow"/></svg></a>
       </div>
       <div class="ty-card">
         <span class="ico-box"><svg class="ico"><use href="#i-lock"/></svg></span>
