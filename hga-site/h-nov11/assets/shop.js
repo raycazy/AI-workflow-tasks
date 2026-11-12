@@ -403,7 +403,7 @@
         el.style.setProperty("--i", k);
         wall.insertBefore(el, more || null);
       });
-      if (more) { more.hidden = total <= 6; more.textContent = "+" + (total - 6) + " more in My Passes"; }
+      if (more) { more.hidden = total <= 6; more.textContent = "+" + (total - 6) + " more on your order"; }
     }
 
     // a calendar reminder for the day booking opens
@@ -412,8 +412,8 @@
       var body = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//HGA//Presale//EN", "BEGIN:VEVENT",
         "UID:hga-calendar-opens-2027@hybridgrading.com", "DTSTAMP:20261101T000000Z",
         "DTSTART;VALUE=DATE:20270222", "DTEND;VALUE=DATE:20270223",
-        "SUMMARY:HGA grading calendar opens: reserve your grading day",
-        "DESCRIPTION:Your HGA passes are ready to book. Reserve any open day up to a year ahead from My Passes.",
+        "SUMMARY:HGA grading starts",
+        "DESCRIPTION:Grading starts at HGA. Your cards are graded on the date you picked.",
         "END:VEVENT", "END:VCALENDAR"].join("\r\n");
       try { ics.href = URL.createObjectURL(new Blob([body], { type: "text/calendar" })); } catch (e) {}
     }
