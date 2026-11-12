@@ -26,3 +26,42 @@
   .gl-cmp .hc-tbl thead td{display:none}
   .gl-cmp .hc-tbl td{font-size:13px;padding:10px 6px}
 }
+
+/* The housing with its features called out around it (website review call 2026-11-11). Each callout sits at the height
+   of its point on the slab; its rule runs to the slab and on to the dot. Under 1024px the rules go and numbers pair the
+   dots with the list. */
+.gl-call .gl-call-head{max-width:760px;margin:0 auto;text-align:center;display:grid;gap:14px;justify-items:center}
+.gl-call .gl-call-head .h2{margin:0;max-width:18ch}
+.gl-call .gl-call-head p{margin:0;font-size:17px;line-height:1.6;color:rgba(255,255,255,.72)}
+.gl-call .gl-call-head .lp-kicker{color:#ED2B30}
+.gl-call-fig{--slab:clamp(240px,25vw,320px);display:grid;grid-template-columns:minmax(0,1fr) var(--slab) minmax(0,1fr);align-items:stretch;max-width:1080px;margin:clamp(36px,5vw,64px) auto 0;padding:14px 0}
+.gl-call-slab{position:relative;margin:0}
+.gl-call-slab img{display:block;width:100%;height:auto;border-radius:14px;-webkit-mask-image:radial-gradient(ellipse 74% 64% at 50% 50%,#000 88%,transparent 100%);mask-image:radial-gradient(ellipse 74% 64% at 50% 50%,#000 88%,transparent 100%)}
+.gl-call-dot{position:absolute;top:var(--y);left:var(--x);width:13px;height:13px;margin:-6.5px 0 0 -6.5px;border-radius:50%;background:#ED2B30;box-shadow:0 0 0 4px rgba(237,43,48,.28),0 0 0 1px rgba(0,0,0,.5);z-index:2}
+.gl-call-dot b{display:none}
+.gl-call-dot::before{content:"";position:absolute;top:50%;height:1px;background:rgba(255,255,255,.42)}
+.gl-call-dot.l::before{right:100%;width:calc(var(--xn) * var(--slab))}
+.gl-call-dot.r::before{left:100%;width:calc((1 - var(--xn)) * var(--slab))}
+.gl-call-list{position:relative;list-style:none;margin:0;padding:0}
+.gl-call-list li{position:absolute;top:var(--y);left:0;right:0;transform:translateY(-50%);display:flex;align-items:center;gap:14px}
+.gl-call-list li i{flex:1 1 24px;min-width:24px;height:1px;background:rgba(255,255,255,.42)}
+.gl-call-list li div{flex:0 1 auto;max-width:300px}
+.gl-call-list li b{display:block;font-size:17px;line-height:1.25;font-weight:700;color:#fff}
+.gl-call-list li p{margin:4px 0 0;font-size:14.5px;line-height:1.45;color:rgba(255,255,255,.66)}
+.gl-call-list.l li{text-align:right;justify-content:flex-end}
+.gl-call-list.r li{flex-direction:row-reverse;justify-content:flex-end}
+.gl-call-n{display:none}
+.gl-call .hm-cta-row{margin-top:clamp(28px,4vw,44px);justify-content:center}
+@media (max-width:1023px){
+  .gl-call-fig{--slab:min(64vw,270px);grid-template-columns:1fr;justify-items:center;gap:0;padding:0}
+  .gl-call-slab{order:-1;width:var(--slab);margin-bottom:22px}
+  .gl-call-dot{width:22px;height:22px;margin:-11px 0 0 -11px;display:grid;place-items:center;box-shadow:0 0 0 3px rgba(237,43,48,.28),0 0 0 1px rgba(0,0,0,.5)}
+  .gl-call-dot b{display:block;font-size:12px;line-height:1;font-weight:800;color:#fff}
+  .gl-call-dot::before{display:none}
+  .gl-call-list{width:100%;max-width:440px;display:grid;gap:0}
+  .gl-call-list li,.gl-call-list.l li,.gl-call-list.r li{position:static;transform:none;flex-direction:row;justify-content:flex-start;text-align:left;align-items:flex-start;gap:12px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+  .gl-call-list.r li:last-child{border-bottom:0}
+  .gl-call-list li i{display:none}
+  .gl-call-list li div{max-width:none}
+  .gl-call-n{display:grid;place-items:center;flex:0 0 22px;width:22px;height:22px;border-radius:50%;background:#ED2B30;color:#fff;font-size:12px;line-height:1;font-weight:800;margin-top:1px}
+}

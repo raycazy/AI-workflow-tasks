@@ -308,11 +308,11 @@
   }
 })();
 
-/* ---------- Pre-sale countdown to Feb 1, 2027 (go live) ---------- */
+/* ---------- Pre-sale countdown to Feb 22, 2027 (go live) ---------- */
 (function () {
   var els = document.querySelectorAll("[data-ps-cd]");
   if (!els.length) return;
-  var end = new Date("2027-02-01T00:00:00-07:00").getTime();
+  var end = new Date("2027-02-22T00:00:00-07:00").getTime();
   var pad = function (n) { return (n < 10 ? "0" : "") + n; };
   var tick = function () {
     var ms = Math.max(0, end - Date.now()), m = Math.floor(ms / 60000);

@@ -26,7 +26,7 @@
   var folds = function (f) { var k = null; TABLE.order.forEach(function (s) { if (T[s].folds === f) k = s; }); return k; };
   var hasSize = function (s) { return TABLE.order.indexOf(s) >= 0 && !T[s].quote; };
   // size icons, the same strokes as the other product page versions (written in by the build)
-  var ICONS = {"std": "<rect x=\"10\" y=\"4\" width=\"12\" height=\"24\" rx=\"1.5\"/><path d=\"M13 8h6\"/>", "booklet": "<rect x=\"4\" y=\"7\" width=\"24\" height=\"18\" rx=\"1.5\"/><path d=\"M16 7v18\"/>", "trifold": "<rect x=\"2\" y=\"8\" width=\"28\" height=\"16\" rx=\"1.5\"/><path d=\"M11.3 8v16M20.7 8v16\"/>", "oversized": "<rect x=\"4\" y=\"2\" width=\"24\" height=\"28\" rx=\"1.5\"/><rect x=\"11\" y=\"9\" width=\"10\" height=\"17\" rx=\"1\" stroke-dasharray=\"2 2\"/>"};
+  var ICONS = {"std": "<rect x=\"10\" y=\"4\" width=\"12\" height=\"24\" rx=\"1.5\"/><path d=\"M13 8h6\"/>", "booklet": "<rect x=\"4\" y=\"7\" width=\"24\" height=\"18\" rx=\"1.5\"/><path d=\"M16 7v18\"/>", "trifold": "<rect x=\"2\" y=\"8\" width=\"28\" height=\"16\" rx=\"1.5\"/><path d=\"M11.3 8v16M20.7 8v16\"/>", "fourfold": "<rect x=\"1.5\" y=\"9\" width=\"29\" height=\"14\" rx=\"1.5\"/><path d=\"M8.75 9v14M16 9v14M23.25 9v14\"/>", "fivefold": "<rect x=\"1\" y=\"10\" width=\"30\" height=\"12\" rx=\"1.5\"/><path d=\"M7 10v12M13 10v12M19 10v12M25 10v12\"/>", "oversized": "<rect x=\"4\" y=\"2\" width=\"24\" height=\"28\" rx=\"1.5\"/><rect x=\"11\" y=\"9\" width=\"10\" height=\"17\" rx=\"1\" stroke-dasharray=\"2 2\"/>"};
   var szi = function (s) { return '<svg class="szi" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (ICONS[s] || "") + "</svg>"; };
   var aCard = function (s, h) { var p = T[s][h]; return money(p.now) + (p.open ? " <s>" + money(p.open) + "</s>" : "") + " a card"; };
   // one row per booklet size the price table has, always shown (Dylan 2026-11-04: show the booklets as rows with icons, like Option A)
@@ -103,7 +103,7 @@
         rows += '<div class="bob-row bd-z' + (q > 0 ? " has" : "") + '">' + szi(sz) + '<div class="bob-n"><b>' + name + "</b><span>" + aCard(sz, h) + "</span></div>" + ctl + "</div>";
       });
       return '<div class="bd-zg ' + h + '"><p class="bd-zh"><img src="./assets/hybrid_grading/' + (h === "glass" ? "hga-glass-828ebfd2" : "hga-poly-69885480") + '.svg" alt="' + nm + '" width="' + (h === "glass" ? 96 : 88) + '" height="16"><span>' + inH(h) + (inH(h) === 1 ? " card" : " cards") + "</span></p>" + rows + "</div>";
-    }).join("") + '<p class="bd-note">Standard size is whatever is left. Each booklet, trifold or oversized card counts as one card. <button type="button" class="bd-link" data-sizes-open>See every size</button></p>';
+    }).join("") + '<p class="bd-note">Standard size is whatever is left. Each booklet or oversized card counts as one card. Prices are presale only. <button type="button" class="bd-link" data-sizes-open>See every size</button></p>';
   };
   var bdRender = function (focus) {
     fit();
@@ -235,9 +235,9 @@
     return TABLE.order.filter(hasSize).map(function (sz) {
       var ty = T[sz], g = ty.glass, p = ty.poly;
       return '<div class="bd-sz">' + szi(sz) + '<div class="bd-sz-t"><b>' + (sz === "std" ? "Standard size" : ty.name) + '</b><span>' + ty.note + '</span></div>' +
-        '<div class="bd-sz-p"><span><i>Glass</i><b>' + money(g.now) + '</b>' + (g.open ? '<s>' + money(g.open) + '</s>' : '') + '<em>from ' + g.days + ' business days</em></span>' +
-        '<span><i>Poly</i><b>' + money(p.now) + '</b>' + (p.open ? '<s>' + money(p.open) + '</s>' : '') + '<em>from ' + p.days + ' business days</em></span></div></div>';
-    }).join("") + '<p class="bd-note">Prices are a card, in the presale. Every unit counts as one card, whatever its size. If no case exists for your card yet, we make one at no extra fee.</p>';
+        '<div class="bd-sz-p"><span><i>Glass</i><b>' + money(g.now) + '</b>' + (g.open ? '<s>' + money(g.open) + '</s>' : '') + '<em>' + g.days + ' business day turnaround</em></span>' +
+        '<span><i>Poly</i><b>' + money(p.now) + '</b>' + (p.open ? '<s>' + money(p.open) + '</s>' : '') + '<em>' + p.days + ' business day turnaround</em></span></div></div>';
+    }).join("") + '<p class="bd-note">Presale prices, a card. Every unit counts as one card, whatever its size. If no case exists for your card yet, we make one at no extra fee.</p>';
   };
   var openSizes = function () {
     var dlg = $("[data-sizes-dlg]", bd); if (!dlg) return;

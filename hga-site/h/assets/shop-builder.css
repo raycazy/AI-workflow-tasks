@@ -157,7 +157,9 @@ button.bd-head:not(:disabled){cursor:pointer}
 
 /* UCollect call 2026-11-06: slab tooltips, the sizes popup, the sizes summary line */
 .bd-wmrow{display:flex;align-items:center;gap:8px}
-.bd-info{width:20px;height:20px;padding:0;border:1px solid rgba(255,255,255,.4);border-radius:50%;background:none;color:#fff;font:700 11px/1 var(--sans);cursor:pointer;transition:border-color .15s,background .15s}
+.bd-wmrow .bd-wm{min-width:0;flex:0 1 auto;object-fit:contain;object-position:left center}
+.bd-info{position:relative;flex:0 0 20px;width:20px;height:20px;padding:0;border:1px solid rgba(255,255,255,.4);border-radius:50%;background:none;color:#fff;font:700 11px/1 var(--sans);cursor:pointer;transition:border-color .15s,background .15s}
+.bd-info::after{content:"";position:absolute;inset:-12px}
 .bd-info:hover,.bd-info[aria-expanded="true"]{border-color:#fff;background:rgba(255,255,255,.12)}
 .bd-b{position:relative}
 .bd-tip{position:absolute;left:0;right:0;z-index:6;margin:0;padding:12px 14px;border:1px solid rgba(255,255,255,.22);border-radius:var(--r-sm);background:#161313;font-size:13.5px;line-height:1.45;color:rgba(255,255,255,.8);box-shadow:0 18px 40px rgba(0,0,0,.6)}
@@ -174,7 +176,7 @@ button.bd-head:not(:disabled){cursor:pointer}
 .bd-dlg-x{width:36px;height:36px;display:grid;place-items:center;padding:0;border:1px solid rgba(255,255,255,.2);border-radius:50%;background:none;color:#fff;cursor:pointer}
 .bd-dlg-x .ico{width:16px;height:16px}
 .bd-dlg-b{display:grid;gap:10px;padding:16px 18px;overflow:auto}
-.bd-dlg-in > .btn{margin:0 18px 18px}
+.bd-dlg-in > .btn{margin:0 18px 18px;width:auto;justify-self:stretch}
 html.bd-noscroll,html.bd-noscroll body{overflow:hidden}
 
 /* "See every size" popup: the size chart */
