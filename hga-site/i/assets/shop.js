@@ -9,7 +9,7 @@
   "use strict";
 
   // ===== PRICE TABLE: written by the build from _tools/hga_pricing.json. Edit prices there (or here in a handoff copy). =====
-  var TABLE = {"presale_ends":"Feb 21","value_fee":{"threshold":10000,"pct":2.5},"ship_fee":{"threshold":500,"pct":1,"_source":"Meeting 2026-11-02: Trevor confirmed mandatory shipping insurance, 1% of the card's value on cards over $500, none under. Bhaskar 2026-11-04: it stays, mandatory, disclosed wherever fees are explained (product page, cart, checkout, FAQ, standards, sizes, submitting). Disclosure text only, no inputs; charged when the customer books."},"bulk":{"poly":{"min":5,"now":null}},"fold":{"glass":100,"poly":15},"housings":{"glass":{"name":"HGA Glass","includes":["Four subgrades and a full grading report","RFID chip in the label","Metal and glass housing","Your grading date on the calendar"]},"poly":{"name":"HGA Poly","includes":["Four subgrades and a full grading report","RFID chip in the label","Protective poly housing","Your grading date on the calendar"]}},"order":["std","booklet","trifold","fourfold","fivefold","oversized"],"types":{"std":{"name":"Standard card","short":"Standard","note":"Standard size trading cards.","glass":{"now":200,"open":600,"days":30},"poly":{"now":30,"open":150,"days":60}},"booklet":{"name":"Booklet","short":"Booklet","note":"Booklet cards that open once, two panels.","folds":1,"glass":{"now":300,"open":null,"days":60},"poly":{"now":45,"open":null,"days":60}},"trifold":{"name":"Trifold booklet","short":"Trifold","note":"Booklet cards that open twice, three panels.","folds":2,"glass":{"now":400,"open":null,"days":60},"poly":{"now":60,"open":null,"days":60}},"fourfold":{"name":"Four fold booklet","short":"Four fold","note":"Booklet cards with four panels.","folds":3,"_source":"Website review call 2026-11-11: add the larger booklets to the selector. Price from the Booklet Pricing chart in the HGA_PreSale_Pricing sheet, 3 folds (reread 2026-11-12). Named by panels, like the trifold (three panels, 2 folds).","glass":{"now":500,"open":null,"days":60},"poly":{"now":75,"open":null,"days":60}},"fivefold":{"name":"Five fold booklet","short":"Five fold","note":"Booklet cards with five panels.","folds":4,"_source":"Website review call 2026-11-11: add the larger booklets to the selector. Price from the Booklet Pricing chart in the HGA_PreSale_Pricing sheet, 4 folds (reread 2026-11-12). Named by panels, like the trifold (three panels, 2 folds).","glass":{"now":600,"open":null,"days":60},"poly":{"now":90,"open":null,"days":60}},"oversized":{"name":"Oversized card","short":"Oversized","note":"Emanate, Cleat, Jumbo and other cards larger than standard size.","glass":{"now":600,"open":null,"days":30},"poly":{"now":90,"open":null,"days":30}}}};
+  var TABLE = {"presale_ends":"Feb 21","value_fee":{"threshold":10000,"pct":2.5},"ship_fee":{"threshold":500,"pct":1},"bulk":{"poly":{"min":5,"now":null}},"fold":{"glass":100,"poly":15},"housings":{"glass":{"name":"HGA Glass","includes":["Four subgrades and a full grading report","RFID chip in the label","Metal and glass housing","Your grading date on the calendar"]},"poly":{"name":"HGA Poly","includes":["Four subgrades and a full grading report","RFID chip in the label","Protective poly housing","Your grading date on the calendar"]}},"order":["std","booklet","trifold","fourfold","fivefold","oversized"],"types":{"std":{"name":"Standard card","short":"Standard","note":"Standard size trading cards.","glass":{"now":200,"open":600,"days":30},"poly":{"now":30,"open":150,"days":60}},"booklet":{"name":"Booklet","short":"Booklet","note":"Booklet cards that open once, two panels.","folds":1,"glass":{"now":300,"open":null,"days":60},"poly":{"now":45,"open":null,"days":60}},"trifold":{"name":"Trifold booklet","short":"Trifold","note":"Booklet cards that open twice, three panels.","folds":2,"glass":{"now":400,"open":null,"days":60},"poly":{"now":60,"open":null,"days":60}},"fourfold":{"name":"Four fold booklet","short":"Four fold","note":"Booklet cards with four panels.","folds":3,"glass":{"now":500,"open":null,"days":60},"poly":{"now":75,"open":null,"days":60}},"fivefold":{"name":"Five fold booklet","short":"Five fold","note":"Booklet cards with five panels.","folds":4,"glass":{"now":600,"open":null,"days":60},"poly":{"now":90,"open":null,"days":60}},"oversized":{"name":"Oversized card","short":"Oversized","note":"Emanate, Cleat, Jumbo and other cards larger than standard size.","glass":{"now":600,"open":null,"days":30},"poly":{"now":90,"open":null,"days":30}}}};
   // ===========================================================================================================================
 
   var PRICES = {
@@ -115,7 +115,7 @@
         e.hidden = c[v] === 0;
         $$(".l-unit", e).forEach(function (x) { x.innerHTML = unitHtml(u, p); });
         $$(".l-meta", e).forEach(function (x) { x.textContent = meta(p); });
-        $$(".co-line > div > span", e).forEach(function (x) { x.textContent = "Presale pass · " + meta(p); });
+        $$(".co-line > div > span", e).forEach(function (x) { x.textContent = "Presale · " + meta(p); });
       });
       $$('[data-line-q="' + v + '"]', r).forEach(function (e) { if ("value" in e && e.tagName === "INPUT") e.value = c[v]; else e.textContent = c[v]; });
       $$('[data-line-now="' + v + '"]', r).forEach(function (e) { e.textContent = money(c[v] * u); });
@@ -124,7 +124,7 @@
     HOUSINGS.forEach(function (h) {
       $$('[data-xsell="' + h + '"]', r).forEach(function (e) { e.hidden = !(byHousing(c, h) === 0 && t.count > 0); });
     });
-    $$("[data-c-count]", r).forEach(function (e) { e.textContent = t.count + (t.count === 1 ? " pass" : " passes"); });
+    $$("[data-c-count]", r).forEach(function (e) { e.textContent = t.count + (t.count === 1 ? " card" : " cards"); });
     $$("[data-c-verb]", r).forEach(function (e) { e.textContent = t.count === 1 ? "is" : "are"; });
     $$("[data-c-sub]", r).forEach(function (e) { e.textContent = money(t.open); });
     $$("[data-c-save]", r).forEach(function (e) { e.textContent = "-" + money(t.save); });
@@ -207,7 +207,7 @@
       set("[data-pdp-pct]", p.open === null ? "" : Math.round((1 - p.now / p.open) * 100) + "%");
       $$("[data-pdp-qty]").forEach(function (i) { if (document.activeElement !== i) i.value = st.q; });
       if (!quote) {
-        set("[data-pdp-count]", st.q + (st.q === 1 ? " pass" : " passes") + (st.s === "std" ? "" : " · " + p.size));
+        set("[data-pdp-count]", st.q + (st.q === 1 ? " card" : " cards") + (st.s === "std" ? "" : " · " + p.size));
         set("[data-pdp-total]", money(st.q * u));
       }
       set("[data-pdp-total-open]", strike ? money(st.q * p.open) : "");
@@ -399,11 +399,11 @@
         $("[data-pass-logo]", el).src = h === "glass" ? "./assets/hybrid_grading/hga-glass-828ebfd2.svg" : "./assets/hybrid_grading/hga-poly-69885480.svg";
         $("[data-pass-logo]", el).alt = PRICES[h].name;
         var code = o.num.replace("HGA-", "") + "-" + String(k + 1).padStart(3, "0");
-        $("[data-pass-code]", el).textContent = "PASS " + code;
+        $("[data-pass-code]", el).textContent = "ORDER " + code;
         el.style.setProperty("--i", k);
         wall.insertBefore(el, more || null);
       });
-      if (more) { more.hidden = total <= 6; more.textContent = "+" + (total - 6) + " more in My Passes"; }
+      if (more) { more.hidden = total <= 6; more.textContent = "+" + (total - 6) + " more on your order"; }
     }
 
     // a calendar reminder for the day booking opens
@@ -412,8 +412,8 @@
       var body = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//HGA//Presale//EN", "BEGIN:VEVENT",
         "UID:hga-calendar-opens-2027@hybridgrading.com", "DTSTAMP:20261101T000000Z",
         "DTSTART;VALUE=DATE:20270222", "DTEND;VALUE=DATE:20270223",
-        "SUMMARY:HGA grading calendar opens: reserve your grading day",
-        "DESCRIPTION:Your HGA passes are ready to book. Reserve any open day up to a year ahead from My Passes.",
+        "SUMMARY:HGA grading starts",
+        "DESCRIPTION:Grading starts at HGA. Your cards are graded on the date you picked.",
         "END:VEVENT", "END:VCALENDAR"].join("\r\n");
       try { ics.href = URL.createObjectURL(new Blob([body], { type: "text/calendar" })); } catch (e) {}
     }

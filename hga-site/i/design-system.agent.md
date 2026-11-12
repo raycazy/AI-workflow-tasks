@@ -46,7 +46,7 @@ Landing pages for a persona change only the hero copy and one or two story secti
 ## Copy rules
 
 - Buttons read "Claim Your Glass" or "Claim Your Poly". The site wide header, announcement bar and sticky bar use "Claim Your Glass" too (Dylan, Nov 10); never "Claim Your Pass". The shop buy box uses "Claim my $200 HGA Glass", the pass page "Add to cart".
-- Say "pass", never "slot". Housing names stand alone: "Claim Your Glass", "1 × HGA Glass". Never "Glass pass" or "Poly pass".
+- Never "pass" or "slot": write "your account", "your order", "cards". Housing names stand alone: "Claim Your Glass", "1 × HGA Glass". Never "Glass pass" or "Poly pass".
 - Say RFID, "the chip in the label", "tap, open the record". Never NFT or NFC. Do not lead with blockchain. The chip is in every label, Poly and Glass; nothing differs between them but the housing.
 - The process step is "Authenticate it": cards are imaged in high resolution and authenticated, never "scanned" or "inspected". "Inspect" stays only for how a subgrade is judged.
 - Sizes: singles, oversized, booklets, trifolds, five folds. HGA does not grade decks, so no deck anywhere. "Every size, single to booklet."
