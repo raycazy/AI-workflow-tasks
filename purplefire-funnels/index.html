@@ -228,8 +228,8 @@ body::before {
 .k-step {
   position: relative;
   display: grid;
-  grid-template-columns: 56px 40px minmax(0, 1fr) auto;
-  grid-template-areas: "date rail body own";
+  grid-template-columns: 56px 40px minmax(0, 1fr);
+  grid-template-areas: "date rail body";
   column-gap: 0;
   padding-block: 14px;
   align-items: start;
@@ -252,12 +252,11 @@ body::before {
 .k-dow { font-size: 12px; font-weight: 700; color: var(--k-muted); }
 .k-day { font-family: var(--k-display); font-size: 24px; font-weight: 600; letter-spacing: -.01em; }
 .k-mon { font-size: 12px; font-weight: 600; color: var(--k-muted); }
-.k-step-body { grid-area: body; display: grid; gap: 6px; min-width: 0; padding-right: 16px; }
+.k-step-body { grid-area: body; display: grid; gap: 6px; min-width: 0; max-width: 68ch; padding-right: 16px; }
 .k-step-what { margin: 0; font-weight: 600; text-wrap: pretty; }
 .k-step-detail { margin: 0; font-size: 14px; color: var(--k-fg-2); text-wrap: pretty; }
 .k-needs { margin: 0; font-size: 14px; color: var(--k-fg-2); display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
 .k-needs > b { font-weight: 700; color: var(--k-muted); white-space: nowrap; }
-.k-step > .k-own { grid-area: own; margin-top: 2px; }
 .k-step-range { font-size: 12px; font-weight: 600; color: var(--k-muted); white-space: nowrap; }
 
 /* gate: a full width row where a go or no go falls */
@@ -283,24 +282,6 @@ body::before {
 .k-gate-ifs { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 16px; color: var(--k-fg-2); }
 .k-gate-out { margin: 0; font-size: 14px; color: var(--k-fg-2); }
 .k-gate-out b { color: var(--k-fg); }
-
-/* ---------- owner chips ---------- */
-.k-own {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  min-height: 26px;
-  padding: 2px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 700;
-  white-space: nowrap;
-  justify-self: end;
-}
-.k-own-daniel { background: var(--k-accent-soft); color: var(--k-accent); }
-.k-own-team { background: var(--k-bg-3); color: var(--k-fg-2); }
-.k-own-both { background: transparent; color: var(--k-accent); border: 1px solid var(--k-accent); }
-.k-own svg.k-i { width: 14px; height: 14px; }
 
 /* ---------- checklist ---------- */
 .k-check { list-style: none; margin: 0; padding: 0; display: grid; }
@@ -534,10 +515,7 @@ body::before {
   .k-run::before { left: 63px; }
   .k-step {
     grid-template-columns: 48px 32px minmax(0, 1fr);
-    grid-template-areas: "date rail body" ". . own";
-    row-gap: 10px;
   }
-  .k-step > .k-own { justify-self: start; margin-top: 0; }
   .k-step-body { padding-right: 0; }
   .k-step.k-gate { margin-inline: -8px; padding-right: 8px; }
   .k-day { font-size: 22px; }
@@ -710,11 +688,11 @@ body::before {
       <li class="s-row">
         <div class="s-row-head"><span class="s-row-no">Kit 01</span><h3 class="s-row-name"><a href="past-clients/">Past clients</a></h3></div>
         <div class="s-row-body">
-          <p class="s-row-what">Past clients get a note asking if Daniel may check which of their winners are still on the store, then the check itself, with two passes for founder friends.</p>
+          <p class="s-row-what">Past clients get, as the first message, a check of which of their own winners are still on the store, made by AI and signed by Daniel, with two passes for founder friends.</p>
           <dl class="s-row-facts">
-            <div><dt>When</dt><dd>Notes from Tue 17 Nov if his list and go arrive by Mon 16 Nov; checks Wed 2 to Fri 4 Dec; calls to Fri 18 Dec and again in January.</dd></div>
+            <div><dt>When</dt><dd>AI check from Mon 16 Nov; checks sent Wed 2 to Fri 4 Dec; calls to Fri 18 Dec and again in January.</dd></div>
             <div><dt>Ad spend <abbr class="k-est" title="Estimate">Est.</abbr></dt><dd>$0. An optional video to the customer list is about $255.</dd></div>
-            <div><dt>Needs from Daniel first</dt><dd>His past client contact list and his go, by Mon 16 Nov.</dd></div>
+            <div><dt>Needs from Daniel first</dt><dd>His go, so the AI check can start Mon 16 Nov, and his past client contact list by Wed 25 Nov.</dd></div>
           </dl>
           <a class="s-row-go" href="past-clients/">Open the past clients kit<svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l14 0"/><path d="M13 18l6 -6"/><path d="M13 6l6 6"/></svg></a>
         </div>
@@ -765,7 +743,7 @@ body::before {
       <table class="k-table s-cal">
         <thead><tr><th scope="col">Funnel</th><th scope="col">13 to 16 Nov</th><th scope="col">17 Nov to 1 Dec</th><th scope="col">2 to 11 Dec</th><th scope="col">12 to 18 Dec</th><th scope="col">19 Dec to 4 Jan</th><th scope="col">5 to 31 Jan</th></tr></thead>
         <tbody>
-          <tr><th scope="row"><a class="k-link" href="past-clients/">01 Past clients</a></th><td>Build; go Mon 16 Nov</td><td>Notes Tue 17 to Fri 20 Nov; kill read Mon 30 Nov</td><td>Checks Wed 2 to Fri 4 Dec</td><td>Calls to Fri 18 Dec</td><td class="s-off">Off</td><td>Calls to Fri 29 Jan</td></tr>
+          <tr><th scope="row"><a class="k-link" href="past-clients/">01 Past clients</a></th><td>Go; AI check from Mon 16 Nov</td><td>AI check to Fri 20 Nov; contact list by Wed 25 Nov</td><td>Fresh capture Wed 2 Dec; checks Wed 2 to Fri 4 Dec; kill read Fri 11 Dec</td><td>Calls to Fri 18 Dec</td><td class="s-off">Off</td><td>Calls to Fri 29 Jan</td></tr>
           <tr><th scope="row"><a class="k-link" href="after-the-freeze/">02 After the freeze</a></th><td>Build; go Mon 16 Nov</td><td>Warm leg from Thu 19 Nov if the conditions hold</td><td>Warm and cold legs; calls from Thu 3 Dec; read Fri 11 Dec</td><td>Calls to Fri 18 Dec</td><td>Off; first tests designed</td><td>Planning calls to Fri 29 Jan; launch weeks of Mon 11, 18 and 25 Jan</td></tr>
           <tr><th scope="row"><a class="k-link" href="named-stores/">03 Named stores</a></th><td class="s-off">Not started</td><td>Build Mon 23 Nov to Wed 2 Dec if cleared</td><td>Sends Thu 3 and Fri 4 Dec; kill Thu 10 Dec</td><td>Calls; read Fri 18 Dec</td><td class="s-off">Off</td><td>If not cleared in November: sends Tue 5 and Wed 6 Jan, kill Tue 12 Jan, read Fri 29 Jan</td></tr>
           <tr><th scope="row"><a class="k-link" href="guess-the-winner/">04 Guess the winner</a></th><td class="s-off">Not started</td><td class="s-off">Not started</td><td>Build from Mon 7 Dec</td><td>Build to Fri 18 Dec</td><td class="s-off">Off</td><td>Ads Tue 5 to Mon 18 Jan; read Fri 29 Jan</td></tr>

@@ -230,8 +230,8 @@ body::before {
 .k-step {
   position: relative;
   display: grid;
-  grid-template-columns: 56px 40px minmax(0, 1fr) auto;
-  grid-template-areas: "date rail body own";
+  grid-template-columns: 56px 40px minmax(0, 1fr);
+  grid-template-areas: "date rail body";
   column-gap: 0;
   padding-block: 14px;
   align-items: start;
@@ -254,12 +254,11 @@ body::before {
 .k-dow { font-size: 12px; font-weight: 700; color: var(--k-muted); }
 .k-day { font-family: var(--k-display); font-size: 24px; font-weight: 600; letter-spacing: -.01em; }
 .k-mon { font-size: 12px; font-weight: 600; color: var(--k-muted); }
-.k-step-body { grid-area: body; display: grid; gap: 6px; min-width: 0; padding-right: 16px; }
+.k-step-body { grid-area: body; display: grid; gap: 6px; min-width: 0; max-width: 68ch; padding-right: 16px; }
 .k-step-what { margin: 0; font-weight: 600; text-wrap: pretty; }
 .k-step-detail { margin: 0; font-size: 14px; color: var(--k-fg-2); text-wrap: pretty; }
 .k-needs { margin: 0; font-size: 14px; color: var(--k-fg-2); display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
 .k-needs > b { font-weight: 700; color: var(--k-muted); white-space: nowrap; }
-.k-step > .k-own { grid-area: own; margin-top: 2px; }
 .k-step-range { font-size: 12px; font-weight: 600; color: var(--k-muted); white-space: nowrap; }
 
 /* gate: a full width row where a go or no go falls */
@@ -285,24 +284,6 @@ body::before {
 .k-gate-ifs { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 16px; color: var(--k-fg-2); }
 .k-gate-out { margin: 0; font-size: 14px; color: var(--k-fg-2); }
 .k-gate-out b { color: var(--k-fg); }
-
-/* ---------- owner chips ---------- */
-.k-own {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  min-height: 26px;
-  padding: 2px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 700;
-  white-space: nowrap;
-  justify-self: end;
-}
-.k-own-daniel { background: var(--k-accent-soft); color: var(--k-accent); }
-.k-own-team { background: var(--k-bg-3); color: var(--k-fg-2); }
-.k-own-both { background: transparent; color: var(--k-accent); border: 1px solid var(--k-accent); }
-.k-own svg.k-i { width: 14px; height: 14px; }
 
 /* ---------- checklist ---------- */
 .k-check { list-style: none; margin: 0; padding: 0; display: grid; }
@@ -536,10 +517,7 @@ body::before {
   .k-run::before { left: 63px; }
   .k-step {
     grid-template-columns: 48px 32px minmax(0, 1fr);
-    grid-template-areas: "date rail body" ". . own";
-    row-gap: 10px;
   }
-  .k-step > .k-own { justify-self: start; margin-top: 0; }
   .k-step-body { padding-right: 0; }
   .k-step.k-gate { margin-inline: -8px; padding-right: 8px; }
   .k-day { font-size: 22px; }
@@ -1294,7 +1272,7 @@ span.lp-day { cursor: default; }
 <div class="k-col">
   <div class="k-intro">
     <h1 class="k-title">Run it</h1>
-    <p class="k-lede">One thing starts this week: Daniel reads the ten rounds and signs them off. Orange rows are go or no go points. Dates marked "proposed" sit inside the sheet's fixed windows (build Mon 7 to Fri 18 Dec 2026; ads Tue 5 to Mon 18 Jan 2027; calls to Fri 29 Jan; read Fri 29 Jan).</p>
+    <p class="k-lede">Daniel, you run every step below. One thing starts this week: read the ten rounds and sign them off. Orange rows are go or no go points. Dates marked "proposed" sit inside the sheet's fixed windows (build Mon 7 to Fri 18 Dec 2026; ads Tue 5 to Mon 18 Jan 2027; calls to Fri 29 Jan; read Fri 29 Jan).</p>
   </div>
 
   <section class="k-sec" aria-label="Run sheet">
@@ -1305,73 +1283,65 @@ span.lp-day { cursor: default; }
         <div class="k-step-body">
           <p class="k-step-what">Sign off the ten rounds</p>
           <p class="k-step-detail">The full list with sources, figures and frames is in Assets, "Tests used". Rounds 3, 6 and 9 are anonymised tests from current clients and also need each client's OK before the game is public. Due by Fri 11 Dec. Nothing else is needed before Fri 4 Dec.</p>
-          <p class="k-needs"><b>Needs first</b> Kit 04 sent to Daniel</p>
+          <p class="k-needs"><b>Needs first</b> Nothing</p>
         </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
       </li>
       <li class="k-step k-gate">
         <time class="k-date" datetime="2026-12-04"><span class="k-dow">Fri</span><span class="k-day">4</span><span class="k-mon">Dec</span></time>
         <div class="k-step-body">
           <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: the build</p>
-          <ul class="k-gate-ifs"><li>Daniel says go on kit 04 and on the spend.</li></ul>
+          <ul class="k-gate-ifs"><li>You say go on kit 04 and on the spend.</li></ul>
           <p class="k-step-detail">Proposed date.</p>
-          <p class="k-needs"><b>Needs first</b> Kit 04 sent to Daniel</p>
+          <p class="k-needs"><b>Needs first</b> Nothing</p>
         </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2026-12-07"><span class="k-dow">Mon</span><span class="k-day">7</span><span class="k-mon">Dec</span></time>
         <div class="k-step-body">
           <p class="k-step-what">Build starts</p>
           <p class="k-step-detail">The ten rounds, shuffled sides, the reveal, the score screen, round eleven, the confirmation.</p>
-          <p class="k-needs"><b>Needs first</b> Daniel's go</p>
+          <p class="k-needs"><b>Needs first</b> Your go on Fri 4 Dec</p>
         </div>
-        <span class="k-own k-own-team"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Bhaskar's team</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2026-12-09"><span class="k-dow">Wed</span><span class="k-day">9</span><span class="k-mon">Dec</span></time>
         <div class="k-step-body">
-          <p class="k-step-what">Round list sent to Daniel for sign off</p>
+          <p class="k-step-what">Round list ready for sign off</p>
           <p class="k-step-detail">Assets, "Tests used". Proposed date.</p>
           <p class="k-needs"><b>Needs first</b> Rounds drafted</p>
         </div>
-        <span class="k-own k-own-team"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Bhaskar's team</span>
       </li>
       <li class="k-step k-gate">
         <time class="k-date" datetime="2026-12-11"><span class="k-dow">Fri</span><span class="k-day">11</span><span class="k-mon">Dec</span></time>
         <div class="k-step-body">
           <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: round set locked</p>
-          <ul class="k-gate-ifs"><li>Daniel signs off every round.</li><li>The two clients behind rounds 3, 6 and 9 give their written OK.</li><li>He gives his OK for arm B.</li></ul>
+          <ul class="k-gate-ifs"><li>You sign off every round.</li><li>The two clients behind rounds 3, 6 and 9 give their written OK.</li><li>You give your OK for arm B.</li></ul>
           <p class="k-needs"><b>Needs first</b> Round list from Wed 9 Dec</p>
         </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2026-12-14"><span class="k-dow">Mon</span><span class="k-day">14</span><span class="k-mon">Dec</span></time>
         <div class="k-step-body">
           <p class="k-step-what">Ad images for ads 1 and 2</p>
-          <p class="k-step-detail">The carousel's three cards and the static, each at 1:1 and 4:5 (eight images). Ad 3 is the to camera video Daniel records on Wed 16 Dec. Proposed date.</p>
+          <p class="k-step-detail">The carousel's three cards and the static, each at 1:1 and 4:5 (eight images). Ad 3 is the to camera video you record on Wed 16 Dec. Proposed date.</p>
           <p class="k-needs"><b>Needs first</b> Round set locked</p>
         </div>
-        <span class="k-own k-own-team"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Bhaskar's team</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2026-12-15"><span class="k-dow">Tue</span><span class="k-day">15</span><span class="k-mon">Dec</span></time>
         <div class="k-step-body">
-          <p class="k-step-what">His developer hosts the game page</p>
-          <p class="k-step-detail">Tue 15 to Thu 17 Dec, proposed. Wires the form to GHL with the hidden fields and tags, sets up the score email, wires the round three, round five, round ten and URL events to his tracker.</p>
-          <p class="k-needs"><b>Needs first</b> Page file from Bhaskar's team; the address new.purplefire.io/guess-the-winner/v1</p>
+          <p class="k-step-what">Your developer hosts the game page</p>
+          <p class="k-step-detail">Tue 15 to Thu 17 Dec, proposed. Wires the form to GHL with the hidden fields and tags, sets up the score email, wires the round three, round five, round ten and URL events to your tracker.</p>
+          <p class="k-needs"><b>Needs first</b> The page file from the build; the address new.purplefire.io/guess-the-winner/v1</p>
         </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2026-12-16"><span class="k-dow">Wed</span><span class="k-day">16</span><span class="k-mon">Dec</span></time>
         <div class="k-step-body">
-          <p class="k-step-what">Records the to camera video</p>
+          <p class="k-step-what">Record the to camera video</p>
           <p class="k-step-detail">Script in Ads, ad 3. Proposed date.</p>
-          <p class="k-needs"><b>Needs first</b> His yes on "more than 5,000 A/B tests"</p>
+          <p class="k-needs"><b>Needs first</b> Your yes on "more than 5,000 A/B tests"</p>
         </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2026-12-17"><span class="k-dow">Thu</span><span class="k-day">17</span><span class="k-mon">Dec</span></time>
@@ -1380,16 +1350,14 @@ span.lp-day { cursor: default; }
           <p class="k-step-detail">Ten rounds, both reveal lines, all three score bands, an under floor store, a qualified store, the score email arriving. Proposed date.</p>
           <p class="k-needs"><b>Needs first</b> Page hosted</p>
         </div>
-        <span class="k-own k-own-both"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Both</span>
       </li>
       <li class="k-step k-gate">
         <time class="k-date" datetime="2026-12-18"><span class="k-dow">Fri</span><span class="k-day">18</span><span class="k-mon">Dec</span></time>
         <div class="k-step-body">
           <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: build done</p>
-          <ul class="k-gate-ifs"><li>Daniel approves the page and ads.</li><li>The campaign is built paused in Ads Manager as an A/B test: arm A to the game, arm B to ai-cro v1, exclusions on (VSL visitors, kit 01's past client list, anyone who booked through kit 02).</li><li>Check in Ads Manager that the split does not overlap.</li></ul>
+          <ul class="k-gate-ifs"><li>You approve the page and ads.</li><li>The campaign is built paused in Ads Manager as an A/B test: arm A to the game, arm B to ai-cro v1, exclusions on (VSL visitors, kit 01's past client list, anyone who booked through kit 02).</li><li>Check in Ads Manager that the split does not overlap.</li></ul>
           <p class="k-needs"><b>Needs first</b> All of the above</p>
         </div>
-        <span class="k-own k-own-both"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Both</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2026-12-19"><span class="k-dow">Sat</span><span class="k-day">19</span><span class="k-mon">Dec</span></time>
@@ -1397,25 +1365,22 @@ span.lp-day { cursor: default; }
           <p class="k-step-what">Off. No calls, no sends, no spend.</p>
           <p class="k-step-detail">Sat 19 Dec to Mon 4 Jan.</p>
         </div>
-        <span class="k-own k-own-both"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Both</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2027-01-04"><span class="k-dow">Mon</span><span class="k-day">4</span><span class="k-mon">Jan</span></time>
         <div class="k-step-body">
           <p class="k-step-what">January calendar ready; calls from Tue 5 Jan</p>
-          <p class="k-step-detail">15 minute calls, Tue 5 to Fri 29 Jan. Checking hours for the Looms booked with Bhaskar's team. Exclusions refreshed with kit 02's December bookings.</p>
+          <p class="k-step-detail">15 minute calls, Tue 5 to Fri 29 Jan. Time blocked in your calendar to check the Looms. Exclusions refreshed with kit 02's December bookings.</p>
           <p class="k-needs"><b>Needs first</b> Calendar link</p>
         </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
       </li>
       <li class="k-step k-gate">
         <time class="k-date" datetime="2027-01-05"><span class="k-dow">Tue</span><span class="k-day">5</span><span class="k-mon">Jan</span></time>
         <div class="k-step-body">
           <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: spend starts</p>
-          <ul class="k-gate-ifs"><li>Daniel's go on spend.</li><li>Fri 18 Dec gate passed.</li></ul>
-          <p class="k-gate-out"><b>Then:</b> Daniel or his media buyer publishes the A/B test, $80 a day <abbr class="k-est" title="Estimate">Est.</abbr>, $40 a side.</p>
+          <ul class="k-gate-ifs"><li>Your go on spend.</li><li>Fri 18 Dec gate passed.</li></ul>
+          <p class="k-gate-out"><b>Then:</b> you or your media buyer publish the A/B test, $80 a day <abbr class="k-est" title="Estimate">Est.</abbr>, $40 a side.</p>
         </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2027-01-06"><span class="k-dow">Wed</span><span class="k-day">6</span><span class="k-mon">Jan</span></time>
@@ -1424,43 +1389,38 @@ span.lp-day { cursor: default; }
           <p class="k-step-detail">Wed 6 to Fri 22 Jan. Loom and still, checked by a person, sent from GHL.</p>
           <p class="k-needs"><b>Needs first</b> A qualified URL</p>
         </div>
-        <span class="k-own k-own-team"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Bhaskar's team</span>
       </li>
       <li class="k-step k-gate">
         <span class="k-date"><span class="k-dow">At</span><span class="k-day">300</span><span class="k-mon">visitors</span></span>
         <div class="k-step-body">
           <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: kill check</p>
           <ul class="k-gate-ifs"><li>When arm A passes 300 visitors (the sheet expects the first week <abbr class="k-est" title="Estimate">Est.</abbr>).</li></ul>
-          <p class="k-gate-out"><b>Under 40 percent reach round three:</b> the hypothesis is false. Proposed: pause arm A, end the A/B test and tell Daniel the same day.</p>
+          <p class="k-gate-out"><b>Under 40 percent reach round three:</b> the hypothesis is false. Proposed: pause arm A and end the A/B test the same day.</p>
           <p class="k-needs"><b>Needs first</b> 300 arm A visitors</p>
         </div>
-        <span class="k-own k-own-team"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Bhaskar's team</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2027-01-18"><span class="k-dow">Mon</span><span class="k-day">18</span><span class="k-mon">Jan</span></time>
         <div class="k-step-body">
           <p class="k-step-what">Ads end</p>
-          <p class="k-step-detail">Daniel or his media buyer switches them off at the end of the day.</p>
+          <p class="k-step-detail">You or your media buyer switch them off at the end of the day.</p>
         </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2027-01-19"><span class="k-dow">Tue</span><span class="k-day">19</span><span class="k-mon">Jan</span></time>
         <div class="k-step-body">
           <p class="k-step-what">Follow ups and calls</p>
-          <p class="k-step-detail">Last Looms by Wed 20 Jan. Tue 19 to Fri 29 Jan: Daniel sends one follow up per viewed Loom; 15 minute planning calls on the January calendar.</p>
+          <p class="k-step-detail">Last Looms by Wed 20 Jan. Tue 19 to Fri 29 Jan: send one follow up per viewed Loom; 15 minute planning calls on the January calendar.</p>
           <p class="k-needs"><b>Needs first</b> Looms sent</p>
         </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
       </li>
       <li class="k-step k-gate">
         <time class="k-date" datetime="2027-01-29"><span class="k-dow">Fri</span><span class="k-day">29</span><span class="k-mon">Jan</span></time>
         <div class="k-step-body">
           <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Read: keep or kill</p>
           <ul class="k-gate-ifs"><li>Against the four keep numbers.</li></ul>
-          <p class="k-needs"><b>Needs first</b> The numbers in "How we read it"</p>
+          <p class="k-needs"><b>Needs first</b> The numbers in "How to read it"</p>
         </div>
-        <span class="k-own k-own-team"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Bhaskar's team</span>
       </li>
     </ol>
   </section>
@@ -1473,7 +1433,7 @@ span.lp-day { cursor: default; }
       <li><input type="checkbox" id="f04-need-clients"><label for="f04-need-clients">Written OK from the two current clients behind rounds 3, 6 and 9, before the game is public<small>Both are anonymised: no name, logo or address in any frame, and no test ID on the page.</small></label></li>
       <li><input type="checkbox" id="f04-need-r7"><label for="f04-need-r7">Round 7: GCA-040 from your ai-cro v1 proof rail, in place of GC-025, because its image gives a fair pair. Yes?</label></li>
       <li><input type="checkbox" id="f04-need-mm019"><label for="f04-need-mm019">Metric for rounds 1, 4, 5 and 7: revenue per visitor, as your public cards for GCA-031, MM-019, AIR-016 and GCA-040 show it. Yes?</label></li>
-      <li><input type="checkbox" id="f04-need-r58"><label for="f04-need-r58">Rounds 5 and 8: the winning side is our reading of the public image (Airback: the packing hero; Nature's Body: the seven benefit lines). Yes?</label></li>
+      <li><input type="checkbox" id="f04-need-r58"><label for="f04-need-r58">Rounds 5 and 8: the winning side is a reading of the public image (Airback: the packing hero; Nature's Body: the seven benefit lines). Yes?</label></li>
       <li><input type="checkbox" id="f04-need-armb"><label for="f04-need-armb">Arm B: your current ai-cro v1 ad, unchanged. Yes?</label></li>
       <li><input type="checkbox" id="f04-need-counts"><label for="f04-need-counts">Proof count: "more than 5,000 A/B tests" in the to camera ad and the 0 to 4 score band, from your 5,000+ A/B tests and 1,300+ documented winners. Yes?</label></li>
       <li><input type="checkbox" id="f04-need-seats"><label for="f04-need-seats">Seats: 2 in each January launch week (Mon 11, Mon 18, Mon 25 Jan), 6 brands in January, for the "January" reply. Yes?</label></li>
@@ -1488,15 +1448,15 @@ span.lp-day { cursor: default; }
     </ul>
   </section>
 
-  <section class="k-sec" aria-label="How we read it">
-    <h2 class="k-h3">How we read it</h2>
+  <section class="k-sec" aria-label="How to read it">
+    <h2 class="k-h3">How to read it</h2>
     <p class="k-p">Read on Fri 29 Jan, from three places:</p>
     <ol class="k-list">
       <li>Ads Manager, A/B test report: spend and landing page views per arm.</li>
       <li>His tracker (the events his developer wires): arm A visitors who reach round three, reach round five, finish round ten, and send a store URL.</li>
       <li>GHL: qualified URLs per arm (tag <code>f04_qualified</code> for arm A; the store URL and revenue answer from ai-cro v1's quiz for arm B, judged against the same floor) and calls booked by Fri 29 Jan, by source tag.</li>
     </ol>
-    <p class="k-p">The numbers: round three rate (kill and keep line one); round five rate (the hypothesis's "at least five rounds"); qualified URLs as a share of players who finish round ten (keep line two); qualified URLs per $100 spent, arm A against arm B (keep line three); calls booked (keep line four). At about $560 a side the read is directional by design: it tells us which way to lean, not a proven winner. His own VSL ads bid for similar founders on the same dates, and the read says so.</p>
+    <p class="k-p">The numbers: round three rate (kill and keep line one); round five rate (the hypothesis's "at least five rounds"); qualified URLs as a share of players who finish round ten (keep line two); qualified URLs per $100 spent, arm A against arm B (keep line three); calls booked (keep line four). At about $560 a side the read is directional by design: it shows which way to lean, not a proven winner. His own VSL ads bid for similar founders on the same dates, and the read says so.</p>
   </section>
 </div>
 
@@ -2053,8 +2013,8 @@ Ten real tests from Shopify stores, each one with the result straight from the t
 
     <section class="k-sec" id="f04-as-tests" aria-label="Tests used, for Daniel's sign off">
       <h2 class="k-h3">Tests used, for Daniel's sign off</h2>
-      <p class="k-p">Every figure below is copied from its source, word for word. Source A: the eight result cards on the v2 VSL prototype, which reuse his public ai-cro v1 images. Source B: the 22 public cards in his ai-cro v1 proof rail (seen 12 Nov; images under <code>new.purplefire.io/ai-cro-v1/assets/proof/</code>). Source C: Bhaskar's team's test log, for three tests run for two current clients; the board names are held by Bhaskar's team, and the Test ID column gives a neutral reference instead.</p>
-      <p class="k-p">The "winning version" column is our reading of which side of each before and after image is the change. For rounds 5 and 8 no public card states it in words, so Daniel confirms the answer as well as the figures.</p>
+      <p class="k-p">Every figure below is copied from its source, word for word. Source A: the eight result cards on the v2 VSL prototype, which reuse his public ai-cro v1 images. Source B: the 22 public cards in his ai-cro v1 proof rail (seen 12 Nov; images under <code>new.purplefire.io/ai-cro-v1/assets/proof/</code>). Source C: the recorded results of three tests run for two current clients, shown anonymised; the Test ID column gives a neutral reference in place of each test's own name.</p>
+      <p class="k-p">The "winning version" column is a reading of which side of each before and after image is the change. For rounds 5 and 8 no public card states it in words, so Daniel confirms the answer as well as the figures.</p>
       <div class="k-table-wrap">
         <table class="k-table">
           <thead><tr><th scope="col">Round</th><th scope="col">Client</th><th scope="col">Test ID</th><th scope="col">Winning version (the answer)</th><th scope="col">Result as recorded</th><th scope="col">Source</th><th scope="col">In the prototype</th><th scope="col">Signed off</th></tr></thead>
@@ -2066,7 +2026,7 @@ Ten real tests from Shopify stores, each one with the result straight from the t
             <tr><td class="k-num">5</td><th scope="row">Airback</th><td><code>AIR-016-ALL-HP-CR</code></td><td>packing hero, "Adventure Awaits"</td><td>RPV +47.23%, CVR +36.45%, 93.57% confidence, Convert; judged on revenue per visitor, as the public card shows it</td><td>A (image b1_04_ba) and B</td><td>Playable; the public image shows the header on one side only</td><td><input type="checkbox" id="f04-so-5" aria-label="Round 5 signed off"></td></tr>
             <tr><td class="k-num">6</td><th scope="row">A Danish cleaning products brand (current client, anonymised, needs the client's OK before the game is public)</th><td>Currency text test</td><td>the page the store had: prices with "kr", which is what the live store shows today (checked 13 Nov)</td><td>Flat: revenue per visitor up 2.2% for "DKK", inside the range we call flat; 50,915 visitors; 7 days; 48.7% probability; Intelligems</td><td>C</td><td>Playable. Screens redrawn, store details changed.</td><td><input type="checkbox" id="f04-so-6" aria-label="Round 6 signed off"></td></tr>
             <tr><td class="k-num">7</td><th scope="row">German Car Accessories</th><td><code>GCA-040-MD-SW-Cart-CVR</code></td><td>a "Trusted by 40,000+" line in the cart</td><td>RPV +19.64%, ATC +7.99%, revenue +18.60%, 98.88% confidence, Convert</td><td>B (image b2_03_ba)</td><td>Playable. Takes the place of Goose Creek <code>GC-025-M-SW-CVR</code>, whose public image has no fair pair. Both phone screens cut from the public before and after image, same crop and scale.</td><td><input type="checkbox" id="f04-so-7" aria-label="Round 7 signed off"></td></tr>
-            <tr><td class="k-num">8</td><th scope="row">Nature's Body</th><td><code>NST-CRO-046-MD-PDP-CVR</code></td><td>seven benefit lines</td><td>CVR +24.81%, RPV +40.29%, 88.99% confidence, Convert</td><td>A (image b3_04_ba) and B</td><td>Playable; frames cut from title to options, one side is soft (small source). The badges and payment logos are too small to read at game size, so the version lines leave them out. The reason line is our reading of the two frames, worded as likely: seven short benefit lines between the price and the options likely gave shoppers their reasons to buy before they had to choose.</td><td><input type="checkbox" id="f04-so-8" aria-label="Round 8 signed off"></td></tr>
+            <tr><td class="k-num">8</td><th scope="row">Nature's Body</th><td><code>NST-CRO-046-MD-PDP-CVR</code></td><td>seven benefit lines</td><td>CVR +24.81%, RPV +40.29%, 88.99% confidence, Convert</td><td>A (image b3_04_ba) and B</td><td>Playable; frames cut from title to options, one side is soft (small source). The badges and payment logos are too small to read at game size, so the version lines leave them out. The reason line is a reading of the two frames, worded as likely: seven short benefit lines between the price and the options likely gave shoppers their reasons to buy before they had to choose.</td><td><input type="checkbox" id="f04-so-8" aria-label="Round 8 signed off"></td></tr>
             <tr><td class="k-num">9</td><th scope="row">A Danish cookware brand (current client, anonymised, needs the client's OK before the game is public)</th><td>One tap offer after add to cart test</td><td>the page the store had (add to cart opens the cart, no offer)</td><td>Losing: revenue per visitor down 5.2% for the offer; 16,984 visitors; 4 days; 38.3% probability; Intelligems</td><td>C</td><td>Playable. Screens redrawn, store details changed.</td><td><input type="checkbox" id="f04-so-9" aria-label="Round 9 signed off"></td></tr>
             <tr><td class="k-num">10</td><th scope="row">Basic Maintenance Lab</th><td><code>BM-004-ALL-AB-HP-CVR</code></td><td>customer skin photos with a review</td><td>CVR +49.29%, RPV +50.89%, 89.19% confidence, Convert</td><td>A (image b3_01_ba) and B</td><td>Playable; both frames start at the doctor's quote</td><td><input type="checkbox" id="f04-so-10" aria-label="Round 10 signed off"></td></tr>
           </tbody>

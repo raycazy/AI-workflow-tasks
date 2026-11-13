@@ -230,8 +230,8 @@ body::before {
 .k-step {
   position: relative;
   display: grid;
-  grid-template-columns: 56px 40px minmax(0, 1fr) auto;
-  grid-template-areas: "date rail body own";
+  grid-template-columns: 56px 40px minmax(0, 1fr);
+  grid-template-areas: "date rail body";
   column-gap: 0;
   padding-block: 14px;
   align-items: start;
@@ -254,12 +254,11 @@ body::before {
 .k-dow { font-size: 12px; font-weight: 700; color: var(--k-muted); }
 .k-day { font-family: var(--k-display); font-size: 24px; font-weight: 600; letter-spacing: -.01em; }
 .k-mon { font-size: 12px; font-weight: 600; color: var(--k-muted); }
-.k-step-body { grid-area: body; display: grid; gap: 6px; min-width: 0; padding-right: 16px; }
+.k-step-body { grid-area: body; display: grid; gap: 6px; min-width: 0; max-width: 68ch; padding-right: 16px; }
 .k-step-what { margin: 0; font-weight: 600; text-wrap: pretty; }
 .k-step-detail { margin: 0; font-size: 14px; color: var(--k-fg-2); text-wrap: pretty; }
 .k-needs { margin: 0; font-size: 14px; color: var(--k-fg-2); display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
 .k-needs > b { font-weight: 700; color: var(--k-muted); white-space: nowrap; }
-.k-step > .k-own { grid-area: own; margin-top: 2px; }
 .k-step-range { font-size: 12px; font-weight: 600; color: var(--k-muted); white-space: nowrap; }
 
 /* gate: a full width row where a go or no go falls */
@@ -285,24 +284,6 @@ body::before {
 .k-gate-ifs { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 16px; color: var(--k-fg-2); }
 .k-gate-out { margin: 0; font-size: 14px; color: var(--k-fg-2); }
 .k-gate-out b { color: var(--k-fg); }
-
-/* ---------- owner chips ---------- */
-.k-own {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  min-height: 26px;
-  padding: 2px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 700;
-  white-space: nowrap;
-  justify-self: end;
-}
-.k-own-daniel { background: var(--k-accent-soft); color: var(--k-accent); }
-.k-own-team { background: var(--k-bg-3); color: var(--k-fg-2); }
-.k-own-both { background: transparent; color: var(--k-accent); border: 1px solid var(--k-accent); }
-.k-own svg.k-i { width: 14px; height: 14px; }
 
 /* ---------- checklist ---------- */
 .k-check { list-style: none; margin: 0; padding: 0; display: grid; }
@@ -536,10 +517,7 @@ body::before {
   .k-run::before { left: 63px; }
   .k-step {
     grid-template-columns: 48px 32px minmax(0, 1fr);
-    grid-template-areas: "date rail body" ". . own";
-    row-gap: 10px;
   }
-  .k-step > .k-own { justify-self: start; margin-top: 0; }
   .k-step-body { padding-right: 0; }
   .k-step.k-gate { margin-inline: -8px; padding-right: 8px; }
   .k-day { font-size: 22px; }
@@ -709,7 +687,7 @@ body::before {
 /* Kit 03 additions, built on the shell tokens only (no landing page, no ads, so no lp.css or ads.css is loaded).
    Every class is k-f03-; nothing here changes a shell class except the two spacing fixes marked below. */
 
-/* slots that Bhaskar's team fills per store */
+/* slots filled per store */
 .k-root .k-f03-slot {
   font-weight: 600;
   color: var(--k-accent);
@@ -863,7 +841,7 @@ body::before {
       </div>
       <div class="k-new">
         <p class="k-pair-label">New</p>
-        <p>We pick 16 stores by hand. Daniel sends each founder or head of ecommerce one short message about their own product page: a Loom of about 40 seconds and one still. Nothing is hosted.</p>
+        <p>16 stores are picked by hand. Daniel sends each founder or head of ecommerce one short message about their own product page: a Loom of about 40 seconds and one still. Nothing is hosted.</p>
       </div>
     </div>
   </section>
@@ -917,7 +895,7 @@ body::before {
     <dl class="k-facts">
       <div><dt>Keep</dt><dd>2 or more qualified calls booked across both arms by the read date, and 3 or more positive replies from arm A.</dd></div>
       <div><dt>Kill</dt><dd>No positive reply from arm A's 8 by Thu 10 Dec on the December path, or by Tue 12 Jan on the January path.</dd></div>
-      <div><dt>Cost</dt><dd>40 to 66 of our hours. Media $0; Store Leads optional, about $250. <abbr class="k-est" title="Estimate">Est.</abbr></dd></div>
+      <div><dt>Cost</dt><dd>Build 40 to 66 h. Media $0; Store Leads optional, about $250. <abbr class="k-est" title="Estimate">Est.</abbr></dd></div>
     </dl>
   </section>
 
@@ -926,7 +904,7 @@ body::before {
     <ul class="k-list">
       <li>It can feel presumptuous (kind tone, video deleted on request).</li>
       <li>A change that breaks on a phone costs trust.</li>
-      <li>Our hours per store have no source, and 8 a side is directional.</li>
+      <li>The build hours per store have no source, and 8 a side is directional.</li>
       <li>A hosted copy waits for a keep and a legal read.</li>
     </ul>
   </section>
@@ -937,7 +915,7 @@ body::before {
 <div class="k-col">
   <div class="k-intro">
     <h1 class="k-title">Run it</h1>
-    <p class="k-lede">Two paths. The gate on Mon 23 Nov decides which one runs: the December path first, the January path below it. Orange rows are go or no go points. Dates in January are 2027; every other date is 2026.</p>
+    <p class="k-lede">Daniel, you run every step below. Two paths. The gate on Mon 23 Nov decides which one runs: the December path first, the January path below it. Orange rows are go or no go points. Dates in January are 2027; every other date is 2026.</p>
   </div>
 
   <section class="k-sec" aria-label="December path">
@@ -946,10 +924,9 @@ body::before {
       <li class="k-step">
         <time class="k-date" datetime="2026-11-13"><span class="k-dow">Fri</span><span class="k-day">13</span><span class="k-mon">Nov</span></time>
         <div class="k-step-body">
-          <p class="k-step-what">Ask Daniel for his countries (part of the one ask), and in the same message for a legal read on this format and his yes to it by Mon 23 Nov</p>
+          <p class="k-step-what">Name the countries you sell to, get a legal read on this format, and give your written yes or no to it by Mon 23 Nov</p>
           <p class="k-needs"><b>Needs first</b> none</p>
         </div>
-        <span class="k-own k-own-team"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Bhaskar's team</span>
       </li>
       <li class="k-step k-gate">
         <time class="k-date" datetime="2026-11-23"><span class="k-dow">Mon</span><span class="k-day">23</span><span class="k-mon">Nov</span></time>
@@ -957,14 +934,13 @@ body::before {
           <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: December or January path</p>
           <p class="k-step-detail">Three things must be true:</p>
           <ul class="k-gate-ifs">
-            <li>Daniel has named the countries he sells to</li>
+            <li>you have named the countries you sell to</li>
             <li>a legal read has confirmed this format for a first cold message</li>
-            <li>Daniel has said yes in writing to the format (a Loom plus one still, nothing hosted)</li>
+            <li>you have said yes in writing to the format (a Loom plus one still, nothing hosted)</li>
           </ul>
-          <p class="k-gate-out"><b>All three by Mon 23 Nov:</b> the December path. <b>Any one missing:</b> switch to the January path and tell Daniel the same day</p>
-          <p class="k-needs"><b>Needs first</b> countries; legal read; his written yes</p>
+          <p class="k-gate-out"><b>All three by Mon 23 Nov:</b> the December path. <b>Any one missing:</b> switch to the January path the same day</p>
+          <p class="k-needs"><b>Needs first</b> countries; legal read; your written yes</p>
         </div>
-        <span class="k-own k-own-both"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Both</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2026-11-23"><span class="k-dow">Mon</span><span class="k-day">23</span><span class="k-mon">Nov</span></time>
@@ -973,7 +949,6 @@ body::before {
           <p class="k-step-what">Build the five pattern blocks and the local copy method once</p>
           <p class="k-needs"><b>Needs first</b> the gate passed</p>
         </div>
-        <span class="k-own k-own-team"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Bhaskar's team</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2026-11-23"><span class="k-dow">Mon</span><span class="k-day">23</span><span class="k-mon">Nov</span></time>
@@ -982,23 +957,20 @@ body::before {
           <p class="k-step-what">Fill the pick sheet: 16 stores plus a few spares, each with its reason line</p>
           <p class="k-needs"><b>Needs first</b> the pick criteria in Assets</p>
         </div>
-        <span class="k-own k-own-team"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Bhaskar's team</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2026-11-25"><span class="k-dow">Wed</span><span class="k-day">25</span><span class="k-mon">Nov</span></time>
         <div class="k-step-body">
-          <p class="k-step-what">Check the pick sheet against his clients, his pipeline, his past clients and his do not contact list; confirm the five pattern cards</p>
+          <p class="k-step-what">Check the pick sheet against your clients, your pipeline, your past clients and your do not contact list; confirm the five pattern cards</p>
           <p class="k-needs"><b>Needs first</b> the pick sheet</p>
         </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2026-11-26"><span class="k-dow">Thu</span><span class="k-day">26</span><span class="k-mon">Nov</span></time>
         <div class="k-step-body">
           <p class="k-step-what">Split the 16 into arms by paired coin flip, then lock the sheet</p>
-          <p class="k-needs"><b>Needs first</b> Daniel's check</p>
+          <p class="k-needs"><b>Needs first</b> the Wed 25 Nov check</p>
         </div>
-        <span class="k-own k-own-team"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Bhaskar's team</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2026-11-26"><span class="k-dow">Thu</span><span class="k-day">26</span><span class="k-mon">Nov</span></time>
@@ -1007,7 +979,6 @@ body::before {
           <p class="k-step-what">Arm A: capture each page, build the change, check it at phone size, make the still, fill the script. Arm B: run the five tests workflow, have a person check it, make the pinned still, fill the script</p>
           <p class="k-needs"><b>Needs first</b> the locked sheet</p>
         </div>
-        <span class="k-own k-own-team"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Bhaskar's team</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2026-12-01"><span class="k-dow">Tue</span><span class="k-day">1</span><span class="k-mon">Dec</span></time>
@@ -1016,7 +987,6 @@ body::before {
           <p class="k-step-what">Record the 16 Looms from the filled scripts and shot lists</p>
           <p class="k-needs"><b>Needs first</b> filled scripts; builds checked</p>
         </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2026-12-02"><span class="k-dow">Wed</span><span class="k-day">2</span><span class="k-mon">Dec</span></time>
@@ -1024,25 +994,22 @@ body::before {
           <p class="k-step-what">Check every Loom and still: right store, right first name, figure matches its card, the change works at phone size. Load the 16 messages</p>
           <p class="k-needs"><b>Needs first</b> 16 Looms</p>
         </div>
-        <span class="k-own k-own-team"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Bhaskar's team</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2026-12-03"><span class="k-dow">Thu</span><span class="k-day">3</span><span class="k-mon">Dec</span></time>
         <div class="k-step-body">
-          <p class="k-step-what"><b>Send odd pairs (1, 3, 5, 7)</b>, 8 messages (4 arm A, 4 arm B) from his own inbox or LinkedIn. Half of each arm goes each send day, so both arms share the same weekdays</p>
+          <p class="k-step-what"><b>Send odd pairs (1, 3, 5, 7)</b>, 8 messages (4 arm A, 4 arm B) from your own inbox or LinkedIn. Half of each arm goes each send day, so both arms share the same weekdays</p>
           <p class="k-needs"><b>Needs first</b> the row shows Legal: cleared with a date; nothing to a Danish recipient unless the legal read cleared it</p>
-          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to Danish prospects</b> until Daniel names his countries and has a legal read.</p></div>
+          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to Danish prospects</b> until you name your countries and have a legal read.</p></div>
         </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2026-12-04"><span class="k-dow">Fri</span><span class="k-day">4</span><span class="k-mon">Dec</span></time>
         <div class="k-step-body">
           <p class="k-step-what"><b>Send even pairs (2, 4, 6, 8)</b>, 8 messages (4 arm A, 4 arm B)</p>
           <p class="k-needs"><b>Needs first</b> same as Thu 3 Dec</p>
-          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to Danish prospects</b> until Daniel names his countries and has a legal read.</p></div>
+          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to Danish prospects</b> until you name your countries and have a legal read.</p></div>
         </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2026-12-03"><span class="k-dow">Thu</span><span class="k-day">3</span><span class="k-mon">Dec</span></time>
@@ -1051,25 +1018,22 @@ body::before {
           <p class="k-step-what">Answer replies the same day with the Assets replies; tag each reply in GHL; hold a launch week for 48 hours on kit 02's slot board</p>
           <p class="k-needs"><b>Needs first</b> 2 seats in each launch week (Mon 11, Mon 18, Mon 25 Jan)</p>
         </div>
-        <span class="k-own k-own-both"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Both</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2026-12-09"><span class="k-dow">Wed</span><span class="k-day">9</span><span class="k-mon">Dec</span></time>
         <div class="k-step-body">
           <p class="k-step-what">Follow up to odd pairs (1, 3, 5, 7) rows with no reply (viewed or not viewed version)</p>
           <p class="k-needs"><b>Needs first</b> Legal: cleared; no opt out on the row; nothing to a Danish recipient unless the legal read cleared it</p>
-          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to Danish prospects</b> until Daniel names his countries and has a legal read.</p></div>
+          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to Danish prospects</b> until you name your countries and have a legal read.</p></div>
         </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2026-12-10"><span class="k-dow">Thu</span><span class="k-day">10</span><span class="k-mon">Dec</span></time>
         <div class="k-step-body">
           <p class="k-step-what">Follow up to even pairs (2, 4, 6, 8) rows with no reply</p>
           <p class="k-needs"><b>Needs first</b> Legal: cleared; no opt out on the row; nothing to a Danish recipient unless the legal read cleared it</p>
-          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to Danish prospects</b> until Daniel names his countries and has a legal read.</p></div>
+          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to Danish prospects</b> until you name your countries and have a legal read.</p></div>
         </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
       </li>
       <li class="k-step k-gate">
         <time class="k-date" datetime="2026-12-10"><span class="k-dow">Thu</span><span class="k-day">10</span><span class="k-mon">Dec</span></time>
@@ -1078,7 +1042,6 @@ body::before {
           <p class="k-gate-out"><b>Zero positive replies from arm A:</b> the finished work idea is false for this list. No second list; calls already booked still happen</p>
           <p class="k-needs"><b>Needs first</b> replies tagged</p>
         </div>
-        <span class="k-own k-own-team"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Bhaskar's team</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2026-12-03"><span class="k-dow">Thu</span><span class="k-day">3</span><span class="k-mon">Dec</span></time>
@@ -1087,15 +1050,13 @@ body::before {
           <p class="k-step-what">15 minute planning calls on the December calendar. Replies from Fri 18 Dec on go to the January calendar (Tue 5 to Fri 29 Jan)</p>
           <p class="k-needs"><b>Needs first</b> both calendars set up in GHL</p>
         </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2026-12-18"><span class="k-dow">Fri</span><span class="k-day">18</span><span class="k-mon">Dec</span></time>
         <div class="k-step-body">
-          <p class="k-step-what"><b>Read.</b> Replies and booked calls per arm against the keep line; one page to Daniel</p>
+          <p class="k-step-what"><b>Read.</b> Replies and booked calls per arm against the keep line, written up on one page</p>
           <p class="k-needs"><b>Needs first</b> tracking sheet complete</p>
         </div>
-        <span class="k-own k-own-team"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Bhaskar's team</span>
       </li>
     </ol>
   </section>
@@ -1110,60 +1071,53 @@ body::before {
           <p class="k-gate-out">Builds wait until kits 01 and 02 are built</p>
           <p class="k-needs"><b>Needs first</b> none</p>
         </div>
-        <span class="k-own k-own-both"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Both</span>
       </li>
       <li class="k-step">
         <span class="k-date" aria-hidden="true"></span>
         <div class="k-step-body">
-          <p class="k-step-range">Dates set by Bhaskar's team after the kit 01 and 02 builds</p>
-          <p class="k-step-what">The same steps as December: pattern blocks, pick sheet, Daniel's check, paired split, builds, 16 Looms recorded before the break (Sat 19 Dec to Mon 4 Jan)</p>
-          <p class="k-needs"><b>Needs first</b> countries; legal read; his written yes</p>
+          <p class="k-step-range">Dates set after the kit 01 and 02 builds</p>
+          <p class="k-step-what">The same steps as December: pattern blocks, pick sheet, your check, paired split, builds, 16 Looms recorded before the break (Sat 19 Dec to Mon 4 Jan)</p>
+          <p class="k-needs"><b>Needs first</b> countries; legal read; your written yes</p>
         </div>
-        <span class="k-own k-own-both"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Both</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2027-01-05"><span class="k-dow">Tue</span><span class="k-day">5</span><span class="k-mon">Jan</span></time>
         <div class="k-step-body">
-          <p class="k-step-what">Before any send, check each page still lacks its change. A store whose page has changed is held back and reported, not sent</p>
+          <p class="k-step-what">Before any send, check each page still lacks its change. A store whose page has changed is held back and marked on the tracking sheet, not sent</p>
           <p class="k-needs"><b>Needs first</b> recorded Looms</p>
         </div>
-        <span class="k-own k-own-team"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Bhaskar's team</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2027-01-05"><span class="k-dow">Tue</span><span class="k-day">5</span><span class="k-mon">Jan</span></time>
         <div class="k-step-body">
           <p class="k-step-what"><b>Send odd pairs (1, 3, 5, 7)</b>, 8 messages (4 arm A, 4 arm B)</p>
           <p class="k-needs"><b>Needs first</b> Legal: cleared; nothing to a Danish recipient unless the legal read cleared it</p>
-          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to Danish prospects</b> until Daniel names his countries and has a legal read.</p></div>
+          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to Danish prospects</b> until you name your countries and have a legal read.</p></div>
         </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2027-01-06"><span class="k-dow">Wed</span><span class="k-day">6</span><span class="k-mon">Jan</span></time>
         <div class="k-step-body">
           <p class="k-step-what"><b>Send even pairs (2, 4, 6, 8)</b>, 8 messages (4 arm A, 4 arm B)</p>
           <p class="k-needs"><b>Needs first</b> same as Tue 5 Jan</p>
-          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to Danish prospects</b> until Daniel names his countries and has a legal read.</p></div>
+          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to Danish prospects</b> until you name your countries and have a legal read.</p></div>
         </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2027-01-11"><span class="k-dow">Mon</span><span class="k-day">11</span><span class="k-mon">Jan</span></time>
         <div class="k-step-body">
           <p class="k-step-what">Follow up to odd pairs (1, 3, 5, 7) rows with no reply</p>
           <p class="k-needs"><b>Needs first</b> Legal: cleared; no opt out on the row; nothing to a Danish recipient unless the legal read cleared it</p>
-          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to Danish prospects</b> until Daniel names his countries and has a legal read.</p></div>
+          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to Danish prospects</b> until you name your countries and have a legal read.</p></div>
         </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2027-01-12"><span class="k-dow">Tue</span><span class="k-day">12</span><span class="k-mon">Jan</span></time>
         <div class="k-step-body">
           <p class="k-step-what">Follow up to even pairs (2, 4, 6, 8) rows with no reply</p>
           <p class="k-needs"><b>Needs first</b> Legal: cleared; no opt out on the row; nothing to a Danish recipient unless the legal read cleared it</p>
-          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to Danish prospects</b> until Daniel names his countries and has a legal read.</p></div>
+          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to Danish prospects</b> until you name your countries and have a legal read.</p></div>
         </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
       </li>
       <li class="k-step k-gate">
         <time class="k-date" datetime="2027-01-12"><span class="k-dow">Tue</span><span class="k-day">12</span><span class="k-mon">Jan</span></time>
@@ -1172,7 +1126,6 @@ body::before {
           <p class="k-gate-out">Same rule as December</p>
           <p class="k-needs"><b>Needs first</b> replies tagged</p>
         </div>
-        <span class="k-own k-own-team"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Bhaskar's team</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2027-01-05"><span class="k-dow">Tue</span><span class="k-day">5</span><span class="k-mon">Jan</span></time>
@@ -1181,7 +1134,6 @@ body::before {
           <p class="k-step-what">15 minute planning calls on the January calendar</p>
           <p class="k-needs"><b>Needs first</b> January calendar in GHL</p>
         </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2027-01-29"><span class="k-dow">Fri</span><span class="k-day">29</span><span class="k-mon">Jan</span></time>
@@ -1189,7 +1141,6 @@ body::before {
           <p class="k-step-what"><b>Read</b>, same as December</p>
           <p class="k-needs"><b>Needs first</b> tracking sheet complete</p>
         </div>
-        <span class="k-own k-own-team"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Bhaskar's team</span>
       </li>
     </ol>
   </section>
@@ -1212,8 +1163,8 @@ body::before {
     </ul>
   </section>
 
-  <section class="k-sec" aria-label="How we read it">
-    <h2 class="k-h3">How we read it</h2>
+  <section class="k-sec" aria-label="How to read it">
+    <h2 class="k-h3">How to read it</h2>
     <dl class="k-facts">
       <div><dt>Numbers</dt><dd>Positive replies per arm and booked 15 minute planning calls per arm. A positive reply is "January", a question, or a calendar tap from a store at or above $150k a month. The counted event is a qualified call: a booked 15 minute planning call with a founder or head of ecommerce at a Shopify store doing $150k a month or more.</dd></div>
       <div><dt>Where they come from</dt><dd>The tracking sheet, one row per store, with GHL tags as the backup.</dd></div>
@@ -1242,7 +1193,7 @@ body::before {
   <div class="k-assets-body">
     <div class="k-intro">
       <h1 class="k-title">Assets</h1>
-      <p class="k-lede"><span class="k-f03-slot">{curly}</span> slots are filled per store by Bhaskar's team before Daniel sends or records.</p>
+      <p class="k-lede"><span class="k-f03-slot">{curly}</span> slots are filled per store before each message is sent or recorded.</p>
     </div>
 
     <!-- 3.1 and 3.2 -->

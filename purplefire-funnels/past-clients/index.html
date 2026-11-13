@@ -230,8 +230,8 @@ body::before {
 .k-step {
   position: relative;
   display: grid;
-  grid-template-columns: 56px 40px minmax(0, 1fr) auto;
-  grid-template-areas: "date rail body own";
+  grid-template-columns: 56px 40px minmax(0, 1fr);
+  grid-template-areas: "date rail body";
   column-gap: 0;
   padding-block: 14px;
   align-items: start;
@@ -254,12 +254,11 @@ body::before {
 .k-dow { font-size: 12px; font-weight: 700; color: var(--k-muted); }
 .k-day { font-family: var(--k-display); font-size: 24px; font-weight: 600; letter-spacing: -.01em; }
 .k-mon { font-size: 12px; font-weight: 600; color: var(--k-muted); }
-.k-step-body { grid-area: body; display: grid; gap: 6px; min-width: 0; padding-right: 16px; }
+.k-step-body { grid-area: body; display: grid; gap: 6px; min-width: 0; max-width: 68ch; padding-right: 16px; }
 .k-step-what { margin: 0; font-weight: 600; text-wrap: pretty; }
 .k-step-detail { margin: 0; font-size: 14px; color: var(--k-fg-2); text-wrap: pretty; }
 .k-needs { margin: 0; font-size: 14px; color: var(--k-fg-2); display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
 .k-needs > b { font-weight: 700; color: var(--k-muted); white-space: nowrap; }
-.k-step > .k-own { grid-area: own; margin-top: 2px; }
 .k-step-range { font-size: 12px; font-weight: 600; color: var(--k-muted); white-space: nowrap; }
 
 /* gate: a full width row where a go or no go falls */
@@ -285,24 +284,6 @@ body::before {
 .k-gate-ifs { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 16px; color: var(--k-fg-2); }
 .k-gate-out { margin: 0; font-size: 14px; color: var(--k-fg-2); }
 .k-gate-out b { color: var(--k-fg); }
-
-/* ---------- owner chips ---------- */
-.k-own {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  min-height: 26px;
-  padding: 2px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 700;
-  white-space: nowrap;
-  justify-self: end;
-}
-.k-own-daniel { background: var(--k-accent-soft); color: var(--k-accent); }
-.k-own-team { background: var(--k-bg-3); color: var(--k-fg-2); }
-.k-own-both { background: transparent; color: var(--k-accent); border: 1px solid var(--k-accent); }
-.k-own svg.k-i { width: 14px; height: 14px; }
 
 /* ---------- checklist ---------- */
 .k-check { list-style: none; margin: 0; padding: 0; display: grid; }
@@ -536,10 +517,7 @@ body::before {
   .k-run::before { left: 63px; }
   .k-step {
     grid-template-columns: 48px 32px minmax(0, 1fr);
-    grid-template-areas: "date rail body" ". . own";
-    row-gap: 10px;
   }
-  .k-step > .k-own { justify-self: start; margin-top: 0; }
   .k-step-body { padding-right: 0; }
   .k-step.k-gate { margin-inline: -8px; padding-right: 8px; }
   .k-day { font-size: 22px; }
@@ -706,10 +684,9 @@ body::before {
 <main class="k-main">
 <section class="k-panel" id="tab-strategy" data-tab="strategy" aria-label="Strategy">
 <style>
-/* Kit 01 additions, built from the shell tokens (the kit has no inline code, no "Nobody" owner,
+/* Kit 01 additions, built from the shell tokens (the kit has no inline code,
    no sub heading inside a section, no rich copy body and no sample document). Every class starts f01-. */
 .f01-code { font-family: var(--k-font); font-weight: 600; font-size: 14px; padding: 1px 6px; border-radius: 6px; background: var(--k-bg-3); color: var(--k-fg); overflow-wrap: anywhere; }
-.k-own.f01-own-none { background: transparent; color: var(--k-muted); border: 1px solid var(--k-line); }
 .k-step-range.f01-range { white-space: normal; display: block; font-size: 14px; font-weight: 700; color: var(--k-fg-2); }
 .k-gate .k-step-range.f01-range { color: var(--k-gate); }
 .f01-date-none { min-height: 1px; }
@@ -819,7 +796,7 @@ body::before {
 <div class="k-col">
   <div class="k-intro">
     <h1 class="k-title">Past clients get a check of their own winners</h1>
-    <p class="k-lede">Plus two passes for founder friends. Nothing is hosted. Your list and your go are due Mon 16 Nov; see Run it.</p>
+    <p class="k-lede">Plus two passes for founder friends. Nothing is hosted. The AI check starts Mon 16 Nov once you approve the kit, and you finish your contact sheet by Wed 25 Nov; see Run it.</p>
   </div>
 
   <section class="k-sec" aria-label="What changes">
@@ -831,7 +808,7 @@ body::before {
       </div>
       <div class="k-new">
         <p class="k-pair-label">New</p>
-        <p>Past client founders get a short note asking for one reply, then a check of which of their own winners are still live, with two passes for founder friends.</p>
+        <p>Past client founders get, as the first message, a check of which of their own winners are still live, made by AI from the winners list and signed by Daniel, with two passes for founder friends. Nothing is asked of them before it arrives.</p>
       </div>
     </div>
   </section>
@@ -841,10 +818,11 @@ body::before {
     <dl class="k-facts">
       <div><dt>Who it is for</dt><dd>The founders and teams behind the vault cards, and the people and friends they lead to.</dd></div>
       <div><dt>Hypothesis</dt><dd>People who already saw his tests win produce qualified calls (a restart, an intro or a used pass) at a rate cold traffic has not; fewer than 3 qualified calls by Fri 18 Dec proves it false.</dd></div>
-      <div><dt>Segments</dt><dd>Read by source tag (no arms; a directional read on tens of contacts): A, past client founders and team; B, job changers now at another brand; C, founder friends reached through a pass or an agreed intro.</dd></div>
-      <div><dt>Keep</dt><dd>At least 1 in 4 of segment A says yes, and at least 3 qualified calls by Fri 18 Dec.</dd></div>
-      <div><dt>Kill</dt><dd>Target plan, fewer than 1 in 10 yes replies from the first 30 notes by Mon 30 Nov; fallback plan, fewer than 3 replies asking to talk from the first 30 checks by Fri 11 Dec.</dd></div>
-      <div><dt>Cost</dt><dd><abbr class="k-est" title="Estimate">Est.</abbr> Media $0, optional video about $255. Build 11 to 16 h, plus 30 to 45 min per check.</dd></div>
+      <div><dt>Segments</dt><dd>Read by source tag (no arms; a directional read on tens of contacts): A, past client founders and team, who each get the check; B, job changers now at another brand, who get a note that asks for nothing; C, founder friends reached through a pass or an agreed intro.</dd></div>
+      <div><dt>Keep</dt><dd>At least 3 qualified calls by Fri 18 Dec.</dd></div>
+      <div><dt>Kill</dt><dd>Fewer than 3 replies asking to talk from the first 30 checks by Fri 11 Dec. If fewer than 30 checks go out, the read covers all of them that day.</dd></div>
+      <div><dt>Cost</dt><dd><abbr class="k-est" title="Estimate">Est.</abbr> Media $0, optional video about $255. Your reading time is about 5 to 10 minutes per check before you sign it (<abbr class="k-est" title="Estimate">Est.</abbr>), longer for a brand with many winners.</dd></div>
+      <div><dt>Passes</dt><dd>A client's results appear on a pass only after that client says they can. By default a pass carries the offer only.</dd></div>
       <div><dt>Shares</dt><dd>Kit 02's page (where passes land) and its calendars; the vault cards; one GHL template.</dd></div>
     </dl>
   </section>
@@ -853,7 +831,8 @@ body::before {
     <h2 class="k-h3">Risks</h2>
     <ul class="k-list">
       <li>A "not found" read as blame.</li>
-      <li>Old winners mostly changed.</li>
+      <li>A wrong "not found" in a check nobody asked for. Arriving unasked, one wrong mark costs more trust than it would in a check the client asked for, so you read and sign every check, and a winner whose page cannot be judged from outside (a cart or checkout step, or a change shown to one device only) is marked Not checked, never guessed.</li>
+      <li>Old winners mostly changed. The first AI pass shows this by Fri 20 Nov, before anything is sent.</li>
       <li>A reachable list far below the 71 past clients in the vault, so this runs beside the ad funnel.</li>
     </ul>
   </section>
@@ -861,8 +840,7 @@ body::before {
   <section class="k-sec" aria-label="Before anything is sent">
     <h2 class="k-h3">Before anything is sent</h2>
     <ul class="k-list">
-      <li>Daniel confirms, per client, the brand name they knew him under and that no work was done under another agency.</li>
-      <li>Each client OKs their card before anyone else sees it.</li>
+      <li>You confirm, per client, the brand name they knew you under and that no work was done under another agency.</li>
     </ul>
     <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to a Danish contact</b> until Daniel names his countries and a legal read confirms the format.</p></div>
   </section>
@@ -873,84 +851,62 @@ body::before {
 <div class="k-col">
   <div class="k-intro">
     <h1 class="k-title">Run it</h1>
-    <p class="k-lede">Two paths. GATE 1 on Mon 16 Nov decides which one runs: the target path first, the fallback path below it. The orange rows are go or no go gates.</p>
+    <p class="k-lede">You run every step below, on one path: the AI check comes first, and no past client is asked anything before their check arrives. The orange rows are go or no go gates.</p>
   </div>
 
-  <section class="k-sec" id="f01-path-target" aria-label="Target path">
-    <h2 class="k-h3">Target path: notes from Tue 17 Nov (if Daniel's list and go arrive by Mon 16 Nov)</h2>
+  <section class="k-sec" id="f01-path" aria-label="The path">
+    <h2 class="k-h3">One path: AI check from Mon 16 Nov, checks sent Wed 2 to Fri 4 Dec</h2>
     <ol class="k-run">
       <li class="k-step">
-        <time class="k-date" datetime="2026-11-13"><span class="k-dow">Fri</span><span class="k-day">13</span><span class="k-mon">Nov</span></time>
+        <time class="k-date" datetime="2026-11-16"><span class="k-dow">Mon</span><span class="k-day">16</span><span class="k-mon">Nov</span></time>
         <div class="k-step-body">
-          <p class="k-step-what">Send Daniel the one ask: contact list, countries, go, December call slots.</p>
-          <p class="k-needs"><b>Needs first</b> Nothing</p>
+          <span class="k-step-range f01-range">Mon 16 to Fri 20 Nov</span>
+          <p class="k-step-what">Run the first AI pass of the check: for each past client in the winners list, AI opens the store's live pages and marks each winner Still live, Changed or Not found against its card.</p>
+          <p class="k-step-detail">Use the AI check prompt (Assets 3.4), one past client per run. Read only: public pages, nothing bought or submitted, no checkout. The winners list already names the client, the page type and the change, so nothing is needed from the client, and the pass does not wait for your contact list; your list only decides who is sent a check. A winner whose page cannot be judged from outside (a cart or checkout step, or a change shown to one device only) is marked Not checked, never guessed.</p>
+          <p class="k-needs"><b>Needs first</b> Your approval of the kit</p>
         </div>
-        <span class="k-own k-own-team"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Bhaskar's team</span>
       </li>
       <li class="k-step">
-        <time class="k-date" datetime="2026-11-13"><span class="k-dow">Fri</span><span class="k-day">13</span><span class="k-mon">Nov</span></time>
+        <time class="k-date" datetime="2026-11-16"><span class="k-dow">Mon</span><span class="k-day">16</span><span class="k-mon">Nov</span></time>
         <div class="k-step-body">
-          <span class="k-step-range f01-range">Fri 13 to Mon 16 Nov</span>
-          <p class="k-step-what">Fill the contact sheet: who you can still message, on which channel, the brand name each knew you under, any work done under another agency, how each engagement ended.</p>
-          <p class="k-step-detail">Mark every skip.</p>
+          <span class="k-step-range f01-range">Mon 16 to Wed 25 Nov (derived, <abbr class="k-est" title="Estimate">Est.</abbr>)</span>
+          <p class="k-step-what">Fill the contact sheet: who you can still message, on which channel, the brand name each knew you under, any work done under another agency, how each engagement ended. Gather your countries, the legal read for each and your December call slots.</p>
+          <p class="k-step-detail">Mark every skip. Wed 25 Nov leaves time for the legal read and the skips before the fresh capture on Wed 2 Dec, with Black Friday week in between.</p>
           <p class="k-needs"><b>Needs first</b> The contact sheet template (Assets)</p>
         </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
+      </li>
+      <li class="k-step">
+        <time class="k-date" datetime="2026-11-20"><span class="k-dow">Fri</span><span class="k-day">20</span><span class="k-mon">Nov</span></time>
+        <div class="k-step-body">
+          <p class="k-step-what">Read the first pass: how many winners are still live per brand, which stores still trade on the test pages, and which winners are Not checked.</p>
+          <p class="k-step-detail">This tells you how strong the opener is before anything is sent. A brand with several winners still live gets the strongest first line; a brand where everything changed still gets a check, with the opening for 0.</p>
+          <p class="k-needs"><b>Needs first</b> First AI pass done</p>
+        </div>
       </li>
       <li class="k-step k-gate">
-        <time class="k-date" datetime="2026-11-16"><span class="k-dow">Mon</span><span class="k-day">16</span><span class="k-mon">Nov</span></time>
+        <time class="k-date" datetime="2026-11-25"><span class="k-dow">Wed</span><span class="k-day">25</span><span class="k-mon">Nov</span></time>
         <div class="k-step-body">
-          <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: GATE 1, the first notes</p>
-          <p class="k-gate-out"><b>Go</b> if your list, your countries and your go have arrived and the legal read clears the countries of the first notes. <b>No go</b> means the fallback path below.</p>
+          <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: GATE 1, the first sends</p>
+          <span class="k-step-range f01-range">Wed 25 Nov (derived, <abbr class="k-est" title="Estimate">Est.</abbr>)</span>
+          <p class="k-gate-out"><b>Go</b> if your contact sheet and countries are in, you have OKed the messages in Assets, and the legal read clears the countries of the first sends. <b>No go</b> holds every send until all three are done.</p>
           <p class="k-needs"><b>Needs first</b> Legal read for the first countries</p>
         </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
       </li>
       <li class="k-step">
-        <time class="k-date" datetime="2026-11-16"><span class="k-dow">Mon</span><span class="k-day">16</span><span class="k-mon">Nov</span></time>
+        <time class="k-date" datetime="2026-11-26"><span class="k-dow">Thu</span><span class="k-day">26</span><span class="k-mon">Nov</span></time>
         <div class="k-step-body">
-          <p class="k-step-what">Merge your list with the vault cards, count winners per brand, check each store still trades on its pages, order by most recent client first.</p>
+          <span class="k-step-range f01-range">Thu 26 Nov to Tue 1 Dec</span>
+          <p class="k-step-what">Match your contact sheet against the first pass: drop every skip, order by most recent client first, and pick each check's subject and opening line by its count.</p>
           <p class="k-needs"><b>Needs first</b> GATE 1 is go</p>
         </div>
-        <span class="k-own k-own-team"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Bhaskar's team</span>
       </li>
       <li class="k-step">
-        <time class="k-date" datetime="2026-11-17"><span class="k-dow">Tue</span><span class="k-day">17</span><span class="k-mon">Nov</span></time>
+        <time class="k-date" datetime="2026-12-02"><span class="k-dow">Wed</span><span class="k-day">2</span><span class="k-mon">Dec</span></time>
         <div class="k-step-body">
-          <span class="k-step-range f01-range">Tue 17 to Fri 20 Nov</span>
-          <p class="k-step-what">Send the first note to segment A and the job changer note to segment B from your own accounts, most recent clients first.</p>
-          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to a Danish contact</b> until Daniel names his countries and a legal read confirms the format.</p></div>
-          <p class="k-needs"><b>Needs first</b> Your OK on both notes; legal read for each country</p>
+          <p class="k-step-what">Run the fresh capture: run the AI check prompt (Assets 3.4) again for every client on the matched list, so each winning page is captured again at desktop and phone width and each mark is updated against its card.</p>
+          <p class="k-step-detail">Read only: public pages, nothing bought, submitted or changed, no checkout. It runs after Cyber Week so sale banners are not read as changes, and this capture is the one the check shows.</p>
+          <p class="k-needs"><b>Needs first</b> Contact sheet matched</p>
         </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2026-11-17"><span class="k-dow">Tue</span><span class="k-day">17</span><span class="k-mon">Nov</span></time>
-        <div class="k-step-body">
-          <span class="k-step-range f01-range">Tue 17 to Fri 27 Nov</span>
-          <p class="k-step-what">Log every reply in the contact sheet the day it arrives.</p>
-          <p class="k-needs"><b>Needs first</b> Notes sent</p>
-        </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2026-11-23"><span class="k-dow">Mon</span><span class="k-day">23</span><span class="k-mon">Nov</span></time>
-        <div class="k-step-body">
-          <span class="k-step-range f01-range">Mon 23 Nov to Tue 1 Dec</span>
-          <p class="k-step-what">For each yes: pull the vault cards, find the page each winner ran on, set up the check file.</p>
-          <p class="k-step-detail">Captures wait for Wed 2 Dec so Cyber Week banners are not read as changes.</p>
-          <p class="k-needs"><b>Needs first</b> A yes in the contact sheet</p>
-        </div>
-        <span class="k-own k-own-team"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Bhaskar's team</span>
-      </li>
-      <li class="k-step k-gate">
-        <time class="k-date" datetime="2026-11-30"><span class="k-dow">Mon</span><span class="k-day">30</span><span class="k-mon">Nov</span></time>
-        <div class="k-step-body">
-          <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: GATE 2, kill read</p>
-          <p class="k-gate-out">Fewer than 1 in 10 yes replies from the first 30 notes means <b>no further notes go out</b>. Everyone who said yes still gets their check. If you can reach fewer than 30, read all of them today.</p>
-          <p class="k-needs"><b>Needs first</b> Replies logged</p>
-        </div>
-        <span class="k-own k-own-both"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Both</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2026-12-02"><span class="k-dow">Wed</span><span class="k-day">2</span><span class="k-mon">Dec</span></time>
@@ -959,46 +915,43 @@ body::before {
           <p class="k-step-detail">Runs only if the legal read gives a lawful basis to upload the list and Ads Manager shows the list can deliver. The list is excluded from kit 02's audiences.</p>
           <p class="k-needs"><b>Needs first</b> Legal basis; Ads Manager shows it delivers</p>
         </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2026-12-02"><span class="k-dow">Wed</span><span class="k-day">2</span><span class="k-mon">Dec</span></time>
-        <div class="k-step-body">
-          <span class="k-step-range f01-range">Wed 2 to Thu 3 Dec</span>
-          <p class="k-step-what">Capture each winning page on the live store at desktop and phone width (read only: nothing bought, submitted or changed, no checkout) and mark it against its card.</p>
-          <p class="k-step-detail">Build each check.</p>
-          <p class="k-needs"><b>Needs first</b> The client said yes</p>
-        </div>
-        <span class="k-own k-own-team"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Bhaskar's team</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2026-12-02"><span class="k-dow">Wed</span><span class="k-day">2</span><span class="k-mon">Dec</span></time>
         <div class="k-step-body">
           <span class="k-step-range f01-range">Wed 2 to Fri 4 Dec</span>
-          <p class="k-step-what">Read and sign every check, then send it with its two passes from your own account.</p>
+          <p class="k-step-what">Read and sign every check, then send it from your own account with its opening line and its two passes, most recent clients first. Send the job changer note to segment B the same days.</p>
+          <p class="k-step-detail">Before you sign, look at every Not found against its capture yourself: a wrong one is the main risk.</p>
           <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to a Danish contact</b> until Daniel names his countries and a legal read confirms the format.</p></div>
-          <p class="k-needs"><b>Needs first</b> Check built; legal read per country</p>
+          <p class="k-needs"><b>Needs first</b> Fresh capture done; legal read per country</p>
         </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
       </li>
-      <li class="k-step k-gate">
-        <time class="k-date" datetime="2026-12-04"><span class="k-dow">Fri</span><span class="k-day">4</span><span class="k-mon">Dec</span></time>
+      <li class="k-step">
+        <time class="k-date" datetime="2026-12-02"><span class="k-dow">Wed</span><span class="k-day">2</span><span class="k-mon">Dec</span></time>
         <div class="k-step-body">
-          <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: GATE 3</p>
-          <p class="k-gate-out"><b>Segment B is dropped</b> if 15 job changer notes drew no reply.</p>
-          <p class="k-needs"><b>Needs first</b> Replies logged</p>
+          <span class="k-step-range f01-range">Wed 2 to Fri 18 Dec</span>
+          <p class="k-step-what">Log every reply in the contact sheet the day it arrives.</p>
+          <p class="k-needs"><b>Needs first</b> Checks sent</p>
         </div>
-        <span class="k-own k-own-both"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Both</span>
+      </li>
+      <li class="k-step">
+        <time class="k-date" datetime="2026-12-03"><span class="k-dow">Thu</span><span class="k-day">3</span><span class="k-mon">Dec</span></time>
+        <div class="k-step-body">
+          <span class="k-step-range f01-range">Thu 3 to Fri 18 Dec</span>
+          <p class="k-step-what">Calls on the December calendar, 15 minutes each.</p>
+          <p class="k-step-detail">When someone from the contact sheet books, add their source tag in GHL by hand, and match bookings against the sheet every Friday.</p>
+          <p class="k-needs"><b>Needs first</b> December slots in GHL</p>
+        </div>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2026-12-04"><span class="k-dow">Fri</span><span class="k-day">4</span><span class="k-mon">Dec</span></time>
         <div class="k-step-body">
           <span class="k-step-range f01-range">Fri 4 to Mon 7 Dec</span>
-          <p class="k-step-what">One follow up two days after each check, on the channel the client replied on; a weekend day moves to Monday.</p>
+          <p class="k-step-what">One follow up two days after each check, on the channel the check went on, to everyone who has not asked you to stop; a weekend day moves to Monday.</p>
           <p class="k-step-detail">Wed checks on Fri 4 Dec, Thu and Fri checks on Mon 7 Dec.</p>
+          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to a Danish contact</b> until Daniel names his countries and a legal read confirms the format.</p></div>
           <p class="k-needs"><b>Needs first</b> Check sent</p>
         </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
       </li>
       <li class="k-step">
         <span class="k-date f01-date-none" aria-hidden="true"></span>
@@ -1008,54 +961,47 @@ body::before {
           <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p>An intro is a first message to someone new: <b>nothing goes to a Danish friend</b> until Daniel names his countries and a legal read confirms the format.</p></div>
           <p class="k-needs"><b>Needs first</b> Both sides agree; legal read for the friend's country</p>
         </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2026-12-07"><span class="k-dow">Mon</span><span class="k-day">7</span><span class="k-mon">Dec</span></time>
-        <div class="k-step-body">
-          <span class="k-step-range f01-range">Mon 7 to Fri 18 Dec</span>
-          <p class="k-step-what">Calls on the December calendar, 15 minutes each.</p>
-          <p class="k-step-detail">When someone from the contact sheet books, add their source tag in GHL by hand (Bhaskar's team also matches bookings against the sheet every Friday).</p>
-          <p class="k-needs"><b>Needs first</b> December slots in GHL</p>
-        </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2026-12-08"><span class="k-dow">Tue</span><span class="k-day">8</span><span class="k-mon">Dec</span></time>
-        <div class="k-step-body">
-          <span class="k-step-range f01-range">Tue 8 to Fri 11 Dec (derived, <abbr class="k-est" title="Estimate">Est.</abbr>)</span>
-          <p class="k-step-what">Second job changer note, only where the legal read allows a marketing message to someone who is not a customer at their new brand, and only if GATE 3 kept segment B.</p>
-          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to a Danish contact</b> until Daniel names his countries and a legal read confirms the format.</p></div>
-          <p class="k-needs"><b>Needs first</b> Legal read; GATE 3</p>
-        </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
       </li>
       <li class="k-step k-gate">
         <time class="k-date" datetime="2026-12-09"><span class="k-dow">Wed</span><span class="k-day">9</span><span class="k-mon">Dec</span></time>
         <div class="k-step-body">
-          <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: GATE 4, paid leg kill</p>
+          <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: GATE 2, paid leg kill</p>
           <p class="k-gate-out">No booking or pass lead from the customer list after $120 <b>ends the video</b>.</p>
           <p class="k-needs"><b>Needs first</b> Paid leg running</p>
         </div>
-        <span class="k-own k-own-both"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Both</span>
       </li>
       <li class="k-step k-gate">
         <time class="k-date" datetime="2026-12-11"><span class="k-dow">Fri</span><span class="k-day">11</span><span class="k-mon">Dec</span></time>
         <div class="k-step-body">
-          <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: GATE 5</p>
+          <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: GATE 3, kill read</p>
+          <p class="k-gate-out">Fewer than 3 replies asking to talk from the first 30 checks <b>ends the funnel</b>. If fewer than 30 checks went out, read all of them today. If the funnel ends, the January note and January calls do not run.</p>
+          <p class="k-needs"><b>Needs first</b> Replies logged</p>
+        </div>
+      </li>
+      <li class="k-step k-gate">
+        <time class="k-date" datetime="2026-12-11"><span class="k-dow">Fri</span><span class="k-day">11</span><span class="k-mon">Dec</span></time>
+        <div class="k-step-body">
+          <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: GATE 4, passes</p>
           <p class="k-gate-out"><b>Passes are dropped</b> if fewer than 3 were opened.</p>
           <p class="k-needs"><b>Needs first</b> Pass opens readable</p>
         </div>
-        <span class="k-own k-own-both"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Both</span>
+      </li>
+      <li class="k-step k-gate">
+        <time class="k-date" datetime="2026-12-18"><span class="k-dow">Fri</span><span class="k-day">18</span><span class="k-mon">Dec</span></time>
+        <div class="k-step-body">
+          <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: GATE 5, segment B</p>
+          <span class="k-step-range f01-range">Fri 18 Dec (derived, <abbr class="k-est" title="Estimate">Est.</abbr>: two weeks after its notes)</span>
+          <p class="k-gate-out"><b>Segment B is dropped</b> if 15 job changer notes drew no reply.</p>
+          <p class="k-needs"><b>Needs first</b> Replies logged</p>
+        </div>
       </li>
       <li class="k-step k-gate">
         <time class="k-date" datetime="2026-12-18"><span class="k-dow">Fri</span><span class="k-day">18</span><span class="k-mon">Dec</span></time>
         <div class="k-step-body">
           <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: GATE 6, keep read</p>
-          <p class="k-gate-out"><b>Paid leg ends.</b></p>
+          <p class="k-gate-out"><b>Keep</b> if at least 3 qualified calls are booked. <b>Paid leg ends.</b></p>
           <p class="k-needs"><b>Needs first</b> Bookings tagged in GHL</p>
         </div>
-        <span class="k-own k-own-both"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Both</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2026-12-19"><span class="k-dow">Sat</span><span class="k-day">19</span><span class="k-mon">Dec</span></time>
@@ -1063,145 +1009,15 @@ body::before {
           <span class="k-step-range f01-range">Sat 19 Dec to Mon 4 Jan</span>
           <p class="k-step-what">Off.</p>
         </div>
-        <span class="k-own f01-own-none">Nobody</span>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2027-01-05"><span class="k-dow">Tue</span><span class="k-day">5</span><span class="k-mon">Jan</span></time>
-        <div class="k-step-body">
-          <span class="k-step-range f01-range">Tue 5 to Fri 29 Jan</span>
-          <p class="k-step-what">Calls on the January calendar.</p>
-          <p class="k-step-detail">Final count Fri 29 Jan.</p>
-          <p class="k-needs"><b>Needs first</b> January slots in GHL</p>
-        </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
-      </li>
-    </ol>
-  </section>
-
-  <section class="k-sec" id="f01-path-fallback" aria-label="Fallback path">
-    <h2 class="k-h3">Fallback path: ask and check together, Wed 2 to Fri 4 Dec (if Mon 16 Nov is missed)</h2>
-    <ol class="k-run">
-      <li class="k-step">
-        <time class="k-date" datetime="2026-11-17"><span class="k-dow">Tue</span><span class="k-day">17</span><span class="k-mon">Nov</span></time>
-        <div class="k-step-body">
-          <p class="k-step-what">No November note goes out.</p>
-          <p class="k-needs"><b>Needs first</b> GATE 1 was no go</p>
-        </div>
-        <span class="k-own k-own-both"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Both</span>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2026-11-25"><span class="k-dow">Wed</span><span class="k-day">25</span><span class="k-mon">Nov</span></time>
-        <div class="k-step-body">
-          <span class="k-step-range f01-range">By Wed 25 Nov (derived, <abbr class="k-est" title="Estimate">Est.</abbr>)</span>
-          <p class="k-step-what">Send the filled contact sheet, your countries and your go.</p>
-          <p class="k-step-detail"><abbr class="k-est" title="Estimate">Est.</abbr> 30 checks at 30 to 45 min each is about 15 to 23 h of building, so the list must arrive a week ahead.</p>
-          <p class="k-needs"><b>Needs first</b> The contact sheet template</p>
-        </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
-      </li>
-      <li class="k-step k-gate">
-        <time class="k-date" datetime="2026-11-25"><span class="k-dow">Wed</span><span class="k-day">25</span><span class="k-mon">Nov</span></time>
-        <div class="k-step-body">
-          <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: GATE 1F, the first sends</p>
-          <span class="k-step-range f01-range">Wed 25 Nov (derived, <abbr class="k-est" title="Estimate">Est.</abbr>)</span>
-          <p class="k-gate-out"><b>Go</b> if the list, countries and go have arrived and the legal read clears the countries of the first sends.</p>
-          <p class="k-needs"><b>Needs first</b> Legal read</p>
-        </div>
-        <span class="k-own k-own-both"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Both</span>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2026-11-26"><span class="k-dow">Thu</span><span class="k-day">26</span><span class="k-mon">Nov</span></time>
-        <div class="k-step-body">
-          <span class="k-step-range f01-range">Thu 26 Nov to Tue 1 Dec</span>
-          <p class="k-step-what">For every client you named: pull the vault cards, find the page each winner ran on, set up the check file.</p>
-          <p class="k-step-detail">Most of the building happens here, so the capture days stay short.</p>
-          <p class="k-needs"><b>Needs first</b> GATE 1F is go</p>
-        </div>
-        <span class="k-own k-own-team"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Bhaskar's team</span>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2026-12-02"><span class="k-dow">Wed</span><span class="k-day">2</span><span class="k-mon">Dec</span></time>
-        <div class="k-step-body">
-          <span class="k-step-range f01-range">Wed 2 to Thu 3 Dec</span>
-          <p class="k-step-what">Capture each winning page (read only: nothing bought, submitted or changed) and finish each check.</p>
-          <p class="k-needs"><b>Needs first</b> Check files set up</p>
-        </div>
-        <span class="k-own k-own-team"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Bhaskar's team</span>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2026-12-02"><span class="k-dow">Wed</span><span class="k-day">2</span><span class="k-mon">Dec</span></time>
-        <div class="k-step-body">
-          <span class="k-step-range f01-range">Wed 2 to Fri 4 Dec</span>
-          <p class="k-step-what">Sign and send each check with the fallback opening, its two passes, and the job changer note to segment B, from your own accounts.</p>
-          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to a Danish contact</b> until Daniel names his countries and a legal read confirms the format.</p></div>
-          <p class="k-needs"><b>Needs first</b> Check built; legal read per country</p>
-        </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2026-12-02"><span class="k-dow">Wed</span><span class="k-day">2</span><span class="k-mon">Dec</span></time>
-        <div class="k-step-body">
-          <p class="k-step-what">Optional paid leg, same rules as the target path.</p>
-          <p class="k-needs"><b>Needs first</b> Legal basis; Ads Manager shows it delivers</p>
-        </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2026-12-04"><span class="k-dow">Fri</span><span class="k-day">4</span><span class="k-mon">Dec</span></time>
-        <div class="k-step-body">
-          <span class="k-step-range f01-range">Fri 4 to Mon 7 Dec</span>
-          <p class="k-step-what">One follow up two days after each check, to everyone who replied, on the channel they replied on.</p>
-          <p class="k-needs"><b>Needs first</b> A reply</p>
-        </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2026-12-07"><span class="k-dow">Mon</span><span class="k-day">7</span><span class="k-mon">Dec</span></time>
-        <div class="k-step-body">
-          <span class="k-step-range f01-range">Mon 7 to Fri 18 Dec</span>
-          <p class="k-step-what">Calls on the December calendar, tagged by hand as on the target path.</p>
-          <p class="k-step-detail">Intros within two working days of each ask.</p>
-          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to a Danish friend</b> until Daniel names his countries and a legal read confirms the format.</p></div>
-          <p class="k-needs"><b>Needs first</b> December slots; legal read for the friend's country</p>
-        </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
-      </li>
-      <li class="k-step k-gate">
-        <time class="k-date" datetime="2026-12-09"><span class="k-dow">Wed</span><span class="k-day">9</span><span class="k-mon">Dec</span></time>
-        <div class="k-step-body">
-          <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: GATE 4, paid leg kill</p>
-          <p class="k-gate-out">As above.</p>
-          <p class="k-needs"><b>Needs first</b> Paid leg running</p>
-        </div>
-        <span class="k-own k-own-both"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Both</span>
-      </li>
-      <li class="k-step k-gate">
-        <time class="k-date" datetime="2026-12-11"><span class="k-dow">Fri</span><span class="k-day">11</span><span class="k-mon">Dec</span></time>
-        <div class="k-step-body">
-          <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: GATE 2F, kill read</p>
-          <p class="k-gate-out">Fewer than 3 replies asking to talk from the first 30 checks <b>ends the funnel</b>. GATE 5 on passes reads the same day.</p>
-          <p class="k-needs"><b>Needs first</b> Replies logged</p>
-        </div>
-        <span class="k-own k-own-both"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Both</span>
-      </li>
-      <li class="k-step k-gate">
-        <time class="k-date" datetime="2026-12-18"><span class="k-dow">Fri</span><span class="k-day">18</span><span class="k-mon">Dec</span></time>
-        <div class="k-step-body">
-          <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: GATE 6, keep read</p>
-          <p class="k-gate-out">GATE 3 on segment B reads today (derived, <abbr class="k-est" title="Estimate">Est.</abbr>: two weeks after its notes, as on the target path).</p>
-          <p class="k-needs"><b>Needs first</b> Bookings tagged</p>
-        </div>
-        <span class="k-own k-own-both"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Both</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2027-01-05"><span class="k-dow">Tue</span><span class="k-day">5</span><span class="k-mon">Jan</span></time>
         <div class="k-step-body">
           <span class="k-step-range f01-range">Tue 5 to Fri 8 Jan 2027 (derived, <abbr class="k-est" title="Estimate">Est.</abbr>)</span>
-          <p class="k-step-what">Second job changer note, about five weeks after the first because two to three weeks lands in the break; only where the legal read allows it and segment B was kept.</p>
+          <p class="k-step-what">Second job changer note, about five weeks after the first because two to three weeks lands in the break; only where the legal read allows a marketing message to someone who is not a customer at their new brand, and only if GATE 5 kept segment B.</p>
           <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to a Danish contact</b> until Daniel names his countries and a legal read confirms the format.</p></div>
-          <p class="k-needs"><b>Needs first</b> Legal read; GATE 3</p>
+          <p class="k-needs"><b>Needs first</b> Legal read; GATE 3 kept the funnel; GATE 5</p>
         </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
       </li>
       <li class="k-step">
         <time class="k-date" datetime="2027-01-05"><span class="k-dow">Tue</span><span class="k-day">5</span><span class="k-mon">Jan</span></time>
@@ -1209,9 +1025,8 @@ body::before {
           <span class="k-step-range f01-range">Tue 5 to Fri 29 Jan</span>
           <p class="k-step-what">Calls on the January calendar.</p>
           <p class="k-step-detail">Final count Fri 29 Jan.</p>
-          <p class="k-needs"><b>Needs first</b> January slots</p>
+          <p class="k-needs"><b>Needs first</b> January slots in GHL; GATE 3 kept the funnel</p>
         </div>
-        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
       </li>
     </ol>
   </section>
@@ -1222,7 +1037,7 @@ body::before {
       <li><input type="checkbox" id="f01-need-contacts"><label for="f01-need-contacts">The past client contacts you can still message, and on which channel (email, LinkedIn or WhatsApp)</label></li>
       <li><input type="checkbox" id="f01-need-brandname"><label for="f01-need-brandname">For each: the brand name they knew you under, and whether any of the work was done under another agency</label></li>
       <li><input type="checkbox" id="f01-need-ended"><label for="f01-need-ended">How each engagement ended, and anyone you would not write to today</label></li>
-      <li><input type="checkbox" id="f01-need-dnc"><label for="f01-need-dnc"><span>Send your do not contact list</span></label></li>
+      <li><input type="checkbox" id="f01-need-dnc"><label for="f01-need-dnc"><span>Your do not contact list, marked in the contact sheet's Skip column</span></label></li>
       <li><input type="checkbox" id="f01-need-countries"><label for="f01-need-countries">The countries you sell to, and the legal read on the format for each</label></li>
       <li><input type="checkbox" id="f01-need-cardok"><label for="f01-need-cardok">Each client's OK before their card appears on a pass or anywhere a friend can see it</label></li>
       <li><input type="checkbox" id="f01-need-legalpass"><label for="f01-need-legalpass">The legal read on whether a pass counts as your own marketing, and on uploading the past client list to Meta</label></li>
@@ -1241,15 +1056,14 @@ body::before {
     </ul>
   </section>
 
-  <section class="k-sec" aria-label="How we read it">
-    <h2 class="k-h3">How we read it</h2>
+  <section class="k-sec" aria-label="How to read it">
+    <h2 class="k-h3">How to read it</h2>
     <div class="k-table-wrap">
       <table class="k-table">
         <thead><tr><th scope="col">Count</th><th scope="col">From where</th><th scope="col">When</th></tr></thead>
         <tbody>
-          <tr><th scope="row">Yes rate, segment A (yes replies over notes sent, on a send number you confirm, written N)</th><td>Your threads, logged in the contact sheet</td><td>Mon 30 Nov (target kill), Fri 18 Dec (keep)</td></tr>
-          <tr><th scope="row">Replies asking to talk, per check sent</th><td>Contact sheet</td><td>Fri 11 Dec (fallback kill)</td></tr>
-          <tr><th scope="row">Replies from segment B</th><td>Contact sheet</td><td>Fri 4 Dec on the target path, Fri 18 Dec on the fallback</td></tr>
+          <tr><th scope="row">Replies asking to talk, per check sent</th><td>Contact sheet</td><td>Fri 11 Dec (kill)</td></tr>
+          <tr><th scope="row">Replies from segment B</th><td>Contact sheet</td><td>Fri 18 Dec</td></tr>
           <tr><th scope="row">Pass opens</th><td>Page views carrying <code class="f01-code">utm_source=f01_pass</code> in GA4 on the kit 02 page</td><td>Fri 11 Dec</td></tr>
           <tr><th scope="row">Qualified calls booked, by segment</th><td>GHL bookings by source tag (C tags arrive from the pass link; A, B and intro tags are added by hand and matched against the contact sheet every Friday), counted as qualified when it is a booked 15 minute call with a founder or head of ecommerce at a Shopify store doing $150k a month or more</td><td>Fri 18 Dec, then Fri 29 Jan</td></tr>
           <tr><th scope="row">Paid leg leads</th><td>Bookings and pass leads from people on the customer list while it runs. The video and the email reach the same people, so this read is directional.</td><td>Wed 9 Dec</td></tr>
@@ -1264,9 +1078,9 @@ body::before {
 <div class="k-assets">
   <nav class="k-jump" aria-label="Assets">
     <p class="k-jump-title">On this tab</p>
-    <button type="button" data-jump="f01-as-notes">Notes before the check</button>
+    <button type="button" data-jump="f01-as-notes">Notes to job changers</button>
     <button type="button" data-jump="f01-as-email">The check email</button>
-    <button type="button" data-jump="f01-as-pdf">The check PDF</button>
+    <button type="button" data-jump="f01-as-pdf">The AI check and PDF</button>
     <button type="button" data-jump="f01-as-after">Passes, follow up and intros</button>
     <button type="button" data-jump="f01-as-paid">Optional paid leg</button>
     <button type="button" data-jump="f01-as-sheet">Skips, contact sheet and tags</button>
@@ -1278,39 +1092,13 @@ body::before {
       <p class="k-lede">Every message and template, each ready to copy. Text in {curly braces} is filled in per message.</p>
     </div>
 
-    <!-- ===================== notes before the check ===================== -->
-    <section class="k-sec" id="f01-as-notes" aria-label="Notes before the check">
-      <h2 class="k-h3">Notes before the check</h2>
+    <!-- ===================== notes to job changers ===================== -->
+    <section class="k-sec" id="f01-as-notes" aria-label="Notes to job changers">
+      <h2 class="k-h3">Notes to job changers</h2>
 
       <div class="f01-block">
-        <h3 class="f01-h4"><span class="f01-no">3.1</span> First note to past client founders (target path)</h3>
-        <p class="f01-howto"><b>How to use</b> Send Tue 17 to Fri 20 Nov. It asks for one reply.</p>
-        <figure class="k-cb" id="f01-cb-note-email">
-          <figcaption><span class="k-cb-label">Email</span><span class="k-cb-meta">Subject and body</span></figcaption>
-          <div class="k-cb-body">Subject: Quick one about {brand}'s winning tests
-
-Hi {first name},
-
-I know Black Friday is about to eat your week, so one quick question and no call.
-
-We kept the log of the {n} A/B tests that won on {brand}. In the first week of December I'd like to check which of those winners are still live on your store and send you what I find.
-
-Want it? A reply with "yes" is all I need.
-
-Daniel
-
-PS. If you'd rather not hear from me about this, say so and I won't write again.</div>
-        </figure>
-        <figure class="k-cb" id="f01-cb-note-dm">
-          <figcaption><span class="k-cb-label">LinkedIn or WhatsApp</span></figcaption>
-          <div class="k-cb-body">Hi {first name}, I know Black Friday is about to eat your week, so one quick question and no call. We kept the log of the {n} A/B tests that won on {brand}. In the first week of December I'd like to check which of those winners are still live on your store and send you what I find. Want it? Just reply "yes". (And if you'd rather I didn't, say so and I won't write again.)</div>
-        </figure>
-        <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to a Danish contact</b> until Daniel names his countries and a legal read confirms the format.</p></div>
-      </div>
-
-      <div class="f01-block">
-        <h3 class="f01-h4"><span class="f01-no">3.2</span> Note to job changers (asks for nothing)</h3>
-        <p class="f01-howto"><b>How to use</b> Segment B, first note. No meeting ask, no link.</p>
+        <h3 class="f01-h4"><span class="f01-no">3.1</span> Note to job changers (asks for nothing)</h3>
+        <p class="f01-howto"><b>How to use</b> Segment B, first note, sent Wed 2 to Fri 4 Dec with the checks. No meeting ask, no link.</p>
         <figure class="k-cb" id="f01-cb-jc1">
           <figcaption><span class="k-cb-label">LinkedIn, WhatsApp or email</span></figcaption>
           <div class="k-cb-body">Hi {first name}, I saw you moved to {new brand}, congratulations. I still think of the {test} we ran together at {old brand} as one of our best. Hope the first weeks are going well.
@@ -1325,8 +1113,8 @@ Daniel</div>
       </div>
 
       <div class="f01-block">
-        <h3 class="f01-h4"><span class="f01-no">3.3</span> Second note to job changers (gated, sent only where the legal read allows)</h3>
-        <p class="f01-howto"><b>How to use</b> Two to three weeks after 3.2 on the target path, from Tue 5 Jan on the fallback path (two to three weeks lands in the break); only to people who replied to 3.2 or did not ask to stop, only where the legal read allows, only if GATE 3 kept segment B.</p>
+        <h3 class="f01-h4"><span class="f01-no">3.2</span> Second note to job changers (gated, sent only where the legal read allows)</h3>
+        <p class="f01-howto"><b>How to use</b> From Tue 5 Jan, about five weeks after 3.1 (two to three weeks lands in the break); only to people who replied to 3.1 or did not ask to stop, only where the legal read allows, only if GATE 5 kept segment B.</p>
         <figure class="k-cb" id="f01-cb-jc2">
           <figcaption><span class="k-cb-label">Second note</span></figcaption>
           <div class="k-cb-body">Hi {first name}, a thought now that you've settled in at {new brand}. If A/B testing is on your list there, we could plan a first test for January. If we take you on, the deal is simple. Your first split test is on us. You pay after the first win. If you'd like to talk it through, here's a 15 minute slot: https://new.purplefire.io/after-freeze/v1
@@ -1344,13 +1132,18 @@ PS. If you'd rather not hear from me about this, say so and I won't write again.
       <h2 class="k-h3">The check email</h2>
 
       <div class="f01-block">
-        <h3 class="f01-h4"><span class="f01-no">3.4</span> The check email (target path, for clients who said yes)</h3>
-                <p class="f01-howto"><b>How to use</b> Send Wed 2 to Fri 4 Dec with the PDF attached. {x} counts only winners marked Still live; {n} is every winner on file for the brand.</p>
+        <h3 class="f01-h4"><span class="f01-no">3.3</span> The check email (the first message a past client gets)</h3>
+                <p class="f01-howto"><b>How to use</b> Send Wed 2 to Fri 4 Dec from your own account with the PDF attached. {x} counts only winners marked Still live; {n} is every winner on file for the brand; {d} counts the winners marked Not checked. If every winner is Not checked, send no check.</p>
+                <p class="f01-howto"><b>How to use</b> Pick by result. When {d} is 0, use the lines with {n}. When {d} is above 0, use the lines with {n minus d}, so no winner that was never looked at is counted as gone.</p>
         <p class="k-p"><strong>Subject, pick one.</strong></p>
         <div class="f01-pick">
           <figure class="k-cb" id="f01-cb-subj-some">
-            <figcaption><span class="k-cb-label">If {x} is 1 or more</span></figcaption>
+            <figcaption><span class="k-cb-label">If {x} is 1 or more and {d} is 0</span></figcaption>
             <div class="k-cb-body">{brand}: {x} of your {n} winners are still live</div>
+          </figure>
+          <figure class="k-cb" id="f01-cb-subj-some-d">
+            <figcaption><span class="k-cb-label">If {x} is 1 or more and {d} is above 0</span></figcaption>
+            <div class="k-cb-body">{brand}: {x} of the {n minus d} winners we could check are still live</div>
           </figure>
           <figure class="k-cb" id="f01-cb-subj-none">
             <figcaption><span class="k-cb-label">If {x} is 0</span></figcaption>
@@ -1360,26 +1153,34 @@ PS. If you'd rather not hear from me about this, say so and I won't write again.
         <p class="k-p"><strong>Opening line, pick one.</strong></p>
         <div class="f01-pick">
           <figure class="k-cb" id="f01-cb-open-some">
-            <figcaption><span class="k-cb-label">If {x} is 1 or more</span></figcaption>
+            <figcaption><span class="k-cb-label">If {x} is 1 or more and {d} is 0</span></figcaption>
             <div class="k-cb-body">{x} of the {n} winners from our tests on {brand} are still live on your store.</div>
           </figure>
+          <figure class="k-cb" id="f01-cb-open-some-d">
+            <figcaption><span class="k-cb-label">If {x} is 1 or more and {d} is above 0</span></figcaption>
+            <div class="k-cb-body">{x} of the {n minus d} winners we could check from our tests on {brand} are still live on your store.</div>
+          </figure>
           <figure class="k-cb" id="f01-cb-open-none">
-            <figcaption><span class="k-cb-label">If {x} is 0</span></figcaption>
+            <figcaption><span class="k-cb-label">If {x} is 0 and {d} is 0</span></figcaption>
             <div class="k-cb-body">Your store has moved on since our tests: none of the {n} winners is on the page in the same form today, which is normal after redesigns and new seasons.</div>
           </figure>
+          <figure class="k-cb" id="f01-cb-open-none-d">
+            <figcaption><span class="k-cb-label">If {x} is 0 and {d} is above 0</span></figcaption>
+            <div class="k-cb-body">Your store has moved on since our tests: none of the {n minus d} winners we could see from outside is on the page in the same form today, which is normal after redesigns and new seasons.</div>
+          </figure>
         </div>
-                <p class="f01-howto"><b>How to use</b> After GATE 5 drops passes (Fri 11 Dec), send it without the sentence about passes.</p>
+                <p class="f01-howto"><b>How to use</b> The booking page shows no times to a store under $150k a month, so the call ask also offers a reply to the email. If a check goes out after GATE 4 drops passes (Fri 11 Dec), leave out ask 2 and its pass links.</p>
         <figure class="k-cb" id="f01-cb-check-body">
           <figcaption><span class="k-cb-label">Email body</span></figcaption>
           <div class="k-cb-body">Hi {first name},
 
-As promised, here's your check. {opening line}
+{opening line} I went back through our log of the A/B tests that won on {brand} and checked them against your store this week. No call needed and nothing to do.
 
 The PDF has one page per winner: what we tested, the result as recorded in our log, and the same page on your store today.
 
 If any of it is useful, three things I can do:
 
-1. Talk about Q1. 15 minutes: https://new.purplefire.io/after-freeze/v1
+1. Talk about Q1. 15 minutes: https://new.purplefire.io/after-freeze/v1, or just reply to this email.
 2. Send a pass. You have two for founder friends. Each carries my offer, if we take them on: "Your first split test is on us. You pay after the first win."
 Pass 1: {pass link 1}
 Pass 2: {pass link 2}
@@ -1387,36 +1188,48 @@ Pass 2: {pass link 2}
 
 Nothing about {brand} appears on a pass unless you tell me it can.
 
-Daniel</div>
-        </figure>
-        <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to a Danish contact</b> until Daniel names his countries and a legal read confirms the format.</p></div>
-      </div>
+Daniel
 
-      <div class="f01-block">
-        <h3 class="f01-h4"><span class="f01-no">3.5</span> The check email, fallback opening (ask and check together)</h3>
-                <p class="f01-howto"><b>How to use</b> On the fallback path this replaces the 3.4 greeting and first paragraph. Everything from "The PDF has one page per winner" onwards stays as in 3.4.</p>
-        <p class="k-p">Subject: as in 3.4, picked by result.</p>
-        <figure class="k-cb" id="f01-cb-fallback-open">
-          <figcaption><span class="k-cb-label">Fallback opening</span></figcaption>
-          <div class="k-cb-body">Hi {first name},
-
-We kept the log of the {n} A/B tests that won on {brand}, and this week I checked which of those winners are still on your store. {opening line} No call needed and nothing to do.</div>
-        </figure>
-        <figure class="k-cb" id="f01-cb-fallback-ps">
-          <figcaption><span class="k-cb-label">PS for the fallback email</span><span class="k-cb-meta">Below the sign off</span></figcaption>
-          <div class="k-cb-body">PS. If you'd rather not hear from me about this, say so and I won't write again.</div>
+PS. If you'd rather not hear from me about this, say so and I won't write again.</div>
         </figure>
         <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to a Danish contact</b> until Daniel names his countries and a legal read confirms the format.</p></div>
       </div>
     </section>
 
     <!-- ===================== the check PDF ===================== -->
-    <section class="k-sec" id="f01-as-pdf" aria-label="The check PDF">
-      <h2 class="k-h3">The check PDF</h2>
+    <section class="k-sec" id="f01-as-pdf" aria-label="The AI check and PDF">
+      <h2 class="k-h3">The AI check and PDF</h2>
 
       <div class="f01-block">
-        <h3 class="f01-h4"><span class="f01-no">3.6</span> The check PDF: structure and wording</h3>
-        <p class="f01-howto"><b>How to use</b> A short PDF: one cover page, one card page per winner, one closing page. Built by Bhaskar's team, read and signed by Daniel. Nothing hosted.</p>
+        <h3 class="f01-h4"><span class="f01-no">3.4</span> The AI check prompt</h3>
+        <p class="f01-howto"><b>How to use</b> Paste into an AI agent that can browse the web, once per past client, with that client's rows from the winners list and the store address. Run it Mon 16 to Fri 20 Nov for the first pass and again on Wed 2 Dec for the fresh capture. Its rows become the cards in 3.5; read every row before you sign.</p>
+        <figure class="k-cb" id="f01-cb-ai-check">
+          <figcaption><span class="k-cb-label">Prompt</span><span class="k-cb-meta">One past client per run</span></figcaption>
+          <div class="k-cb-body">Check whether past A/B test winners are still on a live online store. Work only from outside, as any visitor would.
+
+Store: {store address}
+Client: {client}
+Winners, one per line (page type | test title | the change | result as recorded):
+{the client's rows from the winners list}
+
+Rules:
+1. Open public pages only and only read them. Never add to cart, buy, submit a form, sign up, log in or open checkout.
+2. For each winner, find the page it ran on from its page type and test title.
+3. Look for the change at desktop width (1440 px) and at phone width (390 px).
+4. Mark each winner with one of four words.
+Still live: the change is on the page today.
+Changed: the part of the page the test changed is there but looks different today.
+Not found: the change is on neither width, or the page no longer opens.
+Not checked: you cannot see the page or the change from outside, for example a cart or checkout step, or a change shown to one device only. Never guess. When unsure between two marks, mark Not checked and say why.
+5. Return one row per winner: test title | mark | page address | a screenshot at each width | one plain sentence on what you saw | confidence (high, medium or low) and why.
+6. Describe the page, never a person. Never write removed, dropped, broke, lost, should, your team, or anyone's name.
+7. If the store no longer opens or no longer sells on these pages, say so in one line at the top and stop.</div>
+        </figure>
+      </div>
+
+      <div class="f01-block">
+        <h3 class="f01-h4"><span class="f01-no">3.5</span> The check PDF: structure and wording</h3>
+        <p class="f01-howto"><b>How to use</b> A short PDF: one cover page, one card page per winner, one closing page. Made by AI from the winners list and the store's live pages (3.4), read and signed by Daniel. Nothing hosted.</p>
 
         <div class="f01-doc" aria-label="Sample layout of the check PDF">
           <p class="f01-doc-mark"><b>Sample layout</b>What a past client receives. Not a real check: every value in {curly braces} is filled in per check.</p>
@@ -1533,7 +1346,7 @@ We kept the log of the {n} A/B tests that won on {brand}, and this week I checke
             </div>
             <h4 class="f01-close-title">If any of this is useful</h4>
             <ol class="f01-asks">
-              <li><b>Talk about Q1.</b> 15 minutes: https://new.purplefire.io/after-freeze/v1</li>
+              <li><b>Talk about Q1.</b> 15 minutes: https://new.purplefire.io/after-freeze/v1, or just reply to my email.</li>
               <li><b>Send a pass.</b> You have two for founder friends. Each carries my offer, if we take them on: "Your first split test is on us. You pay after the first win."<span class="f01-passes"><span>Pass 1: {pass link 1}</span><span>Pass 2: {pass link 2}</span></span></li>
               <li><b>Introduce me to someone.</b> Tell me who and I'll draft the intro for you to check first.</li>
             </ol>
@@ -1546,8 +1359,12 @@ We kept the log of the {n} A/B tests that won on {brand}, and this week I checke
 
         <p class="k-p"><strong>Cover page</strong></p>
         <figure class="k-cb" id="f01-cb-cover-title">
-          <figcaption><span class="k-cb-label">Title</span><span class="k-cb-meta">If {x} is 1 or more</span></figcaption>
+          <figcaption><span class="k-cb-label">Title</span><span class="k-cb-meta">If {x} is 1 or more and {d} is 0</span></figcaption>
           <div class="k-cb-body">{brand}: {x} of your {n} winners are still live on your store.</div>
+        </figure>
+        <figure class="k-cb" id="f01-cb-cover-title-d">
+          <figcaption><span class="k-cb-label">Title</span><span class="k-cb-meta">If {x} is 1 or more and {d} is above 0</span></figcaption>
+          <div class="k-cb-body">{brand}: {x} of the {n minus d} winners we could check are still live on your store.</div>
         </figure>
         <figure class="k-cb" id="f01-cb-cover-title-none">
           <figcaption><span class="k-cb-label">Title</span><span class="k-cb-meta">If {x} is 0</span></figcaption>
@@ -1563,6 +1380,7 @@ We kept the log of the {n} A/B tests that won on {brand}, and this week I checke
 Changed {b}
 Not found {c}</div>
         </figure>
+        <p class="f01-howto"><b>How to use</b> If any winner is marked Not checked, add a fourth line, "Not checked {d}", so the four counts add up to {n}.</p>
         <figure class="k-cb" id="f01-cb-cover-note">
           <figcaption><span class="k-cb-label">Note</span></figcaption>
           <div class="k-cb-body">This check only reads your pages. Nothing on your store was bought, submitted or changed. Stores move on after every redesign, app and season, so changes here are normal.</div>
@@ -1576,7 +1394,7 @@ Left column, "What we tested": {the change, in one line from the card}
 Left column, "Result as recorded": {metric and lift exactly as on the card, e.g. "RPV +44.06%; ATC +7.03%"}
 Right column, "Your page today": capture at desktop and phone width, {page URL}, "Captured {weekday date}"</div>
         </figure>
-        <p class="k-p">Finding chip and its line, one of three:</p>
+        <p class="k-p">Finding chip and its line, one of four:</p>
         <figure class="k-cb" id="f01-cb-find-live">
           <figcaption><span class="k-cb-label">Still live</span></figcaption>
           <div class="k-cb-body">The winning variant is on this page today.</div>
@@ -1592,6 +1410,10 @@ Right column, "Your page today": capture at desktop and phone width, {page URL},
         <figure class="k-cb" id="f01-cb-find-page-gone">
           <figcaption><span class="k-cb-label">Not found</span><span class="k-cb-meta">If the page itself is gone</span></figcaption>
           <div class="k-cb-body">The page from the test no longer opens at {URL}.</div>
+        </figure>
+        <figure class="k-cb" id="f01-cb-find-unchecked">
+          <figcaption><span class="k-cb-label">Not checked</span><span class="k-cb-meta">If the page cannot be judged from outside</span></figcaption>
+          <div class="k-cb-body">This change sits where a check from outside the store cannot see it ({where, for example the cart}), so it is not marked either way.</div>
         </figure>
         <p class="k-p">Wording rule for the "Changed" and "Not found" lines: describe the page, never a person. Never write removed, dropped, broke, lost, should, your team, or anyone's name. Example of a good line: "The shipping line now sits below the button."</p>
         <p class="f01-howto"><b>How to use</b> A card that is not shown on Daniel's live pages appears only in that client's own check.</p>
@@ -1614,7 +1436,7 @@ Right column, "Your page today": capture at desktop and phone width, {page URL},
       <h2 class="k-h3">Passes, follow up and intros</h2>
 
       <div class="f01-block">
-        <h3 class="f01-h4"><span class="f01-no">3.7</span> Pass message (the client forwards it to a founder friend)</h3>
+        <h3 class="f01-h4"><span class="f01-no">3.6</span> Pass message (the client forwards it to a founder friend)</h3>
         <p class="f01-howto"><b>How to use</b> Written in the giver's voice so they can paste it as is. No giver results by default.</p>
         <figure class="k-cb" id="f01-cb-pass">
           <figcaption><span class="k-cb-label">Pass message</span></figcaption>
@@ -1634,10 +1456,11 @@ Right column, "Your page today": capture at desktop and phone width, {page URL},
           <li>{giver code}: the brand prefix from its test IDs in the vault, lowercase letters only (Airback, test IDs AIR, becomes <code class="f01-code">air</code>). The two passes end in 1 and 2: <code class="f01-code">?pass=air1</code>, <code class="f01-code">?pass=air2</code>.</li>
           <li>Kit 02's page must read the <code class="f01-code">pass</code> parameter into its hidden field and pass it to GHL as the tag <code class="f01-code">f01_c_pass_{giver code}</code>.</li>
         </ul>
+        <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to a Danish friend</b> until Daniel names his countries and a legal read confirms whether a pass counts as his own marketing.</p></div>
       </div>
 
       <div class="f01-block">
-        <h3 class="f01-h4"><span class="f01-no">3.8</span> Reply when a friend books</h3>
+        <h3 class="f01-h4"><span class="f01-no">3.7</span> Reply when a friend books</h3>
         <p class="f01-howto"><b>How to use</b> Send the day the booking arrives. A pass holder under $150k a month cannot book on kit 02's page, because its under floor screen shows no times.</p>
         <figure class="k-cb" id="f01-cb-booked">
           <figcaption><span class="k-cb-label">Email</span><span class="k-cb-meta">Subject and body</span></figcaption>
@@ -1658,29 +1481,30 @@ Daniel</div>
       </div>
 
       <div class="f01-block">
-        <h3 class="f01-h4"><span class="f01-no">3.9</span> Follow up two days after the check</h3>
+        <h3 class="f01-h4"><span class="f01-no">3.8</span> Follow up two days after the check</h3>
         <p class="k-p"><strong>First line, pick one.</strong></p>
         <div class="f01-pick">
           <figure class="k-cb" id="f01-cb-fu-moved">
-            <figcaption><span class="k-cb-label">If some winners are changed or not found</span></figcaption>
+            <figcaption><span class="k-cb-label">If {b + c} is 1 or more</span></figcaption>
             <div class="k-cb-body">{b + c} of your winners have moved on since our tests.</div>
           </figure>
           <figure class="k-cb" id="f01-cb-fu-all">
-            <figcaption><span class="k-cb-label">If all are still live</span></figcaption>
-            <div class="k-cb-body">Good to see all {n} winners still live.</div>
+            <figcaption><span class="k-cb-label">If {b + c} is 0</span></figcaption>
+            <div class="k-cb-body">Good to see every winner we could check still live.</div>
           </figure>
         </div>
-                <p class="f01-howto"><b>How to use</b> One message only, on the channel the client replied on. After GATE 5 drops passes (Fri 11 Dec), send it without the sentence about passes.</p>
+                <p class="f01-howto"><b>How to use</b> One message only, on the channel the check went on, to everyone who has not asked you to stop. If it goes out after GATE 4 drops passes (Fri 11 Dec), leave out the last sentence and its pass links.</p>
         <figure class="k-cb" id="f01-cb-fu">
           <figcaption><span class="k-cb-label">Follow up</span></figcaption>
-          <div class="k-cb-body">Hi {first name}, did the check come through? {first line} If you'd like to talk about what to test in Q1, 15 minutes is enough: https://new.purplefire.io/after-freeze/v1. And your two passes are still open if a founder friend comes to mind: {pass link 1} and {pass link 2}.
+          <div class="k-cb-body">Hi {first name}, did the check come through? {first line} If you'd like to talk about what to test in Q1, 15 minutes is enough: https://new.purplefire.io/after-freeze/v1, or just reply here. And your two passes are still open if a founder friend comes to mind: {pass link 1} and {pass link 2}.
 
 Daniel</div>
         </figure>
+        <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to a Danish contact</b> until Daniel names his countries and a legal read confirms the format.</p></div>
       </div>
 
       <div class="f01-block">
-        <h3 class="f01-h4"><span class="f01-no">3.10</span> Intro Daniel writes when a client asks for one</h3>
+        <h3 class="f01-h4"><span class="f01-no">3.9</span> Intro Daniel writes when a client asks for one</h3>
         <figure class="k-cb" id="f01-cb-intro-reply">
           <figcaption><span class="k-cb-label">Reply to the client first</span></figcaption>
           <div class="k-cb-body">Thanks, {first name}. Here's the intro I'd send. Could you check that {friend first name} is happy to hear from me? Once you say yes, I'll send it with you in copy.</div>
@@ -1699,7 +1523,7 @@ Daniel</div>
       </div>
 
       <div class="f01-block">
-        <h3 class="f01-h4"><span class="f01-no">3.11</span> Reference ask (only for clients who reply warmly)</h3>
+        <h3 class="f01-h4"><span class="f01-no">3.10</span> Reference ask (only for clients who reply warmly)</h3>
         <figure class="k-cb" id="f01-cb-reference">
           <figcaption><span class="k-cb-label">Reference ask</span></figcaption>
           <div class="k-cb-body">One more, and feel free to say no. In January a few founders will be deciding whether to start testing with us. Would you take a 15 minute call with one of them about what working together was like?</div>
@@ -1712,11 +1536,11 @@ Daniel</div>
       <h2 class="k-h3">Optional paid leg</h2>
 
       <div class="f01-block">
-        <h3 class="f01-h4"><span class="f01-no">3.12</span> Optional paid leg: 30 second video, customer list only</h3>
+        <h3 class="f01-h4"><span class="f01-no">3.11</span> Optional paid leg: 30 second video, customer list only</h3>
         <p class="f01-howto"><b>How to use</b> Runs only with a legal basis for the upload, to past client contacts only, skips removed, and excluded from kit 02's audiences. No link in the ad: the email carries the asks.</p>
         <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing on this list reaches a Danish contact</b> until Daniel names his countries and a legal read confirms the format.</p></div>
         <p class="k-needs"><b>Ad objective</b> Awareness, optimised for reach</p>
-        <p class="k-p"><strong>Audience:</strong> upload only the contacts the check goes to. On the target path, contacts who did not say yes get no check, so "Look for my email this week" would not be true for them. The script stays as written.</p>
+        <p class="k-p"><strong>Audience:</strong> upload only the contacts the check goes to, so "Look for my email this week" is true for everyone who sees it. The script stays as written.</p>
         <figure class="k-cb" id="f01-cb-video">
           <figcaption><span class="k-cb-label">Script</span><span class="k-cb-meta">Daniel to camera, about 30 seconds</span></figcaption>
           <div class="k-cb-body">Hi, it's Daniel from PurpleFire. To the brands we ran A/B tests with: this week I'm checking which of your winners are still live on your store, page by page, against the log we kept. Look for my email this week. It's short, and it's about your own store.</div>
@@ -1733,24 +1557,24 @@ Daniel</div>
       <h2 class="k-h3">Skips, contact sheet and tags</h2>
 
       <div class="f01-block">
-        <h3 class="f01-h4"><span class="f01-no">3.13</span> Who is skipped</h3>
+        <h3 class="f01-h4"><span class="f01-no">3.12</span> Who is skipped</h3>
         <p class="k-p">Skip anyone in these groups. Mark the reason in the contact sheet's Skip column.</p>
         <figure class="k-cb" id="f01-cb-skips">
           <figcaption><span class="k-cb-label">Skip list</span></figcaption>
-          <div class="k-cb-body f01-cb-rich"><ul class="k-list"><li>Anyone on Daniel's do not contact list, and anyone who has ever asked him to stop writing.</li><li>Current clients, including the two Danish ones (a cleaning products brand and a cookware brand), and anyone now working at a current client.</li><li>Any brand Daniel has asked us to keep out of all outreach (Bhaskar's team holds the name; mark the row "Excluded by Daniel").</li><li>Any engagement that ended badly, or anyone Daniel would not write to today.</li><li>Any client whose work was done under another agency or another agency's name. Their cards are not his to cite and a non solicit clause may apply.</li><li>Any contact in a country the legal read has not cleared, including every Danish contact until it has.</li><li>Any store that no longer trades on the pages from the tests (no check can be built). The person may still get the job changer note if they moved.</li><li>Founder friends: never contacted first. Only a pass the client forwards, or an intro both sides agreed to.</li><li>Anyone who answered no, or did not reply to the one follow up: no further messages.</li></ul></div>
+          <div class="k-cb-body f01-cb-rich"><ul class="k-list"><li>Anyone on Daniel's do not contact list, and anyone who has ever asked him to stop writing.</li><li>Current clients, including the two Danish ones (a cleaning products brand and a cookware brand), and anyone now working at a current client.</li><li>Any brand Daniel has kept out of all outreach (mark the row "Excluded by Daniel").</li><li>Any engagement that ended badly, or anyone Daniel would not write to today.</li><li>Any client whose work was done under another agency or another agency's name. Their cards are not his to cite and a non solicit clause may apply.</li><li>Any contact in a country the legal read has not cleared, including every Danish contact until it has.</li><li>Any store that no longer trades on the pages from the tests (no check can be built). The person may still get the job changer note if they moved.</li><li>Founder friends: never contacted first. Only a pass the client forwards, or an intro both sides agreed to.</li><li>Anyone who answered no, or did not reply to the one follow up: no further messages.</li></ul></div>
         </figure>
       </div>
 
       <div class="f01-block">
-        <h3 class="f01-h4"><span class="f01-no">3.14</span> Contact sheet columns</h3>
+        <h3 class="f01-h4"><span class="f01-no">3.13</span> Contact sheet columns</h3>
         <figure class="k-cb" id="f01-cb-columns">
           <figcaption><span class="k-cb-label">Contact sheet</span></figcaption>
-          <div class="k-cb-body f01-cb-rich"><div class="k-table-wrap"><table class="k-table"><thead><tr><th scope="col">Column</th><th scope="col">What goes in it</th></tr></thead><tbody><tr><th scope="row">Contact ID</th><td>One row per person</td></tr><tr><th scope="row">Name</th><td></td></tr><tr><th scope="row">Role then</th><td>Their role at the past client</td></tr><tr><th scope="row">Past client</th><td>Brand from the vault</td></tr><tr><th scope="row">Brand name they knew you under</th><td>PurpleFire or another name</td></tr><tr><th scope="row">Work under another agency</th><td>Yes or no (yes means skip)</td></tr><tr><th scope="row">How it ended</th><td>Daniel's words</td></tr><tr><th scope="row">Segment</th><td>A or B</td></tr><tr><th scope="row">New brand</th><td>Segment B only</td></tr><tr><th scope="row">Channel</th><td>Email, LinkedIn or WhatsApp</td></tr><tr><th scope="row">Address or handle</th><td></td></tr><tr><th scope="row">Country</th><td></td></tr><tr><th scope="row">Legal read cleared</th><td>Yes or no for that country</td></tr><tr><th scope="row">Winners on file ({n})</th><td>Count of vault cards for the brand</td></tr><tr><th scope="row">Store still trading</th><td>Result of the store check</td></tr><tr><th scope="row">Skip</th><td>Reason, or blank</td></tr><tr><th scope="row">Card OK for passes</th><td>Yes or no, from the client</td></tr><tr><th scope="row">Note sent</th><td>Weekday date</td></tr><tr><th scope="row">Reply</th><td>Yes, no, stop, or none</td></tr><tr><th scope="row">Check sent</th><td>Weekday date</td></tr><tr><th scope="row">Still live ({x} of {n})</th><td>From the check</td></tr><tr><th scope="row">Follow up sent</th><td>Weekday date</td></tr><tr><th scope="row">Asked for</th><td>Call, pass, intro, or none</td></tr><tr><th scope="row">Pass codes</th><td>e.g. air1, air2</td></tr><tr><th scope="row">Intro sent</th><td>Weekday date and friend's name</td></tr><tr><th scope="row">Call booked</th><td>Weekday date</td></tr><tr><th scope="row">Qualified</th><td>Yes or no: yes when it is a booked 15 minute call with a founder or head of ecommerce at a Shopify store doing $150k a month or more</td></tr><tr><th scope="row">Source tag</th><td>From 3.15</td></tr><tr><th scope="row">Notes</th><td></td></tr></tbody></table></div></div>
+          <div class="k-cb-body f01-cb-rich"><div class="k-table-wrap"><table class="k-table"><thead><tr><th scope="col">Column</th><th scope="col">What goes in it</th></tr></thead><tbody><tr><th scope="row">Contact ID</th><td>One row per person</td></tr><tr><th scope="row">Name</th><td></td></tr><tr><th scope="row">Role then</th><td>Their role at the past client</td></tr><tr><th scope="row">Past client</th><td>Brand from the vault</td></tr><tr><th scope="row">Brand name they knew you under</th><td>PurpleFire or another name</td></tr><tr><th scope="row">Work under another agency</th><td>Yes or no (yes means skip)</td></tr><tr><th scope="row">How it ended</th><td>Daniel's words</td></tr><tr><th scope="row">Segment</th><td>A or B</td></tr><tr><th scope="row">New brand</th><td>Segment B only</td></tr><tr><th scope="row">Channel</th><td>Email, LinkedIn or WhatsApp</td></tr><tr><th scope="row">Address or handle</th><td></td></tr><tr><th scope="row">Country</th><td></td></tr><tr><th scope="row">Legal read cleared</th><td>Yes or no for that country</td></tr><tr><th scope="row">Winners on file ({n})</th><td>Count of vault cards for the brand</td></tr><tr><th scope="row">Store still trading</th><td>Result of the store check</td></tr><tr><th scope="row">Skip</th><td>Reason, or blank</td></tr><tr><th scope="row">Card OK for passes</th><td>Yes or no, from the client</td></tr><tr><th scope="row">Job changer note sent</th><td>Segment B only: weekday date</td></tr><tr><th scope="row">Reply</th><td>Weekday date of the first reply, stop if they asked not to hear again, or none</td></tr><tr><th scope="row">Check sent</th><td>Weekday date</td></tr><tr><th scope="row">Still live ({x} of {n})</th><td>From the check</td></tr><tr><th scope="row">Follow up sent</th><td>Weekday date</td></tr><tr><th scope="row">Asked for</th><td>Call, pass, intro, or none</td></tr><tr><th scope="row">Pass codes</th><td>e.g. air1, air2</td></tr><tr><th scope="row">Intro sent</th><td>Weekday date and friend's name</td></tr><tr><th scope="row">Call booked</th><td>Weekday date</td></tr><tr><th scope="row">Qualified</th><td>Yes or no: yes when it is a booked 15 minute call with a founder or head of ecommerce at a Shopify store doing $150k a month or more</td></tr><tr><th scope="row">Source tag</th><td>From 3.14</td></tr><tr><th scope="row">Notes</th><td></td></tr></tbody></table></div></div>
         </figure>
       </div>
 
       <div class="f01-block">
-        <h3 class="f01-h4"><span class="f01-no">3.15</span> Source tags (GHL and the contact sheet)</h3>
+        <h3 class="f01-h4"><span class="f01-no">3.14</span> Source tags (GHL and the contact sheet)</h3>
         <p class="f01-howto"><b>How to use</b> Tags use underscores only. The pass parameter on kit 02's page is <code class="f01-code">pass</code>; kit 02 must read that same name.</p>
         <figure class="k-cb" id="f01-cb-tags">
           <figcaption><span class="k-cb-label">Source tags</span></figcaption>
