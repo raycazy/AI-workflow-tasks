@@ -115,7 +115,7 @@
         e.hidden = c[v] === 0;
         $$(".l-unit", e).forEach(function (x) { x.innerHTML = unitHtml(u, p); });
         $$(".l-meta", e).forEach(function (x) { x.textContent = meta(p); });
-        $$(".co-line > div > span", e).forEach(function (x) { x.textContent = "Presale · " + meta(p); });
+        $$(".co-line > div > span", e).forEach(function (x) { x.textContent = "Presale pass · " + meta(p); });
       });
       $$('[data-line-q="' + v + '"]', r).forEach(function (e) { if ("value" in e && e.tagName === "INPUT") e.value = c[v]; else e.textContent = c[v]; });
       $$('[data-line-now="' + v + '"]', r).forEach(function (e) { e.textContent = money(c[v] * u); });
@@ -124,7 +124,7 @@
     HOUSINGS.forEach(function (h) {
       $$('[data-xsell="' + h + '"]', r).forEach(function (e) { e.hidden = !(byHousing(c, h) === 0 && t.count > 0); });
     });
-    $$("[data-c-count]", r).forEach(function (e) { e.textContent = t.count + (t.count === 1 ? " card" : " cards"); });
+    $$("[data-c-count]", r).forEach(function (e) { e.textContent = t.count + (t.count === 1 ? " pass" : " passes"); });
     $$("[data-c-verb]", r).forEach(function (e) { e.textContent = t.count === 1 ? "is" : "are"; });
     $$("[data-c-sub]", r).forEach(function (e) { e.textContent = money(t.open); });
     $$("[data-c-save]", r).forEach(function (e) { e.textContent = "-" + money(t.save); });
@@ -207,7 +207,7 @@
       set("[data-pdp-pct]", p.open === null ? "" : Math.round((1 - p.now / p.open) * 100) + "%");
       $$("[data-pdp-qty]").forEach(function (i) { if (document.activeElement !== i) i.value = st.q; });
       if (!quote) {
-        set("[data-pdp-count]", st.q + (st.q === 1 ? " card" : " cards") + (st.s === "std" ? "" : " · " + p.size));
+        set("[data-pdp-count]", st.q + (st.q === 1 ? " pass" : " passes") + (st.s === "std" ? "" : " · " + p.size));
         set("[data-pdp-total]", money(st.q * u));
       }
       set("[data-pdp-total-open]", strike ? money(st.q * p.open) : "");
@@ -399,11 +399,11 @@
         $("[data-pass-logo]", el).src = h === "glass" ? "./assets/hybrid_grading/hga-glass-828ebfd2.svg" : "./assets/hybrid_grading/hga-poly-69885480.svg";
         $("[data-pass-logo]", el).alt = PRICES[h].name;
         var code = o.num.replace("HGA-", "") + "-" + String(k + 1).padStart(3, "0");
-        $("[data-pass-code]", el).textContent = "ORDER " + code;
+        $("[data-pass-code]", el).textContent = "PASS " + code;
         el.style.setProperty("--i", k);
         wall.insertBefore(el, more || null);
       });
-      if (more) { more.hidden = total <= 6; more.textContent = "+" + (total - 6) + " more on your order"; }
+      if (more) { more.hidden = total <= 6; more.textContent = "+" + (total - 6) + " more in My Passes"; }
     }
 
     // a calendar reminder for the day booking opens
@@ -412,8 +412,8 @@
       var body = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//HGA//Presale//EN", "BEGIN:VEVENT",
         "UID:hga-calendar-opens-2027@hybridgrading.com", "DTSTAMP:20261101T000000Z",
         "DTSTART;VALUE=DATE:20270222", "DTEND;VALUE=DATE:20270223",
-        "SUMMARY:HGA grading starts",
-        "DESCRIPTION:Grading starts at HGA. Your cards are graded on the date you picked.",
+        "SUMMARY:HGA grading calendar opens: reserve your grading day",
+        "DESCRIPTION:Your HGA passes are ready to book. Reserve any open day up to a year ahead from My Passes.",
         "END:VEVENT", "END:VCALENDAR"].join("\r\n");
       try { ics.href = URL.createObjectURL(new Blob([body], { type: "text/calendar" })); } catch (e) {}
     }
