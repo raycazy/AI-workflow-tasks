@@ -26,13 +26,13 @@ You are reading this because you were pointed at the HGA design system page (des
 
 Use only the components on the page: Button (Primary and Ghost; Default, Large, Compact), Pill, Eyebrow, Kicker, Label, Size tag, Text link, Announcement bar, Input, Field error, Tier radio, Benefit row, Review card, Process step, FAQ item, Fee tier, Comparison table, Calendar card and day, Offer plan, Poly row, Slab card, Pillar card, Header, Sticky bar, Housing option (Glass card and Poly row), Stepper with quick picks, Buy total.
 
-A page is an ordered set of the documented section patterns: header and bar, hero, reviews strip, story, three pillars, comparison, calendar, offer, process steps, FAQ, final CTA, sticky bar. Explanatory sections (chip, process, sizes) sit below the offer; new and important sections sit above it. Do not design a new layout when a pattern exists.
+A page is an ordered set of the documented section patterns: header and bar, hero, reviews strip, story, three pillars, comparison, calendar, offer, process steps, presale timeline, FAQ, final CTA, sticky bar. Explanatory sections (chip, process, sizes) sit below the offer; new and important sections sit above it. Do not design a new layout when a pattern exists.
 
 Landing pages for a persona change only the hero copy and one or two story sections. Everything else stays shared.
 
 ## Buy box, materials and 3D
 
-- Buy box: three steps that fold into one line summaries (how many cards; how many in Glass and Poly with two equal slab cards, steppers and a slider; booklets and oversized per slab, inline). Every unit counts as one card. "See every size" opens the size chart in a popup dialog, never a new page. An i button on each slab card opens a benefits popover. One black total bar, one block button naming the housing ("Claim Your Glass", "Claim Your Poly" or "Claim Your Glass and Poly", plus the total), no savings line, no skip to checkout link, then the "Every pass includes" panel and the fees accordion. Source: `buybox-rachel.html`, `buybox-rachel.js`, `shop-builder.css`.
+- Buy box: three steps that fold into one line summaries (how many cards; how many in Glass and Poly with two equal slab cards, steppers and a slider; booklets and oversized per slab, inline). Every unit counts as one card. "See every size" opens the size chart in a popup dialog, never a new page. An i button on each slab card opens a benefits popover. One black total bar, one block button naming the housing ("Claim Your Glass", "Claim Your Poly" or "Claim Your Glass and Poly", plus the total), no savings line, no skip to checkout link, then the "Every card includes" panel and the fees accordion. Source: `buybox-rachel.html`, `buybox-rachel.js`, `shop-builder.css`.
 - Materials: metal frames use the 160deg gradient #1d1d1d to #0a0a0a to #141414 with four 8px screws; the label is red (#ED2B30 to #D51F24) with a 3px #D9EEF0 holographic ring and a white grade box; the glass sheen is a diagonal white band swept on hover. No frosted glass, no backdrop blur panels except the header, no chrome. Red light comes from below or behind the slab.
 - 3D: the hero and shop page use the three.js spin slab (glass.glb and clear_case.glb with per slab card and label textures, static render fallback, drag to spin). Sizes sections use the CSS 3D morphing housing. Do not add other 3D or WebGL. Respect prefers-reduced-motion: every animation off.
 - Motion: .15s hover, .3s reveals, .9s cubic-bezier(.2,.7,.2,1) for 3D and size changes, 1.2s sheen. Text and layout never animate.
@@ -45,13 +45,13 @@ Landing pages for a persona change only the hero copy and one or two story secti
 
 ## Copy rules
 
-- Buttons read "Claim Your Glass" or "Claim Your Poly". The site wide header, announcement bar and sticky bar use "Claim Your Glass" too (Dylan, Nov 10); never "Claim Your Pass". The shop buy box uses "Claim my $200 HGA Glass", the pass page "Add to cart".
+- Buttons read "Claim Your Glass" or "Claim Your Poly". The site wide header, announcement bar and sticky bar use "Claim Your Glass" too (Dylan, Nov 10); never "Claim Your Pass". The shop buy box uses "Claim my $200 HGA Glass".
 - Never "pass" or "slot": write "your account", "your order", "cards". Housing names stand alone: "Claim Your Glass", "1 × HGA Glass". Never "Glass pass" or "Poly pass".
 - Say RFID, "the chip in the label", "tap, open the record". Never NFT or NFC. Do not lead with blockchain. The chip is in every label, Poly and Glass; nothing differs between them but the housing.
 - The process step is "Authenticate it": cards are imaged in high resolution and authenticated, never "scanned" or "inspected". "Inspect" stays only for how a subgrade is judged.
 - Sizes: singles, oversized, booklets, trifolds, five folds. HGA does not grade decks, so no deck anywhere. "Every size, single to booklet."
 - The Grade Report marks every defect on one image of the card. Never promise a photo per defect.
-- Dates: "a grading date you book", cards back within 30 days of that date. Never a business day count, never "guaranteed", never a daily late credit.
+- Dates: "a grading date you book". Turnaround is written "30 business day turnaround" for HGA Glass and 60 for HGA Poly. Never 15 business days, never "guaranteed", never a turnaround clock, due dates or a daily late credit.
 - Prices: Glass $200 (launch $600), "Save $400". Poly $29 (launch $150), "up to 80% off" is true for Poly only. Cards over $10,000 carry a 2% insurance and handling charge.
 - "Presale" is one word in running copy. The announcement bar and hero eyebrow set "Pre sale opens Nov 23" as written.
 - Reviews are first name plus last initial.
@@ -69,3 +69,15 @@ White SVG marks only, on dark surfaces: the HGA logo (hga-logo-ed39811e.svg, one
 - State which patterns and components you used and which tokens you referenced.
 - Flag anything you could not find on the page instead of filling the gap yourself.
 - Run a check for em dashes and en dashes in any text you wrote; the count must be zero.
+
+## Presale timeline
+
+The journey after a purchase is always shown as one five step timeline (`ol.ps-tl` inside the `section.presale` band, label `p.ps-h`, styles in `h.css`): dots joined by a hairline, a time label (`.ps-k`), a bold title (`.ps-t`) and one short line per step; the current step is `li.now` with `aria-current="step"`. One column on phones. It sits on the home page, the product page and every landing page (after the offer). The steps and their words are the same everywhere:
+
+1. Label "Nov 23 to Feb 21". Title "Purchase at presale pricing". Text "Glass $200 or Poly $30 a card. Presale pricing ends in" followed by the countdown.
+2. Label "Right after you purchase". Title "Create your account and book your grading date". Text "The grading calendar opens Nov 23. One date covers your whole order."
+3. Label "Feb 1, 2027". Title "Submissions open". Text "Sign in and tell us about each card: the card, its serial number and who is on it."
+4. Label "Your grading date". Title "Your cards arrive". Text "Grading opens Feb 22, 2027. Send your cards from Feb 1, any time before your date."
+5. Label "30 business days". Title "The Reveal". Text "See your grade and the full Grade Report. 30 business day turnaround for HGA Glass, 60 for HGA Poly."
+
+Never write 15 business days. Never write "pass", "passes" or "slot". Never add a guarantee, a due date or a late credit. Do not show this journey as cards or as a second, differently worded list on the same page. The product page says "No card details needed during presale." once, under the buy box; the timeline does not repeat it.

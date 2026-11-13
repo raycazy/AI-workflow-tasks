@@ -672,6 +672,21 @@
   .mat .demo.lab { padding: 18px; }
   .mat .demo.lab img { width: 100%; height: auto; display: block; border-radius: 4px; }
   @media (max-width: 900px) { .lab-two, .lab-rules { grid-template-columns: 1fr; } }
+/* Presale timeline (section pattern) */
+.ps-h{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);margin:0 0 12px}
+.ps-k{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.ps-k b{color:#fff;white-space:nowrap}
+.ps-t{font-size:clamp(17px,1.35vw,20px);font-weight:800;letter-spacing:-.02em;line-height:1.15;color:#fff}
+.ps-tl{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));position:relative}
+.ps-tl li{position:relative;padding:36px 20px 0 0;display:grid;gap:6px;align-content:start}
+.ps-tl li::before{content:"";position:absolute;left:0;top:0;width:20px;height:20px;border-radius:50%;background:var(--ds-bg);border:2px solid rgba(255,255,255,.38);box-sizing:border-box}
+.ps-tl li:not(:last-child)::after{content:"";position:absolute;left:20px;right:0;top:9px;height:2px;background:rgba(255,255,255,.16)}
+.ps-tl li.now::before{background:var(--ds-accent);border-color:var(--ds-accent);box-shadow:0 0 0 5px rgba(230,36,41,.22)}
+.ps-tl li.now .ps-k{color:#FF8A8C}
+.ps-tl p b{color:#fff;white-space:nowrap}
+.ps-tl p{margin:0;font-size:14px;line-height:1.5;color:rgba(255,255,255,.72)}
+@media (min-width:901px){.ps-tl{row-gap:6px}.ps-tl li{grid-row:span 3;grid-template-rows:subgrid;gap:6px 0}}
+@media (max-width:900px){.ps-tl{grid-template-columns:minmax(0,1fr)}.ps-tl li:not(:last-child)::after{left:9px;right:auto;top:20px;bottom:0;width:2px;height:auto}.ps-tl li{padding:0 0 22px 38px}.ps-tl li:last-child{padding-bottom:0}}
 </style>
 </head>
 <body>
@@ -791,7 +806,7 @@
           <div class="swatch"><div class="chip dk" style="background:#0B0A0A"></div><div class="meta"><div class="name">Page</div><div class="hex">#0B0A0A</div><div class="use">Body background on every page</div></div></div>
           <div class="swatch"><div class="chip dk" style="background:#0E0E0E"></div><div class="meta"><div class="name">Ink</div><div class="hex">#0E0E0E</div><div class="use">Announcement bar, dark pills, text on white buttons</div></div></div>
           <div class="swatch"><div class="chip dk" style="background:#141212"></div><div class="meta"><div class="name">Card</div><div class="hex">#141212</div><div class="use">Cards, fee tiers, tickets, question rows</div></div></div>
-          <div class="swatch"><div class="chip dk" style="background:#151212"></div><div class="meta"><div class="name">Surface</div><div class="hex">#151212</div><div class="use">Tier radios and inputs on the pass page</div></div></div>
+          <div class="swatch"><div class="chip dk" style="background:#151212"></div><div class="meta"><div class="name">Surface</div><div class="hex">#151212</div><div class="use">Tier radios and inputs on the product page</div></div></div>
           <div class="swatch"><div class="chip dk" style="background:#1C1818"></div><div class="meta"><div class="name">Surface 2</div><div class="hex">#1C1818</div><div class="use">Form inputs, pricing cards</div></div></div>
           <div class="swatch"><div class="chip dk" style="background:#000000"></div><div class="meta"><div class="name">Footer</div><div class="hex">#000000</div><div class="use">Site footer with a 10% white top rule</div></div></div>
         </div>
@@ -900,7 +915,7 @@
       <div class="ds-inner">
         <div class="eyebrow">Components</div>
         <h2>Buttons</h2>
-        <p class="lead">One red button with a soft red shadow, one ghost. Barlow 700, uppercase, 15px with .04em tracking, 14px by 30px padding, 52px minimum height, 10px corners. Primary offer CTAs read "Claim Your Glass" or "Claim Your Poly"; the site wide header, announcement bar and sticky bar use "Claim Your Glass" too. The product page buy box names the housing in the order ("Claim Your Glass · $200"), the pass page uses "Add to cart", and the ghost button carries secondary links.</p>
+        <p class="lead">One red button with a soft red shadow, one ghost. Barlow 700, uppercase, 15px with .04em tracking, 14px by 30px padding, 52px minimum height, 10px corners. Primary offer CTAs read "Claim Your Glass" or "Claim Your Poly"; the site wide header, announcement bar and sticky bar use "Claim Your Glass" too. The product page buy box names the housing in the order ("Claim Your Glass · $200"), and the ghost button carries secondary links.</p>
         <p class="lbl">Variants</p>
         <div class="btn-row">
           <a class="btn" href="#buttons">Claim Your Glass</a>
@@ -927,14 +942,14 @@
       <div class="ds-inner">
         <div class="eyebrow">Components</div>
         <h2>Form elements</h2>
-        <p class="lead">Inputs are the one square element in the system: 50px tall, no radius, dark surface with a 22% white border. Tier choices on the pass page are card radios with a white ring when selected.</p>
+        <p class="lead">Inputs are the one square element in the system: 50px tall, no radius, dark surface with a 22% white border. Tier choices on the product page are card radios with a white ring when selected.</p>
         <div class="form-grid">
           <div><label class="fld" for="f-email">Email address</label><input class="input" id="f-email" type="email" placeholder="you@example.com"></div>
           <div><label class="fld" for="f-size">Card size</label><select class="input" id="f-size"><option>Standard</option><option>Booklet</option><option>Trifold</option><option>Five fold</option><option>Oversized</option></select></div>
           <div><label class="fld" for="f-bad">Cert number</label><input class="input invalid" id="f-bad" type="text" value="HGA-00"><p class="err">Enter the full certificate number from the label.</p></div>
           <div><label class="fld" for="f-notes">Notes for the grader</label><textarea class="input" id="f-notes" rows="2" placeholder="Optional"></textarea></div>
         </div>
-        <p class="lbl">Tier radios (pass page)</p>
+        <p class="lbl">Tier radios (product page)</p>
         <div class="t-radios">
           <label class="t-radio on"><span class="k">HGA Glass</span><b>$200 per card</b><p>Metal and glass. A display piece for the cards you keep.</p></label>
           <label class="t-radio"><span class="k">Or choose</span><b>$29 per card</b><p>The same grade, the same record, in a polymer case.</p></label>
@@ -1053,7 +1068,7 @@
       <div class="ds-inner">
         <div class="eyebrow">Components</div>
         <h2>Buy box</h2>
-        <p class="lead">The product page buy box describes a whole order in three steps that fold into one line summaries: how many cards, how many in Glass and how many in Poly, then booklets and oversized cards per slab, inline. The order total and one claim button sit under the steps, and a panel of what every pass includes under that. It is the build chosen by the client on Nov 5, 2026 and revised with UCollect on Nov 6. Source: <code>buybox-rachel.html</code>, <code>buybox-rachel.js</code>, <code>shop-builder.css</code> in the app handoff.</p>
+        <p class="lead">The product page buy box describes a whole order in three steps that fold into one line summaries: how many cards, how many in Glass and how many in Poly, then booklets and oversized cards per slab, inline. The order total and one claim button sit under the steps, and a panel of what every card includes under that. It is the build chosen by the client on Nov 5, 2026 and revised with UCollect on Nov 6. Source: <code>buybox-rachel.html</code>, <code>buybox-rachel.js</code>, <code>shop-builder.css</code> in the app handoff.</p>
         <div class="mat-grid">
           <div class="mat"><div class="demo lab"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/ds/ref-buybox-step1.webp" alt="Step 1 open: how many cards, with the stepper and quick picks; steps 2 and 3 folded; the includes panel under"></div><div class="meta"><b>Step 1, how many cards</b><span>A stepper with quick picks 5, 10, 25, 100 and a Next button. Steps 2 and 3 wait folded below. The "Every card includes" panel is visible from the start.</span></div></div>
           <div class="mat"><div class="demo lab"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/ds/ref-buybox-step2-tip.webp" alt="Step 2 open: Glass and Poly cards with steppers, the slider, and the Glass tooltip open"></div><div class="meta"><b>Step 2, Glass or Poly</b><span>Two slab cards with steppers and a slider that always add up to the count. Glass carries the red border and wash. The i button on each card opens a popover with what that slab includes. One card: tapping a slab picks it.</span></div></div>
@@ -1106,6 +1121,8 @@
         <div class="sx"><h3>Process steps</h3><p class="meta"><b>Made of:</b> eyebrow, h2, a numbered step list where the active step opens and carries a red progress bar; photo on the right. <b>Use:</b> the portal story. Explanatory, so it sits below the offer.</p>
           <div class="frame"><div class="proc-grid"><div><p class="eb">Your portal</p><h2 class="h2">Live, from delivery <span class="red">to grade.</span></h2><ol class="pr-list"><li class="pr-step on"><span class="pr-n">01</span><span class="pr-t"><b>Received</b><span>Your box is logged and photographed on arrival.</span></span><i class="pr-bar" aria-hidden="true"></i></li><li class="pr-step"><span class="pr-n">02</span><span class="pr-t"><b>Unboxed on camera</b></span></li><li class="pr-step"><span class="pr-n">03</span><span class="pr-t"><b>Imaged and identified</b></span></li><li class="pr-step"><span class="pr-n">04</span><span class="pr-t"><b>Graded blind</b></span></li></ol></div><div class="proc-photo"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/bench-arrival.webp" alt="Cards arriving at the grading bench"></div></div></div></div>
 
+        <div class="sx"><h3>Presale timeline</h3><p class="meta"><b>Made of:</b> a small caps label, then five steps on one hairline: a dot, a time label, a bold step title and one short line each. The current step has a red dot and a red label (and <code>aria-current="step"</code>); its text carries the countdown. Titles and texts start at one height in every column. One column with the line down the left on phones. <b>Use:</b> the journey after a purchase, in the "How the presale works" band on the home page and the product page. One timeline for the whole site: the same five steps, in the same words, wherever the journey is shown.</p>
+          <div class="frame"><p class="ps-h">How the presale works</p><ol class="ps-tl"><li class="now" aria-current="step"><span class="ps-k">Nov 23 to Feb 21</span><b class="ps-t">Purchase at presale pricing</b><p>Glass $200 or Poly $30 a card. Presale pricing ends in <b>100d 15h 00m</b>.</p></li><li><span class="ps-k">Right after you purchase</span><b class="ps-t">Create your account and book your grading date</b><p>The grading calendar opens Nov 23. One date covers your whole order.</p></li><li><span class="ps-k">Feb 1, 2027</span><b class="ps-t">Submissions open</b><p>Sign in and tell us about each card: the card, its serial number and who is on it.</p></li><li><span class="ps-k">Your grading date</span><b class="ps-t">Your cards arrive</b><p>Grading opens Feb 22, 2027. Send your cards from Feb 1, any time before your date.</p></li><li><span class="ps-k">30 business days</span><b class="ps-t">The Reveal</b><p>See your grade and the full Grade Report. 30 business day turnaround for HGA Glass, 60 for HGA Poly.</p></li></ol></div></div>
         <div class="sx"><h3>FAQ</h3><p class="meta"><b>Made of:</b> eyebrow, h2, lede and a text link on the left; a hairline list of questions on the right, answers open on demand. <b>Use:</b> last content section before the final CTA. No boxed accordions.</p>
           <div class="frame"><div class="faq-grid"><div><p class="eb">FAQ</p><h2 class="h2">Before you <span class="red">claim.</span></h2><p class="lede">Quick answers to what collectors ask most.</p><a class="hero-alt" href="#sections">See all questions <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
             <div class="faq-list"><details open><summary>When can I book my grading date?</summary><p>You reserve your grading date right after you purchase. The calendar shows the next available day.</p></details><details><summary>When do I send my cards?</summary><p>Any time before your booked grading date.</p></details><details><summary>Does the presale cover booklets and oversized cards?</summary><p>Standard cards, booklets and oversized cards are all in the presale. Booklets are $300 in Glass and $45 in Poly, trifolds $400 and $60; oversized cards $600 in Glass and $90 in Poly.</p></details></div></div></div></div>
@@ -1310,7 +1327,7 @@
         </div>
         <div class="group-label">Studio Glass on the dark stage (cutouts composited on the site's black with a soft spotlight)</div>
         <div class="img-grid">
-          <figure><div class="ph"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/glass-ohtani-dark.webp" alt="Ohtani on the stage" loading="lazy"></div><figcaption><b>Ohtani on the stage</b>Homepage Glass pillars, About, Legacy, the pass page, every lander's pillars.</figcaption></figure>
+          <figure><div class="ph"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/glass-ohtani-dark.webp" alt="Ohtani on the stage" loading="lazy"></div><figcaption><b>Ohtani on the stage</b>Homepage Glass pillars, About, Legacy, the product page, every lander's pillars.</figcaption></figure>
           <figure><div class="ph"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/glass-booklet-dark.webp" alt="Booklet on the stage" loading="lazy"></div><figcaption><b>Booklet on the stage</b>Homepage Glass pillars and six things, every lander.</figcaption></figure>
           <figure><div class="ph"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/glass-witt-dark.webp" alt="Witt on the stage" loading="lazy"></div><figcaption><b>Witt on the stage</b>Glass lander benefit tile (H). Use when Ohtani already sits in the same section.</figcaption></figure>
         </div>
@@ -1330,7 +1347,7 @@
           <figure><div class="ph"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/bench-arrival.webp" alt="Arrival (DSC01453)" loading="lazy"></div><figcaption><b>Arrival (DSC01453)</b>Process step 1 on every page: box, gloves and a slab on the imaging bench.</figcaption></figure>
           <figure><div class="ph"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/bench-imaging.webp" alt="Imaging (DSC02624)" loading="lazy"></div><figcaption><b>Imaging (DSC02624)</b>Process steps, Centering subgrade. Gloved hands placing a card on the imaging station.</figcaption></figure>
           <figure><div class="ph"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/bench-inspect.webp" alt="Inspection (DSC03839)" loading="lazy"></div><figcaption><b>Inspection (DSC03839)</b>Process steps, Grading Standards, educational and family TCG landers, the Glass lander. Autographed card under the lamp.</figcaption></figure>
-          <figure><div class="ph"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/bench-sleeve.webp" alt="Out of the sleeve (DSC03784)" loading="lazy"></div><figcaption><b>Out of the sleeve (DSC03784)</b>Surface subgrade, TCG lander, pass page.</figcaption></figure>
+          <figure><div class="ph"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/bench-sleeve.webp" alt="Out of the sleeve (DSC03784)" loading="lazy"></div><figcaption><b>Out of the sleeve (DSC03784)</b>Surface subgrade, TCG lander, product page.</figcaption></figure>
           <figure><div class="ph"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/bench-software.webp" alt="The record on screen (DSC02579)" loading="lazy"></div><figcaption><b>The record on screen (DSC02579)</b>Process steps, the chip section stand in until a real tap is shot.</figcaption></figure>
           <figure><div class="ph"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/facility-wide.webp" alt="Imaging station (DSC00706)" loading="lazy"></div><figcaption><b>Imaging station (DSC00706)</b>About, Grading Standards hero, Why HGA lander.</figcaption></figure>
           <figure><div class="ph"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/facility-grader.webp" alt="Grader at the bench (DSC02515)" loading="lazy"></div><figcaption><b>Grader at the bench (DSC02515)</b>Transparency lander, shop.</figcaption></figure>
@@ -1339,7 +1356,7 @@
         </div>
         <div class="group-label">Shop and stadium (Sports Content set)</div>
         <div class="img-grid">
-          <figure><div class="ph"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/shop-hga-slab.webp" alt="HGA slab on the shop wall (DSC00300)" loading="lazy"></div><figcaption><b>HGA slab on the shop wall (DSC00300)</b>Sports lander, pass page.</figcaption></figure>
+          <figure><div class="ph"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/shop-hga-slab.webp" alt="HGA slab on the shop wall (DSC00300)" loading="lazy"></div><figcaption><b>HGA slab on the shop wall (DSC00300)</b>Sports lander, product page.</figcaption></figure>
           <figure><div class="ph"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/shop-bins.webp" alt="Rookie cards in the bins (DSC00307)" loading="lazy"></div><figcaption><b>Rookie cards in the bins (DSC00307)</b>First timer landers, the Glass lander collection story.</figcaption></figure>
           <figure><div class="ph"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/stadium-family.webp" alt="Walking to the ballpark (DSC09983)" loading="lazy"></div><figcaption><b>Walking to the ballpark (DSC09983)</b>Family sports lander.</figcaption></figure>
           <figure><div class="ph"><img src="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/photo/stadium-seats.webp" alt="In the stands (DSC00033)" loading="lazy"></div><figcaption><b>In the stands (DSC00033)</b>Spare. Family and sports stories.</figcaption></figure>
@@ -1387,7 +1404,7 @@
           <div class="col">
             <div class="h">Never</div>
             <ul>
-              <li>Business day promises (15 business days or any other count), "guaranteed", a daily late credit.</li>
+              <li>"Guaranteed", a turnaround clock, due dates, a daily late credit. Turnaround is written "30 business day turnaround" for HGA Glass and 60 for HGA Poly, and never as 15 business days.</li>
               <li>NFT, NFC, "patented", UV protection, impact resistant. Lead with RFID, not blockchain; the grading standards page still says "Blockchain record" and whether that stays is open with the client.</li>
               <li>UCollect marketplace, Club U, custom labels, resale value claims.</li>
               <li>"Glass box", "black box", "slot".</li>
