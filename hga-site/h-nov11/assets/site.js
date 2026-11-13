@@ -35,7 +35,7 @@
     dealer: {
       eb: "For dealers and bulk submitters",
       a: "Grade 100 cards", b: "at $29 a card.",
-      lede: "Prepay up to 100 passes per housing per order, with no limit on orders. Passes never expire, stay on your account, and book around your releases and shows.",
+      lede: "Prepay grading for up to 100 cards per housing per order, with no limit on orders. Your order stays on your account, and you choose the grading date.",
       housing: "poly", glass: "ohtani", poly: "judge"
     },
     tcg: {
@@ -117,7 +117,7 @@
     var count = qty.poly + qty.glass;
     var now = qty.poly * PRICES.poly.now + qty.glass * PRICES.glass.now;
     var open = qty.poly * PRICES.poly.open + qty.glass * PRICES.glass.open;
-    $$("[data-sum-count]").forEach(function (e) { e.textContent = count + (count === 1 ? " pass" : " passes"); });
+    $$("[data-sum-count]").forEach(function (e) { e.textContent = count + (count === 1 ? " card" : " cards"); });
     $$("[data-sum-now]").forEach(function (e) { e.textContent = money(now); });
     $$("[data-sum-open]").forEach(function (e) { e.textContent = money(open); });
     $$("[data-sum-save]").forEach(function (e) { e.textContent = money(open - now); });

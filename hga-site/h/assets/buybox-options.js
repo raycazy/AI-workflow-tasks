@@ -82,7 +82,7 @@
         set("[data-bo-line]", "Priced once we see the card.");
       } else {
         set("[data-bo-price]", money(u));
-        set("[data-bo-count]", st.q + (st.q === 1 ? " pass" : " passes") + (st.s === "std" ? "" : " · " + TY[st.s].name));
+        set("[data-bo-count]", st.q + (st.q === 1 ? " card" : " cards") + (st.s === "std" ? "" : " · " + TY[st.s].name));
         set("[data-bo-total]", money(st.q * u));
         set("[data-bo-line]", u !== p.now ? "Bulk price applied: " + money(u) + " a card"
           : p.open ? "Save " + money(p.open - p.now) + " a card on " + hname(st.h).replace("HGA ", "") + " vs launch pricing"
@@ -135,7 +135,7 @@
         e.hidden = !on;
         if (on) e.textContent = b.min + " or more Poly cards: " + money(b.now) + " a card";
       });
-      set("[data-bo-count]", count === 0 ? "No passes yet" : [g ? g + " Glass" : "", pl ? pl + " Poly" : ""].filter(Boolean).join(" · "));
+      set("[data-bo-count]", count === 0 ? "No cards yet" : [g ? g + " Glass" : "", pl ? pl + " Poly" : ""].filter(Boolean).join(" · "));
       set("[data-bo-total]", money(now));
       set("[data-bo-line]", open > now ? "Save " + money(open - now) + " vs launch pricing" : count ? "Presale price through " + T.presale_ends + "." : "Add a card to start.");
       set("[data-bo-total2]", money(now));
@@ -154,7 +154,7 @@
       Object.keys(q).forEach(function (v) { if (q[v] > 0) { C.add(v, q[v]); n += q[v]; } });
       if (!n) return;
       if (go) { location.href = "checkout.html"; return; }
-      toast(n + (n === 1 ? " pass" : " passes") + " added");
+      toast(n + (n === 1 ? " card" : " cards") + " added");
     };
     $$("[data-bo-add]", root).forEach(function (x) { x.addEventListener("click", function () { buy(false); }); });
     $$("[data-bo-buy]", root).forEach(function (x) { x.addEventListener("click", function () { buy(true); }); });

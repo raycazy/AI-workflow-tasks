@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Order confirmed | HGA</title>
-<meta name="description" content="Your HGA grading passes are ready.">
+<meta name="description" content="Your HGA presale order is confirmed. Choose your grading date.">
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#0E0E0E">
 <link rel="preload" href="./assets/fonts/bc-800.woff2" as="font" type="font/woff2" crossorigin>
@@ -15,12 +15,12 @@
 <script defer src="./assets/v2.js?v=80e4d4a7"></script>
 <script defer src="./assets/site.js?v=80e4d4a7"></script>
 <script defer src="./assets/shop.js?v=ce5cb4fa"></script>
-<link rel="stylesheet" href="./assets/h.css">
+<link rel="stylesheet" href="./assets/h.css?v=05347998">
 <!-- share preview and icons: _tools/h_meta.py -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="HGA">
 <meta property="og:title" content="Order confirmed | HGA">
-<meta property="og:description" content="Your HGA grading passes are ready.">
+<meta property="og:description" content="Your HGA presale order is confirmed. Choose your grading date.">
 <meta property="og:url" content="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/thank-you.html">
 <meta property="og:image" content="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/og/hga-share-4b0f89bc.jpg">
 <meta property="og:image:width" content="1200">
@@ -28,11 +28,64 @@
 <meta property="og:image:alt" content="HGA logo and a graded card in an HGA Glass housing. The most transparent card grading experience, ever.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Order confirmed | HGA">
-<meta name="twitter:description" content="Your HGA grading passes are ready.">
+<meta name="twitter:description" content="Your HGA presale order is confirmed. Choose your grading date.">
 <meta name="twitter:image" content="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/og/hga-share-4b0f89bc.jpg">
 <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
 <!-- /share preview -->
+<style>
+.ty-grid{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);grid-template-areas:"head cal" "next cal";align-items:start;row-gap:0}
+.ty-grid>div:first-child{grid-area:head}
+.ty-next{grid-area:next}
+.ty-cal{grid-area:cal;align-self:center}
+.ty-order{margin:24px 0 0;display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:1px;border:1px solid rgba(255,255,255,.18);border-radius:var(--r);background:rgba(255,255,255,.18);overflow:hidden}
+.ty-order>div{padding:14px 18px;background:#0d0c0c;min-width:0}
+.ty-order dt{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.ty-order dd{margin:6px 0 0;font-size:20px;font-weight:800;color:#fff;line-height:1.2}
+.ty-order dd.mono{font-size:22px;letter-spacing:.02em}
+.ty-order-mail{font-size:16px!important;font-weight:600!important;overflow-wrap:anywhere}
+@media (max-width:620px){.ty-order{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.ty-order>div:last-child{grid-column:1/-1}}
+.ty-next-lede{margin:22px 0 0;color:rgba(255,255,255,.78);font-size:17px;line-height:1.5}
+.ty-date-steps{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:14px}
+.ty-date-steps li{display:flex;gap:14px;align-items:flex-start;color:rgba(255,255,255,.78);font-size:16px;line-height:1.5}
+.ty-date-steps li>span{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:13px;border:1px solid rgba(255,255,255,.3);color:#fff}
+.ty-date-steps b{color:#fff}
+.ty-date-steps .btn{margin-top:10px}
+.gd-pw{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px 12px;margin-top:12px;max-width:460px}
+.gd-pw label{display:grid;gap:6px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.gd-pw input{height:48px;padding:0 14px;border-radius:10px;border:1px solid rgba(255,255,255,.22);background:#141212;color:#fff;font:inherit;font-size:16px;letter-spacing:0;text-transform:none}
+.gd-pw input:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.gd-pw .btn{grid-column:1/-1;justify-self:start;margin-top:2px}
+.gd-pw-help,.gd-pw-done{grid-column:1/-1;margin:0;font-size:13.5px;line-height:1.5;color:rgba(255,255,255,.62)}
+.gd-pw-help.is-bad{color:#FF8A8C}
+.gd-pw-done{margin-top:8px;color:rgba(255,255,255,.78)}
+.ty-next-after{margin:22px 0 0;padding:14px 16px;border:1px solid rgba(255,255,255,.16);border-radius:var(--r);font-size:14.5px;line-height:1.5;color:rgba(255,255,255,.72)}
+.ty-next-after b{color:#fff}
+.ty-cal{position:relative}
+.ty-cal.is-locked>*:not(.gd-lock){opacity:.32;pointer-events:none}
+.gd-lock{position:absolute;inset:0;z-index:2;display:grid;place-items:center;margin:0;padding:24px;text-align:center;font-weight:700;font-size:16px;color:#fff}
+.ty-cal:not(.is-locked) .gd-lock{display:none}
+@media (max-width:520px){.gd-pw{grid-template-columns:minmax(0,1fr)}}
+.ty-cal .gcal-top{flex-wrap:wrap;align-items:center}
+.gd-nav{display:flex;align-items:center;gap:10px;margin-left:auto}
+.gd-nav b{min-width:9.5em;text-align:center;white-space:nowrap}
+.gcal-ticket em span[data-gd-note]{font:inherit;letter-spacing:0;text-transform:none;color:inherit}
+.gd-nav button{width:32px;height:32px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:none;color:#fff;font:inherit;font-size:18px;line-height:1;cursor:pointer}
+.gd-nav button:disabled{opacity:.3;cursor:default}
+.gd-nav button:focus-visible,.gd-days button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.gd-days li{padding:0}
+.gd-days button{width:100%;height:100%;border:0;background:none;color:inherit;font:inherit;cursor:pointer;border-radius:inherit}
+.gd-save{width:100%;margin-top:14px}
+.gd-save:disabled{opacity:.45;cursor:default}
+.gd-after{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center;margin-top:14px}
+.gd-ics,.gd-change{display:inline-flex;align-items:center;gap:6px;min-height:44px;font:inherit;font-size:14px;font-weight:600;color:#fff;text-decoration:underline;text-underline-offset:3px;background:none;border:0;padding:0;cursor:pointer}
+.gd-ics .ico{width:18px;height:18px}
+.ty-date-steps li.gd-next>span{background:var(--red);border-color:var(--red)}
+.ty-date-steps li.gd-done>span{background:none;border-color:rgba(255,255,255,.3)}
+.ty-date-steps li.gd-done>span .ico{width:14px;height:14px}
+@media (max-width:900px){.ty-grid{grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "cal" "next";row-gap:26px}}
+@media (max-width:520px){.ty-cal{padding:14px}.gd-nav{flex:1 1 100%;justify-content:space-between;margin-top:6px}.gd-nav button{width:44px;height:44px}}
+</style>
 </head>
 <body>
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none"><symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol><symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6"/></symbol><symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 6.5V12l3.5 2"/></g></symbol><symbol id="i-layers" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 2.5 7.5 12 12.5l9.5-5z"/><path d="m2.5 12 9.5 5 9.5-5M2.5 16.5l9.5 5 9.5-5"/></g></symbol><symbol id="i-file" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2.5H6.5a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V8z"/><path d="M14 2.5V8h5.5M8.5 12.5h7M8.5 16h7M8.5 9h2.5"/></g></symbol><symbol id="i-camera" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 18.5a2 2 0 0 1-2 2h-15a2 2 0 0 1-2-2v-10a2 2 0 0 1 2-2h3.2l1.8-2.5h5l1.8 2.5h3.2a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="3.6"/></g></symbol><symbol id="i-video" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="13.5" height="12" rx="2"/><path d="m16 10 5.5-3v10L16 14"/></g></symbol><symbol id="i-eyeoff" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17.9 17.9A10 10 0 0 1 12 20C5 20 1.5 12 1.5 12a18 18 0 0 1 4.9-5.9M9.9 4.3A9 9 0 0 1 12 4c7 0 10.5 8 10.5 8a18 18 0 0 1-2.2 3.2m-6.2-1.1a3 3 0 1 1-4.2-4.2"/><path d="m2 2 20 20"/></g></symbol><symbol id="i-chip" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></g></symbol><symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.5s8-3.5 8-10V5.5l-8-3-8 3v6c0 6.5 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></g></symbol><symbol id="i-box" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.7z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></g></symbol><symbol id="i-calendar" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="17" rx="2"/><path d="M16 2.5v4M8 2.5v4M3 10.5h18"/><path d="M8 14.5h2M11 14.5h2M14 14.5h2M8 18h2M11 18h2"/></g></symbol><symbol id="i-truck" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 4.5H15v12H1.5zM15 9h4.5l3 3v4.5H15z"/><circle cx="5.5" cy="18.5" r="2"/><circle cx="18.5" cy="18.5" r="2"/></g></symbol><symbol id="i-gift" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v9.5H4V12M2 7.5h20V12H2zM12 21.5V7.5"/><path d="M12 7.5H7.5a2.5 2.5 0 0 1 0-5C11 2.5 12 7.5 12 7.5zM12 7.5h4.5a2.5 2.5 0 0 0 0-5C13 2.5 12 7.5 12 7.5z"/></g></symbol><symbol id="i-repeat" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></g></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></symbol><symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol><symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol><symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol><symbol id="i-award" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="6"/><path d="m8.5 13.5-1.5 8 5-3 5 3-1.5-8"/></g></symbol><symbol id="i-pen" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></g></symbol><symbol id="i-size" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/><rect x="8.5" y="7.5" width="7" height="9" rx="1"/></g></symbol><symbol id="i-target" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><circle cx="12" cy="12" r="5.5"/><circle cx="12" cy="12" r="1.5"/></g></symbol><symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 018 0v2.5"/><circle cx="12" cy="15.5" r="1.2"/></symbol><symbol id="i-card" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></g></symbol><symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol><symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4.5" width="20" height="15" rx="2"/><path d="m2 7.5 10 6.5 10-6.5"/></g></symbol><symbol id="i-phone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="2" width="13" height="20" rx="2.5"/><path d="M11 18.5h2"/></g></symbol><symbol id="i-image" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></g></symbol><symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10-6.5z"/></symbol><symbol id="i-pause" viewBox="0 0 24 24"><path d="M8.5 5.5v13M15.5 5.5v13"/></symbol><symbol id="i-eye" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 12S5 4.5 12 4.5 22.5 12 22.5 12 19 19.5 12 19.5 1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3.2"/></g></symbol><symbol id="i-database" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5.5" rx="8.5" ry="3"/><path d="M20.5 12c0 1.7-3.8 3-8.5 3s-8.5-1.3-8.5-3"/><path d="M3.5 5.5v13c0 1.7 3.8 3 8.5 3s8.5-1.3 8.5-3v-13"/></g></symbol><symbol id="i-users" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 21v-2a4 4 0 0 0-4-4h-7a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22.5 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></g></symbol><symbol id="i-refresh" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4v6h-6M2 20v-6h6"/><path d="M3.5 9a9 9 0 0 1 14.9-3.4L22 10M2 14l3.6 3.4A9 9 0 0 0 20.5 15"/></g></symbol><symbol id="i-dollar" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1.5v21"/><path d="M17 5.5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></g></symbol><symbol id="i-map" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 6v16l7-4 7 4 7-4V2l-7 4-7-4z"/><path d="M8.5 2v16M15.5 6v16"/></g></symbol><symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 019.5 4a8.5 8.5 0 1010.5 10.5z"/></symbol><symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></symbol><symbol id="i-drag" viewBox="0 0 24 24"><path d="M2 12h20M6 8l-4 4 4 4M18 8l4 4-4 4"/></symbol><symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6.5a3 3 0 016 0V8"/></symbol><symbol id="i-apple" viewBox="0 0 24 24"><path d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.8-3.5.8-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2-1.1 2.8-2.3.9-1.3 1.2-2.5 1.3-2.6-.1 0-2.5-.9-2.5-3.6zM14.2 5.6c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.5 2.7-1.3z" fill="currentColor" stroke="none"/></symbol><symbol id="i-slab" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><rect x="7.5" y="4.5" width="9" height="3" rx=".6" fill="currentColor" stroke="none"/><rect x="8" y="10.5" width="8" height="8.5" rx="1"/></g></symbol><symbol id="i-loupe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7.5"/><path d="m21 21-4.6-4.6M11 8v6M8 11h6"/></g></symbol><symbol id="i-ruler" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m21.3 8.7-6-6L2.7 15.3l6 6z"/><path d="m14 6 2 2M11 9l2 2M8 12l2 2"/></g></symbol><symbol id="i-corner" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8a5 5 0 0 1 5-5h13"/><path d="M8 21v-8a5 5 0 0 1 5-5h8"/></g></symbol><symbol id="i-sparkle" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.2z"/><path d="M19.5 2.5v3M18 4h3"/></g></symbol></svg>
@@ -72,22 +125,38 @@
       <div class="ty-grid">
         <div>
           <span class="ty-ok"><svg class="ico"><use href="#i-check"/></svg></span>
-          <p class="eb">Order <span data-o-num>HGA-204117</span></p>
-          <h1 class="h1">You're in<span data-o-name></span>.<br><span class="red">Your passes are ready.</span></h1>
-          <p class="lede"><b data-c-count>3 passes</b> <span data-c-verb>are</span> in My Passes, locked at the presale price. A confirmation and receipt are on the way to <b data-o-email>you@example.com</b>.</p>
-          
-          <div class="ty-acts">
-            <a class="btn lg" href="https://ucollect.com/">Go to My Passes <svg class="ico"><use href="#i-arrow"/></svg></a>
-            <a class="btn ghost inv lg" href="./assets/hga-calendar-opens.ics" download="hga-calendar-opens.ics"><svg class="ico"><use href="#i-calendar"/></svg>Add Feb 22 to my calendar</a>
-          </div>
+          <h1 class="h1">You're in<span data-o-name></span>.<br><span class="red">Choose your grading date.</span></h1>
+          <p class="lede">Your order is confirmed at the presale price. Your receipt is on its way to <b data-o-email>you@example.com</b>.</p>
+ <dl class="ty-order" aria-label="Your order">
+ <div><dt>Order ID</dt><dd class="mono" data-o-num>HGA-204117</dd></div>
+ <div><dt>Cards</dt><dd data-c-count>3 cards</dd></div>
+ <div><dt>Your account</dt><dd class="ty-order-mail" data-o-email>you@example.com</dd></div>
+ </dl>
         </div>
-        <div class="pass-wall" data-pass-wall aria-label="Your passes">
-          <div class="pass" data-pass-tpl hidden>
-            <div class="ps-top"><img data-pass-logo src="./assets/hybrid_grading/hga-glass-828ebfd2.svg" alt="" width="80" height="13"><span class="ps-box"><small>Grading</small><b>15</b></span></div>
-            <div class="ps-body"><b data-pass-h>HGA Glass</b><span class="mono" data-pass-code>PASS 000000-001</span><span class="ps-ne">Never expires &middot; non transferable</span></div>
-          </div>
-          <p class="pass-more mono" data-pass-more hidden>+0 more</p>
-        </div>
+        <div class="ty-next">
+ <p class="ty-next-lede">Two steps now. Grading opens February 22, 2027, and one date covers every card in this order.</p>
+ <ol class="ty-date-steps">
+ <li data-gd-step="1"><span data-gd-n1>1</span><div><b>Set your password.</b> Your account is <span data-o-email>you@example.com</span>.
+ <form class="gd-pw" data-gd-pw novalidate>
+ <label><span>Password</span><input type="password" name="pw" autocomplete="new-password" minlength="6" required aria-describedby="gd-pw-help"></label>
+ <label><span>Confirm password</span><input type="password" name="pw2" autocomplete="new-password" minlength="6" required></label>
+ <button class="btn" type="submit">Set my password</button>
+ <p class="gd-pw-help" id="gd-pw-help" data-gd-pw-help>At least 6 characters. Leaving now? We emailed you a link to set it later.</p>
+ </form>
+ <p class="gd-pw-done" data-gd-pw-done hidden>Password set. You can sign in with it any time.</p></div></li>
+ <li data-gd-step="2"><span data-gd-n>2</span><div><b>Choose your grading date.</b> Pick a day on the calendar and confirm it.</div></li>
+ </ol>
+ <p class="ty-next-after"><b>Card submission opens February 1, 2027.</b> That is when you tell us about each card (the card, its serial number and who is on it) and send it in, before your grading date.</p>
+ </div>
+ <div class="gcal-card ty-cal is-locked" id="ty-date" data-gd>
+ <p class="gd-lock" data-gd-lock>Set your password to choose your date</p>
+ <div class="gcal-top"><span>HGA Grading Calendar</span><div class="gd-nav"><button type="button" data-gd-prev aria-label="Earlier month">&lsaquo;</button><b data-gd-month aria-live="polite">February 2027</b><button type="button" data-gd-next aria-label="Later month">&rsaquo;</button></div></div>
+ <ul class="gcal-wd" aria-hidden="true"><li>M</li><li>T</li><li>W</li><li>T</li><li>F</li><li>S</li><li>S</li></ul>
+ <ol class="gcal-days gd-days" data-gd-days aria-label="Choose a grading date"></ol>
+ <div class="gcal-ticket" aria-live="polite"><span>Your grading date</span><b data-gd-date>Not picked yet</b><em><svg class="ico"><use href="#i-check"/></svg><span data-gd-note>Choose any open day from Feb 22, 2027</span></em></div>
+ <button class="btn gd-save" type="button" data-gd-save disabled>Confirm my date</button>
+ <p class="gd-after" data-gd-after hidden><a class="gd-ics" data-gd-ics download="hga-grading-date.ics" href="#"><svg class="ico"><use href="#i-calendar"/></svg>Add it to my calendar</a><button type="button" class="gd-change" data-gd-change>Change my date</button></p>
+ </div>
       </div>
     </div>
   </div>
@@ -95,13 +164,13 @@
   <div class="sec">
     <div class="wrap">
       <div class="sec-head split">
-        <div><p class="eb">What happens next</p><h2 class="h2" style="margin-top:18px">Nothing to do<br><span class="red">until Feb 22.</span></h2></div>
-        <p class="lede">Your passes hold their value until you use them. Here's how they turn into graded slabs.</p>
+        <div><p class="eb">What happens next</p><h2 class="h2" style="margin-top:18px">Five steps<br><span class="red">to your graded slabs.</span></h2></div>
+        <p class="lede">Here's how your cards become graded slabs.</p>
       </div>
       <ol class="next">
-        <li class="now"><span class="nd"><svg class="ico"><use href="#i-check"/></svg></span><div><span class="mono">Today &middot; done</span><b>Passes issued</b><p>One per card, in My Passes and your confirmation email.</p></div></li>
-        <li><span class="nd">2</span><div><span class="mono">Feb 22, 2027</span><b>The grading calendar opens</b><p>We'll email you the day it opens. Reserve any open day up to a year ahead.</p></div></li>
-        <li><span class="nd">3</span><div><span class="mono">Your booked day</span><b>Ship your cards to arrive</b><p>Choose and pay for shipping when you book. Send your cards any time before your grading date.</p></div></li>
+        <li data-gd-tl><span class="nd">1</span><div><span class="mono">Today</span><b>Set your password, choose your grading date</b><p>Set your account password, then choose any open day from February 22, 2027, in the calendar above. Every card in this order is graded on it.</p></div></li>
+        <li><span class="nd">2</span><div><span class="mono">Feb 1, 2027</span><b>Card submission opens</b><p>Sign in and tell us about each card: the card, its serial number and who is on it.</p></div></li>
+        <li><span class="nd">3</span><div><span class="mono">Before your date</span><b>Ship your cards to arrive</b><p>Choose and pay for shipping when you book. Send your cards any time before your grading date.</p></div></li>
         <li><span class="nd">4</span><div><span class="mono">While we have them</span><b>Follow every step</b><p>Box photo, unboxing video, high resolution images, live in your portal.</p></div></li>
         <li><span class="nd">5</span><div><span class="mono">After your grading date</span><b>The Reveal</b><p>Turn each slab over live: grade, subgrades, Grade Report. Then decide: ship home, list, or vault, within 7 days.</p></div></li>
       </ol>
@@ -112,13 +181,9 @@
     <div class="wrap ty-3">
       <div class="ty-card">
         <span class="ico-box"><svg class="ico"><use href="#i-lock"/></svg></span>
-        <h3>Secure your account</h3>
-        <p>Set a password so you can book days and watch your cards.</p>
-        <form class="field" data-demo style="margin-top:6px">
-          <input type="password" placeholder="Create a password" aria-label="Create a password" autocomplete="new-password" required>
-          <button class="btn dark" type="submit">Save</button>
-          <p class="ok small" data-ok hidden style="flex-basis:100%;margin-top:8px">Password saved.</p>
-        </form>
+        <h3>Your account</h3>
+ <p>Your account is <b data-o-email>you@example.com</b>. Sign in to see or change your grading date and, from February 1, 2027, to submit your cards.</p>
+ <a class="tlink" href="https://ucollect.com/">Sign in to my account <svg class="ico"><use href="#i-arrow"/></svg></a>
       </div>
       <div class="ty-card">
         <span class="ico-box"><svg class="ico"><use href="#i-lock"/></svg></span>
@@ -147,7 +212,7 @@
         <div class="sl" data-line-row="poly"><span><b data-line-q="poly">2</b> &times; HGA Poly</span><span data-line-now="poly">$100</span></div>
         <div class="sl save"><span>Pre-launch savings</span><span data-c-save>-$700</span></div>
         <div class="sl total"><span>Total paid (tax on receipt)</span><b data-c-total>$300</b></div>
-        <a class="tlink" href="shop.html#hero" style="margin-top:18px">Add more passes before Feb 21 <svg class="ico"><use href="#i-arrow"/></svg></a>
+        <a class="tlink" href="shop.html#hero" style="margin-top:18px">Add more cards before Feb 21 <svg class="ico"><use href="#i-arrow"/></svg></a>
       </div>
     </div>
   </div>
@@ -211,5 +276,84 @@
     </div>
   </div>
 </footer>
+<script>
+(function () {
+  var card = document.querySelector("[data-gd]"); if (!card) return;
+  var q = function (s) { return card.querySelector(s); };
+  var FIRST = new Date(2027, 1, 22), LAST = new Date(2027, 11, 31), KEY = "hga_grading_date";
+  var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  var WD = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  var view = new Date(2027, 1, 1), picked = null, saved = false, pw = false, PWKEY = "hga_pw_set";
+  function label(d) { return WD[d.getDay()] + ", " + MONTHS[d.getMonth()].slice(0, 3) + " " + d.getDate() + ", " + d.getFullYear(); }
+  function iso(d) { return d.getFullYear() + ("0" + (d.getMonth() + 1)).slice(-2) + ("0" + d.getDate()).slice(-2); }
+  function draw() {
+    var y = view.getFullYear(), m = view.getMonth(), days = new Date(y, m + 1, 0).getDate(), lead = (new Date(y, m, 1).getDay() + 6) % 7, h = "";
+    for (var i = 0; i < lead; i++) h += '<li aria-hidden="true"></li>';
+    for (var n = 1; n <= days; n++) {
+      var d = new Date(y, m, n), wk = d.getDay() === 0 || d.getDay() === 6, open = !wk && d >= FIRST && d <= LAST;
+      var me = picked && +picked === +d;
+      h += open ? '<li class="' + (me ? "me" : "open") + '"><button type="button" data-d="' + n + '" aria-pressed="' + !!me + '" aria-label="' + MONTHS[m] + " " + n + '">' + n + "</button></li>"
+                : '<li class="off">' + n + "</li>";
+    }
+    q("[data-gd-days]").innerHTML = h;
+    q("[data-gd-month]").textContent = MONTHS[m] + " " + y;
+    q("[data-gd-prev]").disabled = y === 2027 && m <= 1;
+    q("[data-gd-next]").disabled = y === 2027 && m >= 11;
+  }
+  function show() {
+    q("[data-gd-date]").textContent = picked ? label(picked) : "Not picked yet";
+    q("[data-gd-note]").textContent = !picked ? "Choose any open day from Feb 22, 2027" : saved ? "Every card in this order is graded on this day. Send them any time before it." : "Confirm to make this your grading date";
+    var b = q("[data-gd-save]"); b.disabled = !picked; b.hidden = saved;
+    q("[data-gd-after]").hidden = !saved;
+    var ics = q("[data-gd-ics]");
+    if (saved) {
+      var end = new Date(picked.getFullYear(), picked.getMonth(), picked.getDate() + 1);
+      var body = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//HGA//Presale//EN", "BEGIN:VEVENT", "UID:hga-grading-" + iso(picked) + "@hybridgrading.com", "DTSTAMP:20261112T000000Z",
+        "DTSTART;VALUE=DATE:" + iso(picked), "DTEND;VALUE=DATE:" + iso(end), "SUMMARY:HGA grading date", "DESCRIPTION:Every card in your order is graded at HGA on this day. Send them any time before it.", "END:VEVENT", "END:VCALENDAR"].join("\r\n");
+      ics.href = "data:text/calendar;charset=utf-8," + encodeURIComponent(body);
+    }
+    done();
+  }
+  q("[data-gd-days]").addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b) return;
+    picked = new Date(view.getFullYear(), view.getMonth(), +b.dataset.d); saved = false; draw(); show();
+    var again = q('[data-gd-days] button[data-d="' + b.dataset.d + '"]'); if (again) again.focus();
+  });
+  // the rest of the page follows: the hero, the two steps beside the calendar and the first step of the list below
+  var TICK = '<svg class="ico"><use href="#i-check"/></svg>';
+  function done() {
+    var d = document, s1 = d.querySelector('[data-gd-step="1"]'), s2 = d.querySelector('[data-gd-step="2"]');
+    s1.classList.toggle("gd-done", pw); s1.classList.toggle("gd-next", !pw); d.querySelector("[data-gd-n1]").innerHTML = pw ? TICK : "1";
+    s2.classList.toggle("gd-done", saved); s2.classList.toggle("gd-next", pw && !saved); d.querySelector("[data-gd-n]").innerHTML = saved ? TICK : "2";
+    d.querySelector("[data-gd-pw]").hidden = pw; d.querySelector("[data-gd-pw-done]").hidden = !pw;
+    card.classList.toggle("is-locked", !pw); card.querySelectorAll("button").forEach(function (b) { if (!pw) b.tabIndex = -1; else b.removeAttribute("tabindex"); });
+    var red = d.querySelector(".ty-hero h1 .red"); if (red) red.textContent = saved ? "Your grading date is booked." : "Choose your grading date.";
+    var tl = d.querySelector("[data-gd-tl]");
+    if (tl) { tl.classList.toggle("now", saved && pw); tl.querySelector(".nd").innerHTML = saved ? TICK : "1"; tl.querySelector(".mono").textContent = saved ? "Today · done" : "Today"; }
+  }
+  q("[data-gd-change]").addEventListener("click", function () { saved = false; show(); });
+  var form = document.querySelector("[data-gd-pw]"), help = document.querySelector("[data-gd-pw-help]");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var a = form.elements.pw.value, b = form.elements.pw2.value, bad = a.length < 6 ? "Use at least 6 characters." : a !== b ? "The two passwords do not match." : "";
+    help.classList.toggle("is-bad", !!bad); if (bad) { help.textContent = bad; (a.length < 6 ? form.elements.pw : form.elements.pw2).focus(); return; }
+    pw = true; try { localStorage.setItem(PWKEY, "1"); } catch (err) {}
+    form.reset(); show(); var first = q("[data-gd-days] button"); if (first) first.focus();
+  });
+  try { pw = localStorage.getItem(PWKEY) === "1"; } catch (e) {}
+  q("[data-gd-prev]").addEventListener("click", function () { view = new Date(view.getFullYear(), view.getMonth() - 1, 1); draw(); });
+  q("[data-gd-next]").addEventListener("click", function () { view = new Date(view.getFullYear(), view.getMonth() + 1, 1); draw(); });
+  q("[data-gd-save]").addEventListener("click", function () {
+    if (!picked) return; saved = true;
+    try { localStorage.setItem(KEY, iso(picked)); } catch (e) {}
+    show();
+  });
+  try {
+    var v = localStorage.getItem(KEY);
+    if (pw && v && /^\d{8}$/.test(v)) { var d = new Date(+v.slice(0, 4), +v.slice(4, 6) - 1, +v.slice(6, 8)); if (d >= FIRST && d <= LAST) { picked = d; saved = true; view = new Date(d.getFullYear(), d.getMonth(), 1); } }
+  } catch (e) {}
+  draw(); show();
+})();
+</script>
 </body>
 </html>

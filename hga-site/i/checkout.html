@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Checkout | HGA</title>
-<meta name="description" content="Secure checkout for HGA presale grading passes.">
+<meta name="description" content="Secure checkout for HGA presale grading.">
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#0E0E0E">
 <link rel="preload" href="./assets/fonts/bc-800.woff2" as="font" type="font/woff2" crossorigin>
@@ -15,12 +15,12 @@
 <script defer src="./assets/v2.js?v=80e4d4a7"></script>
 <script defer src="./assets/site.js?v=80e4d4a7"></script>
 <script defer src="./assets/shop.js?v=ce5cb4fa"></script>
-<link rel="stylesheet" href="./assets/h.css">
+<link rel="stylesheet" href="./assets/h.css?v=05347998">
 <!-- share preview and icons: _tools/h_meta.py -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="HGA">
 <meta property="og:title" content="Checkout | HGA">
-<meta property="og:description" content="Secure checkout for HGA presale grading passes.">
+<meta property="og:description" content="Secure checkout for HGA presale grading.">
 <meta property="og:url" content="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/checkout.html">
 <meta property="og:image" content="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/og/hga-share-4b0f89bc.jpg">
 <meta property="og:image:width" content="1200">
@@ -28,7 +28,7 @@
 <meta property="og:image:alt" content="HGA logo and a graded card in an HGA Glass housing. The most transparent card grading experience, ever.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Checkout | HGA">
-<meta name="twitter:description" content="Secure checkout for HGA presale grading passes.">
+<meta name="twitter:description" content="Secure checkout for HGA presale grading.">
 <meta name="twitter:image" content="https://raycazy.github.io/AI-workflow-tasks/hga-site/i/assets/og/hga-share-4b0f89bc.jpg">
 <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
@@ -56,16 +56,16 @@
         <li><span>3</span>Confirmation</li>
       </ol>
 
-      <a class="co-mtotal" href="#order"><span><svg class="ico"><use href="#i-bag"/></svg><span data-c-count>1 pass</span></span><b data-c-total>$200</b></a>
+      <a class="co-mtotal" href="#order"><span><svg class="ico"><use href="#i-bag"/></svg><span data-c-count>1 card</span></span><b data-c-total>$200</b></a>
 
       <div class="co-express" id="express"><p class="mono">Express checkout</p><div class="xpay big"><button type="button" class="xp paypal" data-express="paypal" aria-label="Check out with PayPal"><svg viewBox="0 0 100 26" width="92" height="24" aria-hidden="true"><text x="2" y="20" font-family="Barlow,Arial,sans-serif" font-weight="800" font-style="italic" font-size="22" letter-spacing="-.3"><tspan fill="#003087">Pay</tspan><tspan fill="#009CDE">Pal</tspan></text></svg></button><button type="button" class="xp venmo" data-express="venmo" aria-label="Check out with Venmo"><b>venmo</b></button></div><p class="xnote">Express pay confirms the <a href="faq.html#g-presale">presale terms</a>: all sales final and purchases cannot be transferred.</p><p class="or"><span>or pay with card</span></p></div>
 
       <fieldset class="co-sec">
         <legend><span class="bn">1</span>Your email</legend>
         <div class="f-row">
-          <div class="f"><span class="co-lab"><label for="co-email">Email</label><span class="co-tipwrap"><button type="button" class="co-info" data-tip-btn aria-label="Why we need your email" aria-expanded="false" aria-describedby="co-email-tip">i</button><span class="co-tip" id="co-email-tip" role="tooltip">We need your email to find or create your HGA account and to send you your passes and receipt. Already have an account? <a href="https://ucollect.com/">Sign in</a>.</span></span></span><input id="co-email" type="email" autocomplete="email" required placeholder="you@example.com"></div>
+          <div class="f"><span class="co-lab"><label for="co-email">Email</label><span class="co-tipwrap"><button type="button" class="co-info" data-tip-btn aria-label="Why we need your email" aria-expanded="false" aria-describedby="co-email-tip">i</button><span class="co-tip" id="co-email-tip" role="tooltip">We need your email to find or create your HGA account and to send you your receipt. Already have an account? <a href="https://ucollect.com/">Sign in</a>.</span></span></span><input id="co-email" type="email" autocomplete="email" required placeholder="you@example.com"></div>
         </div>
-        <label class="chk"><input type="checkbox" checked><span>Email me when my grading calendar opens on Jan 18.</span></label>
+        <label class="chk"><input type="checkbox" checked><span>Email me updates about my order and my grading date.</span></label>
       </fieldset>
 
       <fieldset class="co-sec">
@@ -94,10 +94,10 @@
 
       
       <div class="co-place">
-        <label class="chk"><input type="checkbox" required><span>I understand these are prepaid grading passes. All sales are final and pre-launch purchases cannot be transferred. I agree to the <a href="faq.html#g-presale">presale terms</a>.</span></label>
+        <label class="chk"><input type="checkbox" required><span>I understand this is prepaid grading. All sales are final and pre-launch purchases cannot be transferred. I agree to the <a href="faq.html#g-presale">presale terms</a>.</span></label>
         <button class="btn lg block" type="submit"><svg class="ico"><use href="#i-lock"/></svg>Pay <span data-c-total>$200</span> + tax</button>
         <p class="fine">Sales tax is added from your billing address and shown on your receipt. Charged when you book, not today: shipping both ways, shipping insurance (1% on cards worth more than $500) and 2.5% on card value over $10,000.</p>
-        <ul class="co-trust"><li><svg class="ico"><use href="#i-lock"/></svg><span><b>Secure checkout.</b> Your connection is encrypted (SSL).</span></li><li><svg class="ico"><use href="#i-shield"/></svg><span><b>Card details never stored.</b> Payments are processed by Stripe.</span></li><li><svg class="ico"><use href="#i-check"/></svg><span><b>Passes on your account</b> the moment you pay, with a receipt by email.</span></li></ul>
+        <ul class="co-trust"><li><svg class="ico"><use href="#i-lock"/></svg><span><b>Secure checkout.</b> Your connection is encrypted (SSL).</span></li><li><svg class="ico"><use href="#i-shield"/></svg><span><b>Card details never stored.</b> Payments are processed by Stripe.</span></li><li><svg class="ico"><use href="#i-check"/></svg><span><b>Access to your account</b> the moment you pay, with a receipt by email.</span></li></ul>
       </div>
     </form>
 
@@ -106,12 +106,12 @@
         <h2 class="mono">Your order</h2>
         <div class="co-line" data-line-row="glass">
           <div class="cl-img"><img src="./slabs/items/17683/glass/360.webp" alt="" width="360" height="603"><span class="q" data-line-q="glass">1</span></div>
-          <div><b>HGA Glass</b><span>Presale pass &middot; graded on the date you book</span></div>
+          <div><b>HGA Glass</b><span>Presale &middot; graded on the date you choose</span></div>
           <div class="cl-p"><b data-line-now="glass">$200</b><s data-line-open="glass">$600</s></div>
         </div>
         <div class="co-line" data-line-row="poly">
           <div class="cl-img"><img src="./slabs/items/13966/clear_case/360.webp" alt="" width="360" height="598"><span class="q" data-line-q="poly">0</span></div>
-          <div><b>HGA Poly</b><span>Presale pass &middot; graded on the date you book</span></div>
+          <div><b>HGA Poly</b><span>Presale &middot; graded on the date you choose</span></div>
           <div class="cl-p"><b data-line-now="poly">$0</b><s data-line-open="poly">$0</s></div>
         </div>
         <div class="sl"><span>Launch pricing</span><span data-c-sub>$600</span></div>
