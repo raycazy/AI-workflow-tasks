@@ -1,0 +1,1940 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Past Client Winners Check | PurpleFire call funnels</title>
+<meta name="description" content="Past clients get a check of which of their own winners are still on the store, plus two passes for founder friends.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PurpleFire call funnels">
+<meta property="og:title" content="Past Client Winners Check | PurpleFire call funnels">
+<meta property="og:description" content="Past clients get a check of which of their own winners are still on the store, plus two passes for founder friends.">
+<meta property="og:url" content="https://raycazy.github.io/AI-workflow-tasks/purplefire-funnels/past-clients/">
+<meta property="og:image" content="https://raycazy.github.io/AI-workflow-tasks/purplefire-funnels/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap">
+<style>
+:root{color-scheme:light;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+</style>
+<style>
+
+
+
+
+/* PurpleFire funnel kit shell. A binder, not a deck: one sticky bar, plain tabs, one calm column per tab.
+   Light = his paper and ink with the teal accent. Dark = his page (ground, surface, mint).
+   Every shell class and token starts with k- so nothing collides with a landing page (.lp, --lp-*). */
+:root {
+  --k-bg: #ffffff;
+  --k-bg-2: #f4f6f5;
+  --k-bg-3: #e9eeec;
+  --k-line: #dfe5e3;
+  --k-fg: #16302f;
+  --k-fg-2: #3c5453;
+  --k-muted: #5b6f6d;            /* brand muted #6b7f7d fails AA on white at 14px; one step deeper */
+  --k-accent: #0f6b66;
+  --k-accent-soft: #e3f1ef;
+  --k-accent-fg: #ffffff;
+  --k-gate: #a33f05;             /* text on the gate tint, orange family, AA on the tint */
+  --k-gate-soft: #fff1e8;
+  --k-gate-ring: #ffb48a;
+  --k-gate-mark: #ff6a1a;
+  --k-hold: #c9463d;
+  --k-code-bg: #f4f6f5;
+  --k-focus: #0f6b66;
+  --k-device-bg: #e9eeec;
+
+  --k-font: Manrope, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --k-display: Fraunces, Georgia, "Times New Roman", serif;
+  --k-mono: ui-monospace, Menlo, Consolas, monospace;
+  --k-col: 760px;
+  --k-wide: 1180px;
+  --k-gutter-l: max(16px, env(safe-area-inset-left, 0px));
+  --k-gutter-r: max(16px, env(safe-area-inset-right, 0px));
+  --k-r-sm: 8px;
+  --k-r: 12px;
+  --k-r-lg: 16px;
+  --k-z-sticky: 20;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --k-bg: #0b100f;
+    --k-bg-2: #141a19;
+    --k-bg-3: #1c2423;
+    --k-line: rgba(255, 255, 255, .1);
+    --k-fg: #ffffff;
+    --k-fg-2: #e6eceb;
+    --k-muted: #9fb3b0;
+    --k-accent: #9be7c4;
+    --k-accent-soft: rgba(155, 231, 196, .12);
+    --k-accent-fg: #0b100f;
+    --k-gate: #ffb184;
+    --k-gate-soft: rgba(255, 106, 26, .12);
+    --k-gate-ring: rgba(255, 106, 26, .55);
+    --k-hold: #f0938c;
+    --k-code-bg: #141a19;
+    --k-focus: #9be7c4;
+    --k-device-bg: #141a19;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --k-bg: #0b100f;
+  --k-bg-2: #141a19;
+  --k-bg-3: #1c2423;
+  --k-line: rgba(255, 255, 255, .1);
+  --k-fg: #ffffff;
+  --k-fg-2: #e6eceb;
+  --k-muted: #9fb3b0;
+  --k-accent: #9be7c4;
+  --k-accent-soft: rgba(155, 231, 196, .12);
+  --k-accent-fg: #0b100f;
+  --k-gate: #ffb184;
+  --k-gate-soft: rgba(255, 106, 26, .12);
+  --k-gate-ring: rgba(255, 106, 26, .55);
+  --k-hold: #f0938c;
+  --k-code-bg: #141a19;
+  --k-focus: #9be7c4;
+  --k-device-bg: #141a19;
+  color-scheme: dark;
+}
+
+body {
+  background: var(--k-bg);
+  color: var(--k-fg);
+  font-family: var(--k-font);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  z-index: 30;
+  background: var(--k-bg);
+}
+.k-root *, .k-root *::before, .k-root *::after { box-sizing: border-box; }
+.k-root [hidden] { display: none !important; }
+.k-root :focus-visible { outline: 2px solid var(--k-focus); outline-offset: 2px; border-radius: 4px; }
+.k-root svg.k-i { width: 16px; height: 16px; flex: none; stroke: currentColor; fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---------- header and tabs ---------- */
+.k-head {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: var(--k-z-sticky);
+  background: var(--k-bg);
+  border-bottom: 1px solid var(--k-line);
+}
+.k-head-in {
+  max-width: calc(var(--k-wide) + 32px);
+  margin: 0 auto;
+  padding-left: var(--k-gutter-l);
+  padding-right: var(--k-gutter-r);
+  padding-block: 14px 0;
+  display: grid;
+  gap: 10px;
+}
+.k-head-row { display: flex; align-items: baseline; justify-content: space-between; gap: 8px 16px; flex-wrap: wrap; }
+.k-kit { margin: 0; display: flex; align-items: baseline; gap: 10px; min-width: 0; }
+.k-kit-no { font-size: 14px; font-weight: 700; color: var(--k-muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.k-kit-name { font-family: var(--k-display); font-weight: 600; font-size: 20px; line-height: 1.2; letter-spacing: -.01em; text-wrap: balance; }
+.k-proto { margin: 0; font-size: 12px; font-weight: 600; color: var(--k-muted); display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.k-proto::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--k-gate-mark); }
+.k-tabs {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  margin-inline: -4px;
+  padding-inline: 4px;
+}
+.k-tabs::-webkit-scrollbar { display: none; }
+.k-tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-block: 0 2px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--k-muted);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.k-tab:hover { color: var(--k-fg); }
+.k-tab[aria-current="page"] { color: var(--k-fg); }
+/* the current tab sits on the header's full width baseline (Geist underline tabs) */
+.k-tab[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -1px 0;
+  height: 2px;
+  background: var(--k-fg);
+}
+
+/* ---------- panels and columns ---------- */
+.k-main { padding-block: 32px 96px; }
+.k-panel { padding-left: var(--k-gutter-l); padding-right: var(--k-gutter-r); }
+.k-col { max-width: var(--k-col); margin: 0 auto; display: grid; gap: 48px; min-width: 0; }
+.k-wide { max-width: var(--k-wide); margin: 0 auto; display: grid; gap: 32px; min-width: 0; }
+.k-sec { display: grid; gap: 16px; min-width: 0; scroll-margin-top: 140px; }
+.k-title { margin: 0; font-family: var(--k-display); font-weight: 600; font-size: 32px; line-height: 1.15; letter-spacing: -.015em; text-wrap: balance; }
+.k-lede { margin: 0; font-size: 18px; line-height: 1.55; color: var(--k-fg-2); max-width: 64ch; text-wrap: pretty; }
+.k-intro { display: grid; gap: 12px; }
+.k-h3 { margin: 0; font-size: 18px; font-weight: 700; line-height: 1.35; text-wrap: balance; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.k-h3 .k-count { font-size: 14px; font-weight: 600; color: var(--k-muted); font-variant-numeric: tabular-nums; }
+.k-p { margin: 0; max-width: 68ch; text-wrap: pretty; color: var(--k-fg-2); }
+.k-p strong, .k-list strong { color: var(--k-fg); }
+.k-list { margin: 0; padding-left: 20px; display: grid; gap: 8px; color: var(--k-fg-2); max-width: 68ch; }
+.k-list li::marker { color: var(--k-muted); }
+.k-note { margin: 0; font-size: 14px; color: var(--k-muted); max-width: 68ch; }
+.k-est { font-size: 12px; font-weight: 700; color: var(--k-muted); text-decoration: none; padding: 1px 6px; border-radius: 999px; background: var(--k-bg-3); white-space: nowrap; vertical-align: 1px; }
+.k-root a.k-link { color: var(--k-accent); text-underline-offset: 3px; }
+
+/* ---------- today and new pair ---------- */
+.k-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+.k-pair > div { border-radius: var(--k-r); padding: 20px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.k-today { background: var(--k-bg-2); }
+.k-new { background: var(--k-bg); border: 1px solid var(--k-accent); }
+.k-pair-label { margin: 0; font-size: 14px; font-weight: 700; color: var(--k-muted); }
+.k-new .k-pair-label { color: var(--k-accent); }
+.k-pair p:not(.k-pair-label) { margin: 0; text-wrap: pretty; }
+.k-today p:not(.k-pair-label) { color: var(--k-fg-2); }
+
+/* ---------- facts: label and value rows, sentences not tiles ---------- */
+.k-facts { margin: 0; display: grid; }
+.k-facts > div { display: grid; grid-template-columns: 160px 1fr; gap: 4px 24px; padding-block: 14px; border-top: 1px solid var(--k-line); }
+.k-facts > div:last-child { border-bottom: 1px solid var(--k-line); }
+.k-facts dt { font-size: 14px; font-weight: 700; color: var(--k-muted); padding-top: 2px; }
+.k-facts dd { margin: 0; min-width: 0; text-wrap: pretty; }
+
+/* ---------- run sheet (signature) ---------- */
+.k-run { list-style: none; margin: 0; padding: 0; position: relative; display: grid; }
+.k-run::before {
+  content: "";
+  position: absolute;
+  top: 18px;
+  bottom: 18px;
+  left: 75px;
+  width: 1px;
+  background: var(--k-line);
+}
+.k-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 56px 40px minmax(0, 1fr) auto;
+  grid-template-areas: "date rail body own";
+  column-gap: 0;
+  padding-block: 14px;
+  align-items: start;
+}
+.k-step + .k-step { border-top: 1px solid var(--k-line); }
+.k-step::before {
+  content: "";
+  grid-area: rail;
+  justify-self: center;
+  margin-top: 9px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--k-bg);
+  border: 2px solid var(--k-muted);
+  position: relative;
+  z-index: 1;
+}
+.k-date { grid-area: date; display: grid; justify-items: end; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.k-dow { font-size: 12px; font-weight: 700; color: var(--k-muted); }
+.k-day { font-family: var(--k-display); font-size: 24px; font-weight: 600; letter-spacing: -.01em; }
+.k-mon { font-size: 12px; font-weight: 600; color: var(--k-muted); }
+.k-step-body { grid-area: body; display: grid; gap: 6px; min-width: 0; padding-right: 16px; }
+.k-step-what { margin: 0; font-weight: 600; text-wrap: pretty; }
+.k-step-detail { margin: 0; font-size: 14px; color: var(--k-fg-2); text-wrap: pretty; }
+.k-needs { margin: 0; font-size: 14px; color: var(--k-fg-2); display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.k-needs > b { font-weight: 700; color: var(--k-muted); white-space: nowrap; }
+.k-step > .k-own { grid-area: own; margin-top: 2px; }
+.k-step-range { font-size: 12px; font-weight: 600; color: var(--k-muted); white-space: nowrap; }
+
+/* gate: a full width row where a go or no go falls */
+.k-step.k-gate {
+  margin-block: 8px;
+  padding-block: 16px;
+  border-radius: var(--k-r);
+  background: var(--k-gate-soft);
+  border: 1px solid var(--k-gate-ring);
+}
+.k-step.k-gate + .k-step, .k-step + .k-step.k-gate { border-top-color: transparent; }
+.k-step.k-gate::before {
+  width: 12px;
+  height: 12px;
+  margin-top: 8px;
+  border-radius: 2px;
+  transform: rotate(45deg);
+  background: var(--k-gate-mark);
+  border-color: var(--k-gate-mark);
+}
+.k-gate-label { margin: 0; font-size: 14px; font-weight: 800; color: var(--k-gate); display: inline-flex; align-items: center; gap: 6px; }
+.k-gate .k-dow, .k-gate .k-mon { color: var(--k-gate); }
+.k-gate-ifs { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 16px; color: var(--k-fg-2); }
+.k-gate-out { margin: 0; font-size: 14px; color: var(--k-fg-2); }
+.k-gate-out b { color: var(--k-fg); }
+
+/* ---------- owner chips ---------- */
+.k-own {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 26px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  justify-self: end;
+}
+.k-own-daniel { background: var(--k-accent-soft); color: var(--k-accent); }
+.k-own-team { background: var(--k-bg-3); color: var(--k-fg-2); }
+.k-own-both { background: transparent; color: var(--k-accent); border: 1px solid var(--k-accent); }
+.k-own svg.k-i { width: 14px; height: 14px; }
+
+/* ---------- checklist ---------- */
+.k-check { list-style: none; margin: 0; padding: 0; display: grid; }
+.k-check li { display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 12px; padding-block: 12px; align-items: start; }
+.k-check li + li { border-top: 1px solid var(--k-line); }
+.k-check input {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 2px 0 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  border: 1.5px solid var(--k-muted);
+  background: var(--k-bg);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  position: relative;
+}
+.k-check input::before { content: ""; position: absolute; inset: -12px; }
+.k-check input:checked { background: var(--k-accent); border-color: var(--k-accent); }
+.k-check input:checked::after {
+  content: "";
+  width: 10px;
+  height: 6px;
+  border: solid var(--k-accent-fg);
+  border-width: 0 0 2px 2px;
+  transform: translateY(-1px) rotate(-45deg);
+}
+.k-check label { cursor: pointer; display: grid; gap: 2px; text-wrap: pretty; }
+.k-check label small { font-size: 14px; color: var(--k-muted); }
+.k-check input:checked + label { color: var(--k-muted); }
+
+/* ---------- copy block ---------- */
+.k-cb { margin: 0; display: grid; gap: 8px; min-width: 0; }
+.k-cb > figcaption { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 32px; }
+.k-cb-label { font-size: 14px; font-weight: 700; color: var(--k-fg); }
+.k-cb-meta { font-size: 12px; font-weight: 500; color: var(--k-muted); margin-right: auto; }
+.k-cb-body {
+  margin: 0;
+  padding: 14px 16px;
+  border-radius: var(--k-r);
+  background: var(--k-code-bg);
+  border: 1px solid var(--k-line);
+  font-family: var(--k-font);
+  font-size: 16px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: var(--k-fg);
+  min-width: 0;
+}
+.k-cb-body.k-mono { font-family: var(--k-mono); font-size: 12px; }
+.k-copy {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 4px 12px;
+  border-radius: var(--k-r-sm);
+  border: 1px solid var(--k-line);
+  background: var(--k-bg);
+  color: var(--k-fg);
+  font: 600 14px/1 var(--k-font);
+  cursor: pointer;
+  position: relative;
+  white-space: nowrap;
+}
+.k-copy::before { content: ""; position: absolute; inset: -6px; }
+.k-copy:hover { background: var(--k-bg-2); }
+.k-copy[data-state="done"] { background: var(--k-accent-soft); border-color: var(--k-accent); color: var(--k-accent); }
+.k-copy[data-state="select"] { background: var(--k-bg-3); }
+.k-copy svg.k-i { width: 14px; height: 14px; }
+.k-copy .k-i-done { display: none; }
+.k-copy[data-state="done"] .k-i-copy { display: none; }
+.k-copy[data-state="done"] .k-i-done { display: block; }
+
+/* ---------- placeholder chip for what only Daniel knows ---------- */
+.k-ph {
+  display: inline-block;   /* one closed box: the chip moves to the next line whole, and only a chip wider than the line wraps, inside its own box */
+  max-width: 100%;
+  padding: 1px 8px;
+  border-radius: 6px;
+  border: 1px dashed var(--k-gate-mark);
+  background: var(--k-gate-soft);
+  color: var(--k-gate);
+  font-size: .9em;
+  font-weight: 700;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* ---------- consent callout ---------- */
+.k-consent {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--k-r);
+  background: var(--k-bg-2);
+  border: 1px solid var(--k-line);
+  font-size: 16px;
+  color: var(--k-fg-2);
+}
+.k-consent svg.k-i { width: 20px; height: 20px; color: var(--k-hold); margin-top: 1px; }
+.k-consent p { margin: 0; text-wrap: pretty; }
+.k-consent b { color: var(--k-fg); }
+
+/* ---------- table ---------- */
+.k-table-wrap { overflow-x: auto; min-width: 0; border-radius: var(--k-r); border: 1px solid var(--k-line); }
+.k-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.k-table .k-num { font-variant-numeric: tabular-nums; text-align: right; }
+.k-table th, .k-table td { text-align: left; vertical-align: top; padding: 12px 16px; }
+.k-table thead th { font-size: 12px; font-weight: 700; color: var(--k-muted); background: var(--k-bg-2); white-space: nowrap; }
+.k-table tbody tr + tr td, .k-table tbody tr + tr th { border-top: 1px solid var(--k-line); }
+.k-table tbody th { font-weight: 700; }
+.k-table td { color: var(--k-fg-2); min-width: 160px; }
+
+/* ---------- segmented control (ratio and device switches) ---------- */
+.k-seg { display: inline-flex; padding: 3px; gap: 2px; border-radius: 10px; background: var(--k-bg-3); }
+.k-seg button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--k-muted);
+  font: 600 14px/1 var(--k-font);
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.k-seg button[aria-pressed="true"] { background: var(--k-bg); color: var(--k-fg); box-shadow: 0 1px 2px rgba(22, 48, 47, .12), 0 0 0 1px var(--k-line); }
+.k-seg button:hover { color: var(--k-fg); }
+
+/* ---------- ad unit ---------- */
+.k-ad { display: grid; grid-template-columns: minmax(0, 400px) minmax(0, 1fr); gap: 32px 40px; align-items: start; }
+.k-ad + .k-ad { padding-top: 48px; border-top: 1px solid var(--k-line); }
+.k-ad-side { display: grid; gap: 12px; justify-items: start; min-width: 0; }
+.k-ad-side > .k-seg { justify-self: start; }
+.k-feed {
+  width: 100%;
+  max-width: 400px;
+  border-radius: var(--k-r);
+  border: 1px solid var(--k-line);
+  background: var(--k-bg);
+  overflow: hidden;
+  font-size: 14px;
+}
+.k-feed-top { display: flex; align-items: center; gap: 10px; padding: 12px 14px 10px; }
+.k-feed-avatar { width: 36px; height: 36px; border-radius: 50%; background: #0b100f; box-shadow: 0 0 0 1px var(--k-line); display: grid; place-items: center; flex: none; overflow: hidden; }
+.k-feed-avatar img { width: 26px; height: auto; filter: brightness(0) invert(1); }
+.k-feed-who { display: grid; line-height: 1.25; }
+.k-feed-who b { font-size: 14px; }
+.k-feed-who span { font-size: 12px; color: var(--k-muted); }
+.k-feed-text { margin: 0; padding: 0 14px 12px; font-size: 14px; line-height: 1.45; white-space: pre-wrap; overflow-wrap: anywhere; }
+.k-feed-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px 12px; background: var(--k-bg-2); }
+.k-feed-bar div { display: grid; min-width: 0; line-height: 1.3; }
+.k-feed-bar b { font-size: 14px; }
+.k-feed-bar span { font-size: 12px; color: var(--k-muted); }
+.k-feed-cta { flex: none; padding: 8px 12px; border-radius: 6px; background: var(--k-bg-3); font-size: 12px; font-weight: 700; white-space: nowrap; }
+/* the creative slot: a sized box, the creative inside sets its own look (creative.css) */
+.k-art { width: 100%; aspect-ratio: 4 / 5; max-width: 100%; position: relative; overflow: hidden; container-type: inline-size; }
+.k-ad[data-ratio="1x1"] .k-art { aspect-ratio: 1 / 1; }
+.k-art > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.k-ad-fields { display: grid; gap: 20px; min-width: 0; }
+.k-ad-name { margin: 0; font-size: 18px; font-weight: 700; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.k-ad-name span { font-size: 14px; font-weight: 600; color: var(--k-muted); }
+.k-ad-meta { margin: 0; display: grid; }
+.k-ad-meta > div { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 12px; padding-block: 10px; border-top: 1px solid var(--k-line); font-size: 14px; }
+.k-ad-meta dt { font-weight: 700; color: var(--k-muted); font-size: 14px; }
+.k-ad-meta dd { margin: 0; color: var(--k-fg-2); min-width: 0; }
+
+/* ---------- device frame for the landing page ---------- */
+.k-device { display: grid; gap: 16px; justify-items: center; min-width: 0; }
+.k-device-bar { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.k-device-note { margin: 0; font-size: 14px; color: var(--k-muted); }
+.k-device-stage { width: 100%; display: grid; justify-items: center; padding: 24px 16px; border-radius: var(--k-r-lg); background: var(--k-device-bg); min-width: 0; }
+.k-device-shell { width: 100%; border-radius: var(--k-r); overflow: hidden; background: #0b100f; box-shadow: 0 0 0 1px var(--k-line), 0 12px 32px rgba(11, 16, 15, .16); }
+.k-device-chrome { display: flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px; background: #1c2423; color: #9fb3b0; font: 600 12px/1 var(--k-font); }
+.k-device-chrome span { flex: 1; text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.k-device-chrome svg.k-i { width: 14px; height: 14px; }
+.k-device-view { position: relative; overflow: hidden; width: 100%; }
+.k-device-page { width: 1280px; transform-origin: 0 0; }
+.k-device[data-device="phone"] .k-device-shell { max-width: 390px; border-radius: 16px; box-shadow: 0 0 0 1px var(--k-line), 0 0 0 7px #1c2423, 0 16px 40px rgba(11, 16, 15, .22); }
+.k-device[data-device="phone"] .k-device-page { width: 390px; }
+.k-device[data-device="phone"] .k-device-chrome { height: 28px; }
+
+/* ---------- assets with a jump list ---------- */
+.k-assets { max-width: var(--k-wide); margin: 0 auto; display: grid; grid-template-columns: 220px minmax(0, var(--k-col)); gap: 48px; justify-content: center; align-items: start; }
+.k-jump { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 128px); display: grid; gap: 2px; }
+.k-jump-title { margin: 0 0 6px; padding-left: 10px; font-size: 12px; font-weight: 700; color: var(--k-muted); }
+.k-jump button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  font: 600 14px/1.35 var(--k-font);
+  color: var(--k-fg-2);
+  padding: 8px 10px;
+  border-radius: var(--k-r-sm);
+  cursor: pointer;
+  min-height: 36px;
+}
+.k-jump button:hover { background: var(--k-bg-2); color: var(--k-fg); }
+.k-jump button[aria-current="true"] { background: var(--k-accent-soft); color: var(--k-accent); }
+.k-assets-body { display: grid; gap: 56px; min-width: 0; }
+
+/* ---------- narrow ---------- */
+@media (max-width: 860px) {
+  .k-assets { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .k-jump { position: static; display: flex; flex-wrap: wrap; gap: 6px; }
+  .k-jump-title { width: 100%; padding-left: 0; margin: 0; }
+  .k-jump button { background: var(--k-bg-2); padding: 6px 12px; border-radius: 999px; font-size: 12px; min-height: 36px; }
+  .k-ad { grid-template-columns: minmax(0, 1fr); }
+  .k-ad-side { justify-items: stretch; }
+  .k-feed { margin-inline: auto; }
+}
+@media (max-width: 560px) {
+  .k-main { padding-block: 24px 72px; }
+  .k-col { gap: 40px; }
+  .k-title { font-size: 28px; }
+  .k-lede { font-size: 16px; }
+  .k-kit-name { font-size: 18px; }
+  .k-head-in { padding-block: 10px 0; gap: 4px; }
+  .k-tabs { gap: 20px; }
+  .k-facts > div { grid-template-columns: minmax(0, 1fr); }
+  .k-run::before { left: 63px; }
+  .k-step {
+    grid-template-columns: 48px 32px minmax(0, 1fr);
+    grid-template-areas: "date rail body" ". . own";
+    row-gap: 10px;
+  }
+  .k-step > .k-own { justify-self: start; margin-top: 0; }
+  .k-step-body { padding-right: 0; }
+  .k-step.k-gate { margin-inline: -8px; padding-right: 8px; }
+  .k-day { font-size: 22px; }
+  .k-device-stage { padding: 12px 8px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .k-copy, .k-seg button, .k-jump button, .k-check input { transition: background-color .15s ease, color .15s ease, border-color .15s ease; }
+}
+
+
+</style>
+<style>
+/* Site layer: one more level above the kit binder. Used only by `build.mjs --site`; the kit pages built for sharing one by one never load it.
+   The funnel bar is his dark page colour in both themes (a deliberate single look), so it reads as the level above
+   the paper kit header. Current funnel: a mint tint, never a stripe. */
+.s-band {
+  background: #16302f;
+  color: #cfd8d6;
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+/* same teal in dark theme: a neutral dark bar melted into the dark kit header */
+.s-band-in {
+  max-width: calc(var(--k-wide) + 32px);
+  margin: 0 auto;
+  padding-left: var(--k-gutter-l);
+  padding-right: var(--k-gutter-r);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  min-height: 56px;
+}
+.s-logo { height: 20px; width: auto; flex: none; filter: brightness(0) invert(1); display: block; }
+.s-switch {
+  display: flex;
+  gap: 4px;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-block: 8px;
+  margin-inline: -4px;
+  padding-inline: 4px;
+}
+.s-switch::-webkit-scrollbar { display: none; }
+.s-sw {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 999px;
+  color: #cfd8d6;
+  font: 700 16px/1 var(--k-font);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.s-sw:hover { color: #ffffff; background: rgba(255, 255, 255, .06); }
+.s-sw[aria-current="page"] { color: #9be7c4; background: rgba(155, 231, 196, .14); }
+.k-root .s-sw:focus-visible { outline: 2px solid #9be7c4; outline-offset: 2px; border-radius: 999px; }
+/* kit tab focus: a full ring drawn inside the tab row, because the row is a 44 px scroll box and clips an outline that sits outside the tab */
+.k-root .k-tab:focus-visible { outline: none; }
+.k-root .k-tab:focus-visible::before { content: ""; position: absolute; inset: 6px -4px; border: 2px solid currentColor; border-radius: 6px; pointer-events: none; }
+
+/* phone: the row fades at its right edge so the next funnel name peeks in; the spacer lets the last pill scroll clear of the fade */
+@media (max-width: 767px) {
+  .s-switch {
+    -webkit-mask-image: linear-gradient(to right, #000 82%, transparent);
+    mask-image: linear-gradient(to right, #000 82%, transparent);
+  }
+  .s-switch::after { content: ""; flex: none; width: 64px; }
+}
+
+/* desktop: the funnel bar and the kit header both stay in view */
+@media (min-width: 861px) {
+  .s-band { position: sticky; top: env(safe-area-inset-top, 0px); z-index: calc(var(--k-z-sticky) + 1); }
+  .s-band-in { height: 56px; }
+  .k-root .k-head { top: calc(env(safe-area-inset-top, 0px) + 56px); }
+  .k-root .k-jump { top: calc(env(safe-area-inset-top, 0px) + 184px); }
+  .k-root .k-sec { scroll-margin-top: 196px; }
+}
+/* phone: the funnel bar scrolls away, the kit tabs stay (the shell's own sticky header) */
+@media (max-width: 860px) {
+  .s-logo { display: none; }
+  .s-band-in { gap: 0; min-height: 52px; }
+  .s-sw { position: relative; min-height: 36px; padding: 0 14px; }
+  .s-sw::before { content: ""; position: absolute; inset: -4px 0; }
+}
+
+/* downloads on an ad unit, under its name */
+.s-dl { display: grid; gap: 6px; margin: 0; padding: 12px 14px; border-radius: var(--k-r); background: var(--k-bg-2); }
+.s-dl-row { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; font-size: 14px; }
+.s-dl-label { font-weight: 700; color: var(--k-fg); margin-right: 2px; }
+.s-dl-note { color: var(--k-muted); font-size: 14px; }
+.s-get {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 0 12px;
+  border-radius: var(--k-r-sm);
+  border: 1px solid var(--k-line);
+  background: var(--k-bg);
+  color: var(--k-fg);
+  font: 700 14px/1 var(--k-font);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.s-get:hover { border-color: var(--k-accent); color: var(--k-accent); }
+.s-get svg.k-i { width: 14px; height: 14px; }
+.s-get-strong { background: var(--k-accent); border-color: var(--k-accent); color: var(--k-accent-fg); }
+.s-get-strong:hover { color: var(--k-accent-fg); filter: brightness(1.08); }
+.s-zip { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 16px; }
+.s-zip p { margin: 0; font-size: 14px; color: var(--k-muted); }
+.k-device-bar .s-get { margin-left: auto; }
+
+/* overview: an index of four rows, not tiles */
+.s-rows { list-style: none; margin: 0; padding: 0; display: grid; }
+.s-row {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 12px 40px;
+  padding-block: 24px;
+  border-top: 1px solid var(--k-line);
+}
+.s-row:last-child { border-bottom: 1px solid var(--k-line); }
+.s-row-head { display: grid; gap: 4px; align-content: start; }
+.s-row-no { font-size: 14px; font-weight: 700; color: var(--k-muted); font-variant-numeric: tabular-nums; }
+.s-row-name { margin: 0; font-family: var(--k-display); font-weight: 600; font-size: 24px; line-height: 1.2; letter-spacing: -.01em; text-wrap: balance; }
+.s-row-name a { color: var(--k-fg); text-decoration: none; }
+.s-row-name a:hover { color: var(--k-accent); }
+.s-row-body { display: grid; gap: 14px; min-width: 0; }
+.s-row-what { margin: 0; font-size: 18px; line-height: 1.5; text-wrap: pretty; max-width: 66ch; }
+.s-row-facts { margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 24px; }
+.s-row-facts div { display: grid; gap: 2px; align-content: start; min-width: 0; }
+.s-row-facts dt { font-size: 14px; font-weight: 700; color: var(--k-muted); }
+.s-row-facts dd { margin: 0; font-size: 14px; color: var(--k-fg-2); text-wrap: pretty; }
+.s-row-go { justify-self: start; display: inline-flex; align-items: center; gap: 6px; min-height: 36px; font-weight: 700; color: var(--k-accent); text-decoration: none; }
+.s-row-go:hover { text-decoration: underline; text-underline-offset: 3px; }
+.s-row-go svg.k-i { width: 16px; height: 16px; }
+.s-cal { min-width: 980px; }
+.s-cal th[scope="row"] { white-space: nowrap; }
+.s-cal td { min-width: 0; }
+.s-cal .s-off { color: var(--k-muted); }
+.s-downloads { list-style: none; margin: 0; padding: 0; display: grid; }
+.s-downloads li { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 16px; padding-block: 12px; border-top: 1px solid var(--k-line); }
+.s-downloads li:last-child { border-bottom: 1px solid var(--k-line); }
+.s-downloads b { font-weight: 700; }
+.s-downloads span { color: var(--k-muted); font-size: 14px; }
+@media (max-width: 860px) {
+  .s-row { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .s-row-head { grid-template-columns: auto 1fr; align-items: baseline; gap: 10px; }
+  .s-row-what { font-size: 16px; }
+  .s-row-facts { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+}
+
+</style>
+</head>
+<body>
+<div class="k-root">
+<div class="s-band"><div class="s-band-in"><img class="s-logo" src="../assets/purplefire-logo.webp" alt="PurpleFire" width="108" height="20"><nav class="s-switch" aria-label="Funnels"><a class="s-sw" href="../">Overview</a><a class="s-sw" href="../past-clients/" aria-current="page">Past clients</a><a class="s-sw" href="../after-the-freeze/">After the freeze</a><a class="s-sw" href="../named-stores/">Named stores</a><a class="s-sw" href="../guess-the-winner/">Guess the winner</a></nav></div></div>
+<header class="k-head"><div class="k-head-in">
+  <div class="k-head-row"><p class="k-kit"><span class="k-kit-no">Kit 01</span><span class="k-kit-name">Past clients: a check of their own winners</span></p><p class="k-proto">Prototype for PurpleFire</p></div>
+  <nav class="k-tabs" aria-label="Kit sections"><a class="k-tab" href="#strategy" data-tab="strategy" aria-current="page">Strategy</a><a class="k-tab" href="#run" data-tab="run">Run it</a><a class="k-tab" href="#assets" data-tab="assets">Assets</a></nav>
+</div></header>
+<main class="k-main">
+<section class="k-panel" id="tab-strategy" data-tab="strategy" aria-label="Strategy">
+<style>
+/* Kit 01 additions, built from the shell tokens (the kit has no inline code, no "Nobody" owner,
+   no sub heading inside a section, no rich copy body and no sample document). Every class starts f01-. */
+.f01-code { font-family: var(--k-font); font-weight: 600; font-size: 14px; padding: 1px 6px; border-radius: 6px; background: var(--k-bg-3); color: var(--k-fg); overflow-wrap: anywhere; }
+.k-own.f01-own-none { background: transparent; color: var(--k-muted); border: 1px solid var(--k-line); }
+.k-step-range.f01-range { white-space: normal; display: block; font-size: 14px; font-weight: 700; color: var(--k-fg-2); }
+.k-gate .k-step-range.f01-range { color: var(--k-gate); }
+.f01-date-none { min-height: 1px; }
+.f01-block { display: grid; gap: 16px; min-width: 0; }
+.f01-block + .f01-block { padding-top: 32px; border-top: 1px solid var(--k-line); }
+.f01-h4 { margin: 0; font-size: 16px; font-weight: 700; line-height: 1.4; color: var(--k-fg); text-wrap: balance; }
+.f01-no { color: var(--k-muted); font-variant-numeric: tabular-nums; margin-right: 4px; }
+.f01-pick { display: grid; gap: 12px; }
+#f01-need label, .f01-asks { overflow-wrap: anywhere; }
+.f01-howto { margin: 0; font-size: 14px; line-height: 1.5; color: var(--k-fg-2); max-width: 68ch; text-wrap: pretty; }
+.f01-howto > b { color: var(--k-fg); margin-right: 2px; white-space: nowrap; }
+.k-cb-body.f01-cb-rich { white-space: normal; padding: 0; background: transparent; border: 0; }
+.f01-cb-rich .k-table-wrap { background: var(--k-code-bg); }
+.f01-cb-rich .k-list { padding: 14px 16px 14px 36px; border-radius: var(--k-r); border: 1px solid var(--k-line); background: var(--k-code-bg); max-width: none; color: var(--k-fg); }
+.f01-cb-rich .k-table td { min-width: 200px; }
+
+
+/* ---------- sample check document: one paper look in both kit themes ---------- */
+.f01-doc { container-type: inline-size; display: grid; gap: 16px; padding: 24px; border-radius: var(--k-r-lg); background: var(--k-bg-2); min-width: 0; }
+.f01-doc-mark { margin: 0; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; font-size: 14px; color: var(--k-fg-2); }
+.f01-doc-mark b { font-size: 12px; font-weight: 800; padding: 2px 8px; border-radius: 999px; background: var(--k-fg); color: var(--k-bg); white-space: nowrap; }
+.f01-page-label { margin: 8px 0 -8px; font-size: 12px; font-weight: 700; color: var(--k-muted); }
+.f01-sheet {
+  --d-ink: #16302f; --d-ink-2: #3c5453; --d-muted: #5b6f6d; --d-line: #dfe5e3; --d-mist: #f4f6f5; --d-mist-2: #e9eeec;
+  --d-green: #176b3b; --d-tint: #eefaf3; --d-teal: #0f6b66;
+  --k-gate: #a33f05; --k-gate-soft: #fff1e8; --k-gate-mark: #ff6a1a;
+  background: #ffffff; color: var(--d-ink); border-radius: var(--k-r); border: 1px solid var(--d-line);
+  box-shadow: 0 1px 2px rgba(11, 16, 15, .08);
+  padding: 32px; display: grid; gap: 24px; min-width: 0; font-size: 16px; line-height: 1.5;
+}
+.f01-sheet.f01-cover {
+  --k-gate: #ffb184; --k-gate-soft: rgba(255, 106, 26, .14); --k-gate-mark: #ff6a1a;
+  background: #0b100f; color: #ffffff; border-color: rgba(255, 255, 255, .12); gap: 32px;
+}
+.f01-sheet p { margin: 0; text-wrap: pretty; }
+.f01-logo { display: block; height: auto; }
+.f01-sheet-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.f01-id { font-family: var(--k-font); font-weight: 600; font-size: 12px; color: var(--d-muted); overflow-wrap: anywhere; }
+.f01-cover-title { margin: 0; font-family: var(--k-display); font-weight: 600; font-size: 28px; line-height: 1.2; letter-spacing: -.015em; text-wrap: balance; max-width: 24ch; }
+.f01-cover-title em { font-style: italic; font-weight: 500; color: #9be7c4; }
+.f01-cover-sub { color: #c9d4d2; max-width: 56ch; }
+.f01-counts { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 0; padding: 16px 0; border-top: 1px solid rgba(255, 255, 255, .12); border-bottom: 1px solid rgba(255, 255, 255, .12); list-style: none; }
+.f01-counts li { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; }
+.f01-dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.f01-dot-live { background: #2fae67; }
+.f01-dot-changed { background: #ff6a1a; }
+.f01-dot-gone { background: #9fb3b0; }
+.f01-cover-note { font-size: 14px; color: #9fb3b0; max-width: 60ch; }
+
+.f01-card-head { display: grid; gap: 8px; }
+.f01-tag { justify-self: start; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: var(--d-mist-2); color: var(--d-ink-2); }
+.f01-card-title { margin: 0; font-family: var(--k-display); font-weight: 600; font-size: 24px; line-height: 1.25; letter-spacing: -.01em; text-wrap: balance; }
+.f01-card-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
+.f01-col { display: grid; gap: 16px; align-content: start; min-width: 0; }
+.f01-field { display: grid; gap: 4px; }
+.f01-label { font-size: 12px; font-weight: 700; color: var(--d-muted); }
+.f01-result { padding: 12px 16px; border-radius: 12px; background: var(--d-tint); color: var(--d-green); font-weight: 700; }
+.f01-shots { display: grid; grid-template-columns: minmax(0, 1fr) 26%; gap: 12px; align-items: end; }
+.f01-shot { position: relative; border-radius: 8px; border: 1px solid var(--d-line); background: var(--d-mist); padding: 10px; display: grid; gap: 6px; align-content: start; overflow: hidden; }
+.f01-shot-desk { aspect-ratio: 16 / 10; grid-template-columns: 44% 1fr; grid-template-rows: 6px 1fr; column-gap: 10px; }
+.f01-shot-phone { aspect-ratio: 9 / 19; border-radius: 12px; padding: 8px; grid-template-rows: 4px 42% repeat(3, 4px) 10px; }
+.f01-shot i { display: block; border-radius: 3px; background: var(--d-mist-2); }
+.f01-shot .f01-sk-bar { grid-column: 1 / -1; background: var(--d-line); }
+.f01-shot .f01-sk-img { background: var(--d-line); }
+.f01-sk-lines { display: grid; gap: 6px; align-content: start; }
+.f01-sk-lines i { height: 6px; }
+.f01-sk-lines i:nth-child(1) { width: 80%; height: 10px; }
+.f01-sk-lines i:nth-child(3) { width: 60%; }
+.f01-sk-lines i:nth-child(4) { width: 70%; height: 14px; margin-top: 6px; background: var(--d-line); }
+.f01-shot-phone i:nth-child(4) { width: 70%; }
+.f01-shot-phone i:last-child { background: var(--d-line); }
+.f01-shot-icon { position: absolute; right: 6px; bottom: 6px; color: var(--d-muted); display: inline-flex; }
+.f01-shot-icon svg.k-i { width: 14px; height: 14px; }
+.f01-shot-meta { display: grid; gap: 2px; font-size: 14px; color: var(--d-ink-2); }
+.f01-shot-meta .f01-url { font-weight: 600; font-size: 12px; overflow-wrap: anywhere; }
+.f01-finding { display: grid; gap: 8px; padding: 16px; border-radius: 12px; }
+.f01-finding-live { background: var(--d-tint); }
+.f01-finding-changed { background: #fff1e8; }
+.f01-finding-gone { background: var(--d-mist); }
+.f01-chip { justify-self: start; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 800; padding: 4px 12px; border-radius: 999px; background: #ffffff; }
+.f01-finding-live .f01-chip { color: var(--d-green); }
+.f01-finding-changed .f01-chip { color: #a33f05; }
+.f01-finding-gone .f01-chip { color: var(--d-ink-2); }
+.f01-close-title { margin: 0; font-family: var(--k-display); font-weight: 600; font-size: 28px; line-height: 1.2; letter-spacing: -.015em; }
+.f01-asks { margin: 0; padding-left: 22px; display: grid; gap: 12px; color: var(--d-ink-2); }
+.f01-asks li::marker { color: var(--d-muted); font-weight: 700; }
+.f01-asks b { color: var(--d-ink); }
+.f01-passes { display: grid; gap: 2px; margin-top: 4px; font-size: 14px; font-weight: 600; color: var(--d-ink); }
+.f01-sign { display: flex; align-items: center; gap: 12px; padding-top: 16px; border-top: 1px solid var(--d-line); }
+.f01-avatar { width: 48px; height: 48px; border-radius: 50%; overflow: hidden; flex: none; background: var(--d-mist); }
+.f01-avatar img { width: 112px; max-width: none; height: auto; margin: -8px 0 0 -32px; display: block; }
+.f01-cover .f01-logo { filter: brightness(0) invert(1); }
+.f01-sign p { font-weight: 700; }
+
+@container (min-width: 600px) {
+  .f01-card-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 32px; }
+  .f01-cover-title { font-size: 32px; }
+}
+@media (max-width: 560px) {
+  .f01-doc { padding: 12px; margin-inline: -4px; }
+  .f01-sheet { padding: 20px; gap: 20px; }
+  .f01-sheet.f01-cover { gap: 24px; }
+  .f01-cover-title { font-size: 24px; }
+  .f01-card-title { font-size: 20px; }
+}
+</style>
+<div class="k-col">
+  <div class="k-intro">
+    <h1 class="k-title">Past clients get a check of their own winners</h1>
+    <p class="k-lede">Plus two passes for founder friends. Nothing is hosted. Your list and your go are due Mon 16 Nov; see Run it.</p>
+  </div>
+
+  <section class="k-sec" aria-label="What changes">
+    <h2 class="k-h3">What changes</h2>
+    <div class="k-pair">
+      <div class="k-today">
+        <p class="k-pair-label">Today</p>
+        <p>Every funnel Daniel runs buys cold attention, and his past clients appear only as logos and proof cards.</p>
+      </div>
+      <div class="k-new">
+        <p class="k-pair-label">New</p>
+        <p>Past client founders get a short note asking for one reply, then a check of which of their own winners are still live, with two passes for founder friends.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="k-sec" aria-label="The test">
+    <h2 class="k-h3">The test</h2>
+    <dl class="k-facts">
+      <div><dt>Who it is for</dt><dd>The founders and teams behind the vault cards, and the people and friends they lead to.</dd></div>
+      <div><dt>Hypothesis</dt><dd>People who already saw his tests win produce qualified calls (a restart, an intro or a used pass) at a rate cold traffic has not; fewer than 3 qualified calls by Fri 18 Dec proves it false.</dd></div>
+      <div><dt>Segments</dt><dd>Read by source tag (no arms; a directional read on tens of contacts): A, past client founders and team; B, job changers now at another brand; C, founder friends reached through a pass or an agreed intro.</dd></div>
+      <div><dt>Keep</dt><dd>At least 1 in 4 of segment A says yes, and at least 3 qualified calls by Fri 18 Dec.</dd></div>
+      <div><dt>Kill</dt><dd>Target plan, fewer than 1 in 10 yes replies from the first 30 notes by Mon 30 Nov; fallback plan, fewer than 3 replies asking to talk from the first 30 checks by Fri 11 Dec.</dd></div>
+      <div><dt>Cost</dt><dd><abbr class="k-est" title="Estimate">Est.</abbr> Media $0, optional video about $255. Build 11 to 16 h, plus 30 to 45 min per check.</dd></div>
+      <div><dt>Shares</dt><dd>Kit 02's page (where passes land) and its calendars; the vault cards; one GHL template.</dd></div>
+    </dl>
+  </section>
+
+  <section class="k-sec" aria-label="Risks">
+    <h2 class="k-h3">Risks</h2>
+    <ul class="k-list">
+      <li>A "not found" read as blame.</li>
+      <li>Old winners mostly changed.</li>
+      <li>A reachable list far below the 71 past clients in the vault, so this runs beside the ad funnel.</li>
+    </ul>
+  </section>
+
+  <section class="k-sec" aria-label="Before anything is sent">
+    <h2 class="k-h3">Before anything is sent</h2>
+    <ul class="k-list">
+      <li>Daniel confirms, per client, the brand name they knew him under and that no work was done under another agency.</li>
+      <li>Each client OKs their card before anyone else sees it.</li>
+    </ul>
+    <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to a Danish contact</b> until Daniel names his countries and a legal read confirms the format.</p></div>
+  </section>
+</div>
+
+</section>
+<section class="k-panel" id="tab-run" data-tab="run" aria-label="Run it" hidden>
+<div class="k-col">
+  <div class="k-intro">
+    <h1 class="k-title">Run it</h1>
+    <p class="k-lede">Two paths. GATE 1 on Mon 16 Nov decides which one runs: the target path first, the fallback path below it. The orange rows are go or no go gates.</p>
+  </div>
+
+  <section class="k-sec" id="f01-path-target" aria-label="Target path">
+    <h2 class="k-h3">Target path: notes from Tue 17 Nov (if Daniel's list and go arrive by Mon 16 Nov)</h2>
+    <ol class="k-run">
+      <li class="k-step">
+        <time class="k-date" datetime="2026-11-13"><span class="k-dow">Fri</span><span class="k-day">13</span><span class="k-mon">Nov</span></time>
+        <div class="k-step-body">
+          <p class="k-step-what">Send Daniel the one ask: contact list, countries, go, December call slots.</p>
+          <p class="k-needs"><b>Needs first</b> Nothing</p>
+        </div>
+        <span class="k-own k-own-team"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Bhaskar's team</span>
+      </li>
+      <li class="k-step">
+        <time class="k-date" datetime="2026-11-13"><span class="k-dow">Fri</span><span class="k-day">13</span><span class="k-mon">Nov</span></time>
+        <div class="k-step-body">
+          <span class="k-step-range f01-range">Fri 13 to Mon 16 Nov</span>
+          <p class="k-step-what">Fill the contact sheet: who you can still message, on which channel, the brand name each knew you under, any work done under another agency, how each engagement ended.</p>
+          <p class="k-step-detail">Mark every skip.</p>
+          <p class="k-needs"><b>Needs first</b> The contact sheet template (Assets)</p>
+        </div>
+        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
+      </li>
+      <li class="k-step k-gate">
+        <time class="k-date" datetime="2026-11-16"><span class="k-dow">Mon</span><span class="k-day">16</span><span class="k-mon">Nov</span></time>
+        <div class="k-step-body">
+          <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: GATE 1, the first notes</p>
+          <p class="k-gate-out"><b>Go</b> if your list, your countries and your go have arrived and the legal read clears the countries of the first notes. <b>No go</b> means the fallback path below.</p>
+          <p class="k-needs"><b>Needs first</b> Legal read for the first countries</p>
+        </div>
+        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
+      </li>
+      <li class="k-step">
+        <time class="k-date" datetime="2026-11-16"><span class="k-dow">Mon</span><span class="k-day">16</span><span class="k-mon">Nov</span></time>
+        <div class="k-step-body">
+          <p class="k-step-what">Merge your list with the vault cards, count winners per brand, check each store still trades on its pages, order by most recent client first.</p>
+          <p class="k-needs"><b>Needs first</b> GATE 1 is go</p>
+        </div>
+        <span class="k-own k-own-team"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Bhaskar's team</span>
+      </li>
+      <li class="k-step">
+        <time class="k-date" datetime="2026-11-17"><span class="k-dow">Tue</span><span class="k-day">17</span><span class="k-mon">Nov</span></time>
+        <div class="k-step-body">
+          <span class="k-step-range f01-range">Tue 17 to Fri 20 Nov</span>
+          <p class="k-step-what">Send the first note to segment A and the job changer note to segment B from your own accounts, most recent clients first.</p>
+          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to a Danish contact</b> until Daniel names his countries and a legal read confirms the format.</p></div>
+          <p class="k-needs"><b>Needs first</b> Your OK on both notes; legal read for each country</p>
+        </div>
+        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
+      </li>
+      <li class="k-step">
+        <time class="k-date" datetime="2026-11-17"><span class="k-dow">Tue</span><span class="k-day">17</span><span class="k-mon">Nov</span></time>
+        <div class="k-step-body">
+          <span class="k-step-range f01-range">Tue 17 to Fri 27 Nov</span>
+          <p class="k-step-what">Log every reply in the contact sheet the day it arrives.</p>
+          <p class="k-needs"><b>Needs first</b> Notes sent</p>
+        </div>
+        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
+      </li>
+      <li class="k-step">
+        <time class="k-date" datetime="2026-11-23"><span class="k-dow">Mon</span><span class="k-day">23</span><span class="k-mon">Nov</span></time>
+        <div class="k-step-body">
+          <span class="k-step-range f01-range">Mon 23 Nov to Tue 1 Dec</span>
+          <p class="k-step-what">For each yes: pull the vault cards, find the page each winner ran on, set up the check file.</p>
+          <p class="k-step-detail">Captures wait for Wed 2 Dec so Cyber Week banners are not read as changes.</p>
+          <p class="k-needs"><b>Needs first</b> A yes in the contact sheet</p>
+        </div>
+        <span class="k-own k-own-team"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Bhaskar's team</span>
+      </li>
+      <li class="k-step k-gate">
+        <time class="k-date" datetime="2026-11-30"><span class="k-dow">Mon</span><span class="k-day">30</span><span class="k-mon">Nov</span></time>
+        <div class="k-step-body">
+          <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: GATE 2, kill read</p>
+          <p class="k-gate-out">Fewer than 1 in 10 yes replies from the first 30 notes means <b>no further notes go out</b>. Everyone who said yes still gets their check. If you can reach fewer than 30, read all of them today.</p>
+          <p class="k-needs"><b>Needs first</b> Replies logged</p>
+        </div>
+        <span class="k-own k-own-both"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Both</span>
+      </li>
+      <li class="k-step">
+        <time class="k-date" datetime="2026-12-02"><span class="k-dow">Wed</span><span class="k-day">2</span><span class="k-mon">Dec</span></time>
+        <div class="k-step-body">
+          <p class="k-step-what">Optional paid leg starts: the 30 second video to a Meta customer list of the past client contacts only (skips removed), $15 a day to Fri 18 Dec (<abbr class="k-est" title="Estimate">Est.</abbr>).</p>
+          <p class="k-step-detail">Runs only if the legal read gives a lawful basis to upload the list and Ads Manager shows the list can deliver. The list is excluded from kit 02's audiences.</p>
+          <p class="k-needs"><b>Needs first</b> Legal basis; Ads Manager shows it delivers</p>
+        </div>
+        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
+      </li>
+      <li class="k-step">
+        <time class="k-date" datetime="2026-12-02"><span class="k-dow">Wed</span><span class="k-day">2</span><span class="k-mon">Dec</span></time>
+        <div class="k-step-body">
+          <span class="k-step-range f01-range">Wed 2 to Thu 3 Dec</span>
+          <p class="k-step-what">Capture each winning page on the live store at desktop and phone width (read only: nothing bought, submitted or changed, no checkout) and mark it against its card.</p>
+          <p class="k-step-detail">Build each check.</p>
+          <p class="k-needs"><b>Needs first</b> The client said yes</p>
+        </div>
+        <span class="k-own k-own-team"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Bhaskar's team</span>
+      </li>
+      <li class="k-step">
+        <time class="k-date" datetime="2026-12-02"><span class="k-dow">Wed</span><span class="k-day">2</span><span class="k-mon">Dec</span></time>
+        <div class="k-step-body">
+          <span class="k-step-range f01-range">Wed 2 to Fri 4 Dec</span>
+          <p class="k-step-what">Read and sign every check, then send it with its two passes from your own account.</p>
+          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to a Danish contact</b> until Daniel names his countries and a legal read confirms the format.</p></div>
+          <p class="k-needs"><b>Needs first</b> Check built; legal read per country</p>
+        </div>
+        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
+      </li>
+      <li class="k-step k-gate">
+        <time class="k-date" datetime="2026-12-04"><span class="k-dow">Fri</span><span class="k-day">4</span><span class="k-mon">Dec</span></time>
+        <div class="k-step-body">
+          <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: GATE 3</p>
+          <p class="k-gate-out"><b>Segment B is dropped</b> if 15 job changer notes drew no reply.</p>
+          <p class="k-needs"><b>Needs first</b> Replies logged</p>
+        </div>
+        <span class="k-own k-own-both"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Both</span>
+      </li>
+      <li class="k-step">
+        <time class="k-date" datetime="2026-12-04"><span class="k-dow">Fri</span><span class="k-day">4</span><span class="k-mon">Dec</span></time>
+        <div class="k-step-body">
+          <span class="k-step-range f01-range">Fri 4 to Mon 7 Dec</span>
+          <p class="k-step-what">One follow up two days after each check, on the channel the client replied on; a weekend day moves to Monday.</p>
+          <p class="k-step-detail">Wed checks on Fri 4 Dec, Thu and Fri checks on Mon 7 Dec.</p>
+          <p class="k-needs"><b>Needs first</b> Check sent</p>
+        </div>
+        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
+      </li>
+      <li class="k-step">
+        <span class="k-date f01-date-none" aria-hidden="true"></span>
+        <div class="k-step-body">
+          <span class="k-step-range f01-range">Within two working days of each ask</span>
+          <p class="k-step-what">Send any intro a client asks for, once the client confirms the friend is happy to hear from you.</p>
+          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p>An intro is a first message to someone new: <b>nothing goes to a Danish friend</b> until Daniel names his countries and a legal read confirms the format.</p></div>
+          <p class="k-needs"><b>Needs first</b> Both sides agree; legal read for the friend's country</p>
+        </div>
+        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
+      </li>
+      <li class="k-step">
+        <time class="k-date" datetime="2026-12-07"><span class="k-dow">Mon</span><span class="k-day">7</span><span class="k-mon">Dec</span></time>
+        <div class="k-step-body">
+          <span class="k-step-range f01-range">Mon 7 to Fri 18 Dec</span>
+          <p class="k-step-what">Calls on the December calendar, 15 minutes each.</p>
+          <p class="k-step-detail">When someone from the contact sheet books, add their source tag in GHL by hand (Bhaskar's team also matches bookings against the sheet every Friday).</p>
+          <p class="k-needs"><b>Needs first</b> December slots in GHL</p>
+        </div>
+        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
+      </li>
+      <li class="k-step">
+        <time class="k-date" datetime="2026-12-08"><span class="k-dow">Tue</span><span class="k-day">8</span><span class="k-mon">Dec</span></time>
+        <div class="k-step-body">
+          <span class="k-step-range f01-range">Tue 8 to Fri 11 Dec (derived, <abbr class="k-est" title="Estimate">Est.</abbr>)</span>
+          <p class="k-step-what">Second job changer note, only where the legal read allows a marketing message to someone who is not a customer at their new brand, and only if GATE 3 kept segment B.</p>
+          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to a Danish contact</b> until Daniel names his countries and a legal read confirms the format.</p></div>
+          <p class="k-needs"><b>Needs first</b> Legal read; GATE 3</p>
+        </div>
+        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
+      </li>
+      <li class="k-step k-gate">
+        <time class="k-date" datetime="2026-12-09"><span class="k-dow">Wed</span><span class="k-day">9</span><span class="k-mon">Dec</span></time>
+        <div class="k-step-body">
+          <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: GATE 4, paid leg kill</p>
+          <p class="k-gate-out">No booking or pass lead from the customer list after $120 <b>ends the video</b>.</p>
+          <p class="k-needs"><b>Needs first</b> Paid leg running</p>
+        </div>
+        <span class="k-own k-own-both"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Both</span>
+      </li>
+      <li class="k-step k-gate">
+        <time class="k-date" datetime="2026-12-11"><span class="k-dow">Fri</span><span class="k-day">11</span><span class="k-mon">Dec</span></time>
+        <div class="k-step-body">
+          <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: GATE 5</p>
+          <p class="k-gate-out"><b>Passes are dropped</b> if fewer than 3 were opened.</p>
+          <p class="k-needs"><b>Needs first</b> Pass opens readable</p>
+        </div>
+        <span class="k-own k-own-both"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Both</span>
+      </li>
+      <li class="k-step k-gate">
+        <time class="k-date" datetime="2026-12-18"><span class="k-dow">Fri</span><span class="k-day">18</span><span class="k-mon">Dec</span></time>
+        <div class="k-step-body">
+          <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: GATE 6, keep read</p>
+          <p class="k-gate-out"><b>Paid leg ends.</b></p>
+          <p class="k-needs"><b>Needs first</b> Bookings tagged in GHL</p>
+        </div>
+        <span class="k-own k-own-both"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Both</span>
+      </li>
+      <li class="k-step">
+        <time class="k-date" datetime="2026-12-19"><span class="k-dow">Sat</span><span class="k-day">19</span><span class="k-mon">Dec</span></time>
+        <div class="k-step-body">
+          <span class="k-step-range f01-range">Sat 19 Dec to Mon 4 Jan</span>
+          <p class="k-step-what">Off.</p>
+        </div>
+        <span class="k-own f01-own-none">Nobody</span>
+      </li>
+      <li class="k-step">
+        <time class="k-date" datetime="2027-01-05"><span class="k-dow">Tue</span><span class="k-day">5</span><span class="k-mon">Jan</span></time>
+        <div class="k-step-body">
+          <span class="k-step-range f01-range">Tue 5 to Fri 29 Jan</span>
+          <p class="k-step-what">Calls on the January calendar.</p>
+          <p class="k-step-detail">Final count Fri 29 Jan.</p>
+          <p class="k-needs"><b>Needs first</b> January slots in GHL</p>
+        </div>
+        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
+      </li>
+    </ol>
+  </section>
+
+  <section class="k-sec" id="f01-path-fallback" aria-label="Fallback path">
+    <h2 class="k-h3">Fallback path: ask and check together, Wed 2 to Fri 4 Dec (if Mon 16 Nov is missed)</h2>
+    <ol class="k-run">
+      <li class="k-step">
+        <time class="k-date" datetime="2026-11-17"><span class="k-dow">Tue</span><span class="k-day">17</span><span class="k-mon">Nov</span></time>
+        <div class="k-step-body">
+          <p class="k-step-what">No November note goes out.</p>
+          <p class="k-needs"><b>Needs first</b> GATE 1 was no go</p>
+        </div>
+        <span class="k-own k-own-both"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Both</span>
+      </li>
+      <li class="k-step">
+        <time class="k-date" datetime="2026-11-25"><span class="k-dow">Wed</span><span class="k-day">25</span><span class="k-mon">Nov</span></time>
+        <div class="k-step-body">
+          <span class="k-step-range f01-range">By Wed 25 Nov (derived, <abbr class="k-est" title="Estimate">Est.</abbr>)</span>
+          <p class="k-step-what">Send the filled contact sheet, your countries and your go.</p>
+          <p class="k-step-detail"><abbr class="k-est" title="Estimate">Est.</abbr> 30 checks at 30 to 45 min each is about 15 to 23 h of building, so the list must arrive a week ahead.</p>
+          <p class="k-needs"><b>Needs first</b> The contact sheet template</p>
+        </div>
+        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
+      </li>
+      <li class="k-step k-gate">
+        <time class="k-date" datetime="2026-11-25"><span class="k-dow">Wed</span><span class="k-day">25</span><span class="k-mon">Nov</span></time>
+        <div class="k-step-body">
+          <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: GATE 1F, the first sends</p>
+          <span class="k-step-range f01-range">Wed 25 Nov (derived, <abbr class="k-est" title="Estimate">Est.</abbr>)</span>
+          <p class="k-gate-out"><b>Go</b> if the list, countries and go have arrived and the legal read clears the countries of the first sends.</p>
+          <p class="k-needs"><b>Needs first</b> Legal read</p>
+        </div>
+        <span class="k-own k-own-both"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Both</span>
+      </li>
+      <li class="k-step">
+        <time class="k-date" datetime="2026-11-26"><span class="k-dow">Thu</span><span class="k-day">26</span><span class="k-mon">Nov</span></time>
+        <div class="k-step-body">
+          <span class="k-step-range f01-range">Thu 26 Nov to Tue 1 Dec</span>
+          <p class="k-step-what">For every client you named: pull the vault cards, find the page each winner ran on, set up the check file.</p>
+          <p class="k-step-detail">Most of the building happens here, so the capture days stay short.</p>
+          <p class="k-needs"><b>Needs first</b> GATE 1F is go</p>
+        </div>
+        <span class="k-own k-own-team"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Bhaskar's team</span>
+      </li>
+      <li class="k-step">
+        <time class="k-date" datetime="2026-12-02"><span class="k-dow">Wed</span><span class="k-day">2</span><span class="k-mon">Dec</span></time>
+        <div class="k-step-body">
+          <span class="k-step-range f01-range">Wed 2 to Thu 3 Dec</span>
+          <p class="k-step-what">Capture each winning page (read only: nothing bought, submitted or changed) and finish each check.</p>
+          <p class="k-needs"><b>Needs first</b> Check files set up</p>
+        </div>
+        <span class="k-own k-own-team"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Bhaskar's team</span>
+      </li>
+      <li class="k-step">
+        <time class="k-date" datetime="2026-12-02"><span class="k-dow">Wed</span><span class="k-day">2</span><span class="k-mon">Dec</span></time>
+        <div class="k-step-body">
+          <span class="k-step-range f01-range">Wed 2 to Fri 4 Dec</span>
+          <p class="k-step-what">Sign and send each check with the fallback opening, its two passes, and the job changer note to segment B, from your own accounts.</p>
+          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to a Danish contact</b> until Daniel names his countries and a legal read confirms the format.</p></div>
+          <p class="k-needs"><b>Needs first</b> Check built; legal read per country</p>
+        </div>
+        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
+      </li>
+      <li class="k-step">
+        <time class="k-date" datetime="2026-12-02"><span class="k-dow">Wed</span><span class="k-day">2</span><span class="k-mon">Dec</span></time>
+        <div class="k-step-body">
+          <p class="k-step-what">Optional paid leg, same rules as the target path.</p>
+          <p class="k-needs"><b>Needs first</b> Legal basis; Ads Manager shows it delivers</p>
+        </div>
+        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
+      </li>
+      <li class="k-step">
+        <time class="k-date" datetime="2026-12-04"><span class="k-dow">Fri</span><span class="k-day">4</span><span class="k-mon">Dec</span></time>
+        <div class="k-step-body">
+          <span class="k-step-range f01-range">Fri 4 to Mon 7 Dec</span>
+          <p class="k-step-what">One follow up two days after each check, to everyone who replied, on the channel they replied on.</p>
+          <p class="k-needs"><b>Needs first</b> A reply</p>
+        </div>
+        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
+      </li>
+      <li class="k-step">
+        <time class="k-date" datetime="2026-12-07"><span class="k-dow">Mon</span><span class="k-day">7</span><span class="k-mon">Dec</span></time>
+        <div class="k-step-body">
+          <span class="k-step-range f01-range">Mon 7 to Fri 18 Dec</span>
+          <p class="k-step-what">Calls on the December calendar, tagged by hand as on the target path.</p>
+          <p class="k-step-detail">Intros within two working days of each ask.</p>
+          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to a Danish friend</b> until Daniel names his countries and a legal read confirms the format.</p></div>
+          <p class="k-needs"><b>Needs first</b> December slots; legal read for the friend's country</p>
+        </div>
+        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
+      </li>
+      <li class="k-step k-gate">
+        <time class="k-date" datetime="2026-12-09"><span class="k-dow">Wed</span><span class="k-day">9</span><span class="k-mon">Dec</span></time>
+        <div class="k-step-body">
+          <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: GATE 4, paid leg kill</p>
+          <p class="k-gate-out">As above.</p>
+          <p class="k-needs"><b>Needs first</b> Paid leg running</p>
+        </div>
+        <span class="k-own k-own-both"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Both</span>
+      </li>
+      <li class="k-step k-gate">
+        <time class="k-date" datetime="2026-12-11"><span class="k-dow">Fri</span><span class="k-day">11</span><span class="k-mon">Dec</span></time>
+        <div class="k-step-body">
+          <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: GATE 2F, kill read</p>
+          <p class="k-gate-out">Fewer than 3 replies asking to talk from the first 30 checks <b>ends the funnel</b>. GATE 5 on passes reads the same day.</p>
+          <p class="k-needs"><b>Needs first</b> Replies logged</p>
+        </div>
+        <span class="k-own k-own-both"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Both</span>
+      </li>
+      <li class="k-step k-gate">
+        <time class="k-date" datetime="2026-12-18"><span class="k-dow">Fri</span><span class="k-day">18</span><span class="k-mon">Dec</span></time>
+        <div class="k-step-body">
+          <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: GATE 6, keep read</p>
+          <p class="k-gate-out">GATE 3 on segment B reads today (derived, <abbr class="k-est" title="Estimate">Est.</abbr>: two weeks after its notes, as on the target path).</p>
+          <p class="k-needs"><b>Needs first</b> Bookings tagged</p>
+        </div>
+        <span class="k-own k-own-both"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>Both</span>
+      </li>
+      <li class="k-step">
+        <time class="k-date" datetime="2027-01-05"><span class="k-dow">Tue</span><span class="k-day">5</span><span class="k-mon">Jan</span></time>
+        <div class="k-step-body">
+          <span class="k-step-range f01-range">Tue 5 to Fri 8 Jan 2027 (derived, <abbr class="k-est" title="Estimate">Est.</abbr>)</span>
+          <p class="k-step-what">Second job changer note, about five weeks after the first because two to three weeks lands in the break; only where the legal read allows it and segment B was kept.</p>
+          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to a Danish contact</b> until Daniel names his countries and a legal read confirms the format.</p></div>
+          <p class="k-needs"><b>Needs first</b> Legal read; GATE 3</p>
+        </div>
+        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
+      </li>
+      <li class="k-step">
+        <time class="k-date" datetime="2027-01-05"><span class="k-dow">Tue</span><span class="k-day">5</span><span class="k-mon">Jan</span></time>
+        <div class="k-step-body">
+          <span class="k-step-range f01-range">Tue 5 to Fri 29 Jan</span>
+          <p class="k-step-what">Calls on the January calendar.</p>
+          <p class="k-step-detail">Final count Fri 29 Jan.</p>
+          <p class="k-needs"><b>Needs first</b> January slots</p>
+        </div>
+        <span class="k-own k-own-daniel"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>Daniel</span>
+      </li>
+    </ol>
+  </section>
+
+  <section class="k-sec" aria-label="Confirm with Daniel">
+    <h2 class="k-h3">Confirm with Daniel <span class="k-count" data-count-for="f01-need">0 of 19 ticked</span></h2>
+    <ul class="k-check" id="f01-need">
+      <li><input type="checkbox" id="f01-need-contacts"><label for="f01-need-contacts">The past client contacts you can still message, and on which channel (email, LinkedIn or WhatsApp)</label></li>
+      <li><input type="checkbox" id="f01-need-brandname"><label for="f01-need-brandname">For each: the brand name they knew you under, and whether any of the work was done under another agency</label></li>
+      <li><input type="checkbox" id="f01-need-ended"><label for="f01-need-ended">How each engagement ended, and anyone you would not write to today</label></li>
+      <li><input type="checkbox" id="f01-need-dnc"><label for="f01-need-dnc"><span>Send your do not contact list</span></label></li>
+      <li><input type="checkbox" id="f01-need-countries"><label for="f01-need-countries">The countries you sell to, and the legal read on the format for each</label></li>
+      <li><input type="checkbox" id="f01-need-cardok"><label for="f01-need-cardok">Each client's OK before their card appears on a pass or anywhere a friend can see it</label></li>
+      <li><input type="checkbox" id="f01-need-legalpass"><label for="f01-need-legalpass">The legal read on whether a pass counts as your own marketing, and on uploading the past client list to Meta</label></li>
+      <li><input type="checkbox" id="f01-need-reward"><label for="f01-need-reward"><span>Referral reward: none. A pass carries your offer only, with nothing paid to the giver</span></label></li>
+      <li><input type="checkbox" id="f01-need-capacity"><label for="f01-need-capacity"><span>Capacity: 6 brands start in January, 2 seats in each launch week (Mon 11, Mon 18 and Mon 25 Jan), and a restart takes one of those seats</span></label></li>
+      <li><input type="checkbox" id="f01-need-floor"><label for="f01-need-floor"><span>Revenue floor: $150k a month, as on your live VSL page, and a pass holder must meet it too, so a pass link does not skip kit 02's under floor screen</span></label></li>
+      <li><input type="checkbox" id="f01-need-qualified"><label for="f01-need-qualified"><span>Qualified call: a booked 15 minute call with a founder or head of ecommerce at a Shopify store doing $150k a month or more</span></label></li>
+      <li><input type="checkbox" id="f01-need-slots"><label for="f01-need-slots">December slots on weekdays Thu 3 to Fri 18 Dec and January slots on weekdays Tue 5 to Fri 29 Jan, 10:00 to 16:00 Copenhagen time, 15 minutes each, in GHL (the same two calendars as kit 02)</label></li>
+      <li><input type="checkbox" id="f01-need-kit02"><label for="f01-need-kit02"><span>Kit 02 page, where passes land: new.purplefire.io/after-freeze/v1</span></label></li>
+      <li><input type="checkbox" id="f01-need-calendar"><label for="f01-need-calendar"><span>Calendar link in the check email, the follow up and the intro: https://new.purplefire.io/after-freeze/v1 (the booking sits on that page)</span></label></li>
+      <li><input type="checkbox" id="f01-need-objective"><label for="f01-need-objective"><span>Ad objective for the optional video: Awareness, optimised for reach</span></label></li>
+      <li><input type="checkbox" id="f01-need-analytics"><label for="f01-need-analytics"><span>Pass opens are counted in GA4 on the kit 02 page</span></label></li>
+      <li><input type="checkbox" id="f01-need-upload"><label for="f01-need-upload"><span>The optional video goes only to the contacts the check goes to, and the script stays as written</span></label></li>
+      <li><input type="checkbox" id="f01-need-ok"><label for="f01-need-ok">Your OK on every message in Assets, then the send itself from your own accounts</label></li>
+      <li><input type="checkbox" id="f01-need-go"><label for="f01-need-go">Your go</label></li>
+    </ul>
+  </section>
+
+  <section class="k-sec" aria-label="How we read it">
+    <h2 class="k-h3">How we read it</h2>
+    <div class="k-table-wrap">
+      <table class="k-table">
+        <thead><tr><th scope="col">Count</th><th scope="col">From where</th><th scope="col">When</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Yes rate, segment A (yes replies over notes sent, on a send number you confirm, written N)</th><td>Your threads, logged in the contact sheet</td><td>Mon 30 Nov (target kill), Fri 18 Dec (keep)</td></tr>
+          <tr><th scope="row">Replies asking to talk, per check sent</th><td>Contact sheet</td><td>Fri 11 Dec (fallback kill)</td></tr>
+          <tr><th scope="row">Replies from segment B</th><td>Contact sheet</td><td>Fri 4 Dec on the target path, Fri 18 Dec on the fallback</td></tr>
+          <tr><th scope="row">Pass opens</th><td>Page views carrying <code class="f01-code">utm_source=f01_pass</code> in GA4 on the kit 02 page</td><td>Fri 11 Dec</td></tr>
+          <tr><th scope="row">Qualified calls booked, by segment</th><td>GHL bookings by source tag (C tags arrive from the pass link; A, B and intro tags are added by hand and matched against the contact sheet every Friday), counted as qualified when it is a booked 15 minute call with a founder or head of ecommerce at a Shopify store doing $150k a month or more</td><td>Fri 18 Dec, then Fri 29 Jan</td></tr>
+          <tr><th scope="row">Paid leg leads</th><td>Bookings and pass leads from people on the customer list while it runs. The video and the email reach the same people, so this read is directional.</td><td>Wed 9 Dec</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
+
+</section>
+<section class="k-panel" id="tab-assets" data-tab="assets" aria-label="Assets" hidden>
+<div class="k-assets">
+  <nav class="k-jump" aria-label="Assets">
+    <p class="k-jump-title">On this tab</p>
+    <button type="button" data-jump="f01-as-notes">Notes before the check</button>
+    <button type="button" data-jump="f01-as-email">The check email</button>
+    <button type="button" data-jump="f01-as-pdf">The check PDF</button>
+    <button type="button" data-jump="f01-as-after">Passes, follow up and intros</button>
+    <button type="button" data-jump="f01-as-paid">Optional paid leg</button>
+    <button type="button" data-jump="f01-as-sheet">Skips, contact sheet and tags</button>
+  </nav>
+
+  <div class="k-assets-body">
+    <div class="k-intro">
+      <h1 class="k-title">Assets</h1>
+      <p class="k-lede">Every message and template, each ready to copy. Text in {curly braces} is filled in per message.</p>
+    </div>
+
+    <!-- ===================== notes before the check ===================== -->
+    <section class="k-sec" id="f01-as-notes" aria-label="Notes before the check">
+      <h2 class="k-h3">Notes before the check</h2>
+
+      <div class="f01-block">
+        <h3 class="f01-h4"><span class="f01-no">3.1</span> First note to past client founders (target path)</h3>
+        <p class="f01-howto"><b>How to use</b> Send Tue 17 to Fri 20 Nov. It asks for one reply.</p>
+        <figure class="k-cb" id="f01-cb-note-email">
+          <figcaption><span class="k-cb-label">Email</span><span class="k-cb-meta">Subject and body</span></figcaption>
+          <div class="k-cb-body">Subject: Quick one about {brand}'s winning tests
+
+Hi {first name},
+
+I know Black Friday is about to eat your week, so one quick question and no call.
+
+We kept the log of the {n} A/B tests that won on {brand}. In the first week of December I'd like to check which of those winners are still live on your store and send you what I find.
+
+Want it? A reply with "yes" is all I need.
+
+Daniel
+
+PS. If you'd rather not hear from me about this, say so and I won't write again.</div>
+        </figure>
+        <figure class="k-cb" id="f01-cb-note-dm">
+          <figcaption><span class="k-cb-label">LinkedIn or WhatsApp</span></figcaption>
+          <div class="k-cb-body">Hi {first name}, I know Black Friday is about to eat your week, so one quick question and no call. We kept the log of the {n} A/B tests that won on {brand}. In the first week of December I'd like to check which of those winners are still live on your store and send you what I find. Want it? Just reply "yes". (And if you'd rather I didn't, say so and I won't write again.)</div>
+        </figure>
+        <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to a Danish contact</b> until Daniel names his countries and a legal read confirms the format.</p></div>
+      </div>
+
+      <div class="f01-block">
+        <h3 class="f01-h4"><span class="f01-no">3.2</span> Note to job changers (asks for nothing)</h3>
+        <p class="f01-howto"><b>How to use</b> Segment B, first note. No meeting ask, no link.</p>
+        <figure class="k-cb" id="f01-cb-jc1">
+          <figcaption><span class="k-cb-label">LinkedIn, WhatsApp or email</span></figcaption>
+          <div class="k-cb-body">Hi {first name}, I saw you moved to {new brand}, congratulations. I still think of the {test} we ran together at {old brand} as one of our best. Hope the first weeks are going well.
+
+Daniel</div>
+        </figure>
+        <figure class="k-cb" id="f01-cb-jc1-subject">
+          <figcaption><span class="k-cb-label">Email subject</span></figcaption>
+          <div class="k-cb-body">Congratulations on {new brand}</div>
+        </figure>
+        <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to a Danish contact</b> until Daniel names his countries and a legal read confirms the format.</p></div>
+      </div>
+
+      <div class="f01-block">
+        <h3 class="f01-h4"><span class="f01-no">3.3</span> Second note to job changers (gated, sent only where the legal read allows)</h3>
+        <p class="f01-howto"><b>How to use</b> Two to three weeks after 3.2 on the target path, from Tue 5 Jan on the fallback path (two to three weeks lands in the break); only to people who replied to 3.2 or did not ask to stop, only where the legal read allows, only if GATE 3 kept segment B.</p>
+        <figure class="k-cb" id="f01-cb-jc2">
+          <figcaption><span class="k-cb-label">Second note</span></figcaption>
+          <div class="k-cb-body">Hi {first name}, a thought now that you've settled in at {new brand}. If A/B testing is on your list there, we could plan a first test for January. If we take you on, the deal is simple. Your first split test is on us. You pay after the first win. If you'd like to talk it through, here's a 15 minute slot: https://new.purplefire.io/after-freeze/v1
+
+Daniel
+
+PS. If you'd rather not hear from me about this, say so and I won't write again.</div>
+        </figure>
+        <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to a Danish contact</b> until Daniel names his countries and a legal read confirms the format.</p></div>
+      </div>
+    </section>
+
+    <!-- ===================== the check email ===================== -->
+    <section class="k-sec" id="f01-as-email" aria-label="The check email">
+      <h2 class="k-h3">The check email</h2>
+
+      <div class="f01-block">
+        <h3 class="f01-h4"><span class="f01-no">3.4</span> The check email (target path, for clients who said yes)</h3>
+                <p class="f01-howto"><b>How to use</b> Send Wed 2 to Fri 4 Dec with the PDF attached. {x} counts only winners marked Still live; {n} is every winner on file for the brand.</p>
+        <p class="k-p"><strong>Subject, pick one.</strong></p>
+        <div class="f01-pick">
+          <figure class="k-cb" id="f01-cb-subj-some">
+            <figcaption><span class="k-cb-label">If {x} is 1 or more</span></figcaption>
+            <div class="k-cb-body">{brand}: {x} of your {n} winners are still live</div>
+          </figure>
+          <figure class="k-cb" id="f01-cb-subj-none">
+            <figcaption><span class="k-cb-label">If {x} is 0</span></figcaption>
+            <div class="k-cb-body">{brand}: where your {n} winners stand today</div>
+          </figure>
+        </div>
+        <p class="k-p"><strong>Opening line, pick one.</strong></p>
+        <div class="f01-pick">
+          <figure class="k-cb" id="f01-cb-open-some">
+            <figcaption><span class="k-cb-label">If {x} is 1 or more</span></figcaption>
+            <div class="k-cb-body">{x} of the {n} winners from our tests on {brand} are still live on your store.</div>
+          </figure>
+          <figure class="k-cb" id="f01-cb-open-none">
+            <figcaption><span class="k-cb-label">If {x} is 0</span></figcaption>
+            <div class="k-cb-body">Your store has moved on since our tests: none of the {n} winners is on the page in the same form today, which is normal after redesigns and new seasons.</div>
+          </figure>
+        </div>
+                <p class="f01-howto"><b>How to use</b> After GATE 5 drops passes (Fri 11 Dec), send it without the sentence about passes.</p>
+        <figure class="k-cb" id="f01-cb-check-body">
+          <figcaption><span class="k-cb-label">Email body</span></figcaption>
+          <div class="k-cb-body">Hi {first name},
+
+As promised, here's your check. {opening line}
+
+The PDF has one page per winner: what we tested, the result as recorded in our log, and the same page on your store today.
+
+If any of it is useful, three things I can do:
+
+1. Talk about Q1. 15 minutes: https://new.purplefire.io/after-freeze/v1
+2. Send a pass. You have two for founder friends. Each carries my offer, if we take them on: "Your first split test is on us. You pay after the first win."
+Pass 1: {pass link 1}
+Pass 2: {pass link 2}
+3. Introduce me to someone. Tell me who and I'll draft the intro for you to check first.
+
+Nothing about {brand} appears on a pass unless you tell me it can.
+
+Daniel</div>
+        </figure>
+        <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to a Danish contact</b> until Daniel names his countries and a legal read confirms the format.</p></div>
+      </div>
+
+      <div class="f01-block">
+        <h3 class="f01-h4"><span class="f01-no">3.5</span> The check email, fallback opening (ask and check together)</h3>
+                <p class="f01-howto"><b>How to use</b> On the fallback path this replaces the 3.4 greeting and first paragraph. Everything from "The PDF has one page per winner" onwards stays as in 3.4.</p>
+        <p class="k-p">Subject: as in 3.4, picked by result.</p>
+        <figure class="k-cb" id="f01-cb-fallback-open">
+          <figcaption><span class="k-cb-label">Fallback opening</span></figcaption>
+          <div class="k-cb-body">Hi {first name},
+
+We kept the log of the {n} A/B tests that won on {brand}, and this week I checked which of those winners are still on your store. {opening line} No call needed and nothing to do.</div>
+        </figure>
+        <figure class="k-cb" id="f01-cb-fallback-ps">
+          <figcaption><span class="k-cb-label">PS for the fallback email</span><span class="k-cb-meta">Below the sign off</span></figcaption>
+          <div class="k-cb-body">PS. If you'd rather not hear from me about this, say so and I won't write again.</div>
+        </figure>
+        <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to a Danish contact</b> until Daniel names his countries and a legal read confirms the format.</p></div>
+      </div>
+    </section>
+
+    <!-- ===================== the check PDF ===================== -->
+    <section class="k-sec" id="f01-as-pdf" aria-label="The check PDF">
+      <h2 class="k-h3">The check PDF</h2>
+
+      <div class="f01-block">
+        <h3 class="f01-h4"><span class="f01-no">3.6</span> The check PDF: structure and wording</h3>
+        <p class="f01-howto"><b>How to use</b> A short PDF: one cover page, one card page per winner, one closing page. Built by Bhaskar's team, read and signed by Daniel. Nothing hosted.</p>
+
+        <div class="f01-doc" aria-label="Sample layout of the check PDF">
+          <p class="f01-doc-mark"><b>Sample layout</b>What a past client receives. Not a real check: every value in {curly braces} is filled in per check.</p>
+
+          <p class="f01-page-label">Cover page</p>
+          <article class="f01-sheet f01-cover">
+            <div class="f01-sheet-top">
+              <img class="f01-logo" src="data:image/webp;base64,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" width="130" alt="PurpleFire">
+            </div>
+            <h4 class="f01-cover-title">{brand}: {x} of your {n} winners are <em>still live</em> on your store.</h4>
+            <p class="f01-cover-sub">Checked {weekday date} by Daniel Chabert, PurpleFire. Each winner is shown as recorded in our test log, next to the same page on your store today.</p>
+            <ul class="f01-counts">
+              <li><span class="f01-dot f01-dot-live"></span>Still live {a}</li>
+              <li><span class="f01-dot f01-dot-changed"></span>Changed {b}</li>
+              <li><span class="f01-dot f01-dot-gone"></span>Not found {c}</li>
+            </ul>
+            <p class="f01-cover-note">This check only reads your pages. Nothing on your store was bought, submitted or changed. Stores move on after every redesign, app and season, so changes here are normal.</p>
+          </article>
+
+          <p class="f01-page-label">Winner card, still live</p>
+          <article class="f01-sheet">
+            <div class="f01-sheet-top">
+              <img class="f01-logo" src="data:image/webp;base64,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" width="88" alt="PurpleFire">
+              <span class="f01-id">{test ID}</span>
+            </div>
+            <div class="f01-card-head">
+              <span class="f01-tag">{page type}</span>
+              <h4 class="f01-card-title">{test title as recorded}</h4>
+            </div>
+            <div class="f01-card-grid">
+              <div class="f01-col">
+                <div class="f01-field"><span class="f01-label">What we tested</span><p>{the change, in one line from the card}</p></div>
+                <div class="f01-field"><span class="f01-label">Result as recorded</span><p class="f01-result">{metric and lift exactly as on the card}</p></div>
+              </div>
+              <div class="f01-col">
+                <span class="f01-label">Your page today</span>
+                <div class="f01-shots" aria-hidden="true">
+                  <div class="f01-shot f01-shot-desk"><i class="f01-sk-bar"></i><i class="f01-sk-img"></i><span class="f01-sk-lines"><i></i><i></i><i></i><i></i></span><span class="f01-shot-icon"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1v-10z"/><path d="M7 20h10"/><path d="M9 16v4"/><path d="M15 16v4"/></svg></span></div>
+                  <div class="f01-shot f01-shot-phone"><i class="f01-sk-bar"></i><i class="f01-sk-img"></i><i></i><i></i><i></i><i></i><span class="f01-shot-icon"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-14z"/><path d="M11 4h2"/><path d="M12 17v.01"/></svg></span></div>
+                </div>
+                <div class="f01-shot-meta"><span class="f01-url">{page URL}</span><span>Captured {weekday date}</span></div>
+              </div>
+            </div>
+            <div class="f01-finding f01-finding-live">
+              <span class="f01-chip"><span class="f01-dot f01-dot-live"></span>Still live</span>
+              <p>The winning variant is on this page today.</p>
+            </div>
+          </article>
+
+          <p class="f01-page-label">Winner card, changed</p>
+          <article class="f01-sheet">
+            <div class="f01-sheet-top">
+              <img class="f01-logo" src="data:image/webp;base64,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" width="88" alt="PurpleFire">
+              <span class="f01-id">{test ID}</span>
+            </div>
+            <div class="f01-card-head">
+              <span class="f01-tag">{page type}</span>
+              <h4 class="f01-card-title">{test title as recorded}</h4>
+            </div>
+            <div class="f01-card-grid">
+              <div class="f01-col">
+                <div class="f01-field"><span class="f01-label">What we tested</span><p>{the change, in one line from the card}</p></div>
+                <div class="f01-field"><span class="f01-label">Result as recorded</span><p class="f01-result">{metric and lift exactly as on the card}</p></div>
+              </div>
+              <div class="f01-col">
+                <span class="f01-label">Your page today</span>
+                <div class="f01-shots" aria-hidden="true">
+                  <div class="f01-shot f01-shot-desk"><i class="f01-sk-bar"></i><i class="f01-sk-img"></i><span class="f01-sk-lines"><i></i><i></i><i></i><i></i></span><span class="f01-shot-icon"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1v-10z"/><path d="M7 20h10"/><path d="M9 16v4"/><path d="M15 16v4"/></svg></span></div>
+                  <div class="f01-shot f01-shot-phone"><i class="f01-sk-bar"></i><i class="f01-sk-img"></i><i></i><i></i><i></i><i></i><span class="f01-shot-icon"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-14z"/><path d="M11 4h2"/><path d="M12 17v.01"/></svg></span></div>
+                </div>
+                <div class="f01-shot-meta"><span class="f01-url">{page URL}</span><span>Captured {weekday date}</span></div>
+              </div>
+            </div>
+            <div class="f01-finding f01-finding-changed">
+              <span class="f01-chip"><span class="f01-dot f01-dot-changed"></span>Changed</span>
+              <p>This page has changed since the test. Today: {what is different, in one line}.</p>
+            </div>
+          </article>
+
+          <p class="f01-page-label">Winner card, not found</p>
+          <article class="f01-sheet">
+            <div class="f01-sheet-top">
+              <img class="f01-logo" src="data:image/webp;base64,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" width="88" alt="PurpleFire">
+              <span class="f01-id">{test ID}</span>
+            </div>
+            <div class="f01-card-head">
+              <span class="f01-tag">{page type}</span>
+              <h4 class="f01-card-title">{test title as recorded}</h4>
+            </div>
+            <div class="f01-card-grid">
+              <div class="f01-col">
+                <div class="f01-field"><span class="f01-label">What we tested</span><p>{the change, in one line from the card}</p></div>
+                <div class="f01-field"><span class="f01-label">Result as recorded</span><p class="f01-result">{metric and lift exactly as on the card}</p></div>
+              </div>
+              <div class="f01-col">
+                <span class="f01-label">Your page today</span>
+                <div class="f01-shots" aria-hidden="true">
+                  <div class="f01-shot f01-shot-desk"><i class="f01-sk-bar"></i><i class="f01-sk-img"></i><span class="f01-sk-lines"><i></i><i></i><i></i><i></i></span><span class="f01-shot-icon"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1v-10z"/><path d="M7 20h10"/><path d="M9 16v4"/><path d="M15 16v4"/></svg></span></div>
+                  <div class="f01-shot f01-shot-phone"><i class="f01-sk-bar"></i><i class="f01-sk-img"></i><i></i><i></i><i></i><i></i><span class="f01-shot-icon"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-14z"/><path d="M11 4h2"/><path d="M12 17v.01"/></svg></span></div>
+                </div>
+                <div class="f01-shot-meta"><span class="f01-url">{page URL}</span><span>Captured {weekday date}</span></div>
+              </div>
+            </div>
+            <div class="f01-finding f01-finding-gone">
+              <span class="f01-chip"><span class="f01-dot f01-dot-gone"></span>Not found</span>
+              <p>We could not find this change on the page today. We looked at {where: page, desktop and phone}.</p>
+            </div>
+          </article>
+
+          <p class="f01-page-label">Closing page</p>
+          <article class="f01-sheet">
+            <div class="f01-sheet-top">
+              <img class="f01-logo" src="data:image/webp;base64,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" width="88" alt="PurpleFire">
+            </div>
+            <h4 class="f01-close-title">If any of this is useful</h4>
+            <ol class="f01-asks">
+              <li><b>Talk about Q1.</b> 15 minutes: https://new.purplefire.io/after-freeze/v1</li>
+              <li><b>Send a pass.</b> You have two for founder friends. Each carries my offer, if we take them on: "Your first split test is on us. You pay after the first win."<span class="f01-passes"><span>Pass 1: {pass link 1}</span><span>Pass 2: {pass link 2}</span></span></li>
+              <li><b>Introduce me to someone.</b> Tell me who and I'll draft the intro for you to check first.</li>
+            </ol>
+            <div class="f01-sign">
+              <span class="f01-avatar"><img src="data:image/webp;base64,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" width="112" alt="Daniel Chabert"></span>
+              <p>Daniel Chabert, Founder, PurpleFire</p>
+            </div>
+          </article>
+        </div>
+
+        <p class="k-p"><strong>Cover page</strong></p>
+        <figure class="k-cb" id="f01-cb-cover-title">
+          <figcaption><span class="k-cb-label">Title</span><span class="k-cb-meta">If {x} is 1 or more</span></figcaption>
+          <div class="k-cb-body">{brand}: {x} of your {n} winners are still live on your store.</div>
+        </figure>
+        <figure class="k-cb" id="f01-cb-cover-title-none">
+          <figcaption><span class="k-cb-label">Title</span><span class="k-cb-meta">If {x} is 0</span></figcaption>
+          <div class="k-cb-body">{brand}: where your {n} winners stand on your store today.</div>
+        </figure>
+        <figure class="k-cb" id="f01-cb-cover-sub">
+          <figcaption><span class="k-cb-label">Sub line</span></figcaption>
+          <div class="k-cb-body">Checked {weekday date} by Daniel Chabert, PurpleFire. Each winner is shown as recorded in our test log, next to the same page on your store today.</div>
+        </figure>
+        <figure class="k-cb" id="f01-cb-cover-count">
+          <figcaption><span class="k-cb-label">Count row</span></figcaption>
+          <div class="k-cb-body">Still live {a}
+Changed {b}
+Not found {c}</div>
+        </figure>
+        <figure class="k-cb" id="f01-cb-cover-note">
+          <figcaption><span class="k-cb-label">Note</span></figcaption>
+          <div class="k-cb-body">This check only reads your pages. Nothing on your store was bought, submitted or changed. Stores move on after every redesign, app and season, so changes here are normal.</div>
+        </figure>
+
+        <p class="k-p"><strong>Winner card (one page per winner)</strong></p>
+        <figure class="k-cb" id="f01-cb-card-fields">
+          <figcaption><span class="k-cb-label">Card fields</span></figcaption>
+          <div class="k-cb-body">Header: {test title as recorded}, {page type}, {test ID}
+Left column, "What we tested": {the change, in one line from the card}
+Left column, "Result as recorded": {metric and lift exactly as on the card, e.g. "RPV +44.06%; ATC +7.03%"}
+Right column, "Your page today": capture at desktop and phone width, {page URL}, "Captured {weekday date}"</div>
+        </figure>
+        <p class="k-p">Finding chip and its line, one of three:</p>
+        <figure class="k-cb" id="f01-cb-find-live">
+          <figcaption><span class="k-cb-label">Still live</span></figcaption>
+          <div class="k-cb-body">The winning variant is on this page today.</div>
+        </figure>
+        <figure class="k-cb" id="f01-cb-find-changed">
+          <figcaption><span class="k-cb-label">Changed</span></figcaption>
+          <div class="k-cb-body">This page has changed since the test. Today: {what is different, in one line}.</div>
+        </figure>
+        <figure class="k-cb" id="f01-cb-find-gone">
+          <figcaption><span class="k-cb-label">Not found</span></figcaption>
+          <div class="k-cb-body">We could not find this change on the page today. We looked at {where: page, desktop and phone}.</div>
+        </figure>
+        <figure class="k-cb" id="f01-cb-find-page-gone">
+          <figcaption><span class="k-cb-label">Not found</span><span class="k-cb-meta">If the page itself is gone</span></figcaption>
+          <div class="k-cb-body">The page from the test no longer opens at {URL}.</div>
+        </figure>
+        <p class="k-p">Wording rule for the "Changed" and "Not found" lines: describe the page, never a person. Never write removed, dropped, broke, lost, should, your team, or anyone's name. Example of a good line: "The shipping line now sits below the button."</p>
+        <p class="f01-howto"><b>How to use</b> A card that is not shown on Daniel's live pages appears only in that client's own check.</p>
+
+        <p class="k-p"><strong>Closing page</strong></p>
+        <figure class="k-cb" id="f01-cb-close-head">
+          <figcaption><span class="k-cb-label">Heading</span></figcaption>
+          <div class="k-cb-body">If any of this is useful</div>
+        </figure>
+        <p class="k-p">The same three asks as the email, with the two pass links and the calendar link.</p>
+        <figure class="k-cb" id="f01-cb-close-sign">
+          <figcaption><span class="k-cb-label">Sign off</span></figcaption>
+          <div class="k-cb-body">Daniel Chabert, Founder, PurpleFire</div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===================== passes, follow up, intros ===================== -->
+    <section class="k-sec" id="f01-as-after" aria-label="Passes, follow up and intros">
+      <h2 class="k-h3">Passes, follow up and intros</h2>
+
+      <div class="f01-block">
+        <h3 class="f01-h4"><span class="f01-no">3.7</span> Pass message (the client forwards it to a founder friend)</h3>
+        <p class="f01-howto"><b>How to use</b> Written in the giver's voice so they can paste it as is. No giver results by default.</p>
+        <figure class="k-cb" id="f01-cb-pass">
+          <figcaption><span class="k-cb-label">Pass message</span></figcaption>
+          <div class="k-cb-body">Hi {friend first name}, passing this on. Daniel Chabert at PurpleFire ran A/B tests on {giver brand} for us, and he gave me two passes for founders I'd vouch for. If he takes you on, his offer is "Your first split test is on us. You pay after the first win." Book 15 minutes with him here: {pass link}
+
+{giver first name}</div>
+        </figure>
+        <figure class="k-cb" id="f01-cb-pass-result">
+          <figcaption><span class="k-cb-label">Optional line</span><span class="k-cb-meta">Only with the giver's OK on their card</span></figcaption>
+          <div class="k-cb-body">One of ours: {test title}, {result as recorded}.</div>
+        </figure>
+        <figure class="k-cb" id="f01-cb-pass-link">
+          <figcaption><span class="k-cb-label">Pass link format</span></figcaption>
+          <div class="k-cb-body k-mono">https://new.purplefire.io/after-freeze/v1?pass={giver code}{1 or 2}&amp;utm_source=f01_pass</div>
+        </figure>
+        <ul class="k-list">
+          <li>{giver code}: the brand prefix from its test IDs in the vault, lowercase letters only (Airback, test IDs AIR, becomes <code class="f01-code">air</code>). The two passes end in 1 and 2: <code class="f01-code">?pass=air1</code>, <code class="f01-code">?pass=air2</code>.</li>
+          <li>Kit 02's page must read the <code class="f01-code">pass</code> parameter into its hidden field and pass it to GHL as the tag <code class="f01-code">f01_c_pass_{giver code}</code>.</li>
+        </ul>
+      </div>
+
+      <div class="f01-block">
+        <h3 class="f01-h4"><span class="f01-no">3.8</span> Reply when a friend books</h3>
+        <p class="f01-howto"><b>How to use</b> Send the day the booking arrives. A pass holder under $150k a month cannot book on kit 02's page, because its under floor screen shows no times.</p>
+        <figure class="k-cb" id="f01-cb-booked">
+          <figcaption><span class="k-cb-label">Email</span><span class="k-cb-meta">Subject and body</span></figcaption>
+          <div class="k-cb-body">Subject: See you {day} at {time}
+
+Hi {first name},
+
+Thanks for booking, and thanks to {giver first name} for passing this on. We're on {day} at {time} for 15 minutes, for {your December readout | your planning call for the week of Mon {date} Jan}. The booking confirmation says what, if anything, to send me before then.
+
+If we take you on, the deal is simple. Your first split test is on us. You pay after the first win.
+
+Daniel</div>
+        </figure>
+        <figure class="k-cb" id="f01-cb-booked-giver">
+          <figcaption><span class="k-cb-label">Optional line to the giver</span><span class="k-cb-meta">Only if the friend is happy for them to know</span></figcaption>
+          <div class="k-cb-body">Hi {giver first name}, {friend first name} booked a call through your pass. Thank you for sending it. Daniel</div>
+        </figure>
+      </div>
+
+      <div class="f01-block">
+        <h3 class="f01-h4"><span class="f01-no">3.9</span> Follow up two days after the check</h3>
+        <p class="k-p"><strong>First line, pick one.</strong></p>
+        <div class="f01-pick">
+          <figure class="k-cb" id="f01-cb-fu-moved">
+            <figcaption><span class="k-cb-label">If some winners are changed or not found</span></figcaption>
+            <div class="k-cb-body">{b + c} of your winners have moved on since our tests.</div>
+          </figure>
+          <figure class="k-cb" id="f01-cb-fu-all">
+            <figcaption><span class="k-cb-label">If all are still live</span></figcaption>
+            <div class="k-cb-body">Good to see all {n} winners still live.</div>
+          </figure>
+        </div>
+                <p class="f01-howto"><b>How to use</b> One message only, on the channel the client replied on. After GATE 5 drops passes (Fri 11 Dec), send it without the sentence about passes.</p>
+        <figure class="k-cb" id="f01-cb-fu">
+          <figcaption><span class="k-cb-label">Follow up</span></figcaption>
+          <div class="k-cb-body">Hi {first name}, did the check come through? {first line} If you'd like to talk about what to test in Q1, 15 minutes is enough: https://new.purplefire.io/after-freeze/v1. And your two passes are still open if a founder friend comes to mind: {pass link 1} and {pass link 2}.
+
+Daniel</div>
+        </figure>
+      </div>
+
+      <div class="f01-block">
+        <h3 class="f01-h4"><span class="f01-no">3.10</span> Intro Daniel writes when a client asks for one</h3>
+        <figure class="k-cb" id="f01-cb-intro-reply">
+          <figcaption><span class="k-cb-label">Reply to the client first</span></figcaption>
+          <div class="k-cb-body">Thanks, {first name}. Here's the intro I'd send. Could you check that {friend first name} is happy to hear from me? Once you say yes, I'll send it with you in copy.</div>
+        </figure>
+        <figure class="k-cb" id="f01-cb-intro">
+          <figcaption><span class="k-cb-label">The intro</span><span class="k-cb-meta">Email, the client in copy</span></figcaption>
+          <div class="k-cb-body">Subject: {giver first name} suggested we talk
+
+Hi {friend first name},
+
+{giver first name} at {giver brand} thought we should talk and said you're happy to hear from me. We ran A/B tests on {giver brand} together. If testing is on your list for Q1, I'd be glad to do 15 minutes: https://new.purplefire.io/after-freeze/v1. If not, no reply needed.
+
+Daniel</div>
+        </figure>
+        <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to a Danish friend</b> until Daniel names his countries and a legal read confirms the format.</p></div>
+      </div>
+
+      <div class="f01-block">
+        <h3 class="f01-h4"><span class="f01-no">3.11</span> Reference ask (only for clients who reply warmly)</h3>
+        <figure class="k-cb" id="f01-cb-reference">
+          <figcaption><span class="k-cb-label">Reference ask</span></figcaption>
+          <div class="k-cb-body">One more, and feel free to say no. In January a few founders will be deciding whether to start testing with us. Would you take a 15 minute call with one of them about what working together was like?</div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===================== optional paid leg ===================== -->
+    <section class="k-sec" id="f01-as-paid" aria-label="Optional paid leg">
+      <h2 class="k-h3">Optional paid leg</h2>
+
+      <div class="f01-block">
+        <h3 class="f01-h4"><span class="f01-no">3.12</span> Optional paid leg: 30 second video, customer list only</h3>
+        <p class="f01-howto"><b>How to use</b> Runs only with a legal basis for the upload, to past client contacts only, skips removed, and excluded from kit 02's audiences. No link in the ad: the email carries the asks.</p>
+        <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing on this list reaches a Danish contact</b> until Daniel names his countries and a legal read confirms the format.</p></div>
+        <p class="k-needs"><b>Ad objective</b> Awareness, optimised for reach</p>
+        <p class="k-p"><strong>Audience:</strong> upload only the contacts the check goes to. On the target path, contacts who did not say yes get no check, so "Look for my email this week" would not be true for them. The script stays as written.</p>
+        <figure class="k-cb" id="f01-cb-video">
+          <figcaption><span class="k-cb-label">Script</span><span class="k-cb-meta">Daniel to camera, about 30 seconds</span></figcaption>
+          <div class="k-cb-body">Hi, it's Daniel from PurpleFire. To the brands we ran A/B tests with: this week I'm checking which of your winners are still live on your store, page by page, against the log we kept. Look for my email this week. It's short, and it's about your own store.</div>
+        </figure>
+        <figure class="k-cb" id="f01-cb-video-primary">
+          <figcaption><span class="k-cb-label">Primary text</span></figcaption>
+          <div class="k-cb-body">To the brands we tested with: I'm checking which of your winners are still on your store. Look for my email this week.</div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===================== skips, contact sheet, tags ===================== -->
+    <section class="k-sec" id="f01-as-sheet" aria-label="Skips, contact sheet and tags">
+      <h2 class="k-h3">Skips, contact sheet and tags</h2>
+
+      <div class="f01-block">
+        <h3 class="f01-h4"><span class="f01-no">3.13</span> Who is skipped</h3>
+        <p class="k-p">Skip anyone in these groups. Mark the reason in the contact sheet's Skip column.</p>
+        <figure class="k-cb" id="f01-cb-skips">
+          <figcaption><span class="k-cb-label">Skip list</span></figcaption>
+          <div class="k-cb-body f01-cb-rich"><ul class="k-list"><li>Anyone on Daniel's do not contact list, and anyone who has ever asked him to stop writing.</li><li>Current clients, including the two Danish ones (a cleaning products brand and a cookware brand), and anyone now working at a current client.</li><li>Any brand Daniel has asked us to keep out of all outreach (Bhaskar's team holds the name; mark the row "Excluded by Daniel").</li><li>Any engagement that ended badly, or anyone Daniel would not write to today.</li><li>Any client whose work was done under another agency or another agency's name. Their cards are not his to cite and a non solicit clause may apply.</li><li>Any contact in a country the legal read has not cleared, including every Danish contact until it has.</li><li>Any store that no longer trades on the pages from the tests (no check can be built). The person may still get the job changer note if they moved.</li><li>Founder friends: never contacted first. Only a pass the client forwards, or an intro both sides agreed to.</li><li>Anyone who answered no, or did not reply to the one follow up: no further messages.</li></ul></div>
+        </figure>
+      </div>
+
+      <div class="f01-block">
+        <h3 class="f01-h4"><span class="f01-no">3.14</span> Contact sheet columns</h3>
+        <figure class="k-cb" id="f01-cb-columns">
+          <figcaption><span class="k-cb-label">Contact sheet</span></figcaption>
+          <div class="k-cb-body f01-cb-rich"><div class="k-table-wrap"><table class="k-table"><thead><tr><th scope="col">Column</th><th scope="col">What goes in it</th></tr></thead><tbody><tr><th scope="row">Contact ID</th><td>One row per person</td></tr><tr><th scope="row">Name</th><td></td></tr><tr><th scope="row">Role then</th><td>Their role at the past client</td></tr><tr><th scope="row">Past client</th><td>Brand from the vault</td></tr><tr><th scope="row">Brand name they knew you under</th><td>PurpleFire or another name</td></tr><tr><th scope="row">Work under another agency</th><td>Yes or no (yes means skip)</td></tr><tr><th scope="row">How it ended</th><td>Daniel's words</td></tr><tr><th scope="row">Segment</th><td>A or B</td></tr><tr><th scope="row">New brand</th><td>Segment B only</td></tr><tr><th scope="row">Channel</th><td>Email, LinkedIn or WhatsApp</td></tr><tr><th scope="row">Address or handle</th><td></td></tr><tr><th scope="row">Country</th><td></td></tr><tr><th scope="row">Legal read cleared</th><td>Yes or no for that country</td></tr><tr><th scope="row">Winners on file ({n})</th><td>Count of vault cards for the brand</td></tr><tr><th scope="row">Store still trading</th><td>Result of the store check</td></tr><tr><th scope="row">Skip</th><td>Reason, or blank</td></tr><tr><th scope="row">Card OK for passes</th><td>Yes or no, from the client</td></tr><tr><th scope="row">Note sent</th><td>Weekday date</td></tr><tr><th scope="row">Reply</th><td>Yes, no, stop, or none</td></tr><tr><th scope="row">Check sent</th><td>Weekday date</td></tr><tr><th scope="row">Still live ({x} of {n})</th><td>From the check</td></tr><tr><th scope="row">Follow up sent</th><td>Weekday date</td></tr><tr><th scope="row">Asked for</th><td>Call, pass, intro, or none</td></tr><tr><th scope="row">Pass codes</th><td>e.g. air1, air2</td></tr><tr><th scope="row">Intro sent</th><td>Weekday date and friend's name</td></tr><tr><th scope="row">Call booked</th><td>Weekday date</td></tr><tr><th scope="row">Qualified</th><td>Yes or no: yes when it is a booked 15 minute call with a founder or head of ecommerce at a Shopify store doing $150k a month or more</td></tr><tr><th scope="row">Source tag</th><td>From 3.15</td></tr><tr><th scope="row">Notes</th><td></td></tr></tbody></table></div></div>
+        </figure>
+      </div>
+
+      <div class="f01-block">
+        <h3 class="f01-h4"><span class="f01-no">3.15</span> Source tags (GHL and the contact sheet)</h3>
+        <p class="f01-howto"><b>How to use</b> Tags use underscores only. The pass parameter on kit 02's page is <code class="f01-code">pass</code>; kit 02 must read that same name.</p>
+        <figure class="k-cb" id="f01-cb-tags">
+          <figcaption><span class="k-cb-label">Source tags</span></figcaption>
+          <div class="k-cb-body f01-cb-rich"><div class="k-table-wrap"><table class="k-table"><thead><tr><th scope="col">Tag</th><th scope="col">Who it marks</th></tr></thead><tbody><tr><th scope="row"><code class="f01-code">f01_a</code></th><td>Segment A: past client founders and their team</td></tr><tr><th scope="row"><code class="f01-code">f01_b</code></th><td>Segment B: job changers</td></tr><tr><th scope="row"><code class="f01-code">f01_c_pass_{giver code}</code></th><td>Segment C: a founder friend who booked through a pass, with the giver (the pass code without its last digit: air1 and air2 both tag f01_c_pass_air)</td></tr><tr><th scope="row"><code class="f01-code">f01_c_intro_{giver code}</code></th><td>Segment C: a founder friend who booked through an intro, with the giver</td></tr><tr><th scope="row"><code class="f01-code">f01_restart</code></th><td>Added to an A tag when a past client books to restart</td></tr></tbody></table></div></div>
+        </figure>
+      </div>
+    </section>
+  </div>
+</div>
+
+</section>
+</main>
+</div>
+<script>
+/* PurpleFire funnel kit shell: tabs, copy blocks, checklists, switches, device frame, jump list.
+   No network, no storage it depends on, no alert or confirm. */
+(function () {
+  'use strict';
+  var root = document.querySelector('.k-root');
+  if (!root) return;
+
+  var store = {
+    get: function (k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } },
+    set: function (k, v) { try { window.localStorage.setItem(k, v); } catch (e) { /* page works without it */ } }
+  };
+  var ICON_COPY = '<svg class="k-i k-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>' +
+    '<svg class="k-i k-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+
+  /* ---------- tabs on plain hashes ---------- */
+  var tabs = Array.prototype.slice.call(root.querySelectorAll('.k-tab'));
+  var panels = Array.prototype.slice.call(root.querySelectorAll('.k-panel'));
+  var names = panels.map(function (p) { return p.getAttribute('data-tab'); });
+  function show(name, scroll) {
+    if (names.indexOf(name) < 0) return false;
+    panels.forEach(function (p) { p.hidden = p.getAttribute('data-tab') !== name; });
+    tabs.forEach(function (t) {
+      if (t.getAttribute('data-tab') === name) t.setAttribute('aria-current', 'page');
+      else t.removeAttribute('aria-current');
+    });
+    var cur = root.querySelector('.k-tab[aria-current="page"]');
+    if (cur && cur.scrollIntoView) { try { cur.scrollIntoView({ block: 'nearest', inline: 'nearest' }); } catch (e) { /* old engines */ } }
+    if (scroll) window.scrollTo(0, 0);
+    root.dispatchEvent(new CustomEvent('k:tab', { detail: name }));
+    return true;
+  }
+  function fromHash(scroll) {
+    var h = (location.hash || '').replace(/^#/, '');
+    if (!show(h, scroll)) show(names[0], false);
+  }
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () { show(t.getAttribute('data-tab'), true); });
+  });
+  window.addEventListener('hashchange', function () { fromHash(true); });
+  fromHash(false);
+
+  /* ---------- copy blocks ---------- */
+  function selectText(el) {
+    try {
+      var r = document.createRange();
+      r.selectNodeContents(el);
+      var s = window.getSelection();
+      s.removeAllRanges();
+      s.addRange(r);
+    } catch (e) { /* nothing more to do */ }
+  }
+  function setState(btn, state, label) {
+    btn.setAttribute('data-state', state);
+    btn.querySelector('.k-copy-label').textContent = label;
+    clearTimeout(btn._t);
+    btn._t = setTimeout(function () {
+      btn.removeAttribute('data-state');
+      btn.querySelector('.k-copy-label').textContent = 'Copy';
+    }, state === 'done' ? 1800 : 6000);
+  }
+  root.querySelectorAll('.k-cb').forEach(function (cb) {
+    var cap = cb.querySelector('figcaption');
+    var body = cb.querySelector('.k-cb-body');
+    if (!cap || !body || cap.querySelector('.k-copy')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'k-copy';
+    var label = (cap.querySelector('.k-cb-label') || cap).textContent.trim();
+    btn.setAttribute('aria-label', 'Copy ' + label);
+    btn.innerHTML = ICON_COPY + '<span class="k-copy-label">Copy</span>';
+    btn.addEventListener('click', function () {
+      var text = body.innerText.replace(/ /g, ' ').trim();
+      var fallback = function () { selectText(body); setState(btn, 'select', 'Text selected'); };
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () { setState(btn, 'done', 'Copied'); }, fallback);
+        } else { fallback(); }
+      } catch (e) { fallback(); }
+    });
+    cap.appendChild(btn);
+  });
+
+  /* ---------- checklists, ticks kept in this browser only ---------- */
+  root.querySelectorAll('.k-check').forEach(function (list) {
+    var boxes = Array.prototype.slice.call(list.querySelectorAll('input[type="checkbox"]'));
+    var countEl = list.id ? root.querySelector('[data-count-for="' + list.id + '"]') : null;
+    function count() { if (countEl) countEl.textContent = boxes.filter(function (b) { return b.checked; }).length + ' of ' + boxes.length + ' ticked'; }
+    boxes.forEach(function (b) {
+      if (store.get('kit:' + b.id) === '1') b.checked = true;
+      b.addEventListener('change', function () { store.set('kit:' + b.id, b.checked ? '1' : '0'); count(); });
+    });
+    count();
+  });
+
+  /* ---------- segmented switches: set data-<attr> on the target ---------- */
+  root.querySelectorAll('.k-seg[data-for]').forEach(function (seg) {
+    var target = document.getElementById(seg.getAttribute('data-for'));
+    var attr = seg.getAttribute('data-attr');
+    if (!target || !attr) return;
+    seg.querySelectorAll('button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        seg.querySelectorAll('button').forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+        target.setAttribute('data-' + attr, b.getAttribute('data-value'));
+        target.dispatchEvent(new CustomEvent('k:switch', { detail: { attr: attr, value: b.getAttribute('data-value') } }));
+      });
+    });
+  });
+
+  /* ---------- device frame: the page renders at its real width and is scaled to fit ---------- */
+  root.querySelectorAll('.k-device').forEach(function (dev) {
+    var view = dev.querySelector('.k-device-view');
+    var page = dev.querySelector('.k-device-page');
+    if (!view || !page) return;
+    /* on a phone the desktop preview would be a thumbnail: open on the phone width */
+    if (window.innerWidth < 700) {
+      var phoneBtn = root.querySelector('.k-seg[data-for="' + dev.id + '"] button[data-value="phone"]');
+      if (phoneBtn) phoneBtn.click();
+    }
+    function fit() {
+      var avail = view.clientWidth;
+      if (!avail) return; /* tab hidden: measure when it shows */
+      var w = dev.getAttribute('data-device') === 'phone' ? 390 : 1280;
+      var s = Math.min(1, avail / w);
+      page.style.width = w + 'px';
+      page.style.transform = s < 1 ? 'scale(' + s + ')' : 'none';
+      view.style.height = Math.ceil(page.offsetHeight * s) + 'px';
+    }
+    dev.addEventListener('k:switch', function () { requestAnimationFrame(fit); });
+    root.addEventListener('k:tab', function () { requestAnimationFrame(fit); });
+    if (window.ResizeObserver) {
+      var ro = new ResizeObserver(function () { fit(); });
+      ro.observe(view);
+      ro.observe(page);
+    } else {
+      window.addEventListener('resize', fit);
+    }
+    fit();
+  });
+
+  /* ---------- assets jump list: scrolls by script, the hash stays the tab's ---------- */
+  root.querySelectorAll('.k-jump').forEach(function (nav) {
+    var btns = Array.prototype.slice.call(nav.querySelectorAll('button[data-jump]'));
+    function mark(id) { btns.forEach(function (b) { b.setAttribute('aria-current', b.getAttribute('data-jump') === id ? 'true' : 'false'); }); }
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var t = document.getElementById(b.getAttribute('data-jump'));
+        if (!t) return;
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+        mark(t.id);
+      });
+    });
+    if (window.IntersectionObserver) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) mark(e.target.id); });
+      }, { rootMargin: '-30% 0px -60% 0px' });
+      btns.forEach(function (b) { var t = document.getElementById(b.getAttribute('data-jump')); if (t) io.observe(t); });
+    }
+    if (btns[0]) mark(btns[0].getAttribute('data-jump'));
+  });
+})();
+
+</script>
+<script>
+(function () {
+  var r = document.querySelector('.s-switch'), c = r && r.querySelector('[aria-current="page"]');
+  if (!c) return;
+  var x = c.getBoundingClientRect().left - r.getBoundingClientRect().left + r.scrollLeft - (r.clientWidth - c.offsetWidth) / 2;
+  if (x > 0) r.scrollLeft = x;
+})();
+</script>
+</body>
+</html>
