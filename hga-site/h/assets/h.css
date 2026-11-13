@@ -1211,7 +1211,7 @@
 /* grading standards sub navigation: tabs centred when they fit (Bhaskar 2026-11-06); phones keep the scroll strip */
 @media (min-width:900px){.subnav .wrap{justify-content:center;padding-right:0;-webkit-mask-image:none;mask-image:none}}
 
-/* Presale timeline (2026-11-13): the journey after a purchase as five steps on one line, in the "How the presale works"
+/* Presale timeline (2026-11-13): the journey after a purchase as five steps on one line (a label and a title each, no text under them), in the "How the presale works"
    band on the home page and the product page. Dots on a hairline, the current step in red; one column on phones. */
 .ps-tl{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));position:relative}
 .ps-tl li{position:relative;padding:36px 20px 0 0;display:grid;gap:6px;align-content:start}
@@ -1219,11 +1219,9 @@
 .ps-tl li:not(:last-child)::after{content:"";position:absolute;left:20px;right:0;top:9px;height:2px;background:rgba(255,255,255,.16)}
 .ps-tl li.now::before{background:var(--red);border-color:var(--red);box-shadow:0 0 0 5px rgba(230,36,41,.22)}
 .ps-tl li.now .ps-k{color:#FF8A8C}
-.ps-tl .ps-t{font-size:clamp(17px,1.35vw,20px)}
-.ps-tl p b{color:#fff;white-space:nowrap}
-.ps-tl p{margin:0;font-size:14px;line-height:1.5;color:rgba(255,255,255,.72)}
-/* titles and texts start at one height in every column, however a label wraps */
-@media (min-width:901px){.ps-tl{row-gap:6px}.ps-tl li{grid-row:span 3;grid-template-rows:subgrid;gap:6px 0}}
+.ps-tl .ps-t{font-size:clamp(17px,1.4vw,21px)}
+/* titles start at one height in every column, however a label wraps */
+@media (min-width:901px){.ps-tl{row-gap:6px}.ps-tl li{grid-row:span 2;grid-template-rows:subgrid;gap:6px 0}}
 @media (max-width:900px){
   .ps-tl{grid-template-columns:minmax(0,1fr)}
   .ps-tl li:not(:last-child)::after{left:9px;right:auto;top:20px;bottom:0;width:2px;height:auto}

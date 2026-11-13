@@ -32,7 +32,7 @@ Landing pages for a persona change only the hero copy and one or two story secti
 
 ## Buy box, materials and 3D
 
-- Buy box: three steps that fold into one line summaries (how many cards; how many in Glass and Poly with two equal slab cards, steppers and a slider; booklets and oversized per slab, inline). Every unit counts as one card. "See every size" opens the size chart in a popup dialog, never a new page. An i button on each slab card opens a benefits popover. One black total bar, one block button naming the housing ("Claim Your Glass", "Claim Your Poly" or "Claim Your Glass and Poly", plus the total), no savings line, no skip to checkout link, then the "Every card includes" panel and the fees accordion. Source: `buybox-rachel.html`, `buybox-rachel.js`, `shop-builder.css`.
+- Buy box: three steps that fold into one line summaries (how many cards; how many in Glass and Poly with two equal slab cards, steppers and a slider; booklets and oversized per slab, inline). Every unit counts as one card. "See every size" opens the size chart in a popup dialog, never a new page. An i button on each slab card opens a benefits popover. One black total bar, one block button naming the housing ("Claim Your Glass", "Claim Your Poly" or "Claim Your Glass and Poly", plus the total), no savings line, no skip to checkout link, then a "Good to know" list of three short lines (no card details needed during presale; a real date, selected right after purchase; how to pay and that sales are final), the "Every card includes" panel and the fees accordion. Source: `buybox-rachel.html`, `buybox-rachel.js`, `shop-builder.css`.
 - Materials: metal frames use the 160deg gradient #1d1d1d to #0a0a0a to #141414 with four 8px screws; the label is red (#ED2B30 to #D51F24) with a 3px #D9EEF0 holographic ring and a white grade box; the glass sheen is a diagonal white band swept on hover. No frosted glass, no backdrop blur panels except the header, no chrome. Red light comes from below or behind the slab.
 - 3D: the hero and shop page use the three.js spin slab (glass.glb and clear_case.glb with per slab card and label textures, static render fallback, drag to spin). Sizes sections use the CSS 3D morphing housing. Do not add other 3D or WebGL. Respect prefers-reduced-motion: every animation off.
 - Motion: .15s hover, .3s reveals, .9s cubic-bezier(.2,.7,.2,1) for 3D and size changes, 1.2s sheen. Text and layout never animate.
@@ -72,12 +72,12 @@ White SVG marks only, on dark surfaces: the HGA logo (hga-logo-ed39811e.svg, one
 
 ## Presale timeline
 
-The journey after a purchase is always shown as one five step timeline (`ol.ps-tl` inside the `section.presale` band, label `p.ps-h`, styles in `h.css`): dots joined by a hairline, a time label (`.ps-k`), a bold title (`.ps-t`) and one short line per step; the current step is `li.now` with `aria-current="step"`. One column on phones. It sits on the home page, the product page and every landing page (after the offer). The steps and their words are the same everywhere:
+The journey after a purchase is always shown as one five step timeline (`ol.ps-tl` inside the `section.presale` band, label `p.ps-h`, styles in `h.css`): dots joined by a hairline, a time label (`.ps-k`) and a bold title (`.ps-t`) per step. No text line under the titles: the client found the longer version too much text. The current step is `li.now` with `aria-current="step"`. One column on phones. It sits on the home page, the product page and every landing page (after the offer). The steps and their words are the same everywhere:
 
-1. Label "Nov 23 to Feb 21". Title "Purchase at presale pricing". Text "Glass $200 or Poly $30 a card. Presale pricing ends in" followed by the countdown.
-2. Label "Right after you purchase". Title "Create your account and book your grading date". Text "The grading calendar opens Nov 23. One date covers your whole order."
-3. Label "Feb 1, 2027". Title "Submissions open". Text "Sign in and tell us about each card: the card, its serial number and who is on it."
-4. Label "Your grading date". Title "Your cards arrive". Text "Grading opens Feb 22, 2027. Send your cards from Feb 1, any time before your date."
-5. Label "30 business days". Title "The Reveal". Text "See your grade and the full Grade Report. 30 business day turnaround for HGA Glass, 60 for HGA Poly."
+1. Label "Nov 23, 2026". Title "Purchase your presale grades".
+2. Label "After you purchase". Title "Set up your account and select your grading date".
+3. Label "Feb 1, 2027". Title "Submissions open".
+4. Label "From Feb 22, 2027". Title "Your cards arrive and grading begins".
+5. Label "Turnaround". Title "30 business days for Glass, 60 for Poly".
 
-Never write 15 business days. Never write "pass", "passes" or "slot". Never add a guarantee, a due date or a late credit. Do not show this journey as cards or as a second, differently worded list on the same page. The product page says "No card details needed during presale." once, under the buy box; the timeline does not repeat it.
+Never write 15 business days. Never write "pass", "passes" or "slot". Never add a guarantee, a due date or a late credit. Do not add text lines under the titles, and do not show this journey as cards or as a second, differently worded list on the same page. The product page says "No card details needed during presale." once, in the "Good to know" list under the buy box button. Do not write "Up to 100 cards per order": that line is retired.
