@@ -671,7 +671,10 @@ body::before {
 /* desktop: the funnel bar and the kit header both stay in view */
 @media (min-width: 861px) {
   .s-band { position: sticky; top: env(safe-area-inset-top, 0px); z-index: calc(var(--k-z-sticky) + 1); }
-  .s-band-in { height: 56px; }
+  .s-band-in { height: 56px; gap: 16px; }
+  /* six pills (Overview and five funnels) fit the bar at 1440 without a sideways scroll */
+  .s-switch { gap: 2px; }
+  .s-sw { padding: 0 10px; font-size: 15px; }
   .k-root .k-head { top: calc(env(safe-area-inset-top, 0px) + 56px); }
   .k-root .k-jump { top: calc(env(safe-area-inset-top, 0px) + 184px); }
   .k-root .k-sec { scroll-margin-top: 196px; }
@@ -761,7 +764,7 @@ body::before {
 </head>
 <body>
 <div class="k-root">
-<div class="s-band"><div class="s-band-in"><img class="s-logo" src="../assets/purplefire-logo.webp" alt="PurpleFire" width="108" height="20"><nav class="s-switch" aria-label="Funnels"><a class="s-sw" href="../">Overview</a><a class="s-sw" href="../past-clients/"><span>Funnel 1 <span class="s-sw-name">Past clients</span></span></a><a class="s-sw" href="../after-the-freeze/"><span>Funnel 2 <span class="s-sw-name">After the freeze</span></span></a><a class="s-sw" href="../named-stores/" aria-current="page"><span>Funnel 3 <span class="s-sw-name">Named stores</span></span></a><a class="s-sw" href="../guess-the-winner/"><span>Funnel 4 <span class="s-sw-name">Guess the winner</span></span></a></nav></div></div>
+<div class="s-band"><div class="s-band-in"><img class="s-logo" src="../assets/purplefire-logo.webp" alt="PurpleFire" width="108" height="20"><nav class="s-switch" aria-label="Funnels"><a class="s-sw" href="../">Overview</a><a class="s-sw" href="../past-clients/"><span>Funnel 1 <span class="s-sw-name">Past clients</span></span></a><a class="s-sw" href="../after-the-freeze/"><span>Funnel 2 <span class="s-sw-name">After the freeze</span></span></a><a class="s-sw" href="../named-stores/" aria-current="page"><span>Funnel 3 <span class="s-sw-name">Named stores</span></span></a><a class="s-sw" href="../guess-the-winner/"><span>Funnel 4 <span class="s-sw-name">Guess the winner</span></span></a><a class="s-sw" href="../holiday-support/"><span>Funnel 5 <span class="s-sw-name">Holiday support</span></span></a></nav></div></div>
 <header class="k-head"><div class="k-head-in">
   <div class="k-head-row"><p class="k-kit"><span class="k-kit-no">Funnel 3</span><span class="k-kit-name">Named stores: one short video each</span></p><p class="k-proto">Prototype for PurpleFire</p></div>
   <nav class="k-tabs" aria-label="Funnel sections"><a class="k-tab" href="#strategy" data-tab="strategy" aria-current="page">Strategy 3</a><a class="k-tab" href="#message" data-tab="message">Message</a><a class="k-tab" href="#assets" data-tab="assets">Assets</a></nav>
@@ -806,7 +809,7 @@ body::before {
 
   <section class="k-sec" aria-label="Hypothesis">
     <h2 class="k-h3">Hypothesis</h2>
-    <p class="k-p">Founders may not book a call now because of Black Friday, Cyber Monday and the holidays, so the message asks only for a reply and a January start. It is wrong if the 15 stores send zero positive replies (a yes, "January" or a question) by Fri 18 Dec.</p>
+    <p class="k-p">Founders may not book a call now because of Black Friday, Cyber Monday and the holidays, so the message asks only for a reply and a January start. It is wrong if the 15 stores send zero positive replies (a yes or a question) by Fri 18 Dec.</p>
   </section>
 
   <section class="k-sec" aria-label="The 15 stores">
@@ -895,7 +898,7 @@ If you'd rather not hear from me, say so and I won't write again.</div>
       <figcaption><span class="k-cb-label">Day 3</span><span class="k-cb-meta">Follow up, only if no reply</span></figcaption>
       <div class="k-cb-body">Hi {first name}, one more detail from the video: {the change on your page}.
 
-It would run as an A/B test in January, and it goes live on your store only if it wins. If January works, just reply "January".
+It would run as an A/B test in January, and it goes live on your store only if it wins. Would that be worth a short call in January?
 
 Daniel
 
@@ -907,7 +910,7 @@ If you'd rather not hear from me, say so and I won't write again.</div>
       <figcaption><span class="k-cb-label">Day 7</span><span class="k-cb-meta">Last note, only if no reply</span></figcaption>
       <div class="k-cb-body">Hi {first name}, last note from me on this. December is busy, so no reply needed now.
 
-The January offer stays open. Your first split test is on us. You pay after the first win. Reply "January" whenever it suits you.
+The January offer stays open. Your first split test is on us. You pay after the first win. Write back whenever it suits you.
 
 Daniel
 
@@ -921,7 +924,7 @@ If you'd rather not hear from me, say so and I won't write again.</div>
     <p class="k-p">Answer the same working day. A yes gets three 15 minute times in January.</p>
 
     <figure class="k-cb" id="f03-msg-yes">
-      <figcaption><span class="k-cb-label">A yes or "January"</span></figcaption>
+      <figcaption><span class="k-cb-label">A yes</span></figcaption>
       <div class="k-cb-body">Great, thanks for writing back. Here are three 15 minute times in January: {three times}. Pick one and I'll send the invite.
 
 Daniel</div>

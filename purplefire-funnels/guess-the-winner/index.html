@@ -1208,7 +1208,10 @@ span.lp-day { cursor: default; }
 /* desktop: the funnel bar and the kit header both stay in view */
 @media (min-width: 861px) {
   .s-band { position: sticky; top: env(safe-area-inset-top, 0px); z-index: calc(var(--k-z-sticky) + 1); }
-  .s-band-in { height: 56px; }
+  .s-band-in { height: 56px; gap: 16px; }
+  /* six pills (Overview and five funnels) fit the bar at 1440 without a sideways scroll */
+  .s-switch { gap: 2px; }
+  .s-sw { padding: 0 10px; font-size: 15px; }
   .k-root .k-head { top: calc(env(safe-area-inset-top, 0px) + 56px); }
   .k-root .k-jump { top: calc(env(safe-area-inset-top, 0px) + 184px); }
   .k-root .k-sec { scroll-margin-top: 196px; }
@@ -1298,10 +1301,10 @@ span.lp-day { cursor: default; }
 </head>
 <body>
 <div class="k-root">
-<div class="s-band"><div class="s-band-in"><img class="s-logo" src="../assets/purplefire-logo.webp" alt="PurpleFire" width="108" height="20"><nav class="s-switch" aria-label="Funnels"><a class="s-sw" href="../">Overview</a><a class="s-sw" href="../past-clients/"><span>Funnel 1 <span class="s-sw-name">Past clients</span></span></a><a class="s-sw" href="../after-the-freeze/"><span>Funnel 2 <span class="s-sw-name">After the freeze</span></span></a><a class="s-sw" href="../named-stores/"><span>Funnel 3 <span class="s-sw-name">Named stores</span></span></a><a class="s-sw" href="../guess-the-winner/" aria-current="page"><span>Funnel 4 <span class="s-sw-name">Guess the winner</span></span></a></nav></div></div>
+<div class="s-band"><div class="s-band-in"><img class="s-logo" src="../assets/purplefire-logo.webp" alt="PurpleFire" width="108" height="20"><nav class="s-switch" aria-label="Funnels"><a class="s-sw" href="../">Overview</a><a class="s-sw" href="../past-clients/"><span>Funnel 1 <span class="s-sw-name">Past clients</span></span></a><a class="s-sw" href="../after-the-freeze/"><span>Funnel 2 <span class="s-sw-name">After the freeze</span></span></a><a class="s-sw" href="../named-stores/"><span>Funnel 3 <span class="s-sw-name">Named stores</span></span></a><a class="s-sw" href="../guess-the-winner/" aria-current="page"><span>Funnel 4 <span class="s-sw-name">Guess the winner</span></span></a><a class="s-sw" href="../holiday-support/"><span>Funnel 5 <span class="s-sw-name">Holiday support</span></span></a></nav></div></div>
 <header class="k-head"><div class="k-head-in">
   <div class="k-head-row"><p class="k-kit"><span class="k-kit-no">Funnel 4</span><span class="k-kit-name">A guess the winner game in place of the video</span></p><p class="k-proto">Prototype for PurpleFire</p></div>
-  <nav class="k-tabs" aria-label="Funnel sections"><a class="k-tab" href="#strategy" data-tab="strategy" aria-current="page">Strategy 4</a><a class="k-tab" href="#run" data-tab="run">Run it</a><a class="k-tab" href="#ads" data-tab="ads">Ads</a><a class="k-tab" href="#page" data-tab="page">Landing page</a><a class="k-tab" href="#assets" data-tab="assets">Assets</a></nav>
+  <nav class="k-tabs" aria-label="Funnel sections"><a class="k-tab" href="#strategy" data-tab="strategy" aria-current="page">Strategy 4</a><a class="k-tab" href="#run" data-tab="run">Steps</a><a class="k-tab" href="#ads" data-tab="ads">Ads</a><a class="k-tab" href="#page" data-tab="page">Landing page</a><a class="k-tab" href="#assets" data-tab="assets">Assets</a></nav>
 </div></header>
 <main class="k-main">
 <section class="k-panel" id="tab-strategy" data-tab="strategy" aria-label="Strategy 4">
@@ -1328,15 +1331,15 @@ span.lp-day { cursor: default; }
 </div>
 
 </section>
-<section class="k-panel" id="tab-run" data-tab="run" aria-label="Run it" hidden>
+<section class="k-panel" id="tab-run" data-tab="run" aria-label="Steps" hidden>
 <div class="k-col">
   <div class="k-intro">
-    <h1 class="k-title">Run it</h1>
-    <p class="k-lede">Daniel, you run every step below. One thing starts this week: read the ten rounds and sign them off. Orange rows are go or no go points. Dates marked "proposed" sit inside the sheet's fixed windows (build Mon 7 to Fri 18 Dec 2026; ads Tue 5 to Mon 18 Jan 2027; calls to Fri 29 Jan; read Fri 29 Jan).</p>
+    <h1 class="k-title">Steps and dates</h1>
+    <p class="k-lede">Every step you take, in date order. One thing starts this week: read the ten rounds and sign them off. Orange rows are go or no go points. Dates marked "proposed" sit inside the sheet's fixed windows (build Mon 7 to Fri 18 Dec 2026; ads Tue 5 to Mon 18 Jan 2027; calls to Fri 29 Jan; read Fri 29 Jan).</p>
   </div>
 
-  <section class="k-sec" aria-label="Run sheet">
-    <h2 class="k-h3">Run sheet</h2>
+  <section class="k-sec" aria-label="What to do, by date">
+    <h2 class="k-h3">What to do, by date</h2>
     <ol class="k-run">
       <li class="k-step">
         <time class="k-date" datetime="2026-11-16"><span class="k-dow">Mon</span><span class="k-day">16</span><span class="k-mon">Nov</span></time>

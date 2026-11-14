@@ -1,0 +1,1246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Holiday Sale Support | PurpleFire call funnels</title>
+<meta name="description" content="Unlimited landing pages plus website design and development support for brands behind on Black Friday, Cyber Monday and the holidays.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PurpleFire call funnels">
+<meta property="og:title" content="Holiday Sale Support | PurpleFire call funnels">
+<meta property="og:description" content="Unlimited landing pages plus website design and development support for brands behind on Black Friday, Cyber Monday and the holidays.">
+<meta property="og:url" content="https://raycazy.github.io/AI-workflow-tasks/purplefire-funnels/holiday-support/">
+<meta property="og:image" content="https://raycazy.github.io/AI-workflow-tasks/purplefire-funnels/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap">
+<style>
+:root{color-scheme:light;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+</style>
+<style>
+
+
+
+
+/* PurpleFire funnel kit shell. A binder, not a deck: one sticky bar, plain tabs, one calm column per tab.
+   Light = his paper and ink with the teal accent. Dark = his page (ground, surface, mint).
+   Every shell class and token starts with k- so nothing collides with a landing page (.lp, --lp-*). */
+:root {
+  --k-bg: #ffffff;
+  --k-bg-2: #f4f6f5;
+  --k-bg-3: #e9eeec;
+  --k-line: #dfe5e3;
+  --k-fg: #16302f;
+  --k-fg-2: #3c5453;
+  --k-muted: #5b6f6d;            /* brand muted #6b7f7d fails AA on white at 14px; one step deeper */
+  --k-accent: #0f6b66;
+  --k-accent-soft: #e3f1ef;
+  --k-accent-fg: #ffffff;
+  --k-gate: #a33f05;             /* text on the gate tint, orange family, AA on the tint */
+  --k-gate-soft: #fff1e8;
+  --k-gate-ring: #ffb48a;
+  --k-gate-mark: #ff6a1a;
+  --k-hold: #c9463d;
+  --k-code-bg: #f4f6f5;
+  --k-focus: #0f6b66;
+  --k-device-bg: #e9eeec;
+
+  --k-font: Manrope, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --k-display: Fraunces, Georgia, "Times New Roman", serif;
+  --k-mono: ui-monospace, Menlo, Consolas, monospace;
+  --k-col: 760px;
+  --k-wide: 1180px;
+  --k-gutter-l: max(16px, env(safe-area-inset-left, 0px));
+  --k-gutter-r: max(16px, env(safe-area-inset-right, 0px));
+  --k-r-sm: 8px;
+  --k-r: 12px;
+  --k-r-lg: 16px;
+  --k-z-sticky: 20;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --k-bg: #0b100f;
+    --k-bg-2: #141a19;
+    --k-bg-3: #1c2423;
+    --k-line: rgba(255, 255, 255, .1);
+    --k-fg: #ffffff;
+    --k-fg-2: #e6eceb;
+    --k-muted: #9fb3b0;
+    --k-accent: #9be7c4;
+    --k-accent-soft: rgba(155, 231, 196, .12);
+    --k-accent-fg: #0b100f;
+    --k-gate: #ffb184;
+    --k-gate-soft: rgba(255, 106, 26, .12);
+    --k-gate-ring: rgba(255, 106, 26, .55);
+    --k-hold: #f0938c;
+    --k-code-bg: #141a19;
+    --k-focus: #9be7c4;
+    --k-device-bg: #141a19;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --k-bg: #0b100f;
+  --k-bg-2: #141a19;
+  --k-bg-3: #1c2423;
+  --k-line: rgba(255, 255, 255, .1);
+  --k-fg: #ffffff;
+  --k-fg-2: #e6eceb;
+  --k-muted: #9fb3b0;
+  --k-accent: #9be7c4;
+  --k-accent-soft: rgba(155, 231, 196, .12);
+  --k-accent-fg: #0b100f;
+  --k-gate: #ffb184;
+  --k-gate-soft: rgba(255, 106, 26, .12);
+  --k-gate-ring: rgba(255, 106, 26, .55);
+  --k-hold: #f0938c;
+  --k-code-bg: #141a19;
+  --k-focus: #9be7c4;
+  --k-device-bg: #141a19;
+  color-scheme: dark;
+}
+
+body {
+  background: var(--k-bg);
+  color: var(--k-fg);
+  font-family: var(--k-font);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  z-index: 30;
+  background: var(--k-bg);
+}
+.k-root *, .k-root *::before, .k-root *::after { box-sizing: border-box; }
+.k-root [hidden] { display: none !important; }
+.k-root :focus-visible { outline: 2px solid var(--k-focus); outline-offset: 2px; border-radius: 4px; }
+.k-root svg.k-i { width: 16px; height: 16px; flex: none; stroke: currentColor; fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---------- header and tabs ---------- */
+.k-head {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: var(--k-z-sticky);
+  background: var(--k-bg);
+  border-bottom: 1px solid var(--k-line);
+}
+.k-head-in {
+  max-width: calc(var(--k-wide) + 32px);
+  margin: 0 auto;
+  padding-left: var(--k-gutter-l);
+  padding-right: var(--k-gutter-r);
+  padding-block: 14px 0;
+  display: grid;
+  gap: 10px;
+}
+.k-head-row { display: flex; align-items: baseline; justify-content: space-between; gap: 8px 16px; flex-wrap: wrap; }
+.k-kit { margin: 0; display: flex; align-items: baseline; gap: 10px; min-width: 0; }
+.k-kit-no { font-size: 14px; font-weight: 700; color: var(--k-muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.k-kit-name { font-family: var(--k-display); font-weight: 600; font-size: 20px; line-height: 1.2; letter-spacing: -.01em; text-wrap: balance; }
+.k-proto { margin: 0; font-size: 12px; font-weight: 600; color: var(--k-muted); display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.k-proto::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--k-gate-mark); }
+.k-tabs {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  margin-inline: -4px;
+  padding-inline: 4px;
+}
+.k-tabs::-webkit-scrollbar { display: none; }
+.k-tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-block: 0 2px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--k-muted);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.k-tab:hover { color: var(--k-fg); }
+.k-tab[aria-current="page"] { color: var(--k-fg); }
+/* the current tab sits on the header's full width baseline (Geist underline tabs) */
+.k-tab[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -1px 0;
+  height: 2px;
+  background: var(--k-fg);
+}
+
+/* ---------- panels and columns ---------- */
+.k-main { padding-block: 32px 96px; }
+.k-panel { padding-left: var(--k-gutter-l); padding-right: var(--k-gutter-r); }
+.k-col { max-width: var(--k-col); margin: 0 auto; display: grid; gap: 48px; min-width: 0; }
+.k-wide { max-width: var(--k-wide); margin: 0 auto; display: grid; gap: 32px; min-width: 0; }
+.k-sec { display: grid; gap: 16px; min-width: 0; scroll-margin-top: 140px; }
+.k-title { margin: 0; font-family: var(--k-display); font-weight: 600; font-size: 32px; line-height: 1.15; letter-spacing: -.015em; text-wrap: balance; }
+.k-lede { margin: 0; font-size: 18px; line-height: 1.55; color: var(--k-fg-2); max-width: 64ch; text-wrap: pretty; }
+.k-intro { display: grid; gap: 12px; }
+.k-h3 { margin: 0; font-size: 18px; font-weight: 700; line-height: 1.35; text-wrap: balance; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.k-h3 .k-count { font-size: 14px; font-weight: 600; color: var(--k-muted); font-variant-numeric: tabular-nums; }
+.k-p { margin: 0; max-width: 68ch; text-wrap: pretty; color: var(--k-fg-2); }
+.k-p strong, .k-list strong { color: var(--k-fg); }
+.k-list { margin: 0; padding-left: 20px; display: grid; gap: 8px; color: var(--k-fg-2); max-width: 68ch; }
+.k-list li::marker { color: var(--k-muted); }
+.k-note { margin: 0; font-size: 14px; color: var(--k-muted); max-width: 68ch; }
+.k-est { font-size: 12px; font-weight: 700; color: var(--k-muted); text-decoration: none; padding: 1px 6px; border-radius: 999px; background: var(--k-bg-3); white-space: nowrap; vertical-align: 1px; }
+.k-root a.k-link { color: var(--k-accent); text-underline-offset: 3px; }
+
+/* ---------- today and new pair ---------- */
+.k-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+.k-pair > div { border-radius: var(--k-r); padding: 20px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.k-today { background: var(--k-bg-2); }
+.k-new { background: var(--k-bg); border: 1px solid var(--k-accent); }
+.k-pair-label { margin: 0; font-size: 14px; font-weight: 700; color: var(--k-muted); }
+.k-new .k-pair-label { color: var(--k-accent); }
+.k-pair p:not(.k-pair-label) { margin: 0; text-wrap: pretty; }
+.k-today p:not(.k-pair-label) { color: var(--k-fg-2); }
+
+/* ---------- facts: label and value rows, sentences not tiles ---------- */
+.k-facts { margin: 0; display: grid; }
+.k-facts > div { display: grid; grid-template-columns: 160px 1fr; gap: 4px 24px; padding-block: 14px; border-top: 1px solid var(--k-line); }
+.k-facts > div:last-child { border-bottom: 1px solid var(--k-line); }
+.k-facts dt { font-size: 14px; font-weight: 700; color: var(--k-muted); padding-top: 2px; }
+.k-facts dd { margin: 0; min-width: 0; text-wrap: pretty; }
+
+/* ---------- run sheet (signature) ---------- */
+.k-run { list-style: none; margin: 0; padding: 0; position: relative; display: grid; }
+.k-run::before {
+  content: "";
+  position: absolute;
+  top: 18px;
+  bottom: 18px;
+  left: 75px;
+  width: 1px;
+  background: var(--k-line);
+}
+.k-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 56px 40px minmax(0, 1fr);
+  grid-template-areas: "date rail body";
+  column-gap: 0;
+  padding-block: 14px;
+  align-items: start;
+}
+.k-step + .k-step { border-top: 1px solid var(--k-line); }
+.k-step::before {
+  content: "";
+  grid-area: rail;
+  justify-self: center;
+  margin-top: 9px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--k-bg);
+  border: 2px solid var(--k-muted);
+  position: relative;
+  z-index: 1;
+}
+.k-date { grid-area: date; display: grid; justify-items: end; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.k-dow { font-size: 12px; font-weight: 700; color: var(--k-muted); }
+.k-day { font-family: var(--k-display); font-size: 24px; font-weight: 600; letter-spacing: -.01em; }
+.k-mon { font-size: 12px; font-weight: 600; color: var(--k-muted); }
+.k-step-body { grid-area: body; display: grid; gap: 6px; min-width: 0; max-width: 68ch; padding-right: 16px; }
+.k-step-what { margin: 0; font-weight: 600; text-wrap: pretty; }
+.k-step-detail { margin: 0; font-size: 14px; color: var(--k-fg-2); text-wrap: pretty; }
+.k-needs { margin: 0; font-size: 14px; color: var(--k-fg-2); display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.k-needs > b { font-weight: 700; color: var(--k-muted); white-space: nowrap; }
+.k-step-range { font-size: 12px; font-weight: 600; color: var(--k-muted); white-space: nowrap; }
+
+/* gate: a full width row where a go or no go falls */
+.k-step.k-gate {
+  margin-block: 8px;
+  padding-block: 16px;
+  border-radius: var(--k-r);
+  background: var(--k-gate-soft);
+  border: 1px solid var(--k-gate-ring);
+}
+.k-step.k-gate + .k-step, .k-step + .k-step.k-gate { border-top-color: transparent; }
+.k-step.k-gate::before {
+  width: 12px;
+  height: 12px;
+  margin-top: 8px;
+  border-radius: 2px;
+  transform: rotate(45deg);
+  background: var(--k-gate-mark);
+  border-color: var(--k-gate-mark);
+}
+.k-gate-label { margin: 0; font-size: 14px; font-weight: 800; color: var(--k-gate); display: inline-flex; align-items: center; gap: 6px; }
+.k-gate .k-dow, .k-gate .k-mon { color: var(--k-gate); }
+.k-gate-ifs { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 16px; color: var(--k-fg-2); }
+.k-gate-out { margin: 0; font-size: 14px; color: var(--k-fg-2); }
+.k-gate-out b { color: var(--k-fg); }
+
+/* ---------- checklist ---------- */
+.k-check { list-style: none; margin: 0; padding: 0; display: grid; }
+.k-check li { display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 12px; padding-block: 12px; align-items: start; }
+.k-check li + li { border-top: 1px solid var(--k-line); }
+.k-check input {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 2px 0 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  border: 1.5px solid var(--k-muted);
+  background: var(--k-bg);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  position: relative;
+}
+.k-check input::before { content: ""; position: absolute; inset: -12px; }
+.k-check input:checked { background: var(--k-accent); border-color: var(--k-accent); }
+.k-check input:checked::after {
+  content: "";
+  width: 10px;
+  height: 6px;
+  border: solid var(--k-accent-fg);
+  border-width: 0 0 2px 2px;
+  transform: translateY(-1px) rotate(-45deg);
+}
+.k-check label { cursor: pointer; display: grid; gap: 2px; text-wrap: pretty; }
+.k-check label small { font-size: 14px; color: var(--k-muted); }
+.k-check input:checked + label { color: var(--k-muted); }
+
+/* ---------- copy block ---------- */
+.k-cb { margin: 0; display: grid; gap: 8px; min-width: 0; }
+.k-cb > figcaption { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 32px; }
+.k-cb-label { font-size: 14px; font-weight: 700; color: var(--k-fg); }
+.k-cb-meta { font-size: 12px; font-weight: 500; color: var(--k-muted); margin-right: auto; }
+.k-cb-body {
+  margin: 0;
+  padding: 14px 16px;
+  border-radius: var(--k-r);
+  background: var(--k-code-bg);
+  border: 1px solid var(--k-line);
+  font-family: var(--k-font);
+  font-size: 16px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: var(--k-fg);
+  min-width: 0;
+}
+.k-cb-body.k-mono { font-family: var(--k-mono); font-size: 12px; }
+.k-copy {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 4px 12px;
+  border-radius: var(--k-r-sm);
+  border: 1px solid var(--k-line);
+  background: var(--k-bg);
+  color: var(--k-fg);
+  font: 600 14px/1 var(--k-font);
+  cursor: pointer;
+  position: relative;
+  white-space: nowrap;
+}
+.k-copy::before { content: ""; position: absolute; inset: -6px; }
+.k-copy:hover { background: var(--k-bg-2); }
+.k-copy[data-state="done"] { background: var(--k-accent-soft); border-color: var(--k-accent); color: var(--k-accent); }
+.k-copy[data-state="select"] { background: var(--k-bg-3); }
+.k-copy svg.k-i { width: 14px; height: 14px; }
+.k-copy .k-i-done { display: none; }
+@media (max-width: 599px) {
+  .k-copy { min-height: 44px; }
+  .k-copy::before { inset: 0; }
+}
+.k-copy[data-state="done"] .k-i-copy { display: none; }
+.k-copy[data-state="done"] .k-i-done { display: block; }
+
+/* ---------- placeholder chip for what only Daniel knows ---------- */
+.k-ph {
+  display: inline-block;   /* one closed box: the chip moves to the next line whole, and only a chip wider than the line wraps, inside its own box */
+  max-width: 100%;
+  padding: 1px 8px;
+  border-radius: 6px;
+  border: 1px dashed var(--k-gate-mark);
+  background: var(--k-gate-soft);
+  color: var(--k-gate);
+  font-size: .9em;
+  font-weight: 700;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* ---------- consent callout ---------- */
+.k-consent {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--k-r);
+  background: var(--k-bg-2);
+  border: 1px solid var(--k-line);
+  font-size: 16px;
+  color: var(--k-fg-2);
+}
+.k-consent svg.k-i { width: 20px; height: 20px; color: var(--k-hold); margin-top: 1px; }
+.k-consent p { margin: 0; text-wrap: pretty; }
+.k-consent b { color: var(--k-fg); }
+
+/* ---------- table ---------- */
+.k-table-wrap { overflow-x: auto; min-width: 0; border-radius: var(--k-r); border: 1px solid var(--k-line); }
+.k-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.k-table .k-num { font-variant-numeric: tabular-nums; text-align: right; }
+.k-table th, .k-table td { text-align: left; vertical-align: top; padding: 12px 16px; }
+.k-table thead th { font-size: 12px; font-weight: 700; color: var(--k-muted); background: var(--k-bg-2); white-space: nowrap; }
+.k-table tbody tr + tr td, .k-table tbody tr + tr th { border-top: 1px solid var(--k-line); }
+.k-table tbody th { font-weight: 700; }
+.k-table td { color: var(--k-fg-2); min-width: 160px; }
+
+/* Stacked table (.k-table--stack): under 600 px each row becomes a block. The row header th[scope=row] is the
+   block's heading with the .k-num cell beside it; every other cell gets its column name from data-label.
+   A row with class k-table-more continues the block above (rowspan): it gets a light inset divider, no heading.
+   The selectors carry .k-root .k-table so they beat a kit's own column min-widths. */
+@media (max-width: 599px) {
+  .k-root .k-table.k-table--stack,
+  .k-root .k-table--stack tbody { display: block; }
+  .k-root .k-table--stack thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .k-root .k-table--stack tbody tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: baseline;
+    gap: 10px 12px;
+    padding: 16px;
+  }
+  .k-root .k-table--stack tbody tr + tr { border-top: 1px solid var(--k-line); }
+  .k-root .k-table--stack tbody tr.k-table-more { border-top: 0; padding-top: 0; }
+  .k-root .k-table.k-table--stack tbody :is(td, th) {
+    display: block;
+    grid-column: 1 / -1;
+    min-width: 0;
+    width: auto;
+    padding: 0;
+    border: 0;
+    overflow-wrap: break-word;
+  }
+  .k-root .k-table.k-table--stack tbody th[scope="row"] {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: 18px;
+    line-height: 1.3;
+    color: var(--k-fg);
+  }
+  .k-root .k-table.k-table--stack tbody td.k-num {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--k-muted);
+  }
+  .k-root .k-table--stack td.k-num::before { content: attr(data-label) " "; }
+  .k-root .k-table--stack td[data-label]:not(.k-num)::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 2px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--k-muted);
+  }
+  .k-root .k-table.k-table--stack tbody tr.k-table-more > td:first-child {
+    padding-top: 12px;
+    border-top: 1px solid var(--k-line);
+  }
+}
+/* 600 px and up: the normal table with the kit's column minimums lifted, so every column fits the column width
+   (six columns do not fit 760 px with them); 600 to 767 px also tightens the cells */
+@media (min-width: 600px) {
+  .k-root .k-table.k-table--stack :is(td, th) { min-width: 0; }
+}
+@media (min-width: 600px) and (max-width: 767px) {
+  .k-root .k-table.k-table--stack :is(td, th) { padding: 10px; }
+}
+
+/* ---------- segmented control (ratio and device switches) ---------- */
+.k-seg { display: inline-flex; padding: 3px; gap: 2px; border-radius: 10px; background: var(--k-bg-3); }
+.k-seg button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--k-muted);
+  font: 600 14px/1 var(--k-font);
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.k-seg button[aria-pressed="true"] { background: var(--k-bg); color: var(--k-fg); box-shadow: 0 1px 2px rgba(22, 48, 47, .12), 0 0 0 1px var(--k-line); }
+.k-seg button:hover { color: var(--k-fg); }
+
+/* ---------- ad unit ---------- */
+.k-ad { display: grid; grid-template-columns: minmax(0, 400px) minmax(0, 1fr); gap: 32px 40px; align-items: start; }
+.k-ad + .k-ad { padding-top: 48px; border-top: 1px solid var(--k-line); }
+.k-ad-side { display: grid; gap: 12px; justify-items: start; min-width: 0; }
+.k-ad-side > .k-seg { justify-self: start; }
+.k-feed {
+  width: 100%;
+  max-width: 400px;
+  border-radius: var(--k-r);
+  border: 1px solid var(--k-line);
+  background: var(--k-bg);
+  overflow: hidden;
+  font-size: 14px;
+}
+.k-feed-top { display: flex; align-items: center; gap: 10px; padding: 12px 14px 10px; }
+.k-feed-avatar { width: 36px; height: 36px; border-radius: 50%; background: #0b100f; box-shadow: 0 0 0 1px var(--k-line); display: grid; place-items: center; flex: none; overflow: hidden; }
+.k-feed-avatar img { width: 26px; height: auto; filter: brightness(0) invert(1); }
+.k-feed-who { display: grid; line-height: 1.25; }
+.k-feed-who b { font-size: 14px; }
+.k-feed-who span { font-size: 12px; color: var(--k-muted); }
+.k-feed-text { margin: 0; padding: 0 14px 12px; font-size: 14px; line-height: 1.45; white-space: pre-wrap; overflow-wrap: anywhere; }
+.k-feed-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px 12px; background: var(--k-bg-2); }
+.k-feed-bar div { display: grid; min-width: 0; line-height: 1.3; }
+.k-feed-bar b { font-size: 14px; }
+.k-feed-bar span { font-size: 12px; color: var(--k-muted); }
+.k-feed-cta { flex: none; padding: 8px 12px; border-radius: 6px; background: var(--k-bg-3); font-size: 12px; font-weight: 700; white-space: nowrap; }
+/* the creative slot: a sized box, the creative inside sets its own look (creative.css) */
+.k-art { width: 100%; aspect-ratio: 4 / 5; max-width: 100%; position: relative; overflow: hidden; container-type: inline-size; }
+.k-ad[data-ratio="1x1"] .k-art { aspect-ratio: 1 / 1; }
+.k-art > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.k-ad-fields { display: grid; gap: 20px; min-width: 0; }
+.k-ad-name { margin: 0; font-size: 18px; font-weight: 700; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.k-ad-name span { font-size: 14px; font-weight: 600; color: var(--k-muted); }
+.k-ad-meta { margin: 0; display: grid; }
+.k-ad-meta > div { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 12px; padding-block: 10px; border-top: 1px solid var(--k-line); font-size: 14px; }
+.k-ad-meta dt { font-weight: 700; color: var(--k-muted); font-size: 14px; }
+.k-ad-meta dd { margin: 0; color: var(--k-fg-2); min-width: 0; }
+
+/* ---------- device frame for the landing page ---------- */
+.k-device { display: grid; gap: 16px; justify-items: center; min-width: 0; }
+.k-device-bar { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.k-device-note { margin: 0; font-size: 14px; color: var(--k-muted); }
+.k-device-stage { width: 100%; display: grid; justify-items: center; padding: 24px 16px; border-radius: var(--k-r-lg); background: var(--k-device-bg); min-width: 0; }
+.k-device-shell { width: 100%; border-radius: var(--k-r); overflow: hidden; background: #0b100f; box-shadow: 0 0 0 1px var(--k-line), 0 12px 32px rgba(11, 16, 15, .16); }
+.k-device-chrome { display: flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px; background: #1c2423; color: #9fb3b0; font: 600 12px/1 var(--k-font); }
+.k-device-chrome span { flex: 1; text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.k-device-chrome svg.k-i { width: 14px; height: 14px; }
+.k-device-view { position: relative; overflow: hidden; width: 100%; }
+.k-device-page { width: 1280px; transform-origin: 0 0; }
+.k-device[data-device="phone"] .k-device-shell { max-width: 390px; border-radius: 16px; box-shadow: 0 0 0 1px var(--k-line), 0 0 0 7px #1c2423, 0 16px 40px rgba(11, 16, 15, .22); }
+.k-device[data-device="phone"] .k-device-page { width: 390px; }
+.k-device[data-device="phone"] .k-device-chrome { height: 28px; }
+
+/* ---------- assets with a jump list ---------- */
+.k-assets { max-width: var(--k-wide); margin: 0 auto; display: grid; grid-template-columns: 220px minmax(0, var(--k-col)); gap: 48px; justify-content: center; align-items: start; }
+.k-jump { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 128px); display: grid; gap: 2px; }
+.k-jump-title { margin: 0 0 6px; padding-left: 10px; font-size: 12px; font-weight: 700; color: var(--k-muted); }
+.k-jump button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  font: 600 14px/1.35 var(--k-font);
+  color: var(--k-fg-2);
+  padding: 8px 10px;
+  border-radius: var(--k-r-sm);
+  cursor: pointer;
+  min-height: 36px;
+}
+.k-jump button:hover { background: var(--k-bg-2); color: var(--k-fg); }
+.k-jump button[aria-current="true"] { background: var(--k-accent-soft); color: var(--k-accent); }
+.k-assets-body { display: grid; gap: 56px; min-width: 0; }
+
+/* ---------- narrow ---------- */
+@media (max-width: 860px) {
+  .k-assets { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .k-jump { position: static; display: flex; flex-wrap: wrap; gap: 6px; }
+  .k-jump-title { width: 100%; padding-left: 0; margin: 0; }
+  .k-jump button { background: var(--k-bg-2); padding: 6px 12px; border-radius: 999px; font-size: 12px; min-height: 36px; }
+  .k-ad { grid-template-columns: minmax(0, 1fr); }
+  .k-ad-side { justify-items: stretch; }
+  .k-feed { margin-inline: auto; }
+}
+@media (max-width: 560px) {
+  .k-main { padding-block: 24px 72px; }
+  .k-col { gap: 40px; }
+  .k-title { font-size: 28px; }
+  .k-lede { font-size: 16px; }
+  .k-kit-name { font-size: 18px; }
+  .k-head-in { padding-block: 10px 0; gap: 4px; }
+  .k-tabs { gap: 20px; }
+  .k-facts > div { grid-template-columns: minmax(0, 1fr); }
+  .k-run::before { left: 63px; }
+  .k-step {
+    grid-template-columns: 48px 32px minmax(0, 1fr);
+  }
+  .k-step-body { padding-right: 0; }
+  .k-step.k-gate { margin-inline: -8px; padding-right: 8px; }
+  .k-day { font-size: 22px; }
+  .k-device-stage { padding: 12px 8px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .k-copy, .k-seg button, .k-jump button, .k-check input { transition: background-color .15s ease, color .15s ease, border-color .15s ease; }
+}
+
+
+</style>
+<style>
+/* Site layer: one more level above the kit binder. Used only by `build.mjs --site`; the kit pages built for sharing one by one never load it.
+   The funnel bar is his dark page colour in both themes (a deliberate single look), so it reads as the level above
+   the paper kit header. Current funnel: a mint tint, never a stripe. */
+.s-band {
+  background: #16302f;
+  color: #cfd8d6;
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+/* same teal in dark theme: a neutral dark bar melted into the dark kit header */
+.s-band-in {
+  max-width: calc(var(--k-wide) + 32px);
+  margin: 0 auto;
+  padding-left: var(--k-gutter-l);
+  padding-right: var(--k-gutter-r);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  min-height: 56px;
+}
+.s-logo { height: 20px; width: auto; flex: none; filter: brightness(0) invert(1); display: block; }
+.s-switch {
+  display: flex;
+  gap: 4px;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-block: 8px;
+  margin-inline: -4px;
+  padding-inline: 4px;
+}
+.s-switch::-webkit-scrollbar { display: none; }
+.s-sw {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 999px;
+  color: #cfd8d6;
+  font: 700 16px/1 var(--k-font);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.s-sw:hover { color: #ffffff; background: rgba(255, 255, 255, .06); }
+.s-sw[aria-current="page"] { color: #9be7c4; background: rgba(155, 231, 196, .14); }
+/* the funnel number leads; the short name is the quieter second part of the same pill */
+.s-sw-name { font-weight: 500; color: #9fb0ac; }
+.s-sw:hover .s-sw-name { color: #cfd8d6; }
+.s-sw[aria-current="page"] .s-sw-name { color: inherit; opacity: .82; }
+.k-root .s-sw:focus-visible { outline: 2px solid #9be7c4; outline-offset: 2px; border-radius: 999px; }
+/* kit tab focus: a full ring drawn inside the tab row, because the row is a 44 px scroll box and clips an outline that sits outside the tab */
+.k-root .k-tab:focus-visible { outline: none; }
+.k-root .k-tab:focus-visible::before { content: ""; position: absolute; inset: 6px -4px; border: 2px solid currentColor; border-radius: 6px; pointer-events: none; }
+
+/* phone: the row fades at its right edge so the next funnel name peeks in; the spacer lets the last pill scroll clear of the fade */
+@media (max-width: 767px) {
+  .s-switch {
+    -webkit-mask-image: linear-gradient(to right, #000 82%, transparent);
+    mask-image: linear-gradient(to right, #000 82%, transparent);
+  }
+  .s-switch::after { content: ""; flex: none; width: 64px; }
+}
+
+/* desktop: the funnel bar and the kit header both stay in view */
+@media (min-width: 861px) {
+  .s-band { position: sticky; top: env(safe-area-inset-top, 0px); z-index: calc(var(--k-z-sticky) + 1); }
+  .s-band-in { height: 56px; gap: 16px; }
+  /* six pills (Overview and five funnels) fit the bar at 1440 without a sideways scroll */
+  .s-switch { gap: 2px; }
+  .s-sw { padding: 0 10px; font-size: 15px; }
+  .k-root .k-head { top: calc(env(safe-area-inset-top, 0px) + 56px); }
+  .k-root .k-jump { top: calc(env(safe-area-inset-top, 0px) + 184px); }
+  .k-root .k-sec { scroll-margin-top: 196px; }
+}
+/* phone: the funnel bar scrolls away, the kit tabs stay (the shell's own sticky header) */
+@media (max-width: 860px) {
+  .s-logo { display: none; }
+  .s-band-in { gap: 0; min-height: 52px; }
+  .s-sw { position: relative; min-height: 36px; padding: 0 14px; }
+  .s-sw::before { content: ""; position: absolute; inset: -4px 0; }
+}
+/* small phones: 44 px pills; the row's padding gives back the 8 px so the band stays 52 px */
+@media (max-width: 599px) {
+  .s-sw { min-height: 44px; }
+  .s-sw::before { inset: 0; }
+  .s-switch { padding-block: 4px; }
+}
+
+/* downloads on an ad unit, under its name */
+.s-dl { display: grid; gap: 6px; margin: 0; padding: 12px 14px; border-radius: var(--k-r); background: var(--k-bg-2); }
+.s-dl-row { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; font-size: 14px; }
+.s-dl-label { font-weight: 700; color: var(--k-fg); margin-right: 2px; }
+.s-dl-note { color: var(--k-muted); font-size: 14px; }
+.s-get {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 0 12px;
+  border-radius: var(--k-r-sm);
+  border: 1px solid var(--k-line);
+  background: var(--k-bg);
+  color: var(--k-fg);
+  font: 700 14px/1 var(--k-font);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.s-get:hover { border-color: var(--k-accent); color: var(--k-accent); }
+.s-get svg.k-i { width: 14px; height: 14px; }
+.s-get-strong { background: var(--k-accent); border-color: var(--k-accent); color: var(--k-accent-fg); }
+.s-get-strong:hover { color: var(--k-accent-fg); filter: brightness(1.08); }
+.s-zip { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 16px; }
+.s-zip p { margin: 0; font-size: 14px; color: var(--k-muted); }
+.k-device-bar .s-get { margin-left: auto; }
+
+/* overview: an index of four rows, not tiles */
+.s-rows { list-style: none; margin: 0; padding: 0; display: grid; }
+.s-row {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 12px 40px;
+  padding-block: 24px;
+  border-top: 1px solid var(--k-line);
+}
+.s-row:last-child { border-bottom: 1px solid var(--k-line); }
+.s-row-head { display: grid; gap: 4px; align-content: start; }
+.s-row-no { font-size: 14px; font-weight: 700; color: var(--k-muted); font-variant-numeric: tabular-nums; }
+.s-row-name { margin: 0; font-family: var(--k-display); font-weight: 600; font-size: 24px; line-height: 1.2; letter-spacing: -.01em; text-wrap: balance; }
+.s-row-name a { color: var(--k-fg); text-decoration: none; }
+.s-row-name a:hover { color: var(--k-accent); }
+.s-row-body { display: grid; gap: 14px; min-width: 0; }
+.s-row-what { margin: 0; font-size: 18px; line-height: 1.5; text-wrap: pretty; max-width: 66ch; }
+.s-row-facts { margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 24px; }
+.s-row-facts div { display: grid; gap: 2px; align-content: start; min-width: 0; }
+.s-row-facts dt { font-size: 14px; font-weight: 700; color: var(--k-muted); }
+.s-row-facts dd { margin: 0; font-size: 14px; color: var(--k-fg-2); text-wrap: pretty; }
+.s-row-go { justify-self: start; display: inline-flex; align-items: center; gap: 6px; min-height: 36px; font-weight: 700; color: var(--k-accent); text-decoration: none; }
+.s-row-go:hover { text-decoration: underline; text-underline-offset: 3px; }
+.s-row-go svg.k-i { width: 16px; height: 16px; }
+.s-cal { min-width: 980px; }
+.s-cal th[scope="row"] { white-space: nowrap; }
+.s-cal td { min-width: 0; }
+.s-cal .s-off { color: var(--k-muted); }
+.s-downloads { list-style: none; margin: 0; padding: 0; display: grid; }
+.s-downloads li { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 16px; padding-block: 12px; border-top: 1px solid var(--k-line); }
+.s-downloads li:last-child { border-bottom: 1px solid var(--k-line); }
+.s-downloads b { font-weight: 700; }
+.s-downloads span { color: var(--k-muted); font-size: 14px; }
+@media (max-width: 860px) {
+  .s-row { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .s-row-head { grid-template-columns: auto 1fr; align-items: baseline; gap: 10px; }
+  .s-row-what { font-size: 16px; }
+  .s-row-facts { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+}
+
+</style>
+</head>
+<body>
+<div class="k-root">
+<div class="s-band"><div class="s-band-in"><img class="s-logo" src="../assets/purplefire-logo.webp" alt="PurpleFire" width="108" height="20"><nav class="s-switch" aria-label="Funnels"><a class="s-sw" href="../">Overview</a><a class="s-sw" href="../past-clients/"><span>Funnel 1 <span class="s-sw-name">Past clients</span></span></a><a class="s-sw" href="../after-the-freeze/"><span>Funnel 2 <span class="s-sw-name">After the freeze</span></span></a><a class="s-sw" href="../named-stores/"><span>Funnel 3 <span class="s-sw-name">Named stores</span></span></a><a class="s-sw" href="../guess-the-winner/"><span>Funnel 4 <span class="s-sw-name">Guess the winner</span></span></a><a class="s-sw" href="../holiday-support/" aria-current="page"><span>Funnel 5 <span class="s-sw-name">Holiday support</span></span></a></nav></div></div>
+<header class="k-head"><div class="k-head-in">
+  <div class="k-head-row"><p class="k-kit"><span class="k-kit-no">Funnel 5</span><span class="k-kit-name">Holiday and BFCM: unlimited pages for the season</span></p><p class="k-proto">Prototype for PurpleFire</p></div>
+  <nav class="k-tabs" aria-label="Funnel sections"><a class="k-tab" href="#strategy" data-tab="strategy" aria-current="page">Strategy 5</a><a class="k-tab" href="#message" data-tab="message">Message</a><a class="k-tab" href="#assets" data-tab="assets">Assets</a></nav>
+</div></header>
+<main class="k-main">
+<section class="k-panel" id="tab-strategy" data-tab="strategy" aria-label="Strategy 5">
+<style>
+/* Funnel 5 additions, built on the shell tokens only. Every class starts k-f05-. */
+.k-f05-confirm { margin: 0; padding: 12px 16px; border-radius: var(--k-r); background: var(--k-gate-soft); color: var(--k-fg); max-width: 68ch; text-wrap: pretty; }
+.k-f05-confirm b { color: var(--k-gate); }
+.k-f05-howto { margin: 0; font-size: 14px; line-height: 1.5; color: var(--k-fg-2); max-width: 68ch; text-wrap: pretty; }
+.k-f05-howto > b { color: var(--k-fg); }
+.k-f05-sub-h { margin: 0; font-size: 16px; font-weight: 700; color: var(--k-fg); }
+.k-f05-list th[scope="row"] { min-width: 180px; }
+.k-f05-list td { vertical-align: top; }
+</style>
+<div class="k-col">
+  <div class="k-intro">
+    <h1 class="k-title">Unlimited pages for brands behind on Black Friday</h1>
+    <p class="k-lede">You offer past clients unlimited landing pages plus website design and development support from now to the end of December, for one flat fee.</p>
+  </div>
+
+  <section class="k-sec" aria-label="The idea">
+    <h2 class="k-h3">The idea</h2>
+    <p class="k-p">Many brand teams are behind on their Black Friday, Cyber Monday and holiday pages this week, and every new page waits in the same queue as the ads and the emails. You offer them hands for the season: as many landing pages and site changes as they need, built by PurpleFire until Thu 31 Dec 2026. You come in as the people who know holiday sale and offer strategy from 5,000+ A/B tests and 1,300+ documented winners, so each page starts from what you have seen win.</p>
+  </section>
+
+  <section class="k-sec" aria-label="Hypothesis">
+    <h2 class="k-h3">Hypothesis</h2>
+    <p class="k-p">A team that is behind on Black Friday will say yes to extra hands this week more easily than to a strategy call. It is wrong if no brand on the list says yes to the offer or to a 15 minute call by Fri 4 Dec 2026.</p>
+  </section>
+
+  <section class="k-sec" aria-label="The offer">
+    <h2 class="k-h3">The offer</h2>
+    <dl class="k-facts">
+      <div><dt>Unlimited means</dt><dd>The brand sends as many requests as it likes. They go in one at a time, and each one is done before the next one starts.</dd></div>
+      <div><dt>What is covered</dt><dd>Landing pages for the sale, offer and bundle pages, gift guide pages, announcement and countdown bars, cart offers, checkout offers where their Shopify plan allows them, the Cyber Monday pages, shipping cutoff banners, the January sale page (built in December) and fixes on the live theme.</dd></div>
+      <div><dt>The window</dt><dd>From the day they say yes to Thu 31 Dec 2026.</dd></div>
+    </dl>
+    <p class="k-f05-confirm"><b>Confirm before you send:</b> the three lines below are assumptions. Change them to your own numbers before Day 1 goes out.</p>
+    <dl class="k-facts">
+      <div><dt>Turnaround</dt><dd>Most requests in 1 to 2 working days <abbr class="k-est" title="Estimate">Est.</abbr></dd></div>
+      <div><dt>Brands at a time</dt><dd>3, so the turnaround holds. After the third yes the season is full: offer the next brand a 15 minute call about January instead.</dd></div>
+      <div><dt>Price</dt><dd>You set it: one flat fee for the season, no hourly billing.</dd></div>
+    </dl>
+  </section>
+
+  <section class="k-sec" aria-label="Who you write to">
+    <h2 class="k-h3">Who you write to: <span data-gen="n-stores">70 past clients</span></h2>
+<!-- gen:list:start -->
+    <div class="k-table-wrap" tabindex="0" role="region" aria-label="Who you write to">
+      <table class="k-table k-table--stack k-f05-list">
+        <thead><tr><th scope="col">Store</th><th scope="col">Country</th><th scope="col">Also in Funnel 1</th></tr></thead>
+        <tbody>
+          <tr><th scope="row"><a class="k-link" href="https://www.acottageinthecity.com/" target="_blank" rel="noopener">A Cottage in the City</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://airback.store/" target="_blank" rel="noopener">Airback</a></th><td data-label="Country">Netherlands</td><td data-label="Also in Funnel 1">Yes</td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://www.allsilvergifts.com/" target="_blank" rel="noopener">All Silver Gifts</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1">Yes</td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://amfmagnets.com/" target="_blank" rel="noopener">AMF Magnets</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1">Yes</td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://basic-maintenance.com/" target="_blank" rel="noopener">Basic Maintenance</a></th><td data-label="Country">Canada</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://bayoptiks.com/" target="_blank" rel="noopener">Bay Optiks</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://bestself.co/" target="_blank" rel="noopener">Bestself</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://www.compressionsale.com/" target="_blank" rel="noopener">Compression Sale</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://www.cvfab.com/" target="_blank" rel="noopener">CV Fabrication</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1">Yes</td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://www.decarba.com/" target="_blank" rel="noopener">Decarba</a></th><td data-label="Country">Netherlands</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://www.drinkjubi.com/" target="_blank" rel="noopener">Drink Jubi</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://elegatto.com/" target="_blank" rel="noopener">Elegatto</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://ellemillashop.com/" target="_blank" rel="noopener">Ellemilla</a></th><td data-label="Country">Belgium</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://finefitsisters.com/" target="_blank" rel="noopener">Fine Fit Sisters</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://gaudium.dk/" target="_blank" rel="noopener">Gaudium</a></th><td data-label="Country">Denmark (legal read first)</td><td data-label="Also in Funnel 1">Yes</td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://german-car-accessories.com/" target="_blank" rel="noopener">German Car Accessories</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1">Yes</td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://goosecreek.com/" target="_blank" rel="noopener">Goose Creek</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://groundluxe.com/" target="_blank" rel="noopener">Groundluxe</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1">Yes</td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://henryshouseofcoffee.com/" target="_blank" rel="noopener">Henry's House of Coffee</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1">Yes</td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://www.homedics.com/" target="_blank" rel="noopener">Homedics</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://impactsoundworks.com/" target="_blank" rel="noopener">Impact Soundworks</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1">Yes</td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://www.itzyritzy.com/" target="_blank" rel="noopener">Itzy Ritzy</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://www.joylovedolls.com/" target="_blank" rel="noopener">Joy Love Dolls</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://juststrong.com/" target="_blank" rel="noopener">Just Strong</a></th><td data-label="Country">United Kingdom</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://www.kindredbravely.com/" target="_blank" rel="noopener">Kindred Bravely</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://laatukoru.fi/" target="_blank" rel="noopener">Laatukoru</a></th><td data-label="Country">Finland</td><td data-label="Also in Funnel 1">Yes</td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://www.liveflow.com/templates" target="_blank" rel="noopener">LiveFlow</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://lovenood.com/" target="_blank" rel="noopener">Love Nood</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://mchel.co/" target="_blank" rel="noopener">M'chel</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://meubelpootjes.nl/" target="_blank" rel="noopener">Meubelpootjes</a></th><td data-label="Country">Netherlands</td><td data-label="Also in Funnel 1">Yes</td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://www.miamily.com/" target="_blank" rel="noopener">Miamily</a></th><td data-label="Country">Switzerland</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://www.my1styears.com/" target="_blank" rel="noopener">My First Years</a></th><td data-label="Country">United Kingdom</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://mymetalbusinesscard.com/" target="_blank" rel="noopener">My Metal Business Card</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://nativesmokes4less.su/" target="_blank" rel="noopener">Native Smoke 4 Less</a></th><td data-label="Country">Canada</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://naturesbody.com.au/" target="_blank" rel="noopener">Nature's Body</a></th><td data-label="Country">Australia</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://www.neonicons.com/" target="_blank" rel="noopener">Neon Icons</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://neurogum.com/" target="_blank" rel="noopener">Neurogum</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://nevermissmoments.com/" target="_blank" rel="noopener">Never Miss Moments</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://nordicoil.de/" target="_blank" rel="noopener">Nordic Oil</a></th><td data-label="Country">Germany</td><td data-label="Also in Funnel 1">Yes</td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://nordicpeace.com/" target="_blank" rel="noopener">Nordic Peace</a></th><td data-label="Country">Canada</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://nurosym.com/" target="_blank" rel="noopener">Nurosym</a></th><td data-label="Country">United Kingdom</td><td data-label="Also in Funnel 1">Yes</td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://www.nutrex-hawaii.com/" target="_blank" rel="noopener">Nutrex Hawaii</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1">Yes</td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://nutriherbs.in/" target="_blank" rel="noopener">Nutriherbs</a></th><td data-label="Country">India</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://www.onequietmind.com/" target="_blank" rel="noopener">One Quiet Mind</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://oosc-clothing.com/" target="_blank" rel="noopener">OOSC Clothing</a></th><td data-label="Country">United Kingdom</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://pacificshaving.com/" target="_blank" rel="noopener">Pacific Shaving Co.</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1">Yes</td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://www.petsmont.com/" target="_blank" rel="noopener">Petsmont</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://realmadhoney.com/" target="_blank" rel="noopener">Real Mad Honey</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1">Yes</td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://reelyaks.com/" target="_blank" rel="noopener">Reel Yaks</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://ripstopbytheroll.com/" target="_blank" rel="noopener">Ripstop by the Roll</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1">Yes</td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://rollwithadvantage.com.au/" target="_blank" rel="noopener">Roll with Advantage</a></th><td data-label="Country">Australia</td><td data-label="Also in Funnel 1">Yes</td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://saysky.com/" target="_blank" rel="noopener">SaySky</a></th><td data-label="Country">Denmark (legal read first)</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://www.shaktimat.de/" target="_blank" rel="noopener">Shaktimat</a></th><td data-label="Country">Germany</td><td data-label="Also in Funnel 1">Yes</td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://www.laserfacial.skinlaundry.com/" target="_blank" rel="noopener">Skin Laundry</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1">Yes</td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://safishing.com/" target="_blank" rel="noopener">Soul of Adventure</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://southeastsoftwash.com/" target="_blank" rel="noopener">Southeast Softwash</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://sportsandfitnessexchange.com/" target="_blank" rel="noopener">Sport and Fitness Exchange</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://store.stopwatts.com/" target="_blank" rel="noopener">Stopwatts</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://www.tanit.co/fr" target="_blank" rel="noopener">Tanit</a></th><td data-label="Country">Canada</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://thelaurenashtyncollection.com/" target="_blank" rel="noopener">The Lauren Ashtyn Collection</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://www.thenetreturn.com/" target="_blank" rel="noopener">The Net Return</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://thesecretstories.com/" target="_blank" rel="noopener">The Secret Stories</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1">Yes</td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://trystiles.com/" target="_blank" rel="noopener">Try Stiles</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://unboxme.com/" target="_blank" rel="noopener">Unboxme</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1">Yes</td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://upswingpoker.com/" target="_blank" rel="noopener">Upswing Poker</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1">Yes</td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://www.uscloud.com/" target="_blank" rel="noopener">US Cloud</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1">Yes</td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://us.vaio.com/" target="_blank" rel="noopener">Vaio</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://www.vitalsleep.com/" target="_blank" rel="noopener">Vital Sleep</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://woodupp.com/" target="_blank" rel="noopener">Wood Upp</a></th><td data-label="Country">United States</td><td data-label="Also in Funnel 1"></td></tr>
+          <tr><th scope="row"><a class="k-link" href="https://zipsterbaby.com/en-nl" target="_blank" rel="noopener">Zipster</a></th><td data-label="Country">Netherlands</td><td data-label="Also in Funnel 1">Yes</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="k-note">Every past client whose store was open when it was checked on Sat 14 Nov 2026. 25 of them are also on the Funnel 1 list. Your contact at each one is in your own inbox, not on this page.</p>
+    <p class="k-note">US Cloud and LiveFlow sell a service, not products, so this offer may not fit them. Upswing Poker sells training and is not on Shopify, so skip it unless you know they need pages.</p>
+<!-- gen:list:end -->
+    <p class="k-p">Add anyone in your own pipeline who went quiet since October.</p>
+    <p class="k-p"><strong>One funnel at a time:</strong> the 25 stores marked "Also in Funnel 1" get this note now and Funnel 1 from Wed 2 Dec 2026, never both in the same week.</p>
+    <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to a Danish contact</b> until a legal read confirms it is allowed.</p></div>
+  </section>
+</div>
+
+</section>
+<section class="k-panel" id="tab-message" data-tab="message" aria-label="Message" hidden>
+<div class="k-col">
+  <div class="k-intro">
+    <h1 class="k-title">Message</h1>
+    <p class="k-lede">Three short notes from you to each person on the list in Strategy 5, then what to say when they reply.</p>
+  </div>
+
+  <section class="k-sec" aria-label="Who, to whom and when">
+    <h2 class="k-h3">Who, to whom and when</h2>
+    <dl class="k-facts">
+      <div><dt>Who sends</dt><dd>You, wherever you normally talk to that person: email, WhatsApp or LinkedIn.</dd></div>
+      <div><dt>To whom</dt><dd>Your contact at each store on the list in Strategy 5, plus anyone in your own pipeline who went quiet since October.</dd></div>
+      <div><dt>When</dt><dd>Day 1 on Mon 16 or Tue 17 Nov 2026. Day 2 and Day 3 on the next two working days, only to people who have not replied. Nothing new goes out after Fri 20 Nov 2026, because by then it is too late to build for Black Friday. From Wed 2 Dec 2026, the December version below goes only to people who did not get the November notes.</dd></div>
+    </dl>
+    <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to a Danish contact</b> until a legal read confirms it is allowed.</p></div>
+  </section>
+
+  <section class="k-sec" aria-label="The three messages">
+    <h2 class="k-h3">The three messages</h2>
+    <p class="k-p">You know these people, so treat the wording as a starting point and write it the way you normally write to them, in the language you normally use with them.</p>
+    <p class="k-f05-howto"><b>Start with a line of your own.</b> Something only the two of you would know. That line is what makes the note yours, so it is not written here. Day 2 and Day 3 go in the same thread or chat.</p>
+    <p class="k-f05-howto"><b>On WhatsApp or LinkedIn:</b> leave out the "Daniel" at the end and greet them only in the first note.</p>
+
+    <figure class="k-cb" id="f05-msg-day1">
+      <figcaption><span class="k-cb-label">Day 1</span><span class="k-cb-meta">First note</span></figcaption>
+      <div class="k-cb-body">Hi {first name},
+
+{a line of your own}
+
+Black Friday is under two weeks out, and this is usually the week the pages pile up. Until the end of December we can take on whatever pages or site changes you need, one after another: the sale page, bundles, the Cyber Monday pages, fixes on the theme. Happy to look at the offer itself too. That's where all our A/B testing helps most.
+
+What's still waiting to be built on your side?
+
+Daniel</div>
+    </figure>
+
+    <figure class="k-cb" id="f05-msg-day2">
+      <figcaption><span class="k-cb-label">Day 2</span><span class="k-cb-meta">Only if no reply</span></figcaption>
+      <div class="k-cb-body">If we start in the next day or two, there's still time before Black Friday for a sale page, the countdown bar and the Cyber Monday pages ready to switch on. Want me to take a look at what's on your list?
+
+Daniel</div>
+    </figure>
+
+    <figure class="k-cb" id="f05-msg-day3">
+      <figcaption><span class="k-cb-label">Day 3</span><span class="k-cb-meta">Last note, only if no reply</span></figcaption>
+      <div class="k-cb-body">If a page gets stuck any time before Christmas, {first name}, just send it over. Good luck with Black Friday.
+
+Daniel</div>
+    </figure>
+    <p class="k-f05-howto"><b>After Day 3:</b> you do not write again about this unless they reply.</p>
+
+    <figure class="k-cb" id="f05-msg-dec">
+      <figcaption><span class="k-cb-label">December version, Day 1</span><span class="k-cb-meta">From Wed 2 Dec, only to people who did not get the November notes</span></figcaption>
+      <div class="k-cb-body">Hi {first name},
+
+{a line of your own}
+
+Christmas is a few weeks away, and this is usually when the holiday pages pile up. Until the end of December we can take on whatever pages or site changes you need, one after another: gift guides, shipping cutoff banners, the January sale page. Happy to look at the offer itself too.
+
+What's still waiting to be built on your side?
+
+Daniel</div>
+    </figure>
+    <p class="k-f05-howto"><b>December Day 2 and Day 3:</b> same as November, with "before the last shipping day" in place of "before Black Friday" and "Have a good December" in place of "Good luck with Black Friday".</p>
+  </section>
+
+  <section class="k-sec" aria-label="When they reply">
+    <h2 class="k-h3">When they reply</h2>
+    <p class="k-p">Answer the same working day, in your own words. These three are only a start.</p>
+
+    <figure class="k-cb" id="f05-msg-yes">
+      <figcaption><span class="k-cb-label">They are behind or interested</span></figcaption>
+      <div class="k-cb-body">Sounds like a busy few weeks. Let's take 15 minutes this week so I can see what's on your list and what to start with. Would any of these suit you: {three times}?
+
+Daniel</div>
+    </figure>
+
+    <figure class="k-cb" id="f05-msg-price">
+      <figcaption><span class="k-cb-label">They ask the price</span></figcaption>
+      <div class="k-cb-body">{your price} for the whole season, from whenever you say yes to the end of December. Send as many requests as you like. We work through them one at a time, each finished before the next. Happy to talk it through on a quick 15 minute call.
+
+Daniel</div>
+    </figure>
+
+    <figure class="k-cb" id="f05-msg-no">
+      <figcaption><span class="k-cb-label">They are fine, or it is a no</span></figcaption>
+      <div class="k-cb-body">Glad it's in hand. Hope it's a big weekend for you, {first name}.
+
+Daniel</div>
+    </figure>
+    <p class="k-f05-howto"><b>Once 3 brands have said yes:</b> the season is full. Tell the next one so plainly and offer a 15 minute call about January instead.</p>
+  </section>
+</div>
+
+</section>
+<section class="k-panel" id="tab-assets" data-tab="assets" aria-label="Assets" hidden>
+<div class="k-col">
+  <div class="k-intro">
+    <h1 class="k-title">Assets</h1>
+    <p class="k-lede">What to cover on the 15 minute call. These are pointers for you, not a script.</p>
+  </div>
+
+  <section class="k-sec" aria-label="Five questions to ask">
+    <h2 class="k-h3">Five questions to ask</h2>
+    <ol class="k-list">
+      <li>What is your offer for Black Friday, and does it change for Cyber Monday?</li>
+      <li>What is already built, and what is not built yet?</li>
+      <li>Who builds your pages today, and how much room do they have left this month?</li>
+      <li>When is your code freeze?</li>
+      <li>What happens on the site after Cyber Monday, through December and into January?</li>
+    </ol>
+  </section>
+
+  <section class="k-sec" aria-label="What can still go live before Black Friday">
+    <h2 class="k-h3">What can still go live before Fri 27 Nov</h2>
+    <p class="k-p">If they start by Wed 18 Nov 2026, there are about seven working days before Black Friday. Requests go one at a time, so a few of these fit, not all of them. Agree on the call which come first:</p>
+    <ul class="k-list">
+      <li>A new sale landing page</li>
+      <li>Offer and bundle pages built from products they already sell</li>
+      <li>Announcement and countdown bars</li>
+      <li>Shipping cutoff banners</li>
+      <li>Cart offers, and checkout offers where their Shopify plan allows them</li>
+      <li>The Cyber Monday pages, ready to switch on</li>
+      <li>Small fixes on the live theme</li>
+    </ul>
+    <h3 class="k-f05-sub-h">What moves to December</h3>
+    <ul class="k-list">
+      <li>A full redesign or a new theme: not part of this offer, a separate conversation for January</li>
+      <li>Changes across every template on the site</li>
+      <li>Gift guide pages for the holiday weeks and the January sale page</li>
+    </ul>
+    <p class="k-note">A yes on Thu 19 or Fri 20 Nov leaves room for two or three of these <abbr class="k-est" title="Estimate">Est.</abbr>, so start with the one that matters most. US teams are mostly off on Thu 26 Nov, so plan for everything to be live by Wed 25 Nov. Anything that falls after their code freeze waits until the freeze lifts.</p>
+  </section>
+
+  <section class="k-sec" aria-label="Holiday sale and offer pointers">
+    <h2 class="k-h3">Holiday sale and offer pointers</h2>
+    <p class="k-p">Things you can speak to when they describe their offer. Pick the two or three that fit what you hear.</p>
+    <ul class="k-list">
+      <li><strong>Tiered offers:</strong> a bigger reward at two or three spend levels, so the offer asks for a bigger basket instead of only a lower price.</li>
+      <li><strong>Gift with purchase:</strong> a gift above a spend level, for brands whose margin cannot take a deeper discount.</li>
+      <li><strong>Bundles:</strong> ready made sets at one price, which also work as gift ideas.</li>
+      <li><strong>Deadlines and shipping cutoffs:</strong> one clear end time for each offer, and the last day to order for delivery before Christmas, shown in the bar, on the product page and in the cart.</li>
+      <li><strong>The Cyber Monday swap:</strong> pages, bars and banners for the Cyber Monday offer ready before Black Friday, so the switch on Mon 30 Nov is a planned change and not a late night edit on the live theme.</li>
+      <li><strong>Gift guides:</strong> pages sorted by who the gift is for or by price, linked from the menu and the bar in the December weeks.</li>
+      <li><strong>January sale:</strong> planned now, so the pages after the holidays are not built in a rush.</li>
+    </ul>
+    <p class="k-note">If they ask what this is based on: 5,000+ A/B tests and 1,300+ documented winners. Do not quote a result from any single client on this call.</p>
+  </section>
+
+  <section class="k-sec" aria-label="Access on day one">
+    <h2 class="k-h3">What they give you on day one</h2>
+    <ul class="k-list">
+      <li>A staff or collaborator account on the store</li>
+      <li>Brand assets: logo, fonts, product photos and any campaign images</li>
+      <li>The offer and its dates, for Black Friday and for Cyber Monday</li>
+      <li>One person who approves each page</li>
+    </ul>
+  </section>
+
+  <section class="k-sec" aria-label="After the season">
+    <h2 class="k-h3">After the season</h2>
+    <p class="k-p">Every page built in the season is a page you can A/B test in January, so a brand that says yes now is the natural first conversation about January testing.</p>
+  </section>
+</div>
+
+</section>
+</main>
+</div>
+<script>
+/* PurpleFire funnel kit shell: tabs, copy blocks, checklists, switches, device frame, jump list.
+   No network, no storage it depends on, no alert or confirm. */
+(function () {
+  'use strict';
+  var root = document.querySelector('.k-root');
+  if (!root) return;
+
+  var store = {
+    get: function (k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } },
+    set: function (k, v) { try { window.localStorage.setItem(k, v); } catch (e) { /* page works without it */ } }
+  };
+  var ICON_COPY = '<svg class="k-i k-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>' +
+    '<svg class="k-i k-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+
+  /* ---------- tabs on plain hashes ---------- */
+  var tabs = Array.prototype.slice.call(root.querySelectorAll('.k-tab'));
+  var panels = Array.prototype.slice.call(root.querySelectorAll('.k-panel'));
+  var names = panels.map(function (p) { return p.getAttribute('data-tab'); });
+  function show(name, scroll) {
+    if (names.indexOf(name) < 0) return false;
+    panels.forEach(function (p) { p.hidden = p.getAttribute('data-tab') !== name; });
+    tabs.forEach(function (t) {
+      if (t.getAttribute('data-tab') === name) t.setAttribute('aria-current', 'page');
+      else t.removeAttribute('aria-current');
+    });
+    var cur = root.querySelector('.k-tab[aria-current="page"]');
+    if (cur && cur.scrollIntoView) { try { cur.scrollIntoView({ block: 'nearest', inline: 'nearest' }); } catch (e) { /* old engines */ } }
+    if (scroll) window.scrollTo(0, 0);
+    root.dispatchEvent(new CustomEvent('k:tab', { detail: name }));
+    return true;
+  }
+  function fromHash(scroll) {
+    var h = (location.hash || '').replace(/^#/, '');
+    if (!show(h, scroll)) show(names[0], false);
+  }
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () { show(t.getAttribute('data-tab'), true); });
+  });
+  window.addEventListener('hashchange', function () { fromHash(true); });
+  fromHash(false);
+
+  /* ---------- copy blocks ---------- */
+  function selectText(el) {
+    try {
+      var r = document.createRange();
+      r.selectNodeContents(el);
+      var s = window.getSelection();
+      s.removeAllRanges();
+      s.addRange(r);
+    } catch (e) { /* nothing more to do */ }
+  }
+  function setState(btn, state, label) {
+    btn.setAttribute('data-state', state);
+    btn.querySelector('.k-copy-label').textContent = label;
+    clearTimeout(btn._t);
+    btn._t = setTimeout(function () {
+      btn.removeAttribute('data-state');
+      btn.querySelector('.k-copy-label').textContent = 'Copy';
+    }, state === 'done' ? 1800 : 6000);
+  }
+  root.querySelectorAll('.k-cb').forEach(function (cb) {
+    var cap = cb.querySelector('figcaption');
+    var body = cb.querySelector('.k-cb-body');
+    if (!cap || !body || cap.querySelector('.k-copy')) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'k-copy';
+    var label = (cap.querySelector('.k-cb-label') || cap).textContent.trim();
+    btn.setAttribute('aria-label', 'Copy ' + label);
+    btn.innerHTML = ICON_COPY + '<span class="k-copy-label">Copy</span>';
+    btn.addEventListener('click', function () {
+      var text = body.innerText.replace(/ /g, ' ').trim();
+      var fallback = function () { selectText(body); setState(btn, 'select', 'Text selected'); };
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () { setState(btn, 'done', 'Copied'); }, fallback);
+        } else { fallback(); }
+      } catch (e) { fallback(); }
+    });
+    cap.appendChild(btn);
+  });
+
+  /* ---------- checklists, ticks kept in this browser only ---------- */
+  root.querySelectorAll('.k-check').forEach(function (list) {
+    var boxes = Array.prototype.slice.call(list.querySelectorAll('input[type="checkbox"]'));
+    var countEl = list.id ? root.querySelector('[data-count-for="' + list.id + '"]') : null;
+    function count() { if (countEl) countEl.textContent = boxes.filter(function (b) { return b.checked; }).length + ' of ' + boxes.length + ' ticked'; }
+    boxes.forEach(function (b) {
+      if (store.get('kit:' + b.id) === '1') b.checked = true;
+      b.addEventListener('change', function () { store.set('kit:' + b.id, b.checked ? '1' : '0'); count(); });
+    });
+    count();
+  });
+
+  /* ---------- segmented switches: set data-<attr> on the target ---------- */
+  root.querySelectorAll('.k-seg[data-for]').forEach(function (seg) {
+    var target = document.getElementById(seg.getAttribute('data-for'));
+    var attr = seg.getAttribute('data-attr');
+    if (!target || !attr) return;
+    seg.querySelectorAll('button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        seg.querySelectorAll('button').forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+        target.setAttribute('data-' + attr, b.getAttribute('data-value'));
+        target.dispatchEvent(new CustomEvent('k:switch', { detail: { attr: attr, value: b.getAttribute('data-value') } }));
+      });
+    });
+  });
+
+  /* ---------- device frame: the page renders at its real width and is scaled to fit ---------- */
+  root.querySelectorAll('.k-device').forEach(function (dev) {
+    var view = dev.querySelector('.k-device-view');
+    var page = dev.querySelector('.k-device-page');
+    if (!view || !page) return;
+    /* on a phone the desktop preview would be a thumbnail: open on the phone width */
+    if (window.innerWidth < 700) {
+      var phoneBtn = root.querySelector('.k-seg[data-for="' + dev.id + '"] button[data-value="phone"]');
+      if (phoneBtn) phoneBtn.click();
+    }
+    function fit() {
+      var avail = view.clientWidth;
+      if (!avail) return; /* tab hidden: measure when it shows */
+      var w = dev.getAttribute('data-device') === 'phone' ? 390 : 1280;
+      var s = Math.min(1, avail / w);
+      page.style.width = w + 'px';
+      page.style.transform = s < 1 ? 'scale(' + s + ')' : 'none';
+      view.style.height = Math.ceil(page.offsetHeight * s) + 'px';
+    }
+    dev.addEventListener('k:switch', function () { requestAnimationFrame(fit); });
+    root.addEventListener('k:tab', function () { requestAnimationFrame(fit); });
+    if (window.ResizeObserver) {
+      var ro = new ResizeObserver(function () { fit(); });
+      ro.observe(view);
+      ro.observe(page);
+    } else {
+      window.addEventListener('resize', fit);
+    }
+    fit();
+  });
+
+  /* ---------- assets jump list: scrolls by script, the hash stays the tab's ---------- */
+  root.querySelectorAll('.k-jump').forEach(function (nav) {
+    var btns = Array.prototype.slice.call(nav.querySelectorAll('button[data-jump]'));
+    function mark(id) { btns.forEach(function (b) { b.setAttribute('aria-current', b.getAttribute('data-jump') === id ? 'true' : 'false'); }); }
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var t = document.getElementById(b.getAttribute('data-jump'));
+        if (!t) return;
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+        mark(t.id);
+      });
+    });
+    if (window.IntersectionObserver) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) mark(e.target.id); });
+      }, { rootMargin: '-30% 0px -60% 0px' });
+      btns.forEach(function (b) { var t = document.getElementById(b.getAttribute('data-jump')); if (t) io.observe(t); });
+    }
+    if (btns[0]) mark(btns[0].getAttribute('data-jump'));
+  });
+})();
+
+</script>
+<script>
+(function () {
+  var r = document.querySelector('.s-switch'), c = r && r.querySelector('[aria-current="page"]');
+  if (!c) return;
+  var x = c.getBoundingClientRect().left - r.getBoundingClientRect().left + r.scrollLeft - (r.clientWidth - c.offsetWidth) / 2;
+  if (x > 0) r.scrollLeft = x;
+})();
+</script>
+</body>
+</html>

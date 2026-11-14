@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <title>PurpleFire call funnels</title>
-<meta name="description" content="Four funnels that get PurpleFire booked calls, each with its strategy and messages, plus a run sheet, ads and a landing page where the funnel uses them.">
+<meta name="description" content="Five funnels that get PurpleFire booked calls, each with its strategy and messages, plus dated steps, ads and a landing page where the funnel uses them.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="PurpleFire call funnels">
 <meta property="og:title" content="PurpleFire call funnels">
-<meta property="og:description" content="Four funnels that get PurpleFire booked calls, each with its strategy and messages, plus a run sheet, ads and a landing page where the funnel uses them.">
+<meta property="og:description" content="Five funnels that get PurpleFire booked calls, each with its strategy and messages, plus dated steps, ads and a landing page where the funnel uses them.">
 <meta property="og:url" content="https://raycazy.github.io/AI-workflow-tasks/purplefire-funnels/">
 <meta property="og:image" content="https://raycazy.github.io/AI-workflow-tasks/purplefire-funnels/og.jpg">
 <meta property="og:image:width" content="1200">
@@ -668,7 +668,10 @@ body::before {
 /* desktop: the funnel bar and the kit header both stay in view */
 @media (min-width: 861px) {
   .s-band { position: sticky; top: env(safe-area-inset-top, 0px); z-index: calc(var(--k-z-sticky) + 1); }
-  .s-band-in { height: 56px; }
+  .s-band-in { height: 56px; gap: 16px; }
+  /* six pills (Overview and five funnels) fit the bar at 1440 without a sideways scroll */
+  .s-switch { gap: 2px; }
+  .s-sw { padding: 0 10px; font-size: 15px; }
   .k-root .k-head { top: calc(env(safe-area-inset-top, 0px) + 56px); }
   .k-root .k-jump { top: calc(env(safe-area-inset-top, 0px) + 184px); }
   .k-root .k-sec { scroll-margin-top: 196px; }
@@ -758,22 +761,22 @@ body::before {
 </head>
 <body>
 <div class="k-root">
-<div class="s-band"><div class="s-band-in"><img class="s-logo" src="assets/purplefire-logo.webp" alt="PurpleFire" width="108" height="20"><nav class="s-switch" aria-label="Funnels"><a class="s-sw" href="" aria-current="page">Overview</a><a class="s-sw" href="past-clients/"><span>Funnel 1 <span class="s-sw-name">Past clients</span></span></a><a class="s-sw" href="after-the-freeze/"><span>Funnel 2 <span class="s-sw-name">After the freeze</span></span></a><a class="s-sw" href="named-stores/"><span>Funnel 3 <span class="s-sw-name">Named stores</span></span></a><a class="s-sw" href="guess-the-winner/"><span>Funnel 4 <span class="s-sw-name">Guess the winner</span></span></a></nav></div></div>
+<div class="s-band"><div class="s-band-in"><img class="s-logo" src="assets/purplefire-logo.webp" alt="PurpleFire" width="108" height="20"><nav class="s-switch" aria-label="Funnels"><a class="s-sw" href="" aria-current="page">Overview</a><a class="s-sw" href="past-clients/"><span>Funnel 1 <span class="s-sw-name">Past clients</span></span></a><a class="s-sw" href="after-the-freeze/"><span>Funnel 2 <span class="s-sw-name">After the freeze</span></span></a><a class="s-sw" href="named-stores/"><span>Funnel 3 <span class="s-sw-name">Named stores</span></span></a><a class="s-sw" href="guess-the-winner/"><span>Funnel 4 <span class="s-sw-name">Guess the winner</span></span></a><a class="s-sw" href="holiday-support/"><span>Funnel 5 <span class="s-sw-name">Holiday support</span></span></a></nav></div></div>
 <main class="k-main">
 <div class="k-panel">
 <div class="k-wide s-ov">
   <div class="k-intro">
-    <h1 class="k-title">Four call funnels for PurpleFire</h1>
-    <p class="k-lede">Each funnel has its own page with its strategy and every message, plus a dated run sheet, ads and a landing page where the funnel uses them. Open one below or from the bar at the top.</p>
+    <h1 class="k-title">Five call funnels for PurpleFire</h1>
+    <p class="k-lede">Each funnel has its own page with its strategy and every message, plus dated steps, ads and a landing page where the funnel uses them. Open one below or from the bar at the top.</p>
   </div>
 
-  <section class="k-sec" aria-label="The four funnels">
-    <h2 class="k-h3">The four funnels</h2>
+  <section class="k-sec" aria-label="The five funnels">
+    <h2 class="k-h3">The five funnels</h2>
     <ol class="s-rows">
       <li class="s-row">
         <div class="s-row-head"><span class="s-row-no">Funnel 1</span><h3 class="s-row-name"><a href="past-clients/">Past clients</a></h3></div>
         <div class="s-row-body">
-          <p class="s-row-what">25 past clients whose stores still run a winner from your A/B tests get three short messages from you: their own winner, still live, with the result as recorded, and a 15 minute call in January to plan Q1.</p>
+          <p class="s-row-what">25 past clients whose stores still run a winner from your A/B tests get a short personal note from you: you saw their winner is still live, here is what it won, and would they like to catch up for 15 minutes in January.</p>
           <dl class="s-row-facts">
             <div><dt>When</dt><dd>Day 1 by Wed 18 Nov or from Wed 2 Dec, then Day 2 and Day 3 on the next two working days; nothing Mon 23 Nov to Tue 1 Dec; calls in January.</dd></div>
             <div><dt>Ad spend <abbr class="k-est" title="Estimate">Est.</abbr></dt><dd>No media spend.</dd></div>
@@ -818,20 +821,33 @@ body::before {
           <a class="s-row-go" href="guess-the-winner/">Open the guess the winner funnel<svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l14 0"/><path d="M13 18l6 -6"/><path d="M13 6l6 6"/></svg></a>
         </div>
       </li>
+      <li class="s-row">
+        <div class="s-row-head"><span class="s-row-no">Funnel 5</span><h3 class="s-row-name"><a href="holiday-support/">Holiday support</a></h3></div>
+        <div class="s-row-body">
+          <p class="s-row-what">70 past clients whose stores are open get a short personal note from you: for the season you take on as many landing pages and site changes as they send, one at a time, for one flat fee, until Thu 31 Dec.</p>
+          <dl class="s-row-facts">
+            <div><dt>When</dt><dd>Day 1 on Mon 16 or Tue 17 Nov, then Day 2 and Day 3 on the next two working days; nothing new after Fri 20 Nov; the same note again from Wed 2 Dec for the December pages; read Fri 4 Dec.</dd></div>
+            <div><dt>Ad spend <abbr class="k-est" title="Estimate">Est.</abbr></dt><dd>No media spend.</dd></div>
+            <div><dt>Needs from you first</dt><dd>Your go, your price, the brand count and turnaround confirmed, and a legal read before anything goes to a Danish contact.</dd></div>
+          </dl>
+          <a class="s-row-go" href="holiday-support/">Open the holiday support funnel<svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l14 0"/><path d="M13 18l6 -6"/><path d="M13 6l6 6"/></svg></a>
+        </div>
+      </li>
     </ol>
   </section>
 
   <section class="k-sec" aria-label="Calendar">
     <h2 class="k-h3">Calendar, 13 Nov to 31 Jan</h2>
-    <p class="k-p">Cold Meta spend stays off until Wed 2 Dec. One cold ad set runs at a time on any one audience: Funnel 2 from Wed 2 to Fri 11 Dec, then Funnel 4 from Tue 5 to Mon 18 Jan. Your own VSL ads run untouched.</p>
+    <p class="k-p">Cold Meta spend stays off until Wed 2 Dec. One cold ad set runs at a time on any one audience: Funnel 2 from Wed 2 to Fri 11 Dec, then Funnel 4 from Tue 5 to Mon 18 Jan. Your own VSL ads run untouched. One person gets one funnel at a time: a past client who gets the Funnel 5 note this week gets Funnel 1 from Wed 2 Dec at the earliest.</p>
     <div class="k-table-wrap" tabindex="0" role="region" aria-label="Calendar table, scrolls sideways">
       <table class="k-table s-cal">
         <thead><tr><th scope="col">Funnel</th><th scope="col">13 to 16 Nov</th><th scope="col">17 Nov to 1 Dec</th><th scope="col">2 to 11 Dec</th><th scope="col">12 to 18 Dec</th><th scope="col">19 Dec to 4 Jan</th><th scope="col">5 to 31 Jan</th></tr></thead>
         <tbody>
           <tr><th scope="row"><a class="k-link" href="past-clients/">Funnel 1 Past clients</a></th><td>List of past clients still running a winner</td><td>Day 1 to Day 3 by Fri 20 Nov, or wait; nothing sent Mon 23 Nov to Tue 1 Dec</td><td>Or Day 1 from Wed 2 Dec, then Day 2 and Day 3</td><td>Replies; January calls booked</td><td class="s-off">Off</td><td>15 minute calls about Q1 tests</td></tr>
           <tr><th scope="row"><a class="k-link" href="after-the-freeze/">Funnel 2 After the freeze</a></th><td>Build; go Mon 16 Nov</td><td>Ads to past visitors from Thu 19 Nov if the conditions hold</td><td>Ads to past visitors and to new people; calls from Thu 3 Dec; read Fri 11 Dec</td><td>Calls to Fri 18 Dec</td><td>Off; first tests designed</td><td>Planning calls to Fri 29 Jan; launch weeks of Mon 11, 18 and 25 Jan</td></tr>
-          <tr><th scope="row"><a class="k-link" href="named-stores/">Funnel 3 Named stores</a></th><td>15 stores picked, each with its contact</td><td>Record the 15 videos; nothing sent in Black Friday week</td><td>Day 1 from Wed 2 Dec, then Day 3 and Day 7; all Day 1 messages by Fri 11 Dec</td><td>Replies; read Fri 18 Dec</td><td class="s-off">Off</td><td>Calls to Fri 29 Jan for stores that replied "January"</td></tr>
+          <tr><th scope="row"><a class="k-link" href="named-stores/">Funnel 3 Named stores</a></th><td>15 stores picked, each with its contact</td><td>Record the 15 videos; nothing sent in Black Friday week</td><td>Day 1 from Wed 2 Dec, then Day 3 and Day 7; all Day 1 messages by Fri 11 Dec</td><td>Replies; read Fri 18 Dec</td><td class="s-off">Off</td><td>Calls to Fri 29 Jan for stores that said yes</td></tr>
           <tr><th scope="row"><a class="k-link" href="guess-the-winner/">Funnel 4 Guess the winner</a></th><td class="s-off">Not started</td><td class="s-off">Not started</td><td>Build from Mon 7 Dec</td><td>Build to Fri 18 Dec</td><td class="s-off">Off</td><td>Ads Tue 5 to Mon 18 Jan; read Fri 29 Jan</td></tr>
+          <tr><th scope="row"><a class="k-link" href="holiday-support/">Funnel 5 Holiday support</a></th><td>Confirm price, brand count and turnaround; Day 1 on Mon 16 Nov</td><td>Day 1 to Day 3 by Fri 20 Nov; pages built for the brands that said yes</td><td>The same note again from Wed 2 Dec for December pages; read Fri 4 Dec</td><td>December pages built</td><td>Requests answered to Thu 31 Dec</td><td>Each brand asked about January A/B tests</td></tr>
         </tbody>
       </table>
     </div>
