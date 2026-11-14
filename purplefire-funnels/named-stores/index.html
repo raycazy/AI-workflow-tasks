@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <title>Named Stores Outreach | PurpleFire call funnels</title>
-<meta name="description" content="Sixteen named stores get one finished change on their own product page, read against the five tests we would run first.">
+<meta name="description" content="15 named stores each get a short video about one thing on their own store, matched to a past winning A/B test.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="PurpleFire call funnels">
 <meta property="og:title" content="Named Stores Outreach | PurpleFire call funnels">
-<meta property="og:description" content="Sixteen named stores get one finished change on their own product page, read against the five tests we would run first.">
+<meta property="og:description" content="15 named stores each get a short video about one thing on their own store, matched to a past winning A/B test.">
 <meta property="og:url" content="https://raycazy.github.io/AI-workflow-tasks/purplefire-funnels/named-stores/">
 <meta property="og:image" content="https://raycazy.github.io/AI-workflow-tasks/purplefire-funnels/og.jpg">
 <meta property="og:image:width" content="1200">
@@ -359,6 +359,10 @@ body::before {
 .k-copy[data-state="select"] { background: var(--k-bg-3); }
 .k-copy svg.k-i { width: 14px; height: 14px; }
 .k-copy .k-i-done { display: none; }
+@media (max-width: 599px) {
+  .k-copy { min-height: 44px; }
+  .k-copy::before { inset: 0; }
+}
 .k-copy[data-state="done"] .k-i-copy { display: none; }
 .k-copy[data-state="done"] .k-i-done { display: block; }
 
@@ -402,6 +406,77 @@ body::before {
 .k-table tbody tr + tr td, .k-table tbody tr + tr th { border-top: 1px solid var(--k-line); }
 .k-table tbody th { font-weight: 700; }
 .k-table td { color: var(--k-fg-2); min-width: 160px; }
+
+/* Stacked table (.k-table--stack): under 600 px each row becomes a block. The row header th[scope=row] is the
+   block's heading with the .k-num cell beside it; every other cell gets its column name from data-label.
+   A row with class k-table-more continues the block above (rowspan): it gets a light inset divider, no heading.
+   The selectors carry .k-root .k-table so they beat a kit's own column min-widths. */
+@media (max-width: 599px) {
+  .k-root .k-table.k-table--stack,
+  .k-root .k-table--stack tbody { display: block; }
+  .k-root .k-table--stack thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .k-root .k-table--stack tbody tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: baseline;
+    gap: 10px 12px;
+    padding: 16px;
+  }
+  .k-root .k-table--stack tbody tr + tr { border-top: 1px solid var(--k-line); }
+  .k-root .k-table--stack tbody tr.k-table-more { border-top: 0; padding-top: 0; }
+  .k-root .k-table.k-table--stack tbody :is(td, th) {
+    display: block;
+    grid-column: 1 / -1;
+    min-width: 0;
+    width: auto;
+    padding: 0;
+    border: 0;
+    overflow-wrap: break-word;
+  }
+  .k-root .k-table.k-table--stack tbody th[scope="row"] {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: 18px;
+    line-height: 1.3;
+    color: var(--k-fg);
+  }
+  .k-root .k-table.k-table--stack tbody td.k-num {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--k-muted);
+  }
+  .k-root .k-table--stack td.k-num::before { content: attr(data-label) " "; }
+  .k-root .k-table--stack td[data-label]:not(.k-num)::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 2px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--k-muted);
+  }
+  .k-root .k-table.k-table--stack tbody tr.k-table-more > td:first-child {
+    padding-top: 12px;
+    border-top: 1px solid var(--k-line);
+  }
+}
+/* 600 px and up: the normal table with the kit's column minimums lifted, so every column fits the column width
+   (six columns do not fit 760 px with them); 600 to 767 px also tightens the cells */
+@media (min-width: 600px) {
+  .k-root .k-table.k-table--stack :is(td, th) { min-width: 0; }
+}
+@media (min-width: 600px) and (max-width: 767px) {
+  .k-root .k-table.k-table--stack :is(td, th) { padding: 10px; }
+}
 
 /* ---------- segmented control (ratio and device switches) ---------- */
 .k-seg { display: inline-flex; padding: 3px; gap: 2px; border-radius: 10px; background: var(--k-bg-3); }
@@ -575,6 +650,10 @@ body::before {
 }
 .s-sw:hover { color: #ffffff; background: rgba(255, 255, 255, .06); }
 .s-sw[aria-current="page"] { color: #9be7c4; background: rgba(155, 231, 196, .14); }
+/* the funnel number leads; the short name is the quieter second part of the same pill */
+.s-sw-name { font-weight: 500; color: #9fb0ac; }
+.s-sw:hover .s-sw-name { color: #cfd8d6; }
+.s-sw[aria-current="page"] .s-sw-name { color: inherit; opacity: .82; }
 .k-root .s-sw:focus-visible { outline: 2px solid #9be7c4; outline-offset: 2px; border-radius: 999px; }
 /* kit tab focus: a full ring drawn inside the tab row, because the row is a 44 px scroll box and clips an outline that sits outside the tab */
 .k-root .k-tab:focus-visible { outline: none; }
@@ -603,6 +682,12 @@ body::before {
   .s-band-in { gap: 0; min-height: 52px; }
   .s-sw { position: relative; min-height: 36px; padding: 0 14px; }
   .s-sw::before { content: ""; position: absolute; inset: -4px 0; }
+}
+/* small phones: 44 px pills; the row's padding gives back the 8 px so the band stays 52 px */
+@media (max-width: 599px) {
+  .s-sw { min-height: 44px; }
+  .s-sw::before { inset: 0; }
+  .s-switch { padding-block: 4px; }
 }
 
 /* downloads on an ad unit, under its name */
@@ -676,18 +761,15 @@ body::before {
 </head>
 <body>
 <div class="k-root">
-<div class="s-band"><div class="s-band-in"><img class="s-logo" src="../assets/purplefire-logo.webp" alt="PurpleFire" width="108" height="20"><nav class="s-switch" aria-label="Funnels"><a class="s-sw" href="../">Overview</a><a class="s-sw" href="../past-clients/">Past clients</a><a class="s-sw" href="../after-the-freeze/">After the freeze</a><a class="s-sw" href="../named-stores/" aria-current="page">Named stores</a><a class="s-sw" href="../guess-the-winner/">Guess the winner</a></nav></div></div>
+<div class="s-band"><div class="s-band-in"><img class="s-logo" src="../assets/purplefire-logo.webp" alt="PurpleFire" width="108" height="20"><nav class="s-switch" aria-label="Funnels"><a class="s-sw" href="../">Overview</a><a class="s-sw" href="../past-clients/"><span>Funnel 1 <span class="s-sw-name">Past clients</span></span></a><a class="s-sw" href="../after-the-freeze/"><span>Funnel 2 <span class="s-sw-name">After the freeze</span></span></a><a class="s-sw" href="../named-stores/" aria-current="page"><span>Funnel 3 <span class="s-sw-name">Named stores</span></span></a><a class="s-sw" href="../guess-the-winner/"><span>Funnel 4 <span class="s-sw-name">Guess the winner</span></span></a></nav></div></div>
 <header class="k-head"><div class="k-head-in">
-  <div class="k-head-row"><p class="k-kit"><span class="k-kit-no">Kit 03</span><span class="k-kit-name">Named stores: advice against finished work</span></p><p class="k-proto">Prototype for PurpleFire</p></div>
-  <nav class="k-tabs" aria-label="Kit sections"><a class="k-tab" href="#strategy" data-tab="strategy" aria-current="page">Strategy</a><a class="k-tab" href="#run" data-tab="run">Run it</a><a class="k-tab" href="#assets" data-tab="assets">Assets</a></nav>
+  <div class="k-head-row"><p class="k-kit"><span class="k-kit-no">Funnel 3</span><span class="k-kit-name">Named stores: one short video each</span></p><p class="k-proto">Prototype for PurpleFire</p></div>
+  <nav class="k-tabs" aria-label="Funnel sections"><a class="k-tab" href="#strategy" data-tab="strategy" aria-current="page">Strategy 3</a><a class="k-tab" href="#message" data-tab="message">Message</a><a class="k-tab" href="#assets" data-tab="assets">Assets</a></nav>
 </div></header>
 <main class="k-main">
-<section class="k-panel" id="tab-strategy" data-tab="strategy" aria-label="Strategy">
+<section class="k-panel" id="tab-strategy" data-tab="strategy" aria-label="Strategy 3">
 <style>
-/* Kit 03 additions, built on the shell tokens only (no landing page, no ads, so no lp.css or ads.css is loaded).
-   Every class is k-f03-; nothing here changes a shell class except the two spacing fixes marked below. */
-
-/* slots filled per store */
+/* Funnel 3 additions, built on the shell tokens only. Every class starts k-f03-. */
 .k-root .k-f03-slot {
   font-weight: 600;
   color: var(--k-accent);
@@ -697,480 +779,167 @@ body::before {
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
-.k-root code.k-f03-code { font-family: var(--k-font); font-weight: 700; font-size: 1em; color: var(--k-fg); background: var(--k-bg-3); padding: 1px 6px; border-radius: 4px; }
-/* the shell's range label is a span style; here it is a line in a step body and may wrap */
-.k-root p.k-step-range { margin: 0; white-space: normal; }
-
-/* ---------- Strategy: the two arms, side by side ---------- */
-.k-f03-cmp { display: grid; gap: 1px; background: var(--k-line); border: 1px solid var(--k-line); border-radius: var(--k-r); overflow: hidden; }
-.k-f03-cmp-head, .k-f03-row { display: grid; grid-template-columns: 152px minmax(0, 1fr) minmax(0, 1fr); gap: 1px; }
-.k-f03-cmp-head > span { padding: 10px 16px; background: var(--k-bg-2); font-size: 14px; font-weight: 700; color: var(--k-fg); }
-.k-f03-lab { margin: 0; padding: 14px 16px; background: var(--k-bg); font-size: 14px; font-weight: 700; color: var(--k-muted); }
-.k-f03-cell { padding: 14px 16px; background: var(--k-bg); display: grid; gap: 6px; align-content: start; min-width: 0; }
-.k-f03-cell p { margin: 0; text-wrap: pretty; }
-.k-f03-both { grid-column: span 2; background: linear-gradient(var(--k-accent-soft), var(--k-accent-soft)), var(--k-bg); }
-.k-f03-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--k-muted); }
-.k-f03-both .k-f03-tag { color: var(--k-accent); }
-.k-root .k-f03-tag svg.k-i { width: 14px; height: 14px; }
-.k-f03-armtag { display: none; }
-.k-f03-sum { margin: 0; font-weight: 600; max-width: 68ch; text-wrap: pretty; }
-
-/* ---------- Assets: sub groups ---------- */
-.k-f03-grp { display: grid; gap: 12px; min-width: 0; }
-.k-f03-grp + .k-f03-grp { margin-top: 16px; }
+.k-f03-stores td { min-width: 120px; vertical-align: top; }
+.k-f03-stores td.k-f03-why { min-width: 300px; }
+.k-f03-stores .k-f03-flag { display: block; margin-top: 6px; font-size: 14px; font-weight: 600; color: var(--k-gate); }
+.k-f03-role { display: block; color: var(--k-muted); font-size: 14px; }
+.k-f03-card { display: grid; gap: 16px; }
+.k-f03-who { margin: 0; font-weight: 600; color: var(--k-fg); }
 .k-f03-sub { margin: 0; font-size: 16px; font-weight: 700; color: var(--k-fg); }
 .k-f03-ol { margin: 0; padding-left: 22px; display: grid; gap: 8px; color: var(--k-fg-2); max-width: 68ch; }
 .k-f03-ol li::marker { color: var(--k-muted); font-weight: 700; }
-.k-f03-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
-
-/* ---------- Assets: shot lists as timed rows on a 40 second track ---------- */
-.k-f03-shots { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; background: var(--k-line); border: 1px solid var(--k-line); border-radius: var(--k-r); overflow: hidden; }
-.k-f03-shot { display: grid; grid-template-columns: 120px minmax(0, 1.25fr) minmax(0, 1fr); gap: 6px 20px; padding: 14px 16px; background: var(--k-bg); align-items: start; }
-.k-f03-shot-head { background: var(--k-bg-2); padding-block: 10px; font-size: 12px; font-weight: 700; color: var(--k-muted); }
-.k-f03-sec { display: grid; gap: 8px; align-content: start; }
-.k-f03-sec b { font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.k-f03-track { position: relative; height: 6px; border-radius: 999px; background: var(--k-bg-3); overflow: hidden; }
-.k-f03-track::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: calc(var(--s) / 40 * 100%);
-  width: calc((var(--e) - var(--s)) / 40 * 100%);
-  border-radius: 999px;
-  background: var(--k-accent);
-}
-.k-f03-shot p { margin: 0; font-size: 14px; color: var(--k-fg-2); text-wrap: pretty; }
-.k-f03-shot .k-f03-said { color: var(--k-fg); }
-.k-f03-cl { display: none; font-size: 12px; font-weight: 700; color: var(--k-muted); }
-
-/* ---------- Assets: still image samples (drawn in HTML and CSS, the brand's dark look in both kit themes) ---------- */
-.k-f03-sample { margin: 0; display: grid; gap: 10px; min-width: 0; }
-.k-f03-sample-head { display: flex; align-items: center; justify-content: space-between; gap: 8px 12px; flex-wrap: wrap; }
-.k-f03-sample-name { font-size: 14px; font-weight: 700; color: var(--k-fg); }
-.k-f03-sample-tag { display: inline-flex; align-items: center; min-height: 24px; padding: 2px 10px; border-radius: 999px; border: 1px solid var(--k-line); background: var(--k-bg-2); font-size: 12px; font-weight: 700; color: var(--k-fg-2); }
-/* on a phone the still keeps 640 px so its text stays readable; its own box scrolls sideways, never the page */
-.k-f03-still-scroll { overflow-x: auto; min-width: 0; border-radius: var(--k-r); }
-.k-f03-scroll-hint { display: none; }
-.k-f03-still {
-  container-type: inline-size;
-  aspect-ratio: 16 / 10;
-  width: 100%;
-  min-width: 640px;
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto;
-  gap: 2.4cqi;
-  padding: 3.6cqi 4.4cqi 3cqi;
-  border-radius: var(--k-r);
-  background: #0b100f;
-  color: #ffffff;
-  overflow: hidden;
-  font-family: var(--k-font);
-  box-shadow: 0 0 0 1px var(--k-line);
-}
-.k-f03-cap { margin: 0; font-family: var(--k-display); font-weight: 600; font-size: 3.4cqi; line-height: 1.2; letter-spacing: -.01em; }
-.k-root .k-f03-still .k-f03-slot { color: #9be7c4; background: rgba(155, 231, 196, .14); font-size: .82em; }
-.k-f03-foot { display: flex; align-items: center; justify-content: space-between; gap: 3cqi; font-size: 1.7cqi; color: #9fb3b0; }
-.k-f03-foot p { margin: 0; }
-.k-root .k-f03-logo { width: 12cqi; height: auto; flex: none; filter: brightness(0) invert(1); display: block; }
-
-/* the generic product page wireframe: grey bars, no brand, no photo */
-.k-f03-stage-a { display: flex; justify-content: center; gap: 2.6cqi; min-height: 0; }
-.k-f03-phone { width: 23cqi; display: grid; grid-template-rows: auto minmax(0, 1fr); gap: 1.2cqi; min-height: 0; }
-.k-f03-phone-label { margin: 0; font-size: 1.8cqi; font-weight: 700; color: #9fb3b0; }
-.k-f03-phone-label.k-f03-on { color: #9be7c4; }
-.k-f03-screen { position: relative; min-height: 0; overflow: hidden; display: grid; align-content: start; gap: 1.1cqi; padding: 1.5cqi; border-radius: 1.8cqi 1.8cqi 0 0; background: #ffffff; box-shadow: 0 0 0 .5cqi #1c2423; }
-.k-f03-w-img { aspect-ratio: 4 / 3; border-radius: .8cqi; background: #e9eeec; }
-.k-f03-w-dots { display: flex; justify-content: center; gap: .6cqi; }
-.k-f03-w-dots i { width: .8cqi; height: .8cqi; border-radius: 50%; background: #c9d3d0; }
-.k-f03-w-dots i:first-child { background: #16302f; }
-.k-f03-w-bar { height: 1.1cqi; border-radius: .4cqi; background: #e9eeec; }
-.k-f03-w-title { height: 1.7cqi; width: 78%; background: #16302f; }
-.k-f03-w-price { height: 1.3cqi; width: 32%; background: #6b7f7d; }
-.k-f03-w-opts { display: flex; gap: .8cqi; }
-.k-f03-w-opts i { flex: 1; height: 2.6cqi; border-radius: .6cqi; box-shadow: inset 0 0 0 .25cqi #c9d3d0; }
-.k-f03-w-opts i:first-child { box-shadow: inset 0 0 0 .3cqi #16302f; }
-.k-f03-w-btn { height: 3.4cqi; border-radius: .8cqi; background: #16302f; }
-.k-f03-w-change { display: grid; gap: .8cqi; padding: .9cqi; border-radius: .8cqi; background: #eefaf3; box-shadow: 0 0 0 .3cqi #1f8a4c; }
-.k-f03-w-point { display: grid; grid-template-columns: 1.6cqi minmax(0, 1fr); gap: .8cqi; align-items: center; color: #0f6b66; }
-.k-root .k-f03-still svg.k-i { width: 1.6cqi; height: 1.6cqi; stroke-width: 2.4; }
-.k-f03-w-point i { height: 1cqi; border-radius: .4cqi; background: #0f6b66; opacity: .55; }
-.k-f03-mid { align-self: center; color: #9be7c4; margin-top: 2cqi; }
-.k-root .k-f03-still .k-f03-mid svg.k-i { width: 3cqi; height: 3cqi; stroke-width: 2; }
-
-.k-f03-stage-b { display: grid; grid-template-columns: 25cqi minmax(0, 1fr); gap: 5cqi; min-height: 0; padding-inline: 3cqi; }
-.k-f03-stage-b .k-f03-phone { width: auto; grid-template-rows: minmax(0, 1fr); }
-.k-f03-pin { position: absolute; width: 3.4cqi; height: 3.4cqi; margin: -1.7cqi 0 0 -1.7cqi; border-radius: 50%; display: grid; place-items: center; background: #9be7c4; color: #0b100f; font-size: 1.8cqi; font-weight: 800; line-height: 1; box-shadow: 0 0 0 .4cqi #0b100f; }
-.k-f03-pin.k-f03-pin-1 { width: 5.2cqi; height: 5.2cqi; margin: -2.6cqi 0 0 -2.6cqi; font-size: 2.6cqi; }
-.k-f03-legend { list-style: none; margin: 0; padding: 0; display: grid; align-content: center; gap: 2.2cqi; }
-.k-f03-legend li { display: grid; grid-template-columns: 3.4cqi minmax(0, 1fr); gap: 1.6cqi; align-items: start; font-size: 2.2cqi; line-height: 1.35; }
-.k-f03-legend b { width: 3.4cqi; height: 3.4cqi; border-radius: 50%; display: grid; place-items: center; background: #9be7c4; color: #0b100f; font-size: 1.8cqi; font-weight: 800; line-height: 1; }
-.k-f03-legend li:first-child { font-size: 2.6cqi; font-weight: 600; }
-.k-f03-legend li:first-child b { width: 4.2cqi; height: 4.2cqi; font-size: 2.2cqi; }
-.k-f03-legend li:first-child { grid-template-columns: 4.2cqi minmax(0, 1fr); }
-.k-f03-legend small { display: block; margin-top: .6cqi; font-size: 1.8cqi; font-weight: 500; color: #9fb3b0; }
-.k-f03-legend span.k-f03-t { padding-top: .5cqi; display: block; }
-
-@media (max-width: 700px) {
-  .k-f03-scroll-hint { display: block; }
-}
-@media (max-width: 560px) {
-  .k-f03-cmp-head { display: none; }
-  .k-f03-row { grid-template-columns: minmax(0, 1fr); }
-  .k-f03-lab { padding-bottom: 6px; }
-  .k-f03-both { grid-column: auto; }
-  .k-f03-armtag { display: inline-flex; }
-  .k-f03-shot { grid-template-columns: minmax(0, 1fr); gap: 10px; }
-  .k-f03-shot-head { display: none; }
-  .k-f03-cl { display: block; margin-bottom: 2px; }
-  .k-f03-sec { grid-template-columns: 72px minmax(0, 1fr); align-items: center; gap: 12px; }
-}
+.k-f03-check { margin: 0; padding: 12px 16px; border-radius: var(--k-r); background: var(--k-gate-soft); color: var(--k-fg); max-width: 68ch; text-wrap: pretty; }
+.k-f03-check b { color: var(--k-gate); }
+.k-f03-howto { margin: 0; font-size: 14px; line-height: 1.5; color: var(--k-fg-2); max-width: 68ch; text-wrap: pretty; }
+.k-f03-howto > b { color: var(--k-fg); }
 </style>
 <div class="k-col">
   <div class="k-intro">
-    <h1 class="k-title">Sixteen named stores: finished work against advice</h1>
-    <p class="k-lede">Each founder gets a Loom of about 40 seconds and one still about their own product page. Nothing is hosted.</p>
+    <h1 class="k-title">15 named stores, one short video each</h1>
+    <p class="k-lede">You send 15 founders a short video about one thing on their own store and ask for a reply, not a call.</p>
   </div>
 
-  <section class="k-sec" aria-label="What changes">
-    <h2 class="k-h3">What changes</h2>
-    <div class="k-pair">
-      <div class="k-today">
-        <p class="k-pair-label">Today</p>
-        <p>Every funnel asks for a call first, and the only thing a founder gets before it is advice (the ai-cro v1 audit, the VSL's five tests). Nobody receives finished work on their own page.</p>
-      </div>
-      <div class="k-new">
-        <p class="k-pair-label">New</p>
-        <p>16 stores are picked by hand. Daniel sends each founder or head of ecommerce one short message about their own product page: a Loom of about 40 seconds and one still. Nothing is hosted.</p>
-      </div>
+  <section class="k-sec" aria-label="The idea">
+    <h2 class="k-h3">The idea</h2>
+    <p class="k-p">You send 15 founders a video of 40 to 60 seconds about one thing on their own store, with the past A/B test that matches it. Each store is named below with the reason it was picked and the person to write to. Nothing is built or hosted.</p>
+  </section>
+
+  <section class="k-sec" aria-label="Hypothesis">
+    <h2 class="k-h3">Hypothesis</h2>
+    <p class="k-p">Founders may not book a call now because of Black Friday, Cyber Monday and the holidays, so the message asks only for a reply and a January start. It is wrong if the 15 stores send zero positive replies (a yes, "January" or a question) by Fri 18 Dec.</p>
+  </section>
+
+  <section class="k-sec" aria-label="The 15 stores">
+    <h2 class="k-h3">The 15 stores</h2>
+    <p class="k-p" id="f03-picks-status">9 stores can go from Wed 2 Dec. 2 wait for a legal read (Durston Gear and GORNATION), and 4 need your call first: Auto Finesse, C4 Fabrication, Ethos Car Care and Stikwood. The reason is on each card.</p>
+    <div class="k-table-wrap" tabindex="0" role="region" aria-label="The 15 stores, scrolls sideways">
+      <table class="k-table k-table--stack k-f03-stores">
+        <thead><tr><th scope="col">No.</th><th scope="col">Store</th><th scope="col">Country</th><th scope="col">Similar to</th><th scope="col">Why this store</th><th scope="col">Contact</th></tr></thead>
+        <tbody>
+<!--ROWS-->
+          <tr><td class="k-num" data-label="No.">1</td><th scope="row"><a class="k-link" href="https://www.sfbags.com" target="_blank" rel="noopener">WaterField Designs (SFbags)</a></th><td data-label="Country">US</td><td data-label="Similar to">Airback</td><td class="k-f03-why" data-label="Why this store">A founder run San Francisco bag maker, a travel bag store like Airback, and Gary Waterfield still answers customers himself. On the Starlink Mini Go Case page the $229 price shows only inside the button.</td><td data-label="Contact">Gary Waterfield<span class="k-f03-role">Founder and owner</span></td></tr>
+          <tr><td class="k-num" data-label="No.">2</td><th scope="row"><a class="k-link" href="https://aersf.com" target="_blank" rel="noopener">Aer</a></th><td data-label="Country">US</td><td data-label="Similar to">Airback</td><td class="k-f03-why" data-label="Why this store">A San Francisco travel bag brand selling direct, the closest match to Airback's range, with the founder still leading design. Nothing next to Add to Bag on the Carry On page says shipping, returns or warranty.<span class="k-f03-flag">Check on your own screen first: see card 2 in Assets.</span></td><td data-label="Contact">Allen Choi<span class="k-f03-role">Founder, Head of Design</span></td></tr>
+          <tr><td class="k-num" data-label="No.">3</td><th scope="row"><a class="k-link" href="https://durstongear.com" target="_blank" rel="noopener">Durston Gear</a></th><td data-label="Country">Canada</td><td data-label="Similar to">Ripstop by the Roll</td><td class="k-f03-why" data-label="Why this store">A family run ultralight tent and pack brand in the Canadian Rockies whose founder designs every product. On the X Dome Pro 1+ page the key specs sit far down, under long paragraphs.<span class="k-f03-flag">Check first: see card 3 in Assets.</span></td><td data-label="Contact">Dan Durston<span class="k-f03-role">Founder; President and Product Architect</span></td></tr>
+          <tr><td class="k-num" data-label="No.">4</td><th scope="row"><a class="k-link" href="https://www.gossamergear.com" target="_blank" rel="noopener">Gossamer Gear</a></th><td data-label="Country">US</td><td data-label="Similar to">Ripstop by the Roll</td><td class="k-f03-why" data-label="Why this store">An Austin ultralight tent and pack maker built on ripstop shelter fabrics, run by a small team under its CEO. On The One page only the weight shows above the button; specs and materials are closed tabs.</td><td data-label="Contact">Jonathan Schmid<span class="k-f03-role">CEO</span></td></tr>
+          <tr><td class="k-num" data-label="No.">5</td><th scope="row"><a class="k-link" href="https://theragcompany.com" target="_blank" rel="noopener">The Rag Company</a></th><td data-label="Country">US</td><td data-label="Similar to">Bay Optiks</td><td class="k-f03-why" data-label="Why this store">A family run Boise brand selling microfiber and detailing products to the same car owner Bay Optiks served. On the Eagle Edgeless 500 page the warranty is a closed tab, and nothing near the price or the button mentions it.<span class="k-f03-flag">Check on your own screen first: see card 5 in Assets.</span></td><td data-label="Contact">Carolyn Hennen<span class="k-f03-role">Owner (Jeff Hennen, co owner)</span></td></tr>
+          <tr><td class="k-num" data-label="No.">6</td><th scope="row"><a class="k-link" href="https://www.earlofeast.com" target="_blank" rel="noopener">Earl of East</a></th><td data-label="Country">UK</td><td data-label="Similar to">Goose Creek</td><td class="k-f03-why" data-label="Why this store">A London candle brand run by its two founders, the same category as Goose Creek but in the UK. On a phone, the home page's first product row opens with a book and a blanket, not candles.</td><td data-label="Contact">Niko Dafkos<span class="k-f03-role">Co founder (with Paul Firmin)</span></td></tr>
+          <tr><td class="k-num" data-label="No.">7</td><th scope="row"><a class="k-link" href="https://banditrunning.com" target="_blank" rel="noopener">Bandit</a></th><td data-label="Country">US</td><td data-label="Similar to">SaySky</td><td class="k-f03-why" data-label="Why this store">A Brooklyn running apparel brand run by brothers Tim and Nick West, the same category as SaySky. Under the home page hero nothing says shipping or returns; free shipping is only in the top bar.<span class="k-f03-flag">Check on your own screen first: see card 7 in Assets.</span></td><td data-label="Contact">Tim West<span class="k-f03-role">Founder and Creative Director (brother Nick West is co founder and CEO)</span></td></tr>
+          <tr><td class="k-num" data-label="No.">8</td><th scope="row"><a class="k-link" href="https://www.gornation.com" target="_blank" rel="noopener">GORNATION</a></th><td data-label="Country">Germany</td><td data-label="Similar to">Sport and Fitness Exchange</td><td class="k-f03-why" data-label="Why this store">A Münster calisthenics equipment brand selling worldwide and led by its founder, a sports equipment store like Sport and Fitness Exchange. On the Premium Dip Belt page the best facts sit as plain bullets under the button.<span class="k-f03-flag">Check first: see card 8 in Assets.</span></td><td data-label="Contact">Philipp Hülsdonk<span class="k-f03-role">Founder and CEO</span></td></tr>
+          <tr><td class="k-num" data-label="No.">9</td><th scope="row"><a class="k-link" href="https://bulldoggear.com" target="_blank" rel="noopener">Bulldog Gear</a></th><td data-label="Country">UK</td><td data-label="Similar to">Sport and Fitness Exchange</td><td class="k-f03-why" data-label="Why this store">A family led Staffordshire maker of strength equipment, a sports equipment store like Sport and Fitness Exchange. The £3,995 Nemesis Performance Rack shows no reviews and keeps the warranty in a closed tab.</td><td data-label="Contact">Kieran Heinich<span class="k-f03-role">Managing Director</span></td></tr>
+          <tr><td class="k-num" data-label="No.">10</td><th scope="row"><a class="k-link" href="https://www.sixmoondesigns.com" target="_blank" rel="noopener">Six Moon Designs</a></th><td data-label="Country">US</td><td data-label="Similar to">Ripstop by the Roll</td><td class="k-f03-why" data-label="Why this store">A family run Oregon tent and pack maker in the same outdoor fabric world as Ripstop by the Roll. On the Lunar Solo page nothing near Add to cart says when the tent ships or arrives.<span class="k-f03-flag">Check on your own screen first: see card 10 in Assets.</span></td><td data-label="Contact">Ron Moak<span class="k-f03-role">Founder and President</span></td></tr>
+          <tr><td class="k-num" data-label="No.">11</td><th scope="row"><a class="k-link" href="https://www.autofinesse.com" target="_blank" rel="noopener">Auto Finesse</a></th><td data-label="Country">UK</td><td data-label="Similar to">Bay Optiks</td><td class="k-f03-why" data-label="Why this store">A Harlow car care brand still run by its founder, selling to the same car owner Bay Optiks served. On the Avalanche Snow Foam page the free UK shipping line sits well under Add to Cart.<span class="k-f03-flag">Check first: see card 11 in Assets.</span></td><td data-label="Contact">James Batty<span class="k-f03-role">Founder and CEO</span></td></tr>
+          <tr><td class="k-num" data-label="No.">12</td><th scope="row"><a class="k-link" href="https://c4fabrication.com" target="_blank" rel="noopener">C4 Fabrication</a></th><td data-label="Country">US</td><td data-label="Similar to">CV Fabrication</td><td class="k-f03-why" data-label="Why this store">A US maker of welded bumpers and armor for Toyota trucks, a truck parts store like CV Fabrication, with its founder named on the site. On the Tacoma Rock Runner bumper page a shopper meets eight option pickers before a button that only says Select options.<span class="k-f03-flag">Check first: see card 12 in Assets.</span></td><td data-label="Contact">Caleb Rupp<span class="k-f03-role">Founder (Chris Huff is listed as President)</span></td></tr>
+          <tr><td class="k-num" data-label="No.">13</td><th scope="row"><a class="k-link" href="https://redlightrising.com" target="_blank" rel="noopener">Red Light Rising</a></th><td data-label="Country">UK</td><td data-label="Similar to">Nurosym</td><td class="k-f03-why" data-label="Why this store">A founder run red light therapy panel brand, a home wellness device store like Nurosym, in a different niche. On a phone, a full screen mystery discount quiz covers the panel page on arrival.<span class="k-f03-flag">Check on your own screen first: see card 13 in Assets.</span></td><td data-label="Contact">James Strong<span class="k-f03-role">Co founder (with Bryan Gohl)</span></td></tr>
+          <tr><td class="k-num" data-label="No.">14</td><th scope="row"><a class="k-link" href="https://ethoscarcare.com" target="_blank" rel="noopener">Ethos Car Care</a></th><td data-label="Country">US</td><td data-label="Similar to">Southeast Softwash</td><td class="k-f03-why" data-label="Why this store">A US car care chemicals brand founded by professional detailers, a cleaning chemicals store like Southeast Softwash. The DEFY page shows no guarantee, warranty or returns line anywhere.<span class="k-f03-flag">Check first: see card 14 in Assets.</span></td><td data-label="Contact">Tim Coats<span class="k-f03-role">Founder and CEO</span></td></tr>
+          <tr><td class="k-num" data-label="No.">15</td><th scope="row"><a class="k-link" href="https://www.stikwood.com" target="_blank" rel="noopener">Stikwood</a></th><td data-label="Country">US</td><td data-label="Similar to">Wood Upp</td><td class="k-f03-why" data-label="Why this store">A Michigan maker of peel and stick reclaimed wood planks, the same wall panel product as Wood Upp, run by a CEO with a small team. On the Golden Oak page the install video sits far down, not in the gallery.<span class="k-f03-flag">Check first: see card 15 in Assets.</span></td><td data-label="Contact">Jerry McCall<span class="k-f03-role">CEO</span></td></tr>
+<!--/ROWS-->
+        </tbody>
+      </table>
     </div>
+    <p class="k-note">The private sheet has a LinkedIn profile for 14 of the 15 contacts (found in search, not opened) and an email for 11 stores. Only WaterField's is the founder's own address; the other ten are shared inboxes such as support@. No email was found for Earl of East, Six Moon Designs, Red Light Rising or Stikwood, and for C4 Fabrication the profile is the President's, not the founder's. Where there is no email or only a shared inbox, send on LinkedIn.</p>
+    <p class="k-p">How the stores were chosen: each is similar to a brand PurpleFire has run A/B tests for, runs on Shopify, is led by its founder or owner (Gossamer Gear and Stikwood by a CEO), has no A/B test seen running on the site, has a named person to write to, and has a gap on the page that a past winning test addressed.</p>
+    <p class="k-p">Six spare stores are in the same sheet, in case one of these 15 is a no.</p>
   </section>
 
-  <section class="k-sec" aria-label="The test">
-    <h2 class="k-h3">The test</h2>
-    <dl class="k-facts">
-      <div><dt>Who it is for</dt><dd>Founders in a code freeze, founders who have never run an A/B test, and a head of ecommerce who needs something to forward.</dd></div>
-      <div><dt>Hypothesis</dt><dd>Founders shown one finished change on a copy of their own product page reply and book calls where founders shown the five tests we would run first do not.</dd></div>
-      <div><dt>Shares</dt><dd>The five tests workflow with kits 02 and 04; kit 02's calendars and slot board; the vault cards; the GHL follow up template.</dd></div>
-    </dl>
-  </section>
-
-  <section class="k-sec" aria-label="The two arms">
-    <h2 class="k-h3">The two arms</h2>
-    <div class="k-f03-cmp">
-      <div class="k-f03-cmp-head" aria-hidden="true"><span></span><span>Arm A, finished work</span><span>Arm B, advice</span></div>
-      <div class="k-f03-row">
-        <p class="k-f03-lab">What each founder receives</p>
-        <div class="k-f03-cell"><span class="k-f03-tag k-f03-armtag">Arm A, finished work</span><p>A gets finished work: one proven change built into a copy of their page.</p></div>
-        <div class="k-f03-cell"><span class="k-f03-tag k-f03-armtag">Arm B, advice</span><p>B gets advice: the five tests we would run first, where test one is that same change with the same result line.</p></div>
-      </div>
-      <div class="k-f03-row">
-        <p class="k-f03-lab">Loom title</p>
-        <div class="k-f03-cell"><span class="k-f03-tag k-f03-armtag">Arm A, finished work</span><p><span class="k-f03-slot">{store}</span>: one change on your <span class="k-f03-slot">{product}</span> page</p></div>
-        <div class="k-f03-cell"><span class="k-f03-tag k-f03-armtag">Arm B, advice</span><p><span class="k-f03-slot">{store}</span>: five A/B tests for your <span class="k-f03-slot">{product}</span> page</p></div>
-      </div>
-      <div class="k-f03-row">
-        <p class="k-f03-lab">Still caption</p>
-        <div class="k-f03-cell"><span class="k-f03-tag k-f03-armtag">Arm A, finished work</span><p>Your <span class="k-f03-slot">{product}</span> page, with one change built in</p></div>
-        <div class="k-f03-cell"><span class="k-f03-tag k-f03-armtag">Arm B, advice</span><p>The five A/B tests I'd run first on your <span class="k-f03-slot">{product}</span> page</p></div>
-      </div>
-      <div class="k-f03-row">
-        <p class="k-f03-lab">Format</p>
-        <div class="k-f03-cell k-f03-both"><span class="k-f03-tag"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5l10 -10"/></svg>Same in both</span><p>A Loom of about 40 seconds and one still. Nothing is hosted.</p></div>
-      </div>
-      <div class="k-f03-row">
-        <p class="k-f03-lab">Proof line</p>
-        <div class="k-f03-cell k-f03-both"><span class="k-f03-tag"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5l10 -10"/></svg>Same in both</span><p>Fills <span class="k-f03-slot">{proof line}</span> in both arms: arm A for the change built, arm B for test one.</p></div>
-      </div>
-      <div class="k-f03-row">
-        <p class="k-f03-lab">The ask</p>
-        <div class="k-f03-cell k-f03-both"><span class="k-f03-tag"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5l10 -10"/></svg>Same in both</span><p>Your first split test is on us. You pay after the first win. Want this as your first split test in January? Just reply "January".</p></div>
-      </div>
-    </div>
-    <p class="k-f03-sum">Everything else is shared, so the arms differ only in the deliverable: one change built against five tests described.</p>
-  </section>
-
-  <section class="k-sec" aria-label="Keep, kill and cost">
-    <h2 class="k-h3">Keep, kill and cost</h2>
-    <dl class="k-facts">
-      <div><dt>Keep</dt><dd>2 or more qualified calls booked across both arms by the read date, and 3 or more positive replies from arm A.</dd></div>
-      <div><dt>Kill</dt><dd>No positive reply from arm A's 8 by Thu 10 Dec on the December path, or by Tue 12 Jan on the January path.</dd></div>
-      <div><dt>Cost</dt><dd>Build 40 to 66 h. Media $0; Store Leads optional, about $250. <abbr class="k-est" title="Estimate">Est.</abbr></dd></div>
-    </dl>
-  </section>
-
-  <section class="k-sec" aria-label="Risks">
-    <h2 class="k-h3">Risks</h2>
-    <ul class="k-list">
-      <li>It can feel presumptuous (kind tone, video deleted on request).</li>
-      <li>A change that breaks on a phone costs trust.</li>
-      <li>The build hours per store have no source, and 8 a side is directional.</li>
-      <li>A hosted copy waits for a keep and a legal read.</li>
-    </ul>
+  <section class="k-sec" aria-label="Cost">
+    <h2 class="k-h3">Cost</h2>
+    <p class="k-p">No media spend. Your time is about 10 minutes per video, so about 2.5 hours for all 15. <abbr class="k-est" title="Estimate">Est.</abbr></p>
   </section>
 </div>
 
 </section>
-<section class="k-panel" id="tab-run" data-tab="run" aria-label="Run it" hidden>
+<section class="k-panel" id="tab-message" data-tab="message" aria-label="Message" hidden>
 <div class="k-col">
   <div class="k-intro">
-    <h1 class="k-title">Run it</h1>
-    <p class="k-lede">Daniel, you run every step below. Two paths. The gate on Mon 23 Nov decides which one runs: the December path first, the January path below it. Orange rows are go or no go points. Dates in January are 2027; every other date is 2026.</p>
+    <h1 class="k-title">Message</h1>
+    <p class="k-lede">Three short messages per store: Day 1, Day 3 and Day 7. Fill the slots from that store's card in Assets.</p>
   </div>
 
-  <section class="k-sec" aria-label="December path">
-    <h2 class="k-h3">December path <span class="k-count">(sends from Thu 3 Dec)</span></h2>
-    <ol class="k-run">
-      <li class="k-step">
-        <time class="k-date" datetime="2026-11-13"><span class="k-dow">Fri</span><span class="k-day">13</span><span class="k-mon">Nov</span></time>
-        <div class="k-step-body">
-          <p class="k-step-what">Name the countries you sell to, get a legal read on this format, and give your written yes or no to it by Mon 23 Nov</p>
-          <p class="k-needs"><b>Needs first</b> none</p>
-        </div>
-      </li>
-      <li class="k-step k-gate">
-        <time class="k-date" datetime="2026-11-23"><span class="k-dow">Mon</span><span class="k-day">23</span><span class="k-mon">Nov</span></time>
-        <div class="k-step-body">
-          <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: December or January path</p>
-          <p class="k-step-detail">Three things must be true:</p>
-          <ul class="k-gate-ifs">
-            <li>you have named the countries you sell to</li>
-            <li>a legal read has confirmed this format for a first cold message</li>
-            <li>you have said yes in writing to the format (a Loom plus one still, nothing hosted)</li>
-          </ul>
-          <p class="k-gate-out"><b>All three by Mon 23 Nov:</b> the December path. <b>Any one missing:</b> switch to the January path the same day</p>
-          <p class="k-needs"><b>Needs first</b> countries; legal read; your written yes</p>
-        </div>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2026-11-23"><span class="k-dow">Mon</span><span class="k-day">23</span><span class="k-mon">Nov</span></time>
-        <div class="k-step-body">
-          <p class="k-step-range">Mon 23 to Tue 24 Nov</p>
-          <p class="k-step-what">Build the five pattern blocks and the local copy method once</p>
-          <p class="k-needs"><b>Needs first</b> the gate passed</p>
-        </div>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2026-11-23"><span class="k-dow">Mon</span><span class="k-day">23</span><span class="k-mon">Nov</span></time>
-        <div class="k-step-body">
-          <p class="k-step-range">Mon 23 to Wed 25 Nov</p>
-          <p class="k-step-what">Fill the pick sheet: 16 stores plus a few spares, each with its reason line</p>
-          <p class="k-needs"><b>Needs first</b> the pick criteria in Assets</p>
-        </div>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2026-11-25"><span class="k-dow">Wed</span><span class="k-day">25</span><span class="k-mon">Nov</span></time>
-        <div class="k-step-body">
-          <p class="k-step-what">Check the pick sheet against your clients, your pipeline, your past clients and your do not contact list; confirm the five pattern cards</p>
-          <p class="k-needs"><b>Needs first</b> the pick sheet</p>
-        </div>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2026-11-26"><span class="k-dow">Thu</span><span class="k-day">26</span><span class="k-mon">Nov</span></time>
-        <div class="k-step-body">
-          <p class="k-step-what">Split the 16 into arms by paired coin flip, then lock the sheet</p>
-          <p class="k-needs"><b>Needs first</b> the Wed 25 Nov check</p>
-        </div>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2026-11-26"><span class="k-dow">Thu</span><span class="k-day">26</span><span class="k-mon">Nov</span></time>
-        <div class="k-step-body">
-          <p class="k-step-range">Thu 26 Nov to Tue 1 Dec</p>
-          <p class="k-step-what">Arm A: capture each page, build the change, check it at phone size, make the still, fill the script. Arm B: run the five tests workflow, have a person check it, make the pinned still, fill the script</p>
-          <p class="k-needs"><b>Needs first</b> the locked sheet</p>
-        </div>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2026-12-01"><span class="k-dow">Tue</span><span class="k-day">1</span><span class="k-mon">Dec</span></time>
-        <div class="k-step-body">
-          <p class="k-step-range">Tue 1 to Wed 2 Dec</p>
-          <p class="k-step-what">Record the 16 Looms from the filled scripts and shot lists</p>
-          <p class="k-needs"><b>Needs first</b> filled scripts; builds checked</p>
-        </div>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2026-12-02"><span class="k-dow">Wed</span><span class="k-day">2</span><span class="k-mon">Dec</span></time>
-        <div class="k-step-body">
-          <p class="k-step-what">Check every Loom and still: right store, right first name, figure matches its card, the change works at phone size. Load the 16 messages</p>
-          <p class="k-needs"><b>Needs first</b> 16 Looms</p>
-        </div>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2026-12-03"><span class="k-dow">Thu</span><span class="k-day">3</span><span class="k-mon">Dec</span></time>
-        <div class="k-step-body">
-          <p class="k-step-what"><b>Send odd pairs (1, 3, 5, 7)</b>, 8 messages (4 arm A, 4 arm B) from your own inbox or LinkedIn. Half of each arm goes each send day, so both arms share the same weekdays</p>
-          <p class="k-needs"><b>Needs first</b> the row shows Legal: cleared with a date; nothing to a Danish recipient unless the legal read cleared it</p>
-          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to Danish prospects</b> until you name your countries and have a legal read.</p></div>
-        </div>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2026-12-04"><span class="k-dow">Fri</span><span class="k-day">4</span><span class="k-mon">Dec</span></time>
-        <div class="k-step-body">
-          <p class="k-step-what"><b>Send even pairs (2, 4, 6, 8)</b>, 8 messages (4 arm A, 4 arm B)</p>
-          <p class="k-needs"><b>Needs first</b> same as Thu 3 Dec</p>
-          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to Danish prospects</b> until you name your countries and have a legal read.</p></div>
-        </div>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2026-12-03"><span class="k-dow">Thu</span><span class="k-day">3</span><span class="k-mon">Dec</span></time>
-        <div class="k-step-body">
-          <p class="k-step-range">Every working day from Thu 3 Dec</p>
-          <p class="k-step-what">Answer replies the same day with the Assets replies; tag each reply in GHL; hold a launch week for 48 hours on kit 02's slot board</p>
-          <p class="k-needs"><b>Needs first</b> 2 seats in each launch week (Mon 11, Mon 18, Mon 25 Jan)</p>
-        </div>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2026-12-09"><span class="k-dow">Wed</span><span class="k-day">9</span><span class="k-mon">Dec</span></time>
-        <div class="k-step-body">
-          <p class="k-step-what">Follow up to odd pairs (1, 3, 5, 7) rows with no reply (viewed or not viewed version)</p>
-          <p class="k-needs"><b>Needs first</b> Legal: cleared; no opt out on the row; nothing to a Danish recipient unless the legal read cleared it</p>
-          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to Danish prospects</b> until you name your countries and have a legal read.</p></div>
-        </div>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2026-12-10"><span class="k-dow">Thu</span><span class="k-day">10</span><span class="k-mon">Dec</span></time>
-        <div class="k-step-body">
-          <p class="k-step-what">Follow up to even pairs (2, 4, 6, 8) rows with no reply</p>
-          <p class="k-needs"><b>Needs first</b> Legal: cleared; no opt out on the row; nothing to a Danish recipient unless the legal read cleared it</p>
-          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to Danish prospects</b> until you name your countries and have a legal read.</p></div>
-        </div>
-      </li>
-      <li class="k-step k-gate">
-        <time class="k-date" datetime="2026-12-10"><span class="k-dow">Thu</span><span class="k-day">10</span><span class="k-mon">Dec</span></time>
-        <div class="k-step-body">
-          <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: kill read</p>
-          <p class="k-gate-out"><b>Zero positive replies from arm A:</b> the finished work idea is false for this list. No second list; calls already booked still happen</p>
-          <p class="k-needs"><b>Needs first</b> replies tagged</p>
-        </div>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2026-12-03"><span class="k-dow">Thu</span><span class="k-day">3</span><span class="k-mon">Dec</span></time>
-        <div class="k-step-body">
-          <p class="k-step-range">Thu 3 to Fri 18 Dec</p>
-          <p class="k-step-what">15 minute planning calls on the December calendar. Replies from Fri 18 Dec on go to the January calendar (Tue 5 to Fri 29 Jan)</p>
-          <p class="k-needs"><b>Needs first</b> both calendars set up in GHL</p>
-        </div>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2026-12-18"><span class="k-dow">Fri</span><span class="k-day">18</span><span class="k-mon">Dec</span></time>
-        <div class="k-step-body">
-          <p class="k-step-what"><b>Read.</b> Replies and booked calls per arm against the keep line, written up on one page</p>
-          <p class="k-needs"><b>Needs first</b> tracking sheet complete</p>
-        </div>
-      </li>
-    </ol>
-  </section>
-
-  <section class="k-sec" aria-label="January path">
-    <h2 class="k-h3">January path <span class="k-count">(sends from Tue 5 Jan 2027)</span></h2>
-    <ol class="k-run">
-      <li class="k-step k-gate">
-        <time class="k-date" datetime="2026-11-23"><span class="k-dow">Mon</span><span class="k-day">23</span><span class="k-mon">Nov</span></time>
-        <div class="k-step-body">
-          <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Gate missed: this path</p>
-          <p class="k-gate-out">Builds wait until kits 01 and 02 are built</p>
-          <p class="k-needs"><b>Needs first</b> none</p>
-        </div>
-      </li>
-      <li class="k-step">
-        <span class="k-date" aria-hidden="true"></span>
-        <div class="k-step-body">
-          <p class="k-step-range">Dates set after the kit 01 and 02 builds</p>
-          <p class="k-step-what">The same steps as December: pattern blocks, pick sheet, your check, paired split, builds, 16 Looms recorded before the break (Sat 19 Dec to Mon 4 Jan)</p>
-          <p class="k-needs"><b>Needs first</b> countries; legal read; your written yes</p>
-        </div>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2027-01-05"><span class="k-dow">Tue</span><span class="k-day">5</span><span class="k-mon">Jan</span></time>
-        <div class="k-step-body">
-          <p class="k-step-what">Before any send, check each page still lacks its change. A store whose page has changed is held back and marked on the tracking sheet, not sent</p>
-          <p class="k-needs"><b>Needs first</b> recorded Looms</p>
-        </div>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2027-01-05"><span class="k-dow">Tue</span><span class="k-day">5</span><span class="k-mon">Jan</span></time>
-        <div class="k-step-body">
-          <p class="k-step-what"><b>Send odd pairs (1, 3, 5, 7)</b>, 8 messages (4 arm A, 4 arm B)</p>
-          <p class="k-needs"><b>Needs first</b> Legal: cleared; nothing to a Danish recipient unless the legal read cleared it</p>
-          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to Danish prospects</b> until you name your countries and have a legal read.</p></div>
-        </div>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2027-01-06"><span class="k-dow">Wed</span><span class="k-day">6</span><span class="k-mon">Jan</span></time>
-        <div class="k-step-body">
-          <p class="k-step-what"><b>Send even pairs (2, 4, 6, 8)</b>, 8 messages (4 arm A, 4 arm B)</p>
-          <p class="k-needs"><b>Needs first</b> same as Tue 5 Jan</p>
-          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to Danish prospects</b> until you name your countries and have a legal read.</p></div>
-        </div>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2027-01-11"><span class="k-dow">Mon</span><span class="k-day">11</span><span class="k-mon">Jan</span></time>
-        <div class="k-step-body">
-          <p class="k-step-what">Follow up to odd pairs (1, 3, 5, 7) rows with no reply</p>
-          <p class="k-needs"><b>Needs first</b> Legal: cleared; no opt out on the row; nothing to a Danish recipient unless the legal read cleared it</p>
-          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to Danish prospects</b> until you name your countries and have a legal read.</p></div>
-        </div>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2027-01-12"><span class="k-dow">Tue</span><span class="k-day">12</span><span class="k-mon">Jan</span></time>
-        <div class="k-step-body">
-          <p class="k-step-what">Follow up to even pairs (2, 4, 6, 8) rows with no reply</p>
-          <p class="k-needs"><b>Needs first</b> Legal: cleared; no opt out on the row; nothing to a Danish recipient unless the legal read cleared it</p>
-          <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to Danish prospects</b> until you name your countries and have a legal read.</p></div>
-        </div>
-      </li>
-      <li class="k-step k-gate">
-        <time class="k-date" datetime="2027-01-12"><span class="k-dow">Tue</span><span class="k-day">12</span><span class="k-mon">Jan</span></time>
-        <div class="k-step-body">
-          <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: kill read</p>
-          <p class="k-gate-out">Same rule as December</p>
-          <p class="k-needs"><b>Needs first</b> replies tagged</p>
-        </div>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2027-01-05"><span class="k-dow">Tue</span><span class="k-day">5</span><span class="k-mon">Jan</span></time>
-        <div class="k-step-body">
-          <p class="k-step-range">Tue 5 to Fri 29 Jan</p>
-          <p class="k-step-what">15 minute planning calls on the January calendar</p>
-          <p class="k-needs"><b>Needs first</b> January calendar in GHL</p>
-        </div>
-      </li>
-      <li class="k-step">
-        <time class="k-date" datetime="2027-01-29"><span class="k-dow">Fri</span><span class="k-day">29</span><span class="k-mon">Jan</span></time>
-        <div class="k-step-body">
-          <p class="k-step-what"><b>Read</b>, same as December</p>
-          <p class="k-needs"><b>Needs first</b> tracking sheet complete</p>
-        </div>
-      </li>
-    </ol>
-  </section>
-
-  <section class="k-sec" aria-label="Confirm with Daniel">
-    <h2 class="k-h3">Confirm with Daniel <span class="k-count" data-count-for="f03-need">0 of 12 ticked</span></h2>
-    <ul class="k-check" id="f03-need">
-      <li><input type="checkbox" id="f03-need-countries"><label for="f03-need-countries">The countries he sells to, by Mon 23 Nov</label></li>
-      <li><input type="checkbox" id="f03-need-legal"><label for="f03-need-legal">A legal read on a first cold message by email and LinkedIn in those countries, by Mon 23 Nov</label></li>
-      <li><input type="checkbox" id="f03-need-yes"><label for="f03-need-yes">His written yes to the format: a Loom plus one still, nothing hosted, by Mon 23 Nov</label></li>
-      <li><input type="checkbox" id="f03-need-inbox"><label for="f03-need-inbox">His inbox and LinkedIn account to send from</label></li>
-      <li><input type="checkbox" id="f03-need-looms"><label for="f03-need-looms">Record all 16 Looms of about 40 seconds (Tue 1 to Wed 2 Dec on the December path)</label></li>
-      <li><input type="checkbox" id="f03-need-loom-acct"><label for="f03-need-loom-acct">Loom workspace: PurpleFire's Loom workspace</label></li>
-      <li><input type="checkbox" id="f03-need-dnc"><label for="f03-need-dnc">Send your do not contact list</label></li>
-      <li><input type="checkbox" id="f03-need-cards"><label for="f03-need-cards">His confirmation of the five pattern cards before any Loom names one</label></li>
-      <li><input type="checkbox" id="f03-need-floor"><label for="f03-need-floor">Revenue floor: $150k a month, as on your live VSL page</label></li>
-      <li><input type="checkbox" id="f03-need-seats"><label for="f03-need-seats">Seats on the slot board: 2 seats in each launch week (Mon 11, Mon 18, Mon 25 Jan)</label></li>
-      <li><input type="checkbox" id="f03-need-cal"><label for="f03-need-cal">The December calendar (weekdays Thu 3 to Fri 18 Dec) and the January calendar (weekdays Tue 5 to Fri 29 Jan) in GHL, 10:00 to 16:00 Copenhagen time, 15 minute slots (shared with kit 02)</label></li>
-      <li><input type="checkbox" id="f03-need-source"><label for="f03-need-source">Source line: none in the first messages, unless the legal read asks for one</label></li>
-    </ul>
-  </section>
-
-  <section class="k-sec" aria-label="How to read it">
-    <h2 class="k-h3">How to read it</h2>
+  <section class="k-sec" aria-label="Who, to whom and when">
+    <h2 class="k-h3">Who, to whom and when</h2>
     <dl class="k-facts">
-      <div><dt>Numbers</dt><dd>Positive replies per arm and booked 15 minute planning calls per arm. A positive reply is "January", a question, or a calendar tap from a store at or above $150k a month. The counted event is a qualified call: a booked 15 minute planning call with a founder or head of ecommerce at a Shopify store doing $150k a month or more.</dd></div>
-      <div><dt>Where they come from</dt><dd>The tracking sheet, one row per store, with GHL tags as the backup.</dd></div>
-      <div><dt>When</dt><dd>The kill read on Thu 10 Dec (or Tue 12 Jan), the full read on Fri 18 Dec (or Fri 29 Jan).</dd></div>
-      <div><dt>How far it goes</dt><dd>At 8 stores an arm the read is directional. Three replies against one suggests a difference and proves none. A keep earns a second, larger list the next month.</dd></div>
+      <div><dt>Who sends</dt><dd>You, from your own inbox or your LinkedIn.</dd></div>
+      <div><dt>To whom</dt><dd>The contact named in each row of the 15 stores on Strategy 3.</dd></div>
+      <div><dt>When</dt><dd>Day 1 can be any working day from Wed 2 Dec 2026, after Cyber Week; nothing goes out in Black Friday week. Send all 15 Day 1 messages by Fri 11 Dec, so every Day 7 lands before the read on Fri 18 Dec.</dd></div>
     </dl>
+    <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to a contact in Germany or Canada</b> (GORNATION, Durston Gear) until a legal read confirms a first message is allowed there. No Danish store is on the list. Rules for the UK and the US were not checked either; the same legal read can cover them.</p></div>
+  </section>
+
+  <section class="k-sec" aria-label="The three messages">
+    <h2 class="k-h3">The three messages</h2>
+    <p class="k-p">Day 3 is two days after Day 1 and Day 7 is six days after it; a send that falls on a weekend moves to the Monday. Three days in a row is too pushy for someone who has never heard of you.</p>
+    <p class="k-f03-howto"><b>How to use:</b> the same text works as an email or a LinkedIn message. On LinkedIn, leave out the subject line and send it as a message or an InMail, never inside a connection request. Day 3 and Day 7 go in the same thread, only to people who have not replied.</p>
+
+    <figure class="k-cb" id="f03-msg-day1">
+      <figcaption><span class="k-cb-label">Day 1</span><span class="k-cb-meta">First message, with the video link and one still</span></figcaption>
+      <div class="k-cb-body">Subject: One thing on the {store} site
+
+Hi {first name},
+
+I'm Daniel from PurpleFire; we run A/B tests for Shopify brands. I recorded a short video for you (under a minute) about one thing on your site: {the one thing}.
+
+{video link}
+
+A similar change won an A/B test for another store: {past test and result}. The still is attached if you'd rather not play the video.
+
+Want this as your first split test in January? Your first split test is on us. You pay after the first win.
+
+Daniel Chabert
+PurpleFire
+
+If you'd rather not hear from me, say so and I won't write again.</div>
+    </figure>
+    <p class="k-f03-howto"><b>Fill from the card:</b> the one thing is point 1 and the past test and result is point 2, both in your own words. Name the past client only if their result is already on your own site or they have said yes. Otherwise say what kind of store it was. Attach the still from the video: their page on screen at the moment you name the one thing.</p>
+
+    <figure class="k-cb" id="f03-msg-day3">
+      <figcaption><span class="k-cb-label">Day 3</span><span class="k-cb-meta">Follow up, only if no reply</span></figcaption>
+      <div class="k-cb-body">Hi {first name}, one more detail from the video: {the change on your page}.
+
+It would run as an A/B test in January, and it goes live on your store only if it wins. If January works, just reply "January".
+
+Daniel
+
+If you'd rather not hear from me, say so and I won't write again.</div>
+    </figure>
+    <p class="k-f03-howto"><b>Fill from the card:</b> the change on your page is point 3, the line that says what the change would be on their page.</p>
+
+    <figure class="k-cb" id="f03-msg-day7">
+      <figcaption><span class="k-cb-label">Day 7</span><span class="k-cb-meta">Last note, only if no reply</span></figcaption>
+      <div class="k-cb-body">Hi {first name}, last note from me on this. December is busy, so no reply needed now.
+
+The January offer stays open. Your first split test is on us. You pay after the first win. Reply "January" whenever it suits you.
+
+Daniel
+
+If you'd rather not hear from me, say so and I won't write again.</div>
+    </figure>
+    <p class="k-f03-howto"><b>After Day 7:</b> nobody writes again unless they reply.</p>
+  </section>
+
+  <section class="k-sec" aria-label="When they reply">
+    <h2 class="k-h3">When they reply</h2>
+    <p class="k-p">Answer the same working day. A yes gets three 15 minute times in January.</p>
+
+    <figure class="k-cb" id="f03-msg-yes">
+      <figcaption><span class="k-cb-label">A yes or "January"</span></figcaption>
+      <div class="k-cb-body">Great, thanks for writing back. Here are three 15 minute times in January: {three times}. Pick one and I'll send the invite.
+
+Daniel</div>
+    </figure>
+
+    <figure class="k-cb" id="f03-msg-price">
+      <figcaption><span class="k-cb-label">A question about price</span></figcaption>
+      <div class="k-cb-body">Fair question. Your first split test is on us. You pay after the first win. I'll go through what it costs after that on a 15 minute call in January, so you can judge it against your own numbers. Reply with a day that suits you and I'll send times.
+
+Daniel</div>
+    </figure>
+
+    <figure class="k-cb" id="f03-msg-no">
+      <figcaption><span class="k-cb-label">A no</span></figcaption>
+      <div class="k-cb-body">Thanks for letting me know, no problem at all. I won't write again, and if you'd like the video deleted, say so and it's gone.
+
+Daniel</div>
+    </figure>
   </section>
 </div>
 
@@ -1179,567 +948,305 @@ body::before {
 <div class="k-assets">
   <nav class="k-jump" aria-label="Assets">
     <p class="k-jump-title">On this tab</p>
-    <button type="button" data-jump="f03-as-pick">Picking and splitting the stores</button>
-    <button type="button" data-jump="f03-as-patterns">The five pattern blocks</button>
-    <button type="button" data-jump="f03-as-loom">Loom scripts</button>
-    <button type="button" data-jump="f03-as-shots">Shot lists</button>
-    <button type="button" data-jump="f03-as-stills">Still images</button>
-    <button type="button" data-jump="f03-as-msg">First messages</button>
-    <button type="button" data-jump="f03-as-replies">Replies and the follow up</button>
-    <button type="button" data-jump="f03-as-consent">The consent rule</button>
-    <button type="button" data-jump="f03-as-tracking">Tracking sheet and tags</button>
+    <button type="button" data-jump="f03-as-record">How to record</button>
+<!--JUMP-->
+    <button type="button" data-jump="f03-as-s01">1. WaterField Designs (SFbags)</button>
+    <button type="button" data-jump="f03-as-s02">2. Aer</button>
+    <button type="button" data-jump="f03-as-s03">3. Durston Gear</button>
+    <button type="button" data-jump="f03-as-s04">4. Gossamer Gear</button>
+    <button type="button" data-jump="f03-as-s05">5. The Rag Company</button>
+    <button type="button" data-jump="f03-as-s06">6. Earl of East</button>
+    <button type="button" data-jump="f03-as-s07">7. Bandit</button>
+    <button type="button" data-jump="f03-as-s08">8. GORNATION</button>
+    <button type="button" data-jump="f03-as-s09">9. Bulldog Gear</button>
+    <button type="button" data-jump="f03-as-s10">10. Six Moon Designs</button>
+    <button type="button" data-jump="f03-as-s11">11. Auto Finesse</button>
+    <button type="button" data-jump="f03-as-s12">12. C4 Fabrication</button>
+    <button type="button" data-jump="f03-as-s13">13. Red Light Rising</button>
+    <button type="button" data-jump="f03-as-s14">14. Ethos Car Care</button>
+    <button type="button" data-jump="f03-as-s15">15. Stikwood</button>
+<!--/JUMP-->
   </nav>
 
   <div class="k-assets-body">
     <div class="k-intro">
       <h1 class="k-title">Assets</h1>
-      <p class="k-lede"><span class="k-f03-slot">{curly}</span> slots are filled per store before each message is sent or recorded.</p>
+      <p class="k-lede">One card per store, in the same order and with the same numbers as the table on Strategy 3. Each card holds the points to cover in that store's video.</p>
     </div>
 
-    <!-- 3.1 and 3.2 -->
-    <section class="k-sec" id="f03-as-pick" aria-label="Picking and splitting the stores">
-      <h2 class="k-h3">Picking and splitting the stores</h2>
-
-      <div class="k-f03-grp">
-        <h3 class="k-f03-sub">How the 16 stores are picked</h3>
-        <p class="k-p"><strong>A store goes on the sheet only if all of these are true:</strong></p>
-        <ol class="k-f03-ol">
-          <li>It runs on Shopify, checked from the storefront.</li>
-          <li>It is likely at or above $150k a month (Est., from Store Leads or traffic signals). This estimate is never stated to the store as fact.</li>
-          <li>It runs Meta ads now, checked in the Meta Ad Library on the day of the pick.</li>
-          <li>Its category has a vault winner.</li>
-          <li>Its product page visibly lacks one of the five patterns.</li>
-          <li>A founder or head of ecommerce is reachable on a channel the legal read allows.</li>
-          <li>It is in a country the legal read clears.</li>
-        </ol>
-        <p class="k-p"><strong>Never on the sheet:</strong> current clients, his pipeline, past clients (they belong to kit 01), and anyone on his do not contact list.</p>
-        <p class="k-p"><strong>Count:</strong> 16 stores for this run, plus a few spares used only to replace a store whose copy breaks or whose page changes before sending. A spare takes the arm of the store it replaces.</p>
-        <figure class="k-cb" id="f03-as-pick-cols">
-          <figcaption><span class="k-cb-label">Pick sheet columns</span><span class="k-cb-meta">One row per store</span></figcaption>
-          <div class="k-cb-body">store ID; store name; storefront URL; product page URL; product name; category; Shopify check (how, date); revenue estimate (Est., source); likely above floor (yes or no); Meta ads running (Ad Library link, date seen); country; contact first name; contact role; channel (email or LinkedIn); where the contact came from; best fit pattern (1 to 5); what the page lacks, in one line; reason line; exclusions checked (client, pipeline, past client, do not contact); Legal: cleared (date); arm (A or B); spare (yes or no).</div>
-        </figure>
-        <p class="k-p"><strong>Pattern before the split:</strong> fill and lock the best fit pattern for all 16 stores before the coin is flipped; arm A builds that pattern, and arm B names it as test one with the same proof line.</p>
-        <figure class="k-cb" id="f03-as-reason">
-          <figcaption><span class="k-cb-label">Reason line</span><span class="k-cb-meta">One per store</span></figcaption>
-          <div class="k-cb-body">Picked because <span class="k-f03-slot">{store}</span> sells <span class="k-f03-slot">{category}</span> on Shopify, ran Meta ads on <span class="k-f03-slot">{date seen}</span>, and its <span class="k-f03-slot">{product}</span> page has no <span class="k-f03-slot">{what the page lacks}</span>, the change that won for <span class="k-f03-slot">{proof brand}</span>.</div>
-        </figure>
-      </div>
-
-      <div class="k-f03-grp">
-        <h3 class="k-f03-sub">How the 16 are split into arms</h3>
-        <ol class="k-f03-ol">
-          <li>Sort the 16 by best fit pattern, then by revenue estimate.</li>
-          <li>Pair them in that order: stores 1 and 2, 3 and 4, and so on, for 8 pairs.</li>
-          <li>Flip a coin for each pair. Heads: the first store goes to arm A, the second to arm B. Tails: the other way round.</li>
-          <li>Write the arm on the sheet and lock it before anything is built. Nobody moves a store between arms after this, for any reason.</li>
-        </ol>
-        <p class="k-p">Pairing keeps the patterns and store sizes even across the arms at 8 a side, and the coin keeps the choice out of our hands.</p>
-        <p class="k-p"><strong>Send days:</strong> the odd pairs (1, 3, 5, 7) go on the first send day and the even pairs (2, 4, 6, 8) on the second, so each day carries 4 arm A and 4 arm B messages and the patterns and store sizes spread over both days.</p>
-      </div>
+    <section class="k-sec" id="f03-as-record" aria-label="How to record">
+      <h2 class="k-h3">How to record</h2>
+      <ul class="k-list">
+        <li>Keep it to 40 to 60 seconds with their page on screen, at phone width where the gap is on a phone.</li>
+        <li>Cover the points on the card in order.</li>
+        <li>Name the past client only if their result is already on your own site or they have said yes. Otherwise say what kind of store it was.</li>
+        <li>Never promise a result on their store.</li>
+      </ul>
     </section>
 
-    <!-- 3.3 -->
-    <section class="k-sec" id="f03-as-patterns" aria-label="The five pattern blocks">
-      <h2 class="k-h3">The five pattern blocks</h2>
-      <p class="k-p">All five are product page winners. Figures are quoted as recorded on the card. Daniel confirms each card before a Loom names it.</p>
-      <div class="k-table-wrap">
-        <table class="k-table">
-          <thead><tr><th scope="col">Pattern</th><th scope="col">The change</th><th scope="col">Fits when</th><th scope="col">Proof</th></tr></thead>
-          <tbody>
-            <tr><th scope="row">1. Sticky add to cart with a cart counter, on mobile</th><td>On a phone, an add to cart bar stays on screen as the shopper scrolls, with the cart count on it.</td><td>The add to cart button scrolls out of view on a phone and the page is long.</td><td>A fabric and materials brand, the change on mobile, conversion up 22.4 percent. Public on cro-guarantee v1.</td></tr>
-            <tr><th scope="row">2. Benefit pointers under the title</th><td>Short benefit lines, each with a small pointer icon, directly under the product title.</td><td>Nothing near the title says why this product is the better buy.</td><td>A travel gear brand, conversion up 46.2 percent. Public on cro-guarantee v1. Always "a travel gear brand", never a name.</td></tr>
-            <tr><th scope="row">3. Shipping information above the add to cart button</th><td>Delivery time and shipping cost sit directly above the button.</td><td>Shipping details appear only below the button, in a tab, or at checkout.</td><td>German Car Accessories, revenue per visitor up 44.06 percent (<code class="k-f03-code">GCA-031</code>). Public on cro-vsl v1, in the results carousel.</td></tr>
-            <tr><th scope="row">4. All selectors in the first fold</th><td>Every option (size, colour, variant) fits on the first screen, so the shopper picks and adds without scrolling.</td><td>One or more options sit below the first screen on a phone.</td><td>A personalised gifts brand, conversion up 12.2 percent. Public on cro-guarantee v1.</td></tr>
-            <tr><th scope="row">5. Product information in tabs under the button</th><td>The product details move into tabs directly under the button, and the shopper taps to open each one.</td><td>The details run as one long block that pushes everything else down.</td><td>A personalised gifts brand, conversion up 14.3 percent. Public on cro-guarantee v1.</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="k-f03-grp">
-        <h3 class="k-f03-sub">Proof line per pattern</h3>
-        <p class="k-p">Fills <span class="k-f03-slot">{proof line}</span> in both arms: arm A for the change built, arm B for test one.</p>
-        <div class="k-table-wrap">
-          <table class="k-table">
-            <thead><tr><th scope="col">Pattern</th><th scope="col">Proof line</th></tr></thead>
-            <tbody>
-              <tr><th scope="row">1</th><td>On a fabric and materials brand, this change, on mobile, won an A/B test: conversion up 22.4 percent.</td></tr>
-              <tr><th scope="row">2</th><td>On a travel gear brand, this change won an A/B test: conversion up 46.2 percent.</td></tr>
-              <tr><th scope="row">3</th><td>On German Car Accessories, this change won an A/B test: revenue per visitor up 44.06 percent.</td></tr>
-              <tr><th scope="row">4</th><td>On a personalised gifts brand, this change won an A/B test: conversion up 12.2 percent.</td></tr>
-              <tr><th scope="row">5</th><td>On a personalised gifts brand, this change won an A/B test: conversion up 14.3 percent.</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="k-f03-grp">
-        <h3 class="k-f03-sub">Gap, change and test one lines per pattern</h3>
-        <p class="k-p">Fill <span class="k-f03-slot">{gap line}</span> and <span class="k-f03-slot">{change line}</span> in the arm A Loom, <span class="k-f03-slot">{test one line}</span> in the arm B Loom and messages.</p>
-        <div class="k-table-wrap">
-          <table class="k-table">
-            <thead><tr><th scope="col">Pattern</th><th scope="col">Gap line</th><th scope="col">Change line (arm A)</th><th scope="col">Test one line (arm B)</th></tr></thead>
-            <tbody>
-              <tr><th scope="row">1</th><td>Right now the add to cart button scrolls away as soon as you start reading.</td><td>Watch: as I scroll, the add to cart bar stays with me, with the cart count on it.</td><td>a sticky add to cart bar with the cart count.</td></tr>
-              <tr><th scope="row">2</th><td>Right now nothing under the title says why this one is the better buy.</td><td>Watch: short benefit lines now sit right under the title.</td><td>short benefit lines right under the title.</td></tr>
-              <tr><th scope="row">3</th><td>Right now delivery time and cost only show up below the button.</td><td>Watch: delivery time and cost now sit right above the add to cart button.</td><td>delivery time and cost right above the add to cart button.</td></tr>
-              <tr><th scope="row">4</th><td>Right now some of the options sit below the first screen.</td><td>Watch: every option now fits on the first screen, so you pick and add without scrolling.</td><td>every option on the first screen.</td></tr>
-              <tr><th scope="row">5</th><td>Right now the product details run as one long block under the button.</td><td>Watch: the details now sit in tabs under the button, and you tap to open each one.</td><td>the product details in tabs under the button.</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+<!--CARDS-->
+    <section class="k-sec k-f03-card" id="f03-as-s01" aria-label="1. WaterField Designs (SFbags)">
+      <h2 class="k-h3">1. <a class="k-link" href="https://www.sfbags.com/products/starlink-mini-case" target="_blank" rel="noopener">WaterField Designs (SFbags)</a></h2>
+      <p class="k-f03-who">Gary Waterfield, Founder and owner</p>
+      <dl class="k-facts">
+        <div><dt>Similar to</dt><dd>Airback</dd></div>
+        <div><dt>Matching past test</dt><dd>Shaktimat, More visible price next to CTA, CVR +9.75%</dd></div>
+      </dl>
+      <h3 class="k-f03-sub">Cover these points</h3>
+      <ol class="k-f03-ol">
+          <li>On your Starlink Mini Go Case page, the $229 price is not under the title; it only shows inside the button after a pick.</li>
+          <li>For Shaktimat, a bigger price placed right next to the button won an A/B test: conversion rate up 9.75% (that test ran on collection pages).</li>
+          <li>On your page that would be the price in large type right under the title and again on the button.</li>
+          <li>Smaller one: with 22 gallery images, a short clip of the case packed and in use could sit in the first three.</li>
+          <li>Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
+      </ol>
     </section>
 
-    <!-- 3.4 and 3.5 -->
-    <section class="k-sec" id="f03-as-loom" aria-label="Loom scripts">
-      <h2 class="k-h3">Loom scripts</h2>
-
-      <div class="k-f03-grp">
-        <h3 class="k-f03-sub">Loom script, arm A (finished work)</h3>
-        <p class="k-p">About 40 seconds, about 100 spoken words. Slots: <span class="k-f03-slot">{first name}</span>, <span class="k-f03-slot">{product}</span>, <span class="k-f03-slot">{gap line}</span>, <span class="k-f03-slot">{change line}</span>, <span class="k-f03-slot">{proof line}</span>.</p>
-        <figure class="k-cb" id="f03-as-loom-a">
-          <figcaption><span class="k-cb-label">Script, arm A</span><span class="k-cb-meta">About 40 seconds</span></figcaption>
-          <div class="k-cb-body">Hi <span class="k-f03-slot">{first name}</span>, Daniel from PurpleFire. This is your <span class="k-f03-slot">{product}</span> page at phone size.
-
-<span class="k-f03-slot">{gap line}</span>
-
-So I built one change on a copy of your page, not your live store. <span class="k-f03-slot">{change line}</span>
-
-<span class="k-f03-slot">{proof line}</span>
-
-Your first split test is on us. You pay after the first win. Want this as your first split test in January? Just reply "January".</div>
-        </figure>
-        <figure class="k-cb" id="f03-as-loom-a-title">
-          <figcaption><span class="k-cb-label">Loom title, arm A</span></figcaption>
-          <div class="k-cb-body"><span class="k-f03-slot">{store}</span>: one change on your <span class="k-f03-slot">{product}</span> page</div>
-        </figure>
-      </div>
-
-      <div class="k-f03-grp">
-        <h3 class="k-f03-sub">Loom script, arm B (advice)</h3>
-        <p class="k-p">About 40 seconds, about 100 spoken words. Slots: <span class="k-f03-slot">{first name}</span>, <span class="k-f03-slot">{product}</span>, <span class="k-f03-slot">{test one line}</span> and <span class="k-f03-slot">{proof line}</span> (the store's locked pattern, the same fills arm A would use), <span class="k-f03-slot">{test 2}</span> to <span class="k-f03-slot">{test 5}</span> (each under six words, from the five tests workflow, checked by a person, none repeating test one).</p>
-        <figure class="k-cb" id="f03-as-loom-b">
-          <figcaption><span class="k-cb-label">Script, arm B</span><span class="k-cb-meta">About 40 seconds</span></figcaption>
-          <div class="k-cb-body">Hi <span class="k-f03-slot">{first name}</span>, Daniel from PurpleFire. This is your <span class="k-f03-slot">{product}</span> page, and the pins mark the five A/B tests I'd run first.
-
-Test one is where I'd start: <span class="k-f03-slot">{test one line}</span> <span class="k-f03-slot">{proof line}</span>
-
-Two, <span class="k-f03-slot">{test 2}</span>. Three, <span class="k-f03-slot">{test 3}</span>. Four, <span class="k-f03-slot">{test 4}</span>. Five, <span class="k-f03-slot">{test 5}</span>.
-
-Your first split test is on us. You pay after the first win. Want this as your first split test in January? Just reply "January".</div>
-        </figure>
-        <figure class="k-cb" id="f03-as-loom-b-title">
-          <figcaption><span class="k-cb-label">Loom title, arm B</span></figcaption>
-          <div class="k-cb-body"><span class="k-f03-slot">{store}</span>: five A/B tests for your <span class="k-f03-slot">{product}</span> page</div>
-        </figure>
-      </div>
+    <section class="k-sec k-f03-card" id="f03-as-s02" aria-label="2. Aer">
+      <h2 class="k-h3">2. <a class="k-link" href="https://aersf.com/products/carry-on" target="_blank" rel="noopener">Aer</a></h2>
+      <p class="k-f03-who">Allen Choi, Founder, Head of Design</p>
+      <dl class="k-facts">
+        <div><dt>Similar to</dt><dd>Airback</dd></div>
+        <div><dt>Matching past test</dt><dd>German Car Accessories, Shipping Info Above CTA, RPV +44.06%; ATC +7.03%</dd></div>
+      </dl>
+        <p class="k-f03-check"><b>Check on your own screen first:</b> open the Carry On page from a US address and check that free shipping still shows only in the top bar and that nothing near Add to Bag mentions shipping or warranty.</p>
+      <h3 class="k-f03-sub">Cover these points</h3>
+      <ol class="k-f03-ol">
+          <li>On your Carry On page, free shipping is only in the top bar and the warranty is in a closed tab near the bottom.</li>
+          <li>For German Car Accessories, putting the shipping line right above the add button won an A/B test: revenue per visitor up 44.06%, add to cart up 7.03%.</li>
+          <li>On your page that would be one line above Add to Bag: free shipping over $99, plus your warranty in a few words.</li>
+          <li>Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
+      </ol>
     </section>
 
-    <!-- 3.6 -->
-    <section class="k-sec" id="f03-as-shots" aria-label="Shot lists">
-      <h2 class="k-h3">Shot lists</h2>
-      <p class="k-p"><strong>Before recording, both arms:</strong> Loom desktop app, 1080p, camera bubble on, small, bottom left, never over the change or a pin. Sharing set to anyone with the link, downloads off. Every script of the store's (pixels, analytics, Klaviyo, app scripts) is stripped from the local copy, so nothing fires into their accounts while we record. Nobody taps add to cart, a form or a login on the copy.</p>
-
-      <div class="k-f03-grp">
-        <h3 class="k-f03-sub">Arm A, second by second</h3>
-        <ol class="k-f03-shots">
-          <li class="k-f03-shot k-f03-shot-head" aria-hidden="true"><span>Seconds</span><span>On screen</span><span>Spoken</span></li>
-          <li class="k-f03-shot">
-            <div class="k-f03-sec"><b>0 to 6</b><span class="k-f03-track" style="--s:0;--e:6"></span></div>
-            <div><span class="k-f03-cl">On screen</span><p>The copy of their page as it is today, browser at 390 px wide, top of the page</p></div>
-            <div><span class="k-f03-cl">Spoken</span><p class="k-f03-said">"Hi <span class="k-f03-slot">{first name}</span>..."</p></div>
-          </li>
-          <li class="k-f03-shot">
-            <div class="k-f03-sec"><b>6 to 12</b><span class="k-f03-track" style="--s:6;--e:12"></span></div>
-            <div><span class="k-f03-cl">On screen</span><p>Scroll or point to the part the page lacks; the cursor circles it once</p></div>
-            <div><span class="k-f03-cl">Spoken</span><p class="k-f03-said"><span class="k-f03-slot">{gap line}</span></p></div>
-          </li>
-          <li class="k-f03-shot">
-            <div class="k-f03-sec"><b>12 to 24</b><span class="k-f03-track" style="--s:12;--e:24"></span></div>
-            <div><span class="k-f03-cl">On screen</span><p>Switch to the copy with the change built in; do the one action from the change line (scroll, rest on the title, rest on the button, show the options, open a tab)</p></div>
-            <div><span class="k-f03-cl">Spoken</span><p class="k-f03-said">"So I built one change..." and <span class="k-f03-slot">{change line}</span></p></div>
-          </li>
-          <li class="k-f03-shot">
-            <div class="k-f03-sec"><b>24 to 31</b><span class="k-f03-track" style="--s:24;--e:31"></span></div>
-            <div><span class="k-f03-cl">On screen</span><p>Hold on the change, cursor still</p></div>
-            <div><span class="k-f03-cl">Spoken</span><p class="k-f03-said"><span class="k-f03-slot">{proof line}</span></p></div>
-          </li>
-          <li class="k-f03-shot">
-            <div class="k-f03-sec"><b>31 to 40</b><span class="k-f03-track" style="--s:31;--e:40"></span></div>
-            <div><span class="k-f03-cl">On screen</span><p>Switch to the arm A still, full frame, and hold</p></div>
-            <div><span class="k-f03-cl">Spoken</span><p class="k-f03-said">the offer line and the ask</p></div>
-          </li>
-        </ol>
-      </div>
-
-      <div class="k-f03-grp">
-        <h3 class="k-f03-sub">Arm B, second by second</h3>
-        <ol class="k-f03-shots">
-          <li class="k-f03-shot k-f03-shot-head" aria-hidden="true"><span>Seconds</span><span>On screen</span><span>Spoken</span></li>
-          <li class="k-f03-shot">
-            <div class="k-f03-sec"><b>0 to 7</b><span class="k-f03-track" style="--s:0;--e:7"></span></div>
-            <div><span class="k-f03-cl">On screen</span><p>The arm B still, full frame, all five pins visible</p></div>
-            <div><span class="k-f03-cl">Spoken</span><p class="k-f03-said">"Hi <span class="k-f03-slot">{first name}</span>..."</p></div>
-          </li>
-          <li class="k-f03-shot">
-            <div class="k-f03-sec"><b>7 to 20</b><span class="k-f03-track" style="--s:7;--e:20"></span></div>
-            <div><span class="k-f03-cl">On screen</span><p>The cursor rests on pin 1 and circles the area once</p></div>
-            <div><span class="k-f03-cl">Spoken</span><p class="k-f03-said">"Test one is where I'd start...", <span class="k-f03-slot">{test one line}</span> and <span class="k-f03-slot">{proof line}</span></p></div>
-          </li>
-          <li class="k-f03-shot">
-            <div class="k-f03-sec"><b>20 to 32</b><span class="k-f03-track" style="--s:20;--e:32"></span></div>
-            <div><span class="k-f03-cl">On screen</span><p>The cursor moves to pin 2, then 3, 4 and 5, about 3 seconds each, in time with the words</p></div>
-            <div><span class="k-f03-cl">Spoken</span><p class="k-f03-said">tests two to five</p></div>
-          </li>
-          <li class="k-f03-shot">
-            <div class="k-f03-sec"><b>32 to 40</b><span class="k-f03-track" style="--s:32;--e:40"></span></div>
-            <div><span class="k-f03-cl">On screen</span><p>Hold on the still, cursor back on pin 1</p></div>
-            <div><span class="k-f03-cl">Spoken</span><p class="k-f03-said">the offer line and the ask</p></div>
-          </li>
-        </ol>
-      </div>
+    <section class="k-sec k-f03-card" id="f03-as-s03" aria-label="3. Durston Gear">
+      <h2 class="k-h3">3. <a class="k-link" href="https://durstongear.com/products/x-dome-pro-1-plus-superlight-tent-dyneema" target="_blank" rel="noopener">Durston Gear</a></h2>
+      <p class="k-f03-who">Dan Durston, Founder; President and Product Architect</p>
+      <dl class="k-facts">
+        <div><dt>Similar to</dt><dd>Ripstop by the Roll</dd></div>
+        <div><dt>Matching past test</dt><dd>Ripstop by the Roll, Specs Table and Product Description, CVR +12.06%; RPV +61.94%</dd></div>
+      </dl>
+        <p class="k-f03-check"><b>Check first:</b> hold this one until a legal read confirms a first message to a contact in Canada is allowed.</p>
+      <h3 class="k-f03-sub">Cover these points</h3>
+      <ol class="k-f03-ol">
+          <li>On your X Dome Pro 1+ page, the weight, size and materials table comes after several long paragraphs.</li>
+          <li>For Ripstop by the Roll, moving the key specs higher into a short, scannable table won an A/B test on mobile: conversion rate up 12.06%, revenue per visitor up 61.94%.</li>
+          <li>On your page that would be a four line spec box (weight, floor size, packed size, fabric) right under the price.</li>
+          <li>Smaller one: when it is sold out, the countdown and Notify Me sit above the tent story, which works; keep that.</li>
+          <li>Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
+      </ol>
     </section>
 
-    <!-- 3.7 -->
-    <section class="k-sec" id="f03-as-stills" aria-label="Still images">
-      <h2 class="k-h3">Still image specs</h2>
-
-      <div class="k-f03-grp">
-        <h3 class="k-f03-sub">Arm A still</h3>
-        <dl class="k-facts">
-          <div><dt>Size</dt><dd>1600 by 1000 px, PNG, under 1 MB.</dd></div>
-          <div><dt>Shows</dt><dd>Two phone screens of their product page side by side at 390 px wide, cropped to the same area. Left label "Today". Right label "With the change". The change is the only difference between the two screens.</dd></div>
-          <div><dt>Logo</dt><dd>PurpleFire logo, small, bottom right.</dd></div>
-          <div><dt>File name</dt><dd><code class="k-f03-code">{store_id}_arm_a.png</code></dd></div>
-        </dl>
-        <div class="k-f03-pair">
-          <figure class="k-cb" id="f03-as-still-a-cap">
-            <figcaption><span class="k-cb-label">Caption across the top</span></figcaption>
-            <div class="k-cb-body">Your <span class="k-f03-slot">{product}</span> page, with one change built in</div>
-          </figure>
-          <figure class="k-cb" id="f03-as-still-a-line">
-            <figcaption><span class="k-cb-label">Line across the bottom</span></figcaption>
-            <div class="k-cb-body">Built on a copy of your page. Your live store was not touched.</div>
-          </figure>
-        </div>
-        <figure class="k-f03-sample">
-          <figcaption class="k-f03-sample-head"><span class="k-f03-sample-name">Arm A still</span><span class="k-f03-sample-tag">Sample layout, not a real store</span></figcaption>
-          <p class="k-note k-f03-scroll-hint">Swipe the still sideways to see all of it.</p>
-          <div class="k-f03-still-scroll" tabindex="0" role="region" aria-label="Arm A still, scrolls sideways on a phone">
-          <div class="k-f03-still" role="img" aria-label="Sample layout of the arm A still: two generic product page wireframes, Today and With the change, with benefit lines added under the title">
-            <p class="k-f03-cap">Your <span class="k-f03-slot">{product}</span> page, with one change built in</p>
-            <div class="k-f03-stage-a">
-              <div class="k-f03-phone">
-                <p class="k-f03-phone-label">Today</p>
-                <div class="k-f03-screen">
-                  <div class="k-f03-w-img"></div>
-                  <div class="k-f03-w-dots"><i></i><i></i><i></i><i></i></div>
-                  <div class="k-f03-w-bar k-f03-w-title"></div>
-                  <div class="k-f03-w-bar k-f03-w-price"></div>
-                  <div class="k-f03-w-opts"><i></i><i></i><i></i></div>
-                  <div class="k-f03-w-btn"></div>
-                  <div class="k-f03-w-bar"></div>
-                  <div class="k-f03-w-bar" style="width:86%"></div>
-                  <div class="k-f03-w-bar" style="width:92%"></div>
-                  <div class="k-f03-w-bar" style="width:64%"></div>
-                  <div class="k-f03-w-bar"></div>
-                  <div class="k-f03-w-bar" style="width:80%"></div>
-                </div>
-              </div>
-              <span class="k-f03-mid"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l14 0"/><path d="M13 18l6 -6"/><path d="M13 6l6 6"/></svg></span>
-              <div class="k-f03-phone">
-                <p class="k-f03-phone-label k-f03-on">With the change</p>
-                <div class="k-f03-screen">
-                  <div class="k-f03-w-img"></div>
-                  <div class="k-f03-w-dots"><i></i><i></i><i></i><i></i></div>
-                  <div class="k-f03-w-bar k-f03-w-title"></div>
-                  <div class="k-f03-w-bar k-f03-w-price"></div>
-                  <div class="k-f03-w-change">
-                    <div class="k-f03-w-point"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l14 0"/><path d="M13 18l6 -6"/><path d="M13 6l6 6"/></svg><i style="width:82%"></i></div>
-                    <div class="k-f03-w-point"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l14 0"/><path d="M13 18l6 -6"/><path d="M13 6l6 6"/></svg><i style="width:68%"></i></div>
-                    <div class="k-f03-w-point"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l14 0"/><path d="M13 18l6 -6"/><path d="M13 6l6 6"/></svg><i style="width:76%"></i></div>
-                  </div>
-                  <div class="k-f03-w-opts"><i></i><i></i><i></i></div>
-                  <div class="k-f03-w-btn"></div>
-                  <div class="k-f03-w-bar"></div>
-                  <div class="k-f03-w-bar" style="width:86%"></div>
-                  <div class="k-f03-w-bar" style="width:92%"></div>
-                  <div class="k-f03-w-bar" style="width:64%"></div>
-                </div>
-              </div>
-            </div>
-            <div class="k-f03-foot"><p>Built on a copy of your page. Your live store was not touched.</p><img class="k-f03-logo" src="data:image/webp;base64,UklGRu4PAABXRUJQVlA4WAoAAAAQAAAAvwAAIwAAQUxQSH0IAAAB8IZt2zKn2f7tE8c1M7HBLQSHeEIEqBtawR0Wd623WN29SA13qXvuGO5+B0smMhMPMrZ/OI/rurDyOSImAJppc2fNmTlDHD90+LChw8cMTgzFf7cJwNCamiG4g3dT58WMzMxDFxxub/63ve4Nbb5etWrVqtWxt6Hh+6u+1r96CoCHrpEVPe+c2qf1HPnn38zjlyu9JKum3xMGU0y5Db1o+EMAX5HkjDunfbUOZ84//+aeKbpB1Tv8XvCSUGK9Dc8aGwvgBZKuhDvnEeqszvg343BemVtgftg9YL1wOOA2vEKy4sL/dZ6PBtB4deHp8bhzF+gp+uvf7FP5NdSccvcFHBC24TZuJLm0fkOdDXyghtbHHbxOz5Ws3ONXq6m9/u4LKRKW34aAgyQH4i4fMG3S15L3+cf7Dxk6etzE81KmL3yDzWaz2RIk+JtVSxBgamwxm82W2kBwUp8e/qhnMZvNlsYmoFGvlOQWWtEuYbiORl17pyS39dMRUkQ6exjyaWKxNPEB4NPUbGkEoN0DT8b4Sqbmib2TIwP1AZgnlUdADMqT9vkhLr/QZrMVPSj0tRXabDZbAhB2otBmsxU/EPjCRfKqGR8X2Wy2oh0wv3reRTo29pKGUHXHSf6Pr8u7QbIyc3YjjWg3WWAx1OGirTCjNoCoS7bCTUjYUUn+5KM0mPi3g2T1gdn1DWyUjgZKPZzSLmAMVU93YTrVqtZAHFVn4kaSzPX1PUD1847HKVcMEV4S7FYh5g/q3N9FepZkjq+hR0n+ZQIwgOT7z1aR5NsA8NgRame21hV0VNoE+VnK7wJvCvlNhS+F47WBEcKZD6h+C4tN+PAIte3tlXXC4UBlZDl1n2spvEZyLQwvIPkxACwkvevKqU4AMPMmSd64pjC3gZ7QUmmxxlKNgcAeIdNP8flb2AtgmVBcLixCtFPx2qn3MwAB+4TNADDSRYNrTcomkouMrSE5VfmO9N6kbdWU8csigfEekn8+F9U+7RuSnA4g4TH1kXmUl/SKS0jp26/fP1JxKGqdFlZBbXRReBfAVkFzEIZQszA3T+NqU8BSKLwKIL6CavmaRStOC9XtAAQcJDmlRUvNVsGKbwbJBwD4ZZHk+hYQe1WQzrn+UJeSzAlA3fPU7z28/3zxTer8DGhZIcwXOtQIE4FaxzR+n5T25BwrXpGcL4f5Nl7qFdyJQIxLGA4EZlA92BVA6EGFIwGEF5GsLteueF5pdJGsag+g6VWSmwMhBvxBeqZDbniBLG+OtpUGbuQcuVju0VHWAUj3Ck8Ij1P1pADNHYL3ZT+Im6QXACBgv8ABwFCq7lhgENWCllBHCCsAxLhpcJjS+QZ5pi6Abk6ytC3kR0lug/Z20h2LR2mwIvtkQQ11zgQwmeqNzsICobwVkOQRvoXsf0g4XlfBhzpeE4rD4PMzyaqz6xJSUlJSEhcJXwEYSqOxypMkfzYBGERyOzQ3ka5UHVtIbxLmGyncf77EpeNdE4B3hcuNhNXCydrAaKrORI2QYmExxBXSw8B64VAgWleQ/LBOFnV/AOB1kgcWLdGe1UBZSPJDAFhMcplGcCF5JuaPf/6Wy8jrUfjeyMUjlyu9GvZZvgDws5Dhq/hmCLtNwEqhwKwR41I8SdL7wvXO8N8vbAYGkuToOvn6ZgLYQnIhDK8mOUn5luRIjTQvuWsQdTsigo4buXyxgqLrzNuRUOueFdZAbXpFeAvADiHLV+M5qpWtpD3ClaYILRReAxaT9PRsT/1PAQGHSA425Ps/kqkA/LNJT4LGZJJvzNF3olb9hcuXLV269PUDUtn0CVNnzp69cO6z0fUgt60SFgpdrgvjgKCjwmpoLhcKggVLgfCLCbFu4TngE5Ku95d9/IneD5sBoYWks7uhplfIyjYALAWkvZnGSpJT2zz5uM4n431MkLdIObiF6RSnCDOpepOA5qXCIq2tQnlzYRLFRcCzVF0xwA9Ud8BwrIvMNxvqcpM8Vw9Adyd5NEjjc5LPwKAJcq1T0ve3Yrz0tdLxklDWAkj2CP01Ao8IHKi0yBNqooBXhaIw4H3hF6nlkAdSonu2AjCMZLa/of4kfwKAp0lugeZKkqOMaLerkubfitnSjXmRkePzKJ6sA4ynerOrRliJdKwTfHrmUNxqAjYK+/yBGUJVqtI8m6TbMwXAUpLfwvBCku8qL5JcrjWG5NtaYV+9OLCDjkcpP3grhkpkTQ01dwN4S7gSrJHgkVj6V2YNxaoegP9BYQuA7jcVFr3ef+CyS1TPBwPYTHKJsVUkJys/kBylFXWdzI+UGmwn+aGOeVJVm1vR+aYGycrLwnIAu4Rsf42xVD1u6l0IILxYeB2A305B7/XHAAQeJvmkId8s0psOwD+X9CZp+e4ieW5Ei1pB1sHZJC8217FKOl3vVvju1vNapjAWqH1SWAPNt4S8H/R84gsg3i0MA4COBQaqhgFAeAl5s7uh4HyyshWAkALSYdVCj1KSLD1x3E6SxenQ9tsv7cItjTyn4Xo1vERIBlpVCku0dggZbc5pXHvFDwCGUfXEKEg+pys7BWqCl7QFG+ruIs/UARDtJo/X1oH+xdSZ2Qs6Qy9WqzUv3xq0WecgWbrzQXQrctjtjgsRQGKJ3W53OB7XCDoufIfIXTUki9YlQFzosNvtjrNhAkKXn3YLJbuH1YHYv9Tu+MnP0EOldscmAOhfand8D91R35YINf+OqgO9ge06qJGNbhHQMv3xlJYAAq1Wa4Q11BeobY2wRlitARrNyoRFAKIeGZgaAc1G1gir1RpikoD60c9MnzEy1QrtetYIaxMYrt0swtpYqWuNsDbUBzR7ZMrsaU918MM9NtkrDMR9+3iqzp73b+8JBcH3b7uFbJ/7tjqnhA24b299TXj1Pu6HjRs2bNjU+78IAFZQOCBKBwAAECIAnQEqwAAkAD5tLJNFpCKhmAuNjEAGxLYiO5AA77tB94/KX2Squ/Vfwz+O3KUFE7WP3P3VfBD/SexT8r/9T3CP1x6VPmA/Xj9mPa3/U/3Kfab8AH8l/o/W7+gB+1vpnfud8IH7f/tr7XGkgSqOD6DoxxtUvLeeGlE/VfUA/kXIA1BOj76Dv7AFdsDH+njCvyOR7X1QgbxES1JDCErhJNIpUTmUuDT6MNmZTzW15qMOBkQiS0Li0bNhhL9o3g90ZWwSuQ7tnVipFkwfgEdGnaXq8fq6nZKw+gZUyoareS22uJ//EPtuN+roDjdYckoUg6d4SwYL+Z95ZTGDUjoA9iqwuTZv09p0Tj3I+XV3hhs4JfX+kJ109oAA/u5WfHDNVoorpiRerNi/UVS/G9gkkN1xO1Z7vRYkAMEve2SI1wrw1lYDkuIfTcT2pRst6gXXfP3ONaqGgPzoQg89scgYJ5/xkYMpFdwnsNGkbvF28lLk9VQ7M63d9WFTRnKMWMuU7zt0FvbEXq0flxMxMrRRkcjNwtEZeq4e77ELgrQ34Ne1YFkoYLoIH1N5dI4EkI19K1Tnn3dnRXSgPhN2QJYiU7N7s1/yej1LC+iLB6cgNar69x/pptgGccmyeR8MGPTY8E4wbreaPyfj+gwPsfFKS8v8H0V52gHGymdz67IY86lxPu5lIGZqZ9n8TSOwWAZxUDK/92t1R2+CXYoAkZ6+e5qJV7pk/FKhGEcmWqn7CGDmrL983V6TXw29wT9W6HhhFtkF9GENnHI/idpv2B9sGB6CWgwNpX0nR/NYQsNsZItTbXU8ElbXXJU1h0QquIqZbh/AK+zka1AxjhM9xbHdV+k5D6RxcWQ0PEp9wx45uftaB8VMUvv/M4tJEoErJAQS3niVxhbwcGvPU2moeoxqOGDpU229qG7HQk9pN0b/3bthWv9wJF2ct07ea4TzcGjsPd3ab1TZWYqaKpJLJNtKSDltor6VQQp8yjPg9J12I3pNTcNW4mZmhjME3fgpZbHgvVskVNyLo6B2rESrrzTnYS1OPArryitI7aTLW1PhUpMHB51o/+z21clO24Cff8S/iNn+CwLJxiDMsnguxDpVjXO+b1HNAtULT1c92FcrCxbrGocrnpzPM4GEhAC4XVM0nNcfJPfQQCA8/x9dHfnOUBOlUcl9yzBjaamt+3xjGtTvOeuevPzpqwYhj3g+gAod+MtLTSzvfv1llYjgh7pewFW5DjuTJSTsHCzp5+5KREJPbi/nykROUbHpywcoVU0bJhQfggrGjVDN3AQr6zfOwsO8/vN/YjjLdS9L8Cj9pvUI1mPYo7rY6KmOP0PbwNE6j26bvqNKAPEGON7BrDv818L2Al5621hTSF+MirFei5Mzt8A+HT0IkuBOFDwW+vfh0/S/l6vSu8MqoIa6vTCzIGvLD7LQ4A9oNSllWxV09JL83baOOwvDwjZA9fRwSm1zkc9qYKOTOFAq61YncdSsw3ZeaUL7b5rQMrJofO6eGDcWNTmp/flnjMLZnmAfOi5vwKBUqpBp62dPaKBYPUO58y0oz0ONzo0GnLtFDWzZRTaGfbEO3oxdIJ6yXi4EpJiWWTtMpLJoDer0efEljf88pDb7/cqUIDJB5L2Lp56TsFyBROzX8dKT9NEvlnvRARXqw/Z1dn5DrE4XjZhcshc5Ds4XNHp2vwEC9Sxy6i1aJto8lu1FXll/S3AvUmmaUpJqpcLlpsCFR3ChtQRRrp+jVZ3fCs9xErkuAmx59bKKFxFdlVnpAXuZvvIcZlzd9Hu+qroxsgCdrx9I+3MpSl8wWx5KGuxweqNlBn4DQqwUiCxA8JRgMK/UJ9N4OyTgxgJgZpjpsQno1zmZ5cBBKhak4zATLNQjhCKcsLorgDWtMKoRpqH0KWA+yIikFN1bBKMnFyW00dYWKl8dNze3R1I46jVYI8kkJhUMmjKz2LpVfxpZZD7pvuLMKOjZBCiEytlqEIu0Gx7eUn8DNkRtjbigmQ8QAMkae2nxFUdY8xYZFHMgtQhATjNyqrWLaDgPllTxcEnwi/schrlCTU7Q2rn/AJTnRnp9hbqhffPUvU5FxSe54PolQ3VArppEiLQLoEauVpGyts1GQKUwawvfnvaafa+UkMnlP3HUPm3s1BmtxZYpDle9n0pVe4RQNkG/MpHfv5EgltcAQVnxAbkcMr5ofj3+/GwJ5NAXNh9rEhm/R2K4ZYb1g2ggpENHeCnv6JjuFUW3LAgwpRlmgqeK+nBu1aOME7dN4OgbwWeeG6q5gRBoSSmQNtTBmusIBHvqyzjY+Hfcmh2e5DTBNOm5qNAX5o+++oDQ9AvQQzIO+xgK2cKDo0eFJrhr/LO/v0/CMg2/MmaphFoAufbVGYubjtxDTXE4OL1e/CXWjpGpjoMVCZH9giXuubNboAAADXSt1SLB7jTp/o3PFcesqoCdWSyj9s/LQZ4EcDRxg+M/ixIDuxgAAYVNkAAAAAAA" width="96" alt="PurpleFire"></div>
-          </div>
-          </div>
-        </figure>
-      </div>
-
-      <div class="k-f03-grp">
-        <h3 class="k-f03-sub">Arm B still</h3>
-        <dl class="k-facts">
-          <div><dt>Size</dt><dd>1600 by 1000 px, PNG, under 1 MB.</dd></div>
-          <div><dt>Shows</dt><dd>On the left, a phone capture of their product page at 390 px wide, cut to the areas the pins sit on, with five numbered pins in the brand accent colour; pin 1 sits on the area the store's pattern would change and is set larger than the rest. On the right, the legend: the numbers 1 to 5, each with its test in one line. Line 1 is the test one line, with the proof line under it in smaller type. Nothing is built or mocked up; the capture shows the page as it is today.</dd></div>
-          <div><dt>Logo</dt><dd>PurpleFire logo, small, bottom right.</dd></div>
-          <div><dt>File name</dt><dd><code class="k-f03-code">{store_id}_arm_b.png</code></dd></div>
-        </dl>
-        <div class="k-f03-pair">
-          <figure class="k-cb" id="f03-as-still-b-cap">
-            <figcaption><span class="k-cb-label">Caption across the top</span></figcaption>
-            <div class="k-cb-body">The five A/B tests I'd run first on your <span class="k-f03-slot">{product}</span> page</div>
-          </figure>
-          <figure class="k-cb" id="f03-as-still-b-line">
-            <figcaption><span class="k-cb-label">Line across the bottom</span></figcaption>
-            <div class="k-cb-body">Captured from your public page on <span class="k-f03-slot">{capture date}</span>. Nothing on your store was changed.</div>
-          </figure>
-        </div>
-        <figure class="k-f03-sample">
-          <figcaption class="k-f03-sample-head"><span class="k-f03-sample-name">Arm B still</span><span class="k-f03-sample-tag">Sample layout, not a real store</span></figcaption>
-          <p class="k-note k-f03-scroll-hint">Swipe the still sideways to see all of it.</p>
-          <div class="k-f03-still-scroll" tabindex="0" role="region" aria-label="Arm B still, scrolls sideways on a phone">
-          <div class="k-f03-still" role="img" aria-label="Sample layout of the arm B still: a generic product page wireframe with five numbered pins, pin one larger, and the legend beside it">
-            <p class="k-f03-cap">The five A/B tests I'd run first on your <span class="k-f03-slot">{product}</span> page</p>
-            <div class="k-f03-stage-b">
-              <div class="k-f03-phone">
-                <div class="k-f03-screen">
-                  <div class="k-f03-w-img"></div>
-                  <div class="k-f03-w-dots"><i></i><i></i><i></i><i></i></div>
-                  <div class="k-f03-w-bar k-f03-w-title"></div>
-                  <div class="k-f03-w-bar k-f03-w-price"></div>
-                  <div class="k-f03-w-opts"><i></i><i></i><i></i></div>
-                  <div class="k-f03-w-btn"></div>
-                  <div class="k-f03-w-bar"></div>
-                  <div class="k-f03-w-bar" style="width:86%"></div>
-                  <div class="k-f03-w-bar" style="width:92%"></div>
-                  <div class="k-f03-w-bar" style="width:64%"></div>
-                  <div class="k-f03-w-bar"></div>
-                  <span class="k-f03-pin k-f03-pin-1" style="top:58%;left:84%">1</span>
-                  <span class="k-f03-pin" style="top:22%;left:80%">2</span>
-                  <span class="k-f03-pin" style="top:65%;left:30%">3</span>
-                  <span class="k-f03-pin" style="top:74%;left:84%">4</span>
-                  <span class="k-f03-pin" style="top:88%;left:70%">5</span>
-                </div>
-              </div>
-              <ol class="k-f03-legend">
-                <li><b>1</b><span class="k-f03-t">short benefit lines right under the title.<small>On a travel gear brand, this change won an A/B test: conversion up 46.2 percent.</small></span></li>
-                <li><b>2</b><span class="k-f03-t"><span class="k-f03-slot">{test 2}</span></span></li>
-                <li><b>3</b><span class="k-f03-t"><span class="k-f03-slot">{test 3}</span></span></li>
-                <li><b>4</b><span class="k-f03-t"><span class="k-f03-slot">{test 4}</span></span></li>
-                <li><b>5</b><span class="k-f03-t"><span class="k-f03-slot">{test 5}</span></span></li>
-              </ol>
-            </div>
-            <div class="k-f03-foot"><p>Captured from your public page on <span class="k-f03-slot">{capture date}</span>. Nothing on your store was changed.</p><img class="k-f03-logo" src="data:image/webp;base64,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" width="96" alt="PurpleFire"></div>
-          </div>
-          </div>
-        </figure>
-      </div>
+    <section class="k-sec k-f03-card" id="f03-as-s04" aria-label="4. Gossamer Gear">
+      <h2 class="k-h3">4. <a class="k-link" href="https://www.gossamergear.com/products/the-one" target="_blank" rel="noopener">Gossamer Gear</a></h2>
+      <p class="k-f03-who">Jonathan Schmid, CEO</p>
+      <dl class="k-facts">
+        <div><dt>Similar to</dt><dd>Ripstop by the Roll</dd></div>
+        <div><dt>Matching past test</dt><dd>Ripstop by the Roll, Specs Table and Product Description, CVR +12.06%; RPV +61.94%</dd></div>
+      </dl>
+      <h3 class="k-f03-sub">Cover these points</h3>
+      <ol class="k-f03-ol">
+          <li>On The One page, only the weight sits above Add to cart; specs and materials are closed tabs below.</li>
+          <li>For Ripstop by the Roll, moving the key specs higher into a short, scannable table won an A/B test on mobile: conversion rate up 12.06%, revenue per visitor up 61.94%.</li>
+          <li>On your page that would be a small spec box (weight, packed size, interior, fabric) right under the price.</li>
+          <li>Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
+      </ol>
     </section>
 
-    <!-- 3.8 and 3.9 -->
-    <section class="k-sec" id="f03-as-msg" aria-label="First messages">
-      <h2 class="k-h3">First messages</h2>
-      <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to Danish prospects</b> until Daniel names his countries and has a legal read.</p></div>
-
-      <div class="k-f03-grp">
-        <h3 class="k-f03-sub">First message, arm A: email</h3>
-        <figure class="k-cb" id="f03-as-a-email-subj">
-          <figcaption><span class="k-cb-label">Subject</span><span class="k-cb-meta">Email, arm A</span></figcaption>
-          <div class="k-cb-body">One change on your <span class="k-f03-slot">{product}</span> page</div>
-        </figure>
-        <figure class="k-cb" id="f03-as-a-email">
-          <figcaption><span class="k-cb-label">Email body</span><span class="k-cb-meta">Arm A</span></figcaption>
-          <div class="k-cb-body">Hi <span class="k-f03-slot">{first name}</span>,
-
-I built one change on a copy of your <span class="k-f03-slot">{product}</span> page and recorded it working at phone size. It takes 40 seconds: <span class="k-f03-slot">{Loom link}</span>
-
-<span class="k-f03-slot">{proof line}</span> The still is attached if you'd rather not play the video.
-
-Want this as your first split test in January? Reply "January" and I'll hold a launch week for you.
-
-Your first split test is on us. You pay after the first win.
-
-If someone else decides this, forward it to your founder. The video makes sense without me there.
-
-Daniel Chabert
-Founder, PurpleFire
-
-If you'd rather not hear from me, say so. I won't write again, and I'll delete the video.</div>
-        </figure>
-        <p class="k-note">Attachment: the arm A still.</p>
-      </div>
-
-      <div class="k-f03-grp">
-        <h3 class="k-f03-sub">First message, arm A: LinkedIn</h3>
-        <figure class="k-cb" id="f03-as-a-li">
-          <figcaption><span class="k-cb-label">LinkedIn message</span><span class="k-cb-meta">Arm A</span></figcaption>
-          <div class="k-cb-body">Hi <span class="k-f03-slot">{first name}</span>, I built one change on a copy of your <span class="k-f03-slot">{product}</span> page and recorded it at phone size (40 seconds): <span class="k-f03-slot">{Loom link}</span>
-
-<span class="k-f03-slot">{proof line}</span>
-
-Want this as your first split test in January? Reply "January" and I'll hold a launch week for you.
-
-Your first split test is on us. You pay after the first win. If someone else decides this, forward it to your founder.
-
-Daniel
-
-If you'd rather not hear from me, say so and I won't write again.</div>
-        </figure>
-        <p class="k-note">Attachment: the arm A still. Send as a message to a connection, or as an InMail. The pitch never goes in a connection request note.</p>
-      </div>
-
-      <div class="k-f03-grp">
-        <h3 class="k-f03-sub">First message, arm B: email</h3>
-        <figure class="k-cb" id="f03-as-b-email-subj">
-          <figcaption><span class="k-cb-label">Subject</span><span class="k-cb-meta">Email, arm B</span></figcaption>
-          <div class="k-cb-body">Five A/B tests for your <span class="k-f03-slot">{product}</span> page</div>
-        </figure>
-        <figure class="k-cb" id="f03-as-b-email">
-          <figcaption><span class="k-cb-label">Email body</span><span class="k-cb-meta">Arm B</span></figcaption>
-          <div class="k-cb-body">Hi <span class="k-f03-slot">{first name}</span>,
-
-I recorded the five A/B tests I'd run first on your <span class="k-f03-slot">{product}</span> page. It takes 40 seconds: <span class="k-f03-slot">{Loom link}</span>
-
-Test one is where I'd start: <span class="k-f03-slot">{test one line}</span> <span class="k-f03-slot">{proof line}</span> The still with all five is attached if you'd rather not play the video.
-
-Want this as your first split test in January? Reply "January" and I'll hold a launch week for you.
-
-Your first split test is on us. You pay after the first win.
-
-If someone else decides this, forward it to your founder. The video makes sense without me there.
-
-Daniel Chabert
-Founder, PurpleFire
-
-If you'd rather not hear from me, say so. I won't write again, and I'll delete the video.</div>
-        </figure>
-        <p class="k-note">Attachment: the arm B still.</p>
-      </div>
-
-      <div class="k-f03-grp">
-        <h3 class="k-f03-sub">First message, arm B: LinkedIn</h3>
-        <figure class="k-cb" id="f03-as-b-li">
-          <figcaption><span class="k-cb-label">LinkedIn message</span><span class="k-cb-meta">Arm B</span></figcaption>
-          <div class="k-cb-body">Hi <span class="k-f03-slot">{first name}</span>, I recorded the five A/B tests I'd run first on your <span class="k-f03-slot">{product}</span> page (40 seconds): <span class="k-f03-slot">{Loom link}</span>
-
-Test one is where I'd start: <span class="k-f03-slot">{test one line}</span> <span class="k-f03-slot">{proof line}</span>
-
-Want this as your first split test in January? Reply "January" and I'll hold a launch week for you.
-
-Your first split test is on us. You pay after the first win. If someone else decides this, forward it to your founder.
-
-Daniel
-
-If you'd rather not hear from me, say so and I won't write again.</div>
-        </figure>
-        <p class="k-note">Attachment: the arm B still. Same LinkedIn rule as arm A.</p>
-      </div>
+    <section class="k-sec k-f03-card" id="f03-as-s05" aria-label="5. The Rag Company">
+      <h2 class="k-h3">5. <a class="k-link" href="https://theragcompany.com/products/eagle-edgeless-500" target="_blank" rel="noopener">The Rag Company</a></h2>
+      <p class="k-f03-who">Carolyn Hennen, Owner (Jeff Hennen, co owner)</p>
+      <dl class="k-facts">
+        <div><dt>Similar to</dt><dd>Bay Optiks</dd></div>
+        <div><dt>Matching past test</dt><dd>Bay Optiks, 1 Year Warranty label, REVENUE +26.79%; CVR +5.78%</dd></div>
+      </dl>
+        <p class="k-f03-check"><b>Check on your own screen first:</b> the warranty point does not depend on where you are. For the smaller point, check from a US address that the free shipping threshold still reads $115, in the top bar only.</p>
+      <h3 class="k-f03-sub">Cover these points</h3>
+      <ol class="k-f03-ol">
+          <li>On your Eagle Edgeless 500 page, the warranty is a closed tab well below the button.</li>
+          <li>For Bay Optiks, a clear warranty label near the title and price won an A/B test: revenue up 26.79%, conversion rate up 5.78%.</li>
+          <li>On your page that would be a short warranty badge right next to the $24 price.</li>
+          <li>Smaller one: the free shipping threshold ($115) is only in the top bar, not by the button.</li>
+          <li>Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
+      </ol>
     </section>
 
-    <!-- 3.10, 3.11, 3.12 -->
-    <section class="k-sec" id="f03-as-replies" aria-label="Replies and the follow up">
-      <h2 class="k-h3">Replies and the follow up</h2>
-
-      <div class="k-f03-grp">
-        <h3 class="k-f03-sub">Reply when they answer "January"</h3>
-        <p class="k-p">Send the same working day. Each launch week (Mon 11, Mon 18, Mon 25 Jan) has 2 seats. Hold the week on kit 02's slot board for 48 hours before sending: add 1 to seats_taken for that week, and take it off if no call is booked by then. The link is new.purplefire.io/after-freeze/v1, where the booking sits: up to and including Thu 17 Dec the founder books a December call (calls run to Fri 18 Dec); from Fri 18 Dec, a January call.</p>
-        <figure class="k-cb" id="f03-as-reply-jan">
-          <figcaption><span class="k-cb-label">Reply to "January"</span><span class="k-cb-meta">Both arms</span></figcaption>
-          <div class="k-cb-body">Great, <span class="k-f03-slot">{first name}</span>. I've held the week of <span class="k-f03-slot">{launch week Monday}</span> for you until <span class="k-f03-slot">{day and time, 48 hours from now}</span>.
-
-Pick a 15 minute slot here and we'll lock it in: new.purplefire.io/after-freeze/v1
-
-On the call we confirm that week for your first A/B test. Your first split test is on us. You pay after the first win.
-
-Daniel</div>
-        </figure>
-        <p class="k-note">If that week has no seat left (2 seats a week), hold the next week that has one and name it in the first line.</p>
-      </div>
-
-      <div class="k-f03-grp">
-        <h3 class="k-f03-sub">Follow up after four working days</h3>
-        <p class="k-p">One follow up only, sent in the same thread or chat as the first message, to rows with no reply and no opt out. Use the viewed version if the Loom shows a view from anyone but us, the not viewed version otherwise. After this, nobody writes again unless they reply.</p>
-        <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing goes to Danish prospects</b> until Daniel names his countries and has a legal read.</p></div>
-        <figure class="k-cb" id="f03-as-fu-viewed-a">
-          <figcaption><span class="k-cb-label">Viewed, arm A</span></figcaption>
-          <div class="k-cb-body">Hi <span class="k-f03-slot">{first name}</span>, happy to build it on a duplicate theme in January. Reply "January" and I'll hold a launch week for you.
-
-Daniel
-
-If you'd rather not hear from me, say so and I won't write again.</div>
-        </figure>
-        <figure class="k-cb" id="f03-as-fu-viewed-b">
-          <figcaption><span class="k-cb-label">Viewed, arm B</span></figcaption>
-          <div class="k-cb-body">Hi <span class="k-f03-slot">{first name}</span>, happy to build test one on a duplicate theme in January. Reply "January" and I'll hold a launch week for you.
-
-Daniel
-
-If you'd rather not hear from me, say so and I won't write again.</div>
-        </figure>
-        <p class="k-note">Not viewed, both arms: email, the still goes in the body, not as an attachment; LinkedIn, attach the still again.</p>
-        <figure class="k-cb" id="f03-as-fu-notviewed">
-          <figcaption><span class="k-cb-label">Not viewed, both arms</span></figcaption>
-          <div class="k-cb-body">Hi <span class="k-f03-slot">{first name}</span>, in case the video didn't open, here is the still from it.
-
-<span class="k-f03-slot">{arm A or arm B still}</span>
-
-The 40 second video is here: <span class="k-f03-slot">{Loom link}</span>. Reply "January" and I'll hold a launch week for you.
-
-Daniel
-
-If you'd rather not hear from me, say so and I won't write again.</div>
-        </figure>
-      </div>
-
-      <div class="k-f03-grp">
-        <h3 class="k-f03-sub">Reply for a store under the floor</h3>
-        <p class="k-p">Use when a reply or the calendar booking shows the store is under $150k a month. It is not counted as a lead, and no call is booked.</p>
-        <figure class="k-cb" id="f03-as-under-floor">
-          <figcaption><span class="k-cb-label">Under the floor</span><span class="k-cb-meta">Pick the arm A or arm B line</span></figcaption>
-          <div class="k-cb-body">Thanks for writing back, <span class="k-f03-slot">{first name}</span>. One honest thing before we book anything: I only take stores doing $150k or more a month, because below that an A/B test takes too long to reach a clear result, and I won't start one that can't give you an answer.
-
-<span class="k-f03-slot">{arm A: The change in the video is yours to build if you want it. | arm B: The five tests in the video are yours to use.}</span>
-
-When you cross $150k a month, write back.
-
-Daniel</div>
-        </figure>
-      </div>
+    <section class="k-sec k-f03-card" id="f03-as-s06" aria-label="6. Earl of East">
+      <h2 class="k-h3">6. <a class="k-link" href="https://www.earlofeast.com" target="_blank" rel="noopener">Earl of East</a></h2>
+      <p class="k-f03-who">Niko Dafkos, Co founder (with Paul Firmin)</p>
+      <dl class="k-facts">
+        <div><dt>Similar to</dt><dd>Goose Creek</dd></div>
+        <div><dt>Matching past test</dt><dd>The Secret Stories, Credibility + Best Sellers Under Hero, CVR +10.60%; RPV +14.89%</dd></div>
+      </dl>
+      <h3 class="k-f03-sub">Cover these points</h3>
+      <ol class="k-f03-ol">
+          <li>On your home page on a phone, the first product row opens with a book and a blanket, not your candles.</li>
+          <li>For The Secret Stories, a short credibility line and a best sellers row right under the hero won an A/B test: conversion rate up 10.60%, revenue per visitor up 14.89%.</li>
+          <li>On your site that would be your top candles in one swipe row right under the hero, with your review rating above it.</li>
+          <li>Smaller one: Goose Creek, a candle brand, won with a product section per main category on the home page (conversion rate up 2.20%).</li>
+          <li>Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
+      </ol>
     </section>
 
-    <!-- 3.13 -->
-    <section class="k-sec" id="f03-as-consent" aria-label="The consent rule">
-      <h2 class="k-h3">The consent rule (a step nobody can skip)</h2>
-      <p class="k-p">Before any first message or follow up goes to a store, its row on the pick sheet must show <strong>Legal: cleared</strong>, with the date and the country. A row without that date is not sent, by anyone, for any reason.</p>
-      <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>Nothing is sent to anyone in Denmark</b> until Daniel has named his countries and a legal read has confirmed this format. Danish marketing law (section 10(1) of the marketing act) bans approaching anyone by electronic mail for direct marketing without prior consent, and the Consumer Ombudsman treats LinkedIn Conversation Ads as electronic mail (<a class="k-link" href="https://www.danskerhverv.dk/presse-og-nyheder/nyheder/2020/september/husk-markedsforingsloven-pa-linkedin/" target="_blank" rel="noopener">Dansk Erhverv</a>).</p></div>
-      <p class="k-p">Also for the legal read, all unverified today: whether the Danish ban covers business recipients and LinkedIn messages and invitations; whether Germany needs prior consent for business email; the opt out rules in the UK and the US; and whether a founder whose details came from Store Leads or a contact finder must be told the source at first contact (if yes, a source line is added to every first message).</p>
-      <p class="k-p">Every message carries the opt out line. An opt out is marked on the row the same day and the Loom is deleted.</p>
+    <section class="k-sec k-f03-card" id="f03-as-s07" aria-label="7. Bandit">
+      <h2 class="k-h3">7. <a class="k-link" href="https://banditrunning.com" target="_blank" rel="noopener">Bandit</a></h2>
+      <p class="k-f03-who">Tim West, Founder and Creative Director (brother Nick West is co founder and CEO)</p>
+      <dl class="k-facts">
+        <div><dt>Similar to</dt><dd>SaySky</dd></div>
+        <div><dt>Matching past test</dt><dd>SaySky, Guarantees and benefits, CVR +12.53%</dd></div>
+      </dl>
+        <p class="k-f03-check"><b>Check on your own screen first:</b> open the home page from a US address and check that the top bar still says free shipping over $175 and that nothing under the hero mentions shipping or returns.</p>
+      <h3 class="k-f03-sub">Cover these points</h3>
+      <ol class="k-f03-ol">
+          <li>On your home page, the hero is the Fall collection with two shop links; free shipping is only in the thin top bar and nothing under the hero says shipping or returns.</li>
+          <li>For SaySky, a running apparel brand, a bigger benefits bar with free shipping and returns, placed right under the main banner, won an A/B test: conversion rate up 12.53%.</li>
+          <li>On your site that would be a strip under the hero: free shipping over $175, easy returns, and one more reason to buy.</li>
+          <li>Smaller one: on the product page your sticky Add to Cart bar with the price works well; keep it.</li>
+          <li>Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
+      </ol>
     </section>
 
-    <!-- 3.14 -->
-    <section class="k-sec" id="f03-as-tracking" aria-label="Tracking sheet and tags">
-      <h2 class="k-h3">Tracking sheet and tags</h2>
-      <figure class="k-cb" id="f03-as-track-cols">
-        <figcaption><span class="k-cb-label">Tracking sheet columns</span><span class="k-cb-meta">One row per store</span></figcaption>
-        <div class="k-cb-body">store ID; store name; arm; pattern (built in arm A, test one in arm B); contact first name; role; channel; country; Legal: cleared (date); Loom link; still file; sent date; Loom viewed (yes or no, date first seen); follow up date; follow up version (viewed or not viewed); reply date; reply type (January, question, calendar tap, no thanks, opt out, under floor); week held (Monday date, hold ends); call booked (date); call held (yes or no); launch week picked; qualified (yes or no); Loom deleted (date, if asked); notes.</div>
-      </figure>
-      <div class="k-f03-grp">
-        <h3 class="k-f03-sub">GHL tags</h3>
-        <p class="k-p">One per contact, added the day it happens.</p>
-        <div class="k-table-wrap">
-          <table class="k-table">
-            <thead><tr><th scope="col">Tag</th><th scope="col">When</th></tr></thead>
-            <tbody>
-              <tr><th scope="row"><code class="k-f03-code">f03_named_stores</code></th><td>every contact in this kit (the source tag)</td></tr>
-              <tr><th scope="row"><code class="k-f03-code">f03_arm_a</code> or <code class="k-f03-code">f03_arm_b</code></th><td>on the send day</td></tr>
-              <tr><th scope="row"><code class="k-f03-code">f03_viewed</code></th><td>the Loom shows a view from them</td></tr>
-              <tr><th scope="row"><code class="k-f03-code">f03_reply_positive</code></th><td>"January", a question, or a calendar tap</td></tr>
-              <tr><th scope="row"><code class="k-f03-code">f03_booked</code></th><td>a planning call is booked</td></tr>
-              <tr><th scope="row"><code class="k-f03-code">f03_under_floor</code></th><td>the store is under $150k a month</td></tr>
-              <tr><th scope="row"><code class="k-f03-code">f03_opt_out</code></th><td>they asked not to hear from us</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+    <section class="k-sec k-f03-card" id="f03-as-s08" aria-label="8. GORNATION">
+      <h2 class="k-h3">8. <a class="k-link" href="https://www.gornation.com/products/premium-dip-belt" target="_blank" rel="noopener">GORNATION</a></h2>
+      <p class="k-f03-who">Philipp Hülsdonk, Founder and CEO</p>
+      <dl class="k-facts">
+        <div><dt>Similar to</dt><dd>Sport and Fitness Exchange</dd></div>
+        <div><dt>Matching past test</dt><dd>Shaktimat, Information display, CVR +4.22%</dd></div>
+      </dl>
+        <p class="k-f03-check"><b>Check first:</b> hold this one until a legal read confirms a first message to a contact in Germany is allowed. Before you record, open the Premium Dip Belt page from a German or US address so the price on screen is in euros or dollars.</p>
+      <h3 class="k-f03-sub">Cover these points</h3>
+      <ol class="k-f03-ol">
+          <li>On your Premium Dip Belt page, the best facts (tested to 1000 kg, three carabiners) sit below the button as plain bullets.</li>
+          <li>For Shaktimat, a fitness and wellness brand, showing the main product facts in a visual, skimmable block won an A/B test: conversion rate up 4.22%.</li>
+          <li>On your page that would be three icon facts under the title: 1000 kg tested, padded, three carabiners.</li>
+          <li>Smaller one: your trust row (fast shipping, designed in Germany, 2 years warranty) is good; it could sit closer to the button.</li>
+          <li>Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
+      </ol>
     </section>
+
+    <section class="k-sec k-f03-card" id="f03-as-s09" aria-label="9. Bulldog Gear">
+      <h2 class="k-h3">9. <a class="k-link" href="https://bulldoggear.com/products/bulldog-gear-home-gym-nemesis-performance-rack" target="_blank" rel="noopener">Bulldog Gear</a></h2>
+      <p class="k-f03-who">Kieran Heinich, Managing Director</p>
+      <dl class="k-facts">
+        <div><dt>Similar to</dt><dd>Sport and Fitness Exchange</dd></div>
+        <div><dt>Matching past test</dt><dd>Bay Optiks, 1 Year Warranty label, REVENUE +26.79%; CVR +5.78%</dd></div>
+      </dl>
+      <h3 class="k-f03-sub">Cover these points</h3>
+      <ol class="k-f03-ol">
+          <li>On your Home Gym Nemesis Performance Rack page, a £3,995 rack shows no reviews and keeps the warranty in a closed tab.</li>
+          <li>For Bay Optiks, a clear warranty label next to the title and price won an A/B test: revenue up 26.79%, conversion rate up 5.78%.</li>
+          <li>On your page that would be a warranty badge right under the price, next to the finance line.</li>
+          <li>Smaller one: related racks on the same page carry reviews (7 on the wall mounted folding rack, 15 on the FID bench), so a line of store reviews could sit under the title.</li>
+          <li>Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
+      </ol>
+    </section>
+
+    <section class="k-sec k-f03-card" id="f03-as-s10" aria-label="10. Six Moon Designs">
+      <h2 class="k-h3">10. <a class="k-link" href="https://www.sixmoondesigns.com/products/lunar-solo-tent" target="_blank" rel="noopener">Six Moon Designs</a></h2>
+      <p class="k-f03-who">Ron Moak, Founder and President</p>
+      <dl class="k-facts">
+        <div><dt>Similar to</dt><dd>Ripstop by the Roll</dd></div>
+        <div><dt>Matching past test</dt><dd>German Car Accessories, Shipping Estimates Feature, CVR +12.30%; APPV +16.31%</dd></div>
+      </dl>
+        <p class="k-f03-check"><b>Check on your own screen first:</b> open the Lunar Solo page from a US address and check that no ship or delivery date appears near Add to cart.</p>
+      <h3 class="k-f03-sub">Cover these points</h3>
+      <ol class="k-f03-ol">
+          <li>On your Lunar Solo page, the only timing a shopper sees is that seam sealing adds 1 to 2 business days; there is no ship or arrival date.</li>
+          <li>For German Car Accessories, showing when the order ships and arrives on the product page won an A/B test on mobile: conversion rate up 12.30%.</li>
+          <li>On your page that would be one line above Add to cart: ships by a date, arrives by a date, with the sealing days already counted.</li>
+          <li>Smaller one: your spec chips (26 oz, 1 person, 3 seasons) and the seam sealing choice are strong; keep them.</li>
+          <li>Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
+      </ol>
+    </section>
+
+    <section class="k-sec k-f03-card" id="f03-as-s11" aria-label="11. Auto Finesse">
+      <h2 class="k-h3">11. <a class="k-link" href="https://www.autofinesse.com/products/avalanche-snow-foam" target="_blank" rel="noopener">Auto Finesse</a></h2>
+      <p class="k-f03-who">James Batty, Founder and CEO</p>
+      <dl class="k-facts">
+        <div><dt>Similar to</dt><dd>Bay Optiks</dd></div>
+        <div><dt>Matching past test</dt><dd>German Car Accessories, Shipping Info Above CTA, RPV +44.06%; ATC +7.03%</dd></div>
+      </dl>
+        <p class="k-f03-check"><b>Check first:</b> this is a bigger brand that likely has its own marketing team, so send only if you think the founder still decides. Before you record, open the Avalanche page from a UK address and check that the free shipping line still sits below the Description toggle, not above Add to Cart.</p>
+      <h3 class="k-f03-sub">Cover these points</h3>
+      <ol class="k-f03-ol">
+          <li>On your Avalanche Snow Foam page, the free UK shipping line sits under the features, the description and the pickup note, far below Add to Cart.</li>
+          <li>For German Car Accessories, putting the free shipping line right above the add button won an A/B test: revenue per visitor up 44.06%, add to cart up 7.03%.</li>
+          <li>On your page that would be "Free UK shipping over £50" right above Add to Cart.</li>
+          <li>Smaller one: 545 reviews at 4.95 is a big trust signal; the count could sit closer to the price.</li>
+          <li>Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
+      </ol>
+    </section>
+
+    <section class="k-sec k-f03-card" id="f03-as-s12" aria-label="12. C4 Fabrication">
+      <h2 class="k-h3">12. <a class="k-link" href="https://c4fabrication.com/products/tacoma-rock-runner-front-bumper-4th-gen" target="_blank" rel="noopener">C4 Fabrication</a></h2>
+      <p class="k-f03-who">Caleb Rupp, Founder (Chris Huff is listed as President)</p>
+      <dl class="k-facts">
+        <div><dt>Similar to</dt><dd>CV Fabrication</dd></div>
+        <div><dt>Matching past test</dt><dd>Henry's House of Coffee, Improve selectors and Add to cart, REVENUE +19.19%; CVR +16.15%</dd></div>
+      </dl>
+        <p class="k-f03-check"><b>Check first:</b> it sells in the same niche as a past client, CV Fabrication. You decide whether that is too close before you send.</p>
+      <h3 class="k-f03-sub">Cover these points</h3>
+      <ol class="k-f03-ol">
+          <li>On your Tacoma Rock Runner Front Bumper page, there are eight pickers before the button, and the button just says Select options.</li>
+          <li>For Henry's House of Coffee, simplifying the option pickers and the add button with clearer guidance won an A/B test on desktop: revenue up 19.19%, conversion rate up 16.15%.</li>
+          <li>On your page that would be the bumper finish and side style first, with the add ons grouped in one "build your bumper" step after.</li>
+          <li>Smaller one: no star rating shows near the title on a $1,549 bumper.</li>
+          <li>Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
+      </ol>
+    </section>
+
+    <section class="k-sec k-f03-card" id="f03-as-s13" aria-label="13. Red Light Rising">
+      <h2 class="k-h3">13. <a class="k-link" href="https://redlightrising.com/products/advantage-2-0-series-red-light-therapy-full-body-panel" target="_blank" rel="noopener">Red Light Rising</a></h2>
+      <p class="k-f03-who">James Strong, Co founder (with Bryan Gohl)</p>
+      <dl class="k-facts">
+        <div><dt>Similar to</dt><dd>Nurosym</dd></div>
+        <div><dt>Matching past test</dt><dd>Native Smoke 4 Less, Increase engagement by removing spinner popup, CVR +4.52%</dd></div>
+      </dl>
+        <p class="k-f03-check"><b>Check on your own screen first:</b> open the panel page on a phone from a UK address and check that the mystery discount quiz still covers the page on arrival.</p>
+      <h3 class="k-f03-sub">Cover these points</h3>
+      <ol class="k-f03-ol">
+          <li>On your Advantage 2.0 full body panel page, a phone visitor first sees a full screen mystery discount quiz with a timer, not the panel.</li>
+          <li>For Native Smoke 4 Less, removing the spin to win popup won an A/B test: conversion rate up 4.52%.</li>
+          <li>On your page that would be the quiz moved to a small tab or shown later, so the panel and its price load first.</li>
+          <li>Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
+      </ol>
+    </section>
+
+    <section class="k-sec k-f03-card" id="f03-as-s14" aria-label="14. Ethos Car Care">
+      <h2 class="k-h3">14. <a class="k-link" href="https://ethoscarcare.com/products/defy-ceramic-coating-waterless-wash" target="_blank" rel="noopener">Ethos Car Care</a></h2>
+      <p class="k-f03-who">Tim Coats, Founder and CEO</p>
+      <dl class="k-facts">
+        <div><dt>Similar to</dt><dd>Southeast Softwash</dd></div>
+        <div><dt>Matching past test</dt><dd>Never Miss Moments, Reinforced Money Back Guarantee, CVR +38.77%; RPV +38.99%</dd></div>
+      </dl>
+        <p class="k-f03-check"><b>Check first:</b> the site loads an analytics tool that can also run experiments. None was seen running, but they may already test, so you decide whether to send.</p>
+      <h3 class="k-f03-sub">Cover these points</h3>
+      <ol class="k-f03-ol">
+          <li>On your DEFY page, nothing a shopper can see mentions a guarantee or returns.</li>
+          <li>For Never Miss Moments, showing a money back guarantee at the top of the product page and under every add button won an A/B test: conversion rate up 38.77%, revenue per visitor up 38.99%.</li>
+          <li>If you already stand behind the product, on your page that would be one guarantee line right under Add to cart.</li>
+          <li>Smaller one: "In Stock, Ships Same Day" is strong; it could sit next to the button too.</li>
+          <li>Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
+      </ol>
+    </section>
+
+    <section class="k-sec k-f03-card" id="f03-as-s15" aria-label="15. Stikwood">
+      <h2 class="k-h3">15. <a class="k-link" href="https://www.stikwood.com/products/golden-oak" target="_blank" rel="noopener">Stikwood</a></h2>
+      <p class="k-f03-who">Jerry McCall, CEO</p>
+      <dl class="k-facts">
+        <div><dt>Similar to</dt><dd>Wood Upp</dd></div>
+        <div><dt>Matching past test</dt><dd>Wood Upp, Display Product Rating, Thumbnails, and Usage Video in Upper Right Corner, CVR +4.84%</dd></div>
+      </dl>
+        <p class="k-f03-check"><b>Check first:</b> a LinkedIn search for Stikwood showed someone who works at a marketing agency, so an agency may already work with them. Check that before you send.</p>
+      <h3 class="k-f03-sub">Cover these points</h3>
+      <ol class="k-f03-ol">
+          <li>On your Golden Oak page, the install video is far down the page, not in the photos at the top.</li>
+          <li>For Wood Upp, a wall panel brand, putting the rating, thumbnails and a usage video at the top of the phone page won an A/B test: conversion rate up 4.84%.</li>
+          <li>On your page that would be the peel and stick install clip as the second slide in the gallery.</li>
+          <li>Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
+      </ol>
+    </section>
+<!--/CARDS-->
   </div>
 </div>
 

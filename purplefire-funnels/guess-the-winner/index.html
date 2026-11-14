@@ -359,6 +359,10 @@ body::before {
 .k-copy[data-state="select"] { background: var(--k-bg-3); }
 .k-copy svg.k-i { width: 14px; height: 14px; }
 .k-copy .k-i-done { display: none; }
+@media (max-width: 599px) {
+  .k-copy { min-height: 44px; }
+  .k-copy::before { inset: 0; }
+}
 .k-copy[data-state="done"] .k-i-copy { display: none; }
 .k-copy[data-state="done"] .k-i-done { display: block; }
 
@@ -402,6 +406,77 @@ body::before {
 .k-table tbody tr + tr td, .k-table tbody tr + tr th { border-top: 1px solid var(--k-line); }
 .k-table tbody th { font-weight: 700; }
 .k-table td { color: var(--k-fg-2); min-width: 160px; }
+
+/* Stacked table (.k-table--stack): under 600 px each row becomes a block. The row header th[scope=row] is the
+   block's heading with the .k-num cell beside it; every other cell gets its column name from data-label.
+   A row with class k-table-more continues the block above (rowspan): it gets a light inset divider, no heading.
+   The selectors carry .k-root .k-table so they beat a kit's own column min-widths. */
+@media (max-width: 599px) {
+  .k-root .k-table.k-table--stack,
+  .k-root .k-table--stack tbody { display: block; }
+  .k-root .k-table--stack thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .k-root .k-table--stack tbody tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: baseline;
+    gap: 10px 12px;
+    padding: 16px;
+  }
+  .k-root .k-table--stack tbody tr + tr { border-top: 1px solid var(--k-line); }
+  .k-root .k-table--stack tbody tr.k-table-more { border-top: 0; padding-top: 0; }
+  .k-root .k-table.k-table--stack tbody :is(td, th) {
+    display: block;
+    grid-column: 1 / -1;
+    min-width: 0;
+    width: auto;
+    padding: 0;
+    border: 0;
+    overflow-wrap: break-word;
+  }
+  .k-root .k-table.k-table--stack tbody th[scope="row"] {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: 18px;
+    line-height: 1.3;
+    color: var(--k-fg);
+  }
+  .k-root .k-table.k-table--stack tbody td.k-num {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--k-muted);
+  }
+  .k-root .k-table--stack td.k-num::before { content: attr(data-label) " "; }
+  .k-root .k-table--stack td[data-label]:not(.k-num)::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 2px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--k-muted);
+  }
+  .k-root .k-table.k-table--stack tbody tr.k-table-more > td:first-child {
+    padding-top: 12px;
+    border-top: 1px solid var(--k-line);
+  }
+}
+/* 600 px and up: the normal table with the kit's column minimums lifted, so every column fits the column width
+   (six columns do not fit 760 px with them); 600 to 767 px also tightens the cells */
+@media (min-width: 600px) {
+  .k-root .k-table.k-table--stack :is(td, th) { min-width: 0; }
+}
+@media (min-width: 600px) and (max-width: 767px) {
+  .k-root .k-table.k-table--stack :is(td, th) { padding: 10px; }
+}
 
 /* ---------- segmented control (ratio and device switches) ---------- */
 .k-seg { display: inline-flex; padding: 3px; gap: 2px; border-radius: 10px; background: var(--k-bg-3); }
@@ -1112,6 +1187,10 @@ span.lp-day { cursor: default; }
 }
 .s-sw:hover { color: #ffffff; background: rgba(255, 255, 255, .06); }
 .s-sw[aria-current="page"] { color: #9be7c4; background: rgba(155, 231, 196, .14); }
+/* the funnel number leads; the short name is the quieter second part of the same pill */
+.s-sw-name { font-weight: 500; color: #9fb0ac; }
+.s-sw:hover .s-sw-name { color: #cfd8d6; }
+.s-sw[aria-current="page"] .s-sw-name { color: inherit; opacity: .82; }
 .k-root .s-sw:focus-visible { outline: 2px solid #9be7c4; outline-offset: 2px; border-radius: 999px; }
 /* kit tab focus: a full ring drawn inside the tab row, because the row is a 44 px scroll box and clips an outline that sits outside the tab */
 .k-root .k-tab:focus-visible { outline: none; }
@@ -1140,6 +1219,12 @@ span.lp-day { cursor: default; }
   .s-band-in { gap: 0; min-height: 52px; }
   .s-sw { position: relative; min-height: 36px; padding: 0 14px; }
   .s-sw::before { content: ""; position: absolute; inset: -4px 0; }
+}
+/* small phones: 44 px pills; the row's padding gives back the 8 px so the band stays 52 px */
+@media (max-width: 599px) {
+  .s-sw { min-height: 44px; }
+  .s-sw::before { inset: 0; }
+  .s-switch { padding-block: 4px; }
 }
 
 /* downloads on an ad unit, under its name */
@@ -1213,57 +1298,32 @@ span.lp-day { cursor: default; }
 </head>
 <body>
 <div class="k-root">
-<div class="s-band"><div class="s-band-in"><img class="s-logo" src="../assets/purplefire-logo.webp" alt="PurpleFire" width="108" height="20"><nav class="s-switch" aria-label="Funnels"><a class="s-sw" href="../">Overview</a><a class="s-sw" href="../past-clients/">Past clients</a><a class="s-sw" href="../after-the-freeze/">After the freeze</a><a class="s-sw" href="../named-stores/">Named stores</a><a class="s-sw" href="../guess-the-winner/" aria-current="page">Guess the winner</a></nav></div></div>
+<div class="s-band"><div class="s-band-in"><img class="s-logo" src="../assets/purplefire-logo.webp" alt="PurpleFire" width="108" height="20"><nav class="s-switch" aria-label="Funnels"><a class="s-sw" href="../">Overview</a><a class="s-sw" href="../past-clients/"><span>Funnel 1 <span class="s-sw-name">Past clients</span></span></a><a class="s-sw" href="../after-the-freeze/"><span>Funnel 2 <span class="s-sw-name">After the freeze</span></span></a><a class="s-sw" href="../named-stores/"><span>Funnel 3 <span class="s-sw-name">Named stores</span></span></a><a class="s-sw" href="../guess-the-winner/" aria-current="page"><span>Funnel 4 <span class="s-sw-name">Guess the winner</span></span></a></nav></div></div>
 <header class="k-head"><div class="k-head-in">
-  <div class="k-head-row"><p class="k-kit"><span class="k-kit-no">Kit 04</span><span class="k-kit-name">A guess the winner game in place of the video</span></p><p class="k-proto">Prototype for PurpleFire</p></div>
-  <nav class="k-tabs" aria-label="Kit sections"><a class="k-tab" href="#strategy" data-tab="strategy" aria-current="page">Strategy</a><a class="k-tab" href="#run" data-tab="run">Run it</a><a class="k-tab" href="#ads" data-tab="ads">Ads</a><a class="k-tab" href="#page" data-tab="page">Landing page</a><a class="k-tab" href="#assets" data-tab="assets">Assets</a></nav>
+  <div class="k-head-row"><p class="k-kit"><span class="k-kit-no">Funnel 4</span><span class="k-kit-name">A guess the winner game in place of the video</span></p><p class="k-proto">Prototype for PurpleFire</p></div>
+  <nav class="k-tabs" aria-label="Funnel sections"><a class="k-tab" href="#strategy" data-tab="strategy" aria-current="page">Strategy 4</a><a class="k-tab" href="#run" data-tab="run">Run it</a><a class="k-tab" href="#ads" data-tab="ads">Ads</a><a class="k-tab" href="#page" data-tab="page">Landing page</a><a class="k-tab" href="#assets" data-tab="assets">Assets</a></nav>
 </div></header>
 <main class="k-main">
-<section class="k-panel" id="tab-strategy" data-tab="strategy" aria-label="Strategy">
+<section class="k-panel" id="tab-strategy" data-tab="strategy" aria-label="Strategy 4">
 <div class="k-col">
   <div class="k-intro">
     <h1 class="k-title">A guess the winner game in place of the video</h1>
-    <p class="k-lede">A founder argues with a video and believes their own wrong answers. The game turns "I know my store" into "I guessed 4 of 10", which is the belief a done for you testing offer needs.</p>
+    <p class="k-lede">A founder argues with a video but believes their own wrong guesses.</p>
   </div>
 
-  <section class="k-sec" aria-label="What changes">
-    <h2 class="k-h3">What changes</h2>
-    <div class="k-pair">
-      <div class="k-today">
-        <p class="k-pair-label">Today</p>
-        <p>Founders read finished results and a video asks them to believe them; ai-cro v1 gives a free audit to anyone.</p>
-      </div>
-      <div class="k-new">
-        <p class="k-pair-label">New</p>
-        <p>The ad is round one: two versions of a real page, "Which one won?". The page is ten real A/B tests, sides shuffled, losing tests mixed in, the result after each guess. Round eleven is their store: URL and email bring five tests within 48 hours as a Loom and one still.</p>
-      </div>
-    </div>
+  <section class="k-sec" aria-label="The idea">
+    <h2 class="k-h3">The idea</h2>
+    <p class="k-p">The ad shows two versions of a real page and asks which one won. The page is ten real A/B tests, losing ones mixed in, with the answer after each guess, so a founder sees they cannot pick winners by eye. The last round is their own store: they send the URL and an email, Daniel sends five A/B tests for that store within 48 hours as a Loom and one still, and the founder books a 15 minute call.</p>
   </section>
 
-  <section class="k-sec" aria-label="The test">
-    <h2 class="k-h3">The test</h2>
-    <dl class="k-facts">
-      <div><dt>Who it is for</dt><dd>Founders who never tested, founders with an agency, a head of ecommerce who shows the boss.</dd></div>
-      <div><dt>Hypothesis</dt><dd>Founders who play at least five rounds give a qualified store URL at a higher rate per dollar than the same audience sent to ai-cro v1, because a low score shows them they cannot pick winners by eye; if fewer than 40 percent of arm A visitors reach round three, the hypothesis is false. Five rounds played is counted by the event f04_round5_reached.</dd></div>
-      <div><dt>Arms</dt><dd>One cold audience split by Meta's A/B test tool. A: the game. B: ai-cro v1 untouched (Daniel's OK).</dd></div>
-      <div><dt>Kill</dt><dd>Under 40 percent of arm A reach round three after 300 visitors.</dd></div>
-      <div><dt>Keep</dt><dd>At least 40 percent of arm A visitors reach round three; at least 8 percent of players who finish round ten give a qualified URL; more qualified URLs per dollar than arm B; at least 2 calls by Fri 29 Jan. Directional.</dd></div>
-      <div><dt>Budget</dt><dd>$80 a day for 14 days, about $1,120 <abbr class="k-est" title="Estimate">Est.</abbr> Build 22 to 32 hours <abbr class="k-est" title="Estimate">Est.</abbr>; 1 to 1.75 hours per qualified lead <abbr class="k-est" title="Estimate">Est.</abbr></dd></div>
-    </dl>
+  <section class="k-sec" aria-label="Hypothesis">
+    <h2 class="k-h3">Hypothesis</h2>
+    <p class="k-p">Founders may not book a call now because of Black Friday, Cyber Monday and the holidays, so this funnel is built in December, runs from Tue 5 Jan when they are back, and asks for a store URL before any call. It is wrong if fewer than 40 percent of game visitors reach round three after the first 300 visitors, or if fewer than 2 calls are booked by Fri 29 Jan.</p>
   </section>
 
-  <section class="k-sec" aria-label="Shared with the other kits">
-    <h2 class="k-h3">Shared with the other kits</h2>
-    <p class="k-p">Kit 03 arm B's five tests format; the January calendar; kit 02's slot board and Meta account, never on one audience at once.</p>
-  </section>
-
-  <section class="k-sec" aria-label="Risks">
-    <h2 class="k-h3">Risks</h2>
-    <ul class="k-list">
-      <li>Students may play (the revenue tap filters).</li>
-      <li>If the change always wins, players learn the pattern.</li>
-      <li>Current clients appear only anonymised, with screens redrawn; any brand Daniel excludes stays out of the rounds.</li>
-    </ul>
+  <section class="k-sec" aria-label="Cost">
+    <h2 class="k-h3">Cost</h2>
+    <p class="k-p">Media $80 a day for 14 days, about $1,120; build 22 to 32 hours. <abbr class="k-est" title="Estimate">Est.</abbr></p>
   </section>
 </div>
 
@@ -1282,7 +1342,7 @@ span.lp-day { cursor: default; }
         <time class="k-date" datetime="2026-11-16"><span class="k-dow">Mon</span><span class="k-day">16</span><span class="k-mon">Nov</span></time>
         <div class="k-step-body">
           <p class="k-step-what">Sign off the ten rounds</p>
-          <p class="k-step-detail">The full list with sources, figures and frames is in Assets, "Tests used". Rounds 3, 6 and 9 are anonymised tests from current clients and also need each client's OK before the game is public. Due by Fri 11 Dec. Nothing else is needed before Fri 4 Dec.</p>
+          <p class="k-step-detail">The full list with sources, figures and frames is in Assets, "Tests used". Rounds 3, 6 and 9 are anonymised tests from current clients and also need each client's OK before the game is public. Any brand you exclude stays out of the rounds. Due by Fri 11 Dec. Nothing else is needed before Fri 4 Dec.</p>
           <p class="k-needs"><b>Needs first</b> Nothing</p>
         </div>
       </li>
@@ -1290,7 +1350,7 @@ span.lp-day { cursor: default; }
         <time class="k-date" datetime="2026-12-04"><span class="k-dow">Fri</span><span class="k-day">4</span><span class="k-mon">Dec</span></time>
         <div class="k-step-body">
           <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: the build</p>
-          <ul class="k-gate-ifs"><li>You say go on kit 04 and on the spend.</li></ul>
+          <ul class="k-gate-ifs"><li>You say go on funnel 4 and on the spend.</li></ul>
           <p class="k-step-detail">Proposed date.</p>
           <p class="k-needs"><b>Needs first</b> Nothing</p>
         </div>
@@ -1355,7 +1415,7 @@ span.lp-day { cursor: default; }
         <time class="k-date" datetime="2026-12-18"><span class="k-dow">Fri</span><span class="k-day">18</span><span class="k-mon">Dec</span></time>
         <div class="k-step-body">
           <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: build done</p>
-          <ul class="k-gate-ifs"><li>You approve the page and ads.</li><li>The campaign is built paused in Ads Manager as an A/B test: arm A to the game, arm B to ai-cro v1, exclusions on (VSL visitors, kit 01's past client list, anyone who booked through kit 02).</li><li>Check in Ads Manager that the split does not overlap.</li></ul>
+          <ul class="k-gate-ifs"><li>You approve the page and ads.</li><li>The campaign is built paused in Ads Manager as an A/B test: arm A to the game, arm B to ai-cro v1, exclusions on (VSL visitors, anyone who booked through funnel 2).</li><li>Check in Ads Manager that the split does not overlap and that no funnel 2 ad set runs on the same audience at the same time (both funnels share the ad account).</li></ul>
           <p class="k-needs"><b>Needs first</b> All of the above</p>
         </div>
       </li>
@@ -1370,7 +1430,7 @@ span.lp-day { cursor: default; }
         <time class="k-date" datetime="2027-01-04"><span class="k-dow">Mon</span><span class="k-day">4</span><span class="k-mon">Jan</span></time>
         <div class="k-step-body">
           <p class="k-step-what">January calendar ready; calls from Tue 5 Jan</p>
-          <p class="k-step-detail">15 minute calls, Tue 5 to Fri 29 Jan. Time blocked in your calendar to check the Looms. Exclusions refreshed with kit 02's December bookings.</p>
+          <p class="k-step-detail">15 minute calls, Tue 5 to Fri 29 Jan. Time blocked in your calendar to check the Looms. Exclusions refreshed with funnel 2's December bookings.</p>
           <p class="k-needs"><b>Needs first</b> Calendar link</p>
         </div>
       </li>
@@ -1418,7 +1478,7 @@ span.lp-day { cursor: default; }
         <time class="k-date" datetime="2027-01-29"><span class="k-dow">Fri</span><span class="k-day">29</span><span class="k-mon">Jan</span></time>
         <div class="k-step-body">
           <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Read: keep or kill</p>
-          <ul class="k-gate-ifs"><li>Against the four keep numbers.</li></ul>
+          <ul class="k-gate-ifs"><li>Keep if all four hold: at least 40 percent of arm A visitors reach round three; at least 8 percent of players who finish round ten give a qualified URL; more qualified URLs per dollar than arm B; at least 2 calls by Fri 29 Jan. Directional.</li></ul>
           <p class="k-needs"><b>Needs first</b> The numbers in "How to read it"</p>
         </div>
       </li>
@@ -1428,7 +1488,7 @@ span.lp-day { cursor: default; }
   <section class="k-sec" aria-label="Confirm with Daniel">
     <h2 class="k-h3">Confirm with Daniel <span class="k-count" data-count-for="f04-need">0 of 17 ticked</span></h2>
     <ul class="k-check" id="f04-need">
-      <li><input type="checkbox" id="f04-need-go"><label for="f04-need-go">His go on kit 04 and on about $1,120 of media <abbr class="k-est" title="Estimate">Est.</abbr><small>By Fri 4 Dec</small></label></li>
+      <li><input type="checkbox" id="f04-need-go"><label for="f04-need-go">His go on funnel 4 and on about $1,120 of media <abbr class="k-est" title="Estimate">Est.</abbr><small>By Fri 4 Dec</small></label></li>
       <li><input type="checkbox" id="f04-need-signoff"><label for="f04-need-signoff">Sign off the ten rounds (Assets, "Tests used")<small>By Fri 11 Dec. The cards on ai-cro v1 are public.</small></label></li>
       <li><input type="checkbox" id="f04-need-clients"><label for="f04-need-clients">Written OK from the two current clients behind rounds 3, 6 and 9, before the game is public<small>Both are anonymised: no name, logo or address in any frame, and no test ID on the page.</small></label></li>
       <li><input type="checkbox" id="f04-need-r7"><label for="f04-need-r7">Round 7: GCA-040 from your ai-cro v1 proof rail, in place of GC-025, because its image gives a fair pair. Yes?</label></li>
@@ -1441,8 +1501,8 @@ span.lp-day { cursor: default; }
       <li><input type="checkbox" id="f04-need-floor"><label for="f04-need-floor">Revenue floor: $150k a month, as on your live VSL page. Yes?</label></li>
       <li><input type="checkbox" id="f04-need-host"><label for="f04-need-host">Game page address: new.purplefire.io/guess-the-winner/v1. Yes?</label></li>
       <li><input type="checkbox" id="f04-need-dev"><label for="f04-need-dev">His developer's time to host the page<small>Tue 15 to Thu 17 Dec</small></label></li>
-      <li><input type="checkbox" id="f04-need-cal"><label for="f04-need-cal">January calendar: 15 minute calls, weekdays Tue 5 to Fri 29 Jan, 10:00 to 16:00 Copenhagen time, booked on new.purplefire.io/after-freeze/v1; the launch weeks open on kit 02's slot board. Yes?</label></li>
-      <li><input type="checkbox" id="f04-need-feb"><label for="f04-need-feb">February overflow: the weeks of Mon 1 Feb and Mon 8 Feb, 2 seats each, for players who reply "January" after the week of Mon 25 Jan is full; on kit 02's slot board, not shown on the page until January is full. Yes?</label></li>
+      <li><input type="checkbox" id="f04-need-cal"><label for="f04-need-cal">January calendar: 15 minute calls, weekdays Tue 5 to Fri 29 Jan, 10:00 to 16:00 Copenhagen time, booked on new.purplefire.io/after-freeze/v1; the launch weeks open on funnel 2's slot board. Yes?</label></li>
+      <li><input type="checkbox" id="f04-need-feb"><label for="f04-need-feb">February overflow: the weeks of Mon 1 Feb and Mon 8 Feb, 2 seats each, for players who reply "January" after the week of Mon 25 Jan is full; on funnel 2's slot board, not shown on the page until January is full. Yes?</label></li>
       <li><input type="checkbox" id="f04-need-privacy"><label for="f04-need-privacy">Privacy link: https://www.purplefire.io/privacy-policy, in the footer and the email step, as in your live page footer. Yes?</label></li>
       <li><input type="checkbox" id="f04-need-who"><label for="f04-need-who">Who publishes the ads: Daniel or his media buyer</label></li>
     </ul>
@@ -1472,7 +1532,7 @@ span.lp-day { cursor: default; }
   <section class="k-sec" aria-label="Rules for every ad">
     <h2 class="k-h3">Rules for every ad</h2>
     <dl class="k-facts">
-      <div><dt>Audience</dt><dd>Meta, cold, founder and ecommerce interests. Excludes his VSL visitors, kit 01's past client list and anyone who booked through kit 02.</dd></div>
+      <div><dt>Audience</dt><dd>Meta, cold, founder and ecommerce interests. Excludes his VSL visitors and anyone who booked through funnel 2.</dd></div>
       <div><dt>Placement</dt><dd>Facebook and Instagram feeds. Each creative exists at 1:1 and 4:5.</dd></div>
       <div><dt>Budget</dt><dd>Arm A's ad set gets $40 a day; Meta divides it between the three ads <abbr class="k-est" title="Estimate">Est.</abbr> Arm B gets the other $40 a day and runs his current ai-cro v1 ad, unchanged.</dd></div>
       <div><dt>Round one</dt><dd>Round one follows the ad. Each ad's link carries <code>r1=</code> so the page opens on the test the ad showed, with the same two versions on the same sides. The other rounds keep their order.</dd></div>
@@ -2046,7 +2106,7 @@ Ten real tests from Shopify stores, each one with the result straight from the t
 
     <section class="k-sec" id="f04-as-consent" aria-label="Consent">
       <h2 class="k-h3">Consent</h2>
-      <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>None of these emails is a cold message.</b> Every email in this kit goes only to a player who gave a store URL and an email at round eleven and asked for it. Nothing here is sent to anyone who did not.</p></div>
+      <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>None of these emails is a cold message.</b> Every email in this funnel goes only to a player who gave a store URL and an email at round eleven and asked for it. Nothing here is sent to anyone who did not.</p></div>
       <p class="k-p">The follow up rests on the form line "Daniel may write once after that". The legal read confirms that is enough for Danish players before the first follow up goes out. If the legal read asks for a source line, one is added to each email.</p>
     </section>
 
@@ -2095,7 +2155,7 @@ Here are the five A/B tests we'd run first on your {product} page: {loom link}
 
 The still below has each test numbered on your page. A person looked at your page and checked every one before it was sent.
 
-If you want test one as your first A/B test, reply "January". I'll hold the next open launch week for you and send a link for a 15 minute planning call.
+If you want test one as your first A/B test, reply "January" and I'll send a link for a 15 minute planning call, where we set the week it launches.
 
 Daniel Chabert, PurpleFire
 
@@ -2105,14 +2165,14 @@ Daniel Chabert, PurpleFire
 
     <section class="k-sec" id="f04-as-january" aria-label="Reply when they answer January">
       <h2 class="k-h3">Reply when they answer "January"</h2>
-      <p class="k-p">Daniel, same working day. Kit 03, Assets, "Reply when they answer January", with two changes: no first name (round eleven does not collect one) and always the January calendar link. Hold the week on kit 02's slot board for 48 hours before sending. Each launch week (Mon 11, Mon 18, Mon 25 Jan) has 2 seats. If that week has no seat left, hold the next week that has one and name it in the first line; after Mon 25 Jan, the overflow weeks of Mon 1 Feb and Mon 8 Feb, 2 seats each. {calendar link} is https://new.purplefire.io/after-freeze/v1, where the booking sits.</p>
+      <p class="k-p">Daniel, same working day. It has no first name, because round eleven does not collect one. {calendar link} is https://new.purplefire.io/after-freeze/v1, where the booking sits: they book a 15 minute January call like anyone else, and the launch week is set on that call.</p>
       <figure class="k-cb">
         <figcaption><span class="k-cb-label">Reply to "January"</span></figcaption>
-        <div class="k-cb-body">Great. I've held the week of {launch week Monday} for {store} until {day and time, 48 hours from now}.
+        <div class="k-cb-body">Great, thanks for writing back.
 
-Pick a 15 minute slot here and we'll lock it in: {calendar link}
+Pick a 15 minute slot here and we'll set the week your first A/B test on {store} launches: {calendar link}
 
-On the call we confirm that week for your first A/B test. Your first split test is on us. You pay after the first win.
+Your first split test is on us. You pay after the first win.
 
 Daniel</div>
       </figure>
@@ -2138,9 +2198,9 @@ Daniel</div>
 
     <section class="k-sec" id="f04-as-loom" aria-label="Loom script for the five tests">
       <h2 class="k-h3">Loom script for the five tests</h2>
-      <p class="k-p">Shared with kit 03 arm B (kit 03 Assets: the pattern tables, Loom scripts, Shot lists and Still images, word for word). One change: round eleven collects no first name, so the opening line is the one below. About 40 seconds, about 100 spoken words. <code>{test 2}</code> to <code>{test 5}</code> are each under six words, from the five tests workflow, checked by a person, none repeating test one.</p>
+      <p class="k-p">Everything needed to record the five tests video is on this tab: the script, the fills for test one, the shot list and the still spec. Round eleven collects no first name, so the script opens without one. About 40 seconds, about 100 spoken words. <code>{test 2}</code> to <code>{test 5}</code> are each under six words, from the five tests workflow, checked by a person, none repeating test one.</p>
       <figure class="k-cb">
-        <figcaption><span class="k-cb-label">Loom script</span><span class="k-cb-meta">Kit 03 arm B, new opening line</span></figcaption>
+        <figcaption><span class="k-cb-label">Loom script</span><span class="k-cb-meta">About 40 seconds</span></figcaption>
         <div class="k-cb-body">Hi, Daniel from PurpleFire. You played the game and sent us {store}. This is your {product} page, and the pins mark the five A/B tests I'd run first.
 
 Test one is where I'd start: {test one line} {proof line}
@@ -2154,7 +2214,7 @@ Your first split test is on us. You pay after the first win. Want this as your f
         <div class="k-cb-body k-mono">{store}: five A/B tests for your {product} page</div>
       </figure>
       <figure class="k-cb">
-        <figcaption><span class="k-cb-label">Fills for test one</span><span class="k-cb-meta">Kit 03 Assets, "Proof line per pattern"</span></figcaption>
+        <figcaption><span class="k-cb-label">Fills for test one</span><span class="k-cb-meta">One test one line and proof line per pattern</span></figcaption>
         <div class="k-cb-body">Pattern 1, test one line: a sticky add to cart bar with the cart count.
 Proof line: On a fabric and materials brand, this change, on mobile, won an A/B test: conversion up 22.4 percent.
 
@@ -2171,7 +2231,7 @@ Pattern 5, test one line: the product details in tabs under the button.
 Proof line: On a personalised gifts brand, this change won an A/B test: conversion up 14.3 percent.</div>
       </figure>
       <figure class="k-cb">
-        <figcaption><span class="k-cb-label">Shot list</span><span class="k-cb-meta">Kit 03 Assets, Shot lists, arm B</span></figcaption>
+        <figcaption><span class="k-cb-label">Shot list</span><span class="k-cb-meta">Second by second</span></figcaption>
         <div class="k-cb-body">Before recording: Loom desktop app, 1080p, camera bubble on, small, bottom left, never over the change or a pin. Sharing set to anyone with the link, downloads off.
 
 0 to 7 s: the still, full frame, all five pins visible. Spoken: "Hi, Daniel from PurpleFire..."
@@ -2180,13 +2240,13 @@ Proof line: On a personalised gifts brand, this change won an A/B test: conversi
 32 to 40 s: hold on the still, cursor back on pin 1. Spoken: the offer line and the ask</div>
       </figure>
       <figure class="k-cb">
-        <figcaption><span class="k-cb-label">Still image spec</span><span class="k-cb-meta">Kit 03 Assets, Still images, arm B</span></figcaption>
+        <figcaption><span class="k-cb-label">Still image spec</span><span class="k-cb-meta">One still per store</span></figcaption>
         <div class="k-cb-body">Size: 1600 by 1000 px, PNG, under 1 MB.
 Shows: on the left, a phone capture of their product page at 390 px wide, cut to the areas the pins sit on, with five numbered pins in the brand accent colour; pin 1 sits on the area the store's pattern would change and is set larger than the rest. On the right, the legend: the numbers 1 to 5, each with its test in one line. Line 1 is the test one line, with the proof line under it in smaller type. Nothing is built or mocked up; the capture shows the page as it is today.
 Caption across the top: "The five A/B tests I'd run first on your {product} page"
 Line across the bottom: "Captured from your public page on {capture date}. Nothing on your store was changed."
 PurpleFire logo, small, bottom right.
-File name: {store_id}_arm_b.png</div>
+File name: {store_id}_five_tests.png</div>
       </figure>
     </section>
 

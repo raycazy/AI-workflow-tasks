@@ -359,6 +359,10 @@ body::before {
 .k-copy[data-state="select"] { background: var(--k-bg-3); }
 .k-copy svg.k-i { width: 14px; height: 14px; }
 .k-copy .k-i-done { display: none; }
+@media (max-width: 599px) {
+  .k-copy { min-height: 44px; }
+  .k-copy::before { inset: 0; }
+}
 .k-copy[data-state="done"] .k-i-copy { display: none; }
 .k-copy[data-state="done"] .k-i-done { display: block; }
 
@@ -402,6 +406,77 @@ body::before {
 .k-table tbody tr + tr td, .k-table tbody tr + tr th { border-top: 1px solid var(--k-line); }
 .k-table tbody th { font-weight: 700; }
 .k-table td { color: var(--k-fg-2); min-width: 160px; }
+
+/* Stacked table (.k-table--stack): under 600 px each row becomes a block. The row header th[scope=row] is the
+   block's heading with the .k-num cell beside it; every other cell gets its column name from data-label.
+   A row with class k-table-more continues the block above (rowspan): it gets a light inset divider, no heading.
+   The selectors carry .k-root .k-table so they beat a kit's own column min-widths. */
+@media (max-width: 599px) {
+  .k-root .k-table.k-table--stack,
+  .k-root .k-table--stack tbody { display: block; }
+  .k-root .k-table--stack thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .k-root .k-table--stack tbody tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: baseline;
+    gap: 10px 12px;
+    padding: 16px;
+  }
+  .k-root .k-table--stack tbody tr + tr { border-top: 1px solid var(--k-line); }
+  .k-root .k-table--stack tbody tr.k-table-more { border-top: 0; padding-top: 0; }
+  .k-root .k-table.k-table--stack tbody :is(td, th) {
+    display: block;
+    grid-column: 1 / -1;
+    min-width: 0;
+    width: auto;
+    padding: 0;
+    border: 0;
+    overflow-wrap: break-word;
+  }
+  .k-root .k-table.k-table--stack tbody th[scope="row"] {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: 18px;
+    line-height: 1.3;
+    color: var(--k-fg);
+  }
+  .k-root .k-table.k-table--stack tbody td.k-num {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--k-muted);
+  }
+  .k-root .k-table--stack td.k-num::before { content: attr(data-label) " "; }
+  .k-root .k-table--stack td[data-label]:not(.k-num)::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 2px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--k-muted);
+  }
+  .k-root .k-table.k-table--stack tbody tr.k-table-more > td:first-child {
+    padding-top: 12px;
+    border-top: 1px solid var(--k-line);
+  }
+}
+/* 600 px and up: the normal table with the kit's column minimums lifted, so every column fits the column width
+   (six columns do not fit 760 px with them); 600 to 767 px also tightens the cells */
+@media (min-width: 600px) {
+  .k-root .k-table.k-table--stack :is(td, th) { min-width: 0; }
+}
+@media (min-width: 600px) and (max-width: 767px) {
+  .k-root .k-table.k-table--stack :is(td, th) { padding: 10px; }
+}
 
 /* ---------- segmented control (ratio and device switches) ---------- */
 .k-seg { display: inline-flex; padding: 3px; gap: 2px; border-radius: 10px; background: var(--k-bg-3); }
@@ -1257,6 +1332,10 @@ span.lp-day { cursor: default; }
 }
 .s-sw:hover { color: #ffffff; background: rgba(255, 255, 255, .06); }
 .s-sw[aria-current="page"] { color: #9be7c4; background: rgba(155, 231, 196, .14); }
+/* the funnel number leads; the short name is the quieter second part of the same pill */
+.s-sw-name { font-weight: 500; color: #9fb0ac; }
+.s-sw:hover .s-sw-name { color: #cfd8d6; }
+.s-sw[aria-current="page"] .s-sw-name { color: inherit; opacity: .82; }
 .k-root .s-sw:focus-visible { outline: 2px solid #9be7c4; outline-offset: 2px; border-radius: 999px; }
 /* kit tab focus: a full ring drawn inside the tab row, because the row is a 44 px scroll box and clips an outline that sits outside the tab */
 .k-root .k-tab:focus-visible { outline: none; }
@@ -1285,6 +1364,12 @@ span.lp-day { cursor: default; }
   .s-band-in { gap: 0; min-height: 52px; }
   .s-sw { position: relative; min-height: 36px; padding: 0 14px; }
   .s-sw::before { content: ""; position: absolute; inset: -4px 0; }
+}
+/* small phones: 44 px pills; the row's padding gives back the 8 px so the band stays 52 px */
+@media (max-width: 599px) {
+  .s-sw { min-height: 44px; }
+  .s-sw::before { inset: 0; }
+  .s-switch { padding-block: 4px; }
 }
 
 /* downloads on an ad unit, under its name */
@@ -1358,58 +1443,32 @@ span.lp-day { cursor: default; }
 </head>
 <body>
 <div class="k-root">
-<div class="s-band"><div class="s-band-in"><img class="s-logo" src="../assets/purplefire-logo.webp" alt="PurpleFire" width="108" height="20"><nav class="s-switch" aria-label="Funnels"><a class="s-sw" href="../">Overview</a><a class="s-sw" href="../past-clients/">Past clients</a><a class="s-sw" href="../after-the-freeze/" aria-current="page">After the freeze</a><a class="s-sw" href="../named-stores/">Named stores</a><a class="s-sw" href="../guess-the-winner/">Guess the winner</a></nav></div></div>
+<div class="s-band"><div class="s-band-in"><img class="s-logo" src="../assets/purplefire-logo.webp" alt="PurpleFire" width="108" height="20"><nav class="s-switch" aria-label="Funnels"><a class="s-sw" href="../">Overview</a><a class="s-sw" href="../past-clients/"><span>Funnel 1 <span class="s-sw-name">Past clients</span></span></a><a class="s-sw" href="../after-the-freeze/" aria-current="page"><span>Funnel 2 <span class="s-sw-name">After the freeze</span></span></a><a class="s-sw" href="../named-stores/"><span>Funnel 3 <span class="s-sw-name">Named stores</span></span></a><a class="s-sw" href="../guess-the-winner/"><span>Funnel 4 <span class="s-sw-name">Guess the winner</span></span></a></nav></div></div>
 <header class="k-head"><div class="k-head-in">
-  <div class="k-head-row"><p class="k-kit"><span class="k-kit-no">Kit 02</span><span class="k-kit-name">Book now for after the freeze</span></p><p class="k-proto">Prototype for PurpleFire</p></div>
-  <nav class="k-tabs" aria-label="Kit sections"><a class="k-tab" href="#strategy" data-tab="strategy" aria-current="page">Strategy</a><a class="k-tab" href="#run" data-tab="run">Run it</a><a class="k-tab" href="#ads" data-tab="ads">Ads</a><a class="k-tab" href="#page" data-tab="page">Landing page</a><a class="k-tab" href="#assets" data-tab="assets">Assets</a></nav>
+  <div class="k-head-row"><p class="k-kit"><span class="k-kit-no">Funnel 2</span><span class="k-kit-name">Book now for after the freeze</span></p><p class="k-proto">Prototype for PurpleFire</p></div>
+  <nav class="k-tabs" aria-label="Funnel sections"><a class="k-tab" href="#strategy" data-tab="strategy" aria-current="page">Strategy 2</a><a class="k-tab" href="#run" data-tab="run">Run it</a><a class="k-tab" href="#ads" data-tab="ads">Ads</a><a class="k-tab" href="#page" data-tab="page">Landing page</a><a class="k-tab" href="#assets" data-tab="assets">Assets</a></nav>
 </div></header>
 <main class="k-main">
-<section class="k-panel" id="tab-strategy" data-tab="strategy" aria-label="Strategy">
+<section class="k-panel" id="tab-strategy" data-tab="strategy" aria-label="Strategy 2">
 <div class="k-col">
   <div class="k-intro">
     <h1 class="k-title">Book now for after the freeze</h1>
-    <p class="k-lede">One page sells a date after the freeze. Nothing is asked of the store before December, and the offer stays as it is.</p>
+    <p class="k-lede">One page lets a founder book a date after Black Friday, and the offer stays as it is.</p>
   </div>
 
-  <section class="k-sec" aria-label="What changes">
-    <h2 class="k-h3">What changes</h2>
-    <div class="k-pair">
-      <div class="k-today">
-        <p class="k-pair-label">Today</p>
-        <p>Every ad leads to a call about starting now, with a first test that launches within 7 days. A store in a code freeze reads that as "not until January". Three page versions booked no calls.</p>
-      </div>
-      <div class="k-new">
-        <p class="k-pair-label">New</p>
-        <p>One page sells a date after the freeze. The founder picks a 15 minute December readout of their own Black Friday numbers with the first three A/B tests for January, or a 15 minute planning call that holds the January week their first A/B test launches. Nothing is asked of the store before December, and the offer stays as it is.</p>
-      </div>
-    </div>
+  <section class="k-sec" aria-label="The idea">
+    <h2 class="k-h3">The idea</h2>
+    <p class="k-p">A founder sees an ad that offers a date after the Black Friday rush, not a call about starting this week. On one page they pick a 15 minute December call that walks through their own Black Friday numbers, or a 15 minute January call that holds the week their first A/B test launches. You get calls booked now from founders who would otherwise say "after BFCM" and wait.</p>
   </section>
 
-  <section class="k-sec" aria-label="The test">
-    <h2 class="k-h3">The test</h2>
-    <dl class="k-facts">
-      <div><dt>Who it is for</dt><dd>Founders and heads of ecommerce at Shopify stores doing $150k a month or more who say "after BFCM". Kit 01's passes land here too.</dd></div>
-      <div><dt>Hypothesis</dt><dd>A founder in a code freeze books a call for a date after the freeze when the page sells the date; no qualified booking after $480 of cold spend proves it false.</dd></div>
-      <div><dt>Two choices, two legs</dt><dd>The pick is read as a preference only. Warm leg (his page visitors and contacts with no booking), $20 a day: Thu 19 Nov if three conditions hold by Mon 16 Nov, else Wed 2 Dec. Cold leg, $80 a day, Wed 2 to Fri 11 Dec.</dd></div>
-      <div><dt>Keep</dt><dd>4 or more qualified calls booked by Fri 11 Dec.</dd></div>
-      <div><dt>Kill</dt><dd>The dated lines in the run sheet (cold at $480 by Mon 7 Dec).</dd></div>
-      <div><dt>Budget</dt><dd>Media $1,000 to $1,260; build 16 to 26 h. <abbr class="k-est" title="Estimate">Est.</abbr></dd></div>
-    </dl>
+  <section class="k-sec" aria-label="Hypothesis">
+    <h2 class="k-h3">Hypothesis</h2>
+    <p class="k-p">Founders may not book a call now because of Black Friday, Cyber Monday and the holidays, so this funnel asks them to book a date after the rush instead of a start this week. It is wrong if $480 spent on ads to new audiences brings no booking from a store doing $150k a month or more by Mon 7 Dec, or if fewer than 4 such calls are booked by Fri 11 Dec.</p>
   </section>
 
-  <section class="k-sec" aria-label="What it shares">
-    <h2 class="k-h3">What it shares with the other kits</h2>
-    <p class="k-p">The two calendars and the slot board with every kit; the five tests workflow with kits 03 and 04; the ad account with kit 04, never on one audience at once.</p>
-  </section>
-
-  <section class="k-sec" aria-label="Risks">
-    <h2 class="k-h3">Risks</h2>
-    <ul class="k-list">
-      <li>No shows on calls booked weeks ahead.</li>
-      <li>Founders who won't share numbers.</li>
-      <li>A seat count that must stay true.</li>
-      <li>A warm pool too small to deliver.</li>
-    </ul>
+  <section class="k-sec" aria-label="Cost">
+    <h2 class="k-h3">Cost</h2>
+    <p class="k-p">Media $1,000 to $1,260; build 16 to 26 hours. <abbr class="k-est" title="Estimate">Est.</abbr></p>
   </section>
 </div>
 
@@ -1418,49 +1477,49 @@ span.lp-day { cursor: default; }
 <div class="k-col">
   <div class="k-intro">
     <h1 class="k-title">Run it</h1>
-    <p class="k-lede">Daniel, you run every step below. Two start paths: the warm leg from Thu 19 Nov only if GATE 1 passes on Mon 16 Nov, otherwise everything starts Wed 2 Dec, the default. Orange rows are go or no go points.</p>
+    <p class="k-lede">You run every step below. Warm ads go to people who already visited your pages; cold ads go to new people. Two ways to start: warm ads from Thu 19 Nov, only if the Mon 16 Nov go holds, or everything from Wed 2 Dec, the default. Orange rows are go or no go points and stop rules.</p>
   </div>
 
   <section class="k-sec" aria-label="Run sheet">
     <h2 class="k-h3">Run sheet</h2>
     <div class="k-seg" role="group" aria-label="Start path" data-for="f02-paths" data-attr="path">
-      <button type="button" data-value="1" aria-pressed="false">Started Thu 19 Nov</button>
-      <button type="button" data-value="2" aria-pressed="true">Started Wed 2 Dec</button>
+      <button type="button" data-value="1" aria-pressed="false">Start Thu 19 Nov</button>
+      <button type="button" data-value="2" aria-pressed="true">Start Wed 2 Dec</button>
     </div>
     <div class="k-x-paths" id="f02-paths" data-path="2">
 
       <div class="k-x-path" data-path-of="1">
-        <p class="k-x-path-title">Path 1: warm leg from Thu 19 Nov (only if GATE 1 passes)</p>
+        <p class="k-x-path-title">Start early: warm ads from Thu 19 Nov (only if the Mon 16 Nov go holds)</p>
         <ol class="k-run">
           <li class="k-step">
-            <time class="k-date" datetime="2026-11-13"><span class="k-dow">Fri</span><span class="k-day">13</span><span class="k-mon">Nov</span></time>
-            <div class="k-step-body"><p class="k-step-what">Settle your go and each line of Confirm with Daniel below</p><p class="k-needs"><b>Needs first</b> Nothing</p></div>
+            <time class="k-date" datetime="2026-11-16"><span class="k-dow">By Mon</span><span class="k-day">16</span><span class="k-mon">Nov</span></time>
+            <div class="k-step-body"><p class="k-step-what">Settle your go and each line of Confirm these values below</p><p class="k-needs"><b>Needs first</b> Nothing</p></div>
           </li>
           <li class="k-step">
-            <time class="k-date" datetime="2026-11-13"><span class="k-dow">Fri</span><span class="k-day">13</span><span class="k-mon">Nov</span></time>
+            <time class="k-date" datetime="2026-11-16"><span class="k-dow">By Mon</span><span class="k-day">16</span><span class="k-mon">Nov</span></time>
             <div class="k-step-body"><p class="k-step-what">Answer one question: can this page be served without your developer?</p><p class="k-needs"><b>Needs first</b> Nothing</p></div>
           </li>
           <li class="k-step">
             <time class="k-date" datetime="2026-11-14"><span class="k-dow">Sat</span><span class="k-day">14</span><span class="k-mon">Nov</span><span class="k-step-range">to Mon 16</span></time>
-            <div class="k-step-body"><p class="k-step-what">Check the warm pool size in Ads Manager: <code>/cro-vsl/*</code> and <code>/ai-cro/*</code> visitors in the last 90 days, plus 50 percent viewers of any native Facebook or Instagram video</p><p class="k-needs"><b>Needs first</b> Nothing</p></div>
+            <div class="k-step-body"><p class="k-step-what">Check the size of the warm audience in Ads Manager: <code>/cro-vsl/*</code> and <code>/ai-cro/*</code> visitors in the last 90 days, plus 50 percent viewers of any native Facebook or Instagram video</p><p class="k-needs"><b>Needs first</b> Nothing</p></div>
           </li>
           <li class="k-step k-gate">
             <time class="k-date" datetime="2026-11-16"><span class="k-dow">Mon</span><span class="k-day">16</span><span class="k-mon">Nov</span></time>
             <div class="k-step-body">
-              <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>GATE 1, November start.</p>
+              <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: start early.</p>
               <p class="k-gate-out">Go for Thu 19 Nov only if all three hold:</p>
               <ul class="k-gate-ifs">
                 <li>your go</li>
                 <li>a page that does not wait for your developer, meaning a standalone page with your GHL calendar embed and your pixel, or your developer confirms a 48 hour deploy</li>
-                <li>Ads Manager says the warm pool can deliver</li>
+                <li>Ads Manager says the warm audience is big enough to deliver</li>
               </ul>
-              <p class="k-gate-out"><b>Any one missing:</b> switch to path 2.</p>
-              <p class="k-needs"><b>Needs first</b> Your go, the hosting answer and the warm pool check</p>
+              <p class="k-gate-out"><b>Any one missing:</b> start Wed 2 Dec instead.</p>
+              <p class="k-needs"><b>Needs first</b> Your go, the hosting answer and the warm audience check</p>
             </div>
           </li>
           <li class="k-step">
             <time class="k-date" datetime="2026-11-16"><span class="k-dow">Mon</span><span class="k-day">16</span><span class="k-mon">Nov</span></time>
-            <div class="k-step-body"><p class="k-step-what">Set up both GHL calendars (names in 5.5, Assets) with 15 minute slots from 10:00 to 16:00 Copenhagen time, and load the slot board file with 2 seats per January week</p><p class="k-needs"><b>Needs first</b> GATE 1 passed</p></div>
+            <div class="k-step-body"><p class="k-step-what">Set up both GHL calendars (calendar names under GHL calendars, Assets) with 15 minute slots from 10:00 to 16:00 Copenhagen time, and load the slot board file with 2 seats per January week</p><p class="k-needs"><b>Needs first</b> The Mon 16 Nov go</p></div>
           </li>
           <li class="k-step">
             <time class="k-date" datetime="2026-11-17"><span class="k-dow">Tue</span><span class="k-day">17</span><span class="k-mon">Nov</span></time>
@@ -1476,41 +1535,41 @@ span.lp-day { cursor: default; }
           </li>
           <li class="k-step">
             <time class="k-date" datetime="2026-11-19"><span class="k-dow">Thu</span><span class="k-day">19</span><span class="k-mon">Nov</span></time>
-            <div class="k-step-body"><p class="k-step-what"><b>Warm leg starts</b></p><p class="k-needs"><b>Needs first</b> Ads approved</p></div>
+            <div class="k-step-body"><p class="k-step-what"><b>Warm ads start</b></p><p class="k-needs"><b>Needs first</b> Ads approved</p></div>
           </li>
           <li class="k-step">
             <time class="k-date" datetime="2026-11-26"><span class="k-dow">Thu</span><span class="k-day">26</span><span class="k-mon">Nov</span><span class="k-step-range">to Tue 1 Dec</span></time>
-            <div class="k-step-body"><p class="k-step-what"><b>No cold spend from this kit before Wed 2 Dec.</b> Warm leg runs straight through Black Friday (the $460 <abbr class="k-est" title="Estimate">Est.</abbr> assumes no pause). Recommended, your call: pause your own cold VSL ad sets for these six days</p><p class="k-needs"><b>Needs first</b> Nothing</p></div>
+            <div class="k-step-body"><p class="k-step-what"><b>No cold spend from this funnel before Wed 2 Dec.</b> Warm ads run straight through Black Friday (the $460 <abbr class="k-est" title="Estimate">Est.</abbr> assumes no pause). Recommended, your call: pause your own cold VSL ad sets for these six days</p><p class="k-needs"><b>Needs first</b> Nothing</p></div>
           </li>
           <li class="k-step k-gate">
             <time class="k-date" datetime="2026-11-28"><span class="k-dow">Sat</span><span class="k-day">28</span><span class="k-mon">Nov</span></time>
             <div class="k-step-body">
-              <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>GATE 2, warm kill.</p>
-              <p class="k-gate-out"><b>No qualified booking after $200 of warm spend:</b> warm leg stops.</p>
+              <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Stop rule: warm ads, early start.</p>
+              <p class="k-gate-out"><b>No qualified booking after $200 of warm spend:</b> stop the warm ads.</p>
               <p class="k-needs"><b>Needs first</b> Bookings tagged in GHL</p>
             </div>
           </li>
           <li class="k-step">
             <time class="k-date" datetime="2026-11-30"><span class="k-dow">Mon</span><span class="k-day">30</span><span class="k-mon">Nov</span></time>
-            <div class="k-step-body"><p class="k-step-what">Cold ad set built, paused, submitted for review ($80 a day, <abbr class="k-est" title="Estimate">Est.</abbr>), with the static and the December carousel. Excludes the warm audience, kit 01's past client list and your VSL visitors</p><p class="k-needs"><b>Needs first</b> PNGs and copy from this kit; the static's proof is Goose Creek unless both OKs on the anonymised result are in writing</p></div>
+            <div class="k-step-body"><p class="k-step-what">Cold ad set built, paused, submitted for review ($80 a day, <abbr class="k-est" title="Estimate">Est.</abbr>), with the static and the December carousel. Excludes the warm audience and your VSL visitors</p><p class="k-needs"><b>Needs first</b> PNGs and copy from this funnel; the static's proof is Goose Creek unless both OKs on the anonymised result are in writing</p></div>
           </li>
           <li class="k-step">
             <time class="k-date" datetime="2026-12-01"><span class="k-dow">Tue</span><span class="k-day">1</span><span class="k-mon">Dec</span></time>
-            <div class="k-step-body"><p class="k-step-what">Swap the warm creative to the December versions (video and carousel) for Wed 2 Dec</p><p class="k-needs"><b>Needs first</b> GATE 2 passed</p></div>
+            <div class="k-step-body"><p class="k-step-what">Swap the warm creative to the December versions (video and carousel) for Wed 2 Dec</p><p class="k-needs"><b>Needs first</b> Warm ads still running after the Sat 28 Nov stop rule</p></div>
           </li>
           <li class="k-step">
             <time class="k-date" datetime="2026-12-02"><span class="k-dow">Wed</span><span class="k-day">2</span><span class="k-mon">Dec</span></time>
-            <div class="k-step-body"><p class="k-step-what">Cold leg starts; from here path 1 joins path 2 at its Wed 2 Dec row</p><p class="k-needs"><b>Needs first</b> GATE 3 passed (see path 2)</p></div>
+            <div class="k-step-body"><p class="k-step-what">Cold ads start; from here follow the Wed 2 Dec start from its Wed 2 Dec row</p><p class="k-needs"><b>Needs first</b> The Tue 1 Dec go (in the Wed 2 Dec start)</p></div>
           </li>
         </ol>
       </div>
 
       <div class="k-x-path" data-path-of="2">
-        <p class="k-x-path-title">Path 2: everything starts Wed 2 Dec (the default)</p>
+        <p class="k-x-path-title">Start Wed 2 Dec: warm and cold ads together, after Cyber Week (the default)</p>
         <ol class="k-run">
           <li class="k-step">
-            <time class="k-date" datetime="2026-11-13"><span class="k-dow">Fri</span><span class="k-day">13</span><span class="k-mon">Nov</span></time>
-            <div class="k-step-body"><p class="k-step-what">Settle your go and each line of Confirm with Daniel below</p><p class="k-needs"><b>Needs first</b> Nothing</p></div>
+            <time class="k-date" datetime="2026-11-16"><span class="k-dow">By Mon</span><span class="k-day">16</span><span class="k-mon">Nov</span></time>
+            <div class="k-step-body"><p class="k-step-what">Settle your go and each line of Confirm these values below</p><p class="k-needs"><b>Needs first</b> Nothing</p></div>
           </li>
           <li class="k-step">
             <time class="k-date" datetime="2026-11-20"><span class="k-dow">Fri</span><span class="k-day">20</span><span class="k-mon">Nov</span></time>
@@ -1522,16 +1581,16 @@ span.lp-day { cursor: default; }
           </li>
           <li class="k-step">
             <time class="k-date" datetime="2026-11-25"><span class="k-dow">Wed</span><span class="k-day">25</span><span class="k-mon">Nov</span></time>
-            <div class="k-step-body"><p class="k-step-what">Record the warm video (December version, script in 3.1, Ads)</p><p class="k-needs"><b>Needs first</b> Nothing</p></div>
+            <div class="k-step-body"><p class="k-step-what">Record the warm video (December version, script under Warm video, Ads)</p><p class="k-needs"><b>Needs first</b> Nothing</p></div>
           </li>
           <li class="k-step">
             <time class="k-date" datetime="2026-11-30"><span class="k-dow">Mon</span><span class="k-day">30</span><span class="k-mon">Nov</span></time>
-            <div class="k-step-body"><p class="k-step-what">Warm and cold ad sets built, paused, submitted for review. Cold excludes the warm audience, kit 01's past client list and your VSL visitors</p><p class="k-needs"><b>Needs first</b> Page live; video recorded; PNGs and copy from this kit; the static's proof is Goose Creek unless both OKs on the anonymised result are in writing</p></div>
+            <div class="k-step-body"><p class="k-step-what">Warm and cold ad sets built, paused, submitted for review. Cold excludes the warm audience and your VSL visitors</p><p class="k-needs"><b>Needs first</b> Page live; video recorded; PNGs and copy from this funnel; the static's proof is Goose Creek unless both OKs on the anonymised result are in writing</p></div>
           </li>
           <li class="k-step k-gate">
             <time class="k-date" datetime="2026-12-01"><span class="k-dow">Tue</span><span class="k-day">1</span><span class="k-mon">Dec</span></time>
             <div class="k-step-body">
-              <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>GATE 3, December start.</p>
+              <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: start Wed 2 Dec.</p>
               <p class="k-gate-out">Go only if:</p>
               <ul class="k-gate-ifs">
                 <li>the page is live</li>
@@ -1545,7 +1604,7 @@ span.lp-day { cursor: default; }
           </li>
           <li class="k-step">
             <time class="k-date" datetime="2026-12-02"><span class="k-dow">Wed</span><span class="k-day">2</span><span class="k-mon">Dec</span></time>
-            <div class="k-step-body"><p class="k-step-what"><b>Warm leg ($20 a day) and cold leg ($80 a day) start (<abbr class="k-est" title="Estimate">Est.</abbr>).</b> Warm: December video and carousel. Cold: static and December carousel</p><p class="k-needs"><b>Needs first</b> GATE 3 passed</p></div>
+            <div class="k-step-body"><p class="k-step-what"><b>Warm ads ($20 a day) and cold ads ($80 a day) start (<abbr class="k-est" title="Estimate">Est.</abbr>).</b> Warm: December video and carousel. Cold: static and December carousel</p><p class="k-needs"><b>Needs first</b> The Tue 1 Dec go</p></div>
           </li>
           <li class="k-step">
             <time class="k-date" datetime="2026-12-03"><span class="k-dow">Thu</span><span class="k-day">3</span><span class="k-mon">Dec</span></time>
@@ -1553,37 +1612,37 @@ span.lp-day { cursor: default; }
           </li>
           <li class="k-step">
             <time class="k-date" datetime="2026-12-03"><span class="k-dow">Thu</span><span class="k-day">3</span><span class="k-mon">Dec</span><span class="k-step-range">to Fri 18</span></time>
-            <div class="k-step-body"><p class="k-step-what">For each choice A booking: numbers form two days before, readout written and checked by a person, sent the day before, 15 minute call walks it. For each choice B booking: five tests sent before the call</p><p class="k-needs"><b>Needs first</b> The numbers in, or GA4 viewer access</p></div>
+            <div class="k-step-body"><p class="k-step-what">For each December readout booking: numbers form two days before, readout written and checked by a person, sent the day before, 15 minute call walks it. For each January week booking: five tests sent before the call</p><p class="k-needs"><b>Needs first</b> The numbers in, or GA4 viewer access</p></div>
           </li>
           <li class="k-step k-gate">
             <time class="k-date" datetime="2026-12-06"><span class="k-dow">Sun</span><span class="k-day">6</span><span class="k-mon">Dec</span></time>
             <div class="k-step-body">
-              <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>GATE 4, warm kill (December start).</p>
-              <p class="k-gate-out"><b>No qualified booking after $100 of warm spend:</b> warm leg stops.</p>
+              <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Stop rule: warm ads, Wed 2 Dec start.</p>
+              <p class="k-gate-out"><b>No qualified booking after $100 of warm spend:</b> stop the warm ads.</p>
               <p class="k-needs"><b>Needs first</b> Bookings tagged</p>
             </div>
           </li>
           <li class="k-step k-gate">
             <time class="k-date" datetime="2026-12-07"><span class="k-dow">Mon</span><span class="k-day">7</span><span class="k-mon">Dec</span></time>
             <div class="k-step-body">
-              <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>GATE 5, cold kill.</p>
-              <p class="k-gate-out"><b>No qualified booking after $480 of cold spend:</b> cold leg stops. The warm leg runs on unless its own kill fired.</p>
+              <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Stop rule: cold ads.</p>
+              <p class="k-gate-out"><b>No qualified booking after $480 of cold spend:</b> stop the cold ads. The warm ads run on unless their own stop rule fired.</p>
               <p class="k-needs"><b>Needs first</b> Spend from Ads Manager</p>
             </div>
           </li>
           <li class="k-step k-gate">
             <span class="k-date k-x-date-word"><span class="k-dow">After</span><span class="k-day">300</span><span class="k-mon">visitors</span></span>
             <div class="k-step-body">
-              <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>GATE 6, start rate. After the first 300 visitors.</p>
-              <p class="k-gate-out"><b>Fewer than 5 percent of page visitors start the booking:</b> cold leg stops (<abbr class="k-est" title="Estimate">Est.</abbr> line; a low start rate points at the page, not the audience).</p>
+              <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Stop rule: start rate, after the first 300 visitors.</p>
+              <p class="k-gate-out"><b>Fewer than 5 percent of page visitors start the booking:</b> stop the cold ads (<abbr class="k-est" title="Estimate">Est.</abbr> line; a low start rate points at the page, not the audience).</p>
               <p class="k-needs"><b>Needs first</b> Booking start event firing</p>
             </div>
           </li>
           <li class="k-step k-gate">
             <time class="k-date" datetime="2026-12-11"><span class="k-dow">Fri</span><span class="k-day">11</span><span class="k-mon">Dec</span></time>
             <div class="k-step-body">
-              <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>GATE 7, keep read.</p>
-              <p class="k-gate-out">Both legs end. <b>Keep if 4 or more qualified calls were booked</b> across both choices and both legs. If kept, the later arms (a paid readout credited to the first month, a refundable deposit on the January week) are planned for a January wave, each only after its choice has booked at least 2 qualified calls.</p>
+              <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Decide: keep this funnel or not.</p>
+              <p class="k-gate-out">Warm and cold ads both end. <b>Keep if 4 or more qualified calls were booked</b> across both choices and both audiences. If kept, plan two later versions for January (a paid readout credited to the first month, a refundable deposit on the January week), each only after its choice has booked at least 2 qualified calls.</p>
               <p class="k-needs"><b>Needs first</b> Bookings tagged</p>
             </div>
           </li>
@@ -1593,11 +1652,11 @@ span.lp-day { cursor: default; }
           </li>
           <li class="k-step">
             <time class="k-date" datetime="2026-12-19"><span class="k-dow">Sat</span><span class="k-day">19</span><span class="k-mon">Dec</span><span class="k-step-range">to Mon 4 Jan</span></time>
-            <div class="k-step-body"><p class="k-step-what">Off for calls. First tests for signed choice B clients designed in Figma; builds go on a duplicate theme between Tue 1 and Fri 18 Dec or from Mon 4 Jan</p><p class="k-needs"><b>Needs first</b> Signed terms</p></div>
+            <div class="k-step-body"><p class="k-step-what">Off for calls. First tests for signed January week clients designed in Figma; builds go on a duplicate theme between Tue 1 and Fri 18 Dec or from Mon 4 Jan</p><p class="k-needs"><b>Needs first</b> Signed terms</p></div>
           </li>
           <li class="k-step">
             <time class="k-date" datetime="2027-01-05"><span class="k-dow">Tue</span><span class="k-day">5</span><span class="k-mon">Jan</span><span class="k-step-range">to Fri 29</span></time>
-            <div class="k-step-body"><p class="k-step-what">Planning calls on the January calendar for choice B bookings with no December time</p><p class="k-needs"><b>Needs first</b> A booking</p></div>
+            <div class="k-step-body"><p class="k-step-what">Planning calls on the January calendar for January week bookings with no December time</p><p class="k-needs"><b>Needs first</b> A booking</p></div>
           </li>
           <li class="k-step">
             <time class="k-date" datetime="2027-01-11"><span class="k-dow">Mon</span><span class="k-day">11</span><span class="k-mon">Jan</span><span class="k-step-range">18 and 25</span></time>
@@ -1612,33 +1671,32 @@ span.lp-day { cursor: default; }
     </div>
   </section>
 
-  <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>This kit sends no cold message.</b> Emails and WhatsApp messages go only to founders who booked a call. Uploading your GHL contacts to Meta as a customer list waits on a legal read of the lawful basis, and nothing goes to Danish prospects by message until you name your countries and have that legal read.</p></div>
+  <div class="k-consent"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M12 11v2"/><path d="M12 16v.01"/></svg><p><b>This funnel sends no cold message.</b> Emails and WhatsApp messages go only to founders who booked a call. Uploading your GHL contacts to Meta as a customer list waits on a legal read of the lawful basis, and nothing goes to Danish prospects by message until you name your countries and have that legal read.</p></div>
 
-  <section class="k-sec" aria-label="Confirm with Daniel">
-    <h2 class="k-h3">Confirm with Daniel <span class="k-count" data-count-for="f02-need">0 of 26 ticked</span></h2>
-    <p class="k-x-how"><b>How to use</b>Each line states the value this kit uses. Tick it when Daniel says yes; if he changes one, change it on the page, in the ads and in the deck together.</p>
+  <section class="k-sec" aria-label="Confirm these values">
+    <h2 class="k-h3">Confirm these values <span class="k-count" data-count-for="f02-need">0 of 25 ticked</span></h2>
+    <p class="k-x-how"><b>How to use</b>Each line states the value this funnel uses. Tick it once you are happy with it; if you change one, change it on the page and in the ads together.</p>
     <ul class="k-check" id="f02-need">
-      <li><input type="checkbox" id="f02-need-01"><label for="f02-need-01">His go<small>By Mon 16 Nov for path 1, by Fri 20 Nov for path 2</small></label></li>
+      <li><input type="checkbox" id="f02-need-01"><label for="f02-need-01">Your go<small>By Mon 16 Nov to start early, by Fri 20 Nov to start Wed 2 Dec</small></label></li>
       <li><input type="checkbox" id="f02-need-02"><label for="f02-need-02">Who builds the ad sets in the Meta ad account: you or your media buyer</label></li>
-      <li><input type="checkbox" id="f02-need-03"><label for="f02-need-03">Page address: new.purplefire.io/after-freeze/v1, on his URL pattern. Can his developer deploy it within 48 hours?</label></li>
-      <li><input type="checkbox" id="f02-need-04"><label for="f02-need-04">His OK to place his pixel and GHL calendar embed on a standalone page</label></li>
+      <li><input type="checkbox" id="f02-need-03"><label for="f02-need-03">Page address: new.purplefire.io/after-freeze/v1, on your URL pattern. Can your developer deploy it within 48 hours?</label></li>
+      <li><input type="checkbox" id="f02-need-04"><label for="f02-need-04">Your OK to place your pixel and GHL calendar embed on a standalone page</label></li>
       <li><input type="checkbox" id="f02-need-05"><label for="f02-need-05">Two GHL calendars, 15 minute slots on weekdays from 10:00 to 16:00 Copenhagen time: December, Thu 3 to Fri 18 Dec, and January, Tue 5 to Fri 29 Jan</label></li>
-      <li><input type="checkbox" id="f02-need-06"><label for="f02-need-06">His live calendar is named "Free CRO Audit, 30 min". The two new calendars are 15 minutes; rename or retire the old one so no booking from this kit lands on a 30 minute slot.</label></li>
+      <li><input type="checkbox" id="f02-need-06"><label for="f02-need-06">Your live calendar is named "Free CRO Audit, 30 min". The two new calendars are 15 minutes; rename or retire the old one so no booking from this funnel lands on a 30 minute slot.</label></li>
       <li><input type="checkbox" id="f02-need-07"><label for="f02-need-07">Capacity: 6 brands start in January, 2 seats in each of the weeks of Mon 11, Mon 18 and Mon 25 Jan. Overflow: the weeks of Mon 1 and Mon 8 Feb, 2 seats each, shown on the page only once January is full</label></li>
       <li><input type="checkbox" id="f02-need-08"><label for="f02-need-08">Last planning call day: the Friday before each launch week, so Fri 8, Fri 15 and Fri 22 Jan</label></li>
-      <li><input type="checkbox" id="f02-need-27"><label for="f02-need-27">Seat holds: a "January" reply from kit 03 or kit 04 holds a seat for 48 hours, and the seat goes back on the board if no call is booked in that time</label></li>
-      <li><input type="checkbox" id="f02-need-09"><label for="f02-need-09">Revenue floor: $150k a month, as on his live VSL page</label></li>
-      <li><input type="checkbox" id="f02-need-11"><label for="f02-need-11">His face on the warm video<small>30 seconds to camera (script in 3.1, Ads)</small></label></li>
-      <li><input type="checkbox" id="f02-need-12"><label for="f02-need-12">Warm video proof: Airback, home page, CVR +36.45%, 93.57% confidence, his public card AIR-016-ALL-HP-CR</label></li>
-      <li><input type="checkbox" id="f02-need-13"><label for="f02-need-13">Cold static: runs on the Goose Creek result. The anonymised Danish cleaning products brand result runs only with the client's written OK and Daniel's</label></li>
-      <li><input type="checkbox" id="f02-need-14"><label for="f02-need-14">Lookalike source: kit 01's past client contact sheet, once the legal read allows the upload</label></li>
+      <li><input type="checkbox" id="f02-need-27"><label for="f02-need-27">January replies: a "January" reply from Funnel 3 or Funnel 4 gets the link to this page and books like anyone else; no seat is held before the booking</label></li>
+      <li><input type="checkbox" id="f02-need-09"><label for="f02-need-09">Revenue floor: $150k a month, as on your live VSL page</label></li>
+      <li><input type="checkbox" id="f02-need-11"><label for="f02-need-11">Your face on the warm video<small>30 seconds to camera (script under Warm video, Ads)</small></label></li>
+      <li><input type="checkbox" id="f02-need-12"><label for="f02-need-12">Warm video proof: Airback, home page, CVR +36.45%, 93.57% confidence, your public card AIR-016-ALL-HP-CR</label></li>
+      <li><input type="checkbox" id="f02-need-13"><label for="f02-need-13">Cold static: runs on the Goose Creek result. The anonymised Danish cleaning products brand result runs only with the client's written OK and yours</label></li>
       <li><input type="checkbox" id="f02-need-15"><label for="f02-need-15">A legal read on uploading GHL contacts as a Meta customer list</label></li>
-      <li><input type="checkbox" id="f02-need-16"><label for="f02-need-16">WhatsApp sender: his WhatsApp Business number, connected in GHL</label></li>
+      <li><input type="checkbox" id="f02-need-16"><label for="f02-need-16">WhatsApp sender: your WhatsApp Business number, connected in GHL</label></li>
       <li><input type="checkbox" id="f02-need-17"><label for="f02-need-17">GA4 access email: hello@purplefire.io, for founders who would rather share GA4 than type numbers</label></li>
       <li><input type="checkbox" id="f02-need-18"><label for="f02-need-18">Access after signing: a Slack channel, store and testing tool access and one person who approves designs, from the day the terms are signed</label></li>
       <li><input type="checkbox" id="f02-need-19"><label for="f02-need-19">Proof counts: 5,000+ A/B tests and 1,300+ documented winners</label></li>
-      <li><input type="checkbox" id="f02-need-20"><label for="f02-need-20">His decision on pausing his own cold VSL ad sets from Thu 26 Nov to Tue 1 Dec</label></li>
-      <li><input type="checkbox" id="f02-need-21"><label for="f02-need-21">Win rule on the page: a variant lifts revenue by at least 5 percent over 7 days at 88 percent significance or higher, as on his live page</label></li>
+      <li><input type="checkbox" id="f02-need-20"><label for="f02-need-20">Your decision on pausing your own cold VSL ad sets from Thu 26 Nov to Tue 1 Dec</label></li>
+      <li><input type="checkbox" id="f02-need-21"><label for="f02-need-21">Win rule on the page: a variant lifts revenue by at least 5 percent over 7 days at 88 percent significance or higher, as on your live page</label></li>
       <li><input type="checkbox" id="f02-need-22"><label for="f02-need-22">Short notice readout calls: the December calendar books one working day ahead at the earliest, and the readout arrives by 9:00 Copenhagen time on the day of the call</label></li>
       <li><input type="checkbox" id="f02-need-23"><label for="f02-need-23">Privacy policy link in step 3 of the booking: https://www.purplefire.io/privacy-policy</label></li>
       <li><input type="checkbox" id="f02-need-24"><label for="f02-need-24">Just Strong card: +$19,536 revenue during the test</label></li>
@@ -1653,16 +1711,16 @@ span.lp-day { cursor: default; }
       <table class="k-table k-x-read">
         <thead><tr><th scope="col">What</th><th scope="col">Where it comes from</th><th scope="col">When</th></tr></thead>
         <tbody>
-          <tr><th scope="row">Qualified calls booked: a GHL booking tagged <code class="k-x-code">f02_after_freeze</code> for a 15 minute call with a founder or head of ecommerce at a Shopify store doing $150k a month or more, checked by a person</th><td>GHL calendar and tags</td><td>Every weekday; gates on Sat 28 Nov or Sun 6 Dec, Mon 7 Dec, Fri 11 Dec</td></tr>
-          <tr><th scope="row">Spend per leg</th><td>Meta Ads Manager, ad set level</td><td>At each gate</td></tr>
+          <tr><th scope="row">Qualified calls booked: a GHL booking tagged <code class="k-x-code">f02_after_freeze</code> for a 15 minute call with a founder or head of ecommerce at a Shopify store doing $150k a month or more, checked by a person</th><td>GHL calendar and tags</td><td>Every weekday; stop rules and decisions on Sat 28 Nov or Sun 6 Dec, Mon 7 Dec, Fri 11 Dec</td></tr>
+          <tr><th scope="row">Spend on the warm ads and on the cold ads</th><td>Meta Ads Manager, ad set level</td><td>At each stop rule</td></tr>
           <tr><th scope="row">Start rate: booking starts divided by landing page views</th><td>Pixel custom event <code class="k-x-code">BookingStart</code> and Meta landing page views</td><td>After the first 300 visitors</td></tr>
-          <tr><th scope="row">Pick split: choice A against choice B</th><td>GHL tags <code class="k-x-code">f02_choice_a_december</code> and <code class="k-x-code">f02_choice_b_january</code></td><td>Fri 11 Dec; a preference only, never a winner</td></tr>
+          <tr><th scope="row">Pick split: December readout against January week</th><td>GHL tags <code class="k-x-code">f02_choice_a_december</code> and <code class="k-x-code">f02_choice_b_january</code></td><td>Fri 11 Dec; a preference only, never a winner</td></tr>
           <tr><th scope="row">Show rate and signed clients per choice</th><td>GHL tags <code class="k-x-code">f02_held</code>, <code class="k-x-code">f02_no_show_1</code>, <code class="k-x-code">f02_no_show_2</code>, <code class="k-x-code">f02_signed</code></td><td>Fri 18 Dec and Fri 29 Jan, directional</td></tr>
-          <tr><th scope="row">Cost per qualified call; Daniel judges it against what a signed client is worth to him</th><td>Spend divided by qualified calls</td><td>Fri 11 Dec</td></tr>
+          <tr><th scope="row">Cost per qualified call; you judge it against what a signed client is worth to you</th><td>Spend divided by qualified calls</td><td>Fri 11 Dec</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="k-note">Every read is directional by design: there is no cost source for this audience, and budgets are sized to reach the keep or kill counts, not forecasts. The VSL v3 read and this kit's read share the auction from Wed 2 to Fri 11 Dec, and both reads say so.</p>
+    <p class="k-note">Every number here is directional: the budgets are sized to reach the keep and stop counts, not to forecast results. Your VSL v3 ads and this funnel's ads run in the same auction from Wed 2 to Fri 11 Dec, so read both with that in mind.</p>
   </section>
 </div>
 
@@ -1672,7 +1730,7 @@ span.lp-day { cursor: default; }
   <div class="k-intro">
     <h1 class="k-title">Ads</h1>
     <p class="k-lede">Every ad promises both choices, matching the page. Meta button labels are fixed options; "Book now" is the one used.</p>
-    <p class="k-x-how"><b>How to use</b>Link every ad to <code class="k-x-code k-x-url">https://new.purplefire.io/after-freeze/v1?utm_source=meta&amp;utm_campaign=f02_after_freeze&amp;utm_content={ad name}</code>. Keep the ad names as written here: "warm" or "cold" in the name is what sets the leg on the page.</p>
+    <p class="k-x-how"><b>How to use</b>Link every ad to <code class="k-x-code k-x-url">https://new.purplefire.io/after-freeze/v1?utm_source=meta&amp;utm_campaign=f02_after_freeze&amp;utm_content={ad name}</code>. Keep the ad names as written here: "warm" or "cold" in the name tells the page which audience the booking came from (warm: people who already visited your pages; cold: new people).</p>
     <p class="k-x-how"><b>How to use</b>Each "Image led version" below runs as a second ad in the same ad set as its type led original, with the same copy, so Meta shows which one earns the click.</p>
   </div>
 <div class="s-zip"><a class="s-get s-get-strong" href="../ads/after-the-freeze-ads.zip" download="after-the-freeze-ads.zip"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>Download all ads (zip)</a><p>26 files (16 PNG and 10 JPG), 4.9 MB. Each ad below has its own download links too; the alternative ad is not in the zip.</p></div>
@@ -1683,16 +1741,16 @@ span.lp-day { cursor: default; }
       <table class="k-table k-x-stack">
         <thead><tr><th scope="col">Ad set</th><th scope="col">Audience</th><th scope="col">Placement</th><th scope="col">Dates</th><th scope="col">Daily budget</th><th scope="col">Ads in it</th></tr></thead>
         <tbody>
-          <tr><th scope="row"><code class="k-x-code">f02_warm</code></th><td data-label="Audience">Meta website audience of <code class="k-x-code">/cro-vsl/*</code> and <code class="k-x-code">/ai-cro/*</code> visitors in the last 90 days; GHL contacts tagged "Contact submitted" with no "Call booked" as a customer list (after the legal read); 50 percent viewers of his native Facebook or Instagram videos. Excludes kit 01's past client list.</td><td data-label="Placement">Facebook Feed, Instagram Feed, Instagram Profile Feed (manual)</td><td data-label="Dates">Path 1: Thu 19 Nov to Fri 11 Dec. Path 2: Wed 2 to Fri 11 Dec</td><td class="k-num" data-label="Daily budget">$20 <abbr class="k-est" title="Estimate">Est.</abbr></td><td data-label="Ads in it">3.1 video, 3.3 carousel</td></tr>
-          <tr><th scope="row"><code class="k-x-code">f02_cold</code></th><td data-label="Audience">Shopify founder and ecommerce manager interests, plus a lookalike of kit 01's past client contact sheet, once the legal read allows the upload. Excludes <code class="k-x-code">f02_warm</code>, his VSL visitors and kit 01's past client list</td><td data-label="Placement">Facebook Feed, Instagram Feed, Instagram Profile Feed (manual)</td><td data-label="Dates">Wed 2 to Fri 11 Dec only</td><td class="k-num" data-label="Daily budget">$80 <abbr class="k-est" title="Estimate">Est.</abbr></td><td data-label="Ads in it">3.2 static, 3.3 carousel (December)</td></tr>
+          <tr><th scope="row"><code class="k-x-code">f02_warm</code></th><td data-label="Audience">Meta website audience of <code class="k-x-code">/cro-vsl/*</code> and <code class="k-x-code">/ai-cro/*</code> visitors in the last 90 days; GHL contacts tagged "Contact submitted" with no "Call booked" as a customer list (after the legal read); 50 percent viewers of your native Facebook or Instagram videos.</td><td data-label="Placement">Facebook Feed, Instagram Feed, Instagram Profile Feed (manual)</td><td data-label="Dates">Early start: Thu 19 Nov to Fri 11 Dec. Wed 2 Dec start: Wed 2 to Fri 11 Dec</td><td class="k-num" data-label="Daily budget">$20 <abbr class="k-est" title="Estimate">Est.</abbr></td><td data-label="Ads in it">Warm video, carousel</td></tr>
+          <tr><th scope="row"><code class="k-x-code">f02_cold</code></th><td data-label="Audience">Shopify founder and ecommerce manager interests. Excludes <code class="k-x-code">f02_warm</code> and your VSL visitors</td><td data-label="Placement">Facebook Feed, Instagram Feed, Instagram Profile Feed (manual)</td><td data-label="Dates">Wed 2 to Fri 11 Dec only</td><td class="k-num" data-label="Daily budget">$80 <abbr class="k-est" title="Estimate">Est.</abbr></td><td data-label="Ads in it">Cold static, carousel (December)</td></tr>
         </tbody>
       </table>
     </div>
   </section>
 
   <div class="k-x-group">
-    <h2 class="k-x-group-title">Warm leg</h2>
-    <p class="k-x-when">Before Wed 2 Dec: November versions, path 1 only</p>
+    <h2 class="k-x-group-title">Warm ads</h2>
+    <p class="k-x-when">Before Wed 2 Dec: November versions, early start only</p>
   </div>
 
   <article class="k-ad" id="f02-ad-video-nov" data-ratio="4x5">
@@ -1717,10 +1775,10 @@ span.lp-day { cursor: default; }
 </div>
         <div class="k-feed-bar"><div><b>Book now for after the freeze</b><span>15 minute call. Nothing needed before December.</span></div><span class="k-feed-cta">Book now</span></div>
       </div>
-      <p class="k-x-sb">Storyboard frame: the cover frame and end card words over his photo, which stands in until the video is recorded.</p>
+      <p class="k-x-sb">Storyboard frame: the cover frame and end card words over your photo, which stands in until the video is recorded.</p>
     </div>
     <div class="k-ad-fields">
-      <h3 class="k-ad-name">3.1 Warm video, November version <span><code class="k-x-code">f02_warm_video_nov</code></span></h3>
+      <h3 class="k-ad-name">Warm video, November version <span><code class="k-x-code">f02_warm_video_nov</code></span></h3>
       <p class="k-p">Daniel to camera, 30 seconds. Format: video, 4:5 for feeds and 1:1 as a second cut. Burned in captions.</p>
       <div class="k-table-wrap">
         <table class="k-table k-x-stack">
@@ -1765,9 +1823,9 @@ Your first split test is on us. You pay after the first win.</div>
       <figure class="k-cb" id="f02-cb-vnov-desc"><figcaption><span class="k-cb-label">Description</span></figcaption><div class="k-cb-body">15 minute call. Nothing needed before December.</div></figure>
       <figure class="k-cb" id="f02-cb-vnov-button"><figcaption><span class="k-cb-label">Button label</span></figcaption><div class="k-cb-body">Book now</div></figure>
       <dl class="k-ad-meta">
-        <div><dt>Audience</dt><dd>Ad set <code class="k-x-code">f02_warm</code>: his <code class="k-x-code">/cro-vsl/*</code> and <code class="k-x-code">/ai-cro/*</code> visitors in the last 90 days, GHL contacts with no booking (after the legal read), 50 percent video viewers. Excludes kit 01's past client list</dd></div>
+        <div><dt>Audience</dt><dd>Ad set <code class="k-x-code">f02_warm</code>: your <code class="k-x-code">/cro-vsl/*</code> and <code class="k-x-code">/ai-cro/*</code> visitors in the last 90 days, GHL contacts with no booking (after the legal read), 50 percent video viewers</dd></div>
         <div><dt>Placement</dt><dd>Facebook Feed, Instagram Feed, Instagram Profile Feed (manual)</dd></div>
-        <div><dt>Dates</dt><dd>Path 1 only, Thu 19 Nov to Tue 1 Dec</dd></div>
+        <div><dt>Dates</dt><dd>Early start only, Thu 19 Nov to Tue 1 Dec</dd></div>
         <div><dt>Budget</dt><dd>$20 a day for the <code class="k-x-code">f02_warm</code> ad set <abbr class="k-est" title="Estimate">Est.</abbr></dd></div>
       </dl>
     </div>
@@ -1796,12 +1854,12 @@ Your first split test is on us. You pay after the first win.</div>
       </div>
     </div>
     <div class="k-ad-fields">
-      <h3 class="k-ad-name">3.1 Warm video cover frame, November, Image led version <span><code class="k-x-code">f02_warm_video_nov_image</code></span></h3>
+      <h3 class="k-ad-name">Warm video cover frame, November, Image led version <span><code class="k-x-code">f02_warm_video_nov_image</code></span></h3>
 <div class="s-dl" role="group" aria-label="Download JPG"><div class="s-dl-row"><span class="s-dl-label">Download JPG</span><a class="s-get" href="../ads/funnel-02-video-nov-image-1x1.jpg" download="funnel-02-video-nov-image-1x1.jpg"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>1:1</a><a class="s-get" href="../ads/funnel-02-video-nov-image-4x5.jpg" download="funnel-02-video-nov-image-4x5.jpg"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>4:5</a></div></div>
-      <p class="k-p">An alternative cover frame (the thumbnail) for the same video: the cover frame words over "the frosted door", a generated photo with no text in it. The video itself stays Daniel to camera. Uses the same script, primary text, headline, description and button as 3.1 above.</p>
+      <p class="k-p">An alternative cover frame (the thumbnail) for the same video: the cover frame words over "the frosted door", a generated photo with no text in it. The video itself stays Daniel to camera. Uses the same script, primary text, headline, description and button as Warm video, November version above.</p>
       <dl class="k-ad-meta">
-        <div><dt>Audience</dt><dd>Same ad set as 3.1: <code class="k-x-code">f02_warm</code></dd></div>
-        <div><dt>Dates</dt><dd>Path 1 only, Thu 19 Nov to Tue 1 Dec</dd></div>
+        <div><dt>Audience</dt><dd>Same ad set as the warm video:<code class="k-x-code">f02_warm</code></dd></div>
+        <div><dt>Dates</dt><dd>Early start only, Thu 19 Nov to Tue 1 Dec</dd></div>
       </dl>
     </div>
   </article>
@@ -1894,7 +1952,7 @@ Your first split test is on us. You pay after the first win.</div>
       </div>
     </div>
     <div class="k-ad-fields">
-      <h3 class="k-ad-name">3.3 Carousel, November version <span><code class="k-x-code">f02_warm_carousel_nov</code></span></h3>
+      <h3 class="k-ad-name">Carousel, November version <span><code class="k-x-code">f02_warm_carousel_nov</code></span></h3>
 <div class="s-dl" role="group" aria-label="Download PNG"><div class="s-dl-row"><span class="s-dl-label">Download PNG</span></div><div class="s-dl-row"><span class="s-dl-label">Image 1</span><a class="s-get" href="../ads/funnel-02-car-1-nov-1x1.png" download="funnel-02-car-1-nov-1x1.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>1:1</a><a class="s-get" href="../ads/funnel-02-car-1-nov-4x5.png" download="funnel-02-car-1-nov-4x5.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>4:5</a></div><div class="s-dl-row"><span class="s-dl-label">Image 2</span><a class="s-get" href="../ads/funnel-02-car-2-1x1.png" download="funnel-02-car-2-1x1.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>1:1</a><a class="s-get" href="../ads/funnel-02-car-2-4x5.png" download="funnel-02-car-2-4x5.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>4:5</a></div><div class="s-dl-row"><span class="s-dl-label">Image 3</span><a class="s-get" href="../ads/funnel-02-car-3-1x1.png" download="funnel-02-car-3-1x1.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>1:1</a><a class="s-get" href="../ads/funnel-02-car-3-4x5.png" download="funnel-02-car-3-4x5.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>4:5</a></div><div class="s-dl-row"><span class="s-dl-label">Image 4</span><a class="s-get" href="../ads/funnel-02-car-4-1x1.png" download="funnel-02-car-4-1x1.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>1:1</a><a class="s-get" href="../ads/funnel-02-car-4-4x5.png" download="funnel-02-car-4-4x5.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>4:5</a></div><div class="s-dl-row"><span class="s-dl-label">Image 5</span><a class="s-get" href="../ads/funnel-02-car-5-nov-1x1.png" download="funnel-02-car-5-nov-1x1.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>1:1</a><a class="s-get" href="../ads/funnel-02-car-5-nov-4x5.png" download="funnel-02-car-5-nov-4x5.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>4:5</a></div></div>
       <p class="k-p">Five cards, 1:1 (1080 x 1080); a 4:5 set as a second option. Every card links to the page.</p>
       <figure class="k-cb" id="f02-cb-cnov-primary">
@@ -1917,7 +1975,7 @@ Two choices: a December readout of your Black Friday numbers with the first thre
       <dl class="k-ad-meta">
         <div><dt>Audience</dt><dd>Ad set <code class="k-x-code">f02_warm</code></dd></div>
         <div><dt>Placement</dt><dd>Facebook Feed, Instagram Feed, Instagram Profile Feed (manual)</dd></div>
-        <div><dt>Dates</dt><dd>Path 1 only, Thu 19 Nov to Tue 1 Dec</dd></div>
+        <div><dt>Dates</dt><dd>Early start only, Thu 19 Nov to Tue 1 Dec</dd></div>
         <div><dt>Budget</dt><dd>$20 a day for the <code class="k-x-code">f02_warm</code> ad set <abbr class="k-est" title="Estimate">Est.</abbr></dd></div>
       </dl>
     </div>
@@ -1946,19 +2004,19 @@ Two choices: a December readout of your Black Friday numbers with the first thre
       </div>
     </div>
     <div class="k-ad-fields">
-      <h3 class="k-ad-name">3.3 Carousel card 1, November, Image led version <span><code class="k-x-code">f02_warm_carousel_nov_image</code></span></h3>
+      <h3 class="k-ad-name">Carousel card 1, November, Image led version <span><code class="k-x-code">f02_warm_carousel_nov_image</code></span></h3>
 <div class="s-dl" role="group" aria-label="Download JPG"><div class="s-dl-row"><span class="s-dl-label">Download JPG</span><a class="s-get" href="../ads/funnel-02-car-1-nov-image-1x1.jpg" download="funnel-02-car-1-nov-image-1x1.jpg"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>1:1</a><a class="s-get" href="../ads/funnel-02-car-1-nov-image-4x5.jpg" download="funnel-02-car-1-nov-image-4x5.jpg"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>4:5</a></div></div>
       <p class="k-p">Cards 2 to 5 stay as above. Uses the same primary text, card headlines, description and button; only card 1's visual changes, to "the frosted door": a generated photo of a frosted shop door lit from inside, with no text in the image.</p>
       <dl class="k-ad-meta">
-        <div><dt>Audience</dt><dd>Same ad set as 3.3: <code class="k-x-code">f02_warm</code></dd></div>
-        <div><dt>Dates</dt><dd>Path 1 only, Thu 19 Nov to Tue 1 Dec</dd></div>
+        <div><dt>Audience</dt><dd>Same ad set as Carousel, November version:<code class="k-x-code">f02_warm</code></dd></div>
+        <div><dt>Dates</dt><dd>Early start only, Thu 19 Nov to Tue 1 Dec</dd></div>
       </dl>
     </div>
   </article>
 
   <div class="k-x-group">
-    <h2 class="k-x-group-title">Warm leg</h2>
-    <p class="k-x-when">From Wed 2 Dec: December versions, both paths</p>
+    <h2 class="k-x-group-title">Warm ads</h2>
+    <p class="k-x-when">From Wed 2 Dec: December versions, either start</p>
   </div>
 
   <article class="k-ad" id="f02-ad-video-dec" data-ratio="4x5">
@@ -1983,10 +2041,10 @@ Two choices: a December readout of your Black Friday numbers with the first thre
 </div>
         <div class="k-feed-bar"><div><b>December readout or January launch week</b><span>Free 15 minute call. Pick your date.</span></div><span class="k-feed-cta">Book now</span></div>
       </div>
-      <p class="k-x-sb">Storyboard frame: the cover frame and end card words over his photo, which stands in until the video is recorded.</p>
+      <p class="k-x-sb">Storyboard frame: the cover frame and end card words over your photo, which stands in until the video is recorded.</p>
     </div>
     <div class="k-ad-fields">
-      <h3 class="k-ad-name">3.1 Warm video, December version <span><code class="k-x-code">f02_warm_video_dec</code></span></h3>
+      <h3 class="k-ad-name">Warm video, December version <span><code class="k-x-code">f02_warm_video_dec</code></span></h3>
       <p class="k-p">Daniel to camera, 30 seconds. Format: video, 4:5 for feeds and 1:1 as a second cut. Burned in captions. Only the first two lines change from the November version.</p>
       <div class="k-table-wrap">
         <table class="k-table k-x-stack">
@@ -2031,7 +2089,7 @@ Nothing is asked of your store before the call. Your first split test is on us. 
       <dl class="k-ad-meta">
         <div><dt>Audience</dt><dd>Ad set <code class="k-x-code">f02_warm</code></dd></div>
         <div><dt>Placement</dt><dd>Facebook Feed, Instagram Feed, Instagram Profile Feed (manual)</dd></div>
-        <div><dt>Dates</dt><dd>Wed 2 to Fri 11 Dec, both paths</dd></div>
+        <div><dt>Dates</dt><dd>Wed 2 to Fri 11 Dec, either start</dd></div>
         <div><dt>Budget</dt><dd>$20 a day for the <code class="k-x-code">f02_warm</code> ad set <abbr class="k-est" title="Estimate">Est.</abbr></dd></div>
       </dl>
     </div>
@@ -2060,12 +2118,12 @@ Nothing is asked of your store before the call. Your first split test is on us. 
       </div>
     </div>
     <div class="k-ad-fields">
-      <h3 class="k-ad-name">3.1 Warm video cover frame, December, Image led version <span><code class="k-x-code">f02_warm_video_dec_image</code></span></h3>
+      <h3 class="k-ad-name">Warm video cover frame, December, Image led version <span><code class="k-x-code">f02_warm_video_dec_image</code></span></h3>
 <div class="s-dl" role="group" aria-label="Download JPG"><div class="s-dl-row"><span class="s-dl-label">Download JPG</span><a class="s-get" href="../ads/funnel-02-video-dec-image-1x1.jpg" download="funnel-02-video-dec-image-1x1.jpg"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>1:1</a><a class="s-get" href="../ads/funnel-02-video-dec-image-4x5.jpg" download="funnel-02-video-dec-image-4x5.jpg"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>4:5</a></div></div>
-      <p class="k-p">An alternative cover frame (the thumbnail) for the same video: the cover frame words over "the frosted door", a generated photo with no text in it. The video itself stays Daniel to camera. Uses the same script, primary text, headline, description and button as 3.1 December above.</p>
+      <p class="k-p">An alternative cover frame (the thumbnail) for the same video: the cover frame words over "the frosted door", a generated photo with no text in it. The video itself stays Daniel to camera. Uses the same script, primary text, headline, description and button as Warm video, December version above.</p>
       <dl class="k-ad-meta">
-        <div><dt>Audience</dt><dd>Same ad set as 3.1: <code class="k-x-code">f02_warm</code></dd></div>
-        <div><dt>Dates</dt><dd>Wed 2 to Fri 11 Dec, both paths</dd></div>
+        <div><dt>Audience</dt><dd>Same ad set as the warm video:<code class="k-x-code">f02_warm</code></dd></div>
+        <div><dt>Dates</dt><dd>Wed 2 to Fri 11 Dec, either start</dd></div>
       </dl>
     </div>
   </article>
@@ -2158,7 +2216,7 @@ Nothing is asked of your store before the call. Your first split test is on us. 
       </div>
     </div>
     <div class="k-ad-fields">
-      <h3 class="k-ad-name">3.3 Carousel, December version, warm <span><code class="k-x-code">f02_warm_carousel_dec</code></span></h3>
+      <h3 class="k-ad-name">Carousel, December version, warm <span><code class="k-x-code">f02_warm_carousel_dec</code></span></h3>
 <div class="s-dl" role="group" aria-label="Download PNG"><div class="s-dl-row"><span class="s-dl-label">Download PNG</span></div><div class="s-dl-row"><span class="s-dl-label">Image 1</span><a class="s-get" href="../ads/funnel-02-car-1-dec-1x1.png" download="funnel-02-car-1-dec-1x1.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>1:1</a><a class="s-get" href="../ads/funnel-02-car-1-dec-4x5.png" download="funnel-02-car-1-dec-4x5.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>4:5</a></div><div class="s-dl-row"><span class="s-dl-label">Image 2</span><a class="s-get" href="../ads/funnel-02-car-2-1x1.png" download="funnel-02-car-2-1x1.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>1:1</a><a class="s-get" href="../ads/funnel-02-car-2-4x5.png" download="funnel-02-car-2-4x5.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>4:5</a></div><div class="s-dl-row"><span class="s-dl-label">Image 3</span><a class="s-get" href="../ads/funnel-02-car-3-1x1.png" download="funnel-02-car-3-1x1.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>1:1</a><a class="s-get" href="../ads/funnel-02-car-3-4x5.png" download="funnel-02-car-3-4x5.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>4:5</a></div><div class="s-dl-row"><span class="s-dl-label">Image 4</span><a class="s-get" href="../ads/funnel-02-car-4-1x1.png" download="funnel-02-car-4-1x1.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>1:1</a><a class="s-get" href="../ads/funnel-02-car-4-4x5.png" download="funnel-02-car-4-4x5.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>4:5</a></div><div class="s-dl-row"><span class="s-dl-label">Image 5</span><a class="s-get" href="../ads/funnel-02-car-5-dec-1x1.png" download="funnel-02-car-5-dec-1x1.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>1:1</a><a class="s-get" href="../ads/funnel-02-car-5-dec-4x5.png" download="funnel-02-car-5-dec-4x5.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>4:5</a></div></div>
       <p class="k-p">Cards 2 to 4 as November; cards 1 and 5 change. Five cards, 1:1 (1080 x 1080); a 4:5 set as a second option.</p>
       <figure class="k-cb" id="f02-cb-cdw-primary">
@@ -2210,7 +2268,7 @@ Two choices: a December readout of your Black Friday numbers with the first thre
       </div>
     </div>
     <div class="k-ad-fields">
-      <h3 class="k-ad-name">3.3 Carousel card 1, December, Image led version <span><code class="k-x-code">f02_warm_carousel_dec_image</code></span></h3>
+      <h3 class="k-ad-name">Carousel card 1, December, Image led version <span><code class="k-x-code">f02_warm_carousel_dec_image</code></span></h3>
 <div class="s-dl" role="group" aria-label="Download JPG"><div class="s-dl-row"><span class="s-dl-label">Download JPG</span><a class="s-get" href="../ads/funnel-02-car-1-dec-image-1x1.jpg" download="funnel-02-car-1-dec-image-1x1.jpg"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>1:1</a><a class="s-get" href="../ads/funnel-02-car-1-dec-image-4x5.jpg" download="funnel-02-car-1-dec-image-4x5.jpg"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>4:5</a></div></div>
       <p class="k-p">Card 1 of both December carousels, warm and cold (for the cold one, name the ad <code class="k-x-code">f02_cold_carousel_dec_image</code>). Cards 2 to 5 stay as above. Uses the same primary text, card headlines, description and button; only card 1's visual changes, to "the thaw": a generated photo of a shopping cart frozen in a block of ice, with no text in the image.</p>
       <dl class="k-ad-meta">
@@ -2221,7 +2279,7 @@ Two choices: a December readout of your Black Friday numbers with the first thre
   </article>
 
   <div class="k-x-group">
-    <h2 class="k-x-group-title">Cold leg</h2>
+    <h2 class="k-x-group-title">Cold ads</h2>
     <p class="k-x-when">From Wed 2 Dec only</p>
   </div>
 
@@ -2278,7 +2336,7 @@ Two choices: a December readout of your Black Friday numbers with the first thre
       </details>
     </div>
     <div class="k-ad-fields">
-      <h3 class="k-ad-name">3.2 Cold static <span><code class="k-x-code">f02_cold_static</code></span></h3>
+      <h3 class="k-ad-name">Cold static <span><code class="k-x-code">f02_cold_static</code></span></h3>
 <div class="s-dl" role="group" aria-label="Download PNG"><div class="s-dl-row"><span class="s-dl-label">Download PNG</span></div><div class="s-dl-row"><span class="s-dl-label">Image 1</span><a class="s-get" href="../ads/funnel-02-static-cold-1x1.png" download="funnel-02-static-cold-1x1.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>1:1</a><a class="s-get" href="../ads/funnel-02-static-cold-4x5.png" download="funnel-02-static-cold-4x5.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>4:5</a></div><div class="s-dl-row"><span class="s-dl-label">Image 2</span><a class="s-get" href="../ads/funnel-02-static-cold-alt-1x1.png" download="funnel-02-static-cold-alt-1x1.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>1:1</a><a class="s-get" href="../ads/funnel-02-static-cold-alt-4x5.png" download="funnel-02-static-cold-alt-4x5.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>4:5</a><span class="s-dl-note">Not in the zip. Runs only with the client's written OK and Daniel's.</span></div></div>
       <p class="k-p">Runs with the Goose Creek proof. The anonymised alternative runs only with the client's written OK and Daniel's.</p>
       <p class="k-p">Single image, 4:5 (1080 x 1350) and 1:1 (1080 x 1080). Default proof: Goose Creek, sitewide, "Sticky cart bar after scroll", CVR +13.39%, 99.99% confidence (public card <code class="k-x-code">GC-025-M-SW-CVR</code>). Alternative, only with both OKs in writing: a Danish cleaning products brand, "Assurance icons below add to cart", CVR +19.13%, 99.7% confidence, with no brand name, no logo, no page image and no test ID.</p>
@@ -2298,7 +2356,7 @@ The readout needs no store login and no theme access. Your first split test is o
       <figure class="k-cb" id="f02-cb-st-desc"><figcaption><span class="k-cb-label">Description</span></figcaption><div class="k-cb-body">15 minute call in December or January.</div></figure>
       <figure class="k-cb" id="f02-cb-st-button"><figcaption><span class="k-cb-label">Button label</span></figcaption><div class="k-cb-body">Book now</div></figure>
       <dl class="k-ad-meta">
-        <div><dt>Audience</dt><dd>Ad set <code class="k-x-code">f02_cold</code>: Shopify founder and ecommerce manager interests, plus a lookalike of kit 01's past client contact sheet, once the legal read allows the upload. Excludes <code class="k-x-code">f02_warm</code>, his VSL visitors and kit 01's past client list</dd></div>
+        <div><dt>Audience</dt><dd>Ad set <code class="k-x-code">f02_cold</code>: Shopify founder and ecommerce manager interests. Excludes <code class="k-x-code">f02_warm</code> and your VSL visitors</dd></div>
         <div><dt>Placement</dt><dd>Facebook Feed, Instagram Feed, Instagram Profile Feed (manual)</dd></div>
         <div><dt>Dates</dt><dd>Wed 2 to Fri 11 Dec only</dd></div>
         <div><dt>Budget</dt><dd>$80 a day for the <code class="k-x-code">f02_cold</code> ad set <abbr class="k-est" title="Estimate">Est.</abbr></dd></div>
@@ -2336,11 +2394,11 @@ The readout needs no store login and no theme access. Your first split test is o
       </div>
     </div>
     <div class="k-ad-fields">
-      <h3 class="k-ad-name">3.2 Cold static, Image led version <span><code class="k-x-code">f02_cold_static_image</code></span></h3>
+      <h3 class="k-ad-name">Cold static, Image led version <span><code class="k-x-code">f02_cold_static_image</code></span></h3>
 <div class="s-dl" role="group" aria-label="Download JPG"><div class="s-dl-row"><span class="s-dl-label">Download JPG</span><a class="s-get" href="../ads/funnel-02-static-cold-image-1x1.jpg" download="funnel-02-static-cold-image-1x1.jpg"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>1:1</a><a class="s-get" href="../ads/funnel-02-static-cold-image-4x5.jpg" download="funnel-02-static-cold-image-4x5.jpg"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>4:5</a></div></div>
-      <p class="k-p">Uses the same primary text, headline, description and button as 3.2 Cold static above; only the visual changes. The same words and the same Goose Creek result (sticky cart bar after scroll, CVR +13.39%, 99.99% confidence), set over "the thaw": a generated photo of a shopping cart frozen in a block of ice, with no text in the image.</p>
+      <p class="k-p">Uses the same primary text, headline, description and button as Cold static above; only the visual changes. The same words and the same Goose Creek result (sticky cart bar after scroll, CVR +13.39%, 99.99% confidence), set over "the thaw": a generated photo of a shopping cart frozen in a block of ice, with no text in the image.</p>
       <dl class="k-ad-meta">
-        <div><dt>Audience</dt><dd>Same ad set as 3.2: <code class="k-x-code">f02_cold</code></dd></div>
+        <div><dt>Audience</dt><dd>Same ad set as Cold static:<code class="k-x-code">f02_cold</code></dd></div>
         <div><dt>Dates</dt><dd>Wed 2 to Fri 11 Dec only</dd></div>
         <div><dt>Budget</dt><dd>Shares the <code class="k-x-code">f02_cold</code> ad set budget</dd></div>
       </dl>
@@ -2435,7 +2493,7 @@ The readout needs no store login and no theme access. Your first split test is o
       </div>
     </div>
     <div class="k-ad-fields">
-      <h3 class="k-ad-name">3.3 Carousel, December version, cold <span><code class="k-x-code">f02_cold_carousel_dec</code></span></h3>
+      <h3 class="k-ad-name">Carousel, December version, cold <span><code class="k-x-code">f02_cold_carousel_dec</code></span></h3>
 <div class="s-dl" role="group" aria-label="Download PNG"><div class="s-dl-row"><span class="s-dl-label">Download PNG</span></div><div class="s-dl-row"><span class="s-dl-label">Image 1</span><a class="s-get" href="../ads/funnel-02-car-1-dec-1x1.png" download="funnel-02-car-1-dec-1x1.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>1:1</a><a class="s-get" href="../ads/funnel-02-car-1-dec-4x5.png" download="funnel-02-car-1-dec-4x5.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>4:5</a></div><div class="s-dl-row"><span class="s-dl-label">Image 2</span><a class="s-get" href="../ads/funnel-02-car-2-1x1.png" download="funnel-02-car-2-1x1.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>1:1</a><a class="s-get" href="../ads/funnel-02-car-2-4x5.png" download="funnel-02-car-2-4x5.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>4:5</a></div><div class="s-dl-row"><span class="s-dl-label">Image 3</span><a class="s-get" href="../ads/funnel-02-car-3-1x1.png" download="funnel-02-car-3-1x1.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>1:1</a><a class="s-get" href="../ads/funnel-02-car-3-4x5.png" download="funnel-02-car-3-4x5.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>4:5</a></div><div class="s-dl-row"><span class="s-dl-label">Image 4</span><a class="s-get" href="../ads/funnel-02-car-4-1x1.png" download="funnel-02-car-4-1x1.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>1:1</a><a class="s-get" href="../ads/funnel-02-car-4-4x5.png" download="funnel-02-car-4-4x5.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>4:5</a></div><div class="s-dl-row"><span class="s-dl-label">Image 5</span><a class="s-get" href="../ads/funnel-02-car-5-dec-1x1.png" download="funnel-02-car-5-dec-1x1.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>1:1</a><a class="s-get" href="../ads/funnel-02-car-5-dec-4x5.png" download="funnel-02-car-5-dec-4x5.png"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>4:5</a></div></div>
       <p class="k-p">The same cards and fields as the warm December carousel, under its own ad name in the cold ad set.</p>
       <figure class="k-cb" id="f02-cb-cdc-primary">
@@ -2470,7 +2528,7 @@ Two choices: a December readout of your Black Friday numbers with the first thre
 <div class="k-wide">
   <div class="k-intro">
     <h1 class="k-title">Landing page</h1>
-    <p class="k-lede">The first screen is the choice. Pick a card, a December day or a January week to open the booking step under the cards. The standalone file for his developer is landing-02.html.</p>
+    <p class="k-lede">The first screen is the choice. Pick a card, a December day or a January week to open the booking step under the cards. The standalone file for your developer is landing-02.html.</p>
     <p class="k-x-how"><b>How to use</b>On landing-02.html, ?board=demo shows 2, 1 and 0 seats left with a full December day, ?board=decfull shows December full, and ?today=2026-12-02 shows the lines that change from Wed 2 Dec. Without them the page shows the slot board as set: 2 seats left in each January week.</p>
   </div>
   <div class="k-device" id="k-device" data-device="desktop">
@@ -2690,7 +2748,6 @@ Two choices: a December readout of your Black Friday numbers with the first thre
             <input type="hidden" id="lp-h-store-url" name="store_url" value="">
             <input type="hidden" id="lp-h-revenue-band" name="revenue_band" value="">
             <input type="hidden" id="lp-h-leg" name="leg" value="">
-            <input type="hidden" id="lp-h-pass" name="pass" value="">
             <input type="hidden" id="lp-h-utm-source" name="utm_source" value="">
             <input type="hidden" id="lp-h-utm-campaign" name="utm_campaign" value="">
             <input type="hidden" id="lp-h-utm-content" name="utm_content" value="">
@@ -2826,7 +2883,7 @@ Two choices: a December readout of your Black Friday numbers with the first thre
     <button type="button" data-jump="f02-as-ghl">GHL calendars</button>
     <button type="button" data-jump="f02-as-board">Slot board file</button>
     <button type="button" data-jump="f02-as-fields">Hidden fields and tags</button>
-    <button type="button" data-jump="f02-as-page">Page copy for his developer</button>
+    <button type="button" data-jump="f02-as-page">Page copy for your developer</button>
   </nav>
 
   <div class="k-assets-body">
@@ -2836,14 +2893,14 @@ Two choices: a December readout of your Black Friday numbers with the first thre
     </div>
 
     <section class="k-sec" id="f02-as-email1" aria-label="Email 1, confirmation">
-      <h2 class="k-h3">5.1 Email 1: confirmation (sent the moment a call is booked)</h2>
-      <p class="k-p"><strong>Choice A.</strong> From: Daniel Chabert, PurpleFire</p>
+      <h2 class="k-h3">Email 1: confirmation (sent the moment a call is booked)</h2>
+      <p class="k-p"><strong>December readout.</strong> From: Daniel Chabert, PurpleFire</p>
       <div class="k-x-cards">
         <figure class="k-cb" id="f02-as-e1a-subj"><figcaption><span class="k-cb-label">Subject</span></figcaption><div class="k-cb-body">Your Black Friday readout: {weekday} {date} Dec</div></figure>
         <figure class="k-cb" id="f02-as-e1a-prev"><figcaption><span class="k-cb-label">Preview</span></figcaption><div class="k-cb-body">Two days before, a short form for five numbers.</div></figure>
       </div>
       <figure class="k-cb" id="f02-as-e1a-body">
-        <figcaption><span class="k-cb-label">Email 1, choice A</span><span class="k-cb-meta">Body</span></figcaption>
+        <figcaption><span class="k-cb-label">Email 1, December readout</span><span class="k-cb-meta">Body</span></figcaption>
         <div class="k-cb-body">Hi {first name},
 
 You're booked for a 15 minute Black Friday readout of {store} on {weekday} {date} December at {time} ({time zone}). The calendar invite is attached.
@@ -2862,13 +2919,13 @@ Daniel
 Founder, PurpleFire</div>
       </figure>
 
-      <p class="k-p"><strong>Choice A, short notice</strong> (call 1 or 2 days away; replaces the "Here's what happens" part of the body above)</p>
+      <p class="k-p"><strong>December readout, short notice</strong> (call 1 or 2 days away; replaces the "Here's what happens" part of the body above)</p>
       <div class="k-x-cards">
         <figure class="k-cb" id="f02-as-e1s-subj"><figcaption><span class="k-cb-label">Subject</span></figcaption><div class="k-cb-body">Your Black Friday readout: {weekday} {date} Dec</div></figure>
         <figure class="k-cb" id="f02-as-e1s-prev"><figcaption><span class="k-cb-label">Preview</span></figcaption><div class="k-cb-body">Five numbers today, and your readout arrives before the call.</div></figure>
       </div>
       <figure class="k-cb" id="f02-as-e1s-body">
-        <figcaption><span class="k-cb-label">Email 1, choice A, short notice</span><span class="k-cb-meta">Replacement part of the body</span></figcaption>
+        <figcaption><span class="k-cb-label">Email 1, December readout, short notice</span><span class="k-cb-meta">Replacement part of the body</span></figcaption>
         <div class="k-cb-body">Your call is close, so here is the form for five numbers from your Black Friday now (sessions, orders, conversion rate, average order value, top landing page by revenue), with last year beside each:
 
 {form link}
@@ -2876,13 +2933,13 @@ Founder, PurpleFire</div>
 Rather share GA4? Viewer access to hello@purplefire.io works too. Send them today and your readout arrives by 9:00 Copenhagen time on the day of the call.</div>
       </figure>
 
-      <p class="k-p"><strong>Choice B.</strong> From: Daniel Chabert, PurpleFire</p>
+      <p class="k-p"><strong>January week.</strong> From: Daniel Chabert, PurpleFire</p>
       <div class="k-x-cards">
         <figure class="k-cb" id="f02-as-e1b-subj"><figcaption><span class="k-cb-label">Subject</span></figcaption><div class="k-cb-body">Week of Mon {date} Jan is held for {store}</div></figure>
         <figure class="k-cb" id="f02-as-e1b-prev"><figcaption><span class="k-cb-label">Preview</span></figcaption><div class="k-cb-body">Your planning call is {weekday} {date} {month}.</div></figure>
       </div>
       <figure class="k-cb" id="f02-as-e1b-body">
-        <figcaption><span class="k-cb-label">Email 1, choice B</span><span class="k-cb-meta">Body</span></figcaption>
+        <figcaption><span class="k-cb-label">Email 1, January week</span><span class="k-cb-meta">Body</span></figcaption>
         <div class="k-cb-body">Hi {first name},
 
 The week of Mon {date} January 2027 is held for {store}. Your 15 minute planning call is on {weekday} {date} {month} at {time} ({time zone}). The calendar invite is attached.
@@ -2899,27 +2956,27 @@ Daniel
 Founder, PurpleFire</div>
       </figure>
 
-      <p class="k-p"><strong>WhatsApp confirmation</strong>, sent with email 1 from Daniel's WhatsApp Business number, connected in GHL</p>
+      <p class="k-p"><strong>WhatsApp confirmation</strong>, sent with email 1 from your WhatsApp Business number, connected in GHL</p>
       <figure class="k-cb" id="f02-as-wa-a">
-        <figcaption><span class="k-cb-label">WhatsApp, choice A</span></figcaption>
+        <figcaption><span class="k-cb-label">WhatsApp, December readout</span></figcaption>
         <div class="k-cb-body">Hi {first name}, it's Daniel from PurpleFire. Your Black Friday readout of {store} is booked for {weekday} {date} Dec at {time}. Two days before, I'll send a short form for five numbers. Nothing is needed from your store before then.</div>
       </figure>
       <figure class="k-cb" id="f02-as-wa-b">
-        <figcaption><span class="k-cb-label">WhatsApp, choice B</span></figcaption>
+        <figcaption><span class="k-cb-label">WhatsApp, January week</span></figcaption>
         <div class="k-cb-body">Hi {first name}, it's Daniel from PurpleFire. The week of Mon {date} Jan is held for {store}, and your planning call is {weekday} {date} {month} at {time}. Your five tests arrive before the call.</div>
       </figure>
     </section>
 
     <section class="k-sec" id="f02-as-email2" aria-label="Email 2, reminder">
-      <h2 class="k-h3">5.2 Email 2: reminder seven days before the call</h2>
+      <h2 class="k-h3">Email 2: reminder seven days before the call</h2>
       <p class="k-p">Trigger: seven days before the call, only when the booking was made 8 or more days before it (calls booked in November or early December). A call booked inside seven days skips this email.</p>
-      <p class="k-p"><strong>Choice A</strong></p>
+      <p class="k-p"><strong>December readout</strong></p>
       <div class="k-x-cards">
         <figure class="k-cb" id="f02-as-e2a-subj"><figcaption><span class="k-cb-label">Subject</span></figcaption><div class="k-cb-body">A week to your Black Friday readout</div></figure>
         <figure class="k-cb" id="f02-as-e2a-prev"><figcaption><span class="k-cb-label">Preview</span></figcaption><div class="k-cb-body">{weekday} {date} Dec at {time}. The form comes in five days.</div></figure>
       </div>
       <figure class="k-cb" id="f02-as-e2a-body">
-        <figcaption><span class="k-cb-label">Email 2, choice A</span><span class="k-cb-meta">Body</span></figcaption>
+        <figcaption><span class="k-cb-label">Email 2, December readout</span><span class="k-cb-meta">Body</span></figcaption>
         <div class="k-cb-body">Hi {first name},
 
 A week from today, on {weekday} {date} December at {time}, we read {store}'s Black Friday back to you.
@@ -2930,13 +2987,13 @@ Need another time? Pick one here: {reschedule link}
 
 Daniel</div>
       </figure>
-      <p class="k-p"><strong>Choice B</strong></p>
+      <p class="k-p"><strong>January week</strong></p>
       <div class="k-x-cards">
         <figure class="k-cb" id="f02-as-e2b-subj"><figcaption><span class="k-cb-label">Subject</span></figcaption><div class="k-cb-body">A week to your planning call</div></figure>
         <figure class="k-cb" id="f02-as-e2b-prev"><figcaption><span class="k-cb-label">Preview</span></figcaption><div class="k-cb-body">{weekday} {date} {month} at {time}, for the week of Mon {date} Jan.</div></figure>
       </div>
       <figure class="k-cb" id="f02-as-e2b-body">
-        <figcaption><span class="k-cb-label">Email 2, choice B</span><span class="k-cb-meta">Body</span></figcaption>
+        <figcaption><span class="k-cb-label">Email 2, January week</span><span class="k-cb-meta">Body</span></figcaption>
         <div class="k-cb-body">Hi {first name},
 
 A week from today, on {weekday} {date} {month} at {time}, we plan {store}'s first A/B test for the week of Mon {date} January.
@@ -2950,14 +3007,14 @@ Daniel</div>
     </section>
 
     <section class="k-sec" id="f02-as-email3" aria-label="Email 3">
-      <h2 class="k-h3">5.3 Email 3</h2>
-      <p class="k-p"><strong>Choice A: the numbers form, two days before the call</strong> (skipped for short notice calls, which got the form in email 1)</p>
+      <h2 class="k-h3">Email 3</h2>
+      <p class="k-p"><strong>December readout: the numbers form, two days before the call</strong> (skipped for short notice calls, which got the form in email 1)</p>
       <div class="k-x-cards">
         <figure class="k-cb" id="f02-as-e3a-subj"><figcaption><span class="k-cb-label">Subject</span></figcaption><div class="k-cb-body">Five numbers for your readout on {weekday}</div></figure>
         <figure class="k-cb" id="f02-as-e3a-prev"><figcaption><span class="k-cb-label">Preview</span></figcaption><div class="k-cb-body">Rough numbers are fine, with last year beside each.</div></figure>
       </div>
       <figure class="k-cb" id="f02-as-e3a-body">
-        <figcaption><span class="k-cb-label">Email 3, choice A</span><span class="k-cb-meta">Body</span></figcaption>
+        <figcaption><span class="k-cb-label">Email 3, December readout</span><span class="k-cb-meta">Body</span></figcaption>
         <div class="k-cb-body">Hi {first name},
 
 Your readout is on {weekday} {date} December at {time}. To write it, we need five numbers from {store}'s Black Friday, with last year beside each:
@@ -2973,7 +3030,7 @@ A person on our team reads where it leaked and checks the three tests before you
 Daniel</div>
       </figure>
       <figure class="k-cb" id="f02-as-form">
-        <figcaption><span class="k-cb-label">Numbers form labels</span><span class="k-cb-meta">Slot: copy</span></figcaption>
+        <figcaption><span class="k-cb-label">Numbers form labels</span><span class="k-cb-meta">Labels and messages</span></figcaption>
         <div class="k-cb-body">Form title: Your Black Friday in five numbers
 Intro: Thu 26 Nov to Mon 30 Nov 2026, and last year's Thu 27 Nov to Mon 1 Dec 2025 beside it. Rough numbers are fine.
 Row 1: Sessions
@@ -2989,15 +3046,15 @@ Button: Send my numbers
 Error, a row left empty: Add this year's number, or leave a note on why it's missing.
 Done screen: Thanks, {first name}. Your readout arrives on {weekday} {date} December.</div>
       </figure>
-      <p class="k-x-how"><b>How to use</b>The Black Friday window (Thanksgiving Thursday to Cyber Monday, both years) is our assumption, not his. He changes it in two places: this email and the form intro.</p>
+      <p class="k-x-how"><b>How to use</b>The Black Friday window (Thanksgiving Thursday to Cyber Monday, both years) is an assumption. If yours differs, change it in two places: this email and the form intro.</p>
 
-      <p class="k-p"><strong>Choice B: the five tests, before the planning call</strong> (sent two days before the planning call)</p>
+      <p class="k-p"><strong>January week: the five tests, before the planning call</strong> (sent two days before the planning call)</p>
       <div class="k-x-cards">
         <figure class="k-cb" id="f02-as-e3b-subj"><figcaption><span class="k-cb-label">Subject</span></figcaption><div class="k-cb-body">Five tests we'd run first on {store}</div></figure>
         <figure class="k-cb" id="f02-as-e3b-prev"><figcaption><span class="k-cb-label">Preview</span></figcaption><div class="k-cb-body">We pick one together on {weekday}.</div></figure>
       </div>
       <figure class="k-cb" id="f02-as-e3b-body">
-        <figcaption><span class="k-cb-label">Email 3, choice B</span><span class="k-cb-meta">Body</span></figcaption>
+        <figcaption><span class="k-cb-label">Email 3, January week</span><span class="k-cb-meta">Body</span></figcaption>
         <div class="k-cb-body">Hi {first name},
 
 Here are the five tests we'd run first on {store}, checked by a person on our team:
@@ -3013,8 +3070,8 @@ Daniel</div>
     </section>
 
     <section class="k-sec" id="f02-as-readout" aria-label="Readout template">
-      <h2 class="k-h3">5.4 Readout template</h2>
-      <p class="k-p">Sent the day before; Daniel walks it on the 15 minute call. A sample outline of what the founder receives:</p>
+      <h2 class="k-h3">Readout template</h2>
+      <p class="k-p">Sent the day before; you walk the founder through it on the 15 minute call. A sample outline of what the founder receives:</p>
       <article class="k-x-doc" aria-label="Sample readout outline">
         <header class="k-x-doc-head">
           <p class="k-x-doc-kicker">PurpleFire readout, sample outline</p>
@@ -3062,24 +3119,24 @@ Subtitle: Prepared for {first name} on {date}. Black Friday this year Thu 26 Nov
       <p class="k-p"><strong>Running order for the 15 minutes</strong></p>
       <div class="k-table-wrap">
         <table class="k-table">
-          <thead><tr><th scope="col">Minutes</th><th scope="col">Daniel covers</th></tr></thead>
+          <thead><tr><th scope="col">Minutes</th><th scope="col">You cover</th></tr></thead>
           <tbody>
             <tr><th scope="row">0 to 2</th><td>The five numbers against last year</td></tr>
             <tr><th scope="row">2 to 6</th><td>Where it leaked</td></tr>
-            <tr><th scope="row">6 to 11</th><td>The three tests, and the one he'd launch first</td></tr>
+            <tr><th scope="row">6 to 11</th><td>The three tests, and the one you'd launch first</td></tr>
             <tr><th scope="row">11 to 15</th><td>The January week, the terms in writing, and the next step if we take them on</td></tr>
           </tbody>
         </table>
       </div>
       <figure class="k-cb" id="f02-as-readout-checks">
         <figcaption><span class="k-cb-label">Checks before it is sent</span></figcaption>
-        <div class="k-cb-body">A person has read the leaks and checked all three tests; every comparable result is a public card or confirmed by Daniel; current clients appear only as "a Danish cleaning products brand" or "a Danish cookware brand", and no other client is named unless their card is public on his live pages or Daniel has confirmed it.</div>
+        <div class="k-cb-body">A person has read the leaks and checked all three tests; every comparable result is a public card or confirmed by you; current clients appear only as "a Danish cleaning products brand" or "a Danish cookware brand", and no other client is named unless their card is public on your live pages or you have confirmed it.</div>
       </figure>
     </section>
 
     <section class="k-sec" id="f02-as-ghl" aria-label="GHL calendars">
-      <h2 class="k-h3">5.5 GHL calendars (two calendars, 15 minutes each, both his to set up)</h2>
-      <p class="k-x-how"><b>How to use</b>Both calendars are shared by every kit; the choice travels in hidden fields and tags, not in the calendar.</p>
+      <h2 class="k-h3">GHL calendars (two calendars, 15 minutes each, both yours to set up)</h2>
+      <p class="k-x-how"><b>How to use</b>Both calendars are shared by Funnels 2, 3 and 4; the choice travels in hidden fields and tags, not in the calendar.</p>
       <p class="k-p"><strong>December.</strong> Dates: Thu 3 to Fri 18 Dec 2026, weekdays only, 10:00 to 16:00 Copenhagen time, 15 minute slots. Minimum scheduling notice: one working day.</p>
       <figure class="k-cb" id="f02-as-ghl-dec-name"><figcaption><span class="k-cb-label">December calendar name</span></figcaption><div class="k-cb-body">PurpleFire December call, 15 min</div></figure>
       <figure class="k-cb" id="f02-as-ghl-dec-desc">
@@ -3095,7 +3152,7 @@ Subtitle: Prepared for {first name} on {date}. Black Friday this year Thu 26 Nov
     </section>
 
     <section class="k-sec" id="f02-as-board" aria-label="Slot board file">
-      <h2 class="k-h3">5.6 Slot board file (Daniel edits it; the page reads it)</h2>
+      <h2 class="k-h3">Slot board file (you edit it; the page reads it)</h2>
       <p class="k-p">File: <code class="k-x-code">slot-board.json</code>, next to the page.</p>
       <figure class="k-cb" id="f02-as-board-json">
         <figcaption><span class="k-cb-label">slot-board.json</span></figcaption>
@@ -3121,28 +3178,27 @@ Subtitle: Prepared for {first name} on {date}. Black Friday this year Thu 26 Nov
         <figcaption><span class="k-cb-label">Rules</span></figcaption>
         <div class="k-cb-body">Capacity: 6 brands start in January, 2 seats in each launch week. The page shows "2 seats left" on each week while none is taken.
 Seats left is seats_total minus seats_taken. Above 0 shows "{n} seats left" (1 seat left when n is 1). At 0 the week shows "Full. Pick another week." and its chip is disabled.
-A seat is taken when a choice B planning call is booked for that week, and released after the second missed planning call (tag f02_no_show_2).
-48 hour hold: a "January" reply from kit 03 or kit 04 holds a seat. Add 1 to seats_taken for that week and add a line to holds with the week, the contact and the time of the reply. If no call is booked within 48 hours, take the 1 off again and delete the line.
+A seat is taken when a January week planning call is booked for that week, and released after the second missed planning call (tag f02_no_show_2).
+Replies from Funnels 3 and 4: a "January" reply gets the link to this page and books like anyone else, so its seat is taken when the call is booked. No seat is held before that, and holds stays empty.
 last_planning_call is the last day a planning call may fall on for that week: the Friday before it (Fri 8, Fri 15 and Fri 22 Jan).
-Overflow: the weeks of Mon 1 and Mon 8 Feb (2 seats each) stay off the page until all three January weeks are full. Then move them into launch_weeks, and his developer adds the two weeks to both week lists on the page.
-Daniel updates seats_taken by hand after each choice B booking, each hold and each release, and changes updated.</div>
+Overflow: the weeks of Mon 1 and Mon 8 Feb (2 seats each) stay off the page until all three January weeks are full. Then move them into launch_weeks, and your developer adds the two weeks to both week lists on the page.
+You update seats_taken by hand after each January week booking and each release, and changes updated.</div>
       </figure>
     </section>
 
     <section class="k-sec" id="f02-as-fields" aria-label="Hidden fields and tags">
-      <h2 class="k-h3">5.7 Hidden fields and tags</h2>
+      <h2 class="k-h3">Hidden fields and tags</h2>
       <p class="k-p">Hidden fields, set on the page and passed to GHL with the booking:</p>
       <div class="k-table-wrap">
         <table class="k-table">
           <thead><tr><th scope="col">Field</th><th scope="col">Values</th><th scope="col">Set from</th></tr></thead>
           <tbody>
             <tr><th scope="row"><code class="k-x-code">choice</code></th><td><code class="k-x-code">december_readout</code> or <code class="k-x-code">january_week</code></td><td>The card the founder picked</td></tr>
-            <tr><th scope="row"><code class="k-x-code">launch_week</code></th><td><code class="k-x-code">2027-01-11</code>, <code class="k-x-code">2027-01-18</code>, <code class="k-x-code">2027-01-25</code>, or empty for choice A</td><td>The week chip</td></tr>
+            <tr><th scope="row"><code class="k-x-code">launch_week</code></th><td><code class="k-x-code">2027-01-11</code>, <code class="k-x-code">2027-01-18</code>, <code class="k-x-code">2027-01-25</code>, or empty for December readout</td><td>The week chip</td></tr>
             <tr><th scope="row"><code class="k-x-code">call_calendar</code></th><td><code class="k-x-code">december</code> or <code class="k-x-code">january</code></td><td>Where the slot was picked</td></tr>
             <tr><th scope="row"><code class="k-x-code">store_url</code></th><td>as typed</td><td>Step 1</td></tr>
             <tr><th scope="row"><code class="k-x-code">revenue_band</code></th><td>the tapped option</td><td>Step 1</td></tr>
-            <tr><th scope="row"><code class="k-x-code">leg</code></th><td><code class="k-x-code">warm</code> or <code class="k-x-code">cold</code></td><td><code class="k-x-code">utm_content</code> (the ad name holds <code class="k-x-code">warm</code> or <code class="k-x-code">cold</code>); empty for direct visits</td></tr>
-            <tr><th scope="row"><code class="k-x-code">pass</code></th><td>the pass code from kit 01's link, such as <code class="k-x-code">air1</code> (giver code air, pass 1)</td><td>The <code class="k-x-code">pass</code> URL parameter</td></tr>
+            <tr><th scope="row"><code class="k-x-code">leg</code></th><td><code class="k-x-code">warm</code> or <code class="k-x-code">cold</code></td><td><code class="k-x-code">utm_content</code> (the ad name holds <code class="k-x-code">warm</code> or <code class="k-x-code">cold</code>: warm ads reach people who already visited your pages, cold ads reach new people); empty for direct visits</td></tr>
             <tr><th scope="row"><code class="k-x-code">utm_source</code>, <code class="k-x-code">utm_campaign</code>, <code class="k-x-code">utm_content</code></th><td>as in the link</td><td>The URL</td></tr>
             <tr><th scope="row"><code class="k-x-code">fbclid</code></th><td>as in the link</td><td>The URL</td></tr>
           </tbody>
@@ -3151,31 +3207,30 @@ Daniel updates seats_taken by hand after each choice B booking, each hold and ea
       <figure class="k-cb" id="f02-as-tags">
         <figcaption><span class="k-cb-label">Tags in GHL</span><span class="k-cb-meta">Underscores only</span></figcaption>
         <div class="k-cb-body k-mono">f02_after_freeze: any booking from this page
-f02_choice_a_december: choice A booked
-f02_choice_b_january: choice B booked
-f02_week_11_jan, f02_week_18_jan, f02_week_25_jan: choice B booked for that week
-f02_warm, f02_cold: from the leg field
-f01_c_pass_{giver code}: the pass field is set; the giver code is the pass code without its last digit, so air1 tags f01_c_pass_air (the name kit 01 uses)
+f02_choice_a_december: December readout booked
+f02_choice_b_january: January week booked
+f02_week_11_jan, f02_week_18_jan, f02_week_25_jan: a January week booked for that week
+f02_warm, f02_cold: the audience the ad reached (warm or cold)
 f02_below_floor: revenue band under $150k; no call booked
 f02_numbers_in: the numbers form or GA4 access arrived
 f02_readout_sent: the readout went out
-f02_five_tests_sent: choice B's five tests went out
+f02_five_tests_sent: January week's five tests went out
 f02_held: the call took place
-f02_no_show_1, f02_no_show_2: a missed call; the second releases a choice B seat
+f02_no_show_1, f02_no_show_2: a missed call; the second releases a January week seat
 f02_signed: terms signed after the call</div>
       </figure>
       <figure class="k-cb" id="f02-as-pixel">
         <figcaption><span class="k-cb-label">Pixel events</span></figcaption>
-        <div class="k-cb-body">BookingStart (custom) when step 1 opens; Schedule (standard) on booking complete, detected by the msgsndr-booking-complete message the GHL calendar embed posts to the page (as on cro-vsl v1), with choice and leg as parameters.</div>
+        <div class="k-cb-body">BookingStart (custom) when step 1 opens; Schedule (standard) on booking complete, detected by the msgsndr-booking-complete message the GHL calendar embed posts to the page (as on cro-vsl v1), with the choice and the audience the ad reached (parameters <code class="k-x-code">choice</code> and <code class="k-x-code">leg</code>, values as the landing page sets them: <code class="k-x-code">december_readout</code> or <code class="k-x-code">january_week</code>, and <code class="k-x-code">warm</code>, <code class="k-x-code">cold</code> or empty).</div>
       </figure>
-      <p class="k-note">On the prototype page, step 1 opening fires a <code class="k-x-code">lp:booking-start</code> event on the page root for his developer to hook BookingStart to; the page reads <code class="k-x-code">pass</code>, <code class="k-x-code">utm_source</code>, <code class="k-x-code">utm_campaign</code>, <code class="k-x-code">utm_content</code> and <code class="k-x-code">fbclid</code> from the address into the hidden fields.</p>
+      <p class="k-note">On the prototype page, step 1 opening fires a <code class="k-x-code">lp:booking-start</code> event on the page root for your developer to hook BookingStart to; the page reads <code class="k-x-code">utm_source</code>, <code class="k-x-code">utm_campaign</code>, <code class="k-x-code">utm_content</code> and <code class="k-x-code">fbclid</code> from the address into the hidden fields.</p>
     </section>
 
-    <section class="k-sec" id="f02-as-page" aria-label="Page copy for his developer">
-      <h2 class="k-h3">Page copy for his developer (part 4 of the deck)</h2>
+    <section class="k-sec" id="f02-as-page" aria-label="Page copy for your developer">
+      <h2 class="k-h3">Page copy for your developer</h2>
       <p class="k-p">Every string on the landing page, in page order. Section 3, the booking step, opens in place under the two date cards.</p>
       <figure class="k-cb" id="f02-as-p41">
-        <figcaption><span class="k-cb-label">4.1 Choice hero</span></figcaption>
+        <figcaption><span class="k-cb-label">Choice hero</span></figcaption>
         <div class="k-cb-body">Eyebrow: For Shopify brands doing $150k a month or more
 Headline: Book now for after the freeze. (mint italic on "after the freeze.")
 Sub line (locked): Your first split test is on us. You pay after the first win.
@@ -3203,7 +3258,7 @@ Button: Hold my January week
 Selected state label: Selected</div>
       </figure>
       <figure class="k-cb" id="f02-as-p42">
-        <figcaption><span class="k-cb-label">4.2 What happens in December</span></figcaption>
+        <figcaption><span class="k-cb-label">What happens in December</span></figcaption>
         <div class="k-cb-body">Heading, until Tue 1 Dec: Nothing is asked of your store before December.
 Heading, from Wed 2 Dec: Nothing is asked of your store before the call.
 Line 1: Booking takes your store URL, a revenue band and a time. Nothing is installed, and nobody logs in to your store.
@@ -3211,10 +3266,10 @@ Line 2: For a readout, we send a form two days before your call for five numbers
 Line 3: For a launch week, the planning call comes first. If we take you on, the test is designed and built on a duplicate theme, and it launches in the week you picked.</div>
       </figure>
       <figure class="k-cb" id="f02-as-p43">
-        <figcaption><span class="k-cb-label">4.3 Booking step</span><span class="k-cb-meta">Opens in place under the chosen card</span></figcaption>
+        <figcaption><span class="k-cb-label">Booking step</span><span class="k-cb-meta">Opens in place under the chosen card</span></figcaption>
         <div class="k-cb-body">Step 1, both choices: Your store · 1 of 3
-Step header, choice A: December readout · Your store · 1 of 3
-Step header, choice B: January launch week · Your store · 1 of 3
+Step header, December readout: December readout · Your store · 1 of 3
+Step header, January week: January launch week · Your store · 1 of 3
 Field label: Your store's URL
 Placeholder: yourbrand.com
 Field label: Monthly revenue
@@ -3226,7 +3281,7 @@ Error, URL empty: Add your store's URL so we can look at it before the call.
 Error, URL not valid: That doesn't look like a store address. Try yourbrand.com.
 Error, no revenue band: Tap the band closest to your monthly revenue.
 
-Step 2, choice A: Pick a December day · 2 of 3
+Step 2, December readout: Pick a December day · 2 of 3
 Step header: December readout · Pick a time · 2 of 3
 Sub: 15 minutes on {store}'s Black Friday. Calls run Thu 3 to Fri 18 Dec 2026.
 Day strip: the twelve day chips from card A, the chosen one selected
@@ -3239,7 +3294,7 @@ Button: Continue
 Back link: Back
 Error, no time picked: Pick a time to continue.
 
-Step 2, choice B: Pick your week and a call · 2 of 3
+Step 2, January week: Pick your week and a call · 2 of 3
 Step header: January launch week · Pick a week and a time · 2 of 3
 Sub: Your first A/B test launches in the week you pick, if we take you on.
 Week label: Launch week
@@ -3259,17 +3314,17 @@ Error, no time picked: Pick a time for the planning call.
 
 Step 3, both choices: Where we send it · 3 of 3
 Step header: Where we send it · 3 of 3
-Summary line, choice A: December readout of {store}: {weekday} {date} Dec at {time}
-Summary line, choice B: Launch week of Mon {date} Jan 2027. Planning call: {weekday} {date} {month} at {time}
+Summary line, December readout: December readout of {store}: {weekday} {date} Dec at {time}
+Summary line, January week: Launch week of Mon {date} Jan 2027. Planning call: {weekday} {date} {month} at {time}
 Field label: Your name
 Field label: Work email
-Helper, choice A: The invite and your readout come here.
-Helper, choice B: The invite and your five tests come here.
+Helper, December readout: The invite and your readout come here.
+Helper, January week: The invite and your five tests come here.
 Field label: Mobile, for the WhatsApp confirmation
 Placeholder: Mobile number (with the country code select)
 Privacy line: We use these details to send your invite and reminders for this call. Privacy policy (link: https://www.purplefire.io/privacy-policy)
-Button, choice A: Book my readout
-Button, choice B: Hold my week
+Button, December readout: Book my readout
+Button, January week: Hold my week
 Back link: Back
 Error, name empty: Add your name so we know who we're talking to.
 Error, email empty: Add your work email so we can send the invite.
@@ -3278,8 +3333,8 @@ Error, mobile empty: Add your mobile so we can send the WhatsApp confirmation.
 Error, slot taken meanwhile: Someone just took that time. Pick another one.</div>
       </figure>
       <figure class="k-cb" id="f02-as-p43-booked">
-        <figcaption><span class="k-cb-label">4.3 Booked screens and below floor screen</span></figcaption>
-        <div class="k-cb-body">Booked screen, choice A
+        <figcaption><span class="k-cb-label">Booked screens and below floor screen</span></figcaption>
+        <div class="k-cb-body">Booked screen, December readout
 Heading: You're booked, {first name}.
 Line: {weekday} {date} December at {time}: your Black Friday readout for {store}.
 Next, row 1 (label "Now"): The invite is in your inbox at {email}, and the confirmation is on WhatsApp.
@@ -3292,7 +3347,7 @@ Forward button: Copy the link
 Forward button, after the click: Link copied
 Close: Back to the page
 
-Booked screen, choice B
+Booked screen, January week
 Heading: Your week is held, {first name}.
 Line: Launch week of Mon {date} January 2027. Planning call: {weekday} {date} {month} at {time}.
 Next, row 1 (label "Now"): The invite is in your inbox at {email}, and the confirmation is on WhatsApp.
@@ -3312,7 +3367,7 @@ Line: Cross $150k and come back, or email hello@purplefire.io with a question.
 Button: Back to the page</div>
       </figure>
       <figure class="k-cb" id="f02-as-p44">
-        <figcaption><span class="k-cb-label">4.4 Proof: three result cards</span><span class="k-cb-meta">Public cards from his live page</span></figcaption>
+        <figcaption><span class="k-cb-label">Proof: three result cards</span><span class="k-cb-meta">Public cards from your live page</span></figcaption>
         <div class="k-cb-body">Eyebrow: Client results from A/B tests
 Heading: Before, after, and the numbers from the testing tool.
 Intro: Three real A/B tests on client stores, control versus variant, with the confidence the testing tool reports.
@@ -3322,7 +3377,7 @@ Intro: Three real A/B tests on client stores, control versus variant, with the c
 3. Just Strong. Collection. images/proof/b2_08_ba.webp "Before / after"; b2_08_rs.webp "Results, straight from Convert". +$19,536 revenue during the test. +33.33% CVR. Category tiles on the homepage. JS-066-ALL-CP-CVR. 97.41% confidence</div>
       </figure>
       <figure class="k-cb" id="f02-as-p45">
-        <figcaption><span class="k-cb-label">4.5 The offer line and what a first test involves</span></figcaption>
+        <figcaption><span class="k-cb-label">The offer line and what a first test involves</span></figcaption>
         <div class="k-cb-body">Statement (locked): Your first split test is on us. You pay after the first win.
 Line 1: We research the test, design it and build it on a duplicate theme. You approve the design before it launches.
 Line 2: A win is a variant that lifts revenue by at least 5 percent over 7 days at 88 percent significance or higher. Only then does the winning variant go live for all your traffic.
@@ -3330,7 +3385,7 @@ Line 3: No card on file until the first winner. On the call we tell you what you
 Button: Pick my date</div>
       </figure>
       <figure class="k-cb" id="f02-as-p46">
-        <figcaption><span class="k-cb-label">4.6 FAQ</span><span class="k-cb-meta">Accordion, first item open</span></figcaption>
+        <figcaption><span class="k-cb-label">FAQ</span><span class="k-cb-meta">Accordion, first item open</span></figcaption>
         <div class="k-cb-body">Q: We're in a code freeze. What do you need from us before December?
 A: Nothing. Booking touches nothing on your store. The first thing we ask for is five numbers for a December readout, two days before your call, in a form. Planning calls for a January week start on Thu 3 Dec.
 
@@ -3347,7 +3402,7 @@ Q: If I pick January, what happens to my first test?
 A: It is the same first test, and it is still on us. Before the planning call we send the five tests we'd run first on your store, and on the call we pick one together. If we take you on, we design it and build it on a duplicate theme in December or from Mon 4 Jan, and it launches in the week you picked. If it wins, the winning variant goes live and the first invoice follows.</div>
       </figure>
       <figure class="k-cb" id="f02-as-p47">
-        <figcaption><span class="k-cb-label">4.7 Footer</span></figcaption>
+        <figcaption><span class="k-cb-label">Footer</span></figcaption>
         <div class="k-cb-body">Logo: PurpleFire logo, white on dark
 Line 1: PurpleFire ApS. Done for you A/B testing for ecommerce brands doing $150k a month or more. Copenhagen, Denmark.
 Line 2: Results shown are real A/B tests on client stores as recorded in our test log, lift of the winning variant over control on the stated metric. Dollar figures are the revenue difference reported by the testing tool. Your results depend on your traffic, your product and how quickly designs are approved. Payment terms are set out in the agreement signed before work starts.
@@ -3538,8 +3593,8 @@ Line 3: Privacy · hello@purplefire.io</div>
   /* Slot board: the same shape as slot-board.json (Assets, 5.6). The live page reads that file next to it;
      this prototype carries a copy so it works with no network. december_full_days lists days with no times left.
      6 brands start in January: 2 seats in each January launch week. The two February weeks are overflow and
-     stay off the page until January is full. A "January" reply from kit 03 or kit 04 holds a seat for 48 hours:
-     seats_taken goes up by 1, and comes off again if no call is booked within the 48 hours (holds lists them). */
+     stay off the page until January is full. A "January" reply from funnel 3 or funnel 4
+     gets the link to this page and books like anyone else; no seat is held before the booking, so holds stays empty. */
   var BOARD = {
     updated: '2026-11-16',
     capacity_set: true,
@@ -3621,7 +3676,6 @@ Line 3: Privacy · hello@purplefire.io</div>
 
     function setField(id, v) { var el = q(id); if (el) el.value = v || ''; }
     var utmContent = params.get('utm_content') || '';
-    setField('#lp-h-pass', params.get('pass'));
     setField('#lp-h-utm-source', params.get('utm_source'));
     setField('#lp-h-utm-campaign', params.get('utm_campaign'));
     setField('#lp-h-utm-content', utmContent);
@@ -3954,7 +4008,7 @@ Line 3: Privacy · hello@purplefire.io</div>
     /* ---------- forward link: clipboard, else select the link text ---------- */
     q('#lp-fwd').addEventListener('click', function () {
       var btn = q('#lp-fwd');
-      /* origin and path only, so a forwarded founder does not carry this visitor's pass, UTM or click id;
+      /* origin and path only, so a forwarded founder does not carry this visitor's UTM or click id;
          inside the kit there is no page address yet, so the placeholder is copied */
       var url = standalone ? window.location.origin + window.location.pathname : 'https://new.purplefire.io/after-freeze/v1';
       var field = q('#lp-fwd-url');
