@@ -534,7 +534,7 @@ span.lp-day { cursor: default; }
       </div>
       <div class="lp-g-score-ask lp-card">
         <p class="lp-g-ask-h">Play round 11: your own store. Send your URL and we send the five tests we'd run first.</p>
-        <p class="lp-small">For stores with $150k or more in monthly revenue. A person checks every one.</p>
+        <p class="lp-small">For stores with $200k or more in monthly revenue and more than 600 orders a month. A person checks every one.</p>
         <button type="button" class="lp-btn lp-btn-cta" id="lp-g-to11">Play round 11</button>
         <div class="lp-g-score-links">
           <button type="button" class="lp-link" id="lp-g-copyscore">Copy my score</button>
@@ -577,10 +577,10 @@ span.lp-day { cursor: default; }
         <div class="lp-field">
           <span class="lp-label" id="lp-g-rev-label">Your store's monthly revenue</span>
           <div class="lp-g-rev" role="group" aria-labelledby="lp-g-rev-label" aria-describedby="lp-g-rev-help lp-g-rev-err">
-            <button type="button" class="lp-g-revbtn" id="lp-g-rev-under" data-band="under_floor" aria-pressed="false">Under $150k</button>
-            <button type="button" class="lp-g-revbtn" id="lp-g-rev-over" data-band="floor_or_more" aria-pressed="false">$150k or more</button>
+            <button type="button" class="lp-g-revbtn" id="lp-g-rev-under" data-band="under_floor" aria-pressed="false">Under $200k</button>
+            <button type="button" class="lp-g-revbtn" id="lp-g-rev-over" data-band="floor_or_more" aria-pressed="false">$200k or more</button>
           </div>
-          <p class="lp-small" id="lp-g-rev-help">The five tests are for stores with $150k or more a month (trailing 3 month average).</p>
+          <p class="lp-small" id="lp-g-rev-help">The five tests are for stores with $200k or more a month (trailing 3 month average) and more than 600 orders a month.</p>
           <p class="lp-error" id="lp-g-rev-err" hidden></p>
         </div>
         <div class="lp-g-get">
@@ -628,7 +628,7 @@ span.lp-day { cursor: default; }
   <section class="lp-g-stage lp-g-end" id="lp-g-floor" aria-label="Thanks for playing" hidden>
     <div class="lp-wrap lp-g-narrow lp-stack">
       <h2 class="lp-h2" id="lp-g-floor-h" tabindex="-1">Thanks for playing round 11.</h2>
-      <p class="lp-sub" id="lp-g-floor-body">The five test review is built for stores with $150k or more in monthly revenue, so we won't send one for your store yet. Your score email is on its way, with the rounds you missed and why each one won.</p>
+      <p class="lp-sub" id="lp-g-floor-body">The five test review is built for stores with $200k or more in monthly revenue and more than 600 orders a month, so we won't send one for your store yet. Your score email is on its way, with the rounds you missed and why each one won.</p>
       <div class="lp-g-share">
         <button type="button" class="lp-btn lp-btn-ghost" id="lp-g-copyscore2">Copy my score</button>
         <p class="lp-g-copied" id="lp-g-copyscore2-msg" role="status" hidden></p>
@@ -1155,7 +1155,7 @@ span.lp-day { cursor: default; }
       }
       st.sent[shown] = true;
       if (bandVal === 'under_floor') {
-        q('#lp-g-floor-body').textContent = 'The five test review is built for stores with $150k or more in monthly revenue, so we won\'t send one for ' + shown + ' yet. Your score email is on its way, with the rounds you missed and why each one won.';
+        q('#lp-g-floor-body').textContent = 'The five test review is built for stores with $200k or more in monthly revenue and more than 600 orders a month, so we won\'t send one for ' + shown + ' yet. Your score email is on its way, with the rounds you missed and why each one won.';
         show('floor');
         scrollTopIfAbove(sections.floor);
         q('#lp-g-floor-h').focus({ preventScroll: true });
