@@ -730,6 +730,24 @@ body::before {
   border-top: 1px solid var(--k-line);
 }
 .s-row:last-child { border-bottom: 1px solid var(--k-line); }
+/* the three groups: past clients, cold outreach, ads */
+.s-group { padding: 40px 0 14px; }
+.s-group:first-child { padding-top: 0; }
+.s-group-h { margin: 0; font-size: 14px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--k-accent); }
+.s-group-p { margin: 4px 0 0; font-size: 14px; color: var(--k-muted); }
+/* ideas that are not built yet, listed under their group */
+.s-ideas { padding: 24px 0; border-top: 1px solid var(--k-line); }
+.s-ideas-h { margin: 0; font-family: var(--k-display); font-weight: 600; font-size: 20px; line-height: 1.2; color: var(--k-fg); }
+.s-idea-list { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 12px; counter-reset: s-idea; }
+.s-idea { counter-increment: s-idea; padding: 16px; border-radius: var(--k-r); background: var(--k-bg-2); border: 1px solid var(--k-line); display: grid; gap: 10px; min-width: 0; }
+.s-idea-name { margin: 0; font-weight: 700; font-size: 16px; color: var(--k-fg); }
+.s-idea-name::before { content: counter(s-idea) ". "; color: var(--k-muted); }
+.s-idea-facts { margin: 0; display: grid; gap: 6px; }
+.s-idea-facts > div { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 4px 16px; }
+.s-idea-facts dt { font-size: 14px; font-weight: 700; color: var(--k-muted); }
+.s-idea-facts dd { margin: 0; font-size: 14px; color: var(--k-fg-2); text-wrap: pretty; }
+@media (max-width: 600px) { .s-idea-facts > div { grid-template-columns: minmax(0, 1fr); } }
+.s-cal .s-cal-group th { background: var(--k-bg-2); font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--k-accent); }
 .s-row-head { display: grid; gap: 4px; align-content: start; }
 .s-row-no { font-size: 14px; font-weight: 700; color: var(--k-muted); font-variant-numeric: tabular-nums; }
 .s-row-name { margin: 0; font-family: var(--k-display); font-weight: 600; font-size: 24px; line-height: 1.2; letter-spacing: -.01em; text-wrap: balance; }
@@ -764,7 +782,7 @@ body::before {
 </head>
 <body>
 <div class="k-root">
-<div class="s-band"><div class="s-band-in"><img class="s-logo" src="../assets/purplefire-logo.webp" alt="PurpleFire" width="108" height="20"><nav class="s-switch" aria-label="Funnels"><a class="s-sw" href="../">Overview</a><a class="s-sw" href="../past-clients/" aria-current="page"><span>Funnel 1 <span class="s-sw-name">Past clients</span></span></a><a class="s-sw" href="../after-the-freeze/"><span>Funnel 2 <span class="s-sw-name">After Black Friday</span></span></a><a class="s-sw" href="../named-stores/"><span>Funnel 3 <span class="s-sw-name">Named stores</span></span></a><a class="s-sw" href="../guess-the-winner/"><span>Funnel 4 <span class="s-sw-name">Guess the winner</span></span></a><a class="s-sw" href="../holiday-support/"><span>Funnel 5 <span class="s-sw-name">Holiday funnel</span></span></a></nav></div></div>
+<div class="s-band"><div class="s-band-in"><img class="s-logo" src="../assets/purplefire-logo.webp" alt="PurpleFire" width="108" height="20"><nav class="s-switch" aria-label="Funnels"><a class="s-sw" href="../">Overview</a><a class="s-sw" href="../past-clients/" aria-current="page"><span>Funnel 1 <span class="s-sw-name">Past clients</span></span></a><a class="s-sw" href="../after-the-freeze/"><span>Funnel 2 <span class="s-sw-name">After Black Friday</span></span></a><a class="s-sw" href="../named-stores/"><span>Funnel 3 <span class="s-sw-name">Cold video pitch</span></span></a><a class="s-sw" href="../guess-the-winner/"><span>Funnel 4 <span class="s-sw-name">Guess the winner</span></span></a><a class="s-sw" href="../holiday-support/"><span>Funnel 5 <span class="s-sw-name">Holiday funnel</span></span></a></nav></div></div>
 <header class="k-head"><div class="k-head-in">
   <div class="k-head-row"><p class="k-kit"><span class="k-kit-no">Funnel 1</span><span class="k-kit-name">Past clients: your winner is still live</span></p><p class="k-proto">Prototype for PurpleFire</p></div>
   <nav class="k-tabs" aria-label="Funnel sections"><a class="k-tab" href="#strategy" data-tab="strategy" aria-current="page">Strategy 1</a><a class="k-tab" href="#message" data-tab="message">Message</a><a class="k-tab" href="#assets" data-tab="assets">Assets</a></nav>
@@ -899,10 +917,6 @@ body::before {
 <!-- gen:clients:end -->
   </section>
 
-  <section class="k-sec" aria-label="Cost">
-    <h2 class="k-h3">Cost</h2>
-    <p class="k-p">No media spend. Every message goes from your own inbox.</p>
-  </section>
 </div>
 
 </section>

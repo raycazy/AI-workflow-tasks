@@ -1258,6 +1258,24 @@ span.lp-day { cursor: default; }
   border-top: 1px solid var(--k-line);
 }
 .s-row:last-child { border-bottom: 1px solid var(--k-line); }
+/* the three groups: past clients, cold outreach, ads */
+.s-group { padding: 40px 0 14px; }
+.s-group:first-child { padding-top: 0; }
+.s-group-h { margin: 0; font-size: 14px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--k-accent); }
+.s-group-p { margin: 4px 0 0; font-size: 14px; color: var(--k-muted); }
+/* ideas that are not built yet, listed under their group */
+.s-ideas { padding: 24px 0; border-top: 1px solid var(--k-line); }
+.s-ideas-h { margin: 0; font-family: var(--k-display); font-weight: 600; font-size: 20px; line-height: 1.2; color: var(--k-fg); }
+.s-idea-list { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 12px; counter-reset: s-idea; }
+.s-idea { counter-increment: s-idea; padding: 16px; border-radius: var(--k-r); background: var(--k-bg-2); border: 1px solid var(--k-line); display: grid; gap: 10px; min-width: 0; }
+.s-idea-name { margin: 0; font-weight: 700; font-size: 16px; color: var(--k-fg); }
+.s-idea-name::before { content: counter(s-idea) ". "; color: var(--k-muted); }
+.s-idea-facts { margin: 0; display: grid; gap: 6px; }
+.s-idea-facts > div { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 4px 16px; }
+.s-idea-facts dt { font-size: 14px; font-weight: 700; color: var(--k-muted); }
+.s-idea-facts dd { margin: 0; font-size: 14px; color: var(--k-fg-2); text-wrap: pretty; }
+@media (max-width: 600px) { .s-idea-facts > div { grid-template-columns: minmax(0, 1fr); } }
+.s-cal .s-cal-group th { background: var(--k-bg-2); font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--k-accent); }
 .s-row-head { display: grid; gap: 4px; align-content: start; }
 .s-row-no { font-size: 14px; font-weight: 700; color: var(--k-muted); font-variant-numeric: tabular-nums; }
 .s-row-name { margin: 0; font-family: var(--k-display); font-weight: 600; font-size: 24px; line-height: 1.2; letter-spacing: -.01em; text-wrap: balance; }
@@ -1292,7 +1310,7 @@ span.lp-day { cursor: default; }
 </head>
 <body>
 <div class="k-root">
-<div class="s-band"><div class="s-band-in"><img class="s-logo" src="../assets/purplefire-logo.webp" alt="PurpleFire" width="108" height="20"><nav class="s-switch" aria-label="Funnels"><a class="s-sw" href="../">Overview</a><a class="s-sw" href="../past-clients/"><span>Funnel 1 <span class="s-sw-name">Past clients</span></span></a><a class="s-sw" href="../after-the-freeze/"><span>Funnel 2 <span class="s-sw-name">After Black Friday</span></span></a><a class="s-sw" href="../named-stores/"><span>Funnel 3 <span class="s-sw-name">Named stores</span></span></a><a class="s-sw" href="../guess-the-winner/" aria-current="page"><span>Funnel 4 <span class="s-sw-name">Guess the winner</span></span></a><a class="s-sw" href="../holiday-support/"><span>Funnel 5 <span class="s-sw-name">Holiday funnel</span></span></a></nav></div></div>
+<div class="s-band"><div class="s-band-in"><img class="s-logo" src="../assets/purplefire-logo.webp" alt="PurpleFire" width="108" height="20"><nav class="s-switch" aria-label="Funnels"><a class="s-sw" href="../">Overview</a><a class="s-sw" href="../past-clients/"><span>Funnel 1 <span class="s-sw-name">Past clients</span></span></a><a class="s-sw" href="../after-the-freeze/"><span>Funnel 2 <span class="s-sw-name">After Black Friday</span></span></a><a class="s-sw" href="../named-stores/"><span>Funnel 3 <span class="s-sw-name">Cold video pitch</span></span></a><a class="s-sw" href="../guess-the-winner/" aria-current="page"><span>Funnel 4 <span class="s-sw-name">Guess the winner</span></span></a><a class="s-sw" href="../holiday-support/"><span>Funnel 5 <span class="s-sw-name">Holiday funnel</span></span></a></nav></div></div>
 <header class="k-head"><div class="k-head-in">
   <div class="k-head-row"><p class="k-kit"><span class="k-kit-no">Funnel 4</span><span class="k-kit-name">A guess the winner game in place of the video</span></p><p class="k-proto">Prototype for PurpleFire</p></div>
   <nav class="k-tabs" aria-label="Funnel sections"><a class="k-tab" href="#strategy" data-tab="strategy" aria-current="page">Strategy 4</a><a class="k-tab" href="#run" data-tab="run">Steps</a><a class="k-tab" href="#ads" data-tab="ads">Ads</a><a class="k-tab" href="#page" data-tab="page">Landing page</a><a class="k-tab" href="#assets" data-tab="assets">Assets</a></nav>
@@ -1313,11 +1331,6 @@ span.lp-day { cursor: default; }
   <section class="k-sec" aria-label="Hypothesis">
     <h2 class="k-h3">Hypothesis</h2>
     <p class="k-p">Founders may not book a call now because of Black Friday, Cyber Monday and the holidays, so this funnel is built in December, runs from Tue 5 Jan when they are back, and asks for a store URL before any call. It is wrong if fewer than 40 percent of game visitors reach round three after the first 300 visitors, or if fewer than 2 calls are booked by Fri 29 Jan.</p>
-  </section>
-
-  <section class="k-sec" aria-label="Cost">
-    <h2 class="k-h3">Cost</h2>
-    <p class="k-p">Media $80 a day for 14 days, about $1,120; build 22 to 32 hours. <abbr class="k-est" title="Estimate">Est.</abbr></p>
   </section>
 </div>
 
@@ -1344,7 +1357,7 @@ span.lp-day { cursor: default; }
         <time class="k-date" datetime="2026-12-04"><span class="k-dow">Fri</span><span class="k-day">4</span><span class="k-mon">Dec</span></time>
         <div class="k-step-body">
           <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: the build</p>
-          <ul class="k-gate-ifs"><li>You say go on funnel 4 and on the spend.</li></ul>
+          <ul class="k-gate-ifs"><li>You say go on funnel 4.</li></ul>
           <p class="k-step-detail">Proposed date.</p>
           <p class="k-needs"><b>Needs first</b> Nothing</p>
         </div>
@@ -1416,7 +1429,7 @@ span.lp-day { cursor: default; }
       <li class="k-step">
         <time class="k-date" datetime="2026-12-19"><span class="k-dow">Sat</span><span class="k-day">19</span><span class="k-mon">Dec</span></time>
         <div class="k-step-body">
-          <p class="k-step-what">Off. No calls, no sends, no spend.</p>
+          <p class="k-step-what">Off. No calls, no sends, no ads.</p>
           <p class="k-step-detail">Sat 19 Dec to Mon 4 Jan.</p>
         </div>
       </li>
@@ -1431,9 +1444,9 @@ span.lp-day { cursor: default; }
       <li class="k-step k-gate">
         <time class="k-date" datetime="2027-01-05"><span class="k-dow">Tue</span><span class="k-day">5</span><span class="k-mon">Jan</span></time>
         <div class="k-step-body">
-          <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: spend starts</p>
-          <ul class="k-gate-ifs"><li>Your go on spend.</li><li>Fri 18 Dec gate passed.</li></ul>
-          <p class="k-gate-out"><b>Then:</b> you or your media buyer publish the A/B test, $80 a day <abbr class="k-est" title="Estimate">Est.</abbr>, $40 a side.</p>
+          <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Go or no go: ads start</p>
+          <ul class="k-gate-ifs"><li>Your go on the ads.</li><li>Fri 18 Dec gate passed.</li></ul>
+          <p class="k-gate-out"><b>Then:</b> you or your media buyer publish the A/B test.</p>
         </div>
       </li>
       <li class="k-step">
@@ -1472,7 +1485,7 @@ span.lp-day { cursor: default; }
         <time class="k-date" datetime="2027-01-29"><span class="k-dow">Fri</span><span class="k-day">29</span><span class="k-mon">Jan</span></time>
         <div class="k-step-body">
           <p class="k-gate-label"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 17h-8l-3.5 -5h-6.5"/><path d="M21 7h-8l-3.495 5"/><path d="M18 10l3 -3l-3 -3"/><path d="M18 20l3 -3l-3 -3"/></svg>Read: keep or kill</p>
-          <ul class="k-gate-ifs"><li>Keep if all four hold: at least 40 percent of arm A visitors reach round three; at least 8 percent of players who finish round ten give a qualified URL; more qualified URLs per dollar than arm B; at least 2 calls by Fri 29 Jan. Directional.</li></ul>
+          <ul class="k-gate-ifs"><li>Keep if all four hold: at least 40 percent of arm A visitors reach round three; at least 8 percent of players who finish round ten give a qualified URL; more qualified URLs than arm B; at least 2 calls by Fri 29 Jan. Directional.</li></ul>
           <p class="k-needs"><b>Needs first</b> The numbers in "How to read it"</p>
         </div>
       </li>
@@ -1482,7 +1495,7 @@ span.lp-day { cursor: default; }
   <section class="k-sec" aria-label="Confirm with Daniel">
     <h2 class="k-h3">Confirm with Daniel <span class="k-count" data-count-for="f04-need">0 of 17 ticked</span></h2>
     <ul class="k-check" id="f04-need">
-      <li><input type="checkbox" id="f04-need-go"><label for="f04-need-go">His go on funnel 4 and on about $1,120 of media <abbr class="k-est" title="Estimate">Est.</abbr><small>By Fri 4 Dec</small></label></li>
+      <li><input type="checkbox" id="f04-need-go"><label for="f04-need-go">His go on funnel 4<small>By Fri 4 Dec</small></label></li>
       <li><input type="checkbox" id="f04-need-signoff"><label for="f04-need-signoff">Sign off the ten rounds (Assets, "Tests used")<small>By Fri 11 Dec. The cards on ai-cro v1 are public.</small></label></li>
       <li><input type="checkbox" id="f04-need-clients"><label for="f04-need-clients">Written OK from the two current clients behind rounds 3, 6 and 9, before the game is public<small>Both are anonymised: no name, logo or address in any frame, and no test ID on the page.</small></label></li>
       <li><input type="checkbox" id="f04-need-r7"><label for="f04-need-r7">Round 7: GCA-040 from your ai-cro v1 proof rail, in place of GC-025, because its image gives a fair pair. Yes?</label></li>
@@ -1506,11 +1519,11 @@ span.lp-day { cursor: default; }
     <h2 class="k-h3">How to read it</h2>
     <p class="k-p">Read on Fri 29 Jan, from three places:</p>
     <ol class="k-list">
-      <li>Ads Manager, A/B test report: spend and landing page views per arm.</li>
+      <li>Ads Manager, A/B test report: landing page views per arm.</li>
       <li>His tracker (the events his developer wires): arm A visitors who reach round three, reach round five, finish round ten, and send a store URL.</li>
       <li>GHL: qualified URLs per arm (tag <code>f04_qualified</code> for arm A; the store URL and revenue answer from ai-cro v1's quiz for arm B, judged against the same floor) and calls booked by Fri 29 Jan, by source tag.</li>
     </ol>
-    <p class="k-p">The numbers: round three rate (kill and keep line one); round five rate (the hypothesis's "at least five rounds"); qualified URLs as a share of players who finish round ten (keep line two); qualified URLs per $100 spent, arm A against arm B (keep line three); calls booked (keep line four). At about $560 a side the read is directional by design: it shows which way to lean, not a proven winner. His own VSL ads bid for similar founders on the same dates, and the read says so.</p>
+    <p class="k-p">The numbers: round three rate (kill and keep line one); round five rate (the hypothesis's "at least five rounds"); qualified URLs as a share of players who finish round ten (keep line two); qualified URLs, arm A against arm B (keep line three); calls booked (keep line four). The read is directional by design: it shows which way to lean, not a proven winner. His own VSL ads bid for similar founders on the same dates, and the read says so.</p>
   </section>
 </div>
 
@@ -1528,7 +1541,7 @@ span.lp-day { cursor: default; }
     <dl class="k-facts">
       <div><dt>Audience</dt><dd>Meta, cold, founder and ecommerce interests. Excludes his VSL visitors and anyone who booked through funnel 2.</dd></div>
       <div><dt>Placement</dt><dd>Facebook and Instagram feeds. Each creative exists at 1:1 and 4:5.</dd></div>
-      <div><dt>Budget</dt><dd>Arm A's ad set gets $40 a day; Meta divides it between the three ads <abbr class="k-est" title="Estimate">Est.</abbr> Arm B gets the other $40 a day and runs his current ai-cro v1 ad, unchanged.</dd></div>
+      <div><dt>Arms</dt><dd>Arm A's ad set holds the three ads. Arm B runs his current ai-cro v1 ad, unchanged.</dd></div>
       <div><dt>Round one</dt><dd>Round one follows the ad. Each ad's link carries <code>r1=</code> so the page opens on the test the ad showed, with the same two versions on the same sides. The other rounds keep their order.</dd></div>
       <div><dt>The rule</dt><dd>Nothing on the image or in the text says or hints which version won. No arrow, tick, colour or "new" label on either side.</dd></div>
     </dl>
@@ -1616,9 +1629,7 @@ Card 3: Answer inside</div>
       <dl class="k-ad-meta">
         <div><dt>Audience</dt><dd>Meta, cold, founder and ecommerce interests, with the exclusions above.</dd></div>
         <div><dt>Placement</dt><dd>Facebook and Instagram feeds</dd></div>
-        <div><dt>Dates</dt><dd>Tue 5 to Mon 18 Jan 2027</dd></div>
-        <div><dt>Budget</dt><dd>Shares arm A's $40 a day with ads 2 and 3 <abbr class="k-est" title="Estimate">Est.</abbr></dd></div>
-      </dl>
+        <div><dt>Dates</dt><dd>Tue 5 to Mon 18 Jan 2027</dd></div>      </dl>
     </div>
   </article>
 
@@ -1686,9 +1697,7 @@ Round one is the two menus above, from a luggage store. The answer and the lift 
       <dl class="k-ad-meta">
         <div><dt>Audience</dt><dd>Meta, cold, founder and ecommerce interests, with the exclusions above.</dd></div>
         <div><dt>Placement</dt><dd>Facebook and Instagram feeds</dd></div>
-        <div><dt>Dates</dt><dd>Tue 5 to Mon 18 Jan 2027, once the gate is passed</dd></div>
-        <div><dt>Budget</dt><dd>Shares arm A's $40 a day with ads 1 and 3 <abbr class="k-est" title="Estimate">Est.</abbr></dd></div>
-      </dl>
+        <div><dt>Dates</dt><dd>Tue 5 to Mon 18 Jan 2027, once the gate is passed</dd></div>      </dl>
     </div>
   </article>
 
@@ -1800,9 +1809,7 @@ Ten real tests from Shopify stores, each one with the result straight from the t
       <dl class="k-ad-meta">
         <div><dt>Audience</dt><dd>Meta, cold, founder and ecommerce interests, with the exclusions above.</dd></div>
         <div><dt>Placement</dt><dd>Facebook and Instagram feeds</dd></div>
-        <div><dt>Dates</dt><dd>Tue 5 to Mon 18 Jan 2027, once the gate is passed</dd></div>
-        <div><dt>Budget</dt><dd>Shares arm A's $40 a day with ads 1 and 2 <abbr class="k-est" title="Estimate">Est.</abbr></dd></div>
-      </dl>
+        <div><dt>Dates</dt><dd>Tue 5 to Mon 18 Jan 2027, once the gate is passed</dd></div>      </dl>
     </div>
   </article>
 
@@ -1818,12 +1825,10 @@ Ten real tests from Shopify stores, each one with the result straight from the t
     </div>
     <div class="k-ad-fields">
       <h2 class="k-ad-name">Arm B: his existing ad <span>to ai-cro v1, unchanged</span></h2>
-      <p class="k-p">Arm B gets the other $40 a day <abbr class="k-est" title="Estimate">Est.</abbr> and runs his current ai-cro v1 ad, unchanged. Same audience and exclusions, split from arm A by Meta's A/B test tool.</p>
+      <p class="k-p">Arm B runs his current ai-cro v1 ad, unchanged. Same audience and exclusions, split from arm A by Meta's A/B test tool.</p>
       <dl class="k-ad-meta">
         <div><dt>Placement</dt><dd>As it runs today</dd></div>
-        <div><dt>Dates</dt><dd>Tue 5 to Mon 18 Jan 2027</dd></div>
-        <div><dt>Budget</dt><dd>$40 a day <abbr class="k-est" title="Estimate">Est.</abbr></dd></div>
-      </dl>
+        <div><dt>Dates</dt><dd>Tue 5 to Mon 18 Jan 2027</dd></div>      </dl>
     </div>
   </article>
 </div>

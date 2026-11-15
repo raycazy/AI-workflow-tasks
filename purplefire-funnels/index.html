@@ -727,6 +727,24 @@ body::before {
   border-top: 1px solid var(--k-line);
 }
 .s-row:last-child { border-bottom: 1px solid var(--k-line); }
+/* the three groups: past clients, cold outreach, ads */
+.s-group { padding: 40px 0 14px; }
+.s-group:first-child { padding-top: 0; }
+.s-group-h { margin: 0; font-size: 14px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--k-accent); }
+.s-group-p { margin: 4px 0 0; font-size: 14px; color: var(--k-muted); }
+/* ideas that are not built yet, listed under their group */
+.s-ideas { padding: 24px 0; border-top: 1px solid var(--k-line); }
+.s-ideas-h { margin: 0; font-family: var(--k-display); font-weight: 600; font-size: 20px; line-height: 1.2; color: var(--k-fg); }
+.s-idea-list { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 12px; counter-reset: s-idea; }
+.s-idea { counter-increment: s-idea; padding: 16px; border-radius: var(--k-r); background: var(--k-bg-2); border: 1px solid var(--k-line); display: grid; gap: 10px; min-width: 0; }
+.s-idea-name { margin: 0; font-weight: 700; font-size: 16px; color: var(--k-fg); }
+.s-idea-name::before { content: counter(s-idea) ". "; color: var(--k-muted); }
+.s-idea-facts { margin: 0; display: grid; gap: 6px; }
+.s-idea-facts > div { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 4px 16px; }
+.s-idea-facts dt { font-size: 14px; font-weight: 700; color: var(--k-muted); }
+.s-idea-facts dd { margin: 0; font-size: 14px; color: var(--k-fg-2); text-wrap: pretty; }
+@media (max-width: 600px) { .s-idea-facts > div { grid-template-columns: minmax(0, 1fr); } }
+.s-cal .s-cal-group th { background: var(--k-bg-2); font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--k-accent); }
 .s-row-head { display: grid; gap: 4px; align-content: start; }
 .s-row-no { font-size: 14px; font-weight: 700; color: var(--k-muted); font-variant-numeric: tabular-nums; }
 .s-row-name { margin: 0; font-family: var(--k-display); font-weight: 600; font-size: 24px; line-height: 1.2; letter-spacing: -.01em; text-wrap: balance; }
@@ -761,7 +779,7 @@ body::before {
 </head>
 <body>
 <div class="k-root">
-<div class="s-band"><div class="s-band-in"><img class="s-logo" src="assets/purplefire-logo.webp" alt="PurpleFire" width="108" height="20"><nav class="s-switch" aria-label="Funnels"><a class="s-sw" href="" aria-current="page">Overview</a><a class="s-sw" href="past-clients/"><span>Funnel 1 <span class="s-sw-name">Past clients</span></span></a><a class="s-sw" href="after-the-freeze/"><span>Funnel 2 <span class="s-sw-name">After Black Friday</span></span></a><a class="s-sw" href="named-stores/"><span>Funnel 3 <span class="s-sw-name">Named stores</span></span></a><a class="s-sw" href="guess-the-winner/"><span>Funnel 4 <span class="s-sw-name">Guess the winner</span></span></a><a class="s-sw" href="holiday-support/"><span>Funnel 5 <span class="s-sw-name">Holiday funnel</span></span></a></nav></div></div>
+<div class="s-band"><div class="s-band-in"><img class="s-logo" src="assets/purplefire-logo.webp" alt="PurpleFire" width="108" height="20"><nav class="s-switch" aria-label="Funnels"><a class="s-sw" href="" aria-current="page">Overview</a><a class="s-sw" href="past-clients/"><span>Funnel 1 <span class="s-sw-name">Past clients</span></span></a><a class="s-sw" href="after-the-freeze/"><span>Funnel 2 <span class="s-sw-name">After Black Friday</span></span></a><a class="s-sw" href="named-stores/"><span>Funnel 3 <span class="s-sw-name">Cold video pitch</span></span></a><a class="s-sw" href="guess-the-winner/"><span>Funnel 4 <span class="s-sw-name">Guess the winner</span></span></a><a class="s-sw" href="holiday-support/"><span>Funnel 5 <span class="s-sw-name">Holiday funnel</span></span></a></nav></div></div>
 <main class="k-main">
 <div class="k-panel">
 <div class="k-wide s-ov">
@@ -770,55 +788,19 @@ body::before {
     <p class="k-lede">Each funnel has its own page with its strategy and every message, plus dated steps, ads and a landing page where the funnel uses them. Open one below or from the bar at the top.</p>
   </div>
 
-  <section class="k-sec" aria-label="The five funnels">
-    <h2 class="k-h3">The five funnels</h2>
+  <section class="k-sec" aria-label="The five funnels, in three groups">
+    <h2 class="k-h3">The five funnels, in three groups</h2>
     <ol class="s-rows">
+      <li class="s-group"><h3 class="s-group-h">Past clients: outbound</h3><p class="s-group-p">Notes from you to brands you have already worked with.</p></li>
       <li class="s-row">
         <div class="s-row-head"><span class="s-row-no">Funnel 1</span><h3 class="s-row-name"><a href="past-clients/">Past clients</a></h3></div>
         <div class="s-row-body">
           <p class="s-row-what">25 past clients whose stores still run a winner from your A/B tests get a short personal note from you: you saw their winner is still live, here is what it won, and would they like to catch up for 15 minutes in January.</p>
           <dl class="s-row-facts">
             <div><dt>When</dt><dd>Day 1 by Wed 18 Nov or from Wed 2 Dec, then Day 2 and Day 3 on the next two working days; nothing Mon 23 Nov to Tue 1 Dec; calls in January.</dd></div>
-            <div><dt>Ad spend <abbr class="k-est" title="Estimate">Est.</abbr></dt><dd>No media spend.</dd></div>
             <div><dt>Needs from you first</dt><dd>Your go, and a legal read before anything goes to a Danish contact.</dd></div>
           </dl>
           <a class="s-row-go" href="past-clients/">Open the past clients funnel<svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l14 0"/><path d="M13 18l6 -6"/><path d="M13 6l6 6"/></svg></a>
-        </div>
-      </li>
-      <li class="s-row">
-        <div class="s-row-head"><span class="s-row-no">Funnel 2</span><h3 class="s-row-name"><a href="after-the-freeze/">After Black Friday</a></h3></div>
-        <div class="s-row-body">
-          <p class="s-row-what">One page books a call for after Black Friday: a December readout of their Black Friday numbers or a January launch week, both shown, the founder picks.</p>
-          <dl class="s-row-facts">
-            <div><dt>When</dt><dd>Ads to people who visited your pages from Thu 19 Nov if three conditions hold by Mon 16 Nov, else from Wed 2 Dec; ads to new people Wed 2 to Fri 11 Dec; calls Thu 3 to Fri 18 Dec and Tue 5 to Fri 29 Jan.</dd></div>
-            <div><dt>Ad spend <abbr class="k-est" title="Estimate">Est.</abbr></dt><dd>About $1,000 to $1,260.</dd></div>
-            <div><dt>Needs from you first</dt><dd>Your go and analyst access to your Meta ad account, by Mon 16 Nov.</dd></div>
-          </dl>
-          <a class="s-row-go" href="after-the-freeze/">Open the after black friday funnel<svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l14 0"/><path d="M13 18l6 -6"/><path d="M13 6l6 6"/></svg></a>
-        </div>
-      </li>
-      <li class="s-row">
-        <div class="s-row-head"><span class="s-row-no">Funnel 3</span><h3 class="s-row-name"><a href="named-stores/">Named stores</a></h3></div>
-        <div class="s-row-body">
-          <p class="s-row-what">15 named stores, each with the person to write to: you send the founder a 40 to 60 second video about one thing on their own store, with the past A/B test that matches it, and ask for a January start.</p>
-          <dl class="s-row-facts">
-            <div><dt>When</dt><dd>Day 1 any working day from Wed 2 Dec, then Day 3 and Day 7; read Fri 18 Dec; calls in January.</dd></div>
-            <div><dt>Ad spend <abbr class="k-est" title="Estimate">Est.</abbr></dt><dd>No media spend. Your time is about 10 minutes per video (Est.).</dd></div>
-            <div><dt>Needs from you first</dt><dd>Your go, the 15 videos recorded, and a legal read before anything goes to the stores in Germany and Canada.</dd></div>
-          </dl>
-          <a class="s-row-go" href="named-stores/">Open the named stores funnel<svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l14 0"/><path d="M13 18l6 -6"/><path d="M13 6l6 6"/></svg></a>
-        </div>
-      </li>
-      <li class="s-row">
-        <div class="s-row-head"><span class="s-row-no">Funnel 4</span><h3 class="s-row-name"><a href="guess-the-winner/">Guess the winner</a></h3></div>
-        <div class="s-row-body">
-          <p class="s-row-what">Ten rounds of real A/B tests where the player guesses the winner; round eleven is the player's own store.</p>
-          <dl class="s-row-facts">
-            <div><dt>When</dt><dd>Build Mon 7 to Fri 18 Dec; ads Tue 5 to Mon 18 Jan; calls to Fri 29 Jan.</dd></div>
-            <div><dt>Ad spend <abbr class="k-est" title="Estimate">Est.</abbr></dt><dd>About $1,120.</dd></div>
-            <div><dt>Needs from you first</dt><dd>Your go, your sign off on the ten rounds, and written OK from the two clients behind rounds 3, 6 and 9.</dd></div>
-          </dl>
-          <a class="s-row-go" href="guess-the-winner/">Open the guess the winner funnel<svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l14 0"/><path d="M13 18l6 -6"/><path d="M13 6l6 6"/></svg></a>
         </div>
       </li>
       <li class="s-row">
@@ -827,27 +809,75 @@ body::before {
           <p class="s-row-what">You set up a brand's holiday funnel for them: the sale offer shaped, the landing pages built, the cart and checkout ready, live fast. 70 past clients get a short personal note from you with the landing page.</p>
           <dl class="s-row-facts">
             <div><dt>When</dt><dd>Day 1 on Mon 16 or Tue 17 Nov, then two more notes a day or two apart if no reply; from Wed 2 Dec the same notes for the Christmas and January sale weeks; read Fri 4 Dec.</dd></div>
-            <div><dt>Ad spend <abbr class="k-est" title="Estimate">Est.</abbr></dt><dd>No media spend.</dd></div>
             <div><dt>Needs from you first</dt><dd>Your go, your price, how many brands you take on, the turnaround, and a legal read before anything goes to a Danish contact.</dd></div>
           </dl>
           <a class="s-row-go" href="holiday-support/">Open the holiday funnel funnel<svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l14 0"/><path d="M13 18l6 -6"/><path d="M13 6l6 6"/></svg></a>
         </div>
+      </li>
+      <li class="s-group"><h3 class="s-group-h">New stores: cold outreach</h3><p class="s-group-p">A personal message to a named founder who has never heard from you.</p></li>
+      <li class="s-row">
+        <div class="s-row-head"><span class="s-row-no">Funnel 3</span><h3 class="s-row-name"><a href="named-stores/">Cold video pitch</a></h3></div>
+        <div class="s-row-body">
+          <p class="s-row-what">15 stores, each with the person to write to: you send the founder a 40 to 60 second video about one thing on their own store, with the past A/B test that matches it, and ask for a January start.</p>
+          <dl class="s-row-facts">
+            <div><dt>When</dt><dd>Day 1 any working day from Wed 2 Dec, then Day 3 and Day 7; read Fri 18 Dec; calls in January.</dd></div>
+            <div><dt>Needs from you first</dt><dd>Your go, the 15 videos recorded, and a legal read before anything goes to the stores in Germany and Canada.</dd></div>
+          </dl>
+          <a class="s-row-go" href="named-stores/">Open the cold video pitch funnel<svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l14 0"/><path d="M13 18l6 -6"/><path d="M13 6l6 6"/></svg></a>
+        </div>
+      </li>
+      <li class="s-group"><h3 class="s-group-h">Ads</h3><p class="s-group-p">Paid ads on Meta that lead to a landing page.</p></li>
+      <li class="s-row">
+        <div class="s-row-head"><span class="s-row-no">Funnel 2</span><h3 class="s-row-name"><a href="after-the-freeze/">After Black Friday</a></h3></div>
+        <div class="s-row-body">
+          <p class="s-row-what">One page books a call for after Black Friday: a December readout of their Black Friday numbers or a January launch week, both shown, the founder picks.</p>
+          <dl class="s-row-facts">
+            <div><dt>When</dt><dd>Ads to people who visited your pages from Thu 19 Nov if three conditions hold by Mon 16 Nov, else from Wed 2 Dec; ads to new people Wed 2 to Fri 11 Dec; calls Thu 3 to Fri 18 Dec and Tue 5 to Fri 29 Jan.</dd></div>
+            <div><dt>Needs from you first</dt><dd>Your go and analyst access to your Meta ad account, by Mon 16 Nov.</dd></div>
+          </dl>
+          <a class="s-row-go" href="after-the-freeze/">Open the after black friday funnel<svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l14 0"/><path d="M13 18l6 -6"/><path d="M13 6l6 6"/></svg></a>
+        </div>
+      </li>
+      <li class="s-row">
+        <div class="s-row-head"><span class="s-row-no">Funnel 4</span><h3 class="s-row-name"><a href="guess-the-winner/">Guess the winner</a></h3></div>
+        <div class="s-row-body">
+          <p class="s-row-what">Ten rounds of real A/B tests where the player guesses the winner; round eleven is the player's own store.</p>
+          <dl class="s-row-facts">
+            <div><dt>When</dt><dd>Build Mon 7 to Fri 18 Dec; ads Tue 5 to Mon 18 Jan; calls to Fri 29 Jan.</dd></div>
+            <div><dt>Needs from you first</dt><dd>Your go, your sign off on the ten rounds, and written OK from the two clients behind rounds 3, 6 and 9.</dd></div>
+          </dl>
+          <a class="s-row-go" href="guess-the-winner/">Open the guess the winner funnel<svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l14 0"/><path d="M13 18l6 -6"/><path d="M13 6l6 6"/></svg></a>
+        </div>
+      </li>
+      <li class="s-ideas">
+        <h3 class="s-ideas-h">More ad ideas, not built yet</h3>
+        <p class="s-group-p">Say which ones you want and they get built.</p>
+        <ol class="s-idea-list">
+          <li class="s-idea"><p class="s-idea-name">Google search ads for people looking for an A/B testing agency</p><dl class="s-idea-facts"><div><dt>The ad</dt><dd>A text ad that shows when someone searches for an A/B testing or conversion agency for Shopify. A second version runs on YouTube for people who searched for testing apps.</dd></div><div><dt>Then</dt><dd>A page with how it works, real results, a calendar, and your price if you agree to show it.</dd></div><div><dt>Why an owner books</dt><dd>They typed the search themselves, so they are already looking for an agency.</dd></div></dl></li>
+          <li class="s-idea"><p class="s-idea-name">LinkedIn ads that only picked stores see</p><dl class="s-idea-facts"><div><dt>The ad</dt><dd>One real winning A/B test, shown only to founders and ecommerce leads at about 1,000 named stores above the floor.</dd></div><div><dt>Then</dt><dd>The same result in full, then a 15 minute call to pick their first A/B test.</dd></div><div><dt>Why an owner books</dt><dd>Nobody outside those stores can see the ad, so it reaches owners and not students or marketers.</dd></div></dl></li>
+          <li class="s-idea"><p class="s-idea-name">Past client founders speak in the ad</p><dl class="s-idea-facts"><div><dt>The ad</dt><dd>A founder you have worked with says in their own words what the A/B tests did for their store. Each founder gives a written yes first.</dd></div><div><dt>Then</dt><dd>People who watched then see a second ad with your calendar.</dd></div><div><dt>Why an owner books</dt><dd>A founder listens to another founder. This would take the January ad slot planned for the guess the winner game.</dd></div></dl></li>
+          <li class="s-idea"><p class="s-idea-name">One sponsored slot in a Shopify newsletter</p><dl class="s-idea-facts"><div><dt>The ad</dt><dd>A short sponsor note with one real winning A/B test, in a newsletter store owners already read.</dd></div><div><dt>Then</dt><dd>The result in full and a calendar.</dd></div><div><dt>Why an owner books</dt><dd>Readers chose the newsletter themselves. Before booking, the publisher is asked what share of readers are above the floor.</dd></div></dl></li>
+          <li class="s-idea"><p class="s-idea-name">After Black Friday ad that opens a short form</p><dl class="s-idea-facts"><div><dt>The ad</dt><dd>The Funnel 2 ad, but the tap opens a short form inside Facebook or Instagram: store, revenue and phone number.</dd></div><div><dt>Then</dt><dd>No page to load. You call or message them within the hour.</dd></div><div><dt>Why an owner books</dt><dd>Fewer steps while their Black Friday is still fresh.</dd></div></dl></li>
+        </ol>
       </li>
     </ol>
   </section>
 
   <section class="k-sec" aria-label="Calendar">
     <h2 class="k-h3">Calendar, 13 Nov to 31 Jan</h2>
-    <p class="k-p">Cold Meta spend stays off until Wed 2 Dec. One cold ad set runs at a time on any one audience: Funnel 2 from Wed 2 to Fri 11 Dec, then Funnel 4 from Tue 5 to Mon 18 Jan. Your own VSL ads run untouched. One person gets one funnel at a time: a past client who gets the Funnel 5 note this week gets Funnel 1 from Wed 2 Dec at the earliest.</p>
+    <p class="k-p">Ads to new people stay off until Wed 2 Dec. One cold ad set runs at a time on any one audience: Funnel 2 from Wed 2 to Fri 11 Dec, then Funnel 4 from Tue 5 to Mon 18 Jan. Your own VSL ads run untouched. One person gets one funnel at a time: a past client who gets the Funnel 5 note this week gets Funnel 1 from Wed 2 Dec at the earliest.</p>
     <div class="k-table-wrap" tabindex="0" role="region" aria-label="Calendar table, scrolls sideways">
       <table class="k-table s-cal">
         <thead><tr><th scope="col">Funnel</th><th scope="col">13 to 16 Nov</th><th scope="col">17 Nov to 1 Dec</th><th scope="col">2 to 11 Dec</th><th scope="col">12 to 18 Dec</th><th scope="col">19 Dec to 4 Jan</th><th scope="col">5 to 31 Jan</th></tr></thead>
         <tbody>
+          <tr class="s-cal-group"><th scope="rowgroup" colspan="7">Past clients: outbound</th></tr>
           <tr><th scope="row"><a class="k-link" href="past-clients/">Funnel 1 Past clients</a></th><td>List of past clients still running a winner</td><td>Day 1 to Day 3 by Fri 20 Nov, or wait; nothing sent Mon 23 Nov to Tue 1 Dec</td><td>Or Day 1 from Wed 2 Dec, then Day 2 and Day 3</td><td>Replies; January calls booked</td><td class="s-off">Off</td><td>15 minute calls about Q1 tests</td></tr>
-          <tr><th scope="row"><a class="k-link" href="after-the-freeze/">Funnel 2 After Black Friday</a></th><td>Build; go Mon 16 Nov</td><td>Ads to past visitors from Thu 19 Nov if the conditions hold</td><td>Ads to past visitors and to new people; calls from Thu 3 Dec; read Fri 11 Dec</td><td>Calls to Fri 18 Dec</td><td>Off; first tests designed</td><td>Planning calls to Fri 29 Jan; launch weeks of Mon 11, 18 and 25 Jan</td></tr>
-          <tr><th scope="row"><a class="k-link" href="named-stores/">Funnel 3 Named stores</a></th><td>15 stores picked, each with its contact</td><td>Record the 15 videos; nothing sent in Black Friday week</td><td>Day 1 from Wed 2 Dec, then Day 3 and Day 7; all Day 1 messages by Fri 11 Dec</td><td>Replies; read Fri 18 Dec</td><td class="s-off">Off</td><td>Calls to Fri 29 Jan for stores that said yes</td></tr>
-          <tr><th scope="row"><a class="k-link" href="guess-the-winner/">Funnel 4 Guess the winner</a></th><td class="s-off">Not started</td><td class="s-off">Not started</td><td>Build from Mon 7 Dec</td><td>Build to Fri 18 Dec</td><td class="s-off">Off</td><td>Ads Tue 5 to Mon 18 Jan; read Fri 29 Jan</td></tr>
           <tr><th scope="row"><a class="k-link" href="holiday-support/">Funnel 5 Holiday funnel</a></th><td>Confirm price, brand count and turnaround; Day 1 on Mon 16 Nov</td><td>Day 1 to Day 3, a day or two apart; holiday funnels set up for the brands that said yes</td><td>The same notes from Wed 2 Dec for Christmas and the January sale; read Fri 4 Dec</td><td>Christmas pages and offers live</td><td>January sale pages built; offer ends Thu 31 Dec</td><td>Each brand asked about January A/B tests</td></tr>
+          <tr class="s-cal-group"><th scope="rowgroup" colspan="7">New stores: cold outreach</th></tr>
+          <tr><th scope="row"><a class="k-link" href="named-stores/">Funnel 3 Cold video pitch</a></th><td>15 stores picked, each with its contact</td><td>Record the 15 videos; nothing sent in Black Friday week</td><td>Day 1 from Wed 2 Dec, then Day 3 and Day 7; all Day 1 messages by Fri 11 Dec</td><td>Replies; read Fri 18 Dec</td><td class="s-off">Off</td><td>Calls to Fri 29 Jan for stores that said yes</td></tr>
+          <tr class="s-cal-group"><th scope="rowgroup" colspan="7">Ads</th></tr>
+          <tr><th scope="row"><a class="k-link" href="after-the-freeze/">Funnel 2 After Black Friday</a></th><td>Build; go Mon 16 Nov</td><td>Ads to past visitors from Thu 19 Nov if the conditions hold</td><td>Ads to past visitors and to new people; calls from Thu 3 Dec; read Fri 11 Dec</td><td>Calls to Fri 18 Dec</td><td>Off; first tests designed</td><td>Planning calls to Fri 29 Jan; launch weeks of Mon 11, 18 and 25 Jan</td></tr>
+          <tr><th scope="row"><a class="k-link" href="guess-the-winner/">Funnel 4 Guess the winner</a></th><td class="s-off">Not started</td><td class="s-off">Not started</td><td>Build from Mon 7 Dec</td><td>Build to Fri 18 Dec</td><td class="s-off">Off</td><td>Ads Tue 5 to Mon 18 Jan; read Fri 29 Jan</td></tr>
         </tbody>
       </table>
     </div>
@@ -868,7 +898,7 @@ body::before {
   <section class="k-sec" aria-label="Downloads">
     <h2 class="k-h3">Downloads</h2>
     <ul class="s-downloads">
-      <li><div><b>Funnel 2 After Black Friday: every ad</b> <span>26 files at 1:1 and 4:5 (16 PNG and 10 JPG), 4.9 MB</span></div><a class="s-get" href="ads/after-the-freeze-ads.zip" download="after-the-freeze-ads.zip"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>Download zip</a></li>
+      <li><div><b>Funnel 2 After Black Friday: every ad</b> <span>26 files at 1:1 and 4:5 (16 PNG and 10 JPG), 5.0 MB</span></div><a class="s-get" href="ads/after-the-freeze-ads.zip" download="after-the-freeze-ads.zip"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>Download zip</a></li>
       <li><div><b>Funnel 2 After Black Friday: the landing page</b> <span>full screen; it works on a phone and sends nothing</span></div><a class="s-get" href="after-the-freeze/page/"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6"/><path d="M11 13l9 -9"/><path d="M15 4h5v5"/></svg>Open full screen</a></li>
       <li><div><b>Funnel 4 Guess the winner: every ad</b> <span>12 files at 1:1 and 4:5 (10 PNG and 2 JPG), 2.4 MB</span></div><a class="s-get" href="ads/guess-the-winner-ads.zip" download="guess-the-winner-ads.zip"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></svg>Download zip</a></li>
       <li><div><b>Funnel 4 Guess the winner: the landing page</b> <span>full screen; it works on a phone and sends nothing</span></div><a class="s-get" href="guess-the-winner/play/"><svg class="k-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6"/><path d="M11 13l9 -9"/><path d="M15 4h5v5"/></svg>Open full screen</a></li>

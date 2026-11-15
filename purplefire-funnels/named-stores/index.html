@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>Named Stores Outreach | PurpleFire call funnels</title>
-<meta name="description" content="15 named stores each get a short video about one thing on their own store, matched to a past winning A/B test.">
+<title>Cold Video Pitch | PurpleFire call funnels</title>
+<meta name="description" content="15 stores each get a short cold video about one thing on their own store, matched to a past winning A/B test.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="PurpleFire call funnels">
-<meta property="og:title" content="Named Stores Outreach | PurpleFire call funnels">
-<meta property="og:description" content="15 named stores each get a short video about one thing on their own store, matched to a past winning A/B test.">
+<meta property="og:title" content="Cold Video Pitch | PurpleFire call funnels">
+<meta property="og:description" content="15 stores each get a short cold video about one thing on their own store, matched to a past winning A/B test.">
 <meta property="og:url" content="https://raycazy.github.io/AI-workflow-tasks/purplefire-funnels/named-stores/">
 <meta property="og:image" content="https://raycazy.github.io/AI-workflow-tasks/purplefire-funnels/og.jpg">
 <meta property="og:image:width" content="1200">
@@ -730,6 +730,24 @@ body::before {
   border-top: 1px solid var(--k-line);
 }
 .s-row:last-child { border-bottom: 1px solid var(--k-line); }
+/* the three groups: past clients, cold outreach, ads */
+.s-group { padding: 40px 0 14px; }
+.s-group:first-child { padding-top: 0; }
+.s-group-h { margin: 0; font-size: 14px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--k-accent); }
+.s-group-p { margin: 4px 0 0; font-size: 14px; color: var(--k-muted); }
+/* ideas that are not built yet, listed under their group */
+.s-ideas { padding: 24px 0; border-top: 1px solid var(--k-line); }
+.s-ideas-h { margin: 0; font-family: var(--k-display); font-weight: 600; font-size: 20px; line-height: 1.2; color: var(--k-fg); }
+.s-idea-list { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 12px; counter-reset: s-idea; }
+.s-idea { counter-increment: s-idea; padding: 16px; border-radius: var(--k-r); background: var(--k-bg-2); border: 1px solid var(--k-line); display: grid; gap: 10px; min-width: 0; }
+.s-idea-name { margin: 0; font-weight: 700; font-size: 16px; color: var(--k-fg); }
+.s-idea-name::before { content: counter(s-idea) ". "; color: var(--k-muted); }
+.s-idea-facts { margin: 0; display: grid; gap: 6px; }
+.s-idea-facts > div { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 4px 16px; }
+.s-idea-facts dt { font-size: 14px; font-weight: 700; color: var(--k-muted); }
+.s-idea-facts dd { margin: 0; font-size: 14px; color: var(--k-fg-2); text-wrap: pretty; }
+@media (max-width: 600px) { .s-idea-facts > div { grid-template-columns: minmax(0, 1fr); } }
+.s-cal .s-cal-group th { background: var(--k-bg-2); font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--k-accent); }
 .s-row-head { display: grid; gap: 4px; align-content: start; }
 .s-row-no { font-size: 14px; font-weight: 700; color: var(--k-muted); font-variant-numeric: tabular-nums; }
 .s-row-name { margin: 0; font-family: var(--k-display); font-weight: 600; font-size: 24px; line-height: 1.2; letter-spacing: -.01em; text-wrap: balance; }
@@ -764,9 +782,9 @@ body::before {
 </head>
 <body>
 <div class="k-root">
-<div class="s-band"><div class="s-band-in"><img class="s-logo" src="../assets/purplefire-logo.webp" alt="PurpleFire" width="108" height="20"><nav class="s-switch" aria-label="Funnels"><a class="s-sw" href="../">Overview</a><a class="s-sw" href="../past-clients/"><span>Funnel 1 <span class="s-sw-name">Past clients</span></span></a><a class="s-sw" href="../after-the-freeze/"><span>Funnel 2 <span class="s-sw-name">After Black Friday</span></span></a><a class="s-sw" href="../named-stores/" aria-current="page"><span>Funnel 3 <span class="s-sw-name">Named stores</span></span></a><a class="s-sw" href="../guess-the-winner/"><span>Funnel 4 <span class="s-sw-name">Guess the winner</span></span></a><a class="s-sw" href="../holiday-support/"><span>Funnel 5 <span class="s-sw-name">Holiday funnel</span></span></a></nav></div></div>
+<div class="s-band"><div class="s-band-in"><img class="s-logo" src="../assets/purplefire-logo.webp" alt="PurpleFire" width="108" height="20"><nav class="s-switch" aria-label="Funnels"><a class="s-sw" href="../">Overview</a><a class="s-sw" href="../past-clients/"><span>Funnel 1 <span class="s-sw-name">Past clients</span></span></a><a class="s-sw" href="../after-the-freeze/"><span>Funnel 2 <span class="s-sw-name">After Black Friday</span></span></a><a class="s-sw" href="../named-stores/" aria-current="page"><span>Funnel 3 <span class="s-sw-name">Cold video pitch</span></span></a><a class="s-sw" href="../guess-the-winner/"><span>Funnel 4 <span class="s-sw-name">Guess the winner</span></span></a><a class="s-sw" href="../holiday-support/"><span>Funnel 5 <span class="s-sw-name">Holiday funnel</span></span></a></nav></div></div>
 <header class="k-head"><div class="k-head-in">
-  <div class="k-head-row"><p class="k-kit"><span class="k-kit-no">Funnel 3</span><span class="k-kit-name">Named stores: one short video each</span></p><p class="k-proto">Prototype for PurpleFire</p></div>
+  <div class="k-head-row"><p class="k-kit"><span class="k-kit-no">Funnel 3</span><span class="k-kit-name">Cold video pitch: one short video per store</span></p><p class="k-proto">Prototype for PurpleFire</p></div>
   <nav class="k-tabs" aria-label="Funnel sections"><a class="k-tab" href="#strategy" data-tab="strategy" aria-current="page">Strategy 3</a><a class="k-tab" href="#message" data-tab="message">Message</a><a class="k-tab" href="#assets" data-tab="assets">Assets</a></nav>
 </div></header>
 <main class="k-main">
@@ -802,7 +820,7 @@ body::before {
 </style>
 <div class="k-col">
   <div class="k-intro">
-    <h1 class="k-title">15 named stores, one short video each</h1>
+    <h1 class="k-title">Cold video pitch: 15 stores, one short video each</h1>
     <p class="k-lede">You send 15 founders a short video about one thing on their own store and ask for a reply, not a call.</p>
   </div>
 
@@ -824,21 +842,21 @@ body::before {
         <thead><tr><th scope="col">No.</th><th scope="col">Store</th><th scope="col">Country</th><th scope="col">Similar to</th><th scope="col">Why this store</th><th scope="col">Contact</th></tr></thead>
         <tbody>
 <!--ROWS-->
-          <tr><td class="k-num" data-label="No.">1</td><th scope="row"><a class="k-link" href="https://www.sfbags.com" target="_blank" rel="noopener">WaterField Designs (SFbags)</a></th><td data-label="Country">US</td><td data-label="Similar to">Airback</td><td class="k-f03-why" data-label="Why this store">A founder run San Francisco bag maker, a travel bag store like Airback, and Gary Waterfield still answers customers himself. On the Starlink Mini Go Case page the $229 price shows only inside the button.</td><td data-label="Contact">Gary Waterfield<span class="k-f03-role">Founder and owner</span><span class="k-f03-reach"><a class="k-link" href="https://www.linkedin.com/in/heygary/" target="_blank" rel="noopener">LinkedIn</a></span><span class="k-f03-reach">heygary@<wbr>sfbags.com</span></td></tr>
-          <tr><td class="k-num" data-label="No.">2</td><th scope="row"><a class="k-link" href="https://aersf.com" target="_blank" rel="noopener">Aer</a></th><td data-label="Country">US</td><td data-label="Similar to">Airback</td><td class="k-f03-why" data-label="Why this store">A San Francisco travel bag brand selling direct, the closest match to Airback's range, with the founder still leading design. Nothing next to Add to Bag on the Carry On page says shipping, returns or warranty.<span class="k-f03-flag">Check on your own screen first: see card 2 in Assets.</span></td><td data-label="Contact">Allen Choi<span class="k-f03-role">Founder, Head of Design</span><span class="k-f03-reach"><a class="k-link" href="https://www.linkedin.com/in/allen-choi-b63b7618/" target="_blank" rel="noopener">LinkedIn</a></span><span class="k-f03-reach">hello@<wbr>aersf.com (shared inbox)</span></td></tr>
-          <tr><td class="k-num" data-label="No.">3</td><th scope="row"><a class="k-link" href="https://durstongear.com" target="_blank" rel="noopener">Durston Gear</a></th><td data-label="Country">Canada</td><td data-label="Similar to">Ripstop by the Roll</td><td class="k-f03-why" data-label="Why this store">A family run ultralight tent and pack brand in the Canadian Rockies whose founder designs every product. On the X Dome Pro 1+ page the key specs sit far down, under long paragraphs.<span class="k-f03-flag">Check first: see card 3 in Assets.</span></td><td data-label="Contact">Dan Durston<span class="k-f03-role">Founder; President and Product Architect</span><span class="k-f03-reach"><a class="k-link" href="https://www.linkedin.com/in/dan-durston-05611aa/" target="_blank" rel="noopener">LinkedIn</a></span><span class="k-f03-reach">support@<wbr>durstongear.com (shared inbox)</span></td></tr>
-          <tr><td class="k-num" data-label="No.">4</td><th scope="row"><a class="k-link" href="https://www.gossamergear.com" target="_blank" rel="noopener">Gossamer Gear</a></th><td data-label="Country">US</td><td data-label="Similar to">Ripstop by the Roll</td><td class="k-f03-why" data-label="Why this store">An Austin ultralight tent and pack maker built on ripstop shelter fabrics, run by a small team under its CEO. On The One page only the weight shows above the button; specs and materials are closed tabs.</td><td data-label="Contact">Jonathan Schmid<span class="k-f03-role">CEO</span><span class="k-f03-reach"><a class="k-link" href="https://www.linkedin.com/in/jonathan-schmid-njatx-82-/" target="_blank" rel="noopener">LinkedIn</a></span><span class="k-f03-reach">support@<wbr>gossamergear.com (shared inbox)</span></td></tr>
-          <tr><td class="k-num" data-label="No.">5</td><th scope="row"><a class="k-link" href="https://theragcompany.com" target="_blank" rel="noopener">The Rag Company</a></th><td data-label="Country">US</td><td data-label="Similar to">Bay Optiks</td><td class="k-f03-why" data-label="Why this store">A family run Boise brand selling microfiber and detailing products to the same car owner Bay Optiks served. On the Eagle Edgeless 500 page the warranty is a closed tab, and nothing near the price or the button mentions it.<span class="k-f03-flag">Check on your own screen first: see card 5 in Assets.</span></td><td data-label="Contact">Carolyn Hennen<span class="k-f03-role">Owner (Jeff Hennen, co owner)</span><span class="k-f03-reach"><a class="k-link" href="https://www.linkedin.com/in/carolyn-hennen-mba-9097878a/" target="_blank" rel="noopener">LinkedIn</a></span><span class="k-f03-reach">support@<wbr>theragcompany.com (shared inbox)</span></td></tr>
-          <tr><td class="k-num" data-label="No.">6</td><th scope="row"><a class="k-link" href="https://www.earlofeast.com" target="_blank" rel="noopener">Earl of East</a></th><td data-label="Country">UK</td><td data-label="Similar to">Goose Creek</td><td class="k-f03-why" data-label="Why this store">A London candle brand run by its two founders, the same category as Goose Creek but in the UK. On a phone, the home page's first product row opens with a book and a blanket, not candles.</td><td data-label="Contact">Niko Dafkos<span class="k-f03-role">Co founder (with Paul Firmin)</span><span class="k-f03-reach"><a class="k-link" href="https://www.linkedin.com/in/niko-dafkos-90992147/" target="_blank" rel="noopener">LinkedIn</a></span><span class="k-f03-reach">No email published</span></td></tr>
-          <tr><td class="k-num" data-label="No.">7</td><th scope="row"><a class="k-link" href="https://banditrunning.com" target="_blank" rel="noopener">Bandit</a></th><td data-label="Country">US</td><td data-label="Similar to">SaySky</td><td class="k-f03-why" data-label="Why this store">A Brooklyn running apparel brand run by brothers Tim and Nick West, the same category as SaySky. Under the home page hero nothing says shipping or returns; free shipping is only in the top bar.<span class="k-f03-flag">Check on your own screen first: see card 7 in Assets.</span></td><td data-label="Contact">Tim West<span class="k-f03-role">Founder and Creative Director (brother Nick West is co founder and CEO)</span><span class="k-f03-reach"><a class="k-link" href="https://www.linkedin.com/in/tmwst/" target="_blank" rel="noopener">LinkedIn</a></span><span class="k-f03-reach">support@<wbr>banditrunning.com (shared inbox)</span></td></tr>
-          <tr><td class="k-num" data-label="No.">8</td><th scope="row"><a class="k-link" href="https://www.gornation.com" target="_blank" rel="noopener">GORNATION</a></th><td data-label="Country">Germany</td><td data-label="Similar to">Sport and Fitness Exchange</td><td class="k-f03-why" data-label="Why this store">A Münster calisthenics equipment brand selling worldwide and led by its founder, a sports equipment store like Sport and Fitness Exchange. On the Premium Dip Belt page the best facts sit as plain bullets under the button.<span class="k-f03-flag">Check first: see card 8 in Assets.</span></td><td data-label="Contact">Philipp Hülsdonk<span class="k-f03-role">Founder and CEO</span><span class="k-f03-reach"><a class="k-link" href="https://de.linkedin.com/in/philipp-huelsdonk" target="_blank" rel="noopener">LinkedIn</a></span><span class="k-f03-reach">support@<wbr>gornation.com (shared inbox)</span></td></tr>
-          <tr><td class="k-num" data-label="No.">9</td><th scope="row"><a class="k-link" href="https://bulldoggear.com" target="_blank" rel="noopener">Bulldog Gear</a></th><td data-label="Country">UK</td><td data-label="Similar to">Sport and Fitness Exchange</td><td class="k-f03-why" data-label="Why this store">A family led Staffordshire maker of strength equipment, a sports equipment store like Sport and Fitness Exchange. The £3,995 Nemesis Performance Rack shows no reviews and keeps the warranty in a closed tab.</td><td data-label="Contact">Kieran Heinich<span class="k-f03-role">Managing Director</span><span class="k-f03-reach"><a class="k-link" href="https://www.linkedin.com/in/kieran-heinich-348b0250/" target="_blank" rel="noopener">LinkedIn</a></span><span class="k-f03-reach">sales@<wbr>bulldoggear.com (shared inbox)</span></td></tr>
-          <tr><td class="k-num" data-label="No.">10</td><th scope="row"><a class="k-link" href="https://www.sixmoondesigns.com" target="_blank" rel="noopener">Six Moon Designs</a></th><td data-label="Country">US</td><td data-label="Similar to">Ripstop by the Roll</td><td class="k-f03-why" data-label="Why this store">A family run Oregon tent and pack maker in the same outdoor fabric world as Ripstop by the Roll. On the Lunar Solo page nothing near Add to cart says when the tent ships or arrives.<span class="k-f03-flag">Check on your own screen first: see card 10 in Assets.</span></td><td data-label="Contact">Ron Moak<span class="k-f03-role">Founder and President</span><span class="k-f03-reach"><a class="k-link" href="https://www.linkedin.com/in/ron-moak-14a000392/" target="_blank" rel="noopener">LinkedIn</a></span><span class="k-f03-reach">No email published</span></td></tr>
-          <tr><td class="k-num" data-label="No.">11</td><th scope="row"><a class="k-link" href="https://auto-glanz.co.uk" target="_blank" rel="noopener">AutoGlanz</a></th><td data-label="Country">UK</td><td data-label="Similar to">Bay Optiks</td><td class="k-f03-why" data-label="Why this store">A Herefordshire maker of car shampoos, snow foams and kits that makes everything in its own factory and sells direct, a store for drivers who care how their car looks, like Bay Optiks. Run by Joe and Siobhan Pritchard, who co own it. On the Starter Car Cleaning Kit page the review slider next to the button can open on an unhappy review from 2022.<span class="k-f03-flag">Check on your own screen first: see card 11 in Assets.</span></td><td data-label="Contact">Joseph (Joe) Pritchard<span class="k-f03-role">Director and co owner</span><span class="k-f03-reach">No LinkedIn profile found</span><span class="k-f03-reach">joe@<wbr>auto-glanz.co.uk</span></td></tr>
-          <tr><td class="k-num" data-label="No.">12</td><th scope="row"><a class="k-link" href="https://c4fabrication.com" target="_blank" rel="noopener">C4 Fabrication</a></th><td data-label="Country">US</td><td data-label="Similar to">CV Fabrication</td><td class="k-f03-why" data-label="Why this store">A US maker of welded bumpers and armor for Toyota trucks, a truck parts store like CV Fabrication, with its founder named on the site. On the Tacoma Rock Runner bumper page a shopper meets eight option pickers before a button that only says Select options.<span class="k-f03-flag">Check first: see card 12 in Assets.</span></td><td data-label="Contact">Caleb Rupp<span class="k-f03-role">Founder (Chris Huff is listed as President)</span><span class="k-f03-reach"><a class="k-link" href="https://www.linkedin.com/in/chris-huff-4bb0a155/" target="_blank" rel="noopener">LinkedIn</a> (Chris Huff)</span><span class="k-f03-reach">sales@<wbr>c4fabrication.com (shared inbox)</span></td></tr>
-          <tr><td class="k-num" data-label="No.">13</td><th scope="row"><a class="k-link" href="https://redlightrising.com" target="_blank" rel="noopener">Red Light Rising</a></th><td data-label="Country">UK</td><td data-label="Similar to">Nurosym</td><td class="k-f03-why" data-label="Why this store">A founder run red light therapy panel brand, a home wellness device store like Nurosym, in a different niche. On a phone, a full screen mystery discount quiz covers the panel page on arrival.<span class="k-f03-flag">Check on your own screen first: see card 13 in Assets.</span></td><td data-label="Contact">James Strong<span class="k-f03-role">Co founder (with Bryan Gohl)</span><span class="k-f03-reach"><a class="k-link" href="https://www.linkedin.com/in/james-strong-mba/" target="_blank" rel="noopener">LinkedIn</a></span><span class="k-f03-reach">No email published</span></td></tr>
-          <tr><td class="k-num" data-label="No.">14</td><th scope="row"><a class="k-link" href="https://divinesavages.com" target="_blank" rel="noopener">Divine Savages</a></th><td data-label="Country">UK</td><td data-label="Similar to">Wood Upp</td><td class="k-f03-why" data-label="Why this store">A British wallpaper and homeware studio run by its two founders, making every product in Britain and selling direct, a wall covering store like Wood Upp. On the Stallion Rhapsody Wallpaper page the price line says "Shipping calculated at checkout" and the three week print time sits below the button.<span class="k-f03-flag">Check on your own screen first: see card 14 in Assets.</span></td><td data-label="Contact">Jamie Watkins<span class="k-f03-role">Co founder, runs the business and marketing side (Tom Kennedy is co founder and designer)</span><span class="k-f03-reach"><a class="k-link" href="https://www.linkedin.com/in/divinesavages/" target="_blank" rel="noopener">LinkedIn</a></span><span class="k-f03-reach">hello@<wbr>divinesavages.com (shared inbox)</span></td></tr>
-          <tr><td class="k-num" data-label="No.">15</td><th scope="row"><a class="k-link" href="https://www.woodchipandmagnolia.co.uk" target="_blank" rel="noopener">Woodchip &amp; Magnolia</a></th><td data-label="Country">UK</td><td data-label="Similar to">Wood Upp</td><td class="k-f03-why" data-label="Why this store">A Lancashire wallpaper, fabric and paint house that prints its own rolls to order and sells direct, a wall covering store like Wood Upp, founded by husband and wife Nina and Paul (Nina Tarnowski is the creative lead). On the Willow Leaf Wallpaper page the gallery is photos only, with no clip of the paper hung, and no rating sits near the title of a £127 roll.<span class="k-f03-flag">Check on your own screen first: see card 15 in Assets.</span></td><td data-label="Contact">Nina Tarnowski<span class="k-f03-role">Founder and creative director (with her husband Paul, who runs printing)</span><span class="k-f03-reach"><a class="k-link" href="https://www.linkedin.com/in/nina-marika-tarnowski-8a9a4625/" target="_blank" rel="noopener">LinkedIn</a></span><span class="k-f03-reach">nina@<wbr>woodchipandmagnolia.co.uk</span></td></tr>
+          <tr><td class="k-num" data-label="No.">1</td><th scope="row"><a class="k-link" href="https://www.sfbags.com" target="_blank" rel="noopener">WaterField Designs (SFbags)</a></th><td data-label="Country">US</td><td data-label="Similar to">Airback</td><td class="k-f03-why" data-label="Why this store">A founder run San Francisco bag maker, a travel bag store like Airback, and Gary Waterfield still answers customers himself. On the Tech Folio Backpack page the colors sit in a closed dropdown, and the $399 shows small inside a button that says Make a selection.<span class="k-f03-flag">Check first: see card 1 in Assets.</span></td><td data-label="Contact">Gary Waterfield<span class="k-f03-role">Founder and owner</span><span class="k-f03-reach"><a class="k-link" href="https://www.linkedin.com/in/heygary/" target="_blank" rel="noopener">LinkedIn</a></span><span class="k-f03-reach">heygary@<wbr>sfbags.com</span></td></tr>
+          <tr><td class="k-num" data-label="No.">2</td><th scope="row"><a class="k-link" href="https://aersf.com" target="_blank" rel="noopener">Aer</a></th><td data-label="Country">US</td><td data-label="Similar to">Airback</td><td class="k-f03-why" data-label="Why this store">A San Francisco travel bag brand selling direct, the closest match to Airback's range, with the founder still leading design. On the $299 Carry On page the lifetime warranty is only a footer link, nowhere near Add to Bag.<span class="k-f03-flag">Check first: see card 2 in Assets.</span></td><td data-label="Contact">Allen Choi<span class="k-f03-role">Founder, Head of Design</span><span class="k-f03-reach"><a class="k-link" href="https://www.linkedin.com/in/allen-choi-b63b7618/" target="_blank" rel="noopener">LinkedIn</a></span><span class="k-f03-reach">hello@<wbr>aersf.com (shared inbox)</span></td></tr>
+          <tr><td class="k-num" data-label="No.">3</td><th scope="row"><a class="k-link" href="https://durstongear.com" target="_blank" rel="noopener">Durston Gear</a></th><td data-label="Country">Canada</td><td data-label="Similar to">Ripstop by the Roll</td><td class="k-f03-why" data-label="Why this store">A family run ultralight tent and pack brand in the Canadian Rockies whose founder designs every product. On the X Dome 1+ page there is no weight number near Add to cart.<span class="k-f03-flag">Check first: see card 3 in Assets.</span></td><td data-label="Contact">Dan Durston<span class="k-f03-role">Founder; President and Product Architect</span><span class="k-f03-reach"><a class="k-link" href="https://www.linkedin.com/in/dan-durston-05611aa/" target="_blank" rel="noopener">LinkedIn</a></span><span class="k-f03-reach">support@<wbr>durstongear.com (shared inbox)</span></td></tr>
+          <tr><td class="k-num" data-label="No.">4</td><th scope="row"><a class="k-link" href="https://www.gossamergear.com" target="_blank" rel="noopener">Gossamer Gear</a></th><td data-label="Country">US</td><td data-label="Similar to">Ripstop by the Roll</td><td class="k-f03-why" data-label="Why this store">An Austin ultralight tent and pack maker built on ripstop shelter fabrics, run by a small team under its CEO. On The One page the weight is the only spec above Add to cart; the rest sit behind a tab.<span class="k-f03-flag">Check first: see card 4 in Assets.</span></td><td data-label="Contact">Jonathan Schmid<span class="k-f03-role">CEO</span><span class="k-f03-reach"><a class="k-link" href="https://www.linkedin.com/in/jonathan-schmid-njatx-82-/" target="_blank" rel="noopener">LinkedIn</a></span><span class="k-f03-reach">support@<wbr>gossamergear.com (shared inbox)</span></td></tr>
+          <tr><td class="k-num" data-label="No.">5</td><th scope="row"><a class="k-link" href="https://theragcompany.com" target="_blank" rel="noopener">The Rag Company</a></th><td data-label="Country">US</td><td data-label="Similar to">Bay Optiks</td><td class="k-f03-why" data-label="Why this store">A family run Boise brand selling microfiber and detailing products to the same car owner Bay Optiks served. On the Eagle Edgeless 500 page nothing near the $24 price or Add to cart mentions the 30 day towel guarantee.<span class="k-f03-flag">Check first: see card 5 in Assets.</span></td><td data-label="Contact">Carolyn Hennen<span class="k-f03-role">Owner (Jeff Hennen, co owner)</span><span class="k-f03-reach"><a class="k-link" href="https://www.linkedin.com/in/carolyn-hennen-mba-9097878a/" target="_blank" rel="noopener">LinkedIn</a></span><span class="k-f03-reach">support@<wbr>theragcompany.com (shared inbox)</span></td></tr>
+          <tr><td class="k-num" data-label="No.">6</td><th scope="row"><a class="k-link" href="https://www.earlofeast.com" target="_blank" rel="noopener">Earl of East</a></th><td data-label="Country">UK</td><td data-label="Similar to">Goose Creek</td><td class="k-f03-why" data-label="Why this store">A London candle brand run by its two founders, the same category as Goose Creek but in the UK. On a phone, the first products on the home page are a book and a £185 blanket from another brand.<span class="k-f03-flag">Check first: see card 6 in Assets.</span></td><td data-label="Contact">Niko Dafkos<span class="k-f03-role">Co founder (with Paul Firmin)</span><span class="k-f03-reach"><a class="k-link" href="https://www.linkedin.com/in/niko-dafkos-90992147/" target="_blank" rel="noopener">LinkedIn</a></span><span class="k-f03-reach">No email published</span></td></tr>
+          <tr><td class="k-num" data-label="No.">7</td><th scope="row"><a class="k-link" href="https://banditrunning.com" target="_blank" rel="noopener">Bandit</a></th><td data-label="Country">US</td><td data-label="Similar to">SaySky</td><td class="k-f03-why" data-label="Why this store">A Brooklyn running apparel brand run by brothers Tim and Nick West, the same category as SaySky. The home page never mentions free returns; that promise shows only inside the cart.<span class="k-f03-flag">Check first: see card 7 in Assets.</span></td><td data-label="Contact">Tim West<span class="k-f03-role">Founder and Creative Director (brother Nick West is co founder and CEO)</span><span class="k-f03-reach"><a class="k-link" href="https://www.linkedin.com/in/tmwst/" target="_blank" rel="noopener">LinkedIn</a></span><span class="k-f03-reach">support@<wbr>banditrunning.com (shared inbox)</span></td></tr>
+          <tr><td class="k-num" data-label="No.">8</td><th scope="row"><a class="k-link" href="https://www.gornation.com" target="_blank" rel="noopener">GORNATION</a></th><td data-label="Country">Germany</td><td data-label="Similar to">Sport and Fitness Exchange</td><td class="k-f03-why" data-label="Why this store">A Münster calisthenics equipment brand selling worldwide and led by its founder, a sports equipment store like Sport and Fitness Exchange. On the Premium Dip Belt page on a phone, tested to 1000 kg sits below the button, the reviews and the bundle banner.<span class="k-f03-flag">Check first: see card 8 in Assets.</span></td><td data-label="Contact">Philipp Hülsdonk<span class="k-f03-role">Founder and CEO</span><span class="k-f03-reach"><a class="k-link" href="https://de.linkedin.com/in/philipp-huelsdonk" target="_blank" rel="noopener">LinkedIn</a></span><span class="k-f03-reach">support@<wbr>gornation.com (shared inbox)</span></td></tr>
+          <tr><td class="k-num" data-label="No.">9</td><th scope="row"><a class="k-link" href="https://bulldoggear.com" target="_blank" rel="noopener">Bulldog Gear</a></th><td data-label="Country">UK</td><td data-label="Similar to">Sport and Fitness Exchange</td><td class="k-f03-why" data-label="Why this store">A family led Staffordshire maker of strength equipment, a sports equipment store like Sport and Fitness Exchange. On the £3,995 Nemesis rack page only the name, price, finance line and a button sit below the photos; specs and dimensions hide in one tab.<span class="k-f03-flag">Check first: see card 9 in Assets.</span></td><td data-label="Contact">Kieran Heinich<span class="k-f03-role">Managing Director</span><span class="k-f03-reach"><a class="k-link" href="https://www.linkedin.com/in/kieran-heinich-348b0250/" target="_blank" rel="noopener">LinkedIn</a></span><span class="k-f03-reach">sales@<wbr>bulldoggear.com (shared inbox)</span></td></tr>
+          <tr><td class="k-num" data-label="No.">10</td><th scope="row"><a class="k-link" href="https://www.sixmoondesigns.com" target="_blank" rel="noopener">Six Moon Designs</a></th><td data-label="Country">US</td><td data-label="Similar to">Ripstop by the Roll</td><td class="k-f03-why" data-label="Why this store">A family run Oregon tent and pack maker in the same outdoor fabric world as Ripstop by the Roll. On the Lunar Solo page nothing near Add to cart says when the tent ships or arrives.<span class="k-f03-flag">Check first: see card 10 in Assets.</span></td><td data-label="Contact">Ron Moak<span class="k-f03-role">Founder and President</span><span class="k-f03-reach"><a class="k-link" href="https://www.linkedin.com/in/ron-moak-14a000392/" target="_blank" rel="noopener">LinkedIn</a></span><span class="k-f03-reach">No email published</span></td></tr>
+          <tr><td class="k-num" data-label="No.">11</td><th scope="row"><a class="k-link" href="https://auto-glanz.co.uk" target="_blank" rel="noopener">AutoGlanz</a></th><td data-label="Country">UK</td><td data-label="Similar to">Bay Optiks</td><td class="k-f03-why" data-label="Why this store">A Herefordshire maker of car shampoos, snow foams and kits that makes everything in its own factory and sells direct, a store for drivers who care how their car looks, like Bay Optiks. Run by Joe and Siobhan Pritchard, who co own it. On the Starter Car Cleaning Kit page the first review beside Add to cart is from August 2022 and shows garbled characters.<span class="k-f03-flag">Check first: see card 11 in Assets.</span></td><td data-label="Contact">Joseph (Joe) Pritchard<span class="k-f03-role">Director and co owner</span><span class="k-f03-reach">No LinkedIn profile found</span><span class="k-f03-reach">joe@<wbr>auto-glanz.co.uk</span></td></tr>
+          <tr><td class="k-num" data-label="No.">12</td><th scope="row"><a class="k-link" href="https://c4fabrication.com" target="_blank" rel="noopener">C4 Fabrication</a></th><td data-label="Country">US</td><td data-label="Similar to">CV Fabrication</td><td class="k-f03-why" data-label="Why this store">A US maker of welded bumpers and armor for Toyota trucks, a truck parts store like CV Fabrication, with its founder named on the site. On the Tacoma Rock Runner bumper page nine pickers come before the button, and the add on lists show part numbers.<span class="k-f03-flag">Check first: see card 12 in Assets.</span></td><td data-label="Contact">Caleb Rupp<span class="k-f03-role">Founder (Chris Huff is listed as President)</span><span class="k-f03-reach"><a class="k-link" href="https://www.linkedin.com/in/chris-huff-4bb0a155/" target="_blank" rel="noopener">LinkedIn</a> (Chris Huff)</span><span class="k-f03-reach">sales@<wbr>c4fabrication.com (shared inbox)</span></td></tr>
+          <tr><td class="k-num" data-label="No.">13</td><th scope="row"><a class="k-link" href="https://redlightrising.com" target="_blank" rel="noopener">Red Light Rising</a></th><td data-label="Country">UK</td><td data-label="Similar to">Nurosym</td><td class="k-f03-why" data-label="Why this store">A founder run red light therapy panel brand, a home wellness device store like Nurosym, in a different niche. On a phone, a full screen Mystery Discount quiz with a countdown covers the panel page before the panel or its price shows.<span class="k-f03-flag">Check first: see card 13 in Assets.</span></td><td data-label="Contact">James Strong<span class="k-f03-role">Co founder (with Bryan Gohl)</span><span class="k-f03-reach"><a class="k-link" href="https://www.linkedin.com/in/james-strong-mba/" target="_blank" rel="noopener">LinkedIn</a></span><span class="k-f03-reach">No email published</span></td></tr>
+          <tr><td class="k-num" data-label="No.">14</td><th scope="row"><a class="k-link" href="https://divinesavages.com" target="_blank" rel="noopener">Divine Savages</a></th><td data-label="Country">UK</td><td data-label="Similar to">Wood Upp</td><td class="k-f03-why" data-label="Why this store">A British wallpaper and homeware studio run by its two founders, making every product in Britain and selling direct, a wall covering store like Wood Upp. On the Stallion Rhapsody Wallpaper page the line by the £175 price says "Shipping calculated at checkout", with no arrival date.<span class="k-f03-flag">Check first: see card 14 in Assets.</span></td><td data-label="Contact">Jamie Watkins<span class="k-f03-role">Co founder, runs the business and marketing side (Tom Kennedy is co founder and designer)</span><span class="k-f03-reach"><a class="k-link" href="https://www.linkedin.com/in/divinesavages/" target="_blank" rel="noopener">LinkedIn</a></span><span class="k-f03-reach">hello@<wbr>divinesavages.com (shared inbox)</span></td></tr>
+          <tr><td class="k-num" data-label="No.">15</td><th scope="row"><a class="k-link" href="https://www.woodchipandmagnolia.co.uk" target="_blank" rel="noopener">Woodchip &amp; Magnolia</a></th><td data-label="Country">UK</td><td data-label="Similar to">Wood Upp</td><td class="k-f03-why" data-label="Why this store">A Lancashire wallpaper, fabric and paint house that prints its own rolls to order and sells direct, a wall covering store like Wood Upp, founded by husband and wife Nina and Paul (Nina Tarnowski is the creative lead). On the Willow Leaf Wallpaper page the gallery is five still photos, with no clip of the paper on a wall.<span class="k-f03-flag">Check first: see card 15 in Assets.</span></td><td data-label="Contact">Nina Tarnowski<span class="k-f03-role">Founder and creative director (with her husband Paul, who runs printing)</span><span class="k-f03-reach"><a class="k-link" href="https://www.linkedin.com/in/nina-marika-tarnowski-8a9a4625/" target="_blank" rel="noopener">LinkedIn</a></span><span class="k-f03-reach">nina@<wbr>woodchipandmagnolia.co.uk</span></td></tr>
 <!--/ROWS-->
         </tbody>
       </table>
@@ -846,11 +864,6 @@ body::before {
     <p class="k-note"><b>How to reach them:</b> write on LinkedIn first. Each profile was found in search and not opened, so check it is the right person before you write. Use the email when it is the founder's own (WaterField, AutoGlanz, Woodchip &amp; Magnolia); a shared inbox is the fallback. Every email here is one the store publishes on its own site.</p>
     <p class="k-p">How the stores were chosen: each is similar to a brand PurpleFire has run A/B tests for, runs on Shopify, is led by its founder or owner (Gossamer Gear by a CEO), has no A/B test seen running on the site, has a named person to write to, and has a gap on the page that a past winning test addressed.</p>
     <p class="k-p">Seven spare stores are in the same sheet, in case one of these 15 is a no.</p>
-  </section>
-
-  <section class="k-sec" aria-label="Cost">
-    <h2 class="k-h3">Cost</h2>
-    <p class="k-p">No media spend. Your time is about 10 minutes per video, so about 2.5 hours for all 15. <abbr class="k-est" title="Estimate">Est.</abbr></p>
   </section>
 </div>
 
@@ -896,7 +909,7 @@ PurpleFire
 
 If you'd rather not hear from me, say so and I won't write again.</div>
     </figure>
-    <p class="k-f03-howto"><b>Fill from the card:</b> the one thing is point 1 and the past test and result is point 2, both in your own words. Name the past client only if their result is already on your own site or they have said yes. Otherwise say what kind of store it was. Attach the still from the video: their page on screen at the moment you name the one thing.</p>
+    <p class="k-f03-howto"><b>Fill from the card:</b> the one thing is point 2 (What I saw) and the past test and result is point 4 (Proof), both in your own words. Name the past client only if their result is already on your own site or they have said yes. Otherwise say what kind of store it was. Attach the still from the video: their page on screen at the moment you name the one thing.</p>
 
     <figure class="k-cb" id="f03-msg-day3">
       <figcaption><span class="k-cb-label">Day 3</span><span class="k-cb-meta">Follow up, only if no reply</span></figcaption>
@@ -908,7 +921,7 @@ Daniel
 
 If you'd rather not hear from me, say so and I won't write again.</div>
     </figure>
-    <p class="k-f03-howto"><b>Fill from the card:</b> the change on your page is point 3, the line that says what the change would be on their page.</p>
+    <p class="k-f03-howto"><b>Fill from the card:</b> the change on your page is point 5 (What I'd test).</p>
 
     <figure class="k-cb" id="f03-msg-day7">
       <figcaption><span class="k-cb-label">Day 7</span><span class="k-cb-meta">Last note, only if no reply</span></figcaption>
@@ -984,9 +997,9 @@ Daniel</div>
     <section class="k-sec" id="f03-as-record" aria-label="How to record">
       <h2 class="k-h3">How to record</h2>
       <ul class="k-list">
-        <li>Keep it to 40 to 60 seconds with their page on screen, at phone width where the gap is on a phone.</li>
-        <li>Cover the points on the card in order.</li>
-        <li>Name the past client only if their result is already on your own site or they have said yes. Otherwise say what kind of store it was.</li>
+        <li>Do the card's Check first on the day you record. If the point is gone, skip the store.</li>
+        <li>Six points in order, one breath each, their page open at phone width: 40 to 60 seconds.</li>
+        <li>Name a past client only if their result is on your own site or they said yes.</li>
         <li>Never promise a result on their store.</li>
       </ul>
     </section>
@@ -997,15 +1010,17 @@ Daniel</div>
       <p class="k-f03-who">Gary Waterfield, Founder and owner</p>
       <dl class="k-facts">
         <div><dt>Similar to</dt><dd>Airback</dd></div>
-        <div><dt>Matching past test</dt><dd>Shaktimat, More visible price next to CTA, CVR +9.75%</dd></div>
+        <div><dt>Matching past test</dt><dd>Ripstop by the Roll, Display color swatches, RPV +19.56%; CVR +5.92%</dd></div>
       </dl>
+        <p class="k-f03-check"><b>Check first:</b> record on the Tech Folio Backpack page (it is in the store menu) and check the price still reads $399. Then open the Starlink case page, linked above, to confirm it has the same dropdown and button.</p>
       <h3 class="k-f03-sub">Cover these points</h3>
       <ol class="k-f03-ol">
-          <li>On your Starlink Mini Go Case page, the $229 price is not under the title; it only shows inside the button after a pick.</li>
-          <li>For Shaktimat, a bigger price placed right next to the button won an A/B test: conversion rate up 9.75% (that test ran on collection pages).</li>
-          <li>On your page that would be the price in large type right under the title and again on the button.</li>
-          <li>Smaller one: with 22 gallery images, a short clip of the case packed and in use could sit in the first three.</li>
-          <li>Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
+          <li><b>Why you:</b> Gary, Daniel from PurpleFire here; I run A/B tests and opened your Tech Folio Backpack on my phone.</li>
+          <li><b>What I saw:</b> Colors sit in a closed dropdown, and the $399 is small inside a button saying Make a selection.</li>
+          <li><b>Why it matters:</b> Your new Starlink case works the same way, so shoppers open a menu before they can buy.</li>
+          <li><b>Proof:</b> Ripstop by the Roll A/B tested color swatches over a dropdown on phones: revenue per visitor up 19.56%.</li>
+          <li><b>What I'd test:</b> Show your colors as swatches with one already picked, so the button is ready at $399.</li>
+          <li><b>The offer:</b> Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
       </ol>
     </section>
 
@@ -1014,33 +1029,36 @@ Daniel</div>
       <p class="k-f03-who">Allen Choi, Founder, Head of Design</p>
       <dl class="k-facts">
         <div><dt>Similar to</dt><dd>Airback</dd></div>
-        <div><dt>Matching past test</dt><dd>German Car Accessories, Shipping Info Above CTA, RPV +44.06%; ATC +7.03%</dd></div>
+        <div><dt>Matching past test</dt><dd>Bay Optiks, 1 Year Warranty label, REVENUE +26.79%; CVR +5.78%</dd></div>
       </dl>
-        <p class="k-f03-check"><b>Check on your own screen first:</b> open the Carry On page from a US address and check that free shipping still shows only in the top bar and that nothing near Add to Bag mentions shipping or warranty.</p>
+        <p class="k-f03-check"><b>Check first:</b> from a US address, check that nothing near Add to Bag mentions warranty or returns. Returns carry a $10 label fee, so never say free returns.</p>
       <h3 class="k-f03-sub">Cover these points</h3>
       <ol class="k-f03-ol">
-          <li>On your Carry On page, free shipping is only in the top bar and the warranty is in a closed tab near the bottom.</li>
-          <li>For German Car Accessories, putting the shipping line right above the add button won an A/B test: revenue per visitor up 44.06%, add to cart up 7.03%.</li>
-          <li>On your page that would be one line above Add to Bag: free shipping over $99, plus your warranty in a few words.</li>
-          <li>Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
+          <li><b>Why you:</b> Allen, Daniel from PurpleFire here; I run A/B tests and went looking for your Carry On warranty.</li>
+          <li><b>What I saw:</b> On the $299 Carry On, the lifetime warranty is only a footer link, nowhere near Add to Bag.</li>
+          <li><b>Why it matters:</b> Someone spending $299 on a suitcase wants to see the lifetime warranty before they tap buy.</li>
+          <li><b>Proof:</b> Bay Optiks A/B tested a 1 Year Warranty label near the title or price: revenue up 26.79%.</li>
+          <li><b>What I'd test:</b> One line under your $299 price: lifetime warranty and 30 day returns.</li>
+          <li><b>The offer:</b> Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
       </ol>
     </section>
 
     <section class="k-sec k-f03-card" id="f03-as-s03" aria-label="3. Durston Gear">
-      <h2 class="k-h3">3. <a class="k-link" href="https://durstongear.com/products/x-dome-pro-1-plus-superlight-tent-dyneema" target="_blank" rel="noopener">Durston Gear</a></h2>
+      <h2 class="k-h3">3. <a class="k-link" href="https://durstongear.com/products/x-dome-1-plus-ultralight-backpacking-tent" target="_blank" rel="noopener">Durston Gear</a></h2>
       <p class="k-f03-who">Dan Durston, Founder; President and Product Architect</p>
       <dl class="k-facts">
         <div><dt>Similar to</dt><dd>Ripstop by the Roll</dd></div>
         <div><dt>Matching past test</dt><dd>Ripstop by the Roll, Specs Table and Product Description, CVR +12.06%; RPV +61.94%</dd></div>
       </dl>
-        <p class="k-f03-check"><b>Check first:</b> hold this one until a legal read confirms a first message to a contact in Canada is allowed.</p>
+        <p class="k-f03-check"><b>Check first:</b> hold until a legal read clears a first message to a contact in Canada. Film the X Dome 1+ with a version that shows Add to cart; some versions are sold out until December or March.</p>
       <h3 class="k-f03-sub">Cover these points</h3>
       <ol class="k-f03-ol">
-          <li>On your X Dome Pro 1+ page, the weight, size and materials table comes after several long paragraphs.</li>
-          <li>For Ripstop by the Roll, moving the key specs higher into a short, scannable table won an A/B test on mobile: conversion rate up 12.06%, revenue per visitor up 61.94%.</li>
-          <li>On your page that would be a four line spec box (weight, floor size, packed size, fabric) right under the price.</li>
-          <li>Smaller one: when it is sold out, the countdown and Notify Me sit above the tent story, which works; keep that.</li>
-          <li>Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
+          <li><b>Why you:</b> Dan, Daniel from PurpleFire; I run A/B tests and looked for the weight on your X Dome 1+.</li>
+          <li><b>What I saw:</b> Near Add to cart I see price, reviews and pole options, but no weight number.</li>
+          <li><b>Why it matters:</b> Hikers compare weight and floor size first; here the spec table sits below five long sections.</li>
+          <li><b>Proof:</b> Ripstop by the Roll A/B tested key specs up high on phones: conversion up 12.06%.</li>
+          <li><b>What I'd test:</b> A four line spec box under the price: weight, floor area, peak height and vestibule.</li>
+          <li><b>The offer:</b> Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
       </ol>
     </section>
 
@@ -1051,12 +1069,15 @@ Daniel</div>
         <div><dt>Similar to</dt><dd>Ripstop by the Roll</dd></div>
         <div><dt>Matching past test</dt><dd>Ripstop by the Roll, Specs Table and Product Description, CVR +12.06%; RPV +61.94%</dd></div>
       </dl>
+        <p class="k-f03-check"><b>Check first:</b> <b>weak card, we would swap this store:</b> the weight already shows above the button, so the founder may call this a small point. Open the Specs tab and say its top four numbers out loud when you show the box.</p>
       <h3 class="k-f03-sub">Cover these points</h3>
       <ol class="k-f03-ol">
-          <li>On The One page, only the weight sits above Add to cart; specs and materials are closed tabs below.</li>
-          <li>For Ripstop by the Roll, moving the key specs higher into a short, scannable table won an A/B test on mobile: conversion rate up 12.06%, revenue per visitor up 61.94%.</li>
-          <li>On your page that would be a small spec box (weight, packed size, interior, fabric) right under the price.</li>
-          <li>Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
+          <li><b>Why you:</b> Jonathan, Daniel from PurpleFire here; I run A/B tests and tried comparing The One against other tents.</li>
+          <li><b>What I saw:</b> On The One, weight is the only spec above Add to cart; the rest sit behind a tab.</li>
+          <li><b>Why it matters:</b> Hikers choosing a $315 shelter need floor size and height to compare, and must open a tab.</li>
+          <li><b>Proof:</b> Ripstop by the Roll A/B tested key specs up high on phones: revenue per visitor up 61.94%.</li>
+          <li><b>What I'd test:</b> A small spec box under the price with the top four numbers from your Specs tab.</li>
+          <li><b>The offer:</b> Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
       </ol>
     </section>
 
@@ -1067,14 +1088,15 @@ Daniel</div>
         <div><dt>Similar to</dt><dd>Bay Optiks</dd></div>
         <div><dt>Matching past test</dt><dd>Bay Optiks, 1 Year Warranty label, REVENUE +26.79%; CVR +5.78%</dd></div>
       </dl>
-        <p class="k-f03-check"><b>Check on your own screen first:</b> the warranty point does not depend on where you are. For the smaller point, check from a US address that the free shipping threshold still reads $115, in the top bar only.</p>
+        <p class="k-f03-check"><b>Check first:</b> open the Warranty tab once and confirm it carries the same 30 day refund, even on used towels.</p>
       <h3 class="k-f03-sub">Cover these points</h3>
       <ol class="k-f03-ol">
-          <li>On your Eagle Edgeless 500 page, the warranty is a closed tab well below the button.</li>
-          <li>For Bay Optiks, a clear warranty label near the title and price won an A/B test: revenue up 26.79%, conversion rate up 5.78%.</li>
-          <li>On your page that would be a short warranty badge right next to the $24 price.</li>
-          <li>Smaller one: the free shipping threshold ($115) is only in the top bar, not by the button.</li>
-          <li>Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
+          <li><b>Why you:</b> Carolyn, Daniel from PurpleFire here; I run A/B tests and read your 30 day towel guarantee.</li>
+          <li><b>What I saw:</b> On the Eagle Edgeless 500, nothing near the $24 price or Add to cart mentions that guarantee.</li>
+          <li><b>Why it matters:</b> A buyer doesn't learn that used towels can come back within 30 days unless they open a tab.</li>
+          <li><b>Proof:</b> Bay Optiks A/B tested a 1 Year Warranty label near the title or price: revenue up 26.79%.</li>
+          <li><b>What I'd test:</b> A short line under the $24 price: not happy within 30 days, full refund, even if used.</li>
+          <li><b>The offer:</b> Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
       </ol>
     </section>
 
@@ -1083,15 +1105,17 @@ Daniel</div>
       <p class="k-f03-who">Niko Dafkos, Co founder (with Paul Firmin)</p>
       <dl class="k-facts">
         <div><dt>Similar to</dt><dd>Goose Creek</dd></div>
-        <div><dt>Matching past test</dt><dd>The Secret Stories, Credibility + Best Sellers Under Hero, CVR +10.60%; RPV +14.89%</dd></div>
+        <div><dt>Matching past test</dt><dd>My First Years, Addition of Best Sellers, CVR +4%; AOV +5%</dd></div>
       </dl>
+        <p class="k-f03-check"><b>Check first:</b> <b>weak card, we would swap this store:</b> the first row is a seasonal campaign that may be gone by January, and an agency built the site. The home page changes with each campaign (Black Friday and the book launch now). On a UK phone, close the welcome popup and check the first row still opens with the book and the blanket before recording.</p>
       <h3 class="k-f03-sub">Cover these points</h3>
       <ol class="k-f03-ol">
-          <li>On your home page on a phone, the first product row opens with a book and a blanket, not your candles.</li>
-          <li>For The Secret Stories, a short credibility line and a best sellers row right under the hero won an A/B test: conversion rate up 10.60%, revenue per visitor up 14.89%.</li>
-          <li>On your site that would be your top candles in one swipe row right under the hero, with your review rating above it.</li>
-          <li>Smaller one: Goose Creek, a candle brand, won with a product section per main category on the home page (conversion rate up 2.20%).</li>
-          <li>Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
+          <li><b>Why you:</b> I'm Daniel from PurpleFire; I've A/B tested Goose Creek candles, so I opened Earl of East.</li>
+          <li><b>What I saw:</b> On your phone home page, the first products are a book and a £185 blanket from another brand.</li>
+          <li><b>Why it matters:</b> Someone who came for your candles swipes past three other products before reaching the first one.</li>
+          <li><b>Proof:</b> UK gift brand My First Years tested home page best sellers: conversion up 4%, order value up 5%.</li>
+          <li><b>What I'd test:</b> Your best selling candles in one row straight under the hero, ahead of the book and gifts.</li>
+          <li><b>The offer:</b> Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
       </ol>
     </section>
 
@@ -1102,14 +1126,15 @@ Daniel</div>
         <div><dt>Similar to</dt><dd>SaySky</dd></div>
         <div><dt>Matching past test</dt><dd>SaySky, Guarantees and benefits, CVR +12.53%</dd></div>
       </dl>
-        <p class="k-f03-check"><b>Check on your own screen first:</b> open the home page from a US address and check that the top bar still says free shipping over $175 and that nothing under the hero mentions shipping or returns.</p>
+        <p class="k-f03-check"><b>Check first:</b> <b>weak card, we would swap this store:</b> the free returns line was not seen on any page; check it in the cart and the returns policy first. From a US address, check that the top bar still reads free shipping over $175 and nothing under the hero mentions returns. Open the empty cart on your own screen (do not add anything) and confirm the line &quot;Free returns. Fast shipping.&quot; shows there, and that the return policy covers US returns free within 21 days.</p>
       <h3 class="k-f03-sub">Cover these points</h3>
       <ol class="k-f03-ol">
-          <li>On your home page, the hero is the Fall collection with two shop links; free shipping is only in the thin top bar and nothing under the hero says shipping or returns.</li>
-          <li>For SaySky, a running apparel brand, a bigger benefits bar with free shipping and returns, placed right under the main banner, won an A/B test: conversion rate up 12.53%.</li>
-          <li>On your site that would be a strip under the hero: free shipping over $175, easy returns, and one more reason to buy.</li>
-          <li>Smaller one: on the product page your sticky Add to Cart bar with the price works well; keep it.</li>
-          <li>Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
+          <li><b>Why you:</b> I'm Daniel from PurpleFire; I've A/B tested SaySky, the Danish running brand, so I opened Bandit.</li>
+          <li><b>What I saw:</b> Your home page never mentions free returns; I only found that promise inside the cart.</li>
+          <li><b>Why it matters:</b> A new runner unsure of their size decides to try you long before opening the cart.</li>
+          <li><b>Proof:</b> On SaySky's home page, a benefits bar under the main banner won: conversion rate up 12.53%.</li>
+          <li><b>What I'd test:</b> A strip under your hero: free returns within 21 days, free shipping over $175.</li>
+          <li><b>The offer:</b> Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
       </ol>
     </section>
 
@@ -1120,14 +1145,15 @@ Daniel</div>
         <div><dt>Similar to</dt><dd>Sport and Fitness Exchange</dd></div>
         <div><dt>Matching past test</dt><dd>Shaktimat, Information display, CVR +4.22%</dd></div>
       </dl>
-        <p class="k-f03-check"><b>Check first:</b> hold this one until a legal read confirms a first message to a contact in Germany is allowed. Before you record, open the Premium Dip Belt page from a German or US address so the price on screen is in euros or dollars.</p>
+        <p class="k-f03-check"><b>Check first:</b> hold until a legal read confirms a first message to a contact in Germany is allowed. Before recording, open the page from a German or US address so the price shows in euros or dollars, and accept the cookie banner.</p>
       <h3 class="k-f03-sub">Cover these points</h3>
       <ol class="k-f03-ol">
-          <li>On your Premium Dip Belt page, the best facts (tested to 1000 kg, three carabiners) sit below the button as plain bullets.</li>
-          <li>For Shaktimat, a fitness and wellness brand, showing the main product facts in a visual, skimmable block won an A/B test: conversion rate up 4.22%.</li>
-          <li>On your page that would be three icon facts under the title: 1000 kg tested, padded, three carabiners.</li>
-          <li>Smaller one: your trust row (fast shipping, designed in Germany, 2 years warranty) is good; it could sit closer to the button.</li>
-          <li>Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
+          <li><b>Why you:</b> Philipp, I'm Daniel from PurpleFire, an A/B testing agency; I looked at your dip belt on a phone.</li>
+          <li><b>What I saw:</b> On a phone, tested to 1000 kg sits below the button, the reviews and the bundle banner.</li>
+          <li><b>Why it matters:</b> Your strongest reason to pick this belt appears only after the Add to cart button.</li>
+          <li><b>Proof:</b> Shaktimat, an acupressure mat brand, tested key facts as icons instead of plain text: conversion rate up 4.22%.</li>
+          <li><b>What I'd test:</b> Four icon facts under the title: tested to 1000 kg, padded, three carabiners, rope or chain.</li>
+          <li><b>The offer:</b> Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
       </ol>
     </section>
 
@@ -1136,15 +1162,17 @@ Daniel</div>
       <p class="k-f03-who">Kieran Heinich, Managing Director</p>
       <dl class="k-facts">
         <div><dt>Similar to</dt><dd>Sport and Fitness Exchange</dd></div>
-        <div><dt>Matching past test</dt><dd>Bay Optiks, 1 Year Warranty label, REVENUE +26.79%; CVR +5.78%</dd></div>
+        <div><dt>Matching past test</dt><dd>Ripstop by the Roll, Specs Table and Product Description, CVR +12.06%; RPV +61.94%</dd></div>
       </dl>
+        <p class="k-f03-check"><b>Check first:</b> close the Black Friday popup before recording, open the Description tab on screen to show the dimensions are there, and check the reviews block still says &quot;Be the first to write a review&quot;.</p>
       <h3 class="k-f03-sub">Cover these points</h3>
       <ol class="k-f03-ol">
-          <li>On your Home Gym Nemesis Performance Rack page, a £3,995 rack shows no reviews and keeps the warranty in a closed tab.</li>
-          <li>For Bay Optiks, a clear warranty label next to the title and price won an A/B test: revenue up 26.79%, conversion rate up 5.78%.</li>
-          <li>On your page that would be a warranty badge right under the price, next to the finance line.</li>
-          <li>Smaller one: related racks on the same page carry reviews (7 on the wall mounted folding rack, 15 on the FID bench), so a line of store reviews could sit under the title.</li>
-          <li>Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
+          <li><b>Why you:</b> Kieran, I'm Daniel from PurpleFire, an A/B testing agency; I looked at your Nemesis rack on a phone.</li>
+          <li><b>What I saw:</b> Below the photos sit just name, price, finance and a button; specs and dimensions hide in one tab.</li>
+          <li><b>Why it matters:</b> Someone spending £3,995 needs to know the rack fits their garage before they buy.</li>
+          <li><b>Proof:</b> Ripstop by the Roll, a fabric store, tested key specs high on phones: conversion up 12.06%.</li>
+          <li><b>What I'd test:</b> A short spec box under the price on every rack page: height, footprint, what's included.</li>
+          <li><b>The offer:</b> Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
       </ol>
     </section>
 
@@ -1155,14 +1183,15 @@ Daniel</div>
         <div><dt>Similar to</dt><dd>Ripstop by the Roll</dd></div>
         <div><dt>Matching past test</dt><dd>German Car Accessories, Shipping Estimates Feature, CVR +12.30%; APPV +16.31%</dd></div>
       </dl>
-        <p class="k-f03-check"><b>Check on your own screen first:</b> open the Lunar Solo page from a US address and check that no ship or delivery date appears near Add to cart.</p>
+        <p class="k-f03-check"><b>Check first:</b> open the Lunar Solo page from a US address and check that no ship or arrival date appears near Add to cart and that free shipping over $150 still shows only lower down.</p>
       <h3 class="k-f03-sub">Cover these points</h3>
       <ol class="k-f03-ol">
-          <li>On your Lunar Solo page, the only timing a shopper sees is that seam sealing adds 1 to 2 business days; there is no ship or arrival date.</li>
-          <li>For German Car Accessories, showing when the order ships and arrives on the product page won an A/B test on mobile: conversion rate up 12.30%.</li>
-          <li>On your page that would be one line above Add to cart: ships by a date, arrives by a date, with the sealing days already counted.</li>
-          <li>Smaller one: your spec chips (26 oz, 1 person, 3 seasons) and the seam sealing choice are strong; keep them.</li>
-          <li>Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
+          <li><b>Why you:</b> Ron, I'm Daniel from PurpleFire, an A/B testing agency; I opened your Lunar Solo on a phone.</li>
+          <li><b>What I saw:</b> Nothing near Add to cart says when the tent ships or when it arrives.</li>
+          <li><b>Why it matters:</b> Hikers buy a tent for a trip date, and here they cannot tell if it arrives in time.</li>
+          <li><b>Proof:</b> German Car Accessories tested ship and arrival dates on mobile product pages: conversion rate up 12.30%.</li>
+          <li><b>What I'd test:</b> One line above Add to cart: the date it arrives, seam sealing days included.</li>
+          <li><b>The offer:</b> Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
       </ol>
     </section>
 
@@ -1173,14 +1202,15 @@ Daniel</div>
         <div><dt>Similar to</dt><dd>Bay Optiks</dd></div>
         <div><dt>Matching past test</dt><dd>Pacific Shaving Co., PDP Positive Review, CVR +8.98%</dd></div>
       </dl>
-        <p class="k-f03-check"><b>Check first:</b> no LinkedIn profile was found for the owner, so write to the email published in the store's privacy policy, which looks like his own (it is in the list on Strategy 3). Before you record, open the Starter Car Cleaning Kit page from a UK address a few times: the slider order changes between loads, so check that the 2022 complaint still appears beside the button before you use point 1.</p>
+        <p class="k-f03-check"><b>Check first:</b> <b>weak card, we would swap this store:</b> a positive review already shows first, and the order of reviews is a setting the owner can change. No LinkedIn profile was found for Joe, so write to the address in the store privacy policy (listed on Strategy 3). Load the kit page a few times from a UK address and check the August 2022 review still shows first, with the broken apostrophe.</p>
       <h3 class="k-f03-sub">Cover these points</h3>
       <ol class="k-f03-ol">
-          <li>On your Starter Car Cleaning Kit page, the review slider next to the button rotates through old and new reviews, so the first one a visitor sees can be an unhappy one from 2022.</li>
-          <li>For Pacific Shaving Co., one highlighted positive review shown on the product page won an A/B test: conversion rate up 8.98%.</li>
-          <li>On your page that would be one pinned five star review next to the button, backed by your Reviews.io rating.</li>
-          <li>Smaller one: another review on the slider quotes the kit at £79.99, while the page now sells it at £99.95; a pinned review would keep that old price out of the first view.</li>
-          <li>Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
+          <li><b>Why you:</b> Joe, I'm Daniel from PurpleFire, an A/B testing agency; I looked at your Kington factory's Starter Kit.</li>
+          <li><b>What I saw:</b> Beside Add to cart, the first review is from August 2022, and it shows garbled characters.</li>
+          <li><b>Why it matters:</b> A first time buyer deciding on £99.95 sees four year old praise, not your strong 2026 reviews.</li>
+          <li><b>Proof:</b> Pacific Shaving Co. highlighted one positive review on its product page: conversion up 8.98% in an A/B test.</li>
+          <li><b>What I'd test:</b> I'd pin your strongest 2026 review first beside the button, so every visitor sees it.</li>
+          <li><b>The offer:</b> Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
       </ol>
     </section>
 
@@ -1191,14 +1221,15 @@ Daniel</div>
         <div><dt>Similar to</dt><dd>CV Fabrication</dd></div>
         <div><dt>Matching past test</dt><dd>Henry's House of Coffee, Improve selectors and Add to cart, REVENUE +19.19%; CVR +16.15%</dd></div>
       </dl>
-        <p class="k-f03-check"><b>Check first:</b> it sells in the same niche as a past client, CV Fabrication. You decide whether that is too close before you send.</p>
+        <p class="k-f03-check"><b>Check first:</b> <b>weak card, we would swap this store:</b> it sells in the same niche as a past client, and the proof comes from a very different store. It sells in the same niche as a past client, CV Fabrication; you decide whether that is too close before you send. Keep the price out of the video: it shows a sale price until 7 December. If you record at phone width, quote Henry's mobile result instead (revenue up 39.48%, conversion up 37.82%). No LinkedIn profile was found for Caleb; Chris Huff, listed as President, has one.</p>
       <h3 class="k-f03-sub">Cover these points</h3>
       <ol class="k-f03-ol">
-          <li>On your Tacoma Rock Runner Front Bumper page, there are eight pickers before the button, and the button just says Select options.</li>
-          <li>For Henry's House of Coffee, simplifying the option pickers and the add button with clearer guidance won an A/B test on desktop: revenue up 19.19%, conversion rate up 16.15%.</li>
-          <li>On your page that would be the bumper finish and side style first, with the add ons grouped in one "build your bumper" step after.</li>
-          <li>Smaller one: no star rating shows near the title on a $1,549 bumper.</li>
-          <li>Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
+          <li><b>Why you:</b> Caleb, I'm Daniel from PurpleFire, an A/B testing agency; I went through your American made Rock Runner bumper.</li>
+          <li><b>What I saw:</b> On your Rock Runner page, nine pickers come before the button, and add on lists show part numbers.</li>
+          <li><b>Why it matters:</b> To compare winches, a buyer reads part number codes instead of plain names and prices.</li>
+          <li><b>Proof:</b> Henry's House of Coffee made its option pickers simpler: revenue up 19.19% on desktop in an A/B test.</li>
+          <li><b>What I'd test:</b> I'd test simpler add on pickers: plain names and prices first, part numbers in small print.</li>
+          <li><b>The offer:</b> Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
       </ol>
     </section>
 
@@ -1209,13 +1240,15 @@ Daniel</div>
         <div><dt>Similar to</dt><dd>Nurosym</dd></div>
         <div><dt>Matching past test</dt><dd>Native Smoke 4 Less, Increase engagement by removing spinner popup, CVR +4.52%</dd></div>
       </dl>
-        <p class="k-f03-check"><b>Check on your own screen first:</b> open the panel page on a phone from a UK address and check that the mystery discount quiz still covers the page on arrival.</p>
+        <p class="k-f03-check"><b>Check first:</b> open the panel page on a phone from a UK address and check the quiz still covers it on arrival. The render ran from India and showed GBP; a US visitor may see dollars and a different price.</p>
       <h3 class="k-f03-sub">Cover these points</h3>
       <ol class="k-f03-ol">
-          <li>On your Advantage 2.0 full body panel page, a phone visitor first sees a full screen mystery discount quiz with a timer, not the panel.</li>
-          <li>For Native Smoke 4 Less, removing the spin to win popup won an A/B test: conversion rate up 4.52%.</li>
-          <li>On your page that would be the quiz moved to a small tab or shown later, so the panel and its price load first.</li>
-          <li>Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
+          <li><b>Why you:</b> James, I'm Daniel from PurpleFire, an A/B testing agency; I opened your Advantage panel on a phone.</li>
+          <li><b>What I saw:</b> Before the panel or price, a full screen Mystery Discount quiz with a countdown covers everything.</li>
+          <li><b>Why it matters:</b> Someone weighing a £1,725 panel must answer or close a timed quiz before seeing it.</li>
+          <li><b>Proof:</b> A Canadian online store A/B tested removing its spin to win popup: conversion up 4.52%.</li>
+          <li><b>What I'd test:</b> I'd test your panel page with no quiz on arrival, so the panel and price load first.</li>
+          <li><b>The offer:</b> Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
       </ol>
     </section>
 
@@ -1226,14 +1259,15 @@ Daniel</div>
         <div><dt>Similar to</dt><dd>Wood Upp</dd></div>
         <div><dt>Matching past test</dt><dd>Shaktimat, Add date of receive and delivery price, CVR +6.68%</dd></div>
       </dl>
-        <p class="k-f03-check"><b>Check on your own screen first:</b> delivery lines depend on the visitor's country. Open the Stallion Rhapsody Wallpaper page from a UK address and check that no delivery cost or arrival date shows near Add to cart and that the print time is still only in the description. Check too that the Trustpilot count is still about 400 before you say it.</p>
+        <p class="k-f03-check"><b>Check first:</b> delivery lines depend on the visitor's country and the render ran from India. From a UK address, check that no delivery cost or arrival date shows near Add to cart and the print time is still only in the description. Leave the Trustpilot count out unless you check it.</p>
       <h3 class="k-f03-sub">Cover these points</h3>
       <ol class="k-f03-ol">
-          <li>On your Stallion Rhapsody Wallpaper page, the line by the price says "Shipping calculated at checkout", and the three week print time is only in the description below the button.</li>
-          <li>For Shaktimat, showing the expected arrival date and the delivery price on the product page won an A/B test: conversion rate up 6.68%.</li>
-          <li>On your page that would be one line above Add to cart: printed to order, arrives by a date, and what delivery costs.</li>
-          <li>Smaller one: the product page shows no rating, while your store has about 400 Trustpilot reviews; a rating under the title is a second test.</li>
-          <li>Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
+          <li><b>Why you:</b> Jamie, I'm Daniel from PurpleFire, an A/B testing agency; I looked at Stallion Rhapsody from your Pikes collection.</li>
+          <li><b>What I saw:</b> Next to the £175 price it says Shipping calculated at checkout, with no arrival date.</li>
+          <li><b>Why it matters:</b> To learn delivery cost on a £175 roll, a shopper must leave the page or reach checkout.</li>
+          <li><b>Proof:</b> Shaktimat put arrival date and delivery price on the product page: conversion up 6.68% in an A/B test.</li>
+          <li><b>What I'd test:</b> I'd add one line above Add to cart: printed to order, arrives by a date, delivery cost.</li>
+          <li><b>The offer:</b> Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
       </ol>
     </section>
 
@@ -1244,14 +1278,15 @@ Daniel</div>
         <div><dt>Similar to</dt><dd>Wood Upp</dd></div>
         <div><dt>Matching past test</dt><dd>Wood Upp, Display Product Rating, Thumbnails, and Usage Video in Upper Right Corner, CVR +4.84%</dd></div>
       </dl>
-        <p class="k-f03-check"><b>Check on your own screen first:</b> the gap does not depend on where you are, but a free paint samples popup covers the page on arrival, so close it before you record. Also check whether other wallpapers on the store show stars from Judge.me or Loox; if a store rating shows anywhere, you can mention it in point 3.</p>
+        <p class="k-f03-check"><b>Check first:</b> a free paint samples popup covers the page on arrival; close it before you record. This product has no reviews, so do not mention a rating. Swipe the gallery once to confirm it still has no video (our probe found no video element). Look at their Instagram and TikTok for a hanging clip they already have; if one exists, say so in the test line.</p>
       <h3 class="k-f03-sub">Cover these points</h3>
       <ol class="k-f03-ol">
-          <li>On your Willow Leaf Wallpaper page, the gallery is photos only, with no clip of the paper hung in a room, and no rating sits near the title of a £127 roll.</li>
-          <li>For Wood Upp, a wall panel brand, putting the rating, the thumbnails and a short usage video at the top of the phone page won an A/B test: conversion rate up 4.84%.</li>
-          <li>On your page that would be a short clip of the paper going up on a wall as the second slide in the gallery, and a rating under the title once the paper has reviews to show.</li>
-          <li>Smaller one: the paint pairing row with a £2 Quick add sits between the price and Add to cart; it could move under the button.</li>
-          <li>Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
+          <li><b>Why you:</b> Nina, I'm Daniel from PurpleFire, an A/B testing agency; I looked at your Willow Leaf wallpaper page.</li>
+          <li><b>What I saw:</b> Your Willow Leaf gallery is five still photos, with no clip of the paper on a wall.</li>
+          <li><b>Why it matters:</b> At £127 a roll, a photo can't show how the paper hangs and lines up at seams.</li>
+          <li><b>Proof:</b> Wood Upp's phone page A/B test added a usage video, thumbnails and rating up top: conversion up 4.84%.</li>
+          <li><b>What I'd test:</b> I'd test a short clip of your paper going up on a wall as gallery slide two.</li>
+          <li><b>The offer:</b> Want this as your first split test in January? Your first split test is on us. You pay after the first win.</li>
       </ol>
     </section>
 <!--/CARDS-->
