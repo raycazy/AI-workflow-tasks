@@ -105,7 +105,7 @@
           <p class="sp-for" data-sp-for>Standard card</p>
           <p class="sp-big"><b data-sp-now>$200</b><span>a card</span></p>
           <p class="sp-launch" data-sp-launch>At launch $600 a card. You save $400.</p>
-          <p class="sp-days" data-sp-days>Graded on the date you book. 30 business day turnaround from that date.</p>
+          <p class="sp-days" data-sp-days>Graded on the date you book. Back with you 30 business days from that date.</p>
           <p class="sp-same" data-sp-same hidden>Same price as Poly at this size, in the metal and glass slab.</p>
           <ul class="g-ticks"><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Four subgrades and a full grading report</li><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>RFID chip in the label</li><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Metal and glass housing</li><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Your grading date on the calendar</li></ul>
           <a class="btn lg block" data-sp-cta href="shop.html?h=glass&amp;size=std#hero">Claim Your Glass <svg class="ico"><use href="#i-arrow"/></svg></a>
@@ -114,7 +114,7 @@
           <p class="sp-for" data-sp-for>Standard card</p>
           <p class="sp-big"><b data-sp-now>$30</b><span>a card</span></p>
           <p class="sp-launch" data-sp-launch>At launch $150 a card. You save $120.</p>
-          <p class="sp-days" data-sp-days>Graded on the date you book. 60 business day turnaround from that date.</p>
+          <p class="sp-days" data-sp-days>Graded on the date you book. Back with you 60 business days from that date.</p>
           
           <ul class="g-ticks"><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Four subgrades and a full grading report</li><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>RFID chip in the label</li><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Protective poly housing</li><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Your grading date on the calendar</li></ul>
           <a class="btn ghost lg block" data-sp-cta href="shop.html?h=poly&amp;size=std#hero">Claim Your Poly <svg class="ico"><use href="#i-arrow"/></svg></a>
@@ -136,7 +136,7 @@
 <section class="sec">
   <div class="wrap sp-notes">
     <div><h2 class="h3">High value cards</h2><p>No value based fee on cards worth $10,000 or less. Above that, a 2.5% fee applies to the value over $10,000 only, paid when you book your grading date. Shipping insurance is 1% of the card's value on cards worth more than $500, charged when you book.</p></div>
-    <div><h2 class="h3">Your grading date</h2><p>Every card is graded on the date you book. Pick any open day from February 22, 2027. Turnaround from that date is 30 business days for Glass and oversized cards, and 60 for Poly cards and booklets.</p></div>
+    <div><h2 class="h3">Your grading date</h2><p>Every card is graded on the date you book. Pick any open day from February 22, 2027. Turnaround from that date until your cards are back with you is 30 business days for Glass and oversized cards, and 60 for Poly cards and booklets.</p></div>
   </div>
 </section>
 
@@ -252,7 +252,7 @@
       c.querySelector("[data-sp-for]").textContent = N[s];
       c.querySelector("[data-sp-now]").textContent = money(p.now);
       c.querySelector("[data-sp-launch]").textContent = p.open ? "At launch " + money(p.open) + " a card. You save " + money(p.open - p.now) + "." : "Launch pricing for this size publishes Feb 22.";
-      c.querySelector("[data-sp-days]").textContent = "Graded on the date you book. " + p.days + " business day turnaround from that date.";
+      c.querySelector("[data-sp-days]").textContent = "Graded on the date you book. Back with you " + p.days + " business days from that date.";
       c.querySelector("[data-sp-cta]").href = "shop.html?h=" + h + "&size=" + s + "#hero";
     });
     try { var u = new URL(location.href); u.searchParams.set("size", s); history.replaceState(null, "", u); } catch (e) {}
