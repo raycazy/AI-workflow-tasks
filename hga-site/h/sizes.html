@@ -105,7 +105,7 @@
           <p class="sp-for" data-sp-for>Standard card</p>
           <p class="sp-big"><b data-sp-now>$200</b><span>a card</span></p>
           <p class="sp-launch" data-sp-launch>At launch $600 a card. You save $400.</p>
-          <p class="sp-days" data-sp-days>Graded on the date you book. Back with you 30 business days from that date.</p>
+          <p class="sp-days" data-sp-days>Graded on the date you book. Turnaround until it is back with you: 30 business days from that date.</p>
           <p class="sp-same" data-sp-same hidden>Same price as Poly at this size, in the metal and glass slab.</p>
           <ul class="g-ticks"><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Four subgrades and a full grading report</li><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>RFID chip in the label</li><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Metal and glass housing</li><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Your grading date on the calendar</li></ul>
           <a class="btn lg block" data-sp-cta href="shop.html?h=glass&amp;size=std#hero">Claim Your Glass <svg class="ico"><use href="#i-arrow"/></svg></a>
@@ -114,7 +114,7 @@
           <p class="sp-for" data-sp-for>Standard card</p>
           <p class="sp-big"><b data-sp-now>$30</b><span>a card</span></p>
           <p class="sp-launch" data-sp-launch>At launch $150 a card. You save $120.</p>
-          <p class="sp-days" data-sp-days>Graded on the date you book. Back with you 60 business days from that date.</p>
+          <p class="sp-days" data-sp-days>Graded on the date you book. Turnaround until it is back with you: 60 business days from that date.</p>
           
           <ul class="g-ticks"><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Four subgrades and a full grading report</li><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>RFID chip in the label</li><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Protective poly housing</li><li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Your grading date on the calendar</li></ul>
           <a class="btn ghost lg block" data-sp-cta href="shop.html?h=poly&amp;size=std#hero">Claim Your Poly <svg class="ico"><use href="#i-arrow"/></svg></a>
@@ -252,7 +252,7 @@
       c.querySelector("[data-sp-for]").textContent = N[s];
       c.querySelector("[data-sp-now]").textContent = money(p.now);
       c.querySelector("[data-sp-launch]").textContent = p.open ? "At launch " + money(p.open) + " a card. You save " + money(p.open - p.now) + "." : "Launch pricing for this size publishes Feb 22.";
-      c.querySelector("[data-sp-days]").textContent = "Graded on the date you book. Back with you " + p.days + " business days from that date.";
+      c.querySelector("[data-sp-days]").textContent = "Graded on the date you book. Turnaround until it is back with you: " + p.days + " business days from that date.";
       c.querySelector("[data-sp-cta]").href = "shop.html?h=" + h + "&size=" + s + "#hero";
     });
     try { var u = new URL(location.href); u.searchParams.set("size", s); history.replaceState(null, "", u); } catch (e) {}
