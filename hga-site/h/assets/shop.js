@@ -78,7 +78,7 @@
   }
   function set(sel, v) { $$(sel).forEach(function (e) { e.textContent = v; }); }
   function unitHtml(u, p) { return "<b>" + money(u) + "</b> a card" + (p.open === null || u !== p.now ? "" : " <s>" + money(p.open) + "</s>"); }
-  function meta(p) { return p.size + " · grading date from " + p.days + " business days out"; }
+  function meta(p) { return p.size + " · " + p.days + " business day turnaround"; }
 
   // ---------- rows for the booklet and trifold variants: cloned from the housing's standard row ----------
   function cloneRows(scope) {
