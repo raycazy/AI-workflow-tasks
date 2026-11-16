@@ -129,14 +129,13 @@
     set("[data-sum='1']", S.total + (one ? " card" : " cards"));
     set("[data-sum='2']", g && p ? g + " Glass, " + p + " Poly" : g ? (one ? "Glass" : "All Glass") : (one ? "Poly" : "All Poly"));
     set("[data-t2]", one ? "Glass or Poly?" : "How many in Glass, how many in Poly?");
-    // one card is a single tap; more cards get steppers and a slider that always add up to the total
+    // one card is a single tap; more cards get steppers that always add up to the total
     bd.classList.toggle("is-one", one);
     $$("[data-pick]", bd).forEach(function (x) {
       var on = inH(x.dataset.pick) > 0;
       x.classList.toggle("sel", on); x.classList.toggle("off", !on);
       if (one) { x.setAttribute("role", "radio"); x.setAttribute("aria-checked", String(on)); x.tabIndex = 0; } else { x.removeAttribute("role"); x.removeAttribute("aria-checked"); x.removeAttribute("tabindex"); }
     });
-    var r = $("[data-range]", bd); r.max = S.total; r.value = g; r.hidden = one; r.style.setProperty("--p", (g / S.total * 100) + "%");
     $$("[data-special]", bd).forEach(function (x) { x.setAttribute("aria-checked", String((x.dataset.special === "1") === S.special)); });
     var box = $("[data-sizes]", bd); box.hidden = !S.special;
     if (S.special) box.innerHTML = sizesHtml();
@@ -213,7 +212,6 @@
   });
   bd.addEventListener("input", function (e) {
     var i = e.target;
-    if (i.hasAttribute("data-range")) { S.glass = Number(i.value); bdRender(); return; }
     if (!i.hasAttribute("data-in")) return;
     if (i.value === "") return;
     var v = Math.max(0, parseInt(i.value, 10) || 0);

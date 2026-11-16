@@ -1229,6 +1229,22 @@
   .ps-tl li:last-child{padding-bottom:0}
 }
 
+/* 2026-11-16: the display band (product page "Your best cards deserve more than plastic", About "Built to be kept")
+   holds a portrait slab photo in a landscape box, and object-fit:cover cropped it to the middle of the card. The whole
+   slab now shows: on the right with the copy beside it on wide screens, on top with the copy under it up to 900px. */
+.band-in{background:#0D0B0C;align-items:center}
+.band-in>img{object-fit:contain;object-position:80% 50%}
+.band-in::before{background:none}
+.band-copy{grid-template-columns:minmax(0,1fr);max-width:54%}
+.band-copy .glass-chip{justify-self:start}
+@media (max-width:900px){
+  .band-in{display:block;min-height:0;aspect-ratio:auto}
+  /* transform:none: the page's scroll parallax moved the stacked photo down over the eyebrow */
+  .band-in>img{position:static;display:block;width:100%;height:auto;aspect-ratio:4/5;max-height:520px;object-fit:contain;object-position:50% 50%;transform:none!important}
+  .band-in::before{display:none}
+  .band-copy{position:relative;max-width:none;padding-top:8px}
+}
+
 .co-lab{display:flex;align-items:center;gap:8px}
 .co-lab label{margin:0}
 .co-tipwrap{position:relative;display:inline-flex}
