@@ -1234,8 +1234,9 @@
    slab now shows: on the right with the copy beside it on wide screens, on top with the copy under it up to 900px. */
 .band-in{background:#0D0B0C;align-items:center}
 /* the mask feathers the photo's left and right edges into the band (the band is 1376:768 and the photo 4:5, so at
-   80% the photo runs from 44.3% to 88.9% of the width); some display photos have a lighter backdrop than the band */
-.band-in>img{object-fit:contain;object-position:80% 50%;-webkit-mask-image:linear-gradient(90deg,transparent 44.5%,#000 51%,#000 82.5%,transparent 88.7%);mask-image:linear-gradient(90deg,transparent 44.5%,#000 51%,#000 82.5%,transparent 88.7%)}
+   80% the photo runs from 44.3% to 88.9% of the width); some display photos have a lighter backdrop than the band.
+   transform:none: the page's scroll parallax shifted the photo down, which showed its top edge and sat the slab low */
+.band-in>img{object-fit:contain;object-position:80% 50%;transform:none!important;-webkit-mask-image:linear-gradient(90deg,transparent 44.5%,#000 51%,#000 82.5%,transparent 88.7%);mask-image:linear-gradient(90deg,transparent 44.5%,#000 51%,#000 82.5%,transparent 88.7%)}
 .band-in::before{background:none}
 .band-copy{grid-template-columns:minmax(0,1fr);max-width:54%}
 .band-copy .glass-chip{justify-self:start}
