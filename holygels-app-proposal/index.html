@@ -1,0 +1,762 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Holy Gels: the sold out design app, a proposal</title>
+<meta name="robots" content="noindex">
+<style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(assets/inter-latin.woff2) format('woff2');
+}
+/* Holy Gels tokens (values copied from brand-guides/holygels/tokens.css, 2026-10-26) */
+:root {
+  --brand-black: #000000;
+  --brand-ink: #0C0C0F;
+  --brand-accent: #FF006C;
+  --brand-pink-mid: #FF91B5;
+  --brand-pink-rose: #F7B4CA;
+  --brand-pink-stat: #FFD3E3;
+  --brand-pink-active: #FFD7E2;
+  --brand-pink-active-border: #F3CBDC;
+  --brand-pink-tile: #FFF8FB;
+  --brand-green-badge: #00BB5F;
+  --brand-white: #FFFFFF;
+  --brand-ground-grey: #F4F4F4;
+  --brand-slot-grey: #F5F5F5;
+  --brand-panel: #FAFAFA;
+  --brand-ink-soft: #333333;
+  --brand-caption: #666666;
+  --brand-line: #D3D3D3;
+  --brand-tier-border: #D4D4D4;
+  --brand-font-main: 'Inter', 'Funnel Sans', Helvetica, Arial, sans-serif;
+  --brand-radius: 4px;
+  --brand-radius-card: 8px;
+  --brand-radius-media: 12px;
+  --brand-radius-pill: 20px;
+  --z-sticky: 10;
+  --wrap: 1200px;
+  --pad: 24px;
+}
+@media (min-width: 900px) { :root { --pad: 60px; } }
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; font-family: var(--brand-font-main); color: var(--brand-ink); background: var(--brand-white); font-size: 16px; line-height: 1.5; }
+img { display: block; max-width: 100%; }
+h1, h2, h3, h4 { margin: 0; color: var(--brand-black); text-wrap: balance; line-height: 1.15; letter-spacing: -0.02em; }
+p { margin: 0; text-wrap: pretty; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+a { color: inherit; }
+.ic { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--pad); }
+.date { font-size: 12px; color: var(--brand-caption); }
+.muted { color: var(--brand-caption); }
+
+/* Header and nav */
+.top { padding: 16px 0; }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.top img { height: 20px; width: auto; }
+.top p { font-size: 14px; color: var(--brand-caption); text-align: right; line-height: 1.3; }
+.qnav { position: sticky; top: 0; z-index: var(--z-sticky); background: rgba(255,255,255,0.96); border-top: 1px solid var(--brand-line); border-bottom: 1px solid var(--brand-line); }
+.qnav ol { display: flex; gap: 20px; max-width: var(--wrap); margin: 0 auto; padding: 0 var(--pad); overflow-x: auto; scrollbar-width: none; }
+.qnav ol::-webkit-scrollbar { display: none; }
+.qnav a { display: flex; align-items: center; gap: 8px; min-height: 48px; text-decoration: none; font-size: 14px; font-weight: 600; white-space: nowrap; }
+.qnav a.on .num { background: var(--brand-black); color: var(--brand-white); }
+.qnav a.on.plain { text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 480px) { .qnav ol { gap: 0; justify-content: space-between; } .qnav .num { display: none; } }
+.num { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--brand-pink-active); color: var(--brand-black); font-size: 14px; font-weight: 700; flex: none; }
+.num.lg { width: 44px; height: 44px; font-size: 20px; }
+
+/* Opening */
+.open { padding: 32px 0 48px; }
+.open .wrap { display: grid; gap: 28px; }
+.open h1 { font-size: clamp(30px, 4.2vw, 56px); max-width: 17ch; }
+.open .lede { font-size: 18px; max-width: 48ch; margin-top: 16px; color: var(--brand-ink-soft); }
+.bignum { display: grid; gap: 12px; align-content: start; }
+.bignum .fig { font-size: clamp(48px, 7.4vw, 96px); font-weight: 700; letter-spacing: -0.03em; line-height: 1; color: var(--brand-black); }
+.bignum .fig span { color: var(--brand-caption); font-weight: 600; font-size: 0.5em; letter-spacing: -0.02em; white-space: nowrap; }
+.waffle { display: grid; grid-template-columns: repeat(20, 1fr); gap: 4px; max-width: 520px; }
+.waffle i { aspect-ratio: 1; border-radius: 2px; background: var(--brand-ground-grey); }
+.waffle i.on { background: var(--brand-accent); }
+.key { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 14px; color: var(--brand-ink-soft); }
+.key span { display: inline-flex; align-items: center; gap: 8px; }
+.key b { width: 12px; height: 12px; border-radius: 2px; background: var(--brand-ground-grey); display: inline-block; }
+.key b.on { background: var(--brand-accent); }
+.risk { padding-top: 12px; border-top: 2px solid var(--brand-black); max-width: 520px; }
+.risk strong { color: var(--brand-black); }
+@media (min-width: 900px) {
+  .open { padding: 64px 0 96px; }
+  .open .wrap { grid-template-columns: 1.05fr 1fr; column-gap: 72px; }
+}
+
+/* Bands */
+.band { padding: 40px 0; scroll-margin-top: 48px; }
+@media (max-width: 899px) {
+  .qhead { grid-template-columns: 40px 1fr; column-gap: 12px; align-items: center; }
+  .qhead > p { grid-column: 1 / -1; }
+  .qhead.plain { grid-template-columns: 1fr; }
+  .summ p { font-size: 14px; padding: 8px 12px; }
+  .nl li { grid-template-columns: 1fr 1fr; column-gap: 12px; }
+  .nl h4 { grid-column: 1 / -1; }
+  .nl b { display: block; }
+  .rulelist li { padding: 8px 0; }
+  .band { padding: 36px 0; }
+  .block + .block { margin-top: 32px; }
+  .journey { padding-top: 20px; }
+  .journey + .journey { margin-top: 24px; }
+  .strip { gap: 12px; }
+  .jhead h3 { font-size: 22px; }
+}
+@media (max-width: 899px) { .qhead p { font-size: 16px; } .open .lede { font-size: 16px; } .num.lg { width: 40px; height: 40px; font-size: 18px; } .timeline li { grid-template-columns: 40px 1fr; padding-bottom: 14px; } .timeline li::before { left: 19px; top: 40px; } .timeline h3 { margin-top: 8px; } }
+.band.tint { background: var(--brand-pink-tile); }
+.band.grey { background: var(--brand-panel); }
+.qhead { display: grid; gap: 12px; margin-bottom: 28px; }
+.qhead h2 { font-size: clamp(28px, 3.6vw, 44px); max-width: 22ch; }
+.qhead p { font-size: 18px; max-width: 60ch; color: var(--brand-ink-soft); }
+.sub { font-size: 22px; margin-bottom: 8px; }
+.subp { color: var(--brand-ink-soft); max-width: 62ch; margin-bottom: 16px; }
+.block + .block { margin-top: 40px; }
+@media (min-width: 900px) {
+  .band { padding: 96px 0; }
+  .qhead { grid-template-columns: 64px 1fr; column-gap: 24px; margin-bottom: 40px; }
+  .qhead > :not(.num) { grid-column: 2; }
+  .qhead .num { grid-row: 1 / span 2; margin-top: 4px; }
+  .qhead.plain { grid-template-columns: 1fr; }
+  .qhead.plain > * { grid-column: 1; }
+  .block + .block { margin-top: 64px; }
+}
+
+/* Problem */
+.cause { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 16px; font-weight: 600; margin-bottom: 24px; }
+.cause .step { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid var(--brand-line); border-radius: var(--brand-radius-card); background: var(--brand-white); }
+.cause .step.bad { background: var(--brand-pink-active); border-color: var(--brand-pink-active-border); }
+.cause .step.bad .ic { color: var(--brand-accent); }
+.cause .arrow { color: var(--brand-caption); width: 16px; height: 16px; }
+.outcomes { display: grid; border-top: 1px solid var(--brand-line); }
+.outcomes li { display: grid; gap: 4px; padding: 16px 0; border-bottom: 1px solid var(--brand-line); }
+.outcomes h3 { font-size: 18px; }
+.outcomes .stat strong { color: var(--brand-black); }
+.bars { display: grid; gap: 10px; padding: 20px; border: 1px solid var(--brand-line); border-radius: var(--brand-radius-card); background: var(--brand-white); margin-top: 28px; }
+.bars h3 { font-size: 18px; }
+.bars .row { display: grid; grid-template-columns: 132px 1fr 36px; align-items: center; gap: 12px; font-size: 14px; }
+.bars .track { height: 12px; background: var(--brand-ground-grey); border-radius: 2px; overflow: hidden; }
+.bars .fill { display: block; height: 100%; background: var(--brand-accent); }
+.bars .n { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+.bars .bnote { font-size: 14px; color: var(--brand-caption); }
+@media (min-width: 900px) {
+  .problem-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 72px; align-items: start; }
+  .outcomes li { grid-template-columns: 160px 1fr; column-gap: 32px; padding: 24px 0; }
+  .outcomes li > :not(h3) { grid-column: 2; }
+  .bars { margin-top: 0; }
+}
+
+/* Fixing */
+.live { display: grid; gap: 12px; padding: 20px; border: 1px solid var(--brand-line); border-radius: var(--brand-radius-card); background: var(--brand-white); max-width: 860px; }
+.live h3 { font-size: 20px; display: flex; align-items: center; gap: 10px; }
+.live h3 .ic { color: var(--brand-green-badge); }
+.ticks { display: grid; gap: 10px; }
+.ticks li { display: grid; grid-template-columns: 24px 1fr; gap: 10px; }
+.ticks .ic { margin-top: 2px; color: var(--brand-green-badge); }
+.why { max-width: 70ch; color: var(--brand-ink-soft); margin-bottom: 20px; }
+.parts { display: grid; border-top: 2px solid var(--brand-black); }
+.part { display: grid; grid-template-columns: 36px 1fr; gap: 4px 12px; padding: 16px 0; border-bottom: 1px solid var(--brand-line); }
+.part .letter { font-size: 28px; font-weight: 700; line-height: 1; color: var(--brand-black); grid-row: 1 / span 3; }
+.part h3 { font-size: 18px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.part .where { font-size: 14px; font-weight: 400; color: var(--brand-caption); letter-spacing: 0; }
+.part .gap { justify-self: start; font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: var(--brand-radius-pill); background: var(--brand-pink-active); color: var(--brand-black); }
+@media (min-width: 900px) {
+  .part { grid-template-columns: 56px 320px 1fr; column-gap: 24px; padding: 20px 0; align-items: start; }
+  .part .letter { font-size: 36px; grid-row: auto; }
+  .part .gap { grid-column: 2; grid-row: 2; }
+  .part p { grid-column: 3; grid-row: 1 / span 2; }
+}
+.rules { display: grid; gap: 28px; }
+.rulelist { display: grid; gap: 0; border-top: 1px solid var(--brand-line); }
+.rulelist li { padding: 10px 0; border-bottom: 1px solid var(--brand-line); font-size: 16px; }
+.rulelist strong { color: var(--brand-black); }
+.guard h3 { font-size: 18px; margin-bottom: 10px; }
+.match { margin-top: 16px; padding: 16px; border-radius: var(--brand-radius-card); background: var(--brand-pink-stat); }
+.match strong { display: block; font-size: 36px; line-height: 1.1; color: var(--brand-black); }
+.match .date { color: var(--brand-ink-soft); }
+@media (min-width: 900px) { .rules { grid-template-columns: 1.1fr 1fr; gap: 72px; } }
+.hears { display: grid; gap: 12px; padding: 20px; border-radius: var(--brand-radius-card); background: var(--brand-white); border: 1px solid var(--brand-line); margin-bottom: 20px; max-width: 860px; }
+.hears h3 { font-size: 20px; }
+.hears li { display: grid; grid-template-columns: 24px 1fr; gap: 10px; }
+.hears .ic { color: var(--brand-accent); margin-top: 2px; }
+.hears .ok { padding-top: 12px; border-top: 1px solid var(--brand-line); color: var(--brand-ink-soft); }
+.nl { display: grid; border-top: 2px solid var(--brand-black); }
+.nl-head { display: none; }
+.nl li { display: grid; gap: 2px; padding: 12px 0; border-bottom: 1px solid var(--brand-line); font-size: 14px; }
+.nl h4 { font-size: 16px; }
+.nl b { color: var(--brand-black); }
+@media (min-width: 900px) {
+  .nl-head { display: grid; grid-template-columns: 260px 1fr 1fr; gap: 24px; padding: 10px 0; font-size: 14px; font-weight: 600; color: var(--brand-caption); border-bottom: 1px solid var(--brand-line); }
+  .nl li { grid-template-columns: 260px 1fr 1fr; gap: 24px; font-size: 16px; }
+  .nl li b { display: none; }
+}
+details.more { margin-top: 20px; border: 1px solid var(--brand-line); border-radius: var(--brand-radius-card); background: var(--brand-white); }
+details.more summary { cursor: pointer; min-height: 48px; display: flex; align-items: center; padding: 0 16px; font-weight: 600; font-size: 14px; }
+details.more summary:focus-visible { outline: 2px solid var(--brand-accent); outline-offset: 2px; }
+.more-in { padding: 4px 16px 20px; display: grid; gap: 20px; font-size: 14px; }
+.more-in h4 { font-size: 16px; margin-bottom: 6px; }
+.more-in table { width: 100%; border-collapse: collapse; }
+.more-in th, .more-in td { text-align: left; vertical-align: top; padding: 8px 8px 8px 0; border-bottom: 1px solid var(--brand-ground-grey); }
+.more-in th { color: var(--brand-caption); font-weight: 600; }
+@media (max-width: 699px) {
+  .more-in table, .more-in tbody, .more-in tr, .more-in td { display: block; }
+  .more-in thead { display: none; }
+  .more-in tr { padding: 10px 0; border-bottom: 1px solid var(--brand-line); }
+  .more-in td { border: 0; padding: 2px 0; }
+  .more-in td:first-child { font-weight: 700; color: var(--brand-black); }
+  .more-in td + td::before { font-weight: 600; color: var(--brand-black); }
+  .t-flows td:nth-child(2)::before { content: "Starts when: "; }
+  .t-flows td:nth-child(3)::before { content: "What she gets: "; }
+  .t-flows td:nth-child(4)::before { content: "Shows her box? "; }
+  .t-changes td:nth-child(2)::before { content: "Now: "; }
+  .t-changes td:nth-child(3)::before { content: "Later: "; }
+}
+
+/* Steps */
+.timeline { display: grid; max-width: 760px; }
+.timeline li { position: relative; display: grid; grid-template-columns: 44px 1fr; gap: 16px; padding-bottom: 20px; }
+.timeline li::before { content: ""; position: absolute; left: 21px; top: 44px; bottom: 0; width: 2px; background: var(--brand-line); }
+.timeline li:last-child::before { display: none; }
+.timeline h3 { font-size: 18px; margin: 10px 0 4px; }
+.timeline p { color: var(--brand-ink-soft); }
+.timeline h3 .who { margin: 0 0 0 8px; vertical-align: 2px; letter-spacing: 0; font-weight: 600; }
+.timeline .who { display: inline-block; margin-top: 6px; font-size: 12px; padding: 2px 10px; border-radius: var(--brand-radius-pill); background: var(--brand-ground-grey); color: var(--brand-ink-soft); }
+.timeline .who.you { background: var(--brand-pink-active); color: var(--brand-black); }
+.promise { display: grid; grid-template-columns: 20px 1fr; gap: 12px; padding: 16px; border: 1px solid var(--brand-black); border-radius: var(--brand-radius-card); max-width: 760px; background: var(--brand-white); }
+.promise .ic { margin-top: 2px; }
+
+/* Journeys */
+.journey { padding: 28px 0 8px; border-top: 2px solid var(--brand-black); }
+.journey + .journey { margin-top: 32px; }
+.jhead { display: grid; gap: 12px; margin-bottom: 16px; }
+.jhead h3 { font-size: 24px; display: flex; align-items: center; gap: 10px; }
+.jhead h3 .ic { width: 26px; height: 26px; }
+.seg { display: inline-grid; grid-template-columns: 1fr 1fr; padding: 4px; gap: 4px; border: 1px solid var(--brand-tier-border); border-radius: var(--brand-radius); background: var(--brand-white); justify-self: start; }
+.seg button { font: inherit; font-size: 14px; font-weight: 600; min-height: 44px; padding: 0 20px; border: 0; border-radius: 2px; background: transparent; color: var(--brand-ink); cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--brand-black); color: var(--brand-white); }
+.seg button:focus-visible { outline: 2px solid var(--brand-accent); outline-offset: 2px; }
+.summ { display: grid; gap: 8px; margin-bottom: 20px; }
+.summ p { padding: 10px 14px; border-radius: var(--brand-radius-card); font-size: 16px; }
+.summ .t { background: var(--brand-ground-grey); }
+.summ .a { background: var(--brand-pink-active); }
+.summ b { color: var(--brand-black); margin-right: 6px; }
+@media (min-width: 900px) { .summ { grid-template-columns: 1fr 1fr; max-width: 980px; } }
+.strip[hidden] { display: none; }
+.strip { display: grid; gap: 16px; }
+@media (min-width: 700px) { .strip { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .strip.c3 { grid-template-columns: repeat(3, 1fr); } .strip.c2 { grid-template-columns: repeat(2, minmax(0, 380px)); } }
+.shot { display: grid; gap: 6px; align-content: start; }
+.shot .cap { display: flex; gap: 8px; font-size: 14px; font-weight: 600; color: var(--brand-black); }
+.shot .cap span { color: var(--brand-caption); font-variant-numeric: tabular-nums; }
+
+/* Mock screens */
+.screen { border: 1px solid var(--brand-tier-border); border-radius: var(--brand-radius-media); background: var(--brand-white); overflow: hidden; font-size: 14px; line-height: 1.45; }
+.screen .bar { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 6px 12px; background: var(--brand-ground-grey); border-bottom: 1px solid var(--brand-line); font-size: 12px; color: var(--brand-ink-soft); }
+.screen .bar span { display: inline-flex; align-items: center; gap: 6px; }
+.screen .bar .ic { width: 14px; height: 14px; }
+.sample { font-size: 12px; padding: 0 6px; border: 1px solid var(--brand-tier-border); border-radius: var(--brand-radius); background: var(--brand-white); color: var(--brand-ink-soft); }
+.screen .in { padding: 12px; display: grid; gap: 8px; }
+.screen .logo { height: 14px; width: auto; }
+.screen .subj { font-size: 16px; font-weight: 700; color: var(--brand-black); line-height: 1.3; }
+.screen .meta { font-size: 12px; color: var(--brand-caption); }
+.btn { display: block; text-align: center; padding: 8px 12px; border-radius: var(--brand-radius); background: var(--brand-black); color: var(--brand-white); font-weight: 600; font-size: 14px; }
+.btn.ghost { background: var(--brand-white); color: var(--brand-black); border: 1px solid var(--brand-black); }
+.btn.off { background: var(--brand-ground-grey); color: var(--brand-caption); }
+.btn2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.btn2 .btn { font-size: 12px; padding: 6px; }
+.slots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.slot { display: grid; gap: 4px; font-size: 12px; line-height: 1.25; }
+.slot img, .slot .gone { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 6px; }
+.slot .gone { display: grid; place-items: center; background: var(--brand-slot-grey); border: 1px dashed var(--brand-tier-border); color: var(--brand-accent); }
+.slot .gone .ic { width: 22px; height: 22px; }
+.slot.new img { outline: 2px solid var(--brand-black); outline-offset: 1px; }
+.pill { display: inline-block; justify-self: start; font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: var(--brand-radius-pill); background: var(--brand-pink-active); color: var(--brand-black); }
+.alert { display: grid; grid-template-columns: 20px 1fr; gap: 10px; padding: 10px; border-radius: var(--brand-radius-card); background: var(--brand-pink-active); border: 1px solid var(--brand-pink-rose); }
+.alert .ic { color: var(--brand-accent); }
+.alert b, .okbox b { color: var(--brand-black); }
+.okbox { display: grid; grid-template-columns: 20px 1fr; gap: 10px; padding: 10px; border-radius: var(--brand-radius-card); background: #EEF9F2; border: 1px solid #BFE9D0; }
+.okbox .ic { color: var(--brand-green-badge); }
+.line { display: flex; justify-content: space-between; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--brand-ground-grey); }
+.line:last-child { border-bottom: 0; }
+.line b { color: var(--brand-black); }
+.swap { display: grid; grid-template-columns: 1fr 20px 1fr; gap: 8px; align-items: center; max-width: 220px; }
+.swap .ic { width: 18px; height: 18px; color: var(--brand-ink-soft); }
+.kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.kpis div { padding: 8px; border-radius: 6px; background: var(--brand-panel); border: 1px solid var(--brand-ground-grey); font-size: 12px; line-height: 1.3; }
+.kpis b { display: block; font-size: 20px; color: var(--brand-black); }
+.empty { display: grid; place-items: center; gap: 6px; padding: 16px 12px; text-align: center; color: var(--brand-caption); }
+.empty .ic { width: 24px; height: 24px; }
+.tagline { font-size: 12px; padding: 2px 6px; border-radius: var(--brand-radius); background: var(--brand-pink-active); color: var(--brand-black); }
+.small { font-size: 12px; color: var(--brand-caption); }
+
+/* Ask */
+.ask { display: grid; border-top: 2px solid var(--brand-black); max-width: 860px; }
+.ask li { padding: 16px 0; border-bottom: 1px solid var(--brand-line); }
+.ask h3 { font-size: 18px; margin-bottom: 4px; }
+.ask p { color: var(--brand-ink-soft); }
+
+/* Footer */
+.foot { background: var(--brand-black); color: #E6E6E6; padding: 40px 0 48px; font-size: 14px; }
+.foot .wrap { display: grid; gap: 16px; }
+.foot img { height: 18px; width: auto; filter: invert(1); }
+.foot h2 { color: var(--brand-white); font-size: 18px; }
+.foot ul { display: grid; gap: 8px; max-width: 90ch; }
+.foot li { display: grid; grid-template-columns: 16px 1fr; gap: 8px; }
+.foot li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--brand-pink-mid); margin-top: 8px; }
+.foot .date { color: #BDBDBD; }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"/><path d="M12 8v4"/><path d="M12 16h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5l10 -10"/></symbol>
+    <symbol id="i-swap" viewBox="0 0 24 24"><path d="M7 10h14l-4 -4"/><path d="M17 14h-14l4 4"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"/><path d="M3 7l9 6l9 -6"/></symbol>
+    <symbol id="i-card" viewBox="0 0 24 24"><path d="M3 5m0 3a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3z"/><path d="M3 10l18 0"/><path d="M7 15l.01 0"/><path d="M11 15l2 0"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></symbol>
+    <symbol id="i-ban" viewBox="0 0 24 24"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M5.7 5.7l12.6 12.6"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5"/><path d="M12 12l8 -4.5"/><path d="M12 12l0 9"/><path d="M12 12l-8 -4.5"/><path d="M16 5.25l-8 4.5"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6z"/><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"/><path d="M8 11v-4a4 4 0 1 1 8 0v4"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12l14 0"/><path d="M13 18l6 -6"/><path d="M13 6l6 6"/></symbol>
+  </defs>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <img src="assets/holygels-logo.png" alt="Holy Gels" width="182" height="20">
+    <p>Proposal for Holy Gels<br><span class="date">21 Nov 2026</span></p>
+  </div>
+</header>
+
+<nav class="qnav" aria-label="Sections">
+  <ol>
+    <li><a href="#problem"><span class="num">1</span>Problem</a></li>
+    <li><a href="#fixing"><span class="num">2</span>Fixing</a></li>
+    <li><a href="#steps"><span class="num">3</span>Steps</a></li>
+    <li><a href="#experience"><span class="num">4</span>Experience</a></li>
+    <li><a href="#ask" class="plain">Your answers</a></li>
+  </ol>
+</nav>
+
+<main>
+
+<section class="open" aria-labelledby="open-h">
+  <div class="wrap">
+    <div>
+      <h1 id="open-h">Half of the bundle renewals due in the next two weeks hold a design that has sold out.</h1>
+      <p class="lede">We want to extend the small app already on your store so it catches these designs at checkout, swaps them before a renewal charges, and tells the customer.</p>
+    </div>
+    <div class="bignum">
+      <p class="fig">1,623 <span>of 3,061</span></p>
+      <p>bundle renewals due by 5 Dec hold at least one sold out design. <span class="date">As of 21 Nov</span></p>
+      <div class="waffle" id="waffle" role="img" aria-label="100 squares, 53 of them pink: 53 percent of renewals due by 5 Dec hold a sold out design"></div>
+      <div class="key"><span><b class="on"></b>Holds a sold out design (53%)</span><span><b></b>All in stock</span><span class="muted">Each square is about 31 renewals</span></div>
+      <p class="risk"><strong>Up to about £60,000</strong>, the full value of those renewals. Most will still charge; the risk is a blocked box or an oversold design. <span class="date">As of 21 Nov</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- Question 1 -->
+<section class="band grey" id="problem" aria-labelledby="q1">
+  <div class="wrap">
+    <div class="qhead">
+      <span class="num lg">1</span>
+      <h2 id="q1">What is the problem?</h2>
+      <p>A customer picks her designs weeks before her box ships. In that time a design can sell out, and Recharge has no automatic swap for the designs inside a bundle.</p>
+    </div>
+    <div class="cause" aria-label="How it happens">
+      <span class="step"><svg class="ic" aria-hidden="true"><use href="#i-box"/></svg>She picks 4 designs</span>
+      <svg class="ic arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      <span class="step bad"><svg class="ic" aria-hidden="true"><use href="#i-ban"/></svg>One sells out</span>
+      <svg class="ic arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+      <span class="step">Three things go wrong</span>
+    </div>
+    <div class="problem-grid">
+      <ul class="outcomes">
+        <li>
+          <h3>New orders</h3>
+          <p>Recharge cannot split a bundle with a sold out design, so your team splits or swaps it by hand.</p>
+          <p class="stat"><strong>23 orders</strong> since 1 Nov held a design already off the store. <span class="date">As of 20 Nov</span></p>
+        </li>
+        <li>
+          <h3>Renewals</h3>
+          <p>Recharge blocks the charge: no box for her, no revenue for you. Some still go through, and five designs are now oversold (more ordered than in stock).</p>
+          <p class="stat"><strong>470 blocked</strong> on stock from 7 to 20 Nov, worth £17,251; 17 of them are still blocked. <span class="date">As of 21 Nov</span></p>
+        </li>
+        <li>
+          <h3>The customer</h3>
+          <p>She finds out late or never: no Klaviyo email tells her a design sold out. <span class="date">Klaviyo, 22 Oct to 21 Nov</span></p>
+        </li>
+      </ul>
+      <div class="bars" aria-labelledby="bars-h">
+        <h3 id="bars-h">Sold out designs in the most renewals due by 5 Dec</h3>
+        <div class="row"><span>Aloha</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="n">262</span></div>
+        <div class="row"><span>Rose Champagne</span><span class="track"><span class="fill" style="width:50.8%"></span></span><span class="n">133</span></div>
+        <div class="row"><span>Leopard</span><span class="track"><span class="fill" style="width:42.7%"></span></span><span class="n">112</span></div>
+        <div class="row"><span>Cocoa Powder</span><span class="track"><span class="fill" style="width:30.2%"></span></span><span class="n">79</span></div>
+        <div class="row"><span>Mulled Wine Polka</span><span class="track"><span class="fill" style="width:30.2%"></span></span><span class="n">79</span></div>
+        <p class="bnote">101 different sold out designs are in the queue. <span class="date">As of 21 Nov</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Question 2 -->
+<section class="band" id="fixing" aria-labelledby="q2">
+  <div class="wrap">
+    <div class="qhead">
+      <span class="num lg">2</span>
+      <h2 id="q2">What are we fixing?</h2>
+      <p>Two fixes are already live on the site. The app closes what the site cannot reach, and the emails keep the customer in the loop.</p>
+    </div>
+
+    <div class="block">
+      <div class="live">
+        <h3><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Live since 19 Nov</h3>
+        <ul class="ticks">
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><p>Sold out designs can no longer be picked, and a cart that still holds one is stopped before checkout.</p></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><p>Refill orders that Recharge refused to split now split. This was the cause behind 24 of 26 such orders. <span class="date">As of 20 Nov</span></p></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="block">
+      <h3 class="sub">What the app adds</h3>
+      <p class="why">On 18 Nov we said no app yet. Since then we found orders that skip the site, and that half of the next two weeks' renewals hold a sold out design. So we now propose extending the small app already installed for the checkout timer. Nothing new to install.</p>
+      <div class="parts">
+        <div class="part">
+          <span class="letter">A</span>
+          <h3>Checkout rule <span class="where">Shopify checkout</span></h3>
+          <span class="gap">Closes: orders that skip the site</span>
+          <p>Built to stop an order with a sold out design at payment, including express checkouts like Shop Pay and Apple Pay, and links in checkout emails. We test each before it goes live.</p>
+        </div>
+        <div class="part">
+          <span class="letter">B</span>
+          <h3>Renewal swap <span class="where">Recharge, every day</span></h3>
+          <span class="gap">Closes: subscriptions already holding one</span>
+          <p>Before renewals charge, it swaps a sold out design on the subscription for an in stock one, using the rule you pick.</p>
+        </div>
+        <div class="part">
+          <span class="letter">C</span>
+          <h3>Customer emails <span class="where">Klaviyo, when the app swaps</span></h3>
+          <p>She hears before the charge: old design, new design, a link to change it. Later, a back in stock email when her design returns.</p>
+        </div>
+        <div class="part">
+          <span class="letter">D</span>
+          <h3>Daily summary <span class="where">Your team's inbox</span></h3>
+          <p>Each morning: swaps made, renewals that need a person, designs to restock first.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="block rules">
+      <div>
+        <h3 class="sub">You choose the swap rule</h3>
+        <p class="subp">Reply with your pick, or an order of two.</p>
+        <ul class="rulelist">
+          <li><strong>Closest colour:</strong> a blue for Aloha</li>
+          <li><strong>Most stock:</strong> the most units left</li>
+          <li><strong>Bestseller:</strong> the top seller in stock</li>
+          <li><strong>Your own list:</strong> your picks, in order</li>
+          <li><strong>Her earlier picks:</strong> one she chose before</li>
+        </ul>
+      </div>
+      <div class="guard">
+        <h3>Whatever rule you pick</h3>
+        <ul class="ticks">
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><p>Never a design already in her box.</p></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><p>Nails stay nails, toes stay toes.</p></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><p>Only designs that bundle allows.</p></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><p>Picks spread out and checked against units left.</p></li>
+        </ul>
+        <div class="match"><strong>97%</strong>of affected subscriptions (1,582 of 1,637) share a colour with an in stock design. Stock and bundle limits are checked before any swap, so some will still go to your team. <span class="date">As of 21 Nov</span></div>
+      </div>
+    </div>
+
+    <div class="block" id="email">
+      <div class="hears">
+        <h3>What the customer hears today</h3>
+        <ul>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg><p>One reminder about 58 hours before the charge, the same email every subscriber gets.</p></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-ban"/></svg><p>Nothing when a design in her box sells out.</p></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-ban"/></svg><p>Nothing when a charge fails or her designs change.</p></li>
+        </ul>
+        <p class="ok">We can improve these emails now in Klaviyo, before the app. <span class="date">Klaviyo, 22 Oct to 21 Nov</span></p>
+      </div>
+      <div class="nl-head"><span>Email change</span><span>Now, in Klaviyo</span><span>Later, with the app</span></div>
+      <ol class="nl">
+        <li><h4>1. Sold out alert</h4><p><b>Now: </b>a version of the billing reminder that names the sold out design and asks her to pick a new one.</p><p><b>Later: </b>"We swapped your sold out design", sent at the swap.</p></li>
+        <li><h4>2. Reminder if she does nothing</h4><p><b>Now: </b>a nudge a day before the charge.</p><p><b>Later: </b>only when the app finds no match.</p></li>
+        <li><h4>3. Show her box</h4><p><b>Now: </b>her designs, with pictures, in every billing reminder.</p><p><b>Later: </b>plus one line naming the swap.</p></li>
+        <li><h4>4. Confirm her change</h4><p><b>Now: </b>"Your new designs are saved".</p><p><b>Later: </b>skipped after a swap email, so one email, not two.</p></li>
+        <li><h4>5. Back in stock</h4><p><b>Now: </b>not possible yet.</p><p><b>Later: </b>"Aloha is back. Add it to your next box?"</p></li>
+      </ol>
+      <details class="more">
+        <summary>See the email detail (for your team)</summary>
+        <div class="more-in">
+          <div>
+            <h4>The flows today</h4>
+            <table class="t-flows">
+              <thead><tr><th>Flow</th><th>Starts when</th><th>What she gets</th><th>Shows her box?</th></tr></thead>
+              <tbody>
+                <tr><td>MP Upcoming Billing (live)</td><td>Recharge says an order is coming up</td><td>One reminder about 58 hours before the charge, a version for each order count.</td><td>No</td></tr>
+                <tr><td>MP Recharge OOS (draft)</td><td>She joins a list of everyone who ever had a sold out design in a box</td><td>No sends in the last 30 days. As built it would reach her once at most and promises a bestseller that may be sold out too, so we suggest not switching it on.</td><td>No</td></tr>
+                <tr><td>MP Back In Stock (live)</td><td>A shopper signs up with the site form</td><td>Two emails when the item returns. Subscribers who lost a design are not covered.</td><td>Only the restocked item</td></tr>
+                <tr><td>MP Subscription Abandoned Checkout (live)</td><td>A subscription checkout is left unpaid</td><td>Three emails over three days. In two of them the button goes straight to checkout, past the site check.</td><td>No</td></tr>
+                <tr><td>MP New Cancellation Flow BF offer (live)</td><td>She cancels in Recharge</td><td>A confirmation and a come back offer. There is no "my designs sold out" reason to pick.</td><td>No</td></tr>
+                <tr><td>MP 30 Day Upsell (live)</td><td>A one time buyer places her first order</td><td>Three emails asking her to subscribe.</td><td>No</td></tr>
+              </tbody>
+            </table>
+            <p class="muted" style="margin-top:8px">37% of the upcoming order notices Recharge sent to Klaviyo in the last 30 days already marked a sold out design. Each notice also lists her designs, their pictures and their stock, but no email uses them. No email goes out when a charge fails, when her designs change, or when a design is swapped.</p>
+          </div>
+          <div>
+            <h4>The five email changes in full</h4>
+            <table class="t-changes">
+              <thead><tr><th>Change</th><th>Now, in Klaviyo</th><th>Later, with the app</th></tr></thead>
+              <tbody>
+                <tr><td>1. Sold out alert</td><td>A separate version of the Upcoming Billing email for boxes with a sold out design: "One of your designs sold out", showing each design and asking her to pick a new one before the charge date.</td><td>"We swapped your sold out design", sent the moment the app swaps it, old design next to new, with a link to change it.</td></tr>
+                <tr><td>2. Reminder</td><td>About a day before the charge, only if she has not changed her designs: "Your box is charged tomorrow and still has a sold out design."</td><td>Only when the app finds no match: "We couldn't swap your design". The one case where she has to act.</td></tr>
+                <tr><td>3. Show the box</td><td>An "In your next box" block on all eight Upcoming Billing emails.</td><td>The same block, plus "Includes Something Blue in place of Aloha, which sold out."</td></tr>
+                <tr><td>4. Confirm the change</td><td>"Your new designs are saved" after she changes her picks following the alert.</td><td>Skipped when the swap email went out the day before.</td></tr>
+                <tr><td>5. Back in stock</td><td>Not possible cleanly: Klaviyo cannot link a restock to the subscriber who lost that design.</td><td>"Aloha is back. Add it to your next box?", once the app tells Klaviyo about each swap.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- Question 3 -->
+<section class="band tint" id="steps" aria-labelledby="q3">
+  <div class="wrap">
+    <div class="qhead">
+      <span class="num lg">3</span>
+      <h2 id="q3">What steps are we taking?</h2>
+      <p>Five steps. Nothing goes live until the step before it is checked.</p>
+    </div>
+    <ol class="timeline">
+      <li><span class="num lg">1</span><div><h3>Dry run report <span class="who">We do this</span></h3><p>The app lists which designs it would swap, and to what. Read only: nothing on any subscription changes.</p></div></li>
+      <li><span class="num lg">2</span><div><h3>You pick the rule and approve the emails <span class="who you">Your decision</span></h3></div></li>
+      <li><span class="num lg">3</span><div><h3>Checkout rule goes live <span class="who">After your go</span></h3><p>Tested on express checkouts and checkout email links first.</p></div></li>
+      <li><span class="num lg">4</span><div><h3>Renewal swap goes live, with the customer emails <span class="who">After your go</span></h3></div></li>
+      <li><span class="num lg">5</span><div><h3>Daily summary to your team <span class="who">After your go</span></h3><p>Later: the back in stock email.</p></div></li>
+    </ol>
+    <p class="promise"><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg><span>Nothing on a subscription changes until you have seen the dry run and said yes. The "now" email changes can start sooner, with your approval.</span></p>
+  </div>
+</section>
+
+<!-- Question 4 -->
+<section class="band" id="experience" aria-labelledby="q4">
+  <div class="wrap">
+    <div class="qhead">
+      <span class="num lg">4</span>
+      <h2 id="q4">What is new, and what will the experience look like?</h2>
+      <p>Three moments, today and with the app. Every screen is a sample with real design names. Tap "Today" to compare.</p>
+    </div>
+
+    <!-- Journey 1 -->
+    <article class="journey" data-journey>
+      <div class="jhead">
+        <h3><svg class="ic" aria-hidden="true"><use href="#i-card"/></svg>The shopper at checkout</h3>
+        <div class="seg" role="group" aria-label="Show the checkout journey">
+          <button type="button" data-show="today" aria-pressed="false">Today</button>
+          <button type="button" data-show="app" aria-pressed="true">With the app</button>
+        </div>
+      </div>
+      <div class="summ">
+        <p class="t"><b>Today</b>She pays by Shop Pay with a sold out design in her box. The order does not split and your team fixes it by hand.</p>
+        <p class="a"><b>With the app</b>Checkout stops her before payment and sends her back to pick a design that is in stock.</p>
+      </div>
+      <div class="strip c3" data-state="today" hidden>
+        <div class="shot"><p class="cap"><span>1</span>She pays with Shop Pay</p>
+          <div class="screen"><div class="bar"><span><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg>Checkout</span><span class="sample">Sample</span></div>
+            <div class="in"><div class="line"><span>4 Set Bundle</span><b>4 designs</b></div><p>Aloha, Pink Polka, Cheetah, Mulled Wine</p><p class="small">No warning that Aloha sold out.</p><span class="btn">Pay now</span></div></div></div>
+        <div class="shot"><p class="cap"><span>2</span>The order lands in Shopify</p>
+          <div class="screen"><div class="bar"><span><svg class="ic" aria-hidden="true"><use href="#i-box"/></svg>Shopify order</span><span class="sample">Sample</span></div>
+            <div class="in"><div class="line"><span>Tags</span><span class="tagline">BUNDLE NOT SPLIT</span></div><div class="line"><span>Aloha</span><span class="pill">Sold out</span></div><p>One bundle line instead of four designs.</p></div></div></div>
+        <div class="shot"><p class="cap"><span>3</span>Your team fixes it by hand</p>
+          <div class="screen"><div class="bar"><span><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg>Team</span><span class="sample">Sample</span></div>
+            <div class="in"><div class="alert"><svg class="ic" aria-hidden="true"><use href="#i-alert"/></svg><p><b>Split or swap by hand,</b> then tell the customer what changed.</p></div></div></div></div>
+      </div>
+      <div class="strip c3" data-state="app">
+        <div class="shot"><p class="cap"><span>1</span>Checkout stops before payment</p>
+          <div class="screen"><div class="bar"><span><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg>Checkout</span><span class="sample">Sample</span></div>
+            <div class="in"><div class="alert"><svg class="ic" aria-hidden="true"><use href="#i-alert"/></svg><p><b>Aloha has sold out.</b> Pick a new design so your box arrives complete.</p></div><span class="btn">Choose a new design</span><span class="btn off">Payment paused</span></div></div></div>
+        <div class="shot"><p class="cap"><span>2</span>She picks an in stock design</p>
+          <div class="screen"><div class="bar"><span><svg class="ic" aria-hidden="true"><use href="#i-box"/></svg>Holy Gels site</span><span class="sample">Sample</span></div>
+            <div class="in"><div class="slots">
+                <div class="slot new"><img src="assets/something-blue.jpg" alt="Something Blue nails" loading="lazy" width="240" height="240"><span>Something Blue</span></div>
+                <div class="slot"><img src="assets/pink-polka.jpg" alt="Pink Polka nails" loading="lazy" width="240" height="240"><span>Pink Polka</span></div>
+                <div class="slot"><img src="assets/cheetah.jpg" alt="Cheetah nails" loading="lazy" width="240" height="240"><span>Cheetah</span></div>
+                <div class="slot"><img src="assets/mulled-wine.jpg" alt="Mulled Wine nails" loading="lazy" width="240" height="240"><span>Mulled Wine</span></div>
+              </div></div></div></div>
+        <div class="shot"><p class="cap"><span>3</span>The order splits as normal</p>
+          <div class="screen"><div class="bar"><span><svg class="ic" aria-hidden="true"><use href="#i-box"/></svg>Shopify order</span><span class="sample">Sample</span></div>
+            <div class="in"><div class="okbox"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><p><b>Split into 4 designs,</b> all in stock.</p></div><p class="small">No hand fix for a sold out design.</p></div></div></div>
+      </div>
+    </article>
+
+    <!-- Journey 2 -->
+    <article class="journey" data-journey>
+      <div class="jhead">
+        <h3><svg class="ic" aria-hidden="true"><use href="#i-swap"/></svg>The subscriber before her renewal</h3>
+        <div class="seg" role="group" aria-label="Show the renewal journey">
+          <button type="button" data-show="today" aria-pressed="false">Today</button>
+          <button type="button" data-show="app" aria-pressed="true">With the app</button>
+        </div>
+      </div>
+      <div class="summ">
+        <p class="t"><b>Today</b>A generic reminder, then the charge is blocked. No Klaviyo email tells her why.</p>
+        <p class="a"><b>With the app</b>Aloha is swapped for an in stock blue design, she is told before the charge, and her box ships on time.</p>
+      </div>
+      <div class="strip c3" data-state="today" hidden>
+        <div class="shot"><p class="cap"><span>1</span>About 58 hours before the charge</p>
+          <div class="screen"><div class="bar"><span><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Billing reminder</span><span class="sample">Sample</span></div>
+            <div class="in"><img class="logo" src="assets/holygels-logo.png" alt="Holy Gels"><p class="subj">Your next box ships soon</p><div class="btn2"><span class="btn ghost">Swap my shades</span><span class="btn ghost">Delay 2 weeks</span></div><p class="small">No list of her designs, no word that Aloha sold out.</p></div></div></div>
+        <div class="shot"><p class="cap"><span>2</span>Charge day in Recharge</p>
+          <div class="screen"><div class="bar"><span><svg class="ic" aria-hidden="true"><use href="#i-card"/></svg>Recharge charge</span><span class="sample">Sample</span></div>
+            <div class="in"><div class="line"><span>Status</span><span class="pill">Error</span></div><div class="line"><span>Reason</span><b>Insufficient inventory</b></div><p>No charge and no box.</p></div></div></div>
+        <div class="shot"><p class="cap"><span>3</span>Her inbox afterwards</p>
+          <div class="screen"><div class="bar"><span><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Inbox</span><span class="sample">Sample</span></div>
+            <div class="in"><div class="empty"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg><p>No Klaviyo email about the design, the failed charge or the box.</p></div></div></div></div>
+      </div>
+      <div class="strip c3" data-state="app">
+        <div class="shot"><p class="cap"><span>1</span>She is told before the charge</p>
+          <div class="screen"><div class="bar"><span><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Inbox</span><span class="sample">Sample</span></div>
+            <div class="in"><p class="subj">Aloha sold out, so we added Something Blue</p>
+              <div class="swap">
+                <div class="slot"><span class="gone"><svg class="ic" aria-hidden="true"><use href="#i-ban"/></svg></span><span>Aloha</span></div>
+                <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg>
+                <div class="slot"><img src="assets/something-blue.jpg" alt="Something Blue nails" loading="lazy" width="240" height="240"><span>Something Blue</span></div>
+              </div>
+              <p>Prefer another? Change it before Sunday. Happy with it? Nothing to do.</p><span class="btn">Choose a different design</span></div></div></div>
+        <div class="shot"><p class="cap"><span>2</span>The renewal charges on time</p>
+          <div class="screen"><div class="bar"><span><svg class="ic" aria-hidden="true"><use href="#i-card"/></svg>Recharge charge</span><span class="sample">Sample</span></div>
+            <div class="in"><div class="okbox"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><p><b>Charged and shipped.</b> Something Blue, Pink Polka, Cheetah, Mulled Wine: all in stock.</p></div></div></div></div>
+        <div class="shot"><p class="cap"><span>3</span>Later: the back in stock email</p>
+          <div class="screen"><div class="bar"><span><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Inbox</span><span class="sample">Sample</span></div>
+            <div class="in"><p class="subj">Aloha is back. Add it to your next box?</p><span class="btn">Add Aloha to my next box</span><p class="small">If no blue design were in stock, she would get "We couldn't swap your design" instead.</p></div></div></div>
+      </div>
+    </article>
+
+    <!-- Journey 3 -->
+    <article class="journey" data-journey>
+      <div class="jhead">
+        <h3><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg>Your team each morning</h3>
+        <div class="seg" role="group" aria-label="Show the team journey">
+          <button type="button" data-show="today" aria-pressed="false">Today</button>
+          <button type="button" data-show="app" aria-pressed="true">With the app</button>
+        </div>
+      </div>
+      <div class="summ">
+        <p class="t"><b>Today</b>Tagged orders and Recharge errors, checked one by one, with no view of what is coming.</p>
+        <p class="a"><b>With the app</b>One email: what was swapped, what needs a person, and what to restock first.</p>
+      </div>
+      <div class="strip c2" data-state="today" hidden>
+        <div class="shot"><p class="cap"><span>1</span>Tagged orders and failed renewals</p>
+          <div class="screen"><div class="bar"><span><svg class="ic" aria-hidden="true"><use href="#i-box"/></svg>Shopify and Recharge</span><span class="sample">Sample</span></div>
+            <div class="in"><div class="line"><span>Order</span><span class="tagline">BUNDLE NOT SPLIT</span></div><div class="line"><span>Renewal</span><b>Insufficient inventory</b></div><p class="small">Only problems that already happened show up.</p></div></div></div>
+        <div class="shot"><p class="cap"><span>2</span>Bulk swap by hand</p>
+          <div class="screen"><div class="bar"><span><svg class="ic" aria-hidden="true"><use href="#i-swap"/></svg>Recharge bulk swap</span><span class="sample">Sample</span></div>
+            <div class="in"><p>Pick a design, pick a replacement, run it, then the next sold out design.</p></div></div></div>
+      </div>
+      <div class="strip c2" data-state="app">
+        <div class="shot"><p class="cap"><span>1</span>The morning summary</p>
+          <div class="screen"><div class="bar"><span><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Team inbox</span><span class="sample">Sample</span></div>
+            <div class="in"><p class="subj">Sold out designs: today's summary</p>
+              <div class="kpis"><div><b>38</b>swaps made</div><div><b>2</b>need a person</div><div><b>3</b>to restock</div></div>
+              <div class="line"><span>Aloha</span><span>to Something Blue</span></div>
+              <div class="line"><span>Leopard</span><span>to Cheetah</span></div>
+              <div class="line"><span>Restock first</span><b>Aloha, Rose Champagne, Leopard</b></div></div></div></div>
+        <div class="shot"><p class="cap"><span>2</span>Renewals that need a person</p>
+          <div class="screen"><div class="bar"><span><svg class="ic" aria-hidden="true"><use href="#i-alert"/></svg>Need a person</span><span class="sample">Sample</span></div>
+            <div class="in"><div class="alert"><svg class="ic" aria-hidden="true"><use href="#i-alert"/></svg><p><b>No colour match.</b> White French Tip Toes has no in stock design to swap to.</p></div><span class="btn ghost">Open in Recharge</span></div></div></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- Ask -->
+<section class="band tint" id="ask" aria-labelledby="ask-h">
+  <div class="wrap">
+    <div class="qhead plain">
+      <h2 id="ask-h">What we need from you</h2>
+      <p>Four answers, and we start the dry run.</p>
+    </div>
+    <ul class="ask">
+      <li><h3>Which swap rule?</h3><p>One rule, or an order of two, for example closest colour first, then most stock.</p></li>
+      <li><h3>Do the email wordings work for you?</h3><p>We send you drafts after the dry run.</p></li>
+      <li><h3>Who gets the daily summary, and what replaces a design with no match?</h3><p>For example White French Tip Toes, which has no colour match in stock.</p></li>
+      <li><h3>Can customers turn off automatic swaps?</h3><p>If yes, they get the "pick a new design" email instead.</p></li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <img src="assets/holygels-logo.png" alt="Holy Gels">
+    <h2>Sources</h2>
+    <ul>
+      <li><span>Renewals, values and colour matches: Recharge and Shopify stock, read only on 21 Nov 2026. Values are charge totals in GBP; £60,000 is an upper bound. A colour match is any shared colour tag, before stock and bundle limits (Refill 4 cannot hold French Tips, Refill 6 cannot hold Classic).</span></li>
+      <li><span>Site fixes: live on your theme since 19 Nov 2026 (UK time). Order counts from Shopify and Recharge, read 20 Nov 2026; two refill orders that did not split are still unexplained.</span></li>
+      <li><span>Email: your Klaviyo account, 22 Oct to 21 Nov 2026. Recharge's own customer emails were not read.</span></li>
+      <li><span>Mock screens are samples; their wording and counts are examples.</span></li>
+    </ul>
+    <p class="date">Prepared 21 Nov 2026 for Holy Gels</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var w = document.getElementById('waffle');
+  if (w) {
+    var html = '';
+    for (var i = 0; i < 100; i++) html += i < 53 ? '<i class="on"></i>' : '<i></i>';
+    w.innerHTML = html;
+  }
+  document.querySelectorAll('[data-journey]').forEach(function (j) {
+    var buttons = j.querySelectorAll('.seg button');
+    buttons.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var show = b.getAttribute('data-show');
+        buttons.forEach(function (o) { o.setAttribute('aria-pressed', String(o === b)); });
+        j.querySelectorAll('.strip').forEach(function (s) { s.hidden = s.getAttribute('data-state') !== show; });
+      });
+    });
+  });
+  var links = document.querySelectorAll('.qnav a');
+  var ids = ['problem', 'fixing', 'steps', 'experience', 'ask'];
+  var ticking = false;
+  function mark() {
+    ticking = false;
+    var line = 120, current = null;
+    ids.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      var r = el.getBoundingClientRect();
+      if (r.top <= line && r.bottom > line) current = id;
+    });
+    links.forEach(function (a) { a.classList.toggle('on', a.getAttribute('href') === '#' + current); });
+  }
+  window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(mark); } }, { passive: true });
+  mark();
+})();
+</script>
+</body>
+</html>
