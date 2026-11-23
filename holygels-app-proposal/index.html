@@ -305,6 +305,26 @@ details.more summary:focus-visible { outline: 2px solid var(--brand-accent); out
 .ask h3 { font-size: 18px; margin-bottom: 4px; }
 .ask p { color: var(--brand-ink-soft); }
 
+/* Hours */
+table.hours { width: 100%; max-width: 860px; border-collapse: collapse; border-top: 2px solid var(--brand-black); }
+.hours th, .hours td { text-align: left; vertical-align: top; padding: 12px 16px 12px 0; border-bottom: 1px solid var(--brand-line); }
+.hours th { font-size: 14px; font-weight: 600; color: var(--brand-caption); }
+.hours td:first-child { font-weight: 700; color: var(--brand-black); width: 240px; }
+.hours td:last-child, .hours th:last-child { text-align: right; white-space: nowrap; padding-right: 0; font-variant-numeric: tabular-nums; font-weight: 600; color: var(--brand-black); }
+.hours td:nth-child(2) { color: var(--brand-ink-soft); }
+.hours tfoot td { font-size: 20px; border-bottom: 2px solid var(--brand-black); }
+.hnote { margin-top: 16px; max-width: 860px; font-size: 14px; color: var(--brand-ink-soft); }
+@media (max-width: 699px) {
+  .hours thead { display: none; }
+  .hours tr { display: grid; grid-template-columns: 1fr auto; column-gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--brand-line); }
+  .hours td { display: block; padding: 0; border: 0; width: auto !important; }
+  .hours td:nth-child(2) { grid-column: 1 / -1; grid-row: 2; font-size: 14px; margin-top: 4px; }
+  .hours td:last-child { grid-column: 2; grid-row: 1; }
+  .hours tfoot tr { border-bottom: 2px solid var(--brand-black); }
+  .hours tfoot td { border: 0; }
+  .hours tfoot td:nth-child(2) { display: none; }
+}
+
 /* Footer */
 .foot { background: var(--brand-black); color: #E6E6E6; padding: 40px 0 48px; font-size: 14px; }
 .foot .wrap { display: grid; gap: 16px; }
@@ -336,7 +356,7 @@ details.more summary:focus-visible { outline: 2px solid var(--brand-accent); out
 <header class="top">
   <div class="wrap">
     <img src="assets/holygels-logo.png" alt="Holy Gels" width="182" height="20">
-    <p>Proposal for Holy Gels<br><span class="date">21 Nov 2026</span></p>
+    <p>Proposal for Holy Gels<br><span class="date">23 Nov 2026</span></p>
   </div>
 </header>
 
@@ -346,7 +366,8 @@ details.more summary:focus-visible { outline: 2px solid var(--brand-accent); out
     <li><a href="#fixing"><span class="num">2</span>Fixing</a></li>
     <li><a href="#steps"><span class="num">3</span>Steps</a></li>
     <li><a href="#experience"><span class="num">4</span>Experience</a></li>
-    <li><a href="#ask" class="plain">Your answers</a></li>
+    <li><a href="#ask" class="plain">Answers</a></li>
+    <li><a href="#hours" class="plain">Hours</a></li>
   </ol>
 </nav>
 
@@ -374,7 +395,7 @@ details.more summary:focus-visible { outline: 2px solid var(--brand-accent); out
     <div class="qhead">
       <span class="num lg">1</span>
       <h2 id="q1">What is the problem?</h2>
-      <p>A customer picks her designs weeks before her box ships. In that time a design can sell out, and Recharge has no automatic swap for the designs inside a bundle.</p>
+      <p>A customer picks her designs weeks before her box ships. In that time a design can sell out, and Recharge has no automatic swap for the designs inside a bundle. Your team can only swap them in bulk by hand.</p>
     </div>
     <div class="cause" aria-label="How it happens">
       <span class="step"><svg class="ic" aria-hidden="true"><use href="#i-box"/></svg>She picks 4 designs</span>
@@ -387,17 +408,18 @@ details.more summary:focus-visible { outline: 2px solid var(--brand-accent); out
       <ul class="outcomes">
         <li>
           <h3>New orders</h3>
-          <p>Recharge cannot split a bundle with a sold out design, so your team splits or swaps it by hand.</p>
+          <p>A new order with a sold out design usually does not split into its designs, so your team splits or swaps it by hand.</p>
           <p class="stat"><strong>23 orders</strong> since 1 Nov held a design already off the store. <span class="date">As of 20 Nov</span></p>
         </li>
         <li>
           <h3>Renewals</h3>
-          <p>Recharge blocks the charge: no box for her, no revenue for you. Some still go through, and five designs are now oversold (more ordered than in stock).</p>
+          <p>On charge day Recharge stops the order with an inventory error and tries again every day until the design is back in stock or she changes it. Until then there is no box for her and no revenue for you. Five designs show more ordered than in stock today; we have not confirmed that renewals caused it.</p>
           <p class="stat"><strong>470 blocked</strong> on stock from 7 to 20 Nov, worth £17,251; 17 of them are still blocked. <span class="date">As of 21 Nov</span></p>
+          <p class="stat">An empty box gets the bundle's default design: <strong>Aloha</strong> on the 2, 3, 4 and 6 Set Bundles, and Aloha is sold out. Refill has no default. <span class="date">Recharge, 23 Nov</span></p>
         </li>
         <li>
           <h3>The customer</h3>
-          <p>She finds out late or never: no Klaviyo email tells her a design sold out. <span class="date">Klaviyo, 22 Oct to 21 Nov</span></p>
+          <p>No warning when a design sells out. She only hears on charge day, when Recharge sends a general out of stock email that says a bestseller may be sent instead, which nothing does automatically. <span class="date">Recharge and Klaviyo, 23 Nov</span></p>
         </li>
       </ul>
       <div class="bars" aria-labelledby="bars-h">
@@ -481,7 +503,7 @@ details.more summary:focus-visible { outline: 2px solid var(--brand-accent); out
           <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><p>Only designs that bundle allows.</p></li>
           <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><p>Picks spread out and checked against units left.</p></li>
         </ul>
-        <div class="match"><strong>97%</strong>of affected subscriptions (1,582 of 1,637) share a colour with an in stock design. Stock and bundle limits are checked before any swap, so some will still go to your team. <span class="date">As of 21 Nov</span></div>
+        <div class="match"><strong>97%</strong>of affected subscriptions (1,582 of 1,637) share a tag, almost always a colour, with an in stock design. Stock and bundle limits are checked before any swap, so some will still go to your team. <span class="date">As of 21 Nov</span></div>
       </div>
     </div>
 
@@ -489,17 +511,20 @@ details.more summary:focus-visible { outline: 2px solid var(--brand-accent); out
       <div class="hears">
         <h3>What the customer hears today</h3>
         <ul>
-          <li><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg><p>One reminder about 58 hours before the charge, the same email every subscriber gets.</p></li>
-          <li><svg class="ic" aria-hidden="true"><use href="#i-ban"/></svg><p>Nothing when a design in her box sells out.</p></li>
-          <li><svg class="ic" aria-hidden="true"><use href="#i-ban"/></svg><p>Nothing when a charge fails or her designs change.</p></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg><p>One Klaviyo reminder about 58 hours before the charge. It changes with her order count, never with what is in her box.</p></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-ban"/></svg><p>No warning when a design sells out. On charge day, when the charge fails, Recharge sends its own out of stock email ("Action required: A shade in your next box is out of stock"), at most once a week while the charge keeps failing. It says a bestseller may be sent instead, which nothing does automatically.</p></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-card"/></svg><p>Recharge retries the charge every day, for up to its recovery window (120 days by default), until the design is back or she changes it.</p></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-card"/></svg><p>Card failures get Recharge's payment recovery emails. If every retry fails, Recharge cancels her and Klaviyo's cancellation emails go out.</p></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-ban"/></svg><p>Nothing confirms a design change.</p></li>
         </ul>
-        <p class="ok">We can improve these emails now in Klaviyo, before the app. <span class="date">Klaviyo, 22 Oct to 21 Nov</span></p>
+        <p class="ok">We can improve these emails now, before the app. <span class="date">Recharge and Klaviyo, read 23 Nov</span></p>
       </div>
-      <div class="nl-head"><span>Email change</span><span>Now, in Klaviyo</span><span>Later, with the app</span></div>
+      <div class="nl-head"><span>Email change</span><span>Now</span><span>Later, with the app</span></div>
       <ol class="nl">
+        <li><h4>Recharge's out of stock email</h4><p><b>Now: </b>rewrite it in Recharge to drop the "bestseller" promise. It already names her sold out design.</p><p><b>Later: </b>the app swaps first, so it rarely needs to go out.</p></li>
         <li><h4>1. Sold out alert</h4><p><b>Now: </b>a version of the billing reminder that names the sold out design and asks her to pick a new one.</p><p><b>Later: </b>"We swapped your sold out design", sent at the swap.</p></li>
         <li><h4>2. Reminder if she does nothing</h4><p><b>Now: </b>a nudge a day before the charge.</p><p><b>Later: </b>only when the app finds no match.</p></li>
-        <li><h4>3. Show her box</h4><p><b>Now: </b>her designs, with pictures, in every billing reminder.</p><p><b>Later: </b>plus one line naming the swap.</p></li>
+        <li><h4>3. Show her box</h4><p><b>Now: </b>her designs, with pictures, in every billing reminder (today it changes only with her order count).</p><p><b>Later: </b>plus one line naming the swap.</p></li>
         <li><h4>4. Confirm her change</h4><p><b>Now: </b>"Your new designs are saved".</p><p><b>Later: </b>skipped after a swap email, so one email, not two.</p></li>
         <li><h4>5. Back in stock</h4><p><b>Now: </b>not possible yet.</p><p><b>Later: </b>"Aloha is back. Add it to your next box?"</p></li>
       </ol>
@@ -507,28 +532,31 @@ details.more summary:focus-visible { outline: 2px solid var(--brand-accent); out
         <summary>See the email detail (for your team)</summary>
         <div class="more-in">
           <div>
-            <h4>The flows today</h4>
+            <h4>The emails today</h4>
             <table class="t-flows">
-              <thead><tr><th>Flow</th><th>Starts when</th><th>What she gets</th><th>Shows her box?</th></tr></thead>
+              <thead><tr><th>Email</th><th>Starts when</th><th>What she gets</th><th>Shows her box?</th></tr></thead>
               <tbody>
-                <tr><td>MP Upcoming Billing (live)</td><td>Recharge says an order is coming up</td><td>One reminder about 58 hours before the charge, a version for each order count.</td><td>No</td></tr>
-                <tr><td>MP Recharge OOS (draft)</td><td>She joins a list of everyone who ever had a sold out design in a box</td><td>No sends in the last 30 days. As built it would reach her once at most and promises a bestseller that may be sold out too, so we suggest not switching it on.</td><td>No</td></tr>
-                <tr><td>MP Back In Stock (live)</td><td>A shopper signs up with the site form</td><td>Two emails when the item returns. Subscribers who lost a design are not covered.</td><td>Only the restocked item</td></tr>
-                <tr><td>MP Subscription Abandoned Checkout (live)</td><td>A subscription checkout is left unpaid</td><td>Three emails over three days. In two of them the button goes straight to checkout, past the site check.</td><td>No</td></tr>
-                <tr><td>MP New Cancellation Flow BF offer (live)</td><td>She cancels in Recharge</td><td>A confirmation and a come back offer. There is no "my designs sold out" reason to pick.</td><td>No</td></tr>
-                <tr><td>MP 30 Day Upsell (live)</td><td>A one time buyer places her first order</td><td>Three emails asking her to subscribe.</td><td>No</td></tr>
+                <tr><td>MP Upcoming Billing (Klaviyo, live)</td><td>Recharge says an order is coming up</td><td>One reminder about 58 hours before the charge. A split on her order count picks one of eight versions; a sold out design plays no part.</td><td>No</td></tr>
+                <tr><td>Out of stock (Recharge, active)</td><td>A charge tries to go through with a sold out design</td><td>"Action required: A shade in your next box is out of stock", at most once a week per charge. It lists the sold out item, asks her to pick another, and says a bestseller may be sent instead, which nothing does automatically.</td><td>Only the sold out item</td></tr>
+                <tr><td>Failed Payment Recovery (Recharge, active)</td><td>A card payment fails</td><td>Recharge's payment recovery emails, or a card declined email when a hard decline skips recovery. Their wording could not be opened.</td><td>No</td></tr>
+                <tr><td>MP Recharge OOS (Klaviyo, draft)</td><td>She joins a list of everyone who ever had a sold out design in a box</td><td>No sends in the last 30 days. As built it would reach her once at most, on her first sold out box only, and promises a bestseller that may be sold out too, so we suggest not switching it on.</td><td>No</td></tr>
+                <tr><td>MP Back In Stock (Klaviyo, live)</td><td>A shopper signs up with the site form</td><td>Two emails when the item returns, only for shoppers who used the site form. Subscribers who lost a design are not covered, and a renewal takes her out of it.</td><td>Only the restocked item</td></tr>
+                <tr><td>MP Subscription Abandoned Checkout (Klaviyo, live)</td><td>A subscription checkout is left unpaid</td><td>Three emails over three days. In two of them the button goes straight to checkout, past the site check.</td><td>No</td></tr>
+                <tr><td>MP New Cancellation Flow BF offer (Klaviyo, live)</td><td>She cancels, or Recharge cancels her after every payment retry fails</td><td>A confirmation and a come back offer. Neither mentions the payment.</td><td>No</td></tr>
+                <tr><td>MP 30 Day Upsell (Klaviyo, live)</td><td>A one time buyer places her first order</td><td>Up to three emails from day 30 asking her to subscribe.</td><td>No</td></tr>
               </tbody>
             </table>
-            <p class="muted" style="margin-top:8px">37% of the upcoming order notices Recharge sent to Klaviyo in the last 30 days already marked a sold out design. Each notice also lists her designs, their pictures and their stock, but no email uses them. No email goes out when a charge fails, when her designs change, or when a design is swapped.</p>
+            <p class="muted" style="margin-top:8px">37% of the upcoming order notices Recharge sent to Klaviyo (22 Oct to 21 Nov) already marked a sold out design. Each notice also lists her designs, their pictures and their stock, but no email uses them. No Klaviyo email goes out when a charge fails, when her designs change or when a design is swapped, except the cancellation emails once Recharge gives up on the payment. Recharge sends nothing when her designs change either.</p>
           </div>
           <div>
             <h4>The five email changes in full</h4>
             <table class="t-changes">
-              <thead><tr><th>Change</th><th>Now, in Klaviyo</th><th>Later, with the app</th></tr></thead>
+              <thead><tr><th>Change</th><th>Now</th><th>Later, with the app</th></tr></thead>
               <tbody>
+                <tr><td>Recharge's out of stock email</td><td>In Recharge: drop the line that a bestseller may be sent. The email already names the sold out design and asks her to pick a new one.</td><td>The app swaps a sold out design before the charge, so this email rarely needs to go out.</td></tr>
                 <tr><td>1. Sold out alert</td><td>A separate version of the Upcoming Billing email for boxes with a sold out design: "One of your designs sold out", showing each design and asking her to pick a new one before the charge date.</td><td>"We swapped your sold out design", sent the moment the app swaps it, old design next to new, with a link to change it.</td></tr>
                 <tr><td>2. Reminder</td><td>About a day before the charge, only if she has not changed her designs: "Your box is charged tomorrow and still has a sold out design."</td><td>Only when the app finds no match: "We couldn't swap your design". The one case where she has to act.</td></tr>
-                <tr><td>3. Show the box</td><td>An "In your next box" block on all eight Upcoming Billing emails.</td><td>The same block, plus "Includes Something Blue in place of Aloha, which sold out."</td></tr>
+                <tr><td>3. Show the box</td><td>An "In your next box" block on all eight Upcoming Billing emails, which today change only with her order count.</td><td>The same block, plus "Includes Something Blue in place of Aloha, which sold out."</td></tr>
                 <tr><td>4. Confirm the change</td><td>"Your new designs are saved" after she changes her picks following the alert.</td><td>Skipped when the swap email went out the day before.</td></tr>
                 <tr><td>5. Back in stock</td><td>Not possible cleanly: Klaviyo cannot link a restock to the subscriber who lost that design.</td><td>"Aloha is back. Add it to your next box?", once the app tells Klaviyo about each swap.</td></tr>
               </tbody>
@@ -565,7 +593,7 @@ details.more summary:focus-visible { outline: 2px solid var(--brand-accent); out
     <div class="qhead">
       <span class="num lg">4</span>
       <h2 id="q4">What is new, and what will the experience look like?</h2>
-      <p>Three moments, today and with the app. Every screen is a sample with real design names. Tap "Today" to compare.</p>
+      <p>Three moments, today and with the app. Every screen is a sample. Design names are examples. Tap "Today" to compare.</p>
     </div>
 
     <!-- Journey 1 -->
@@ -578,13 +606,13 @@ details.more summary:focus-visible { outline: 2px solid var(--brand-accent); out
         </div>
       </div>
       <div class="summ">
-        <p class="t"><b>Today</b>She pays by Shop Pay with a sold out design in her box. The order does not split and your team fixes it by hand.</p>
+        <p class="t"><b>Today</b>If she pays by Shop Pay with a sold out design in her box, the order does not split and your team fixes it by hand.</p>
         <p class="a"><b>With the app</b>Checkout stops her before payment and sends her back to pick a design that is in stock.</p>
       </div>
       <div class="strip c3" data-state="today" hidden>
         <div class="shot"><p class="cap"><span>1</span>She pays with Shop Pay</p>
           <div class="screen"><div class="bar"><span><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg>Checkout</span><span class="sample">Sample</span></div>
-            <div class="in"><div class="line"><span>4 Set Bundle</span><b>4 designs</b></div><p>Aloha, Pink Polka, Cheetah, Mulled Wine</p><p class="small">No warning that Aloha sold out.</p><span class="btn">Pay now</span></div></div></div>
+            <div class="in"><div class="line"><span>4 Set Bundle</span><b>4 designs</b></div><p>Aloha, Pink Polka, Cheetah, Golden Hour</p><p class="small">No warning that Aloha sold out.</p><span class="btn">Pay now</span></div></div></div>
         <div class="shot"><p class="cap"><span>2</span>The order lands in Shopify</p>
           <div class="screen"><div class="bar"><span><svg class="ic" aria-hidden="true"><use href="#i-box"/></svg>Shopify order</span><span class="sample">Sample</span></div>
             <div class="in"><div class="line"><span>Tags</span><span class="tagline">BUNDLE NOT SPLIT</span></div><div class="line"><span>Aloha</span><span class="pill">Sold out</span></div><p>One bundle line instead of four designs.</p></div></div></div>
@@ -602,7 +630,7 @@ details.more summary:focus-visible { outline: 2px solid var(--brand-accent); out
                 <div class="slot new"><img src="assets/something-blue.jpg" alt="Something Blue nails" loading="lazy" width="240" height="240"><span>Something Blue</span></div>
                 <div class="slot"><img src="assets/pink-polka.jpg" alt="Pink Polka nails" loading="lazy" width="240" height="240"><span>Pink Polka</span></div>
                 <div class="slot"><img src="assets/cheetah.jpg" alt="Cheetah nails" loading="lazy" width="240" height="240"><span>Cheetah</span></div>
-                <div class="slot"><img src="assets/mulled-wine.jpg" alt="Mulled Wine nails" loading="lazy" width="240" height="240"><span>Mulled Wine</span></div>
+                <div class="slot"><img src="assets/golden-hour.jpg" alt="Golden Hour nails" loading="lazy" width="240" height="240"><span>Golden Hour</span></div>
               </div></div></div></div>
         <div class="shot"><p class="cap"><span>3</span>The order splits as normal</p>
           <div class="screen"><div class="bar"><span><svg class="ic" aria-hidden="true"><use href="#i-box"/></svg>Shopify order</span><span class="sample">Sample</span></div>
@@ -620,19 +648,19 @@ details.more summary:focus-visible { outline: 2px solid var(--brand-accent); out
         </div>
       </div>
       <div class="summ">
-        <p class="t"><b>Today</b>A generic reminder, then the charge is blocked. No Klaviyo email tells her why.</p>
+        <p class="t"><b>Today</b>A reminder that never shows her box, then the charge fails and Recharge's out of stock email promises a bestseller that nothing sends.</p>
         <p class="a"><b>With the app</b>Aloha is swapped for an in stock blue design, she is told before the charge, and her box ships on time.</p>
       </div>
       <div class="strip c3" data-state="today" hidden>
         <div class="shot"><p class="cap"><span>1</span>About 58 hours before the charge</p>
           <div class="screen"><div class="bar"><span><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Billing reminder</span><span class="sample">Sample</span></div>
-            <div class="in"><img class="logo" src="assets/holygels-logo.png" alt="Holy Gels"><p class="subj">Your next box ships soon</p><div class="btn2"><span class="btn ghost">Swap my shades</span><span class="btn ghost">Delay 2 weeks</span></div><p class="small">No list of her designs, no word that Aloha sold out.</p></div></div></div>
+            <div class="in"><img class="logo" src="assets/holygels-logo.png" alt="Holy Gels"><p class="subj">Here's what's in your next box</p><div class="btn2"><span class="btn ghost">Swap my shades</span><span class="btn ghost">Delay 2 weeks</span></div><p class="small">No list of her designs, no word that Aloha sold out. One of eight versions; wording varies.</p></div></div></div>
         <div class="shot"><p class="cap"><span>2</span>Charge day in Recharge</p>
           <div class="screen"><div class="bar"><span><svg class="ic" aria-hidden="true"><use href="#i-card"/></svg>Recharge charge</span><span class="sample">Sample</span></div>
-            <div class="in"><div class="line"><span>Status</span><span class="pill">Error</span></div><div class="line"><span>Reason</span><b>Insufficient inventory</b></div><p>No charge and no box.</p></div></div></div>
-        <div class="shot"><p class="cap"><span>3</span>Her inbox afterwards</p>
+            <div class="in"><div class="line"><span>Status</span><span class="pill">Error</span></div><div class="line"><span>Reason</span><b>Inventory failure</b></div><p>No charge and no box. Recharge tries again every day.</p></div></div></div>
+        <div class="shot"><p class="cap"><span>3</span>Recharge's out of stock email</p>
           <div class="screen"><div class="bar"><span><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Inbox</span><span class="sample">Sample</span></div>
-            <div class="in"><div class="empty"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg><p>No Klaviyo email about the design, the failed charge or the box.</p></div></div></div></div>
+            <div class="in"><p class="subj">Action required: A shade in your next box is out of stock</p><p>Aloha is out of stock. Please choose a replacement. We may replace the unavailable shade with one of our best sellers.</p><span class="btn ghost">Manage Subscription</span><p class="small">At most once a week while the charge fails. Nothing sends the bestseller automatically.</p></div></div></div>
       </div>
       <div class="strip c3" data-state="app">
         <div class="shot"><p class="cap"><span>1</span>She is told before the charge</p>
@@ -646,7 +674,7 @@ details.more summary:focus-visible { outline: 2px solid var(--brand-accent); out
               <p>Prefer another? Change it before Sunday. Happy with it? Nothing to do.</p><span class="btn">Choose a different design</span></div></div></div>
         <div class="shot"><p class="cap"><span>2</span>The renewal charges on time</p>
           <div class="screen"><div class="bar"><span><svg class="ic" aria-hidden="true"><use href="#i-card"/></svg>Recharge charge</span><span class="sample">Sample</span></div>
-            <div class="in"><div class="okbox"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><p><b>Charged and shipped.</b> Something Blue, Pink Polka, Cheetah, Mulled Wine: all in stock.</p></div></div></div></div>
+            <div class="in"><div class="okbox"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><p><b>Charged and shipped.</b> Something Blue, Pink Polka, Cheetah, Golden Hour: all in stock.</p></div></div></div></div>
         <div class="shot"><p class="cap"><span>3</span>Later: the back in stock email</p>
           <div class="screen"><div class="bar"><span><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Inbox</span><span class="sample">Sample</span></div>
             <div class="in"><p class="subj">Aloha is back. Add it to your next box?</p><span class="btn">Add Aloha to my next box</span><p class="small">If no blue design were in stock, she would get "We couldn't swap your design" instead.</p></div></div></div>
@@ -706,6 +734,29 @@ details.more summary:focus-visible { outline: 2px solid var(--brand-accent); out
   </div>
 </section>
 
+<!-- Hours -->
+<section class="band" id="hours" aria-labelledby="hours-h">
+  <div class="wrap">
+    <div class="qhead plain">
+      <h2 id="hours-h">Hours</h2>
+      <p>Our estimate per step, as ranges.</p>
+    </div>
+    <table class="hours">
+      <thead><tr><th>Step</th><th>What it covers</th><th>Hours</th></tr></thead>
+      <tbody>
+        <tr><td>1. Dry run report</td><td>A read only pass over upcoming renewals: every sold out design and what each swap rule would pick, with a summary for you.</td><td>4 to 6</td></tr>
+        <tr><td>2. Email changes now</td><td>Rewrite of Recharge's out of stock email, the sold out alert version of the billing reminder, the reminder, the "In your next box" block and the confirmation. Drafts for your approval, then live on your go.</td><td>9 to 13</td></tr>
+        <tr><td>3. Checkout rule</td><td>The rule inside the existing app that stops a sold out design at payment, a sold out list kept up to date, and tests on express checkouts and checkout email links.</td><td>6 to 10</td></tr>
+        <tr><td>4. Renewal swap and its emails</td><td>The daily job that reads renewals, checks stock, applies your rule, updates the subscription and logs every swap, plus the swap and "couldn't swap" emails.</td><td>16 to 22</td></tr>
+        <tr><td>5. Daily summary and back in stock</td><td>The morning summary for your team, and the back in stock email for subscribers who lost a design.</td><td>4 to 6</td></tr>
+        <tr><td>Checks and first week</td><td>Testing before each step goes live, live checks, and a first week of watching and fixes.</td><td>4 to 6</td></tr>
+      </tbody>
+      <tfoot><tr><td>Total</td><td></td><td>43 to 63</td></tr></tfoot>
+    </table>
+    <p class="hnote">Not included: copy changes after the drafts beyond one round; new email designs beyond the current Holy Gels email style; hosting for the daily job, quoted separately.</p>
+  </div>
+</section>
+
 </main>
 
 <footer class="foot">
@@ -713,12 +764,12 @@ details.more summary:focus-visible { outline: 2px solid var(--brand-accent); out
     <img src="assets/holygels-logo.png" alt="Holy Gels">
     <h2>Sources</h2>
     <ul>
-      <li><span>Renewals, values and colour matches: Recharge and Shopify stock, read only on 21 Nov 2026. Values are charge totals in GBP; £60,000 is an upper bound. A colour match is any shared colour tag, before stock and bundle limits (Refill 4 cannot hold French Tips, Refill 6 cannot hold Classic).</span></li>
+      <li><span>Renewals, values and colour matches: Recharge and Shopify stock, read only on 21 Nov 2026. Values are charge totals in GBP; £60,000 is an upper bound. A match is any shared tag, almost always a colour, before stock and bundle limits (Refill 4 cannot hold French Tips, Refill 6 cannot hold Classic).</span></li>
       <li><span>Site fixes: live on your theme since 19 Nov 2026 (UK time). Order counts from Shopify and Recharge, read 20 Nov 2026; two refill orders that did not split are still unexplained.</span></li>
-      <li><span>Email: your Klaviyo account, 22 Oct to 21 Nov 2026. Recharge's own customer emails were not read.</span></li>
+      <li><span>Email: your Klaviyo account, 22 Oct to 23 Nov 2026, read only. Recharge notifications and bundle settings, read 23 Nov 2026. Recharge SMS (Concierge), payment recovery settings and order processing settings could not be opened.</span></li>
       <li><span>Mock screens are samples; their wording and counts are examples.</span></li>
     </ul>
-    <p class="date">Prepared 21 Nov 2026 for Holy Gels</p>
+    <p class="date">Prepared 23 Nov 2026 for Holy Gels</p>
   </div>
 </footer>
 
@@ -741,7 +792,7 @@ details.more summary:focus-visible { outline: 2px solid var(--brand-accent); out
     });
   });
   var links = document.querySelectorAll('.qnav a');
-  var ids = ['problem', 'fixing', 'steps', 'experience', 'ask'];
+  var ids = ['problem', 'fixing', 'steps', 'experience', 'ask', 'hours'];
   var ticking = false;
   function mark() {
     ticking = false;
