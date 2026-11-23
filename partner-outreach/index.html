@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Media buyer outreach tracker</title>
+<style>
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: #f7f7f8; color: #18181b;
+    font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 32px 20px 64px; }
+  header { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+  h1 { font-size: 22px; line-height: 1.25; margin: 0 0 4px; font-weight: 600; }
+  h1 a { color: inherit; text-decoration: none; }
+  h1 a:hover { text-decoration: underline; }
+  .sub { margin: 0; color: #5b5b66; font-size: 14px; }
+  h2 { font-size: 16px; font-weight: 600; margin: 32px 0 8px; display: flex; gap: 8px; align-items: baseline; }
+  h2 .count { color: #6b6b76; font-weight: 400; }
+  .help { margin: -4px 0 10px; color: #5b5b66; font-size: 14px; }
+
+  button, .btn, select, input, textarea { font: inherit; color: inherit; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; min-height: 34px; padding: 6px 12px;
+    background: #fff; border: 1px solid #d4d4d8; border-radius: 8px; cursor: pointer; font-size: 14px; white-space: nowrap;
+  }
+  .btn:hover { background: #f4f4f5; }
+  .btn svg { width: 15px; height: 15px; flex: none; }
+  .btn.small { min-height: 30px; padding: 4px 10px; font-size: 14px; }
+  .btn.primary { background: #1f2937; border-color: #1f2937; color: #fff; }
+  .btn.primary:hover { background: #374151; }
+  :focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
+
+  .notice { margin: 0 0 16px; padding: 10px 14px; border: 1px solid #c7d2fe; background: #eef2ff; border-radius: 8px; font-size: 14px; }
+
+  .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: #ececef; border: 1px solid #e4e4e7; border-radius: 10px; overflow: hidden; }
+  .stat { padding: 14px 18px; background: #fff; }
+  .stat .label { color: #5b5b66; font-size: 14px; }
+  .stat .value { font-size: 28px; line-height: 1.2; font-variant-numeric: tabular-nums; }
+  .due { margin: 10px 0 0; font-size: 14px; color: #92400e; }
+
+  .list { list-style: none; margin: 0; padding: 0; background: #fff; border: 1px solid #e4e4e7; border-radius: 10px; }
+  .row { padding: 14px 18px; }
+  .row + .row { border-top: 1px solid #ececef; }
+  .row-main { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 20px; align-items: start; }
+  .who { display: flex; gap: 10px; align-items: flex-start; min-width: 0; }
+  .who svg { width: 16px; height: 16px; flex: none; margin-top: 3px; }
+  .name { font-weight: 600; }
+  .kind { color: #5b5b66; font-weight: 400; }
+  .meta, .preview { color: #5b5b66; font-size: 14px; overflow-wrap: anywhere; }
+  .meta a { color: #1d4ed8; }
+  .preview { margin-top: 2px; }
+  .due-tag { color: #92400e; font-weight: 600; }
+  .controls { display: flex; gap: 10px; align-items: flex-end; }
+  .field { display: flex; flex-direction: column; gap: 2px; font-size: 12px; color: #5b5b66; }
+  .field select, .field input {
+    min-height: 34px; padding: 5px 8px; border: 1px solid #d4d4d8; border-radius: 8px; background: #fff; font-size: 14px; color: #18181b;
+  }
+  .field select { min-width: 156px; }
+  .next { margin: 10px 0 0 26px; font-size: 14px; }
+  .next b { font-weight: 600; }
+
+  details.more { margin: 8px 0 0 26px; }
+  details.more > summary {
+    display: inline-flex; align-items: center; gap: 6px; cursor: pointer; color: #1d4ed8; font-size: 14px; list-style: none;
+  }
+  details.more > summary::-webkit-details-marker { display: none; }
+  details.more > summary svg { width: 14px; height: 14px; transition: transform .15s ease-out; }
+  details.more[open] > summary svg { transform: rotate(90deg); }
+  .panel { margin-top: 10px; display: grid; gap: 14px; }
+  .msg-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 6px; }
+  .msg-head span { font-size: 14px; font-weight: 600; }
+  .msg {
+    margin: 0; padding: 12px 14px; background: #f4f4f5; border-radius: 8px; white-space: pre-wrap; overflow-wrap: anywhere;
+    font: inherit; font-size: 14px;
+  }
+  textarea { width: 100%; min-height: 80px; padding: 8px 10px; border: 1px solid #d4d4d8; border-radius: 8px; font-size: 14px; resize: vertical; }
+  label.block { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+
+  .data { margin-top: 40px; }
+  .data .box { background: #fff; border: 1px solid #e4e4e7; border-radius: 10px; padding: 16px 18px; display: grid; gap: 12px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .status-line { font-size: 14px; color: #5b5b66; min-height: 20px; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  @media (max-width: 720px) {
+    .wrap { padding: 20px 14px 48px; }
+    .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .row { padding: 14px; }
+    .row-main { grid-template-columns: minmax(0, 1fr); }
+    .controls { margin-left: 26px; flex-wrap: wrap; }
+    .field select { min-width: 0; }
+    .next, details.more { margin-left: 26px; }
+  }
+  @media (prefers-reduced-motion: reduce) { details.more > summary svg { transition: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1><a href="index.html">Media buyer outreach</a></h1>
+      <p class="sub">Partner search for the app user acquisition service. List as of 23 Nov 2026.</p>
+    </div>
+  </header>
+
+  <p class="notice" id="storage-note" hidden>This browser is not saving changes. Use Export file before you leave the page.</p>
+
+  <section aria-label="Summary">
+    <div class="stats">
+      <div class="stat"><div class="label">Contacted</div><div class="value" id="c-contacted">0</div></div>
+      <div class="stat"><div class="label">Replied</div><div class="value" id="c-replied">0</div></div>
+      <div class="stat"><div class="label">Waiting</div><div class="value" id="c-waiting">0</div></div>
+      <div class="stat"><div class="label">To contact</div><div class="value" id="c-todo">0</div></div>
+    </div>
+    <p class="due" id="due-line" hidden></p>
+  </section>
+
+  <section>
+    <h2>Contacted <span class="count" id="n-contacted"></span></h2>
+    <p class="help">Set the status when someone answers. Each row shows what to send next.</p>
+    <ul class="list" id="list-contacted"></ul>
+  </section>
+
+  <section>
+    <h2>Next to contact <span class="count" id="n-next"></span></h2>
+    <p class="help">Independents on Malt. A Malt message needs your Malt account; a LinkedIn note works too (2 noted invites left this month).</p>
+    <ul class="list" id="list-next"></ul>
+  </section>
+
+  <section>
+    <h2>Dropped <span class="count" id="n-dropped"></span></h2>
+    <ul class="list" id="list-dropped"></ul>
+  </section>
+
+  <section class="data" aria-labelledby="data-title">
+    <h2 id="data-title">Move your data</h2>
+    <p class="help">Changes save in this browser. To use another device, export here and import there.</p>
+    <div class="box">
+      <div class="actions">
+        <button type="button" class="btn" id="export-file">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+          Export file
+        </button>
+        <button type="button" class="btn" id="export-copy">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+          Copy data
+        </button>
+        <label class="btn" for="import-file">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21V9"/><path d="m7 14 5-5 5 5"/><path d="M5 3h14"/></svg>
+          Import file
+        </label>
+        <input type="file" id="import-file" accept="application/json,.json" class="sr">
+      </div>
+      <div>
+        <label class="block" for="import-text">Or paste exported data</label>
+        <textarea id="import-text" spellcheck="false"></textarea>
+      </div>
+      <div class="actions">
+        <button type="button" class="btn primary" id="import-apply">Import pasted data</button>
+        <span class="status-line" id="data-status" role="status" aria-live="polite"></span>
+      </div>
+    </div>
+  </section>
+  <div class="sr" role="status" aria-live="polite" id="live"></div>
+</div>
+
+<script type="application/json" id="data">
+{
+  "statuses": [
+    ["not", "Not contacted"],
+    ["sent", "Sent"],
+    ["replied", "Replied"],
+    ["call", "Call booked"],
+    ["declined", "Declined"],
+    ["resend", "No reply, resend"]
+  ],
+  "nextByStatus": {
+    "sent": "Wait for a reply. If nothing comes by the follow up date, set the status to No reply, resend.",
+    "replied": "Reply within a day and offer a 20 minute call. Ask for one Ads Manager or MMP screenshot behind a named app.",
+    "call": "Before the call, have ready how many clients we expect, the retainer per client and the proof you want to see.",
+    "declined": "Nothing to send. Add the reason in the notes so the next pitch can answer it.",
+    "resend": "Send the follow up below, then set a new follow up date about a week out."
+  },
+  "followUp": "Hi {greet}, following up on my earlier {via} about partnering on paid user acquisition for our app clients. The pay is a fixed monthly retainer for each client you manage, and I'd be glad to walk you through it on a short call this week.",
+  "people": [
+    {
+      "id": "samet", "group": "contacted", "name": "Samet Durgun", "kind": "Independent",
+      "about": "Growth Therapist, Berlin",
+      "channel": "Email and LinkedIn invite with note", "address": "samet@growththerapist.com",
+      "sent": "2026-11-23", "status": "sent", "followUp": "2026-11-30", "greet": "Samet", "via": "email",
+      "wait": "Wait for a reply to the email or the LinkedIn invite. If nothing comes by the follow up date, set the status to No reply, resend.",
+      "messages": [
+        { "label": "Email sent 23 Nov (draft on file)", "text": "Subject: Partnership: we bring app clients, you run paid UA\n\nHi Samet,\n\nI'm Bhaskar from cazyweb. Together with a partner agency we're launching a done for you paid user acquisition service for apps in the US and other markets, aimed at live apps with smaller budgets that need their first paid channel working fast.\n\nWe handle sales, the client relationship, the App Store page and onboarding tests. We're looking for one senior buyer to run the campaigns, paid for every app client we bring you, with the share growing as clients renew.\n\nYour Horse Racing Solitaire and EatBetter cases are the kind of proof we'd want to show. Would you be open to a 20 minute call this week or next to see if the model fits how you work?\n\nBest,\nBhaskar" }
+      ]
+    },
+    {
+      "id": "socialoutline", "group": "contacted", "name": "The Social Outline", "kind": "Agency",
+      "about": "Meta app agency, UK",
+      "channel": "Email", "address": "hello@thesocialoutline.com",
+      "sent": "2026-11-23", "status": "sent", "followUp": "2026-11-30", "greet": "there", "via": "email",
+      "messages": [
+        { "label": "Agency message on file (template; the exact email sent was not saved)", "text": "Hi, I'm Bhaskar from cazyweb. We're launching a paid user acquisition service for apps in the US and other markets and are looking for a media buying partner rather than buying for one app. We bring the app clients, you run Meta (and other channels where you do them), paid per client we bring. Would you be open to a short call about a partner or white label setup?" }
+      ]
+    },
+    {
+      "id": "aperture", "group": "contacted", "name": "Aperture", "kind": "Agency",
+      "about": "App growth agency, London",
+      "channel": "Email", "address": "growth@aperture.london",
+      "sent": "2026-11-23", "status": "sent", "followUp": "2026-11-30", "greet": "there", "via": "email",
+      "messages": [
+        { "label": "Agency message on file (template; the exact email sent was not saved)", "text": "Hi, I'm Bhaskar from cazyweb. We're launching a paid user acquisition service for apps in the US and other markets and are looking for a media buying partner rather than buying for one app. We bring the app clients, you run Meta (and other channels where you do them), paid per client we bring. Would you be open to a short call about a partner or white label setup?" }
+      ]
+    },
+    {
+      "id": "studiomosaic", "group": "contacted", "name": "Studio Mosaic", "kind": "Agency",
+      "about": "App growth agency, New Delhi",
+      "channel": "Email", "address": "support@studiomosaicapps.com",
+      "sent": "2026-11-23", "status": "sent", "followUp": "2026-11-30", "greet": "there", "via": "email",
+      "messages": [
+        { "label": "Agency message on file (template; the exact email sent was not saved)", "text": "Hi, I'm Bhaskar from cazyweb. We're launching a paid user acquisition service for apps in the US and other markets and are looking for a media buying partner rather than buying for one app. We bring the app clients, you run Meta (and other channels where you do them), paid per client we bring. Would you be open to a short call about a partner or white label setup?" }
+      ]
+    },
+    {
+      "id": "shyftup", "group": "contacted", "name": "ShyftUp", "kind": "Agency",
+      "about": "App growth agency, San Francisco",
+      "channel": "Email", "address": "contact@shyftup.com",
+      "sent": "2026-11-23", "status": "sent", "followUp": "2026-11-30", "greet": "there", "via": "email",
+      "messages": [
+        { "label": "Agency message on file (template; the exact email sent was not saved)", "text": "Hi, I'm Bhaskar from cazyweb. We're launching a paid user acquisition service for apps in the US and other markets and are looking for a media buying partner rather than buying for one app. We bring the app clients, you run Meta (and other channels where you do them), paid per client we bring. Would you be open to a short call about a partner or white label setup?" }
+      ]
+    },
+    {
+      "id": "mithun", "group": "contacted", "name": "Mithun", "kind": "LinkedIn contact (private)",
+      "about": "",
+      "channel": "LinkedIn connection request, no note", "address": "Invite pending",
+      "sent": "2026-11-20", "status": "sent", "followUp": "", "greet": "Mithun", "via": "message",
+      "wait": "The invite is still pending. When he accepts, send the message below.",
+      "messages": [
+        { "label": "Message to send once he accepts", "text": "Hi Mithun, thanks for connecting. I run cazyweb, and with a partner agency we're starting a paid user acquisition service for apps in the US and a few other markets. We're looking for a strong media buyer to run it with us as a partner: we bring the app clients, you run the campaigns, and you get paid for every app client we bring you. Would you be open to a quick 15 minute chat about it? If you have a few apps you've scaled that you could show, that would be great too. No worries at all if the timing isn't right." }
+      ]
+    },
+    {
+      "id": "vishal", "group": "contacted", "name": "Vishal", "kind": "LinkedIn contact (private)",
+      "about": "",
+      "channel": "LinkedIn connection request, no note", "address": "Invite pending",
+      "sent": "2026-11-20", "status": "sent", "followUp": "", "greet": "Vishal", "via": "message",
+      "wait": "The invite is still pending. When he accepts, send the message below.",
+      "messages": [
+        { "label": "Message to send once he accepts", "text": "Hi Vishal, thanks for connecting. I run cazyweb, and with a partner agency we're launching a paid user acquisition service for apps in the US and other markets. We want a media buyer partner who runs the campaigns while we bring in the app clients, paid per client we bring. Would you be open to a short call this week? Happy to hear how you'd structure it, and if you can share a few apps you've grown, even better." }
+      ]
+    },
+    {
+      "id": "charles", "group": "next", "name": "Charles Congiu", "kind": "Independent",
+      "about": "Malt, Marseille; ex UA Director in mobile games",
+      "channel": "Malt message or LinkedIn note", "address": "Malt profile", "link": "https://www.malt.com/profile/charlescongiu",
+      "sent": "", "status": "not", "followUp": "", "greet": "Charles", "via": "message",
+      "first": "Send the Malt message from your Malt account, or the LinkedIn note if you would rather use one of the 2 noted invites left.",
+      "messages": [
+        { "label": "Malt message", "text": "Hi Charles, I'm Bhaskar from cazyweb. With a partner agency we're launching a done for you paid user acquisition service for apps in the US and other markets, and we want an experienced buyer to run the campaigns as a partner. We bring the app clients and handle sales and onboarding; you run the ads, on a fixed monthly retainer for each client you manage. Your UA work at Original Games, Gameloft and Voodoo is the depth we're after, and I'd like to hear how you'd carry it over to subscription and utility apps. Would you be open to a 20 minute call this week or next?" },
+        { "label": "LinkedIn note (under 200 characters)", "text": "Hi Charles, we're launching a paid UA service for apps and want a freelance buyer as a partner: we bring the clients, you run them, on a fixed monthly retainer per client. Open to a quick call?" }
+      ]
+    },
+    {
+      "id": "julie", "group": "next", "name": "Julie Tonna", "kind": "Independent",
+      "about": "Malt, Marseille; Apple Ads and Google Ads, ex Apple Search Ads",
+      "channel": "Malt message or LinkedIn note", "address": "Malt profile", "link": "https://www.malt.fr/profile/julietonna",
+      "sent": "", "status": "not", "followUp": "", "greet": "Julie", "via": "message",
+      "first": "Send the Malt message from your Malt account, or the LinkedIn note if you would rather use one of the 2 noted invites left.",
+      "messages": [
+        { "label": "Malt message", "text": "Hi Julie, I'm Bhaskar from cazyweb. With a partner agency we're launching a done for you paid user acquisition service for apps in the US and other markets, and we want an experienced buyer to run the campaigns as a partner. We bring the app clients and handle sales and onboarding; you run the ads, on a fixed monthly retainer for each client you manage. Your Apple Ads background suits the small iOS budgets we'll start with, and Google Ads covers the Android side. Would you be open to a 20 minute call this week or next?" },
+        { "label": "LinkedIn note (under 200 characters)", "text": "Hi Julie, we're launching a paid UA service for apps and want a freelance buyer as a partner: we bring the clients, you run them, on a fixed monthly retainer per client. Open to a quick call?" }
+      ]
+    },
+    {
+      "id": "juan", "group": "next", "name": "Juan Ignacio Vieytes", "kind": "Independent",
+      "about": "Malt, Valencia; Google, Meta, TikTok and Apple Ads",
+      "channel": "Malt message or LinkedIn note", "address": "Malt profile", "link": "https://www.malt.com/profile/juanignaciovieytes",
+      "sent": "", "status": "not", "followUp": "", "greet": "Juan", "via": "message",
+      "first": "Send the Malt message from your Malt account, or the LinkedIn note if you would rather use one of the 2 noted invites left.",
+      "messages": [
+        { "label": "Malt message", "text": "Hi Juan, I'm Bhaskar from cazyweb. With a partner agency we're launching a done for you paid user acquisition service for apps in the US and other markets, and we want an experienced buyer to run the campaigns as a partner. We bring the app clients and handle sales and onboarding; you run the ads, on a fixed monthly retainer for each client you manage. You run Google, Meta, TikTok and Apple Ads yourself, which is the mix we need, and the number of clients can be sized to fit your other work. Would you be open to a 20 minute call this week or next?" },
+        { "label": "LinkedIn note (under 200 characters)", "text": "Hi Juan, we're launching a paid UA service for apps and want a freelance buyer as a partner: we bring the clients, you run them, on a fixed monthly retainer per client. Open to a quick call?" }
+      ]
+    }
+  ],
+  "dropped": [
+    {
+      "id": "kurve", "name": "Kurve", "kind": "Agency", "about": "App growth agency, London",
+      "reason": "Not contacted: no public email, contact form only (kurve.co.uk/contact).",
+      "messages": [
+        { "label": "Contact form message, if you want to use the form", "text": "Hi, I'm Bhaskar from cazyweb. We're launching a paid user acquisition service for apps in the US and other markets and are looking for a media buying partner rather than buying for one app. We bring the app clients, you run Meta (and other channels where you do them), paid per client we bring. Would you be open to a short call about a partner or white label setup?" }
+      ]
+    }
+  ]
+}
+</script>
+<script>
+(function () {
+  'use strict';
+  var DATA = JSON.parse(document.getElementById('data').textContent);
+  var KEY = 'outreachTracker.v1';
+  var STATUS_KEYS = DATA.statuses.map(function (s) { return s[0]; });
+  var IDS = DATA.people.map(function (p) { return p.id; });
+  var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  var ISO = /^\d{4}-\d{2}-\d{2}$/;
+  var storageOk = true;
+
+  function today() {
+    var d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+  function fmt(iso) {
+    if (!iso || !ISO.test(iso)) return '';
+    var p = iso.split('-');
+    return Number(p[2]) + ' ' + MONTHS[Number(p[1]) - 1] + ' ' + p[0];
+  }
+
+  // Saved entries are merged over the defaults by person id, so editing the list later keeps his entries.
+  function clean(raw) {
+    var out = {};
+    if (!raw || typeof raw !== 'object' || !raw.people || typeof raw.people !== 'object') return null;
+    IDS.forEach(function (id) {
+      var r = raw.people[id];
+      if (!r || typeof r !== 'object') return;
+      var e = {};
+      if (STATUS_KEYS.indexOf(r.status) !== -1) e.status = r.status;
+      if (typeof r.notes === 'string') e.notes = r.notes.slice(0, 5000);
+      if (r.followUp === '' || (typeof r.followUp === 'string' && ISO.test(r.followUp))) e.followUp = r.followUp;
+      out[id] = e;
+    });
+    return out;
+  }
+  function load() {
+    try {
+      var s = window.localStorage.getItem(KEY);
+      return s ? (clean(JSON.parse(s)) || {}) : {};
+    } catch (e) {
+      storageOk = false;
+      return {};
+    }
+  }
+  var saved = load();
+  function save() {
+    try {
+      window.localStorage.setItem(KEY, JSON.stringify(exportObj()));
+      storageOk = true;
+    } catch (e) {
+      storageOk = false;
+    }
+    document.getElementById('storage-note').hidden = storageOk;
+  }
+  function get(p, field) {
+    var e = saved[p.id];
+    if (e && e[field] !== undefined) return e[field];
+    return field === 'notes' ? '' : p[field];
+  }
+  function set(p, field, value) {
+    saved[p.id] = saved[p.id] || {};
+    saved[p.id][field] = value;
+    save();
+  }
+  function exportObj() {
+    var people = {};
+    DATA.people.forEach(function (p) {
+      people[p.id] = { status: get(p, 'status'), notes: get(p, 'notes'), followUp: get(p, 'followUp') };
+    });
+    return { app: 'outreach-tracker', version: 1, exported: new Date().toISOString(), people: people };
+  }
+
+  function el(tag, attrs, kids) {
+    var n = document.createElement(tag);
+    if (attrs) Object.keys(attrs).forEach(function (k) {
+      if (k === 'text') n.textContent = attrs[k];
+      else if (k === 'html') n.innerHTML = attrs[k]; // used for static SVG markup only
+      else n.setAttribute(k, attrs[k]);
+    });
+    (kids || []).forEach(function (c) { if (c) n.appendChild(c); });
+    return n;
+  }
+
+  var SVG_OPEN = '<svg viewBox="0 0 16 16" aria-hidden="true">';
+  var ICONS = {
+    not: '<circle cx="8" cy="8" r="6" fill="none" stroke="#a1a1aa" stroke-width="1.5"/>',
+    sent: '<circle cx="8" cy="8" r="6" fill="none" stroke="#2563eb" stroke-width="1.5"/><circle cx="8" cy="8" r="2.5" fill="#2563eb"/>',
+    replied: '<circle cx="8" cy="8" r="7" fill="#16a34a"/><path d="m5 8.2 2 2 4-4.2" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>',
+    call: '<circle cx="8" cy="8" r="7" fill="#15803d"/><path d="M5.5 5.5h5v5h-5z M5.5 7.5h5" fill="none" stroke="#fff" stroke-width="1.3"/>',
+    declined: '<circle cx="8" cy="8" r="7" fill="#a1a1aa"/><path d="m5.7 5.7 4.6 4.6" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/><path d="m10.3 5.7-4.6 4.6" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>',
+    resend: '<circle cx="8" cy="8" r="6" fill="none" stroke="#d97706" stroke-width="1.5"/><path d="M8 4.8V8l2 1.3" fill="none" stroke="#d97706" stroke-width="1.5" stroke-linecap="round"/>',
+    dropped: '<circle cx="8" cy="8" r="6" fill="none" stroke="#a1a1aa" stroke-width="1.5" stroke-dasharray="2 2"/>'
+  };
+  var COPY_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>';
+  var CHEVRON = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 4 4 4-4 4"/></svg>';
+
+  function live(msg) {
+    var n = document.getElementById('live');
+    n.textContent = '';
+    setTimeout(function () { n.textContent = msg; }, 30);
+  }
+
+  function copyText(text) {
+    function fallback() {
+      var ta = el('textarea', { readonly: '', 'aria-hidden': 'true' });
+      ta.value = text;
+      ta.style.position = 'fixed'; ta.style.top = '0'; ta.style.left = '0'; ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+      document.body.removeChild(ta);
+      return ok ? Promise.resolve() : Promise.reject(new Error('copy failed'));
+    }
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).catch(fallback);
+    }
+    return fallback();
+  }
+
+  function copyButton(getText, what) {
+    var b = el('button', { type: 'button', class: 'btn small', html: COPY_SVG + '<span>Copy</span>' });
+    b.addEventListener('click', function () {
+      var label = b.querySelector('span');
+      copyText(getText()).then(function () {
+        label.textContent = 'Copied';
+        live('Copied ' + what);
+      }, function () {
+        label.textContent = 'Select and copy by hand';
+      });
+      setTimeout(function () { label.textContent = 'Copy'; }, 2000);
+    });
+    return b;
+  }
+
+  function messageBlock(label, text) {
+    var pre = el('pre', { class: 'msg', text: text });
+    return el('div', null, [
+      el('div', { class: 'msg-head' }, [el('span', { text: label }), copyButton(function () { return pre.textContent; }, label)]),
+      pre
+    ]);
+  }
+
+  function followUpText(p) {
+    return DATA.followUp.replace('{greet}', p.greet).replace('{via}', p.via);
+  }
+
+  function nextText(p, status) {
+    if (status === 'not') return p.first || 'Send the first message below.';
+    if (status === 'sent') return p.wait || DATA.nextByStatus.sent;
+    return DATA.nextByStatus[status];
+  }
+
+  function renderRow(p) {
+    var li = el('li', { class: 'row', id: 'row-' + p.id });
+    var icon = el('span', { html: SVG_OPEN + ICONS[get(p, 'status')] + '</svg>' });
+    var metaBits = [p.channel];
+    var meta = el('div', { class: 'meta' });
+    var followLine = el('div', { class: 'meta' });
+    var preview = el('div', { class: 'preview' });
+    var next = el('p', { class: 'next' });
+    var title = el('div', null, [
+      el('div', null, [el('span', { class: 'name', text: p.name }), document.createTextNode(' '), el('span', { class: 'kind', text: '· ' + p.kind })]),
+      p.about ? el('div', { class: 'meta', text: p.about }) : null,
+      meta, followLine, preview
+    ]);
+
+    meta.appendChild(document.createTextNode(p.channel + ' · '));
+    if (p.link) meta.appendChild(el('a', { href: p.link, target: '_blank', rel: 'noopener noreferrer', text: p.address }));
+    else meta.appendChild(document.createTextNode(p.address));
+    meta.appendChild(document.createTextNode(p.sent ? ' · Sent ' + fmt(p.sent) : ' · Not sent yet'));
+
+    var sel = el('select', { id: 'status-' + p.id });
+    DATA.statuses.forEach(function (s) { sel.appendChild(el('option', { value: s[0], text: s[1] })); });
+    sel.value = get(p, 'status');
+    var date = el('input', { type: 'date', id: 'follow-' + p.id });
+    date.value = get(p, 'followUp') || '';
+
+    var notes = el('textarea', { id: 'notes-' + p.id, rows: '3' });
+    notes.value = get(p, 'notes');
+
+    function refresh() {
+      var status = get(p, 'status');
+      var fu = get(p, 'followUp');
+      var note = get(p, 'notes').trim();
+      icon.innerHTML = SVG_OPEN + ICONS[status] + '</svg>';
+      var waiting = status === 'sent' || status === 'resend';
+      var isDue = waiting && fu && fu <= today();
+      followLine.textContent = '';
+      if (fu) {
+        followLine.appendChild(document.createTextNode('Follow up on ' + fmt(fu)));
+        if (isDue) followLine.appendChild(el('span', { class: 'due-tag', text: ' · due' }));
+      }
+      followLine.hidden = !fu;
+      preview.textContent = note ? 'Note: ' + (note.length > 140 ? note.slice(0, 140) + '…' : note) : '';
+      preview.hidden = !note;
+      next.textContent = '';
+      next.appendChild(el('b', { text: 'Next: ' }));
+      next.appendChild(document.createTextNode(nextText(p, status)));
+      updateSummary();
+    }
+
+    sel.addEventListener('change', function () { set(p, 'status', sel.value); refresh(); });
+    date.addEventListener('change', function () { set(p, 'followUp', ISO.test(date.value) ? date.value : ''); refresh(); });
+    notes.addEventListener('input', function () { set(p, 'notes', notes.value.slice(0, 5000)); refresh(); });
+
+    var controls = el('div', { class: 'controls' }, [
+      el('label', { class: 'field', for: 'status-' + p.id }, [document.createTextNode('Status'), sel]),
+      el('label', { class: 'field', for: 'follow-' + p.id }, [document.createTextNode('Follow up on'), date])
+    ]);
+
+    var panel = el('div', { class: 'panel' });
+    p.messages.forEach(function (m) { panel.appendChild(messageBlock(m.label, m.text)); });
+    panel.appendChild(messageBlock('Follow up (if there is no reply)', followUpText(p)));
+    panel.appendChild(el('div', null, [el('label', { class: 'block', for: 'notes-' + p.id, text: 'Notes' }), notes]));
+
+    var more = el('details', { class: 'more', id: 'more-' + p.id }, [
+      el('summary', { html: CHEVRON + '<span>Messages and notes</span>' }),
+      panel
+    ]);
+
+    li.appendChild(el('div', { class: 'row-main' }, [el('div', { class: 'who' }, [icon, title]), controls]));
+    li.appendChild(next);
+    li.appendChild(more);
+    li._refresh = refresh;
+    return li;
+  }
+
+  function renderDropped(p) {
+    var panel = el('div', { class: 'panel' });
+    p.messages.forEach(function (m) { panel.appendChild(messageBlock(m.label, m.text)); });
+    return el('li', { class: 'row', id: 'row-' + p.id }, [
+      el('div', { class: 'who' }, [
+        el('span', { html: SVG_OPEN + ICONS.dropped + '</svg>' }),
+        el('div', null, [
+          el('div', null, [el('span', { class: 'name', text: p.name }), document.createTextNode(' '), el('span', { class: 'kind', text: '· ' + p.kind })]),
+          el('div', { class: 'meta', text: p.about }),
+          el('div', { class: 'meta', text: p.reason })
+        ])
+      ]),
+      el('details', { class: 'more' }, [el('summary', { html: CHEVRON + '<span>Message</span>' }), panel])
+    ]);
+  }
+
+  var rows = [];
+  function updateSummary() {
+    var c = { contacted: 0, replied: 0, waiting: 0, todo: 0, due: 0 };
+    var t = today();
+    DATA.people.forEach(function (p) {
+      var s = get(p, 'status');
+      if (s === 'not') c.todo++; else c.contacted++;
+      if (s === 'replied' || s === 'call') c.replied++;
+      if (s === 'sent' || s === 'resend') {
+        c.waiting++;
+        var fu = get(p, 'followUp');
+        if (fu && fu <= t) c.due++;
+      }
+    });
+    document.getElementById('c-contacted').textContent = c.contacted;
+    document.getElementById('c-replied').textContent = c.replied;
+    document.getElementById('c-waiting').textContent = c.waiting;
+    document.getElementById('c-todo').textContent = c.todo;
+    var due = document.getElementById('due-line');
+    due.hidden = !c.due;
+    due.textContent = c.due === 1 ? '1 follow up is due.' : c.due + ' follow ups are due.';
+  }
+
+  function renderAll() {
+    ['contacted', 'next'].forEach(function (g) {
+      var ul = document.getElementById('list-' + g);
+      ul.textContent = '';
+      var group = DATA.people.filter(function (p) { return p.group === g; });
+      group.forEach(function (p) { var r = renderRow(p); rows.push(r); ul.appendChild(r); r._refresh(); });
+      document.getElementById('n-' + g).textContent = group.length;
+    });
+    var dl = document.getElementById('list-dropped');
+    dl.textContent = '';
+    DATA.dropped.forEach(function (p) { dl.appendChild(renderDropped(p)); });
+    document.getElementById('n-dropped').textContent = DATA.dropped.length;
+    updateSummary();
+    document.getElementById('storage-note').hidden = storageOk;
+  }
+
+  var dataStatus = document.getElementById('data-status');
+  function applyImport(text) {
+    var parsed;
+    try { parsed = JSON.parse(text); } catch (e) { dataStatus.textContent = 'That is not valid exported data (JSON could not be read).'; return; }
+    var cleaned = clean(parsed);
+    if (!cleaned || !Object.keys(cleaned).length) { dataStatus.textContent = 'No matching people found in that data. Nothing changed.'; return; }
+    Object.keys(cleaned).forEach(function (id) { saved[id] = Object.assign(saved[id] || {}, cleaned[id]); });
+    save();
+    rows = [];
+    renderAll();
+    dataStatus.textContent = 'Imported ' + Object.keys(cleaned).length + ' people.' + (storageOk ? '' : ' Saving is off in this browser, so export again before you leave.');
+  }
+
+  document.getElementById('export-file').addEventListener('click', function () {
+    var name = 'outreach-tracker-' + today() + '.json';
+    var blob = new Blob([JSON.stringify(exportObj(), null, 2)], { type: 'application/json' });
+    var a = el('a', { href: URL.createObjectURL(blob), download: name });
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+    dataStatus.textContent = 'Saved ' + name + ' to your downloads.';
+  });
+  document.getElementById('export-copy').addEventListener('click', function () {
+    copyText(JSON.stringify(exportObj())).then(function () {
+      dataStatus.textContent = 'Data copied. Paste it into this box on the other device and press Import pasted data.';
+    }, function () {
+      dataStatus.textContent = 'Copy was blocked here. Use Export file instead.';
+    });
+  });
+  document.getElementById('import-apply').addEventListener('click', function () {
+    var text = document.getElementById('import-text').value.trim();
+    if (!text) { dataStatus.textContent = 'Paste exported data into the box first.'; return; }
+    applyImport(text);
+  });
+  document.getElementById('import-file').addEventListener('change', function (ev) {
+    var f = ev.target.files && ev.target.files[0];
+    if (!f) return;
+    if (f.size > 1000000) { dataStatus.textContent = 'That file is too large to be exported data.'; return; }
+    f.text().then(applyImport, function () { dataStatus.textContent = 'The file could not be read.'; });
+    ev.target.value = '';
+  });
+
+  renderAll();
+})();
+</script>
+</body>
+</html>
