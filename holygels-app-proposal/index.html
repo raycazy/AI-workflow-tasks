@@ -69,7 +69,11 @@ a { color: inherit; }
 .qnav a { display: flex; align-items: center; gap: 8px; min-height: 48px; text-decoration: none; font-size: 14px; font-weight: 600; white-space: nowrap; }
 .qnav a.on .num { background: var(--brand-black); color: var(--brand-white); }
 .qnav a.on.plain { text-decoration: underline; text-underline-offset: 4px; }
-@media (max-width: 480px) { .qnav ol { gap: 0; justify-content: space-between; } .qnav .num { display: none; } }
+@media (max-width: 480px) {
+  .qnav ol { gap: 18px; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 40px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 40px), transparent); }
+  .qnav ol.end { -webkit-mask-image: none; mask-image: none; }
+  .qnav .num { display: none; }
+}
 .num { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--brand-pink-active); color: var(--brand-black); font-size: 14px; font-weight: 700; flex: none; }
 .num.lg { width: 44px; height: 44px; font-size: 20px; }
 
@@ -222,6 +226,40 @@ details.more summary:focus-visible { outline: 2px solid var(--brand-accent); out
   .t-changes td:nth-child(3)::before { content: "Later: "; }
 }
 
+/* What changes where */
+.split { display: grid; gap: 12px; margin-bottom: 32px; max-width: 980px; }
+.split > div { display: grid; gap: 8px; align-content: start; padding: 16px; border-radius: var(--brand-radius-card); }
+.split .s-us { background: var(--brand-white); border: 1px solid var(--brand-line); }
+.split .s-team { background: var(--brand-pink-active); border: 1px solid var(--brand-pink-active-border); }
+.split h3 { font-size: 18px; display: flex; align-items: center; gap: 10px; }
+.split p { color: var(--brand-ink-soft); }
+@media (min-width: 700px) { .split { grid-template-columns: 1fr 1fr; } }
+.places { display: grid; gap: 32px; }
+.place { border-top: 2px solid var(--brand-black); padding-top: 16px; }
+.place > h3 { font-size: 22px; display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.place > h3 .ic { width: 24px; height: 24px; }
+.place .when { font-size: 14px; font-weight: 700; color: var(--brand-black); margin-top: 16px; }
+.place .when span { font-weight: 400; color: var(--brand-caption); }
+.chg { display: grid; }
+.chg li { display: grid; gap: 6px; padding: 12px 0; border-bottom: 1px solid var(--brand-line); font-size: 16px; }
+.chg li.note { color: var(--brand-caption); font-size: 14px; }
+.chg b { color: var(--brand-black); }
+.by { justify-self: start; display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 10px; border-radius: var(--brand-radius-pill); line-height: 1.5; }
+.by.us { background: var(--brand-white); color: var(--brand-ink-soft); border: 1px solid var(--brand-line); }
+.place .by.all { margin-top: 8px; font-size: 14px; padding: 4px 12px; }
+.places-side { display: contents; }
+.by.team { background: var(--brand-pink-active); color: var(--brand-black); }
+.by.go { background: var(--brand-white); color: var(--brand-black); border: 1px solid var(--brand-black); }
+@media (min-width: 700px) and (max-width: 1099px) {
+  .places { grid-template-columns: 1fr 1fr; column-gap: 40px; }
+  .place.p-email { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; column-gap: 40px; align-items: start; }
+  .place.p-email > h3, .place.p-email > .by.all { grid-column: 1 / -1; }
+}
+@media (min-width: 1100px) {
+  .places { grid-template-columns: 1fr 1fr; column-gap: 56px; align-items: start; }
+  .places-side { display: grid; gap: 40px; }
+}
+
 /* Steps */
 .timeline { display: grid; max-width: 760px; }
 .timeline li { position: relative; display: grid; grid-template-columns: 44px 1fr; gap: 16px; padding-bottom: 20px; }
@@ -350,13 +388,16 @@ table.hours { width: 100%; max-width: 860px; border-collapse: collapse; border-t
     <symbol id="i-box" viewBox="0 0 24 24"><path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5"/><path d="M12 12l8 -4.5"/><path d="M12 12l0 9"/><path d="M12 12l-8 -4.5"/><path d="M16 5.25l-8 4.5"/></symbol>
     <symbol id="i-lock" viewBox="0 0 24 24"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6z"/><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"/><path d="M8 11v-4a4 4 0 1 1 8 0v4"/></symbol>
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12l14 0"/><path d="M13 18l6 -6"/><path d="M13 6l6 6"/></symbol>
+    <symbol id="i-browser" viewBox="0 0 24 24"><path d="M4 5a1 1 0 0 1 1 -1h14a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-14a1 1 0 0 1 -1 -1z"/><path d="M4 8h16"/><path d="M8 4v4"/></symbol>
+    <symbol id="i-apps" viewBox="0 0 24 24"><path d="M4 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"/><path d="M4 15a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"/><path d="M14 15a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"/><path d="M14 7h6"/><path d="M17 4v6"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="M7 8l-4 4l4 4"/><path d="M17 8l4 4l-4 4"/><path d="M14 4l-4 16"/></symbol>
   </defs>
 </svg>
 
 <header class="top">
   <div class="wrap">
     <img src="assets/holygels-logo.png" alt="Holy Gels" width="182" height="20">
-    <p>Proposal for Holy Gels<br><span class="date">23 Nov 2026</span></p>
+    <p>Proposal for Holy Gels<br><span class="date">23 Nov 2026, updated 24 Nov</span></p>
   </div>
 </header>
 
@@ -364,6 +405,7 @@ table.hours { width: 100%; max-width: 860px; border-collapse: collapse; border-t
   <ol>
     <li><a href="#problem"><span class="num">1</span>Problem</a></li>
     <li><a href="#fixing"><span class="num">2</span>Fixing</a></li>
+    <li><a href="#where" class="plain">Where</a></li>
     <li><a href="#steps"><span class="num">3</span>Steps</a></li>
     <li><a href="#experience"><span class="num">4</span>Experience</a></li>
     <li><a href="#ask" class="plain">Answers</a></li>
@@ -377,14 +419,14 @@ table.hours { width: 100%; max-width: 860px; border-collapse: collapse; border-t
   <div class="wrap">
     <div>
       <h1 id="open-h">Half of the bundle renewals due in the next two weeks hold a design that has sold out.</h1>
-      <p class="lede">We want to extend the small app already on your store so it catches these designs at checkout, swaps them before a renewal charges, and tells the customer.</p>
+      <p class="lede">We want to extend the small app already on your store so it catches these designs at checkout, swaps them before a renewal charges, and lets your emails tell the customer.</p>
     </div>
     <div class="bignum">
       <p class="fig">1,623 <span>of 3,061</span></p>
       <p>bundle renewals due by 5 Dec hold at least one sold out design. <span class="date">As of 21 Nov</span></p>
       <div class="waffle" id="waffle" role="img" aria-label="100 squares, 53 of them pink: 53 percent of renewals due by 5 Dec hold a sold out design"></div>
       <div class="key"><span><b class="on"></b>Holds a sold out design (53%)</span><span><b></b>All in stock</span><span class="muted">Each square is about 31 renewals</span></div>
-      <p class="risk"><strong>Up to about £60,000</strong>, the full value of those renewals. Most will still charge; the risk is a blocked box or an oversold design. <span class="date">As of 21 Nov</span></p>
+      <p class="risk"><strong>Up to about £60,000</strong>, the full value of those renewals. This is an upper bound, not a forecast: a renewal that still holds a sold out design on charge day is held back until it is fixed. <span class="date">As of 21 Nov</span></p>
     </div>
   </div>
 </section>
@@ -413,7 +455,7 @@ table.hours { width: 100%; max-width: 860px; border-collapse: collapse; border-t
         </li>
         <li>
           <h3>Renewals</h3>
-          <p>On charge day Recharge stops the order with an inventory error and tries again every day until the design is back in stock or she changes it. Until then there is no box for her and no revenue for you. Five designs show more ordered than in stock today; we have not confirmed that renewals caused it.</p>
+          <p>On charge day Recharge stops the order with an inventory error and tries again every day until the design is back in stock or she changes it. Until then there is no box for her and no revenue for you. Five designs showed more ordered than in stock on 21 Nov; we have not confirmed that renewals caused it.</p>
           <p class="stat"><strong>470 blocked</strong> on stock from 7 to 20 Nov, worth £17,251; 17 of them are still blocked. <span class="date">As of 21 Nov</span></p>
           <p class="stat">An empty box gets the bundle's default design: <strong>Aloha</strong> on the 2, 3, 4 and 6 Set Bundles, and Aloha is sold out. Refill has no default. <span class="date">Recharge, 23 Nov</span></p>
         </li>
@@ -441,7 +483,7 @@ table.hours { width: 100%; max-width: 860px; border-collapse: collapse; border-t
     <div class="qhead">
       <span class="num lg">2</span>
       <h2 id="q2">What are we fixing?</h2>
-      <p>Two fixes are already live on the site. The app closes what the site cannot reach, and the emails keep the customer in the loop.</p>
+      <p>Two fixes are already live on the site. The app closes what the site cannot reach. Emails your team builds from our instructions keep the customer in the loop.</p>
     </div>
 
     <div class="block">
@@ -456,7 +498,7 @@ table.hours { width: 100%; max-width: 860px; border-collapse: collapse; border-t
 
     <div class="block">
       <h3 class="sub">What the app adds</h3>
-      <p class="why">On 18 Nov we said no app yet. Since then we found orders that skip the site, and that half of the next two weeks' renewals hold a sold out design. So we now propose extending the small app already installed for the checkout timer. Nothing new to install.</p>
+      <p class="why">On 18 Nov we said no app yet. Since then we found orders that skip the site, and that half of the next two weeks' renewals hold a sold out design. So we now propose extending the small app already installed for the checkout timer. Nothing new to install. The app is already on your store; you approve its updated access once.</p>
       <div class="parts">
         <div class="part">
           <span class="letter">A</span>
@@ -472,12 +514,12 @@ table.hours { width: 100%; max-width: 860px; border-collapse: collapse; border-t
         </div>
         <div class="part">
           <span class="letter">C</span>
-          <h3>Customer emails <span class="where">Klaviyo, when the app swaps</span></h3>
-          <p>She hears before the charge: old design, new design, a link to change it. Later, a back in stock email when her design returns.</p>
+          <h3>Customer emails <span class="where">Klaviyo, built by your email team</span></h3>
+          <p>Each email starts from events (messages the app sends to Klaviyo), and your email team builds the emails from our instructions. She hears before the charge: old design, new design, a link to change it. Later, a back in stock email when her design returns.</p>
         </div>
         <div class="part">
           <span class="letter">D</span>
-          <h3>Daily summary <span class="where">Your team's inbox</span></h3>
+          <h3>Daily summary <span class="where">Your team's inbox, built by us</span></h3>
           <p>Each morning: swaps made, renewals that need a person, designs to restock first.</p>
         </div>
       </div>
@@ -502,8 +544,9 @@ table.hours { width: 100%; max-width: 860px; border-collapse: collapse; border-t
           <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><p>Nails stay nails, toes stay toes.</p></li>
           <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><p>Only designs that bundle allows.</p></li>
           <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><p>Picks spread out and checked against units left.</p></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><p>Never overwrites a change she or your team made: the app checks her box again just before each swap.</p></li>
         </ul>
-        <div class="match"><strong>97%</strong>of affected subscriptions (1,582 of 1,637) share a tag, almost always a colour, with an in stock design. Stock and bundle limits are checked before any swap, so some will still go to your team. <span class="date">As of 21 Nov</span></div>
+        <div class="match"><strong>97%</strong>of affected subscriptions (1,582 of 1,637) share a tag (a label such as a colour) with an in stock design; almost always it is a colour. Stock and bundle limits are checked before any swap, so some will still go to your team. <span class="date">As of 21 Nov</span></div>
       </div>
     </div>
 
@@ -517,19 +560,20 @@ table.hours { width: 100%; max-width: 860px; border-collapse: collapse; border-t
           <li><svg class="ic" aria-hidden="true"><use href="#i-card"/></svg><p>Card failures get Recharge's payment recovery emails. If every retry fails, Recharge cancels her and Klaviyo's cancellation emails go out.</p></li>
           <li><svg class="ic" aria-hidden="true"><use href="#i-ban"/></svg><p>Nothing confirms a design change.</p></li>
         </ul>
-        <p class="ok">We can improve these emails now, before the app. <span class="date">Recharge and Klaviyo, read 23 Nov</span></p>
+        <p class="ok">These emails can improve now, before the app. <span class="date">Recharge and Klaviyo, read 23 Nov</span></p>
       </div>
+      <p class="subp">Your email team builds each change below in Klaviyo and Recharge, from our written instructions.</p>
       <div class="nl-head"><span>Email change</span><span>Now</span><span>Later, with the app</span></div>
       <ol class="nl">
-        <li><h4>Recharge's out of stock email</h4><p><b>Now: </b>rewrite it in Recharge to drop the "bestseller" promise. It already names her sold out design.</p><p><b>Later: </b>the app swaps first, so it rarely needs to go out.</p></li>
-        <li><h4>1. Sold out alert</h4><p><b>Now: </b>a version of the billing reminder that names the sold out design and asks her to pick a new one.</p><p><b>Later: </b>"We swapped your sold out design", sent at the swap.</p></li>
+        <li><h4>Recharge's out of stock email</h4><p><b>Now: </b>rewrite it in Recharge: drop the "bestseller" promise and say "Pick a new design so we can send your box." It already names her sold out design.</p><p><b>Later: </b>the app swaps first, so it rarely needs to go out.</p></li>
+        <li><h4>1. Sold out alert</h4><p><b>Now: </b>sent in place of her usual billing reminder for that box: it names the sold out design, asks her to pick a new one and keeps her reward line.</p><p><b>Later: </b>"We swapped your sold out design", sent at the swap.</p></li>
         <li><h4>2. Reminder if she does nothing</h4><p><b>Now: </b>a nudge a day before the charge.</p><p><b>Later: </b>only when the app finds no match.</p></li>
         <li><h4>3. Show her box</h4><p><b>Now: </b>her designs, with pictures, in every billing reminder (today it changes only with her order count).</p><p><b>Later: </b>plus one line naming the swap.</p></li>
         <li><h4>4. Confirm her change</h4><p><b>Now: </b>"Your new designs are saved".</p><p><b>Later: </b>skipped after a swap email, so one email, not two.</p></li>
         <li><h4>5. Back in stock</h4><p><b>Now: </b>not possible yet.</p><p><b>Later: </b>"Aloha is back. Add it to your next box?"</p></li>
       </ol>
       <details class="more">
-        <summary>See the email detail (for your team)</summary>
+        <summary>See the email detail (for your email team)</summary>
         <div class="more-in">
           <div>
             <h4>The emails today</h4>
@@ -550,11 +594,12 @@ table.hours { width: 100%; max-width: 860px; border-collapse: collapse; border-t
           </div>
           <div>
             <h4>The five email changes in full</h4>
+            <p class="muted" style="margin-bottom:8px">Your email team builds these from our instructions. Later, the app sends the events they need.</p>
             <table class="t-changes">
               <thead><tr><th>Change</th><th>Now</th><th>Later, with the app</th></tr></thead>
               <tbody>
-                <tr><td>Recharge's out of stock email</td><td>In Recharge: drop the line that a bestseller may be sent. The email already names the sold out design and asks her to pick a new one.</td><td>The app swaps a sold out design before the charge, so this email rarely needs to go out.</td></tr>
-                <tr><td>1. Sold out alert</td><td>A separate version of the Upcoming Billing email for boxes with a sold out design: "One of your designs sold out", showing each design and asking her to pick a new one before the charge date.</td><td>"We swapped your sold out design", sent the moment the app swaps it, old design next to new, with a link to change it.</td></tr>
+                <tr><td>Recharge's out of stock email</td><td>In Recharge: drop the line that a bestseller may be sent and put "Pick a new design so we can send your box." in its place. The email already names the sold out design and asks her to pick a new one.</td><td>The app swaps a sold out design before the charge, so this email rarely needs to go out.</td></tr>
+                <tr><td>1. Sold out alert</td><td>A separate version of the Upcoming Billing email for boxes with a sold out design, sent in place of her usual reminder for that box: "One of your designs sold out", showing each design and asking her to pick a new one before the charge date. It keeps the reward line from her usual reminder (the £3, £5 or £10 off, or the gift).</td><td>"We swapped your sold out design", sent the moment the app swaps it, old design next to new, with a link to change it.</td></tr>
                 <tr><td>2. Reminder</td><td>About a day before the charge, only if she has not changed her designs: "Your box is charged tomorrow and still has a sold out design."</td><td>Only when the app finds no match: "We couldn't swap your design". The one case where she has to act.</td></tr>
                 <tr><td>3. Show the box</td><td>An "In your next box" block on all eight Upcoming Billing emails, which today change only with her order count.</td><td>The same block, plus "Includes Something Blue in place of Aloha, which sold out."</td></tr>
                 <tr><td>4. Confirm the change</td><td>"Your new designs are saved" after she changes her picks following the alert.</td><td>Skipped when the swap email went out the day before.</td></tr>
@@ -564,6 +609,79 @@ table.hours { width: 100%; max-width: 860px; border-collapse: collapse; border-t
           </div>
         </div>
       </details>
+    </div>
+  </div>
+</section>
+
+<!-- What changes where -->
+<section class="band grey" id="where" aria-labelledby="where-h">
+  <div class="wrap">
+    <div class="qhead plain">
+      <span class="pill">In detail</span>
+      <h2 id="where-h">What changes where</h2>
+      <p>Three places change: your emails, your website, and Recharge and your other apps. Each line says who does it.</p>
+    </div>
+
+    <div class="split">
+      <div class="s-us">
+        <h3><svg class="ic" aria-hidden="true"><use href="#i-code"/></svg>Us</h3>
+        <p>All the development: the app, its checkout rule, the daily job, the events it sends to Klaviyo and the daily summary. Plus written instructions for every email.</p>
+      </div>
+      <div class="s-team">
+        <h3><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Your email team</h3>
+        <p>Builds and sends every customer email in Klaviyo and Recharge, from our instructions. We answer their questions and check their test sends against the instructions.</p>
+      </div>
+    </div>
+
+    <div class="places">
+      <div class="place p-email">
+        <h3><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Email</h3>
+        <p class="by team all">Your email team builds all of these from our instructions.</p>
+        <div>
+          <p class="when">Now <span>before the app</span></p>
+          <ul class="chg">
+            <li><p><b>Recharge's out of stock email</b> (Recharge notifications): remove the line that a bestseller may be sent, and put "Pick a new design so we can send your box." in its place.</p></li>
+            <li><p><b>Sold out alert:</b> in the Klaviyo flow MP Upcoming Billing, a split on the sold out marker Recharge already sends. A box with a sold out design gets a new email, "One of your designs sold out", in place of her usual billing reminder for that box: her designs with the sold out one marked, the charge date, a link to pick a new design, and the reward line from her usual reminder (the £3, £5 or £10 off, or the gift).</p></li>
+            <li><p><b>Reminder:</b> in the same flow, about a day before the charge, only for customers who have not changed their designs since the alert.</p></li>
+            <li><p><b>"In your next box":</b> one block with her designs and their pictures, added to all eight versions of the Upcoming Billing email.</p></li>
+            <li><p><b>Confirmation:</b> a new one email flow on Recharge's "Bundle Selection updated" event, "Your new designs are saved", only for customers who got the sold out alert in the last 3 days.</p></li>
+            <li><p><b>Keep the draft flow MP Recharge OOS switched off.</b> The sold out alert replaces it.</p></li>
+          </ul>
+        </div>
+        <div>
+          <p class="when">Later <span>with the app: the app sends the events, your team builds the emails</span></p>
+          <ul class="chg">
+            <li><p><b>"We swapped your sold out design"</b> replaces the sold out alert.</p></li>
+            <li><p><b>"We couldn't swap your design"</b> replaces the reminder.</p></li>
+            <li><p><b>One line in the "In your next box" block</b> naming the swap.</p></li>
+            <li><p><b>The confirmation</b> skips anyone who got the swap email in the last day.</p></li>
+            <li><p><b>"Your design is back"</b> to subscribers who lost it, on the app's back in stock event.</p></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="places-side">
+      <div class="place">
+        <h3><svg class="ic" aria-hidden="true"><use href="#i-browser"/></svg>Website (Shopify)</h3>
+        <ul class="chg">
+          <li><p><b>Live since 19 Nov:</b> sold out designs cannot be picked, a cart holding one is stopped before checkout, and refill orders split correctly.</p><span class="by us">Us, done</span></li>
+          <li><p><b>New: a checkout rule</b> in a new version of the app already installed for the checkout timer (HG Checkout Timer). It stops an order with a sold out design at payment, including Shop Pay, Apple Pay and checkout email links, using a sold out list the app keeps up to date. Switched on in Shopify's checkout settings on your go. Nothing new to install. The app is already on your store; you approve its updated access once.</p><span class="by us">Us</span></li>
+          <li class="note"><p>No other change to the theme or the store pages.</p></li>
+        </ul>
+      </div>
+
+      <div class="place">
+        <h3><svg class="ic" aria-hidden="true"><use href="#i-apps"/></svg>Recharge and other apps</h3>
+        <ul class="chg">
+          <li><p><b>Recharge, through its API, with your approval:</b> the app reads upcoming renewals daily and, on your go, swaps a sold out design on a subscription for an in stock one using your rule. Every swap is logged. It needs a Recharge API key (a login for the app) with access to update subscriptions and to read charges, customers and products. We send you the exact list.</p><span class="by us">Us</span></li>
+          <li><p><b>Recharge settings:</b> change the default design on the 2, 3, 4 and 6 Set Bundles from Aloha, which is sold out, to designs in stock. Recharge uses the default when a box is empty.</p><span class="by go">Your team or us, on your go</span></li>
+          <li><p><b>Klaviyo:</b> the app sends three new events (design swapped, couldn't swap, swapped design back in stock) with the details the emails need. No change to Klaviyo settings, lists or other flows beyond the email changes listed.</p><span class="by us">Us</span></li>
+          <li><p><b>Daily summary:</b> each morning the app emails your team the swaps made, the renewals that need a person and the designs to restock first.</p><span class="by us">Us</span></li>
+          <li><p><b>Hosting:</b> a small server runs the daily job; its cost is confirmed separately.</p><span class="by us">Us</span></li>
+          <li class="note"><p>Unchanged in Recharge: retries, payment recovery emails, cancellations and all other notifications.</p></li>
+        </ul>
+      </div>
+      </div>
     </div>
   </div>
 </section>
@@ -578,12 +696,12 @@ table.hours { width: 100%; max-width: 860px; border-collapse: collapse; border-t
     </div>
     <ol class="timeline">
       <li><span class="num lg">1</span><div><h3>Dry run report <span class="who">We do this</span></h3><p>The app lists which designs it would swap, and to what. Read only: nothing on any subscription changes.</p></div></li>
-      <li><span class="num lg">2</span><div><h3>You pick the rule and approve the emails <span class="who you">Your decision</span></h3></div></li>
+      <li><span class="num lg">2</span><div><h3>You pick the rule; we send the email instructions <span class="who you">Your decision</span></h3><p>Your email team builds the emails from our instructions, and you approve them.</p></div></li>
       <li><span class="num lg">3</span><div><h3>Checkout rule goes live <span class="who">After your go</span></h3><p>Tested on express checkouts and checkout email links first.</p></div></li>
-      <li><span class="num lg">4</span><div><h3>Renewal swap goes live, with the customer emails <span class="who">After your go</span></h3></div></li>
-      <li><span class="num lg">5</span><div><h3>Daily summary to your team <span class="who">After your go</span></h3><p>Later: the back in stock email.</p></div></li>
+      <li><span class="num lg">4</span><div><h3>Renewal swap goes live <span class="who">After your go</span></h3><p>The app sends the events, and the swap emails your team built go out from them.</p></div></li>
+      <li><span class="num lg">5</span><div><h3>Daily summary to your team <span class="who">After your go</span></h3><p>Later: the back in stock event, for the email your team builds.</p></div></li>
     </ol>
-    <p class="promise"><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg><span>Nothing on a subscription changes until you have seen the dry run and said yes. The "now" email changes can start sooner, with your approval.</span></p>
+    <p class="promise"><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg><span>Nothing on a subscription changes until you have seen the dry run and said yes. Your email team can start the "now" email changes sooner, once you approve our instructions.</span></p>
   </div>
 </section>
 
@@ -723,13 +841,16 @@ table.hours { width: 100%; max-width: 860px; border-collapse: collapse; border-t
   <div class="wrap">
     <div class="qhead plain">
       <h2 id="ask-h">What we need from you</h2>
-      <p>Four answers, and we start the dry run.</p>
+      <p>Six answers and a Recharge key, and we start the dry run.</p>
     </div>
     <ul class="ask">
       <li><h3>Which swap rule?</h3><p>One rule, or an order of two, for example closest colour first, then most stock.</p></li>
-      <li><h3>Do the email wordings work for you?</h3><p>We send you drafts after the dry run.</p></li>
+      <li><h3>Who on your email team gets the instructions?</h3><p>One name is enough. We send them the instructions and answer their questions.</p></li>
+      <li><h3>Does the email wording work for you?</h3><p>Our instructions carry the suggested wording; you approve it before your team builds.</p></li>
       <li><h3>Who gets the daily summary, and what replaces a design with no match?</h3><p>For example White French Tip Toes, which has no colour match in stock.</p></li>
-      <li><h3>Can customers turn off automatic swaps?</h3><p>If yes, they get the "pick a new design" email instead.</p></li>
+      <li><h3>Can customers turn off automatic swaps?</h3><p>If yes, we add a way for her to turn it off, and the emails link to it. She then gets the "We couldn't swap your design" email instead.</p></li>
+      <li><h3>Which in stock designs should replace Aloha as the default, and should your team or we change it?</h3><p>Recharge uses the default when a box is empty, and Aloha is sold out.</p></li>
+      <li><h3>A Recharge API key</h3><p>A Recharge API key with access to update subscriptions and to read charges, customers and products. We send you the exact list. The dry run only reads; nothing on a subscription changes until you say yes.</p></li>
     </ul>
   </div>
 </section>
@@ -739,21 +860,21 @@ table.hours { width: 100%; max-width: 860px; border-collapse: collapse; border-t
   <div class="wrap">
     <div class="qhead plain">
       <h2 id="hours-h">Hours</h2>
-      <p>Our estimate per step, as ranges.</p>
+      <p>Our estimate per step, as ranges: development plus the email instructions.</p>
     </div>
     <table class="hours">
       <thead><tr><th>Step</th><th>What it covers</th><th>Hours</th></tr></thead>
       <tbody>
         <tr><td>1. Dry run report</td><td>A read only pass over upcoming renewals: every sold out design and what each swap rule would pick, with a summary for you.</td><td>4 to 6</td></tr>
-        <tr><td>2. Email changes now</td><td>Rewrite of Recharge's out of stock email, the sold out alert version of the billing reminder, the reminder, the "In your next box" block and the confirmation. Drafts for your approval, then live on your go.</td><td>9 to 13</td></tr>
+        <tr><td>2. Email instructions for your team</td><td>Written instructions for every email change, now and later, plus answering your email team's questions and checking their test sends against the instructions.</td><td>4 to 6</td></tr>
         <tr><td>3. Checkout rule</td><td>The rule inside the existing app that stops a sold out design at payment, a sold out list kept up to date, and tests on express checkouts and checkout email links.</td><td>6 to 10</td></tr>
-        <tr><td>4. Renewal swap and its emails</td><td>The daily job that reads renewals, checks stock, applies your rule, updates the subscription and logs every swap, plus the swap and "couldn't swap" emails.</td><td>16 to 22</td></tr>
-        <tr><td>5. Daily summary and back in stock</td><td>The morning summary for your team, and the back in stock email for subscribers who lost a design.</td><td>4 to 6</td></tr>
+        <tr><td>4. Renewal swap and the events for its emails</td><td>The daily job that reads renewals, checks stock, applies your rule, updates the subscription and logs every swap, plus the events the swap emails need.</td><td>13 to 18</td></tr>
+        <tr><td>5. Daily summary and the back in stock event</td><td>The morning summary for your team, and the event your team's back in stock email starts from.</td><td>3 to 4</td></tr>
         <tr><td>Checks and first week</td><td>Testing before each step goes live, live checks, and a first week of watching and fixes.</td><td>4 to 6</td></tr>
       </tbody>
-      <tfoot><tr><td>Total</td><td></td><td>43 to 63</td></tr></tfoot>
+      <tfoot><tr><td>Total</td><td></td><td>34 to 50</td></tr></tfoot>
     </table>
-    <p class="hnote">Not included: copy changes after the drafts beyond one round; new email designs beyond the current Holy Gels email style; hosting for the daily job, quoted separately.</p>
+    <p class="hnote">Not included: building the emails in Klaviyo and Recharge (your email team, from our instructions); hosting.</p>
   </div>
 </section>
 
@@ -769,7 +890,7 @@ table.hours { width: 100%; max-width: 860px; border-collapse: collapse; border-t
       <li><span>Email: your Klaviyo account, 22 Oct to 23 Nov 2026, read only. Recharge notifications and bundle settings, read 23 Nov 2026. Recharge SMS (Concierge), payment recovery settings and order processing settings could not be opened.</span></li>
       <li><span>Mock screens are samples; their wording and counts are examples.</span></li>
     </ul>
-    <p class="date">Prepared 23 Nov 2026 for Holy Gels</p>
+    <p class="date">Prepared 23 Nov 2026, updated 24 Nov 2026 for Holy Gels</p>
   </div>
 </footer>
 
@@ -792,7 +913,7 @@ table.hours { width: 100%; max-width: 860px; border-collapse: collapse; border-t
     });
   });
   var links = document.querySelectorAll('.qnav a');
-  var ids = ['problem', 'fixing', 'steps', 'experience', 'ask', 'hours'];
+  var ids = ['problem', 'fixing', 'where', 'steps', 'experience', 'ask', 'hours'];
   var ticking = false;
   function mark() {
     ticking = false;
@@ -803,8 +924,26 @@ table.hours { width: 100%; max-width: 860px; border-collapse: collapse; border-t
       var r = el.getBoundingClientRect();
       if (r.top <= line && r.bottom > line) current = id;
     });
-    links.forEach(function (a) { a.classList.toggle('on', a.getAttribute('href') === '#' + current); });
+    links.forEach(function (a) {
+      var on = a.getAttribute('href') === '#' + current;
+      a.classList.toggle('on', on);
+      if (on && a !== shown) {
+        shown = a;
+        var ol = a.closest('ol');
+        if (ol && ol.scrollWidth > ol.clientWidth) {
+          var left = a.offsetLeft - ol.offsetLeft, right = left + a.offsetWidth;
+          if (left < ol.scrollLeft + 24) ol.scrollLeft = Math.max(0, left - 24);
+          else if (right > ol.scrollLeft + ol.clientWidth - 24) ol.scrollLeft = right - ol.clientWidth + 24;
+        }
+      }
+    });
   }
+  var shown = null;
+  var navList = document.querySelector('.qnav ol');
+  function navEnd() {
+    if (navList) navList.classList.toggle('end', navList.scrollLeft + navList.clientWidth >= navList.scrollWidth - 2);
+  }
+  if (navList) { navList.addEventListener('scroll', navEnd, { passive: true }); window.addEventListener('resize', navEnd); navEnd(); }
   window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(mark); } }, { passive: true });
   mark();
 })();
