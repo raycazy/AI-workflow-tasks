@@ -221,10 +221,7 @@ details.more summary:focus-visible { outline: 2px solid var(--brand-accent); out
   .more-in td + td::before { font-weight: 600; color: var(--brand-black); }
   .t-flows td:nth-child(2)::before { content: "Starts when: "; }
   .t-flows td:nth-child(3)::before { content: "What she gets: "; }
-  .t-flows td:nth-child(4)::before { content: "Shows her box? "; }
-  .t-changes td:nth-child(2)::before { content: "Now: "; }
-  .t-changes td:nth-child(3)::before { content: "Later: "; }
-}
+  .t-flows td:nth-child(4)::before { content: "Shows her box? "; }}
 
 /* What changes where */
 .split { display: grid; gap: 12px; margin-bottom: 32px; max-width: 980px; }
@@ -259,6 +256,115 @@ details.more summary:focus-visible { outline: 2px solid var(--brand-accent); out
   .places { grid-template-columns: 1fr 1fr; column-gap: 56px; align-items: start; }
   .places-side { display: grid; gap: 40px; }
 }
+
+/* Email previews. Plum, pink and the hero photo are taken from the live Billing Reminder: Order 2 email */
+#emails { --em-plum: #360424; --em-pink: #F6D6DE; --em-row-pink: #FBE4EC; --em-display: 'Futura', 'Century Gothic', 'Avenir Next', var(--brand-font-main); }
+.emnote { font-size: 14px; color: var(--brand-ink-soft); max-width: 70ch; margin-bottom: 20px; }
+.emjump { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 12px; }
+.emjump b { font-size: 12px; font-weight: 700; color: var(--brand-caption); text-transform: uppercase; letter-spacing: 0.04em; margin-right: 4px; }
+.emjump a { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 12px; border: 1px solid var(--brand-line); border-radius: var(--brand-radius-pill); background: var(--brand-white); text-decoration: none; font-size: 14px; font-weight: 600; }
+.emjump a span { color: var(--brand-caption); font-variant-numeric: tabular-nums; }
+.emjump a:focus-visible { outline: 2px solid var(--brand-accent); outline-offset: 2px; }
+.emjump + .emjump { margin-bottom: 20px; }
+.emkey { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 14px; color: var(--brand-ink-soft); margin-bottom: 36px; }
+.emkey span { display: inline-flex; align-items: center; gap: 8px; }
+.emkey i { width: 20px; height: 14px; border: 2px dashed var(--brand-accent); border-radius: 2px; }
+.emkey i.k { border-color: var(--brand-caption); }
+.em { border-top: 2px solid var(--brand-black); padding-top: 20px; scroll-margin-top: 64px; }
+.em + .em { margin-top: 56px; }
+.em-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-bottom: 16px; }
+.em-head h3 { font-size: 22px; }
+.stage { font-size: 12px; font-weight: 600; padding: 2px 10px; border-radius: var(--brand-radius-pill); background: var(--brand-ground-grey); color: var(--brand-ink-soft); }
+.stage.later { background: var(--brand-white); border: 1px solid var(--brand-black); color: var(--brand-black); }
+.em-seg { margin-bottom: 12px; }
+.em-row { display: grid; gap: 20px; }
+.em-mocks { display: grid; gap: 24px; align-items: start; }
+.em-col { display: grid; gap: 8px; align-content: start; min-width: 0; }
+.em-col > .cap { font-size: 14px; font-weight: 700; color: var(--brand-black); }
+.em-col > .small { max-width: 375px; }
+@media (max-width: 1099px) {
+  .em-mocks[data-show="new"] .em-col.today, .em-mocks[data-show="today"] .em-col.new { display: none; }
+  .em-col { max-width: 375px; }
+}
+@media (min-width: 760px) and (max-width: 1099px) { .em-row { grid-template-columns: 375px 1fr; column-gap: 28px; align-items: start; } }
+@media (min-width: 1100px) {
+  .seg.em-seg { display: none; }
+  .em-mocks { grid-template-columns: repeat(2, 375px); }
+  .em-mocks.one { grid-template-columns: 375px; }
+  .em-row:has(> .em-mocks.one) { grid-template-columns: 375px 1fr; column-gap: 32px; align-items: start; }
+  .em-row > div:last-child { max-width: 774px; }
+}
+@media (min-width: 1200px) { .em-row { grid-template-columns: auto 1fr; column-gap: 32px; align-items: start; } }
+.mail { border: 1px solid var(--brand-tier-border); border-radius: var(--brand-radius-media); overflow: hidden; background: var(--brand-white); font-size: 14px; line-height: 1.45; }
+.mail-bar { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 6px 12px; background: var(--brand-ground-grey); border-bottom: 1px solid var(--brand-line); font-size: 12px; color: var(--brand-ink-soft); }
+.mail-bar span { display: inline-flex; align-items: center; gap: 6px; }
+.mail-bar .ic { width: 14px; height: 14px; }
+.mail-subj { display: grid; gap: 2px; padding: 10px 14px; border-bottom: 1px solid var(--brand-line); }
+.mail-subj span { font-size: 12px; color: var(--brand-caption); }
+.mail-subj b { color: var(--brand-black); }
+.mail img { width: 100%; height: auto; }
+.m-crop { height: 230px; overflow: hidden; }
+.m-crop.sm { height: 150px; }
+.m-crop img { width: 100%; height: auto; }
+.m-hero { display: grid; justify-items: center; align-content: start; gap: 8px; padding: 24px 20px 262px; color: var(--brand-white); text-align: center;
+  background: linear-gradient(180deg, #1D080C 0, #1D080C calc(100% - 280px), rgba(29, 8, 12, 0) calc(100% - 200px)) 0 0 / 100% 100% no-repeat, url(assets/email/order2-hero-photo.jpg) center bottom / 100% auto no-repeat, #1D080C; }
+.m-hero .m-logo { width: auto; height: 26px; filter: invert(1); }
+.m-hero h4 { color: var(--brand-white); font-family: var(--em-display); font-size: 28px; font-weight: 400; line-height: 1.12; letter-spacing: 0; }
+.m-hero p { color: #F2E6EC; font-size: 14px; }
+.m-hero .mk-tag { justify-self: center; }
+.m-season { position: relative; height: 31px; background: url(assets/email/order2-hero.jpg) 0 0 / 100% auto no-repeat; }
+.m-season.mk .mk-tag { position: absolute; top: 4px; right: 6px; }
+.m-rows { display: grid; }
+.m-rows.mk { padding-top: 36px; background: var(--brand-white); }
+.m-rows.mk > .mk-tag { position: absolute; top: 8px; left: 8px; }
+.m-row.mk { padding-top: 36px; }
+.m-row.mk > .mk-tag { position: absolute; top: 8px; left: 8px; }
+.m-rows > img { display: block; }
+.m-row { display: grid; grid-template-columns: 50px 1fr 30px; align-items: center; gap: 14px; padding: 12px 22px; background: var(--brand-white); border-bottom: 1px solid #F1E4E9; }
+.m-row .ico { display: grid; place-items: center; width: 50px; height: 50px; border-radius: 50%; background: var(--em-row-pink); color: var(--brand-accent); }
+.m-row .ico .ic { width: 24px; height: 24px; }
+.m-row b { display: block; font-family: var(--em-display); font-size: 16px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--brand-black); }
+.m-row small { display: block; font-size: 12px; color: var(--brand-ink-soft); }
+.m-row .go { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--brand-accent); color: var(--brand-white); }
+.m-row .go .ic { width: 14px; height: 14px; stroke-width: 2.5; }
+.m-sec { display: grid; gap: 12px; padding: 18px 20px; }
+.m-sec.pink { background: var(--em-pink); }
+.m-sec h5 { margin: 0; font-family: var(--em-display); font-size: 22px; font-weight: 500; text-align: center; color: var(--brand-black); letter-spacing: -0.01em; }
+.m-plain { display: grid; gap: 12px; padding: 20px; }
+.m-plain .m-logo { width: auto; height: 18px; justify-self: center; }
+.m-btn { display: block; padding: 12px; text-align: center; background: var(--brand-black); color: var(--brand-white); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+.m-btn.ghost { background: var(--brand-white); color: var(--brand-black); border: 1px solid var(--brand-black); }
+.slot .ph { position: relative; display: block; }
+.slot.out img { opacity: 0.7; }
+.slot .sold { position: absolute; top: 4px; left: 4px; font-size: 12px; font-weight: 700; line-height: 1.4; padding: 1px 6px; border-radius: var(--brand-radius-pill); background: var(--brand-accent); color: var(--brand-black); }
+.slot.out .nm { color: var(--brand-caption); text-decoration: line-through; }
+details.later { margin-top: 56px; border: 1px solid var(--brand-line); border-radius: var(--brand-radius-card); background: var(--brand-panel); }
+details.later > summary { display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 12px 20px; cursor: pointer; list-style: none; font-size: 20px; font-weight: 700; color: var(--brand-black); }
+details.later > summary::-webkit-details-marker { display: none; }
+details.later > summary span { font-size: 14px; font-weight: 600; color: var(--brand-caption); }
+details.later > summary .ic { margin-left: auto; transition: transform 0.2s ease; }
+details.later[open] > summary .ic { transform: rotate(90deg); }
+details.later > summary:focus-visible { outline: 2px solid var(--brand-accent); outline-offset: 2px; }
+.later-in { padding: 0 20px 28px; }
+.later-in .em:first-child { margin-top: 4px; }
+@media (prefers-reduced-motion: reduce) { details.later > summary .ic { transition: none; } }
+.m-big { width: 160px; justify-self: center; border-radius: 8px; }
+.mk { position: relative; outline: 2px dashed var(--brand-accent); outline-offset: -2px; }
+.mk.keep { outline-color: var(--brand-caption); }
+.mk-tag { justify-self: start; display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: var(--brand-radius-pill); background: var(--brand-accent); color: var(--brand-black); line-height: 1.5; }
+.mk.keep > .mk-tag { background: var(--brand-ink-soft); color: var(--brand-white); }
+.m-hero .mk-tag { justify-self: center; }
+.mk.img { padding-top: 36px; background: var(--em-pink); }
+.mk.img .mk-tag { position: absolute; top: 8px; left: 8px; }
+.mk.gone p { text-decoration: line-through; color: var(--brand-caption); }
+.mk.inline { display: grid; gap: 6px; padding: 8px; }
+.how-h { font-size: 14px; font-weight: 700; color: var(--brand-black); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+.how-h .ic { width: 18px; height: 18px; }
+.how { margin: 0; border-top: 1px solid var(--brand-line); font-size: 14px; }
+.how > div { display: grid; gap: 2px; padding: 10px 0; border-bottom: 1px solid var(--brand-line); }
+.how dt { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--brand-black); }
+.how dd { margin: 0; color: var(--brand-ink-soft); overflow-wrap: anywhere; }
+.how code { font-size: 12px; padding: 1px 4px; border-radius: 2px; background: var(--brand-ground-grey); color: var(--brand-black); overflow-wrap: anywhere; }
 
 /* Steps */
 .timeline { display: grid; max-width: 760px; }
@@ -390,6 +496,7 @@ table.hours { width: 100%; max-width: 860px; border-collapse: collapse; border-t
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12l14 0"/><path d="M13 18l6 -6"/><path d="M13 6l6 6"/></symbol>
     <symbol id="i-browser" viewBox="0 0 24 24"><path d="M4 5a1 1 0 0 1 1 -1h14a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-14a1 1 0 0 1 -1 -1z"/><path d="M4 8h16"/><path d="M8 4v4"/></symbol>
     <symbol id="i-apps" viewBox="0 0 24 24"><path d="M4 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"/><path d="M4 15a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"/><path d="M14 15a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"/><path d="M14 7h6"/><path d="M17 4v6"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 6l6 6l-6 6"/></symbol>
     <symbol id="i-code" viewBox="0 0 24 24"><path d="M7 8l-4 4l4 4"/><path d="M17 8l4 4l-4 4"/><path d="M14 4l-4 16"/></symbol>
   </defs>
 </svg>
@@ -406,6 +513,7 @@ table.hours { width: 100%; max-width: 860px; border-collapse: collapse; border-t
     <li><a href="#problem"><span class="num">1</span>Problem</a></li>
     <li><a href="#fixing"><span class="num">2</span>Fixing</a></li>
     <li><a href="#where" class="plain">Where</a></li>
+    <li><a href="#emails" class="plain">Emails</a></li>
     <li><a href="#steps"><span class="num">3</span>Steps</a></li>
     <li><a href="#experience"><span class="num">4</span>Experience</a></li>
     <li><a href="#ask" class="plain">Answers</a></li>
@@ -504,7 +612,7 @@ table.hours { width: 100%; max-width: 860px; border-collapse: collapse; border-t
           <span class="letter">A</span>
           <h3>Checkout rule <span class="where">Shopify checkout</span></h3>
           <span class="gap">Closes: orders that skip the site</span>
-          <p>Built to stop an order with a sold out design at payment, including express checkouts like Shop Pay and Apple Pay, and links in checkout emails. We test each before it goes live.</p>
+          <p>Built to stop an order with a sold out design at payment, including express checkouts like Shop Pay and Apple Pay, and links in checkout emails. We test the checkout rule on Shop Pay, Apple Pay and checkout email links before it goes live.</p>
         </div>
         <div class="part">
           <span class="letter">B</span>
@@ -519,7 +627,7 @@ table.hours { width: 100%; max-width: 860px; border-collapse: collapse; border-t
         </div>
         <div class="part">
           <span class="letter">D</span>
-          <h3>Daily summary <span class="where">Your team's inbox, built by us</span></h3>
+          <h3>Daily summary <span class="where">Your team's inbox, sent by the app</span></h3>
           <p>Each morning: swaps made, renewals that need a person, designs to restock first.</p>
         </div>
       </div>
@@ -593,19 +701,8 @@ table.hours { width: 100%; max-width: 860px; border-collapse: collapse; border-t
             <p class="muted" style="margin-top:8px">37% of the upcoming order notices Recharge sent to Klaviyo (22 Oct to 21 Nov) already marked a sold out design. Each notice also lists her designs, their pictures and their stock, but no email uses them. No Klaviyo email goes out when a charge fails, when her designs change or when a design is swapped, except the cancellation emails once Recharge gives up on the payment. Recharge sends nothing when her designs change either.</p>
           </div>
           <div>
-            <h4>The five email changes in full</h4>
-            <p class="muted" style="margin-bottom:8px">Your email team builds these from our instructions. Later, the app sends the events they need.</p>
-            <table class="t-changes">
-              <thead><tr><th>Change</th><th>Now</th><th>Later, with the app</th></tr></thead>
-              <tbody>
-                <tr><td>Recharge's out of stock email</td><td>In Recharge: drop the line that a bestseller may be sent and put "Pick a new design so we can send your box." in its place. The email already names the sold out design and asks her to pick a new one.</td><td>The app swaps a sold out design before the charge, so this email rarely needs to go out.</td></tr>
-                <tr><td>1. Sold out alert</td><td>A separate version of the Upcoming Billing email for boxes with a sold out design, sent in place of her usual reminder for that box: "One of your designs sold out", showing each design and asking her to pick a new one before the charge date. It keeps the reward line from her usual reminder (the £3, £5 or £10 off, or the gift).</td><td>"We swapped your sold out design", sent the moment the app swaps it, old design next to new, with a link to change it.</td></tr>
-                <tr><td>2. Reminder</td><td>About a day before the charge, only if she has not changed her designs: "Your box is charged tomorrow and still has a sold out design."</td><td>Only when the app finds no match: "We couldn't swap your design". The one case where she has to act.</td></tr>
-                <tr><td>3. Show the box</td><td>An "In your next box" block on all eight Upcoming Billing emails, which today change only with her order count.</td><td>The same block, plus "Includes Something Blue in place of Aloha, which sold out."</td></tr>
-                <tr><td>4. Confirm the change</td><td>"Your new designs are saved" after she changes her picks following the alert.</td><td>Skipped when the swap email went out the day before.</td></tr>
-                <tr><td>5. Back in stock</td><td>Not possible cleanly: Klaviyo cannot link a restock to the subscriber who lost that design.</td><td>"Aloha is back. Add it to your next box?", once the app tells Klaviyo about each swap.</td></tr>
-              </tbody>
-            </table>
+            <h4>The email changes in full</h4>
+            <p>Each change, with how the email will look today and new, and the instructions for your email team: <a href="#emails">How each email will look</a>.</p>
           </div>
         </div>
       </details>
@@ -629,7 +726,7 @@ table.hours { width: 100%; max-width: 860px; border-collapse: collapse; border-t
       </div>
       <div class="s-team">
         <h3><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Your email team</h3>
-        <p>Builds and sends every customer email in Klaviyo and Recharge, from our instructions. We answer their questions and check their test sends against the instructions.</p>
+        <p>Builds, tests and sends every customer email in Klaviyo and Recharge. Our instructions say what changes in each email, when it sends, and how it will look.</p>
       </div>
     </div>
 
@@ -637,11 +734,12 @@ table.hours { width: 100%; max-width: 860px; border-collapse: collapse; border-t
       <div class="place p-email">
         <h3><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Email</h3>
         <p class="by team all">Your email team builds all of these from our instructions.</p>
+        <p class="subp"><a href="#emails">See how each email will look, today and new</a></p>
         <div>
           <p class="when">Now <span>before the app</span></p>
           <ul class="chg">
             <li><p><b>Recharge's out of stock email</b> (Recharge notifications): remove the line that a bestseller may be sent, and put "Pick a new design so we can send your box." in its place.</p></li>
-            <li><p><b>Sold out alert:</b> in the Klaviyo flow MP Upcoming Billing, a split on the sold out marker Recharge already sends. A box with a sold out design gets a new email, "One of your designs sold out", in place of her usual billing reminder for that box: her designs with the sold out one marked, the charge date, a link to pick a new design, and the reward line from her usual reminder (the £3, £5 or £10 off, or the gift).</p></li>
+            <li><p><b>Sold out alert:</b> in the Klaviyo flow MP Upcoming Billing, a split on the sold out marker Recharge already sends. A box with a sold out design gets a new email, "One of your designs sold out", in place of her usual billing reminder for that box: her designs with the sold out one marked, the charge date, a link to pick a new design, and the reward block from her usual reminder (the £3 off teaser at order 2, a gift at orders 3, 4 and 6, £5 off at order 5, £10 off at order 7; none at 8 and 9+).</p></li>
             <li><p><b>Reminder:</b> in the same flow, about a day before the charge, only for customers who have not changed their designs since the alert.</p></li>
             <li><p><b>"In your next box":</b> one block with her designs and their pictures, added to all eight versions of the Upcoming Billing email.</p></li>
             <li><p><b>Confirmation:</b> a new one email flow on Recharge's "Bundle Selection updated" event, "Your new designs are saved", only for customers who got the sold out alert in the last 3 days.</p></li>
@@ -675,7 +773,7 @@ table.hours { width: 100%; max-width: 860px; border-collapse: collapse; border-t
         <ul class="chg">
           <li><p><b>Recharge, through its API, with your approval:</b> the app reads upcoming renewals daily and, on your go, swaps a sold out design on a subscription for an in stock one using your rule. Every swap is logged. It needs a Recharge API key (a login for the app) with access to update subscriptions and to read charges, customers and products. We send you the exact list.</p><span class="by us">Us</span></li>
           <li><p><b>Recharge settings:</b> change the default design on the 2, 3, 4 and 6 Set Bundles from Aloha, which is sold out, to designs in stock. Recharge uses the default when a box is empty.</p><span class="by go">Your team or us, on your go</span></li>
-          <li><p><b>Klaviyo:</b> the app sends three new events (design swapped, couldn't swap, swapped design back in stock) with the details the emails need. No change to Klaviyo settings, lists or other flows beyond the email changes listed.</p><span class="by us">Us</span></li>
+          <li><p><b>Klaviyo:</b> the app sends three new events ("Design swapped", "Couldn't swap design", "Swapped design back in stock") with the details the emails need. No change to Klaviyo settings, lists or other flows beyond the email changes listed.</p><span class="by us">Us</span></li>
           <li><p><b>Daily summary:</b> each morning the app emails your team the swaps made, the renewals that need a person and the designs to restock first.</p><span class="by us">Us</span></li>
           <li><p><b>Hosting:</b> a small server runs the daily job; its cost is confirmed separately.</p><span class="by us">Us</span></li>
           <li class="note"><p>Unchanged in Recharge: retries, payment recovery emails, cancellations and all other notifications.</p></li>
@@ -683,6 +781,340 @@ table.hours { width: 100%; max-width: 860px; border-collapse: collapse; border-t
       </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- How the emails will look -->
+<section class="band" id="emails" aria-labelledby="emails-h">
+  <div class="wrap">
+    <div class="qhead plain">
+      <span class="pill">For your email team</span>
+      <h2 id="emails-h">How each email will look</h2>
+      <p>Seven emails and two changes inside the billing reminder: five changes now, four later with the app. Each shows today next to the new version, with what changes marked, and the instructions your email team builds from.</p>
+    </div>
+    <p class="emnote">The "today" screens use the real images of the live Billing Reminder: Order 2 email (Klaviyo flow MP Upcoming Billing, read 24 Nov). The new screens keep its hero, seasonal bar, reward block and adjust rows. Design names, dates and wording on every screen are samples; quoted lines in the instructions are the wording to use.</p>
+    <nav class="emjump" aria-label="Emails now"><b>Now</b>
+      <a href="#em1"><span>1</span>Out of stock email</a>
+      <a href="#em2"><span>2</span>Sold out alert</a>
+      <a href="#em3"><span>3</span>Reminder</a>
+      <a href="#em4"><span>4</span>In your next box</a>
+      <a href="#em5"><span>5</span>Designs saved</a>
+    </nav>
+    <nav class="emjump" aria-label="Emails later"><b>Later</b>
+      <a href="#em6"><span>6</span>We swapped</a>
+      <a href="#em7"><span>7</span>We couldn't swap</a>
+      <a href="#em8"><span>8</span>Swap line</a>
+      <a href="#em9"><span>9</span>Design is back</a>
+    </nav>
+    <p class="emkey"><span><i></i>Pink outline: what changes</span><span><i class="k"></i>Grey outline: kept from today</span></p>
+
+    <!-- 1 -->
+    <article class="em" id="em1" data-em>
+      <div class="em-head"><span class="num">1</span><h3>Recharge's out of stock email</h3><span class="stage">Now</span></div>
+      <div class="seg em-seg" role="group" aria-label="Show today or new, email 1"><button type="button" data-show="today" aria-pressed="false">Today</button><button type="button" data-show="new" aria-pressed="true">New</button></div>
+      <div class="em-row">
+        <div class="em-mocks" data-show="new">
+          <div class="em-col today"><p class="cap">Today</p>
+            <div class="mail"><div class="mail-bar"><span><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Recharge notification</span><span class="sample">Sample</span></div>
+              <div class="mail-subj"><span>From Holy Gels, support@holygels.com</span><b>Action required: A shade in your next box is out of stock</b></div>
+              <div class="m-plain"><img class="m-logo" src="assets/holygels-logo.png" alt="Holy Gels" width="182" height="20">
+                <div class="line"><span>Aloha</span><span class="pill">Out of stock</span></div>
+                <p>Please choose a replacement before your next order is processed.</p>
+                <p>If you don't get a chance to update your selection in time, don't worry! We may replace the unavailable shade with one of our &hellip;</p>
+                <span class="m-btn">Manage Subscription</span></div></div>
+          </div>
+          <div class="em-col new"><p class="cap">New</p>
+            <div class="mail"><div class="mail-bar"><span><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Recharge notification</span><span class="sample">Sample</span></div>
+              <div class="mail-subj"><span>From Holy Gels, support@holygels.com</span><b>Action required: A shade in your next box is out of stock</b></div>
+              <div class="m-plain"><img class="m-logo" src="assets/holygels-logo.png" alt="Holy Gels" width="182" height="20">
+                <div class="line"><span>Aloha</span><span class="pill">Out of stock</span></div>
+                <p>Please choose a replacement before your next order is processed.</p>
+                <div class="mk gone inline"><span class="mk-tag">Removed</span><p>If you don't get a chance to update your selection in time, don't worry! We may replace the unavailable shade with one of our &hellip;</p></div>
+                <div class="mk inline"><span class="mk-tag">New</span><p><b>Pick a new design so we can send your box.</b></p></div>
+                <span class="m-btn">Manage Subscription</span></div></div>
+            <p class="small">Recharge's own notification layout, not the Klaviyo template; this layout is a sample. The removed sentence is shown up to its first words.</p>
+          </div>
+        </div>
+        <div><p class="how-h"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>For your email team</p>
+          <dl class="how">
+            <div><dt>Lives in</dt><dd>Recharge: Email, Customer notifications, "Out of stock" (active). From Holy Gels, support@holygels.com.</dd></div>
+            <div><dt>Sends when</dt><dd>Recharge sends it when a charge tries to go through with a sold out design, at most once a week per charge. No change.</dd></div>
+            <div><dt>What changes</dt><dd>Delete the sentence that starts "If you don't get a chance to update your selection in time". Put "Pick a new design so we can send your box." in its place. Subject, item list and button stay. Later, the app swaps first, so this email rarely needs to go out.</dd></div>
+            <div><dt>Data it uses</dt><dd>Recharge's own list of out of stock items (<code>{{out_of_stock_items}}</code>), unchanged.</dd></div>
+          </dl></div>
+      </div>
+    </article>
+
+    <!-- 2 -->
+    <article class="em" id="em2" data-em>
+      <div class="em-head"><span class="num">2</span><h3>Sold out alert</h3><span class="stage">Now</span></div>
+      <div class="seg em-seg" role="group" aria-label="Show today or new, email 2"><button type="button" data-show="today" aria-pressed="false">Today</button><button type="button" data-show="new" aria-pressed="true">New</button></div>
+      <div class="em-row">
+        <div class="em-mocks" data-show="new">
+          <div class="em-col today"><p class="cap">Today: her usual billing reminder</p>
+            <div class="mail"><div class="mail-bar"><span><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Klaviyo: MP Upcoming Billing</span><span class="sample">Sample</span></div>
+              <div class="mail-subj"><span>From Holy Gels</span><b>Here's what's in your next box</b></div>
+              <div class="m-crop"><img src="assets/email/order2-hero.jpg" alt="Top of the Billing Reminder: Order 2 email: Your Refill Locks In 3 Days" loading="lazy" width="720" height="1104"></div>
+              <img src="assets/email/order2-reward.jpg" alt="Where You Are Right Now: plus £3 discount unlocked" loading="lazy" width="720" height="624">
+              <img src="assets/email/adjust-head.jpg" alt="Need To Adjust Anything?" loading="lazy" width="720" height="70">
+              <img src="assets/email/adjust-swap.jpg" alt="Swap my shades" loading="lazy" width="720" height="150">
+              <img src="assets/email/adjust-delay2.jpg" alt="Delay 2 weeks" loading="lazy" width="720" height="150"></div>
+            <p class="small">Real images from Billing Reminder: Order 2. No list of her designs, no word that Aloha sold out.</p>
+          </div>
+          <div class="em-col new"><p class="cap">New: sent in its place</p>
+            <div class="mail"><div class="mail-bar"><span><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Klaviyo: MP Upcoming Billing</span><span class="sample">Sample</span></div>
+              <div class="mail-subj"><span>From Holy Gels</span><b>One of your designs sold out</b></div>
+              <div class="m-season mk keep" role="img" aria-label="Seasonal bar: Christmas Is Here. Swap A Set In"><span class="mk-tag">Kept</span></div>
+              <div class="m-hero mk"><span class="mk-tag">New headline</span><img class="m-logo" src="assets/holygels-logo.png" alt="Holy Gels" width="182" height="20"><h4>One Of Your Designs Sold Out.</h4><p>Pick a new design before Sunday, when your box is charged.</p></div>
+              <div class="m-sec mk"><span class="mk-tag">New</span><h5>In Your Next Box.</h5>
+                <div class="slots">
+                  <div class="slot out"><span class="ph"><img src="assets/aloha.png" alt="Aloha nails, sold out" loading="lazy" width="240" height="240"><span class="sold">Sold out</span></span><span class="nm">Aloha</span></div>
+                  <div class="slot"><img src="assets/pink-polka.jpg" alt="Pink Polka nails" loading="lazy" width="240" height="240"><span>Pink Polka</span></div>
+                  <div class="slot"><img src="assets/cheetah.jpg" alt="Cheetah nails" loading="lazy" width="240" height="240"><span>Cheetah</span></div>
+                  <div class="slot"><img src="assets/golden-hour.jpg" alt="Golden Hour nails" loading="lazy" width="240" height="240"><span>Golden Hour</span></div>
+                </div></div>
+              <div class="mk keep img"><span class="mk-tag">Kept: her reward block</span><img src="assets/email/order2-reward.jpg" alt="Where You Are Right Now: plus £3 discount unlocked" loading="lazy" width="720" height="624"></div>
+              <div class="m-rows mk keep"><span class="mk-tag">Kept: adjust rows</span>
+                <img src="assets/email/adjust-head.jpg" alt="Need To Adjust Anything?" loading="lazy" width="720" height="70">
+                <div class="m-row mk"><span class="mk-tag">Changed: was Swap my shades</span><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-swap"/></svg></span><span><b>Pick a new design</b><small>Aloha sold out. Choose before Sunday.</small></span><span class="go"><svg class="ic" aria-hidden="true"><use href="#i-chev"/></svg></span></div>
+                <img src="assets/email/adjust-delay2.jpg" alt="Delay 2 weeks" loading="lazy" width="720" height="150"></div></div>
+          </div>
+        </div>
+        <div><p class="how-h"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>For your email team</p>
+          <dl class="how">
+            <div><dt>Lives in</dt><dd>Klaviyo, flow MP Upcoming Billing (VaiSVe). Add a split at the top on <code>bundle_has_oos_selection</code> is true. The new email sits in that branch; the other branch stays as it is. Keep the draft flow MP Recharge OOS switched off: this email replaces it.</dd></div>
+            <div><dt>Sends when</dt><dd>At the same moment as today's reminder, about 58 hours before the charge, in place of her usual reminder for that box.</dd></div>
+            <div><dt>What changes</dt><dd>Subject "One of your designs sold out". Use the hero from your Order 2 template with the headline "One Of Your Designs Sold Out.", in the same display font as today's hero (it is part of the hero image file; the sample uses Futura as the closest match). Keep the seasonal bar. Show her designs, with a "Sold out" pill on the sold out one, and the charge date. In the "Need To Adjust Anything?" rows, "Swap my shades" becomes "Pick a new design"; "Delay 2 weeks" stays. Keep the reward block that matches her order count: the £3 off teaser at order 2, a gift at orders 3, 4 and 6, £5 off at order 5, £10 off at order 7; none at 8 and 9+. No promise of a best seller.</dd></div>
+            <div><dt>Data it uses</dt><dd>Loop over <code>event.line_items</code>, then <code>customer_selections</code>: picture and name of each design; sold out when <code>inventory_level</code> is 0 or below. Charge date: <code>event.scheduled_at</code>. Reward: pick it on <code>customer_subscription_related_streak_count</code>, as the split does today. "Pick a new design" uses the same quick action link as "Swap my shades" today; "Delay 2 weeks" keeps today's link.</dd></div>
+          </dl></div>
+      </div>
+    </article>
+
+    <!-- 3 -->
+    <article class="em" id="em3" data-em>
+      <div class="em-head"><span class="num">3</span><h3>Reminder a day before the charge</h3><span class="stage">Now</span></div>
+      <div class="em-row">
+        <div class="em-mocks one" data-show="new">
+          <div class="em-col new"><p class="cap">New email</p>
+            <div class="mail"><div class="mail-bar"><span><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Klaviyo: MP Upcoming Billing</span><span class="sample">Sample</span></div>
+              <div class="mail-subj"><span>From Holy Gels</span><b>Your box is charged tomorrow and still has a sold out design</b></div>
+              <div class="m-season" role="img" aria-label="Seasonal bar: Christmas Is Here. Swap A Set In"></div>
+              <div class="m-hero mk"><span class="mk-tag">New email</span><img class="m-logo" src="assets/holygels-logo.png" alt="Holy Gels" width="182" height="20"><h4>Your Box Is Charged Tomorrow.</h4><p>It still has a sold out design.</p></div>
+              <div class="m-sec">
+                <div class="slots">
+                  <div class="slot out"><span class="ph"><img src="assets/aloha.png" alt="Aloha nails, sold out" loading="lazy" width="240" height="240"><span class="sold">Sold out</span></span><span class="nm">Aloha</span></div>
+                  <div class="slot"><img src="assets/pink-polka.jpg" alt="Pink Polka nails" loading="lazy" width="240" height="240"><span>Pink Polka</span></div>
+                  <div class="slot"><img src="assets/cheetah.jpg" alt="Cheetah nails" loading="lazy" width="240" height="240"><span>Cheetah</span></div>
+                  <div class="slot"><img src="assets/golden-hour.jpg" alt="Golden Hour nails" loading="lazy" width="240" height="240"><span>Golden Hour</span></div>
+                </div></div>
+              <div class="m-rows">
+                <img src="assets/email/adjust-head.jpg" alt="Need To Adjust Anything?" loading="lazy" width="720" height="70">
+                <div class="m-row"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-swap"/></svg></span><span><b>Pick a new design</b><small>Before your box is charged tomorrow.</small></span><span class="go"><svg class="ic" aria-hidden="true"><use href="#i-chev"/></svg></span></div></div></div>
+          </div>
+        </div>
+        <div><p class="how-h"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>For your email team</p>
+          <dl class="how">
+            <div><dt>Lives in</dt><dd>The same flow, in the sold out branch, after the alert (email 2).</dd></div>
+            <div><dt>Sends when</dt><dd>Wait 30 hours after the alert, which leaves about a day before the charge. Then a split: "Bundle Selection updated on ReCharge" zero times since entering the flow. Also skip anyone whose charge date changed ("next charge date changed on ReCharge") or who placed the order since the alert. Anyone who changed her designs gets nothing more.</dd></div>
+            <div><dt>What changes</dt><dd>Today nothing reminds her. New short email. Subject: "Your box is charged tomorrow and still has a sold out design." Same hero, design list and "Pick a new design" row as the alert.</dd></div>
+            <div><dt>Data it uses</dt><dd>The same as the alert: <code>customer_selections</code> for the designs, <code>inventory_level</code> for sold out.</dd></div>
+          </dl></div>
+      </div>
+    </article>
+
+    <!-- 4 -->
+    <article class="em" id="em4" data-em>
+      <div class="em-head"><span class="num">4</span><h3>"In your next box" in every billing reminder</h3><span class="stage">Now</span></div>
+      <div class="seg em-seg" role="group" aria-label="Show today or new, email 4"><button type="button" data-show="today" aria-pressed="false">Today</button><button type="button" data-show="new" aria-pressed="true">New</button></div>
+      <div class="em-row">
+        <div class="em-mocks" data-show="new">
+          <div class="em-col today"><p class="cap">Today</p>
+            <div class="mail"><div class="mail-bar"><span><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Klaviyo: MP Upcoming Billing</span><span class="sample">Sample</span></div>
+              <div class="mail-subj"><span>From Holy Gels</span><b>Here's what's in your next box</b></div>
+              <div class="m-crop"><img src="assets/email/order2-hero.jpg" alt="Top of the Billing Reminder: Order 2 email" loading="lazy" width="720" height="1104"></div>
+              <img src="assets/email/order2-reward.jpg" alt="Where You Are Right Now: plus £3 discount unlocked" loading="lazy" width="720" height="624"></div>
+            <p class="small">The subject promises her box; the email never shows it.</p>
+          </div>
+          <div class="em-col new"><p class="cap">New</p>
+            <div class="mail"><div class="mail-bar"><span><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Klaviyo: MP Upcoming Billing</span><span class="sample">Sample</span></div>
+              <div class="mail-subj"><span>From Holy Gels</span><b>Here's what's in your next box</b></div>
+              <div class="m-crop sm"><img src="assets/email/order2-hero.jpg" alt="Top of the Billing Reminder: Order 2 email" loading="lazy" width="720" height="1104"></div>
+              <div class="m-sec mk"><span class="mk-tag">New block</span><h5>In Your Next Box.</h5>
+                <div class="slots">
+                  <div class="slot"><img src="assets/something-blue.jpg" alt="Something Blue nails" loading="lazy" width="240" height="240"><span>Something Blue</span></div>
+                  <div class="slot"><img src="assets/pink-polka.jpg" alt="Pink Polka nails" loading="lazy" width="240" height="240"><span>Pink Polka</span></div>
+                  <div class="slot"><img src="assets/cheetah.jpg" alt="Cheetah nails" loading="lazy" width="240" height="240"><span>Cheetah</span></div>
+                  <div class="slot"><img src="assets/golden-hour.jpg" alt="Golden Hour nails" loading="lazy" width="240" height="240"><span>Golden Hour</span></div>
+                </div></div>
+              <img src="assets/email/order2-reward.jpg" alt="Where You Are Right Now: plus £3 discount unlocked" loading="lazy" width="720" height="624"></div>
+            <p class="small">Where the block sits is your team's choice; this sample puts it under the top image.</p>
+          </div>
+        </div>
+        <div><p class="how-h"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>For your email team</p>
+          <dl class="how">
+            <div><dt>Lives in</dt><dd>All eight versions of the Upcoming Billing email (flow MP Upcoming Billing).</dd></div>
+            <div><dt>Sends when</dt><dd>No change: about 58 hours before the charge.</dd></div>
+            <div><dt>What changes</dt><dd>One dynamic block, "In your next box", with each design's picture and name. It makes the order 2 subject ("Here's what's in your next box") true, and lets her see what "Swap my shades" would change.</dd></div>
+            <div><dt>Data it uses</dt><dd><code>product.title</code> and <code>product.image</code> from <code>customer_selections</code> for each bundle line.</dd></div>
+          </dl></div>
+      </div>
+    </article>
+
+    <!-- 5 -->
+    <article class="em" id="em5" data-em>
+      <div class="em-head"><span class="num">5</span><h3>"Your new designs are saved"</h3><span class="stage">Now</span></div>
+      <div class="em-row">
+        <div class="em-mocks one" data-show="new">
+          <div class="em-col new"><p class="cap">New email</p>
+            <div class="mail"><div class="mail-bar"><span><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Klaviyo: new flow</span><span class="sample">Sample</span></div>
+              <div class="mail-subj"><span>From Holy Gels</span><b>Your new designs are saved</b></div>
+              <div class="m-hero mk"><span class="mk-tag">New email</span><img class="m-logo" src="assets/holygels-logo.png" alt="Holy Gels" width="182" height="20"><h4>Your New Designs Are Saved.</h4><p>Here is your next box.</p></div>
+              <div class="m-sec">
+                <div class="slots">
+                  <div class="slot new"><img src="assets/something-blue.jpg" alt="Something Blue nails" loading="lazy" width="240" height="240"><span>Something Blue</span></div>
+                  <div class="slot"><img src="assets/pink-polka.jpg" alt="Pink Polka nails" loading="lazy" width="240" height="240"><span>Pink Polka</span></div>
+                  <div class="slot"><img src="assets/cheetah.jpg" alt="Cheetah nails" loading="lazy" width="240" height="240"><span>Cheetah</span></div>
+                  <div class="slot"><img src="assets/golden-hour.jpg" alt="Golden Hour nails" loading="lazy" width="240" height="240"><span>Golden Hour</span></div>
+                </div></div></div>
+          </div>
+        </div>
+        <div><p class="how-h"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>For your email team</p>
+          <dl class="how">
+            <div><dt>Lives in</dt><dd>A new one email flow in Klaviyo on the event "Bundle Selection updated on ReCharge".</dd></div>
+            <div><dt>Sends when</dt><dd>When her designs change, only for customers who got the sold out alert (email 2) in the last 3 days, and at most once per charge. Your team's own edits fire the same event, so this filter matters.</dd></div>
+            <div><dt>What changes</dt><dd>Today nothing confirms a design change. New email "Your new designs are saved" with her designs, using the Order 2 hero. Later, with the app: skip anyone who got the swap email (email 6) in the last day, so she gets one email, not two.</dd></div>
+            <div><dt>Data it uses</dt><dd>The designs from the event's <code>items</code>.</dd></div>
+          </dl></div>
+      </div>
+    </article>
+
+    <details class="later" id="later">
+      <summary>Later, with the app: four more emails <span>6 to 9</span><svg class="ic" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+      <div class="later-in">
+
+    <!-- 6 -->
+    <article class="em" id="em6" data-em>
+      <div class="em-head"><span class="num">6</span><h3>"We swapped your sold out design"</h3><span class="stage later">Later, with the app</span></div>
+      <div class="em-row">
+        <div class="em-mocks one" data-show="new">
+          <div class="em-col new"><p class="cap">New email, replaces the sold out alert</p>
+            <div class="mail"><div class="mail-bar"><span><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Klaviyo: app event</span><span class="sample">Sample</span></div>
+              <div class="mail-subj"><span>From Holy Gels</span><b>We swapped your sold out design</b></div>
+              <div class="m-hero mk"><span class="mk-tag">New email</span><img class="m-logo" src="assets/holygels-logo.png" alt="Holy Gels" width="182" height="20"><h4>We Swapped Your Sold Out Design.</h4></div>
+              <div class="m-sec">
+                <div class="swap">
+                  <div class="slot out"><span class="ph"><img src="assets/aloha.png" alt="Aloha nails, sold out" loading="lazy" width="240" height="240"><span class="sold">Sold out</span></span><span class="nm">Aloha</span></div>
+                  <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg>
+                  <div class="slot new"><img src="assets/something-blue.jpg" alt="Something Blue nails" loading="lazy" width="240" height="240"><span>Something Blue</span></div>
+                </div>
+                <p>Aloha sold out, so we added Something Blue to your box. Prefer another? Change it before Sunday. Happy with it? Nothing to do.</p></div>
+              <div class="m-rows"><div class="m-row"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-swap"/></svg></span><span><b>Choose a different design</b><small>Change it before Sunday.</small></span><span class="go"><svg class="ic" aria-hidden="true"><use href="#i-chev"/></svg></span></div></div></div>
+          </div>
+        </div>
+        <div><p class="how-h"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>For your email team</p>
+          <dl class="how">
+            <div><dt>Lives in</dt><dd>Klaviyo, a flow on the app's "Design swapped" event. It replaces the sold out alert (email 2): when the swap goes live, your email team turns off emails 2 and 3.</dd></div>
+            <div><dt>Sends when</dt><dd>The app runs each day and swaps at least 3 days before the charge, before the billing reminder goes out, so the reminder already shows the swapped box. This email sends as soon as the swap happens.</dd></div>
+            <div><dt>What changes</dt><dd>The Order 2 hero with this headline, the old design next to the new one with pictures, and a "Choose a different design" row to her subscription page. No action needed if she is happy.</dd></div>
+            <div><dt>Data it uses</dt><dd>From the app's "Design swapped" event: the old design, the new design, the charge date, the last day to change, and the subscription id and charge id, so the buttons can link.</dd></div>
+          </dl></div>
+      </div>
+    </article>
+
+    <!-- 7 -->
+    <article class="em" id="em7" data-em>
+      <div class="em-head"><span class="num">7</span><h3>"We couldn't swap your design"</h3><span class="stage later">Later, with the app</span></div>
+      <div class="em-row">
+        <div class="em-mocks one" data-show="new">
+          <div class="em-col new"><p class="cap">New email, replaces the reminder</p>
+            <div class="mail"><div class="mail-bar"><span><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Klaviyo: app event</span><span class="sample">Sample</span></div>
+              <div class="mail-subj"><span>From Holy Gels</span><b>We couldn't swap your design</b></div>
+              <div class="m-hero mk"><span class="mk-tag">New email</span><img class="m-logo" src="assets/holygels-logo.png" alt="Holy Gels" width="182" height="20"><h4>We Couldn't Swap Your Design.</h4><p>Pick a new design before Sunday so we can send your box.</p></div>
+              <div class="m-sec">
+                <div class="slots">
+                  <div class="slot out"><span class="ph"><img src="assets/aloha.png" alt="Aloha nails, sold out" loading="lazy" width="240" height="240"><span class="sold">Sold out</span></span><span class="nm">Aloha</span></div>
+                  <div class="slot"><img src="assets/pink-polka.jpg" alt="Pink Polka nails" loading="lazy" width="240" height="240"><span>Pink Polka</span></div>
+                  <div class="slot"><img src="assets/cheetah.jpg" alt="Cheetah nails" loading="lazy" width="240" height="240"><span>Cheetah</span></div>
+                  <div class="slot"><img src="assets/golden-hour.jpg" alt="Golden Hour nails" loading="lazy" width="240" height="240"><span>Golden Hour</span></div>
+                </div></div>
+              <div class="m-rows">
+                <img src="assets/email/adjust-head.jpg" alt="Need To Adjust Anything?" loading="lazy" width="720" height="70">
+                <div class="m-row"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-swap"/></svg></span><span><b>Pick a new design</b><small>Before Sunday, so your box can ship.</small></span><span class="go"><svg class="ic" aria-hidden="true"><use href="#i-chev"/></svg></span></div></div></div>
+          </div>
+        </div>
+        <div><p class="how-h"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>For your email team</p>
+          <dl class="how">
+            <div><dt>Lives in</dt><dd>Klaviyo, a flow on the app's "Couldn't swap design" event. It replaces the reminder (email 3): when the swap goes live, your email team turns off emails 2 and 3.</dd></div>
+            <div><dt>Sends when</dt><dd>The app finds no in stock match, or she turned off automatic swaps. The app checks each day, at least 3 days before the charge.</dd></div>
+            <div><dt>What changes</dt><dd>The one case where she has to act, so the subject says so plainly. The Order 2 hero with this headline, her designs with a "Sold out" pill on the sold out one, the charge date and the "Pick a new design" row.</dd></div>
+            <div><dt>Data it uses</dt><dd>From the app's "Couldn't swap design" event: the sold out design, her designs, the charge date, and the subscription id and charge id, so the buttons can link.</dd></div>
+          </dl></div>
+      </div>
+    </article>
+
+    <!-- 8 -->
+    <article class="em" id="em8" data-em>
+      <div class="em-head"><span class="num">8</span><h3>The swap line in "In your next box"</h3><span class="stage later">Later, with the app</span></div>
+      <div class="seg em-seg" role="group" aria-label="Show now or later, email 8"><button type="button" data-show="today" aria-pressed="false">Now</button><button type="button" data-show="new" aria-pressed="true">Later</button></div>
+      <div class="em-row">
+        <div class="em-mocks" data-show="new">
+          <div class="em-col today"><p class="cap">Now: the block from email 4</p>
+            <div class="mail"><div class="mail-bar"><span><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Klaviyo: MP Upcoming Billing</span><span class="sample">Sample</span></div>
+              <div class="m-sec"><h5>In Your Next Box.</h5>
+                <div class="slots">
+                  <div class="slot"><img src="assets/something-blue.jpg" alt="Something Blue nails" loading="lazy" width="240" height="240"><span>Something Blue</span></div>
+                  <div class="slot"><img src="assets/pink-polka.jpg" alt="Pink Polka nails" loading="lazy" width="240" height="240"><span>Pink Polka</span></div>
+                  <div class="slot"><img src="assets/cheetah.jpg" alt="Cheetah nails" loading="lazy" width="240" height="240"><span>Cheetah</span></div>
+                  <div class="slot"><img src="assets/golden-hour.jpg" alt="Golden Hour nails" loading="lazy" width="240" height="240"><span>Golden Hour</span></div>
+                </div></div></div>
+          </div>
+          <div class="em-col new"><p class="cap">Later: plus one line after a swap</p>
+            <div class="mail"><div class="mail-bar"><span><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Klaviyo: MP Upcoming Billing</span><span class="sample">Sample</span></div>
+              <div class="m-sec"><h5>In Your Next Box.</h5>
+                <div class="slots">
+                  <div class="slot"><img src="assets/something-blue.jpg" alt="Something Blue nails" loading="lazy" width="240" height="240"><span>Something Blue</span></div>
+                  <div class="slot"><img src="assets/pink-polka.jpg" alt="Pink Polka nails" loading="lazy" width="240" height="240"><span>Pink Polka</span></div>
+                  <div class="slot"><img src="assets/cheetah.jpg" alt="Cheetah nails" loading="lazy" width="240" height="240"><span>Cheetah</span></div>
+                  <div class="slot"><img src="assets/golden-hour.jpg" alt="Golden Hour nails" loading="lazy" width="240" height="240"><span>Golden Hour</span></div>
+                </div>
+                <div class="mk inline"><span class="mk-tag">New line</span><p>Includes Something Blue in place of Aloha, which sold out.</p></div></div></div>
+          </div>
+        </div>
+        <div><p class="how-h"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>For your email team</p>
+          <dl class="how">
+            <div><dt>Lives in</dt><dd>The "In your next box" block (email 4), in all eight Upcoming Billing emails.</dd></div>
+            <div><dt>Sends when</dt><dd>No change to when the email sends. The line shows when her last swap date is in the last 7 days.</dd></div>
+            <div><dt>What changes</dt><dd>One line under the designs: "Includes Something Blue in place of Aloha, which sold out."</dd></div>
+            <div><dt>Data it uses</dt><dd>At each swap the app also writes her last swap to her Klaviyo profile: the design taken out, its replacement and the swap date. The block reads them from her profile.</dd></div>
+          </dl></div>
+      </div>
+    </article>
+
+    <!-- 9 -->
+    <article class="em" id="em9" data-em>
+      <div class="em-head"><span class="num">9</span><h3>"Your design is back"</h3><span class="stage later">Later, with the app</span></div>
+      <div class="em-row">
+        <div class="em-mocks one" data-show="new">
+          <div class="em-col new"><p class="cap">New email</p>
+            <div class="mail"><div class="mail-bar"><span><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Klaviyo: app event</span><span class="sample">Sample</span></div>
+              <div class="mail-subj"><span>From Holy Gels</span><b>Aloha is back. Add it to your next box?</b></div>
+              <div class="m-hero mk"><span class="mk-tag">New email</span><img class="m-logo" src="assets/holygels-logo.png" alt="Holy Gels" width="182" height="20"><h4>Aloha Is Back.</h4><p>Add it to your next box?</p></div>
+              <div class="m-sec"><img class="m-big" src="assets/aloha.png" alt="Aloha nails" loading="lazy" width="240" height="240"></div>
+              <div class="m-rows"><div class="m-row"><span class="ico"><svg class="ic" aria-hidden="true"><use href="#i-box"/></svg></span><span><b>Add Aloha to my next box</b><small>Back in stock now.</small></span><span class="go"><svg class="ic" aria-hidden="true"><use href="#i-chev"/></svg></span></div></div></div>
+          </div>
+        </div>
+        <div><p class="how-h"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>For your email team</p>
+          <dl class="how">
+            <div><dt>Lives in</dt><dd>Klaviyo, a new flow on the app's "Swapped design back in stock" event, for subscribers who lost that design.</dd></div>
+            <div><dt>Sends when</dt><dd>When a design the app replaced is back in stock.</dd></div>
+            <div><dt>What changes</dt><dd>Not possible today: Back In Stock only covers shoppers who used the site form. New email "Aloha is back. Add it to your next box?", with the Order 2 hero and a row that adds it to her next order on her subscription page. Nothing offers a one time purchase instead.</dd></div>
+            <div><dt>Data it uses</dt><dd>From the app's "Swapped design back in stock" event: the design that is back, with its picture, and the subscription id and charge id, so the button can link.</dd></div>
+          </dl></div>
+      </div>
+    </article>
+
+      </div>
+    </details>
   </div>
 </section>
 
@@ -697,7 +1129,7 @@ table.hours { width: 100%; max-width: 860px; border-collapse: collapse; border-t
     <ol class="timeline">
       <li><span class="num lg">1</span><div><h3>Dry run report <span class="who">We do this</span></h3><p>The app lists which designs it would swap, and to what. Read only: nothing on any subscription changes.</p></div></li>
       <li><span class="num lg">2</span><div><h3>You pick the rule; we send the email instructions <span class="who you">Your decision</span></h3><p>Your email team builds the emails from our instructions, and you approve them.</p></div></li>
-      <li><span class="num lg">3</span><div><h3>Checkout rule goes live <span class="who">After your go</span></h3><p>Tested on express checkouts and checkout email links first.</p></div></li>
+      <li><span class="num lg">3</span><div><h3>Checkout rule goes live <span class="who">After your go</span></h3><p>We test the checkout rule on Shop Pay, Apple Pay and checkout email links first.</p></div></li>
       <li><span class="num lg">4</span><div><h3>Renewal swap goes live <span class="who">After your go</span></h3><p>The app sends the events, and the swap emails your team built go out from them.</p></div></li>
       <li><span class="num lg">5</span><div><h3>Daily summary to your team <span class="who">After your go</span></h3><p>Later: the back in stock event, for the email your team builds.</p></div></li>
     </ol>
@@ -866,8 +1298,8 @@ table.hours { width: 100%; max-width: 860px; border-collapse: collapse; border-t
       <thead><tr><th>Step</th><th>What it covers</th><th>Hours</th></tr></thead>
       <tbody>
         <tr><td>1. Dry run report</td><td>A read only pass over upcoming renewals: every sold out design and what each swap rule would pick, with a summary for you.</td><td>4 to 6</td></tr>
-        <tr><td>2. Email instructions for your team</td><td>Written instructions for every email change, now and later, plus answering your email team's questions and checking their test sends against the instructions.</td><td>4 to 6</td></tr>
-        <tr><td>3. Checkout rule</td><td>The rule inside the existing app that stops a sold out design at payment, a sold out list kept up to date, and tests on express checkouts and checkout email links.</td><td>6 to 10</td></tr>
+        <tr><td>2. Email instructions for your team</td><td>Written instructions for every email change, now and later: what changes, when it sends, and how it will look, with a mock of each email. Plus answering your email team's questions.</td><td>4 to 6</td></tr>
+        <tr><td>3. Checkout rule</td><td>The rule inside the existing app that stops a sold out design at payment, a sold out list kept up to date, and our tests of the checkout rule on Shop Pay, Apple Pay and checkout email links.</td><td>6 to 10</td></tr>
         <tr><td>4. Renewal swap and the events for its emails</td><td>The daily job that reads renewals, checks stock, applies your rule, updates the subscription and logs every swap, plus the events the swap emails need.</td><td>13 to 18</td></tr>
         <tr><td>5. Daily summary and the back in stock event</td><td>The morning summary for your team, and the event your team's back in stock email starts from.</td><td>3 to 4</td></tr>
         <tr><td>Checks and first week</td><td>Testing before each step goes live, live checks, and a first week of watching and fixes.</td><td>4 to 6</td></tr>
@@ -913,7 +1345,27 @@ table.hours { width: 100%; max-width: 860px; border-collapse: collapse; border-t
     });
   });
   var links = document.querySelectorAll('.qnav a');
-  var ids = ['problem', 'fixing', 'where', 'steps', 'experience', 'ask', 'hours'];
+  var ids = ['problem', 'fixing', 'where', 'emails', 'steps', 'experience', 'ask', 'hours'];
+  function openFor(hash) {
+    if (!hash || hash.length < 2) return;
+    var t = document.getElementById(hash.slice(1));
+    var d = t && t.closest('details');
+    if (d) d.open = true;
+  }
+  document.querySelectorAll('a[href^="#em"]').forEach(function (a) {
+    a.addEventListener('click', function () { openFor(a.getAttribute('href')); });
+  });
+  openFor(location.hash);
+  document.querySelectorAll('[data-em]').forEach(function (em) {
+    var mocks = em.querySelector('.em-mocks');
+    var buttons = em.querySelectorAll('.em-seg button');
+    buttons.forEach(function (b) {
+      b.addEventListener('click', function () {
+        buttons.forEach(function (o) { o.setAttribute('aria-pressed', String(o === b)); });
+        if (mocks) mocks.setAttribute('data-show', b.getAttribute('data-show'));
+      });
+    });
+  });
   var ticking = false;
   function mark() {
     ticking = false;
