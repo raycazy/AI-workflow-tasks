@@ -38,6 +38,15 @@
 
   .notice { margin: 0 0 16px; padding: 10px 14px; border: 1px solid #c7d2fe; background: #eef2ff; border-radius: 8px; font-size: 14px; }
 
+  .standing { margin: 0 0 20px; background: #fff; border: 1px solid #e4e4e7; border-radius: 10px; padding: 14px 18px; }
+  .standing h2 { margin: 0 0 4px; }
+  .standing .help { margin: 0 0 8px; }
+  .standing ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; font-size: 14px; color: #27272a; }
+  .standing b { font-weight: 600; }
+  .fact { color: #3f3f46; font-size: 14px; overflow-wrap: anywhere; }
+  .fact b { font-weight: 600; color: #27272a; }
+  .fact.missing b { color: #92400e; }
+
   .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: #ececef; border: 1px solid #e4e4e7; border-radius: 10px; overflow: hidden; }
   .stat { padding: 12px 18px; background: #fff; }
   .stat .label { color: #5b5b66; font-size: 14px; }
@@ -133,7 +142,7 @@
     html { scroll-padding-top: 12px; }
     .wrap { padding: 20px 14px 48px; }
     .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .action { padding: 12px 14px; }
+    .action, .standing { padding: 12px 14px; }
     .action li a { grid-template-columns: minmax(0, 1fr) auto; }
     .action .what { grid-column: 1 / -1; grid-row: 2; }
     .search { flex: 1 1 100%; }
@@ -149,8 +158,21 @@
 <div class="wrap">
   <header>
     <h1><a href="index.html">Media buyer outreach</a></h1>
-    <p class="sub">Partner search for the app user acquisition service. Updated 26 Nov 2026. The search now focuses on independent buyers in India, the Philippines, Pakistan and Bangladesh.</p>
+    <p class="sub">Partner search for the app user acquisition service. Updated 26 Nov 2026, 9:30 PM IST. The search now focuses on independent buyers in India, the Philippines, Pakistan and Bangladesh.</p>
   </header>
+
+  <section class="standing" aria-labelledby="standing-title">
+    <h2 id="standing-title">Where things stand <span class="count">26 Nov 2026, 9:30 PM IST</span></h2>
+    <p class="help">This round of independent buyers only. The counts further down include the agencies and earlier contacts too.</p>
+    <ul>
+      <li><b>Reach:</b> 10 buyers on the shortlist plus one reserve, Ashish Kohli. 9 of these 11 were contacted on LinkedIn. The other two, Aparna P. and Somya Jain, can only be reached with a platform account, so they wait for you.</li>
+      <li><b>Replies:</b> Mano R, Ashish Kohli, Miguel Cortez and Sunil G Patel.</li>
+      <li><b>Calls:</b> 1 booked, Ashish Kohli on Tue 1 Dec at 2:30 PM IST. It was booked on typed results before the screenshot rule below, so we have asked him for screenshots before the call.</li>
+      <li><b>Proof rule:</b> a call needs ad account screenshots that show the channel, spend and cost per install for two or more named apps. Typed claims alone are not enough.</li>
+      <li><b>Screenshots received:</b> none yet.</li>
+      <li><b>Waiting on you:</b> a decision on Mano R and Miguel Cortez, who both ask above our range.</li>
+    </ul>
+  </section>
 
   <p class="notice" id="storage-note" hidden>This browser is not saving changes. Use Export file before you leave the page.</p>
 
@@ -219,7 +241,7 @@
 -->
 <script type="application/json" id="data">
 {
-  "version": 3,
+  "version": 4,
   "statuses": [
     ["not", "Not contacted"],
     ["sent", "Sent"],
@@ -230,14 +252,14 @@
   ],
   "groups": [
     { "id": "contacted", "title": "Contacted", "help": "Set the status when someone answers. Each row shows what to do next." },
-    { "id": "next", "title": "Next to contact", "help": "Independent buyers. More names from India, the Philippines, Pakistan and Bangladesh will be added here. No noted LinkedIn invites are left this month, so invites go without a note." },
+    { "id": "next", "title": "Next to contact", "help": "Not contacted yet. Aparna P. and Somya Jain can only be reached with a platform account, so they wait for you to message them by hand." },
     { "id": "dropped", "title": "Dropped", "help": "" }
   ],
   "nextByStatus": {
     "not": "Send the first message below.",
     "sent": "Wait for a reply. If nothing comes by the follow up date, set the status to No reply, resend.",
-    "replied": "Reply within a day and offer a 20 minute call. Ask for one Ads Manager or MMP screenshot behind a named app.",
-    "call": "Before the call, have ready how many clients we expect, the retainer per client and the proof you want to see.",
+    "replied": "Reply within a day and ask for ad account screenshots for two or more named apps, showing channel, spend and cost per install. Offer a call only once they arrive.",
+    "call": "Before the call, check the screenshots they sent, and have ready how many clients we expect and the retainer per client.",
     "declined": "Nothing to send. Add the reason in the notes so the next pitch can answer it.",
     "resend": "Send the follow up below, then set a new follow up date about a week out."
   },
@@ -250,6 +272,125 @@
   },
   "followUp": "Hi {greet}, following up on my earlier {via} about partnering on paid user acquisition for our app clients. The pay is a fixed monthly retainer for each client you manage, and I'd be glad to walk you through it on a short call this week.",
   "people": [
+    {
+      "id": "ashish", "group": "contacted", "name": "Ashish Kohli", "kind": "Independent",
+      "about": "Mumbai; freelance UA consultant",
+      "sent": "2026-11-26", "status": "call", "followUp": "", "greet": "Ashish", "via": "message",
+      "rev": 4, "old": { "status": "not", "followUp": "" },
+      "activity": { "date": "2026-11-26", "text": "Call booked for Tue 1 Dec at 2:30 PM IST on Google Meet. It was booked on typed results before the screenshot rule, so a screenshot request went to him at 9:27 PM." },
+      "shared": "Typed results for three apps (Final Front, Mashallah, Club Cooee) with cost per install ranges on Meta and Google.",
+      "missing": "Ad account screenshots.",
+      "next": { "call": "Call on Tue 1 Dec at 2:30 PM IST. If no screenshots arrive by Mon 30 Nov, 6 PM IST, decide whether to keep or cancel the call." },
+      "short": { "call": "Call Tue 1 Dec, 2:30 PM IST; screenshots asked for" },
+      "contacts": [
+        { "type": "linkedin", "label": "LinkedIn", "href": "https://www.linkedin.com/in/ashish-kohli-a0626244/" }
+      ],
+      "messages": [
+        { "label": "Screenshot request sent 26 Nov, 9:27 PM (template on file)", "text": "Thanks Ashish, that's helpful. Before we meet, could you send screenshots from the ad accounts for two or three of those apps, showing the channel, spend and cost per install? Brand names can be blurred." }
+      ]
+    },
+    {
+      "id": "mano", "group": "contacted", "name": "Mano R", "kind": "Independent",
+      "about": "Bengaluru; app UA on Apple Search Ads, Meta and Google App Campaigns",
+      "sent": "2026-11-26", "status": "replied", "followUp": "", "greet": "Mano", "via": "message",
+      "rev": 4, "old": { "status": "sent", "followUp": "" },
+      "activity": { "date": "2026-11-26", "text": "Accepted the invite and got our first message. Replied at 6:39 PM with detailed typed results. Asks above our range and asked about the ad budget per app." },
+      "shared": "Typed results for four subscription apps (Hoop, Purp, stats.fm, Case Tracker): spend, ROAS and channel mix, mostly Apple Search Ads and TikTok, with a blended cost per acquired user of about $2.94. Also an earlier portfolio of eight apps in India.",
+      "missing": "Ad account screenshots.",
+      "next": { "replied": "Waiting on your decision about his ask, which is above our range. Our reply is held until you decide; after that, ask him for ad account screenshots." },
+      "short": { "replied": "Decide on his ask (above our range)" },
+      "contacts": [
+        { "type": "linkedin", "label": "LinkedIn", "href": "https://www.linkedin.com/in/manoram-growth/" }
+      ],
+      "messages": []
+    },
+    {
+      "id": "miguel", "group": "contacted", "name": "Miguel Cortez", "kind": "Independent",
+      "about": "Philippines; freelance media buyer on Meta, Google, TikTok and Apple Search Ads",
+      "sent": "2026-11-26", "status": "replied", "followUp": "", "greet": "Miguel", "via": "message",
+      "activity": { "date": "2026-11-26", "text": "Accepted the invite and got our first message. Replied at 7:44 PM with a list of apps and later said his cost per install is usually about $1. Asks above our range." },
+      "shared": "Seven apps named (Tolans, Quittr, Cal AI, Vibecode, Turbo AI, Customuse, Aragon AI) and a typical cost per install of about $1.",
+      "missing": "Channel and spend for each app, and ad account screenshots.",
+      "next": { "replied": "Waiting on your decision about his ask, which is above our range. Our reply is held until you decide; after that, ask him for detail per app and screenshots." },
+      "short": { "replied": "Decide on his ask (above our range)" },
+      "contacts": [
+        { "type": "linkedin", "label": "LinkedIn", "href": "https://www.linkedin.com/in/migxibit/" }
+      ],
+      "messages": []
+    },
+    {
+      "id": "sunil", "group": "contacted", "name": "Sunil G Patel", "kind": "Independent",
+      "about": "Navsari, Gujarat; app UA on Google, Meta and TikTok",
+      "sent": "2026-11-26", "status": "replied", "followUp": "", "greet": "Sunil", "via": "message",
+      "noAction": true,
+      "activity": { "date": "2026-11-26", "text": "Sent seven Google Play app links at 9:00 PM. We asked for the channel and cost per install for those apps at 9:15 PM." },
+      "shared": "Seven Google Play app links: utility apps, AI photo apps and one driving game.",
+      "missing": "Channel, cost per install and ad account screenshots.",
+      "next": { "replied": "Nothing for you yet. We are waiting on his channel and cost per install; if he cannot give them, he is dropped." },
+      "contacts": [
+        { "type": "linkedin", "label": "LinkedIn", "href": "https://www.linkedin.com/in/sunil-g-patel-03398458/" }
+      ],
+      "messages": [
+        { "label": "Proof request sent 26 Nov, 9:15 PM (template on file, worded for his apps)", "text": "Thanks Sunil, glad it's of interest. Before we set up a call, could you send two or three apps you've worked on, what you ran for each on Meta and Google, and the cost per install you got? Screenshots are welcome." }
+      ]
+    },
+    {
+      "id": "mandar", "group": "contacted", "name": "Mandar Karande", "kind": "Independent",
+      "about": "Mumbai; app UA on Meta, Google and TikTok",
+      "sent": "2026-11-26", "status": "sent", "followUp": "", "greet": "Mandar", "via": "message",
+      "activity": { "date": "2026-11-26", "text": "LinkedIn invite sent without a note. Pending." },
+      "next": { "sent": "The invite is pending. When he accepts, send the message below." },
+      "contacts": [
+        { "type": "linkedin", "label": "LinkedIn", "href": "https://www.linkedin.com/in/mandarkarande/" }
+      ],
+      "messages": [
+        { "label": "Message to send once he accepts", "text": "Hi Mandar, thanks for connecting. I'm Bhaskar from cazyweb. With a partner agency we're launching a done for you paid user acquisition service for apps in the US and other markets, and we want an independent buyer to run the campaigns as a partner. We bring the app clients and handle sales and onboarding; you run the ads, paid for every app client we bring you. Your app install work on Meta, Google and TikTok is the mix we need. Would you be open to a 20 minute call this week or next?" }
+      ]
+    },
+    {
+      "id": "bilal", "group": "contacted", "name": "Muhammad Bilal", "kind": "Independent",
+      "about": "Islamabad; app UA on Meta, Google and Apple Search Ads",
+      "sent": "2026-11-26", "status": "sent", "followUp": "", "greet": "Muhammad", "via": "message",
+      "activity": { "date": "2026-11-26", "text": "LinkedIn invite sent without a note. Pending." },
+      "next": { "sent": "The invite is pending. When he accepts, our first message goes out and asks for his apps and cost per install." },
+      "contacts": [
+        { "type": "linkedin", "label": "LinkedIn", "href": "https://www.linkedin.com/in/muhammad-bilal-b3514356/" }
+      ],
+      "messages": []
+    },
+    {
+      "id": "pradipta", "group": "contacted", "name": "Pradipta Barik", "kind": "Independent",
+      "about": "Pune; mobile game marketing on Google App Campaigns and Meta",
+      "sent": "2026-11-26", "status": "sent", "followUp": "", "greet": "Pradipta", "via": "message",
+      "activity": { "date": "2026-11-26", "text": "LinkedIn invite sent without a note. Pending." },
+      "next": { "sent": "The invite is pending. When he accepts, our first message goes out and asks for his apps and cost per install." },
+      "contacts": [
+        { "type": "linkedin", "label": "LinkedIn", "href": "https://www.linkedin.com/in/pradipta-barik-8b462716/" }
+      ],
+      "messages": []
+    },
+    {
+      "id": "devender", "group": "contacted", "name": "Devender Kumar", "kind": "Independent",
+      "about": "Gurugram; app growth on Google and Meta",
+      "sent": "2026-11-26", "status": "sent", "followUp": "", "greet": "Devender", "via": "message",
+      "activity": { "date": "2026-11-26", "text": "LinkedIn invite sent without a note. Pending." },
+      "next": { "sent": "The invite is pending. When he accepts, our first message goes out and asks for his apps and cost per install." },
+      "contacts": [
+        { "type": "linkedin", "label": "LinkedIn", "href": "https://www.linkedin.com/in/digital-devd/" }
+      ],
+      "messages": []
+    },
+    {
+      "id": "mudasir", "group": "contacted", "name": "M Mudasir", "kind": "Independent",
+      "about": "Lahore; mobile games UA on Google, Meta, TikTok and Unity Ads",
+      "sent": "2026-11-26", "status": "sent", "followUp": "", "greet": "Mudasir", "via": "message",
+      "activity": { "date": "2026-11-26", "text": "LinkedIn invite sent without a note. Pending." },
+      "next": { "sent": "The invite is pending. When he accepts, our first message goes out and asks for his apps and cost per install." },
+      "contacts": [
+        { "type": "linkedin", "label": "LinkedIn", "href": "https://www.linkedin.com/in/m-mudasir-b4889628b/" }
+      ],
+      "messages": []
+    },
     {
       "id": "studiomosaic", "group": "contacted", "name": "Studio Mosaic", "kind": "Agency",
       "about": "App growth agency, New Delhi. Talking with Jacob; reply in the existing Gmail thread.",
@@ -368,57 +509,31 @@
       ]
     },
     {
-      "id": "mano", "group": "contacted", "name": "Mano R", "kind": "Independent",
-      "about": "Bengaluru; app UA on Apple Search Ads, Meta and Google App Campaigns",
-      "sent": "2026-11-26", "status": "sent", "followUp": "", "greet": "Mano", "via": "message",
-      "activity": { "date": "2026-11-26", "text": "LinkedIn invite sent without a note. Pending." },
-      "next": { "sent": "The invite is pending. When he accepts, send the message below." },
-      "contacts": [
-        { "type": "linkedin", "label": "LinkedIn", "href": "https://www.linkedin.com/in/manoram-growth/" }
-      ],
-      "messages": [
-        { "label": "Message to send once he accepts", "text": "Hi Mano, thanks for connecting. I'm Bhaskar from cazyweb. With a partner agency we're launching a done for you paid user acquisition service for apps in the US and other markets, and we want an independent buyer to run the campaigns as a partner. We bring the app clients and handle sales and onboarding; you run the ads, paid for every app client we bring you. Your Apple Search Ads, Meta and Google App Campaigns work is the mix we need. Would you be open to a 20 minute call this week or next?" }
-      ]
-    },
-    {
-      "id": "mandar", "group": "contacted", "name": "Mandar Karande", "kind": "Independent",
-      "about": "Mumbai; app UA on Meta, Google and TikTok",
-      "sent": "2026-11-26", "status": "sent", "followUp": "", "greet": "Mandar", "via": "message",
-      "activity": { "date": "2026-11-26", "text": "LinkedIn invite sent without a note. Pending." },
-      "next": { "sent": "The invite is pending. When he accepts, send the message below." },
-      "contacts": [
-        { "type": "linkedin", "label": "LinkedIn", "href": "https://www.linkedin.com/in/mandarkarande/" }
-      ],
-      "messages": [
-        { "label": "Message to send once he accepts", "text": "Hi Mandar, thanks for connecting. I'm Bhaskar from cazyweb. With a partner agency we're launching a done for you paid user acquisition service for apps in the US and other markets, and we want an independent buyer to run the campaigns as a partner. We bring the app clients and handle sales and onboarding; you run the ads, paid for every app client we bring you. Your app install work on Meta, Google and TikTok is the mix we need. Would you be open to a 20 minute call this week or next?" }
-      ]
-    },
-    {
-      "id": "ashish", "group": "next", "name": "Ashish Kohli", "kind": "Independent",
-      "about": "Mumbai; freelance UA consultant",
-      "sent": "", "status": "not", "followUp": "", "greet": "Ashish", "via": "message",
-      "activity": { "date": "", "text": "Not contacted yet." },
-      "next": { "not": "Send a LinkedIn invite without a note. When he accepts, send the message below and ask for one Meta or Google app case." },
-      "short": { "not": "Send a LinkedIn invite" },
-      "contacts": [
-        { "type": "linkedin", "label": "LinkedIn", "href": "https://www.linkedin.com/in/ashish-kohli-a0626244/" }
-      ],
-      "messages": [
-        { "label": "Message to send once he accepts", "text": "Hi Ashish, thanks for connecting. I'm Bhaskar from cazyweb. With a partner agency we're launching a done for you paid user acquisition service for apps in the US and other markets, and we want an independent buyer to run the campaigns as a partner. We bring the app clients and handle sales and onboarding; you run the ads, paid for every app client we bring you. Could you share one Meta or Google app case you've run? Would you be open to a 20 minute call this week or next?" }
-      ]
-    },
-    {
       "id": "aparna", "group": "next", "name": "Aparna P.", "kind": "Independent",
       "about": "Mumbai; Upwork freelancer, app UA",
       "sent": "", "status": "not", "followUp": "", "greet": "Aparna", "via": "message",
-      "activity": { "date": "", "text": "Not contacted yet." },
-      "next": { "not": "Send the first message on Upwork. Messaging a freelancer there needs an Upwork client account." },
-      "short": { "not": "Send the first Upwork message" },
+      "activity": { "date": "", "text": "Not contacted: she can only be reached with an Upwork client account." },
+      "next": { "not": "This one is for you by hand. Send the message below on Upwork from your own client account." },
+      "short": { "not": "Message her by hand on Upwork" },
       "contacts": [
         { "type": "upwork", "label": "Upwork profile", "href": "https://www.upwork.com/freelancers/aparnamp" }
       ],
       "messages": [
-        { "label": "Upwork message", "text": "Hi Aparna, I'm Bhaskar from cazyweb. With a partner agency we're launching a done for you paid user acquisition service for apps in the US and other markets, and we want an independent buyer to run the campaigns as a partner. We bring the app clients and handle sales and onboarding; you run the ads, paid for every app client we bring you. Would you be open to a 20 minute call this week or next?" }
+        { "label": "Upwork message", "text": "Hi Aparna, I'm Bhaskar from cazyweb. With a partner agency we're launching a done for you paid user acquisition service for apps in the US and other markets, and we want an independent buyer to run the campaigns as a partner. We bring the app clients and handle sales and onboarding; you run the ads, paid for every app client we bring you. Could you share two or three apps you've worked on, with screenshots from the ad accounts showing the channel, spend and cost per install? Brand names can be blurred. Then I'll send over times for a short call." }
+      ]
+    },
+    {
+      "id": "somya", "group": "next", "name": "Somya Jain", "kind": "Independent",
+      "about": "Guwahati; app UA on Google, Meta, Apple Search Ads and TikTok",
+      "sent": "", "status": "not", "followUp": "", "greet": "Somya", "via": "message",
+      "activity": { "date": "", "text": "Not contacted: she can only be reached with a Twine account." },
+      "next": { "not": "This one is for you by hand. Send the message below with the Contact button on her Twine profile." },
+      "short": { "not": "Message her by hand on Twine" },
+      "contacts": [
+        { "type": "web", "label": "Twine profile", "href": "https://www.twine.net/somyajain" }
+      ],
+      "messages": [
+        { "label": "Twine message", "text": "Hi Somya, I'm Bhaskar from cazyweb. With a partner agency we're launching a done for you paid user acquisition service for apps in the US and other markets, and we want an independent buyer to run the campaigns as a partner. We bring the app clients and handle sales and onboarding; you run the ads, paid for every app client we bring you. Could you share two or three apps you've worked on, with screenshots from the ad accounts showing the channel, spend and cost per install? Brand names can be blurred. Then I'll send over times for a short call." }
       ]
     },
     {
@@ -668,6 +783,7 @@
   // Order in the action strip: answers first, then follow ups, then first messages.
   function actionRank(p) {
     var s = statusOf(p);
+    if (p.noAction && s === p.status) return 0; // waiting on them, nothing owed by us until the status changes
     if (s === 'replied') return 1;
     if (s === 'call') return 2;
     if (s === 'resend') return 3;
@@ -700,7 +816,7 @@
     return true;
   }
   function haystack(p) {
-    var bits = [p.name, p.kind, p.about, activityOf(p).text, get(p, 'notes'), LABELS[get(p, 'status')] || 'Dropped'];
+    var bits = [p.name, p.kind, p.about, p.shared, p.missing, activityOf(p).text, get(p, 'notes'), LABELS[get(p, 'status')] || 'Dropped'];
     (p.contacts || []).forEach(function (c) { bits.push(c.label, c.href.replace(/^mailto:/, '')); });
     return bits.join(' ').toLowerCase();
   }
@@ -726,6 +842,8 @@
         pill
       ]),
       p.about ? el('div', { class: 'meta', text: p.about }) : null,
+      p.shared ? el('div', { class: 'fact' }, [el('b', { text: 'Shared: ' }), p.shared]) : null,
+      p.missing ? el('div', { class: 'fact missing' }, [el('b', { text: 'Missing: ' }), p.missing]) : null,
       activity, followLine, preview,
       contactRow(p)
     ]);
