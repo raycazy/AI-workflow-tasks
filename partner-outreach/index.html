@@ -13,11 +13,14 @@
   2. A candidate moves on: change "stage" (shortlisted, contacted, replied, proof, call), "status" (the
      short line under the name), "proof" (typed yes or no; numbers yes, partial or no; screenshots no,
      asked, refused or yes), "shared", "missing", "next" and "lastActivity" ({ "at": ISO time, "text" }).
+  2b. A call held on a condition: at stage call, set "callConditional": true and "callCondition" (for
+     example "needs screen share"). It counts as conditional, not confirmed. Set it false once the condition is met.
   3. Someone leaves this round: keep "stage" at the furthest step reached and set "outcome" to dropped
      or declined. Earlier rounds and old contacts get "closed": true and drop out of every count.
   4. An open decision for Bhaskar: add { "id", "candidate", "title", "detail", "since" } to "decisions".
      Remove it once he has decided. An empty list shows "decisionsEmpty".
-  5. Links must start with https. No pay figures, employer names, emails or phone numbers: this page is public.
+  5. Links must start with https. No pay, cost or spend figures, employer names, emails or phone numbers:
+     this page is public. Describe numbers in words.
 
   The block with id "fallback" near the end of this file is a copy of data.json from the last layout build.
   It only shows when data.json cannot be loaded, with a note saying so. Leave it alone.
@@ -86,6 +89,7 @@
   .pipe .val small { font-size: 16px; color: var(--muted); font-weight: 400; margin-left: 4px; }
   .pipe .sub { font-size: 12px; color: var(--muted); }
   .pipe li.zero .val { color: var(--muted); }
+  .pipe .sub.keep { color: var(--amber); font-weight: 600; }
   .rule { margin-top: 12px; display: flex; gap: 8px; align-items: flex-start; color: var(--muted); font-size: 14px; max-width: 75ch; }
   .rule svg { width: 16px; height: 16px; margin-top: 3px; }
 
@@ -133,6 +137,8 @@
   .where { font-size: 14px; color: var(--muted); overflow-wrap: anywhere; }
   .pill { justify-self: start; display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px; border-radius: 999px; background: #f0f0f2; font-size: 12px; font-weight: 600; color: var(--ink-2); margin-top: 4px; }
   .pill svg { width: 12px; height: 12px; }
+  .pill.held { background: var(--amber-tint); color: #5c3d00; border-radius: 8px; }
+  .proof-none { font-size: 14px; color: var(--muted); }
   .status { font-size: 14px; color: var(--ink-2); }
   .links { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 14px; }
   .links a { display: inline-flex; align-items: center; gap: 4px; min-height: 32px; }
@@ -204,6 +210,7 @@
     .pipe .val { font-size: 24px; }
     .pipe .val small { font-size: 12px; margin-left: 2px; }
     .pipe .sub { display: none; }
+    .pipe .sub.keep { display: block; line-height: 1.3; }
     .row { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "person time" "proof proof" "notes notes"; padding: 16px; gap: 12px 16px; }
     .notes { grid-template-columns: 64px minmax(0, 1fr); }
     .g-head { padding: 10px 16px; }
@@ -272,14 +279,15 @@
 {
   "schemaVersion": 1,
   "help": {
-    "howTo": "One change is one edit. Set updated to now on every write, even when nothing else changed. Counts on the page are worked out from candidates, so never store them. Times are ISO with the IST offset, for example 2026-11-27T12:00:00+05:30. Keep pay figures, employer names, emails and phone numbers off this file: it is public.",
+    "howTo": "One change is one edit. Set updated to now on every write, even when nothing else changed. Counts on the page are worked out from candidates, so never store them. Times are ISO with the IST offset, for example 2026-11-27T12:00:00+05:30. Keep pay figures, employer names, emails and phone numbers off this file: it is public. No cost or spend figures either: describe numbers in words.",
     "stage": "shortlisted (not contacted yet), contacted (invite or first message sent, no reply), replied, proof (ad account screenshots received), call (call booked)",
     "outcome": "null while in play; dropped or declined when someone leaves this round (keep stage at the furthest step they reached)",
     "proof": "typed: yes or no. numbers: yes, partial or no. screenshots: no, asked, refused or yes",
+    "callConditional": "On a candidate at stage call: true while the call is held on a condition (callCondition says which, for example needs screen share); it then counts as conditional, not confirmed. Set false or remove it once the condition is met",
     "decisions": "Only open decisions for Bhaskar. Each: id, candidate (a candidate id), title, detail, since. Empty list shows decisionsEmpty",
     "closed": "true for earlier rounds and closed contacts: shown collapsed at the bottom and left out of every count"
   },
-  "updated": "2026-11-27T12:07:53+05:30",
+  "updated": "2026-11-27T12:37:35+05:30",
   "round": {
     "title": "Independent buyers in India, the Philippines, Pakistan and Bangladesh",
     "started": "2026-11-26T18:00:00+05:30",
@@ -296,7 +304,9 @@
       "location": "Mumbai, India",
       "about": "Freelance UA consultant; reserve pick",
       "stage": "call",
-      "status": "Kept only if he shows the ad accounts live",
+      "callConditional": true,
+      "callCondition": "needs screen share",
+      "status": "Tue 1 Dec, 2:30 PM IST, only if he shows the ad accounts live",
       "outcome": null,
       "proof": {
         "typed": "yes",
@@ -331,7 +341,7 @@
         "numbers": "yes",
         "screenshots": "asked"
       },
-      "shared": "Detailed typed results for four subscription apps (Hoop, Purp, stats.fm, Case Tracker): spend, return on ad spend and channel mix. Blended cost per acquired user about $2.94.",
+      "shared": "Detailed typed numbers for four subscription apps (Hoop, Purp, stats.fm, Case Tracker): spend, return on ad spend, channel mix and cost per acquired user.",
       "missing": "Ad account screenshots for two apps.",
       "next": "When the screenshots arrive, book a call. He raised terms; nothing is agreed.",
       "lastActivity": {
@@ -359,7 +369,7 @@
         "numbers": "partial",
         "screenshots": "asked"
       },
-      "shared": "Seven apps named (Tolans, Quittr, Cal AI, Vibecode, Turbo AI, Customuse, Aragon AI) and a typical cost per install of about $1.",
+      "shared": "Seven apps named (Tolans, Quittr, Cal AI, Vibecode, Turbo AI, Customuse, Aragon AI). Says his cost per install is usually low, with no figures per app.",
       "missing": "Channel and spend for each app, and ad account screenshots.",
       "next": "When the screenshots arrive, book a short call. He raised terms; nothing is agreed.",
       "lastActivity": {
@@ -923,16 +933,18 @@
   }
 
   // Counts are people who reached each step this round; proof counts screenshots only;
-  // calls count only people still in play (a dropped or declined call is not booked).
+  // calls count only people still in play (a dropped or declined call is not booked), and a call
+  // held on a condition (callConditional) counts as conditional, never as confirmed.
+  function isHeld(c) { return c.stage === 'call' && c.callConditional === true; }
   function counts(active) {
-    var out = { shortlisted: active.length, contacted: 0, replied: 0, proof: 0, call: 0 };
+    var out = { shortlisted: active.length, contacted: 0, replied: 0, proof: 0, call: 0, held: 0 };
     active.forEach(function (c) {
       var i = STAGE_INDEX[c.stage];
       if (i === undefined) return;
       if (i >= 1) out.contacted++;
       if (i >= 2) out.replied++;
       if (hasScreens(c) || c.stage === 'proof') out.proof++;
-      if (c.stage === 'call' && !c.outcome) out.call++;
+      if (c.stage === 'call' && !c.outcome) { if (isHeld(c)) out.held++; else out.call++; }
     });
     return out;
   }
@@ -959,7 +971,7 @@
       contacted: 'of ' + n.shortlisted + ' shortlisted',
       replied: 'of ' + n.contacted + ' contacted',
       proof: 'ad account screenshots',
-      call: target ? 'target ' + target + ' calls' : 'this round'
+      call: n.held ? n.held + ' conditional' : (target ? 'target ' + target + ' calls' : 'this round')
     };
     var ol = document.getElementById('pipe');
     ol.textContent = '';
@@ -967,12 +979,12 @@
       var li = el('li', n[s.id] === 0 ? 'zero' : '');
       var lab = el('span', 'lab');
       lab.appendChild(stageIcon(STAGE_ICON[s.id]));
-      lab.appendChild(document.createTextNode(s.label));
+      lab.appendChild(document.createTextNode(s.id === 'call' ? 'Calls confirmed' : s.label));
       var val = el('span', 'val', n[s.id]);
       if (s.id === 'call' && target) val.appendChild(el('small', null, 'of ' + target));
       li.appendChild(lab);
       li.appendChild(val);
-      li.appendChild(el('span', 'sub', subs[s.id]));
+      li.appendChild(el('span', s.id === 'call' && n.held ? 'sub keep' : 'sub', subs[s.id]));
       ol.appendChild(li);
     });
     document.getElementById('rule').textContent = str(r.rule);
@@ -1032,6 +1044,11 @@
 
   function meter(c) {
     var wrap = el('div', 'proof');
+    var empty = PROOF_KEYS.every(function (p) { return proofState(c, p.key, p.ok) === 'no'; });
+    if (empty) {
+      wrap.appendChild(el('p', 'proof-none', 'Nothing shared yet'));
+      return wrap;
+    }
     var m = el('div', 'meter');
     var words = [];
     PROOF_KEYS.forEach(function (p) { m.appendChild(el('span', 'seg ' + proofState(c, p.key, p.ok))); });
@@ -1059,8 +1076,12 @@
     if (where) person.appendChild(el('span', 'where', where));
     var pill = el('span', 'pill');
     var known = STAGES[STAGE_INDEX[c.stage]];
-    var stageLabel = c.outcome === 'dropped' ? 'Dropped' : c.outcome === 'declined' ? 'Declined' : (known ? known.label : 'Unknown stage');
-    pill.appendChild(stageIcon(c.outcome ? 'cross' : (STAGE_ICON[c.stage] || 'ring')));
+    var held = isHeld(c) && !c.outcome;
+    var stageLabel = c.outcome === 'dropped' ? 'Dropped' : c.outcome === 'declined' ? 'Declined'
+      : held ? 'Call held' + (str(c.callCondition) ? ', ' + str(c.callCondition) : '')
+      : (known ? known.label : 'Unknown stage');
+    if (held) pill.className = 'pill held';
+    pill.appendChild(stageIcon(c.outcome ? 'cross' : held ? 'half' : (STAGE_ICON[c.stage] || 'ring')));
     pill.appendChild(document.createTextNode(stageLabel));
     person.appendChild(pill);
     if (str(c.status)) person.appendChild(el('span', 'status', str(c.status)));
