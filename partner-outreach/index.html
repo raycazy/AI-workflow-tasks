@@ -197,7 +197,8 @@
     .wrap { padding: 20px 16px 48px; gap: 24px; }
     .top h1 { font-size: 24px; }
     .fresh { justify-items: start; text-align: left; }
-    .pipe li { padding: 12px 8px; }
+    .pipe { grid-template-columns: repeat(5, minmax(min-content, 1fr)); }
+    .pipe li { padding: 12px 6px 12px 8px; }
     .pipe .lab { font-size: 12px; line-height: 1.3; min-height: 32px; align-items: flex-start; }
     .pipe .lab svg { display: none; }
     .pipe .val { font-size: 24px; }
@@ -921,7 +922,8 @@
     return 'proof';
   }
 
-  // Counts are people who reached each step this round; proof counts screenshots only.
+  // Counts are people who reached each step this round; proof counts screenshots only;
+  // calls count only people still in play (a dropped or declined call is not booked).
   function counts(active) {
     var out = { shortlisted: active.length, contacted: 0, replied: 0, proof: 0, call: 0 };
     active.forEach(function (c) {
@@ -929,8 +931,8 @@
       if (i === undefined) return;
       if (i >= 1) out.contacted++;
       if (i >= 2) out.replied++;
-      if (hasScreens(c)) out.proof++;
-      if (c.stage === 'call') out.call++;
+      if (hasScreens(c) || c.stage === 'proof') out.proof++;
+      if (c.stage === 'call' && !c.outcome) out.call++;
     });
     return out;
   }
