@@ -1,0 +1,913 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Organic alternatives: loofah, straw or both? Market research and decision page</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@600&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#15201A; --ink-2:#4B5550; --ground:#FFFFFF; --panel:#F3F4F1; --rule:#DADDD6;
+  --loofah:#4F7A34; --straw:#A8741A; --neutral:#8A8F87; --warn:#B23A2E;
+  --loofah-tint:#E6EEE0; --straw-tint:#F4EAD6; --warn-tint:#F6E4E2;
+  --r-ctl:6px; --r-media:4px;
+  --cond:"IBM Plex Sans Condensed", "Arial Narrow", sans-serif;
+  --sans:"IBM Plex Sans", system-ui, sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none !important}}
+body{margin:0;background:var(--ground);color:var(--ink);font:400 16px/1.55 var(--sans)}
+a{color:var(--ink);text-decoration-thickness:1px;text-underline-offset:2px}
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+h1,h2,h3{text-wrap:balance;margin:0;font-weight:600}
+p{text-wrap:pretty;margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.top{border-bottom:1px solid var(--rule)}
+.top .wrap{display:flex;gap:16px;align-items:center;justify-content:space-between;min-height:56px;flex-wrap:wrap}
+.top strong{font-size:16px}
+.top nav{display:flex;gap:16px;font-size:14px}
+.top nav a{text-decoration:none;padding:12px 0}
+.top nav a:hover{text-decoration:underline}
+
+/* hero */
+.hero{padding:48px 0 48px;border-bottom:1px solid var(--rule)}
+.hero-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:48px;align-items:start}
+.hero h1{font-size:40px;line-height:1.15;letter-spacing:-0.02em;max-width:22ch}
+.hero .sub{margin-top:16px;font-size:18px;color:var(--ink-2);max-width:52ch}
+.change{margin-top:24px;padding:12px 16px;background:var(--panel);border-radius:var(--r-ctl);font-size:14px;max-width:60ch}
+.assume{margin-top:12px;font-size:14px;color:var(--ink-2)}
+.nums{display:grid;gap:24px}
+.num{display:grid;gap:4px}
+.num .v{font:600 88px/0.95 var(--cond);letter-spacing:-0.02em;text-decoration:none;display:inline-block}
+.num .v small{font-size:32px;letter-spacing:0}
+.num .l{font-size:14px;color:var(--ink-2);max-width:34ch}
+.num .l b{color:var(--ink);font-weight:600}
+
+/* sections */
+.sec{padding:64px 0;border-bottom:1px solid var(--rule)}
+.sec h2{font-size:32px;line-height:1.2;letter-spacing:-0.015em;max-width:30ch}
+.lede{margin-top:12px;font-size:18px;color:var(--ink-2);max-width:68ch}
+.body{margin-top:32px}
+.srcline{margin-top:16px;font-size:12px;color:var(--ink-2);max-width:90ch}
+.srcline a{color:var(--ink-2)}
+a.n{font-weight:600;text-decoration-style:dotted}
+.tag{display:inline-block;margin-left:4px;padding:0 6px;border:1px solid var(--rule);border-radius:999px;font:600 12px/18px var(--sans);color:var(--ink);background:var(--ground);vertical-align:1px;white-space:nowrap}
+.tag.unv{border-style:dashed}
+.prose{max-width:68ch;display:grid;gap:12px}
+
+/* two products */
+.cmp{width:100%;border-collapse:collapse;font-size:16px}
+.cmp th,.cmp td{text-align:left;vertical-align:top;padding:12px 16px 12px 0;border-top:1px solid var(--rule)}
+.cmp thead th{border-top:0;font-size:14px;color:var(--ink-2);font-weight:600}
+.cmp tbody th{font-weight:600;width:18%;font-size:14px}
+.dot{display:inline-block;width:10px;height:10px;border-radius:999px;margin-right:8px;vertical-align:0}
+.dot.l{background:var(--loofah)} .dot.s{background:var(--straw)} .dot.n{background:var(--neutral)}
+.note{margin-top:24px;padding:16px;border:1px solid var(--straw);border-radius:var(--r-ctl);background:var(--straw-tint);font-size:16px;max-width:76ch}
+
+/* tiles */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px}
+.tile .v{font:600 56px/1 var(--cond);letter-spacing:-0.01em}
+.tile .v a{text-decoration:none}
+.tile .l{margin-top:8px;font-size:14px;color:var(--ink-2)}
+.chart{margin-top:32px;width:100%}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.chart text{font-family:var(--sans)}
+.legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:16px;font-size:14px;color:var(--ink-2)}
+.sw{display:inline-block;width:14px;height:10px;border-radius:2px;margin-right:6px;vertical-align:0}
+.signals{margin-top:40px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px 48px}
+.signals h3{font-size:18px;grid-column:1/-1}
+.sig{display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:baseline;padding:12px 0;border-top:1px solid var(--rule)}
+.sig .v{font:600 28px/1 var(--cond)}
+.sig .v a{text-decoration:none}
+.sig p{font-size:14px;color:var(--ink-2)}
+
+/* segmented control */
+.ctl-row{display:flex;flex-wrap:wrap;gap:16px 24px;align-items:center;margin-top:32px}
+.ctl-label{font-size:14px;font-weight:600}
+.ctl{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
+.seg{display:inline-flex;padding:3px;background:var(--panel);border:1px solid var(--rule);border-radius:var(--r-ctl)}
+.seg button{min-height:36px;min-width:64px;padding:0 14px;border:1px solid transparent;border-radius:4px;background:transparent;color:var(--ink);font:400 14px var(--sans);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ground);border-color:var(--rule);font-weight:600;box-shadow:0 1px 2px rgba(21,32,26,.12)}
+.seg button:hover{background:rgba(255,255,255,.6)}
+.btn{min-height:36px;padding:0 14px;border:1px solid var(--ink);border-radius:var(--r-ctl);background:var(--ground);color:var(--ink);font:600 14px var(--sans);cursor:pointer}
+.btn:hover{background:var(--panel)}
+.btn[aria-pressed="true"]{background:var(--ink);color:var(--ground)}
+.ladders{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:24px}
+.ladders h3{font-size:18px}
+.ladders .unit{font-size:14px;color:var(--ink-2);margin-top:4px}
+.stat-list{margin-top:32px;display:grid;gap:8px;font-size:16px;max-width:90ch}
+
+/* competitor browser */
+.count{font-size:14px;color:var(--ink-2);margin-top:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px;margin-top:24px;align-items:stretch}
+.card{border:1px solid var(--rule);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;background:var(--ground)}
+.card[hidden]{display:none}
+.card .shot{display:block;position:relative;flex:none;aspect-ratio:16/10;overflow:hidden;background:var(--panel);border-bottom:1px solid var(--rule)}
+.card .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left top;display:block}
+.card .noimg{display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--ink-2)}
+.card .in{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1;font-size:14px}
+.card .go{margin-top:auto;padding-top:8px}
+.more-btn{margin-top:16px;width:100%}
+.more-btn[hidden]{display:none}
+.mn{display:block;font-size:12px;color:var(--ink-2);font-weight:400}
+#ladder-loofah text,#ladder-straw text{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}
+.card h3{font-size:18px}
+.card .meta{color:var(--ink-2)}
+.card .price{font:600 20px/1.2 var(--cond)}
+.card q{display:block;color:var(--ink)}
+.card .rv{color:var(--ink-2)}
+.card .go{font-weight:600}
+.more summary{cursor:pointer;font-weight:600;padding:6px 0}
+.more-in{display:grid;gap:8px;margin-top:4px}
+.mini{display:none}
+.src-fold{margin-top:32px}
+.src-fold summary{cursor:pointer;font-weight:600;font-size:16px;padding:12px 0}
+
+/* messaging */
+.msg{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:32px}
+.msg h3{font-size:20px;display:flex;align-items:center}
+.theme{padding:16px 0;border-top:1px solid var(--rule);display:grid;gap:8px}
+.theme b{font-size:16px}
+.theme blockquote{margin:0;font-size:16px}
+.theme cite{font-style:normal;font-size:14px;color:var(--ink-2)}
+
+/* claims */
+.claims{margin-top:32px;display:grid;gap:0}
+.claim{display:grid;grid-template-columns:1.1fr 170px 2fr;gap:24px;padding:24px 0;border-top:1px solid var(--rule)}
+.claim .q{font-size:18px;font-weight:600}
+.claim .who{font-size:14px;color:var(--ink-2);margin-top:4px;font-weight:400}
+.chip{display:inline-block;padding:4px 12px;border-radius:999px;font:600 14px/1.3 var(--sans);border:1px solid}
+.chip.false{background:var(--warn-tint);color:var(--warn);border-color:var(--warn)}
+.chip.part{background:var(--straw-tint);color:var(--ink);border-color:var(--straw)}
+.chip.true{background:var(--loofah-tint);color:var(--ink);border-color:var(--loofah)}
+.claim .ev{display:grid;gap:8px;font-size:16px}
+.claim .ev .s{font-size:12px;color:var(--ink-2)}
+.claim .ev .s a{color:var(--ink-2)}
+.scroll{overflow-x:auto;margin-top:24px;-webkit-overflow-scrolling:touch}
+.scroll:focus-visible{outline:2px solid var(--ink)}
+table.t{border-collapse:collapse;width:100%;font-size:14px}
+table.t th,table.t td{text-align:left;vertical-align:top;padding:12px 16px 12px 0;border-top:1px solid var(--rule)}
+table.t thead th{border-top:0;color:var(--ink-2);font-weight:600;white-space:nowrap}
+table.t tbody th{font-weight:600}
+.min880{min-width:880px} .min640{min-width:640px}
+.eff{display:inline-block;padding:2px 10px;border-radius:999px;border:1px solid var(--rule);font-weight:600;font-size:12px;white-space:nowrap}
+.eff.h{border-color:var(--warn);color:var(--warn)}
+
+/* jute */
+.jute{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px}
+.box{padding:24px;border-radius:8px;background:var(--panel)}
+.box h3{font-size:18px;margin-bottom:12px}
+.box ul,.box ol{margin:0;padding-left:20px;display:grid;gap:8px}
+.box.tests{background:var(--ground);border:1px solid var(--rule)}
+.prec{margin-top:24px;padding:24px;border:1px solid var(--loofah);background:var(--loofah-tint);border-radius:8px;display:grid;gap:8px;max-width:80ch}
+.prec q{font-size:20px;font-weight:600}
+
+/* cases */
+.cases{margin-top:32px;display:grid;gap:40px}
+.cases h3{font-size:18px}
+.case{display:grid;grid-template-columns:200px 1fr 1fr;gap:24px;padding:16px 0;border-top:1px solid var(--rule);font-size:16px}
+.case b{display:block}
+.case .where{font-size:14px;color:var(--ink-2)}
+.case .res{font-size:14px}
+
+/* scorecard */
+.versus{margin-top:32px}
+.score-wrap{margin-top:40px;display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:start}
+.crits{display:grid}
+.crit{display:grid;grid-template-columns:1fr 150px 40px 132px;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--rule);font-size:14px}
+.crit label{font-weight:600}
+.crit input[type=range]{width:100%;accent-color:var(--ink);min-height:44px}
+.crit output{font:600 18px var(--cond);text-align:right}
+.crit .sc{display:flex;gap:8px;justify-content:flex-end;color:var(--ink-2)}
+.crit .sc span{min-width:36px;text-align:center;padding:2px 0;border-radius:4px}
+.crit .sc span.up{background:var(--loofah-tint);color:var(--ink);font-weight:600}
+.crit-head{border-top:0;color:var(--ink-2);font-weight:600}
+.crit-head .sc span{color:var(--ink-2);font-weight:600}
+.result{position:sticky;top:16px;padding:24px;background:var(--panel);border-radius:8px}
+.result h3{font-size:18px}
+.leader{margin-top:8px;font-size:16px}
+.leader b{font-weight:600}
+#score-order{margin-top:12px;font-size:14px;color:var(--ink-2)}
+.presets{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.reopen{margin-top:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.reopen div{padding:24px;border:1px solid var(--rule);border-radius:8px;display:grid;gap:8px;align-content:start}
+.reopen b{font-size:16px}
+.reopen p{font-size:14px}
+
+/* roadmap */
+.road{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px}
+.step{padding:24px;border-radius:8px;background:var(--loofah-tint);display:grid;gap:8px;align-content:start}
+.step.later{background:var(--panel)}
+.step.b2b{background:var(--ground);border:1px dashed var(--straw)}
+.step .when{font:600 14px var(--sans);color:var(--ink-2)}
+.step h3{font-size:18px}
+.step p{font-size:14px}
+.farm{margin-top:40px;display:grid;grid-template-columns:repeat(2,1fr);gap:0 48px}
+.farm h3{grid-column:1/-1;font-size:18px;margin-bottom:8px}
+
+/* sources */
+.srcs{margin-top:32px;columns:2;column-gap:48px;font-size:12px}
+.srcs div{break-inside:avoid;margin-bottom:16px}
+.srcs b{display:block;font-size:14px;margin-bottom:4px}
+.srcs a{display:block;overflow-wrap:anywhere;color:var(--ink-2);padding:2px 0}
+.inputs{margin-top:24px;font-size:14px;max-width:90ch;display:grid;gap:8px}
+footer{padding:32px 0 64px;font-size:14px;color:var(--ink-2)}
+
+@media (max-width: 900px){
+  .hero-grid,.ladders,.msg,.jute,.score-wrap,.reopen,.farm{grid-template-columns:1fr}
+  .road{grid-template-columns:1fr 1fr}
+  .result{position:static}
+  .claim{grid-template-columns:1fr;gap:12px}
+  .case{grid-template-columns:1fr;gap:4px}
+  .signals{grid-template-columns:1fr}
+  .tiles{grid-template-columns:1fr 1fr}
+  .srcs{columns:1}
+}
+@media (max-width: 560px){
+  .wrap{padding:0 16px}
+  .top nav{display:none}
+  .top .wrap{min-height:48px}
+  .hero{padding:20px 0 32px}
+  .hero h1{font-size:24px;line-height:1.2}
+  .hero .sub{font-size:16px;margin-top:8px}
+  .hero-grid{gap:20px}
+  .nums{grid-template-columns:repeat(3,1fr);gap:12px}
+  .num .v{font-size:40px}
+  .num .v small{font-size:20px}
+  .num .l{font-size:12px}
+  .num .l .long{display:none}
+  .change{margin-top:16px;font-size:14px}
+  .sec{padding:48px 0}
+  .sec h2{font-size:24px}
+  .lede{font-size:16px}
+  .tiles{grid-template-columns:1fr}
+  .tile .v{font-size:40px}
+  .road{grid-template-columns:1fr}
+  .crit{grid-template-columns:1fr 40px;gap:4px 12px}
+  .crit label{grid-column:1/-1}
+  .crit .sc{grid-column:1/-1;justify-content:flex-start}
+  .crit-head{display:none}
+  .crit .sc span::before{content:attr(data-k) " ";font-weight:400;color:var(--ink-2)}
+  .cmp tbody th{width:auto}
+  .sig{grid-template-columns:96px 1fr}
+  .seg button,.btn{min-height:44px}
+  .grid{gap:12px}
+  .card{display:grid;grid-template-columns:104px 1fr}
+  .card:not(:has(a.shot)){grid-template-columns:1fr}
+  .card .noimg{display:none}
+  table.stack.min640{min-width:0}
+  table.stack thead{display:none}
+  table.stack,table.stack tbody,table.stack tr,table.stack th,table.stack td{display:block;width:auto}
+  table.stack tr{border-top:1px solid var(--rule);padding:12px 0}
+  table.stack th,table.stack td{border-top:0;padding:4px 0}
+  table.stack tbody th{font-size:16px}
+  table.stack td::before{display:block;content:"Loofah";font-weight:600;color:var(--ink);padding-left:18px;background:radial-gradient(circle at 5px 50%,var(--loofah) 4.5px,transparent 5.5px) no-repeat}
+  table.stack td + td::before{content:"Jute stick straw";background-image:radial-gradient(circle at 5px 50%,var(--straw) 4.5px,transparent 5.5px)}
+  table.stack td + td{margin-top:8px}
+  .card .shot{aspect-ratio:auto;height:100%;min-height:104px;border-bottom:0;border-right:1px solid var(--rule)}
+  .card .in{padding:12px;gap:4px}
+  .card h3{font-size:16px}
+  .card .price{font-size:18px}
+  .mini{display:block;position:sticky;bottom:12px;margin-top:16px;padding:12px 16px;background:var(--ink);color:var(--ground);border-radius:var(--r-ctl);font:600 16px var(--cond);white-space:pre}
+  .src-fold{margin-top:24px}
+}
+@media (min-width: 561px){ .num .l .short{display:none} }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <strong>Organic alternatives: loofah, straw or both?</strong>
+    <nav aria-label="Jump to">
+      <a href="#prices">Prices</a><a href="#brands">Brands</a><a href="#claims">Claims</a><a href="#scorecard">Scorecard</a><a href="#sources">Sources</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- 1. Verdict -->
+<section class="hero" id="verdict" aria-labelledby="h-verdict">
+  <div class="wrap hero-grid">
+    <div>
+      <h1 id="h-verdict">Start with one product, loofah, but give the brand a name broad enough to become your umbrella brand later.</h1>
+      <p class="sub">Run the jute stick straw as a funded test track: lab tests, then a 10 cafe pilot in India, before it joins the brand.</p>
+      <p class="change"><b>What would change this:</b> add the straw once it passes food contact and wet strength tests and 10 pilot cafes reorder at ₹0.80 or more within 60 days. <a href="#reopen">See all three conditions that would change this.</a></p>
+      <p class="assume">Assumption: the straw is made from jute stick, as shown in your PDF. To be confirmed.</p>
+    </div>
+    <div class="nums">
+      <div class="num"><a class="v" href="#scorecard">3.90<small>/5</small></a><p class="l"><span class="short">loofah first score, 3.90 of 5 <span class="tag">Est.</span>; both now 2.85; straw first 2.60</span><span class="long"><b>Loofah first scores 3.90 of 5</b> <span class="tag">Est.</span>, against 2.85 for launching both now and 2.60 for straw first, on the weighted scorecard below.</span></p></div>
+      <div class="num"><a class="v" href="#prices">₹72</a><p class="l"><span class="short">median India shop price per loofah; trade <a class="n" href="https://m.indiamart.com/impcat/loofah-sponge.html">₹10 to 20</a></span><span class="long"><b>Median Indian shop price for one natural loofah</b> across 32 listings, against <a class="n" href="https://m.indiamart.com/impcat/loofah-sponge.html">₹10 to 20</a> in trade listings, so shoppers already pay four to seven times the trade price.</span></p></div>
+      <div class="num"><a class="v" href="#jute">None</a><p class="l"><span class="short">published lab tests found on any jute stick straw</span><span class="long"><b>Published lab tests found on any jute stick straw</b> for wet strength, food contact or PFAS (“forever chemicals” often found in paper straw coatings). Makers exist, but none has published a test.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Two products -->
+<section class="sec" id="products" aria-labelledby="h-products">
+  <div class="wrap">
+    <h2 id="h-products">The two products sell to different buyers, through different channels, under different rules</h2>
+    <p class="lede">Loofah is the dried fibre skeleton of the Luffa aegyptiaca fruit, a personal care item a household rebuys. A jute stick is the woody core left after jute fibre is stripped, and a straw made from it is a food contact item bought by cafes by the thousand.</p>
+    <div class="scroll" tabindex="0" role="region" aria-label="Loofah and straw side by side">
+      <table class="cmp min640 stack">
+        <thead><tr><th scope="col"><span class="sr"></span></th><th scope="col"><span class="dot l"></span>Loofah</th><th scope="col"><span class="dot s"></span>Jute stick straw</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Buyer</th><td>A consumer buying for self and home</td><td>Cafe owners, procurement teams, distributors; consumer packs are a side line</td></tr>
+          <tr><th scope="row">Channel</th><td>Amazon, own site, plastic free shops, quick commerce in India</td><td>Foodservice distributors, cafe chains, tenders</td></tr>
+          <tr><th scope="row">Repeat</th><td>Replace every <a class="n" href="https://health.clevelandclinic.org/loofahs-can-double-as-bacterial-breeding-grounds">3 to 4 weeks</a>, so a 4 pack lasts about 3.5 months <span class="tag">Est.</span></td><td>A cafe serving 150 cold drinks a day uses about 4,500 straws a month <span class="tag">Est.</span></td></tr>
+          <tr><th scope="row">Rules</th><td>Light to medium (our reading): likely not a cosmetic; the EU needs a responsible person; plant import rules not yet confirmed. “Organic” needs certification.</td><td>Heavy: a food contact material. In <a class="n" href="https://www.fda.gov/food/post-market-determinations-use-substance-not-gras/letter-retailers-distributors-and-importers-dinnerware">May 2025</a> the US FDA refused GRAS status (“generally recognised as safe”) for areca leaf plates, <a href="https://www.angelone.in/news/economy/us-ban-on-areca-leaf-plates-a-blow-to-india-s-eco-friendly-export-industry">a major Indian export</a>.</td></tr>
+          <tr><th scope="row">Ready to sell</th><td>Yes. Indian sellers already ship it at scale.</td><td>Not for cafes or export. Bore, wet strength, microbes and migration are untested.</td></tr>
+          <tr><th scope="row">Moat</th><td>Weak on material; brand, certification, a refill habit and farm supply contracts</td><td>Process know how and a stick collection network, if the product works</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note"><b>Assumption to confirm.</b> Your PDF shows a bundle of jute sticks, so this page assumes the straw is made from jute stick, not bamboo or grass. If the straw is a different plant, the straw brand list and price ladder still apply, but the <a href="#jute">jute stick feasibility verdict</a> does not.</p>
+  </div>
+</section>
+
+<!-- 3. Market size -->
+<section class="sec" id="market" aria-labelledby="h-market">
+  <div class="wrap">
+    <h2 id="h-market">Loofah is a USD 0.7 to 2.0 bn category; eco straws are bigger, but plant stem straws are a niche inside them</h2>
+    <p class="lede">Publishers disagree on scope (bath sponge only, or all loofah including kitchen use), so every size is shown as a range from named reports. All are paid report summaries, marked Est.</p>
+    <div class="tiles">
+      <div class="tile"><div class="v"><a href="https://www.futuremarketinsights.com/reports/loofah-bath-sponge-market">0.7</a> to <a href="https://www.theinsightpartners.com/pr/loofah-market">2.0</a></div><p class="l">USD bn, global loofah today, growing 5 to 7% a year <span class="tag">Est.</span> Natural loofah is <a class="n" href="https://marketintelo.com/report/loofah-market">54 to 62%</a> of it; India grows fastest, at <a class="n" href="https://www.futuremarketinsights.com/reports/loofah-bath-sponge-market">6.2%</a> a year, in one report (Future Market Insights).</p></div>
+      <div class="tile"><div class="v"><a href="https://markwideresearch.com/eco-friendly-straw-market">1.8</a> to <a href="https://www.marketsandmarkets.com/PressReleases/paper-straw.asp">4.9</a></div><p class="l">USD bn, eco straws depending on scope, 8 to 19% a year <span class="tag">Est.</span> Paper leads by volume and sets the price; wheat and grass are early stage.</p></div>
+      <div class="tile"><div class="v"><a href="https://www.techsciresearch.com/news/6918-india-eco-friendly-home-hygiene-products-market.html">14.25</a></div><p class="l">USD bn, India eco friendly home hygiene in 2024, 12.2% a year to 2030 <span class="tag">Est.</span> An adjacent proxy: no report sizes India eco personal care alone.</p></div>
+    </div>
+    <div class="chart" id="chart-market" role="group" aria-label="Market size ranges from seven named reports, base year to forecast year, USD billions"></div>
+    <div class="legend" aria-hidden="true"><span><span class="sw" style="background:var(--loofah)"></span>Loofah</span><span><span class="sw" style="background:var(--straw)"></span>Straws</span><span><span class="sw" style="background:var(--neutral)"></span>Zero waste personal care</span><span>Filled dot: base year. Open dot: forecast.</span></div>
+    <p class="srcline">Not shown: a US loofah figure of USD 628 m (2023) and a plant based straw figure of USD 262.8 m (2023), both from pages that refused access, so they are unverified.</p>
+
+    <div class="signals">
+      <h3>Natural loofah already sells in the thousands each month on Amazon in the US and India</h3>
+      <div class="sig"><div class="v"><a href="https://www.asinsight.com/report/US/loofahs">2,730</a></div><p>Amazon US searches a week for “loofahs” (22 to 28 March 2026); the top 10 listings sell about <a class="n" href="https://www.asinsight.com/report/US/loofahs">11,900</a> units a month each <span class="tag">Est.</span> and <a class="n" href="https://www.asinsight.com/report/US/loofahs">56%</a> of 141 tracked listings cost under USD 10.</p></div>
+      <div class="sig"><div class="v"><a href="https://www.amazon.in/s?k=natural+loofah+sun+dried">6K+</a></div><p>Bought last month on Amazon.in for the best selling plastic mesh puff, against <a class="n" href="https://www.amazon.in/dp/B0B561VFWK">1K+</a> for Nat Habit, the natural leader. The bigger market is plastic puff buyers who could switch.</p></div>
+      <div class="sig"><div class="v"><a href="https://www.amazon.com/dp/B07Q3MZMDL">11,514</a></div><p>Ratings on Almooni, the biggest natural loofah listing on Amazon US, with 8K+ bought last month. Most own store loofah brands show 0 to 35 reviews.</p></div>
+      <div class="sig"><div class="v"><a href="https://www.aljazeera.com/economy/2022/7/20/as-single-use-plastic-ban-kicks-in-indian-businesses-flounder">6 bn</a></div><p>Straws a year used by Indian beverage carton makers alone, a different format from a cafe straw; whether a jute stick suits it is untested. India banned plastic straws from <a class="n" href="https://static.pib.gov.in/WriteReadData/specificdocs/documents/2022/jul/doc20227169001.pdf">1 July 2022</a>.</p></div>
+      <div class="sig"><div class="v"><a href="https://www.mordorintelligence.com/industry-reports/paper-straw-market">63.8%</a></div><p>Share of 2025 paper straw value sold to foodservice; household retail is the faster growing slice at 21.63% a year <span class="tag">Est.</span></p></div>
+      <div class="sig"><div class="v"><a href="https://www.kjzz.org/2018-09-03/content-694062-qaz-do-americans-really-use-500-million-plastic-straws-day">175 to 750 m</a></div><p>US straws a day, depending on who counts. The famous 500 m comes from a 2011 phone survey of three makers and is disputed.</p></div>
+    </div>
+    <p class="srcline">Google Trends, Reddit sentiment and UN Comtrade export data were not retrieved (blocked or empty), so search interest over time is not shown.</p>
+  </div>
+</section>
+
+<!-- 4. Price ladders -->
+<section class="sec" id="prices" aria-labelledby="h-prices">
+  <div class="wrap">
+    <h2 id="h-prices">Natural loofah sells at USD 3 to 13 a piece abroad and ₹28 to 199 in India; in India a plant straw costs about twice a retail paper straw and 3.5x to 20x paper at trade prices</h2>
+    <p class="lede">Regular prices read on each listing on 28 November 2026, divided by the pack count. Pick a region; both ladders change.</p>
+    <div class="ctl-row">
+      <span class="ctl-label" id="lbl-region">Region</span>
+      <div class="seg" role="group" aria-labelledby="lbl-region" id="region-toggle">
+        <button type="button" data-region="US" aria-pressed="true">US</button>
+        <button type="button" data-region="Europe" aria-pressed="false">Europe</button>
+        <button type="button" data-region="India" aria-pressed="false">India</button>
+      </div>
+    </div>
+    <p class="count" id="region-status" aria-live="polite">Showing US prices</p>
+    <div class="ladders">
+      <div><h3><span class="dot l"></span>Loofah, per piece</h3><p class="unit" id="unit-loofah"></p><div class="chart" id="ladder-loofah"></div></div>
+      <div><h3><span class="dot s"></span>Straw, per straw</h3><p class="unit" id="unit-straw"></p><div class="chart" id="ladder-straw"></div></div>
+    </div>
+    <div class="legend" aria-hidden="true">
+      <span><span class="sw" style="background:var(--loofah)"></span>Natural loofah</span>
+      <span><span class="sw" style="background:var(--straw)"></span>Plant stem or leaf straw</span>
+      <span><span class="sw" style="background:#B7C7AC"></span>Kitchen loofah</span>
+      <span><span class="sw" style="background:var(--neutral)"></span>Plastic, paper, edible or trade benchmark</span>
+      <span><span class="sw" style="background:#fff;border:2px solid var(--straw)"></span>Jute stick straw (snippet price)</span>
+    </div>
+    <div class="stat-list">
+      <p><b>US and Europe body loofah, 24 listings:</b> lowest USD 1.50 <span class="tag">Est.</span>, median USD 6.61, premium USD 10.48 to 13.09. Kitchen pads run USD 0.47 to 4.93.</p>
+      <p><b>India, 32 listings:</b> median about ₹72 a piece; Amazon.in median ₹63, Brown Living median ₹81.70. Trade listings sit at <a class="n" href="https://m.indiamart.com/impcat/loofah-sponge.html">₹10 to 20</a>, so retail runs 4x to 7x trade. Natural loofah already sits at or below plastic puff prices.</p>
+      <p><b>Straws:</b> by the case, a wheat stem straw (<a class="n" href="https://www.haystraws.com/products/original-hay-straws">USD 0.033 to 0.036</a>) costs less than US paper in small boxes; a paper price by the case was not opened. Reusable bamboo, steel and glass run USD 0.10 to 0.70 a straw and are left off the ladders. Two paper prices, Aardvark at Uline (US) and ECO SOUL on Amazon.in (India), were read by the research team but their page links were not recorded, so they are marked unverified, with no link.</p>
+      <p><b>Your own pack price:</b> a ₹349 four pack works out at ₹87 a piece, above the ₹72 Indian median, so it needs a visible reason to cost more.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Competitor browser -->
+<section class="sec" id="brands" aria-labelledby="h-brands">
+  <div class="wrap">
+    <h2 id="h-brands">Designed loofah products already sell in every market; nobody owns certified, traceable or hygiene led</h2>
+    <p class="lede">49 brands checked on 28 November 2026; cards marked unverified come from press or search results. Filter by product and region and open any card's listing to check it yourself. Screenshots are cropped to the product photo.</p>
+    <div class="ctl-row">
+      <div class="ctl"><span class="ctl-label" id="lbl-prod">Product</span>
+      <div class="seg" role="group" aria-labelledby="lbl-prod" id="prod-filter">
+        <button type="button" data-prod="all" aria-pressed="true">All</button>
+        <button type="button" data-prod="loofah" aria-pressed="false">Loofah</button>
+        <button type="button" data-prod="straw" aria-pressed="false">Straw</button>
+      </div></div>
+      <div class="ctl"><span class="ctl-label" id="lbl-reg">Region</span>
+      <div class="seg" role="group" aria-labelledby="lbl-reg" id="reg-filter">
+        <button type="button" data-reg="all" aria-pressed="true">All</button>
+        <button type="button" data-reg="US" aria-pressed="false">US</button>
+        <button type="button" data-reg="Europe" aria-pressed="false">Europe</button>
+        <button type="button" data-reg="India" aria-pressed="false">India and Asia</button>
+      </div></div>
+    </div>
+    <p class="count" id="brand-count" aria-live="polite"></p>
+    <div class="grid" id="brand-grid"></div>
+    <button type="button" class="btn more-btn" id="brand-more" hidden></button>
+  </div>
+</section>
+
+<!-- 6. Messaging -->
+<section class="sec" id="messaging" aria-labelledby="h-msg">
+  <div class="wrap">
+    <h2 id="h-msg">Loofah sellers sell against plastic; straw sellers sell against paper</h2>
+    <p class="lede">Quoted from the listings above. The open ground: no seller backs hygiene, compost time or “organic” with a test or a certificate.</p>
+    <div class="msg">
+      <div>
+        <h3><span class="dot l"></span>Loofah</h3>
+        <div class="theme"><b>Plastic and microplastic free leads everywhere</b><blockquote>“No Microplastic Bullsh*t!” <cite>Floofah, <a href="https://floofah.com/products/floofah-for-the-bath">product page</a></cite></blockquote><blockquote>“Unlike regular loofah, no plastic abrasion on skin” <cite>Nat Habit, <a href="https://www.flipkart.com/nat-habit-loofah/p/itma0be5d285ccee">Flipkart</a></cite></blockquote></div>
+        <div class="theme"><b>Grown, not made, with a named place</b><blockquote>“organically farmed under the Egyptian sun” <cite>Hydréa London, <a href="https://www.amazon.co.uk/dp/B00EYB6DZC">Amazon UK</a></cite></blockquote><blockquote>“Made of natural loofah plant grown in Europe” <cite>ecoLiving, <a href="https://ecoliving.co.uk/products/body-loofah">product page</a></cite></blockquote></div>
+        <div class="theme"><b>Compost it at home closes the story</b><blockquote>“Simply bury it in your garden to leave no trace.” <cite>Floofah, <a href="https://floofah.com/products/floofah-for-the-bath">product page</a></cite></blockquote></div>
+        <div class="theme"><b>Replacement is barely used, and only abroad</b><blockquote>“Replace it every 6 to 8 weeks and compost the old one.” <cite>Floofah, <a href="https://floofah.com/products/floofah-for-the-bath">product page</a></cite></blockquote><blockquote>“Replace every 4 weeks and dry thoroughly after use” <cite>awenest, the only Indian seller found saying it, <a href="https://www.amazon.in/dp/B0C3W41JXG">Amazon.in</a></cite></blockquote></div>
+        <div class="theme"><b>Fair work</b><blockquote>“made at ethical farms in Egypt, and Sri Lanka, where workers are paid a fair wage” <cite>LoofCo, as sold by <a href="https://www.babipur.co.uk/products/loofco-whole-natural-loofah">Babipur</a></cite></blockquote></div>
+      </div>
+      <div>
+        <h3><span class="dot s"></span>Straws</h3>
+        <div class="theme"><b>Against paper: never soggy</b><blockquote>“unlike paper straws, never soggy!” <cite>HAY! Straws, <a href="https://www.haystraws.com/products/original-hay-straws">product page</a></cite></blockquote><blockquote>“Unlike paper straws, they retain their shape.” <cite>wisefood, <a href="https://www.wisefood.eu/en/products/essbare-reisstrohhalme-schwarz-0-5-x-22-5-cm">product page</a></cite></blockquote></div>
+        <div class="theme"><b>Minutes or hours in a drink as proof</b><blockquote>“Can be used in any drinks for up to three hours” <cite>Sunbird, <a href="https://sunbirdstraws.com/product/regular-straws/">product page</a></cite></blockquote><blockquote>“Each straw lasts for approximately 40 minutes” <cite>Sorbos, <a href="https://www.crema.fi/en/products/sorbos/edible-straw-chocolate">retailer page</a></cite></blockquote></div>
+        <div class="theme"><b>Nothing added</b><blockquote>“zero artificial adhesives, zero linings, and zero coatings” <cite>qudrat, <a href="https://www.amazon.in/qudrat-Biodegradable-Eco-Friendly-Sustainable-Ethically/dp/B0C5HQZJRR">Amazon.in</a></cite></blockquote></div>
+        <div class="theme"><b>First mover and origin</b><blockquote>“The first disposable straw made of natural wheat stem, in Greece” <cite>Staramaki, <a href="https://www.nespresso.com/mobile/gr/en/products/Accessory/Staramaki---Straw-from-natural-wheat-strain/p/staramaki">Nespresso Greece</a></cite></blockquote></div>
+        <div class="theme"><b>The guest's reaction, in buyers' words</b><blockquote>“We use them for every drink at our cafe. Our customers love them as well.” <cite>HAY! review, <a href="https://www.haystraws.com/products/original-hay-straws">product page</a></cite></blockquote><blockquote>“seems only half the straws provide full suction” <cite>qudrat review, <a href="https://www.amazon.in/qudrat-Biodegradable-Eco-Friendly-Sustainable-Ethically/dp/B0C5HQZJRR">Amazon</a></cite></blockquote></div>
+      </div>
+    </div>
+    <p class="srcline">Top loofah complaints across Amazon UK, Amazon.in and Flipkart reviews: smell, mould after a few weeks, sharp edges when dry, uneven sizes in one pack, tearing. Top straw complaints: uneven bore, wrong diameter, short counts, glue or splitting in rolled leaf straws.</p>
+  </div>
+</section>
+
+<!-- 7. Claims check -->
+<section class="sec" id="claims" aria-labelledby="h-claims">
+  <div class="wrap">
+    <h2 id="h-claims">Three of your four claims do not hold as stated; the fourth is half right</h2>
+    <p class="lede">Each claim from your brief, tested against opened sources. Each verdict is stated plainly because a wrong claim on a pack is a legal risk in the EU, UK, US and India.</p>
+    <div class="claims" id="claims-list">
+      <div class="claim">
+        <div><p class="q">“No one is making it like a product. They are just selling it as it grows.”</p><p class="who">Loofah and straw</p></div>
+        <div><span class="chip false">Already being done</span></div>
+        <div class="ev"><p>Floofah presses luffa into branded oval and heart sponges with a 6 to 8 week life and autoship; LoofCo sells about 15 cut and sewn loofah items; Nat Habit has <a class="n" href="https://www.amazon.in/dp/B0B561VFWK">3,106</a> Amazon.in ratings and 1K+ sales a month. Jute stick straws are already made in <a class="n" href="https://www.indiamart.com/jute-stick-straw/">Krishnanagar, West Bengal</a> and <a class="n" href="https://en.prothomalo.com/environment/environment-friendly-youth-uses-jute-sticks-to-fight-plastic-straws">Jashore, Bangladesh</a>.</p><p>What is open: no brand checked names an organic certifier, a farm or district, a lab tested hygiene claim, or an Indian origin abroad. The gap is a certified, traceable, hygiene led product, not the first product.</p><p class="s">Sources: <a href="https://floofah.com/products/floofah-for-the-bath">Floofah</a>; <a href="https://natbrands.co.uk/products.json?limit=250">LoofCo catalogue</a>; <a href="https://www.amazon.in/dp/B0B561VFWK">Nat Habit</a>; <a href="https://www.indiamart.com/jute-stick-straw/">Jute Stick Straw</a>; <a href="https://en.prothomalo.com/environment/environment-friendly-youth-uses-jute-sticks-to-fight-plastic-straws">Prothom Alo</a></p></div>
+      </div>
+      <div class="claim">
+        <div><p class="q">“Paper straws and cups leave microplastic and residues which cause cancer.”</p><p class="who">Straw</p></div>
+        <div><span class="chip false">Residues partly supported; cancer link not supported</span></div>
+        <div class="ev"><p>Residues are real: a Belgian study found PFAS (“forever chemicals” often found in paper straw coatings) in <a class="n" href="https://www.eurekalert.org/news-releases/999341">18 of 20</a> paper straw brands, and a lined paper cup released about <a class="n" href="https://www.news-medical.net/news/20201119/Drinking-hot-beverages-from-paper-cups-poses-health-risks-shows-study.aspx">25,000</a> microplastic particles into hot water in a lab. But the same study found PFAS in <a class="n" href="https://www.eurekalert.org/news-releases/999341">4 of 5</a> bamboo straw brands, a US study found PFAS in plant based straws too, and the authors call the risk from occasional use limited. IARC classes PFOA as Group 1, carcinogenic to humans, but says this does not indicate the level of risk from a given exposure. No study linking straw or cup use to cancer was found.</p><p>So a jute straw cannot claim to be PFAS free until its own lab test says so.</p><p class="s">Sources: <a href="https://www.eurekalert.org/news-releases/999341">Groffen et al. 2023</a>; <a href="https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:33770693&amp;format=json&amp;resultType=core">Timshina et al. 2021</a>; <a href="https://www.iarc.who.int/faq/iarc-monographs-evaluate-the-carcinogenicity-of-perfluorooctanoic-acid-pfoa-and-perfluorooctanesulfonic-acid-pfos">IARC</a>; <a href="https://www.who.int/news-room/detail/22-08-2019-who-calls-for-more-research-into-microplastics-and-a-crackdown-on-plastic-pollution">WHO</a></p></div>
+      </div>
+      <div class="claim">
+        <div><p class="q">“A loofah should not be used for more than a week, because it builds up bacteria and fungus.”</p><p class="who">Loofah</p></div>
+        <div><span class="chip part">Partly true: risk real, interval wrong</span></div>
+        <div class="ev"><p>Loofahs do grow bacteria once wet, and one Pseudomonas skin infection was traced to a loofah. The guidance is to replace a natural loofah every <a class="n" href="https://health.clevelandclinic.org/loofahs-can-double-as-bacterial-breeding-grounds">3 to 4 weeks</a> and a plastic one after about 2 months, cleaning it weekly and replacing it at once if it smells or shows mould. Natural loofahs get the shorter life, which supports a refill pack, not a weekly fear message.</p><p class="s">Sources: <a href="https://health.clevelandclinic.org/loofahs-can-double-as-bacterial-breeding-grounds">Cleveland Clinic</a>; <a href="https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=loofah%20Pseudomonas%20Bottone&amp;format=json&amp;resultType=core">Bottone et al. 1994</a></p></div>
+      </div>
+      <div class="claim">
+        <div><p class="q">“It will decompose in a few days in a flower pot or in the ground.”</p><p class="who">Loofah and straw</p></div>
+        <div><span class="chip false">Not supported</span></div>
+        <div class="ev"><p>No soil burial study of a luffa sponge or jute stick was found. Woody materials can take <a class="n" href="https://extension.umaine.edu/publications/1159e/">up to two years</a> to break down unless shredded; the home compost certificate allows <a class="n" href="https://be.tuvaustria.com/wp-content/uploads/sites/73/2024/03/CS-OK02-EN_OK_compost_HOME.pdf">12 months</a> for 90% breakdown. The only jute straw figure on record is the maker's own “<a class="n" href="http://www.bjbde.org/wp-content/uploads/2022/05/150122005.pdf">5 years</a>” in open air. Leave any time claim off the pack until your own test sets it.</p><p class="s">Sources: <a href="https://extension.umaine.edu/publications/1159e/">UMaine Extension</a>; <a href="https://be.tuvaustria.com/wp-content/uploads/sites/73/2024/03/CS-OK02-EN_OK_compost_HOME.pdf">TÜV OK compost HOME</a>; <a href="http://www.bjbde.org/wp-content/uploads/2022/05/150122005.pdf">jute straw paper, 2022</a></p></div>
+      </div>
+      <div class="claim">
+        <div><p class="q">“Paper making is water, tree and resource intensive.”</p><p class="who">Also in the brief</p></div>
+        <div><span class="chip part">Partly true: energy supported; water and trees partly</span></div>
+        <div class="ev"><p>European mills used about 13.3 GJ of energy a tonne in 2024 and drew <a class="n" href="https://www.gzs.si/Portals/Panoga-Papirna-Industrija/Cepi-Key-Statistics-2025-FINAL.pdf">3,160 million m³</a> of water, but returned about 90% of it after treatment, and recovered paper equals 58.5% of their output. The tree point applies to virgin pulp, not to all paper. A comparison claim on a pack needs like for like evidence.</p><p class="s">Source: <a href="https://www.gzs.si/Portals/Panoga-Papirna-Industrija/Cepi-Key-Statistics-2025-FINAL.pdf">Cepi Key Statistics 2025</a></p></div>
+      </div>
+    </div>
+    <h3 style="margin-top:48px;font-size:20px">Say this, not that</h3>
+    <div class="scroll" tabindex="0" role="region" aria-label="Safe claim wording">
+      <table class="t min640">
+        <thead><tr><th scope="col">Say this</th><th scope="col">Not that</th><th scope="col">Why</th></tr></thead>
+        <tbody>
+          <tr><td>“Made from the dried fruit of the luffa plant”</td><td>“100% organic loofah”</td><td>Organic needs a certified crop (India) or product (USDA); the EU logo for a sponge is not confirmed</td></tr>
+          <tr><td>“Plastic free. No plastic, no glue, no coating” (only if documented)</td><td>“Eco friendly”, “green”, “biodegradable”</td><td>Generic claims are banned in the EU from <a class="n" href="https://eur-lex.europa.eu/eli/dir/2024/825/oj/eng">27 September 2026</a>; the FTC bars unqualified ones</td></tr>
+          <tr><td>“Swap every 3 to 4 weeks. Rinse and dry after each use”</td><td>“Must be replaced weekly or it will harm your skin”</td><td>The dermatology guidance says 3 to 4 weeks; fear claims overstate the risk</td></tr>
+          <tr><td>“Home compostable” with the time your own test shows</td><td>“Decomposes in a few days”</td><td>No evidence for days</td></tr>
+          <tr><td>“Studies found PFAS in many paper and bamboo straws. Ours are tested by [lab], report on request” (after a test)</td><td>“Paper straws cause cancer”, “PFAS free” without a test</td><td>No cancer link proven; plant straws also tested positive</td></tr>
+          <tr><td>“Supports farmers in [district]” with a named partner</td><td>“Empowers thousands of farmers”</td><td>Vague impact claims fall under the substantiation rules of India's consumer protection authority (CCPA) and the UK CMA</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 8. Jute feasibility -->
+<section class="sec" id="jute" aria-labelledby="h-jute">
+  <div class="wrap">
+    <h2 id="h-jute">A jute stick straw is feasible in principle and already hand made, but nothing about it is proven for cafes or export</h2>
+    <p class="lede">Verdict: <span class="chip part">Feasible, not yet proven</span>. It is a single natural stem with no glue, like wheat, reed and grass straws. Five risks decide it: an open bore, uneven diameter with no wide sizes, a steady supply of the “special quality” stick, microbes from 20 days of retting in pond or river water, and splinters.</p>
+    <div class="jute">
+      <div class="box">
+        <h3>What is known</h3>
+        <ul>
+          <li><b>Jute Stick Straw</b>, Krishnanagar, Nadia, West Bengal: 11 to 25 staff, 6 years on IndiaMART, free samples; trade price ₹2.50 to 3 a straw at a 2,000 minimum order, from a search snippet <span class="tag unv">unverified</span> (<a href="https://www.indiamart.com/jute-stick-straw/">company profile</a>, no product or price shown)</li>
+          <li><b>Go Green Bangladesh</b>, Jashore: factory since 2020, capacity over <a class="n" href="https://en.prothomalo.com/environment/environment-friendly-youth-uses-jute-sticks-to-fight-plastic-straws">100,000 straws a day</a> with about 5% in use, a warning sign on demand; 15 women earn at least Tk 200 a day</li>
+          <li>Size: 20 cm long, <a class="n" href="http://www.bjbde.org/wp-content/uploads/2022/05/150122005.pdf">2.5 to 5 mm</a> across, about 1.4 g; no 8 to 12 mm size for smoothies or boba</li>
+          <li>Process as the maker describes it: about 20 days of water retting, fibre stripped, 10 to 12 days of sun drying, cut, bore cleaned, boiled 10 minutes with neem leaves or salt</li>
+          <li>The Krishnanagar maker's blog reports “problems after problems” with hole size; Go Green says sourcing the right stick was its main difficulty</li>
+          <li>No US or EU shop sells a jute stick straw, and nobody sells a branded, certified one</li>
+          <li>Wheat stem is the benchmark: HAY! lists BPI, USDA BioPreferred and an <a class="n" href="https://www.haystraws.com/products/original-hay-straws">EU 10/2011 migration test</a></li>
+        </ul>
+      </div>
+      <div class="box tests">
+        <h3>What must be tested before any branding money</h3>
+        <ol>
+          <li>Bore: share of sticks open end to end, inner diameter, usable straws per kg</li>
+          <li>Wet strength at 30 minutes, 1 hour and 3 hours in cold water, lemonade, milk shake and 85 °C coffee</li>
+          <li>Taste and smell panel against wheat stem and paper</li>
+          <li>Microbiology after boiling: plate count, yeast and mould, coliforms</li>
+          <li>Food contact migration (EU 10/2011 or FSSAI), heavy metals, pesticide residue and a PFAS screen</li>
+          <li>Splinters and mouth feel after cutting and sanding</li>
+          <li>Home compost time, ideally an OK compost HOME test</li>
+          <li>Mould in humid storage over 6 to 12 months</li>
+        </ol>
+      </div>
+    </div>
+    <div class="prec">
+      <p><b>A precedent for the two product idea:</b> the Krishnanagar jute straw maker says it already added luffa.</p>
+      <q>we have added another new product called luffa sponges</q>
+      <p>It lists leaf and nut plates, jute handicrafts and organic garments as next. The same source reports “problems after problems” with hole size and says it moved to a straw combining bamboo and jute. Source: the maker's blog, repeated word for word in <a href="http://www.bjbde.org/wp-content/uploads/2022/05/150122005.pdf">Rahman, Sultana and Jahangir, 2022</a>, which reports no tests.</p>
+    </div>
+    <p class="srcline">Whether the stick is naturally hollow end to end rests on the maker's word only; a plant anatomy paper describes it as woody tissue with no named cavity, and that paper was later retracted. Treat hollowness as a claim to test.</p>
+  </div>
+</section>
+
+<!-- 9. Rules -->
+<section class="sec" id="rules" aria-labelledby="h-rules">
+  <div class="wrap">
+    <h2 id="h-rules">Rules are light for loofah and heavy for a straw, because a straw touches food</h2>
+    <p class="lede">Effort: low means a form or a self declaration; medium means paid lab tests, a local representative or a certifier; high means months of certification or a legal opinion. Cells marked unverified come from a search summary only.</p>
+    <div class="scroll" tabindex="0" role="region" aria-label="Rules by market">
+      <table class="t min880">
+        <thead><tr><th scope="col">Topic</th><th scope="col">India</th><th scope="col">US</th><th scope="col">EU and UK</th><th scope="col">Effort</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Plastic straw bans (the demand driver)</th><td>Banned from <a class="n" href="https://static.pib.gov.in/WriteReadData/specificdocs/documents/2022/jul/doc20227169001.pdf">1 July 2022</a>: making, import, sale and use</td><td>No federal ban found; state and city rules vary and were not checked <span class="tag unv">unverified</span></td><td>EU market ban from <a class="n" href="https://eur-lex.europa.eu/eli/dir/2019/904/oj/eng">3 July 2021</a>; England from <a class="n" href="https://deframedia.blog.gov.uk/2020/10/02/government-ban-on-plastic-straws-stirrers-and-cotton-buds-begins/">1 October 2020</a></td><td><span class="eff">Low</span></td></tr>
+          <tr><th scope="row">Does a plant straw escape the EU plastic ban?</th><td>n/a</td><td>n/a</td><td>Yes, only if it stays natural polymer, not chemically modified. Any coating or binder in the “natural formulation” could make it a banned plastic. <a href="https://eur-lex.europa.eu/eli/dir/2019/904/oj/eng">Directive 2019/904</a></td><td><span class="eff">Medium</span></td></tr>
+          <tr><th scope="row">Straw as food contact material</th><td>Food contact packaging must meet listed Indian Standards; jute stick is not listed <span class="tag unv">unverified</span></td><td>FDA refused GRAS for <a href="https://www.fda.gov/food/post-market-determinations-use-substance-not-gras/letter-retailers-distributors-and-importers-dinnerware">areca leaf plates</a> on 8 May 2025 because natural compounds leach into food. No test is legally named; given the areca leaf precedent, plan a migration test before any US sale (legal judgment)</td><td>General safety duty under Regulation 1935/2004; no specific rule for plant stem straws <span class="tag unv">unverified</span></td><td><span class="eff">Medium</span></td></tr>
+          <tr><th scope="row">Tests buyers ask for (trade practice, our judgment)</th><td>An accredited lab report (heavy metals, microbes) and the maker's FSSAI licence</td><td>Migration or heavy metal report, a PFAS screen</td><td>A 1935/2004 declaration, heavy metals, microbes, a total fluorine screen</td><td><span class="eff">Medium</span></td></tr>
+          <tr><th scope="row">Loofah product category (our reading)</th><td>General consumer good; no specific licence found</td><td>General consumer product; an “antibacterial” claim could pull it into pesticide rules</td><td>The EU <a href="https://trade.ec.europa.eu/access-to-markets/en/news/eus-general-product-safety-regulation-gpsr-new-era-consumer-protection">product safety regulation</a> requires a responsible operator inside the EU</td><td><span class="eff">Medium</span></td></tr>
+          <tr><th scope="row">Plant import rules</th><td>Phytosanitary certificate from India's plant protection office, issued online <span class="tag unv">unverified</span></td><td>Dried plant products often need no permit, but luffa and jute are not named. <a href="https://www.aphis.usda.gov/ace/generally-authorized-non-propagative-plant-products">APHIS</a>; check its database before shipping</td><td>A certificate only if listed in the plant health annex; not confirmed for loofah or jute sticks</td><td><span class="eff h">Medium to high</span></td></tr>
+          <tr><th scope="row">The word “organic”</th><td>NPOP (India's national organic certification scheme) certifies the crop through <a class="n" href="https://apeda.gov.in/sites/default/files/press_release/2148991.pdf">37</a> accredited bodies; the finished sponge is not clearly covered</td><td>USDA seal only with full NOP certification of production and handling (<a href="https://www.ams.usda.gov/sites/default/files/media/NOP-PM-11-14-LabelingofTextiles.pdf">USDA AMS</a>) <span class="tag unv">unverified</span></td><td>Whether a sponge can carry the EU organic logo is not confirmed; plan as if it cannot <span class="tag unv">unverified</span></td><td><span class="eff h">High</span></td></tr>
+          <tr><th scope="row">Green claims</th><td>CCPA greenwashing guidelines, 15 October 2024: claims must be substantiated <span class="tag unv">unverified</span></td><td><a href="https://www.law.cornell.edu/cfr/text/16/260.7">FTC Green Guides</a>: “degradable” only if it fully breaks down within <a class="n" href="https://www.law.cornell.edu/cfr/text/16/260.8">one year</a></td><td>EU bans “eco friendly” and “biodegradable” without proof from <a class="n" href="https://eur-lex.europa.eu/eli/dir/2024/825/oj/eng">27 September 2026</a>; UK <a href="https://www.gov.uk/government/publications/green-claims-code-making-environmental-claims/environmental-claims-on-goods-and-services">Green Claims Code</a></td><td><span class="eff">Medium</span></td></tr>
+          <tr><th scope="row">Design protection</th><td>About ₹1,000 a design for startups and small entities, 10 years plus 5 <span class="tag unv">unverified</span>; about <a class="n" href="https://intellectual-property-helpdesk.ec.europa.eu/regional-helpdesks/india-ip-sme-helpdesk/design-protection-cost-country-india_en">EUR 23</a> to file</td><td>Protects looks only; a shape dictated by function is not protectable; <a class="n" href="https://www.law.cornell.edu/uscode/text/35/173">15 years</a> from grant</td><td>EU design <a class="n" href="https://boult.com/bulletin/eu-design-reform-new-design-fees-and-changes-to-renewal-dates">EUR 350</a> for the first, EUR 125 each extra, renewable to 25 years</td><td><span class="eff">Low</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="srcline">Design rights can cover a cut shape, a fitted loop or handle, and the packaging. They cannot cover the natural luffa or stick, the bore of a straw, or the idea of a plant sponge. File before launch, since showing the design in public can destroy its novelty. The real moat is brand, certification, lab reports and supply contracts.</p>
+  </div>
+</section>
+
+<!-- 10. Unit economics -->
+<section class="sec" id="economics" aria-labelledby="h-econ">
+  <div class="wrap">
+    <h2 id="h-econ">The product costs little; the channel takes the money, and wholesale to plastic free shops keeps the most</h2>
+    <p class="lede">Contribution per order is the money left from each order after product, fees and shipping, before ads. FBA means Amazon stores and ships your stock. Figures are built from public fee schedules and the cost inputs listed under <a href="#inputs">inputs</a>. A loofah 4 pack costs about ₹72 (USD 0.82) to make <span class="tag">Est.</span> Straw rows are gated: they only count once the jute straw passes its tests.</p>
+    <div class="chart" id="chart-econ" role="group" aria-label="Contribution margin before advertising for nine product and channel combinations"></div>
+    <div class="legend" aria-hidden="true"><span><span class="sw" style="background:var(--loofah)"></span>Loofah</span><span><span class="sw" style="background:#fff;border:2px solid var(--straw)"></span>Straw, gated until tests pass</span></div>
+    <div class="scroll" tabindex="0" role="region" aria-label="Unit economics table">
+      <table class="t min880" id="econ-table"><thead><tr><th scope="col">Product and channel</th><th scope="col">Unit</th><th scope="col">Price</th><th scope="col">Order value</th><th scope="col">Contribution per order</th><th scope="col">Margin <span class="mn">of order value, unless the row says net revenue after GST</span></th><th scope="col">Main inputs</th></tr></thead><tbody></tbody></table>
+    </div>
+    <div class="stat-list">
+      <p><b>Amazon keeps about half the shelf price.</b> Ads at 20 to 30% of sales would take USD 2.60 to 3.90 of the USD 6.30 <span class="tag">Est.</span> A single loofah cannot carry a USD 2.50 to 3.42 FBA fee, so the unit has to be a pack.</p>
+      <p><b>US tariffs barely move it.</b> Duty is charged on a customs value near USD 1, so going from the reported 10% to the proposed 25% extra duty on Indian goods costs about 16 cents a pack <span class="tag">Est.</span> (<a href="https://www.etvbharat.com/en/business/us-tariffs-on-india-explained-from-50-percent-to-18-percent-and-now-25-percent-heres-how-the-trade-battle-unfolded-enn26112702391">one news timeline</a>; confirm with a broker).</p>
+      <p><b>India hotels are a trap at commodity prices:</b> 5% margin at ₹12 a piece.</p>
+      <p><b>Loofah risks to name now.</b> After ads, US Amazon keeps about USD 2.40 to 3.70 of USD 12.99 (18% to 28%) <span class="tag">Est.</span>, close to the 15% exit trigger. The India own site row includes no customer acquisition cost. A ₹349 four pack is ₹87 a piece, above the ₹72 median. And the natural loofah pool is small: 1K+ a month for the Amazon.in leader against 6K+ for a plastic puff.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 11. Case studies -->
+<section class="sec" id="cases" aria-labelledby="h-cases">
+  <div class="wrap">
+    <h2 id="h-cases">Eco brands that started with one hero product for one buyer</h2>
+    <p class="lede">None of these brands crossed from personal care into foodservice. They added items the same buyer puts in the same basket. All of them survived, so this list flatters every strategy a little.</p>
+    <div class="cases" id="cases-list"></div>
+  </div>
+</section>
+
+<!-- 12. Scorecard -->
+<section class="sec" id="scorecard" aria-labelledby="h-score">
+  <div class="wrap">
+    <h2 id="h-score">Loofah first leads under the research weights, the farmer story weights and the straw proven scenario; move the weights to test your own priorities</h2>
+    <p class="lede">Loofah and straw side by side first, then the scorecard. Scores are 1 to 5 (higher is better) and come from the research; the weights are yours to change. Defensibility for straw first and umbrella was lowered from 3 to 2 after the straw research found existing jute straw makers.</p>
+    <div class="scroll versus" tabindex="0" role="region" aria-label="Loofah and straw compared">
+      <table class="t min640 stack">
+        <thead><tr><th scope="col"></th><th scope="col"><span class="dot l"></span>Loofah</th><th scope="col"><span class="dot s"></span>Jute stick straw</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Market size</th><td>USD <a class="n" href="https://www.futuremarketinsights.com/reports/loofah-bath-sponge-market">0.7</a> to <a class="n" href="https://www.theinsightpartners.com/pr/loofah-market">2.0</a> bn, 5 to 7% a year <span class="tag">Est.</span></td><td>Eco straws USD <a class="n" href="https://markwideresearch.com/eco-friendly-straw-market">1.8</a> to <a class="n" href="https://www.marketsandmarkets.com/PressReleases/paper-straw.asp">4.9</a> bn, 8 to 19% a year <span class="tag">Est.</span>; plant stems a niche inside</td></tr>
+          <tr><th scope="row">Price per unit</th><td>India median ₹72 a piece; US and Europe median USD 6.61</td><td>Existing maker's price ₹2.50 to 3 <span class="tag unv">unverified</span>; our modelled cafe price ₹0.80 <span class="tag">Est.</span>; Indian paper ₹<a class="n" href="https://m.indiamart.com/kyomibiostraws">0.25 to 0.82</a> in trade</td></tr>
+          <tr><th scope="row">Margin per order</th><td>India own site ₹240, 48% of the order value (57% of net revenue after GST); US Amazon USD 6.30, 48%; shop wholesale USD 117, 78% <span class="tag">Est.</span></td><td>51% India cafes (₹810 per 2,000); 54% US foodservice (USD 40.50 a case), both gated <span class="tag">Est.</span></td></tr>
+          <tr><th scope="row">Regulation</th><td>Light to medium (our reading); “organic” needs certification</td><td>Food contact; no test is legally named, but plan a migration test before any US or EU sale</td></tr>
+          <tr><th scope="row">Ready to ship</th><td>Within 90 days</td><td>After the 8 tests and a cafe pilot</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="score-wrap">
+      <div>
+        <div class="crits" id="crits">
+          <div class="crit crit-head" aria-hidden="true"><span>Criterion</span><span>Your weight</span><span></span><span class="sc"><span>Loofah</span><span>Straw</span><span>Both</span></span></div>
+        </div>
+        <div class="presets">
+          <button type="button" class="btn" id="p-research">Research weights</button>
+          <button type="button" class="btn" id="p-story">Farmer story first</button>
+          <button type="button" class="btn" id="p-proven" aria-pressed="false">Straw passes lab tests</button>
+        </div>
+        <p class="mini" id="mini" aria-hidden="true"></p>
+        <p class="srcline">“Straw passes lab tests” applies the research team's scenario: the umbrella option's readiness rises to 4 and its regulatory score to 3. Straw first scores stay capped until the tests pass. Highlighted cells are where an option leads.</p>
+      </div>
+      <div class="result" aria-labelledby="h-result">
+        <h3 id="h-result">Weighted score, out of 5</h3>
+        <p class="leader" id="leader"></p>
+        <div class="chart" id="chart-score"></div>
+        <p id="score-order" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <div class="reopen" id="reopen">
+      <div><b>Add straw as the second line</b><p>When a jute stick straw passes food contact migration and wet strength tests, and 10 pilot cafes reorder at ₹0.80 or more within 60 days. It needs its own B2B team or a distributor.</p></div>
+      <div><b>Switch to straw first</b><p>If the straw passes those tests and one cafe or quick service restaurant chain commits to a volume order; one contract would outweigh years of loofah retail. Indian carton makers use about <a class="n" href="https://www.aljazeera.com/economy/2022/7/20/as-single-use-plastic-ban-kicks-in-indian-businesses-flounder">6 bn</a> straws a year, but whether a jute stick suits a carton pack is untested.</p></div>
+      <div><b>Rethink loofah</b><p>If after 90 days US Amazon contribution after ads falls under 15% of price, or the 4 pack converts too slowly on Amazon.in to scale. Then shift to wholesale and hotel amenities.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 13. Roadmap -->
+<section class="sec" id="roadmap" aria-labelledby="h-road">
+  <div class="wrap">
+    <h2 id="h-road">Expand inside the same bathroom and kitchen basket; keep food contact products as a separate line</h2>
+    <p class="lede">Each step reuses the loofah buyer and channel. Products that touch food sell to a different buyer and wait for lab clearance.</p>
+    <div class="road">
+      <div class="step"><span class="when">Year one</span><h3>Loofah body and kitchen range</h3><p>A 4 pack and a refill subscription in India (own site and Amazon.in), a US Amazon test, and 20 to 40 plastic free shops in the US, UK and EU. Same farmers, more of each fruit used.</p></div>
+      <div class="step"><span class="when">Next</span><h3>Coir and banana fibre bath and kitchen tools</h3><p>India's coir exports were <a class="n" href="https://www.ibef.org/news/india-s-coir-sector-strengthens-rural-livelihoods-and-sustainable-growth">₹6,614 Cr</a> in FY26. Banana fibre adds about <a class="n" href="https://thebetterindia.com/264157/banana-fibre-earns-lakhs-waste-business-success-ecofriendly-handicraft">₹23,178</a> a hectare for farmers <span class="tag">Est.</span>; market access is its weak point.</p></div>
+      <div class="step later"><span class="when">Later</span><h3>Jute bags and mats; bamboo toothbrush</h3><p>Bamboo toothbrushes are a <a class="n" href="https://www.imarcgroup.com/global-bamboo-toothbrush-market">USD 44.4 m</a> global market <span class="tag">Est.</span>, crowded with cheap imports. Neem combs have no market figure.</p></div>
+      <div class="step b2b"><span class="when">Separate B2B line, after lab clearance</span><h3>Jute stick straw; leaf plates</h3><p>Different buyer, different team. The US blocked <a class="n" href="https://www.angelone.in/news/economy/us-ban-on-areca-leaf-plates-a-blow-to-india-s-eco-friendly-export-industry">areca leaf plates</a> in May 2025; Canada and Australia restrict them too.</p></div>
+    </div>
+    <div class="farm">
+      <h3>Farmers already sell dried loofah, but no government scheme backs a loofah cluster yet</h3>
+      <div class="sig"><div class="v"><a href="https://ideas.repec.org/a/ags/injagm/399969.html">91.52%</a></div><p>of dried loofah already marketed by farmers in a 2024 Meghalaya study; transport and storage are the main constraints.</p></div>
+      <div class="sig"><div class="v"><a href="https://krishijagran.com/crop-calendar/sponge-gourd-cultivation/">UP, Punjab</a></div><p>lead sponge gourd growing; it is a common vegetable crop across north and east India. No farm gate price for mature dried gourd was found.</p></div>
+      <div class="sig"><div class="v"><a href="https://www.ibef.org/news/india-s-coir-sector-strengthens-rural-livelihoods-and-sustainable-growth">700,000+</a></div><p>people work in India's coir sector, about 80% of them women, the model for a loofah processing cluster.</p></div>
+      <div class="sig"><div class="v"><a href="https://en.prothomalo.com/environment/environment-friendly-youth-uses-jute-sticks-to-fight-plastic-straws">Tk 200</a></div><p>a day at least for each of the 15 women at the Jashore jute straw factory.</p></div>
+    </div>
+    <p class="srcline">No government scheme (ODOP, NRLM, KVIC) names loofah, so a loofah self help group cluster would be a new proposal. Name a real farm partner and district before claiming farmer impact on a pack.</p>
+  </div>
+</section>
+
+<!-- 14. Sources -->
+<section class="sec" id="sources" aria-labelledby="h-sources">
+  <div class="wrap">
+    <h2 id="h-sources">Every listing price and published figure links to its page; estimates trace to the inputs below</h2>
+    <p class="lede">Est. marks a figure the research team built from the inputs below (costs, margins, medians, the scorecard) or a paid report summary. Unverified marks a figure from a search result or a page that refused access. Pages were opened on 28 November 2026.</p>
+    <div class="inputs" id="inputs">
+      <p><b>Exchange rates.</b> Loofah prices abroad: GBP 1 = USD 1.3105, EUR 1 = USD 1.0946; straw prices: USD 1 = ₹92.98 (<a href="https://open.er-api.com/v6/latest/USD">ExchangeRate API</a>, 28 November 2026). Unit economics use ₹88 per USD <span class="tag">Est.</span></p>
+      <p><b>Costs.</b> Loofah 4 pack ₹72: ₹4 raw fruit, ₹6 processing and ₹5 sleeve a piece plus a ₹12 carton, anchored to dried sponge gourd at <a class="n" href="https://dir.tridge.com/prices/dried-sponge-gourd/IN">₹12.50 to 16.50 a kg</a> <span class="tag">Est.</span> Jute straw ₹0.35 a straw <span class="tag">Est.</span>; no public jute stick price exists.</p>
+      <p><b>Freight and duty.</b> Sea freight USD 250 per CBM all in <span class="tag">Est.</span> (<a href="https://suaidglobal.com/shipping/india-to-usa/lcl/">forwarder benchmark</a> <span class="tag unv">unverified</span>). US duty on loofah articles <a class="n" href="https://hts.usitc.gov/reststop/search?keyword=4602.19">2.3%</a>; plant stem straws <a class="n" href="https://hts.usitc.gov/reststop/search?keyword=1404.90">free</a>. EU duty on hand made loofah articles from India <a class="n" href="https://www.trade-tariff.service.gov.uk/xi/api/v2/commodities/4602199010">0%</a> under GSP, the EU's lower tariff scheme for developing countries.</p>
+      <p><b>Fees.</b> <a href="https://sell.amazon.com/pricing">Amazon US referral</a>, <a href="https://www.sellerapp.com/blog/amazon-fba-fees/">2026 FBA fees</a>, <a href="https://sell.amazon.in/fees-and-pricing">Amazon.in fees</a>.</p>
+    </div>
+    <details class="src-fold" id="src-fold"><summary id="src-sum">All source links</summary><div class="srcs" id="src-list"></div></details>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">Market research for a new Indian organic products venture. Research checked 28 November 2026. Working draft: figures marked Est. or unverified should be confirmed before they go on a pack, a pitch or a price list.</div></footer>
+
+<script src="data.js"></script>
+<script>
+(function(){
+  var D = window.DATA;
+  var C = { ink:"#15201A", ink2:"#4B5550", loofah:"#4F7A34", straw:"#A8741A", neutral:"#8A8F87", rule:"#DADDD6", kitchen:"#B7C7AC", white:"#FFFFFF" };
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  function tagsHTML(r){ return (r.est ? ' <span class="tag">Est.</span>' : '') + (r.unv ? ' <span class="tag unv">unverified</span>' : ''); }
+  function tagsText(r){ return (r.est ? ' (Est.)' : '') + (r.unv ? ' (unverified)' : ''); }
+
+  // shortcut: character width estimate for SVG label wrapping; fine for Plex Sans at 12 to 14px.
+  function wrap(t, w, fs){
+    var max = Math.max(12, Math.floor(w / (fs * 0.55))), words = t.split(' '), lines = [], cur = '';
+    words.forEach(function(wd){ if ((cur + ' ' + wd).trim().length > max && cur){ lines.push(cur); cur = wd; } else { cur = (cur + ' ' + wd).trim(); } });
+    if (cur) lines.push(cur);
+    return lines;
+  }
+  // charts with source links inside are groups; only the score chart (no links) is a single image
+  function svg(w, h, body, label, role){ return '<svg xmlns="http://www.w3.org/2000/svg" width="' + w + '" height="' + h + '" viewBox="0 0 ' + w + ' ' + h + '"' + (label ? ' role="' + (role || 'group') + '" aria-label="' + esc(label) + '"' : '') + '>' + body + '</svg>'; }
+  function link(url, inner){ return '<a href="' + esc(url) + '"' + (url.charAt(0) === '#' ? '' : ' target="_blank" rel="noopener"') + '>' + inner + '</a>'; }
+  function niceUrl(u){ try { return decodeURI(u); } catch (e) { return u; } }
+
+  /* Horizontal bar chart: label line(s) above each bar, value after the bar, value links to its source. */
+  function bars(el, rows, o){
+    var W = el.clientWidth; if (!W) return;
+    var fs = W < 560 ? 12 : 14, lh = fs + 4, valW = W < 560 ? 104 : 150, plot = W - valW;
+    var max = o.max || Math.max.apply(null, rows.map(function(r){ return r.hi != null ? r.hi : r.v; })) * 1.02;
+    var x = function(v){ return Math.max(2, v / max * plot); };
+    var y = o.median != null ? 28 : 4, out = '', bh = 12;
+    rows.forEach(function(r){
+      wrap(r.label + tagsText(r), W, fs).forEach(function(ln, i){ out += '<text x="0" y="' + (y + fs + i * lh) + '" font-size="' + fs + '" fill="' + C.ink + '">' + esc(ln) + '</text>'; });
+      y += wrap(r.label + tagsText(r), W, fs).length * lh + 4;
+      var col = o.color(r), end;
+      if (r.lo != null){
+        out += '<line x1="0" x2="' + x(r.lo) + '" y1="' + (y + bh / 2) + '" y2="' + (y + bh / 2) + '" stroke="' + C.rule + '" stroke-width="2"/>';
+        out += rect(x(r.lo), y, Math.max(4, x(r.hi) - x(r.lo)), bh, col);
+        end = x(r.hi);
+      } else { out += rect(0, y, x(r.v), bh, col); end = x(r.v); }
+      var val = r.lo != null ? o.fmt(r.lo) + ' to ' + o.fmt(r.hi).replace(o.cur, '') : o.fmt(r.v);
+      var vt = '<text x="' + (end + 8) + '" y="' + (y + bh - 1) + '" font-size="' + fs + '" font-weight="600" fill="' + C.ink + '"' + (r.url ? ' text-decoration="underline"' : '') + '>' + esc(val) + '</text>';
+      out += r.url ? link(r.url, vt) : vt;
+      y += bh + 16;
+    });
+    if (o.median != null){
+      var mx = x(o.median), tw = o.medianLabel.length * 12 * 0.56, tx = Math.min(Math.max(0, mx - tw / 2), W - tw);
+      out = '<line x1="' + mx + '" x2="' + mx + '" y1="20" y2="' + (y - 8) + '" stroke="' + C.ink + '" stroke-dasharray="3 3" stroke-width="1"/>' +
+            '<text x="' + tx + '" y="14" font-size="12" fill="' + C.ink + '">' + esc(o.medianLabel) + '</text>' + out;
+    }
+    el.innerHTML = svg(W, y, out, o.aria);
+  }
+  function rect(x, y, w, h, col){
+    if (col.outline) return '<rect x="' + (x + 1) + '" y="' + (y + 1) + '" width="' + Math.max(2, w - 2) + '" height="' + (h - 2) + '" rx="2" fill="#fff" stroke="' + col.outline + '" stroke-width="2"/>';
+    return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="2" fill="' + col.fill + '"/>';
+  }
+  function numFmt(cur, dp){ return function(v){ return cur + (dp === 3 ? v.toFixed(3) : (cur === '$' || !Number.isInteger(v) ? v.toFixed(2) : String(v))); }; }
+
+  /* 3. Market dumbbells */
+  function drawMarket(){
+    var el = document.getElementById('chart-market'), W = el.clientWidth; if (!W) return;
+    var fs = W < 560 ? 12 : 14, lh = fs + 4, max = 13.5, pad = 8, plot = W - pad * 2, y = 4, out = '';
+    var x = function(v){ return pad + v / max * plot; };
+    var gcol = { loofah: C.loofah, straw: C.straw, other: C.neutral };
+    [0, 2, 4, 6, 8, 10, 12].forEach(function(t){ out += '<text x="' + x(t) + '" y="12" font-size="12" fill="' + C.ink2 + '" text-anchor="middle">' + t + (t === 12 ? ' bn' : '') + '</text>'; });
+    y = 24;
+    D.market.forEach(function(m){
+      var lines = wrap(m.label + ' (Est.)', W, fs);
+      lines.forEach(function(ln, i){ out += '<text x="0" y="' + (y + fs + i * lh) + '" font-size="' + fs + '" fill="' + C.ink + '">' + esc(ln) + '</text>'; });
+      y += lines.length * lh + 6;
+      var cy = y + 6, col = gcol[m.group];
+      out += '<line x1="' + x(m.base) + '" x2="' + x(m.fc) + '" y1="' + cy + '" y2="' + cy + '" stroke="' + col + '" stroke-width="3"/>';
+      out += '<circle cx="' + x(m.base) + '" cy="' + cy + '" r="6" fill="' + col + '"/><circle cx="' + x(m.fc) + '" cy="' + cy + '" r="6" fill="#fff" stroke="' + col + '" stroke-width="2"/>';
+      y += 18;
+      out += link(m.url, '<text x="0" y="' + (y + 12) + '" font-size="12" fill="' + C.ink + '" text-decoration="underline">USD ' + m.base + ' bn (' + m.by + ') to ' + m.fc + ' bn (' + m.fy + '), ' + m.cagr + '% a year</text>');
+      y += 28;
+    });
+    el.innerHTML = svg(W, y, out);
+  }
+
+  /* 4. Price ladders */
+  var region = 'US';
+  function colorFor(product){ return function(r){
+    if (r.kind === 'jute') return { outline: C.straw };
+    if (r.kind === 'natural') return { fill: product === 'loofah' ? C.loofah : C.straw };
+    if (r.kind === 'kitchen') return { fill: C.kitchen };
+    return { fill: C.neutral };
+  }; }
+  function drawLadders(){
+    ['loofah', 'straw'].forEach(function(p){
+      var L = D.ladders[p][region], el = document.getElementById('ladder-' + p);
+      document.getElementById('unit-' + p).textContent = L.unit;
+      var fmt = numFmt(L.cur, L.dp);
+      bars(el, L.rows, { cur: L.cur, fmt: fmt, color: colorFor(p), median: L.median ? L.median.v : null, medianLabel: L.median ? L.median.label : '', aria: (p === 'loofah' ? 'Loofah' : 'Straw') + ' prices in ' + region + ', ' + L.unit });
+    });
+    document.getElementById('region-status').textContent = 'Showing ' + region + ' prices: ' + D.ladders.loofah[region].rows.length + ' loofah and ' + D.ladders.straw[region].rows.length + ' straw listings';
+  }
+  function seg(groupId, attr, onPick){
+    var g = document.getElementById(groupId);
+    g.addEventListener('click', function(e){
+      var b = e.target.closest('button'); if (!b) return;
+      g.querySelectorAll('button').forEach(function(x){ x.setAttribute('aria-pressed', String(x === b)); });
+      onPick(b.getAttribute(attr));
+    });
+  }
+  seg('region-toggle', 'data-region', function(v){ region = v; drawLadders(); });
+
+  /* 5. Competitor browser */
+  var wide = window.matchMedia('(min-width: 561px)').matches;
+  var grid = document.getElementById('brand-grid'), fProd = 'all', fReg = 'all';
+  grid.innerHTML = D.brands.map(function(b){
+    var reg = b.region.map(function(r){ return r === 'Asia' ? 'India' : r; });
+    return '<article class="card" data-card="' + b.id + '" data-prod="' + b.product + '" data-reg="' + reg.join(' ') + '">' +
+      (b.img ? '<a class="shot" href="images/' + b.img + '" target="_blank" rel="noopener"><img src="images/' + b.img + '" alt="Screenshot of the ' + esc(b.name) + ' listing, cropped to the product" loading="lazy" width="800" height="500"></a>' : '<div class="shot noimg" aria-hidden="true">No screenshot</div>') +
+      '<div class="in"><h3>' + esc(b.name) + '</h3>' +
+      '<p class="meta"><span class="dot ' + (b.product === 'loofah' ? 'l' : 's') + '"></span>' + (b.product === 'loofah' ? 'Loofah' : 'Straw') + ' · ' + esc(b.country) + '</p>' +
+      '<p class="price"><a href="' + esc(b.url) + '" target="_blank" rel="noopener">' + esc(b.price) + '</a>' + tagsHTML(b) + '</p>' +
+      (b.per ? '<p class="meta">' + esc(b.per) + '</p>' : '') +
+      '<details class="more"' + (wide ? ' open' : '') + '><summary>What, where, reviews</summary><div class="more-in">' +
+      '<p>' + esc(b.what) + '</p>' +
+      '<p><b>Sells through:</b> ' + esc(b.channel) + '</p>' +
+      (b.claim ? '<q>' + esc(b.claim) + '</q>' : '') +
+      '<p class="rv">Reviews: ' + esc(b.reviews) + '</p></div></details>' +
+      '<a class="go" href="' + esc(b.url) + '" target="_blank" rel="noopener">' + esc(b.linkText || 'Open the listing') + '</a></div></article>';
+  }).join('');
+  /* On phones the first 8 matching cards show, with a button for the rest. */
+  var more = document.getElementById('brand-more'), showAll = false, PHONE_MAX = 8;
+  function filterBrands(){
+    var n = 0, cards = grid.querySelectorAll('.card'), cap = wide || showAll ? Infinity : PHONE_MAX;
+    cards.forEach(function(c){
+      var ok = (fProd === 'all' || c.dataset.prod === fProd) && (fReg === 'all' || c.dataset.reg.split(' ').indexOf(fReg) > -1);
+      if (ok) n++;
+      c.hidden = !ok || n > cap;
+    });
+    var what = (fProd === 'all' ? 'loofah and straw' : fProd) + ' brands' + (fReg === 'all' ? ' in all regions' : ' in ' + (fReg === 'India' ? 'India and Asia' : fReg));
+    document.getElementById('brand-count').textContent = n > cap
+      ? 'Showing the first ' + cap + ' of ' + n + ' ' + what + ' (' + cards.length + ' checked)'
+      : 'Showing ' + n + ' of ' + cards.length + ': ' + what;
+    more.hidden = n <= cap;
+    more.textContent = 'Show all ' + n;
+  }
+  more.addEventListener('click', function(){
+    showAll = true; filterBrands();
+    var next = grid.querySelectorAll('.card:not([hidden]) h3')[PHONE_MAX];
+    if (next){ next.setAttribute('tabindex', '-1'); next.focus({ preventScroll: true }); }
+  });
+  seg('prod-filter', 'data-prod', function(v){ fProd = v; showAll = false; filterBrands(); });
+  seg('reg-filter', 'data-reg', function(v){ fReg = v; showAll = false; filterBrands(); });
+  filterBrands();
+
+  /* 10. Economics */
+  document.querySelector('#econ-table tbody').innerHTML = D.economics.map(function(e){
+    return '<tr><th scope="row">' + esc(e.channel) + (e.gated ? ' <span class="tag">gated</span>' : '') + '</th><td>' + esc(e.unit) + '</td><td>' + esc(e.price) + '</td><td>' + esc(e.aov) + '</td><td><b>' + esc(e.contrib) + '</b> <span class="tag">Est.</span></td><td>' + Math.round(e.margin) + '%' + (e.marginNote ? ' <span class="mn">' + esc(e.marginNote) + '</span>' : '') + '</td><td>' + esc(e.inputs) + (e.url ? ' (<a href="' + esc(e.url) + '" target="_blank" rel="noopener">source</a>)' : '') + '</td></tr>';
+  }).join('');
+  function drawEcon(){
+    var rows = D.economics.map(function(e){ return { label: e.channel + (e.gated ? ', gated' : '') + (e.marginNote ? ' (% of net revenue after GST)' : ''), v: e.margin, contrib: e.contrib, gated: e.gated, product: e.product, url: e.url || '#inputs', est: true }; });
+    bars(document.getElementById('chart-econ'), rows, { cur: '', max: 100, fmt: function(v){ return Math.round(v) + '%'; }, color: function(r){ return r.gated ? { outline: C.straw } : { fill: C.loofah }; } });
+    // add the per order contribution after each percentage
+    var texts = document.querySelectorAll('#chart-econ a text');
+    texts.forEach(function(t, i){ t.textContent += ', ' + rows[i].contrib + ' per order'; });
+  }
+
+  /* 11. Cases */
+  var groups = [['hero', 'Started with one hero product for one buyer'], ['range', 'Started with a range, with outside money or one hero material'], ['market', 'Marketplace model']];
+  document.getElementById('cases-list').innerHTML = groups.map(function(g){
+    return '<div><h3>' + g[1] + '</h3>' + D.cases.filter(function(c){ return c.pattern === g[0]; }).map(function(c){
+      return '<div class="case"><div><b>' + esc(c.brand) + '</b><span class="where">' + esc(c.where) + '</span></div><div><b>' + esc(c.start) + '</b>' + esc(c.grew) + '</div><div class="res">' + link(c.url, esc(c.result)) + '</div></div>';
+    }).join('') + '</div>';
+  }).join('');
+
+  /* 12. Scorecard */
+  var S = D.score, W8 = {}, proven = false;
+  S.criteria.forEach(function(c){ W8[c.id] = c.w; });
+  var short = { loofah_first: 'Loofah', straw_first: 'Straw', umbrella_both: 'Both' };
+  function scoreOf(o, cid){ var s = o.s[cid]; if (proven && S.strawProven[o.id] && S.strawProven[o.id][cid] != null) s = S.strawProven[o.id][cid]; return s; }
+  var crits = document.getElementById('crits');
+  S.criteria.forEach(function(c){
+    var d = document.createElement('div'); d.className = 'crit';
+    d.innerHTML = '<label for="w-' + c.id + '">' + esc(c.label) + '</label><input type="range" id="w-' + c.id + '" min="0" max="30" step="1" value="' + c.w + '"><output for="w-' + c.id + '" id="o-' + c.id + '">' + c.w + '</output><span class="sc" id="sc-' + c.id + '"></span>';
+    crits.appendChild(d);
+    d.querySelector('input').addEventListener('input', function(e){ W8[c.id] = +e.target.value; update(); });
+  });
+  function setWeights(p){ S.criteria.forEach(function(c){ W8[c.id] = p[c.id]; document.getElementById('w-' + c.id).value = p[c.id]; }); update(); }
+  document.getElementById('p-research').addEventListener('click', function(){ setWeights(S.presets.research); });
+  document.getElementById('p-story').addEventListener('click', function(){ setWeights(S.presets.story); });
+  document.getElementById('p-proven').addEventListener('click', function(e){ proven = !proven; e.currentTarget.setAttribute('aria-pressed', String(proven)); update(); });
+  var results = [];
+  function update(){
+    var total = 0; S.criteria.forEach(function(c){ total += W8[c.id]; document.getElementById('o-' + c.id).textContent = W8[c.id]; });
+    S.criteria.forEach(function(c){
+      var vals = S.options.map(function(o){ return scoreOf(o, c.id); }), top = Math.max.apply(null, vals);
+      document.getElementById('sc-' + c.id).innerHTML = S.options.map(function(o, i){ return '<span data-k="' + short[o.id] + '"' + (vals[i] === top ? ' class="up"' : '') + '>' + vals[i] + '</span>'; }).join('');
+    });
+    results = S.options.map(function(o){
+      var sum = 0; S.criteria.forEach(function(c){ sum += scoreOf(o, c.id) * W8[c.id]; });
+      return { o: o, v: total ? sum / total : 0 };
+    }).sort(function(a, b){ return b.v - a.v; });
+    var lead = results[0], gap = lead.v - results[1].v;
+    document.getElementById('leader').innerHTML = total ? (gap < 0.005 ? '<b>Tie</b> between ' + esc(lead.o.label) + ' and ' + esc(results[1].o.label) : 'Leader: <b>' + esc(lead.o.label) + '</b>, ahead by ' + gap.toFixed(2)) : 'Set at least one weight above zero.';
+    document.getElementById('score-order').textContent = 'Order: ' + results.map(function(r){ return r.o.label + ' ' + r.v.toFixed(2); }).join(', ');
+    document.getElementById('mini').textContent = results.map(function(r){ return short[r.o.id] + ' ' + r.v.toFixed(2); }).join('   ');
+    drawScore();
+  }
+  function drawScore(){
+    var el = document.getElementById('chart-score'), W = el.clientWidth; if (!W) return;
+    var out = '', y = 0, plot = W - 64, fill = { loofah: C.loofah, straw: C.straw, neutral: C.neutral };
+    results.forEach(function(r, i){
+      out += '<text x="0" y="' + (y + 16) + '" font-size="16" font-weight="' + (i === 0 ? 600 : 400) + '" fill="' + C.ink + '">' + esc(r.o.label) + '</text>';
+      y += 24;
+      out += '<rect x="0" y="' + y + '" width="' + plot + '" height="20" rx="2" fill="#fff"/>';
+      out += '<rect x="0" y="' + y + '" width="' + Math.max(2, r.v / 5 * plot) + '" height="20" rx="2" fill="' + fill[r.o.color] + '"/>';
+      out += '<text x="' + (plot + 8) + '" y="' + (y + 16) + '" font-size="20" font-weight="600" fill="' + C.ink + '" style="font-family:var(--cond)">' + r.v.toFixed(2) + '</text>';
+      y += 36;
+    });
+    el.innerHTML = svg(W, y, out, 'Weighted scores out of 5: ' + results.map(function(r){ return r.o.label + ' ' + r.v.toFixed(2); }).join(', '), 'img');
+  }
+  update();
+
+  /* 14. Sources: every URL used on the page or in the data, grouped by site */
+  function collect(){
+    var urls = new Set();
+    (function walk(v){ if (Array.isArray(v)) v.forEach(walk); else if (v && typeof v === 'object') Object.keys(v).forEach(function(k){ if (k === 'url' && /^https?:/.test(v[k])) urls.add(v[k]); else walk(v[k]); }); })(D);
+    document.querySelectorAll('main a[href^="http"]').forEach(function(a){ urls.add(a.getAttribute('href')); });
+    var by = {};
+    urls.forEach(function(u){ var h = u.replace(/^https?:\/\/(www\.|m\.)?/, '').split('/')[0]; (by[h] = by[h] || []).push(u); });
+    document.getElementById('src-sum').textContent = 'All ' + urls.size + ' source links, grouped by site';
+    if (wide) document.getElementById('src-fold').open = true;
+    document.getElementById('src-list').innerHTML = Object.keys(by).sort().map(function(h){
+      return '<div><b>' + esc(h) + '</b>' + by[h].sort().map(function(u){ return '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(niceUrl(u).replace(/^https?:\/\//, '')) + '</a>'; }).join('') + '</div>';
+    }).join('');
+  }
+  collect();
+  document.querySelectorAll('main a[href^="http"]').forEach(function(a){ a.target = '_blank'; a.rel = 'noopener'; });
+
+  function drawAll(){ drawMarket(); drawLadders(); drawEcon(); drawScore(); }
+  drawAll();
+  var raf; window.addEventListener('resize', function(){ cancelAnimationFrame(raf); raf = requestAnimationFrame(drawAll); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawAll);
+})();
+</script>
+</body>
+</html>
